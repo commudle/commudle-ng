@@ -2,5 +2,320 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "commudle-admin": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/commudle-admin",
+      "sourceRoot": "projects/commudle-admin/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/commudle-admin",
+            "index": "projects/commudle-admin/src/index.html",
+            "main": "projects/commudle-admin/src/main.ts",
+            "polyfills": "projects/commudle-admin/src/polyfills.ts",
+            "tsConfig": "projects/commudle-admin/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/commudle-admin/src/favicon.ico",
+              "projects/commudle-admin/src/assets"
+            ],
+            "styles": [
+              "projects/commudle-admin/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/commudle-admin/src/environments/environment.ts",
+                  "with": "projects/commudle-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "commudle-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "commudle-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "commudle-admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/commudle-admin/src/test.ts",
+            "polyfills": "projects/commudle-admin/src/polyfills.ts",
+            "tsConfig": "projects/commudle-admin/tsconfig.spec.json",
+            "karmaConfig": "projects/commudle-admin/karma.conf.js",
+            "assets": [
+              "projects/commudle-admin/src/favicon.ico",
+              "projects/commudle-admin/src/assets"
+            ],
+            "styles": [
+              "projects/commudle-admin/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/commudle-admin/tsconfig.app.json",
+              "projects/commudle-admin/tsconfig.spec.json",
+              "projects/commudle-admin/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/commudle-admin/e2e/protractor.conf.js",
+            "devServerTarget": "commudle-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "commudle-admin:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "lib-authwatch": {
+      "projectType": "library",
+      "root": "projects/lib-authwatch",
+      "sourceRoot": "projects/lib-authwatch/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lib-authwatch/tsconfig.lib.json",
+            "project": "projects/lib-authwatch/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-authwatch/src/test.ts",
+            "tsConfig": "projects/lib-authwatch/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-authwatch/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-authwatch/tsconfig.lib.json",
+              "projects/lib-authwatch/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "commudle-home": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/commudle-home",
+      "sourceRoot": "projects/commudle-home/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/commudle-home",
+            "index": "projects/commudle-home/src/index.html",
+            "main": "projects/commudle-home/src/main.ts",
+            "polyfills": "projects/commudle-home/src/polyfills.ts",
+            "tsConfig": "projects/commudle-home/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/commudle-home/src/favicon.ico",
+              "projects/commudle-home/src/assets"
+            ],
+            "styles": [
+              "projects/commudle-home/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/commudle-home/src/environments/environment.ts",
+                  "with": "projects/commudle-home/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "commudle-home:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "commudle-home:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "commudle-home:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/commudle-home/src/test.ts",
+            "polyfills": "projects/commudle-home/src/polyfills.ts",
+            "tsConfig": "projects/commudle-home/tsconfig.spec.json",
+            "karmaConfig": "projects/commudle-home/karma.conf.js",
+            "assets": [
+              "projects/commudle-home/src/favicon.ico",
+              "projects/commudle-home/src/assets"
+            ],
+            "styles": [
+              "projects/commudle-home/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/commudle-home/tsconfig.app.json",
+              "projects/commudle-home/tsconfig.spec.json",
+              "projects/commudle-home/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/commudle-home/e2e/protractor.conf.js",
+            "devServerTarget": "commudle-home:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "commudle-home:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "lib-server-communications": {
+      "projectType": "library",
+      "root": "projects/lib-server-communications",
+      "sourceRoot": "projects/lib-server-communications/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lib-server-communications/tsconfig.lib.json",
+            "project": "projects/lib-server-communications/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-server-communications/src/test.ts",
+            "tsConfig": "projects/lib-server-communications/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-server-communications/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-server-communications/tsconfig.lib.json",
+              "projects/lib-server-communications/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "commudle-admin"
 }

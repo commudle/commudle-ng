@@ -17,7 +17,21 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "lib-authwatch": [
+        "dist/lib-authwatch"
+      ],
+      "lib-authwatch/*": [
+        "dist/lib-authwatch/*"
+      ],
+      "lib-server-communications": [
+        "dist/lib-server-communications"
+      ],
+      "lib-server-communications/*": [
+        "dist/lib-server-communications/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
