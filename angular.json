@@ -282,33 +282,103 @@
         }
       }
     },
-    "lib-server-communications": {
+    "api-routes": {
       "projectType": "library",
-      "root": "projects/lib-server-communications",
-      "sourceRoot": "projects/lib-server-communications/src",
+      "root": "projects/api-routes",
+      "sourceRoot": "projects/api-routes/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/lib-server-communications/tsconfig.lib.json",
-            "project": "projects/lib-server-communications/ng-package.json"
+            "tsConfig": "projects/api-routes/tsconfig.lib.json",
+            "project": "projects/api-routes/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/lib-server-communications/src/test.ts",
-            "tsConfig": "projects/lib-server-communications/tsconfig.spec.json",
-            "karmaConfig": "projects/lib-server-communications/karma.conf.js"
+            "main": "projects/api-routes/src/test.ts",
+            "tsConfig": "projects/api-routes/tsconfig.spec.json",
+            "karmaConfig": "projects/api-routes/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/lib-server-communications/tsconfig.lib.json",
-              "projects/lib-server-communications/tsconfig.spec.json"
+              "projects/api-routes/tsconfig.lib.json",
+              "projects/api-routes/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "lib-error-handler": {
+      "projectType": "library",
+      "root": "projects/lib-error-handler",
+      "sourceRoot": "projects/lib-error-handler/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lib-error-handler/tsconfig.lib.json",
+            "project": "projects/lib-error-handler/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-error-handler/src/test.ts",
+            "tsConfig": "projects/lib-error-handler/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-error-handler/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-error-handler/tsconfig.lib.json",
+              "projects/lib-error-handler/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "lib-api-parser": {
+      "projectType": "library",
+      "root": "projects/lib-api-parser",
+      "sourceRoot": "projects/lib-api-parser/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lib-api-parser/tsconfig.lib.json",
+            "project": "projects/lib-api-parser/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-api-parser/src/test.ts",
+            "tsConfig": "projects/lib-api-parser/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-api-parser/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-api-parser/tsconfig.lib.json",
+              "projects/lib-api-parser/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

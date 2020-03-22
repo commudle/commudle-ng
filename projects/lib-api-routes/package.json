@@ -1,5 +1,5 @@
 {
-  "name": "lib-server-communications",
+  "name": "lib-api-routes",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.14",

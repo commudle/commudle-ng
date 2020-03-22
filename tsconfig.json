@@ -30,6 +30,24 @@
       ],
       "lib-server-communications/*": [
         "dist/lib-server-communications/*"
+      ],
+      "api-routes": [
+        "dist/api-routes"
+      ],
+      "api-routes/*": [
+        "dist/api-routes/*"
+      ],
+      "lib-error-handler": [
+        "dist/lib-error-handler"
+      ],
+      "lib-error-handler/*": [
+        "dist/lib-error-handler/*"
+      ],
+      "lib-api-parser": [
+        "dist/lib-api-parser"
+      ],
+      "lib-api-parser/*": [
+        "dist/lib-api-parser/*"
       ]
     }
   },

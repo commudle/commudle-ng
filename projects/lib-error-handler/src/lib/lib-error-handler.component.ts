@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-lib-server-communications',
+  selector: 'lib-lib-error-handler',
   template: `
     <p>
-      lib-server-communications works!
+      lib-error-handler works!
     </p>
   `,
   styles: []
 })
-export class LibServerCommunicationsComponent implements OnInit {
+export class LibErrorHandlerComponent implements OnInit {
 
   constructor() { }
 
