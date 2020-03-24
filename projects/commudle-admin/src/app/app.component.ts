@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ApiRoutesService } from 'projects/lib-api-routes/src/public-api';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { environment } from '../environments/environment';
-import { LibAuthwatchService } from 'projects/lib-authwatch/src/public-api';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-root',

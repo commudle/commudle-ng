@@ -12,7 +12,9 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthTokenInterceptor } from 'projects/lib-authwatch/src/public-api';
+import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
+import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
+import { AuthTokenInterceptor } from 'projects/shared-services/lib-authwatch-token.interceptor';
 
 
 @NgModule({
@@ -25,6 +27,10 @@ import { AuthTokenInterceptor } from 'projects/lib-authwatch/src/public-api';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
+    // external service modules
+    LibErrorHandlerModule,
+
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule,
@@ -32,6 +38,7 @@ import { AuthTokenInterceptor } from 'projects/lib-authwatch/src/public-api';
     NbButtonModule,
   ],
   providers: [
+    NbSidebarService,
     {
       // TODO move the interceptors to a common barrel file if needed
       // https://angular.io/guide/http#provide-the-interceptor
@@ -39,7 +46,11 @@ import { AuthTokenInterceptor } from 'projects/lib-authwatch/src/public-api';
       useClass: AuthTokenInterceptor,
       multi: true
     },
-    NbSidebarService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiParserResponseInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

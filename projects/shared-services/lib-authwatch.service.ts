@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
-import { ApiRoutesService, API_ROUTES } from 'projects/lib-api-routes/src/public-api';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+import { ApiRoutesService } from './api-routes.service';
+import { API_ROUTES } from './api-routes.constants';
 
 
 @Injectable({
