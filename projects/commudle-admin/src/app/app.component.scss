@@ -1,0 +1,16 @@
+:host{
+  nb-layout-header{
+    .container{
+      display: flex;
+      align-items: center;
+      .sidebar-toggle {
+          cursor: pointer;
+          color: grey;
+          &:hover{
+            transform: scale(1.5, 1.5);
+          }
+      }
+    }
+
+  }
+}

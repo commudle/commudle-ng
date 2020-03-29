@@ -1,10 +1,20 @@
 <nb-layout>
 
   <nb-layout-header fixed>
-  Commudle
+    <div class="container">
+      <div class="sidebar-toggle" (click)="toggleSidebar()">
+        <fa-icon [icon]="faBars" size="1x" rotate={{rotateMenuIcon}}></fa-icon>
+      </div>
+      <p></p>
+    </div>
+
   </nb-layout-header>
 
-  <nb-sidebar>Sidebar content</nb-sidebar>
+  <nb-sidebar responsive="true">
+    <ul>
+      <li><a routerLink="/communities">Communities</a></li>
+    </ul>
+  </nb-sidebar>
 
   <nb-layout-column>
 

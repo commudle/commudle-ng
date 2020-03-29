@@ -1,0 +1,29 @@
+:host {
+
+  cursor: pointer;
+  a {
+    text-decoration: none;
+  }
+  nb-card{
+    margin-bottom: 1rem;
+
+    nb-card-body{
+     &>div{
+      display: flex;
+      align-items: center;
+      height: 200px;
+      .logo {
+        width: 100px;
+        overflow: hidden;
+        padding-right: 30px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      }
+
+    }
+  }
+}

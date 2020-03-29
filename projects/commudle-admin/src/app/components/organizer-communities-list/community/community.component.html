@@ -1,0 +1,18 @@
+<div>
+  <a [routerLink]="[community.slug, 'events']">
+    <nb-card>
+      <nb-card-body>
+        <div>
+          <div class="logo">
+            <img src={{community.logo_path}} alt={{community.name}}>
+          </div>
+          <div class="name">
+            <h3>{{community.name}}</h3>
+          </div>
+          <div class="mini-stats"></div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </a>
+
+</div>
