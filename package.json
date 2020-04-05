@@ -27,6 +27,7 @@
     "@nebular/theme": "^4.6.0",
     "@tinymce/tinymce-angular": "^3.5.0",
     "eva-icons": "^1.1.2",
+    "ng2-smart-table": "^1.5.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -50,6 +51,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ng-packagr": "^5.4.0",
+    "ng2-completer": "^3.0.3",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": "^0.37.0",

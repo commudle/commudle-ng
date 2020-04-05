@@ -9,5 +9,10 @@ export const API_ROUTES = {
   // communities
   USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
   COMMUNITY_DETAILS: 'api/v2/communities',
-  UPDATE_COMMUNITY: 'api/v2/communities/update'
+  UPDATE_COMMUNITY: 'api/v2/communities/update',
+
+
+
+  // data_forms
+  COMMUNITY_DATA_FORMS: 'api/v2/data_forms/community_data_forms',
 };

@@ -1,1 +1,21 @@
-<p>community-forms-list works!</p>
+<div>
+
+  <div class="page-actions">
+    <a nbButton outline size="large" [routerLink]="['/forms', 'new']">
+      <fa-icon [icon]="faPlusSquare"></fa-icon>
+      &nbsp;
+      Create Form
+    </a>
+  </div>
+  <div>
+    <ng2-smart-table [settings]="tableSettings" [source]="dataForms"></ng2-smart-table>
+  </div>
+  <div class="page-actions">
+    <button nbButton outline size="large">
+      <fa-icon [icon]="faPlusSquare"></fa-icon>
+      &nbsp;
+      Create Form
+    </button>
+  </div>
+
+</div>

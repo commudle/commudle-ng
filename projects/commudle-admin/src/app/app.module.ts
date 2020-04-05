@@ -14,7 +14,8 @@ import {
   NbSidebarService,
   NbCardModule,
   NbRouteTabsetModule,
-  NbInputModule} from '@nebular/theme';
+  NbInputModule,
+  NbTreeGridModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -28,7 +29,11 @@ import { CommunityEditDetailsComponent } from './components/community-control-pa
 import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
+import { Ng2SmartTableModule } from "ng2-smart-table";
+import { Ng2CompleterModule } from "ng2-completer";
+import { CommunityFormsListStatsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
+import { CommunityFormsListActionsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
+import { DataFormsModule } from './feature-modules/data-forms/data-forms.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     CommunityEventsListComponent,
     CommunityEditDetailsComponent,
     CommunityTeamComponent,
+    CommunityFormsListStatsComponent,
+    CommunityFormsListActionsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -49,7 +56,6 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    NbInputModule,
     EditorModule,
 
 
@@ -64,6 +70,13 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     NbButtonModule,
     NbCardModule,
     NbRouteTabsetModule,
+    NbTreeGridModule,
+    NbInputModule,
+
+
+    //other external npm modules
+    Ng2CompleterModule,
+    Ng2SmartTableModule,
 
   ],
   providers: [
@@ -80,6 +93,10 @@ import { EditorModule } from '@tinymce/tinymce-angular';
       useClass: ApiParserResponseInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    CommunityFormsListStatsComponent,
+    CommunityFormsListActionsComponent
   ],
   bootstrap: [AppComponent]
 })

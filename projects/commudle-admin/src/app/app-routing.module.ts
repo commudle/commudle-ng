@@ -43,6 +43,10 @@ const routes: Routes = [
                 path: 'team', component: CommunityTeamComponent
               }
             ]
+          },
+          {
+            path: 'forms',
+            loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then(m => m.DataFormsModule)
           }
 
         ]
