@@ -15,4 +15,8 @@ export const API_ROUTES = {
 
   // data_forms
   COMMUNITY_DATA_FORMS: 'api/v2/data_forms/community_data_forms',
+
+
+  // question_types
+  ALL_QUESTION_TYPES: '/api/v2/question_types'
 };
