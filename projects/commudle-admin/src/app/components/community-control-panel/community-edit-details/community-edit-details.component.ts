@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from '../../../services/communities.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-community-edit-details',
@@ -32,7 +33,8 @@ export class CommunityEditDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private communitiesService: CommunitiesService
+    private communitiesService: CommunitiesService,
+    private toastLogService: LibToastLogService
   ) {
     this.communitiesService.getCommunityDetails(this.activatedRoute.snapshot.parent.params['name']).subscribe((data) => {
       this.community = data;
@@ -61,8 +63,8 @@ export class CommunityEditDetailsComponent implements OnInit {
 
 
   updateCommunityDetails() {
-    let formData: any = new FormData();
-    let communityFormData = this.communityForm.get('community').value;
+    const formData: any = new FormData();
+    const communityFormData = this.communityForm.get('community').value;
     Object.keys(communityFormData).forEach(
       key => (!(communityFormData[key] == null) ? formData.append(`community[${key}]`, communityFormData[key]) : '')
       );
@@ -70,7 +72,9 @@ export class CommunityEditDetailsComponent implements OnInit {
     if (this.uploadedLogoFile != null) {
       formData.append('community[logo_image]', this.uploadedLogoFile);
     }
-    this.communitiesService.updateCommunity(formData, this.community.id).subscribe();
+    this.communitiesService.updateCommunity(formData, this.community.id).subscribe((community) => {
+      this.toastLogService.successDialog('Updated!');
+    });
   }
 
 }

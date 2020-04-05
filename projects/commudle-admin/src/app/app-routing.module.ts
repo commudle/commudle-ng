@@ -56,6 +56,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [CommunityDetailsResolver]
+  // providers: [CommunityDetailsResolver]
 })
 export class AppRoutingModule { }
