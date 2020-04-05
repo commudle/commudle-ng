@@ -32,4 +32,25 @@ export class CommunitiesService {
     );
   }
 
+
+  getCommunityDetails(community_id): Observable<ICommunity> {
+    let params = new HttpParams().set('community_id', community_id);
+
+    return this.http.get<ICommunity>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DETAILS), { params: params }
+    );
+  }
+
+
+  updateCommunity(communityFormData, communityId): Observable<ICommunity> {
+
+    let params = new HttpParams().set('community_id', communityId);
+    params.append('community_id', 'gdg-new-delhi');
+    return this.http.patch<ICommunity>(
+      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_COMMUNITY),
+      communityFormData,
+      {params: params}
+    );
+  }
+
 }

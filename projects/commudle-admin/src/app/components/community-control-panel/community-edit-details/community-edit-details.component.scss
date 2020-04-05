@@ -1,0 +1,64 @@
+.community-edit-details-form {
+  div[role='individual'] {
+    margin: 2rem auto;
+  }
+
+
+  .uploaded-logo {
+    height: 150px;
+    max-width: 300px;
+    overflow: hidden;
+    background: #d3d3d36b;
+    margin: 0 auto;
+    position: relative;
+    &::before{
+      content: 'Logo';
+      position: absolute;
+      font-size: 2rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #b9b9b9;
+      font-weight: bolder;
+    }
+  }
+
+  .uploaded-logo-image{
+    height: 150px;
+    max-width: 300px;
+    overflow: hidden;
+    background: #d3d3d36b;
+    margin: 0 auto;
+    text-align: center;
+    img {
+      height: 100%;
+    }
+
+  }
+
+  div[role='group'] {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 2rem auto;
+
+    >div{
+      width: 100%;
+      margin: 10px;
+    }
+
+
+    @media (min-width: 768px) {
+      >div{
+        width: 50%;
+      }
+
+    }
+  }
+
+
+  .save-button-top {
+    margin-top: 2rem;
+  }
+
+}

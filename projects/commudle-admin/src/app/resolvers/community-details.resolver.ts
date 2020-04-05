@@ -19,7 +19,7 @@ export class CommunityDetailsResolver implements Resolve<ICommunity> {
 
   resolve(route: ActivatedRouteSnapshot, rstate: RouterStateSnapshot): Observable<ICommunity> {
     // if organizer communities are already fetched then bring it from there, else fetch the communities and then filter from the list
-    let params = new HttpParams().set('community', route.params['name']);
+    let params = new HttpParams().set('community_id', route.params['name']);
 
     return this.http.get<ICommunity>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DETAILS), { params: params }

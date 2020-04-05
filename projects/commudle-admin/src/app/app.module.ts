@@ -13,8 +13,8 @@ import {
   NbButtonModule,
   NbSidebarService,
   NbCardModule,
-  NbTabsetModule,
-  NbRouteTabsetModule} from '@nebular/theme';
+  NbRouteTabsetModule,
+  NbInputModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -27,6 +27,7 @@ import { CommunityEventsListComponent } from './components/community-control-pan
 import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
 import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -48,6 +49,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    NbInputModule,
+    EditorModule,
+
 
     // external service modules
     LibErrorHandlerModule,
@@ -59,7 +63,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NbSidebarModule,
     NbButtonModule,
     NbCardModule,
-    NbRouteTabsetModule
+    NbRouteTabsetModule,
+
   ],
   providers: [
     NbSidebarService,

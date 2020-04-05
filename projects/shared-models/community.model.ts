@@ -2,6 +2,7 @@ export interface ICommunity {
   id: number;
   name: string;
   logo_path: string;
+  logo_image: File;
   about: string;
   slug: string;
   mini_description: string;

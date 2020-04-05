@@ -29,9 +29,6 @@ const routes: Routes = [
           {
             path: 'communities/:name',
             component: CommunityControlPanelComponent,
-            resolve: {
-              community: CommunityDetailsResolver
-            },
             children: [
               {
                 path: 'forms', component: CommunityFormsListComponent
@@ -40,7 +37,7 @@ const routes: Routes = [
                 path: 'events', component: CommunityEventsListComponent
               },
               {
-                path: 'about', component: CommunityEditDetailsComponent
+                path: 'about', component: CommunityEditDetailsComponent,
               },
               {
                 path: 'team', component: CommunityTeamComponent

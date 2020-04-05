@@ -33,6 +33,7 @@ export class ApiParserResponseInterceptor implements HttpInterceptor {
       }
     }),
     catchError(error => {
+
       if (error instanceof HttpErrorResponse) {
         // show a dialog/redirect, based on error code
         this.errorHandleService.handleError(error.status, error.error.message);

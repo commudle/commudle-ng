@@ -25,6 +25,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@nebular/eva-icons": "4.6.0",
     "@nebular/theme": "^4.6.0",
+    "@tinymce/tinymce-angular": "^3.5.0",
     "eva-icons": "^1.1.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

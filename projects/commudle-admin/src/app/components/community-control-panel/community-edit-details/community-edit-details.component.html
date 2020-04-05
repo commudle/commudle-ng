@@ -1,61 +1,127 @@
 <div>
 
-  <!-- <form [formGroup]="communityForm">
-    <label>
-      Name
-      <input type="text" formControlName="name">
-    </label>
+  <form class="community-edit-details-form" [formGroup]="communityForm" (ngSubmit)="updateCommunityDetails()">
+    <div class="save-button-top">
+      <button type="submit" nbButton fullWidth outline size="small">
+        Save
+      </button>
+    </div>
+    <div formGroupName="community">
+      <div role="group" >
+        <div>
+          <label fullWidth>
+            Name*
+            <input type="text" nbInput fullWidth formControlName="name">
+          </label>
+        </div>
 
-    <label>
-      Logo
-      <input type="text" formControlName="logo_path">
-    </label>
+        <div>
+          <label>
+            Logo*
+            <input type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+          </label>
+        </div>
 
-    <label>
-      About
-      <input type="text" formControlName="about">
-    </label>
+      </div>
 
-    <label>
-      Mini Description
-      <input type="text" formControlName="mini_description">
-    </label>
-
-    <label>
-      Email
-      <input type="text" formControlName="contact_email">
-    </label>
-
-    <label>
-      Website
-      <input type="text" formControlName="website">
-    </label>
-
-    <label>
-      Facebook
-      <input type="text" formControlName="facebook">
-    </label>
-
-    <label>
-      Twitter
-      <input type="text" formControlName="twitter">
-    </label>
-
-    <label>
-      Github
-      <input type="text" formControlName="github">
-    </label>
-
-    <label>
-      Linkedin
-      <input type="text" formControlName="linkedin">
-    </label>
+      <div>
+        <div class="uploaded-logo" *ngIf="uploadedLogo == null">
+        </div>
+        <div class="uploaded-logo-image" *ngIf="uploadedLogo">
+          <img src={{uploadedLogo}} alt="uploaded-logo">
+        </div>
+      </div>
 
 
 
+      <div role="group">
+        <div>
+          <label>
+            Email*
+            <input type="text" nbInput fullWidth formControlName="contact_email">
+          </label>
+        </div>
 
+        <div>
+          <label>
+            Website
+            <input type="text" nbInput fullWidth formControlName="website">
+          </label>
+        </div>
+      </div>
 
+      <div role='individual'>
+          <label>
+            About*
+          </label>
+            <editor
+              formControlName="about"
+              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+             [init]="{
+              height: 300,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }">
 
+            </editor>
 
-  </form> -->
+      </div>
+
+      <div role="individual">
+        <label>
+          Mini Description*
+        </label>
+          <input type="text" nbInput fullWidth formControlName="mini_description">
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Facebook
+            <input type="text" nbInput fullWidth formControlName="facebook">
+          </label>
+
+        </div>
+        <div>
+          <label>
+            Twitter
+            <input type="text" nbInput fullWidth formControlName="twitter">
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Github
+            <input type="text" nbInput fullWidth formControlName="github">
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Linkedin
+            <input type="text" nbInput fullWidth formControlName="linkedin">
+          </label>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div>
+      <button type="submit" nbButton fullWidth>
+        Save
+      </button>
+    </div>
+
+  </form>
 </div>
