@@ -1,3 +1,5 @@
+import { IQuestion } from './question.model'
+
 export interface IDataForm {
   id: number;
   name: string;
@@ -6,4 +8,5 @@ export interface IDataForm {
   questions_count: number;
   responses_count: number;
   user: string;
+  questions: IQuestion[];
 }

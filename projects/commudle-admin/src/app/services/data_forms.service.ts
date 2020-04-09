@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
-import { tap } from 'rxjs/operators';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { IDataForms } from 'projects/shared-models/data_forms.model';
 
@@ -28,13 +27,12 @@ export class DataFormsService {
   }
 
 
-  // getDataFormDetails(dataFormId): Observable<IDataForm> {
-    // let params = new HttpParams().set('community_id', community_id);
-
-    // return this.http.get<ICommunity>(
-    //   this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DETAILS), { params: params }
-    // );
-  // }
+  getDataFormDetails(dataFormId): Observable<IDataForm> {
+    let params = new HttpParams().set('data_form_id', dataFormId);
+    return this.http.get<IDataForm>(
+      this.apiRoutesService.getRoute(API_ROUTES.GET_DATA_FORM), { params: params }
+    );
+  }
 
 
   // updateCommunity(communityFormData, communityId): Observable<IDataForm> {

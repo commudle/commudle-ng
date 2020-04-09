@@ -15,7 +15,9 @@ import {
   NbCardModule,
   NbRouteTabsetModule,
   NbInputModule,
-  NbTreeGridModule} from '@nebular/theme';
+  NbTreeGridModule,
+  NbCheckboxModule,
+  NbSelectModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -70,8 +72,9 @@ import { DataFormsModule } from './feature-modules/data-forms/data-forms.module'
     NbButtonModule,
     NbCardModule,
     NbRouteTabsetModule,
-    NbTreeGridModule,
     NbInputModule,
+    NbCheckboxModule,
+    NbSelectModule,
 
 
     //other external npm modules

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { ICommunity } from 'projects/shared-models/community.model';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IQuestionTypes } from 'projects/shared-models/question_types.model';

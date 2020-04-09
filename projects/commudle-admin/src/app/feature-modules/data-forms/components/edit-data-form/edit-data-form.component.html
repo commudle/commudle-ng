@@ -1,1 +1,97 @@
-<p>edit-data-form works!</p>
+<div>
+  <form class="edit-data-form" [formGroup]="editDataForm">
+    <div formGroupName="data_form">
+
+      <nb-card>
+        <nb-card-body>
+
+          <div role="group">
+            <div>
+              <label fullWidth>
+                Name*
+                <input type="text" nbInput fullWidth formControlName="name">
+              </label>
+            </div>
+          </div>
+
+        </nb-card-body>
+      </nb-card>
+
+      <div class="save-button-top">
+        <button type="submit" nbButton fullWidth size="small">
+          Save
+        </button>
+      </div>
+
+      <nb-card>
+        <nb-card-body>
+          <div formArrayName="questions" *ngFor="let question of editDataForm.controls.data_form.controls.questions.controls; let i=index">
+            <div [formGroupName]="i">
+              <div>
+                <label>
+                  Question*
+                  <input type="text" nbInput fullWidth formControlName="title" required>
+                 </label>
+              </div>
+
+              <div>
+                <textarea nbInput fullWidth formControlName="description" placeholder="Description (optional)"></textarea>
+
+              </div>
+
+
+              <div>
+                <label>
+                  Question Type
+                  <nb-select placeholder="Question Type*" required>
+                    <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
+                      {{ qt.name }}
+                    </nb-option>
+                  </nb-select>
+                </label>
+
+                <nb-checkbox formControlName="required">Required</nb-checkbox>
+                <nb-checkbox formControlName="disabled">Disabled</nb-checkbox>
+              </div>
+
+              <div>
+                <div formArrayName="question_choices" *ngFor="let choice of question.controls.question_choices.controls; let chi=index">
+                  <div [formGroupName]="chi">
+                    <input type="text" nbInput formControlName="title" required>
+                  </div>
+                  <button nbButton status="danger" size="tiny" (click)="removeQuestionChoiceButtonClick(i, chi)" >Remove Choice</button>
+                </div>
+                <button nbButton size="small" (click)="addQuestionChoiceButtonClick(i, chi)" >Add Choice</button>
+
+
+              </div>
+
+            </div>
+
+
+
+            <button nbButton size="tiny" (click)="removeQuestionButtonClick(i)" outline status="danger">Remove Question</button>
+          </div>
+
+
+
+          <div>
+            <button nbButton size="small" (click)="addQuestionButtonClick()" >Add Question</button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+
+
+      <div>
+        <button type="submit" nbButton fullWidth size="small">
+          Save
+        </button>
+      </div>
+
+    </div>
+
+  </form>
+
+
+</div>

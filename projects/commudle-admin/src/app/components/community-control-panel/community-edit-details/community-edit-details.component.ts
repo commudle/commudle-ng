@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from '../../../services/communities.service';
