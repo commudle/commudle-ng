@@ -8,6 +8,7 @@ export interface IQuestion {
   description: string;
   required: boolean;
   disabled: boolean;
+  has_responses: boolean;
   question_choices: IQuestionChoice[];
 
 }

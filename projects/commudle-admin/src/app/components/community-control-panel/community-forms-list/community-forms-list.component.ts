@@ -14,6 +14,7 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 })
 export class CommunityFormsListComponent implements OnInit {
   faPlusSquare = faPlusSquare;
+  newFormParentId;
   dataForms: IDataForm[];
   tableSettings = {
     actions: false,
@@ -43,6 +44,8 @@ export class CommunityFormsListComponent implements OnInit {
     private dataFormsService: DataFormsService,
     private activatedRoute: ActivatedRoute,
   ) {
+
+    this.newFormParentId = this.activatedRoute.snapshot.parent.params['name'];
     this.dataFormsService.getCommunityDataForms(this.activatedRoute.snapshot.parent.params['name']).subscribe((data) => {
       this.dataForms = data.data_forms;
     });

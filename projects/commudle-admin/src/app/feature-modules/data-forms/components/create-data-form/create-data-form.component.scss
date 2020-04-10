@@ -1,7 +1,56 @@
-:host {
-  div {
-    position: fixed;
-    height: 200px;
-    width: 200px;
+:host{
+  div.data-form-container{
+    max-width: 920px;
+    margin: 0 auto;
+
+
+
+    .validation-error-text  {
+      color: red; /* red */
+    }
+
+    input{
+      background-color: white;
+    }
+
+    textarea{
+      background-color: white;
+    }
+
+    nb-card.data-form-question-choices-container{
+      margin-bottom: 0;
+    }
+
+
+    .question-container{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 3rem;
+
+      .question-settings{
+        margin: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        nb-select{
+          background-color: white;
+        }
+
+        label, nb-checkbox{
+          margin-right: 1.5rem;
+
+        }
+      }
+
+      .choices-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin: 1rem;
+      }
+    }
   }
+
 }

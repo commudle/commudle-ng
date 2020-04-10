@@ -1,7 +1,18 @@
-<div>
+<div class="data-form-container">
+  <nb-card>
+    <nb-card-header>
+      <h3>
+        Edit Form
+      </h3>
+    </nb-card-header>
+  </nb-card>
   <form class="edit-data-form" [formGroup]="editDataForm">
     <div formGroupName="data_form">
-
+      <div class="save-button-top">
+        <button [disabled]="!editDataForm.valid" type="submit" nbButton fullWidth size="medium" (click)="updateDataForm()">
+          {{ submitButtonText() }}
+        </button>
+      </div>
       <nb-card>
         <nb-card-body>
 
@@ -17,21 +28,37 @@
         </nb-card-body>
       </nb-card>
 
-      <div class="save-button-top">
-        <button type="submit" nbButton fullWidth size="small">
-          Save
-        </button>
-      </div>
 
-      <nb-card>
+
+      <nb-card class="data-form-question-choices-container">
         <nb-card-body>
           <div formArrayName="questions" *ngFor="let question of editDataForm.controls.data_form.controls.questions.controls; let i=index">
-            <div [formGroupName]="i">
+            <div [formGroupName]="i" class="question-container">
               <div>
+                <button *ngIf="question.get('has_responses').value == false" nbButton size="small" (click)="removeQuestionButtonClick(i)" outline status="danger">
+                  <fa-icon [icon]="faTrashAlt"></fa-icon>
+                </button>
                 <label>
-                  Question*
-                  <input type="text" nbInput fullWidth formControlName="title" required>
+                  {{i + 1}}. Question*
+                  <input type="text" nbInput fullWidth formControlName="title" placeholder="Title*" required>
                  </label>
+                 <span *ngIf="question.get('title').touched && question.get('title').invalid && question.get('title').errors.required" class="validation-error-text">
+                  Required Field
+                </span>
+              </div>
+
+              <div class="question-settings">
+                <label>
+                  Question Type
+                  <nb-select placeholder="Question Type*" formControlName="question_type_id" required status="primary" size="tiny" hero>
+                    <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
+                      {{ qt.name }}
+                    </nb-option>
+                  </nb-select>
+                </label>
+
+                <nb-checkbox formControlName="required" status="primary">Required</nb-checkbox>
+                <nb-checkbox formControlName="disabled" status="primary">Disabled <small>(If you don't want this question to appear anymore)</small></nb-checkbox>
               </div>
 
               <div>
@@ -40,43 +67,41 @@
               </div>
 
 
-              <div>
-                <label>
-                  Question Type
-                  <nb-select placeholder="Question Type*" required>
-                    <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
-                      {{ qt.name }}
-                    </nb-option>
-                  </nb-select>
-                </label>
-
-                <nb-checkbox formControlName="required">Required</nb-checkbox>
-                <nb-checkbox formControlName="disabled">Disabled</nb-checkbox>
-              </div>
-
-              <div>
-                <div formArrayName="question_choices" *ngFor="let choice of question.controls.question_choices.controls; let chi=index">
-                  <div [formGroupName]="chi">
-                    <input type="text" nbInput formControlName="title" required>
+              <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
+                <div class="choices-container" formArrayName="question_choices" *ngFor="let choice of question.controls.question_choices.controls; let chi=index">
+                  <div>
+                    <div [formGroupName]="chi">
+                      <input type="text" nbInput formControlName="title" placeholder="Enter Text*" required>
+                      <span *ngIf="choice.get('title').touched && choice.get('title').invalid && choice.get('title').errors.required" class="validation-error-text">
+                        Required Field
+                      </span>
+                    </div>
+                    <button *ngIf="choice.get('has_responses').value == false" nbButton status="danger" size="tiny" (click)="removeQuestionChoiceButtonClick(i, chi)" >
+                      <fa-icon [icon]="faTrashAlt"></fa-icon>
+                    </button>
                   </div>
-                  <button nbButton status="danger" size="tiny" (click)="removeQuestionChoiceButtonClick(i, chi)" >Remove Choice</button>
                 </div>
-                <button nbButton size="small" (click)="addQuestionChoiceButtonClick(i, chi)" >Add Choice</button>
-
+                <button nbButton size="tiny" (click)="addQuestionChoiceButtonClick(i, chi)" status="primary" hero>
+                  <fa-icon [icon]="faPlus"></fa-icon>
+                  &nbsp;
+                  Add Choice
+                </button>
 
               </div>
 
             </div>
 
 
-
-            <button nbButton size="tiny" (click)="removeQuestionButtonClick(i)" outline status="danger">Remove Question</button>
           </div>
 
 
 
           <div>
-            <button nbButton size="small" (click)="addQuestionButtonClick()" >Add Question</button>
+            <button nbButton size="medium" (click)="addQuestionButtonClick()" status="primary">
+              <fa-icon [icon]="faPlus"></fa-icon>
+              &nbsp;
+              Add Question
+            </button>
           </div>
         </nb-card-body>
       </nb-card>
@@ -84,8 +109,8 @@
 
 
       <div>
-        <button type="submit" nbButton fullWidth size="small">
-          Save
+        <button [disabled]="!editDataForm.valid" type="submit" nbButton fullWidth size="medium" (click)="updateDataForm()">
+          {{ submitButtonText() }}
         </button>
       </div>
 

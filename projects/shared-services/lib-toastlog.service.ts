@@ -14,7 +14,7 @@ export class LibToastLogService {
   ) { }
 
 
-  successDialog(message) {
+  successDialog(message, duration = 2000) {
     const iconConfig: NbIconConfig = { icon: 'checkmark-outline', pack: 'eva' };
     this.toastrService.success(
       'Success',
@@ -22,7 +22,7 @@ export class LibToastLogService {
       {
         icon: iconConfig,
         status: 'success',
-        duration: 1000
+        duration: duration
       }
     );
   }

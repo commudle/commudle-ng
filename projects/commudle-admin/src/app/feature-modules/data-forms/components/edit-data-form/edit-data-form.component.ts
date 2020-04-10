@@ -5,16 +5,17 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
 import { IQuestion } from 'projects/shared-models/question.model';
 import { IQuestionType } from 'projects/shared-models/question_type.model';
-import { QuestionTypesResolver } from 'projects/shared-resolvers/question-types.resolver';
 import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
-
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-edit-data-form',
   templateUrl: './edit-data-form.component.html',
   styleUrls: ['./edit-data-form.component.scss']
 })
 export class EditDataFormComponent implements OnInit {
-
+  faTrashAlt = faTrashAlt;
+  faPlus = faPlus;
   dataForm: IDataForm;
   questionTypes: IQuestionType[];
 
@@ -30,6 +31,7 @@ export class EditDataFormComponent implements OnInit {
       description: [''],
       required: [''],
       disabled: [''],
+      has_responses: [false],
       question_choices: this.fb.array([
         this.initQuestionChoice()
       ])
@@ -41,6 +43,7 @@ export class EditDataFormComponent implements OnInit {
     return this.fb.group({
       id: [''],
       title: ['', Validators.required],
+      has_responses: [false]
     });
   }
 
@@ -74,11 +77,16 @@ export class EditDataFormComponent implements OnInit {
     });
   }
 
+  submitButtonText() {
+    return (this.editDataForm.valid ? "Save" : "Form Is Incomplete");
+  }
+
 
   constructor(
     private dataFormsService: DataFormsService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -123,11 +131,12 @@ export class EditDataFormComponent implements OnInit {
 
       const exisingQuestionForm = this.fb.group({
         id: q.id,
-        question_type_id: q.question_type_id,
-        title: q.title,
-        description: q.description,
-        required: q.required,
-        disabled: q.disabled,
+        question_type_id: [{value: q.question_type_id, disabled: q.has_responses}],
+        title: [{value: q.title, disabled: q.has_responses}],
+        description: [{value: q.description, disabled: q.has_responses}],
+        required: [{value: q.required, disabled: q.has_responses}],
+        disabled: [{value: q.disabled, disabled: q.has_responses}],
+        has_responses: q.has_responses,
         question_choices: this.fb.array([
           this.initQuestionChoice()
         ])
@@ -143,12 +152,22 @@ export class EditDataFormComponent implements OnInit {
     const formArray = new FormArray([]);
     questionChoices.forEach(qc => {
       formArray.push(this.fb.group({
-        title: qc.title
+        title: [{value: qc.title, disabled: qc.has_responses}],
+        has_responses: qc.has_responses,
       }));
-      console.log(qc.title);
     });
 
     return formArray;
+  }
+
+
+  updateDataForm() {
+    this.dataFormsService.updateDataForm(this.editDataForm.get('data_form').value).subscribe((dataForm => {
+      this.dataForm = dataForm;
+      console.log(dataForm);
+      this.fillExistingDataForm();
+      this.toastLogService.successDialog('Updated!');
+    }));
   }
 
 

@@ -10,7 +10,6 @@ import { CommunityFormsListComponent } from './components/community-control-pane
 import { CommunityEventsListComponent } from './components/community-control-panel/community-events-list/community-events-list.component';
 import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
 import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
-import { CommunityDetailsResolver } from './resolvers/community-details.resolver';
 
 const routes: Routes = [
   {
@@ -47,8 +46,11 @@ const routes: Routes = [
           {
             path: 'forms',
             loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then(m => m.DataFormsModule)
+          },
+          {
+            path: 'communities/:id/event-dashboard',
+            loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
           }
-
         ]
       }
     ]

@@ -35,15 +35,26 @@ export class DataFormsService {
   }
 
 
-  // updateCommunity(communityFormData, communityId): Observable<IDataForm> {
+  updateDataForm(dataForm): Observable<IDataForm>{
+    return this.http.put<IDataForm>(
+      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_DATA_FORM),
+      {
+        data_form: dataForm,
+        data_form_id: dataForm.id
+      }
+    );
+  }
 
-    // let params = new HttpParams().set('community_id', communityId);
-    // params.append('community_id', 'gdg-new-delhi');
-    // return this.http.patch<ICommunity>(
-    //   this.apiRoutesService.getRoute(API_ROUTES.UPDATE_COMMUNITY),
-    //   communityFormData,
-    //   {params: params}
-    // );
-  // }
+
+  createDataForm(dataForm, parentId, parentType): Observable<IDataForm>{
+    return this.http.post<IDataForm>(
+      this.apiRoutesService.getRoute(API_ROUTES.CREATE_DATA_FORM),
+      {
+        data_form: dataForm,
+        parent_id: parentId,
+        parent_type: parentType
+      }
+    );
+  }
 
 }

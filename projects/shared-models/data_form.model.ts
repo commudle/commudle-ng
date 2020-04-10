@@ -8,5 +8,7 @@ export interface IDataForm {
   questions_count: number;
   responses_count: number;
   user: string;
+  parent_type: string;
+  parent_id: string;
   questions: IQuestion[];
 }

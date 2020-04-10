@@ -6,19 +6,27 @@ import { DataFormsRoutingModule } from './data-forms-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbInputModule, NbCardModule, NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbSelectModule, NbCheckboxModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
 @NgModule({
-  declarations: [EditDataFormComponent, CreateDataFormComponent],
+  declarations: [
+    EditDataFormComponent,
+    CreateDataFormComponent
+  ],
   imports: [
     CommonModule,
     DataFormsRoutingModule,
     ReactiveFormsModule,
 
 
+    // External
+    FontAwesomeModule,
 
-    // Nebula modules
+
+
+    // Nebula
     NbButtonModule,
     NbCardModule,
     NbInputModule,
