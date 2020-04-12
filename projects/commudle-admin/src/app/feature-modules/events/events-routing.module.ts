@@ -6,10 +6,16 @@ import { CollaboratingCommunitiesComponent } from './components/collaborating-co
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
 import { EventScheduleComponent } from './components/event-schedule/event-schedule.component';
+import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
+import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
+import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
+    resolve: {
+      community: CommunityDetailsResolver
+    },
     children: [
       {
         path: 'new',
@@ -17,7 +23,14 @@ const routes: Routes = [
       },
       {
         path: ':id',
+        resolve: {
+          event: EventDetailsResolver
+        },
         children: [
+          {
+            path: '',
+            component: EventDashboardComponent
+          },
           {
             path: 'edit',
             component: EditEventComponent
@@ -48,6 +61,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CommunityDetailsResolver,
+    EventDetailsResolver
+  ]
 })
 export class EventsRoutingModule { }

@@ -27,6 +27,8 @@
     "@nebular/theme": "^4.6.0",
     "@tinymce/tinymce-angular": "^3.5.0",
     "eva-icons": "^1.1.2",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
     "ng2-smart-table": "^1.5.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

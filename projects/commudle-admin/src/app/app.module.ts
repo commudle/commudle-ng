@@ -17,7 +17,8 @@ import {
   NbInputModule,
   NbTreeGridModule,
   NbCheckboxModule,
-  NbSelectModule} from '@nebular/theme';
+  NbSelectModule,
+  NbDatepickerModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -75,6 +76,7 @@ import { DataFormsModule } from './feature-modules/data-forms/data-forms.module'
     NbInputModule,
     NbCheckboxModule,
     NbSelectModule,
+    NbDatepickerModule.forRoot(),
 
 
     //other external npm modules

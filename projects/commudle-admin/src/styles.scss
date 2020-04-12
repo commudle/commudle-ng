@@ -6,3 +6,11 @@
   @include nb-theme-global();
 };
 /* You can add global styles to this file, and also import other style files */
+
+.validation-error-text{
+  color: red;
+}
+
+input {
+  background-color: white;
+}

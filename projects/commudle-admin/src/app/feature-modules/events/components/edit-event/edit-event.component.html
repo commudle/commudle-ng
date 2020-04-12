@@ -1,1 +1,145 @@
-<p>edit-event works!</p>
+<div class="event-edit-form-container">
+  <nb-card>
+    <nb-card-body>
+      <h3>Edit Event</h3>
+      <p>
+        {{ community.name }}
+      </p>
+      <nb-alert status="info" *ngIf="uneditable">
+        <p>
+          This event is <strong>{{event.status}}</strong> and cannot be edited
+        </p>
+      </nb-alert>
+    </nb-card-body>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <form class="event-create-form" [formGroup]="eventForm" (ngSubmit)="updateEvent()">
+        <div formGroupName="event">
+          <div role="group" >
+            <div>
+              <label fullWidth>
+                Name*
+                <input type="text" nbInput fullWidth formControlName="name">
+              </label>
+              <span *ngIf="eventForm.controls.event.controls.name.touched && eventForm.controls.event.controls.name.invalid && eventForm.controls.event.controls.name.errors.required" class="validation-error-text">
+                Required Field
+              </span>
+            </div>
+
+          </div>
+
+
+
+            <div class="event-date-details">
+              <label>Starts At</label>
+              <div>
+                <div>
+                  <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date">
+                  <nb-datepicker #datepicker [min]="minDate" (dateChange)="updateMinEndDate($event)"></nb-datepicker>
+                </div>
+                <div class="hour-select">
+                  <nb-select fullWidth placeholder="Hour" size="medium" formControlName="start_hour">
+                    <nb-option *ngFor="let i of hours" [value]="i+1">
+                      {{ i + 1 }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+                <div class="minute-select" >
+                  <nb-select fullWidth placeholder="Minute" size="medium" formControlName="start_minute">
+                    <nb-option *ngFor="let i of minutes" [value]="i">
+                      {{ i }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="event-date-details">
+              <label>
+                Ends At
+                </label>
+              <div>
+                  <div>
+                    <input nbInput [nbDatepicker]="datepicker2" placeholder="Date" formControlName="end_date">
+                    <nb-datepicker [min]="minEndDate" #datepicker2></nb-datepicker>
+                  </div>
+                  <div class="hour-select">
+                    <nb-select fullWidth placeholder="Hour" size="medium" formControlName="end_hour">
+                      <nb-option *ngFor="let i of hours" [value]="i+1">
+                        {{ i + 1 }}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+                  <div class="minute-select">
+                    <nb-select fullWidth placeholder="Minute" size="medium" formControlName="end_minute">
+                      <nb-option *ngFor="let i of minutes" [value]="i">
+                        {{ i }}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+              </div>
+            </div>
+
+            <div role="group" class="event-date-details">
+              <label>
+
+                <nb-select placeholder="TimeZone*" formControlName="timezone" status="primary" size="large" hero>
+                  <nb-option *ngFor="let tz of allTimeZones" [value]="tz">
+                    {{ tz }}
+                  </nb-option>
+                </nb-select>
+              </label>
+            </div>
+
+
+
+
+          <div role='individual'>
+              <label>
+                Description*
+              </label>
+              <span *ngIf="eventForm.controls.event.controls.description.touched && eventForm.controls.event.controls.description.invalid && eventForm.controls.event.controls.description.errors.required" class="validation-error-text">
+                Required Field
+              </span>
+                <editor
+                  formControlName="description"
+                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                 [init]="{
+                  height: 300,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                  ],
+                  toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'
+                }">
+
+                </editor>
+
+          </div>
+
+        </div>
+
+        <div class="save-button-bottom">
+          <nb-alert status="info" *ngIf="uneditable">
+            <p>
+              This event is <strong>{{event.status}}</strong> and cannot be edited
+            </p>
+          </nb-alert>
+          <button *ngIf="!uneditable" [disabled]="!eventForm.valid" type="submit" nbButton fullWidth status="info">
+            Save
+          </button>
+        </div>
+
+      </form>
+
+    </nb-card-body>
+  </nb-card>
+
+</div>

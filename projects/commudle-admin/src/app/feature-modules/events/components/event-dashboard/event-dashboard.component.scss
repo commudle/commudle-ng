@@ -1,0 +1,38 @@
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.5rem;
+}
+
+.card-col {
+  flex: 1 0 calc(50% - 1rem);
+  margin: 0 0.5rem;
+}
+
+.event-timings{
+  >div{
+    display: flex;
+    p{
+      margin: 0 1rem 1rem;
+    }
+  }
+}
+
+.event-description {
+  background-color: #f9f9f9;
+  fa-icon{
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+  }
+  display: flex;
+  >div{
+    height: 15rem;
+    overflow: scroll;
+  }
+}
+
+
+fa-icon{
+  vertical-align: text-top;
+}

@@ -21,5 +21,27 @@ export const API_ROUTES = {
 
 
   // question_types
-  ALL_QUESTION_TYPES: 'api/v2/question_types'
+  ALL_QUESTION_TYPES: 'api/v2/question_types',
+
+
+  // events
+  CREATE_EVENT: 'api/v2/events',
+  UPDATE_EVENT: 'api/v2/events',
+  GET_EVENT: 'api/v2/events',
+
+
+  // event_data_form_entity_groups
+  GET_EVENT_DATA_FORM_ENTITY_GROUPS: 'api/v2/event_data_form_entity_groups',
+  CREATE_EVENT_DATA_FORM_ENTITY_GROUP: 'api/v2/event_data_form_entity_groups',
+
+
+
+  // registration_types
+  GET_REGISTRATION_TYPES: 'api/v2/registration_types',
+
+
+  // data_form_entities
+  UPDATE_DATA_FORM_ENTITY_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+
+
 };

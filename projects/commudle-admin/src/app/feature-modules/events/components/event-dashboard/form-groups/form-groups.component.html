@@ -1,0 +1,105 @@
+<div class="event-data-form-groups">
+
+  <div>
+    <nb-list *ngIf="eventDataFormEntityGroups.length > 0">
+      <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups">
+        <div class="edfeg-details" *ngIf="edfeg.data_form_entities.length > 0">
+          <div class="copy-link">
+            <p>
+              <fa-icon [icon]="faCopy"></fa-icon>
+            </p>
+          </div>
+          <div class="basic-details">
+            <p>
+              {{ edfeg.name }}
+              <br>
+              <small *ngIf="communityDataForms.length > 0">{{getAttachedDataFormName(edfeg.data_form_entities[0].data_form_id)}}</small>
+            </p>
+          </div>
+          <div class="visibility">
+            <nb-select size="small" [(selected)]="edfeg.data_form_entities[0].visibility" (selectedChange)="changeVisibility($event, edfeg.data_form_entities[0].id)">
+              <nb-option value="{{visibilityOptions.YET_TO_ANNOUNCE}}">Yet to announce</nb-option>
+              <nb-option value="{{visibilityOptions.OPEN_BUT_INVISIBLE}}">Open but invisible</nb-option>
+              <nb-option value="{{visibilityOptions.OPEN}}">Open to all</nb-option>
+              <nb-option value="{{visibilityOptions.CLOSED}}">Closed to all</nb-option>
+              <nb-option value="{{visibilityOptions.ON_THE_SPOT_UNINVITED}}">On the spot uninvited</nb-option>
+              <nb-option value="{{visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED}}">Members who have attended</nb-option>
+            </nb-select>
+          </div>
+          <div class="stats">
+            <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{edfeg.responses_count}}</p>
+          </div>
+          <div class="actions">
+            <div>
+              <a nbButton status="info" size="tiny" href="">
+                Show Responses
+              </a>
+            </div>
+            <div>
+              <a nbButton outline status="info" size="tiny" href="">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+                &nbsp;
+                Send By EMail
+              </a>
+            </div>
+            <div *ngIf="edfeg.responses_count >= 0">
+              <a *ngIf="edfeg.responses_count == 0" nbButton outline status="danger" size="tiny" (click)="deleteEventDataFormEntityGroup(edfeg.id)">
+                <fa-icon [icon]="faTimesCircle"></fa-icon>
+                &nbsp;
+                Delete
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </nb-list-item>
+    </nb-list>
+  </div>
+
+  <div>
+    <form class="dfeg-create-form" [formGroup]="eventDataFormEntityGroupForm" (ngSubmit)="createEventDataFormEntityGroup()" >
+      <div formGroupName="data_form_entity_group">
+          <div>
+            <label fullWidth>
+              Name*
+              <input type="text" nbInput fullWidth formControlName="name" fieldSize="tiny">
+            </label>
+            <span *ngIf="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched && eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').invalid && eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').errors.required " class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+
+
+        <div>
+          <label>
+            Form Type
+            <nb-select placeholder="Form Type*" formControlName="registration_type_id" status="primary" size="tiny" hero>
+              <nb-option *ngFor="let rt of registrationTypes" [value]="rt.id">
+                {{ rt.name }}
+              </nb-option>
+            </nb-select>
+          </label>
+        </div>
+
+        <div>
+          <label>
+            Select Form
+            <nb-select  placeholder="Which Form? *" formControlName="data_form_id" status="primary" size="tiny" hero>
+              <nb-option *ngFor="let df of communityDataForms" [value]="df.id">
+                {{ df.name }}
+              </nb-option>
+            </nb-select>
+          </label>
+        </div>
+      </div>
+
+      <div class="save-button-bottom">
+        <button [disabled]="!eventDataFormEntityGroupForm.valid" type="submit" nbButton fullWidth outline status="link" size="tiny">
+          Save
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

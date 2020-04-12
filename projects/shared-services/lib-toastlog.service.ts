@@ -26,4 +26,18 @@ export class LibToastLogService {
       }
     );
   }
+
+
+  warningDialog(message, duration = 2500) {
+    const iconConfig: NbIconConfig = { icon: 'alert-circle-outline', pack: 'eva' };
+    this.toastrService.warning(
+      'Warning',
+      message,
+      {
+        icon: iconConfig,
+        status: 'warning',
+        duration: duration
+      }
+    );
+  }
 }

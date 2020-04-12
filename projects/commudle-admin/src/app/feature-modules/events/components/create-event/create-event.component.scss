@@ -1,0 +1,37 @@
+:host {
+
+  .event-create-form-container{
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .save-button-top{
+    margin: 0 0 1.5rem 0;
+  }
+  .save-button-bottom{
+    margin: 1.5rem 0 0 0;
+  }
+
+
+  div[role='group']{
+    margin: 1rem 0;
+  }
+
+  .event-date-details{
+    margin: 1rem 0 0 0;
+    >div{
+      display: flex;
+      flex-wrap: wrap;
+      >div{
+        margin-right: 1.5rem;
+      }
+
+      @media screen and (max-width: 640px) {
+        >div {
+          margin: 0.5rem 0;
+        }
+      }
+    }
+  }
+
+}
