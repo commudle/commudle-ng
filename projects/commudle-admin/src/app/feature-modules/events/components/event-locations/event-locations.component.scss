@@ -1,0 +1,13 @@
+.event-location {
+  nb-card-header{
+    display: flex;
+    justify-content: flex-start;
+
+    .event-location-details {
+      margin-left: 1rem;
+      p{
+        margin: 0;
+      }
+    }
+  }
+}

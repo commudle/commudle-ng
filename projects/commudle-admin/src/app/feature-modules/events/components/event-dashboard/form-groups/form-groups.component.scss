@@ -11,19 +11,28 @@
 
   .basic-details {
     padding: 0.25rem;
-  }
-
-  .visibility {
-    padding: 0.8rem 0;
+    width: 10rem;
+    max-width: 25%;
+    overflow: hidden;
   }
 
   .stats {
-    min-width: 5.5rem;
+    width: 9.5rem;
+    max-width: 50%;
     padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    p{
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
   }
 
   .actions {
     padding: 0.25rem;
+    .visibility {
+      padding: 0.8rem 0;
+    }
     div {
       margin: 0.5rem 0;
     }

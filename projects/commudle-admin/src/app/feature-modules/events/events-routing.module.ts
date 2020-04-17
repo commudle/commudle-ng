@@ -5,7 +5,6 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
-import { EventScheduleComponent } from './components/event-schedule/event-schedule.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
@@ -48,8 +47,8 @@ const routes: Routes = [
             component: EventFormResponsesComponent
           },
           {
-            path: 'agenda',
-            component: EventScheduleComponent
+            path: 'form-responses',
+            component: EventFormResponsesComponent
           }
 
         ]

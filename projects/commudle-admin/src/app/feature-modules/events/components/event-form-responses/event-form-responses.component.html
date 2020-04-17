@@ -1,1 +1,117 @@
-<p>event-form-responses works!</p>
+<div>
+  <div>
+    <nb-card>
+      <nb-card-body>
+        <h3>{{ event.name }}</h3>
+        <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div>
+    <nb-card>
+      <nb-card-body>
+        <div class="data-table-container">
+          <ngx-datatable
+          #table
+          class="material"
+          [rows]="rows"
+
+          [loadingIndicator]="isLoading"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="100"
+          [footerHeight]="50"
+          [rowHeight]="250"
+          [scrollbarV]="true"
+          [scrollbarH]="true"
+          [sortType]="SortType.single">
+
+            <ngx-datatable-column
+              name="User Details"
+              [frozenLeft]="true"
+              [width]="360"
+              [canAutoResize]="true"
+              >
+
+              <ng-template
+                let-column="column"
+                ngx-datatable-header-template
+                >
+                <div class="header-column-template">
+                  <p>
+                    User Details
+                  </p>
+                  <div class="name-filter">
+                    <input
+                      nbInput
+                      type="text"
+                      fullWidth
+                      fieldSize="tiny"
+                      placeholder="Filter by name"
+                      (keyup)="updateFilter($event)"
+                    />
+                  </div>
+                  <div class="registration-status-filter">
+                    <div (click)="registrationStatusFilter(0)">
+                      <p>All</p>
+                    </div>
+                    <div *ngFor="let rs of registrationStatuses" (click)="registrationStatusFilter(rs.id)">
+                      <p>{{ rs.name }}</p>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div class="row-header user-details">
+                  <app-user-details-cell
+                    [userResponse]="row"
+                    [registrationStatuses]="registrationStatuses"
+                    [registrationType]="eventDataFormEntityGroup.registration_type"
+                    (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
+                    (updateEntryPass)="updateEntryPass($event, row.id)"></app-user-details-cell>
+                </div>
+              </ng-template>
+
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              *ngFor="let question of questions"
+              name="{{ question.title }}"
+              [canAutoResize]="true"
+              [width]="200"
+              >
+              <ng-template
+
+                ngx-datatable-header-template>
+                <div class="row-header question">
+                  <p [ngClass]="{'small-text' : question.title.length > 50}">
+                    {{question.title}}
+                  </p>
+                </div>
+              </ng-template>
+
+
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <div style="height: 100px;" class="row-cell question">
+                  <p *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100" nbTooltip="{{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}">
+                    {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                  </p>
+                  <p *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length <= 100">
+                    {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                  </p>
+                </div>
+              </ng-template>
+
+            </ngx-datatable-column>
+
+
+          </ngx-datatable>
+
+        </div>
+
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>

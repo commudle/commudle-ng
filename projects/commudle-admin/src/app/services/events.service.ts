@@ -17,22 +17,6 @@ export class EventsService {
   ) { }
 
 
-  // getCommunityEvents(communityId): Observable<IEvent> {
-  //   let params = new HttpParams().set('community_id', communityId);
-
-  //   return this.http.get<IDataForms>(
-  //     this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DATA_FORMS), { params: params }
-  //   );
-  // }
-
-
-  // getDataFormDetails(dataFormId): Observable<IDataForm> {
-  //   let params = new HttpParams().set('data_form_id', dataFormId);
-  //   return this.http.get<IDataForm>(
-  //     this.apiRoutesService.getRoute(API_ROUTES.GET_DATA_FORM), { params: params }
-  //   );
-  // }
-
 
   updateEvent(event, event_id, community): Observable<IEvent> {
     return this.http.put<IEvent>(

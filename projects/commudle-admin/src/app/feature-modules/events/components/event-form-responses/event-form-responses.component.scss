@@ -1,0 +1,73 @@
+:host {
+
+  .data-table-container {
+
+    // @media screen and (max-width: 800px) {
+    //   .desktop-hidden {
+    //     display: initial;
+    //   }
+    //   .mobile-hidden {
+    //     display: none;
+    //   }
+    // }
+    // @media screen and (min-width: 800px) {
+    //   .desktop-hidden {
+    //     display: none;
+    //   }
+    //   .mobile-hidden {
+    //     display: initial;
+    //   }
+    // }
+
+    .ngx-datatable{
+      height: 100vh;
+
+      .header-column-template {
+        p {
+          margin: 0;
+        }
+        >.name-filter {
+          margin-top: 5px;
+        }
+
+        >.registration-status-filter{
+          display: flex;
+          flex-wrap: nowrap;
+          div {
+            border: 0.5px solid lightgrey;
+            padding: 5px;
+            cursor: pointer;
+          }
+          p {
+            font-size: 12px;
+            margin: 0
+          }
+        }
+      }
+      .row-header {
+        white-space: normal;
+
+      }
+
+
+
+      .row-header.question{
+        white-space: normal;
+        .small-text {
+          font-size: 10px;
+        }
+        overflow-y: visible;
+      }
+
+      .row-cell.question{
+        white-space: normal;
+        p{
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+}
+
+

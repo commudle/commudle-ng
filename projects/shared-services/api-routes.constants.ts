@@ -32,6 +32,7 @@ export const API_ROUTES = {
 
   // event_data_form_entity_groups
   GET_EVENT_DATA_FORM_ENTITY_GROUPS: 'api/v2/event_data_form_entity_groups',
+  GET_EVENT_DATA_FORM_ENTITY_GROUP: 'api/v2/event_data_form_entity_group',
   CREATE_EVENT_DATA_FORM_ENTITY_GROUP: 'api/v2/event_data_form_entity_groups',
 
 
@@ -43,5 +44,26 @@ export const API_ROUTES = {
   // data_form_entities
   UPDATE_DATA_FORM_ENTITY_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
 
+
+  // registration_statuses
+  GET_REGISTRATION_STATUSES: 'api/v2/registration_statuses',
+
+
+  // data_form_entity_response_groups
+  GET_EVENT_DATA_FORM_RESPONSES: 'api/v2/data_form_entity_response_groups/event_data_form_responses',
+  UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
+
+  // event_entry_passes
+  CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
+  TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
+  TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
+
+
+  // locations
+  GET_LOCATIONS: 'api/v2/locations',
+
+
+  // event_locations
+  GET_EVENT_LOCATIONS: 'api/v2/event_locations'
 
 };

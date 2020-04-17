@@ -1,6 +1,9 @@
 @import 'themes';
 
 @import '~@nebular/theme/styles/globals';
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 
 @include nb-install() {
   @include nb-theme-global();

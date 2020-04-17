@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EventDataFormEntityGroupsService } from 'projects/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'projects/shared-models/event_data_form_enity_group.model';
 import { IRegistrationType } from 'projects/shared-models/registration_type.model';
-import { RegistrationTypesService } from 'projects/commudle-admin/src/app/services/registration_types.service';
+import { RegistrationTypesService } from 'projects/commudle-admin/src/app/services/registration-types.service';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { IDataFormEntity, Visibility } from 'projects/shared-models/data_form_entity.model';

@@ -23,6 +23,13 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
+  getEventDataFormEntityGroup(eventDataFormEntityGroupId): Observable<IEventDataFormEntityGroup> {
+    let params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
+    return this.http.get<IEventDataFormEntityGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.GET_EVENT_DATA_FORM_ENTITY_GROUP), { params: params }
+    );
+  }
+
   createEventDataFormEntityGroup(eventId, name, registrationTypeId, dataFormId): Observable<IEventDataFormEntityGroup> {
 
     return this.http.post<IEventDataFormEntityGroup>(

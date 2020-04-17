@@ -1,0 +1,37 @@
+
+
+.tracks-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 15rem;
+  max-height: 200px;
+  overflow-y: scroll;
+
+  .track {
+    width: 15rem;
+    max-width: 200px;
+    position: relative;
+    .track-name {
+      position: sticky;
+      top: 0;
+      background-color: white;
+    }
+    .time-cell {
+      height: 2.5rem;
+      background-color: #f1f1f1;
+      margin: 1px;
+
+      .time-display {
+        margin: 0;
+      }
+    }
+    .time-cell.fill {
+      .filler-text {
+        margin: 0;
+      }
+    }
+  }
+
+}
+
+

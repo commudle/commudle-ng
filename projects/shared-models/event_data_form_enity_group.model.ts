@@ -6,7 +6,7 @@ export interface IEventDataFormEntityGroup {
   name: string;
   created_at: Date;
   rsvp_open: boolean;
-  registrationType: IRegistrationType;
-  data_form_entities: IDataFormEntity[];
+  registration_type: IRegistrationType;
+  data_form_entity: IDataFormEntity;
   responses_count: number;
 }

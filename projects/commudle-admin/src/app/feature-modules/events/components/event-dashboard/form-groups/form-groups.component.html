@@ -3,7 +3,7 @@
   <div>
     <nb-list *ngIf="eventDataFormEntityGroups.length > 0">
       <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups">
-        <div class="edfeg-details" *ngIf="edfeg.data_form_entities.length > 0">
+        <div class="edfeg-details" *ngIf="edfeg.data_form_entity">
           <div class="copy-link">
             <p>
               <fa-icon [icon]="faCopy"></fa-icon>
@@ -13,25 +13,36 @@
             <p>
               {{ edfeg.name }}
               <br>
-              <small *ngIf="communityDataForms.length > 0">{{getAttachedDataFormName(edfeg.data_form_entities[0].data_form_id)}}</small>
+              <small *ngIf="communityDataForms.length > 0">{{getAttachedDataFormName(edfeg.data_form_entity.data_form_id)}}</small>
             </p>
-          </div>
-          <div class="visibility">
-            <nb-select size="small" [(selected)]="edfeg.data_form_entities[0].visibility" (selectedChange)="changeVisibility($event, edfeg.data_form_entities[0].id)">
-              <nb-option value="{{visibilityOptions.YET_TO_ANNOUNCE}}">Yet to announce</nb-option>
-              <nb-option value="{{visibilityOptions.OPEN_BUT_INVISIBLE}}">Open but invisible</nb-option>
-              <nb-option value="{{visibilityOptions.OPEN}}">Open to all</nb-option>
-              <nb-option value="{{visibilityOptions.CLOSED}}">Closed to all</nb-option>
-              <nb-option value="{{visibilityOptions.ON_THE_SPOT_UNINVITED}}">On the spot uninvited</nb-option>
-              <nb-option value="{{visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED}}">Members who have attended</nb-option>
-            </nb-select>
           </div>
           <div class="stats">
             <p><fa-icon [icon]="faUsers"></fa-icon> &nbsp; {{edfeg.responses_count}}</p>
           </div>
           <div class="actions">
+            <div class="visibility">
+              <nb-select size="small" [(selected)]="edfeg.data_form_entity.visibility" (selectedChange)="changeVisibility($event, edfeg.data_form_entity.id)">
+                <nb-option value="{{visibilityOptions.YET_TO_ANNOUNCE}}">Yet to announce</nb-option>
+                <nb-option value="{{visibilityOptions.OPEN_BUT_INVISIBLE}}">Open but invisible</nb-option>
+                <nb-option value="{{visibilityOptions.OPEN}}">Open to all</nb-option>
+                <nb-option value="{{visibilityOptions.CLOSED}}">Closed to all</nb-option>
+                <nb-option value="{{visibilityOptions.ON_THE_SPOT_UNINVITED}}">On the spot uninvited</nb-option>
+                <nb-option value="{{visibilityOptions.MEMBERS_WHO_HAVE_ATTENDED}}">Members who have attended</nb-option>
+              </nb-select>
+            </div>
             <div>
-              <a nbButton status="info" size="tiny" href="">
+              <a nbButton
+                status="info"
+                size="tiny"
+                [routerLink]="
+                  [
+                    '/communities',
+                    community.slug,
+                    'event-dashboard',
+                    event.slug,
+                    'form-responses'
+                  ]" [queryParams]="{parent_type: 'EventDataFormEntityGroup', parent_id: edfeg.id, data_form_id: edfeg.data_form_entity.data_form_id}">
+
                 Show Responses
               </a>
             </div>
