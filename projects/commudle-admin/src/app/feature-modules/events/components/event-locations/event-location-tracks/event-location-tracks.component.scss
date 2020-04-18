@@ -2,24 +2,37 @@
 
 .tracks-container {
   display: flex;
-  flex-wrap: wrap;
-  height: 15rem;
-  max-height: 200px;
+  flex-wrap: nowrap;
+  height: 25rem;
+  max-height: 350px;
   overflow-y: scroll;
+  max-width: 95vw;
+  overflow-x: scroll;
+
+  @media screen and (min-width: 640px) {
+    max-width: 75rem;
+  }
 
   .track {
-    width: 15rem;
+    min-width: 10rem;
     max-width: 200px;
     position: relative;
     .track-name {
       position: sticky;
       top: 0;
       background-color: white;
+      display: flex;
+      justify-content: space-between;
+      button: {
+        margin-right: 0.5rem;
+      }
     }
+
     .time-cell {
       height: 2.5rem;
       background-color: #f1f1f1;
       margin: 1px;
+      cursor: pointer;
 
       .time-display {
         margin: 0;
@@ -27,6 +40,22 @@
     }
     .time-cell.fill {
       .filler-text {
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+    .track-slot {
+      position: absolute;
+      width: 90%;
+      z-index: 1000;
+      background-color: white;
+      box-shadow: -1px 5px 7px 4px lightgrey;
+      border-radius: 5px;
+      padding: 1rem;
+      cursor: pointer;
+      p {
+        font-size: 0.8rem;
         margin: 0;
       }
     }

@@ -1,5 +1,5 @@
 <div>
-  <div *ngFor="let loc of eventLocations">
+  <div *ngFor="let loc of eventLocations; let i=index">
     <nb-card class="event-location">
       <nb-card-header>
         <div class="header-icon">
@@ -20,7 +20,14 @@
         </div>
       </nb-card-header>
       <nb-card-body>
-        <app-event-location-tracks [eventLocationTracks]="loc.event_location_tracks"></app-event-location-tracks>
+        <app-event-location-tracks
+          [eventLocationTracks]="loc.event_location_tracks"
+          [eventId]="event.id"
+          [eventLocationId]="loc.id"
+          (addTrack)="addTrack($event, i)"
+          (updateTrack)="updateTrack($event, i)"
+          (removeTrack)="removeTrack($event, i)">
+        </app-event-location-tracks>
       </nb-card-body>
     </nb-card>
   </div>

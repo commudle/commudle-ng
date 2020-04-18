@@ -17,7 +17,7 @@
                 Name*
                 <input type="text" nbInput fullWidth formControlName="name">
               </label>
-              <span *ngIf="eventForm.controls.event.controls.name.touched && eventForm.controls.event.controls.name.invalid && eventForm.controls.event.controls.name.errors.required" class="validation-error-text">
+              <span *ngIf="eventForm['controls'].event['controls'].name.touched && eventForm['controls'].event['controls'].name.invalid && eventForm['controls'].event['controls'].name.errors.required" class="validation-error-text">
                 Required Field
               </span>
             </div>
@@ -95,7 +95,7 @@
               <label>
                 Description*
               </label>
-              <span *ngIf="eventForm.controls.event.controls.description.touched && eventForm.controls.event.controls.description.invalid && eventForm.controls.event.controls.description.errors.required" class="validation-error-text">
+              <span *ngIf="eventForm['controls'].event['controls'].description.touched && eventForm['controls'].event['controls'].description.invalid && eventForm['controls'].event['controls'].description.errors.required" class="validation-error-text">
                 Required Field
               </span>
                 <editor

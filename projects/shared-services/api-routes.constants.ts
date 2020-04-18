@@ -64,6 +64,11 @@ export const API_ROUTES = {
 
 
   // event_locations
-  GET_EVENT_LOCATIONS: 'api/v2/event_locations'
+  GET_EVENT_LOCATIONS: 'api/v2/event_locations',
+
+  // event_location_track
+  CREATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
+  UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
+  DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks'
 
 };

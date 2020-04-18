@@ -2,6 +2,11 @@
   <div class="track empty">
     <div class="track-name empty">
       <p>Time</p>
+      <button nbButton size="tiny" (click)="showAddTrackForm()">
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+        &nbsp;
+        Add Track
+      </button>
     </div>
     <div class="time-container">
       <div *ngFor="let hour of hours">
@@ -13,15 +18,18 @@
       </div>
     </div>
   </div>
-  <div class="track" *ngFor="let lt of eventLocationTracks">
+  <div class="track" *ngFor="let lt of eventLocationTracks; let t = index">
     <div class="track-name">
-      <p>{{ lt.name }}</p>
+      <p (click)="showEditTrackForm(lt)">{{ lt.name }}</p>
+      <button nbButton size="tiny" status="danger" (click)="confirmDeleteTrack(lt)">
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </button>
     </div>
     <div class="time-container">
       <div *ngFor="let hour of hours">
         <div *ngFor="let minute of minutes">
           <div *ngIf="minute%5 == 0" class="time-cell fill">
-            <p class="filler-text">
+            <p class="filler-text" (click)="showAddSlotForm(lt)">
               <small>Add Session</small>
             </p>
           </div>
@@ -29,8 +37,62 @@
       </div>
     </div>
     <div class="track-slots-container">
-      <div *ngFor="let slot of lt.track_slots"></div>
+      <div *ngFor="let slot of lt.track_slots">
+        <div class="track-slot"
+        [ngStyle]="{
+          'height': slotSessionHeight(slot) + 'rem',
+          'top': slotSessionOffsetFromTop(slot) + 'rem' }">
+          <p>
+            <fa-icon [icon]="faClock"></fa-icon>
+            &nbsp;
+            {{ moment(slot.start_time).format('HH:mm A') }} - {{ moment(slot.end_time).format('HH:mm A') }}
+          </p>
+          <p>
+            <fa-icon [icon]="faInfo"></fa-icon>
+            &nbsp;
+            {{ slot.session_title }}
+          </p>
+          <p *ngIf="slot.user"></p>
+        </div>
+      </div>
     </div>
   </div>
+
+
+
+
+
+
+  <ng-template #eventLocationTrackFormTemplate let-data>
+    <form class="event-location-track-form" [formGroup]="eventLocationTrackForm" (ngSubmit)="data.operationType == 'create' ? createTrack() : editTrack(data.eventLocationTrackId) ">
+      <div formGroupName="event_location_track">
+          <div>
+            <label fullWidth>
+              Name*
+              <input type="text" nbInput fullWidth formControlName="name">
+            </label>
+            <span *ngIf="eventLocationTrackForm['controls'].event_location_track['controls'].name.touched && eventLocationTrackForm['controls'].event_location_track['controls'].name.invalid && eventLocationTrackForm['controls'].event_location_track['controls'].name.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+      </div>
+
+      <div class="save-button-bottom">
+        <button [disabled]="!eventLocationTrackForm.valid" type="submit" nbButton fullWidth status="info">
+          Save
+        </button>
+      </div>
+
+    </form>
+  </ng-template>
+  <ng-template #deleteEventLocationTrackTemplate let-data>
+    <div>
+      <p>Are you sure you want to delete this track?</p>
+    </div>
+    <div>
+      <button nbButton status="link" (click)="deleteTrack(true,data.eventLocationTrackId)">Yes</button>
+      <button nbButton status="link" (click)="deleteTrack(false,data.eventLocationTrackId)">No</button>
+    </div>
+  </ng-template>
 
 </div>
