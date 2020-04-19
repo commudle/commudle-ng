@@ -7,8 +7,6 @@ export interface ITrackSlot {
   end_time: Date;
   session_title: string;
   tags_list: string;
-  user: IUser;
-  // TODO
-  // session_details: string;
+  speaker_registration_id: number;
 
 }

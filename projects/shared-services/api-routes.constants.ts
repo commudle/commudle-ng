@@ -52,6 +52,7 @@ export const API_ROUTES = {
   // data_form_entity_response_groups
   GET_EVENT_DATA_FORM_RESPONSES: 'api/v2/data_form_entity_response_groups/event_data_form_responses',
   UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
+  GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
 
   // event_entry_passes
   CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
@@ -65,10 +66,19 @@ export const API_ROUTES = {
 
   // event_locations
   GET_EVENT_LOCATIONS: 'api/v2/event_locations',
+  CREATE_EVENT_LOCATION: 'api/v2/event_locations',
+  UPDATE_EVENT_LOCATION: 'api/v2/event_locations',
+  DELETE_EVENT_LOCATION: 'api/v2/event_locations',
 
   // event_location_track
   CREATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
-  DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks'
+  DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
+
+
+  // track_slots
+  CREATE_TRACK_SLOT: 'api/v2/track_slots',
+  UPDATE_TRACK_SLOT: 'api/v2/track_slots',
+  DELETE_TRACK_SLOT: 'api/v2/track_slots',
 
 };

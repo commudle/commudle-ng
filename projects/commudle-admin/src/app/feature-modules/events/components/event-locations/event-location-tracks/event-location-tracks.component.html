@@ -29,7 +29,7 @@
       <div *ngFor="let hour of hours">
         <div *ngFor="let minute of minutes">
           <div *ngIf="minute%5 == 0" class="time-cell fill">
-            <p class="filler-text" (click)="showAddSlotForm(lt)">
+            <p class="filler-text" (click)="showAddSlotForm(lt, hour, minute)">
               <small>Add Session</small>
             </p>
           </div>
@@ -41,7 +41,12 @@
         <div class="track-slot"
         [ngStyle]="{
           'height': slotSessionHeight(slot) + 'rem',
-          'top': slotSessionOffsetFromTop(slot) + 'rem' }">
+          'top': slotSessionOffsetFromTop(slot) + 'rem' }"
+          >
+          <p>
+            <fa-icon [icon]="faPen" (click)="showEditSlotForm(slot)" class="clickable"></fa-icon>
+            <fa-icon [icon]="faTrash" (click)="confirmDeleteSlot(slot)" class="clickable"></fa-icon>
+          </p>
           <p>
             <fa-icon [icon]="faClock"></fa-icon>
             &nbsp;
@@ -52,7 +57,6 @@
             &nbsp;
             {{ slot.session_title }}
           </p>
-          <p *ngIf="slot.user"></p>
         </div>
       </div>
     </div>
@@ -92,6 +96,85 @@
     <div>
       <button nbButton status="link" (click)="deleteTrack(true,data.eventLocationTrackId)">Yes</button>
       <button nbButton status="link" (click)="deleteTrack(false,data.eventLocationTrackId)">No</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+  <!-- track slot windows -->
+  <ng-template #trackSlotFormTemplate let-data>
+    <form class="event-location-track-form" [formGroup]="trackSlotForm" (ngSubmit)="data.operationType == 'create' ? addSlot() : editSlot(data.trackSlotId) ">
+      <div formGroupName="track_slot">
+          <div>
+            <nb-select formControlName="event_location_track_id">
+              <nb-option-group *ngFor="let location of eventLocations" title="{{location.location.name}}">
+                <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
+                  {{ ltrack.name }}
+                </nb-option>
+              </nb-option-group>
+            </nb-select>
+          </div>
+          <div>
+            <nb-select formControlName="speaker_registration_id">
+              <nb-option *ngFor="let speaker of eventSpeakers" [value]="speaker.id">
+                {{ speaker.user.name }}
+              </nb-option>
+            </nb-select>
+          </div>
+          <div>
+            <label fullWidth>
+              Session Title*
+              <input type="text" nbInput fullWidth formControlName="session_title">
+            </label>
+            <span *ngIf="trackSlotForm['controls'].track_slot['controls'].session_title.touched && trackSlotForm['controls'].track_slot['controls'].session_title.invalid && trackSlotForm['controls'].track_slot['controls'].session_title.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+
+          <div>
+            <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="date">
+            <nb-datepicker #datepicker></nb-datepicker>
+          </div>
+
+
+          <div>
+            <input [ngxTimepicker]="startTimePicker" nbInput fullWidth formControlName="start_time" placeholder="Start Time" [format]="24"  readonly>
+            <ngx-material-timepicker #startTimePicker></ngx-material-timepicker>
+            <span *ngIf="trackSlotForm['controls'].track_slot['controls'].start_time.touched && trackSlotForm['controls'].track_slot['controls'].start_time.invalid && trackSlotForm['controls'].track_slot['controls'].start_time.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div>
+            <input [ngxTimepicker]="endTimePicker" nbInput fullWidth formControlName="end_time" placeholder="End Time" [format]="24" readonly>
+            <ngx-material-timepicker #endTimePicker></ngx-material-timepicker>
+            <span *ngIf="trackSlotForm['controls'].track_slot['controls'].end_time.touched && trackSlotForm['controls'].track_slot['controls'].end_time.invalid && trackSlotForm['controls'].track_slot['controls'].end_time.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div>
+            <input type="text" nbInput fullWidth formControlName="tags_list" placeholder="Tag A, Tag B, ...">
+
+          </div>
+      </div>
+
+      <div class="save-button-bottom">
+        <button [disabled]="!trackSlotForm.valid" type="submit" nbButton fullWidth status="info">
+          Save
+        </button>
+      </div>
+
+    </form>
+  </ng-template>
+
+  <ng-template #deleteTrackSlotTemplate let-data>
+    <div>
+      <p>Are you sure you want to delete this slot?</p>
+    </div>
+    <div>
+      <button nbButton status="link" (click)="deleteSlot(true,data.trackSlot)">Yes</button>
+      <button nbButton status="link" (click)="deleteSlot(false,data.trackSlot)">No</button>
     </div>
   </ng-template>
 

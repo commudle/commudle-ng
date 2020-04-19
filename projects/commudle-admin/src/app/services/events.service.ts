@@ -4,6 +4,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IEvent } from 'projects/shared-models/event.model';
+import { IEventLocation } from 'projects/shared-models/event-location.model';
+import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
+import { IDataFormEntityResponseGroups } from 'projects/shared-models/data_form_entity_response_groups.model';
 
 
 @Injectable({
@@ -31,7 +34,6 @@ export class EventsService {
 
 
   createEvent(event, community): Observable<IEvent> {
-    console.log(event);
     return this.http.post<IEvent>(
       this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT),
       {

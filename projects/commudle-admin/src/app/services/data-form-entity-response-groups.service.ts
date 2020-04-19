@@ -48,4 +48,12 @@ export class DataFormEntityResponseGroupsService {
 
   }
 
+
+  getEventSpeakers(eventId): Observable<IDataFormEntityResponseGroups> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IDataFormEntityResponseGroups>(
+      this.apiRoutesService.getRoute(API_ROUTES.GET_EVENT_SPEAKERS), { params }
+    );
+  }
+
 }

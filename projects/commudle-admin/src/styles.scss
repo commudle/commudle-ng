@@ -17,3 +17,15 @@
 input {
   background-color: white;
 }
+
+.timepicker-overlay {
+  z-index: 1100 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 1100 !important;
+}
+
+.clickable{
+  cursor: pointer;
+}

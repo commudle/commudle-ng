@@ -37,6 +37,8 @@ import { Ng2CompleterModule } from "ng2-completer";
 import { CommunityFormsListStatsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
 import { CommunityFormsListActionsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
 import { DataFormsModule } from './feature-modules/data-forms/data-forms.module';
+import { NgxMaterialTimepickerContainerComponent } from 'ngx-material-timepicker/src/app/material-timepicker/components/ngx-material-timepicker-container/ngx-material-timepicker-container.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { DataFormsModule } from './feature-modules/data-forms/data-forms.module'
 
     // external service modules
     LibErrorHandlerModule,
+    NgxMaterialTimepickerModule,
+
 
     // Nebula modules
     NbThemeModule.forRoot({ name: 'default' }),
@@ -101,7 +105,7 @@ import { DataFormsModule } from './feature-modules/data-forms/data-forms.module'
   ],
   entryComponents: [
     CommunityFormsListStatsComponent,
-    CommunityFormsListActionsComponent
+    CommunityFormsListActionsComponent,
   ],
   bootstrap: [AppComponent]
 })

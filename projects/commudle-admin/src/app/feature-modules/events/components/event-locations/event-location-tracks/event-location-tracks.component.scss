@@ -48,12 +48,11 @@
     .track-slot {
       position: absolute;
       width: 90%;
-      z-index: 1000;
+      z-index: 1;
       background-color: white;
       box-shadow: -1px 5px 7px 4px lightgrey;
       border-radius: 5px;
       padding: 1rem;
-      cursor: pointer;
       p {
         font-size: 0.8rem;
         margin: 0;
