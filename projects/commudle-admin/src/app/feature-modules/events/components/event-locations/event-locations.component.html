@@ -1,58 +1,58 @@
 <div>
   <div>
-    <nb-card>
-      <nb-card-body>
-        <button nbButton (click)="showAddEventLocationForm()">
-          <fa-icon [icon]="faPlusCircle"></fa-icon>
-          &nbsp;
-          Add Location
-        </button>
-      </nb-card-body>
-    </nb-card>
+    <button nbButton (click)="showAddEventLocationForm()">
+      <fa-icon [icon]="faPlusCircle"></fa-icon>
+      &nbsp;
+      Add Location
+    </button>
   </div>
-  <div *ngFor="let loc of eventLocations; let i=index">
-    <nb-card class="event-location">
-      <nb-card-header>
-        <div class="header-icon">
-          <fa-icon [icon]="faMapPin"></fa-icon>
-        </div>
-        <div class="event-location-details">
-          <p>
-            {{ loc.location.name }}
-            <br>
-            <small>
-              {{ loc.location.address }}
-            </small>
-            <br>
-            <small>
-             <a href="{{loc.location.map_link}}"> <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map</a>
-            </small>
-          </p>
-          <p>
-            <fa-icon [icon]="faPen" class="clickable" (click)="showEditEventLocationForm(loc)"></fa-icon>
-            &nbsp;
-            <fa-icon [icon]="faTrash" class="clickable" (click)="confirmDeleteEventLocation(loc)"></fa-icon>
+  <div class="event-locations-list">
+    <div *ngFor="let loc of eventLocations; let i=index">
+      <nb-card class="event-location">
+        <nb-card-header>
+          <div class="header-icon">
+            <fa-icon [icon]="faMapPin"></fa-icon>
+          </div>
+          <div class="event-location-details">
+            <p>
+              {{ loc.location.name }}
+              <br>
+              <small>
+                {{ loc.location.address }}
+              </small>
+              <br>
+              <small>
+               <a href="{{loc.location.map_link}}"> <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map</a>
+              </small>
+            </p>
+            <p>
+              <fa-icon [icon]="faPen" class="clickable" (click)="showEditEventLocationForm(loc)"></fa-icon>
+              &nbsp;
+              <fa-icon [icon]="faTrash" class="clickable" (click)="confirmDeleteEventLocation(loc)"></fa-icon>
 
-          </p>
-        </div>
-      </nb-card-header>
-      <nb-card-body>
-        <app-event-location-tracks
-          [eventLocations] = "eventLocations"
-          [eventLocationTracks]="loc.event_location_tracks"
-          [event]="event"
-          [eventLocationId]="loc.id"
-          [eventSpeakers]="eventSpeakers"
-          (addTrack)="addTrack($event, i)"
-          (updateTrack)="updateTrack($event, i)"
-          (removeTrack)="removeTrack($event, i)"
-          (addSession)="addSlot($event, i)"
-          (updateSession)="updateSlot($event, i)"
-          (removeSession)="removeSlot($event, i)">
-        </app-event-location-tracks>
-      </nb-card-body>
-    </nb-card>
+            </p>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <app-event-location-tracks
+            [eventLocations] = "eventLocations"
+            [eventLocationTracks]="loc.event_location_tracks"
+            [event]="event"
+            [eventLocationId]="loc.id"
+            [eventSpeakers]="eventSpeakers"
+            (addTrack)="addTrack($event, i)"
+            (updateTrack)="updateTrack($event, i)"
+            (removeTrack)="removeTrack($event, i)"
+            (addSession)="addSlot($event, i)"
+            (updateSession)="updateSlot($event, i)"
+            (removeSession)="removeSlot($event, i)">
+          </app-event-location-tracks>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
   </div>
+
 
 
 

@@ -7,6 +7,7 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { IEventLocation } from 'projects/shared-models/event-location.model';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { IDataFormEntityResponseGroups } from 'projects/shared-models/data_form_entity_response_groups.model';
+import { IEvents } from 'projects/shared-models/events.model';
 
 
 @Injectable({
@@ -40,6 +41,14 @@ export class EventsService {
         event: event,
         community_id: community.id
       }
+    );
+  }
+
+
+  community_events_for_email(communityId): Observable<IEvents> {
+    let params = new HttpParams().set('community_id', communityId);
+    return this.http.get<IEvents>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_EVENTS_FOR_EMAIL), {params}
     );
   }
 

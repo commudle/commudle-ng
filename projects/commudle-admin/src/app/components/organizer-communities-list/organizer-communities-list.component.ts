@@ -16,11 +16,11 @@ export class OrganizerCommunitiesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.communitiesService.getOrganizerCommunities().subscribe(
-      ((data: ICommunities) => {
-        this.organizerCommunities = data.communities;
-      })
-    );
+    // this.communitiesService.getOrganizerCommunities().subscribe(
+    //   ((data: ICommunities) => {
+    //     this.organizerCommunities = data.communities;
+    //   })
+    // );
   }
 
 }

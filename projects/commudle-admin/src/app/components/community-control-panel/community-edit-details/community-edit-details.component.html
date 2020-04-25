@@ -1,11 +1,6 @@
 <div>
 
   <form class="community-edit-details-form" [formGroup]="communityForm" (ngSubmit)="updateCommunityDetails()">
-    <div class="save-button-top">
-      <button type="submit" nbButton fullWidth outline size="small">
-        Save
-      </button>
-    </div>
     <div formGroupName="community">
       <div role="group" >
         <div>
@@ -118,7 +113,7 @@
     </div>
 
     <div>
-      <button type="submit" nbButton fullWidth>
+      <button [disabled]="!communityForm.valid" type="submit" nbButton fullWidth>
         Save
       </button>
     </div>

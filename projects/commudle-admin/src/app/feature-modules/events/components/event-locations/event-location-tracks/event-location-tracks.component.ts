@@ -91,11 +91,11 @@ export class EventLocationTracksComponent implements OnInit {
 
   slotSessionHeight(slot: ITrackSlot): number {
     let diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
-    return 0.5 * diff;
+    return (0.5 * diff) + 2.5;
   }
 
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
-    return ((moment(slot.start_time).hours() * 0.5 * 60 ) + ((moment(slot.start_time).minute()) * 0.5));
+    return ((moment(slot.start_time).hours() * 0.5 * 60 ) + ((moment(slot.start_time).minute()) * 0.5) + 2.5);
   }
 
 

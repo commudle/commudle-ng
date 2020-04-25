@@ -31,7 +31,7 @@
     height: 150px;
     max-width: 300px;
     overflow: hidden;
-    background: #d3d3d36b;
+    // background: #d3d3d36b;
     margin: 0 auto;
     text-align: center;
     img {
@@ -44,8 +44,6 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin: 2rem auto;
-
     >div{
       width: 100%;
       margin: 10px;

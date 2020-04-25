@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { ApiRoutesService } from './api-routes.service';
 import { API_ROUTES } from './api-routes.constants';
-
+import { ICurrentUser } from '../shared-models/current_user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,8 @@ export class LibAuthwatchService {
   private currentUserVerified: BehaviorSubject<any> = new BehaviorSubject(null);
   public currentUserVerified$ = this.currentUserVerified.asObservable();
   private authCookieName = 'commudle_user_auth';
+  private currentUser: BehaviorSubject<ICurrentUser> = new BehaviorSubject(null);
+  public currentUser$ = this.currentUser.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -44,6 +46,7 @@ export class LibAuthwatchService {
 
     // set the new expiry date on the cookie
     document.cookie = this.authCookieName+"=; expires="+date.toUTCString()+"; path=/";
+    this.currentUser.next(null);
 
   }
 
@@ -55,7 +58,10 @@ export class LibAuthwatchService {
       this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION),
       {}).pipe(
         tap(data => {
-          this.currentUserVerified.next(true);
+          if (data.user) {
+            this.currentUser.next(data.user);
+            this.currentUserVerified.next(true);
+          }
         })
       );
   }

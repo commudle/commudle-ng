@@ -10,6 +10,9 @@ import { DataFormEntitiesService } from 'projects/commudle-admin/src/app/service
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NbWindowService } from '@nebular/theme';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
+import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 
 
 @Component({
@@ -46,7 +49,8 @@ export class FormGroupsComponent implements OnInit {
     private dataFormsService: DataFormsService,
     private dataFormEntitiesService: DataFormEntitiesService,
     private toastLogService: LibToastLogService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
@@ -100,6 +104,21 @@ export class FormGroupsComponent implements OnInit {
         this.toastLogService.successDialog("Deleted");
         let removable = this.eventDataFormEntityGroups.findIndex(k => k.id === eventDataFormEntityGroupId);
         this.eventDataFormEntityGroups.splice(removable, 1);
+      }
+    );
+  }
+
+  openEmailWindow(eventDataFormEntityGroup) {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send ${eventDataFormEntityGroup.name} Link`,
+        context: {
+          community: this.community,
+          event: this.event,
+          eventDataFormEntityGroupId: eventDataFormEntityGroup.id,
+          mailType: EemailTypes.SEND_LINK
+        }
       }
     );
   }

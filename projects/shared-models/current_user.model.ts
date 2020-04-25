@@ -11,4 +11,5 @@ export interface ICurrentUser {
   twitter: string;
   gender: string;
   avatar: string;
+  user_roles: string[];
 }

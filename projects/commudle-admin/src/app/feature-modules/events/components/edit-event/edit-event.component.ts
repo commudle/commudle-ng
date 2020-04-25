@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-event',
@@ -57,13 +58,15 @@ export class EditEventComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
       this.event = data.event;
+      this.titleService.setTitle(`Edit ${this.event.name} | ${this.community.name}`);
 
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.status);
@@ -123,7 +126,7 @@ export class EditEventComponent implements OnInit {
     }
     this.eventsService.updateEvent(formValue, this.event.slug, this.community).subscribe((data) => {
       this.toastLogService.successDialog('Updated!');
-      this.router.navigate(['/communities', this.community.slug, 'event-dashboard', data.slug]);
+      this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });
   }
 

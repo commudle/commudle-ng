@@ -1,0 +1,43 @@
+<div>
+  <nb-list class="sidebar-common-menu">
+    <nb-list-item>
+      <a [routerLink]="['/']" >
+        <nb-icon icon="home-outline"></nb-icon>
+        Home
+      </a>
+    </nb-list-item>
+    <nb-list-item *ngIf="currentUser">
+      <a [routerLink]="['/my-profile']" >
+        <nb-user size="tiny"
+             name="My Profile"
+             picture="{{ currentUser.avatar }}">
+        </nb-user>
+      </a>
+    </nb-list-item>
+    <nb-list-item *ngFor="let community of managedCommunities">
+      <a [routerLink]="['/admin', 'communities', community.slug]" >
+        <nb-user size="tiny"
+             name="{{community.name}}"
+             picture="{{ community.logo_path }}">
+        </nb-user>
+      </a>
+    </nb-list-item>
+
+
+
+  </nb-list>
+
+
+
+  <!-- <div>Common Menu []</div>
+  <div>User Menu
+    [
+      Home
+      Profile (Public Page, Edit Page)
+      List of upcoming events the user has applied to,
+      CodeLabs(New!)
+    ]
+  </div>
+  <div>Community Menu [List of Communities as an organizer]</div>
+  <div>SysAdmin Menu [Create a community, Stats, List of all communities]</div> -->
+</div>

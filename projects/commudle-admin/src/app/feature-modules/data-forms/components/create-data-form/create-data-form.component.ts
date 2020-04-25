@@ -8,6 +8,7 @@ import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-data-form',
@@ -90,11 +91,12 @@ export class CreateDataFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
-
+    this.titleService.setTitle('New Form');
     // get the parent values
     this.activatedRoute.queryParams.subscribe(params => {
       this.parentType = params['parent_type'];
@@ -122,7 +124,7 @@ export class CreateDataFormComponent implements OnInit {
 
     this.dataFormsService.createDataForm(this.createDataForm.get('data_form').value, this.parentId, this.parentType).subscribe((dataForm => {
       this.toastLogService.successDialog('New Form Created!');
-    }));
+this.router.navigate(['/admin/communities', this.parentId]);    }));
   }
 
 }

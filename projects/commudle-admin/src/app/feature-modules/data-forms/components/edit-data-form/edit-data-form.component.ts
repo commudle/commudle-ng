@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
 import { IQuestion } from 'projects/shared-models/question.model';
 import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-edit-data-form',
   templateUrl: './edit-data-form.component.html',
@@ -86,8 +87,12 @@ export class EditDataFormComponent implements OnInit {
     private dataFormsService: DataFormsService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private toastLogService: LibToastLogService
-  ) { }
+    private toastLogService: LibToastLogService,
+    private router: Router,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle(`Edit ${this.dataForm.name} Form`);
+  }
 
   ngOnInit() {
     // get the question types
@@ -164,9 +169,10 @@ export class EditDataFormComponent implements OnInit {
   updateDataForm() {
     this.dataFormsService.updateDataForm(this.editDataForm.get('data_form').value).subscribe((dataForm => {
       this.dataForm = dataForm;
-      console.log(dataForm);
       this.fillExistingDataForm();
       this.toastLogService.successDialog('Updated!');
+      this.router.navigate(['/admin/communities', this.dataForm.parent_id]);
+
     }));
   }
 

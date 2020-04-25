@@ -3,21 +3,34 @@
   <nb-layout-header fixed>
     <div class="container">
       <div class="sidebar-toggle" (click)="toggleSidebar()">
-        <fa-icon [icon]="faBars" size="1x" rotate={{rotateMenuIcon}}></fa-icon>
+        <fa-icon [icon]="faBars" size="1x"></fa-icon>
       </div>
-      <p></p>
+      <div>
+        <nb-user
+          *ngIf="currentUser"
+          size="medium"
+          name="{{ currentUser.name }}"
+          title="{{ currentUser.designation | slice:0:15 }}"
+          picture="{{ currentUser.avatar }}"
+          [nbContextMenu]="userContextMenu"
+        >
+        </nb-user>
+        <button *ngIf="!currentUser"
+          (click)="login()" nbButton status="primary">
+          <nb-icon icon="log-in-outline"></nb-icon>
+          Log in / Sign Up
+        </button>
+
+      </div>
     </div>
 
   </nb-layout-header>
 
   <nb-sidebar responsive="true">
-    <ul>
-      <li><a routerLink="/communities">Communities</a></li>
-    </ul>
+    <app-sidebar-menu></app-sidebar-menu>
   </nb-sidebar>
 
   <nb-layout-column>
-
 
     <router-outlet></router-outlet>
 

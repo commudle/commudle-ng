@@ -15,7 +15,9 @@ export class CommunityEventsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.communityId = this.activatedRoute.snapshot.parent.params['name'];
+    this.activatedRoute.params.subscribe(params => {
+      this.communityId = params.name;
+    });
   }
 
 }

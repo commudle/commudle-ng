@@ -1,12 +1,25 @@
-.event-location {
-  nb-card-header{
-    display: flex;
-    justify-content: flex-start;
 
-    .event-location-details {
-      margin-left: 1rem;
-      p{
-        margin: 0;
+
+.event-locations-list{
+  display: flex;
+  flex-direction: column;
+
+  .event-location {
+    // width: 100%;
+    // @media screen and (min-width: 800px) {
+    //   width: 50%;
+    // }
+
+    nb-card-header{
+      display: flex;
+      justify-content: flex-start;
+
+      .event-location-details {
+        margin-left: 1rem;
+        p{
+          margin: 0;
+          word-wrap: break-word;
+        }
       }
     }
   }

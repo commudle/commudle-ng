@@ -7,6 +7,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import * as momentTimezone from 'moment-timezone';
 import * as moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-event',
@@ -55,7 +56,8 @@ export class CreateEventComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
     ) {
     }
 
@@ -64,6 +66,7 @@ export class CreateEventComponent implements OnInit {
     this.userTimeZone =  momentTimezone.tz.guess();
     this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
+      this.titleService.setTitle(`New Event | ${this.community.name}`);
     });
   }
 
@@ -92,7 +95,7 @@ export class CreateEventComponent implements OnInit {
     }
     this.eventsService.createEvent(formValue, this.community).subscribe((data) => {
       this.toastLogService.successDialog('Created!');
-      this.router.navigate(['/communities', this.community.slug, 'event-dashboard', data.slug]);
+      this.router.navigate(['/admin/communities', this.community.slug, 'event-dashboard', data.slug]);
     });
   }
 

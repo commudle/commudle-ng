@@ -6,34 +6,85 @@
   height: 25rem;
   max-height: 350px;
   overflow-y: scroll;
-  max-width: 95vw;
+
+  max-width: 70vw;
   overflow-x: scroll;
 
-  @media screen and (min-width: 640px) {
-    max-width: 75rem;
+  .track.empty {
+    width: 6.5rem;
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 1;
+    .track-name.empty {
+      width: 5rem;
+      height: 2.5rem;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      p {
+        margin-bottom: 0.3rem;
+      }
+    }
+    .time-cell{
+      width: 5rem;
+      display: flex;
+      align-items: center;
+      height: 2.5rem;
+      border: 1px solid white;
+      background-color: white;
+      .time-display {
+        margin: 0;
+        font-size: 0.8rem;
+      }
+    }
   }
 
+
   .track {
-    min-width: 10rem;
-    max-width: 200px;
     position: relative;
+    width: 10rem;
     .track-name {
+      width: 10rem;
+      height: 2.5rem;
       position: sticky;
+      padding: 0.5rem;
+      background-color: #e6e6e6;
       top: 0;
-      background-color: white;
       display: flex;
       justify-content: space-between;
+      p {
+        margin: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 50%;
+        font-size: 0.8rem;
+      }
       button: {
         margin-right: 0.5rem;
       }
     }
 
-    .time-cell {
+    .time-cell.fill {
+      width: 10rem;
       height: 2.5rem;
-      background-color: #f1f1f1;
-      margin: 1px;
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      // margin: 1px;
       cursor: pointer;
-
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .filler-text{
+        color: #3365ff;
+      }
+      &:hover {
+        background: #3264ff;
+        .filler-text {
+          color: white;
+        }
+      }
       .time-display {
         margin: 0;
       }
@@ -44,22 +95,29 @@
         text-align: center;
       }
     }
+  }
 
-    .track-slot {
-      position: absolute;
+}
+
+
+.track-slot {
+  overflow-y: auto;
+  position: absolute;
       width: 90%;
       z-index: 1;
       background-color: white;
       box-shadow: -1px 5px 7px 4px lightgrey;
       border-radius: 5px;
       padding: 1rem;
-      p {
-        font-size: 0.8rem;
-        margin: 0;
-      }
-    }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
   }
-
 }
 
-
+.track-slot-form {
+  >div>div{
+    margin-bottom: 0.8rem;
+  }
+}

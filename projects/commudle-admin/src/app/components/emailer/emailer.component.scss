@@ -1,0 +1,28 @@
+.emailer-component {
+  height: 65vh;
+  overflow-y: scroll;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.submit-button {
+  // position: fixed;
+  // bottom: 10px;
+  // width: 100%;
+}
+
+.fieldset {
+  margin: 1rem 0;
+}
+
+
+.form-mail-type-selection {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  >.fieldset{
+    margin-right: 1.5rem;
+  }
+
+}

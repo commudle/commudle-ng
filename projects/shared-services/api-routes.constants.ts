@@ -28,6 +28,7 @@ export const API_ROUTES = {
   CREATE_EVENT: 'api/v2/events',
   UPDATE_EVENT: 'api/v2/events',
   GET_EVENT: 'api/v2/events',
+  COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
 
 
   // event_data_form_entity_groups
@@ -80,5 +81,9 @@ export const API_ROUTES = {
   CREATE_TRACK_SLOT: 'api/v2/track_slots',
   UPDATE_TRACK_SLOT: 'api/v2/track_slots',
   DELETE_TRACK_SLOT: 'api/v2/track_slots',
+
+
+  // communication_mailers
+  SEND_COMMUNITY_EMAILS: 'api/v2/communication_mailers/community_emails'
 
 };

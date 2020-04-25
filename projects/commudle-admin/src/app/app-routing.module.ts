@@ -10,51 +10,64 @@ import { CommunityFormsListComponent } from './components/community-control-pane
 import { CommunityEventsListComponent } from './components/community-control-panel/community-events-list/community-events-list.component';
 import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
 import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
+import { HomeComponent } from './components/home/home.component';
+import { HomeCommunityComponent } from './components/home-community/home-community.component';
+import { HomeEventComponent } from './components/home-event/home-event.component';
+import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
-    // canLoad: [AuthGuard],
+    component: HomeComponent,
+  },
+    // children: [
+      // {
+      //   path: 'communities/:id',
+      //   component: HomeCommunityComponent,
+      //   children: [
+      //     {
+      //       path: 'events/:id',
+      //       component: HomeEventComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'fill-form/:id',
+      //   component: FillDataFormComponent,
+      //   canActivate: [AuthGuard]
+      // },
+      // {
+  {
+    path: 'admin',
     children: [
+      // {
+      //   path: 'communities', component: OrganizerCommunitiesListComponent,
+      //   canActivate: [AuthGuard],
+      //   data: {
+      //     expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
+      //   },
+      // },
       {
-        path: '',
-        canActivateChild: [AuthGuard],
-        children: [
-          // add multiple dashboard page routes here
-          {
-            path: 'communities', component: OrganizerCommunitiesListComponent
-          },
-          {
-            path: 'communities/:name',
-            component: CommunityControlPanelComponent,
-            children: [
-              {
-                path: 'forms', component: CommunityFormsListComponent
-              },
-              {
-                path: 'events', component: CommunityEventsListComponent
-              },
-              {
-                path: 'about', component: CommunityEditDetailsComponent,
-              },
-              {
-                path: 'team', component: CommunityTeamComponent
-              }
-            ]
-          },
-          {
-            path: 'forms',
-            loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then(m => m.DataFormsModule)
-          },
-          {
-            path: 'communities/:id/event-dashboard',
-            loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
-          }
-        ]
+        path: 'communities/:name',
+        component: CommunityControlPanelComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
+        },
+      },
+      {
+        path: 'forms',
+        loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then(m => m.DataFormsModule)
+      },
+      {
+        path: 'communities/:id/event-dashboard',
+        loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
       }
     ]
   },
+  {path: 'logout', component: LogoutComponent},
   {path: 'error', component: LibErrorHandlerComponent},
   {path: '**', redirectTo: '/error'}
 ];

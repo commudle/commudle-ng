@@ -11,8 +11,8 @@ import { ICommunity } from 'projects/shared-models/community.model';
   providedIn: 'root'
 })
 export class CommunitiesService {
-  private organizerCommunities: BehaviorSubject<ICommunity[]> = new BehaviorSubject(null);
-  public organizerCommunities$ = this.organizerCommunities.asObservable();
+  // private organizerCommunities: BehaviorSubject<ICommunity[]> = new BehaviorSubject(null);
+  // public organizerCommunities$ = this.organizerCommunities.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -20,16 +20,17 @@ export class CommunitiesService {
   ) { }
 
 
-  getOrganizerCommunities(): Observable<ICommunities> {
-    let params = new HttpParams().set('role', 'organizer');
+  getRoleCommunities(role): Observable<ICommunities> {
+    let params = new HttpParams().set('role', role);
 
     return this.http.get<ICommunities>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLE_COMMUNITIES), { params: params }
-    ).pipe(
-      tap((data: ICommunities) => {
-        this.organizerCommunities.next(data.communities);
-      })
-    );
+    )
+    // .pipe(
+    //   tap((data: ICommunities) => {
+    //     this.organizerCommunities.next(data.communities);
+    //   })
+    // );
   }
 
 

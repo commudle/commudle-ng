@@ -74,7 +74,7 @@ export class EventFormResponsesComponent implements OnInit {
       this.questions = this.dataForm.questions;
     });
 
-    this.getResponses(1, 20);
+    this.getResponses(1, 50);
   }
 
 
@@ -83,7 +83,9 @@ export class EventFormResponsesComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function(d) {
-      return d.user.name.toLowerCase().indexOf(val) !== -1 || !val;
+      if (d.user.name) {
+        return d.user.name.toLowerCase().indexOf(val) !== -1 || !val;
+      }
     });
     // update the rows
     this.rows = [...temp];
@@ -106,8 +108,8 @@ export class EventFormResponsesComponent implements OnInit {
   getResponses(page, count) {
     this.dataFormEntityResponseGroupsService.getEventDataFormResponses(this.eventDataFormEntityGroupId, page, count).subscribe(
       (data) => {
+        this.temp = this.temp.concat(data.data_form_entity_response_groups);
         this.rows = this.rows.concat(data.data_form_entity_response_groups);
-        this.temp = this.rows;
         if (data.data_form_entity_response_groups.length === count) {
           this.getResponses(page + 1, count);
         } else {

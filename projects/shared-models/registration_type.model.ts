@@ -1,4 +1,11 @@
 export interface IRegistrationType {
   id: number;
-  name: string;
+  name: RegistrationTypeNames;
+}
+
+export enum RegistrationTypeNames {
+  ATTENDEE = "attendee",
+  SPEAKER = "speaker",
+  FEEDBACK = "feedback",
+  COMMUNICATION = "communication",
 }

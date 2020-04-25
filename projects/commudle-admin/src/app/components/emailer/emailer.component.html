@@ -1,0 +1,110 @@
+<div class="emailer-component">
+
+  <form [formGroup]="eMailForm" (ngSubmit)="submitForm()">
+    <div class="fieldset">
+      <p>{{ community.name }}</p>
+      <nb-radio-group
+        name="members"
+        formControlName="members"
+        (valueChange)="toggleEventSpecificEmail($event)">
+        <nb-radio value="all">
+          All Members
+        </nb-radio>
+        <nb-radio value="event">
+          Select From Event
+        </nb-radio>
+      </nb-radio-group>
+    </div>
+
+    <div class="fieldset" *ngIf="isEventSpecificEmail">
+      <nb-select placeholder="Select Event" formControlName="event_id" (selectedChange)="getEventDataFormEntityGroups($event)" filled status="primary">
+        <nb-option *ngFor="let event of events" [value]="event.id">
+          {{ event.name }}
+        </nb-option>
+      </nb-select>
+
+      <div class="fieldset" class="form-mail-type-selection">
+        <div class="fieldset" *ngIf="eventDataFormEntityGroups.length > 0">
+          <p>Which Form?</p>
+          <nb-radio-group
+            name="event_data_form_entity_group_id"
+            formControlName="event_data_form_entity_group_id"
+            (valueChange)="toggleEventDataFormEntityGroupType($event)">
+            <nb-radio *ngFor="let edfeg of eventDataFormEntityGroups" [value]="edfeg.id">
+              {{ edfeg.name }}
+            </nb-radio>
+          </nb-radio-group>
+        </div>
+
+        <div class="fieldset" *ngIf="selectedEventDataFormEntityGroup">
+          <p>Let's Be Specific!</p>
+          <nb-radio-group
+              name="registration_selection_type"
+              formControlName="registration_selection_type"
+              (valueChange)="toggleEmailBodyValidation($event)">
+              <nb-radio *ngFor="let reg of selectedFormRegistrationType" [value]="reg.value">
+                {{ reg.display }}
+              </nb-radio>
+            </nb-radio-group>
+        </div>
+      </div>
+    </div>
+      <div class="fieldset" *ngIf="[EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes(selectedEmailType) == true">
+        <div>
+          <label>
+            To
+            <input type="text" nbInput fullWidth formControlName="recipient_email" placeholder="Enter email addresses separated by comma or leave blank for all">
+          </label>
+        </div>
+        <div>
+          <nb-checkbox status="basic" formControlName="resend">
+            Resend (if already sent)
+          </nb-checkbox>
+        </div>
+
+      </div>
+      <div class="fieldset">
+        <label>
+          Subject*
+          <input type="text" nbInput fullWidth formControlName="subject">
+        </label>
+        <span *ngIf="eMailForm['controls'].subject.touched && eMailForm['controls'].subject.invalid && eMailForm['controls'].subject.errors.required" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+      <div class="fieldset">
+        <label>
+          Message From Organizers
+        </label>
+        <span *ngIf="eMailForm['controls'].body.touched && eMailForm['controls'].body.invalid && eMailForm['controls'].body.errors.required" class="validation-error-text">
+          Required Field
+        </span>
+          <editor
+            formControlName="body"
+            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+           [init]="{
+            height: 200,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help'
+          }">
+
+          </editor>
+      </div>
+
+
+    <div class="submit-button">
+      <button [disabled]="!eMailForm.valid" fullWidth nbButton type="submit">
+        Send Mail
+      </button>
+    </div>
+  </form>
+
+</div>

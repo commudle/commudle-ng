@@ -47,8 +47,9 @@
                       type="text"
                       fullWidth
                       fieldSize="tiny"
-                      placeholder="Filter by name"
+                      placeholder="{{ isLoading ? 'Still Loading' : 'Filter by Name' }}"
                       (keyup)="updateFilter($event)"
+                      [disabled]="isLoading"
                     />
                   </div>
                   <div class="registration-status-filter">

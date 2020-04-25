@@ -1,0 +1,25 @@
+.card-row {
+  display: flex;
+  flex-direction: column;
+  margin: 0 -0.5rem;
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+  }
+
+}
+
+.card-col {
+  flex: 1 0 100%;
+  flex-direction: column;
+  margin: 0 0.5rem;
+  @media screen and (min-width: 800px) {
+    flex: 1 0 calc(50% - 1rem);
+    flex-direction: row;
+  }
+}
+
+
+
+.page-header {
+  margin: 0;
+}

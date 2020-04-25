@@ -2,13 +2,19 @@
   nb-layout-header{
     .container{
       display: flex;
-      align-items: center;
+      justify-content: space-between;
+      width: 100%;
       .sidebar-toggle {
-          cursor: pointer;
-          color: grey;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: grey;
+        fa-icon {
+          vertical-align: sub;
           &:hover{
-            transform: scale(1.5, 1.5);
+            transform: rotate(25deg);
           }
+        }
+
       }
     }
 

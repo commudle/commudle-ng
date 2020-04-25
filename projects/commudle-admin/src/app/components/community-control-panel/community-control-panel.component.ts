@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -6,28 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./community-control-panel.component.scss']
 })
 export class CommunityControlPanelComponent implements OnInit {
-  tabs: any[] = [
-    {
-      title: 'Events',
-      route: './events',
-    },
-    {
-      title: 'Forms',
-      route: [ './forms' ],
-    },
-    {
-      title: 'About',
-      route: [ './about' ],
-    },
-    {
-      title: 'Team',
-      route: ['./team']
-    },
-  ];
+  community: ICommunity;
+  constructor(
+    private titleService: Title
+  ) { }
 
-  constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
+
+  setCommunity(community) {
+    this.community = community;
+    this.setTitle();
+  }
+
+  setTitle() {
+    this.titleService.setTitle(`${this.community.name} | Community Admin`);
   }
 
 }

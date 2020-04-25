@@ -6,7 +6,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NbCheckboxModule, NbSelectModule, NbInputModule, NbCardModule, NbButtonModule, NbDatepickerModule, NbAlertModule, NbListModule, NbTooltipModule, NbWindowModule } from '@nebular/theme';
+import { NbCheckboxModule, NbSelectModule, NbInputModule, NbCardModule, NbButtonModule, NbDatepickerModule, NbAlertModule, NbListModule, NbTooltipModule, NbWindowModule, NbIconModule } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
@@ -52,7 +52,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 
-    //Nebula
+    //Nebular
     NbButtonModule,
     NbCardModule,
     NbInputModule,
@@ -63,6 +63,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     NbListModule,
     NbTooltipModule,
     NbWindowModule.forChild(),
+    NbIconModule
   ]
 })
 export class EventsModule { }

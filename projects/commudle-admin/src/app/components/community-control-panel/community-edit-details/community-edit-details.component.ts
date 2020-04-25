@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
@@ -15,12 +15,14 @@ export class CommunityEditDetailsComponent implements OnInit {
   uploadedLogo: any;
   uploadedLogoFile: File;
 
+  @Output() updateCommunity = new EventEmitter();
+
   communityForm = this.fb.group({
     community: this.fb.group({
       id: [''],
       name: ['', Validators.required],
       about: [''],
-      mini_description: [''],
+      mini_description: ['', Validators.required],
       contact_email: ['', Validators.required],
       facebook: [''],
       twitter: [''],
@@ -36,15 +38,22 @@ export class CommunityEditDetailsComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private toastLogService: LibToastLogService
   ) {
-    this.communitiesService.getCommunityDetails(this.activatedRoute.snapshot.parent.params['name']).subscribe((data) => {
-      this.community = data;
-      this.communityForm.get('community').patchValue(this.community);
-      this.uploadedLogo = this.community.logo_path;
-    });
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.getCommunityDetails(params.name);
+    });
+  }
 
+
+  getCommunityDetails(communityId) {
+    this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
+      this.community = data;
+      this.updateCommunity.emit(this.community);
+      this.communityForm.get('community').patchValue(this.community);
+      this.uploadedLogo = this.community.logo_path;
+    });
   }
 
 
@@ -74,6 +83,9 @@ export class CommunityEditDetailsComponent implements OnInit {
     }
     this.communitiesService.updateCommunity(formData, this.community.id).subscribe((community) => {
       this.toastLogService.successDialog('Updated!');
+      this.community = community;
+      this.updateCommunity.emit(this.community);
+
     });
   }
 
