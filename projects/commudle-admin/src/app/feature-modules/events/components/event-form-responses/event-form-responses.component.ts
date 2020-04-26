@@ -154,4 +154,13 @@ export class EventFormResponsesComponent implements OnInit {
     this.rows.find(k => k.id === userResponseId).entry_pass = entryPass;
   }
 
+  toggleExpandRow(row) {
+    // console.log('Toggled Expand Row!', row);
+    this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  onDetailToggle(event) {
+    // console.log('Detail Toggled', event);
+  }
+
 }

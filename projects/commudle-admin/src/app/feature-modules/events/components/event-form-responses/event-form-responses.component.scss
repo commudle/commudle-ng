@@ -2,22 +2,28 @@
 
   .data-table-container {
 
-    // @media screen and (max-width: 800px) {
-    //   .desktop-hidden {
-    //     display: initial;
-    //   }
-    //   .mobile-hidden {
-    //     display: none;
-    //   }
-    // }
-    // @media screen and (min-width: 800px) {
-    //   .desktop-hidden {
-    //     display: none;
-    //   }
-    //   .mobile-hidden {
-    //     display: initial;
-    //   }
-    // }
+    @media screen and (max-width: 800px) {
+      .desktop-hidden {
+        display: initial;
+      }
+      .mobile-hidden {
+        display: none;
+      }
+
+      .view-mobile-response{
+        margin-top: 0.5rem;
+        display: block;
+      }
+    }
+    @media screen and (min-width: 800px) {
+      .desktop-hidden {
+        display: none;
+      }
+      .mobile-hidden {
+        display: initial;
+      }
+    }
+
 
     .ngx-datatable{
       height: 100vh;

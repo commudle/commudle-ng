@@ -30,6 +30,7 @@
 .registration-status-details {
   .registration-status-list {
     display: flex;
+    flex-wrap: wrap;
     >div{
       padding: 5px;
       border: 0.5px solid lightgrey;

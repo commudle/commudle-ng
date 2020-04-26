@@ -9,12 +9,12 @@
   </div>
 
   <div>
-    <nb-card>
-      <nb-card-body>
+    <!-- <nb-card>
+      <nb-card-body> -->
         <div class="data-table-container">
           <ngx-datatable
           #table
-          class="material"
+          class="material expandable"
           [rows]="rows"
 
           [loadingIndicator]="isLoading"
@@ -26,6 +26,29 @@
           [scrollbarH]="true"
           [sortType]="SortType.single">
 
+            <!-- responsive row format -->
+            <ngx-datatable-row-detail [rowHeight]="300" (toggle)="onDetailToggle($event)">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div style="padding-left:1rem; font-size:14px; height: 300px; overflow-y: scroll;">
+                  <div *ngFor="let question of questions">
+                    <p>
+                      <strong>
+                        Q. {{ question.title }}
+                      </strong>
+                    </p>
+                    <div>
+                      <p>
+                        {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngx-datatable-row-detail>
+            <!-- responsive row format -->
+
+
+            <!-- complete table format -->
             <ngx-datatable-column
               name="User Details"
               [frozenLeft]="true"
@@ -64,18 +87,32 @@
 
               </ng-template>
 
-              <ng-template let-row="row" ngx-datatable-cell-template>
+              <ng-template
+                let-row="row"
+                let-expanded="expanded"
+                ngx-datatable-cell-template>
                 <div class="row-header user-details">
                   <app-user-details-cell
                     [userResponse]="row"
                     [registrationStatuses]="registrationStatuses"
                     [registrationType]="eventDataFormEntityGroup.registration_type"
                     (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
-                    (updateEntryPass)="updateEntryPass($event, row.id)"></app-user-details-cell>
+                    (updateEntryPass)="updateEntryPass($event, row.id)">
+                  </app-user-details-cell>
+                  <p
+                  [class.datatable-icon-right]="!expanded"
+                  [class.datatable-icon-down]="expanded"
+                  title="Expand/Collapse Row"
+                  (click)="toggleExpandRow(row)"
+                  class="desktop-hidden view-mobile-response"
+                  >
+                  View Responses
+                  </p>
                 </div>
               </ng-template>
-
             </ngx-datatable-column>
+
+
             <ngx-datatable-column
               *ngFor="let question of questions"
               name="{{ question.title }}"
@@ -83,10 +120,12 @@
               [width]="200"
               >
               <ng-template
-
                 ngx-datatable-header-template>
-                <div class="row-header question">
-                  <p [ngClass]="{'small-text' : question.title.length > 50}">
+                <div class="row-header question mobile-hidden">
+                  <p *ngIf="question.title.length > 20" nbTooltip="{{question.title}}">
+                    {{question.title}}
+                  </p>
+                  <p *ngIf="question.title.length <= 20">
                     {{question.title}}
                   </p>
                 </div>
@@ -94,7 +133,7 @@
 
 
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <div style="height: 100px;" class="row-cell question">
+                <div style="height: 100px;" class="row-cell question mobile-hidden">
                   <p *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100" nbTooltip="{{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}">
                     {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
                   </p>
@@ -111,8 +150,8 @@
 
         </div>
 
-      </nb-card-body>
-    </nb-card>
+      <!-- </nb-card-body>
+    </nb-card> -->
 
   </div>
 </div>
