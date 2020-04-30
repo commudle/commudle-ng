@@ -21,24 +21,28 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    children: [
+      {
+        path: 'communities/:community_id',
+        component: HomeCommunityComponent,
+        children: [
+          {
+            path: 'events/:event_id',
+            component: HomeEventComponent
+          }
+        ]
+      },
+      {
+        path: 'fill-form/:data_form_entity_group_id',
+        component: FillDataFormComponent,
+        canActivate: [AuthGuard]
+      },
+    ]
   },
-    // children: [
-      // {
-      //   path: 'communities/:id',
-      //   component: HomeCommunityComponent,
-      //   children: [
-      //     {
-      //       path: 'events/:id',
-      //       component: HomeEventComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'fill-form/:id',
-      //   component: FillDataFormComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
+  {
+    path: 'email-confirmations',
+    loadChildren: () => import('./feature-modules/email-confirmations/email-confirmations.module').then(m => m.EmailConfirmationsModule)
+  },      // {
   {
     path: 'admin',
     children: [
@@ -69,7 +73,7 @@ const routes: Routes = [
   },
   {path: 'logout', component: LogoutComponent},
   {path: 'error', component: LibErrorHandlerComponent},
-  {path: '**', redirectTo: '/error'}
+  {path: '**', redirectTo: '/error'},
 ];
 
 @NgModule({

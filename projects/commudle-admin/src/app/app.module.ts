@@ -49,7 +49,6 @@ import { HomeEventComponent } from './components/home-event/home-event.component
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
-
 @NgModule({
   declarations: [
     AppComponent,

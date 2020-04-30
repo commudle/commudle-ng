@@ -10,6 +10,7 @@ export class HomeCommunityComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('init');
   }
 
 }

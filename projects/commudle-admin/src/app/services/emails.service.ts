@@ -18,7 +18,7 @@ export class EmailsService {
   sendEmail(formData, communityId): Observable<any> {
     return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.SEND_COMMUNITY_EMAILS), {
-        email_form_data: formData,
+        email_form: formData,
         community_id: communityId
        }
     );
