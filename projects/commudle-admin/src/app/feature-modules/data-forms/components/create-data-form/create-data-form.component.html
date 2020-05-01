@@ -32,7 +32,7 @@
 
       <nb-card class="data-form-question-choices-container">
         <nb-card-body>
-          <div formArrayName="questions" *ngFor="let question of createDataForm.controls.data_form.controls.questions.controls; let i=index">
+          <div formArrayName="questions" *ngFor="let question of createDataForm['controls'].data_form['controls'].questions['controls']; let i=index">
             <div [formGroupName]="i" class="question-container">
               <div>
                 <button nbButton size="small" (click)="removeQuestionButtonClick(i)" outline status="danger">
@@ -68,7 +68,7 @@
 
 
               <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
-                <div class="choices-container" formArrayName="question_choices" *ngFor="let choice of question.controls.question_choices.controls; let chi=index">
+                <div class="choices-container" formArrayName="question_choices" *ngFor="let choice of question['controls'].question_choices['controls']; let chi=index">
                   <div>
                     <div [formGroupName]="chi">
                       <input type="text" nbInput formControlName="title" placeholder="Enter Text*" required>
@@ -81,7 +81,7 @@
                     </button>
                   </div>
                 </div>
-                <button nbButton size="tiny" (click)="addQuestionChoiceButtonClick(i, chi)" status="primary" hero>
+                <button nbButton size="tiny" (click)="addQuestionChoiceButtonClick(i)" status="primary" hero>
                   <fa-icon [icon]="faPlus"></fa-icon>
                   &nbsp;
                   Add Choice

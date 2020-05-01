@@ -90,9 +90,7 @@ export class EditDataFormComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private router: Router,
     private titleService: Title
-  ) {
-    this.titleService.setTitle(`Edit ${this.dataForm.name} Form`);
-  }
+  ) { }
 
   ngOnInit() {
     // get the question types
@@ -115,6 +113,7 @@ export class EditDataFormComponent implements OnInit {
     this.dataFormsService.getDataFormDetails(this.activatedRoute.snapshot.params['id']).subscribe(
       (dataForm) => {
         this.dataForm = dataForm;
+        this.titleService.setTitle(`Edit ${this.dataForm.name} Form`);
         this.fillExistingDataForm();
       }
     );

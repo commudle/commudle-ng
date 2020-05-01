@@ -24,6 +24,7 @@ export class EmailerComponent implements OnInit {
   event: IEvent;
   eventDataFormEntityGroupId: number;
   mailType: string;
+  recipientEmail: string;
 
   prefillCompleted = false;
 
@@ -130,10 +131,10 @@ export class EmailerComponent implements OnInit {
         value: EemailTypes.ALL,
         display: 'All Who Filled the Form'
       },
-      {
-        value: EemailTypes.NOT_FILLED,
-        display: 'Did Not Fill'
-      },
+      // {
+      //   value: EemailTypes.NOT_FILLED,
+      //   display: 'Did Not Fill'
+      // },
     ],
     communication: [
       {
@@ -158,6 +159,7 @@ export class EmailerComponent implements OnInit {
     this.eventsService.community_events_for_email(this.community.id).subscribe(data => {
       this.events = data.events;
       this.prefillForm('event_id');
+      this.prefillForm('recipient_email');
     });
 
   }
@@ -179,27 +181,33 @@ export class EmailerComponent implements OnInit {
   }
 
   toggleEventSpecificEmail($event) {
+
     // if not, then reset the form below the event select
     switch ($event) {
       case 'all':
         this.isEventSpecificEmail = false;
         this.eMailForm.reset();
 
+        this.eMailForm.get('body').setValidators(Validators.required);
+        this.eMailForm.get('body').updateValueAndValidity();
         this.eventDataFormEntityGroups = [];
         this.selectedEvent = undefined;
         this.selectedEventDataFormEntityGroup = undefined;
         this.selectedEmailType = undefined;
-        this.eMailForm.controls['body'].setValidators([Validators.required]);
+
         console.log('here');
         break;
       case 'event':
         this.isEventSpecificEmail = true;
-        this.eMailForm.controls['body'].clearValidators();
+        this.eMailForm.get('body').clearValidators();
+        this.eMailForm.get('body').updateValueAndValidity();
+
         break;
       default:
         this.isEventSpecificEmail = false;
         break;
     }
+
   }
 
 
@@ -279,6 +287,14 @@ export class EmailerComponent implements OnInit {
             });
             this.toggleEventDataFormEntityGroupType(this.selectedEventDataFormEntityGroup.id);
           }
+          break;
+        case 'recipient_email':
+          console.log(this.recipientEmail);
+          if (this.recipientEmail) {
+            this.eMailForm.patchValue({
+              recipient_email: this.recipientEmail
+            });
+          }
         default:
           break;
       }
@@ -287,6 +303,7 @@ export class EmailerComponent implements OnInit {
 
   submitForm() {
     this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe(data => {
+      this.close();
       this.toastLogService.successDialog('Emails are being delivered!');
     });
   }

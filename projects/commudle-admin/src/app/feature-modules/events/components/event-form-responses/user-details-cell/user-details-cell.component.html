@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="action-buttons">
-        <button *ngIf="userResponse.registration_status.name == 'shortlisted'" nbButton size="tiny">
+        <button *ngIf="userResponse.registration_status.name == 'shortlisted'" (click)="openRSVPEmailWindow()" nbButton size="tiny">
           Send RSVP Email
         </button>
 
@@ -44,6 +44,9 @@
             <p class="entry-pass-code">
               Entry Pass: {{ userResponse.entry_pass.unique_code }}
             </p>
+            <button nbButton size="tiny" (click)="openEntryPassEmailWindow()">
+              Send Entry Pass Email
+            </button>
             <div>
               <button
                 nbButton size="tiny"

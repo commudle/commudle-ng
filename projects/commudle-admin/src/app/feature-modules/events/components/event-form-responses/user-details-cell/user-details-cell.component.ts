@@ -8,6 +8,11 @@ import { IRegistrationType } from 'projects/shared-models/registration_type.mode
 import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
+import { NbWindowService } from '@nebular/theme';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
+import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IEvent } from 'projects/shared-models/event.model';
 
 @Component({
   selector: 'app-user-details-cell',
@@ -21,9 +26,12 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
   faLinkedin = faLinkedin;
   faInfo = faInfo;
 
+  @Input() community: ICommunity;
+  @Input() event: IEvent;
   @Input() registrationType: IRegistrationType;
   @Input() registrationStatuses: IRegistrationStatus[];
   @Input() userResponse: IDataFormEntityResponseGroup;
+  @Input() eventDataFormEntityGroupId;
   user: IUser;
 
   @Output() updatedRegistrationStatus = new EventEmitter();
@@ -32,7 +40,8 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
   constructor(
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private toastLogService: LibToastLogService,
-    private eventEntryPassesService: EventEntryPassesService
+    private eventEntryPassesService: EventEntryPassesService,
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
@@ -77,6 +86,41 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
       data => {
         this.updateEntryPass.emit(data);
         this.toastLogService.successDialog("Uninvited Status Updated!");
+      }
+    );
+
+  }
+
+
+  openRSVPEmailWindow() {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send RSVP To ${this.user.name}`,
+        context: {
+          community: this.community,
+          event: this.event,
+          eventDataFormEntityGroupId: this.eventDataFormEntityGroupId,
+          mailType: EemailTypes.RSVP,
+          recipientEmail: this.user.email
+        }
+      }
+    );
+  }
+
+
+  openEntryPassEmailWindow() {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send Entry Pass To ${this.user.name}`,
+        context: {
+          community: this.community,
+          event: this.event,
+          eventDataFormEntityGroupId: this.eventDataFormEntityGroupId,
+          mailType: EemailTypes.ENTRY_PASS,
+          recipientEmail: this.user.email
+        }
       }
     );
 

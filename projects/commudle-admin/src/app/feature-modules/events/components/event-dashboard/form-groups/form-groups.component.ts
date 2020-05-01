@@ -5,7 +5,7 @@ import { IRegistrationType } from 'projects/shared-models/registration_type.mode
 import { RegistrationTypesService } from 'projects/commudle-admin/src/app/services/registration-types.service';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
-import { IDataFormEntity, Visibility } from 'projects/shared-models/data_form_entity.model';
+import { Visibility } from 'projects/shared-models/data_form_entity.model';
 import { DataFormEntitiesService } from 'projects/commudle-admin/src/app/services/data-form-entities.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';

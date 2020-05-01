@@ -11,6 +11,9 @@ import { ColumnMode, SortType, DatatableComponent } from '@swimlane/ngx-datatabl
 import { IQuestion } from 'projects/shared-models/question.model';
 import { EventDataFormEntityGroupsService } from 'projects/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'projects/shared-models/event_data_form_enity_group.model';
+import { NbWindowService } from '@nebular/theme';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
+import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -43,7 +46,8 @@ export class EventFormResponsesComponent implements OnInit {
     private registrationStatusesService: RegistrationStatusesService,
     private dataFormsService: DataFormsService,
     private activatedRoute: ActivatedRoute,
-    private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService
+    private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
@@ -161,6 +165,39 @@ export class EventFormResponsesComponent implements OnInit {
 
   onDetailToggle(event) {
     // console.log('Detail Toggled', event);
+  }
+
+
+  openRSVPEmailWindow() {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send RSVP To All Shortlisted`,
+        context: {
+          community: this.community,
+          event: this.event,
+          eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
+          mailType: EemailTypes.RSVP,
+        }
+      }
+    );
+  }
+
+
+  openEntryPassEmailWindow() {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send Entry Pass All Confirmed`,
+        context: {
+          community: this.community,
+          event: this.event,
+          eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
+          mailType: EemailTypes.ENTRY_PASS,
+        }
+      }
+    );
+
   }
 
 }
