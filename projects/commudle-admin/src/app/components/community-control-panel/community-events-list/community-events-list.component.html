@@ -4,7 +4,14 @@
       <fa-icon [icon]="faPlusSquare"></fa-icon>
       &nbsp;
       Create Event
-
     </a>
+  </div>
+
+  <div>
+    <ng2-smart-table
+      [settings]="tableSettings"
+      [source]="events"
+      (userRowSelect)="redirectToEvent($event)"
+    ></ng2-smart-table>
   </div>
 </div>

@@ -45,7 +45,7 @@ export class EventsService {
   }
 
 
-  community_events_for_email(communityId): Observable<IEvents> {
+  communityEventsForEmail(communityId): Observable<IEvents> {
     let params = new HttpParams().set('community_id', communityId);
     return this.http.get<IEvents>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_EVENTS_FOR_EMAIL), {params}

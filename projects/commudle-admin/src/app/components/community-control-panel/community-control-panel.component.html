@@ -2,13 +2,20 @@
   <div>
     <nb-card>
       <nb-card-body>
-        <h5 *ngIf="community" class="page-header">{{ community.name }}</h5>
+        <div *ngIf="community">
+          <h5 class="page-header">{{ community.name }}</h5>
+          <p>
+            <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
+          </p>
+
+        </div>
+
       </nb-card-body>
     </nb-card>
   </div>
   <div class="card-row">
     <div class="card-col">
-      <nb-card size="medium">
+      <nb-card>
         <nb-card-header>Events</nb-card-header>
         <nb-card-body>
           <app-community-events-list></app-community-events-list>
@@ -29,11 +36,14 @@
           (updateCommunity)="setCommunity($event)"></app-community-edit-details>
         </nb-card-body>
       </nb-card>
-      <nb-card size="medium">
+      <nb-card>
         <nb-card-header>
           <nb-icon icon="people"></nb-icon>
           Team
         </nb-card-header>
+        <nb-card-body>
+          <app-community-team [community]="community"></app-community-team>
+        </nb-card-body>
       </nb-card>
     </div>
 

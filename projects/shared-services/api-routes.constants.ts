@@ -84,6 +84,11 @@ export const API_ROUTES = {
 
 
   // communication_mailers
-  SEND_COMMUNITY_EMAILS: 'api/v2/communication_mailers/community_emails'
+  SEND_COMMUNITY_EMAILS: 'api/v2/communication_mailers/community_emails',
 
+  // user_roles_users
+  GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',
+  CREATE_USER_ROLES_USER: 'api/v2/user_roles_users/',
+  DELETE_USER_ROLES_USER: 'api/v2/user_roles_users/',
+  RESEND_USER_ROLES_USER_INVITATION: 'api/v2/user_roles_users/resend_invitation'
 };
