@@ -12,7 +12,7 @@ export class LibErrorHandlerService {
   errorMessage: string;
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
+    // @Inject(DOCUMENT) private document: Document,
     private toastrService: NbToastrService,
     private router: Router
   ) { }
@@ -23,7 +23,7 @@ export class LibErrorHandlerService {
     this.errorMessage = errorMessage;
     switch (errorCode) {
       case 401:
-        this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
+        // this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
         break;
       case 403:
         // redirect to unauthorized page
