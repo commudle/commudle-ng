@@ -19,10 +19,10 @@ import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/trac
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventLocationTracksComponent implements OnInit {
-  @ViewChild('eventLocationTrackFormTemplate', {static: false}) eventLocationTrackFormTemplate: TemplateRef<any>;
-  @ViewChild('deleteEventLocationTrackTemplate', {static: false}) deleteEventLocationTrackTemplate: TemplateRef<any>;
-  @ViewChild('trackSlotFormTemplate', {static: false}) trackSlotFormTemplate: TemplateRef<any>;
-  @ViewChild('deleteTrackSlotTemplate', {static: false}) deleteTrackSlotTemplate: TemplateRef<any>;
+  @ViewChild('eventLocationTrackFormTemplate') eventLocationTrackFormTemplate: TemplateRef<any>;
+  @ViewChild('deleteEventLocationTrackTemplate') deleteEventLocationTrackTemplate: TemplateRef<any>;
+  @ViewChild('trackSlotFormTemplate') trackSlotFormTemplate: TemplateRef<any>;
+  @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
   windowRef;
 
   faClock = faClock;

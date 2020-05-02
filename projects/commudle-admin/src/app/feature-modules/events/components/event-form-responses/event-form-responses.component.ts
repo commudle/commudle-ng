@@ -22,7 +22,7 @@ import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 })
 export class EventFormResponsesComponent implements OnInit {
 
-  @ViewChild('table', {static: false}) table;
+  @ViewChild('table') table;
 
   event: IEvent;
   community: ICommunity;

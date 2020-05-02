@@ -37,8 +37,8 @@ import { CommunityEditDetailsComponent } from './components/community-control-pa
 import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-// import { Ng2SmartTableModule } from "ng2-smart-table";
-// import { Ng2CompleterModule } from "ng2-completer";
+import { Ng2SmartTableModule } from "ng2-smart-table";
+import { Ng2CompleterModule } from 'ng2-completer';
 import { CommunityFormsListStatsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
 import { CommunityFormsListActionsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -106,8 +106,8 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
 
 
     //other external npm modules
-    // Ng2CompleterModule,
-    // Ng2SmartTableModule,
+    Ng2CompleterModule,
+    Ng2SmartTableModule,
 
   ],
   providers: [

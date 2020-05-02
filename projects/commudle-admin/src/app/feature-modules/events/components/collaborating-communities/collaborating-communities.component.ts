@@ -16,7 +16,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
   @Input() event: IEvent;
 
-  @ViewChild('autoInput', {static: false}) input;
+  @ViewChild('autoInput') input;
 
   communities: ICommunity[];
   apiCommunities$: Observable<ICommunity[]>;

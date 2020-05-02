@@ -17,8 +17,8 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   styleUrls: ['./event-locations.component.scss']
 })
 export class EventLocationsComponent implements OnInit {
-  @ViewChild('eventLocationFormTemplate', {static: false}) eventLocationFormTemplate: TemplateRef<any>;
-  @ViewChild('deleteEventLocationTemplate', {static: false}) deleteEventLocationTemplate: TemplateRef<any>;
+  @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
+  @ViewChild('deleteEventLocationTemplate') deleteEventLocationTemplate: TemplateRef<any>;
 
   faLink = faLink;
   faMapPin = faMapPin;
