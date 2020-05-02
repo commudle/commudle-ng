@@ -1,1 +1,26 @@
-<p>collaborating-communities works!</p>
+<div>
+  <div class="collaboration-communities">
+    <div class="community" *ngFor="let col of collaborationCommunities;  let i = index;">
+      <div class="logo">
+        <a [routerLink]="['/communities', col.community.slug]">
+          <img src="{{ col.community.logo_path }}" alt="{{ col.community.name }}">
+        </a>
+      </div>
+      <div class="details">
+        <p>
+          {{col.community.name | slice:0:10}}
+        </p>
+        <div class="actions">
+          <a *ngIf="!col.approved" (click)="resendConfirmationEmail(col)" class="clickable">
+            Resend Request
+          </a>
+          <a (click)="removeCollaboration(col.id, i)" class="clickable">
+            Remove
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

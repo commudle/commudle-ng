@@ -90,5 +90,14 @@ export const API_ROUTES = {
   GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',
   CREATE_USER_ROLES_USER: 'api/v2/user_roles_users/',
   DELETE_USER_ROLES_USER: 'api/v2/user_roles_users/',
-  RESEND_USER_ROLES_USER_INVITATION: 'api/v2/user_roles_users/resend_invitation'
+  RESEND_USER_ROLES_USER_INVITATION: 'api/v2/user_roles_users/resend_invitation',
+
+  // event_collaboration_communities
+  EVENT_COLLABORATION_COMMUNITIES: {
+    INDEX: 'api/v2/event_collaboration_communities',
+    CREATE: 'api/v2/event_collaboration_communities',
+    DELETE: 'api/v2/event_collaboration_communities',
+    RESEND_INVITATION: 'api/v2/event_collaboration_communities/resend_invitation',
+    CONFIRM: 'api/v2/event_collaboration_communities/confirm',
+  }
 };

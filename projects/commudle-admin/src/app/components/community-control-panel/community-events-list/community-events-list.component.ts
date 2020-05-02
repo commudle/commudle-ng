@@ -22,8 +22,13 @@ export class CommunityEventsListComponent implements OnInit {
     columns: {
       name: {
         title: 'Name'
+      },
+      status: {
+        title: 'Status',
+        filter: false
       }
     },
+
     rowClassFunction: (row) => {
       return 'clickable';
     }

@@ -1,0 +1,33 @@
+.actions {
+  a {
+    text-decoration: none;
+  }
+}
+
+
+.collaboration-communities {
+  display: flex;
+  flex-wrap: wrap;
+  .community {
+    margin-right: 1rem;
+    width: 100px;
+    height: 160px;
+    border: 0.5px solid lightgrey;
+    padding: 0.5rem;
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 0 auto;
+      overflow: hidden;
+      img {
+        width: 100%;
+        vertical-align: text-bottom;
+      }
+    }
+
+    .details {
+      text-align: center;
+    }
+  }
+}

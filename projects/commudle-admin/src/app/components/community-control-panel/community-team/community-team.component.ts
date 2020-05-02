@@ -89,7 +89,7 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
           default:
             console.log('no valid role found');
         }
-
+        this.userRolesUserForm.reset();
         this.toastLogService.successDialog("Invitation Sent!");
       }
     );
