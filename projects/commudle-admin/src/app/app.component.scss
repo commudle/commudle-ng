@@ -4,19 +4,57 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-      .sidebar-toggle {
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: grey;
-        fa-icon {
-          vertical-align: sub;
-          &:hover{
-            transform: rotate(25deg);
+      .menu-left-container {
+        display: flex;
+        align-items: center;
+        .sidebar-toggle {
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: grey;
+          fa-icon {
+            vertical-align: sub;
+            &:hover{
+              transform: rotate(25deg);
+            }
+          }
+
+        }
+
+        .main-logo {
+          display: flex;
+          align-items: center;
+          margin-left: 0.8rem;
+
+          img {
+            width: 45px;
+          }
+
+          p{
+            font-size: 1.5rem;
+            color: #4481ff;
+            margin: 0 0.5rem;
+
           }
         }
+      }
+    }
+  }
+
+  nb-layout-footer {
+    .main-logo {
+      display: flex;
+      align-items: center;
+      margin-left: 0.8rem;
+      img {
+        width: 35px;
+      }
+
+      p{
+        font-size: 1rem;
+        color: #4481ff;
+        margin: 0 0.5rem;
 
       }
     }
-
   }
 }

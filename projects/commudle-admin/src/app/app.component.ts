@@ -26,7 +26,8 @@ export class AppComponent {
     private apiRoutes: ApiRoutesService,
     private authWatchService: LibAuthwatchService,
     private sidebarService: NbSidebarService,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
     ) {
 
       this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
@@ -42,5 +43,9 @@ export class AppComponent {
 
   login() {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
+  }
+
+  redirectToHome() {
+    this.router.navigate(['/']);
   }
 }

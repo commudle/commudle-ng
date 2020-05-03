@@ -2,8 +2,16 @@
 
   <nb-layout-header fixed>
     <div class="container">
-      <div class="sidebar-toggle" (click)="toggleSidebar()">
-        <fa-icon [icon]="faBars" size="1x"></fa-icon>
+      <div class="menu-left-container">
+        <div class="sidebar-toggle" (click)="toggleSidebar()">
+          <fa-icon [icon]="faBars" size="1x"></fa-icon>
+        </div>
+        <div class="main-logo clickable" (click)="redirectToHome()">
+          <img src="/assets/images/commudle-logo72.png">
+          <p>
+            Commudle
+          </p>
+        </div>
       </div>
       <div>
         <nb-user
@@ -37,7 +45,12 @@
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-  Commudle
+    <div class="main-logo clickable" (click)="redirectToHome()">
+      <img src="/assets/images/commudle-logo72.png">
+      <p>
+        more@commudle.com
+      </p>
+    </div>
   </nb-layout-footer>
 
 </nb-layout>

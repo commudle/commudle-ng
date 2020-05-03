@@ -21,23 +21,21 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'communities/:community_id',
+    component: HomeCommunityComponent,
     children: [
       {
-        path: 'communities/:community_id',
-        component: HomeCommunityComponent,
-        children: [
-          {
-            path: 'events/:event_id',
-            component: HomeEventComponent
-          }
-        ]
-      },
-      {
-        path: 'fill-form/:data_form_entity_group_id',
-        component: FillDataFormComponent,
-        canActivate: [AuthGuard]
-      },
+        path: 'events/:event_id',
+        component: HomeEventComponent
+      }
     ]
+  },
+  {
+    path: 'fill-form/:data_form_entity_group_id',
+    component: FillDataFormComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'email-confirmations',
