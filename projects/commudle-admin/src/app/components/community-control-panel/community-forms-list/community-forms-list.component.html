@@ -1,7 +1,7 @@
 <div>
 
   <div class="page-actions">
-    <a nbButton outline size="large" [routerLink]="['/admin/forms', 'new']" [queryParams]="{ parent_id: newFormParentId, parent_type: 'Kommunity' }">
+    <a nbButton outline status="primary" size="medium" [routerLink]="['/admin/forms', 'new']" [queryParams]="{ parent_id: newFormParentId, parent_type: 'Kommunity' }">
       <fa-icon [icon]="faPlusSquare"></fa-icon>
       &nbsp;
       Create Form
@@ -12,7 +12,7 @@
     <ng2-smart-table [settings]="tableSettings" [source]="dataForms"></ng2-smart-table>
   </div>
   <div class="page-actions">
-    <button nbButton outline size="large">
+    <button nbButton status="primary" outline size="medium">
       <fa-icon [icon]="faPlusSquare"></fa-icon>
       &nbsp;
       Create Form

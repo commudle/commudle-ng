@@ -15,11 +15,10 @@
       <nb-card size="Tiny">
         <nb-card-header>Recent Updates</nb-card-header>
         <nb-card-body>
-          <h5>Show the updates reverse chronologically</h5>
+          <app-event-updates
+          [event]="event"
+          ></app-event-updates>
         </nb-card-body>
-        <nb-card-footer>
-          Add a form to post updates
-        </nb-card-footer>
       </nb-card>
 
       <nb-card>

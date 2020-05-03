@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ICommunities } from 'projects/shared-models/communities.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
-import { tap } from 'rxjs/operators';
 import { ICommunity } from 'projects/shared-models/community.model';
 
 @Injectable({
@@ -21,10 +20,10 @@ export class CommunitiesService {
 
 
   getRoleCommunities(role): Observable<ICommunities> {
-    let params = new HttpParams().set('role', role);
+    const params = new HttpParams().set('role', role);
 
     return this.http.get<ICommunities>(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLE_COMMUNITIES), { params: params }
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.USER_ROLE_COMMUNITIES), { params }
     )
     // .pipe(
     //   tap((data: ICommunities) => {
@@ -34,23 +33,33 @@ export class CommunitiesService {
   }
 
 
-  getCommunityDetails(community_id): Observable<ICommunity> {
-    let params = new HttpParams().set('community_id', community_id);
+  getCommunityDetails(communityId): Observable<ICommunity> {
+    const params = new HttpParams().set('community_id', communityId);
 
     return this.http.get<ICommunity>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_DETAILS), { params: params }
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.DETAILS), { params }
     );
   }
 
 
   updateCommunity(communityFormData, communityId): Observable<ICommunity> {
 
-    let params = new HttpParams().set('community_id', communityId);
+    const params = new HttpParams().set('community_id', communityId);
     params.append('community_id', 'gdg-new-delhi');
     return this.http.patch<ICommunity>(
-      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_COMMUNITY),
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.UPDATE),
       communityFormData,
-      {params: params}
+      {params}
+    );
+  }
+
+
+  searchByName(query): Observable<ICommunity[]> {
+    const params = new HttpParams().set('query', query);
+
+    return this.http.get<ICommunity[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH_BY_NAME),
+      {params}
     );
   }
 

@@ -11,16 +11,36 @@
           {{col.community.name | slice:0:10}}
         </p>
         <div class="actions">
-          <a *ngIf="!col.approved" (click)="resendConfirmationEmail(col)" class="clickable">
-            Resend Request
+          <a *ngIf="!col.approved" (click)="resendConfirmationEmail(col.id)" class="clickable">
+            <small>
+              Resend Request
+            </small>
           </a>
           <a (click)="removeCollaboration(col.id, i)" class="clickable">
-            Remove
+            <small>
+              Remove
+            </small>
           </a>
         </div>
       </div>
     </div>
+    <div>
+      <input #autoInput
+      nbInput
+      type="text"
+      [value]="selectedCommunity"
+      (input)="onChange()"
+      placeholder="Enter Name..."
+      [nbAutocomplete]="auto" />
 
+      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+        <nb-option *ngFor="let option of communities" [value]="option">
+          {{ option.name }}
+        </nb-option>
+
+      </nb-autocomplete>
+    </div>
   </div>
 
 </div>

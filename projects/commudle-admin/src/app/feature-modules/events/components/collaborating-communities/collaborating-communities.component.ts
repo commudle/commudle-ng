@@ -6,6 +6,7 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { IEventCollaborationCommunity } from 'projects/shared-models/event_collaboration_community.model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 
 @Component({
   selector: 'app-collaborating-communities',
@@ -19,7 +20,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   @ViewChild('autoInput') input;
 
   communities: ICommunity[];
-  apiCommunities$: Observable<ICommunity[]>;
+  selectedCommunity = '';
 
 
   collaborationCommunities: IEventCollaborationCommunity[] = [];
@@ -27,12 +28,18 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
 
   constructor(
     private eventCollaborationCommunitiesService: EventCollaborationCommunitiesService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private communitiesService: CommunitiesService
   ) { }
 
   ngOnInit() {
     this.communities = [];
-    this.apiCommunities$ = of(this.communities);
+
+  }
+
+  onSelectionChange($event) {
+    this.createCollaboration($event.id);
+    this.selectedCommunity = '';
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,24 +48,13 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     }
   }
 
-  private filter(name: string): ICommunity[] {
-    const filterValue = name.toLowerCase();
-    return this.communities.filter(optionValue => optionValue.name.toLowerCase().includes(filterValue));
-  }
 
-  getFilteredOptions(value: string): Observable<ICommunity[]> {
-    return of(value).pipe(
-      map(filterString => this.filter(filterString)),
+  onChange() {
+    return this.communitiesService.searchByName(this.input.nativeElement.value).subscribe(
+      data => this.communities = data
     );
   }
 
-  onChange() {
-    this.apiCommunities$ = this.getFilteredOptions(this.input.nativeElement.value);
-  }
-
-  onSelectionChange($event) {
-    this.apiCommunities$ = this.getFilteredOptions($event);
-  }
 
 
   getCollaborations() {
@@ -67,8 +63,8 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     );
   }
 
-  createCollaboration() {
-    this.eventCollaborationCommunitiesService.create(this.event.id, this.community.id).subscribe(
+  createCollaboration(selectedCommunityId) {
+    this.eventCollaborationCommunitiesService.create(this.event.id, selectedCommunityId).subscribe(
       (data) => {
         this.collaborationCommunities.push(data);
         this.toastLogService.successDialog('Collaboration request sent to the primary email of all organizers');
@@ -82,7 +78,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
         this.collaborationCommunities.splice(index, 1);
         this.toastLogService.successDialog('Collaboration removed!');
       }
-    )
+    );
   }
 
   resendConfirmationEmail(collaborationCommunityId) {
@@ -90,7 +86,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
       data => {
         this.toastLogService.successDialog('Collaboration request email resent!');
       }
-    )
+    );
   }
 
 }

@@ -7,9 +7,13 @@ export const API_ROUTES = {
 
 
   // communities
-  USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
-  COMMUNITY_DETAILS: 'api/v2/communities',
-  UPDATE_COMMUNITY: 'api/v2/communities/update',
+
+  COMMUNITIES: {
+    USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
+    DETAILS: 'api/v2/communities',
+    UPDATE: 'api/v2/communities/update',
+    SEARCH_BY_NAME: 'api/v2/communities/search_by_name'
+  },
 
 
 
@@ -99,5 +103,12 @@ export const API_ROUTES = {
     DELETE: 'api/v2/event_collaboration_communities',
     RESEND_INVITATION: 'api/v2/event_collaboration_communities/resend_invitation',
     CONFIRM: 'api/v2/event_collaboration_communities/confirm',
+  },
+
+
+  EVENT_UPDATES: {
+    INDEX: 'api/v2/event_updates',
+    CREATE: 'api/v2/event_updates',
+    DELETE: 'api/v2/event_updates'
   }
 };
