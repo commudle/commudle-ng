@@ -121,6 +121,55 @@
               "devServerTarget": "commudle-admin:serve:production"
             }
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/commudle-admin-server",
+            "main": "projects/commudle-admin/server.ts",
+            "tsConfig": "projects/commudle-admin/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/commudle-admin/src/environments/environment.ts",
+                  "with": "projects/commudle-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "commudle-admin:build",
+            "serverTarget": "commudle-admin:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "commudle-admin:build:production",
+              "serverTarget": "commudle-admin:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "commudle-admin:build:production",
+            "serverTarget": "commudle-admin:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
         }
       }
     },

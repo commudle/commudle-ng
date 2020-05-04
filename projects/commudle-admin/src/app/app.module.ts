@@ -49,6 +49,7 @@ import { HomeEventComponent } from './components/home-event/home-event.component
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,7 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -112,6 +113,7 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
   ],
   providers: [
     Title,
+    CookieService,
     NbSidebarService,
     {
       // TODO move the interceptors to a common barrel file if needed

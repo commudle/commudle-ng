@@ -1,5 +1,22 @@
 <div>
-  <div class="photo-grid">
-    
+  <div class="section main">
+    <div class="logo">
+      <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+    </div>
+    <div class="revamp-text">
+      <p> Hey Community! </p>
+      <p>
+        We're working on a cool new design update and will be supporting online events soon. Till then stay tuned 😃
+      </p>
+      <button *ngIf="!currentUser" (click)="login()" nbButton status="danger"><nb-icon icon="star"></nb-icon>
+        Organizer? Login Here!
+      </button>
+      <button *ngIf="currentUser" (click)="toggleSidebar()" nbButton status="danger"><nb-icon icon="menu"></nb-icon>
+        Get A Sneak Peak! Begin Here
+      </button>
+    </div>
   </div>
+  <!-- <div class="photo-grid">
+    Home Component
+  </div> -->
 </div>

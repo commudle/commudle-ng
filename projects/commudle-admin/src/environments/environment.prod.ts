@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url: 'http://api.commudle.com/'
+  base_url: 'https://json.commudle.com/'
 };
