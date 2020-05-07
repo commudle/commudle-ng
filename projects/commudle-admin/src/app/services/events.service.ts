@@ -24,7 +24,7 @@ export class EventsService {
 
   updateEvent(event, event_id, community): Observable<IEvent> {
     return this.http.put<IEvent>(
-      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT),
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE),
       {
         event,
         community_id: community.id,
@@ -36,7 +36,7 @@ export class EventsService {
 
   createEvent(event, community): Observable<IEvent> {
     return this.http.post<IEvent>(
-      this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT),
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.CREATE),
       {
         event: event,
         community_id: community.id
@@ -48,7 +48,15 @@ export class EventsService {
   communityEventsForEmail(communityId): Observable<IEvents> {
     let params = new HttpParams().set('community_id', communityId);
     return this.http.get<IEvents>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_EVENTS_FOR_EMAIL), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.COMMUNITY_EVENTS_FOR_EMAIL), {params}
+    );
+  }
+
+
+  getEvent(eventId): Observable<IEvent> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.GET), { params }
     );
   }
 

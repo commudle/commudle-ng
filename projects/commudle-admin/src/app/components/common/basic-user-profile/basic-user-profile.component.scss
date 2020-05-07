@@ -1,0 +1,52 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  margin: 0 -0.5rem 0.8rem;
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+  }
+
+  >div {
+    flex: 1 0 100%;
+    flex-direction: column;
+    margin: 0 0.5rem 0.8rem;
+    @media screen and (min-width: 800px) {
+      flex: 1 0 calc(50% - 1rem);
+      flex-direction: row;
+    }
+  }
+
+}
+
+.uploaded-profile {
+  height: 150px;
+  max-width: 300px;
+  overflow: hidden;
+  background: #d3d3d36b;
+  margin: 0 auto;
+  position: relative;
+  &::before{
+    content: 'Picture';
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #b9b9b9;
+    font-weight: bolder;
+  }
+}
+
+
+.uploaded-profile-image{
+  height: 150px;
+  max-width: 300px;
+  overflow: hidden;
+  // background: #d3d3d36b;
+  margin: 0 auto;
+  text-align: center;
+  img {
+    height: 100%;
+  }
+}
+

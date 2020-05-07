@@ -50,6 +50,8 @@ import { FillDataFormComponent } from './components/fill-data-form/fill-data-for
 import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { CookieService } from 'ngx-cookie-service';
+import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
+import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +72,8 @@ import { CookieService } from 'ngx-cookie-service';
     FillDataFormComponent,
     LogoutComponent,
     SidebarMenuComponent,
+    BasicUserProfileComponent,
+    FillableFormComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,1 +1,49 @@
-<p>fill-data-form works!</p>
+<div *ngIf="dataFormEntity">
+
+  <div>
+    <nb-card *ngIf="formClosed">
+      <nb-card-body>
+        This form is closed!
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div *ngIf="!formClosed">
+    <nb-card>
+      <nb-card-body>
+        <h4>{{ dataFormEntity.name }}</h4>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>
+        Let's Update Your Basic Profile!
+      </nb-card-header>
+      <nb-card-body>
+        <div>
+          <app-basic-user-profile></app-basic-user-profile>
+        </div>
+      </nb-card-body>
+
+    </nb-card>
+
+
+    <nb-card>
+
+      <nb-card-header>
+        Filling this form should be easy!
+      </nb-card-header>
+      <nb-card-body>
+        <app-fillable-form
+          [dataFormEntity]="dataFormEntity"
+          (formSubmitted)="redirectTo($event)"
+        >
+        </app-fillable-form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+
+
+
+</div>

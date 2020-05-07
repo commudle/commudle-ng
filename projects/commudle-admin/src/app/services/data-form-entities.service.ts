@@ -18,10 +18,17 @@ export class DataFormEntitiesService {
 
   updateVisibilityStatus(newStatus, dataFormEntityId): Observable<IDataFormEntity> {
     return this.http.patch<IDataFormEntity>(
-      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_DATA_FORM_ENTITY_VISIBILITY), {
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.UPDATE_VISIBILITY), {
         data_form_entity_id: dataFormEntityId,
         visibility: newStatus
       }
+    );
+  }
+
+  getDataFormEntity(dataFormEntityId): Observable<IDataFormEntity> {
+    const params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
+    return this.http.get<IDataFormEntity>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.SHOW), { params }
     );
   }
 

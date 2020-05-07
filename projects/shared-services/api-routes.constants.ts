@@ -29,10 +29,13 @@ export const API_ROUTES = {
 
 
   // events
-  CREATE_EVENT: 'api/v2/events',
-  UPDATE_EVENT: 'api/v2/events',
-  GET_EVENT: 'api/v2/events',
-  COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
+  EVENTS: {
+    CREATE: 'api/v2/events',
+    UPDATE: 'api/v2/events',
+    GET: 'api/v2/events',
+    COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
+  },
+
 
 
   // event_data_form_entity_groups
@@ -47,7 +50,10 @@ export const API_ROUTES = {
 
 
   // data_form_entities
-  UPDATE_DATA_FORM_ENTITY_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+  DATA_FORM_ENTITIES: {
+    SHOW: 'api/v2/data_form_entities',
+    UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+  },
 
 
   // registration_statuses
@@ -110,5 +116,15 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_updates',
     CREATE: 'api/v2/event_updates',
     DELETE: 'api/v2/event_updates'
+  },
+
+
+  DATA_FORM_ENTITY_RESPONSES: {
+    EXISTING_RESPONSES: 'api/v2/data_form_entity_responses/existing_response',
+    SUBMIT_FORM_RESPONSE: 'api/v2/data_form_entity_responses/submit_form_response'
+  },
+
+  USERS: {
+    UPDATE_PROFILE: 'api/v2/users/update_profile'
   }
 };

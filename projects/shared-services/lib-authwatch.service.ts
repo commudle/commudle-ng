@@ -71,6 +71,11 @@ export class LibAuthwatchService {
   }
 
 
+  updateSignedInUser() {
+    this.checkAlreadySignedIn().subscribe();
+  }
+
+
 
 
 }

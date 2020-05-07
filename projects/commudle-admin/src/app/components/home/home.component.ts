@@ -11,6 +11,7 @@ import { NbSidebarService } from '@nebular/theme';
 })
 export class HomeComponent implements OnInit {
   currentUser: ICurrentUser;
+  photoGrid = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   toggleSidebar() {
-    this.sidebarService.toggle(true, 'left');
+    this.sidebarService.toggle(false, 'left');
   }
 
 }
