@@ -25,12 +25,10 @@ const routes: Routes = [
   {
     path: 'communities/:community_id',
     component: HomeCommunityComponent,
-    children: [
-      {
-        path: 'events/:event_id',
-        component: HomeEventComponent
-      }
-    ]
+  },
+  {
+    path: 'communities/:community_id/events/:event_id',
+    component: HomeEventComponent,
   },
   {
     path: 'fill-form/:data_form_entity_id',
@@ -40,7 +38,7 @@ const routes: Routes = [
   {
     path: 'email-confirmations',
     loadChildren: () => import('./feature-modules/email-confirmations/email-confirmations.module').then(m => m.EmailConfirmationsModule)
-  },      // {
+  },
   {
     path: 'admin',
     children: [

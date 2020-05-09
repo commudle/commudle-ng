@@ -17,7 +17,8 @@ import {
   NbTooltipModule,
   NbWindowModule,
   NbIconModule,
-  NbAutocompleteModule
+  NbAutocompleteModule,
+  NbToggleModule
  } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
@@ -78,7 +79,8 @@ import { EventUpdatesComponent } from './components/event-updates/event-updates.
     NbTooltipModule,
     NbWindowModule.forChild(),
     NbIconModule,
-    NbAutocompleteModule
+    NbAutocompleteModule,
+    NbToggleModule
   ]
 })
 export class EventsModule { }

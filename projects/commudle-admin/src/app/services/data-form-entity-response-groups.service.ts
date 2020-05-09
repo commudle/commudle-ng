@@ -23,14 +23,14 @@ export class DataFormEntityResponseGroupsService {
       .set('count', count)
       .set('page', page);
     return this.http.get<IDataFormEntityResponseGroups>(
-      this.apiRoutesService.getRoute(API_ROUTES.GET_EVENT_DATA_FORM_RESPONSES), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_DATA_FORM_RESPONSES), { params }
     );
   }
 
   updateEventRegistrationStatus(registrationStatusId, dataFormEntityResponseGroupId): Observable<IDataFormEntityResponseGroup> {
 
     return this.http.patch<IDataFormEntityResponseGroup>(
-      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_REGISTRATION_STATUS), {
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_EVENT_REGISTRATION_STATUS), {
         data_form_entity_response_group_id: dataFormEntityResponseGroupId,
         registration_status_id: registrationStatusId
        }
@@ -52,7 +52,15 @@ export class DataFormEntityResponseGroupsService {
   getEventSpeakers(eventId): Observable<IDataFormEntityResponseGroups> {
     let params = new HttpParams().set('event_id', eventId);
     return this.http.get<IDataFormEntityResponseGroups>(
-      this.apiRoutesService.getRoute(API_ROUTES.GET_EVENT_SPEAKERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_SPEAKERS), { params }
+    );
+  }
+
+
+  updateRSVPStatus(token, rsvpStatus): Observable<any> {
+    return this.http.patch<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_RSVP),
+      {token, rsvp_status: rsvpStatus}
     );
   }
 

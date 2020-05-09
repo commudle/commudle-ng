@@ -13,6 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
+import { ERegistationTypes } from 'projects/shared-models/enums/registration_types.enum';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class FormGroupsComponent implements OnInit {
   faEnvelope = faEnvelope;
   faTimesCircle = faTimesCircle;
   faUsers = faUsers;
+  ERegistationTypes = ERegistationTypes;
+
 
   @Input() event;
   @Input() community;
@@ -77,6 +80,15 @@ export class FormGroupsComponent implements OnInit {
     this.dataFormEntitiesService.updateVisibilityStatus(newStatus, dataFormEntityId).subscribe((data) => {
       this.toastLogService.successDialog('Visibility Updated');
     });
+  }
+
+  updateRSVP(eventDataFormEntityGroupId, index) {
+    this.eventDataFormEntityGroupsService.updateRSVP(eventDataFormEntityGroupId).subscribe(
+      (data) => {
+        this.eventDataFormEntityGroups[index] = data;
+        this.toastLogService.successDialog("Updated");
+      }
+    );
   }
 
 

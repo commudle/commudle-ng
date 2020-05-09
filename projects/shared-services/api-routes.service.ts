@@ -13,6 +13,10 @@ export class ApiRoutesService {
     return this.baseApiUrl = envBase;
   }
 
+  getBaseUrl(): string {
+    return this.baseApiUrl;
+  }
+
   getRoute(routeValue: string): string {
     return `${this.baseApiUrl}/${routeValue}`;
   }

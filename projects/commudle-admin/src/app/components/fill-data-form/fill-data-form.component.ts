@@ -6,6 +6,7 @@ import { EventsService } from '../../services/events.service';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunitiesService } from '../../services/communities.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class FillDataFormComponent implements OnInit {
     private dataFormEntitiesService: DataFormEntitiesService,
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -84,6 +86,7 @@ export class FillDataFormComponent implements OnInit {
     this.communitiesService.getCommunityDetails(communityId).subscribe(
       data => {
         this.community = data;
+        this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         this.redirectRoute.push('/communities', this.community.slug, 'events', this.event.slug);
       }
     );

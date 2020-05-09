@@ -39,9 +39,14 @@ export const API_ROUTES = {
 
 
   // event_data_form_entity_groups
-  GET_EVENT_DATA_FORM_ENTITY_GROUPS: 'api/v2/event_data_form_entity_groups',
-  GET_EVENT_DATA_FORM_ENTITY_GROUP: 'api/v2/event_data_form_entity_group',
-  CREATE_EVENT_DATA_FORM_ENTITY_GROUP: 'api/v2/event_data_form_entity_groups',
+  EVENT_DATA_FORM_ENTITY_GROUPS: {
+    INDEX: 'api/v2/event_data_form_entity_groups',
+    GET: 'api/v2/event_data_form_entity_group',
+    CREATE: 'api/v2/event_data_form_entity_groups',
+    DELETE: 'api/v2/event_data_form_entity_group',
+    UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp'
+  },
+
 
 
 
@@ -61,9 +66,13 @@ export const API_ROUTES = {
 
 
   // data_form_entity_response_groups
-  GET_EVENT_DATA_FORM_RESPONSES: 'api/v2/data_form_entity_response_groups/event_data_form_responses',
-  UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
-  GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
+  DATA_FORM_ENTITY_RESPONSE_GROUPS: {
+    GET_EVENT_DATA_FORM_RESPONSES: 'api/v2/data_form_entity_response_groups/event_data_form_responses',
+    UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
+    GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
+    UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp'
+  },
+
 
   // event_entry_passes
   CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',

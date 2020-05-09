@@ -1,3 +1,43 @@
 <div>
-  Collaboration community works
+  <div *ngIf="eventCollaboration">
+    <nb-card>
+      <nb-card-body>
+
+        <div class="status" *ngIf="eventCollaboration.approved">
+          <div class="collaboration-status">
+            <div class="collaboration-community-logo">
+              <img src="{{ eventCollaboration.community.logo_path }}" alt="{{ eventCollaboration.community.name }}">
+            </div>
+            <p>
+              Welcome Aboard!
+              <br>
+              <span>
+                Thank You for approving the collaboration request.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="event-details">
+          <div class="event">
+            <p>
+              <a [routerLink]="['/communities', community.slug, 'events', eventCollaboration.event.slug]">
+                Go To <strong>{{ eventCollaboration.event.name }}</strong>
+              </a>
+            </p>
+          </div>
+          <div class="community">
+            <div class="logo">
+              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+            </div>
+            <p>
+              <a [routerLink]="['/communities', community.slug]">
+                {{ community.name }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
 </div>

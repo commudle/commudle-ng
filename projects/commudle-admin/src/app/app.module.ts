@@ -52,6 +52,7 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
 import { CookieService } from 'ngx-cookie-service';
 import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
 import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
+
 @NgModule({
   declarations: [
     AppComponent,

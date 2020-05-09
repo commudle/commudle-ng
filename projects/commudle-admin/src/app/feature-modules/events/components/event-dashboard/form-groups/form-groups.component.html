@@ -1,7 +1,7 @@
 <div class="event-data-form-groups">
   <div>
     <nb-list class="event-data-form-groups-list" *ngIf="eventDataFormEntityGroups.length > 0">
-      <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups">
+      <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index;">
         <div class="edfeg-details" *ngIf="edfeg.data_form_entity">
           <div class="display-details">
             <div class="copy-link">
@@ -47,6 +47,9 @@
 
                 Show Responses
               </a>
+            </div>
+            <div *ngIf="[ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name)">
+              <nb-toggle [checked]="edfeg.rsvp_open == true" (checkedChange)="updateRSVP(edfeg.id, i)">Allow RSVP</nb-toggle>
             </div>
             <div>
               <a

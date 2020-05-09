@@ -1,0 +1,46 @@
+.status {
+  .registration-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    nb-icon {
+      font-size: 4rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+
+  }
+}
+
+.event-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .event{
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0;
+    }
+  }
+
+  .community {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    .logo {
+      width: 50px;
+      overflow: hidden;
+      margin-right: 1rem;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
