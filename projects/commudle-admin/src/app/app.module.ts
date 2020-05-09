@@ -23,7 +23,8 @@ import {
   NbMenuModule,
   NbContextMenuModule,
   NbIconModule,
-  NbListModule} from '@nebular/theme';
+  NbListModule,
+  NbTooltipModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -109,7 +110,7 @@ import { FillableFormComponent } from './components/common/fillable-form/fillabl
     NbMenuModule.forRoot(),
     NbIconModule,
     NbListModule,
-
+    NbTooltipModule,
 
     //other external npm modules
     Ng2CompleterModule,

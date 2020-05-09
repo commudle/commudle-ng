@@ -1,0 +1,49 @@
+.status {
+  .role-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    nb-icon {
+      font-size: 3.5rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+      margin-left: 1rem;
+      span {
+        font-size: 0.8rem;
+      }
+    }
+
+  }
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .event{
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0;
+    }
+  }
+
+  .community {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    .logo {
+      width: 50px;
+      overflow: hidden;
+      margin-right: 1rem;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

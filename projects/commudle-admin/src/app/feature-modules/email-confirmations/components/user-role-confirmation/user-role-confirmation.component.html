@@ -1,1 +1,37 @@
-<p>user-role-confirmation works!</p>
+<div>
+  <div *ngIf="userRolesUser">
+    <nb-card>
+      <nb-card-body>
+
+        <div class="status" *ngIf="userRolesUser.active">
+          <div class="role-status">
+            <nb-icon icon="person-add" status="success"></nb-icon>
+            <p>
+              <strong>{{ userRolesUser.user_role.name | titlecase }}</strong>! Welcome To The Team
+            </p>
+          </div>
+        </div>
+
+        <div class="details">
+          <div class="event" *ngIf="event">
+            <p>
+              <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
+                Go To <strong>{{ event.name }}</strong>
+              </a>
+            </p>
+          </div>
+          <div class="community">
+            <div class="logo">
+              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+            </div>
+            <p>
+              <a [routerLink]="['/communities', community.slug]">
+                {{ community.name }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

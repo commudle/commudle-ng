@@ -21,13 +21,13 @@ export class UserRolesUsersService {
   getCommunityUsersByRole(communityId, userRoleName): Observable<IUserRolesUsers> {
     let params = new HttpParams().set('community_id', communityId).set('user_role_name', userRoleName);
     return this.http.get<IUserRolesUsers>(
-      this.apiRoutesService.getRoute(API_ROUTES.GET_ADMIN_COMMUNITY_USERS_BY_ROLE), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_ADMIN_COMMUNITY_USERS_BY_ROLE), { params }
     );
   }
 
   createUserRolesUser(communityId, userRolesUserData): Observable<IUserRolesUser> {
     return this.http.post<IUserRolesUser>(
-      this.apiRoutesService.getRoute(API_ROUTES.CREATE_USER_ROLES_USER), {
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
         community_id: communityId,
         user_roles_user: userRolesUserData
       }
@@ -38,7 +38,7 @@ export class UserRolesUsersService {
     let params = new HttpParams().set('user_roles_user_id', userRolesUserId);
 
     return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.DELETE_USER_ROLES_USER), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.DELETE), { params }
     );
 
   }
@@ -47,7 +47,14 @@ export class UserRolesUsersService {
     let params = new HttpParams().set('user_roles_user_id', userRolesUserId);
 
     return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.RESEND_USER_ROLES_USER_INVITATION), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.RESEND_INVITATION), { params }
+    );
+  }
+
+  confirmCommunityRole(token): Observable<any> {
+    return this.http.patch<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ACTIVATE_COMMUNITY_ROLE),
+      { token }
     );
   }
 }

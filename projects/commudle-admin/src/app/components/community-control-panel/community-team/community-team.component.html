@@ -8,9 +8,9 @@
             <img src="" alt="{{org.user.name}}">
           </div>
           <div class="user-details">
-            <p class="user-name">{{ org.user.name }}</p>
-            <p class="user-designation">
-              <small>{{ org.user.designation }}</small>
+            <p class="user-name">{{ org.user.name | slice:0:10 }}</p>
+            <p class="user-designation" nbTooltip="{{ org.user.designation }}" nbTooltipStatus="primary">
+              <small>{{ org.user.designation | slice:0:10 }}</small>
             </p>
             <div class="user-social-links">
               <a href="{{ org.user.linkedin }}">
