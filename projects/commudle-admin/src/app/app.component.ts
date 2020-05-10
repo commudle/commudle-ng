@@ -29,10 +29,9 @@ export class AppComponent {
     private titleService: Title,
     private router: Router
     ) {
-
-      this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.authWatchService.checkAlreadySignedIn().subscribe();
+      this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
       this.authWatchService.currentUser$.subscribe(currentUser => this.currentUser = currentUser);
   }
 

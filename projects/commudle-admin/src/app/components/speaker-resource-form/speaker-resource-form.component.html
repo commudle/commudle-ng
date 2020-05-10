@@ -1,0 +1,118 @@
+<div class="speaker-resource-form" *ngIf="this.speakerResource">
+  <nb-card>
+    <nb-card-body>
+      <div class="details" *ngIf="this.community">
+        <div class="community">
+          <div class="logo">
+            <img src="{{community.logo_path}}" alt="{{ community.name }}">
+          </div>
+          <div>
+            <p>{{ community.name }}</p>
+          </div>
+        </div>
+        <div class="event">
+          <h5>
+            {{speakerResource.event.name}}
+          </h5>
+        </div>
+        <div>
+          <p>
+            Hi
+            <strong>{{ speakerResource.user.name }}</strong>,
+            we think that the content shared by you is something that people will benefit from even after the event. Please fill this short form!
+          </p>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card>
+    <nb-card-body>
+      <div class="form">
+        <form [formGroup]="speakerResourceForm" (ngSubmit)="submitForm()">
+          <div>
+            <label>
+              Title*
+              <input type="text" nbInput fullWidth formControlName="title">
+            </label>
+            <span *ngIf="speakerResourceForm['controls'].title.touched && speakerResourceForm['controls'].title.invalid && speakerResourceForm['controls'].title.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div>
+            <label>
+              Do you have a Google Slides Presentation?
+              <span class="open-window-link" (click)="openGoogleSlidesEmbedStepsWindow()">
+                Steps to embed Google Slides
+              </span>
+              <br>
+              <small>These will be shared after the event with everyone!</small>
+              <input type="text" nbInput fullWidth formControlName="embedded_content" placeholder="Paste the embed code here">
+            </label>
+          </div>
+          <div class="embedded-slides" *ngIf="embedGoogleSlidesCode" [innerHTML]="embedGoogleSlidesCode">
+          </div>
+          <div>
+            <label>
+              Session Details*
+              <textarea type="text" nbInput fullWidth formControlName="session_details_links" placeholder="My session is about..."></textarea>
+            </label>
+            <span *ngIf="speakerResourceForm['controls'].session_details_links.touched && speakerResourceForm['controls'].session_details_links.invalid && speakerResourceForm['controls'].session_details_links.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+
+          <div>
+            <button [disabled]="!speakerResourceForm.valid" type="submit" nbButton fullWidth status="info">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+
+
+
+  <!-- Templates for embedding steps -->
+  <ng-template #googleSlidesEmbed>
+    <div>
+      <ol>
+        <li>Open your Google Slides</li>
+        <li>At the top, <strong>click File and then Publish to the web</strong></li>
+        <li>In the window that appears, <strong>click Embed</strong></li>
+        <li>
+          Choose a publishing option:
+          <strong>
+            Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the slides <strong>(Default)</strong>.
+          </strong>
+        </li>
+        <li>
+          Click Publish
+        </li>
+        <li>
+          Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
+          <small>
+            <code>
+              <div>
+                <div>&lt;iframe src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;</div>
+                </div>
+            </code>
+          </small>
+        </li>
+      </ol>
+
+      <p>
+        <small>
+          <a href="https://support.google.com/docs/answer/183965?co=GENIE.Platform%3DDesktop&hl=en">
+            Source
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </small>
+      </p>
+    </div>
+  </ng-template>
+
+
+</div>

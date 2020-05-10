@@ -138,5 +138,11 @@ export const API_ROUTES = {
 
   USERS: {
     UPDATE_PROFILE: 'api/v2/users/update_profile'
-  }
+  },
+
+  SPEAKER_RESOURCES: {
+    SHOW_BY_TOKEN: 'api/v2/speaker_resources/show_by_token',
+    CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token'
+  },
+
 };

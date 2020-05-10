@@ -24,7 +24,8 @@ import {
   NbContextMenuModule,
   NbIconModule,
   NbListModule,
-  NbTooltipModule} from '@nebular/theme';
+  NbTooltipModule,
+  NbWindowModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -53,6 +54,7 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
 import { CookieService } from 'ngx-cookie-service';
 import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
 import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
+import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import { FillableFormComponent } from './components/common/fillable-form/fillabl
     SidebarMenuComponent,
     BasicUserProfileComponent,
     FillableFormComponent,
+    SpeakerResourceFormComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -111,6 +114,7 @@ import { FillableFormComponent } from './components/common/fillable-form/fillabl
     NbIconModule,
     NbListModule,
     NbTooltipModule,
+    NbWindowModule.forRoot(),
 
     //other external npm modules
     Ng2CompleterModule,

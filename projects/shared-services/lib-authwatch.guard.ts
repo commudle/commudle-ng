@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
 
   isLoggedIn(): boolean {
-
     this.authService.currentUserVerified$.subscribe(verified => {
       if (verified === false) {
         // if the user is not logged in then redirect to the login screen

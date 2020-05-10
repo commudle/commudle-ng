@@ -16,6 +16,7 @@ import { HomeEventComponent } from './components/home-event/home-event.component
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LogoutComponent } from './components/logout/logout.component';
+import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     path: 'email-confirmations',
     loadChildren: () => import('./feature-modules/email-confirmations/email-confirmations.module').then(m => m.EmailConfirmationsModule)
+  },
+  {
+    path: 'speaker-resource-form',
+    canActivate: [AuthGuard],
+    component: SpeakerResourceFormComponent
   },
   {
     path: 'admin',

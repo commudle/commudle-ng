@@ -1,0 +1,49 @@
+.speaker-resource-form {
+  max-width: 800px;
+  margin: 0 auto;
+
+  .form {
+    form {
+      display: flex;
+      flex-direction: column;
+
+      >div {
+        margin-bottom: 1rem;
+      }
+
+    }
+  }
+}
+
+
+.open-window-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.embedded-slides {
+  display: flex;
+  justify-content: center;
+}
+
+
+.details {
+  .community {
+    display: flex;
+    .logo {
+      width: 50px;
+      overflow: hidden;
+      margin-right: 1rem;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .event {
+    h5 {
+      margin: 0.5rem 0;
+    }
+  }
+}

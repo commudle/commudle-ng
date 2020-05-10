@@ -57,7 +57,6 @@ export class LibAuthwatchService {
 
   // check if user is already signed in
   checkAlreadySignedIn(): Observable<boolean> {
-
     return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION),
       {}).pipe(
@@ -65,6 +64,8 @@ export class LibAuthwatchService {
           if (data.user) {
             this.currentUser.next(data.user);
             this.currentUserVerified.next(true);
+          } else {
+            this.currentUserVerified.next(false);
           }
         })
       );
