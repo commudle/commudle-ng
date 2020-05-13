@@ -34,6 +34,7 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/events',
     GET: 'api/v2/events',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
+    UPDATE_STATUS: 'api/v2/events/update_status'
   },
 
 
@@ -95,11 +96,12 @@ export const API_ROUTES = {
   UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
-
-  // track_slots
-  CREATE_TRACK_SLOT: 'api/v2/track_slots',
-  UPDATE_TRACK_SLOT: 'api/v2/track_slots',
-  DELETE_TRACK_SLOT: 'api/v2/track_slots',
+  TRACK_SLOTS: {
+    GET: 'api/v2/track_slots',
+    CREATE: 'api/v2/track_slots',
+    UPDATE: 'api/v2/track_slots',
+    DELETE: 'api/v2/track_slots',
+  },
 
 
   // communication_mailers
@@ -145,4 +147,12 @@ export const API_ROUTES = {
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token'
   },
 
+  DISCUSSIONS: {
+    GET_OR_CREATE_BY_TRACK_SLOT: 'api/v2/discussions/get_or_create_by_track_slot'
+  },
+
+
+  USER_MESSAGES: {
+    TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages'
+  }
 };

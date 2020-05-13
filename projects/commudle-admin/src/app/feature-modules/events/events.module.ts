@@ -18,7 +18,8 @@ import {
   NbWindowModule,
   NbIconModule,
   NbAutocompleteModule,
-  NbToggleModule
+  NbToggleModule,
+  NbPopoverModule
  } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
@@ -34,6 +35,7 @@ import { EventLocationsComponent } from './components/event-locations/event-loca
 import { EventLocationTracksComponent } from './components/event-locations/event-location-tracks/event-location-tracks.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EventUpdatesComponent } from './components/event-updates/event-updates.component';
+import { EventStatusComponent } from './components/event-status/event-status.component';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { EventUpdatesComponent } from './components/event-updates/event-updates.
     EventLocationsComponent,
     EventLocationTracksComponent,
     EventUpdatesComponent,
+    EventStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -80,7 +83,8 @@ import { EventUpdatesComponent } from './components/event-updates/event-updates.
     NbWindowModule.forChild(),
     NbIconModule,
     NbAutocompleteModule,
-    NbToggleModule
+    NbToggleModule,
+    NbPopoverModule
   ]
 })
 export class EventsModule { }

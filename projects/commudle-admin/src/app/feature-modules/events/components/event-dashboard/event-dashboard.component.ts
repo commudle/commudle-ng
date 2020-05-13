@@ -5,6 +5,8 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { faClock, faEdit, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
+import { IEventStatus } from 'projects/shared-models/event_status.model';
+import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -31,9 +33,15 @@ export class EventDashboardComponent implements OnInit {
 
     this.activatedRoute.data.subscribe(data => {
       this.event = data.event;
+
       this.community = data.community;
       this.titleService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
+  }
+
+
+  updateEventStatus($event: IEventStatus) {
+    this.event.event_status = $event;
   }
 
 }

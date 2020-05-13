@@ -12,7 +12,6 @@ import { CommunityEditDetailsComponent } from './components/community-control-pa
 import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
-import { HomeEventComponent } from './components/home-event/home-event.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -29,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'communities/:community_id/events/:event_id',
-    component: HomeEventComponent,
+    loadChildren: () => import('./feature-modules/public-events/public-events.module').then(m => m.PublicEventsModule)
   },
   {
     path: 'fill-form/:data_form_entity_id',
@@ -68,7 +67,7 @@ const routes: Routes = [
         loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then(m => m.DataFormsModule)
       },
       {
-        path: 'communities/:id/event-dashboard',
+        path: 'communities/:community_id/event-dashboard',
         loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
       }
     ]

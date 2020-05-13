@@ -8,6 +8,7 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 
 @Component({
   selector: 'app-root',
@@ -25,14 +26,19 @@ export class AppComponent {
     @Inject(DOCUMENT) private document: Document,
     private apiRoutes: ApiRoutesService,
     private authWatchService: LibAuthwatchService,
+    private actionCableConnectionSocket: ActionCableConnectionSocket,
     private sidebarService: NbSidebarService,
     private titleService: Title,
     private router: Router
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
+      this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
       this.authWatchService.checkAlreadySignedIn().subscribe();
       this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
-      this.authWatchService.currentUser$.subscribe(currentUser => this.currentUser = currentUser);
+      this.authWatchService.currentUser$.subscribe(currentUser => {
+        this.currentUser = currentUser;
+        this.actionCableConnectionSocket.connectToServer();
+      });
   }
 
 

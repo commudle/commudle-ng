@@ -21,7 +21,7 @@ const routes: Routes = [
         component: CreateEventComponent
       },
       {
-        path: ':id',
+        path: ':event_id',
         resolve: {
           event: EventDetailsResolver
         },

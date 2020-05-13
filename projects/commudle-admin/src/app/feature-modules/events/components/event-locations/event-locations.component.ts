@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
 import { IEvent } from 'projects/shared-models/event.model';
@@ -26,7 +26,7 @@ export class EventLocationsComponent implements OnInit {
   faTrash = faTrash;
   faPlusCircle = faPlusCircle;
 
-  event: IEvent;
+  @Input() event: IEvent;
   eventLocations: IEventLocation[];
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
@@ -52,12 +52,8 @@ export class EventLocationsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data) => {
-      this.event = data.event;
-      this.getEventLocations();
-      this.getEventSpeakers();
-
-    });
+    this.getEventLocations();
+    this.getEventSpeakers();
   }
 
   getEventLocations() {

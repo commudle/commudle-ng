@@ -27,11 +27,11 @@
   <div class="registration-status-details">
     <div *ngIf="['speaker', 'attendee'].includes(registrationType.name)">
       <div class="registration-status-list">
-        <div *ngFor="let rs of registrationStatuses" (click)="updateRegistrationStatus(rs.id)">
-          <p [ngClass]="{'selected-status': (rs.id == userResponse.registration_status.id)}" >{{ rs.name }}</p>
+        <div *ngFor="let rs of registrationStatuses" (click)="event.editable && updateRegistrationStatus(rs.id)">
+          <p [ngClass]="{'selected-status': (rs.id == userResponse.registration_status.id), 'disabled': !event.editable}" >{{ rs.name }}</p>
         </div>
       </div>
-      <div class="action-buttons">
+      <div class="action-buttons" *ngIf="event.editable">
         <button *ngIf="userResponse.registration_status.name == 'shortlisted'" (click)="openRSVPEmailWindow()" nbButton size="tiny">
           Send RSVP Email
         </button>

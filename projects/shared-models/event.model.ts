@@ -1,3 +1,5 @@
+import { IEventStatus } from './event_status.model';
+
 export interface IEvent {
   id: number;
   name: string;
@@ -8,8 +10,8 @@ export interface IEvent {
   created_at: Date;
   user: string;
   slug: string;
-  event_status_id: number;
+  event_status: IEventStatus;
   seats: number;
   timezone: string;
-  status: string;
+  editable: boolean;
 }

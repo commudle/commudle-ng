@@ -114,7 +114,7 @@ export class CreateDataFormComponent implements OnInit {
         id: [''],
         name: ['', Validators.required],
         questions: this.fb.array([
-          this.initQuestion()
+
         ])
       })
     });

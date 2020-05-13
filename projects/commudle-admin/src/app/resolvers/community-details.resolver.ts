@@ -23,9 +23,9 @@ export class CommunityDetailsResolver implements Resolve<ICommunity> {
       this.apiRoutesService.setBaseUrl(environment.base_url);
     }
     // if organizer communities are already fetched then bring it from there, else fetch the communities and then filter from the list
-    let params = new HttpParams().set('community_id', route.parent.params.id);
+    let params = new HttpParams().set('community_id', route.parent.params.community_id);
     return this.http.get<ICommunity>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.DETAILS), { params: params }
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.DETAILS), { params }
     );
 
   }

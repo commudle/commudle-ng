@@ -10,8 +10,8 @@
 };
 /* You can add global styles to this file, and also import other style files */
 
-.validation-error-text{
-  color: red;
+.validation-error-text, .error-text{
+  color: red !important;
 }
 
 input {

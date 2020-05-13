@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -7,8 +7,6 @@ import { NbWindowService } from '@nebular/theme';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EventLocationTracksService } from 'projects/commudle-admin/src/app/services/event-location-tracks.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
-import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { IEventLocation } from 'projects/shared-models/event-location.model';
 import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
 
@@ -23,6 +21,7 @@ export class EventLocationTracksComponent implements OnInit {
   @ViewChild('deleteEventLocationTrackTemplate') deleteEventLocationTrackTemplate: TemplateRef<any>;
   @ViewChild('trackSlotFormTemplate') trackSlotFormTemplate: TemplateRef<any>;
   @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
+  @ViewChild('tracksContainer') private tracksContainer: ElementRef;
   windowRef;
 
   faClock = faClock;
@@ -85,6 +84,12 @@ export class EventLocationTracksComponent implements OnInit {
     this.minSlotDate = moment(this.event.start_date).toDate();
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.scrollFromTop();
+  }
+
   displayTime(hour, minute) {
     return moment(`${hour}:${minute}`, 'H:m').format('hh:mm A');
   }
@@ -96,6 +101,12 @@ export class EventLocationTracksComponent implements OnInit {
 
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
     return ((moment(slot.start_time).hours() * 0.5 * 60 ) + ((moment(slot.start_time).minute()) * 0.5) + 2.5);
+  }
+
+  scrollFromTop() {
+    if (this.eventLocationTracks.length > 0 && this.eventLocationTracks[0].track_slots.length > 0) {
+     this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.5 * 850);
+    }
   }
 
 

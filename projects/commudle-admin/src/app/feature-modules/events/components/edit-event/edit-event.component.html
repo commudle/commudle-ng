@@ -7,7 +7,7 @@
       </p>
       <nb-alert status="info" *ngIf="uneditable">
         <p>
-          This event is <strong>{{event.status}}</strong> and cannot be edited
+          This event is <strong>{{event.event_status.name | titlecase}}</strong> and cannot be edited
         </p>
       </nb-alert>
     </nb-card-body>
@@ -36,8 +36,12 @@
               <div>
                 <div>
                   <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date">
-                  <nb-datepicker #datepicker [min]="minDate" (dateChange)="updateMinEndDate($event)"></nb-datepicker>
+                  <nb-datepicker #datepicker [min]="minDate" ></nb-datepicker>
                 </div>
+
+              </div>
+              <br>
+              <div>
                 <div class="hour-select">
                   <nb-select fullWidth placeholder="Hour" size="medium" formControlName="start_hour">
                     <nb-option *ngFor="let i of hours" [value]="i+1">
@@ -61,10 +65,7 @@
                 Ends At
                 </label>
               <div>
-                  <div>
-                    <input nbInput [nbDatepicker]="datepicker2" placeholder="Date" formControlName="end_date">
-                    <nb-datepicker [min]="minEndDate" #datepicker2></nb-datepicker>
-                  </div>
+
                   <div class="hour-select">
                     <nb-select fullWidth placeholder="Hour" size="medium" formControlName="end_hour">
                       <nb-option *ngFor="let i of hours" [value]="i+1">
@@ -127,11 +128,6 @@
         </div>
 
         <div class="save-button-bottom">
-          <nb-alert status="info" *ngIf="uneditable">
-            <p>
-              This event is <strong>{{event.status}}</strong> and cannot be edited
-            </p>
-          </nb-alert>
           <button *ngIf="!uneditable" [disabled]="!eventForm.valid" type="submit" nbButton fullWidth status="info">
             Save
           </button>

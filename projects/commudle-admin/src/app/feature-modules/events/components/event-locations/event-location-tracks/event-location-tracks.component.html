@@ -1,10 +1,10 @@
 <div >
-  <button nbButton size="tiny" (click)="showAddTrackForm()" size="tiny">
+  <button nbButton size="tiny" (click)="showAddTrackForm()" size="tiny" status="primary" *ngIf="event.editable">
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp;
     Add Track
   </button>
-  <div class="tracks-container">
+  <div class="tracks-container" #tracksContainer>
     <div class="track empty">
       <div class="track-name empty">
         <p>Time</p>
@@ -22,12 +22,12 @@
     <div class="track" *ngFor="let lt of eventLocationTracks; let t = index">
       <div class="track-name">
         <p>{{ lt.name }}</p>
-        <div>
+        <div *ngIf="event.editable">
           <button nbButton size="tiny" status="info" (click)="showEditTrackForm(lt)">
             <nb-icon icon="edit-outline"></nb-icon>
           </button>
           <button nbButton size="tiny" status="danger" (click)="confirmDeleteTrack(lt)">
-            <nb-icon icon="close-square-outline"></nb-icon>
+            <nb-icon icon="close"></nb-icon>
           </button>
         </div>
 
@@ -35,9 +35,9 @@
       <div class="time-container">
         <div *ngFor="let hour of hours">
           <div *ngFor="let minute of minutes">
-            <div *ngIf="minute%5 == 0" class="time-cell fill" (click)="showAddSlotForm(lt, hour, minute)">
+            <div *ngIf="minute%5 == 0" class="time-cell fill" (click)="event.editable && showAddSlotForm(lt, hour, minute)">
               <p class="filler-text">
-                <small>
+                <small *ngIf="event.editable">
                   <nb-icon icon="plus-square-outline"></nb-icon>
                 </small>
               </p>
@@ -52,7 +52,7 @@
             'height': slotSessionHeight(slot) + 'rem',
             'top': slotSessionOffsetFromTop(slot) + 'rem' }"
             >
-            <p class="actions">
+            <p class="actions" *ngIf="event.editable">
               <nb-icon icon="edit-outline" (click)="showEditSlotForm(slot)" class="clickable"></nb-icon>
               <nb-icon icon="close-square-outline" (click)="confirmDeleteSlot(slot)" class="clickable"></nb-icon>
             </p>

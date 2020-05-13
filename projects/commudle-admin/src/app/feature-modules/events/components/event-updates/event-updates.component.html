@@ -1,21 +1,21 @@
 <div>
   <div *ngFor="let eu of eventUpdates; let i = index">
     <p>
-      <span class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
-        <nb-icon icon="trash"></nb-icon>
-      </span>
+
       <span>
         {{ eu.details }}
+      </span>
+      <span *ngIf="event.editable" class="delete-event-update clickable" (click)="deleteEventUpdate(eu.id, i)">
+        <nb-icon icon="close"></nb-icon>
       </span>
 
       <br>
       <small>
-
         <span>{{ moment(eu.created_at).format('LT DD-MM-YYYY') }} by {{ eu.user.name }}</span>
       </small>
     </p>
   </div>
-  <div>
+  <div *ngIf="event.editable">
     <form [formGroup]="eventUpdateForm" (ngSubmit)="createEventUpdate()">
       <div>
         <label >

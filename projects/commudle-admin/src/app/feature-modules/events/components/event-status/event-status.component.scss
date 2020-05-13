@@ -1,0 +1,35 @@
+.event-statuses {
+  display: flex;
+  justify-content: space-around;
+
+  .event-status {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.5rem;
+    border: 0.5px solid lightgrey;
+    &:hover {
+      color: #507eff;
+      border-color: #507eff;
+    }
+    &.selected {
+      background-color: #507eff;
+      color: white;
+    }
+  }
+}
+
+.rules {
+  padding: 1rem;
+}
+
+.info {
+  padding: 0.5rem;
+  nb-icon {
+    font-size: 1.5rem;
+  }
+}
+
+
+nb-alert {
+  margin-bottom: 0;
+}

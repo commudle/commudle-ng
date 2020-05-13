@@ -1,0 +1,26 @@
+<div class="speaker-session-details">
+  <div class="card-row">
+    <div class="speaker-details">
+      <nb-card>
+        <nb-card-body>
+          Speaker Profile Details
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div class="session-details">
+      <div class="session-event">
+        <nb-card>
+          <nb-card-body>
+            Session + Event Details
+            // show the slides/content once the event has completed
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div *ngIf="trackSlot">
+        <app-speaker-session-discussion [trackSlot]="trackSlot"></app-speaker-session-discussion>
+      </div>
+    </div>
+  </div>
+
+</div>

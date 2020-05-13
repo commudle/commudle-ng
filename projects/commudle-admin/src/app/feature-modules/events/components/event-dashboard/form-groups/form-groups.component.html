@@ -23,7 +23,7 @@
           </div>
           <div class="actions">
             <div class="visibility">
-              <nb-select size="small" [(selected)]="edfeg.data_form_entity.visibility" (selectedChange)="changeVisibility($event, edfeg.data_form_entity.id)">
+              <nb-select *ngIf="event.editable" size="small" [(selected)]="edfeg.data_form_entity.visibility" (selectedChange)="changeVisibility($event, edfeg.data_form_entity.id)">
                 <nb-option value="{{visibilityOptions.YET_TO_ANNOUNCE}}">Yet to announce</nb-option>
                 <nb-option value="{{visibilityOptions.OPEN_BUT_INVISIBLE}}">Open but invisible</nb-option>
                 <nb-option value="{{visibilityOptions.OPEN}}">Open to all</nb-option>
@@ -48,10 +48,10 @@
                 Show Responses
               </a>
             </div>
-            <div *ngIf="[ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name)">
+            <div *ngIf="[ERegistationTypes.ATTENDEE, ERegistationTypes.SPEAKER].includes(edfeg.registration_type.name) && event.editable">
               <nb-toggle [checked]="edfeg.rsvp_open == true" (checkedChange)="updateRSVP(edfeg.id, i)">Allow RSVP</nb-toggle>
             </div>
-            <div>
+            <div *ngIf="event.editable">
               <a
                 nbButton
                 outline
@@ -77,7 +77,7 @@
     </nb-list>
   </div>
 
-  <div>
+  <div *ngIf="event.editable">
     <p>
       <nb-icon icon="plus-circle-outline"></nb-icon>
       Attach a Form

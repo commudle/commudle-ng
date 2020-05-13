@@ -47,7 +47,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EmailerComponent } from './components/emailer/emailer.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
-import { HomeEventComponent } from './components/home-event/home-event.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
@@ -72,7 +71,6 @@ import { SpeakerResourceFormComponent } from './components/speaker-resource-form
     EmailerComponent,
     HomeComponent,
     HomeCommunityComponent,
-    HomeEventComponent,
     FillDataFormComponent,
     LogoutComponent,
     SidebarMenuComponent,

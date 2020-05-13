@@ -39,6 +39,11 @@
         font-size: 12px;
         margin: 0;
         color: blue;
+
+        &.disabled{
+          color: lightgrey;
+        }
+
         &.selected-status{
           color: green;
           font-weight: bold;

@@ -34,7 +34,6 @@ export class EditDataFormComponent implements OnInit {
       disabled: [''],
       has_responses: [false],
       question_choices: this.fb.array([
-        this.initQuestionChoice()
       ])
     });
   }
@@ -104,7 +103,6 @@ export class EditDataFormComponent implements OnInit {
         id: [''],
         name: ['', Validators.required],
         questions: this.fb.array([
-          this.initQuestion()
         ])
       })
     });

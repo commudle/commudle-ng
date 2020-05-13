@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { IRegistrationStatus } from 'projects/shared-models/registration_status.model';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { RegistrationStatusesService } from 'projects/commudle-admin/src/app/services/registration-statuses.service';
@@ -20,7 +20,7 @@ import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
   templateUrl: './event-form-responses.component.html',
   styleUrls: ['./event-form-responses.component.scss']
 })
-export class EventFormResponsesComponent implements OnInit {
+export class EventFormResponsesComponent implements OnInit, OnDestroy {
 
   @ViewChild('table') table;
 
@@ -37,6 +37,7 @@ export class EventFormResponsesComponent implements OnInit {
   temp = [];
   ColumnMode = ColumnMode;
   SortType = SortType;
+  canLoadMore = true;
 
 
   //TODO past event stats
@@ -78,7 +79,14 @@ export class EventFormResponsesComponent implements OnInit {
       this.questions = this.dataForm.questions;
     });
 
-    this.getResponses(1, 50);
+    this.getResponses(1, 25);
+  }
+
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.canLoadMore = false;
+    console.log('destroyed');
   }
 
 
@@ -110,17 +118,20 @@ export class EventFormResponsesComponent implements OnInit {
   }
 
   getResponses(page, count) {
-    this.dataFormEntityResponseGroupsService.getEventDataFormResponses(this.eventDataFormEntityGroupId, page, count).subscribe(
-      (data) => {
-        this.temp = this.temp.concat(data.data_form_entity_response_groups);
-        this.rows = this.rows.concat(data.data_form_entity_response_groups);
-        if (data.data_form_entity_response_groups.length === count) {
-          this.getResponses(page + 1, count);
-        } else {
-          this.isLoading = false;
+    if (this.canLoadMore) {
+      this.dataFormEntityResponseGroupsService.getEventDataFormResponses(this.eventDataFormEntityGroupId, page, count).subscribe(
+        (data) => {
+          this.temp = this.temp.concat(data.data_form_entity_response_groups);
+          this.rows = this.rows.concat(data.data_form_entity_response_groups);
+          if (data.data_form_entity_response_groups.length === count) {
+            this.getResponses(page + 1, count);
+          } else {
+            this.isLoading = false;
+          }
         }
-      }
-    );
+      );
+    }
+
   }
 
 

@@ -34,7 +34,6 @@ export class EventUpdatesComponent implements OnInit {
   getEventUpdates() {
     this.eventUpdatesService.getEventUpdates(this.event.id).subscribe(
       data => {
-        console.log(data);
         this.eventUpdates = data.event_updates;
       }
     );

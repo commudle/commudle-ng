@@ -8,5 +8,6 @@ export interface ITrackSlot {
   session_title: string;
   tags_list: string;
   speaker_registration_id: number;
+  user: IUser;
 
 }

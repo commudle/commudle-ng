@@ -10,7 +10,7 @@
         <p>
           {{col.community.name | slice:0:10}}
         </p>
-        <div class="actions">
+        <div class="actions" *ngIf="event.editable">
           <a *ngIf="!col.approved" (click)="resendConfirmationEmail(col.id)" class="clickable">
             <small>
               Resend Request
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div *ngIf="event.editable">
       <input #autoInput
       nbInput
       type="text"

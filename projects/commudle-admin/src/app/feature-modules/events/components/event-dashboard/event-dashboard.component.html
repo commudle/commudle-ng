@@ -16,12 +16,12 @@
     <div class="card-col">
       <nb-card>
         <nb-card-body>
-          <p>Coming Soon..... Event Statuses & Online Events</p>
+          <app-event-status [event]="event" (updatedEventStatus)="updateEventStatus($event)"></app-event-status>
         </nb-card-body>
       </nb-card>
 
       <nb-card size="Tiny">
-        <nb-card-header>Recent Updates</nb-card-header>
+        <nb-card-header>Posted Updates</nb-card-header>
         <nb-card-body>
           <app-event-updates
           [event]="event"
@@ -61,7 +61,7 @@
           </div>
 
         </nb-card-body>
-        <nb-card-footer>
+        <nb-card-footer *ngIf="event.editable">
           <div>
             <a nbButton outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
               <fa-icon [icon]="faEdit"></fa-icon>
@@ -90,7 +90,7 @@
           Locations & Schedule
         </nb-card-header>
         <nb-card-body>
-          <app-event-locations></app-event-locations>
+          <app-event-locations [event]="event"></app-event-locations>
         </nb-card-body>
       </nb-card>
     </div>

@@ -23,7 +23,6 @@ export class CreateEventComponent implements OnInit {
   minutes = [...Array(60).keys()];
 
   minDate = moment().subtract(1, 'days').toDate();
-  minEndDate = this.minDate;
 
   startDate;
   startHour;
@@ -100,9 +99,7 @@ export class CreateEventComponent implements OnInit {
   }
 
 
-  updateMinEndDate($event) {
-    this.minEndDate = $event;
-  }
+
 
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
@@ -130,7 +127,7 @@ export class CreateEventComponent implements OnInit {
 
   setEndDateTime() {
 
-    this.endDate = this.eventForm.get('event').get('end_date').value;
+    this.endDate = this.eventForm.get('event').get('start_date').value;
     this.endHour = this.eventForm.get('event').get('end_hour').value;
     this.endMinute = this.eventForm.get('event').get('end_minute').value;
     if (

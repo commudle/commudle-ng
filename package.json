@@ -35,6 +35,8 @@
     "@nguniversal/express-engine": "^9.1.0",
     "@swimlane/ngx-datatable": "^16.0.3",
     "@tinymce/tinymce-angular": "^3.5.0",
+    "@types/actioncable": "^5.2.3",
+    "actioncable": "^5.2.4-2",
     "eva-icons": "^1.1.2",
     "express": "^4.15.2",
     "moment": "^2.24.0",

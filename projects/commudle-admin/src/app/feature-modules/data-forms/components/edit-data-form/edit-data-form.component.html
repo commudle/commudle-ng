@@ -9,7 +9,7 @@
   <form class="edit-data-form" [formGroup]="editDataForm">
     <div formGroupName="data_form">
       <div class="save-button-top">
-        <button [disabled]="!editDataForm.valid" type="submit" nbButton fullWidth size="medium" (click)="updateDataForm()">
+        <button [disabled]="!editDataForm.valid" type="submit" status="primary" nbButton fullWidth size="medium" (click)="updateDataForm()">
           {{ submitButtonText() }}
         </button>
       </div>
@@ -109,7 +109,7 @@
 
 
       <div>
-        <button [disabled]="!editDataForm.valid" type="submit" nbButton fullWidth size="medium" (click)="updateDataForm()">
+        <button [disabled]="!editDataForm.valid" type="submit" status="primary" nbButton fullWidth size="medium" (click)="updateDataForm()">
           {{ submitButtonText() }}
         </button>
       </div>

@@ -1,6 +1,6 @@
 <div>
-  <div>
-    <button nbButton (click)="showAddEventLocationForm()">
+  <div *ngIf="event.editable">
+    <button nbButton (click)="showAddEventLocationForm()" status="primary">
       <fa-icon [icon]="faPlusCircle"></fa-icon>
       &nbsp;
       Add Location
@@ -25,11 +25,10 @@
                <a href="{{loc.location.map_link}}"> <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map</a>
               </small>
             </p>
-            <p>
+            <p *ngIf="event.editable">
               <fa-icon [icon]="faPen" class="clickable" (click)="showEditEventLocationForm(loc)"></fa-icon>
               &nbsp;
               <fa-icon [icon]="faTrash" class="clickable" (click)="confirmDeleteEventLocation(loc)"></fa-icon>
-
             </p>
           </div>
         </nb-card-header>
@@ -56,7 +55,7 @@
 
 
 
-  <ng-template #eventLocationFormTemplate let-data>
+  <ng-template #eventLocationFormTemplate let-data *ngIf="event.editable">
     <form class="event-location-form" [formGroup]="eventLocationForm" (ngSubmit)="data.operationType == 'create' ? addEventLocation() : editEventLocation(data.eventLocation) ">
       <div formGroupName="location">
           <div>

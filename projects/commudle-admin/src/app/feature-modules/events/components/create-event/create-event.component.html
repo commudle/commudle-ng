@@ -31,8 +31,11 @@
               <div>
                 <div>
                   <input nbInput [nbDatepicker]="datepicker" placeholder="Date" formControlName="start_date">
-                  <nb-datepicker #datepicker [min]="minDate" (dateChange)="updateMinEndDate($event)"></nb-datepicker>
+                  <nb-datepicker #datepicker [min]="minDate" ></nb-datepicker>
                 </div>
+              </div>
+              <br>
+              <div>
                 <div class="hour-select">
                   <nb-select fullWidth placeholder="Hour" size="medium" formControlName="start_hour">
                     <nb-option *ngFor="let i of hours" [value]="i+1">
@@ -56,10 +59,6 @@
                 Ends At
                 </label>
               <div>
-                  <div>
-                    <input nbInput [nbDatepicker]="datepicker2" placeholder="Date" formControlName="end_date">
-                    <nb-datepicker [min]="minEndDate" #datepicker2></nb-datepicker>
-                  </div>
                   <div class="hour-select">
                     <nb-select fullWidth placeholder="Hour" size="medium" formControlName="end_hour">
                       <nb-option *ngFor="let i of hours" [value]="i+1">
