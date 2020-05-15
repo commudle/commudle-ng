@@ -19,7 +19,8 @@ import {
   NbIconModule,
   NbAutocompleteModule,
   NbToggleModule,
-  NbPopoverModule
+  NbPopoverModule,
+  NbRadioModule
  } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
@@ -84,7 +85,8 @@ import { EventStatusComponent } from './components/event-status/event-status.com
     NbIconModule,
     NbAutocompleteModule,
     NbToggleModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbRadioModule
   ]
 })
 export class EventsModule { }

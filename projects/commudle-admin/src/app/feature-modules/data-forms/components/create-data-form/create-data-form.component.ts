@@ -3,9 +3,7 @@ import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
-import { IQuestion } from 'projects/shared-models/question.model';
 import { IQuestionType } from 'projects/shared-models/question_type.model';
-import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Title } from '@angular/platform-browser';
@@ -34,8 +32,8 @@ export class CreateDataFormComponent implements OnInit {
       question_type_id: ['', Validators.required],
       title: ['', Validators.required],
       description: [''],
-      required: [''],
-      disabled: [''],
+      required: [false],
+      disabled: [false],
       has_responses: [false],
       question_choices: this.fb.array([
 

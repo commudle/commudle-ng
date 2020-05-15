@@ -63,7 +63,7 @@
         </nb-card-body>
         <nb-card-footer *ngIf="event.editable">
           <div>
-            <a nbButton outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+            <a nbButton status="primary" outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
               <fa-icon [icon]="faEdit"></fa-icon>
               &nbsp;
               Edit

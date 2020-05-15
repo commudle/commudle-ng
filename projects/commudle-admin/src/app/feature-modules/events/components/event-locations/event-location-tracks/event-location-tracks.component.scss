@@ -121,3 +121,14 @@
     margin-bottom: 0.8rem;
   }
 }
+
+
+.embedded-video {
+  width: 560px;
+  height: 340px;
+  overflow: scroll;
+  iframe, object, embed {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

@@ -44,7 +44,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_data_form_entity_groups',
     GET: 'api/v2/event_data_form_entity_group',
     CREATE: 'api/v2/event_data_form_entity_groups',
-    DELETE: 'api/v2/event_data_form_entity_group',
+    DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp'
   },
 

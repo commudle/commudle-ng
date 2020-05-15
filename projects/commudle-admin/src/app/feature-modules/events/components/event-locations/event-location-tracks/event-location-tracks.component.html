@@ -22,6 +22,12 @@
     <div class="track" *ngFor="let lt of eventLocationTracks; let t = index">
       <div class="track-name">
         <p>{{ lt.name }}</p>
+        <div *ngIf="eventLocation.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY">
+          <nb-icon icon='tv-outline' [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
+          <ng-template #embeddedVideo>
+            <div class="embedded-video" [innerHTML]="sanitizedEmbeddedHTML(eventLocation.embedded_video_stream.embed_code)"></div>
+          </ng-template>
+        </div>
         <div *ngIf="event.editable">
           <button nbButton size="tiny" status="info" (click)="showEditTrackForm(lt)">
             <nb-icon icon="edit-outline"></nb-icon>
@@ -54,6 +60,10 @@
             >
             <p class="actions" *ngIf="event.editable">
               <nb-icon icon="edit-outline" (click)="showEditSlotForm(slot)" class="clickable"></nb-icon>
+              <nb-icon *ngIf="slot.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY" icon='tv-outline' [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
+              <ng-template #embeddedVideo>
+                <div class="embedded-video" [innerHTML]="sanitizedEmbeddedHTML(slot.embedded_video_stream.embed_code)"></div>
+              </ng-template>
               <nb-icon icon="close-square-outline" (click)="confirmDeleteSlot(slot)" class="clickable"></nb-icon>
             </p>
             <p>
@@ -96,6 +106,32 @@
               Required Field
             </span>
           </div>
+
+          <div class="online-event-fields" *ngIf="eventLocation && eventLocation.event_type === EEventType.ONLINE_ONLY" formGroupName="embedded_video_stream">
+            <p>
+              <small>
+                <i>If you want a common video for this track, fill the fields below</i>
+              </small>
+            </p>
+            <div>
+              <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+                <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
+                  YouTube
+                </nb-option>
+                <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
+                  Other
+                </nb-option>
+              </nb-select>
+            </div>
+            <div>
+              <label fullWidth>
+                Embed Code
+                <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+              </label>
+            </div>
+          </div>
+
+
       </div>
 
       <div class="save-button-bottom">
@@ -126,7 +162,7 @@
       <div formGroupName="track_slot">
           <div>
             <nb-select formControlName="event_location_track_id" placeholder="Select Track">
-              <nb-option-group *ngFor="let location of eventLocations" title="{{location.location.name}}">
+              <nb-option-group *ngFor="let location of eventLocations" title="{{location.id}}">
                 <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
                   {{ ltrack.name }}
                 </nb-option>
@@ -167,6 +203,29 @@
           </div>
           <div>
             <input type="text" nbInput fullWidth formControlName="tags_list" placeholder="Tag A, Tag B, ...">
+          </div>
+          <div class="online-event-fields" *ngIf="eventLocation && eventLocation.event_type === EEventType.ONLINE_ONLY" formGroupName="embedded_video_stream">
+            <p>
+              <small>
+                <i>If this speaker has an individual video stream, add here, else leave blank</i>
+              </small>
+            </p>
+            <div>
+              <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+                <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
+                  YouTube
+                </nb-option>
+                <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
+                  Other
+                </nb-option>
+              </nb-select>
+            </div>
+            <div>
+              <label fullWidth>
+                Embed Code
+                <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+              </label>
+            </div>
           </div>
       </div>
 

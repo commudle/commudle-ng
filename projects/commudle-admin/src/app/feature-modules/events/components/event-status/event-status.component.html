@@ -18,7 +18,7 @@
   </div>
 
   <div>
-    <nb-alert status="success">
+    <nb-alert status="success" *ngIf="!event.editable">
       This event is completed!
     </nb-alert>
   </div>

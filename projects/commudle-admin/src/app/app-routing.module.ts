@@ -16,6 +16,7 @@ import { FillDataFormComponent } from './components/fill-data-form/fill-data-for
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
+import { InitResolver } from './resolvers/init.resolver';
 
 const routes: Routes = [
   {
@@ -82,6 +83,6 @@ const routes: Routes = [
     initialNavigation: 'enabled'
 })],
   exports: [RouterModule],
-  // providers: [CommunityDetailsResolver]
+  providers: [InitResolver]
 })
 export class AppRoutingModule { }

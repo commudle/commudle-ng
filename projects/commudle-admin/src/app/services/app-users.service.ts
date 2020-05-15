@@ -18,8 +18,6 @@ export class AppUsersService {
   ) { }
 
 
-
-
   updateUserProfile(userProfileData): Observable<IUser> {
     return this.http.patch<IUser>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), userProfileData

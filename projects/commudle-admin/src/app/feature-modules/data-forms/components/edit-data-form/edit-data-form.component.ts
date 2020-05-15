@@ -30,8 +30,8 @@ export class EditDataFormComponent implements OnInit {
       question_type_id: ['', Validators.required],
       title: ['', Validators.required],
       description: [''],
-      required: [''],
-      disabled: [''],
+      required: [false],
+      disabled: [false],
       has_responses: [false],
       question_choices: this.fb.array([
       ])

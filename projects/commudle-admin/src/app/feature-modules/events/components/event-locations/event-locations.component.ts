@@ -2,13 +2,15 @@ import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core'
 import { ActivatedRoute } from '@angular/router';
 import { EventLocationsService } from 'projects/commudle-admin/src/app/services/event-locations.service';
 import { IEvent } from 'projects/shared-models/event.model';
-import { IEventLocation } from 'projects/shared-models/event-location.model';
+import { IEventLocation, EEventType } from 'projects/shared-models/event-location.model';
 import { faLink, faMapPin, faPen, faTrash, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbWindowService } from '@nebular/theme';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -19,12 +21,15 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class EventLocationsComponent implements OnInit {
   @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
   @ViewChild('deleteEventLocationTemplate') deleteEventLocationTemplate: TemplateRef<any>;
+  @ViewChild('helpText') helpText: TemplateRef<any>;
 
   faLink = faLink;
   faMapPin = faMapPin;
   faPen = faPen;
   faTrash = faTrash;
   faPlusCircle = faPlusCircle;
+  EEventType = EEventType;
+  EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
   @Input() event: IEvent;
   eventLocations: IEventLocation[];
@@ -35,9 +40,15 @@ export class EventLocationsComponent implements OnInit {
     location: this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
-      map_link: ['', Validators.required]
+      map_link: ['', Validators.required],
+    }),
+    event_type: [EEventType.OFFLINE_ONLY, Validators.required],
+    embedded_video_stream: this.fb.group({
+      source: [''],
+      embed_code: ['']
     })
   });
+  selectedEventType = EEventType.OFFLINE_ONLY;
 
 
 
@@ -48,8 +59,8 @@ export class EventLocationsComponent implements OnInit {
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private fb: FormBuilder,
     private windowService: NbWindowService,
-    private toastLogService: LibToastLogService
-  ) { }
+    private toastLogService: LibToastLogService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.getEventLocations();
@@ -69,7 +80,32 @@ export class EventLocationsComponent implements OnInit {
   }
 
 
+  toggleEventTypeValidations(eventType) {
+    this.selectedEventType = eventType;
+    switch (eventType) {
+      case EEventType.OFFLINE_ONLY: {
+        this.eventLocationForm.get('location').get('name').setValidators(Validators.required);
+        this.eventLocationForm.get('location').get('address').setValidators(Validators.required);
+        this.eventLocationForm.get('location').get('map_link').setValidators(Validators.required);
+        break;
+      }
+      case EEventType.ONLINE_ONLY: {
+        this.eventLocationForm.get('location').get('name').clearValidators();
+        this.eventLocationForm.get('location').get('address').clearValidators();
+        this.eventLocationForm.get('location').get('map_link').clearValidators();
+        break;
+      }
+    }
+
+    this.eventLocationForm.get('location').get('name').updateValueAndValidity();
+    this.eventLocationForm.get('location').get('address').updateValueAndValidity();
+    this.eventLocationForm.get('location').get('map_link').updateValueAndValidity();
+  }
+
+
   showAddEventLocationForm() {
+    this.eventLocationForm.reset();
+    this.selectedEventType = EEventType.OFFLINE_ONLY;
     this.windowRef = this.windowService.open(
       this.eventLocationFormTemplate,
       { title: 'Add Location', context: {operationType: 'create'}},
@@ -80,7 +116,7 @@ export class EventLocationsComponent implements OnInit {
     this.windowRef.close();
     this.eventLocationsService.createEventLocation(
       this.event.id,
-      this.eventLocationForm.get('location').value).subscribe((data) => {
+      this.eventLocationForm.value).subscribe((data) => {
         this.eventLocations.push(data);
         this.eventLocationForm.reset();
         this.toastLogService.successDialog("Location added!");
@@ -88,11 +124,27 @@ export class EventLocationsComponent implements OnInit {
   }
 
   showEditEventLocationForm(eventLocation) {
-    this.eventLocationForm.get('location').patchValue(eventLocation.location);
+    this.eventLocationForm.reset();
+    this.selectedEventType = eventLocation.event_type;
+    this.toggleEventTypeValidations(this.selectedEventType);
+    this.eventLocationForm.patchValue({
+      event_type: this.selectedEventType
+    });
+
+    switch (this.selectedEventType) {
+      case EEventType.OFFLINE_ONLY:
+        this.eventLocationForm.get('location').patchValue(eventLocation.location);
+        break;
+      case EEventType.ONLINE_ONLY:
+        if (eventLocation.embedded_video_stream){
+          this.eventLocationForm.get('embedded_video_stream').patchValue(eventLocation.embedded_video_stream);
+        }
+        break;
+    }
 
     this.windowRef = this.windowService.open(
       this.eventLocationFormTemplate,
-      { title: `Edit ${eventLocation.location.name}`, context: {operationType: 'edit', eventLocation}},
+      { title: `Edit Location`, context: {operationType: 'edit', eventLocation: eventLocation}},
     );
   }
 
@@ -100,7 +152,7 @@ export class EventLocationsComponent implements OnInit {
     this.windowRef.close();
     this.eventLocationsService.updateEventLocation(
       eventLocation.id,
-      this.eventLocationForm.get('location').value).subscribe((data) => {
+      this.eventLocationForm.value).subscribe((data) => {
         let locationIndex = this.eventLocations.findIndex(k => k.id === data.id);
         this.eventLocations[locationIndex] = data;
         this.eventLocationForm.reset();
@@ -111,7 +163,7 @@ export class EventLocationsComponent implements OnInit {
   confirmDeleteEventLocation(eventLocation) {
     this.windowRef = this.windowService.open(
       this.deleteEventLocationTemplate,
-      { title: `Delete ${eventLocation.location.name}`, context: { eventLocation } },
+      { title: `Delete this location?`, context: { eventLocation } },
     );
   }
 
@@ -181,6 +233,18 @@ export class EventLocationsComponent implements OnInit {
                           .track_slots.findIndex(k => k.id == trackSlot.id);
     this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.splice(slotPosition, 1);
 
+  }
+
+
+  sanitizedEmbeddedHTML(val) {
+   return  this.sanitizer.bypassSecurityTrustHtml(val);
+  }
+
+  openHelpTextWindow() {
+    this.windowService.open(
+      this.helpText,
+      { title: 'How to Add Agenda!' },
+    );
   }
 
 }

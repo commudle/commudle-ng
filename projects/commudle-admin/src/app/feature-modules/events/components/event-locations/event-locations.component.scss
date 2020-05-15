@@ -24,3 +24,31 @@
     }
   }
 }
+
+
+.online-event-fields, .offline-event-fields {
+  >div {
+    margin-top: 1rem;
+  }
+}
+
+.save-button-bottom {
+  margin-top: 1rem;
+}
+
+
+.help-text-button {
+  p {
+    margin: 0 0 0.5rem
+  }
+}
+
+.embedded-video {
+  width: 560px;
+  height: 340px;
+  overflow: scroll;
+  iframe, object, embed {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

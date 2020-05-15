@@ -1,4 +1,5 @@
 import { IUser } from './user.model';
+import { IEmbeddedVideoStream } from './embedded_video_stream.model';
 
 export interface ITrackSlot {
   id: number;
@@ -9,5 +10,6 @@ export interface ITrackSlot {
   tags_list: string;
   speaker_registration_id: number;
   user: IUser;
+  embedded_video_stream: IEmbeddedVideoStream;
 
 }

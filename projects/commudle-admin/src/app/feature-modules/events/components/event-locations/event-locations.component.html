@@ -1,4 +1,13 @@
 <div>
+  <div class="help-text-button">
+    <p>
+      <small>
+        <a (click)="openHelpTextWindow()">
+          How does this work?
+        </a>
+      </small>
+    </p>
+  </div>
   <div *ngIf="event.editable">
     <button nbButton (click)="showAddEventLocationForm()" status="primary">
       <fa-icon [icon]="faPlusCircle"></fa-icon>
@@ -11,10 +20,11 @@
       <nb-card class="event-location">
         <nb-card-header>
           <div class="header-icon">
-            <fa-icon [icon]="faMapPin"></fa-icon>
+            <nb-icon *ngIf="loc.location" icon="pin-outline"></nb-icon>
+            <nb-icon *ngIf="loc.event_type === EEventType.ONLINE_ONLY" icon="video-outline"></nb-icon>
           </div>
           <div class="event-location-details">
-            <p>
+            <p *ngIf="loc.event_type === EEventType.OFFLINE_ONLY">
               {{ loc.location.name }}
               <br>
               <small>
@@ -25,6 +35,13 @@
                <a href="{{loc.location.map_link}}"> <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map</a>
               </small>
             </p>
+            <div *ngIf="loc.event_type === EEventType.ONLINE_ONLY">
+              <p>ONLINE STREAMING (ID: {{loc.id}}) &nbsp; <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
+              </p>
+              <ng-template #embeddedVideo>
+                <div class="embedded-video" *ngIf="loc.embedded_video_stream" [innerHTML]="sanitizedEmbeddedHTML(loc.embedded_video_stream.embed_code)"></div>
+              </ng-template>
+            </div>
             <p *ngIf="event.editable">
               <fa-icon [icon]="faPen" class="clickable" (click)="showEditEventLocationForm(loc)"></fa-icon>
               &nbsp;
@@ -57,7 +74,25 @@
 
   <ng-template #eventLocationFormTemplate let-data *ngIf="event.editable">
     <form class="event-location-form" [formGroup]="eventLocationForm" (ngSubmit)="data.operationType == 'create' ? addEventLocation() : editEventLocation(data.eventLocation) ">
-      <div formGroupName="location">
+      <div>
+        <nb-radio-group
+          class="options"
+          name="event-type"
+          formControlName="event_type"
+          (valueChange)="toggleEventTypeValidations($event)"
+          >
+          <nb-radio [value]="EEventType.OFFLINE_ONLY">
+            Offline Event
+          </nb-radio>
+          <!-- <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE">
+            Offline + Live Stream
+          </nb-radio> -->
+          <nb-radio [value]="EEventType.ONLINE_ONLY">
+            Live Stream Only
+          </nb-radio>
+        </nb-radio-group>
+      </div>
+      <div *ngIf="selectedEventType === EEventType.OFFLINE_ONLY" class="offline-event-fields" formGroupName="location">
           <div>
             <label fullWidth>
               Name*
@@ -86,6 +121,33 @@
             </span>
           </div>
       </div>
+      <div class="online-event-fields" *ngIf="selectedEventType === EEventType.ONLINE_ONLY" formGroupName="embedded_video_stream">
+        <p>
+          <small>
+            <i>Fill these if your event has a common overall video stream for viewing</i>
+          </small>
+        </p>
+        <div>
+          <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+            <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
+              YouTube
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
+              Other
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <div>
+          <label fullWidth>
+            Embed Code
+            <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+          </label>
+          <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+      </div>
 
       <div class="save-button-bottom">
         <button [disabled]="!eventLocationForm.valid" type="submit" nbButton fullWidth status="info">
@@ -104,6 +166,37 @@
     <div>
       <button nbButton status="link" (click)="deleteEventLocation(true, data.eventLocation)">Yes</button>
       <button nbButton status="link" (click)="deleteEventLocation(false, data.eventLocation)">No</button>
+    </div>
+  </ng-template>
+
+
+
+  <ng-template #helpText let-data>
+    <h5>Here's how it works</h5>
+    <div>
+      <ul>
+        <li>You can choose between an online (live streaming) and an offline (at a physical space) event</li>
+        <li>An event can have multiple locations (physical or online)</li>
+        <li>Each location can have multiple tracks</li>
+        <li>Each track can have multiple speaker sessions in timed slots</li>
+      </ul>
+    </div>
+
+    <h5>Choosing online locations</h5>
+    <div>
+      <ul>
+        <li>Dimensions of embedded video: 560px by 340px</li>
+        <li>Any embeddable video can be put up in the event.</li>
+        <li>
+          You can have a common online stream for the complete event
+        </li>
+        <li>
+          OR you can choose to enter a different stream for each track [if filled, this will override the event stream]
+        </li>
+        <li>
+          OR you can have individual streams for each session [if filled, this will override both track and event streams]
+        </li>
+      </ul>
     </div>
   </ng-template>
 </div>

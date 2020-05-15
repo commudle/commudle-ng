@@ -27,7 +27,7 @@ import {
   NbTooltipModule,
   NbWindowModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
@@ -54,6 +54,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
 import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
+import { AppInitService } from './services/app-init.service';
+
+export function initApp(appInitService: AppInitService) {
+  return () => appInitService.initializeApp();
+}
 
 @NgModule({
   declarations: [
@@ -120,9 +125,15 @@ import { SpeakerResourceFormComponent } from './components/speaker-resource-form
 
   ],
   providers: [
+    AppInitService,
     Title,
     CookieService,
     NbSidebarService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp, deps: [AppInitService],
+      multi: true
+    },
     {
       // TODO move the interceptors to a common barrel file if needed
       // https://angular.io/guide/http#provide-the-interceptor

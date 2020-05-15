@@ -1,14 +1,17 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ElementRef } from '@angular/core';
 import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
 import { faClock, faInfo, faPlusCircle, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 import { NbWindowService } from '@nebular/theme';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EventLocationTracksService } from 'projects/commudle-admin/src/app/services/event-location-tracks.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { IEventLocation } from 'projects/shared-models/event-location.model';
+import { IEventLocation, EEventType } from 'projects/shared-models/event-location.model';
 import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
+import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -29,6 +32,9 @@ export class EventLocationTracksComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faTrash = faTrash;
   faPen = faPen;
+  EEventType = EEventType;
+  eventLocation: IEventLocation;
+  EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
   @Input() eventLocations: IEventLocation[];
   @Input() eventLocationTracks: IEventLocationTrack[];
@@ -65,7 +71,7 @@ export class EventLocationTracksComponent implements OnInit {
       end_time: ['', Validators.required],
       session_title: ['', Validators.required],
       tags_list: [''],
-      speaker_registration_id: ['', Validators.required]
+      speaker_registration_id: ['']
     })
   });
 
@@ -74,13 +80,14 @@ export class EventLocationTracksComponent implements OnInit {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private eventLocationTracksService: EventLocationTracksService,
-    private trackSlotsService: TrackSlotsService
+    private trackSlotsService: TrackSlotsService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
     this.hours = [...Array(24).keys()];
     this.minutes = [...Array(60).keys()];
-
+    this.findLocation();
     this.minSlotDate = moment(this.event.start_date).toDate();
   }
 
@@ -111,7 +118,7 @@ export class EventLocationTracksComponent implements OnInit {
 
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
-
+    this.trackSlotForm.reset();
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: eventLocationTrack.id,
       date: this.minSlotDate,
@@ -150,6 +157,7 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   showEditSlotForm(trackSlot) {
+    this.trackSlotForm.reset();
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: trackSlot.event_location_track_id,
       date: moment(trackSlot.start_time).toDate(),
@@ -159,6 +167,12 @@ export class EventLocationTracksComponent implements OnInit {
       tags_list: trackSlot.tags_list,
       speaker_registration_id: trackSlot.speaker_registration_id
     });
+
+    if (trackSlot.embedded_video_stream) {
+      this.trackSlotForm.get('track_slot').patchValue({
+        embedded_video_stream: trackSlot.embedded_video_stream
+      });
+    }
 
     this.windowRef = this.windowService.open(
       this.trackSlotFormTemplate,
@@ -210,6 +224,7 @@ export class EventLocationTracksComponent implements OnInit {
 
 
   showAddTrackForm() {
+    this.eventLocationTrackForm.reset();
     this.windowRef = this.windowService.open(
       this.eventLocationTrackFormTemplate,
       { title: 'Add a track', context: {operationType: 'create'} },
@@ -231,9 +246,16 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   showEditTrackForm(eventLocationTrack) {
+    this.eventLocationTrackForm.reset();
     this.eventLocationTrackForm.get('event_location_track').patchValue({
       name: eventLocationTrack.name
     });
+
+    if (eventLocationTrack.embedded_video_stream) {
+      this.eventLocationTrackForm.get('event_location_track').patchValue({
+        embedded_video_stream: eventLocationTrack.embedded_video_stream
+      });
+    }
 
     this.windowRef = this.windowService.open(
       this.eventLocationTrackFormTemplate,
@@ -270,7 +292,31 @@ export class EventLocationTracksComponent implements OnInit {
       });
     }
     this.windowRef.close();
-
   }
+
+  findLocation() {
+    const location = this.eventLocations.find(el => el.id === this.eventLocationId);
+    if (location.event_type === EEventType.ONLINE_ONLY ) {
+      (this.eventLocationTrackForm.controls.event_location_track as FormGroup).addControl(
+        'embedded_video_stream', this.fb.group({
+          source: [''],
+          embed_code: ['']
+        })
+      );
+
+      (this.trackSlotForm.controls.track_slot as FormGroup).addControl(
+        'embedded_video_stream', this.fb.group({
+          source: [''],
+          embed_code: ['']
+        })
+      );
+    }
+    this.eventLocation = location;
+  }
+
+
+  sanitizedEmbeddedHTML(val) {
+    return  this.sanitizer.bypassSecurityTrustHtml(val);
+   }
 
 }

@@ -29,7 +29,7 @@ export class EventLocationsService {
     return this.http.post<IEventLocation>(
       this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT_LOCATION), {
         event_id: eventId,
-        location: eventLocation
+        event_location: eventLocation
       }
     );
   }
@@ -39,7 +39,7 @@ export class EventLocationsService {
     return this.http.patch<IEventLocation>(
       this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_LOCATION), {
         event_location_id: eventLocationId,
-        location: eventLocation
+        event_location: eventLocation
       }
     );
   }
