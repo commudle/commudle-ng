@@ -1,0 +1,20 @@
+<div>
+  <div class="section main">
+    <div class="logo">
+      <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+    </div>
+    <div class="revamp-text">
+      <h3 *ngIf="entityName">
+        {{ entityName }}
+      </h3>
+      <p>
+        Coming alive soon!
+      </p>
+    </div>
+
+    <button nbButton status="danger" [routerLink]="['/']">
+      <nb-icon icon="home-outline"></nb-icon>
+      Go To Home
+    </button>
+  </div>
+</div>

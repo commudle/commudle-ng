@@ -8,6 +8,8 @@ import { SpeakerSessionDiscussionComponent } from './components/speaker-session-
 import { NbCardModule, NbListModule, NbInputModule, NbButtonModule, NbIconModule, NbTooltipModule, NbPopoverModule } from '@nebular/theme';
 import { SessionDiscussionQuestionComponent } from './components/session-discussion-question/session-discussion-question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SpeakerSessionQuestionRepliesComponent } from './components/speaker-session-discussion/speaker-session-question-replies/speaker-session-question-replies.component';
 
 
 
@@ -16,13 +18,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeEventComponent,
     SpeakerSessionPageComponent,
     SpeakerSessionDiscussionComponent,
-    SessionDiscussionQuestionComponent
+    SessionDiscussionQuestionComponent,
+    SpeakerSessionQuestionRepliesComponent,
   ],
   imports: [
     CommonModule,
     PublicEventsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedComponentsModule,
 
     // Nebular
     NbCardModule,

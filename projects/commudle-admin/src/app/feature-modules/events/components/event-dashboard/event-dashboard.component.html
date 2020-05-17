@@ -6,6 +6,13 @@
           <h3>
             {{ event.name }}
           </h3>
+          <div>
+            <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+              <nb-icon icon="external-link"></nb-icon>
+              <br>
+              Event Page
+            </a>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>
@@ -90,7 +97,7 @@
           Locations & Schedule
         </nb-card-header>
         <nb-card-body>
-          <app-event-locations [event]="event"></app-event-locations>
+          <app-event-locations [event]="event" [community]="community"></app-event-locations>
         </nb-card-body>
       </nb-card>
     </div>

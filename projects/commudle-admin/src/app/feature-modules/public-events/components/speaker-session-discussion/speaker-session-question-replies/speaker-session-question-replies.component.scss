@@ -1,0 +1,47 @@
+.replies-container {
+  padding: 0.3rem;
+  background-color: #d3d3d34d;
+  p {
+    margin-bottom: 0.2rem;
+  }
+
+  .reply-form {
+    form {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      input {
+        width: 80%;
+      }
+
+      button {
+        width: 18%;
+      }
+    }
+  }
+
+  .author-details {
+    display: flex;
+    >div {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;;
+      overflow: hidden;
+      vertical-align: text-top;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+
+  .flags-container {
+    p {
+      margin: 0 0.2rem;
+      display: flex;
+      nb-icon {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

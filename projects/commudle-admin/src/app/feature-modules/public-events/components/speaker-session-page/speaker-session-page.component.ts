@@ -4,6 +4,14 @@ import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model'
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
 import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
 import { ActivatedRoute } from '@angular/router';
+import { IUser } from 'projects/shared-models/user.model';
+import * as moment from 'moment';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IEvent } from 'projects/shared-models/event.model';
+import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -13,13 +21,21 @@ import { ActivatedRoute } from '@angular/router';
 export class SpeakerSessionPageComponent implements OnInit {
 
   trackSlot: ITrackSlot;
+  speaker: IUser;
+  community: ICommunity;
+  event: IEvent;
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
   speakerResource: ISpeakerResource;
+  EEventStatuses = EEventStatuses;
+  moment = moment;
 
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private trackSlotsService: TrackSlotsService
+    private trackSlotsService: TrackSlotsService,
+    private eventsService: EventsService,
+    private communitiesService: CommunitiesService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -27,19 +43,34 @@ export class SpeakerSessionPageComponent implements OnInit {
   }
 
   getTrackSlot() {
-    this.trackSlotsService.getTrackSlot(this.activatedRoute.snapshot.params['track_slot_id']).subscribe(
+    this.trackSlotsService.pGetTrackSlot(this.activatedRoute.snapshot.params['track_slot_id']).subscribe(
       data => {
         this.trackSlot = data;
+        this.speaker = data.user;
+        this.getEvent();
       }
     );
   }
 
-  getUserDetails() {
 
+  getEvent() {
+    this.eventsService.pGetEvent(this.trackSlot.event_id).subscribe(
+      data => {
+        this.event = data;
+        this.getCommunity();
+      }
+    );
   }
 
-  getSpeakerResource() {
-
+  getCommunity() {
+    this.communitiesService.getCommunityDetails(this.event.kommunity_id).subscribe(
+      data => this.community = data
+    );
   }
+
+  sanitizedEmbeddedHTML(val) {
+    return this.sanitizer.bypassSecurityTrustHtml(val);
+  }
+
 
 }

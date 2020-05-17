@@ -1,0 +1,46 @@
+
+<div class="replies-container">
+  <div *ngIf="userMessage.user_messages.length > 0" class="question-replies">
+    <div *ngFor="let rep of userMessage.user_messages">
+      <!-- this can be made into a common component -->
+      <p>{{ rep.content }}</p>
+      <div>
+        <div class="author-details">
+          <div>
+            <img src="{{rep.user.avatar}}" alt="{{ rep.user.name }}">
+          </div>
+          <small>{{ rep.user.name }} at {{ moment(rep.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
+          <div class="clickable flags-container" >
+            <p [ngClass]="{'error-text': rep.flags_count > 0}" (click)="canFlag && emitFlag(rep.id)">
+              <small *ngIf="rep.flags_count > 0">{{ rep.flags_count }}</small>
+              <small>
+                <nb-icon icon="flag-outline"></nb-icon>
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="showReplyForm == userMessage.id">
+    <div class="reply-form">
+      <form *ngIf="canReply" [formGroup]="userMessageReplyForm" (ngSubmit)="emitReply()">
+         <input
+         type="text"
+         nbInput
+         fullWidth
+         size="small"
+         formControlName="content"
+         placeholder="5 to 200 characters"
+         >
+         <button [disabled]="!userMessageReplyForm.valid" type="submit" nbButton fullWidth size="small" status="info">
+           Send
+         </button>
+      </form>
+   </div>
+  </div>
+</div>
+
+

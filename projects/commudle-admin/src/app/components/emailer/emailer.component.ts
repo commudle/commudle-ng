@@ -253,7 +253,6 @@ export class EmailerComponent implements OnInit {
         subjectLine = '';
         break;
     }
-    console.log(emailType);
     this.eMailForm.patchValue({
       subject: subjectLine
     });
@@ -287,7 +286,6 @@ export class EmailerComponent implements OnInit {
           }
           break;
         case 'recipient_email':
-          console.log(this.recipientEmail);
           if (this.recipientEmail) {
             this.eMailForm.patchValue({
               recipient_email: this.recipientEmail

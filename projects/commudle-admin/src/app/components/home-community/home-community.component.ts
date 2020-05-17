@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-community.component.scss']
 })
 export class HomeCommunityComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
-    console.log('init');
   }
 
 }

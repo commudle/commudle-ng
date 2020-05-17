@@ -11,5 +11,6 @@ export interface ITrackSlot {
   speaker_registration_id: number;
   user: IUser;
   embedded_video_stream: IEmbeddedVideoStream;
+  event_id: number;
 
 }

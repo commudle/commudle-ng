@@ -70,4 +70,12 @@ export class EventsService {
     );
   }
 
+
+  pGetEvent(eventId): Observable<IEvent> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params }
+    );
+  }
+
 }

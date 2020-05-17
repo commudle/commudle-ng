@@ -11,6 +11,8 @@ import { IEventLocation, EEventType } from 'projects/shared-models/event-locatio
 import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IEvent } from 'projects/shared-models/event.model';
 
 
 @Component({
@@ -38,7 +40,8 @@ export class EventLocationTracksComponent implements OnInit {
 
   @Input() eventLocations: IEventLocation[];
   @Input() eventLocationTracks: IEventLocationTrack[];
-  @Input() event;
+  @Input() event: IEvent;
+  @Input() community: ICommunity;
   @Input() eventLocationId;
   @Input() eventSpeakers;
   @Output() addTrack = new EventEmitter();
@@ -88,7 +91,7 @@ export class EventLocationTracksComponent implements OnInit {
     this.hours = [...Array(24).keys()];
     this.minutes = [...Array(60).keys()];
     this.findLocation();
-    this.minSlotDate = moment(this.event.start_date).toDate();
+    this.minSlotDate = moment(this.event.start_time).toDate();
   }
 
   ngAfterViewInit(): void {

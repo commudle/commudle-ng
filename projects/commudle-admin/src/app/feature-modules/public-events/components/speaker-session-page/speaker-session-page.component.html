@@ -1,24 +1,85 @@
 <div class="speaker-session-details">
   <div class="card-row">
-    <div class="speaker-details">
+    <div *ngIf="speaker" class="speaker-details">
       <nb-card>
         <nb-card-body>
-          Speaker Profile Details
+
+          <div class="avatar">
+            <img src="{{speaker.avatar}}" alt="{{ speaker.name }}">
+          </div>
+          <div>
+            <div>
+              <h5>{{ speaker.name }}</h5>
+              <p>{{ speaker.designation }}</p>
+            </div>
+            <div class="social-links">
+              <a href="{{ speaker.linkedin }}">
+                <nb-icon icon="linkedin"></nb-icon>
+              </a>
+              <a href="{{ speaker.twitter }}">
+                <nb-icon icon="twitter"></nb-icon>
+              </a>
+              <a href="{{ speaker.github }}">
+                <nb-icon icon="github"></nb-icon>
+              </a>
+              <a href="{{ speaker.personal_website }}">
+                <nb-icon icon="info"></nb-icon>
+              </a>
+            </div>
+          </div>
+          <div class="about-me" *ngIf="speaker.about_me">
+            <p>
+              {{ speaker.about_me }}
+            </p>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>
 
-    <div class="session-details">
+    <div class="session-details" *ngIf="community">
       <div class="session-event">
         <nb-card>
           <nb-card-body>
-            Session + Event Details
-            // show the slides/content once the event has completed
+            <div class="track-slot">
+              <a>
+                <div class="community-logo">
+                  <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+                </div>
+                <p>
+                  {{ event.name }}
+                </p>
+              </a>
+              <h4>
+                {{trackSlot.session_title}}
+              </h4>
+              <p>
+                <span class="live-notification text-success" *ngIf="moment().isBetween(moment(trackSlot.start_time), moment(trackSlot.end_time))">
+                  <nb-icon icon="flash"></nb-icon>
+                  Live Now!
+                </span>
+                <small>
+                  {{ moment(trackSlot.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+                  -
+                  {{ moment(trackSlot.end_time).format('h:mm A') }}
+                </small>
+              </p>
+
+
+              <div class="embedded-video-stream" *ngIf="trackSlot.embedded_video_stream">
+                <!-- <div [innerHTML]="sanitizedEmbeddedHTML(trackSlot.embedded_video_stream.embed_code)">
+
+                </div> -->
+              </div>
+
+              <div *ngIf="speakerResource && event.event_status.name == EEventStatuses.COMPLETED">
+
+              </div>
+            </div>
           </nb-card-body>
         </nb-card>
       </div>
-      <div *ngIf="trackSlot">
-        <app-speaker-session-discussion [trackSlot]="trackSlot"></app-speaker-session-discussion>
+      <div *ngIf="trackSlot && trackSlot.user">
+        <app-speaker-session-discussion [trackSlot]="trackSlot" [isActive]="event.editable"></app-speaker-session-discussion>
       </div>
     </div>
   </div>

@@ -76,7 +76,8 @@ export class LibAuthwatchService {
     this.checkAlreadySignedIn().subscribe();
   }
 
-
-
+  logInUser() {
+    this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
+  }
 
 }

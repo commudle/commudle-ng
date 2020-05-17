@@ -17,13 +17,6 @@ export class TrackSlotsService {
   ) { }
 
 
-  getTrackSlot(trackSlotId): Observable<ITrackSlot> {
-    let params = new HttpParams().set('track_slot_id', trackSlotId);
-    return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.GET), { params }
-    );
-  }
-
   createTrackSlot(newTrackSlot): Observable<ITrackSlot> {
 
     return this.http.post<ITrackSlot>(
@@ -50,6 +43,16 @@ export class TrackSlotsService {
     let params = new HttpParams().set('track_slot_id', trackSlotId);
     return this.http.delete<any>(
       this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.DELETE), { params }
+    );
+  }
+
+
+
+  // PUBLIC METHODS
+  pGetTrackSlot(trackSlotId): Observable<ITrackSlot> {
+    let params = new HttpParams().set('track_slot_id', trackSlotId);
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.GET), { params }
     );
   }
 

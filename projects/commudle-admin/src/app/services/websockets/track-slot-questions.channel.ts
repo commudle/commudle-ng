@@ -12,9 +12,11 @@ export class TrackSlotQuestionsChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
     ADD: 'add',
+    REPLY: 'reply',
     VOTE: 'vote',
     FLAG: 'flag',
-    DELETE: 'delete'
+    DELETE: 'delete',
+    ERROR: 'error'
   };
 
   actionCable = actionCable;
@@ -48,15 +50,6 @@ export class TrackSlotQuestionsChannel {
     );
   }
 
-
-  // sendQuestion(messageContent) {
-  //   this.subscription.send({
-  //     perform: this.ACTIONS.ADD,
-  //     user_message: {
-  //       content: messageContent
-  //     }
-  //   });
-  // }
 
   sendData(action, data) {
     this.subscription.send({

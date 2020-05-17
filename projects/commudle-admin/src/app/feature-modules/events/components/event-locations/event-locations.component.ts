@@ -11,6 +11,7 @@ import { NbWindowService } from '@nebular/theme';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ICommunity } from 'projects/shared-models/community.model';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class EventLocationsComponent implements OnInit {
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
   @Input() event: IEvent;
+  @Input() community: ICommunity;
   eventLocations: IEventLocation[];
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;

@@ -11,17 +11,108 @@
 
 
     .speaker-details {
+
+      nb-card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        h5, p {
+          margin-bottom: 0.5rem;
+        }
+        .avatar {
+          width: 75px;
+          img {
+            width: 100%;
+          }
+        }
+
+        .social-links {
+          display: flex;
+          justify-content: space-around;
+          nb-icon {
+            color: #477dff;
+          }
+        }
+
+        .about-me {
+          word-break: break-all;
+        }
+      }
+
+
+
+      @media screen and (max-width: 999px) {
+        width: 100%;
+        nb-card-body {
+          flex-direction: row;
+
+          .about-me {
+            width: 60%;
+            margin-left: 1rem;
+            text-align: left;
+          }
+        }
+      }
+
+
       @media screen and (min-width: 1000px) {
         width: 200px;
         nb-card {
-          position: sticky;
-          top: 0;
+          // position: sticky;
+          // top: 0;
         }
       }
+
     }
 
 
     .session-details {
+
+      .session-event {
+        nb-card {
+          margin: 0 2.5%;
+
+          .live-notification {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      .track-slot {
+        >a {
+          display: flex;
+          align-items: center;
+          .community-logo {
+            width: 50px;
+            img {
+              width: 100%;
+            }
+          }
+          p {
+            margin-left: 1rem;
+          }
+        }
+
+        h4 {
+          margin-top: 0.3rem;
+          margin-bottom: 0;
+        }
+
+        .embedded-video-stream {
+          width: 560px;
+          height: 340px;
+          margin: 0 auto;
+          overflow: scroll  ;
+        }
+
+      }
+
+      @media screen and (max-width: 999px) {
+        width: 100%;
+      }
+
       @media screen and (min-width: 1000px) {
         width: 800px;
       }
@@ -29,6 +120,9 @@
 
   }
 }
+
+
+
 
 // .card-col {
 //   flex: 1 0 100%;

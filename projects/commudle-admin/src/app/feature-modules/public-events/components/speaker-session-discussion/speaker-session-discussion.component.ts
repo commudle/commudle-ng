@@ -7,7 +7,10 @@ import { UserMessagesService } from 'projects/commudle-admin/src/app/services/us
 import { FormBuilder, Validators } from '@angular/forms';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { TrackSlotQuestionsChannel } from 'projects/commudle-admin/src/app/services/websockets/track-slot-questions.channel';
-
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-speaker-session-discussion',
@@ -15,8 +18,9 @@ import { TrackSlotQuestionsChannel } from 'projects/commudle-admin/src/app/servi
   styleUrls: ['./speaker-session-discussion.component.scss']
 })
 export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
-
+  moment = moment;
   @Input() trackSlot: ITrackSlot;
+  @Input() isActive: boolean;
   discussion: IDiscussion;
   questions: IUserMessage[] = [];
   permittedActions = [];
@@ -24,7 +28,8 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
   nextPage = 1;
   allQuestionsLoaded = false;
   loadingQuestions = true;
-
+  currentUser: ICurrentUser;
+  showReplyForm = 0;
   allActions;
 
 
@@ -36,16 +41,29 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
     private discussionsService: DiscussionsService,
     private userMessagesService: UserMessagesService,
     private fb: FormBuilder,
-    private trackSlotQuestionsChannel: TrackSlotQuestionsChannel
+    private trackSlotQuestionsChannel: TrackSlotQuestionsChannel,
+    private authWatchService: LibAuthwatchService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
     this.getDiscussion();
     this.allActions = this.trackSlotQuestionsChannel.ACTIONS;
+
+    this.authWatchService.currentUser$.subscribe(
+      user => this.currentUser = user
+    );
   }
 
   ngOnDestroy() {
     this.trackSlotQuestionsChannel.unsubscribe();
+  }
+
+  login() {
+    if (!this.currentUser) {
+      this.authWatchService.logInUser();
+    }
+    return true;
   }
 
 
@@ -77,6 +95,10 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
     }
   }
 
+  toggleReplyForm(messageId) {
+    this.showReplyForm === messageId ? (this.showReplyForm = 0) : (this.showReplyForm = messageId);
+  }
+
   sendQuestion() {
     this.trackSlotQuestionsChannel.sendData(
       this.trackSlotQuestionsChannel.ACTIONS.ADD,
@@ -99,6 +121,7 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
   }
 
   sendFlag(userMessageId) {
+    console.log('here');
     this.trackSlotQuestionsChannel.sendData(
       this.trackSlotQuestionsChannel.ACTIONS.FLAG,
       {
@@ -116,8 +139,14 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
     );
   }
 
-  sendReply() {
-
+  sendReply(replyContent, userMessageId) {
+    this.trackSlotQuestionsChannel.sendData(
+      this.trackSlotQuestionsChannel.ACTIONS.REPLY,
+      {
+        user_message_id: userMessageId,
+        reply_message: replyContent
+      }
+    );
   }
 
 
@@ -134,17 +163,40 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
               this.questions.unshift(data.user_message);
               break;
             }
+            case(this.trackSlotQuestionsChannel.ACTIONS.REPLY): {
+              this.questions[this.findQuestionIndex(data.parent_id)].user_messages.push(data.user_message);
+              break;
+            }
             case(this.trackSlotQuestionsChannel.ACTIONS.DELETE): {
-              this.questions.splice(this.findQuestionIndex(data.user_message_id), 1);
+              if (data.parent_type === 'Discussion') {
+                this.questions.splice(this.findQuestionIndex(data.user_message_id), 1);
+              } else {
+                const qi = this.findQuestionIndex(data.parent_id);
+                this.questions[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+              }
+
               break;
             }
             case(this.trackSlotQuestionsChannel.ACTIONS.FLAG): {
-              this.questions[this.findQuestionIndex(data.user_message_id)].flags_count += data.flag;
+              if (data.parent_type === 'Discussion') {
+                this.questions[this.findQuestionIndex(data.user_message_id)].flags_count += data.flag;
+              } else {
+                const qi = this.findQuestionIndex(data.parent_id);
+                this.questions[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+              }
               break;
             }
             case(this.trackSlotQuestionsChannel.ACTIONS.VOTE): {
-              this.questions[this.findQuestionIndex(data.user_message_id)].votes_count += data.vote;
+              if (data.parent_type === 'Discussion') {
+                this.questions[this.findQuestionIndex(data.user_message_id)].votes_count += data.vote;
+              } else {
+                const qi = this.findQuestionIndex(data.parent_id);
+                this.questions[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+              }
               break;
+            }
+            case(this.trackSlotQuestionsChannel.ACTIONS.ERROR): {
+              this.toastLogService.warningDialog(data.message, 2000);
             }
           }
         }
@@ -156,7 +208,11 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
 
   findQuestionIndex(userMessageId) {
     return this.questions.findIndex(q => (q.id === userMessageId));
+  }
 
+
+  findReplyIndex(questionIndex, replyId) {
+    return this.questions[questionIndex].user_messages.findIndex(q => (q.id === replyId));
   }
 
 

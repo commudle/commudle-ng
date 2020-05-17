@@ -58,6 +58,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
 
+  
+
   // canLoad(route: Route): boolean {
 
   //   return this.isLoggedIn();

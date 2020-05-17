@@ -34,7 +34,11 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/events',
     GET: 'api/v2/events',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
-    UPDATE_STATUS: 'api/v2/events/update_status'
+    UPDATE_STATUS: 'api/v2/events/update_status',
+
+    PUBLIC: {
+      GET: 'api/v2/events/public_show'
+    }
   },
 
 
@@ -97,10 +101,12 @@ export const API_ROUTES = {
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
   TRACK_SLOTS: {
-    GET: 'api/v2/track_slots',
     CREATE: 'api/v2/track_slots',
     UPDATE: 'api/v2/track_slots',
     DELETE: 'api/v2/track_slots',
+    PUBLIC: {
+      GET: 'api/v2/track_slots/public_show',
+    }
   },
 
 

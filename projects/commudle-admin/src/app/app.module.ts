@@ -55,6 +55,7 @@ import { BasicUserProfileComponent } from './components/common/basic-user-profil
 import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { AppInitService } from './services/app-init.service';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -91,6 +92,7 @@ export function initApp(appInitService: AppInitService) {
     FontAwesomeModule,
     ReactiveFormsModule,
     EditorModule,
+    SharedComponentsModule,
 
 
     // external service modules

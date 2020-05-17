@@ -1,0 +1,28 @@
+.section.main {
+  // height: 50vh;
+  background-color: #3b49df;
+  padding: 1rem;
+  .logo {
+    filter: brightness(10);
+    width: 100px;
+    img {
+      width: 100%;
+    }
+  }
+
+  .revamp-text {
+    h3 {
+      color: white;
+    }
+
+    p {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    h6 {
+      color: white;
+    }
+  }
+}
+

@@ -28,7 +28,6 @@ export class ApiParserResponseInterceptor implements HttpInterceptor {
         event = event.clone({
           body: event.body.data
         });
-        // console.log('here in the interceptor', event.body);
         return event;
       }
     }),

@@ -18,7 +18,7 @@ export class FillDataFormComponent implements OnInit {
   dataFormEntity: IDataFormEntity;
   Visibility: Visibility;
   formClosed = false;
-  redirectRoute = [];
+  redirectRoute: any;
   event: IEvent;
   community: ICommunity;
 
@@ -29,13 +29,22 @@ export class FillDataFormComponent implements OnInit {
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
     private router: Router,
-    private title: Title
+    private title: Title,
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.getDataFormEntity(params.data_form_entity_id);
     });
+
+
+    this.activatedRoute.queryParams.subscribe(
+      data => {
+        if (data.next) {
+          this.redirectRoute = data.next;
+        }
+      }
+    );
   }
 
 
@@ -87,22 +96,16 @@ export class FillDataFormComponent implements OnInit {
       data => {
         this.community = data;
         this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
-        this.redirectRoute.push('/communities', this.community.slug, 'events', this.event.slug);
+        if (!this.redirectRoute) {
+          this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
+        }
       }
     );
   }
 
 
   redirectTo($event) {
-    console.log($event);
-    console.log('here', this.redirectRoute);
     this.router.navigate(this.redirectRoute);
   }
-
-
-
-
-
-
 
 }

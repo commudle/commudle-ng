@@ -4,10 +4,12 @@
       <nb-list-item *ngFor="let edfeg of eventDataFormEntityGroups; let i = index;">
         <div class="edfeg-details" *ngIf="edfeg.data_form_entity">
           <div class="display-details">
-            <div class="copy-link">
-              <p>
-                <fa-icon [icon]="faCopy"></fa-icon>
-              </p>
+            <div class="copy-link clickable">
+              <a *ngIf="event.editable" class="text-info" [routerLink]="['/fill-form', edfeg.data_form_entity.id]">
+                <nb-icon icon="copy-outline"></nb-icon>
+                <br>
+                <small>Link to fill</small>
+              </a>
             </div>
             <div class="basic-details">
               <p>

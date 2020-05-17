@@ -27,7 +27,6 @@ export class LibErrorHandlerComponent implements OnInit, OnChanges {
 
 
   goToHome() {
-    console.log('clicked');
     this.router.navigate(['/']);
   }
 

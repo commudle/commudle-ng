@@ -86,7 +86,6 @@ export class EventFormResponsesComponent implements OnInit, OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.canLoadMore = false;
-    console.log('destroyed');
   }
 
 
@@ -170,12 +169,10 @@ export class EventFormResponsesComponent implements OnInit, OnDestroy {
   }
 
   toggleExpandRow(row) {
-    // console.log('Toggled Expand Row!', row);
     this.table.rowDetail.toggleExpandRow(row);
   }
 
   onDetailToggle(event) {
-    // console.log('Detail Toggled', event);
   }
 
 
