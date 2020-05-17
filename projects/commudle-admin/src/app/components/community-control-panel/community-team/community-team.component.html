@@ -5,7 +5,7 @@
       <div *ngFor="let org of organizers; let i=index;">
         <div class="user-profile">
           <div class="user-avatar">
-            <img src="" alt="{{org.user.name}}">
+            <img src="{{ org.user.avatar }}" alt="{{org.user.name}}">
           </div>
           <div class="user-details">
             <p class="user-name">{{ org.user.name | slice:0:10 }}</p>
@@ -48,7 +48,7 @@
       <div *ngFor="let org of eventOrganizers; let i=index;">
         <div class="user-profile">
           <div class="user-avatar">
-            <img src="" alt="{{org.user.name}}">
+            <img src="{{ org.user.avatar }}" alt="{{org.user.name}}">
           </div>
           <div class="user-details">
             <p class="user-name">{{ org.user.name }}</p>

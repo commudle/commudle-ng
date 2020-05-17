@@ -10,4 +10,14 @@
   color: #3366ff !important;
 }
 
+nb-user {
+  ::ng-deep {
+    .user-picture.image {
+      background-size: contain !important;
+      background-position: center;
+    }
+  }
+
+}
+
 

@@ -46,7 +46,7 @@ export class CommunitiesService {
 
     const params = new HttpParams().set('community_id', communityId);
     params.append('community_id', 'gdg-new-delhi');
-    return this.http.patch<ICommunity>(
+    return this.http.put<ICommunity>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.UPDATE),
       communityFormData,
       {params}

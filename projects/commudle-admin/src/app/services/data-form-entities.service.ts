@@ -17,7 +17,7 @@ export class DataFormEntitiesService {
 
 
   updateVisibilityStatus(newStatus, dataFormEntityId): Observable<IDataFormEntity> {
-    return this.http.patch<IDataFormEntity>(
+    return this.http.put<IDataFormEntity>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.UPDATE_VISIBILITY), {
         data_form_entity_id: dataFormEntityId,
         visibility: newStatus

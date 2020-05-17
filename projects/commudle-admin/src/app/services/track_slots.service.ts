@@ -29,7 +29,7 @@ export class TrackSlotsService {
 
   updateTrackSlot(trackSlot, trackSlotId): Observable<ITrackSlot> {
 
-    return this.http.patch<ITrackSlot>(
+    return this.http.put<ITrackSlot>(
       this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.UPDATE),
       {
         track_slot: trackSlot,

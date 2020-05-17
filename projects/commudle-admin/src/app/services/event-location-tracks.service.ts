@@ -29,7 +29,7 @@ export class EventLocationTracksService {
   }
 
   updateEventLocationTrack(eventLocationTrackId, eventLocationTrack): Observable<IEventLocationTrack> {
-    return this.http.patch<IEventLocationTrack>(
+    return this.http.put<IEventLocationTrack>(
       this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_LOCATION_TRACK),
       {
         event_location_track_id: eventLocationTrackId,

@@ -25,7 +25,7 @@ export class EventEntryPassesService {
   }
 
   toggleAttendance(eventEntryPassId): Observable<IEventEntryPass> {
-    return this.http.patch<IEventEntryPass>(
+    return this.http.put<IEventEntryPass>(
       this.apiRoutesService.getRoute(API_ROUTES.TOGGLE_ATTENDANCE), {
         event_entry_pass_id: eventEntryPassId
        }
@@ -34,7 +34,7 @@ export class EventEntryPassesService {
 
 
   toggleUninvited(eventEntryPassId): Observable<IEventEntryPass> {
-    return this.http.patch<IEventEntryPass>(
+    return this.http.put<IEventEntryPass>(
       this.apiRoutesService.getRoute(API_ROUTES.TOGGLE_UNINVITED), {
         event_entry_pass_id: eventEntryPassId
        }

@@ -50,7 +50,7 @@ export class EventCollaborationCommunitiesService {
   }
 
   confirmCollaboration(token): Observable<any> {
-    return this.http.patch<any>(
+    return this.http.put<any>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_COLLABORATION_COMMUNITIES.CONFIRM),
       { token }
     );

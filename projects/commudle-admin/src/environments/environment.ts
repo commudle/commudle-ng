@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:3000',
-  action_cable_url: 'http://localhost:3000/live'
+  // base_url: 'http://localhost:3000',
+  // action_cable_url: 'http://localhost:3000/live'
+  base_url: 'https://json.commudle.com',
+  action_cable_url: 'ws://json.commudle.com/live'
 };
 
 /*

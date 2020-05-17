@@ -29,7 +29,7 @@ export class DataFormEntityResponseGroupsService {
 
   updateEventRegistrationStatus(registrationStatusId, dataFormEntityResponseGroupId): Observable<IDataFormEntityResponseGroup> {
 
-    return this.http.patch<IDataFormEntityResponseGroup>(
+    return this.http.put<IDataFormEntityResponseGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_EVENT_REGISTRATION_STATUS), {
         data_form_entity_response_group_id: dataFormEntityResponseGroupId,
         registration_status_id: registrationStatusId
@@ -58,7 +58,7 @@ export class DataFormEntityResponseGroupsService {
 
 
   updateRSVPStatus(token, rsvpStatus): Observable<any> {
-    return this.http.patch<any>(
+    return this.http.put<any>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.UPDATE_RSVP),
       {token, rsvp_status: rsvpStatus}
     );

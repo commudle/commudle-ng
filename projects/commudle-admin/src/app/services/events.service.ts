@@ -62,7 +62,7 @@ export class EventsService {
   }
 
   updateStatus(eventId, eventStatus): Observable<IEventStatus> {
-    return this.http.patch<IEventStatus>(
+    return this.http.put<IEventStatus>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE_STATUS), {
         event_id: eventId,
         event_status: eventStatus

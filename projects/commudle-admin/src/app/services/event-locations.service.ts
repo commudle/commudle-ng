@@ -36,7 +36,7 @@ export class EventLocationsService {
 
 
   updateEventLocation(eventLocationId, eventLocation): Observable<IEventLocation> {
-    return this.http.patch<IEventLocation>(
+    return this.http.put<IEventLocation>(
       this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_LOCATION), {
         event_location_id: eventLocationId,
         event_location: eventLocation

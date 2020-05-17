@@ -52,7 +52,7 @@ export class EventDataFormEntityGroupsService {
 
 
   updateRSVP(eventDataFormEntityGroupId): Observable<IEventDataFormEntityGroup> {
-    return this.http.patch<any>(
+    return this.http.put<any>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.UPDATE_RSVP),
       {
         event_data_form_entity_group_id: eventDataFormEntityGroupId
