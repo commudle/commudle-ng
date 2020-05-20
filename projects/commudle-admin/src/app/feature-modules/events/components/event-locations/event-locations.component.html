@@ -10,9 +10,9 @@
   </div>
   <div *ngIf="event.editable">
     <button nbButton (click)="showAddEventLocationForm()" status="primary">
-      <fa-icon [icon]="faPlusCircle"></fa-icon>
+      <nb-icon icon="plus-circle-outline"></nb-icon>
       &nbsp;
-      Add Location
+      Add
     </button>
   </div>
   <div class="event-locations-list">
@@ -130,6 +130,9 @@
         </p>
         <div>
           <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+            <nb-option>
+              Remove
+            </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
               YouTube
             </nb-option>

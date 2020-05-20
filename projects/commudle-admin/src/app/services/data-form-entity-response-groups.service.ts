@@ -17,11 +17,13 @@ export class DataFormEntityResponseGroupsService {
   ) { }
 
 
-  getEventDataFormResponses(eventDataFormEntityGroupId, page, count): Observable<IDataFormEntityResponseGroups> {
+  getEventDataFormResponses(eventDataFormEntityGroupId, filterQuery, registrationStatusId, page, count): Observable<IDataFormEntityResponseGroups> {
     let params = new HttpParams().set(
       'event_data_form_entity_group_id', eventDataFormEntityGroupId)
       .set('count', count)
-      .set('page', page);
+      .set('page', page)
+      .set('registration_status_id', registrationStatusId)
+      .set('query', filterQuery);
     return this.http.get<IDataFormEntityResponseGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.GET_EVENT_DATA_FORM_RESPONSES), { params }
     );
@@ -35,16 +37,6 @@ export class DataFormEntityResponseGroupsService {
         registration_status_id: registrationStatusId
        }
     );
-
-  }
-
-  // TODO
-  sendRSVPMail(dataFormEntityResponseGroupId) {
-
-  }
-
-  // TODO
-  sendEntryPassMail(dataFormEntityResponseGroupId) {
 
   }
 

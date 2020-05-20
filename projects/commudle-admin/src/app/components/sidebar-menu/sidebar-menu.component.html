@@ -1,7 +1,7 @@
 <div>
   <nb-list class="sidebar-common-menu">
     <nb-list-item>
-      <a [routerLink]="['/']" >
+      <a [routerLink]="['/']" (click)="closeSidebar()" >
         <nb-icon icon="home-outline"></nb-icon>
         Home
       </a>
@@ -15,7 +15,7 @@
       </a>
     </nb-list-item> -->
     <nb-list-item *ngFor="let community of managedCommunities">
-      <a [routerLink]="['/admin', 'communities', community.slug]" >
+      <a [routerLink]="['/admin', 'communities', community.slug]" (click)="closeSidebar()">
         <nb-user size="tiny"
              name="{{community.name}}"
              picture="{{ community.logo_path }}">

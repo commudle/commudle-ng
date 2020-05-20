@@ -2,4 +2,7 @@ import { IDataFormEntityResponseGroup } from './data_form_entity_response_group.
 
 export interface IDataFormEntityResponseGroups {
   data_form_entity_response_groups: IDataFormEntityResponseGroup[];
+  page: number;
+  count: number;
+  total: number;
 }

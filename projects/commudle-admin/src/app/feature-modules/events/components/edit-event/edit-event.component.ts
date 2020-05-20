@@ -150,6 +150,7 @@ export class EditEventComponent implements OnInit {
 
         return true;
     }
+    this.startTime = null;
     return false;
 
   }
@@ -173,6 +174,7 @@ export class EditEventComponent implements OnInit {
         }).toDate();
         return true;
     }
+    this.endTime = null;
     return false;
 
   }

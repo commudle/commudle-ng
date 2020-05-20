@@ -18,6 +18,9 @@ export class CommunityFormsListComponent implements OnInit {
   dataForms: IDataForm[];
   tableSettings = {
     actions: false,
+    pager: {
+      perPage: 3
+    },
     columns: {
       name: {
         title: 'Name'

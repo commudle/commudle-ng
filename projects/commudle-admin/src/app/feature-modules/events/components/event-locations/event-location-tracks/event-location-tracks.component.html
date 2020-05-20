@@ -22,10 +22,10 @@
     <div class="track" *ngFor="let lt of eventLocationTracks; let t = index">
       <div class="track-name">
         <p>{{ lt.name }}</p>
-        <div *ngIf="eventLocation.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY">
+        <div *ngIf="lt.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY">
           <nb-icon icon='tv-outline' [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
           <ng-template #embeddedVideo>
-            <div class="embedded-video" [innerHTML]="sanitizedEmbeddedHTML(eventLocation.embedded_video_stream.embed_code)"></div>
+            <div class="embedded-video" [innerHTML]="sanitizedEmbeddedHTML(lt.embedded_video_stream.embed_code)"></div>
           </ng-template>
         </div>
         <div *ngIf="event.editable">
@@ -123,6 +123,9 @@
             </p>
             <div>
               <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+                <nb-option>
+                  Remove
+                </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
                   YouTube
                 </nb-option>
@@ -220,6 +223,9 @@
             </p>
             <div>
               <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+                <nb-option>
+                  Remove
+                </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
                   YouTube
                 </nb-option>

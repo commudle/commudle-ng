@@ -7,6 +7,7 @@ import { API_ROUTES } from './api-routes.constants';
 import { ICurrentUser } from '../shared-models/current_user.model';
 import { DOCUMENT } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class LibAuthwatchService {
 
   private currentUserVerified: BehaviorSubject<any> = new BehaviorSubject(null);
   public currentUserVerified$ = this.currentUserVerified.asObservable();
-  private authCookieName = 'commudle_user_auth';
+  // private authCookieName = 'commudle_user_auth';
   private currentUser: BehaviorSubject<ICurrentUser> = new BehaviorSubject(null);
   public currentUser$ = this.currentUser.asObservable();
 
@@ -33,7 +34,7 @@ export class LibAuthwatchService {
     // if (parts.length === 2) {
     //   return parts.pop().split(';').shift();
     // }
-    return (this.cookieService.check(this.authCookieName) === true ? this.cookieService.get(this.authCookieName) : null);
+    return (this.cookieService.check(environment.auth_cookie_name) === true ? this.cookieService.get(environment.auth_cookie_name) : null);
     // return null;
 
   }
@@ -49,8 +50,9 @@ export class LibAuthwatchService {
 
     // // set the new expiry date on the cookie
     // this.document.cookie = this.authCookieName+"=; expires="+date.toUTCString()+"; path=/";
-    this.cookieService.delete(this.authCookieName);
+    this.cookieService.delete(environment.auth_cookie_name);
     this.currentUser.next(null);
+    this.currentUserVerified.next(false);
 
   }
 

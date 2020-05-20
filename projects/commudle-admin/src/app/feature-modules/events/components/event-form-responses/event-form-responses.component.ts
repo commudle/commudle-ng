@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IRegistrationStatus } from 'projects/shared-models/registration_status.model';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { RegistrationStatusesService } from 'projects/commudle-admin/src/app/services/registration-statuses.service';
@@ -14,13 +14,15 @@ import { IEventDataFormEntityGroup } from 'projects/shared-models/event_data_for
 import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-form-responses',
   templateUrl: './event-form-responses.component.html',
   styleUrls: ['./event-form-responses.component.scss']
 })
-export class EventFormResponsesComponent implements OnInit, OnDestroy {
+export class EventFormResponsesComponent implements OnInit {
 
   @ViewChild('table') table;
 
@@ -34,21 +36,31 @@ export class EventFormResponsesComponent implements OnInit, OnDestroy {
 
   isLoading = true;
   rows = [];
-  temp = [];
   ColumnMode = ColumnMode;
   SortType = SortType;
-  canLoadMore = true;
+  emptyMessage;
+
+  page = 1;
+  totalEntries: number;
+  count = 25;
+  filterValue = "";
+  registrationStatusId = 0;
+
+
+  searchForm = this.fb.group({
+    name: ['']
+  });
 
 
   //TODO past event stats
-
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
     private registrationStatusesService: RegistrationStatusesService,
     private dataFormsService: DataFormsService,
     private activatedRoute: ActivatedRoute,
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
-    private windowService: NbWindowService
+    private windowService: NbWindowService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -79,58 +91,67 @@ export class EventFormResponsesComponent implements OnInit, OnDestroy {
       this.questions = this.dataForm.questions;
     });
 
-    this.getResponses(1, 25);
-  }
-
-  ngOnDestroy() {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.canLoadMore = false;
+    // this.getResponses();
+    this.updateFilter();
   }
 
 
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
 
-    // filter our data
-    const temp = this.temp.filter(function(d) {
-      if (d.user.name) {
-        return d.user.name.toLowerCase().indexOf(val) !== -1 || !val;
-      }
+
+  updateFilter() {
+    this.searchForm.valueChanges.pipe(
+      debounceTime(800),
+      switchMap(() => {
+        this.page = 1;
+        this.emptyMessage = 'Loading...';
+        return this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
+          this.eventDataFormEntityGroupId,
+          this.searchForm.get('name').value.toLowerCase(),
+          this.registrationStatusId,
+          this.page,
+          this.count
+          );
+      })
+    ).subscribe((data) => {
+      this.setResponses(data);
     });
-    // update the rows
-    this.rows = [...temp];
-    // Whenever the filter changes, always go back to the first page
-    this.table.offset = 0;
   }
 
-  registrationStatusFilter(registrationStatusId) {
-    if (registrationStatusId === 0) {
-      this.rows = [...this.temp];
-    } else {
-      const temp = this.temp.filter(data => data.registration_status.id === registrationStatusId);
-      this.rows = [];
-      this.rows = [...temp];
-    }
-    this.table.offset = 0;
 
+  registrationStatusFilter(selectedRegistrationStatusId) {
+    this.registrationStatusId = selectedRegistrationStatusId;
+    this.getResponses();
   }
 
-  getResponses(page, count) {
-    if (this.canLoadMore) {
-      this.dataFormEntityResponseGroupsService.getEventDataFormResponses(this.eventDataFormEntityGroupId, page, count).subscribe(
-        (data) => {
-          this.temp = this.temp.concat(data.data_form_entity_response_groups);
-          this.rows = this.rows.concat(data.data_form_entity_response_groups);
-          if (data.data_form_entity_response_groups.length === count) {
-            this.getResponses(page + 1, count);
-          } else {
-            this.isLoading = false;
-          }
-        }
-      );
-    }
+  setPage(pageNumber) {
+    this.page = pageNumber + 1;
+    this.getResponses();
+  }
 
+  getResponses() {
+    this.emptyMessage = 'Loading...';
+    this.isLoading = false;
+    this.rows = [];
+    this.dataFormEntityResponseGroupsService.getEventDataFormResponses(
+      this.eventDataFormEntityGroupId,
+      this.filterValue,
+      this.registrationStatusId,
+      this.page,
+      this.count
+      ).subscribe(
+      (data) => {
+        this.totalEntries = data.total;
+        this.rows = data.data_form_entity_response_groups;
+        this.isLoading = false;
+      }
+    );
+  }
+
+  setResponses(data) {
+    this.totalEntries = data.total;
+    this.rows = data.data_form_entity_response_groups;
+    this.isLoading = false;
+    this.emptyMessage = 'No entries found';
   }
 
 
@@ -138,25 +159,6 @@ export class EventFormResponsesComponent implements OnInit, OnDestroy {
     const userQuestionResponse = userResponses.find(k => k.question_id === questionId);
     return (userQuestionResponse == null ? '..' : userQuestionResponse.response_text);
   }
-
-
-  // nameComparator(rowA, rowB) {
-  //   console.log('**', rowA.user.name, rowB.user.name);
-
-  //   const propA = rowA.user.name;
-  //   const propB = rowB.user.name;
-  //   // Just a simple sort function comparisoins
-  //   if (propA.toLowerCase() < propB.toLowerCase()) {
-  //     return -1;
-  //   }
-  //   if (propA.toLowerCase() > propB.toLowerCase()) {
-  //     return 1;
-  //   }
-  // }
-
-  // questionComparator(rowA, rowB) {
-  //   console.log(rowA, rowB);
-  // }
 
 
   updateRegistrationStatus(registrationStatus, userResponseId) {

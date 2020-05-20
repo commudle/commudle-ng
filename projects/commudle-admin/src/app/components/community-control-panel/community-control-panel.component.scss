@@ -4,6 +4,7 @@
   margin: 0 -0.5rem;
   @media screen and (min-width: 800px) {
     flex-direction: row;
+    flex: 1 0 calc(50% - 1rem);
   }
 
 }
@@ -20,6 +21,18 @@
 
 
 
-.page-header {
-  margin: 0;
+.basic-details {
+  display: flex;
+  align-items: center;
+  >div {
+    width: 100px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  h4 {
+    margin: 0 1rem 0;
+  }
 }

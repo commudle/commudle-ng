@@ -6,8 +6,8 @@
         <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
 
         <div class="group-actions">
-          <button nbButton outline size="small" (click)="openRSVPEmailWindow()">Send All RSVP Emails</button>
-          <button nbButton outline size="small" (click)="openEntryPassEmailWindow()">Send All Entry Passes</button>
+          <button nbButton status="primary" outline size="small" (click)="openRSVPEmailWindow()">Send All RSVP Emails</button>
+          <button nbButton status="primary" outline size="small" (click)="openEntryPassEmailWindow()">Send All Entry Passes</button>
         </div>
       </nb-card-body>
     </nb-card>
@@ -26,10 +26,17 @@
           [columnMode]="ColumnMode.force"
           [headerHeight]="100"
           [footerHeight]="50"
-          [rowHeight]="250"
+          rowHeight="auto"
           [scrollbarV]="true"
           [scrollbarH]="true"
-          [sortType]="SortType.single">
+          [virtualization]="false"
+          [sortType]="SortType.single"
+          [count]="totalEntries"
+          [externalPaging]="true"
+          [offset]="page - 1"
+          [limit]="count"
+          (page)="setPage($event.offset)"
+          [messages]="{emptyMessage: emptyMessage}">
 
             <!-- responsive row format -->
             <ngx-datatable-row-detail [rowHeight]="300" (toggle)="onDetailToggle($event)">
@@ -69,23 +76,26 @@
                   <p>
                     User Details
                   </p>
-                  <div class="name-filter">
-                    <input
-                      nbInput
-                      type="text"
-                      fullWidth
-                      fieldSize="tiny"
-                      placeholder="{{ isLoading ? 'Still Loading' : 'Filter by Name' }}"
-                      (keyup)="updateFilter($event)"
-                      [disabled]="isLoading"
-                    />
-                  </div>
+                  <form [formGroup]="searchForm">
+                    <div class="name-filter">
+                      <input
+                        nbInput
+                        type="text"
+                        fullWidth
+                        fieldSize="tiny"
+                        placeholder="{{ isLoading ? 'Still Loading' : 'Filter by Name' }}"
+                        formControlName="name"
+                        [disabled]="isLoading"
+                      />
+                    </div>
+                  </form>
+
                   <div class="registration-status-filter">
                     <div (click)="registrationStatusFilter(0)">
-                      <p>All</p>
+                      <p [ngClass]="{'text-primary': 0 == registrationStatusId}">All</p>
                     </div>
                     <div *ngFor="let rs of registrationStatuses" (click)="registrationStatusFilter(rs.id)">
-                      <p>{{ rs.name }}</p>
+                      <p [ngClass]="{'text-primary': rs.id == registrationStatusId}">{{ rs.name }}</p>
                     </div>
                   </div>
                 </div>

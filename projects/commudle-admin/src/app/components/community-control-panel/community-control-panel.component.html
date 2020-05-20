@@ -3,7 +3,13 @@
     <nb-card>
       <nb-card-body>
         <div *ngIf="community">
-          <h5 class="page-header">{{ community.name }}</h5>
+          <div class="basic-details">
+            <div>
+              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+            </div>
+            <h4>{{ community.name }}</h4>
+          </div>
+
           <p>
             <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
           </p>
@@ -21,14 +27,7 @@
           <app-community-events-list></app-community-events-list>
         </nb-card-body>
       </nb-card>
-      <nb-card>
-        <nb-card-header>Forms</nb-card-header>
-        <nb-card-body>
-          <app-community-forms-list></app-community-forms-list>
-        </nb-card-body>
-      </nb-card>
-    </div>
-    <div class="card-col">
+
       <nb-card>
         <nb-card-header>Edit Details</nb-card-header>
         <nb-card-body>
@@ -36,6 +35,26 @@
           (updateCommunity)="setCommunity($event)"></app-community-edit-details>
         </nb-card-body>
       </nb-card>
+
+    </div>
+    <div class="card-col">
+      <!-- <nb-card>
+        <nb-card-header>
+          Emails
+        </nb-card-header>
+        <nb-card-body>
+          <button nbButton>
+            Send Emails
+          </button>
+        </nb-card-body>
+      </nb-card> -->
+      <nb-card>
+        <nb-card-header>Forms</nb-card-header>
+        <nb-card-body>
+          <app-community-forms-list></app-community-forms-list>
+        </nb-card-body>
+      </nb-card>
+
       <nb-card>
         <nb-card-header>
           <nb-icon icon="people"></nb-icon>

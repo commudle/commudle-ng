@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
+import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
@@ -18,7 +18,8 @@ export class SidebarMenuComponent implements OnInit {
 
   constructor(
     private authWatchService: LibAuthwatchService,
-    private communitiesService: CommunitiesService
+    private communitiesService: CommunitiesService,
+    private sidebarService: NbSidebarService,
   ) { }
 
   ngOnInit() {
@@ -49,6 +50,12 @@ export class SidebarMenuComponent implements OnInit {
       this.communitiesService.getRoleCommunities(u).subscribe(data => {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];
       });
+    }
+  }
+
+  closeSidebar() {
+    if (window.screen.width <= 1000) {
+      this.sidebarService.collapse();
     }
   }
 
