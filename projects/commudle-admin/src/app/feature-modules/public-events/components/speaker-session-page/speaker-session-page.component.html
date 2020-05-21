@@ -66,9 +66,9 @@
 
 
               <div class="embedded-video-stream" *ngIf="trackSlot.embedded_video_stream">
-                <!-- <div [innerHTML]="sanitizedEmbeddedHTML(trackSlot.embedded_video_stream.embed_code)">
+                <div [innerHTML]="sanitizedVideoCode">
 
-                </div> -->
+                </div>
               </div>
 
               <div *ngIf="speakerResource && event.event_status.name == EEventStatuses.COMPLETED">

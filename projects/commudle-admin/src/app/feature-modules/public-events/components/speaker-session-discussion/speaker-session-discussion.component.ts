@@ -49,7 +49,6 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getDiscussion();
     this.allActions = this.trackSlotQuestionsChannel.ACTIONS;
-
     this.authWatchService.currentUser$.subscribe(
       user => this.currentUser = user
     );
@@ -71,6 +70,7 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
     this.discussionsService.getOrCreateByTrackSlot(this.trackSlot.id).subscribe(
       data => {
         this.discussion = data;
+        this.reorder();
         this.loadingQuestions = false;
         this.trackSlotQuestionsChannel.subscribe(`${this.discussion.id}`);
         this.receiveData();
@@ -121,7 +121,6 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
   }
 
   sendFlag(userMessageId) {
-    console.log('here');
     this.trackSlotQuestionsChannel.sendData(
       this.trackSlotQuestionsChannel.ACTIONS.FLAG,
       {
@@ -213,6 +212,13 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
 
   findReplyIndex(questionIndex, replyId) {
     return this.questions[questionIndex].user_messages.findIndex(q => (q.id === replyId));
+  }
+
+
+  reorder() {
+    setInterval(() => {
+      this.questions = (this.questions.sort((a, b) => a.votes_count > b.votes_count ? -1 : a.votes_count < b.votes_count ? 1 : 0));
+    }, 10000);
   }
 
 

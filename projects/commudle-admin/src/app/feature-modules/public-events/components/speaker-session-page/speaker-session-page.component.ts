@@ -28,6 +28,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   speakerResource: ISpeakerResource;
   EEventStatuses = EEventStatuses;
   moment = moment;
+  sanitizedVideoCode;
 
 
   constructor(
@@ -48,7 +49,13 @@ export class SpeakerSessionPageComponent implements OnInit {
       data => {
         this.trackSlot = data;
         this.speaker = data.user;
-        this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`)
+        if (this.trackSlot.embedded_video_stream) {
+          this.sanitizedVideoCode =  this.sanitizer.bypassSecurityTrustHtml(this.trackSlot.embedded_video_stream.embed_code);
+        }
+
+        if (this.speaker) {
+          this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`)
+        }
         this.getEvent();
       }
     );
@@ -68,10 +75,6 @@ export class SpeakerSessionPageComponent implements OnInit {
     this.communitiesService.getCommunityDetails(this.event.kommunity_id).subscribe(
       data => this.community = data
     );
-  }
-
-  sanitizedEmbeddedHTML(val) {
-    return this.sanitizer.bypassSecurityTrustHtml(val);
   }
 
 
