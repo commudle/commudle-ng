@@ -12,6 +12,11 @@
 
           <p>
             <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
+            &nbsp;
+            &nbsp;
+            <a [routerLink]="['/communities', community.slug]" target="_blank">
+              <nb-icon icon="external-link"></nb-icon> Public Page
+            </a>
           </p>
 
         </div>

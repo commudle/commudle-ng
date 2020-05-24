@@ -3,6 +3,7 @@ import { IEventStatus } from './event_status.model';
 export interface IEvent {
   id: number;
   name: string;
+  header_image_path: string;
   description: string;
   start_time: Date;
   end_time: Date;

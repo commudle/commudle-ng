@@ -26,11 +26,16 @@
           margin-left: 0.8rem;
 
           img {
-            width: 45px;
+            width: 35px;
+          }
+          @media screen and (max-width: 640px) {
+            p {
+              display: none;
+            }
           }
 
           p{
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: #4481ff;
             margin: 0 0.5rem;
 

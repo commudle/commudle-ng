@@ -18,7 +18,6 @@
           *ngIf="currentUser"
           size="medium"
           name="{{ currentUser.name.split(' ')[0] | slice:0:8 }}"
-          title="{{ currentUser.designation | slice:0:10 }}"
           picture="{{ currentUser.avatar }}"
           [nbContextMenu]="userContextMenu"
         >

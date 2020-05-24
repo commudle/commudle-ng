@@ -10,6 +10,14 @@ import { SessionDiscussionQuestionComponent } from './components/session-discuss
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SpeakerSessionQuestionRepliesComponent } from './components/speaker-session-discussion/speaker-session-question-replies/speaker-session-question-replies.component';
+import { HighlightedLinksComponent } from './components/highlighted-links/highlighted-links.component';
+import { LiveSessionsComponent } from './components/live-sessions/live-sessions.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
+import { SpeakersComponent } from './components/speakers/speakers.component';
+import { EventUpdatesComponent } from './components/event-updates/event-updates.component';
+import { EventDescriptionComponent } from './components/event-description/event-description.component';
+import { CollaborationCommunitiesComponent } from './components/collaboration-communities/collaboration-communities.component';
+import { TeamComponent } from './components/team/team.component';
 
 
 
@@ -20,6 +28,14 @@ import { SpeakerSessionQuestionRepliesComponent } from './components/speaker-ses
     SpeakerSessionDiscussionComponent,
     SessionDiscussionQuestionComponent,
     SpeakerSessionQuestionRepliesComponent,
+    HighlightedLinksComponent,
+    LiveSessionsComponent,
+    AgendaComponent,
+    SpeakersComponent,
+    EventUpdatesComponent,
+    EventDescriptionComponent,
+    CollaborationCommunitiesComponent,
+    TeamComponent,
   ],
   imports: [
     CommonModule,
