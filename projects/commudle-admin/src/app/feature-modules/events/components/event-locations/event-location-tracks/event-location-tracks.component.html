@@ -12,7 +12,7 @@
       <div class="time-container">
         <div *ngFor="let hour of hours">
           <div *ngFor="let minute of minutes">
-            <div *ngIf="minute%5 == 0" class="time-cell">
+            <div *n gIf="minute%5 == 0" class="time-cell">
               <p class="time-display">{{ displayTime(hour, minute) }}</p>
             </div>
           </div>

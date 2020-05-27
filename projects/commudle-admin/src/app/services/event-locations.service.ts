@@ -20,14 +20,14 @@ export class EventLocationsService {
   getEventLocations(eventId): Observable<IEventLocations> {
     let params = new HttpParams().set('event_id', eventId);
     return this.http.get<IEventLocations>(
-      this.apiRoutesService.getRoute(API_ROUTES.GET_EVENT_LOCATIONS), { params: params }
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_LOCATIONS.GET), { params: params }
     );
   }
 
 
   createEventLocation(eventId, eventLocation): Observable<IEventLocation> {
     return this.http.post<IEventLocation>(
-      this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT_LOCATION), {
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_LOCATIONS.CREATE), {
         event_id: eventId,
         event_location: eventLocation
       }
@@ -37,7 +37,7 @@ export class EventLocationsService {
 
   updateEventLocation(eventLocationId, eventLocation): Observable<IEventLocation> {
     return this.http.put<IEventLocation>(
-      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_LOCATION), {
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_LOCATIONS.UPDATE), {
         event_location_id: eventLocationId,
         event_location: eventLocation
       }
@@ -48,7 +48,14 @@ export class EventLocationsService {
     let params = new HttpParams().set('event_location_id', eventLocationId);
 
     return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.DELETE_EVENT_LOCATION), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_LOCATIONS.DELETE), { params }
+    );
+  }
+
+  pGetEventLocations(eventId): Observable<IEventLocations> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEventLocations>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_LOCATIONS.PUBLIC_INDEX), { params }
     );
   }
 

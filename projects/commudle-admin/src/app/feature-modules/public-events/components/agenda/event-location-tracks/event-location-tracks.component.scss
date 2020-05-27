@@ -1,0 +1,109 @@
+.event-location-tracks {
+  $slot-width: 150px;
+  $slot-height: 30px;
+
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  .header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: fit-content;
+
+
+
+    p {
+      margin: 0
+    }
+
+    .time-column-name {
+      width: 70px;
+      height: $slot-height;
+    }
+
+    .track-name {
+      width: $slot-width;
+      height: $slot-height;
+      background: #3465ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        color: white;
+      }
+    }
+  }
+
+  .timetable {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .time-cell {
+      width: $slot-width;
+      height: $slot-height;
+      border: 1px dotted lightgrey;
+
+      p {
+        margin: 0
+      }
+    }
+
+    .time-cell-display {
+      width: 70px;
+      height: $slot-height;
+      border: 1px dotted lightgrey;
+      display: flex;
+      align-items: center;
+      padding: 0.2rem;
+
+      p {
+        margin: 0;
+        font-size: 0.8rem;
+        color: grey;
+      }
+    }
+
+
+    .track {
+      position: relative;
+
+      .track-slot {
+        position: absolute;
+        background: white;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding: 0.5rem;
+        overflow-y: auto;
+        box-shadow: 1px 1px 5px 1px lightgrey;
+
+        nb-icon {
+          font-size: 0.8rem;
+        }
+
+        .slot-user {
+          display: flex;
+          align-items: center;
+          .slot-user-picture {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 0.2rem;
+            img {
+              width: 100%;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.sticky-left {
+  position: sticky;
+  left: 0;
+  background: white;
+}

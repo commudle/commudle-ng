@@ -56,4 +56,13 @@ export class DataFormEntityResponseGroupsService {
     );
   }
 
+
+
+  pGetEventSpeakers(eventId): Observable<IDataFormEntityResponseGroups> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IDataFormEntityResponseGroups>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.PUBLIC_GET_EVENT_SPEAKERS), { params }
+    );
+  }
+
 }

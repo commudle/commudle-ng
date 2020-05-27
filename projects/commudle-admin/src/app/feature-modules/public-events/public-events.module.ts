@@ -5,7 +5,16 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
 import { HomeEventComponent } from './components/home-event/home-event.component';
 import { SpeakerSessionPageComponent } from './components/speaker-session-page/speaker-session-page.component';
 import { SpeakerSessionDiscussionComponent } from './components/speaker-session-discussion/speaker-session-discussion.component';
-import { NbCardModule, NbListModule, NbInputModule, NbButtonModule, NbIconModule, NbTooltipModule, NbPopoverModule } from '@nebular/theme';
+import {
+  NbCardModule,
+  NbListModule,
+  NbInputModule,
+  NbButtonModule,
+  NbIconModule,
+  NbTooltipModule,
+  NbPopoverModule,
+  NbTabsetModule
+} from '@nebular/theme';
 import { SessionDiscussionQuestionComponent } from './components/session-discussion-question/session-discussion-question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -18,6 +27,8 @@ import { EventUpdatesComponent } from './components/event-updates/event-updates.
 import { EventDescriptionComponent } from './components/event-description/event-description.component';
 import { CollaborationCommunitiesComponent } from './components/collaboration-communities/collaboration-communities.component';
 import { TeamComponent } from './components/team/team.component';
+import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
+import { TrackSlotComponent } from './components/agenda/event-location-tracks/track-slot/track-slot.component';
 
 
 
@@ -36,6 +47,8 @@ import { TeamComponent } from './components/team/team.component';
     EventDescriptionComponent,
     CollaborationCommunitiesComponent,
     TeamComponent,
+    EventLocationTracksComponent,
+    TrackSlotComponent,
   ],
   imports: [
     CommonModule,
@@ -51,7 +64,8 @@ import { TeamComponent } from './components/team/team.component';
     NbButtonModule,
     NbIconModule,
     NbTooltipModule,
-    NbPopoverModule
+    NbPopoverModule,
+    NbTabsetModule
   ]
 })
 export class PublicEventsModule { }

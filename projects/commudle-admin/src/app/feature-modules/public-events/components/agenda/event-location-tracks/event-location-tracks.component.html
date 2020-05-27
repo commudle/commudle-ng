@@ -1,0 +1,86 @@
+<div class="event-location-tracks" *ngIf="eventLocation">
+  <div *ngIf="eventLocation.location" class="map-location">
+    <p>
+      <strong>
+        Address:
+      </strong>
+      <br>
+      {{eventLocation.location.address}}
+       &nbsp;
+      <a href="{{ eventLocation.location.map_link }}">
+        <small>Go To Map</small>
+        <nb-icon icon="external-link"></nb-icon>
+      </a>
+    </p>
+  </div>
+
+  <div class="header">
+    <div class="time-column-name sticky-left sticky-top">
+      <p></p>
+    </div>
+    <div class="track-name sticky-top" *ngFor="let elt of eventLocation.event_location_tracks">
+      <div>
+        <p>
+          <nb-icon *ngIf="elt.embedded_video_stream" icon="video"></nb-icon> {{ elt.name | slice:0:15 }}
+         </p>
+      </div>
+    </div>
+  </div>
+  <div class="timetable">
+    <div class="time-slots sticky-left">
+      <div *ngFor="let hour of hours">
+        <div *ngFor="let minute of minutes">
+          <div *ngIf="minute%5 == 0" class="time-cell-display">
+            <p class="time-display">{{ displayTime(hour, minute) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="track" *ngFor="let elt of eventLocation.event_location_tracks">
+      <div *ngFor="let hour of hours">
+        <div *ngFor="let minute of minutes">
+          <div *ngIf="minute%5 == 0" class="time-cell">
+            <div class="slot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="track-slots-container">
+        <div *ngFor="let slot of elt.track_slots">
+          <div class="track-slot"
+          [ngStyle]="{
+            'height': slotSessionHeight(slot) + 'px',
+            'top': slotSessionOffsetFromTop(slot) + 'px' }"
+            >
+            <p>
+              <nb-icon icon="info"></nb-icon>
+              &nbsp;
+              {{ slot.session_title }}
+            </p>
+            <p>
+              <nb-icon icon="clock-outline"></nb-icon>
+              <small>
+                {{ moment(slot.start_time).format('HH:mm A') }} - {{ moment(slot.end_time).format('HH:mm A') }}
+              </small>
+            </p>
+
+            <div class="slot-user" *ngIf="slot.user">
+              <div class="slot-user-picture">
+                <img src="{{ slot.user.avatar }}" alt="">
+              </div>
+              <p>{{ slot.user.name }}</p>
+            </div>
+            <p>
+              <small>
+                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'speaker-session', slot.id]">
+                  <nb-icon icon="external-link"></nb-icon>
+                  Session Page
+                </a>
+              </small>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

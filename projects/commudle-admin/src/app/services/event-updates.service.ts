@@ -42,4 +42,15 @@ export class EventUpdatesService {
 
 
 
+
+  pGetEventUpdates(eventId): Observable<IEventUpdates> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEventUpdates>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_UPDATES.PUBLIC_INDEX), { params }
+    );
+  }
+
+
+
+
 }

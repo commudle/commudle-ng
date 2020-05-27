@@ -1,0 +1,12 @@
+
+
+@media screen and (max-width: 1000px) {
+  nb-tabset {
+    ::ng-deep {
+      nb-tab {
+        padding: 1rem 0;
+      }
+    }
+  }
+
+}

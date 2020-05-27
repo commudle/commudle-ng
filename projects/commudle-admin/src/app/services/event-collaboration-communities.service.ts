@@ -56,4 +56,11 @@ export class EventCollaborationCommunitiesService {
     );
   }
 
+  pGet(eventId): Observable<IEventCollaborationCommunities> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEventCollaborationCommunities>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_COLLABORATION_COMMUNITIES.PUBLIC_INDEX), { params }
+    );
+  }
+
 }

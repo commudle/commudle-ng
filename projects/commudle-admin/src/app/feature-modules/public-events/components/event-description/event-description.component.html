@@ -1,7 +1,10 @@
 <div>
   <nb-card>
+    <nb-card-header>
+      <h6><nb-icon icon="info-outline"></nb-icon> Details</h6>
+    </nb-card-header>
     <nb-card-body>
-      Event Description
+      <div [innerHTML]="event.description"></div>
     </nb-card-body>
   </nb-card>
 </div>

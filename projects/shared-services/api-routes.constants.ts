@@ -75,7 +75,9 @@ export const API_ROUTES = {
     GET_EVENT_DATA_FORM_RESPONSES: 'api/v2/data_form_entity_response_groups/event_data_form_responses',
     UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
     GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
-    UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp'
+    UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp',
+
+    PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers'
   },
 
 
@@ -90,10 +92,16 @@ export const API_ROUTES = {
 
 
   // event_locations
-  GET_EVENT_LOCATIONS: 'api/v2/event_locations',
-  CREATE_EVENT_LOCATION: 'api/v2/event_locations',
-  UPDATE_EVENT_LOCATION: 'api/v2/event_locations',
-  DELETE_EVENT_LOCATION: 'api/v2/event_locations',
+
+  EVENT_LOCATIONS: {
+    GET: 'api/v2/event_locations',
+    CREATE: 'api/v2/event_locations',
+    UPDATE: 'api/v2/event_locations',
+    DELETE: 'api/v2/event_locations',
+
+    PUBLIC_INDEX: 'api/v2/event_locations/public_index'
+  },
+
 
   // event_location_track
   CREATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
@@ -129,13 +137,16 @@ export const API_ROUTES = {
     DELETE: 'api/v2/event_collaboration_communities',
     RESEND_INVITATION: 'api/v2/event_collaboration_communities/resend_invitation',
     CONFIRM: 'api/v2/event_collaboration_communities/confirm',
+
+    PUBLIC_INDEX: 'api/v2/event_collaboration_communities/public_index'
   },
 
 
   EVENT_UPDATES: {
     INDEX: 'api/v2/event_updates',
     CREATE: 'api/v2/event_updates',
-    DELETE: 'api/v2/event_updates'
+    DELETE: 'api/v2/event_updates',
+    PUBLIC_INDEX: 'api/v2/event_updates/public_index'
   },
 
 

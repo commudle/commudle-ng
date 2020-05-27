@@ -64,11 +64,13 @@
       .highlighted-info {
         flex-grow: 1;
         order: 2;
+        width: 30%;
       }
 
       .info {
         flex-grow: 3;
         order: 1;
+        width:70%;
       }
     }
   }

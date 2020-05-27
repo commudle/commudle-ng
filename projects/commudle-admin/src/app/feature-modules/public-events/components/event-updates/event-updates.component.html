@@ -1,7 +1,15 @@
-<div>
+<div *ngIf="eventUpdates.length > 0">
   <nb-card>
+    <nb-card-header>
+      <h6>
+        <nb-icon icon="star-outline" status="warning"></nb-icon> Latest Updates
+      </h6>
+    </nb-card-header>
     <nb-card-body>
-      Event Updates
+      <div class="event-update" *ngFor="let eu of eventUpdates">
+        <p class="details"><nb-icon icon="star" status="warning"></nb-icon> {{ eu.details }}</p>
+        <p class="time"><small>{{ moment(eu.created_at).format('h:mm A dddd,  Do MMM, YYYY') }}</small></p>
+      </div>
     </nb-card-body>
   </nb-card>
 </div>
