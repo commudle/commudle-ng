@@ -82,6 +82,13 @@
           font-size: 0.8rem;
         }
 
+        .session-preference {
+          margin: 0.5rem 0;
+          nb-icon {
+            font-size: 1.5rem;
+          }
+        }
+
         .slot-user {
           display: flex;
           align-items: center;
@@ -96,7 +103,6 @@
             }
           }
         }
-
       }
     }
   }
@@ -107,3 +113,5 @@
   left: 0;
   background: white;
 }
+
+

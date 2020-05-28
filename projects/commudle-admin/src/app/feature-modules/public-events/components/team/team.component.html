@@ -1,7 +1,17 @@
-<div>
+<div *ngIf="volunteers.length > 0">
   <nb-card>
+    <nb-card-header>
+      <nb-icon icon="people-outline"></nb-icon> Team
+    </nb-card-header>
     <nb-card-body>
-      Team
+      <div class="volunteers">
+        <app-user-profile-horizontal *ngFor="let user of volunteers" [user]="user"></app-user-profile-horizontal>
+        <app-user-profile-horizontal *ngFor="let user of volunteers" [user]="user"></app-user-profile-horizontal>
+        <app-user-profile-horizontal *ngFor="let user of volunteers" [user]="user"></app-user-profile-horizontal>
+        <app-user-profile-horizontal *ngFor="let user of volunteers" [user]="user"></app-user-profile-horizontal>
+        <app-user-profile-horizontal *ngFor="let user of volunteers" [user]="user"></app-user-profile-horizontal>
+
+      </div>
     </nb-card-body>
   </nb-card>
 </div>

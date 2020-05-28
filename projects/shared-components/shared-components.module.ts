@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { UserProfileHorizontalComponent } from './user-profile-horizontal/user-profile-horizontal.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbIconModule, NbThemeModule } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
@@ -9,7 +10,8 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    WorkInProgressComponent
+    WorkInProgressComponent,
+    UserProfileHorizontalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RouterModule } from '@angular/router';
     NbIconModule
   ],
   exports: [
-    WorkInProgressComponent
+    WorkInProgressComponent,
+    UserProfileHorizontalComponent
   ]
 })
 export class SharedComponentsModule { }

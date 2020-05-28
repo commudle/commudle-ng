@@ -1,0 +1,23 @@
+<div class="user">
+  <div class="profile-picture">
+    <img src="{{ user.avatar }}" alt="{{ user.name }}">
+  </div>
+  <div class="profile-info">
+    <p class="name"><strong>{{ user.name }}</strong></p>
+    <p class="designation">{{ user.designation }}</p>
+    <div class="user-social-links">
+      <a href="{{ user.linkedin }}">
+        <nb-icon icon="linkedin" status="primary"></nb-icon>
+      </a>
+      <a href="{{ user.twitter }}">
+        <nb-icon icon="twitter" status="primary"></nb-icon>
+      </a>
+      <a href="{{ user.github }}">
+        <nb-icon icon="github" status="primary"></nb-icon>
+      </a>
+      <a href="{{ user.personal_website }}">
+        <nb-icon icon="info" status="primary"></nb-icon>
+      </a>
+    </div>
+  </div>
+</div>

@@ -33,7 +33,6 @@ export class AppComponent {
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
-      this.authWatchService.checkAlreadySignedIn().subscribe();
       this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
       this.authWatchService.currentUser$.subscribe(currentUser => {
         this.currentUser = currentUser;

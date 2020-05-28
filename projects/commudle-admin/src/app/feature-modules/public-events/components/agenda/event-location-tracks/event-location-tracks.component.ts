@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEventLocation } from 'projects/shared-models/event-location.model';
 import * as moment from 'moment';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
+import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -16,6 +17,7 @@ export class EventLocationTracksComponent implements OnInit {
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
+  @Output() updateSessionPreference = new EventEmitter();
 
   hours = [];
   minutes = [];
@@ -23,7 +25,9 @@ export class EventLocationTracksComponent implements OnInit {
   minHour;
   maxHour;
 
-  constructor() { }
+  constructor(
+    private trackSlotsService: TrackSlotsService
+  ) { }
 
   ngOnInit() {
     this.setMinMaxHour();
@@ -70,7 +74,20 @@ export class EventLocationTracksComponent implements OnInit {
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
     const startTime = moment(slot.start_time);
     const diffH = startTime.hours() - this.minHour;
-    return (diffH * 6 * 60 ) + (startTime.minute() * 6) + 30;
+    return (diffH * 6 * 60 ) + (startTime.minute() * 6);
+  }
+
+
+  toggleVote(trackSlotId, trackSlotIndex, trackIndex) {
+    this.trackSlotsService.pToggleVote(trackSlotId).subscribe(
+      data => {
+        this.updateSessionPreference.emit({
+          preference: data,
+          track_slot_index: trackSlotIndex,
+          track_index: trackIndex
+        })
+      }
+    );
   }
 
 }

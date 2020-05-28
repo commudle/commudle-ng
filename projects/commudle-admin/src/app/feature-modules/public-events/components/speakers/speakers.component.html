@@ -7,27 +7,7 @@
     </nb-card-header>
     <nb-card-body>
       <div class="speaker" *ngFor="let speaker of speakers">
-        <div class="profile-picture">
-          <img src="{{ speaker.user.avatar }}" alt="{{ speaker.user.name }}">
-        </div>
-        <div class="profile-info">
-          <p class="name"><strong>{{ speaker.user.name }}</strong></p>
-          <p class="designation">{{ speaker.user.designation }}</p>
-          <div class="user-social-links">
-            <a href="{{ speaker.user.linkedin }}">
-              <nb-icon icon="linkedin" status="primary"></nb-icon>
-            </a>
-            <a href="{{ speaker.user.twitter }}">
-              <nb-icon icon="twitter" status="primary"></nb-icon>
-            </a>
-            <a href="{{ speaker.user.github }}">
-              <nb-icon icon="github" status="primary"></nb-icon>
-            </a>
-            <a href="{{ speaker.user.personal_website }}">
-              <nb-icon icon="info" status="primary"></nb-icon>
-            </a>
-          </div>
-        </div>
+        <app-user-profile-horizontal [user]="speaker.user"></app-user-profile-horizontal>
       </div>
     </nb-card-body>
   </nb-card>

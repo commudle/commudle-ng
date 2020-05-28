@@ -17,9 +17,7 @@ export class InitResolver implements Resolve<any> {
   ) {  }
 
   resolve(route: ActivatedRouteSnapshot, rstate: RouterStateSnapshot): any {
-    console.log('here');
     if (!this.apiRoutesService.getBaseUrl()) {
-      console.log(environment.base_url);
       this.apiRoutesService.setBaseUrl(environment.base_url);
     }
   }

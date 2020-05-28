@@ -56,5 +56,11 @@ export class TrackSlotsService {
     );
   }
 
+  pToggleVote(trackSlotId): Observable<number> {
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.TOGGLE_VOTE), { track_slot_id: trackSlotId }
+    );
+  }
+
 
 }

@@ -1,0 +1,16 @@
+.volunteers {
+  display: flex;
+  flex-direction: column;
+
+  app-user-profile-horizontal {
+    margin: 0.5rem 0;
+  }
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    app-user-profile-horizontal {
+      width: 50%;
+    }
+  }
+}

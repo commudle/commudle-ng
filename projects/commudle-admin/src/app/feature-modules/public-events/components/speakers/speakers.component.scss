@@ -12,50 +12,11 @@ nb-card-body {
     display: flex;
     justify-content: start;
     align-items: flex-start;
-
-    padding: 0.5rem;
     margin: 0.5rem 0;
     border-bottom: 1px dotted lightgrey;
 
     @media screen and (min-width: 800px) {
       width: 50%;
-    }
-
-
-    .profile-picture{
-      width: 50px;
-      min-height: 50px;
-      overflow: hidden;
-      margin-right: 0.5rem;
-      img {
-        width: 100%;
-      }
-    }
-
-    .profile-info {
-      // word-break: break-word;
-      max-width: 80%;
-      .name {
-        margin: 0;
-      }
-
-      .designation {
-        margin: 0;
-        font-size: 0.8rem;
-      }
-
-      .user-social-links {
-        display: flex;
-        flex-wrap: wrap;
-        font-size: 12px;
-        a {
-          margin: 0 0.5rem;
-          nb-icon {
-            font-size: 0.8rem;
-          }
-        }
-      }
-
     }
   }
 }

@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="track" *ngFor="let elt of eventLocation.event_location_tracks">
+    <div class="track" *ngFor="let elt of eventLocation.event_location_tracks; let elti = index;">
       <div *ngFor="let hour of hours">
         <div *ngFor="let minute of minutes">
           <div *ngIf="minute%5 == 0" class="time-cell">
@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="track-slots-container">
-        <div *ngFor="let slot of elt.track_slots">
+        <div *ngFor="let slot of elt.track_slots; let tsi = index;">
           <div class="track-slot"
           [ngStyle]="{
             'height': slotSessionHeight(slot) + 'px',
@@ -56,20 +56,23 @@
               &nbsp;
               {{ slot.session_title }}
             </p>
+            <div class="slot-user" *ngIf="slot.user">
+              <div class="slot-user-picture">
+                <img src="{{ slot.user.avatar }}" alt="{{ slot.user.name }}">
+              </div>
+              <p>{{ slot.user.name }}</p>
+            </div>
+            <p class="clickable session-preference" *ngIf="slot.user_vote != null" (click)="toggleVote(slot.id, tsi, elti)">
+              <nb-icon icon="heart" *ngIf="slot.user_vote == true" status="info"></nb-icon>
+              <span *ngIf="!slot.user_vote" class="text-info">I Want A Seat</span>
+            </p>
             <p>
               <nb-icon icon="clock-outline"></nb-icon>
               <small>
                 {{ moment(slot.start_time).format('HH:mm A') }} - {{ moment(slot.end_time).format('HH:mm A') }}
               </small>
             </p>
-
-            <div class="slot-user" *ngIf="slot.user">
-              <div class="slot-user-picture">
-                <img src="{{ slot.user.avatar }}" alt="">
-              </div>
-              <p>{{ slot.user.name }}</p>
-            </div>
-            <p>
+            <p class="session-page-external-link">
               <small>
                 <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'speaker-session', slot.id]">
                   <nb-icon icon="external-link"></nb-icon>

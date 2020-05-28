@@ -9,6 +9,7 @@ import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_e
 import { IDataFormEntityResponseGroups } from 'projects/shared-models/data_form_entity_response_groups.model';
 import { IEvents } from 'projects/shared-models/events.model';
 import { IEventStatus } from 'projects/shared-models/event_status.model';
+import { IUsers } from 'projects/shared-models/users.model';
 
 
 @Injectable({
@@ -75,6 +76,14 @@ export class EventsService {
     let params = new HttpParams().set('event_id', eventId);
     return this.http.get<IEvent>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.GET), { params }
+    );
+  }
+
+
+  pGetEventVolunteers(eventId): Observable<IUsers> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.VOLUNTEERS), { params }
     );
   }
 

@@ -2,11 +2,12 @@
   <nb-card>
     <nb-card-body>
       <nb-tabset>
-        <nb-tab *ngFor="let el of eventLocations" tabTitle="{{ getLocationName(el) }}" tabIcon="{{ getTabIcon(el) }}">
+        <nb-tab *ngFor="let el of eventLocations; let i = index;" tabTitle="{{ getLocationName(el) }}" tabIcon="{{ getTabIcon(el) }}">
           <app-event-location-tracks
             [event]="event"
             [community]="community"
             [eventLocation]="el"
+            (updateSessionPreference)="updateSessionPreference($event, i)"
           ></app-event-location-tracks>
         </nb-tab>
       </nb-tabset>

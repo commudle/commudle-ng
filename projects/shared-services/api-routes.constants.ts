@@ -37,7 +37,8 @@ export const API_ROUTES = {
     UPDATE_STATUS: 'api/v2/events/update_status',
 
     PUBLIC: {
-      GET: 'api/v2/events/public_show'
+      GET: 'api/v2/events/public_show',
+      VOLUNTEERS: 'api/v2/events/public_volunteers'
     }
   },
 
@@ -114,6 +115,7 @@ export const API_ROUTES = {
     DELETE: 'api/v2/track_slots',
     PUBLIC: {
       GET: 'api/v2/track_slots/public_show',
+      TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote'
     }
   },
 

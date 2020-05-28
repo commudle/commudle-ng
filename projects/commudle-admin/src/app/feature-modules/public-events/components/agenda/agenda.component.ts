@@ -39,4 +39,9 @@ export class AgendaComponent implements OnInit {
     return (eventLocation.embedded_video_stream ? 'video' : 'pin');
   }
 
+  updateSessionPreference(data, locationIndex) {
+    this.eventLocations[locationIndex].event_location_tracks[data.track_index].track_slots[data.track_slot_index].user_vote = data.preference;
+
+  }
+
 }

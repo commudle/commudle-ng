@@ -12,5 +12,6 @@ export interface ITrackSlot {
   user: IUser;
   embedded_video_stream: IEmbeddedVideoStream;
   event_id: number;
+  user_vote: boolean;
 
 }
