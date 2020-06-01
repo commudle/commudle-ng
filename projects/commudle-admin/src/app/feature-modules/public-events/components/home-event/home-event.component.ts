@@ -40,7 +40,7 @@ export class HomeEventComponent implements OnInit {
   ) { }
 
   scroll(el: HTMLElement) {
-    el.scrollIntoView(true);
+    el.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
   }
 
   ngOnInit() {
