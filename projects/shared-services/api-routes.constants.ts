@@ -50,7 +50,9 @@ export const API_ROUTES = {
     GET: 'api/v2/event_data_form_entity_group',
     CREATE: 'api/v2/event_data_form_entity_groups',
     DELETE: 'api/v2/event_data_form_entity_groups',
-    UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp'
+    UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
+
+    PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms'
   },
 
 
@@ -115,7 +117,8 @@ export const API_ROUTES = {
     DELETE: 'api/v2/track_slots',
     PUBLIC: {
       GET: 'api/v2/track_slots/public_show',
-      TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote'
+      TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote',
+      LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions'
     }
   },
 
@@ -167,11 +170,14 @@ export const API_ROUTES = {
   },
 
   DISCUSSIONS: {
-    GET_OR_CREATE_BY_TRACK_SLOT: 'api/v2/discussions/get_or_create_by_track_slot'
+    PUBLIC_GET_OR_CREATE_BY_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_by_track_slot',
+    PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat'
   },
 
 
   USER_MESSAGES: {
-    TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages'
+    PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
+    PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
+
   }
 };

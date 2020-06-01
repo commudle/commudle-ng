@@ -13,9 +13,9 @@ import {
   NbIconModule,
   NbTooltipModule,
   NbPopoverModule,
-  NbTabsetModule
+  NbTabsetModule,
+  NbBadgeModule,
 } from '@nebular/theme';
-import { SessionDiscussionQuestionComponent } from './components/session-discussion-question/session-discussion-question.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SpeakerSessionQuestionRepliesComponent } from './components/speaker-session-discussion/speaker-session-question-replies/speaker-session-question-replies.component';
@@ -28,8 +28,7 @@ import { EventDescriptionComponent } from './components/event-description/event-
 import { CollaborationCommunitiesComponent } from './components/collaboration-communities/collaboration-communities.component';
 import { TeamComponent } from './components/team/team.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
-import { TrackSlotComponent } from './components/agenda/event-location-tracks/track-slot/track-slot.component';
-
+import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
 
 
 @NgModule({
@@ -37,7 +36,6 @@ import { TrackSlotComponent } from './components/agenda/event-location-tracks/tr
     HomeEventComponent,
     SpeakerSessionPageComponent,
     SpeakerSessionDiscussionComponent,
-    SessionDiscussionQuestionComponent,
     SpeakerSessionQuestionRepliesComponent,
     HighlightedLinksComponent,
     LiveSessionsComponent,
@@ -48,7 +46,7 @@ import { TrackSlotComponent } from './components/agenda/event-location-tracks/tr
     CollaborationCommunitiesComponent,
     TeamComponent,
     EventLocationTracksComponent,
-    TrackSlotComponent,
+    AttendingMembersComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +63,8 @@ import { TrackSlotComponent } from './components/agenda/event-location-tracks/tr
     NbIconModule,
     NbTooltipModule,
     NbPopoverModule,
-    NbTabsetModule
+    NbTabsetModule,
+    NbBadgeModule,
   ]
 })
 export class PublicEventsModule { }

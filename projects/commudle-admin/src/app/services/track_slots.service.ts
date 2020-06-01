@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
+import { ITrackSlots } from 'projects/shared-models/track_slots.model';
 
 
 @Injectable({
@@ -62,5 +63,10 @@ export class TrackSlotsService {
     );
   }
 
-
+  pGetLiveEventSessions(eventId): Observable<ITrackSlots> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<ITrackSlots>(
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.LIVE_EVENT_SESSIONS), {params}
+    )
+  }
 }

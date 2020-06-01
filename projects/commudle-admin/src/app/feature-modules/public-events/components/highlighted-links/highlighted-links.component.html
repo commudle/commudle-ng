@@ -1,7 +1,22 @@
 <div>
-  <nb-card>
+  <nb-card *ngIf="openForms.length > 0">
     <nb-card-body>
-      Highlighted links
+      <div class="open-forms">
+        <div class="form-link" *ngFor="let form of openForms">
+          <a
+            nbButton
+            [routerLink]="['/fill-form', form.data_form_entity_id]"
+            [queryParams]="{ next: currentRoute }"
+            size="small"
+            status="primary">
+            <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.SPEAKER" icon="award"></nb-icon>
+            <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.ATTENDEE" icon="people"></nb-icon>
+            <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.FEEDBACK" icon="bulb"></nb-icon>
+            {{ form.name }}
+            <nb-icon class="edit-icon" *ngIf="form.already_filled" icon="edit"></nb-icon>
+          </a>
+        </div>
+      </div>
     </nb-card-body>
   </nb-card>
 </div>

@@ -60,4 +60,13 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
+
+  pGetPublicOpenDataForms(eventId): Observable<IEventDataFormEntityGroups> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEventDataFormEntityGroups>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.PUBLIC_OPEN_DATA_FORMS),
+      { params }
+    );
+  }
+
 }

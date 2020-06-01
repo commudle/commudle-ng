@@ -1,0 +1,27 @@
+.open-forms {
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (min-width: 800px) {
+    flex-direction: column;
+  }
+
+
+  .form-link {
+    margin: 0.5rem;
+
+    @media screen and (min-width: 800px) {
+      a {
+        width: 90%;
+        overflow: hidden;
+        text-align: left;
+        display: inline-block;
+
+        .edit-icon {
+          float: right;
+        }
+      }
+    }
+
+  }
+}

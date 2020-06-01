@@ -1,76 +1,129 @@
-.event {
-  max-width: 1000px;
-  margin: 0 auto;
-  .header {
-    .image {
-      width: 100%;
-      overflow: hidden;
-      img {
+.page-container {
+  .event {
+    max-width: 1000px;
+    margin: 0 auto;
+    .header {
+      .image {
         width: 100%;
-      }
-    }
-  }
-
-  .filler {
-    padding: 0.5rem;
-    .community-details {
-      display: flex;
-      align-items: center;
-      .logo {
-        width: 50px;
+        overflow: hidden;
         img {
           width: 100%;
         }
       }
+    }
 
-      .name {
-        margin: 0 1rem;
+    .filler {
+      padding: 0.5rem;
+      .community-details {
+        display: flex;
+        align-items: center;
+        .logo {
+          width: 50px;
+          img {
+            width: 100%;
+          }
+        }
+
+        .name {
+          margin: 0 1rem;
+        }
+      }
+
+      .event-details {
+
       }
     }
 
-    .event-details {
-
-    }
-  }
-
-  .page-menu {
-    @media screen and (max-width: 640px) {
+    .page-menu {
       position: fixed;
+      background-color: white;
       width: 100%;
       bottom: 0;
       left: 0;
+      z-index: 1;
+
 
       nb-card {
         margin: 0;
       }
+
+      .menu-items {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        a {
+          cursor: pointer;
+          margin-right: 1.5rem;
+          text-decoration: none;
+          color: black;
+          span {
+            display: none;
+          }
+        }
+        nb-icon {
+
+          font-size: 1.5rem;
+        }
+      }
+      @media screen and (min-width: 800px){
+        position: sticky;
+        top: 4.75rem;
+
+        nb-card {
+          margin-bottom: 1rem;
+          .menu-items {
+            a {
+              span {
+                display: inline;
+              }
+            }
+          }
+        }
+
+      }
     }
-  }
 
 
-  .event-components {
-    display: flex;
-    flex-direction: column;
-    .highlighted-info {
-      order: 1;
-    }
-
-    .info {
-      order: 2;
-    }
-
-
-    @media screen and (min-width: 640px) {
-      flex-direction: row;
+    .event-components {
+      display: flex;
+      flex-direction: column;
       .highlighted-info {
-        flex-grow: 1;
-        order: 2;
-        width: 30%;
+        order: 1;
       }
 
       .info {
-        flex-grow: 3;
-        order: 1;
-        width:70%;
+        order: 2;
+      }
+
+
+      @media screen and (min-width: 640px) {
+        flex-direction: row;
+        .highlighted-info {
+          flex-grow: 1;
+          order: 2;
+          width: 30%;
+          height: fit-content;
+          position: sticky;
+          top: 5.5rem;
+        }
+
+        .info {
+          flex-grow: 3;
+          order: 1;
+          width:70%;
+        }
+      }
+
+      .event-chat {
+        nb-card {
+          height: 70vh;
+          ::ng-deep {
+            nb-card-body {
+              overflow: hidden;
+            }
+          }
+
+        }
       }
     }
   }

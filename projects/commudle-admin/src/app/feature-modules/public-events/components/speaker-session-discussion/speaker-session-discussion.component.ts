@@ -67,7 +67,7 @@ export class SpeakerSessionDiscussionComponent implements OnInit, OnDestroy {
 
 
   getDiscussion() {
-    this.discussionsService.getOrCreateByTrackSlot(this.trackSlot.id).subscribe(
+    this.discussionsService.pGetOrCreateByTrackSlot(this.trackSlot.id).subscribe(
       data => {
         this.discussion = data;
         this.reorder();

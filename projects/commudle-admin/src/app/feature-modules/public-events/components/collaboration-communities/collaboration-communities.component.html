@@ -7,7 +7,7 @@
       <div class="community" *ngFor="let cc of collaborationCommunities">
         <a [routerLink]="['/communities', cc.community.slug]">
           <div class="logo">
-            <img src="{{ cc.community.logo_image }}" alt="{{ cc.community.name }} Logo">
+            <img src="{{ cc.community.logo_path }}" alt="{{ cc.community.name }} Logo">
           </div>
           <p>{{ cc.community.name }}</p>
         </a>

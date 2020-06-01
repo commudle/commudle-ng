@@ -1,0 +1,11 @@
+div {
+  border-radius: 5px;
+  width: fit-content;
+  display: inline-block;
+  overflow: hidden;
+  p {
+    color: white;
+    margin: 0;
+    padding: 2px 4px;
+  }
+}

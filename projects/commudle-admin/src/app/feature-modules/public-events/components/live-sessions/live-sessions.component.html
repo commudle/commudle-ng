@@ -1,7 +1,20 @@
-<div>
+<div *ngIf="liveSessions.length > 0">
   <nb-card>
+    <nb-card-header>
+      <nb-icon icon="flash" status="success"></nb-icon> Live Now!
+    </nb-card-header>
     <nb-card-body>
-      Live sessions
+      <div class="session" *ngFor="let session of liveSessions">
+        <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'speaker-session', session.id]" target="_blank">
+          <div *ngIf="session.tags_list">
+            <app-badge *ngFor="let tag of session.tags_list.split(',')" [text]="tag" [fontSize]="'small'"></app-badge>
+          </div>
+          <h6 class="title">{{ session.session_title }} <small><nb-icon icon="external-link"></nb-icon></small></h6>
+          <p class="selected-session" *ngIf="session.user_vote === true">
+            <small>Selected By You</small>
+          </p>
+        </a>
+      </div>
     </nb-card-body>
   </nb-card>
 </div>

@@ -21,7 +21,14 @@ export class UserMessagesService {
   getTrackSlotDiscussionQuestions(discussionId, page, count): Observable<IUserMessages> {
     const params = new HttpParams().set('discussion_id', discussionId).set('page', page).set('count', count);
     return this.http.get<IUserMessages>(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_MESSAGES.TRACK_SLOT_DISCUSSION_MESSAGES), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.USER_MESSAGES.PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES), {params}
+    );
+  }
+
+  pGetDiscussionChatMessages(discussionId, page, count): Observable<IUserMessages> {
+    const params = new HttpParams().set('discussion_id', discussionId).set('page', page).set('count', count);
+    return this.http.get<IUserMessages>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_MESSAGES.PUBLIC_DISCUSSION_CHAT_MESSAGES), {params}
     );
   }
 

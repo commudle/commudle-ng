@@ -41,7 +41,7 @@ export class FillDataFormComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       data => {
         if (data.next) {
-          this.redirectRoute = data.next;
+          this.redirectRoute = decodeURIComponent(data.next);
         }
       }
     );
@@ -105,7 +105,7 @@ export class FillDataFormComponent implements OnInit {
 
 
   redirectTo($event) {
-    this.router.navigate(this.redirectRoute);
+    this.router.navigate([this.redirectRoute]);
   }
 
 }

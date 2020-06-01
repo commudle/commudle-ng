@@ -2,92 +2,151 @@
   <app-work-in-progress [entityName]="'Event Page'"></app-work-in-progress>
 </div> -->
 
-<div class="event" *ngIf="event && community">
-  <div class="header">
-    <!-- this will either be an image or just a plain background with the name of the event -->
-    <div class="filler" *ngIf="event.header_image_path">
-      <div class="community-details">
-        <div class="logo">
-          <img src="{{ community.logo_path }}" alt="{{ community.name }} Logo">
-        </div>
-        <p class="name">
-          {{ community.name }}
-        </p>
-      </div>
-      <div class="event-details">
-        <h1 class="name">
-          {{ event.name }}
-        </h1>
-        <div *ngIf="event.start_time && event.end_time" class="timings">
-          <p>
-            <nb-icon icon="clock-outline"></nb-icon>
-            <strong>
-              {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
-            </strong>
-            to
-            <strong *ngIf="event.end_time.getDate != event.start_time.getDate">
-              {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
-            </strong>
-            <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
-              {{ moment(event.end_time).format('h:mm A') }}
-            </strong>
-
-            <span *ngIf="event.timezone">
-              <nb-icon icon="globe"></nb-icon>
-              {{ momentTimezone.tz(event.timezone).format('z') }}
-            </span>
-
+<div class="page-container">
+  <div class="event" *ngIf="event && community">
+    <div class="header">
+      <!-- this will either be an image or just a plain background with the name of the event -->
+      <div class="filler" *ngIf="!event.header_image_path">
+        <div class="community-details">
+          <div class="logo">
+            <img src="{{ community.logo_path }}" alt="{{ community.name }} Logo">
+          </div>
+          <p class="name">
+            {{ community.name }}
           </p>
         </div>
-      </div>
-    </div>
-    <div class="image" *ngIf="event.header_image_path">
-      <img src="{{ event.header_image_path }}" alt="{{ event.name }}">
-    </div>
-  </div>
+        <div class="event-details">
+          <h1 class="name">
+            {{ event.name }}
+          </h1>
+          <div *ngIf="event.start_time && event.end_time" class="timings">
+            <p>
+              <nb-icon icon="clock-outline"></nb-icon>
+              <strong>
+                {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+              to
+              <strong *ngIf="event.end_time.getDate != event.start_time.getDate">
+                {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+              <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
+                {{ moment(event.end_time).format('h:mm A') }}
+              </strong>
 
-  <div class="page-menu">
-    <nb-card>
-      <nb-card-body>
-        <div class="menu-items">
+              <span *ngIf="event.timezone">
+                <nb-icon icon="globe"></nb-icon>
+                {{ momentTimezone.tz(event.timezone).format('z') }}
+              </span>
 
+            </p>
+          </div>
         </div>
-      </nb-card-body>
-    </nb-card>
-  </div>
+      </div>
+      <div class="image" *ngIf="event.header_image_path">
+        <img src="{{ event.header_image_path }}" alt="{{ event.name }}">
+      </div>
+    </div>
 
-  <div class="event-components">
-    <div class="highlighted-info">
-      <!-- links to forms + event slides + people who went -->
-      <!-- this will show the link to the forms if the event is live -->
-      <!-- else this will just show the links to event slides -->
-      <app-highlighted-links [event]="event" [community]="community"></app-highlighted-links>
+    <div class="page-menu">
+      <nb-card>
+        <nb-card-body>
+          <div class="menu-items">
+            <a (click)="scroll(description)">
+              <nb-icon icon="info-outline"></nb-icon>
+              <span>
+                Details
+              </span>
+            </a>
+            <a (click)="scroll(updates)" *ngIf="hasUpdates">
+              <nb-icon icon="star-outline" status="warning"></nb-icon>
+              <span>
+                Updates
+              </span>
+            </a>
+            <a (click)="scroll(agenda)" *ngIf="hasAgenda">
+              <nb-icon icon="pin-outline" status="primary"></nb-icon>
+              <span>
+                Schedule
+              </span>
+            </a>
+            <a (click)="scroll(speakers)" *ngIf="hasSpeakers">
+              <nb-icon icon="award" status="info"></nb-icon>
+              <span>
+                Speakers
+              </span>
+            </a>
+            <a  (click)="scroll(collaborationCommunities)" *ngIf="hasCollaborationCommunities">
+              <nb-icon icon="people" status="basic"></nb-icon>
+              <span>
+                Collaborations
+              </span>
+            </a>
+            <a  (click)="scroll(eventChat)" *ngIf="discussionChat">
+              <nb-icon icon="message-square-outline"></nb-icon>
+              <span>
+                Comments
+              </span>
+            </a>
+            <a  (click)="scroll(volunteers)" *ngIf="hasVolunteers">
+              <nb-icon  icon="people-outline" status="basic"></nb-icon>
+              <span>
+                Volunteers
+              </span>
+            </a>
+          </div>
+        </nb-card-body>
+      </nb-card>
     </div>
-    <div class="info">
-      <div class="live-sessions">
-        <app-live-sessions [event]="event" [community]="community"></app-live-sessions>
+
+    <div class="event-components">
+      <div class="highlighted-info">
+        <!-- links to forms + event slides + people who went -->
+        <!-- this will show the link to the forms if the event is live -->
+        <!-- else this will just show the links to event slides -->
+        <app-highlighted-links [event]="event" [community]="community"></app-highlighted-links>
+        <app-attending-members [event]="event" [community]="community"></app-attending-members>
+
       </div>
-      <div class="agenda">
-        <app-agenda [event]="event" [community]="community"></app-agenda>
+      <div class="info">
+        <div class="live-sessions">
+          <app-live-sessions [event]="event" [community]="community"></app-live-sessions>
+        </div>
+        <div class="updates" #updates>
+          <!-- the priority of this depends on the status
+            of the event, it should be at the top if the event is yet to go live  -->
+          <app-event-updates [event]="event" [community]="community" (hasUpdates)="hasUpdates = $event"></app-event-updates>
+        </div>
+        <div class="description" #description>
+          <app-event-description [event]="event" [community]="community"></app-event-description>
+        </div>
+        <div class="agenda" #agenda>
+          <app-agenda [event]="event" [community]="community" (hasAgenda)="hasAgenda = $event"></app-agenda>
+        </div>
+        <div class="all-speakers" #speakers>
+          <app-speakers [event]="event" [community]="community" (hasSpeakers)="hasSpeakers = $event"></app-speakers>
+        </div>
+        <div class="partner-communities" #collaborationCommunities>
+          <app-collaboration-communities [event]="event" [community]="community" (hasCollaborationCommunities)="hasCollaborationCommunities = $event"></app-collaboration-communities>
+        </div>
+        <div class="event-chat" #eventChat>
+          <!-- this is a unique case where we are giving a card as a wrapper because the chat component should be able to fit on any surface -->
+          <nb-card *ngIf="discussionChat">
+            <nb-card-header>
+              <nb-icon icon="message-square-outline"></nb-icon> Comments
+            </nb-card-header>
+            <nb-card-body>
+              <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
+            </nb-card-body>
+          </nb-card>
+        </div>
+        <div class="volunteers" #volunteers>
+          <app-team [event]="event" [community]="community" (hasVolunteers)="hasVolunteers = $event"></app-team>
+        </div>
+        <div class="tags"></div>
       </div>
-      <div class="all-speakers">
-        <app-speakers [event]="event" [community]="community"></app-speakers>
-      </div>
-      <div class="updates">
-        <!-- the priority of this depends on the status
-          of the event, it should be at the top if the event is yet to go live  -->
-        <app-event-updates [event]="event" [community]="community"></app-event-updates>
-      </div>
-      <div class="description">
-        <app-event-description [event]="event" [community]="community"></app-event-description>
-      </div>
-      <div class="partner-communities">
-        <app-collaboration-communities [event]="event" [community]="community"></app-collaboration-communities>
-      </div>
-      <div class="volunteers">
-        <app-team [event]="event" [community]="community"></app-team>
-      </div>
-      <div class="tags"></div>
     </div>
+
   </div>
 </div>
+
+

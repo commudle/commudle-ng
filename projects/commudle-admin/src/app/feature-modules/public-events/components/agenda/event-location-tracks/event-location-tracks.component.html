@@ -7,7 +7,7 @@
       <br>
       {{eventLocation.location.address}}
        &nbsp;
-      <a href="{{ eventLocation.location.map_link }}">
+      <a href="{{ eventLocation.location.map_link }}" target="_blank">
         <small>Go To Map</small>
         <nb-icon icon="external-link"></nb-icon>
       </a>
@@ -51,6 +51,9 @@
             'height': slotSessionHeight(slot) + 'px',
             'top': slotSessionOffsetFromTop(slot) + 'px' }"
             >
+            <div *ngIf="slot.tags_list">
+              <app-badge *ngFor="let tag of slot.tags_list.split(',')" [text]="tag" [fontSize]="'small'"></app-badge>
+            </div>
             <p>
               <nb-icon icon="info"></nb-icon>
               &nbsp;
@@ -62,9 +65,9 @@
               </div>
               <p>{{ slot.user.name }}</p>
             </div>
-            <p class="clickable session-preference" *ngIf="slot.user_vote != null" (click)="toggleVote(slot.id, tsi, elti)">
+            <p class="clickable session-preference" *ngIf="slot.user_vote != null && event.editable" (click)="toggleVote(slot.id, tsi, elti)">
               <nb-icon icon="heart" *ngIf="slot.user_vote == true" status="info"></nb-icon>
-              <span *ngIf="!slot.user_vote" class="text-info">I Want A Seat</span>
+              <nb-icon icon="heart-outline" *ngIf="!slot.user_vote" status="basic"></nb-icon>
             </p>
             <p>
               <nb-icon icon="clock-outline"></nb-icon>
@@ -80,7 +83,6 @@
                 </a>
               </small>
             </p>
-
           </div>
         </div>
       </div>

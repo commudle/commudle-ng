@@ -1,0 +1,44 @@
+<div class="discussion-chat-component">
+  <div #messagesContainer class="messages"  (scroll)="loadPreviousMessages()">
+    <div>
+      <div class="message" *ngFor="let um of messages">
+        <app-user-message
+          [message]="um"
+          [canReply]="true"
+          [permittedActions]="permittedActions"
+          [allActions]="allActions"
+          [currentUser]="currentUser"
+          (sendReply)="sendReply($event, um.id)"
+          (sendVote)="sendVote($event)"
+          (sendDelete)="delete($event)"
+          (sendFlag)="sendFlag($event)"
+          ></app-user-message>
+      </div>
+      <div *ngIf="messages.length === 0" class="filler-message">
+        <h4>
+          Be the first one to comment!
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="send-message-form">
+    <form *ngIf="currentUser" [formGroup]="chatMessageForm" (ngSubmit)="sendMessage()">
+       <input
+       type="text"
+       nbInput
+       fullWidth
+       formControlName="content"
+       placeholder="Add a Comment (max 200 characters)"
+       >
+       <button [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)" type="submit" nbButton fullWidth status="info">
+         <nb-icon icon="corner-down-left-outline"></nb-icon>
+       </button>
+    </form>
+
+    <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
+      Ask a Question
+    </button>
+ </div>
+
+</div>
+

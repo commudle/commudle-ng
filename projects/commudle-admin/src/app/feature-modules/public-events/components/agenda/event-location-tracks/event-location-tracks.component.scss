@@ -1,5 +1,5 @@
 .event-location-tracks {
-  $slot-width: 150px;
+  $slot-width: 190px;
   $slot-height: 30px;
 
   max-height: 70vh;
@@ -77,6 +77,7 @@
         padding: 0.5rem;
         overflow-y: auto;
         box-shadow: 1px 1px 5px 1px lightgrey;
+        width: 98%;
 
         nb-icon {
           font-size: 0.8rem;
@@ -112,6 +113,7 @@
   position: sticky;
   left: 0;
   background: white;
+  z-index: 1;
 }
 
 

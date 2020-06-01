@@ -16,10 +16,19 @@ export class DiscussionsService {
   ) { }
 
 
-  getOrCreateByTrackSlot(trackSlotId): Observable<IDiscussion> {
+  pGetOrCreateByTrackSlot(trackSlotId): Observable<IDiscussion> {
     const params = new HttpParams().set('track_slot_id', trackSlotId);
     return this.http.get<IDiscussion>(
-      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.GET_OR_CREATE_BY_TRACK_SLOT),
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_BY_TRACK_SLOT),
+      { params }
+    );
+  }
+
+
+  pGetOrCreateForEventChat(eventId): Observable<IDiscussion> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT),
       { params }
     );
   }
