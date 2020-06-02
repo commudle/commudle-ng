@@ -40,7 +40,7 @@
       width: 100%;
       bottom: 0;
       left: 0;
-      z-index: 1;
+      z-index: 5;
 
 
       nb-card {
@@ -96,6 +96,8 @@
       }
 
 
+
+
       @media screen and (min-width: 640px) {
         flex-direction: row;
         .highlighted-info {
@@ -111,6 +113,10 @@
           flex-grow: 3;
           order: 1;
           width:70%;
+        }
+
+        .full-width-column {
+          width: 100% !important;
         }
       }
 

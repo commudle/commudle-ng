@@ -1,0 +1,24 @@
+.users {
+  display: flex;
+  flex-wrap: wrap;
+
+  .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .profile-picture {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        vertical-align: text-top;
+        width: 100%;
+      }
+    }
+    margin: 0.1rem;
+  }
+  p {
+    margin: 9px 0;
+  }
+}
