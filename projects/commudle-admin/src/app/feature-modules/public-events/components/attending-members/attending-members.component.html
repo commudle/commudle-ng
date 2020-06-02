@@ -1,5 +1,24 @@
-<div *ngIf="">
+<div *ngIf="users.length > 0">
   <nb-card>
-    <nb-card-body></nb-card-body>
+    <nb-card-header>
+      Interested Members!
+    </nb-card-header>
+    <nb-card-body>
+      <div class="users">
+        <div class="user" *ngFor="let user of users" nbTooltip="{{ user.name }}">
+          <div class="profile-picture">
+            <img src="{{ user.avatar }}" alt="{{ user.name }}">
+          </div>
+        </div>
+        <p>
+          ... + {{ totalCount }} More
+        </p>
+      </div>
+
+
+      <nb-alert *ngIf="event.event_status.name === EEventStatuses.OPEN" status="info">
+        Entry By Invite Only!
+      </nb-alert>
+    </nb-card-body>
   </nb-card>
 </div>
