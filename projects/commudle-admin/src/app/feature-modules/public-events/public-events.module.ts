@@ -15,6 +15,7 @@ import {
   NbPopoverModule,
   NbTabsetModule,
   NbBadgeModule,
+  NbAlertModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -65,6 +66,7 @@ import { AttendingMembersComponent } from './components/attending-members/attend
     NbPopoverModule,
     NbTabsetModule,
     NbBadgeModule,
+    NbAlertModule
   ]
 })
 export class PublicEventsModule { }

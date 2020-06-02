@@ -28,6 +28,8 @@ export class HomeEventComponent implements OnInit {
   hasSpeakers = false;
   hasCollaborationCommunities = false;
   hasVolunteers = false;
+  hasOpenForms = false;
+  hasInterestedMembers = false;
 
 
   constructor(
