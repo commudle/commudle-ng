@@ -80,7 +80,8 @@ export const API_ROUTES = {
     GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
     UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp',
 
-    PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers'
+    PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers',
+    PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users'
   },
 
 
