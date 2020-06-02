@@ -65,4 +65,11 @@ export class DataFormEntityResponseGroupsService {
     );
   }
 
+  pEventInterestedUsers(eventId): Observable<any> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSE_GROUPS.PUBLIC_EVENT_INTERESTED_USERS), { params }
+    );
+  }
+
 }

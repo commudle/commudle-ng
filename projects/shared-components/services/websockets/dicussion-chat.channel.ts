@@ -41,7 +41,6 @@ export class DiscussionChatChannel {
             room: discussionId
           }, {
             received: (data) => {
-              console.log(data);
               this.channelData.next(data);
             }
           });
