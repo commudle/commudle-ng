@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
-import { ActionCableConnectionSocket } from '../../../../../shared-services/action-cable-connection.socket';
+import { ActionCableConnectionSocket } from '../../../shared-services/action-cable-connection.socket';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TrackSlotQuestionsChannel {
+export class DiscussionQnAChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
     ADD: 'add',
@@ -37,10 +37,11 @@ export class TrackSlotQuestionsChannel {
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.TRACK_SLOT_DISCUSSION,
+            channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_QNA,
             room: discussionId
           }, {
             received: (data) => {
+              console.log(data);
               this.channelData.next(data);
             }
           });
