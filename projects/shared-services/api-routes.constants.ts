@@ -171,7 +171,7 @@ export const API_ROUTES = {
   },
 
   DISCUSSIONS: {
-    PUBLIC_GET_OR_CREATE_BY_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_by_track_slot',
+    PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat'
   },
 

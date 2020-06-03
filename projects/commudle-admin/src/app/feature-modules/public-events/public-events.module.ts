@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PublicEventsRoutingModule } from './public-events-routing.module';
 import { HomeEventComponent } from './components/home-event/home-event.component';
 import { SpeakerSessionPageComponent } from './components/speaker-session-page/speaker-session-page.component';
-import { SpeakerSessionDiscussionComponent } from './components/speaker-session-discussion/speaker-session-discussion.component';
 import {
   NbCardModule,
   NbListModule,
@@ -19,7 +18,6 @@ import {
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-import { SpeakerSessionQuestionRepliesComponent } from './components/speaker-session-discussion/speaker-session-question-replies/speaker-session-question-replies.component';
 import { HighlightedLinksComponent } from './components/highlighted-links/highlighted-links.component';
 import { LiveSessionsComponent } from './components/live-sessions/live-sessions.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
@@ -36,8 +34,6 @@ import { AttendingMembersComponent } from './components/attending-members/attend
   declarations: [
     HomeEventComponent,
     SpeakerSessionPageComponent,
-    SpeakerSessionDiscussionComponent,
-    SpeakerSessionQuestionRepliesComponent,
     HighlightedLinksComponent,
     LiveSessionsComponent,
     AgendaComponent,

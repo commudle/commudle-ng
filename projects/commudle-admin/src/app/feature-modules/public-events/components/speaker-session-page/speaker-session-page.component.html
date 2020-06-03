@@ -78,8 +78,12 @@
           </nb-card-body>
         </nb-card>
       </div>
-      <div *ngIf="trackSlot && trackSlot.user">
-        <app-speaker-session-discussion [trackSlot]="trackSlot" [isActive]="event.editable"></app-speaker-session-discussion>
+      <div *ngIf="this.discussion">
+        <nb-card class="discussion">
+          <nb-card-body>
+            <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
+          </nb-card-body>
+        </nb-card>
       </div>
     </div>
   </div>
