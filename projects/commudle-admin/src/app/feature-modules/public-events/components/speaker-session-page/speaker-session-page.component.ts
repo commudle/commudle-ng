@@ -12,6 +12,8 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -25,6 +27,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   community: ICommunity;
   event: IEvent;
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
+  discussion: IDiscussion;
+
   speakerResource: ISpeakerResource;
   EEventStatuses = EEventStatuses;
   moment = moment;
@@ -37,6 +41,7 @@ export class SpeakerSessionPageComponent implements OnInit {
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
     private sanitizer: DomSanitizer,
+    private discussionsService: DiscussionsService,
     private title: Title
   ) { }
 
@@ -48,6 +53,7 @@ export class SpeakerSessionPageComponent implements OnInit {
     this.trackSlotsService.pGetTrackSlot(this.activatedRoute.snapshot.params['track_slot_id']).subscribe(
       data => {
         this.trackSlot = data;
+        this.getDiscussionQnA();
         this.speaker = data.user;
         if (this.trackSlot.embedded_video_stream) {
           this.sanitizedVideoCode =  this.sanitizer.bypassSecurityTrustHtml(this.trackSlot.embedded_video_stream.embed_code);
@@ -57,6 +63,14 @@ export class SpeakerSessionPageComponent implements OnInit {
           this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`)
         }
         this.getEvent();
+      }
+    );
+  }
+
+  getDiscussionQnA() {
+    this.discussionsService.pGetOrCreateQnAForTrackSlot(this.trackSlot.id).subscribe(
+      data => {
+        this.discussion = data;
       }
     );
   }
