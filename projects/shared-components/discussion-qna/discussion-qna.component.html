@@ -2,7 +2,7 @@
   <div #messagesContainer class="messages"  (scroll)="loadPreviousMessages()">
     <div>
       <div class="message" *ngFor="let um of messages">
-        <app-user-message
+        <app-qna-user-message
           [message]="um"
           [canReply]="true"
           [permittedActions]="permittedActions"
@@ -12,11 +12,11 @@
           (sendVote)="sendVote($event)"
           (sendDelete)="delete($event)"
           (sendFlag)="sendFlag($event)"
-          ></app-user-message>
+          ></app-qna-user-message>
       </div>
       <div *ngIf="messages.length === 0" class="filler-message">
         <h4>
-          Be the first one to comment!
+          Ask a Question, Live!
         </h4>
       </div>
     </div>
@@ -36,9 +36,26 @@
     </form>
 
     <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
-      Post a Message
+      Ask a Question
     </button>
  </div>
 
+  <ng-template #rules>
+    <div class="rules">
+      <p>Here's how it works</p>
+      <ul>
+        <li>You can ask a question live!</li>
+        <li>You can upvote a question asked by someone else</li>
+        <li>More upvotes, your question climbs up every 10 seconds</li>
+        <li>Find something uncool, flag it, 3 flags sum up for deleted question</li>
+        <li>If any of your 2 messages receive more than 5 flags, you will be barred from asking any more questions</li>
+        <li>Moderators can directly delete a question</li>
+      </ul>
+    </div>
+  </ng-template>
 </div>
+
+
+
+
 

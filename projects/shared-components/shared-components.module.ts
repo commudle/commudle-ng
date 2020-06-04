@@ -8,6 +8,8 @@ import { BadgeComponent } from './badge/badge.component';
 import { DiscussionChatComponent } from './discussion-chat/discussion-chat.component';
 import { UserMessageComponent } from './discussion-chat/user-message/user-message.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DiscussionQnAComponent } from './discussion-qna/discussion-qna.component';
+import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-user-message.component';
 
 
 
@@ -17,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserProfileHorizontalComponent,
     BadgeComponent,
     DiscussionChatComponent,
-    UserMessageComponent
+    UserMessageComponent,
+    DiscussionQnAComponent,
+    QnaUserMessageComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserProfileHorizontalComponent,
     BadgeComponent,
     DiscussionChatComponent,
-    UserMessageComponent
+    UserMessageComponent,
+    QnaUserMessageComponent,
+    DiscussionQnAComponent
   ]
 })
 export class SharedComponentsModule { }
