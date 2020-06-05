@@ -72,6 +72,15 @@ export class EventsService {
   }
 
 
+  pGetCommunityEvents(communityId): Observable<IEvents> {
+    let params = new HttpParams().set('community_id', communityId);
+    return this.http.get<IEvents>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INDEX_BY_COMMUNITY), {params}
+    );
+  }
+
+
+
   pGetEvent(eventId): Observable<IEvent> {
     let params = new HttpParams().set('event_id', eventId);
     return this.http.get<IEvent>(

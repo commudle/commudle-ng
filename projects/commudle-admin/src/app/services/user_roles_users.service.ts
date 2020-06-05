@@ -5,6 +5,7 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
+import { IUsers } from 'projects/shared-models/users.model';
 
 
 @Injectable({
@@ -55,6 +56,22 @@ export class UserRolesUsersService {
     return this.http.put<any>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ACTIVATE_COMMUNITY_ROLE),
       { token }
+    );
+  }
+
+
+  pGetCommunityLeadersByRole(communityId, userRoleName): Observable<IUsers> {
+    let params = new HttpParams().set('community_id', communityId).set('user_role_name', userRoleName);
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE), { params }
+    );
+  }
+
+
+  pGetCommunityMembers(communityId, page, count): Observable<IUsers> {
+    let params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_MEMBERS), { params }
     );
   }
 }

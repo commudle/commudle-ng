@@ -1,17 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
-import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
-import { AppComponent } from './app.component';
 import { CommunityControlPanelComponent } from './components/community-control-panel/community-control-panel.component';
-import { CommunityFormsListComponent } from './components/community-control-panel/community-forms-list/community-forms-list.component';
-import { CommunityEventsListComponent } from './components/community-control-panel/community-events-list/community-events-list.component';
-import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
-import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
 import { HomeComponent } from './components/home/home.component';
-import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -25,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'communities/:community_id',
-    component: HomeCommunityComponent,
+    loadChildren: () => import('./feature-modules/public-community/public-community.module').then(m => m.PublicCommunityModule)
   },
   {
     path: 'communities/:community_id/events/:event_id',
