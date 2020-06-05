@@ -40,12 +40,14 @@
       width: 100%;
       bottom: 0;
       left: 0;
-      z-index: 5;
+      z-index: 10;
 
 
       nb-card {
         margin: 0;
       }
+
+      box-shadow: 2px -5px 15px -7px lightgrey;
 
       .menu-items {
         display: flex;
@@ -70,7 +72,7 @@
       @media screen and (min-width: 800px){
         position: sticky;
         top: 4.75rem;
-
+        box-shadow: none;
         nb-card {
           margin-bottom: 1rem;
           .menu-items {

@@ -37,9 +37,12 @@ export class BasicUserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authWatchService.currentUser$.subscribe(currentUser => {
-      this.currentUser = currentUser;
-      this.userProfileForm.patchValue(this.currentUser);
-      this.uploadedProfilePicture = this.currentUser.avatar;
+      if (currentUser) {
+        this.currentUser = currentUser;
+        this.userProfileForm.patchValue(this.currentUser);
+        this.uploadedProfilePicture = this.currentUser.avatar;
+      }
+
     });
   }
 

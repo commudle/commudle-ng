@@ -135,9 +135,9 @@ export class EditEventComponent implements OnInit {
     this.startHour = this.eventForm.get('event').get('start_hour').value;
     this.startMinute = this.eventForm.get('event').get('start_minute').value;
     if (
-      this.startDate != ""
-      && this.startHour != ""
-      && this.startMinute != ""
+      this.startDate !== ""
+      && this.startHour !== ""
+      && this.startMinute !== ""
       ) {
 
         this.startTime = moment({
@@ -161,9 +161,9 @@ export class EditEventComponent implements OnInit {
     this.endHour = this.eventForm.get('event').get('end_hour').value;
     this.endMinute = this.eventForm.get('event').get('end_minute').value;
     if (
-      this.endDate != ""
-      && this.endHour != ""
-      && this.endMinute != ""
+      this.endDate !== ""
+      && this.endHour !== ""
+      && this.endMinute !== ""
     ) {
         this.endTime = moment({
           years: this.endDate.getFullYear(),
