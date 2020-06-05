@@ -63,4 +63,14 @@ export class CommunitiesService {
     );
   }
 
+
+  // Public api communication
+  pGetCommunityDetails(communityId): Observable<ICommunity> {
+    const params = new HttpParams().set('community_id', communityId);
+
+    return this.http.get<ICommunity>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC_DETAILS), { params }
+    );
+  }
+
 }
