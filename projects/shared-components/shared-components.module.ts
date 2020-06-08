@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DiscussionQnAComponent } from './discussion-qna/discussion-qna.component';
 import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-user-message.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { CommunityBadgeComponent } from './community-badge/community-badge.component';
 
 
 
@@ -23,6 +24,7 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     UserMessageComponent,
     DiscussionQnAComponent,
     QnaUserMessageComponent,
+    CommunityBadgeComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     DiscussionChatComponent,
     UserMessageComponent,
     QnaUserMessageComponent,
-    DiscussionQnAComponent
+    DiscussionQnAComponent,
+    CommunityBadgeComponent
   ]
 })
 export class SharedComponentsModule { }
