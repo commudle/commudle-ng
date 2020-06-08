@@ -26,7 +26,6 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe(data => {
       this.community = data.community;
-      console.log(this.community);
       this.getEvents();
     });
   }
