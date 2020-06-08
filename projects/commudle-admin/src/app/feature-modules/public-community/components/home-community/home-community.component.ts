@@ -19,8 +19,8 @@ export class HomeCommunityComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.getCommunity(params.community_id);
+    this.activatedRoute.data.subscribe(data => {
+      this.community = data.community;
     });
   }
 
@@ -28,7 +28,7 @@ export class HomeCommunityComponent implements OnInit {
     this.communitiesService.pGetCommunityDetails(communityId).subscribe(
       data => {
         this.community = data;
-        this.title.setTitle(`${this.community.name}`)
+        this.title.setTitle(`${this.community.name}`);
       }
     );
   }

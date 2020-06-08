@@ -1,0 +1,35 @@
+.about-community {
+  display: flex;
+  flex-direction: column;
+
+  .team {
+    p {
+      font-weight: bold;
+    }
+
+    .user {
+      margin: 1rem 0;
+    }
+  }
+
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+
+    .about {
+      width: 60%;
+      margin-right: 0.5rem;
+    }
+
+    .team {
+      width: 40%;
+
+      .organizers, .event-organizers {
+
+      }
+    }
+  }
+
+
+
+}

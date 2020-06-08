@@ -1,24 +1,69 @@
-<div>
+<div class="home-component" *ngIf="community">
   <div class="page-header">
-    Header
+    <div class="logo">
+      <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+    </div>
+    <div class="details">
+      <h1>{{ community.name }}</h1>
+      <p class="member-count">
+        <a [routerLink]="['members']">
+        <nb-icon icon="people" status="basic"></nb-icon>
+        {{ community.member_count }} Members
+        </a>
+      </p>
+      <div class="community-social-links">
+        <a href="{{ community.linkedin }}">
+          <nb-icon icon="linkedin" status="info"></nb-icon>
+        </a>
+        <a href="{{ community.twitter }}">
+          <nb-icon icon="twitter" status="info"></nb-icon>
+        </a>
+        <a href="{{ community.github }}">
+          <nb-icon icon="github" status="info"></nb-icon>
+        </a>
+        <a href="{{ community.website }}">
+          <nb-icon icon="info" status="info"></nb-icon>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="any update"></div>
   <div class="page-menu">
-    <a>
-      About + Team + social media streams
-    </a>
-    <a>
-      Events
-    </a>
-    <a>
-      Sessions by Experts
-    </a>
-    <a>
-      Members
-    </a>
+    <nb-card>
+      <nb-card-body>
+        <div class="menu-items">
+          <a [routerLink]="['/communities', community.slug]">
+            <nb-icon icon="info" status="basic"></nb-icon>
+            <span>
+              About
+            </span>
+          </a>
+          <a [routerLink]="['events']" routerLinkActive="active">
+            <nb-icon icon="calendar" status="info"></nb-icon>
+            <span>
+              Events
+            </span>
+          </a>
+          <a [routerLink]="['resources']" routerLinkActive="active">
+            <nb-icon icon="award" status="info"></nb-icon>
+            <span>
+              Sessions by Experts
+            </span>
+          </a>
+          <a [routerLink]="['members']" routerLinkActive="active">
+            <nb-icon icon="people" status="success"></nb-icon>
+            <span>
+              Members
+            </span>
+          </a>
+
+        </div>
+
+      </nb-card-body>
+    </nb-card>
   </div>
 
-  <div class="about"></div>
-  <div class="events"></div>
-  <div class="members"></div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
