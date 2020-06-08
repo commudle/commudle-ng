@@ -35,7 +35,7 @@ export class SpeakerResourcesService {
   pCommunitySpeakerResources(communityId): Observable<ISpeakerResources> {
     const params = new HttpParams().set('community_id', communityId);
     return this.http.get<ISpeakerResources>(
-      this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.CREATE_OR_UPDATE_BY_TOKEN),
+      this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.PUBLIC.COMMUNITY_RESOURCES),
       { params }
     );
   }

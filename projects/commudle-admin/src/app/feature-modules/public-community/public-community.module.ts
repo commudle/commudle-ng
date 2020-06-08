@@ -12,17 +12,19 @@ import {
   NbTooltipModule,
   NbPopoverModule,
   NbTabsetModule,
-  NbAlertModule
+  NbAlertModule,
+  NbBadgeModule
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { AboutComponent } from './components/about/about.component';
 import { EventsComponent } from './components/events/events.component';
 import { MembersComponent } from './components/members/members.component';
+import { EventResourcesComponent } from './components/event-resources/event-resources.component';
 
 
 @NgModule({
-  declarations: [HomeCommunityComponent, AboutComponent, EventsComponent, MembersComponent],
+  declarations: [HomeCommunityComponent, AboutComponent, EventsComponent, MembersComponent, EventResourcesComponent],
   imports: [
     CommonModule,
     PublicCommunityRoutingModule,
@@ -43,7 +45,8 @@ import { MembersComponent } from './components/members/members.component';
     NbTooltipModule,
     NbPopoverModule,
     NbTabsetModule,
-    NbAlertModule
+    NbAlertModule,
+    NbBadgeModule
   ]
 })
 export class PublicCommunityModule { }

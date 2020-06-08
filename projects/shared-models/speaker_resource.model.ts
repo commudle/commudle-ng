@@ -8,4 +8,5 @@ export interface ISpeakerResource {
   embedded_content: string;
   user: IUser;
   event: IEvent;
+  created_at: Date;
 }

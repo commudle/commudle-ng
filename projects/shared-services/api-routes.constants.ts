@@ -41,7 +41,7 @@ export const API_ROUTES = {
     PUBLIC: {
       GET: 'api/v2/events/public_show',
       VOLUNTEERS: 'api/v2/events/public_volunteers',
-      INDEX_BY_COMMUNITY: 'public_index_by_community'
+      INDEX_BY_COMMUNITY: 'api/v2/events/public_index_by_community'
     }
   },
 

@@ -1,0 +1,29 @@
+<div>
+  <nb-card class="resource" *ngFor="let sr of speakerResources">
+    <nb-card-body>
+      <h4 class="title" *ngIf="sr.title">{{ sr.title }}</h4>
+      <div>
+        <p>
+          At
+          <strong>
+            <a [routerLink]="['/communities', community.slug, '/events', sr.event.slug]">
+              {{ sr.event.name }}
+            </a>
+          </strong>
+        </p>
+        <p class="timestamp">
+          <nb-icon icon="clock-outline"></nb-icon>
+          {{ moment(sr.created_at).format('dddd Do MMM, YYYY') }}
+        </p>
+      </div>
+      <div class="content">
+        <div class="session-details" *ngIf="sr.session_details_links" [innerHTML]="sr.session_details_links"></div>
+        <div class="embedded-content" *ngIf="sr.embedded_content" [innerHTML]="sr.embedded_content"></div>
+      </div>
+
+      <div class="author">
+        <app-user-profile-horizontal [user]="sr.user"></app-user-profile-horizontal>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
