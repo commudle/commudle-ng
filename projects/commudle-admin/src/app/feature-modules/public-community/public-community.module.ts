@@ -21,6 +21,7 @@ import { AboutComponent } from './components/about/about.component';
 import { EventsComponent } from './components/events/events.component';
 import { MembersComponent } from './components/members/members.component';
 import { EventResourcesComponent } from './components/event-resources/event-resources.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { EventResourcesComponent } from './components/event-resources/event-reso
     FormsModule,
     ReactiveFormsModule,
     SharedComponentsModule,
+    SharedPipesModule,
 
 
 

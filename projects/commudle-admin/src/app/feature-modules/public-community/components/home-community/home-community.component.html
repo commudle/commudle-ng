@@ -12,16 +12,16 @@
         </a>
       </p>
       <div class="community-social-links">
-        <a href="{{ community.linkedin }}">
+        <a *ngIf="community.linkedin" href="{{ community.linkedin | completeurl:'linkedin' }}">
           <nb-icon icon="linkedin" status="info"></nb-icon>
         </a>
-        <a href="{{ community.twitter }}">
+        <a *ngIf="community.twitter" href="{{ community.twitter | completeurl:'twitter' }}">
           <nb-icon icon="twitter" status="info"></nb-icon>
         </a>
-        <a href="{{ community.github }}">
+        <a *ngIf="community.github" href="{{ community.github | completeurl:'github' }}">
           <nb-icon icon="github" status="info"></nb-icon>
         </a>
-        <a href="{{ community.website }}">
+        <a *ngIf="community.website" href="{{ community.website | completeurl }}">
           <nb-icon icon="info" status="info"></nb-icon>
         </a>
       </div>
