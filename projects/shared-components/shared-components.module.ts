@@ -10,6 +10,7 @@ import { UserMessageComponent } from './discussion-chat/user-message/user-messag
 import { ReactiveFormsModule } from '@angular/forms';
 import { DiscussionQnAComponent } from './discussion-qna/discussion-qna.component';
 import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-user-message.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 
@@ -21,7 +22,7 @@ import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-u
     DiscussionChatComponent,
     UserMessageComponent,
     DiscussionQnAComponent,
-    QnaUserMessageComponent
+    QnaUserMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +33,8 @@ import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-u
     NbButtonModule,
     NbIconModule,
     NbInputModule,
-    NbTooltipModule
+    NbTooltipModule,
+    SharedPipesModule
   ],
   exports: [
     WorkInProgressComponent,

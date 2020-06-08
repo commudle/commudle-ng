@@ -67,6 +67,17 @@ export class EditDataFormComponent implements OnInit {
     .controls[questionIndex].get('question_choices')).removeAt(choiceIndex);
   }
 
+  questionTypeChange(questionType, questionIndex: number) {
+    if (![4, 5].includes(questionType)) {
+      let choiceCount = (<FormArray>(<FormArray>this.editDataForm.get('data_form').get('questions'))
+      .controls[questionIndex].get('question_choices')).length;
+      for (let i = 0; i < choiceCount; i++) {
+        (<FormArray>(<FormArray>this.editDataForm.get('data_form').get('questions'))
+      .controls[questionIndex].get('question_choices')).removeAt(0);
+      }
+    }
+  }
+
   get questions() {
     return this.editDataForm.get('data_form').get('questions') as FormArray;
   }
@@ -164,7 +175,7 @@ export class EditDataFormComponent implements OnInit {
 
 
   updateDataForm() {
-    this.dataFormsService.updateDataForm(this.editDataForm.get('data_form').value).subscribe((dataForm => {
+    this.dataFormsService.updateDataForm(this.editDataForm.getRawValue().data_form).subscribe((dataForm => {
       this.dataForm = dataForm;
       this.fillExistingDataForm();
       this.toastLogService.successDialog('Updated!');

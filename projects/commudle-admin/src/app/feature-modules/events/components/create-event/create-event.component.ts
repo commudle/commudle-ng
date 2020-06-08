@@ -82,7 +82,7 @@ export class CreateEventComponent implements OnInit {
     delete formValue['end_date'];
 
     if (this.setStartDateTime() && this.setEndDateTime()) {
-      if (this.startTime > this.endTime){
+      if (this.startTime > this.endTime) {
         this.toastLogService.warningDialog('End time has to be greater then start time');
         return
       }else{
@@ -105,10 +105,11 @@ export class CreateEventComponent implements OnInit {
     this.startDate = this.eventForm.get('event').get('start_date').value;
     this.startHour = this.eventForm.get('event').get('start_hour').value;
     this.startMinute = this.eventForm.get('event').get('start_minute').value;
+
     if (
-      this.startDate != ""
-      && this.startHour != ""
-      && this.startMinute != ""
+      this.startDate !== ""
+      && this.startHour !== ""
+      && this.startMinute !== ""
       ) {
 
         this.startTime = moment({
@@ -118,7 +119,7 @@ export class CreateEventComponent implements OnInit {
           hours: this.startHour,
           minutes: this.startMinute
         }).toDate();
-
+        console.log(this.startTime);
         return true;
     }
     return false;
@@ -130,10 +131,11 @@ export class CreateEventComponent implements OnInit {
     this.endDate = this.eventForm.get('event').get('start_date').value;
     this.endHour = this.eventForm.get('event').get('end_hour').value;
     this.endMinute = this.eventForm.get('event').get('end_minute').value;
+    console.log(this.endDate, this.endHour, this.endMinute);
     if (
-      this.endDate != ""
-      && this.endHour != ""
-      && this.endMinute != ""
+      this.endDate !== ""
+      && this.endHour !== ""
+      && this.endMinute !== ""
     ) {
         this.endTime = moment({
           years: this.endDate.getFullYear(),
@@ -142,6 +144,7 @@ export class CreateEventComponent implements OnInit {
           hours: this.endHour,
           minutes: this.endMinute
         }).toDate();
+        console.log(this.endTime);
         return true;
     }
     return false;

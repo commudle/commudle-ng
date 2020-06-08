@@ -1,0 +1,45 @@
+<div class="events" *ngIf="events.length > 0">
+  <div *ngFor="let event of events">
+    <a class="clickable" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+      <nb-card class="event" [ngClass]="{'upcoming' : moment(event.end_time) > moment()}">
+        <nb-card-body>
+          <div class="header-image">
+            <img *ngIf="event.header_image_path" src="{{ event.header_image_path }}" alt="{{ event.name }}">
+            <nb-icon *ngIf="!event.header_image_path" icon="link" status="primary"></nb-icon>
+          </div>
+          <div class="details">
+            <h5>
+              <nb-icon nbTooltip="Completed" *ngIf="moment(event.end_time) < moment()" icon="checkmark-circle-2" status="success"></nb-icon>
+              {{ event.name }}
+            </h5>
+            <div>
+              <div *ngIf="event.start_time && event.end_time" [ngClass]="{'timings' : moment(event.end_time) > moment(), 'past-timings': moment(event.end_time) <= moment()}">
+                <p>
+                  <nb-icon icon="clock-outline"></nb-icon>
+                  <span>
+                    {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+                  </span>
+                  to
+                  <span *ngIf="event.end_time.getDate != event.start_time.getDate">
+                    {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+                  </span>
+                  <span *ngIf="event.end_time.getDate === event.start_time.getDate">
+                    {{ moment(event.end_time).format('h:mm A') }}
+                  </span>
+
+                  <span *ngIf="event.timezone">
+                    <nb-icon icon="globe"></nb-icon>
+                    {{ momentTimezone.tz(event.timezone).format('z') }}
+                  </span>
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </a>
+
+  </div>
+
+</div>

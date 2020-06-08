@@ -12,7 +12,9 @@ export const API_ROUTES = {
     USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
-    SEARCH_BY_NAME: 'api/v2/communities/search_by_name'
+    SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
+
+    PUBLIC_DETAILS: 'api/v2/communities/public_show'
   },
 
 
@@ -38,7 +40,8 @@ export const API_ROUTES = {
 
     PUBLIC: {
       GET: 'api/v2/events/public_show',
-      VOLUNTEERS: 'api/v2/events/public_volunteers'
+      VOLUNTEERS: 'api/v2/events/public_volunteers',
+      INDEX_BY_COMMUNITY: 'api/v2/events/public_index_by_community'
     }
   },
 
@@ -133,7 +136,10 @@ export const API_ROUTES = {
     CREATE: 'api/v2/user_roles_users/',
     DELETE: 'api/v2/user_roles_users/',
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',
-    ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role'
+    ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
+
+    PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
+    PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members'
   },
 
   // event_collaboration_communities
@@ -167,7 +173,11 @@ export const API_ROUTES = {
 
   SPEAKER_RESOURCES: {
     SHOW_BY_TOKEN: 'api/v2/speaker_resources/show_by_token',
-    CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token'
+    CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
+
+    PUBLIC: {
+      COMMUNITY_RESOURCES: 'api/v2/speaker_resources/public_community_sessions'
+    }
   },
 
   DISCUSSIONS: {

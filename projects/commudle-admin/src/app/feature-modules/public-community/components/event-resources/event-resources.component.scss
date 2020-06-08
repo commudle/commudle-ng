@@ -1,0 +1,31 @@
+.resource {
+  .title {
+    margin: 0 0 0.5rem;
+  }
+
+  .timestamp {
+    font-size: small;
+    nb-icon {
+      font-size: small;
+    }
+  }
+
+  .content {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 0.5rem;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    .session-details {
+      margin: 0.5rem 0;
+    }
+
+    .embedded-content {
+      margin: 0.5rem 0;
+    }
+  }
+
+  .author {
+    margin-top: 1rem;
+  }
+}
