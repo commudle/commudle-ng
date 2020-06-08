@@ -50,7 +50,7 @@
               <div class="question-settings">
                 <label>
                   Question Type
-                  <nb-select placeholder="Question Type*" formControlName="question_type_id" required status="primary" size="tiny" hero>
+                  <nb-select (selectedChange)="questionTypeChange($event, i)" placeholder="Question Type*" formControlName="question_type_id" required status="primary" size="tiny" hero>
                     <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
                       {{ qt.name }}
                     </nb-option>

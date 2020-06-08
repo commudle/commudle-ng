@@ -1,0 +1,35 @@
+.users {
+  display: flex;
+  flex-direction: column;
+
+  .user {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin: 1rem;
+  }
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .user {
+      width: 25%;
+    }
+  }
+}
+
+.load-more {
+  text-align: center;
+}
+
+.total {
+  text-align: center;
+  h3 {
+    margin: 0;
+    font-weight: 300;
+  }
+  nb-icon {
+    font-size: 2rem;
+  }
+}

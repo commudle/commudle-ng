@@ -69,6 +69,17 @@ export class CreateDataFormComponent implements OnInit {
     .controls[questionIndex].get('question_choices')).removeAt(choiceIndex);
   }
 
+  questionTypeChange(questionType, questionIndex: number) {
+    if (![4, 5].includes(questionType)) {
+      let choiceCount = (<FormArray>(<FormArray>this.createDataForm.get('data_form').get('questions'))
+      .controls[questionIndex].get('question_choices')).length;
+      for (let i = 0; i < choiceCount; i++) {
+        (<FormArray>(<FormArray>this.createDataForm.get('data_form').get('questions'))
+      .controls[questionIndex].get('question_choices')).removeAt(0);
+      }
+    }
+  }
+
   get questions() {
     return this.createDataForm.get('data_form').get('questions') as FormArray;
   }

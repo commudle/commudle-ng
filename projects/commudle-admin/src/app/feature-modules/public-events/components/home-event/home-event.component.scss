@@ -40,20 +40,24 @@
       width: 100%;
       bottom: 0;
       left: 0;
-      z-index: 5;
+      z-index: 10;
 
 
       nb-card {
         margin: 0;
       }
 
+      box-shadow: 2px -5px 15px -7px lightgrey;
+
       .menu-items {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
+        width: 100%;
+        justify-content: space-evenly;
         a {
           cursor: pointer;
-          margin-right: 1.5rem;
+          margin: 0 0.5rem;
           text-decoration: none;
           color: black;
           span {
@@ -68,11 +72,13 @@
       @media screen and (min-width: 800px){
         position: sticky;
         top: 4.75rem;
-
+        box-shadow: none;
         nb-card {
           margin-bottom: 1rem;
           .menu-items {
+            justify-content: flex-start;
             a {
+              margin-right: 1.5rem;
               span {
                 display: inline;
               }
