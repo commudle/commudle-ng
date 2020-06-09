@@ -19,6 +19,75 @@
 
   </div>
 
+  <div>
+    <nb-card>
+      <nb-card-body>
+        <app-event-status [event]="event" (updatedEventStatus)="updateEventStatus($event)"></app-event-status>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card size="Tiny">
+      <nb-card-header>Posted Updates</nb-card-header>
+      <nb-card-body>
+        <app-event-updates
+        [event]="event"
+        ></app-event-updates>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>Details</nb-card-header>
+      <nb-card-body>
+        <div class="event-timings">
+          <div *ngIf="event.start_time">
+            <fa-icon [icon]="faClock"></fa-icon>
+            <p>
+              <strong>
+                {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+              <br>
+              to
+              <br>
+              <strong>
+                {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+
+                {{ moment(event.end_time).format('z') }}
+
+            </p>
+
+
+          </div>
+        </div>
+
+        <div class="event-description">
+          <fa-icon [icon]="faInfoCircle"></fa-icon>
+          &nbsp;
+          <div [innerHTML]="event.description" ></div>
+        </div>
+
+      </nb-card-body>
+      <nb-card-footer *ngIf="event.editable">
+        <div>
+          <a nbButton status="primary" outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+            <fa-icon [icon]="faEdit"></fa-icon>
+            &nbsp;
+            Edit
+          </a>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Forms</nb-card-header>
+      <nb-card-body>
+        <app-form-groups [event]="event" [community]="community"></app-form-groups>
+      </nb-card-body>
+      <nb-card-footer></nb-card-footer>
+    </nb-card>
+    
+
+  </div>
+
   <div class="card-row">
     <div class="card-col">
       <nb-card>
