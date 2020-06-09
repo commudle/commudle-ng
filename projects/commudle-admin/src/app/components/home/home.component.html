@@ -4,24 +4,39 @@
       <img src="/assets/images/commudle-logo128.png" alt="Commudle">
     </div>
     <div class="revamp-text">
-      <p> Hey Community! </p>
+      <p> What is Commudle? </p>
       <p>
-        We're working on a cool new design update and will be supporting online events soon. Till then stay tuned 😃
+        A platform for Tech Communities to organize the awesome events and conferences.
+        <br>
+        And share the content from these events.  😃
+        <br>
+        <br>
+        P.S. Online events are now supported (YouTube streaming with Live QnA). Hop on, write an email to more@commudle.com
+        <br>
+        <br>
+        It's FREE for communities, will always be.
       </p>
-      <button *ngIf="!currentUser" (click)="login()" nbButton status="danger"><nb-icon icon="star"></nb-icon>
-        Organizer? Login Here!
-      </button>
-      <button *ngIf="currentUser" (click)="toggleSidebar()" nbButton status="danger"><nb-icon icon="menu"></nb-icon>
-        Get A Sneak Peak! Begin Here
-      </button>
     </div>
   </div>
-  <div class="section description">
+
+  <nb-card class="section" *ngIf="communities.length > 0">
+    <nb-card-body>
+      <h3 class="header-communities">
+        A Growing Family!
+      </h3>
+      <div class="communities">
+        <div class="community" *ngFor="let community of communities; let i=index" [ngClass]="{'shine': i === shineIndex || 1%shineIndex === 0}">
+          <app-community-badge [community]="community"></app-community-badge>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <!-- <div class="section description">
     <div class="photo-grid">
       <div *ngFor="let photo of photoGrid"></div>
     </div>
-  </div>
-  <!-- <div class="photo-grid">
+  </div> -->
+  <!-- <div class="photo-grid"
     Home Component
   </div> -->
 </div>
