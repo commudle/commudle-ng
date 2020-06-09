@@ -5,6 +5,8 @@ This is a community management platform for Tech Communities across the world. T
 
 
 ## To setup
+- Install Node.js and npm (at least version 13 of Node.js and at least version 6 of npm)
+- Install [@angular/cli](https://cli.angular.io/)
 - Clone the project.
 - Run `npm install`.
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
@@ -25,3 +27,7 @@ This is a community management platform for Tech Communities across the world. T
 
 ## Build for production
 - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+
+## Design Framework / UI Kit
+- We are using [Nebular](https://akveo.github.io/nebular/) which uses [Eva Design System](https://eva.design/) in commudle-admin
