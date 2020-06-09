@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeCommunityComponent } from './home-community.component';
+import { CommunityBadgeComponent } from './community-badge.component';
 
-describe('HomeCommunityComponent', () => {
-  let component: HomeCommunityComponent;
-  let fixture: ComponentFixture<HomeCommunityComponent>;
+describe('CommunityBadgeComponent', () => {
+  let component: CommunityBadgeComponent;
+  let fixture: ComponentFixture<CommunityBadgeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeCommunityComponent ]
+      declarations: [ CommunityBadgeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeCommunityComponent);
+    fixture = TestBed.createComponent(CommunityBadgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

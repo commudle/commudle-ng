@@ -23,6 +23,23 @@
   }
 }
 
-.section.description {
+.section {
+  .header-communities {
+    text-align: center;
+    font-weight: 300;
+  }
+}
+
+.communities {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .community.shine {
+    transition: all 1s ease-in-out;
+    border-radius: 99rem;
+    box-shadow: 0px 0px 10px 0px silver;
+  }
 
 }

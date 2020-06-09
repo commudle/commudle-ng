@@ -12,20 +12,19 @@ export class CompleteUrlPipe implements PipeTransform {
           if (url.includes('twitter') || url.includes('t.co')) {
             return `http://${url}`;
           } else {
-            return `http://twitter.com/${url}`
+            return `http://twitter.com/${url}`;
           }
         case 'linkedin':
           if (url.includes('linkedin')) {
             return `http://${url}`;
           } else {
-            return `http://linkedin.com/${url}`
+            return `http://linkedin.com/${url}`;
           }
         case 'github':
-          console.log(url);
           if (url.includes('github')) {
             return `http://${url}`;
           } else {
-            return `http://github.com/${url}`
+            return `http://github.com/${url}`;
           }
         default:
           return url;

@@ -65,6 +65,12 @@ export class CommunitiesService {
 
 
   // Public api communication
+  pGetCommunities(): Observable<ICommunities> {
+    return this.http.get<ICommunities>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC_INDEX)
+    );
+  }
+
   pGetCommunityDetails(communityId): Observable<ICommunity> {
     const params = new HttpParams().set('community_id', communityId);
 

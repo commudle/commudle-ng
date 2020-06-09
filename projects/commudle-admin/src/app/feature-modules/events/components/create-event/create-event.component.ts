@@ -119,7 +119,6 @@ export class CreateEventComponent implements OnInit {
           hours: this.startHour,
           minutes: this.startMinute
         }).toDate();
-        console.log(this.startTime);
         return true;
     }
     return false;
@@ -131,7 +130,6 @@ export class CreateEventComponent implements OnInit {
     this.endDate = this.eventForm.get('event').get('start_date').value;
     this.endHour = this.eventForm.get('event').get('end_hour').value;
     this.endMinute = this.eventForm.get('event').get('end_minute').value;
-    console.log(this.endDate, this.endHour, this.endMinute);
     if (
       this.endDate !== ""
       && this.endHour !== ""
@@ -144,7 +142,7 @@ export class CreateEventComponent implements OnInit {
           hours: this.endHour,
           minutes: this.endMinute
         }).toDate();
-        console.log(this.endTime);
+        (this.endTime);
         return true;
     }
     return false;

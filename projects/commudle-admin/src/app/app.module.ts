@@ -46,7 +46,6 @@ import { CommunityFormsListActionsComponent } from './components/community-contr
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EmailerComponent } from './components/emailer/emailer.component';
 import { HomeComponent } from './components/home/home.component';
-import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
@@ -76,7 +75,6 @@ export function initApp(appInitService: AppInitService) {
     CommunityFormsListActionsComponent,
     EmailerComponent,
     HomeComponent,
-    HomeCommunityComponent,
     FillDataFormComponent,
     LogoutComponent,
     SidebarMenuComponent,
