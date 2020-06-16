@@ -5,6 +5,12 @@ import { EventDataFormEntityGroupsService } from 'projects/commudle-admin/src/ap
 import { IEventDataFormEntityGroup } from 'projects/shared-models/event_data_form_enity_group.model';
 import { ERegistationTypes } from 'projects/shared-models/enums/registration_types.enum';
 import { Router } from '@angular/router';
+import { EventSimpleRegistrationsService } from 'projects/commudle-admin/src/app/services/event-simple-registrations.service';
+import { IEventSimpleRegistration, EEventSimpleRegistrationStatuses } from 'projects/shared-models/event_simple_registration.model';
+import { UserEventRegistrationsService } from 'projects/commudle-admin/src/app/services/user-event-registrations.service';
+import { ERegistrationStatuses } from 'projects/shared-models/enums/registration_statuses.enum';
+import { IUserEventRegistration } from 'projects/shared-models/user_event_registration.model';
+
 
 @Component({
   selector: 'app-highlighted-links',
@@ -13,21 +19,34 @@ import { Router } from '@angular/router';
 })
 export class HighlightedLinksComponent implements OnInit {
   ERegistationTypes = ERegistationTypes;
+  EEventSimpleRegistrationStatuses = EEventSimpleRegistrationStatuses;
+  ERegistrationStatuses = ERegistrationStatuses;
 
   @Input() community: ICommunity;
   @Input() event: IEvent;
   @Output() hasOpenForms = new EventEmitter();
 
   openForms: IEventDataFormEntityGroup[] = [];
+  eventSimpleRegistration: IEventSimpleRegistration;
+  userEventRegistration: IUserEventRegistration;
   currentRoute;
 
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
+    private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
+    private userEventRegistrationsService: UserEventRegistrationsService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.getOpenForms();
+    if (!this.event.custom_registration && this.event.editable) {
+      this.getEventSimpleRegistration();
+      this.getUserEventRegistration();
+    } else {
+      this.getOpenForms();
+    }
+
+
     this.currentRoute = encodeURIComponent(this.router.url);
   }
 
@@ -43,7 +62,38 @@ export class HighlightedLinksComponent implements OnInit {
         }
       );
     }
+  }
 
+  getEventSimpleRegistration() {
+    this.eventSimpleRegistrationsService.pGet(this.event.id).subscribe(
+      data => {
+        if (data) {
+          this.eventSimpleRegistration = data;
+          this.hasOpenForms.emit(true);
+        }
+      }
+    );
+  }
+
+  toggleUserEventRegistration() {
+    this.userEventRegistrationsService.pToggle(this.eventSimpleRegistration.id).subscribe(
+      data => {
+        this.userEventRegistration = data;
+        if (data.registration_status.name === ERegistrationStatuses.CANCELLED) {
+          this.eventSimpleRegistration.current_user_registered = false;
+        } else {
+          this.eventSimpleRegistration.current_user_registered = true;
+        }
+      }
+    );
+  }
+
+  getUserEventRegistration() {
+    this.userEventRegistrationsService.pShow(this.event.id).subscribe(
+      data => {
+        this.userEventRegistration = data;
+      }
+    );
   }
 
 }

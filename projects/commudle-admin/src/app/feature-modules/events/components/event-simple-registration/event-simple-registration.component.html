@@ -1,0 +1,36 @@
+<div class="user-event-registration" *ngIf="eventSimpleRegistration">
+
+  <div>
+    <div class="control-status-example">
+      <nb-checkbox [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN" (checkedChange)="toggleRegistration()">
+        Registrations {{eventSimpleRegistration.status}}
+      </nb-checkbox>
+    </div>
+    <div>
+      <a
+        nbButton
+        outline
+        status="info"
+        size="tiny"
+        (click)="openEmailWindow()">
+        <nb-icon icon="email-outline"></nb-icon>
+        &nbsp;
+        Send By EMail
+      </a>
+    </div>
+
+  </div>
+
+  <div class="registration-count" *ngIf="eventSimpleRegistration.user_event_registrations_count > 0">
+    <p>
+      <span>
+        <nb-icon icon="people-outline" status="primary"></nb-icon> {{ eventSimpleRegistration.user_event_registrations_count }}
+      </span>
+      <br>
+      <a [routerLink]="[eventSimpleRegistration.id, 'user-event-registrations']">
+        View Registrations
+      </a>
+    </p>
+  </div>
+
+</div>

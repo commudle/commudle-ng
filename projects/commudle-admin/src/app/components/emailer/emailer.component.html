@@ -25,7 +25,7 @@
 
       <div class="fieldset" class="form-mail-type-selection">
         <div class="fieldset" *ngIf="eventDataFormEntityGroups.length > 0">
-          <p>Which Form?</p>
+          <p>Source?</p>
           <nb-radio-group
             name="event_data_form_entity_group_id"
             formControlName="event_data_form_entity_group_id"
@@ -35,10 +35,26 @@
             </nb-radio>
           </nb-radio-group>
         </div>
+        <div class="fieldset" *ngIf="eventSimpleRegistration">
+          <p>
+            Single Click Registration
+          </p>
+        </div>
 
-        <div class="fieldset" *ngIf="selectedEventDataFormEntityGroup">
+        <div class="fieldset" *ngIf="selectedEventDataFormEntityGroup || eventSimpleRegistration">
           <p>Let's Be Specific!</p>
-          <nb-radio-group
+            <nb-radio-group
+              *ngIf="selectedEventDataFormEntityGroup"
+              name="registration_selection_type"
+              formControlName="registration_selection_type"
+              (valueChange)="toggleEmailBodyValidation($event)">
+              <nb-radio *ngFor="let reg of selectedFormRegistrationType" [value]="reg.value">
+                {{ reg.display }}
+              </nb-radio>
+            </nb-radio-group>
+            
+            <nb-radio-group
+              *ngIf="eventSimpleRegistration"
               name="registration_selection_type"
               formControlName="registration_selection_type"
               (valueChange)="toggleEmailBodyValidation($event)">

@@ -1,0 +1,28 @@
+.video-player-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    .filler {
+      display: block;
+      text-align: center;
+      color: lightgrey;
+      font-size: 1.2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      nb-icon {
+        font-size: 3.5rem;
+        color: lightgrey;
+      }
+
+    }
+  }
+}

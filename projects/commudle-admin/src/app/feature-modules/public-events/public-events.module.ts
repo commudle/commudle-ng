@@ -29,7 +29,6 @@ import { TeamComponent } from './components/team/team.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
 
-
 @NgModule({
   declarations: [
     HomeEventComponent,
