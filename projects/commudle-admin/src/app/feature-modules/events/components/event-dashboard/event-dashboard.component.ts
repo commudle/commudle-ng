@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
 import { IEventStatus } from 'projects/shared-models/event_status.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
+import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -15,6 +16,7 @@ import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum
 })
 export class EventDashboardComponent implements OnInit {
   moment = moment;
+  EEventStatuses = EEventStatuses;
 
   faClock = faClock;
   faEdit = faEdit;
@@ -26,7 +28,8 @@ export class EventDashboardComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private eventsService: EventsService
   ) {}
 
   ngOnInit() {
@@ -42,6 +45,22 @@ export class EventDashboardComponent implements OnInit {
 
   updateEventStatus($event: IEventStatus) {
     this.event.event_status = $event;
+  }
+
+  updateRegistrationType(value) {
+    this.eventsService.updateCustomRegistration(this.event.id, value).subscribe(
+      data => {
+        this.event = data;
+      }
+    );
+  }
+
+  updateAgendaType(value) {
+    this.eventsService.updateCustomAgenda(this.event.id, value).subscribe(
+      data => {
+        this.event = data;
+      }
+    );
   }
 
 }

@@ -1,0 +1,22 @@
+main {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #2D8CFF;
+  color: #ffffff;
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #2681F2;
+}

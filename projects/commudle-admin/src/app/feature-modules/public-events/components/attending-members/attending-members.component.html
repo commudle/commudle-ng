@@ -11,7 +11,7 @@
           </div>
         </div>
         <p>
-          ... + {{ totalCount }} More
+          <span *ngIf="totalCount > 0">... + {{ totalCount }} More</span>
         </p>
       </div>
 

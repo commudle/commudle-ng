@@ -1,0 +1,51 @@
+<div class="embedded-video-stream" *ngIf="!event.custom_agenda">
+  <div class="embedded-video-stream-form">
+    <form  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
+        <div>
+          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
+            <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
+              YouTube (URL)
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
+              Jitsi (https://meet.jit.si/)
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
+              Other (Embed Code)
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <div>
+          <label>
+            <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
+              Video Url
+            </span>
+            <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
+              Jitsi Meet URL (people will be required to log in to join)
+            </span>
+
+            <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.OTHER">
+              Embed Code
+            </span>
+
+            <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>
+          </label>
+          <span *ngIf="embeddedVideoStreamForm['controls'].embed_code.touched && embeddedVideoStreamForm['controls'].embed_code.invalid && embeddedVideoStreamForm['controls'].embed_code.errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+
+      <div class="save-button-bottom">
+        <button [disabled]="!embeddedVideoStreamForm.valid" type="submit" nbButton fullWidth status="info">
+          Save
+        </button>
+      </div>
+
+    </form>
+  </div>
+  <div class="preview">
+    <app-video-stream [videoSource]="embeddedVideoStreamForm.get('source').value" [videoCode]="embeddedVideoStreamForm.get('embed_code').value" [fillerText]="'Auto Preview'"></app-video-stream>
+  </div>
+
+
+</div>
