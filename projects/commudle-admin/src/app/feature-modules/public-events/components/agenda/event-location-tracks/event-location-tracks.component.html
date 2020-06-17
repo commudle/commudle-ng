@@ -77,7 +77,7 @@
             </p>
             <p class="session-page-external-link">
               <small>
-                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'speaker-session', slot.id]">
+                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" [queryParams]="{track_slot_id: slot.id}">
                   <nb-icon icon="external-link"></nb-icon>
                   Session Page
                 </a>

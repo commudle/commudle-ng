@@ -8,12 +8,12 @@
     <youtube-player
         *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
         videoId="{{ playerUrl }}"
-        [width]="640"
-        [height]="360"
+        [width]="width || 640"
+        [height]="height || 360"
       >
     </youtube-player>
       <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.JITSI_MEET)">
-        <iframe [src]="playerUrl" frameborder="0" width="640px" height="360px"></iframe>
+        <iframe [src]="playerUrl" frameborder="0" width="{{width || 640}}px" height="{{ height || 360 }}px"></iframe>
       </div>
 
       <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">

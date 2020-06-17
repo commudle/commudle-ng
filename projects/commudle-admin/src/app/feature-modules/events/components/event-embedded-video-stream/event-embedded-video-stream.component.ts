@@ -37,7 +37,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadYouTubeScript();
     this.embeddedVideoStreamForm.patchValue({
       streamable_type: 'Event',
       streamable_id: this.event.id
@@ -57,12 +56,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit {
         }
       }
     );
-  }
-
-  loadYouTubeScript(){
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.body.appendChild(tag);
   }
 
 

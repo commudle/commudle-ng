@@ -1,128 +1,147 @@
 .speaker-session-details {
   display: flex;
   justify-content: center;
+  width: 100%;
   .card-row {
     display: flex;
     flex-direction: column;
     margin: 0 -0.5rem;
+    width: 100%;
     @media screen and (min-width: 1000px) {
       flex-direction: row;
     }
 
-
-    .speaker-details {
-
-      nb-card-body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        h5, p {
-          margin-bottom: 0.5rem;
-        }
-        .avatar {
-          width: 75px;
-          img {
-            width: 100%;
-          }
-        }
-
-        .social-links {
-          display: flex;
-          justify-content: space-around;
-          nb-icon {
-            color: #477dff;
-          }
-        }
-
-        .about-me {
-          word-break: break-word;
-        }
-      }
-
-
-
-      @media screen and (max-width: 999px) {
-        width: 100%;
-        nb-card-body {
-          flex-direction: row;
-
-          .about-me {
-            width: 60%;
-            margin-left: 1rem;
-            text-align: left;
-          }
-        }
-      }
-
+    .card-session-details {
+      width: 100%;
 
       @media screen and (min-width: 1000px) {
-        width: 200px;
-        nb-card {
-          // position: sticky;
-          // top: 0;
-        }
+        width: 60%;
       }
 
-    }
 
-
-    .session-details {
-
-      .session-event {
-        nb-card {
-          margin: 0 2.5%;
-
-          .live-notification {
-            font-size: 1.2rem;
-          }
+      .session-details {
+        .community {
+          width: fit-content;
         }
-      }
 
-      .track-slot {
-        >a {
-          display: flex;
-          align-items: center;
-          .community-logo {
-            width: 50px;
-            img {
-              width: 100%;
-            }
-          }
-          p {
-            margin-left: 1rem;
-          }
+        a {
+          text-decoration: none;
+        }
+        p {
+          margin-left: 0.5rem;
         }
 
         h4 {
           margin-top: 0.3rem;
           margin-bottom: 0;
         }
+      }
 
-        .embedded-video-stream {
-          width: 560px;
-          height: 340px;
-          margin: 0 auto;
-          overflow: scroll  ;
+      .track-slot-details {
+        margin-left: 0.3rem;
+      }
+
+      .speaker-details {
+
+        nb-card-body {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          width: 100%;
+
+          h5, p {
+            margin-bottom: 0.5rem;
+          }
+          .avatar {
+            width: 75px;
+            img {
+              width: 100%;
+            }
+          }
+
+          .social-links {
+            display: flex;
+            justify-content: space-around;
+            nb-icon {
+              color: #477dff;
+            }
+          }
+
+          .about-me {
+            word-break: break-word;
+            width: 60%;
+            margin-left: 1rem;
+            text-align: left;
+          }
         }
-
-      }
-
-      @media screen and (max-width: 999px) {
-        width: 100%;
-      }
-
-      @media screen and (min-width: 1000px) {
-        width: 800px;
-      }
-
-
-      .discussion {
-        margin: 0 2.5%;
-        height: 70vh;
       }
     }
+
+    .video-stream {
+      height: 50vh;
+
+      @media screen and (min-width: 1000px) {
+        height: 460px;
+      }
+
+      nb-card {
+        height: 100%;
+      }
+
+    }
+
+    .card-live-discussion {
+      width: 100%;
+      height: 100%;
+
+      @media screen and (min-width: 1000px) {
+        width: 40%;
+
+        nb-card {
+          height: 100%;
+        }
+      }
+    }
+
+
+    // .session-details {
+
+    //   .session-event {
+    //     nb-card {
+    //       margin: 0 2.5%;
+
+    //       .live-notification {
+    //         font-size: 1.2rem;
+    //       }
+    //     }
+    //   }
+
+    //   .track-slot {
+
+
+    //     .embedded-video-stream {
+    //       width: 560px;
+    //       height: 340px;
+    //       margin: 0 auto;
+    //       overflow: scroll  ;
+    //     }
+
+    //   }
+
+    //   @media screen and (max-width: 999px) {
+    //     width: 100%;
+    //   }
+
+    //   @media screen and (min-width: 1000px) {
+    //     width: 800px;
+    //   }
+
+
+    //   .discussion {
+    //     margin: 0 2.5%;
+    //     height: 70vh;
+    //   }
+    // }
 
   }
 }
