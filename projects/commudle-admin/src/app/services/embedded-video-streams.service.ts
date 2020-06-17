@@ -34,11 +34,11 @@ export class EmbeddedVideoStreamsService {
   }
 
 
-  // pGet(eventId): Observable<IEventCollaborationCommunities> {
-  //   let params = new HttpParams().set('event_id', eventId);
-  //   return this.http.get<IEventCollaborationCommunities>(
-  //     this.apiRoutesService.getRoute(API_ROUTES.EVENT_COLLABORATION_COMMUNITIES.PUBLIC_INDEX), { params }
-  //   );
-  // }
+  pGet(streamableType, streamableId): Observable<IEmbeddedVideoStream> {
+    let params = new HttpParams().set('streamable_id', streamableId).set('streamable_type', streamableType);
+    return this.http.get<IEmbeddedVideoStream>(
+      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.PUBLIC.GET), { params }
+    );
+  }
 
 }

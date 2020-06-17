@@ -2,7 +2,7 @@
   padding: 0.5rem;
   display: flex;
   align-items: flex-start;
-  
+
   .profile-picture{
     width: 50px;
     min-height: 50px;
@@ -11,18 +11,33 @@
     img {
       width: 100%;
     }
+
+    &.medium {
+      width: 75px;
+      min-height: 75px;
+      margin-right: 0.75rem;
+    }
   }
 
   .profile-info {
     // word-break: break-word;
     max-width: 80%;
+    text-align: left;
     .name {
       margin: 0;
+
+      &.medium {
+        font-size: 1.2rem;
+      }
     }
 
     .designation {
       margin: 0;
       font-size: 0.8rem;
+
+      &.medium {
+        font-size: 0.9rem;
+      }
     }
 
     .user-social-links {
@@ -34,6 +49,20 @@
         nb-icon {
           font-size: 0.8rem;
         }
+      }
+
+      &.medium {
+        nb-icon {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .about-me {
+      font-size: 0.8rem;
+
+      &.medium {
+        font-size: 0.8rem;
       }
     }
 

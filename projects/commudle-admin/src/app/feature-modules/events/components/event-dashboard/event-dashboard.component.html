@@ -4,7 +4,9 @@
       <nb-card>
         <nb-card-body>
           <div class="community-badge">
-            <app-community-badge [community]="community"></app-community-badge>
+            <a [routerLink]="['/admin/communities', community.slug]">
+              <nb-icon icon="arrow-ios-back"></nb-icon> Back
+            </a>
           </div>
           <div class="event-details">
             <div class="name-links">

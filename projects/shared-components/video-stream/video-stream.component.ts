@@ -13,6 +13,8 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   @Input() videoSource: string;
   @Input() videoCode: any;
   @Input() fillerText: string;
+  @Input() width: number;
+  @Input() height: number;
 
   playerUrl: any;
 
@@ -21,7 +23,6 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    console.log('inited');
     this.setPreview();
   }
 
@@ -53,4 +54,5 @@ export class VideoStreamComponent implements OnInit, OnChanges {
     const val = this.videoCode.match(regExp);
     this.playerUrl = (val && val[7].length === 11) ? val[7] : '';
   }
+
 }
