@@ -143,11 +143,11 @@ export class EventLocationsComponent implements OnInit {
         }
         break;
     }
-
     this.windowRef = this.windowService.open(
       this.eventLocationFormTemplate,
       { title: `Edit Location`, context: {operationType: 'edit', eventLocation: eventLocation}},
     );
+
   }
 
   editEventLocation(eventLocation) {

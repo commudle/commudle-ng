@@ -1,9 +1,45 @@
+.community-badge {
+  width: fit-content;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+
+    .name-links {
+      width: 50%;
+    }
+
+    .details {
+      width: 50%;
+    }
+  }
+}
+
+.advanced-option-switch {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0 0.5rem;
+  }
+}
+
 .card-row {
   display: flex;
   flex-direction: column;
   margin: 0 -0.5rem;
+
   @media screen and (min-width: 800px) {
     flex-direction: row;
+  }
+
+  @media screen and (max-width: 800px) {
+    .event-guide {
+      display: none;
+    }
   }
 
 }
@@ -12,6 +48,7 @@
   flex: 1 0 100%;
   flex-direction: column;
   margin: 0 0.5rem;
+  position: relative;
   @media screen and (min-width: 800px) {
     flex: 1 0 calc(50% - 1rem);
     flex-direction: row;
@@ -43,4 +80,9 @@
 
 fa-icon{
   vertical-align: text-top;
+}
+
+.event-guide {
+  position: sticky;
+  top: 4.8rem;
 }

@@ -1,0 +1,24 @@
+<div class="video-player-container">
+  <div class="video-player">
+    <p class="filler" *ngIf="!videoCode">
+      <nb-icon icon="video"></nb-icon>
+      <br/>
+      <span> {{ fillerText }} </span>
+    </p>
+    <youtube-player
+        *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
+        videoId="{{ playerUrl }}"
+        [width]="width || 640"
+        [height]="height || 360"
+      >
+    </youtube-player>
+      <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.JITSI_MEET)">
+        <iframe [src]="playerUrl" frameborder="0" width="{{width || 640}}px" height="{{ height || 360 }}px"></iframe>
+      </div>
+
+      <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">
+        <div [innerHTML]="playerUrl"></div>
+      </div>
+
+  </div>
+</div>

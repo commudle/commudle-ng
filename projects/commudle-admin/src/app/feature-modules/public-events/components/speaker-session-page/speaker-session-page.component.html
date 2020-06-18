@@ -1,54 +1,20 @@
 <div class="speaker-session-details">
   <div class="card-row">
-    <div *ngIf="speaker" class="speaker-details">
-      <nb-card>
-        <nb-card-body>
-
-          <div class="avatar">
-            <img src="{{speaker.avatar}}" alt="{{ speaker.name }}">
-          </div>
-          <div>
-            <div>
-              <h5>{{ speaker.name }}</h5>
-              <p>{{ speaker.designation }}</p>
-            </div>
-            <div class="social-links">
-              <a href="{{ speaker.linkedin }}">
-                <nb-icon icon="linkedin"></nb-icon>
-              </a>
-              <a href="{{ speaker.twitter }}">
-                <nb-icon icon="twitter"></nb-icon>
-              </a>
-              <a href="{{ speaker.github }}">
-                <nb-icon icon="github"></nb-icon>
-              </a>
-              <a href="{{ speaker.personal_website }}">
-                <nb-icon icon="info"></nb-icon>
-              </a>
-            </div>
-          </div>
-          <div class="about-me" *ngIf="speaker.about_me">
-            <p>
-              {{ speaker.about_me }}
-            </p>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-
-    <div class="session-details" *ngIf="community">
-      <div class="session-event">
+    <div class="card-session-details">
+      <div class="session-details">
         <nb-card>
           <nb-card-body>
-            <div class="track-slot">
-              <a>
-                <div class="community-logo">
-                  <img src="{{ community.logo_path }}" alt="{{ community.name }}">
-                </div>
-                <p>
+            <div>
+              <div class="community">
+                <app-community-badge [community]="community"></app-community-badge>
+              </div>
+              <p>
+                <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
                   {{ event.name }}
-                </p>
-              </a>
+                </a>
+              </p>
+            </div>
+            <div class="track-slot-details" *ngIf="trackSlot">
               <h4>
                 {{trackSlot.session_title}}
               </h4>
@@ -63,29 +29,78 @@
                   {{ moment(trackSlot.end_time).format('h:mm A') }}
                 </small>
               </p>
-
-
-              <div class="embedded-video-stream" *ngIf="trackSlot.embedded_video_stream">
-                <div [innerHTML]="sanitizedVideoCode">
-
-                </div>
-              </div>
-
-              <div *ngIf="speakerResource && event.event_status.name == EEventStatuses.COMPLETED">
-
-              </div>
             </div>
           </nb-card-body>
         </nb-card>
       </div>
-      <div *ngIf="this.discussion">
+
+      <div *ngIf="speaker" class="speaker-details">
+        <nb-card>
+          <nb-card-body>
+            <div>
+              <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true"></app-user-profile-horizontal>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+      <div class="video-stream">
+        <nb-card>
+          <nb-card-body>
+            <div>
+              <app-video-stream
+              *ngIf="trackSlot && trackSlot.embedded_video_stream"
+              [videoCode]="trackSlot.embedded_video_stream.embed_code"
+              [videoSource]="trackSlot.embedded_video_stream.source"
+              [fillerText]="'Loading Video...'"
+              [width]="playerWidth"
+              [height]="playerHeight"
+            >
+            </app-video-stream>
+
+            <app-video-stream
+              *ngIf="eventEmbeddedVideoStream && !event.custom_agenda"
+              [videoCode]="eventEmbeddedVideoStream.embed_code"
+              [videoSource]="eventEmbeddedVideoStream.source"
+              [fillerText]="'Loading Video...'"
+              [width]="playerWidth"
+              [height]="playerHeight"
+            >
+            </app-video-stream>
+
+            </div>
+
+          </nb-card-body>
+        </nb-card>
+
+      </div>
+
+    </div>
+
+    <div class="card-live-discussion">
+      <nb-card>
+        <nb-card-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Live Questions" *ngIf="discussion">
+              <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
+            </nb-tab>
+            <nb-tab tabTitle="Polls">
+              Tab content 2
+            </nb-tab>
+           </nb-tabset>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+
+
+      <!-- <div *ngIf="this.discussion">
         <nb-card class="discussion">
           <nb-card-body>
             <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
           </nb-card-body>
         </nb-card>
-      </div>
-    </div>
+      </div> -->
   </div>
 
 </div>

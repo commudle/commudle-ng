@@ -24,6 +24,14 @@ export class DiscussionsService {
     );
   }
 
+  pGetOrCreateQnAForEvent(eventId): Observable<IDiscussion> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT),
+      { params }
+    );
+  }
+
 
   pGetOrCreateForEventChat(eventId): Observable<IDiscussion> {
     const params = new HttpParams().set('event_id', eventId);

@@ -54,6 +54,7 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   closeSidebar() {
+    console.log(window.screen.width);
     if (window.screen.width <= 1000) {
       this.sidebarService.collapse();
     }

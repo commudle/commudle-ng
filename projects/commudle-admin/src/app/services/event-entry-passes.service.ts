@@ -16,10 +16,19 @@ export class EventEntryPassesService {
   ) { }
 
 
+  // this creates an entry pass for custom form registrations
   createEntryPass(dataFormEntityResponseGroupId): Observable<IEventEntryPass> {
     return this.http.post<IEventEntryPass>(
       this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT_ENTRY_PASS), {
         data_form_entity_response_group_id: dataFormEntityResponseGroupId
+       }
+    );
+  }
+
+  createUserEventRegistrationEntryPass(userEventRegistrationId): Observable<IEventEntryPass> {
+    return this.http.post<IEventEntryPass>(
+      this.apiRoutesService.getRoute(API_ROUTES.CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS), {
+        user_event_registration_id: userEventRegistrationId
        }
     );
   }
