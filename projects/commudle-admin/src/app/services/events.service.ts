@@ -71,6 +71,24 @@ export class EventsService {
     );
   }
 
+  updateCustomRegistration(eventId, customRegistration): Observable<IEvent> {
+    return this.http.put<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE_CUSTOM_REGISTRATION), {
+        event_id: eventId,
+        custom_registration: customRegistration
+      }
+    );
+  }
+
+  updateCustomAgenda(eventId, customAgenda): Observable<IEvent> {
+    return this.http.put<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE_CUSTOM_AGENDA), {
+        event_id: eventId,
+        custom_agenda: customAgenda
+      }
+    );
+  }
+
 
   pGetCommunityEvents(communityId): Observable<IEvents> {
     let params = new HttpParams().set('community_id', communityId);

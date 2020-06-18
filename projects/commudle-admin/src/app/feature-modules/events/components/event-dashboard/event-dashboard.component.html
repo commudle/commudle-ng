@@ -3,21 +3,129 @@
     <div class="card-col">
       <nb-card>
         <nb-card-body>
-          <h3>
-            {{ event.name }}
-          </h3>
-          <div>
-            <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
-              <nb-icon icon="external-link"></nb-icon>
-              <br>
-              Event Page
+          <div class="community-badge">
+            <a [routerLink]="['/admin/communities', community.slug]">
+              <nb-icon icon="arrow-ios-back"></nb-icon> Back
             </a>
+          </div>
+          <div class="event-details">
+            <div class="name-links">
+              <h3>
+                {{ event.name }}
+              </h3>
+              <div class="event-timings">
+                <div *ngIf="event.start_time">
+                  <fa-icon [icon]="faClock"></fa-icon>
+                  <p>
+                    <strong>
+                      {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+                    </strong>
+                    to
+                    <strong>
+                      {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+                    </strong>
+
+                      {{ moment(event.end_time).format('z') }}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+                  <nb-icon icon="external-link"></nb-icon>
+                  <br>
+                  Event Page
+                </a>
+              </div>
+            </div>
+            <div class="details">
+              <div class="event-description">
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+                &nbsp;
+                <div [innerHTML]="event.description" ></div>
+              </div>
+              <div *ngIf="event.editable">
+                <a nbButton status="primary" size="tiny" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+                  <fa-icon [icon]="faEdit"></fa-icon>
+                  &nbsp;
+                  Edit
+                </a>
+              </div>
+            </div>
           </div>
         </nb-card-body>
       </nb-card>
     </div>
 
   </div>
+
+  <!-- <div>
+    <nb-card>
+      <nb-card-body>
+        <app-event-status [event]="event" (updatedEventStatus)="updateEventStatus($event)"></app-event-status>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card size="Tiny">
+      <nb-card-header>Posted Updates</nb-card-header>
+      <nb-card-body>
+        <app-event-updates
+        [event]="event"
+        ></app-event-updates>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>Details</nb-card-header>
+      <nb-card-body>
+        <div class="event-timings">
+          <div *ngIf="event.start_time">
+            <fa-icon [icon]="faClock"></fa-icon>
+            <p>
+              <strong>
+                {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+              <br>
+              to
+              <br>
+              <strong>
+                {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+
+                {{ moment(event.end_time).format('z') }}
+
+            </p>
+
+
+          </div>
+        </div>
+
+        <div class="event-description">
+          <fa-icon [icon]="faInfoCircle"></fa-icon>
+          &nbsp;
+          <div [innerHTML]="event.description" ></div>
+        </div>
+
+      </nb-card-body>
+      <nb-card-footer *ngIf="event.editable">
+        <div>
+          <a nbButton status="primary" outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+            <fa-icon [icon]="faEdit"></fa-icon>
+            &nbsp;
+            Edit
+          </a>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>Forms</nb-card-header>
+      <nb-card-body>
+        <app-form-groups [event]="event" [community]="community"></app-form-groups>
+      </nb-card-body>
+      <nb-card-footer></nb-card-footer>
+    </nb-card>
+
+
+  </div> -->
 
   <div class="card-row">
     <div class="card-col">
@@ -27,7 +135,7 @@
         </nb-card-body>
       </nb-card>
 
-      <nb-card size="Tiny">
+      <nb-card size="tiny" *ngIf="event.event_status.name != EEventStatuses.DRAFT">
         <nb-card-header>Posted Updates</nb-card-header>
         <nb-card-body>
           <app-event-updates
@@ -37,67 +145,205 @@
       </nb-card>
 
       <nb-card>
-        <nb-card-header>Details</nb-card-header>
+        <nb-card-header>
+          <p>
+            <strong>
+              Registration Type
+            </strong>
+          </p>
+          <div class="advanced-option-switch" *ngIf="event.editable">
+            <p>One Click Registration</p>
+            <nb-toggle status="primary" [checked]="event.custom_registration" (checkedChange)="updateRegistrationType($event)"></nb-toggle>
+            <p>Registration Forms</p>
+          </div>
+        </nb-card-header>
         <nb-card-body>
-          <div class="event-timings">
-            <div *ngIf="event.start_time">
-              <fa-icon [icon]="faClock"></fa-icon>
-              <p>
-                <strong>
-                  {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
-                </strong>
-                <br>
-                to
-                <br>
-                <strong>
-                  {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
-                </strong>
-
-                  {{ moment(event.end_time).format('z') }}
-
-              </p>
-
-
-            </div>
-          </div>
-
-          <div class="event-description">
-            <fa-icon [icon]="faInfoCircle"></fa-icon>
-            &nbsp;
-            <div [innerHTML]="event.description" ></div>
-          </div>
-
-        </nb-card-body>
-        <nb-card-footer *ngIf="event.editable">
-          <div>
-            <a nbButton status="primary" outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
-              <fa-icon [icon]="faEdit"></fa-icon>
-              &nbsp;
-              Edit
-            </a>
-          </div>
-        </nb-card-footer>
-      </nb-card>
-    </div>
-
-    <div class="card-col">
-      <nb-card>
-        <nb-card-header>Forms</nb-card-header>
-        <nb-card-body>
-          <app-form-groups [event]="event" [community]="community"></app-form-groups>
+          <app-form-groups *ngIf="event.custom_registration" [event]="event" [community]="community"></app-form-groups>
+          <app-event-simple-registration *ngIf="!event.custom_registration" [event]="event" [community]="community"></app-event-simple-registration>
         </nb-card-body>
         <nb-card-footer></nb-card-footer>
       </nb-card>
-    </div>
-  </div>
-  <div class="card-row">
-    <div class="card-col">
+
       <nb-card>
         <nb-card-header>
-          Event Agenda
+          <p>
+            <strong>
+              Agenda
+            </strong>
+          </p>
+          <div class="advanced-option-switch" *ngIf="event.editable">
+            <p>
+              Single Session
+              <br>
+              (online only)
+            </p>
+            <nb-toggle status="primary" [checked]="event.custom_agenda" (checkedChange)="updateAgendaType($event)"></nb-toggle>
+            <p>
+              Multiple Locations / Tracks / Sessions
+              <br>
+              (online or offline)
+            </p>
+          </div>
         </nb-card-header>
         <nb-card-body>
-          <app-event-locations [event]="event" [community]="community"></app-event-locations>
+          <app-event-locations *ngIf="event.custom_agenda" [event]="event" [community]="community"></app-event-locations>
+          <app-event-embedded-video-stream *ngIf="!event.custom_agenda" [event]="event" [community]="community"></app-event-embedded-video-stream>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div class="card-col">
+      <div class="event-stats"></div>
+      <nb-card class="event-guide">
+        <nb-card-body>
+          <p class="text-info">
+            <strong>
+              It's simple!
+            </strong>
+          </p>
+          <nb-accordion>
+            <nb-accordion-item>
+             <nb-accordion-item-header>Status</nb-accordion-item-header>
+             <nb-accordion-item-body>
+               <ul>
+                 <li>
+                   <p>
+                    <strong>Draft</strong>: Only the organizers and people who have the link can see the event
+                   </p>
+                 </li>
+                 <li>
+                  <p>
+                    <strong>Open</strong>: The event is visible on the community page
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
+                  </p>
+                </li>
+               </ul>
+               <p> * <small>Event can be edited upto 5 days after completion</small></p>
+             </nb-accordion-item-body>
+            </nb-accordion-item>
+            <nb-accordion-item>
+              <nb-accordion-item-header>Registration Type</nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <ul>
+                  <li>
+                    <p>
+                     <strong>One Click Registration</strong>
+                    </p>
+                    <p>
+                      <small>Members can register for the event in a single click </small>
+                      <br>
+                      <small>You can view their registrations from the 'View Registrations' link and send them unique entry passes</small>
+                    </p>
+                  </li>
+                  <li>
+                   <p>
+                     <strong>Registration Forms [Higher attendance percentage!]</strong>
+                   </p>
+                   <p>
+                    <small>Use the forms you created on <strong><a [routerLink]="['/admin/communities', community.slug]">{{ community.name }}</a></strong> page</small>
+                  </p>
+                    <ul>
+                      <li>
+                        <p><strong>STEP 1</strong>: Roll out forms</p>
+                        <p>
+                          <small>Form Type: <strong>Attendee</strong> For people who will be attending the event</small>
+                          <br>
+                          <small>Form Type: <strong>Speaker</strong> Use this for call for papers</small>
+                        </p>
+                      </li>
+                      <li>
+                        <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>
+                        <p>
+                          <small>Click on 'View Responses'</small>
+                          <small><strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed'</small>
+                          <br>
+                          <small><strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed', the email also contains a link to add the slides they will be using for sharing with the community later on</small>
+                        </p>
+                      </li>
+                      <li>
+                        <p><strong>STEP 3</strong>: Event Day!</p>
+                        <p>
+                          <small>Mark the attendance!</small>
+                        </p>
+                      </li>
+                      <li>
+                        <p><strong>STEP 4</strong>: Feedbacks</p>
+                        <p>
+                          <small>Send feedback forms in 1 click, to those who attended</small>
+                        </p>
+                      </li>
+                    </ul>
+                 </li>
+                </ul>
+              </nb-accordion-item-body>
+             </nb-accordion-item>
+            <nb-accordion-item>
+             <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>
+             <nb-accordion-item-body>
+               <ul>
+                 <li>
+                   <p>
+                    <strong>Single Session (online only)</strong>
+                    <br>
+                    Choose between
+                      <strong>Youtube Streaming</strong>,
+                      <strong><a href="https://meet.jit.si/">Jitsi Call</a></strong>
+                      and <strong>any other Embed</strong>. [ZOOM integration coming soon!
+                   </p>
+                 </li>
+                 <li>
+                  <p>
+                    <strong>Multiple Locations / Tracks / Sessions</strong>
+                    <br>
+                    This option is when you have a more organized event
+                  </p>
+                  <ul>
+                    <li>
+                      <p>
+                        You can create multiple locations (either offline or online)
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Each location can have multiple tracks
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Each Track can have multiple slots
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <p>
+                    <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
+                  </p>
+                </li>
+               </ul>
+             </nb-accordion-item-body>
+            </nb-accordion-item>
+            <nb-accordion-item>
+              <nb-accordion-item-header>Collaborating Communities</nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <p>Just search from all the communities on Commudle and create collaborations!</p>
+              </nb-accordion-item-body>
+             </nb-accordion-item>
+           </nb-accordion>
         </nb-card-body>
       </nb-card>
     </div>

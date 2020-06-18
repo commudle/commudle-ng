@@ -12,7 +12,8 @@ import { DiscussionQnAComponent } from './discussion-qna/discussion-qna.componen
 import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-user-message.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
-
+import { VideoStreamComponent } from './video-stream/video-stream.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -24,12 +25,14 @@ import { CommunityBadgeComponent } from './community-badge/community-badge.compo
     UserMessageComponent,
     DiscussionQnAComponent,
     QnaUserMessageComponent,
-    CommunityBadgeComponent
+    CommunityBadgeComponent,
+    VideoStreamComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    YouTubePlayerModule,
 
     // Nebular
     NbButtonModule,
@@ -46,7 +49,8 @@ import { CommunityBadgeComponent } from './community-badge/community-badge.compo
     UserMessageComponent,
     QnaUserMessageComponent,
     DiscussionQnAComponent,
-    CommunityBadgeComponent
+    CommunityBadgeComponent,
+    VideoStreamComponent
   ]
 })
 export class SharedComponentsModule { }

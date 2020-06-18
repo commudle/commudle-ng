@@ -43,7 +43,7 @@ export class EventFormResponsesComponent implements OnInit {
   page = 1;
   totalEntries: number;
   count = 25;
-  filterValue = "";
+  filterValue = '';
   registrationStatusId = 0;
 
 

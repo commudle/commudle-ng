@@ -5,7 +5,7 @@
     </nb-card-header>
     <nb-card-body>
       <div class="session" *ngFor="let session of liveSessions">
-        <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'speaker-session', session.id]" target="_blank">
+        <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" [queryParams]="{track_slot_id: session.id}" target="_blank">
           <div *ngIf="session.tags_list">
             <app-badge *ngFor="let tag of session.tags_list.split(',')" [text]="tag" [fontSize]="'small'"></app-badge>
           </div>

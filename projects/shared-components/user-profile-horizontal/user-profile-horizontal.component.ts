@@ -8,6 +8,8 @@ import { IUser } from 'projects/shared-models/user.model';
 })
 export class UserProfileHorizontalComponent implements OnInit {
   @Input() user: IUser;
+  @Input() size: string;
+  @Input() aboutMe: boolean;
 
   constructor() { }
 

@@ -129,23 +129,33 @@
           </small>
         </p>
         <div>
-          <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
-            <nb-option>
-              Remove
-            </nb-option>
+          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
-              YouTube
+              YouTube (URL)
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
+              Jitsi (https://meet.jit.si/)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-              Other
+              Other (Embed Code)
             </nb-option>
           </nb-select>
         </div>
 
         <div>
-          <label fullWidth>
-            Embed Code
-            <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+          <label>
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
+              Video Url
+            </span>
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
+              Jitsi Meet URL (people will be required to log in to join)
+            </span>
+
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.OTHER">
+              Embed Code
+            </span>
+
+            <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>
           </label>
           <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required" class="validation-error-text">
             Required Field

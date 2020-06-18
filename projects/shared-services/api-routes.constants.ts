@@ -30,6 +30,15 @@ export const API_ROUTES = {
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',
 
+  // embedded_video_streams
+  EMBEDDED_VIDEO_STREAMS: {
+    GET: 'api/v2/embedded_video_streams',
+    CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
+
+    PUBLIC: {
+      GET: 'api/v2/embedded_video_streams/public'
+    }
+  },
 
   // events
   EVENTS: {
@@ -38,6 +47,8 @@ export const API_ROUTES = {
     GET: 'api/v2/events',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
     UPDATE_STATUS: 'api/v2/events/update_status',
+    UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',
+    UPDATE_CUSTOM_AGENDA: 'api/v2/events/update_custom_agenda',
 
     PUBLIC: {
       GET: 'api/v2/events/public_show',
@@ -57,6 +68,16 @@ export const API_ROUTES = {
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
 
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms'
+  },
+
+  // event_simple_registrations
+  EVENT_SIMPLE_REGISTATIONS: {
+    FIND_OR_CREATE: 'api/v2/event_simple_registrations/find_or_create',
+    TOGGLE_STATUS: 'api/v2/event_simple_registrations/toggle_status',
+
+    PUBLIC: {
+      SHOW: 'api/v2/event_simple_registrations/public_show',
+    }
   },
 
 
@@ -91,6 +112,7 @@ export const API_ROUTES = {
 
   // event_entry_passes
   CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
+  CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
   TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
   TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
 
@@ -183,9 +205,22 @@ export const API_ROUTES = {
 
   DISCUSSIONS: {
     PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
+    PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat'
   },
 
+
+  USER_EVENT_REGISTRATIONS: {
+    INDEX: 'api/v2/user_event_registrations',
+    UPDATE_REGISTRATION_STATUS: 'api/v2/user_event_registrations/update_registration_status',
+
+
+    PUBLIC: {
+      SHOW: 'api/v2/user_event_registrations/public_show',
+      TOGGLE: 'api/v2/user_event_registrations/public_toggle',
+      INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users'
+    }
+  },
 
   USER_MESSAGES: {
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',

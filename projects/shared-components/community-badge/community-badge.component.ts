@@ -7,7 +7,9 @@ import { ICommunity } from 'projects/shared-models/community.model';
   styleUrls: ['./community-badge.component.scss']
 })
 export class CommunityBadgeComponent implements OnInit {
+
   @Input() community: ICommunity;
+  @Input() background: string;
 
   constructor() { }
 

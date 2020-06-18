@@ -1,13 +1,15 @@
 
-
+.event-location-tracks {
+  max-width: 500px;
+  width: 100vw;
+}
 .tracks-container {
   display: flex;
   flex-wrap: nowrap;
   height: 25rem;
+  // width: ;
   max-height: 350px;
   overflow-y: scroll;
-
-  max-width: 70vw;
   overflow-x: scroll;
 
   .track.empty {
@@ -119,16 +121,5 @@
 .track-slot-form {
   >div>div{
     margin-bottom: 0.8rem;
-  }
-}
-
-
-.embedded-video {
-  width: 560px;
-  height: 340px;
-  overflow: scroll;
-  iframe, object, embed {
-    max-width: 100%;
-    max-height: 100%;
   }
 }

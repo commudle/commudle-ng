@@ -4,6 +4,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
+import { UserEventRegistrationsService } from 'projects/commudle-admin/src/app/services/user-event-registrations.service';
 
 @Component({
   selector: 'app-attending-members',
@@ -20,11 +21,16 @@ export class AttendingMembersComponent implements OnInit {
   totalCount = 0;
 
   constructor(
-    private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService
+    private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
+    private userEventRegistrationsService: UserEventRegistrationsService
   ) { }
 
   ngOnInit() {
-    this.getInterestedMembers();
+    if (this.event.custom_registration) {
+      this.getInterestedMembers();
+    } else {
+      this.getUserEventRegistrations();
+    }
   }
 
 
@@ -33,6 +39,19 @@ export class AttendingMembersComponent implements OnInit {
       data => {
         this.users = data.users;
         this.totalCount = data.total_count;
+
+        if (this.users.length > 0) {
+          this.hasInterestedMembers.emit(true);
+        }
+      }
+    );
+  }
+
+  getUserEventRegistrations() {
+    this.userEventRegistrationsService.pEventInterestedUsers(this.event.id).subscribe(
+      data => {
+        this.users = data.users;
+        this.totalCount = data.total;
 
         if (this.users.length > 0) {
           this.hasInterestedMembers.emit(true);
