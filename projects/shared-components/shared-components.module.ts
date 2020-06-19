@@ -14,6 +14,11 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
 import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { PollsComponent } from './polls/polls.component';
+import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-form.component';
+import { PollFormComponent } from './polls/poll-form/poll-form.component';
+import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.component';
+import { PollResultComponent } from './polls/poll-result/poll-result.component';
 
 
 @NgModule({
@@ -27,6 +32,11 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     QnaUserMessageComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
+    PollsComponent,
+    PollCreateFormComponent,
+    PollFormComponent,
+    PollListItemComponent,
+    PollResultComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +60,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     QnaUserMessageComponent,
     DiscussionQnAComponent,
     CommunityBadgeComponent,
-    VideoStreamComponent
+    VideoStreamComponent,
+    PollsComponent
   ]
 })
 export class SharedComponentsModule { }
