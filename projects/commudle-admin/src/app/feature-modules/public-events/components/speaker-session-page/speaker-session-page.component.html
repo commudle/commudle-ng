@@ -85,7 +85,9 @@
               <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
             </nb-tab>
             <nb-tab tabTitle="Polls">
-              Tab content 2
+              <div *ngIf="pollableId && pollableType">
+                <app-polls [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
+              </div>
             </nb-tab>
            </nb-tabset>
         </nb-card-body>

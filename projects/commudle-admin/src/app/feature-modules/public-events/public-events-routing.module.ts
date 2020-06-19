@@ -4,6 +4,7 @@ import { CommunityDetailsResolver } from '../../resolvers/community-details.reso
 import { HomeEventComponent } from './components/home-event/home-event.component';
 import { SpeakerSessionPageComponent } from './components/speaker-session-page/speaker-session-page.component';
 import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
+import { PublicEventDetailsResolver } from '../../resolvers/public-event-details.resolver';
 
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
     path: '',
     resolve: {
       community: CommunityDetailsResolver,
-      event: EventDetailsResolver
+      event: PublicEventDetailsResolver
     },
     children: [
       {

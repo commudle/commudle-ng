@@ -28,6 +28,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   event: IEvent;
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
   discussion: IDiscussion;
+  pollableType;
+  pollableId;
 
   speakerResource: ISpeakerResource;
   eventEmbeddedVideoStream: IEmbeddedVideoStream;
@@ -61,14 +63,17 @@ export class SpeakerSessionPageComponent implements OnInit {
         if (this.event.custom_agenda) {
           this.activatedRoute.queryParams.subscribe(
             params => {
-              console.log(params);
               this.getTrackSlot(params.track_slot_id);
+              this.pollableId = params.track_slot_id;
+              this.pollableType = 'TrackSlot';
             }
           );
         } else {
           this.getEventEmbeddedVideoStream();
           this.getDiscussionQnA();
           this.title.setTitle(`Live Session | ${this.event.name}`);
+          this.pollableId = this.event.id;
+          this.pollableType = 'Event';
         }
       }
     );
