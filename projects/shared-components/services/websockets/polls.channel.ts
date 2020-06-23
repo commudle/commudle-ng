@@ -13,10 +13,11 @@ export class PollsChannel {
     SET_PERMISSIONS: 'set_permissions',
     CREATE: 'create',
     START: 'start',
+    START_SELF: 'start_self',
     STOP: 'stop',
     DELETE: 'delete',
     FILL: 'fill',
-    RESULT: 'RESULT',
+    ERROR: 'error'
   };
 
   actionCable = actionCable;

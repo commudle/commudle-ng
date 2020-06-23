@@ -2,7 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { UserProfileHorizontalComponent } from './user-profile-horizontal/user-profile-horizontal.component';
-import { NbButtonModule, NbIconModule, NbInputModule, NbTooltipModule } from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbIconModule,
+  NbInputModule,
+  NbTooltipModule,
+  NbWindowModule,
+  NbCardModule,
+  NbSelectModule,
+  NbCheckboxModule,
+  NbRadioModule,
+  NbBadgeModule} from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { BadgeComponent } from './badge/badge.component';
 import { DiscussionChatComponent } from './discussion-chat/discussion-chat.component';
@@ -19,6 +29,8 @@ import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-fo
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
 import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.component';
 import { PollResultComponent } from './polls/poll-result/poll-result.component';
+import { NewDataFormComponent } from './new-data-form/new-data-form.component';
+import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
 
 
 @NgModule({
@@ -36,20 +48,28 @@ import { PollResultComponent } from './polls/poll-result/poll-result.component';
     PollCreateFormComponent,
     PollFormComponent,
     PollListItemComponent,
-    PollResultComponent
+    PollResultComponent,
+    NewDataFormComponent,
+    DataFormFillComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     YouTubePlayerModule,
+    SharedPipesModule,
 
     // Nebular
     NbButtonModule,
     NbIconModule,
     NbInputModule,
     NbTooltipModule,
-    SharedPipesModule
+    NbWindowModule,
+    NbCardModule,
+    NbSelectModule,
+    NbCheckboxModule,
+    NbRadioModule,
+    NbBadgeModule
   ],
   exports: [
     WorkInProgressComponent,
@@ -61,7 +81,9 @@ import { PollResultComponent } from './polls/poll-result/poll-result.component';
     DiscussionQnAComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
-    PollsComponent
+    PollsComponent,
+    NewDataFormComponent,
+    DataFormFillComponent,
   ]
 })
 export class SharedComponentsModule { }

@@ -1,1 +1,46 @@
-<p>poll-list-item works!</p>
+<div class="poll">
+  <div>
+    <p class="preview-question">
+      {{ poll.questions[0].title }}
+      <app-badge *ngIf="poll.status === EPollStatuses.OPEN" [text]="poll.status" [fontSize]="'small'"></app-badge>
+    </p>
+    <div class="actions" *ngIf="editable">
+      <button
+        *ngIf="!poll.already_filled && poll.status === EPollStatuses.OPEN"
+        nbButton
+        size="tiny"
+        (click)="startSelf()">
+        Submit Response
+      </button>
+      <button
+        *ngIf="poll.status !== EPollStatuses.OPEN"
+        nbButton
+        size="tiny"
+        (click)="start()">
+        Start
+      </button>
+      <button
+        *ngIf="poll.status == EPollStatuses.OPEN"
+        nbButton
+        size="tiny"
+        (click)="stop()">
+        Stop
+      </button>
+      <button
+        *ngIf="poll.status == EPollStatuses.CLOSED"
+        nbButton
+        size="tiny"
+        (click)="displayResults()">
+        Results
+      </button>
+      <button
+        nbButton
+        size="tiny"
+        *ngIf="deletable"
+        (click)="delete()">
+        Delete
+    </button>
+
+    </div>
+  </div>
+</div>

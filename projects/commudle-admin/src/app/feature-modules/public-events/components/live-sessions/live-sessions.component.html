@@ -1,4 +1,4 @@
-<div *ngIf="liveSessions.length > 0 || !event.custom_agenda">
+<div *ngIf="liveSessions.length > 0 || (!event.custom_agenda)">
   <nb-card>
     <nb-card-header *ngIf="(moment() > moment(event.start_time)) || liveSessions.length > 0">
       <nb-icon
