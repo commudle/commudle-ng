@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import { IQuestionType } from 'projects/shared-models/question_type.model';
+
 
 @Component({
   selector: 'app-poll-create-form',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PollCreateFormComponent implements OnInit {
 
-  constructor() { }
+  @Output() newPoll = new EventEmitter();
+
+  constructor(
+  ) { }
 
   ngOnInit() {
+
+  }
+
+  createPoll(pollData) {
+    this.newPoll.emit(pollData);
   }
 
 }

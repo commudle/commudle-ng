@@ -1,0 +1,70 @@
+<div *ngIf="dataForm && formCreated">
+  <form [formGroup]="dataFormEntityResponseForm" (ngSubmit)="submitForm()">
+    <div class="question" *ngFor="let question of dataForm.questions; let i = index">
+      <div class="detail">
+        <p>
+          <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+        </p>
+        <p>
+          <span>
+            {{ question.title }}<span class="required-question" *ngIf="question.required">*</span>
+          </span>
+          <br>
+          <small>
+            {{ question.description }}
+          </small>
+        </p>
+      </div>
+      <div class="answer" *ngIf="question.question_type_id == EQuestionTypes.SHORT_ANSWER">
+        <input formControlName="{{question.id}}" type="text" fullWidth nbInput placeholder="Short Answer" status="primary">
+        <span *ngIf="dataFormEntityResponseForm['controls'][question.id].touched && dataFormEntityResponseForm['controls'][question.id].invalid && dataFormEntityResponseForm['controls'][question.id].errors.required" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+      <div class="answer" *ngIf="question.question_type_id == EQuestionTypes.NUMBER">
+        <input formControlName="{{question.id}}" type="number" fullWidth nbInput placeholder="Enter a Number" status="primary">
+        <span *ngIf="dataFormEntityResponseForm['controls'][question.id].touched && dataFormEntityResponseForm['controls'][question.id].invalid && dataFormEntityResponseForm['controls'][question.id].errors.required" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+      <div class="answer" *ngIf="question.question_type_id == EQuestionTypes.LONG_ANSWER">
+        <textarea formControlName="{{question.id}}" nbInput fullWidth placeholder="You can write a detailed answer!" status="primary"></textarea>
+        <span *ngIf="dataFormEntityResponseForm['controls'][question.id].touched && dataFormEntityResponseForm['controls'][question.id].invalid && dataFormEntityResponseForm['controls'][question.id].errors.required" class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+
+      <div class="answer" *ngIf="question.question_type_id == EQuestionTypes.SINGLE_CHOICE">
+        <nb-radio-group
+          class="options"
+          name="{{question.id}}"
+          formControlName="{{question.id}}"
+          >
+          <nb-radio *ngFor="let option of question.question_choices" [value]="option.id">
+            {{ option.title }}
+          </nb-radio>
+        </nb-radio-group>
+      </div>
+
+      <div class="answer" class="checkboxes" formGroupName="{{question.id}}" *ngIf="question.question_type_id == EQuestionTypes.MULTIPLE_CHOICE">
+        <span *ngIf="dataFormEntityResponseForm['controls'][question.id].errors" class="validation-error-text">
+          {{dataFormEntityResponseForm['controls'][question.id][question.question_choices[0].id].errors}}
+        </span>
+        <nb-checkbox *ngFor="let option of question.question_choices"
+          status="basic"
+          formControlName="{{ option.id }}">
+
+          {{ option.title }}
+
+        </nb-checkbox>
+      </div>
+    </div>
+
+    <div class="submit-button">
+      <button [disabled]="!dataFormEntityResponseForm.valid" type="submit" status="primary" nbButton fullWidth size="medium">
+        Submit
+      </button>
+    </div>
+
+  </form>
+</div>

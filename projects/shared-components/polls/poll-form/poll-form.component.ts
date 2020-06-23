@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IPoll } from 'projects/shared-models/poll.model';
 
 @Component({
   selector: 'app-poll-form',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./poll-form.component.scss']
 })
 export class PollFormComponent implements OnInit {
+  @Input() poll: IPoll;
+  @Output() pollData = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.poll);
+  }
+
+  submitPoll(pollData) {
+    this.pollData.emit(pollData);
   }
 
 }

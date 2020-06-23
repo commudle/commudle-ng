@@ -1,1 +1,4 @@
-<p>poll-create-form works!</p>
+<div class="poll-container">
+
+  <app-new-data-form [maxQuestionCount]="1" [minQuestionCount]="1" [formPurpose]="'poll'" (newDataForm)="createPoll($event)"></app-new-data-form>
+</div>
