@@ -44,37 +44,22 @@
         </nb-card>
       </div>
 
-      <div class="video-stream">
+      <div *ngIf="embeddedVideoStream" class="video-stream {{ embeddedVideoStream.source }}">
         <nb-card>
           <nb-card-body>
             <div>
-              <app-video-stream
-              *ngIf="trackSlot && trackSlot.embedded_video_stream"
-              [videoCode]="trackSlot.embedded_video_stream.embed_code"
-              [videoSource]="trackSlot.embedded_video_stream.source"
-              [fillerText]="'Loading Video...'"
-              [width]="playerWidth"
-              [height]="playerHeight"
-            >
-            </app-video-stream>
-
             <app-video-stream
-              *ngIf="eventEmbeddedVideoStream && !event.custom_agenda"
-              [videoCode]="eventEmbeddedVideoStream.embed_code"
-              [videoSource]="eventEmbeddedVideoStream.source"
+              [videoCode]="embeddedVideoStream.embed_code"
+              [videoSource]="embeddedVideoStream.source"
               [fillerText]="'Loading Video...'"
               [width]="playerWidth"
               [height]="playerHeight"
             >
             </app-video-stream>
-
             </div>
-
           </nb-card-body>
         </nb-card>
-
       </div>
-
     </div>
 
     <div class="card-live-discussion">
@@ -93,16 +78,6 @@
         </nb-card-body>
       </nb-card>
     </div>
-
-
-
-      <!-- <div *ngIf="this.discussion">
-        <nb-card class="discussion">
-          <nb-card-body>
-            <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
-          </nb-card-body>
-        </nb-card>
-      </div> -->
   </div>
 
 </div>

@@ -136,6 +136,9 @@
             <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
               Jitsi (https://meet.jit.si/) [Works only on Desktop]
             </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+              External Link (to another platform)
+            </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
               Other (Embed Code)
             </nb-option>
@@ -149,6 +152,10 @@
             </span>
             <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
               Jitsi Meet URL (people will be required to log in to join)
+            </span>
+
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+              Paste link here
             </span>
 
             <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.OTHER">

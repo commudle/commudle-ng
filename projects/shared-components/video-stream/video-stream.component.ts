@@ -24,6 +24,9 @@ export class VideoStreamComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.setPreview();
+    if (!this.fillerText) {
+      this.fillerText = 'Loading...';
+    }
   }
 
   ngOnChanges(): void {
@@ -38,6 +41,9 @@ export class VideoStreamComponent implements OnInit, OnChanges {
           break;
         case EEmbeddedVideoStreamSources.JITSI_MEET:
           this.playerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoCode);
+          break;
+        case EEmbeddedVideoStreamSources.EXTERNAL_LINK:
+          this.playerUrl = this.videoCode;
           break;
         default: // for other embeds
           this.playerUrl = this.sanitizer.bypassSecurityTrustHtml(this.videoCode);

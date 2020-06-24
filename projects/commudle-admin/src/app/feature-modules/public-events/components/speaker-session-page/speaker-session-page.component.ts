@@ -32,7 +32,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   pollableId;
 
   speakerResource: ISpeakerResource;
-  eventEmbeddedVideoStream: IEmbeddedVideoStream;
+  embeddedVideoStream: IEmbeddedVideoStream;
   EEventStatuses = EEventStatuses;
   moment = moment;
   sanitizedVideoCode;
@@ -86,11 +86,11 @@ export class SpeakerSessionPageComponent implements OnInit {
         this.getDiscussionQnA();
         this.speaker = data.user;
         if (this.trackSlot.embedded_video_stream) {
-          this.sanitizedVideoCode =  this.sanitizer.bypassSecurityTrustHtml(this.trackSlot.embedded_video_stream.embed_code);
+          this.embeddedVideoStream = this.trackSlot.embedded_video_stream;
         }
 
         if (this.speaker) {
-          this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`)
+          this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
         }
       }
     );
@@ -116,7 +116,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   getEventEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe(
       data => {
-        this.eventEmbeddedVideoStream = data;
+        this.embeddedVideoStream = data;
       }
     );
   }

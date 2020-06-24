@@ -7,7 +7,8 @@
     top: 50%;
     left: 50%;
     height: 100%;
-    /* width: 100%; */
+    width: inherit;
+    max-width: 100%;
     transform: translate(-50%,-50%);
 
     .filler {
@@ -25,7 +26,27 @@
       }
     }
 
-    .jitsi-player {}
+
+    .external-link {
+      text-align: center;
+
+      p {
+        font-size: 1.2rem;
+        small {
+          font-size: 0.8rem;
+          nb-icon {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      nb-icon.video-outline {
+        font-size: 3.5rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
 
   }
 }
