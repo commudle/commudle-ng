@@ -16,6 +16,20 @@
       <iframe [src]="playerUrl" frameborder="0" width="{{width || 640}}px" height="{{ height || 360 }}px"></iframe>
     </div>
 
+    <div class="external-link" *ngIf="(videoSource == EEmbeddedVideoStreamSources.EXTERNAL_LINK)">
+      <p>
+       <a class="text-info" href="{{playerUrl}}" target="_blank">
+        <nb-icon class="video-outline" icon="video-outline"></nb-icon>
+        <br>
+        <span>
+          Click Here To Access
+        </span>
+        <br>
+        <small><nb-icon icon="external-link"></nb-icon> {{ playerUrl }}</small>
+       </a>
+      </p>
+    </div>
+
     <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">
       <div [innerHTML]="playerUrl"></div>
     </div>
