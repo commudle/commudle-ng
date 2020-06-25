@@ -51,7 +51,6 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { CookieService } from 'ngx-cookie-service';
 import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
-import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { AppInitService } from './services/app-init.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -79,7 +78,6 @@ export function initApp(appInitService: AppInitService) {
     LogoutComponent,
     SidebarMenuComponent,
     BasicUserProfileComponent,
-    FillableFormComponent,
     SpeakerResourceFormComponent,
   ],
   imports: [
