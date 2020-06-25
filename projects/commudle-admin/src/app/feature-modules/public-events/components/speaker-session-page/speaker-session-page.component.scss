@@ -1,5 +1,6 @@
 .speaker-session-details {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   .card-row {
@@ -35,6 +36,11 @@
           margin-top: 0.3rem;
           margin-bottom: 0;
         }
+
+        .visitors {
+          color: #4e4e4e;
+        }
+
       }
 
       .track-slot-details {
@@ -108,6 +114,22 @@
       }
     }
 
+  }
+
+
+  .visit-users {
+    width: 100%;
+
+    nb-card-body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .visit-user {
+      width: fit-content;
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+    }
   }
 }
 

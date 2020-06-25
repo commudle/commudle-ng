@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EQuestionTypes } from 'projects/shared-models/enums/question_types.enum';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { FormBuilder, Validators, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { SDataFormsService } from '../services/s_data_forms.service';
+import { SDataFormsService } from '../services/s-data-forms.service';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SPollsService } from 'projects/shared-components/services/s_polls.service';
+import { SPollsService } from 'projects/shared-components/services/s-polls.service';
 import { IPoll } from 'projects/shared-models/poll.model';
 import { IDataForm } from 'projects/shared-models/data_form.model';
-import { SDataFormsService } from 'projects/shared-components/services/s_data_forms.service';
+import { SDataFormsService } from 'projects/shared-components/services/s-data-forms.service';
 import { EQuestionTypes } from 'projects/shared-models/enums/question_types.enum';
 import { Chart } from 'chart.js';
 import * as _ from 'lodash';
