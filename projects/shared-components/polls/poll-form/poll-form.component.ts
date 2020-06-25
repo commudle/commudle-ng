@@ -13,7 +13,6 @@ export class PollFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.poll);
   }
 
   submitPoll(pollData) {

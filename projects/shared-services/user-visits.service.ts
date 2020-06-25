@@ -46,7 +46,6 @@ export class UserVisitsService {
     this.userVisitsChannel.channelData$.subscribe(
       data => {
         if (data) {
-          console.log(data, this.userVisitsChannel.ACTIONS.VISITORS);
           switch (data.action) {
             case (this.userVisitsChannel.ACTIONS.VISITORS): {
               this.visitors.next(data.visitors);

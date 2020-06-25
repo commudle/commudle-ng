@@ -125,6 +125,10 @@ export class PollsComponent implements OnInit {
               this.windowRefFillPoll.close();
               break;
             }
+            case (this.pollsChannel.ACTIONS.FILL_COUNT): {
+              this.polls[this.polls.findIndex(p => p.id === data.poll_id)].total_responses = data.fill_count;
+              break;
+            }
             case (this.pollsChannel.ACTIONS.ERROR): {
               this.toastLogService.warningDialog(data.message, 2000);
               break;

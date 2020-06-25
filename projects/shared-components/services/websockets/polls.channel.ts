@@ -17,6 +17,7 @@ export class PollsChannel {
     STOP: 'stop',
     DELETE: 'delete',
     FILL: 'fill',
+    FILL_COUNT: 'fill_count',
     ERROR: 'error'
   };
 
@@ -43,7 +44,6 @@ export class PollsChannel {
             pollable_id: pollableId
           }, {
             received: (data) => {
-              console.log(data);
               this.channelData.next(data);
             }
           });

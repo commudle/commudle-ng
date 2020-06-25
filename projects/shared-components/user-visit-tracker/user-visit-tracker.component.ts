@@ -39,7 +39,6 @@ export class UserVisitTrackerComponent implements OnInit {
     this.router.events.subscribe(val => {
       if (this.location.path() !== this.currentRoute) {
         this.currentRoute = this.location.path();
-        console.log(this.currentRoute);
         this.userVisitsService.subscribe(this.currentRoute);
       }
     });
