@@ -12,6 +12,7 @@
         *ngIf="!poll.already_filled && poll.status === EPollStatuses.OPEN"
         nbButton
         size="tiny"
+        status="info"
         (click)="startSelf()">
         Submit Response
       </button>
@@ -19,6 +20,7 @@
         *ngIf="poll.status !== EPollStatuses.OPEN"
         nbButton
         size="tiny"
+        status="success"
         (click)="start()">
         Start
       </button>
@@ -26,6 +28,7 @@
         *ngIf="poll.status == EPollStatuses.OPEN"
         nbButton
         size="tiny"
+        status="danger"
         (click)="stop()">
         Stop
       </button>
@@ -33,6 +36,7 @@
         *ngIf="poll.status == EPollStatuses.CLOSED"
         nbButton
         size="tiny"
+        status="primary"
         (click)="displayResults()">
         Results
       </button>
@@ -40,8 +44,11 @@
         nbButton
         size="tiny"
         *ngIf="deletable"
+        status="danger"
+        outline
+        nbTooltip="Delete"
         (click)="delete()">
-        Delete
+        <nb-icon icon="trash" status="danger"></nb-icon>
     </button>
 
     </div>
