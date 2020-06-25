@@ -31,6 +31,7 @@ import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.com
 import { PollResultComponent } from './polls/poll-result/poll-result.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
 import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
+import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-tracker.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { DataFormFillComponent } from './data-form-fill/data-form-fill.component
     PollListItemComponent,
     PollResultComponent,
     NewDataFormComponent,
-    DataFormFillComponent
+    DataFormFillComponent,
+    UserVisitTrackerComponent
   ],
   imports: [
     CommonModule,
@@ -84,6 +86,7 @@ import { DataFormFillComponent } from './data-form-fill/data-form-fill.component
     PollsComponent,
     NewDataFormComponent,
     DataFormFillComponent,
+    UserVisitTrackerComponent
   ]
 })
 export class SharedComponentsModule { }

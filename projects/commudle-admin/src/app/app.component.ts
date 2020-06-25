@@ -52,4 +52,6 @@ export class AppComponent {
   redirectToHome() {
     this.router.navigate(['/']);
   }
+
+
 }
