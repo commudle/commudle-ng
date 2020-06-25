@@ -9,6 +9,7 @@ export interface IPoll {
   questions: IQuestion[];
   data_form_entity: IDataFormEntity;
   status: EPollStatuses;
+  total_responses: number;
   already_filled: boolean;
 }
 

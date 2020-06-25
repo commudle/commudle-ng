@@ -2,6 +2,9 @@
   <div>
     <p class="preview-question">
       {{ poll.questions[0].title }}
+      <span class="total-responses" *ngIf="poll.total_responses > 0">
+        <nb-icon icon="hash"></nb-icon> {{ poll.total_responses }}
+      </span>
       <app-badge *ngIf="poll.status === EPollStatuses.OPEN" [text]="poll.status" [fontSize]="'small'"></app-badge>
     </p>
     <div class="actions" *ngIf="editable">

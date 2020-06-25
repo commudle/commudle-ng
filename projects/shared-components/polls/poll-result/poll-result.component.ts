@@ -56,7 +56,6 @@ export class PollResultComponent implements OnInit {
         data => {
           this.charts[`${question.id}`] = this.createChart(question.id, data.responses);
           this.pollResultValues[`${question.id}`] = data.responses;
-          console.log(this.pollResultValues);
         }
       );
     }
