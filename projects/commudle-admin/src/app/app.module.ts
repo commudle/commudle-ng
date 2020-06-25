@@ -25,7 +25,8 @@ import {
   NbIconModule,
   NbListModule,
   NbTooltipModule,
-  NbWindowModule} from '@nebular/theme';
+  NbWindowModule,
+  NbAccordionModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -116,6 +117,7 @@ export function initApp(appInitService: AppInitService) {
     NbListModule,
     NbTooltipModule,
     NbWindowModule.forRoot(),
+    NbAccordionModule,
 
     //other external npm modules
     Ng2CompleterModule,

@@ -1,7 +1,7 @@
 <div>
   <div>
-    <button nbButton fullWidth size="small" (click)="newPoll()">
-      New Poll
+    <button nbButton fullWidth outline size="medium" (click)="newPoll()" status="success">
+      <nb-icon icon="plus-circle"></nb-icon> New Poll
     </button>
   </div>
   <div class="polls" *ngIf="polls.length > 0">
