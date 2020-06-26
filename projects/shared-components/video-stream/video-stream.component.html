@@ -17,7 +17,7 @@
     </div>
 
     <div class="external-link" *ngIf="(videoSource == EEmbeddedVideoStreamSources.EXTERNAL_LINK)">
-      <p>
+      <p *ngIf="playerUrl != ''">
        <a class="text-info" href="{{playerUrl}}" target="_blank">
         <nb-icon class="video-outline" icon="video-outline"></nb-icon>
         <br>
