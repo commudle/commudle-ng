@@ -12,13 +12,14 @@
 
     @media screen and (min-width: 800px) {
       a {
-        width: 90%;
+        // width: 90%;
         overflow: hidden;
         text-align: left;
         display: inline-block;
 
         .edit-icon {
           float: right;
+          margin-right: 0;
         }
       }
     }

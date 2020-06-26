@@ -39,7 +39,7 @@
               <p>ONLINE STREAMING (ID: {{loc.id}}) &nbsp; <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
               </p>
               <ng-template #embeddedVideo>
-                <div class="embedded-video" *ngIf="loc.embedded_video_stream" [innerHTML]="sanitizedEmbeddedHTML(loc.embedded_video_stream.embed_code)"></div>
+                <app-video-stream [videoCode]="loc.embedded_video_stream.embed_code" [videoSource]="loc.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
               </ng-template>
             </div>
             <p *ngIf="event.editable">
@@ -151,7 +151,7 @@
               Video Url
             </span>
             <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
-              Jitsi Meet URL (people will be required to log in to join)
+              Jitsi Meeting ID (people will be required to log in to join)
             </span>
 
             <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.EXTERNAL_LINK">

@@ -15,6 +15,8 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { UserVisitsService } from 'projects/shared-services/user-visits.service';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -50,6 +52,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   startTime;
   endTime;
 
+  currentUser: ICurrentUser;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,13 +60,21 @@ export class SpeakerSessionPageComponent implements OnInit {
     private discussionsService: DiscussionsService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private title: Title,
-    private userVisitsService: UserVisitsService
+    private userVisitsService: UserVisitsService,
+    private authWatchService: LibAuthwatchService
   ) {
     this.onResize();
   }
 
   ngOnInit() {
     this.resolveData();
+
+    this.authWatchService.currentUser$.subscribe(
+      data => {
+        this.currentUser = data;
+      }
+    );
+
     this.userVisitsService.visitors$.subscribe(
       data => {
         this.userVisitData = data;

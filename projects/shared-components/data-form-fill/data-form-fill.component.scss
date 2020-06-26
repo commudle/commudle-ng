@@ -1,5 +1,8 @@
 .question {
   margin-bottom: 1.5rem;
+  .description {
+    white-space: pre-wrap;
+  }
   .answer {
     padding: 0 0.5rem;
   }
