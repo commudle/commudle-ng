@@ -34,11 +34,12 @@
         Filling this form should be easy!
       </nb-card-header>
       <nb-card-body>
-        <app-fillable-form
-          [dataFormEntity]="dataFormEntity"
-          (formSubmitted)="redirectTo($event)"
+        <app-data-form-fill
+          [dataFormId]="dataFormEntity.data_form_id"
+          [existingResponses]="existingResponses"
+          (formSubmitted)="submitForm($event)"
         >
-        </app-fillable-form>
+        </app-data-form-fill>
       </nb-card-body>
     </nb-card>
   </div>

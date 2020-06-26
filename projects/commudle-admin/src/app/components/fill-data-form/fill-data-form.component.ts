@@ -7,6 +7,9 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunitiesService } from '../../services/communities.service';
 import { Title } from '@angular/platform-browser';
+import { LibErrorHandlerService } from 'projects/lib-error-handler/src/public-api';
+import { DataFormEntityResponsesService } from '../../services/data-form-entity-responses.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 
 @Component({
@@ -22,6 +25,7 @@ export class FillDataFormComponent implements OnInit {
   event: IEvent;
   community: ICommunity;
 
+  existingResponses;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,6 +34,9 @@ export class FillDataFormComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private router: Router,
     private title: Title,
+    private errorHandler: LibErrorHandlerService,
+    private dataFormEntityResponsesService: DataFormEntityResponsesService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -41,7 +48,8 @@ export class FillDataFormComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       data => {
         if (data.next) {
-          this.redirectRoute = decodeURIComponent(data.next);
+
+          this.redirectRoute = [decodeURIComponent(data.next)];
         }
       }
     );
@@ -52,8 +60,21 @@ export class FillDataFormComponent implements OnInit {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe(
       data => {
         this.dataFormEntity = data;
+        this.getExistingResponses();
         this.checkFormClosed();
         this.getParent();
+      }
+    );
+  }
+
+  getExistingResponses() {
+    this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe(
+      data => {
+        if (data.form_closed === true) {
+          this.formClosed = data.form_closed;
+        } else {
+          this.existingResponses = data.existing_responses;
+        }
       }
     );
   }
@@ -76,7 +97,7 @@ export class FillDataFormComponent implements OnInit {
         this.getEvent();
         break;
       default:
-        console.log('no matching case');
+        this.errorHandler.handleError(404, 'You cannot fill this form');
 
     }
   }
@@ -104,8 +125,20 @@ export class FillDataFormComponent implements OnInit {
   }
 
 
-  redirectTo($event) {
-    this.router.navigate([this.redirectRoute]);
+
+  submitForm($event) {
+    this.dataFormEntityResponsesService.submitDataFormEntityResponse(
+      this.dataFormEntity.id,
+      $event).subscribe(
+      data => {
+        this.toastLogService.successDialog('Saved!');
+        this.redirectTo();
+      }
+    );
+  }
+
+  redirectTo() {
+    this.router.navigate(this.redirectRoute);
   }
 
 }

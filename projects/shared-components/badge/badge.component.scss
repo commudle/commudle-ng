@@ -7,5 +7,11 @@ div {
     color: white;
     margin: 0;
     padding: 2px 4px;
+
+    &.small-text {
+      font-size: 10px;
+      padding: 0 2px;
+      line-height: 18px;
+    }
   }
 }

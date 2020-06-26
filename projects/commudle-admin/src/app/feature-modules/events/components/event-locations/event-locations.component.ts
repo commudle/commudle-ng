@@ -147,7 +147,6 @@ export class EventLocationsComponent implements OnInit {
       this.eventLocationFormTemplate,
       { title: `Edit Location`, context: {operationType: 'edit', eventLocation: eventLocation}},
     );
-
   }
 
   editEventLocation(eventLocation) {
@@ -197,15 +196,15 @@ export class EventLocationsComponent implements OnInit {
   }
 
   removeTrack(trackId, locationIndex) {
-    let trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
+    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
       k => k.id === trackId);
     this.eventLocations[locationIndex].event_location_tracks.splice(trackPosition, 1);
   }
 
   addSlot(newTrackSlot, locationIndex) {
-    let trackPosition = this.eventLocations[locationIndex]
+    const trackPosition = this.eventLocations[locationIndex]
                           .event_location_tracks
-                          .findIndex(k => k.id == newTrackSlot.event_location_track_id);
+                          .findIndex(k => k.id === newTrackSlot.event_location_track_id);
     this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.push(newTrackSlot);
   }
 
@@ -213,7 +212,7 @@ export class EventLocationsComponent implements OnInit {
 
 
 
-    let trackPosition = this.eventLocations[locationIndex]
+    const trackPosition = this.eventLocations[locationIndex]
                           .event_location_tracks
                           .findIndex(k => k.id == trackSlot.event_location_track_id);
 

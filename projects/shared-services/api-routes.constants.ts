@@ -138,6 +138,15 @@ export const API_ROUTES = {
   UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
+
+  POLLS: {
+    PUBLIC: {
+      SHOW: 'api/v2/polls/public',
+      QUESTION_RESPONSE: 'api/v2/polls/public/question_responses'
+    }
+  },
+
+
   TRACK_SLOTS: {
     CREATE: 'api/v2/track_slots',
     UPDATE: 'api/v2/track_slots',

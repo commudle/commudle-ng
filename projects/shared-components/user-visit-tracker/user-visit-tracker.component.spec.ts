@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FillableFormComponent } from './fillable-form.component';
+import { UserVisitTrackerComponent } from './user-visit-tracker.component';
 
-describe('FillableFormComponent', () => {
-  let component: FillableFormComponent;
-  let fixture: ComponentFixture<FillableFormComponent>;
+describe('UserVisitTrackerComponent', () => {
+  let component: UserVisitTrackerComponent;
+  let fixture: ComponentFixture<UserVisitTrackerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FillableFormComponent ]
+      declarations: [ UserVisitTrackerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FillableFormComponent);
+    fixture = TestBed.createComponent(UserVisitTrackerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

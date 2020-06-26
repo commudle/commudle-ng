@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NbInputModule, NbCardModule, NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbSelectModule, NbCheckboxModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 
 
 
@@ -19,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     DataFormsRoutingModule,
     ReactiveFormsModule,
+    SharedComponentsModule,
 
 
     // External

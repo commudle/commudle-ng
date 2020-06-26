@@ -16,7 +16,7 @@ export class DataFormEntityResponsesService {
 
 
   getExistingResponse(dataFormEntityId): Observable<any> {
-    const params = new HttpParams().set('data_form_entity_id', dataFormEntityId)
+    const params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
     return this.http.get<any>(
       this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITY_RESPONSES.EXISTING_RESPONSES), { params }
     );
