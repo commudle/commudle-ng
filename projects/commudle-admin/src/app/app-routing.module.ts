@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/email-confirmations/email-confirmations.module').then(m => m.EmailConfirmationsModule)
   },
   {
+    path: 'help',
+    loadChildren: () => import('./feature-modules/help/help.module').then(m => m.HelpModule)
+  },
+  {
     path: 'speaker-resource-form',
     canActivate: [AuthGuard],
     component: SpeakerResourceFormComponent
