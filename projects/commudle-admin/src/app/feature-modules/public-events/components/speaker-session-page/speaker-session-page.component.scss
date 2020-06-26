@@ -1,5 +1,6 @@
 .speaker-session-details {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   .card-row {
@@ -35,6 +36,11 @@
           margin-top: 0.3rem;
           margin-bottom: 0;
         }
+
+        .visitors {
+          color: #4e4e4e;
+        }
+
       }
 
       .track-slot-details {
@@ -78,7 +84,7 @@
     }
 
     .video-stream {
-      height: 50vh;
+      height: 300px;
 
       @media screen and (min-width: 1000px) {
         height: 460px;
@@ -88,11 +94,25 @@
         height: 100%;
       }
 
+
+      &.external_link {
+        height: 11rem !important;
+      }
+
     }
 
     .card-live-discussion {
       width: 100%;
-      height: 100%;
+
+      nb-tabset {
+        height: 95%;
+        // min-height: 300px;
+        nb-tab {
+          height: 100%;
+          max-height: 75vh;
+          overflow: auto;
+        }
+      }
 
       @media screen and (min-width: 1000px) {
         width: 40%;
@@ -100,49 +120,32 @@
         nb-card {
           height: 100%;
         }
+
+        nb-tabset {
+
+          nb-tab {
+            max-height: 100vh;
+          }
+        }
       }
     }
 
-
-    // .session-details {
-
-    //   .session-event {
-    //     nb-card {
-    //       margin: 0 2.5%;
-
-    //       .live-notification {
-    //         font-size: 1.2rem;
-    //       }
-    //     }
-    //   }
-
-    //   .track-slot {
+  }
 
 
-    //     .embedded-video-stream {
-    //       width: 560px;
-    //       height: 340px;
-    //       margin: 0 auto;
-    //       overflow: scroll  ;
-    //     }
+  .visit-users {
+    width: 100%;
 
-    //   }
+    nb-card-body {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-    //   @media screen and (max-width: 999px) {
-    //     width: 100%;
-    //   }
-
-    //   @media screen and (min-width: 1000px) {
-    //     width: 800px;
-    //   }
-
-
-    //   .discussion {
-    //     margin: 0 2.5%;
-    //     height: 70vh;
-    //   }
-    // }
-
+    .visit-user {
+      width: fit-content;
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+    }
   }
 }
 

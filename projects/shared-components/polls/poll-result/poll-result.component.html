@@ -1,0 +1,92 @@
+<div class="poll-result-container" *ngIf="dataForm">
+  <div class="question" *ngFor="let question of dataForm.questions">
+    <h4>{{ question.title }}</h4>
+
+    <div
+      *ngIf="[EQuestionTypes.LONG_ANSWER, EQuestionTypes.SHORT_ANSWER].includes(question.question_type_id)"
+      class="responses-list"
+      >
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+      <p *ngFor="let res of pollResultValues[question.id]">
+        {{res}}
+      </p>
+    </div>
+
+    <div
+      *ngIf="[EQuestionTypes.MULTIPLE_CHOICE, EQuestionTypes.SINGLE_CHOICE, EQuestionTypes.NUMBER].includes(question.question_type_id)"
+      >
+      <canvas id="chart-{{question.id}}"></canvas>
+    </div>
+  </div>
+</div>

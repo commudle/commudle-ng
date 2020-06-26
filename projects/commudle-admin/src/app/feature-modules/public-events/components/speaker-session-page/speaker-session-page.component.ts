@@ -14,6 +14,7 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
+import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -24,33 +25,50 @@ export class SpeakerSessionPageComponent implements OnInit {
 
   trackSlot: ITrackSlot;
   speaker: IUser;
+
   community: ICommunity;
   event: IEvent;
+
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
+
   discussion: IDiscussion;
 
+  pollableType;
+  pollableId;
+
   speakerResource: ISpeakerResource;
-  eventEmbeddedVideoStream: IEmbeddedVideoStream;
+  embeddedVideoStream: IEmbeddedVideoStream;
+
+
   EEventStatuses = EEventStatuses;
   moment = moment;
-  sanitizedVideoCode;
   playerWidth;
   playerHeight;
+
+  userVisitData;
+
+  startTime;
+  endTime;
 
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private trackSlotsService: TrackSlotsService,
-    private sanitizer: DomSanitizer,
     private discussionsService: DiscussionsService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
-    private title: Title
+    private title: Title,
+    private userVisitsService: UserVisitsService
   ) {
     this.onResize();
   }
 
   ngOnInit() {
     this.resolveData();
+    this.userVisitsService.visitors$.subscribe(
+      data => {
+        this.userVisitData = data;
+      }
+    );
   }
 
   resolveData() {
@@ -58,17 +76,22 @@ export class SpeakerSessionPageComponent implements OnInit {
       data => {
         this.community = data.community;
         this.event = data.event;
+        this.startTime = this.event.start_time;
+        this.endTime = this.event.end_time;
         if (this.event.custom_agenda) {
           this.activatedRoute.queryParams.subscribe(
             params => {
-              console.log(params);
               this.getTrackSlot(params.track_slot_id);
+              this.pollableId = params.track_slot_id;
+              this.pollableType = 'TrackSlot';
             }
           );
         } else {
           this.getEventEmbeddedVideoStream();
           this.getDiscussionQnA();
           this.title.setTitle(`Live Session | ${this.event.name}`);
+          this.pollableId = this.event.id;
+          this.pollableType = 'Event';
         }
       }
     );
@@ -80,12 +103,14 @@ export class SpeakerSessionPageComponent implements OnInit {
         this.trackSlot = data;
         this.getDiscussionQnA();
         this.speaker = data.user;
+        this.startTime = this.trackSlot.start_time;
+        this.endTime = this.trackSlot.end_time;
         if (this.trackSlot.embedded_video_stream) {
-          this.sanitizedVideoCode =  this.sanitizer.bypassSecurityTrustHtml(this.trackSlot.embedded_video_stream.embed_code);
+          this.embeddedVideoStream = this.trackSlot.embedded_video_stream;
         }
 
         if (this.speaker) {
-          this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`)
+          this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
         }
       }
     );
@@ -111,7 +136,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   getEventEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe(
       data => {
-        this.eventEmbeddedVideoStream = data;
+        this.embeddedVideoStream = data;
       }
     );
   }

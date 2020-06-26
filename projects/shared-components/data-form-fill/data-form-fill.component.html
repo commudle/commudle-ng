@@ -1,4 +1,4 @@
-<div *ngIf="dataForm">
+<div *ngIf="dataForm && formCreated">
   <form [formGroup]="dataFormEntityResponseForm" (ngSubmit)="submitForm()">
     <div class="question" *ngFor="let question of dataForm.questions; let i = index">
       <div class="detail">
