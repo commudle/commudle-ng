@@ -52,7 +52,7 @@
                 {{ reg.display }}
               </nb-radio>
             </nb-radio-group>
-            
+
             <nb-radio-group
               *ngIf="eventSimpleRegistration"
               name="registration_selection_type"
@@ -69,7 +69,7 @@
         <div>
           <label>
             To
-            <input type="text" nbInput fullWidth formControlName="recipient_email" placeholder="Enter email addresses separated by comma or leave blank for all">
+            <input type="text" nbInput fullWidth formControlName="recipient_email" placeholder="Enter 1 email addresses or leave blank for all matching members">
           </label>
         </div>
         <div>

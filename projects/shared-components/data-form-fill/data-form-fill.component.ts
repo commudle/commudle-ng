@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { EQuestionTypes } from 'projects/shared-models/enums/question_types.enum';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { FormBuilder, Validators, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { SDataFormsService } from '../services/s-data-forms.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { SDataFormsService } from '../services/s-data-forms.service';
   templateUrl: './data-form-fill.component.html',
   styleUrls: ['./data-form-fill.component.scss']
 })
-export class DataFormFillComponent implements OnInit {
+export class DataFormFillComponent implements OnInit, OnChanges {
   formClosed = false;
   EQuestionTypes = EQuestionTypes;
 
@@ -21,7 +22,7 @@ export class DataFormFillComponent implements OnInit {
 
   @Output() formSubmitted = new EventEmitter();
 
-  dataFormEntityResponseForm = this.fb.group({});
+  dataFormEntityResponseForm;
 
   constructor(
     private dataFormsService: SDataFormsService,
@@ -29,7 +30,10 @@ export class DataFormFillComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getDataForm();
+  }
 
+  ngOnChanges() {
     this.getDataForm();
   }
 
@@ -46,7 +50,7 @@ export class DataFormFillComponent implements OnInit {
 
 
   createFormAndPrefillResponses() {
-
+    this.dataFormEntityResponseForm = this.fb.group({});
     for (const q of this.dataForm.questions) {
       let validators = [];
       if (q.required) {
@@ -106,7 +110,6 @@ export class DataFormFillComponent implements OnInit {
       return;
     };
   }
-
 
   submitForm() {
     this.formSubmitted.emit(this.dataFormEntityResponseForm.value);
