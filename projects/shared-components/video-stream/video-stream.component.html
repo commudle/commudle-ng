@@ -5,7 +5,8 @@
       <br/>
       <span> {{ fillerText }} </span>
     </p>
-    <youtube-player
+    <div *ngIf="videoCode">
+      <youtube-player
         *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
         videoId="{{ playerUrl }}"
         [width]="width || 640"
@@ -13,7 +14,7 @@
       >
     </youtube-player>
     <div class="jitsi-player" *ngIf="(videoSource == EEmbeddedVideoStreamSources.JITSI_MEET)">
-      <iframe [src]="playerUrl" frameborder="0" width="{{width || 640}}px" height="{{ height || 360 }}px"></iframe>
+      <div #jitsimeet class="jitsiVideo"></div>
     </div>
 
     <div class="external-link" *ngIf="(videoSource == EEmbeddedVideoStreamSources.EXTERNAL_LINK)">
@@ -32,6 +33,7 @@
 
     <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">
       <div [innerHTML]="playerUrl"></div>
+    </div>
     </div>
 
   </div>

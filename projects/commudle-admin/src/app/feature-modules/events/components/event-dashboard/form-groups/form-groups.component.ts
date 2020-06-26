@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 import { EventDataFormEntityGroupsService } from 'projects/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'projects/shared-models/event_data_form_enity_group.model';
 import { IRegistrationType } from 'projects/shared-models/registration_type.model';
@@ -14,6 +14,7 @@ import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { ERegistationTypes } from 'projects/shared-models/enums/registration_types.enum';
+import { NewDataFormComponent } from 'projects/shared-components/new-data-form/new-data-form.component';
 
 
 @Component({
@@ -22,11 +23,15 @@ import { ERegistationTypes } from 'projects/shared-models/enums/registration_typ
   styleUrls: ['./form-groups.component.scss']
 })
 export class FormGroupsComponent implements OnInit {
+  @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
+
+
   faCopy = faCopy;
   faEnvelope = faEnvelope;
   faTimesCircle = faTimesCircle;
   faUsers = faUsers;
   ERegistationTypes = ERegistationTypes;
+  newDataFormWindowRef;
 
 
   @Input() event;
@@ -113,11 +118,35 @@ export class FormGroupsComponent implements OnInit {
   deleteEventDataFormEntityGroup(eventDataFormEntityGroupId) {
     this.eventDataFormEntityGroupsService.deleteEventDataFormEntityGroup(eventDataFormEntityGroupId).subscribe(
       data => {
-        this.toastLogService.successDialog("Deleted");
-        let removable = this.eventDataFormEntityGroups.findIndex(k => k.id === eventDataFormEntityGroupId);
+        this.toastLogService.successDialog('Deleted');
+        const removable = this.eventDataFormEntityGroups.findIndex(k => k.id === eventDataFormEntityGroupId);
         this.eventDataFormEntityGroups.splice(removable, 1);
       }
     );
+  }
+
+  openNewFormWindow() {
+    this.newDataFormWindowRef = this.windowService.open(
+      this.newDataFormTemplate, {
+        title: 'Create New Form',
+        context: {
+          minQuestionCount: 1
+        }
+      }
+    );
+  }
+
+
+  createAndSelectForm(newFormData) {
+    this.newDataFormWindowRef.close();
+    this.dataFormsService.createDataForm(newFormData, this.community.id, 'Kommunity').subscribe((dataForm => {
+      this.communityDataForms.unshift(dataForm);
+
+      setTimeout(() => {
+        this.eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').setValue(dataForm.id);
+      }, 0);
+      this.toastLogService.successDialog('New Form Created & Selected!');
+    }));
   }
 
   openEmailWindow(eventDataFormEntityGroup) {
@@ -133,6 +162,7 @@ export class FormGroupsComponent implements OnInit {
         }
       }
     );
+
   }
 
 }

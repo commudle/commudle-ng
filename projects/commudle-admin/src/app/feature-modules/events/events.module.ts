@@ -102,7 +102,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     NbPopoverModule,
     NbRadioModule,
     NbToggleModule,
-    NbAccordionModule
+    NbAccordionModule,
+    NbTooltipModule
   ]
 })
 export class EventsModule { }

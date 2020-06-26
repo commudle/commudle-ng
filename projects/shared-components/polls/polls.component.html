@@ -1,6 +1,6 @@
 <div>
   <div>
-    <button nbButton fullWidth outline size="medium" (click)="newPoll()" status="success">
+    <button *ngIf="permittedActions.includes(allActions.START)" nbButton fullWidth outline size="medium" (click)="newPoll()" status="success">
       <nb-icon icon="plus-circle"></nb-icon> New Poll
     </button>
   </div>

@@ -56,9 +56,9 @@
           <nb-card-body>
             <div>
             <app-video-stream
-              [videoCode]="embeddedVideoStream.embed_code"
+              [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : embeddedVideoStream.embed_code"
               [videoSource]="embeddedVideoStream.source"
-              [fillerText]="'Loading Video...'"
+              [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? 'Coming Soon' : 'Loading Video...'))"
               [width]="playerWidth"
               [height]="playerHeight"
             >
