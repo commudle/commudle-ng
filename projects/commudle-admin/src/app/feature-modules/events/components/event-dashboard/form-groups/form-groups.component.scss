@@ -78,6 +78,8 @@
 
   .data-form-select, .data-form-type-select{
     margin: 0.5rem;
+    display: flex;
+    align-items: flex-end;
   }
 
   .save-button-bottom {

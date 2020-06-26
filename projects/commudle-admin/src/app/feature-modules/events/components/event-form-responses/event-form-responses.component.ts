@@ -143,6 +143,7 @@ export class EventFormResponsesComponent implements OnInit {
         this.totalEntries = data.total;
         this.rows = data.data_form_entity_response_groups;
         this.isLoading = false;
+        this.emptyMessage = 'No data to display';
       }
     );
   }

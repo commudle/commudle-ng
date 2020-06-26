@@ -7,6 +7,7 @@ import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Title } from '@angular/platform-browser';
 import { QuestionTypesService } from 'projects/shared-components/services/question-types.service';
+import { NbWindowRef } from '@nebular/theme';
 
 
 enum EFormPurposes {
