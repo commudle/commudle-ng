@@ -173,7 +173,6 @@ export class PollsComponent implements OnInit {
 
 
   submitPoll(pollData) {
-    console.log(pollData);
     this.pollsChannel.sendData(
       this.pollsChannel.ACTIONS.FILL,
       {
