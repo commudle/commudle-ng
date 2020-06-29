@@ -44,6 +44,7 @@ export class PollsChannel {
             pollable_id: pollableId
           }, {
             received: (data) => {
+              console.log(data);
               this.channelData.next(data);
             }
           });

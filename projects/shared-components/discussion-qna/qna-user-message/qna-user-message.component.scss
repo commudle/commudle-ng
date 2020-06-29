@@ -13,9 +13,11 @@
 
   .author-image {
     width: 35px;
+    overflow: hidden;
     display: flex;
     align-self: start;
     margin-right: 5px;
+    margin: 3px 5px 0 0;
     img {
       width: 100%;
     }
@@ -25,7 +27,7 @@
     width: 100%;
     .author-details {
       p {
-        margin: 0 0 0.2rem;
+        margin: 0;
         color: grey;
       }
     }
@@ -39,12 +41,12 @@
         margin-right: 10px;
 
         p {
-          margin: 5px 0 0;
+          margin: 0;
         }
       }
       .reply-button {
         p {
-          font-size: 1.1rem;
+          font-size: 1rem;
         }
       }
 
@@ -68,6 +70,9 @@
 
 .replies-container {
   margin: 1rem;
+  .reply {
+    margin-bottom: 5px;
+  }
   // border-bottom: 1px solid lightgrey;
   // border-left: 1px solid lightgrey;
   // border-right: 1px solid lightgrey;
