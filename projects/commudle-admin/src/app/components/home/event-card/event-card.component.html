@@ -1,0 +1,47 @@
+<div class="event">
+  <a *ngIf="community" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+    <nb-card>
+      <nb-card-header>
+        <div class="filler" *ngIf="!event.header_image_path">
+          <div class="event-details">
+            <h1 class="name">
+              {{ event.name | slice:0:18 }} <span *ngIf="event.name.length > 18">...</span>
+            </h1>
+          </div>
+        </div>
+        <div class="event-head-image" *ngIf="event.header_image_path">
+          <img src="{{ event.header_image_path }}" alt="{{ event.name }}">
+        </div>
+        <div *ngIf="event.start_time && event.end_time" class="timings">
+          <p>
+            <strong>
+              {{ moment(event.start_time).format('dddd Do MMM, YYYY') }}
+            </strong>
+            <span *ngIf="event.timezone">
+              <nb-icon icon="globe"></nb-icon>
+              {{ momentTimezone.tz(event.timezone).format('z') }}
+            </span>
+          </p>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngIf="community">
+          <app-community-badge [community]="community"></app-community-badge>
+          <p *ngIf="users.length === 0">
+            {{ community.mini_description | slice:0:50 }}
+          </p>
+        </div>
+        <div class="users" *ngIf="users.length > 0">
+          <div class="user" *ngFor="let user of users" nbTooltip="{{ user.name }}">
+            <div class="profile-picture">
+              <img src="{{ user.avatar }}" alt="{{ user.name }}">
+            </div>
+          </div>
+          <p>
+            <span *ngIf="totalCount > 0">... + {{ totalCount }} More</span>
+          </p>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </a>
+</div>

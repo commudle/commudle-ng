@@ -1,21 +1,36 @@
 <div>
   <div class="section main">
-    <div class="logo">
-      <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+
+    <div class="about-commudle">
+      <div class="logo">
+        <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+      </div>
+      <div class="revamp-text">
+        <p class="header"> Welcome to Commudle! </p>
+        <p>
+          A platform for Tech Communities to Organize Events & Share Knowledge  😃
+          <br>
+          <br>
+          <nb-icon icon="video"></nb-icon> Online Events are now supported!
+          <br>
+          <strong>
+            It's FREE for Communities, will always be.
+          </strong>
+          <br>
+          <br>
+          <span>To join, Say Hi! <u>more@commudle.com</u></span>
+        </p>
+      </div>
     </div>
-    <div class="revamp-text">
-      <p> What is Commudle? </p>
-      <p>
-        A platform for Tech Communities to organize the awesome events and conferences.
-        <br>
-        And share the content from these events.  😃
-        <br>
-        <br>
-        P.S. Online events are now supported (YouTube streaming with Live QnA). Hop on, write an email to more@commudle.com
-        <br>
-        <br>
-        It's FREE for communities, will always be.
-      </p>
+    <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
+      <div class="event" *ngFor="let event of upcomingEvents">
+        <app-event-card [event]="event"></app-event-card>
+      </div>
+    </div>
+    <div class="past-events" *ngIf="upcomingEvents.length == 0">
+      <div class="event" *ngFor="let event of pastEvents">
+        <app-event-card [event]="event"></app-event-card>
+      </div>
     </div>
   </div>
 
