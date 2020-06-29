@@ -10,7 +10,7 @@
             {{ message.user.name }}
           </strong>
           <small>
-            {{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}
+            {{ moment(message.created_at).fromNow() }}
           </small>
         </p>
       </div>
@@ -40,7 +40,7 @@
           </div>
         </div>
     </div>
-    <div *ngIf="canVote === true" class="votes clickable" (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Upvote" nbTooltipStatus="info">
+    <div *ngIf="message.parent_type != 'UserMessage'" class="votes clickable" (click)="canVote && this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Upvote" nbTooltipStatus="info">
       <p [ngClass]="{'low' : (message.votes_count > 0 && message.votes_count <= 2), 'medium': (message.votes_count > 2 && message.votes_count <= 4), 'high': (message.votes_count > 4)}">
 
         <nb-icon icon="arrow-upward" status="info"></nb-icon>
@@ -50,8 +50,8 @@
 
   </div>
   <div class="replies-container" *ngIf="canReply">
-    <app-qna-user-message
-      *ngFor="let rep of message.user_messages"
+    <div class="reply" *ngFor="let rep of message.user_messages">
+      <app-qna-user-message
       [message]="rep"
       [canReply]="false"
       [canVote]="false"
@@ -62,6 +62,7 @@
       (sendDelete)="emitDelete($event)"
       (sendFlag)="emitFlag($event)"
     ></app-qna-user-message>
+    </div>
 
     <div class="reply-form" *ngIf="showReplyForm">
       <form *ngIf="canReply" [formGroup]="userMessageReplyForm" (ngSubmit)="emitReply()">

@@ -77,7 +77,9 @@ export class PollsComponent implements OnInit {
               break;
             }
             case (this.pollsChannel.ACTIONS.CREATE): {
-              this.windowRefCreatePoll.close();
+              if (this.windowRefCreatePoll) {
+                this.windowRefCreatePoll.close();
+              }
               this.polls.unshift(data.poll);
               break;
             }
@@ -171,9 +173,11 @@ export class PollsComponent implements OnInit {
 
 
   submitPoll(pollData) {
+    console.log(pollData);
     this.pollsChannel.sendData(
       this.pollsChannel.ACTIONS.FILL,
       {
+        poll_id: this.selectedPoll.id,
         poll: pollData
       }
     );

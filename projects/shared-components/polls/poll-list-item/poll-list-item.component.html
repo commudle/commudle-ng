@@ -2,12 +2,12 @@
   <div>
     <p class="preview-question">
       {{ poll.questions[0].title }}
-      <span class="total-responses" *ngIf="poll.total_responses > 0">
-        <nb-icon icon="hash"></nb-icon> {{ poll.total_responses }}
-      </span>
       <app-badge *ngIf="poll.status === EPollStatuses.OPEN" [text]="poll.status" [fontSize]="'small'"></app-badge>
+      <span class="total-responses" *ngIf="poll.total_responses > 0">
+        <nb-icon icon="person-add-outline"></nb-icon> {{ poll.total_responses }}
+      </span>
     </p>
-    <div class="actions" *ngIf="editable">
+    <div class="actions">
       <button
         *ngIf="!poll.already_filled && poll.status === EPollStatuses.OPEN"
         nbButton
@@ -17,7 +17,7 @@
         Submit Response
       </button>
       <button
-        *ngIf="poll.status !== EPollStatuses.OPEN"
+        *ngIf="editable && poll.status !== EPollStatuses.OPEN"
         nbButton
         size="tiny"
         status="success"
@@ -25,7 +25,7 @@
         Start
       </button>
       <button
-        *ngIf="poll.status == EPollStatuses.OPEN"
+        *ngIf="editable && poll.status == EPollStatuses.OPEN"
         nbButton
         size="tiny"
         status="danger"
@@ -37,13 +37,14 @@
         nbButton
         size="tiny"
         status="primary"
+        outline
         (click)="displayResults()">
         Results
       </button>
       <button
         nbButton
         size="tiny"
-        *ngIf="deletable"
+        *ngIf="editable && deletable"
         status="danger"
         outline
         nbTooltip="Delete"
