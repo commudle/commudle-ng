@@ -53,7 +53,9 @@ export class QnaUserMessageComponent implements OnInit {
   }
 
   emitVote(userMessageId) {
-    this.sendVote.emit(userMessageId);
+    if (this.canVote) {
+      this.sendVote.emit(userMessageId);
+    }
   }
 
   emitFlag(userMessageId) {

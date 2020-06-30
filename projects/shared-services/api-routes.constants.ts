@@ -51,9 +51,11 @@ export const API_ROUTES = {
     UPDATE_CUSTOM_AGENDA: 'api/v2/events/update_custom_agenda',
 
     PUBLIC: {
-      GET: 'api/v2/events/public_show',
-      VOLUNTEERS: 'api/v2/events/public_volunteers',
-      INDEX_BY_COMMUNITY: 'api/v2/events/public_index_by_community'
+      GET: 'api/v2/events/public/show',
+      VOLUNTEERS: 'api/v2/events/public/volunteers',
+      INDEX_BY_COMMUNITY: 'api/v2/events/public/index_by_community',
+      UPCOMING: 'api/v2/events/public/upcoming',
+      RANDOM_PAST: 'api/v2/events/public/past_random'
     }
   },
 

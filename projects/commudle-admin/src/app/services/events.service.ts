@@ -90,6 +90,19 @@ export class EventsService {
   }
 
 
+  pGetUpcomingEvents(): Observable<IEvents> {
+    return this.http.get<IEvents>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.UPCOMING)
+    );
+  }
+
+  pGetRandomPastEvents(count): Observable<IEvents> {
+    let params = new HttpParams().set('count', count);
+    return this.http.get<IEvents>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.RANDOM_PAST), { params }
+    );
+  }
+
   pGetCommunityEvents(communityId): Observable<IEvents> {
     let params = new HttpParams().set('community_id', communityId);
     return this.http.get<IEvents>(
