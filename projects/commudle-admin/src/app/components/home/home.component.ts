@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
   }
 
   getRandomPastEvents() {
-    this.eventsService.pGetRandomPastEvents(5).subscribe(
+    this.eventsService.pGetRandomPastEvents(4).subscribe(
       data => {
         this.pastEvents = data.events;
       }

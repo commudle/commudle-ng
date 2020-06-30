@@ -92,12 +92,12 @@
     </div>
 
     <div class="event-components">
-      <div class="highlighted-info" [ngClass]="{'hidden': !(hasOpenForms && hasInterestedMembers)}">
+      <div class="highlighted-info" [ngClass]="{'hidden': !(hasOpenForms || hasInterestedMembers)}">
         <!-- links to forms + event slides + people who went -->
         <!-- this will show the link to the forms if the event is live -->
         <!-- else this will just show the links to event slides -->
         <app-highlighted-links [event]="event" [community]="community" (hasOpenForms)="hasOpenForms = $event"></app-highlighted-links>
-        <app-attending-members [event]="event" [community]="community"></app-attending-members>
+        <app-attending-members [event]="event" [community]="community" (hasInterestedMembers)="hasInterestedMembers = $event"></app-attending-members>
 
       </div>
       <div class="info" [ngClass]="{'full-width-column': hasOpenForms || hasInterestedMembers}">
