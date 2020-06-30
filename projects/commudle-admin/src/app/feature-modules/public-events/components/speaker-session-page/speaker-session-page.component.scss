@@ -6,10 +6,11 @@
   .card-row {
     display: flex;
     flex-direction: column;
-    margin: 0 -0.5rem;
+
     width: 100%;
     @media screen and (min-width: 1000px) {
       flex-direction: row;
+      margin: 0 -0.5rem;
     }
 
     .card-session-details {
