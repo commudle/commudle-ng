@@ -18,7 +18,7 @@ export class EventCardComponent implements OnInit {
   momentTimezone = momentTimezone;
   @Input() event: IEvent;
   community: ICommunity;
-  users: IUser[];
+  users: IUser[] = [];
   totalCount = 0;
 
   constructor(
