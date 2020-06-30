@@ -55,6 +55,7 @@ import { BasicUserProfileComponent } from './components/common/basic-user-profil
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { AppInitService } from './services/app-init.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { EventCardComponent } from './components/home/event-card/event-card.component';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -80,6 +81,7 @@ export function initApp(appInitService: AppInitService) {
     SidebarMenuComponent,
     BasicUserProfileComponent,
     SpeakerResourceFormComponent,
+    EventCardComponent,
   ],
   imports: [
     AppRoutingModule,

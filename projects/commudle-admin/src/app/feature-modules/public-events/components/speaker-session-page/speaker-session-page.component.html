@@ -99,10 +99,10 @@
     </nb-card>
 
 
-    <nb-card class="visit-users" *ngIf="userVisitData.visited_users.length >= 1 && moment() > moment(endTime)">
-      <nb-card-header>People who attended</nb-card-header>
+    <nb-card class="visit-users" *ngIf="userVisitData.watched_users.length >= 1 && moment() > moment(endTime)">
+      <nb-card-header>Attendees</nb-card-header>
       <nb-card-body>
-        <div class="visit-user" *ngFor="let user of userVisitData.visited_users">
+        <div class="visit-user" *ngFor="let user of userVisitData.watched_users">
           <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
         </div>
       </nb-card-body>

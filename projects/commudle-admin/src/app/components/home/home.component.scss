@@ -1,27 +1,83 @@
 .section.main {
-  // height: 50vh;
-  background-color: #3b49df;
-  padding: 1rem;
-  .logo {
-    filter: brightness(10);
-    width: 100px;
-    img {
-      width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+  }
+
+  .about-commudle {
+    // height: 50vh;
+    background-color: #3b49df;
+    padding: 1rem;
+    .logo {
+      filter: brightness(10);
+      width: 100px;
+      img {
+        width: 100%;
+      }
+    }
+
+    .revamp-text {
+      p.header {
+        margin-top: 0;
+        font-size: 1.5rem;
+        line-height: initial;
+      }
+      p {
+        color: white;
+      }
+
+      h6 {
+        color: white;
+      }
+    }
+    @media screen and (min-width: 800px) {
+      width: 25%;
+      height: 350px;
+      overflow-x: initial;
+    }
+  }
+  .upcoming-events, .past-events {
+    width: 100%;
+    height: 380px;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-left: 1px solid #3b49df;
+    border-top: 1px solid #3b49df;
+    border-bottom: 1px solid #3b49df;
+
+    padding: 0.5rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    .event {
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 75%;
+      margin-left: 1rem;
+      margin-top: 0;
+      .event {
+        margin: 0.5rem;
+      }
     }
   }
 
-  .revamp-text {
-    p {
-      color: white;
-      font-size: 1.5rem;
-      line-height: initial;
-    }
-
-    h6 {
-      color: white;
-    }
-  }
+  
 }
+
+
 
 .section {
   .header-communities {
