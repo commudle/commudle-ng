@@ -36,7 +36,7 @@ export class AgendaComponent implements OnInit {
   }
 
   getLocationName(eventLocation: IEventLocation) {
-    return (eventLocation.embedded_video_stream ? 'Video Stream' : eventLocation.location.name);
+    return (eventLocation.embedded_video_stream ? 'Video Stream' : (eventLocation.location ? eventLocation.location.name : ""));
   }
 
   getTabIcon(eventLocation: IEventLocation) {
