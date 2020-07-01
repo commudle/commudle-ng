@@ -237,5 +237,12 @@ export const API_ROUTES = {
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
 
+  },
+
+
+  EXTERNAL: {
+    GITHUB_API: 'https://api.github.com/repos/commudle/commudle-ng',
+    GITHUB_REPO: 'https://github.com/commudle/commudle-ng'
   }
+
 };

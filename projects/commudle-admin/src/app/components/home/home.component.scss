@@ -73,13 +73,72 @@
       }
     }
   }
+}
 
-  
+.section.updates {
+  display: flex;
+  flex-direction: column;
+  nb-card {
+    width: 100%;
+  }
+
+  a.github {
+    text-decoration: none;
+    nb-card {
+      nb-card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+        nb-icon {
+          font-size: 2.5rem;
+        }
+        p {
+          margin: 0;
+          text-decoration: underline;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  nb-card.stats {
+    height: 350px;
+    nb-card-body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      >div {
+        width: 40%;
+        height: 40%;
+        margin: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 1.2rem;
+        line-height: normal;
+        span {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    nb-card {
+      width: 333px;
+    }
+  }
+
 }
 
 
 
-.section {
+.section.communities-list {
   .header-communities {
     text-align: center;
     font-weight: 300;

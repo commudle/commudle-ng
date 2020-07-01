@@ -34,7 +34,55 @@
     </div>
   </div>
 
-  <nb-card class="section" *ngIf="communities.length > 0">
+  <div class="section updates">
+    <a class="github" href="https://github.com/commudle/commudle-ng">
+      <nb-card >
+        <nb-card-body>
+          <nb-icon icon="github"></nb-icon>
+          <p>We're Open Sourced!</p>
+        </nb-card-body>
+      </nb-card>
+    </a>
+
+    <nb-card class="stats">
+      <nb-card-body>
+        <div class="community-count">
+          <span class="number">
+            70
+          </span>
+          <span class="field">
+            Communities
+          </span>
+        </div>
+        <div class="member-count">
+          <span class="number">
+            20,000+
+          </span>
+          <span class="field">
+            Members
+          </span>
+        </div>
+        <div class="event-count">
+          <span class="number">
+            150+
+          </span>
+          <span class="field">
+            Events
+          </span>
+
+        </div>
+        <div class="new-community-button">
+          <button nbButton status="primary" outline size="medium">
+            <nb-icon icon="plus"></nb-icon>
+            Request Access!
+          </button>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+
+  <nb-card class="section communities-list" *ngIf="communities.length > 0">
     <nb-card-body>
       <h3 class="header-communities">
         A Growing Family!

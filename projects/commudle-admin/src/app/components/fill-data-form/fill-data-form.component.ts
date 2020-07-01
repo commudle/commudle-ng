@@ -21,9 +21,11 @@ export class FillDataFormComponent implements OnInit {
   dataFormEntity: IDataFormEntity;
   Visibility: Visibility;
   formClosed = false;
+  showProfileForm = true;
   redirectRoute: any;
   event: IEvent;
   community: ICommunity;
+  selectedFormResponse: any;
 
   existingResponses;
 
@@ -40,6 +42,7 @@ export class FillDataFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.redirectRoute = "/";
     this.activatedRoute.params.subscribe(params => {
       this.getDataFormEntity(params.data_form_entity_id);
     });
@@ -60,9 +63,11 @@ export class FillDataFormComponent implements OnInit {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe(
       data => {
         this.dataFormEntity = data;
-        this.getExistingResponses();
-        this.checkFormClosed();
-        this.getParent();
+        this.formClosed = !this.dataFormEntity.user_can_fill_form;
+        if (!this.formClosed) {
+          this.getExistingResponses();
+          this.getParent();
+        }
       }
     );
   }
@@ -70,31 +75,25 @@ export class FillDataFormComponent implements OnInit {
   getExistingResponses() {
     this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe(
       data => {
-        if (data.form_closed === true) {
-          this.formClosed = data.form_closed;
-        } else {
-          this.existingResponses = data.existing_responses;
+        this.existingResponses = data.existing_responses;
+
+        if (!this.dataFormEntity.multi_response &&  this.existingResponses.length === 1) {
+          this.selectedFormResponse = this.existingResponses[0];
         }
       }
     );
   }
 
 
-  checkFormClosed() {
-    switch (this.dataFormEntity.entity_type) {
-      case 'EventDataFormEntityGroup': {
-        if (this.dataFormEntity.user_can_fill_event_form === false) {
-          this.formClosed = true;
-        }
-      }
-    }
-  }
-
 
   getParent() {
     switch (this.dataFormEntity.redirectable_entity_type) {
       case 'Event':
         this.getEvent();
+        break;
+      case 'AdminSurvey':
+        this.showProfileForm = false;
+        // nothing need to be done here
         break;
       default:
         this.errorHandler.handleError(404, 'You cannot fill this form');
@@ -123,7 +122,6 @@ export class FillDataFormComponent implements OnInit {
       }
     );
   }
-
 
 
   submitForm($event) {
