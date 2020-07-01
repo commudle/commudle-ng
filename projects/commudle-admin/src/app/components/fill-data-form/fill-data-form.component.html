@@ -15,7 +15,7 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card>
+    <nb-card *ngIf="showProfileForm">
       <nb-card-header>
         Let's Update Your Basic Profile!
       </nb-card-header>
@@ -36,7 +36,7 @@
       <nb-card-body>
         <app-data-form-fill
           [dataFormId]="dataFormEntity.data_form_id"
-          [existingResponses]="existingResponses"
+          [existingResponses]="selectedFormResponse"
           (formSubmitted)="submitForm($event)"
         >
         </app-data-form-fill>

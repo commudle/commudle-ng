@@ -7,6 +7,7 @@ import { CommunitiesService } from '../../services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { EventsService } from '../../services/events.service';
+import { ExternalApisService } from '../../services/external-apis.service';
 
 @Component({
   selector: 'app-home',
@@ -74,5 +75,4 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
 }
