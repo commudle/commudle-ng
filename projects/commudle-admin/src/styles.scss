@@ -35,11 +35,6 @@ input {
   text-decoration: none;
 }
 
-nb-window {
-  max-width: 100%;
-  max-height: 100%;
-  overflow-y: auto;
-}
 
 .hidden {
   display: none;
@@ -49,9 +44,33 @@ nb-window {
 
 
 // Override Nebular
+
+.nb-theme-default nb-layout-header.fixed ~ .layout-container {
+  padding-top: 3.5rem;
+}
+
+.nb-theme-default nb-layout .layout .layout-container nb-sidebar.fixed, .nb-theme-default nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
+  top: 3.5rem;
+}
+
 @media (max-width: 767.98px) {
   .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column  {
     padding: 0 !important;
   }
 
 }
+
+
+.nb-theme-default nb-layout-header nav {
+  padding: 0rem 1.25rem;
+  height: 3.5rem;
+}
+
+
+nb-window {
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+
