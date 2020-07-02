@@ -42,7 +42,7 @@ export class FillDataFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.redirectRoute = "/";
+    this.redirectRoute = ['/'];
     this.activatedRoute.params.subscribe(params => {
       this.getDataFormEntity(params.data_form_entity_id);
     });
@@ -63,6 +63,7 @@ export class FillDataFormComponent implements OnInit {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe(
       data => {
         this.dataFormEntity = data;
+        this.title.setTitle(`${this.dataFormEntity.name}`);
         this.formClosed = !this.dataFormEntity.user_can_fill_form;
         if (!this.formClosed) {
           this.getExistingResponses();
@@ -77,8 +78,8 @@ export class FillDataFormComponent implements OnInit {
       data => {
         this.existingResponses = data.existing_responses;
 
-        if (!this.dataFormEntity.multi_response &&  this.existingResponses.length === 1) {
-          this.selectedFormResponse = this.existingResponses[0];
+        if (!this.dataFormEntity.multi_response &&  this.existingResponses.length >= 1) {
+          this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
         }
       }
     );
@@ -106,6 +107,7 @@ export class FillDataFormComponent implements OnInit {
     this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe(
       data => {
         this.event = data;
+        this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         this.getCommunity(this.event.kommunity_id);
       }
     );
@@ -115,7 +117,6 @@ export class FillDataFormComponent implements OnInit {
     this.communitiesService.getCommunityDetails(communityId).subscribe(
       data => {
         this.community = data;
-        this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         if (!this.redirectRoute) {
           this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
         }
