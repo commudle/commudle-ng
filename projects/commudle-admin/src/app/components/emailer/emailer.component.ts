@@ -147,7 +147,7 @@ export class EmailerComponent implements OnInit {
     speaker: [
       {
         value: EemailTypes.SEND_LINK,
-        display: 'Send Link (Pre-formatted email)',
+        display: 'Send Form Link To All Members (Pre-formatted email)',
         preformatted_email: true
       },
       {

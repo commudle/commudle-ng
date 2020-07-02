@@ -40,6 +40,9 @@
           (formSubmitted)="submitForm($event)"
         >
         </app-data-form-fill>
+        <p class="text-info" *ngIf="dataFormEntity.multi_response">
+          <i>* You can submit multiple responses for this form!</i>
+        </p>
       </nb-card-body>
     </nb-card>
   </div>
