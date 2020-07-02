@@ -40,7 +40,6 @@ export class ResponsesTableComponent implements OnInit {
   });
 
   constructor(
-    private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private sDataFormEntityResponseGroupsService: SDataFormEntityResponseGroupsService,
     private fb: FormBuilder
   ) { }

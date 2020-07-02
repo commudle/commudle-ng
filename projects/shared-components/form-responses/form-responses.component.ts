@@ -3,6 +3,7 @@ import { IDataFormEntity } from 'projects/shared-models/data_form_entity.model';
 import { SDataFormEntitiesService } from '../services/s-data-form-entities.service';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
+import { SDataFormsService } from '../services/s-data-forms.service';
 
 @Component({
   selector: 'app-form-responses',
@@ -16,7 +17,7 @@ export class FormResponsesComponent implements OnInit {
 
   constructor(
     private sDataFormEntitiesService: SDataFormEntitiesService,
-    private dataFormsService: DataFormsService
+    private dataFormsService: SDataFormsService
   ) { }
 
   ngOnInit() {
