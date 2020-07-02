@@ -34,6 +34,19 @@
     </nb-accordion>
   </div>
 
+  <div *ngIf="isSystemAdmin">
+    <nb-accordion class="sidebar-common-menu">
+      <nb-accordion-item [expanded]="true">
+        <nb-accordion-item-header>System Admin</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <a [routerLink]="['/sys-admin', 'admin-surveys']">
+            Admin Surveys
+          </a>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </div>
+
 
 
   <!-- <div>Common Menu []</div>

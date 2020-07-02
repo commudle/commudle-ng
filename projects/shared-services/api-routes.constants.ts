@@ -6,8 +6,12 @@ export const API_ROUTES = {
   CURRENT_USER: 'api/v2/users/signed_in_user',
 
 
-  // communities
+  // admin_surveys
+  ADMIN_SURVEYS: {
+    INDEX: 'api/v2/admin_surveys'
+  },
 
+  // communities
   COMMUNITIES: {
     USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
     DETAILS: 'api/v2/communities',
@@ -91,6 +95,7 @@ export const API_ROUTES = {
 
   // data_form_entities
   DATA_FORM_ENTITIES: {
+    INDEX: 'api/v2/data_form_entities/get_form_entities',
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
   },
@@ -106,9 +111,10 @@ export const API_ROUTES = {
     UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
     GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
     UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp',
+    DATA_FORM_ENTITY_RESPONSES: 'api/v2/data_form_entity_response_groups/data_form_entity_responses',
 
     PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers',
-    PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users'
+    PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/data_form_entity_responses'
   },
 
 

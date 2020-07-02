@@ -1,0 +1,29 @@
+.user-details-container{
+  h6{
+    margin: 0;
+  }
+  .user-avatar{
+    width: 50px;
+    min-height: 50px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  .contact-details {
+    margin: 0;
+  }
+
+  .social-links {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    a {
+      color: black;
+      margin: 0 0.5rem;
+    }
+  }
+}
+

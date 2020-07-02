@@ -12,7 +12,8 @@ import {
   NbSelectModule,
   NbCheckboxModule,
   NbRadioModule,
-  NbBadgeModule} from '@nebular/theme';
+  NbBadgeModule,
+  NbAccordionModule} from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { BadgeComponent } from './badge/badge.component';
 import { DiscussionChatComponent } from './discussion-chat/discussion-chat.component';
@@ -32,6 +33,10 @@ import { PollResultComponent } from './polls/poll-result/poll-result.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
 import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
 import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-tracker.component';
+import { FormResponsesComponent } from './form-responses/form-responses.component';
+import { UserDetailsCellComponent } from './form-responses/responses-table/user-details-cell/user-details-cell.component';
+import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -52,7 +57,10 @@ import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-track
     PollResultComponent,
     NewDataFormComponent,
     DataFormFillComponent,
-    UserVisitTrackerComponent
+    UserVisitTrackerComponent,
+    FormResponsesComponent,
+    ResponsesTableComponent,
+    UserDetailsCellComponent
   ],
   imports: [
     CommonModule,
@@ -60,6 +68,7 @@ import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-track
     ReactiveFormsModule,
     YouTubePlayerModule,
     SharedPipesModule,
+    NgxDatatableModule,
 
     // Nebular
     NbButtonModule,
@@ -71,7 +80,8 @@ import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-track
     NbSelectModule,
     NbCheckboxModule,
     NbRadioModule,
-    NbBadgeModule
+    NbBadgeModule,
+    NbAccordionModule
   ],
   exports: [
     WorkInProgressComponent,
@@ -86,7 +96,8 @@ import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-track
     PollsComponent,
     NewDataFormComponent,
     DataFormFillComponent,
-    UserVisitTrackerComponent
+    UserVisitTrackerComponent,
+    FormResponsesComponent
   ]
 })
 export class SharedComponentsModule { }
