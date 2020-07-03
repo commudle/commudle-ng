@@ -86,7 +86,7 @@ export class FillDataFormComponent implements OnInit {
     this.eventsService.getEvent(this.dataFormEntity.redirectable_entity_id).subscribe(
       data => {
         this.event = data;
-        this.getCommunity(this.event.kommunity_id);
+        this.getCommunity(this.event.community_id);
       }
     );
   }

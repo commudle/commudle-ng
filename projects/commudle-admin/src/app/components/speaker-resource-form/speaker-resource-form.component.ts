@@ -70,7 +70,7 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   getCommunity() {
-    this.communitiesService.getCommunityDetails(this.speakerResource.event.kommunity_id).subscribe(
+    this.communitiesService.getCommunityDetails(this.speakerResource.event.community_id).subscribe(
       data => this.community = data
     );
   }

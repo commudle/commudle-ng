@@ -56,7 +56,7 @@ export class HomeEventComponent implements OnInit {
     this.eventsService.pGetEvent(eventId).subscribe(
       event => {
         this.event = event;
-        this.getCommunity(event.kommunity_id);
+        this.getCommunity(event.community_id);
         this.getDiscussionChat();
       }
     );

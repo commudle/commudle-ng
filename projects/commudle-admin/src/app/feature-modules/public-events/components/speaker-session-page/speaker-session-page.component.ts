@@ -72,7 +72,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   }
 
   getCommunity() {
-    this.communitiesService.getCommunityDetails(this.event.kommunity_id).subscribe(
+    this.communitiesService.getCommunityDetails(this.event.community_id).subscribe(
       data => this.community = data
     );
   }
