@@ -113,6 +113,7 @@ export class EditDataFormComponent implements OnInit {
       data_form: this.fb.group({
         id: [''],
         name: ['', Validators.required],
+        description: [''],
         questions: this.fb.array([
         ])
       })
@@ -132,7 +133,8 @@ export class EditDataFormComponent implements OnInit {
   fillExistingDataForm() {
     this.editDataForm.get('data_form').patchValue({
       id: this.dataForm.id,
-      name: this.dataForm.name
+      name: this.dataForm.name,
+      description: this.dataForm.description
     });
     (this.editDataForm.get('data_form') as FormGroup).setControl('questions', this.setDataFormQuestions(this.dataForm.questions));
   }

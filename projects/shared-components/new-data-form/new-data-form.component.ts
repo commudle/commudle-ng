@@ -166,6 +166,7 @@ export class NewDataFormComponent implements OnInit {
       data_form: this.fb.group({
         id: [''],
         name: ['', Validators.required],
+        description: [''],
         questions: this.fb.array([
 
         ])
