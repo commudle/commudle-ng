@@ -3,6 +3,7 @@ import { IQuestion } from './question.model'
 export interface IDataForm {
   id: number;
   name: string;
+  description: string;
   created_at: Date;
   slug: string;
   questions_count: number;
