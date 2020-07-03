@@ -53,6 +53,9 @@ export const API_ROUTES = {
     UPDATE_STATUS: 'api/v2/events/update_status',
     UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',
     UPDATE_CUSTOM_AGENDA: 'api/v2/events/update_custom_agenda',
+    UPDATE_HEADER_IMAGE: 'api/v2/events/update_header_image',
+    DELETE_HEADER_IMAGE: 'api/v2/events/delete_header_image',
+
 
     PUBLIC: {
       GET: 'api/v2/events/public/show',

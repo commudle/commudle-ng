@@ -8,6 +8,8 @@ import { Title } from '@angular/platform-browser';
 import { IEventStatus } from 'projects/shared-models/event_status.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -25,11 +27,21 @@ export class EventDashboardComponent implements OnInit {
   event: IEvent;
   community: ICommunity;
 
+  uploadedHeaderImageFile: File;
+  uploadedHeaderImage;
+
+
+  eventHeaderImageForm = this.fb.group({
+    header_image: ['', Validators.required],
+  });
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private toastLogService: LibToastLogService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -59,6 +71,49 @@ export class EventDashboardComponent implements OnInit {
     this.eventsService.updateCustomAgenda(this.event.id, value).subscribe(
       data => {
         this.event = data;
+      }
+    );
+  }
+
+
+
+
+  displaySelectedHeaderImage(event: any) {
+
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      if (file.size > 2425190) {
+        this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
+        return;
+      }
+      this.uploadedHeaderImageFile = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.uploadedHeaderImage = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+      this.updateEventHeader();
+    }
+
+  }
+
+  updateEventHeader() {
+    const formData: any = new FormData();
+    formData.append('header_image', this.uploadedHeaderImageFile);
+    this.eventsService.updateHeaderImage(this.event.id, formData).subscribe(
+      data => {
+        this.event = data;
+        this.toastLogService.successDialog('Updated!');
+      }
+    );
+  }
+
+  deleteEventHeader() {
+    this.eventsService.deleteHeaderImage(this.event.id).subscribe(
+      data => {
+        this.event = data;
+        this.toastLogService.successDialog('Deleted');
       }
     );
   }
