@@ -1,0 +1,32 @@
+.survey {
+  nb-card-body {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+    }
+
+    .name {
+      margin: 0;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    @media screen and (min-width: 800px) {
+      flex-direction: row;
+      .name {
+        width: 40%;
+      }
+      .details {
+        width: 60%;
+      }
+    }
+  }
+}

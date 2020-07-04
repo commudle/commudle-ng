@@ -1,3 +1,11 @@
+.form-description {
+  p {
+    white-space: pre-wrap;
+    padding: 0.5rem;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+  }
+}
 .question {
   margin-bottom: 1.5rem;
   .description {
@@ -8,8 +16,14 @@
   }
   .detail {
     display: flex;
+
+
     p{
       margin-bottom: 0.5rem;
+      .title {
+        font-weight: 200;
+        font-size: 1.5rem;
+      }
     }
 
     nb-icon {
@@ -23,6 +37,7 @@
 
   .options {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     nb-option: {
       margin-right: 1rem;

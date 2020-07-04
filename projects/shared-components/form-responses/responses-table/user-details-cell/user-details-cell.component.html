@@ -1,0 +1,27 @@
+<div>
+  <div class="user-details-container">
+    <h6>{{ user.name }}</h6>
+    <div class="user-avatar">
+      <img src="{{ user.avatar }}" alt="{{ user.name }}">
+    </div>
+    <p class="contact-details">
+      <small>{{ user.email }}</small>
+      <br>
+      <small>{{ user.phone }}</small>
+    </p>
+    <div class="social-links">
+      <a *ngIf="user.github" href="{{ user.github }}">
+        <nb-icon icon="github"></nb-icon>
+      </a>
+      <a *ngIf="user.twitter" href="{{ user.twitter }}">
+        <nb-icon icon="twitter"></nb-icon>
+      </a>
+      <a *ngIf="user.linkedin" href="{{ user.linkedin }}">
+        <nb-icon icon="linkedin"></nb-icon>
+      </a>
+      <a *ngIf="user.personal_website" href="{{ user.personal_website }}">
+        <nb-icon icon="info"></nb-icon>
+      </a>
+    </div>
+  </div>
+</div>
