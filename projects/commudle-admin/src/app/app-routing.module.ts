@@ -41,6 +41,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: SpeakerResourceFormComponent
   },
+  { path: 'sys-admin', loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule) },
+
   {
     path: 'admin',
     children: [
@@ -67,7 +69,8 @@ const routes: Routes = [
         path: 'communities/:community_id/event-dashboard',
         loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
       }
-    ]
+    ],
+
   },
   {path: 'logout', component: LogoutComponent},
   {path: 'error', component: LibErrorHandlerComponent},

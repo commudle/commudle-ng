@@ -55,77 +55,7 @@
         </nb-card-body>
       </nb-card>
     </div>
-
   </div>
-
-  <!-- <div>
-    <nb-card>
-      <nb-card-body>
-        <app-event-status [event]="event" (updatedEventStatus)="updateEventStatus($event)"></app-event-status>
-      </nb-card-body>
-    </nb-card>
-
-    <nb-card size="Tiny">
-      <nb-card-header>Posted Updates</nb-card-header>
-      <nb-card-body>
-        <app-event-updates
-        [event]="event"
-        ></app-event-updates>
-      </nb-card-body>
-    </nb-card>
-
-    <nb-card>
-      <nb-card-header>Details</nb-card-header>
-      <nb-card-body>
-        <div class="event-timings">
-          <div *ngIf="event.start_time">
-            <fa-icon [icon]="faClock"></fa-icon>
-            <p>
-              <strong>
-                {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
-              </strong>
-              <br>
-              to
-              <br>
-              <strong>
-                {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
-              </strong>
-
-                {{ moment(event.end_time).format('z') }}
-
-            </p>
-
-
-          </div>
-        </div>
-
-        <div class="event-description">
-          <fa-icon [icon]="faInfoCircle"></fa-icon>
-          &nbsp;
-          <div [innerHTML]="event.description" ></div>
-        </div>
-
-      </nb-card-body>
-      <nb-card-footer *ngIf="event.editable">
-        <div>
-          <a nbButton status="primary" outline size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
-            <fa-icon [icon]="faEdit"></fa-icon>
-            &nbsp;
-            Edit
-          </a>
-        </div>
-      </nb-card-footer>
-    </nb-card>
-    <nb-card>
-      <nb-card-header>Forms</nb-card-header>
-      <nb-card-body>
-        <app-form-groups [event]="event" [community]="community"></app-form-groups>
-      </nb-card-body>
-      <nb-card-footer></nb-card-footer>
-    </nb-card>
-
-
-  </div> -->
 
   <div class="card-row">
     <div class="card-col">
@@ -135,7 +65,44 @@
         </nb-card-body>
       </nb-card>
 
-      <nb-card size="tiny" *ngIf="event.event_status.name != EEventStatuses.DRAFT">
+      <nb-card class="event-header-image" *ngIf="event.editable || event.header_image_path">
+        <nb-card-body>
+          <form [formGroup]="eventHeaderImageForm">
+            <div class="row">
+              <div>
+                <div>
+                  <div class="uploaded-header-image filler" *ngIf="!(uploadedHeaderImage || event.header_image_path)">
+                    <p>
+                      Header Image
+                    </p>
+                    <p>
+                      <small>
+                        (1000 x 350)
+                      </small>
+                    </p>
+                  </div>
+                  <div class="uploaded-header-image" *ngIf="uploadedHeaderImage || event.header_image_path">
+                    <img src="{{uploadedHeaderImage || event.header_image_path}}" alt="Profile Picture">
+                  </div>
+                  <button
+                    class="delete-header-image-button"
+                    nbButton
+                    outline
+                    size="tiny"
+                    status="danger"
+                    *ngIf="uploadedHeaderImage || event.header_image_path"
+                    (click)="deleteEventHeader()">
+                    Delete
+                  </button>
+                </div>
+                <input formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
+              </div>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card *ngIf="event.event_status.name != EEventStatuses.DRAFT">
         <nb-card-header>Posted Updates</nb-card-header>
         <nb-card-body>
           <app-event-updates

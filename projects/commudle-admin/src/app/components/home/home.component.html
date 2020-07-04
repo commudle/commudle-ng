@@ -18,7 +18,11 @@
           </strong>
           <br>
           <br>
-          <span>To join, Say Hi! <u>more@commudle.com</u></span>
+          <span class="clickable" [routerLink]="['fill-form', 406]">
+            <u>
+              Click Here to Join!
+            </u>
+          </span>
         </p>
       </div>
     </div>
@@ -34,7 +38,67 @@
     </div>
   </div>
 
-  <nb-card class="section" *ngIf="communities.length > 0">
+  <div class="section updates">
+
+    <nb-card class="stats">
+      <nb-card-body>
+        <div class="community-count">
+          <span class="number">
+          🏅 70+
+          </span>
+          <span class="field">
+          Communities
+          </span>
+        </div>
+        <div class="member-count">
+          <span class="number">
+          😃 20,000+
+          </span>
+          <span class="field">
+            Members
+          </span>
+        </div>
+        <div class="event-count">
+          <span class="number">
+          🎥 150+
+          </span>
+          <span class="field">
+            Events
+          </span>
+
+        </div>
+        <a [routerLink]="['/fill-form', 406]" nbButton fullWidth status="success" size="medium">
+          <nb-icon icon="plus-circle-outline"></nb-icon>
+          I Want Access!
+        </a>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card accent="primary" class="new-feature">
+      <nb-card-body>
+        <h4>
+          Are you building something?
+        </h4>
+        <p>
+          Let's share it with the community.
+          <br>
+          Write to us: <span class="text-primary">more@commudle.com</span>
+        </p>
+      </nb-card-body>
+    </nb-card>
+
+    <a class="github" href="https://github.com/commudle/commudle-ng">
+      <nb-card >
+        <nb-card-body>
+          <nb-icon icon="github"></nb-icon>
+          <p>We're Open Sourced!</p>
+        </nb-card-body>
+      </nb-card>
+    </a>
+
+  </div>
+
+  <nb-card class="section communities-list" *ngIf="communities.length > 0">
     <nb-card-body>
       <h3 class="header-communities">
         A Growing Family!

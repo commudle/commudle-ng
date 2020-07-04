@@ -90,6 +90,21 @@ export class EventsService {
   }
 
 
+  updateHeaderImage(eventId, formData): Observable<IEvent> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.put<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.UPDATE_HEADER_IMAGE), formData, {params}
+    );
+  }
+
+
+  deleteHeaderImage(eventId): Observable<IEvent> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.delete<IEvent>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.DELETE_HEADER_IMAGE), {params});
+  }
+
+
   pGetUpcomingEvents(): Observable<IEvents> {
     return this.http.get<IEvents>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.UPCOMING)

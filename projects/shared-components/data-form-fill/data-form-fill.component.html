@@ -1,4 +1,9 @@
 <div *ngIf="dataForm && formCreated">
+  <div *ngIf="dataForm.description" class="form-description">
+    <p>
+      {{ dataForm.description }}
+    </p>
+  </div>
   <form [formGroup]="dataFormEntityResponseForm" (ngSubmit)="submitForm()">
     <div class="question" *ngFor="let question of dataForm.questions; let i = index">
       <div class="detail">
@@ -6,11 +11,11 @@
           <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
         </p>
         <p>
-          <span>
+          <span class="title">
             {{ question.title }}<span class="required-question" *ngIf="question.required">*</span>
           </span>
           <br>
-          <small class="description">
+          <small class="description" *ngIf="question.description">
             {{ question.description }}
           </small>
         </p>
