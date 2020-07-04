@@ -41,20 +41,20 @@ export class LibAuthwatchService {
 
 
   // for logout
-  deleteAuthCookie() {
+  // deleteAuthCookie() {
 
-    const date = new Date();
+  //   this.signOut().subscribe();
+  //   // const date = new Date();
+  //   // // consider the cookie to be expired
+  //   // date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
 
-    // // consider the cookie to be expired
-    // date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
+  //   // // set the new expiry date on the cookie
+  //   // this.document.cookie = this.authCookieName+"=; expires="+date.toUTCString()+"; path=/";
+  //   this.cookieService.delete(environment.auth_cookie_name);
+  //   this.currentUser.next(null);
+  //   this.currentUserVerified.next(false);
 
-    // // set the new expiry date on the cookie
-    // this.document.cookie = this.authCookieName+"=; expires="+date.toUTCString()+"; path=/";
-    this.cookieService.delete(environment.auth_cookie_name);
-    this.currentUser.next(null);
-    this.currentUserVerified.next(false);
-
-  }
+  // }
 
 
   // check if user is already signed in
@@ -72,6 +72,19 @@ export class LibAuthwatchService {
         })
       );
   }
+
+
+  // logout
+  signOut(): Observable<boolean> {
+    let authCookie = this.getAuthCookie();
+    this.cookieService.delete(environment.auth_cookie_name);
+    this.currentUser.next(null);
+    this.currentUserVerified.next(false);
+    return this.http.delete<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.LOGOUT)
+    );
+  }
+
 
 
   updateSignedInUser() {

@@ -17,8 +17,8 @@ export class LogoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authWatchService.deleteAuthCookie();
-    this.document.location.href = "/";
+    this.authWatchService.signOut().subscribe();
+    this.document.location.href = '/';
 
   }
 
