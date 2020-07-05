@@ -76,8 +76,6 @@ export class LibAuthwatchService {
 
   // logout
   signOut(): Observable<boolean> {
-    let authCookie = this.getAuthCookie();
-    this.cookieService.delete(environment.auth_cookie_name);
     this.currentUser.next(null);
     this.currentUserVerified.next(false);
     return this.http.delete<any>(
