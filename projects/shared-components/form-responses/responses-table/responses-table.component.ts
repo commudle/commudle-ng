@@ -90,7 +90,6 @@ export class ResponsesTableComponent implements OnInit {
       (data) => {
         this.totalEntries = data.total;
         this.rows = data.data_form_entity_response_groups;
-        console.log(this.rows);
         this.isLoading = false;
         this.emptyMessage = 'No data to display';
       }
