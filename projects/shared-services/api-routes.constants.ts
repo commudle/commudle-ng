@@ -22,6 +22,22 @@ export const API_ROUTES = {
     PUBLIC_DETAILS: 'api/v2/communities/public_show'
   },
 
+  // community_builds
+  COMMUNITY_BUILDS: {
+    INDEX: 'api/v2/community_builds',
+    SHOW: 'api/v2/community_builds/show',
+    CREATE: 'api/v2/community_builds',
+    UPDATE: 'api/v2/community_builds',
+    UPDATE_TAGS: 'api/v2/community_builds/update_tags',
+
+    PUBLIC: {
+      INDEX: 'api/v2/community_builds/public',
+      SHOW: 'api/v2/community_builds/public/show',
+      TOGGLE_VOTE: 'api/v2/community_builds/public/toggle_vote',
+
+    }
+  },
+
 
 
   // data_forms
