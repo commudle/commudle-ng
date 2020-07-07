@@ -1,6 +1,6 @@
 import { IUser } from './user.model';
 
-export interface CommunityBuild {
+export interface ICommunityBuild {
   id: number;
   user: IUser;
   name: string;
@@ -16,3 +16,29 @@ export interface CommunityBuild {
   images: string[];
   tags: string[];
 }
+
+
+export enum EBuildType {
+  project = 'project',
+  product = 'product',
+  slides = 'slides',
+  programme = 'programme',
+  course = 'course',
+  other = 'other'
+}
+
+
+export enum EProjectStatus {
+  not_live = 'not_live',
+  live = 'live'
+}
+
+export enum EPublishStatus {
+  draft = 'draft',
+  submitted = 'submitted',
+  published = 'publish',
+  flagged = 'flagged',
+  removed = 'removed'
+
+}
+
