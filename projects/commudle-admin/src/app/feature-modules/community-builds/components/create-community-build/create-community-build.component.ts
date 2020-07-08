@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EProjectStatus, EPublishStatus } from 'projects/shared-models/community-build.model';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 
 
@@ -21,6 +21,8 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   embeddedLink;
   teamNeeded = true;
+  uploadedImagesFiles = [];
+  uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
   projectStatuses = Object.keys(EProjectStatus);
   publishStatuses = Object.keys(EPublishStatus);
@@ -40,24 +42,23 @@ export class CreateCommunityBuildComponent implements OnInit {
 
 
   constructor(
+    private title: Title,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private communityBuildsService: CommunityBuildsService
   ) { }
 
   ngOnInit() {
-
     this.setBuildType();
     this.linkDisplay();
+
+    this.title.setTitle('Share Your Build!');
   }
 
 
   setBuildType() {
     const val = this.communityBuildForm.get('build_type').value;
     switch (val) {
-      case EBuildType.course: {
-        break
-      }
       case EBuildType.slides: {
         this.linkFieldLabel = 'Iframe for Embedding OR Link*';
         this.teamNeeded = false;
@@ -80,6 +81,26 @@ export class CreateCommunityBuildComponent implements OnInit {
         this.embeddedLink = null;
       }
     });
+  }
+
+
+  addImages(event) {
+    if (event.target.files && event.target.files.length > 0) {
+
+      for (const file of event.target.files) {
+        this.uploadedImagesFiles.push(file);
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.uploadedImages.push(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+
+    }
+  }
+
+  removeImages(index) {
+
   }
 
 

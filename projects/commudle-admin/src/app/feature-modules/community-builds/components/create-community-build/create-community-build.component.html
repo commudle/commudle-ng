@@ -72,6 +72,27 @@
 
             </editor>
         </div>
+
+        <div class="field image-upload">
+          <label class="clickable">
+
+            <span>
+              <nb-icon icon="plus"></nb-icon>
+              Add Images
+            </span>
+            <input type="file" accept="image/*" nbInput fullWidth (change)="addImages($event)" multiple>
+          </label>
+
+          <div class="images">
+            <div *ngFor="let image of uploadedImages; let i=index;">
+              <img src="{{ image }}">
+              <p class="clickable">
+                <nb-icon icon="close-circle" (click)="removeImages(i)" status="danger"></nb-icon>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div class="field" *ngIf="teamNeeded">
           <label fullWidth>
             <nb-checkbox status="basic" formControlName="need_team">
