@@ -1,0 +1,24 @@
+.community-build {
+  nb-card.form-card {
+    width: 100%;
+    margin: 0 auto;
+
+    form {
+      .field {
+        margin-top: 1rem;
+      }
+
+      .field.actions {
+        display: flex;
+        flex-wrap: wrap;
+        button {
+          margin: 0.5rem;
+        }
+      }
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 800px;
+    }
+  }
+}
