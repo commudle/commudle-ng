@@ -47,6 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'community-builds',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./feature-modules/community-builds/community-builds.module').then(m => m.CommunityBuildsModule)
   },
   {

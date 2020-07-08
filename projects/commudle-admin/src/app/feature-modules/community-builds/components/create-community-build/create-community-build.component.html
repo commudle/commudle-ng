@@ -1,1 +1,130 @@
-<p>create-community-build works!</p>
+<div class="community-build">
+
+  <nb-card class="form-card">
+    <nb-card-body>
+
+      <form [formGroup]="communityBuildForm">
+
+        <div class="field">
+          <label fullWidth>
+            What's the name?*
+            <input type="text" nbInput fullWidth size="large" formControlName="name">
+          </label>
+          <span *ngIf="communityBuildForm.get('name').touched && communityBuildForm.get('name').invalid && communityBuildForm.get('name').errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+
+
+        <div class="field">
+          <label fullWidth>
+            What are you sharing today?*
+            <br>
+            <nb-select
+              placeholder="Select One"
+              formControlName="build_type"
+              status="primary"
+              size="medium"
+              (selectedChange)="setBuildType()">
+              <nb-option *ngFor="let bType of buildTypes" [value]="EBuildType[bType]">
+                {{ bType | titlecase }}
+              </nb-option>
+            </nb-select>
+          </label>
+          <span *ngIf="communityBuildForm.get('build_type').touched && communityBuildForm.get('build_type').invalid && communityBuildForm.get('build_type').errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
+            {{linkFieldLabel}}
+            <input type="url" nbInput fullWidth size="large" formControlName="link">
+          </label>
+          <span *ngIf="communityBuildForm.get('link').touched && communityBuildForm.get('link').invalid && communityBuildForm.get('link').errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+
+        <div class="embedded-slides" *ngIf="embeddedLink" [innerHTML]="embeddedLink">
+        </div>
+
+        <div class="field">
+          <label>
+            What would you like the community to know (please describe!)?*
+          </label>
+            <editor
+              formControlName="description"
+              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+             [init]="{
+              height: 300,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }">
+
+            </editor>
+        </div>
+        <div class="field" *ngIf="teamNeeded">
+          <label fullWidth>
+            <nb-checkbox status="basic" formControlName="need_team">
+              I am looking for people to join this
+            </nb-checkbox>
+          </label>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
+            Tags
+            <input
+              type="text"
+              nbInput
+              fullWidth
+              size="large"
+              [(ngModel)]="tags"
+              [ngModelOptions]="{standalone: true}"
+              placeholder="Enter tags separated by comma (a, b, c...)">
+          </label>
+        </div>
+
+
+        <div>
+          <p class="text-info">
+            *Once you click 'Submit for Approval', we'll just review it once and publish it within 72 hours. In case of any changes, we'll reach out to your email!
+          </p>
+        </div>
+
+        <div class="field actions">
+          <button
+            [disabled]="!communityBuildForm.valid"
+            type="submit"
+            nbButton
+            outline
+            status="info"
+            (click)="submitForm(EPublishStatus.draft)">
+            <nb-icon icon="edit"></nb-icon>
+            Save as Draft
+          </button>
+          <button
+            [disabled]="!communityBuildForm.valid"
+            type="submit"
+            nbButton
+            outline
+            status="primary"
+            (click)="submitForm(EPublishStatus.submitted)">
+            <nb-icon icon="checkmark"></nb-icon>
+            Submit For Approval
+          </button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+
+</div>
