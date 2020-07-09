@@ -1,29 +1,41 @@
+.help-text-button {
+  display: inline-block;
+}
 
+.add-event-button {
+  display: inline-block;
+  float: right;
+}
 
-.event-locations-list{
-  display: flex;
-  flex-direction: column;
+.event-location-details {
+  width: 100%;
+  margin-top: 10px;
 
-  .event-location {
+  .event-list {
+    padding: 1rem 0;
+  }
 
-    nb-card-header{
-      display: flex;
-      justify-content: flex-start;
+  .event-online-details,
+  .event-offline-details {
+    display: inline-block;
+    width: 85%;
+  }
 
-      .event-location-details {
-        margin-left: 1rem;
-        p{
-          margin: 0;
-          word-wrap: break-word;
-        }
-      }
+  .event-edit-icons {
+    display: inline-block;
+    float: right;
+    margin-top: 1rem;
+    width: 15%;
+
+    fa-icon {
+      float: right;
+      margin: 5px;
     }
   }
 }
 
-
 .online-event-fields, .offline-event-fields {
-  >div {
+  > div {
     margin-top: 1rem;
   }
 }
