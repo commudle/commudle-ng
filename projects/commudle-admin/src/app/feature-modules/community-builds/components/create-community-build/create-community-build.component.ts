@@ -5,6 +5,7 @@ import { DomSanitizer, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ActivatedRoute } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
-    private communityBuildsService: CommunityBuildsService
+    private communityBuildsService: CommunityBuildsService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class CreateCommunityBuildComponent implements OnInit {
             this.cBuild = data;
             this.title.setTitle(`${this.cBuild.name} | Edit`);
             this.prefillCommunityBuild();
+            this.tags = data.tags.toString();
           }
         );
       }
@@ -180,7 +183,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     console.log(this.buildFormData(publishStatus));
     this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe(
       data => {
-        console.log(data);
+        this.cBuild = data;
+        this.submitTags();
       }
     );
   }
@@ -190,13 +194,18 @@ export class CreateCommunityBuildComponent implements OnInit {
     this.communityBuildsService.update(this.cBuild.id, this.buildFormData(publishStatus)).subscribe(
       data => {
         this.cBuild = data;
+        this.submitTags();
       }
     );
   }
 
 
   submitTags() {
-
+    this.communityBuildsService.updateTags(this.cBuild.id, this.tags.split(',')).subscribe(
+      data => {
+        this.toastLogService.successDialog('Saved!');
+      }
+    );
   }
 
 }

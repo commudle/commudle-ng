@@ -29,7 +29,6 @@ export const API_ROUTES = {
     CREATE: 'api/v2/community_builds',
     UPDATE: 'api/v2/community_builds',
     UPDATE_TAGS: 'api/v2/community_builds/update_tags',
-    REMOVE_IMAGE: 'api/v2/community_builds/remove_image',
 
     PUBLIC: {
       INDEX: 'api/v2/community_builds/public',

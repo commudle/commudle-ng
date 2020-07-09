@@ -44,5 +44,14 @@ export class CommunityBuildsService {
     );
   }
 
+updateTags(communityBuildId, tags): Observable<any> {
+  const params = new HttpParams().set('community_build_id', communityBuildId);
+  return this.http.put<any>(
+    this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_TAGS),
+    { tags },
+    { params }
+  );
+}
+
 
 }
