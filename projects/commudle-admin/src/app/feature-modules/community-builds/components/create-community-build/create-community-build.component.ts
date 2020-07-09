@@ -125,6 +125,11 @@ export class CreateCommunityBuildComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
 
       for (const file of event.target.files) {
+
+        if (file.size > 2425190) {
+          this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
+          return;
+        }
         const imgFile: IAttachedFile = {
           id: null,
           file: file,
