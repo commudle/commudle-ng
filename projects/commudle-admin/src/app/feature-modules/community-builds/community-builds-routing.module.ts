@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateCommunityBuildComponent
+  },
+  {
+    path: 'edit/:community_build_id',
+    component: CreateCommunityBuildComponent
   }
 ];
 

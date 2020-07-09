@@ -84,11 +84,13 @@
           </label>
 
           <div class="images">
-            <div *ngFor="let image of uploadedImages; let i=index;">
-              <img src="{{ image }}">
-              <p class="clickable">
-                <nb-icon icon="close-circle" (click)="removeImages(i)" status="danger"></nb-icon>
-              </p>
+            <div *ngFor="let image of uploadedImagesFiles; let i=index;">
+              <div *ngIf="!uploadedImagesFiles[i]['delete']">
+                <img src="{{ uploadedImages[i] }}">
+                <p class="clickable">
+                  <nb-icon icon="close-circle" (click)="removeImage(i)" status="danger"></nb-icon>
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -45,7 +45,8 @@
         justify-content: start;
         flex-wrap: wrap;
         >div {
-          margin: 0.5rem;
+          >div {
+            margin: 0.5rem;
           width: 100px;
           height: 100px;
           border: 1px dotted lightgrey;
@@ -69,6 +70,7 @@
               border-radius: 50%;
               background-color: white;
             }
+          }
           }
 
         }

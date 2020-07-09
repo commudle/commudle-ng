@@ -1,4 +1,5 @@
 import { IUser } from './user.model';
+import { IAttachedFile } from './attached-file.model';
 
 export interface ICommunityBuild {
   id: number;
@@ -13,7 +14,7 @@ export interface ICommunityBuild {
   open_source: boolean;
   need_team: boolean;
   created_at: Date;
-  images: string[];
+  images: IAttachedFile[];
   tags: string[];
 }
 

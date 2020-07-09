@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EProjectStatus, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
+import { ActivatedRoute } from '@angular/router';
+import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 
 
 @Component({
@@ -21,7 +23,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   embeddedLink;
   teamNeeded = true;
-  uploadedImagesFiles = [];
+  uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
   projectStatuses = Object.keys(EProjectStatus);
@@ -36,8 +38,7 @@ export class CreateCommunityBuildComponent implements OnInit {
     link: ['', Validators.required],
     contact: [''],
     open_sourced: [''],
-    need_team: [''],
-    images: ['']
+    need_team: ['']
   });
 
 
@@ -45,14 +46,47 @@ export class CreateCommunityBuildComponent implements OnInit {
     private title: Title,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
+    private activatedRoute: ActivatedRoute,
     private communityBuildsService: CommunityBuildsService
   ) { }
 
   ngOnInit() {
+    this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
 
     this.title.setTitle('Share Your Build!');
+  }
+
+
+  getCommunityBuild() {
+    this.activatedRoute.params.subscribe(data => {
+      const cbId = data.community_build_id;
+      if (cbId) {
+        this.communityBuildsService.show(cbId).subscribe(
+          data => {
+            this.cBuild = data;
+            this.title.setTitle(`${this.cBuild.name} | Edit`);
+            this.prefillCommunityBuild();
+          }
+        );
+      }
+    });
+  }
+
+  prefillCommunityBuild() {
+    this.communityBuildForm.patchValue(this.cBuild);
+    this.setBuildType();
+
+    for (const img of this.cBuild.images) {
+      this.uploadedImagesFiles.push({
+        id: img.id,
+        file: null,
+        url: img.url
+      });
+
+      this.uploadedImages.push(img.url);
+    }
   }
 
 
@@ -88,36 +122,75 @@ export class CreateCommunityBuildComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
 
       for (const file of event.target.files) {
-        this.uploadedImagesFiles.push(file);
+        const imgFile: IAttachedFile = {
+          id: null,
+          file: file,
+          url: null
+        };
+        this.uploadedImagesFiles.push(imgFile);
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.uploadedImages.push(reader.result);
         };
         reader.readAsDataURL(file);
       }
-
     }
   }
 
-  removeImages(index) {
-
+  removeImage(index) {
+    if (this.uploadedImagesFiles[index]['id']) {
+      this.uploadedImagesFiles[index]['delete'] = true;
+    } else {
+      this.uploadedImagesFiles.splice(index, 1);
+      this.uploadedImages.splice(index, 1);
+    }
   }
 
 
 
   submitForm(publishStatus: EPublishStatus) {
-    this.communityBuildsService.create(this.communityBuildForm.value).subscribe(
+    if (!this.cBuild) {
+      this.createCommunityBuild(publishStatus);
+    } else {
+      this.updateCommunityBuild(publishStatus);
+    }
+  }
+
+
+  buildFormData(publishStatus): FormData {
+    const formData: any = new FormData();
+    const cBuildFormValue = this.communityBuildForm.value;
+    Object.keys(cBuildFormValue).forEach(
+      key => (!(cBuildFormValue[key] == null) ? formData.append(`community_build[${key}]`, cBuildFormValue[key]) : '')
+      );
+
+    formData.append('community_build[publish_status]', publishStatus);
+
+    for (let i = 0; i < this.uploadedImagesFiles.length; i++) {
+      Object.keys(this.uploadedImagesFiles[i]).forEach(
+        key => formData.append(`community_build[images][][${key}]`, this.uploadedImagesFiles[i][key])
+        );
+    }
+
+    return formData;
+  }
+
+
+  createCommunityBuild(publishStatus: EPublishStatus) {
+    console.log(this.buildFormData(publishStatus));
+    this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe(
       data => {
         console.log(data);
       }
     );
   }
 
-  autoSaver() {
-    setInterval(
-      () => {
 
-      }, 10000
+  updateCommunityBuild(publishStatus: EPublishStatus) {
+    this.communityBuildsService.update(this.cBuild.id, this.buildFormData(publishStatus)).subscribe(
+      data => {
+        this.cBuild = data;
+      }
     );
   }
 
