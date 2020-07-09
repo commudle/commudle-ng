@@ -18,14 +18,29 @@ export class CommunityBuildsService {
     private apiRoutesService: ApiRoutesService
   ) { }
 
+  show(communityBuildId): Observable<ICommunityBuild> {
+    const params = new HttpParams().set('community_build_id', communityBuildId);
+    return this.http.get<ICommunityBuild>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.SHOW), {params}
+    );
+  }
+
 
 
   create(commmunityBuild): Observable<ICommunityBuild> {
     return this.http.post<ICommunityBuild>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CREATE),
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CREATE), commmunityBuild
+    );
+  }
+
+  update(communityBuildId, commmunityBuild): Observable<ICommunityBuild> {
+    const params = new HttpParams().set('community_build_id', communityBuildId);
+    return this.http.put<ICommunityBuild>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE),
+      commmunityBuild,
       {
-        community_build: commmunityBuild
-      }
+        params
+      },
     );
   }
 
