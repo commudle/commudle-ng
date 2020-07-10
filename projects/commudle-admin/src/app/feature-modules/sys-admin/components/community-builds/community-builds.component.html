@@ -1,0 +1,76 @@
+<div>
+  <h4>
+    Community Builds
+  </h4>
+
+  <div>
+    <nb-card class="community-builds">
+      <nb-card-body>
+        <div class="community-build" *ngFor="let cb of cBuilds">
+          <div class="content">
+            <p>
+              <small>
+                {{ moment(cb.created_at).fromNow() }}
+              </small>
+            </p>
+            <p>
+              ({{ cb.build_type | titlecase }})
+            </p>
+            <h5>
+              {{ cb.name }}
+            </h5>
+            <p>
+              <small *ngIf="cb.need_team">Needs a Team</small>
+            </p>
+            <p *ngIf="cb.link">
+              <a target="_blank" href="{{ cb.link }}">
+                {{ cb.link }}
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+
+            </p>
+            <div class="description" [innerHTML]="cb.description"></div>
+            <div class="images">
+              <div class="image clickable" *ngFor="let image of cb.images" (click)="openImage(cb.name, image.url)">
+                <img src="{{ image.url }}" alt="{{cb.name}}">
+              </div>
+            </div>
+          </div>
+          <div class="creator">
+            <app-user-profile-horizontal [user]="cb.user"></app-user-profile-horizontal>
+          </div>
+          <div class="stats">
+            <div>
+              <p>
+                {{ cb.votes_count }} <nb-icon icon="star" status="warning"></nb-icon>
+              </p>
+            </div>
+            <div class="tags">
+              <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="status-update">
+              <nb-select [selected]="cb.publish_status" (selectedChange)="updatePublishStatus($event, cb.id)" status="primary" size="small">
+                <nb-option placeholder="Select Status" *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]">
+                  {{ EPublishStatus[ps] | titlecase }}
+                </nb-option>
+              </nb-select>
+            </div>
+            <div>
+              <button nbButton status="info" size="tiny" outline [routerLink]="['/community-builds', cb.slug, 'edit']">
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <ng-template #imageTemplate let-data>
+    <div class="image-window">
+      <img src="{{data.imageUrl}}">
+    </div>
+  </ng-template>
+</div>

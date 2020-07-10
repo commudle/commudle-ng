@@ -6,6 +6,7 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
+import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,13 @@ export class CommunityBuildsService {
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService
   ) { }
+
+
+  getAll(): Observable<ICommunityBuilds> {
+    return this.http.get<ICommunityBuilds>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.INDEX)
+    );
+  }
 
   show(communityBuildId): Observable<ICommunityBuild> {
     const params = new HttpParams().set('community_build_id', communityBuildId);
@@ -44,14 +52,26 @@ export class CommunityBuildsService {
     );
   }
 
-updateTags(communityBuildId, tags): Observable<any> {
-  const params = new HttpParams().set('community_build_id', communityBuildId);
-  return this.http.put<any>(
-    this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_TAGS),
-    { tags },
-    { params }
-  );
-}
+  updateTags(communityBuildId, tags): Observable<any> {
+    const params = new HttpParams().set('community_build_id', communityBuildId);
+    return this.http.put<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_TAGS),
+      { tags },
+      { params }
+    );
+  }
+
+
+  updatePublishStatus(communityBuildId, publishStatus): Observable<boolean> {
+    const params = new HttpParams().set('community_build_id', communityBuildId);
+    return this.http.put<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_PUBLISH_STATUS),
+      {
+        community_build_id: communityBuildId,
+        publish_status: publishStatus
+      }
+    );
+  }
 
 
 }
