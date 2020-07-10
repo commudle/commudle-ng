@@ -13,6 +13,7 @@ export interface ICommunityBuild {
   need_team: boolean;
   created_at: Date;
   votes_count: number;
+  flags_count: number;
   images: IAttachedFile[];
   tags: string[];
 }
@@ -40,5 +41,14 @@ export enum EPublishStatus {
   flagged = 'flagged',
   removed = 'removed'
 
+}
+
+
+export enum EPublishStatusColors {
+  draft = '#ff6a00',
+  submitted = '#0095fe',
+  published = '#23d004',
+  flagged = 'red',
+  removed = 'red'
 }
 

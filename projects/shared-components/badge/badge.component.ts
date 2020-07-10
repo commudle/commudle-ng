@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BadgeComponent implements OnInit {
   @Input() text;
   @Input() fontSize; //can be 'small or regular'
+  @Input() color;
 
   bg;
 
@@ -19,7 +20,7 @@ export class BadgeComponent implements OnInit {
 
 
   backgroundColor() {
-    return '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+    return this.color || '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
   }
 
 }
