@@ -1,1 +1,43 @@
-<p>community-build-details works!</p>
+<div class="community-build-details">
+
+  <nb-card class="community-build" *ngIf="cBuild">
+    <nb-card-body>
+      <div class="header">
+        <p class="date">
+          <small>
+            {{ moment(cBuild.created_at).format('Do MMM YYYY') }}
+          </small>
+        </p>
+        <h1>
+          {{ cBuild.name }}
+        </h1>
+        <p class="author">
+          {{ cBuild.user.name }} <span *ngIf="cBuild.user.designation">, {{ cBuild.user.designation }}</span>
+        </p>
+      </div>
+      <div class="description">
+        <div [innerHTML]="cBuild.description"></div>
+      </div>
+      <div *ngIf="cBuild.link" class="link">
+        <p>
+          Visit the project:
+          <a target="_blank" href="{{ cBuild.link }}">
+            {{ cBuild.link }} <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </p>
+      </div>
+      <div class="author-details">
+        <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true"></app-user-profile-horizontal>
+      </div>
+
+      <div class="comments" *ngIf="discussionChat">
+        <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
+      </div>
+
+      <div class="tags">
+        <app-badge *ngFor="let tag of cBuild.tags" [text]="tag"></app-badge>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+</div>

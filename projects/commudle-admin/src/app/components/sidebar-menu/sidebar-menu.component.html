@@ -7,7 +7,7 @@
       </a>
     </nb-list-item>
 
-    <nb-list-item *ngIf="currentUser.has_community_builds">
+    <nb-list-item *ngIf="currentUser && currentUser.has_community_builds">
       <a [routerLink]="['/community-builds/my-builds']">
         <nb-icon icon="bulb-outline"></nb-icon>
         My Builds

@@ -74,4 +74,12 @@ export class CommunityBuildsService {
   }
 
 
+  pShow(communityBuildId): Observable<ICommunityBuild> {
+    const params = new HttpParams().set('community_build_id', communityBuildId);
+    return this.http.get<ICommunityBuild>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.SHOW), {params}
+    );
+  }
+
+
 }
