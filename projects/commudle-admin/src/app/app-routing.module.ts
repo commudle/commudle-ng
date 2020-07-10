@@ -43,7 +43,8 @@ const routes: Routes = [
   },
   {
     path: 'sys-admin',
-    loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule)
+    loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'community-builds',

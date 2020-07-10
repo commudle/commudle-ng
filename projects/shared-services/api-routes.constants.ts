@@ -29,6 +29,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/community_builds',
     UPDATE: 'api/v2/community_builds',
     UPDATE_TAGS: 'api/v2/community_builds/update_tags',
+    UPDATE_PUBLISH_STATUS: 'api/v2/community_builds/update_publish_status',
 
     PUBLIC: {
       INDEX: 'api/v2/community_builds/public',

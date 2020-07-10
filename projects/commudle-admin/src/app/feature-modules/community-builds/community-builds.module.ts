@@ -8,11 +8,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
+import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
+import { CommunityBuildDetailsComponent } from './components/community-build-details/community-build-details.component';
 
 
 @NgModule({
   declarations: [
-    CreateCommunityBuildComponent
+    CreateCommunityBuildComponent,
+    MyCommunityBuildsComponent,
+    CommunityBuildsComponent,
+    CommunityBuildDetailsComponent
   ],
   imports: [
     CommonModule,
