@@ -6,6 +6,14 @@
         Home
       </a>
     </nb-list-item>
+
+    <nb-list-item *ngIf="currentUser.has_community_builds">
+      <a [routerLink]="['/community-builds/my-builds']">
+        <nb-icon icon="bulb-outline"></nb-icon>
+        My Builds
+      </a>
+    </nb-list-item>
+
     <!-- <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/my-profile']" >
         <nb-user size="tiny"
