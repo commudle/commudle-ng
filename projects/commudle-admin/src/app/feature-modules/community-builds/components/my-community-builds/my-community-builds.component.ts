@@ -4,6 +4,7 @@ import { ICommunityBuild, EPublishStatus, EPublishStatusColors } from 'projects/
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { NbWindowService } from '@nebular/theme';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-community-builds',
@@ -18,10 +19,11 @@ export class MyCommunityBuildsComponent implements OnInit {
   publishStatuses = Object.keys(EPublishStatus);
 
   constructor(
-    private toastLogService: LibToastLogService,
     private communityBuildsService: CommunityBuildsService,
-    private windowService: NbWindowService
-  ) { }
+    private title: Title
+  ) {
+    title.setTitle('My Builds');
+   }
 
   ngOnInit() {
     this.getAllBuilds();
