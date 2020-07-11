@@ -9,6 +9,8 @@ import { EventDataFormEntityGroupsService } from '../../services/event-data-form
 import { EemailTypes } from '../../../../../shared-models/enums/email_types.enum';
 import { EmailsService } from '../../services/emails.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { EventSimpleRegistrationsService } from '../../services/event-simple-registrations.service';
+import { IEventSimpleRegistration } from 'projects/shared-models/event_simple_registration.model';
 
 @Component({
   selector: 'app-emailer',
@@ -31,6 +33,7 @@ export class EmailerComponent implements OnInit {
 
   selectedEvent: IEvent;
   selectedEventDataFormEntityGroup: IEventDataFormEntityGroup;
+  eventSimpleRegistration: IEventSimpleRegistration;
   isEventSpecificEmail = false;
   selectedFormRegistrationType = [];
   selectedEmailType;
@@ -42,6 +45,7 @@ export class EmailerComponent implements OnInit {
     members: ['', Validators.required],
     event_id: [''],
     event_data_form_entity_group_id: [''],
+    event_simple_registration_id: [''],
     registration_selection_type: [''],
     resend: [false],
     recipient_email: [''],
@@ -51,6 +55,50 @@ export class EmailerComponent implements OnInit {
 
 
   registrationSelectionType = {
+    one_click_registration: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: 'Send Form Link To All Members (Pre-formatted email)',
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: 'All Who Registered'
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: 'Entry Pass (Pre-formatted email)',
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.REGISTERED,
+        display: 'Status: Registered'
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: 'Status: Waiting'
+      },
+      {
+        value: EemailTypes.SHORTLISTED,
+        display: 'Status: Shortlisted'
+      },
+      {
+        value: EemailTypes.CONFIRMED,
+        display: 'Status: Confirmed'
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: 'Status: Canceled'
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: 'All Who Attended'
+      },
+      {
+        value: EemailTypes.NO_SHOW,
+        display: 'Invited But No Show'
+      }
+    ],
     attendee: [
       {
         value: EemailTypes.SEND_LINK,
@@ -99,7 +147,7 @@ export class EmailerComponent implements OnInit {
     speaker: [
       {
         value: EemailTypes.SEND_LINK,
-        display: 'Send Link (Pre-formatted email)',
+        display: 'Send Form Link To All Members (Pre-formatted email)',
         preformatted_email: true
       },
       {
@@ -149,6 +197,7 @@ export class EmailerComponent implements OnInit {
     private fb: FormBuilder,
     private eventsService: EventsService,
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
+    private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
     private emailsService: EmailsService,
     private toastLogService: LibToastLogService,
     protected windowRef: NbWindowRef
@@ -173,6 +222,26 @@ export class EmailerComponent implements OnInit {
     this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(eventId).subscribe(data => {
       this.eventDataFormEntityGroups = data.event_data_form_entity_groups;
       this.prefillForm('event_data_form_entity_group_id');
+    });
+  }
+
+  getEventSimpleRegistration(eventId) {
+    this.eventDataFormEntityGroups = [];
+    this.selectedFormRegistrationType = [];
+    this.eMailForm.controls.registration_selection_type.reset();
+
+    this.eventSimpleRegistrationsService.pGet(eventId).subscribe(data => {
+      this.eventSimpleRegistration = data;
+      this.prefillForm('event_simple_registration');
+      this.selectedFormRegistrationType = this.registrationSelectionType.one_click_registration;
+      if (this.mailType && !this.prefillCompleted) {
+        this.eMailForm.patchValue({
+          registration_selection_type: this.mailType
+        });
+        this.toggleEmailBodyValidation(this.mailType);
+        this.prefillCompleted = true;
+      }
+
     });
   }
 
@@ -244,7 +313,11 @@ export class EmailerComponent implements OnInit {
         subjectLine = `ENTRY PASS :: [${this.community.name}] :: ${this.event.name}`;
         break;
       case EemailTypes.SEND_LINK:
-        subjectLine = `${this.selectedEventDataFormEntityGroup.name}  :: [${this.community.name}] :: ${this.event.name}`
+        if (this.selectedEventDataFormEntityGroup) {
+          subjectLine = `${this.selectedEventDataFormEntityGroup.name}  :: [${this.community.name}] :: ${this.event.name}`;
+        } else {
+          subjectLine = `${this.event.name}  :: [${this.community.name}]`;
+        }
         break;
       case EemailTypes.RSVP:
         subjectLine = `RSVP :: [${this.community.name}] :: ${this.event.name}`;
@@ -272,17 +345,34 @@ export class EmailerComponent implements OnInit {
               members: 'event',
               event_id: this.event.id
             });
+
+            if (this.event.custom_registration) {
+              this.getEventDataFormEntityGroups(this.event.id);
+            } else {
+              this.getEventSimpleRegistration(this.event.id);
+            }
           }
-          this.getEventDataFormEntityGroups(this.event.id);
+
           break;
 
         case 'event_data_form_entity_group_id':
           if (this.eventDataFormEntityGroupId && !this.prefillCompleted) {
-            this.selectedEventDataFormEntityGroup = this.eventDataFormEntityGroups.find(k => k.id == this.eventDataFormEntityGroupId);
+            this.selectedEventDataFormEntityGroup = this.eventDataFormEntityGroups.find(k => k.id === this.eventDataFormEntityGroupId);
+            this.eventSimpleRegistration = null;
             this.eMailForm.patchValue({
               event_data_form_entity_group_id: this.eventDataFormEntityGroupId
             });
             this.toggleEventDataFormEntityGroupType(this.selectedEventDataFormEntityGroup.id);
+          }
+          break;
+
+        case 'event_simple_registration':
+          if (this.eventSimpleRegistration && !this.prefillCompleted) {
+            this.selectedEventDataFormEntityGroup = null;
+            this.eMailForm.patchValue({
+              event_simple_registration_id: this.eventSimpleRegistration.id
+            });
+
           }
           break;
         case 'recipient_email':
@@ -291,6 +381,7 @@ export class EmailerComponent implements OnInit {
               recipient_email: this.recipientEmail
             });
           }
+          break;
         default:
           break;
       }

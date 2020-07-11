@@ -15,6 +15,8 @@ export class SidebarMenuComponent implements OnInit {
 
   currentUser: ICurrentUser;
   managedCommunities: ICommunity[] = [];
+  communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
+  isSystemAdmin = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -30,15 +32,17 @@ export class SidebarMenuComponent implements OnInit {
     this.authWatchService.currentUser$.subscribe(currentUser => {
       this.currentUser = currentUser;
       if (currentUser) {
-
-        let communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
       // check if current user is having a specific role and add corresponding items
-        let matchingRoles = currentUser.user_roles.filter(
-          (value) => -1 !== communityOrganizerRoles.indexOf(value)
+        const matchingOrganizerRoles = currentUser.user_roles.filter(
+          (value) => -1 !== this.communityOrganizerRoles.indexOf(value)
         );
 
-        if (matchingRoles.length > 0) {
-          this.getManagingCommunities(matchingRoles);
+        if (matchingOrganizerRoles.length > 0) {
+          this.getManagingCommunities(matchingOrganizerRoles);
+        }
+
+        if (currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
+          this.isSystemAdmin = true;
         }
       }
     });

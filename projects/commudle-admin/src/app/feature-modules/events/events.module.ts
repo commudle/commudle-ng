@@ -20,7 +20,8 @@ import {
   NbAutocompleteModule,
   NbToggleModule,
   NbPopoverModule,
-  NbRadioModule
+  NbRadioModule,
+  NbAccordionModule
  } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
@@ -37,6 +38,12 @@ import { EventLocationTracksComponent } from './components/event-locations/event
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EventUpdatesComponent } from './components/event-updates/event-updates.component';
 import { EventStatusComponent } from './components/event-status/event-status.component';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { EventSimpleRegistrationComponent } from './components/event-simple-registration/event-simple-registration.component';
+import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
+import { UserDetailsComponent } from './components/user-event-registrations/user-details/user-details.component';
+import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-video-stream/event-embedded-video-stream.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -55,6 +62,10 @@ import { EventStatusComponent } from './components/event-status/event-status.com
     EventLocationTracksComponent,
     EventUpdatesComponent,
     EventStatusComponent,
+    EventSimpleRegistrationComponent,
+    UserEventRegistrationsComponent,
+    UserDetailsComponent,
+    EventEmbeddedVideoStreamComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +73,9 @@ import { EventStatusComponent } from './components/event-status/event-status.com
     FormsModule,
     ReactiveFormsModule,
     EditorModule,
+    SharedComponentsModule,
+    YouTubePlayerModule,
+
 
     // External
     FontAwesomeModule,
@@ -86,7 +100,10 @@ import { EventStatusComponent } from './components/event-status/event-status.com
     NbAutocompleteModule,
     NbToggleModule,
     NbPopoverModule,
-    NbRadioModule
+    NbRadioModule,
+    NbToggleModule,
+    NbAccordionModule,
+    NbTooltipModule
   ]
 })
 export class EventsModule { }

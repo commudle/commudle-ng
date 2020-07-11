@@ -33,10 +33,16 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/email-confirmations/email-confirmations.module').then(m => m.EmailConfirmationsModule)
   },
   {
+    path: 'help',
+    loadChildren: () => import('./feature-modules/help/help.module').then(m => m.HelpModule)
+  },
+  {
     path: 'speaker-resource-form',
     canActivate: [AuthGuard],
     component: SpeakerResourceFormComponent
   },
+  { path: 'sys-admin', loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule) },
+
   {
     path: 'admin',
     children: [
@@ -63,7 +69,8 @@ const routes: Routes = [
         path: 'communities/:community_id/event-dashboard',
         loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
       }
-    ]
+    ],
+
   },
   {path: 'logout', component: LogoutComponent},
   {path: 'error', component: LibErrorHandlerComponent},

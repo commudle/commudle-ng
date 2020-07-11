@@ -1,25 +1,104 @@
 <div>
   <div class="section main">
-    <div class="logo">
-      <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+
+    <div class="about-commudle">
+      <div class="logo">
+        <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+      </div>
+      <div class="revamp-text">
+        <p class="header"> Welcome to Commudle! </p>
+        <p>
+          A platform for Tech Communities to Organize Events & Share Knowledge  😃
+          <br>
+          <br>
+          <nb-icon icon="video"></nb-icon> Online Events are now supported!
+          <br>
+          <strong>
+            It's FREE for Communities, will always be.
+          </strong>
+          <br>
+          <br>
+          <span class="clickable" [routerLink]="['fill-form', 406]">
+            <u>
+              Click Here to Join!
+            </u>
+          </span>
+        </p>
+      </div>
     </div>
-    <div class="revamp-text">
-      <p> What is Commudle? </p>
-      <p>
-        A platform for Tech Communities to organize the awesome events and conferences.
-        <br>
-        And share the content from these events.  😃
-        <br>
-        <br>
-        P.S. Online events are now supported (YouTube streaming with Live QnA). Hop on, write an email to more@commudle.com
-        <br>
-        <br>
-        It's FREE for communities, will always be.
-      </p>
+    <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
+      <div class="event" *ngFor="let event of upcomingEvents">
+        <app-event-card [event]="event"></app-event-card>
+      </div>
+    </div>
+    <div class="past-events" *ngIf="upcomingEvents.length == 0">
+      <div class="event" *ngFor="let event of pastEvents">
+        <app-event-card [event]="event"></app-event-card>
+      </div>
     </div>
   </div>
 
-  <nb-card class="section" *ngIf="communities.length > 0">
+  <div class="section updates">
+
+    <nb-card class="stats">
+      <nb-card-body>
+        <div class="community-count">
+          <span class="number">
+          🏅 70+
+          </span>
+          <span class="field">
+          Communities
+          </span>
+        </div>
+        <div class="member-count">
+          <span class="number">
+          😃 20,000+
+          </span>
+          <span class="field">
+            Members
+          </span>
+        </div>
+        <div class="event-count">
+          <span class="number">
+          🎥 150+
+          </span>
+          <span class="field">
+            Events
+          </span>
+
+        </div>
+        <a [routerLink]="['/fill-form', 406]" nbButton fullWidth status="success" size="medium">
+          <nb-icon icon="plus-circle-outline"></nb-icon>
+          I Want Access!
+        </a>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card accent="primary" class="new-feature">
+      <nb-card-body>
+        <h4>
+          Are you building something?
+        </h4>
+        <p>
+          Let's share it with the community.
+          <br>
+          Write to us: <span class="text-primary">more@commudle.com</span>
+        </p>
+      </nb-card-body>
+    </nb-card>
+
+    <a class="github" href="https://github.com/commudle/commudle-ng">
+      <nb-card >
+        <nb-card-body>
+          <nb-icon icon="github"></nb-icon>
+          <p>We're Open Sourced!</p>
+        </nb-card-body>
+      </nb-card>
+    </a>
+
+  </div>
+
+  <nb-card class="section communities-list" *ngIf="communities.length > 0">
     <nb-card-body>
       <h3 class="header-communities">
         A Growing Family!

@@ -92,8 +92,16 @@
       margin: 0 0.5rem;
       text-decoration: none;
       color: black;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      nb-icon {
+        // color: grey !important;
+      }
       span {
         display: none;
+        // font-size: 10px;
+        // text-align: center;
       }
     }
     nb-icon {
@@ -107,7 +115,7 @@
   }
   @media screen and (min-width: 800px){
     position: sticky;
-    top: 4.75rem;
+    top: 3.5rem;
     box-shadow: none;
     nb-card {
       margin-bottom: 1rem;

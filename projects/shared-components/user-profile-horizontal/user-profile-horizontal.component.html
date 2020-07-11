@@ -1,11 +1,11 @@
 <div class="user">
-  <div class="profile-picture">
+  <div class="profile-picture {{ size }}">
     <img src="{{ user.avatar }}" alt="{{ user.name }}">
   </div>
   <div class="profile-info">
-    <p class="name"><strong>{{ user.name }}</strong></p>
-    <p class="designation">{{ user.designation }}</p>
-    <div class="user-social-links">
+    <p class="name {{ size }}"><strong>{{ user.name }}</strong></p>
+    <p class="designation {{ size }}">{{ user.designation }}</p>
+    <div class="user-social-links {{ size }}">
       <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
         <nb-icon icon="linkedin" status="primary"></nb-icon>
       </a>
@@ -18,6 +18,9 @@
       <a *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
         <nb-icon icon="info" status="primary"></nb-icon>
       </a>
+    </div>
+    <div class="about-me {{ size }}" *ngIf="aboutMe">
+      {{ user.about_me }}
     </div>
   </div>
 </div>

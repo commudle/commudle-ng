@@ -112,12 +112,21 @@
         <div class="data-form-select">
           <label>
             Select Form
-            <nb-select  placeholder="Which Form? *" formControlName="data_form_id" status="primary" size="tiny" hero>
+            <nb-select  placeholder="Which Form? *" formControlName="data_form_id" status="primary" size="tiny" outline>
               <nb-option *ngFor="let df of communityDataForms" [value]="df.id">
                 {{ df.name }}
               </nb-option>
             </nb-select>
           </label>
+          <span>
+            <nb-icon class="clickable" nbTooltip="Add New Form" icon="plus-circle" status="success" (click)="openNewFormWindow()"></nb-icon>
+          </span>
+          <a
+            *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
+            target="_blank"
+            [routerLink]="['/admin/forms', eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value, 'edit']">
+            <nb-icon class="clickable" nbTooltip="View Form" icon="eye" status="info"></nb-icon>
+          </a>
         </div>
       </div>
 
@@ -131,3 +140,10 @@
   </div>
 
 </div>
+
+
+
+
+<ng-template #newDataFormTemplate let-data>
+  <app-new-data-form [minQuestionCount]="1" (newDataForm)="createAndSelectForm($event)"></app-new-data-form>
+</ng-template>

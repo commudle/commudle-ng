@@ -6,8 +6,12 @@ export const API_ROUTES = {
   CURRENT_USER: 'api/v2/users/signed_in_user',
 
 
-  // communities
+  // admin_surveys
+  ADMIN_SURVEYS: {
+    INDEX: 'api/v2/admin_surveys'
+  },
 
+  // communities
   COMMUNITIES: {
     USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
     DETAILS: 'api/v2/communities',
@@ -30,6 +34,15 @@ export const API_ROUTES = {
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',
 
+  // embedded_video_streams
+  EMBEDDED_VIDEO_STREAMS: {
+    GET: 'api/v2/embedded_video_streams',
+    CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
+
+    PUBLIC: {
+      GET: 'api/v2/embedded_video_streams/public'
+    }
+  },
 
   // events
   EVENTS: {
@@ -38,11 +51,18 @@ export const API_ROUTES = {
     GET: 'api/v2/events',
     COMMUNITY_EVENTS_FOR_EMAIL: 'api/v2/events/community_events_for_email',
     UPDATE_STATUS: 'api/v2/events/update_status',
+    UPDATE_CUSTOM_REGISTRATION: 'api/v2/events/update_custom_registration',
+    UPDATE_CUSTOM_AGENDA: 'api/v2/events/update_custom_agenda',
+    UPDATE_HEADER_IMAGE: 'api/v2/events/update_header_image',
+    DELETE_HEADER_IMAGE: 'api/v2/events/delete_header_image',
+
 
     PUBLIC: {
-      GET: 'api/v2/events/public_show',
-      VOLUNTEERS: 'api/v2/events/public_volunteers',
-      INDEX_BY_COMMUNITY: 'api/v2/events/public_index_by_community'
+      GET: 'api/v2/events/public/show',
+      VOLUNTEERS: 'api/v2/events/public/volunteers',
+      INDEX_BY_COMMUNITY: 'api/v2/events/public/index_by_community',
+      UPCOMING: 'api/v2/events/public/upcoming',
+      RANDOM_PAST: 'api/v2/events/public/past_random'
     }
   },
 
@@ -59,6 +79,16 @@ export const API_ROUTES = {
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms'
   },
 
+  // event_simple_registrations
+  EVENT_SIMPLE_REGISTATIONS: {
+    FIND_OR_CREATE: 'api/v2/event_simple_registrations/find_or_create',
+    TOGGLE_STATUS: 'api/v2/event_simple_registrations/toggle_status',
+
+    PUBLIC: {
+      SHOW: 'api/v2/event_simple_registrations/public_show',
+    }
+  },
+
 
 
 
@@ -68,6 +98,7 @@ export const API_ROUTES = {
 
   // data_form_entities
   DATA_FORM_ENTITIES: {
+    INDEX: 'api/v2/data_form_entities/get_form_entities',
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
   },
@@ -83,6 +114,7 @@ export const API_ROUTES = {
     UPDATE_EVENT_REGISTRATION_STATUS: 'api/v2/data_form_entity_response_groups/update_event_registration_status',
     GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/event_speakers',
     UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp',
+    DATA_FORM_ENTITY_RESPONSES: 'api/v2/data_form_entity_response_groups/data_form_entity_responses',
 
     PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers',
     PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users'
@@ -91,6 +123,7 @@ export const API_ROUTES = {
 
   // event_entry_passes
   CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
+  CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
   TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
   TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
 
@@ -115,6 +148,15 @@ export const API_ROUTES = {
   CREATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
+
+
+  POLLS: {
+    PUBLIC: {
+      SHOW: 'api/v2/polls/public',
+      QUESTION_RESPONSE: 'api/v2/polls/public/question_responses'
+    }
+  },
+
 
   TRACK_SLOTS: {
     CREATE: 'api/v2/track_slots',
@@ -183,13 +225,33 @@ export const API_ROUTES = {
 
   DISCUSSIONS: {
     PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
+    PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat'
   },
 
+
+  USER_EVENT_REGISTRATIONS: {
+    INDEX: 'api/v2/user_event_registrations',
+    UPDATE_REGISTRATION_STATUS: 'api/v2/user_event_registrations/update_registration_status',
+
+
+    PUBLIC: {
+      SHOW: 'api/v2/user_event_registrations/public_show',
+      TOGGLE: 'api/v2/user_event_registrations/public_toggle',
+      INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users'
+    }
+  },
 
   USER_MESSAGES: {
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
 
+  },
+
+
+  EXTERNAL: {
+    GITHUB_API: 'https://api.github.com/repos/commudle/commudle-ng',
+    GITHUB_REPO: 'https://github.com/commudle/commudle-ng'
   }
+
 };

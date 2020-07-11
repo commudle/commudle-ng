@@ -7,6 +7,9 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunitiesService } from '../../services/communities.service';
 import { Title } from '@angular/platform-browser';
+import { LibErrorHandlerService } from 'projects/lib-error-handler/src/public-api';
+import { DataFormEntityResponsesService } from '../../services/data-form-entity-responses.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 
 @Component({
@@ -18,10 +21,13 @@ export class FillDataFormComponent implements OnInit {
   dataFormEntity: IDataFormEntity;
   Visibility: Visibility;
   formClosed = false;
+  showProfileForm = true;
   redirectRoute: any;
   event: IEvent;
   community: ICommunity;
+  selectedFormResponse: any;
 
+  existingResponses;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,9 +36,13 @@ export class FillDataFormComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private router: Router,
     private title: Title,
+    private errorHandler: LibErrorHandlerService,
+    private dataFormEntityResponsesService: DataFormEntityResponsesService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
+    this.redirectRoute = ['/'];
     this.activatedRoute.params.subscribe(params => {
       this.getDataFormEntity(params.data_form_entity_id);
     });
@@ -41,7 +51,8 @@ export class FillDataFormComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       data => {
         if (data.next) {
-          this.redirectRoute = decodeURIComponent(data.next);
+
+          this.redirectRoute = [decodeURIComponent(data.next)];
         }
       }
     );
@@ -52,22 +63,28 @@ export class FillDataFormComponent implements OnInit {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe(
       data => {
         this.dataFormEntity = data;
-        this.checkFormClosed();
-        this.getParent();
+        this.title.setTitle(`${this.dataFormEntity.name}`);
+        this.formClosed = !this.dataFormEntity.user_can_fill_form;
+        if (!this.formClosed) {
+          this.getExistingResponses();
+          this.getParent();
+        }
       }
     );
   }
 
+  getExistingResponses() {
+    this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe(
+      data => {
+        this.existingResponses = data.existing_responses;
 
-  checkFormClosed() {
-    switch (this.dataFormEntity.entity_type) {
-      case 'EventDataFormEntityGroup': {
-        if (this.dataFormEntity.user_can_fill_event_form === false) {
-          this.formClosed = true;
+        if (!this.dataFormEntity.multi_response &&  this.existingResponses.length >= 1) {
+          this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
         }
       }
-    }
+    );
   }
+
 
 
   getParent() {
@@ -75,8 +92,12 @@ export class FillDataFormComponent implements OnInit {
       case 'Event':
         this.getEvent();
         break;
+      case 'AdminSurvey':
+        this.showProfileForm = false;
+        // nothing need to be done here
+        break;
       default:
-        console.log('no matching case');
+        this.errorHandler.handleError(404, 'You cannot fill this form');
 
     }
   }
@@ -86,6 +107,7 @@ export class FillDataFormComponent implements OnInit {
     this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe(
       data => {
         this.event = data;
+        this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         this.getCommunity(this.event.kommunity_id);
       }
     );
@@ -95,7 +117,6 @@ export class FillDataFormComponent implements OnInit {
     this.communitiesService.getCommunityDetails(communityId).subscribe(
       data => {
         this.community = data;
-        this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         if (!this.redirectRoute) {
           this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
         }
@@ -104,8 +125,19 @@ export class FillDataFormComponent implements OnInit {
   }
 
 
-  redirectTo($event) {
-    this.router.navigate([this.redirectRoute]);
+  submitForm($event) {
+    this.dataFormEntityResponsesService.submitDataFormEntityResponse(
+      this.dataFormEntity.id,
+      $event).subscribe(
+      data => {
+        this.toastLogService.successDialog('Saved!');
+        this.redirectTo();
+      }
+    );
+  }
+
+  redirectTo() {
+    this.router.navigate(this.redirectRoute);
   }
 
 }

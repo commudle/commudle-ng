@@ -43,7 +43,7 @@ export class EventFormResponsesComponent implements OnInit {
   page = 1;
   totalEntries: number;
   count = 25;
-  filterValue = "";
+  filterValue = '';
   registrationStatusId = 0;
 
 
@@ -143,6 +143,7 @@ export class EventFormResponsesComponent implements OnInit {
         this.totalEntries = data.total;
         this.rows = data.data_form_entity_response_groups;
         this.isLoading = false;
+        this.emptyMessage = 'No data to display';
       }
     );
   }
@@ -156,8 +157,13 @@ export class EventFormResponsesComponent implements OnInit {
 
 
   getQuestionResponse(userResponses, questionId) {
-    const userQuestionResponse = userResponses.find(k => k.question_id === questionId);
-    return (userQuestionResponse == null ? '..' : userQuestionResponse.response_text);
+    const userQuestionResponses = userResponses.filter(k => k.question_id === questionId);
+    let responses = '';
+    for (let resp of userQuestionResponses) {
+      responses += `${resp.response_text} \n`;
+    }
+
+    return (userQuestionResponses.length === 0 ? '..' : responses);
   }
 
 

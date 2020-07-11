@@ -5,6 +5,9 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { NbSidebarService } from '@nebular/theme';
 import { CommunitiesService } from '../../services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
+import { IEvent } from 'projects/shared-models/event.model';
+import { EventsService } from '../../services/events.service';
+import { ExternalApisService } from '../../services/external-apis.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +17,9 @@ import { ICommunity } from 'projects/shared-models/community.model';
 export class HomeComponent implements OnInit {
   currentUser: ICurrentUser;
   communities: ICommunity[] = [];
+
+  upcomingEvents: IEvent[] = [];
+  pastEvents: IEvent[] = [];
   shineIndex = 0;
 
   photoGrid = [];
@@ -21,13 +27,14 @@ export class HomeComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private authWatchService: LibAuthwatchService,
-    private communitiesService: CommunitiesService
-
+    private communitiesService: CommunitiesService,
+    private eventsService: EventsService
   ) { }
 
   ngOnInit() {
     this.authWatchService.currentUser$.subscribe(currentUser => this.currentUser = currentUser);
     this.getCommunities();
+    this.getUpcomingEvents();
   }
 
   login() {
@@ -50,4 +57,22 @@ export class HomeComponent implements OnInit {
     }, 1000);
   }
 
+  getUpcomingEvents() {
+    this.eventsService.pGetUpcomingEvents().subscribe(
+      data => {
+        this.upcomingEvents = data.events;
+        if (this.upcomingEvents.length === 0) {
+          this.getRandomPastEvents();
+        }
+      }
+    );
+  }
+
+  getRandomPastEvents() {
+    this.eventsService.pGetRandomPastEvents(4).subscribe(
+      data => {
+        this.pastEvents = data.events;
+      }
+    );
+  }
 }

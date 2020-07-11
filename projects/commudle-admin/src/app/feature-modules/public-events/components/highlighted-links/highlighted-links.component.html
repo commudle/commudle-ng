@@ -19,4 +19,34 @@
       </div>
     </nb-card-body>
   </nb-card>
+  <nb-card *ngIf="eventSimpleRegistration">
+    <nb-card-body>
+      <nb-alert *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.CLOSED && eventSimpleRegistration.user_event_registrations_count == 0" status="primary">
+        Registrations will open soon!
+      </nb-alert>
+
+      <nb-alert *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.CLOSED && eventSimpleRegistration.user_event_registrations_count > 0" outline="basic">
+        Registrations closed
+      </nb-alert>
+
+      <button nbButton
+        *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
+        status="primary"
+        (click)="toggleUserEventRegistration()"
+        >
+        <span *ngIf="!eventSimpleRegistration.current_user_registered">
+          Register Here!
+        </span>
+
+        <span *ngIf="eventSimpleRegistration.current_user_registered">
+          Cancel My Registration
+        </span>
+      </button>
+      <p *ngIf="userEventRegistration">
+        <nb-alert status="basic" outline>Your status: {{ userEventRegistration.registration_status.name | titlecase }}</nb-alert>
+      </p>
+
+
+    </nb-card-body>
+  </nb-card>
 </div>

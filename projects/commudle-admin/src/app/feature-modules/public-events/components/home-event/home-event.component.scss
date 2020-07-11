@@ -12,22 +12,27 @@
       }
     }
 
+    .community-details {
+      width: fit-content;
+      margin-bottom: 1rem;
+    }
+
     .filler {
       padding: 0.5rem;
-      .community-details {
-        display: flex;
-        align-items: center;
-        .logo {
-          width: 50px;
-          img {
-            width: 100%;
-          }
-        }
+      // .community-details {
+      //   // display: flex;
+      //   // align-items: center;
+      //   // .logo {
+      //   //   width: 50px;
+      //   //   img {
+      //   //     width: 100%;
+      //   //   }
+      //   // }
 
-        .name {
-          margin: 0 1rem;
-        }
-      }
+      //   // .name {
+      //   //   margin: 0 1rem;
+      //   // }
+      // }
 
       .event-details {
 
@@ -71,7 +76,7 @@
       }
       @media screen and (min-width: 800px){
         position: sticky;
-        top: 4.75rem;
+        top: 3.5rem;
         box-shadow: none;
         nb-card {
           margin-bottom: 1rem;
