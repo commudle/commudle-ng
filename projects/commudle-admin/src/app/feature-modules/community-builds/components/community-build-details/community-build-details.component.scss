@@ -37,22 +37,26 @@
 
 
     .images {
-      display: flex;
-      flex-wrap: nowrap;
       overflow-x: auto;
       margin-bottom: 1.5rem;
-      >div {
-        width: 300px;
-        height: 300px;
-        border: 1px solid lightgrey;
-        overflow: hidden;
+      .image-stripe {
         display: flex;
-        align-items: center;
-        margin: 0 0.5rem;
-        img {
-          width: 100%;
+        flex-wrap: nowrap;
+        width: fit-content;
+        .image {
+          width: 280px;
+          height: 280px;
+          border: 1px solid lightgrey;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          margin: 0 0.5rem;
+          img {
+            width: 100%;
+          }
         }
       }
+
     }
 
     .embed {

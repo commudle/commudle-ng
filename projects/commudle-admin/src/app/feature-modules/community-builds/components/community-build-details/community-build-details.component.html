@@ -26,8 +26,10 @@
         <div [innerHTML]="cBuild.description"></div>
       </div>
       <div class="images" *ngIf="cBuild.images.length > 0">
-        <div class="clickable" *ngFor="let image of cBuild.images" (click)="openImage(cBuild.name, image.url)">
-          <img src="{{ image.url }}" alt="{{ cBuild.name }}">
+        <div class="image-stripe">
+          <div class="image clickable" *ngFor="let image of cBuild.images" (click)="openImage(cBuild.name, image.url)">
+            <img src="{{ image.url }}" alt="{{ cBuild.name }}">
+          </div>
         </div>
       </div>
       <div *ngIf="cBuild.link && !embedCode" class="link">
