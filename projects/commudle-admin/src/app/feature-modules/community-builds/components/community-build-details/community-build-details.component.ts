@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { NbWindowService } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { ICommunityBuild } from 'projects/shared-models/community-build.model';
+import { ICommunityBuild, EBuildType } from 'projects/shared-models/community-build.model';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 
@@ -19,6 +19,8 @@ export class CommunityBuildDetailsComponent implements OnInit {
   moment = moment;
   cBuild: ICommunityBuild;
   discussionChat: IDiscussion;
+
+  EBuildType = EBuildType;
 
   constructor(
     private title: Title,
@@ -60,7 +62,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   }
 
   getDiscussionChat() {
-    this.discussionsService.pGetOrCreateForEventChat(this.cBuild.id).subscribe(
+    this.discussionsService.pGetOrCreateForCommunityBuildChat(this.cBuild.id).subscribe(
       data => this.discussionChat = data
     );
   }

@@ -8,6 +8,11 @@
             {{ moment(cBuild.created_at).format('Do MMM YYYY') }}
           </small>
         </p>
+        <p class="build-type">
+          <span>
+            {{ cBuild.build_type | titlecase }}
+          </span>
+        </p>
         <h1>
           {{ cBuild.name }}
         </h1>
@@ -20,17 +25,23 @@
       </div>
       <div *ngIf="cBuild.link" class="link">
         <p>
-          Visit the project:
+          Visit the {{cBuild.build_type}}:
           <a target="_blank" href="{{ cBuild.link }}">
             {{ cBuild.link }} <nb-icon icon="external-link"></nb-icon>
           </a>
         </p>
+      </div>
+      <div class="images" *ngIf="cBuild.images.length > 0">
+        <div class="clickable" *ngFor="let image of cBuild.images" (click)="openImage(cBuild.name, image.url)">
+          <img src="{{ image.url }}" alt="{{ cBuild.name }}">
+        </div>
       </div>
       <div class="author-details">
         <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true"></app-user-profile-horizontal>
       </div>
 
       <div class="comments" *ngIf="discussionChat">
+        <p>Discussion</p>
         <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
       </div>
 
@@ -41,3 +52,9 @@
   </nb-card>
 
 </div>
+
+<ng-template #imageTemplate let-data>
+  <div class="image-window">
+    <img src="{{data.imageUrl}}">
+  </div>
+</ng-template>
