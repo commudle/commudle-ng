@@ -56,6 +56,8 @@ import { SpeakerResourceFormComponent } from './components/speaker-resource-form
 import { AppInitService } from './services/app-init.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EventCardComponent } from './components/home/event-card/event-card.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -124,6 +126,7 @@ export function initApp(appInitService: AppInitService) {
     //other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
   ],
   providers: [
