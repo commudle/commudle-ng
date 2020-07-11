@@ -19,7 +19,6 @@ import { DiscussionChatChannel } from '../services/websockets/dicussion-chat.cha
 export class DiscussionChatComponent implements OnInit, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
-  @Input() innerScroll: boolean;
 
   moment = moment;
 
