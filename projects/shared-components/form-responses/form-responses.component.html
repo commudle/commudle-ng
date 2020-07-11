@@ -1,0 +1,15 @@
+<div>
+
+  <div *ngFor="let dfe of dataFormEntities">
+    <nb-accordion class="sidebar-common-menu" *ngIf="dataForm">
+      <nb-accordion-item [expanded]="dataFormEntities.length > 1 ? false : true">
+        <nb-accordion-item-header>{{ dfe.name }}</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <app-responses-table [dataFormEntityId]="dfe.id" [dataForm]="dataForm">
+          </app-responses-table>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </div>
+
+</div>

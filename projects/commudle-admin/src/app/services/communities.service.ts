@@ -10,8 +10,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
   providedIn: 'root'
 })
 export class CommunitiesService {
-  // private organizerCommunities: BehaviorSubject<ICommunity[]> = new BehaviorSubject(null);
-  // public organizerCommunities$ = this.organizerCommunities.asObservable();
+
 
   constructor(
     private http: HttpClient,

@@ -25,7 +25,8 @@ import {
   NbIconModule,
   NbListModule,
   NbTooltipModule,
-  NbWindowModule} from '@nebular/theme';
+  NbWindowModule,
+  NbAccordionModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -51,10 +52,10 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { CookieService } from 'ngx-cookie-service';
 import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
-import { FillableFormComponent } from './components/common/fillable-form/fillable-form.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { AppInitService } from './services/app-init.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { EventCardComponent } from './components/home/event-card/event-card.component';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -79,8 +80,8 @@ export function initApp(appInitService: AppInitService) {
     LogoutComponent,
     SidebarMenuComponent,
     BasicUserProfileComponent,
-    FillableFormComponent,
     SpeakerResourceFormComponent,
+    EventCardComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -118,6 +119,7 @@ export function initApp(appInitService: AppInitService) {
     NbListModule,
     NbTooltipModule,
     NbWindowModule.forRoot(),
+    NbAccordionModule,
 
     //other external npm modules
     Ng2CompleterModule,

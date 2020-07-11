@@ -39,7 +39,7 @@
               <p>ONLINE STREAMING (ID: {{loc.id}}) &nbsp; <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
               </p>
               <ng-template #embeddedVideo>
-                <div class="embedded-video" *ngIf="loc.embedded_video_stream" [innerHTML]="sanitizedEmbeddedHTML(loc.embedded_video_stream.embed_code)"></div>
+                <app-video-stream [videoCode]="loc.embedded_video_stream.embed_code" [videoSource]="loc.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
               </ng-template>
             </div>
             <p *ngIf="event.editable">
@@ -129,23 +129,40 @@
           </small>
         </p>
         <div>
-          <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
-            <nb-option>
-              Remove
-            </nb-option>
+          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
-              YouTube
+              YouTube (URL)
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
+              Jitsi (https://meet.jit.si/) [Works only on Desktop]
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+              External Link (to another platform)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-              Other
+              Other (Embed Code)
             </nb-option>
           </nb-select>
         </div>
 
         <div>
-          <label fullWidth>
-            Embed Code
-            <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+          <label>
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
+              Video Url
+            </span>
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
+              Jitsi Meeting ID (people will be required to log in to join)
+            </span>
+
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+              Paste link here
+            </span>
+
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.OTHER">
+              Embed Code
+            </span>
+
+            <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>
           </label>
           <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required" class="validation-error-text">
             Required Field

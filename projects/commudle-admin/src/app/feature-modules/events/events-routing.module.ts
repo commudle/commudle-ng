@@ -8,6 +8,7 @@ import { EventFormResponsesComponent } from './components/event-form-responses/e
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
+import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 
 const routes: Routes = [
   {
@@ -43,12 +44,12 @@ const routes: Routes = [
             component: VolunteersComponent
           },
           {
-            path: ':id/form-responses',
+            path: 'form-responses',
             component: EventFormResponsesComponent
           },
           {
-            path: 'form-responses',
-            component: EventFormResponsesComponent
+            path: ':event_simple_registration_id/user-event-registrations',
+            component: UserEventRegistrationsComponent
           }
 
         ]

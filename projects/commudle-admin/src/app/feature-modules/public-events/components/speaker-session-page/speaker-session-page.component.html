@@ -1,91 +1,114 @@
 <div class="speaker-session-details">
   <div class="card-row">
-    <div *ngIf="speaker" class="speaker-details">
-      <nb-card>
-        <nb-card-body>
-
-          <div class="avatar">
-            <img src="{{speaker.avatar}}" alt="{{ speaker.name }}">
-          </div>
-          <div>
-            <div>
-              <h5>{{ speaker.name }}</h5>
-              <p>{{ speaker.designation }}</p>
-            </div>
-            <div class="social-links">
-              <a href="{{ speaker.linkedin }}">
-                <nb-icon icon="linkedin"></nb-icon>
-              </a>
-              <a href="{{ speaker.twitter }}">
-                <nb-icon icon="twitter"></nb-icon>
-              </a>
-              <a href="{{ speaker.github }}">
-                <nb-icon icon="github"></nb-icon>
-              </a>
-              <a href="{{ speaker.personal_website }}">
-                <nb-icon icon="info"></nb-icon>
-              </a>
-            </div>
-          </div>
-          <div class="about-me" *ngIf="speaker.about_me">
-            <p>
-              {{ speaker.about_me }}
-            </p>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-
-    <div class="session-details" *ngIf="community">
-      <div class="session-event">
+    <div class="card-session-details">
+      <div class="session-details">
         <nb-card>
           <nb-card-body>
-            <div class="track-slot">
-              <a>
-                <div class="community-logo">
-                  <img src="{{ community.logo_path }}" alt="{{ community.name }}">
-                </div>
-                <p>
+            <div>
+              <div class="community">
+                <app-community-badge [community]="community"></app-community-badge>
+              </div>
+              <p>
+                <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
                   {{ event.name }}
-                </p>
-              </a>
+                </a>
+              </p>
+              <p class="visitors" *ngIf="userVisitData">
+                <span *ngIf="userVisitData.visiting_users_count > 0">
+                  {{userVisitData.visiting_users_count}} watching now
+                </span>
+              </p>
+            </div>
+            <div class="track-slot-details" *ngIf="trackSlot">
               <h4>
                 {{trackSlot.session_title}}
               </h4>
-              <p>
-                <span class="live-notification text-success" *ngIf="moment().isBetween(moment(trackSlot.start_time), moment(trackSlot.end_time))">
-                  <nb-icon icon="flash"></nb-icon>
-                  Live Now!
-                </span>
-                <small>
-                  {{ moment(trackSlot.start_time).format('dddd Do MMM, YYYY h:mm A') }}
-                  -
-                  {{ moment(trackSlot.end_time).format('h:mm A') }}
-                </small>
-              </p>
+            </div>
 
+            <p *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
+              <span class="live-notification text-success">
+                <nb-icon icon="flash"></nb-icon>
+                Live Now!
+              </span>
+              <small>
+                {{ moment(startTime).format('dddd Do MMM, YYYY h:mm A') }}
+                -
+                {{ moment(endTime).format('h:mm A') }}
+              </small>
+            </p>
 
-              <div class="embedded-video-stream" *ngIf="trackSlot.embedded_video_stream">
-                <div [innerHTML]="sanitizedVideoCode">
+          </nb-card-body>
+        </nb-card>
+      </div>
 
-                </div>
-              </div>
-
-              <div *ngIf="speakerResource && event.event_status.name == EEventStatuses.COMPLETED">
-
-              </div>
+      <div *ngIf="speaker" class="speaker-details">
+        <nb-card>
+          <nb-card-body>
+            <div>
+              <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true"></app-user-profile-horizontal>
             </div>
           </nb-card-body>
         </nb-card>
       </div>
-      <div *ngIf="this.discussion">
-        <nb-card class="discussion">
+
+      <div *ngIf="embeddedVideoStream" class="video-stream {{ embeddedVideoStream.source }}">
+        <nb-card>
           <nb-card-body>
-            <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
+            <div>
+            <app-video-stream
+              [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : embeddedVideoStream.embed_code"
+              [videoSource]="embeddedVideoStream.source"
+              [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? 'Coming Soon' : 'Loading Video...'))"
+              [width]="playerWidth"
+              [height]="playerHeight"
+            >
+            </app-video-stream>
+            </div>
           </nb-card-body>
         </nb-card>
       </div>
     </div>
+
+    <div class="card-live-discussion">
+      <nb-card>
+        <nb-card-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Live Questions" *ngIf="discussion">
+              <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
+            </nb-tab>
+            <nb-tab tabTitle="Polls">
+              <div *ngIf="pollableId && pollableType">
+                <app-polls [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
+              </div>
+            </nb-tab>
+           </nb-tabset>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="card-row" *ngIf="userVisitData">
+
+    <nb-card class="visit-users" *ngIf="userVisitData.visiting_users.length > 0 && moment().isBetween(moment(startTime), moment(endTime))">
+      <nb-card-header>You are watching this with</nb-card-header>
+      <nb-card-body>
+        <div class="visit-user" *ngFor="let user of userVisitData.visiting_users">
+          <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+
+    <nb-card class="visit-users" *ngIf="userVisitData.watched_users.length >= 1 && moment() > moment(endTime)">
+      <nb-card-header>Attendees</nb-card-header>
+      <nb-card-body>
+        <div class="visit-user" *ngFor="let user of userVisitData.watched_users">
+          <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+
   </div>
 
 </div>

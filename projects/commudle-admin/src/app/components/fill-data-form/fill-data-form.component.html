@@ -15,7 +15,7 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card>
+    <nb-card *ngIf="showProfileForm">
       <nb-card-header>
         Let's Update Your Basic Profile!
       </nb-card-header>
@@ -34,11 +34,15 @@
         Filling this form should be easy!
       </nb-card-header>
       <nb-card-body>
-        <app-fillable-form
-          [dataFormEntity]="dataFormEntity"
-          (formSubmitted)="redirectTo($event)"
+        <app-data-form-fill
+          [dataFormId]="dataFormEntity.data_form_id"
+          [existingResponses]="selectedFormResponse"
+          (formSubmitted)="submitForm($event)"
         >
-        </app-fillable-form>
+        </app-data-form-fill>
+        <p class="text-info" *ngIf="dataFormEntity.multi_response">
+          <i>* You can submit multiple responses for this form!</i>
+        </p>
       </nb-card-body>
     </nb-card>
   </div>

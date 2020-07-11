@@ -7,6 +7,7 @@
           [canReply]="true"
           [permittedActions]="permittedActions"
           [allActions]="allActions"
+          [canVote]="true"
           [currentUser]="currentUser"
           (sendReply)="sendReply($event, um.id)"
           (sendVote)="sendVote($event)"
@@ -14,11 +15,11 @@
           (sendFlag)="sendFlag($event)"
           ></app-qna-user-message>
       </div>
-      <div *ngIf="messages.length === 0" class="filler-message">
+      <!-- <div *ngIf="messages.length === 0" class="filler-message">
         <h4>
           Ask a Question, Live!
         </h4>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="send-message-form">
@@ -28,7 +29,7 @@
        nbInput
        fullWidth
        formControlName="content"
-       placeholder="Add a Comment (max 200 characters)"
+       placeholder="Ask a question, live! (max 200 characters)"
        >
        <button [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)" type="submit" nbButton fullWidth status="info">
          <nb-icon icon="corner-down-left-outline"></nb-icon>

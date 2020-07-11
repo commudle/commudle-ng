@@ -1,0 +1,57 @@
+<div class="poll">
+  <div>
+    <p class="preview-question">
+      {{ poll.questions[0].title }}
+      <app-badge *ngIf="poll.status === EPollStatuses.OPEN" [text]="poll.status" [fontSize]="'small'"></app-badge>
+      <span class="total-responses" *ngIf="poll.total_responses > 0">
+        <nb-icon icon="person-add-outline"></nb-icon> {{ poll.total_responses }}
+      </span>
+    </p>
+    <div class="actions">
+      <button
+        *ngIf="!poll.already_filled && poll.status === EPollStatuses.OPEN"
+        nbButton
+        size="tiny"
+        status="info"
+        (click)="startSelf()">
+        Submit Response
+      </button>
+      <button
+        *ngIf="editable && poll.status !== EPollStatuses.OPEN"
+        nbButton
+        size="tiny"
+        status="success"
+        (click)="start()">
+        Start
+      </button>
+      <button
+        *ngIf="editable && poll.status == EPollStatuses.OPEN"
+        nbButton
+        size="tiny"
+        status="danger"
+        (click)="stop()">
+        Stop
+      </button>
+      <button
+        *ngIf="poll.status == EPollStatuses.CLOSED"
+        nbButton
+        size="tiny"
+        status="primary"
+        outline
+        (click)="displayResults()">
+        Results
+      </button>
+      <button
+        nbButton
+        size="tiny"
+        *ngIf="editable && deletable"
+        status="danger"
+        outline
+        nbTooltip="Delete"
+        (click)="delete()">
+        <nb-icon icon="trash" status="danger"></nb-icon>
+    </button>
+
+    </div>
+  </div>
+</div>

@@ -1,5 +1,11 @@
 .event-data-form-groups-list {
   nb-list-item {
+    align-self: center;
+
+    @media screen and (min-width: 640px) {
+      align-self: flex-start;
+    }
+
     .edfeg-details{
       display: flex;
       flex-direction: column;
@@ -72,6 +78,8 @@
 
   .data-form-select, .data-form-type-select{
     margin: 0.5rem;
+    display: flex;
+    align-items: flex-end;
   }
 
   .save-button-bottom {

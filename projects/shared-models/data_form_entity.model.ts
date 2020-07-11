@@ -8,7 +8,8 @@ export interface IDataFormEntity {
   entity_id: number;
   created_at: Date;
   visibility: Visibility;
-  user_can_fill_event_form: boolean;
+  user_can_fill_form: boolean;
+  multi_response: boolean;
   redirectable_entity_type: string;
   redirectable_entity_id: number;
 }

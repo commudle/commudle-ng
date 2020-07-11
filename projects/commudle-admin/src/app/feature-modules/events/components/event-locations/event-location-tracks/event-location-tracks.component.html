@@ -1,4 +1,4 @@
-<div >
+<div class="event-location-tracks">
   <button nbButton size="tiny" (click)="showAddTrackForm()" size="tiny" status="primary" *ngIf="event.editable">
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp;
@@ -25,7 +25,9 @@
         <div *ngIf="lt.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY">
           <nb-icon icon='tv-outline' [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
           <ng-template #embeddedVideo>
-            <div class="embedded-video" [innerHTML]="sanitizedEmbeddedHTML(lt.embedded_video_stream.embed_code)"></div>
+            <div class="embedded-video">
+              <app-video-stream [videoCode]="lt.embedded_video_stream.embed_code" [videoSource]="lt.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
+            </div>
           </ng-template>
         </div>
         <div *ngIf="event.editable">
@@ -62,7 +64,9 @@
               <nb-icon icon="edit-outline" (click)="showEditSlotForm(slot)" class="clickable"></nb-icon>
               <nb-icon *ngIf="slot.embedded_video_stream && eventLocation.event_type === EEventType.ONLINE_ONLY" icon='tv-outline' [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
               <ng-template #embeddedVideo>
-                <div class="embedded-video" [innerHTML]="sanitizedEmbeddedHTML(slot.embedded_video_stream.embed_code)"></div>
+                <div class="embedded-video">
+                  <app-video-stream [videoCode]="slot.embedded_video_stream.embed_code" [videoSource]="slot.embedded_video_stream.source" [fillerText]="'Auto Preview'"></app-video-stream>
+                </div>
               </ng-template>
               <nb-icon icon="close-square-outline" (click)="confirmDeleteSlot(slot)" class="clickable"></nb-icon>
             </p>
@@ -82,7 +86,7 @@
             </p>
             <p>
               <small>
-                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'speaker-session', slot.id]">
+                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" [queryParams]="{track_slot_id: slot.id}">
                   <nb-icon icon="external-link"></nb-icon>
                   Session Page
                 </a>
@@ -123,20 +127,23 @@
             </p>
             <div>
               <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
-                <nb-option>
-                  Remove
-                </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
-                  YouTube
+                  YouTube (URL)
+                </nb-option>
+                <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
+                  Jitsi (https://meet.jit.si/) [Works only on Desktop]
+                </nb-option>
+                <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+                  External Link (to another platform)
                 </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-                  Other
+                  Other (Embed Code)
                 </nb-option>
               </nb-select>
             </div>
             <div>
               <label fullWidth>
-                Embed Code
+                Video Url / Embed Code / External Link (depending on the source above)
                 <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
               </label>
             </div>
@@ -223,20 +230,20 @@
             </p>
             <div>
               <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
-                <nb-option>
-                  None (Select this to clear the embedded video)
-                </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
-                  YouTube
+                  YouTube (URL)
+                </nb-option>
+                <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
+                  Jitsi (https://meet.jit.si/)
                 </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-                  Other
+                  Other (Embed Code)
                 </nb-option>
               </nb-select>
             </div>
             <div>
               <label fullWidth>
-                Embed Code
+                Video Url / Embed Code (depending on the source above)
                 <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
               </label>
             </div>

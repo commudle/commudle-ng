@@ -5,16 +5,11 @@
 <div class="page-container">
   <div class="event" *ngIf="event && community">
     <div class="header">
+      <div class="community-details">
+        <app-community-badge [community]="community" [background]="'bg-white'"></app-community-badge>
+      </div>
       <!-- this will either be an image or just a plain background with the name of the event -->
       <div class="filler" *ngIf="!event.header_image_path">
-        <div class="community-details">
-          <div class="logo">
-            <img src="{{ community.logo_path }}" alt="{{ community.name }} Logo">
-          </div>
-          <p class="name">
-            {{ community.name }}
-          </p>
-        </div>
         <div class="event-details">
           <h1 class="name">
             {{ event.name }}
@@ -32,12 +27,10 @@
               <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
                 {{ moment(event.end_time).format('h:mm A') }}
               </strong>
-
               <span *ngIf="event.timezone">
                 <nb-icon icon="globe"></nb-icon>
                 {{ momentTimezone.tz(event.timezone).format('z') }}
               </span>
-
             </p>
           </div>
         </div>
@@ -104,7 +97,7 @@
         <!-- this will show the link to the forms if the event is live -->
         <!-- else this will just show the links to event slides -->
         <app-highlighted-links [event]="event" [community]="community" (hasOpenForms)="hasOpenForms = $event"></app-highlighted-links>
-        <app-attending-members [event]="event" [community]="community"></app-attending-members>
+        <app-attending-members [event]="event" [community]="community" (hasInterestedMembers)="hasInterestedMembers = $event"></app-attending-members>
 
       </div>
       <div class="info" [ngClass]="{'full-width-column': hasOpenForms || hasInterestedMembers}">

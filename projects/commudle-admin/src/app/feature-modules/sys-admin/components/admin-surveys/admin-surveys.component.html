@@ -1,0 +1,26 @@
+<div>
+  <h4>
+    Admin Surveys
+  </h4>
+
+  <div>
+    <nb-card class="survey" *ngFor="let survey of adminSurveys" (click)="openResponses(survey)">
+      <nb-card-body>
+        <h5 class="name">
+          {{ survey.name }}
+        </h5>
+        <div class="details">
+          <p class="status">
+            Status: {{ survey.status }}
+          </p>
+          <p class="multiple-responses">
+            Multiple Responses {{ survey.multi_response }}
+          </p>
+          <p class="total-responses">
+            Responses: {{ survey.total_responses }}
+          </p>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

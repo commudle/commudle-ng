@@ -14,5 +14,7 @@ export interface IEvent {
   event_status: IEventStatus;
   seats: number;
   timezone: string;
+  custom_registration: boolean;
+  custom_agenda: boolean;
   editable: boolean;
 }

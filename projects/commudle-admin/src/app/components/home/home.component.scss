@@ -1,29 +1,161 @@
 .section.main {
-  // height: 50vh;
-  background-color: #3b49df;
-  padding: 1rem;
-  .logo {
-    filter: brightness(10);
-    width: 100px;
-    img {
-      width: 100%;
-    }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 800px) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
   }
 
-  .revamp-text {
-    p {
-      color: white;
-      font-size: 1.5rem;
-      line-height: initial;
+  .about-commudle {
+    // height: 50vh;
+    background-color: #3b49df;
+    padding: 1rem;
+    .logo {
+      filter: brightness(10);
+      width: 100px;
+      img {
+        width: 100%;
+      }
     }
 
-    h6 {
-      color: white;
+    .revamp-text {
+      p.header {
+        margin-top: 0;
+        font-size: 1.5rem;
+        line-height: initial;
+      }
+      p {
+        color: white;
+      }
+
+      h6 {
+        color: white;
+      }
+    }
+    @media screen and (min-width: 800px) {
+      width: 25%;
+      height: 350px;
+      overflow-x: initial;
+    }
+  }
+  .upcoming-events, .past-events {
+    width: 100%;
+    height: 380px;
+    overflow-y: hidden;
+    margin-left: 0;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-left: 1px solid #b7b7b7;
+    border-top: 1px solid #b7b7b7;
+    border-bottom: 1px solid #b7b7b7;
+
+    padding: 0.5rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    .event {
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 75%;
+      margin-left: 1rem;
+      margin-top: 0;
+      .event {
+        margin: 0.5rem;
+      }
     }
   }
 }
 
-.section {
+.section.updates {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 1rem auto;
+  nb-card {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  a.github {
+    text-decoration: none;
+    nb-card {
+      nb-card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        nb-icon {
+          font-size: 5.5rem;
+        }
+        p {
+          margin: 0;
+          text-decoration: underline;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  nb-card.stats {
+    height: 300px;
+    nb-card-body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      >div {
+        width: 100%;
+        margin: 0.5rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+        font-size: 1.2rem;
+        line-height: normal;
+        span.number {
+          font-size: 1.5rem;
+        }
+
+        span.field {
+          font-size: 1rem;
+          margin-left: 0.5rem
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    width: 1000px;
+    margin: 2rem auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    nb-card {
+      width: 333px;
+    }
+
+    a.github {
+      nb-card {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+
+}
+
+
+
+.section.communities-list {
   .header-communities {
     text-align: center;
     font-weight: 300;

@@ -1,0 +1,145 @@
+
+<div>
+  <!-- <nb-card>
+    <nb-card-body> -->
+      <div class="data-table-container">
+        <ngx-datatable
+        #table
+        class="material expandable"
+        [rows]="rows"
+
+        [loadingIndicator]="isLoading"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="100"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [scrollbarV]="true"
+        [scrollbarH]="true"
+        [virtualization]="false"
+        [sortType]="SortType.single"
+        [count]="totalEntries"
+        [externalPaging]="true"
+        [offset]="page - 1"
+        [limit]="count"
+        (page)="setPage($event.offset)"
+        [messages]="{emptyMessage: emptyMessage}">
+
+          <!-- responsive row format -->
+          <ngx-datatable-row-detail [rowHeight]="300" (toggle)="onDetailToggle($event)">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+              <div style="padding-left:1rem; font-size:14px; height: 300px; overflow-y: scroll;">
+                <div *ngFor="let question of questions">
+                  <p>
+                    <strong>
+                      Q. {{ question.title }}
+                    </strong>
+                  </p>
+                  <div>
+                    <p class="question-responses">
+                      {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-row-detail>
+          <!-- responsive row format -->
+
+
+          <!-- complete table format -->
+          <ngx-datatable-column
+            name="User Details"
+            [frozenLeft]="true"
+            [width]="360"
+            [canAutoResize]="true"
+            >
+
+            <ng-template
+              let-column="column"
+              ngx-datatable-header-template
+              >
+              <div class="header-column-template">
+                <p>
+                  User Details
+                </p>
+                <form [formGroup]="searchForm">
+                  <div class="name-filter">
+                    <input
+                      nbInput
+                      type="text"
+                      fullWidth
+                      fieldSize="tiny"
+                      placeholder="{{ isLoading ? 'Still Loading' : 'Filter by Name' }}"
+                      formControlName="name"
+                      [disabled]="isLoading"
+                    />
+                  </div>
+                </form>
+
+              </div>
+
+            </ng-template>
+
+            <ng-template
+              let-row="row"
+              let-expanded="expanded"
+              ngx-datatable-cell-template>
+              <div class="row-header user-details">
+                <app-user-details-cell
+                  [userResponse]="row">
+                </app-user-details-cell>
+                <p
+                [class.datatable-icon-right]="!expanded"
+                [class.datatable-icon-down]="expanded"
+                title="Expand/Collapse Row"
+                (click)="toggleExpandRow(row)"
+                class="desktop-hidden view-mobile-response"
+                >
+                View Responses
+                </p>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column
+            *ngFor="let question of questions"
+            name="{{ question.title }}"
+            [canAutoResize]="true"
+            [width]="200"
+            >
+            <ng-template
+              ngx-datatable-header-template>
+              <div class="row-header question mobile-hidden">
+                <p *ngIf="question.title.length > 20" nbTooltip="{{question.title}}">
+                  {{question.title}}
+                </p>
+                <p *ngIf="question.title.length <= 20">
+                  {{question.title}}
+                </p>
+              </div>
+            </ng-template>
+
+
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              <div style="height: 100px;" class="row-cell question mobile-hidden">
+                <p class="question-responses" *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100" nbTooltip="{{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}">
+                  {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                </p>
+                <p class="question-responses" *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length <= 100">
+                  {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                </p>
+              </div>
+            </ng-template>
+
+          </ngx-datatable-column>
+
+
+        </ngx-datatable>
+
+      </div>
+
+    <!-- </nb-card-body>
+  </nb-card> -->
+
+</div>
