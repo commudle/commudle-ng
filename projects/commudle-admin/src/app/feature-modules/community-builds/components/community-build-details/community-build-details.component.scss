@@ -55,12 +55,22 @@
       }
     }
 
+    .embed {
+      max-width: 100%;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      iframe {
+        width: 100% !important;
+      }
+    }
+
     .link {
       margin-bottom: 1rem;
       padding: 0.5rem;
       background: #5072ff;
+      border-radius: 5px;
       p {
-        font-size: 1.2rem;
         margin: 0;
         color: white;
         a {
