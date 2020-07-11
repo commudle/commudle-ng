@@ -3,7 +3,7 @@ import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services
 import * as moment from 'moment';
 import { NbWindowService } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ICommunityBuild, EBuildType } from 'projects/shared-models/community-build.model';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
@@ -21,13 +21,16 @@ export class CommunityBuildDetailsComponent implements OnInit {
   discussionChat: IDiscussion;
 
   EBuildType = EBuildType;
+  hasIframe = false;
+  embedCode: any;
 
   constructor(
     private title: Title,
     private activatedRoute: ActivatedRoute,
     private windowService: NbWindowService,
     private communityBuildsService: CommunityBuildsService,
-    private discussionsService: DiscussionsService
+    private discussionsService: DiscussionsService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -45,6 +48,11 @@ export class CommunityBuildDetailsComponent implements OnInit {
         this.cBuild = data;
         this.title.setTitle(this.cBuild.name);
         this.getDiscussionChat();
+        if (this.cBuild.link.startsWith('<iframe') && this.cBuild.link.endsWith('</iframe>')) {
+          this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.link);
+        } else {
+          this.embedCode = null;
+        }
       }
     );
   }
