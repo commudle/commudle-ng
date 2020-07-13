@@ -4,6 +4,14 @@
   .community-build {
     width: 100%;
 
+    nb-card-body {
+      padding: 1rem 0;
+    }
+
+    .header, .embed, .link, .description, .tags, .author-details {
+      padding: 0 1.5rem;
+    }
+
     .header {
       .date {
         color: grey;
@@ -33,6 +41,9 @@
 
     .description {
       margin: 1rem 0 1rem;
+      p {
+        font-size: 1.5rem;
+      }
     }
 
 
@@ -71,9 +82,7 @@
 
     .link {
       margin-bottom: 1rem;
-      padding: 0.5rem;
       background: #5072ff;
-      border-radius: 5px;
       p {
         margin: 0;
         color: white;
@@ -95,7 +104,7 @@
 
   .comments {
     border-top: 1px solid lightgrey;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     margin: 1rem 0;
     height: 35vh;
     min-height: 400px;

@@ -14,7 +14,7 @@
           <div class="content">
             <h5>
               {{ cb.name }}
-              <a target="_blank" class="external-link" [routerLink]="['/community-builds', cb.slug]">
+              <a target="_blank" class="external-link" [routerLink]="['/builds', cb.slug]">
                 <nb-icon icon="external-link"></nb-icon>
               </a>
             </h5>
@@ -49,7 +49,7 @@
           </div>
           <div class="actions">
             <div>
-              <button nbButton status="info" fullWidth size="small" [routerLink]="['/community-builds', cb.slug, 'edit']">
+              <button nbButton status="info" outline fullWidth size="tiny" [routerLink]="['/builds', cb.slug, 'edit']">
                 <nb-icon icon="edit"></nb-icon>
                 Edit
               </button>
