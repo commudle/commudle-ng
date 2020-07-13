@@ -3,11 +3,6 @@
   <nb-card class="community-build" *ngIf="cBuild">
     <nb-card-body>
       <div class="header">
-        <p class="date">
-          <small>
-            {{ moment(cBuild.created_at).format('Do MMM YYYY') }}
-          </small>
-        </p>
         <p class="build-type">
           <span>
             {{ cBuild.build_type | titlecase }}
@@ -18,6 +13,10 @@
         </h1>
         <p class="author">
           {{ cBuild.user.name }} <span *ngIf="cBuild.user.designation">, {{ cBuild.user.designation }}</span>
+          <br>
+          <small>
+            {{ moment(cBuild.created_at).format('Do MMM YYYY') }}
+          </small>
         </p>
       </div>
       <div *ngIf="embedCode" class="embed" [innerHTML]="embedCode">

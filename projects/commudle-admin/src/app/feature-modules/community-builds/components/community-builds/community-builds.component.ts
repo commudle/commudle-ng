@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 
 @Component({
   selector: 'app-community-builds',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommunityBuildsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private communityBuildsService: CommunityBuildsService
+  ) { }
 
   ngOnInit() {
   }

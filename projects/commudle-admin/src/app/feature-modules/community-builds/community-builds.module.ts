@@ -11,6 +11,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { MyCommunityBuildsComponent } from './components/my-community-builds/my-community-builds.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { CommunityBuildDetailsComponent } from './components/community-build-details/community-build-details.component';
+import { CommunityBuildHListItemComponent } from './community-build-h-list-item/community-build-h-list-item.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CommunityBuildDetailsComponent } from './components/community-build-det
     CreateCommunityBuildComponent,
     MyCommunityBuildsComponent,
     CommunityBuildsComponent,
-    CommunityBuildDetailsComponent
+    CommunityBuildDetailsComponent,
+    CommunityBuildHListItemComponent
   ],
   imports: [
     CommonModule,
