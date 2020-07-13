@@ -11,7 +11,8 @@
     "dev:ssr": "ng run commudle-admin:serve-ssr",
     "serve:ssr": "node dist/commudle-admin-server/main.js",
     "build:ssr": "ng build --prod && ng run commudle-admin:server:production",
-    "prerender": "ng run commudle-admin:prerender"
+    "prerender": "ng run commudle-admin:prerender",
+    "storybook": "start-storybook"
   },
   "private": true,
   "dependencies": {
@@ -50,6 +51,7 @@
     "ng2-smart-table": "^1.6.0",
     "ngx-cookie-service": "^3.0.4",
     "ngx-material-timepicker": "^5.5.1",
+    "parse5": "^6.0.0",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.5.5",
     "tslib": "^1.10.0",
@@ -64,6 +66,7 @@
     "@angular/language-service": "~9.1.4",
     "@nguniversal/builders": "^9.1.0",
     "@schematics/angular": "~8.3.23",
+    "@storybook/angular": "^5.3.19",
     "@types/express": "^4.17.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
