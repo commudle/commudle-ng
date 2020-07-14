@@ -25,6 +25,7 @@
     "@angular/platform-browser": "~9.1.4",
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/platform-server": "~9.1.4",
+    "@angular/pwa": "^0.6.8",
     "@angular/router": "~9.1.4",
     "@angular/service-worker": "~9.1.4",
     "@angular/youtube-player": "^9.2.4",
