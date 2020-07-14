@@ -5,7 +5,7 @@
   <div class="profile-info">
     <p class="name {{ size }}"><strong>{{ user.name }}</strong></p>
     <p class="designation {{ size }}">{{ user.designation }}</p>
-    <div class="user-social-links {{ size }}">
+    <div class="user-social-links {{ size }}" *ngIf="socialMediaLinks">
       <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
         <nb-icon icon="linkedin" status="primary"></nb-icon>
       </a>

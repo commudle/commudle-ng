@@ -10,14 +10,14 @@
       <div class="organizers" *ngIf="organizers.length > 0">
         <p class="text-basic">Organizers</p>
         <div *ngFor="let user of organizers" class="user">
-          <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
+          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
         </div>
       </div>
 
       <div *ngIf="eventOrganizers.length > 0" class="event-organizers">
         <p class="text-basic">Event Organizers</p>
         <div *ngFor="let user of eventOrganizers" class="user">
-          <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
+          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
         </div>
       </div>
     </nb-card-body>

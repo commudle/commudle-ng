@@ -10,6 +10,7 @@ export class UserProfileHorizontalComponent implements OnInit {
   @Input() user: IUser;
   @Input() size: string;
   @Input() aboutMe: boolean;
+  @Input() socialMediaLinks: boolean;
 
   constructor() { }
 

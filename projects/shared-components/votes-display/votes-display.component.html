@@ -1,0 +1,25 @@
+<div class="clickable votes size-{{size}}">
+  <p [ngSwitch]="icon">
+    <span
+      class="count"
+      *ngIf="totalVotes > 0"
+      [nbPopover]="VotersComponent"
+      [nbPopoverContext]="{ votableId: votableId, votableType: votableType }"
+      nbPopoverTrigger="hover"
+    > {{ totalVotes }}  </span>
+    <span (click)="toggleVote()">
+      <nb-icon
+        *ngSwitchCase="'heart'"
+        icon="heart"
+        class="hear"
+        [ngClass]="{'voted-heart': myVote, 'unvoted': !myVote, 'has-votes': totalVotes > 0}">
+      </nb-icon>
+      <nb-icon
+        *ngSwitchCase="'star'"
+        icon="star"
+        class="star"
+        [ngClass]="{'voted-star': myVote, 'unvoted': !myVote, 'has-votes': totalVotes > 0}">
+      </nb-icon>
+    </span>
+  </p>
+</div>
