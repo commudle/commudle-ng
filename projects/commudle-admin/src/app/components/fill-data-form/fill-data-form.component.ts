@@ -6,7 +6,7 @@ import { EventsService } from '../../services/events.service';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunitiesService } from '../../services/communities.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { LibErrorHandlerService } from 'projects/lib-error-handler/src/public-api';
 import { DataFormEntityResponsesService } from '../../services/data-form-entity-responses.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -36,6 +36,7 @@ export class FillDataFormComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private router: Router,
     private title: Title,
+    private meta: Meta,
     private errorHandler: LibErrorHandlerService,
     private dataFormEntityResponsesService: DataFormEntityResponsesService,
     private toastLogService: LibToastLogService
@@ -59,11 +60,20 @@ export class FillDataFormComponent implements OnInit {
   }
 
 
+  setMeta() {
+    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
+    this.meta.updateTag({ name: 'og:title', content: `${this.dataFormEntity.name}` });
+    this.meta.updateTag({ name: 'og:description', content: `Fill the form for ${this.dataFormEntity.name}`});
+    this.meta.updateTag( { name: 'og:type', content: 'website'});
+  }
+
+
   getDataFormEntity(dataFormEntityId) {
     this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe(
       data => {
         this.dataFormEntity = data;
         this.title.setTitle(`${this.dataFormEntity.name}`);
+        this.setMeta();
         this.formClosed = !this.dataFormEntity.user_can_fill_form;
         if (!this.formClosed) {
           this.getExistingResponses();
@@ -109,6 +119,10 @@ export class FillDataFormComponent implements OnInit {
         this.event = data;
         this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
         this.getCommunity(this.event.kommunity_id);
+
+        if (this.event.header_image_path) {
+          this.meta.updateTag({name: 'og:image', content: this.event.header_image_path});
+        }
       }
     );
   }
@@ -117,6 +131,10 @@ export class FillDataFormComponent implements OnInit {
     this.communitiesService.getCommunityDetails(communityId).subscribe(
       data => {
         this.community = data;
+
+        if (!this.event.header_image_path) {
+          this.meta.updateTag({name: 'og:image', content: this.community.logo_path});
+        }
         if (!this.redirectRoute) {
           this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
         }

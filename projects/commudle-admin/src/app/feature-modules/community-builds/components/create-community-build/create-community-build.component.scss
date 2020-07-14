@@ -1,0 +1,84 @@
+.community-build {
+  nb-card.form-card {
+    width: 100%;
+    margin: 0 auto;
+
+    form {
+      .field {
+        margin-top: 1.5rem;
+      }
+
+      .field.actions {
+        display: flex;
+        flex-wrap: wrap;
+        button {
+          margin: 0.5rem;
+        }
+      }
+
+      .field.image-upload {
+        input {
+          display: none;
+        }
+
+        label {
+          display: flex;
+          width: 100%;
+          height: 100px;
+          border: 1px dotted lightgrey;
+          border-radius: 5px;
+          background-color: #f3f3f3;
+          justify-content: center;
+          align-items: center;
+          color: grey;
+          font-size: 1.5rem;
+          font-weight: lighter;
+
+          nb-icon {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .images {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        >div {
+          >div {
+            margin: 0.5rem;
+          width: 100px;
+          height: 100px;
+          border: 1px dotted lightgrey;
+          border-radius: 5px;
+          overflow: hidden;
+          padding: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          img {
+            width: 100%;;
+          }
+
+          p{
+            margin: 5px 0 0;
+            position: absolute;
+            bottom: 0;
+            nb-icon:hover{
+              border-radius: 50%;
+              background-color: white;
+            }
+          }
+          }
+
+        }
+      }
+    }
+
+    @media screen and (min-width: 800px) {
+      width: 800px;
+    }
+  }
+}
