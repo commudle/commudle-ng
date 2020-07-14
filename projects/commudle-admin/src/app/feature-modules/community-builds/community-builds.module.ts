@@ -22,7 +22,7 @@ import { CommunityBuildComponent } from './components/community-build/community-
     CommunityBuildsComponent,
     CommunityBuildDetailsComponent,
     CommunityBuildHListItemComponent,
-    CommunityBuildComponent
+    CommunityBuildComponent,
   ],
   imports: [
     CommonModule,
