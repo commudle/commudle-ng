@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-community-builds',
@@ -18,12 +18,24 @@ export class CommunityBuildsComponent implements OnInit {
 
   constructor(
     private communityBuildsService: CommunityBuildsService,
-    private title: Title
+    private title: Title,
+    private meta: Meta
   ) {
     title.setTitle('Community Builds');
   }
 
+  setMeta() {
+    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({ name: 'og:title', content: `Community Builds | Share What You've Built!` });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: `Project, Slides from a Session, an Online Course, share it all with the community!`
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'website'});
+  }
+
   ngOnInit() {
+    this.setMeta();
     this.getCommunityBuilds();
   }
 

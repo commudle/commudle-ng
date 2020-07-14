@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
-import { DomSanitizer, Title } from '@angular/platform-browser';
+import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ActivatedRoute } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
@@ -43,6 +43,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   constructor(
     private title: Title,
+    private meta: Meta,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
@@ -50,12 +51,23 @@ export class CreateCommunityBuildComponent implements OnInit {
     private toastLogService: LibToastLogService
   ) { }
 
+  setMeta() {
+    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({ name: 'og:title', content: `Share Your Build | Community Builds` });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: `Project, Slides from a Session, an Online Course, share it all with the community!`
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'website'});
+  }
+
   ngOnInit() {
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
 
     this.title.setTitle('Share Your Build!');
+    this.setMeta();
   }
 
 

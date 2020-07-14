@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 
@@ -14,10 +14,25 @@ export class CommunityBuildComponent implements OnInit {
   communityBuild: ICommunityBuild;
   constructor(
     private title: Title,
+    private meta: Meta,
     private activatedRoute: ActivatedRoute,
     private communityBuildsService: CommunityBuildsService
 
   ) { }
+
+  setMeta() {
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: this.communityBuild.name });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: this.communityBuild.description.replace(/<[^>]*>/g, '')
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'website'});
+  }
 
   ngOnInit() {
 
@@ -33,6 +48,7 @@ export class CommunityBuildComponent implements OnInit {
       data => {
         this.communityBuild = data;
         this.title.setTitle(this.communityBuild.name);
+        this.setMeta();
       }
     );
   }
