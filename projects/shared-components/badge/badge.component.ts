@@ -9,6 +9,7 @@ export class BadgeComponent implements OnInit {
   @Input() text;
   @Input() fontSize; //can be 'small or regular'
   @Input() color;
+  @Input() nbIcon;
 
   bg;
 

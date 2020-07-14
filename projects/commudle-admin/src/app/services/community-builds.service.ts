@@ -73,6 +73,12 @@ export class CommunityBuildsService {
     );
   }
 
+  pGetAll(page, count): Observable<ICommunityBuilds> {
+    const params = new HttpParams().set('page', page).set('count', count);
+    return this.http.get<ICommunityBuilds>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX), {params}
+    );
+  }
 
   pShow(communityBuildId): Observable<ICommunityBuild> {
     const params = new HttpParams().set('community_build_id', communityBuildId);

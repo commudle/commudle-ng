@@ -5,6 +5,7 @@ import { MyCommunityBuildsComponent } from './components/my-community-builds/my-
 import { CommunityBuildDetailsComponent } from './components/community-build-details/community-build-details.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
+import { CommunityBuildComponent } from './components/community-build/community-build.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
   {
     path: ':community_build_id',
     canActivate: [AuthGuard],
-    component: CommunityBuildDetailsComponent
+    component: CommunityBuildComponent
   },
 ];
 

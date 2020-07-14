@@ -14,8 +14,10 @@ export interface ICommunityBuild {
   created_at: Date;
   votes_count: number;
   flags_count: number;
+  chat_messages_count: number;
   images: IAttachedFile[];
   tags: string[];
+
 }
 
 
@@ -28,11 +30,6 @@ export enum EBuildType {
   other = 'other'
 }
 
-
-export enum EProjectStatus {
-  not_live = 'not_live',
-  live = 'live'
-}
 
 export enum EPublishStatus {
   draft = 'draft',
@@ -51,4 +48,32 @@ export enum EPublishStatusColors {
   flagged = 'red',
   removed = 'red'
 }
+
+
+export const CBuildTypeDisplay = {
+  project: {
+    color: 'purple',
+    icon: ''
+  },
+  product: {
+    color: 'purple',
+    icon: ''
+  },
+  slides: {
+    color: 'purple',
+    icon: ''
+  },
+  programme: {
+    color: 'purple',
+    icon: ''
+  },
+  course: {
+    color: 'purple',
+    icon: ''
+  },
+  other: {
+    color: 'purple',
+    icon: ''
+  }
+};
 
