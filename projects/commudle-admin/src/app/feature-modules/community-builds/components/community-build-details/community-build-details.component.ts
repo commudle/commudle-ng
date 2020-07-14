@@ -3,7 +3,7 @@ import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services
 import * as moment from 'moment';
 import { NbWindowService } from '@nebular/theme';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ICommunityBuild, EBuildType } from 'projects/shared-models/community-build.model';
+import { ICommunityBuild, EBuildType, CBuildTypeDisplay } from 'projects/shared-models/community-build.model';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 
@@ -21,6 +21,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   discussionChat: IDiscussion;
 
   EBuildType = EBuildType;
+  CBuildTypeDisplay = CBuildTypeDisplay;
   hasIframe = false;
   embedCode: any;
 

@@ -1,8 +1,8 @@
 <div class="clickable community-build-list-item">
   <nb-card>
     <nb-card-body>
-      <a class="details-page" [routerLink]="['/builds', communityBuild.slug]"></a>
       <div class="row">
+        <a class="details-page" [routerLink]="['/builds', communityBuild.slug]"></a>
         <div class="details">
           <div class="build-type">
             <app-badge
@@ -32,6 +32,12 @@
             {{ communityBuild.votes_count }}
           </span>
           <nb-icon icon="star"></nb-icon>
+          <app-votes-display
+            [parentType]="'CommunityBuild'"
+            [parentId]="communityBuild.id"
+            [icon]="'star'"
+            >
+          </app-votes-display>
         </p>
         <p class="comments">
           <span *ngIf="communityBuild.votes_count > 0">

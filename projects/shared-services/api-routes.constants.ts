@@ -268,6 +268,14 @@ export const API_ROUTES = {
   },
 
 
+  VOTES: {
+    PUBLIC: {
+      COUNT: 'api/v2/votes/public/count',
+      VOTERS: 'api/v2/votes/public/voters'
+    }
+  },
+
+
   EXTERNAL: {
     GITHUB_API: 'https://api.github.com/repos/commudle/commudle-ng',
     GITHUB_REPO: 'https://github.com/commudle/commudle-ng'

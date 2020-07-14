@@ -3,11 +3,14 @@
   <nb-card class="community-build" *ngIf="cBuild">
     <nb-card-body>
       <div class="header">
-        <p class="build-type">
-          <span>
-            {{ cBuild.build_type | titlecase }}
-          </span>
-        </p>
+        <div class="build-type">
+          <app-badge
+            [text]="cBuild.build_type | titlecase"
+            [color]="CBuildTypeDisplay[cBuild.build_type].color"
+            [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
+            >
+          </app-badge>
+        </div>
         <h1>
           {{ cBuild.name }}
         </h1>
