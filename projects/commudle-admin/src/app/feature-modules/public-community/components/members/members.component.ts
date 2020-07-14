@@ -3,6 +3,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-members',
@@ -20,12 +21,18 @@ export class MembersComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userRolesUsersService: UserRolesUsersService
+    private userRolesUsersService: UserRolesUsersService,
+    private meta: Meta
   ) { }
+
+  setMeta() {
+    this.meta.updateTag({ name: 'og:title', content: `Members | ${this.community.name}` });
+  }
 
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe(data => {
       this.community = data.community;
+      this.setMeta();
       if (this.community) {
         this.getMembers();
       }

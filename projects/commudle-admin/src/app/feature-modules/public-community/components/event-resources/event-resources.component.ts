@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import * as moment from 'moment';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event-resources',
@@ -19,12 +19,17 @@ export class EventResourcesComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private speakerResourcesService: SpeakerResourcesService,
-    private sanitizer: DomSanitizer
+    private meta: Meta
   ) { }
+
+  setMeta() {
+    this.meta.updateTag({ name: 'og:title', content: `Expert Sessions | ${this.community.name}` });
+  }
 
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe(data => {
       this.community = data.community;
+      this.setMeta();
       if (this.community) {
         this.getResources();
       }
