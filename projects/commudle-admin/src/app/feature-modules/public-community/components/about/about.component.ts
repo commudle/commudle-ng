@@ -4,6 +4,7 @@ import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUser } from 'projects/shared-models/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -20,12 +21,18 @@ export class AboutComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userRolesUsersService: UserRolesUsersService
+    private userRolesUsersService: UserRolesUsersService,
+    private meta: Meta
   ) { }
+
+  setMeta() {
+    this.meta.updateTag({ name: 'og:title', content: `About | ${this.community.name}` });
+  }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(data => {
       this.community = data.community;
+      this.setMeta();
     });
 
     this.getOrganizers(EUserRoles.ORGANIZER);
