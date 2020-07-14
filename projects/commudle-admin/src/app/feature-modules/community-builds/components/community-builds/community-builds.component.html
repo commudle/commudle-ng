@@ -1,5 +1,23 @@
 <div class="community-builds">
+  <nb-card class="header">
+    <nb-card-body>
+      <h1>
+        <nb-icon icon="bulb-outline" status="warning"></nb-icon>
+        Community Builds
+      </h1>
+      <p>
+        From coding a small, simple and useful <strong>Project</strong>, to <strong>Slides</strong> which you used for a Talk, share something which is your Build! We're going to share the best ones in our weekly Tech.
+      </p>
+    </nb-card-body>
+  </nb-card>
   <div class="builds-list">
-    
+    <div *ngFor="let build of communityBuilds">
+      <app-community-build-h-list-item [communityBuild]="build"></app-community-build-h-list-item>
+    </div>
+  </div>
+  <div class="load-more-button" *ngIf="canLoadMore && total">
+    <button [disabled]="isLoading" (click)="getCommunityBuilds()" fullWidth nbButton status="primary" size="small" outline>
+      Load More!
+    </button>
   </div>
 </div>

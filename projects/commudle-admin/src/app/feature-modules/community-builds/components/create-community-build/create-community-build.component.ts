@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ICommunityBuild, EBuildType, EProjectStatus, EPublishStatus } from 'projects/shared-models/community-build.model';
+import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +19,6 @@ export class CreateCommunityBuildComponent implements OnInit {
   tags;
   linkFieldLabel = 'Link*';
   EBuildType = EBuildType;
-  EProjectStatus = EProjectStatus;
   EPublishStatus = EPublishStatus;
 
   embeddedLink;
@@ -27,7 +26,6 @@ export class CreateCommunityBuildComponent implements OnInit {
   uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
-  projectStatuses = Object.keys(EProjectStatus);
   publishStatuses = Object.keys(EPublishStatus);
 
   communityBuildForm = this.fb.group({
