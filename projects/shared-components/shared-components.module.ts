@@ -13,7 +13,9 @@ import {
   NbCheckboxModule,
   NbRadioModule,
   NbBadgeModule,
-  NbAccordionModule} from '@nebular/theme';
+  NbAccordionModule,
+  NbPopoverModule,
+  NbListModule} from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { BadgeComponent } from './badge/badge.component';
 import { DiscussionChatComponent } from './discussion-chat/discussion-chat.component';
@@ -38,6 +40,7 @@ import { UserDetailsCellComponent } from './form-responses/responses-table/user-
 import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
+import { VotersComponent } from './votes-display/voters/voters.component';
 
 
 @NgModule({
@@ -62,7 +65,8 @@ import { VotesDisplayComponent } from './votes-display/votes-display.component';
     FormResponsesComponent,
     ResponsesTableComponent,
     UserDetailsCellComponent,
-    VotesDisplayComponent
+    VotesDisplayComponent,
+    VotersComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +87,9 @@ import { VotesDisplayComponent } from './votes-display/votes-display.component';
     NbCheckboxModule,
     NbRadioModule,
     NbBadgeModule,
-    NbAccordionModule
+    NbAccordionModule,
+    NbPopoverModule,
+    NbListModule
   ],
   exports: [
     WorkInProgressComponent,

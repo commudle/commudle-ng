@@ -8,7 +8,7 @@
       padding: 1rem 0;
     }
 
-    .header, .embed, .link, .description, .tags, .author-details {
+    .header, .embed, .link, .description, .tags, .author-details, .stats {
       padding: 0 1.5rem;
     }
 
@@ -88,6 +88,18 @@
         color: white;
         a {
           color: white;
+        }
+      }
+    }
+
+    .stats {
+      display: flex;
+      >p {
+        margin: 0.5rem 1rem 0 0;
+        display: flex;
+        align-items: center;
+        >span {
+          margin-left: 0.5rem;
         }
       }
     }

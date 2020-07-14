@@ -45,7 +45,6 @@ export class VoteChannel {
             votable_id: votableId
           }, {
             received: (data) => {
-              console.log(data);
               this.channelData[`${votableId}_${votableType}`].next(data);
             }
           });
