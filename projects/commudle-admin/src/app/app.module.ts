@@ -126,7 +126,7 @@ export function initApp(appInitService: AppInitService) {
     //other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
 
   ],
   providers: [
