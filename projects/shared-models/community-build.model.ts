@@ -52,28 +52,24 @@ export enum EPublishStatusColors {
 
 export const CBuildTypeDisplay = {
   project: {
-    color: 'purple',
-    icon: ''
+    color: '#4e74ff',
+    icon: 'flash'
   },
   product: {
-    color: 'purple',
-    icon: ''
+    color: '#4e74ff',
+    icon: 'flash'
   },
   slides: {
-    color: 'purple',
-    icon: ''
-  },
-  programme: {
-    color: 'purple',
-    icon: ''
+    color: '#ff8f4e',
+    icon: 'film'
   },
   course: {
-    color: 'purple',
-    icon: ''
+    color: '#e91e63',
+    icon: 'book-open'
   },
   other: {
-    color: 'purple',
-    icon: ''
+    color: '#3ee044',
+    icon: 'arrow-right'
   }
 };
 

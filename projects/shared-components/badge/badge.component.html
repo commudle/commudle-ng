@@ -1,6 +1,6 @@
 <div>
   <p [ngClass]="{'small-text': fontSize == 'small'}" [ngStyle]="{'background-color': bg}">
-    <nb-icon *ngIf="nbIcon" icon="nbIcon"></nb-icon>
+    <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
     {{ text }}
   </p>
 </div>
