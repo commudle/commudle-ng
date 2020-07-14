@@ -46,6 +46,21 @@
         <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
 
+      <div class="stats">
+        <p class="stars">
+          <app-votes-display
+            [votableType]="'CommunityBuild'"
+            [votableId]="cBuild.id"
+            [icon]="'star'"
+            [size]="'large'"
+            >
+          </app-votes-display>
+          <span>
+            Give a star to encourage!
+          </span>
+        </p>
+      </div>
+
       <div class="comments" *ngIf="discussionChat">
         <p>Discussion</p>
         <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>

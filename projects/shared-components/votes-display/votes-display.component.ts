@@ -3,6 +3,8 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { VoteChannel } from '../services/websockets/vote.channel';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SVotesService } from '../services/s-votes.service';
+import { VotersComponent } from './voters/voters.component';
 
 @Component({
   selector: 'app-votes-display',
@@ -14,6 +16,9 @@ export class VotesDisplayComponent implements OnInit {
   @Input() votableId: number;
   @Input() voteType: string;
   @Input() icon: string;
+  @Input() size;
+
+  VotersComponent = VotersComponent;
 
   currentUser: ICurrentUser;
   permittedActions = [];
@@ -30,20 +35,36 @@ export class VotesDisplayComponent implements OnInit {
   constructor(
     private authWatchService: LibAuthwatchService,
     private voteChannel: VoteChannel,
+    private votesService: SVotesService,
     private toastLogService: LibToastLogService
   ) {}
 
   ngOnInit() {
     this.authWatchService.currentUser$.subscribe(
-      data => this.currentUser = data
+      data => {
+        this.currentUser = data;
+        this.initData();
+      }
     );
+
+
+  }
+
+  initData() {
+    this.getAllVotes();
 
     this.voteChannel.subscribe(this.votableType, this.votableId);
     this.receiveData();
   }
 
-  getAllVotes() {
 
+  getAllVotes() {
+    this.votesService.pGetVotesCount(this.votableType, this.votableId).subscribe(
+      data => {
+        this.totalVotes = data.total;
+        this.myVote = data.voted;
+      }
+    );
   }
 
 
@@ -66,6 +87,7 @@ export class VotesDisplayComponent implements OnInit {
             }
             case (this.voteChannel.ACTIONS.TOGGLE_VOTE): {
               data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
+              this.myVote = (data.increment && data.user_id == this.currentUser.id) ? true : false;
               break;
             }
             case (this.voteChannel.ACTIONS.ERROR): {
