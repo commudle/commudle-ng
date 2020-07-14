@@ -41,15 +41,13 @@ export class HomeComponent implements OnInit {
   }
 
   setMeta() {
-    this.meta.addTags([
-      {name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'},
-      {name: 'og:title', content: "Commudle | Communities | Let's Share & Learn"},
-      {
-        name: 'og:description',
-        content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
-      },
-      {name: 'og:type', content: 'website'},
-    ]);
+    this.meta.updateTag({name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({name: 'og:title', content: "Commudle | Communities | Let's Share & Learn"});
+    this.meta.updateTag({
+      name: 'og:description',
+      content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
+    });
+    this.meta.updateTag({name: 'og:type', content: 'website'});
   }
 
   login() {
