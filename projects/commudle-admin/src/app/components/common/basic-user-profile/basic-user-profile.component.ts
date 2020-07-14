@@ -84,9 +84,6 @@ export class BasicUserProfileComponent implements OnInit {
         this.toastLogService.successDialog("Your Profile is now updated!");
       }
     );
-
-
-
   }
 
 }

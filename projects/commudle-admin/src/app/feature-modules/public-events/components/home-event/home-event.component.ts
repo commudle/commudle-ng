@@ -6,7 +6,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { NbSidebarService } from '@nebular/theme';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
@@ -37,12 +37,24 @@ export class HomeEventComponent implements OnInit {
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
     private title: Title,
+    private meta: Meta,
     private sidebarService: NbSidebarService,
     private discussionsService: DiscussionsService
   ) { }
 
   scroll(el: HTMLElement) {
     el.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
+  }
+
+  setMeta() {
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: this.event.name });
+    this.meta.updateTag({ name: 'og:description', content: this.event.description.replace(/<[^>]*>/g, '')});
+    this.meta.updateTag({ name: 'og:type', content: 'website'});
   }
 
   ngOnInit() {
@@ -58,6 +70,8 @@ export class HomeEventComponent implements OnInit {
     this.eventsService.pGetEvent(eventId).subscribe(
       event => {
         this.event = event;
+        this.title.setTitle(this.event.name);
+        this.setMeta();
         this.getCommunity(event.kommunity_id);
         this.getDiscussionChat();
       }
@@ -68,7 +82,6 @@ export class HomeEventComponent implements OnInit {
     this.communitiesService.getCommunityDetails(communityId).subscribe(
       community => {
         this.community = community;
-        this.title.setTitle(`${this.event.name} | ${this.community.name}`);
       }
     );
   }

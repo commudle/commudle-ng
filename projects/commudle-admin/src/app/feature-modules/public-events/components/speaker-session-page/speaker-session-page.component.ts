@@ -8,7 +8,7 @@ import { IUser } from 'projects/shared-models/user.model';
 import * as moment from 'moment';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
-import { DomSanitizer, Title } from '@angular/platform-browser';
+import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
@@ -60,10 +60,22 @@ export class SpeakerSessionPageComponent implements OnInit {
     private discussionsService: DiscussionsService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private title: Title,
+    private meta: Meta,
     private userVisitsService: UserVisitsService,
     private authWatchService: LibAuthwatchService
   ) {
     this.onResize();
+  }
+
+  setMeta() {
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: `${this.event.name} | Live` });
+    this.meta.updateTag({ name: 'og:description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
+    this.meta.updateTag({ name: 'og:type', content: 'website'});
   }
 
   ngOnInit() {
@@ -87,6 +99,7 @@ export class SpeakerSessionPageComponent implements OnInit {
       data => {
         this.community = data.community;
         this.event = data.event;
+        this.setMeta();
         this.startTime = this.event.start_time;
         this.endTime = this.event.end_time;
         if (this.event.custom_agenda) {
@@ -122,6 +135,7 @@ export class SpeakerSessionPageComponent implements OnInit {
 
         if (this.speaker) {
           this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
+          this.meta.updateTag({ name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
         }
       }
     );

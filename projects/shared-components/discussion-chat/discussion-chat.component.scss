@@ -10,6 +10,9 @@
       overflow-y: auto;
       .message {
         margin-bottom: 1rem;
+        border: 1px dotted lightgrey;
+        border-radius: 5px;
+        padding: 5px;
       }
 
       .filler-message {

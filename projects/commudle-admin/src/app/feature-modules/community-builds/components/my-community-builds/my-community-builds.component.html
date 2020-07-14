@@ -1,0 +1,68 @@
+<div>
+
+  <nb-card>
+    <nb-card-body>
+      <h4>My Builds</h4>
+      <p>Here's a list of builds you've shared with the community!</p>
+    </nb-card-body>
+  </nb-card>
+
+  <div class="community-builds">
+    <nb-card>
+      <nb-card-body>
+        <div class="community-build" *ngFor="let cb of cBuilds">
+          <div class="content">
+            <h5>
+              {{ cb.name }}
+              <a target="_blank" class="external-link" [routerLink]="['/builds', cb.slug]">
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+            </h5>
+            <p>
+              <small>
+                {{ moment(cb.created_at).fromNow() }}
+              </small>
+            </p>
+          </div>
+          <div class="status">
+            <p>
+              <app-badge
+              [text]="cb.publish_status"
+              [color]="EPublishStatusColors[cb.publish_status]">
+            </app-badge>
+            </p>
+          </div>
+          <div class="build-type">
+            <p>
+              {{ cb.build_type | titlecase }}
+            </p>
+          </div>
+          <div class="stats">
+            <div>
+              <p>
+                {{ cb.votes_count }} <nb-icon icon="star" status="warning"></nb-icon>
+              </p>
+            </div>
+            <div class="tags">
+              <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
+            </div>
+          </div>
+          <div class="actions">
+            <div>
+              <button nbButton status="info" outline fullWidth size="tiny" [routerLink]="['/builds', cb.slug, 'edit']">
+                <nb-icon icon="edit"></nb-icon>
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <ng-template #imageTemplate let-data>
+    <div class="image-window">
+      <img src="{{data.imageUrl}}">
+    </div>
+  </ng-template>
+</div>

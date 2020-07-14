@@ -41,8 +41,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: SpeakerResourceFormComponent
   },
-  { path: 'sys-admin', loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule) },
-
+  {
+    path: 'sys-admin',
+    loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'builds',
+    loadChildren: () => import('./feature-modules/community-builds/community-builds.module').then(m => m.CommunityBuildsModule)
+  },
   {
     path: 'admin',
     children: [

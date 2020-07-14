@@ -12,4 +12,5 @@ export interface ICurrentUser {
   gender: string;
   avatar: string;
   user_roles: string[];
+  has_community_builds: boolean;
 }
