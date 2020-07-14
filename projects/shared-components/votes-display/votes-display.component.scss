@@ -1,11 +1,25 @@
 .votes {
   >p {
-    >span {
+    margin: 0;
+    .count {
 
     }
-    >nb-icon {
+    nb-icon {
       font-size: 1.2rem;
-      background-color: grey;
+      color: #8080808c;
+
+      &:hover {
+        transform: rotate(360deg);
+        transition: 0.5s ease-in-out;
+      }
+    }
+
+    nb-icon.voted-star {
+      color: gold;
+    }
+
+    nb-icon.voted-heart {
+      color: #ff1e1ed6;
     }
   }
 }
