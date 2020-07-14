@@ -1,0 +1,47 @@
+<div class="clickable community-build-list-item">
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+        <a class="details-page" [routerLink]="['/builds', communityBuild.slug]"></a>
+        <div class="details">
+          <div class="build-type">
+            <app-badge
+              [text]="communityBuild.build_type | titlecase"
+              [color]="CBuildTypeDisplay[communityBuild.build_type].color"
+              [nbIcon]="CBuildTypeDisplay[communityBuild.build_type].icon"
+              [fontSize]="'small'">
+            </app-badge>
+          </div>
+          <p class="created-at">
+            <small>{{ moment(communityBuild.created_at).fromNow() }}</small>
+          </p>
+          <h3 class="name">
+            {{ communityBuild.name }}
+          </h3>
+          <div class="author">
+            <app-user-profile-horizontal [user]="communityBuild.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
+          </div>
+        </div>
+        <div class="image" *ngIf="communityBuild.images.length > 0">
+          <img src="{{ communityBuild.images[0].url }}" alt="{{ communityBuild.name }}">
+        </div>
+      </div>
+      <div class="stats">
+        <p class="stars">
+          <app-votes-display
+            [votableType]="'CommunityBuild'"
+            [votableId]="communityBuild.id"
+            [icon]="'star'"
+            >
+          </app-votes-display>
+        </p>
+        <p class="comments">
+          <span *ngIf="communityBuild.chat_messages_count > 0">
+            {{ communityBuild.chat_messages_count }}
+          </span>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </p>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

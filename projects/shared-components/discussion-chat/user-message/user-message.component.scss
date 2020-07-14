@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: nowrap;
+
   p {
     font-size: 0.8rem;
   }
@@ -64,6 +65,10 @@
   // border-bottom: 1px solid lightgrey;
   // border-left: 1px solid lightgrey;
   // border-right: 1px solid lightgrey;
+
+  .reply-message {
+    margin-bottom: 0.5rem;
+  }
 
   .reply-form {
     width: 100%;

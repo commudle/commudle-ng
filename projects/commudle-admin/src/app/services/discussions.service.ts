@@ -41,6 +41,14 @@ export class DiscussionsService {
     );
   }
 
+  pGetOrCreateForCommunityBuildChat(communityBuildId): Observable<IDiscussion> {
+    const params = new HttpParams().set('community_build_id', communityBuildId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT),
+      { params }
+    );
+  }
+
 
 
 }

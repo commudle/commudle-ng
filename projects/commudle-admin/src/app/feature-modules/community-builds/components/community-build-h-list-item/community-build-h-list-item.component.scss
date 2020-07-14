@@ -1,0 +1,62 @@
+.community-build-list-item {
+  nb-card {
+    margin-bottom: 0.5rem;
+    nb-card-body {
+      &:hover {
+        box-shadow: 1px 1px 5px 5px lightgrey;
+      }
+
+      .row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+        .details-page {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .details {
+          width: 70%;
+          p.created-at {
+            margin: 0;
+            color: grey;
+          }
+
+          h3.name {
+            margin: 0;
+            font-weight: 300;
+          }
+        }
+
+        .image {
+          width: 20%;
+          display: flex;
+          align-items: center;
+          border: 1px solid lightgrey;
+          img {
+            width: 100%;
+            overflow: hidden;
+          }
+        }
+      }
+
+      .stats {
+        display: flex;
+        >p {
+          margin: 0 1rem 0 0;
+
+          &.comments {
+            nb-icon {
+              color: grey;
+            }
+          }
+        }
+      }
+    }
+  }
+}

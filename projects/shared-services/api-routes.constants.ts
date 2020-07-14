@@ -22,6 +22,23 @@ export const API_ROUTES = {
     PUBLIC_DETAILS: 'api/v2/communities/public_show'
   },
 
+  // community_builds
+  COMMUNITY_BUILDS: {
+    INDEX: 'api/v2/community_builds',
+    SHOW: 'api/v2/community_builds/show',
+    CREATE: 'api/v2/community_builds',
+    UPDATE: 'api/v2/community_builds',
+    UPDATE_TAGS: 'api/v2/community_builds/update_tags',
+    UPDATE_PUBLISH_STATUS: 'api/v2/community_builds/update_publish_status',
+
+    PUBLIC: {
+      INDEX: 'api/v2/community_builds/public',
+      SHOW: 'api/v2/community_builds/public/show',
+      TOGGLE_VOTE: 'api/v2/community_builds/public/toggle_vote',
+
+    }
+  },
+
 
 
   // data_forms
@@ -224,9 +241,11 @@ export const API_ROUTES = {
   },
 
   DISCUSSIONS: {
+
     PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
     PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
-    PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat'
+    PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat',
+    PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat'
   },
 
 
@@ -246,6 +265,14 @@ export const API_ROUTES = {
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
 
+  },
+
+
+  VOTES: {
+    PUBLIC: {
+      COUNT: 'api/v2/votes/public/count',
+      VOTERS: 'api/v2/votes/public/voters'
+    }
   },
 
 

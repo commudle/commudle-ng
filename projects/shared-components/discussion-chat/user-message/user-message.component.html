@@ -48,17 +48,18 @@
 
   </div>
   <div class="replies-container" *ngIf="canReply">
-    <app-user-message
-      *ngFor="let rep of message.user_messages"
-      [message]="rep"
-      [canReply]="false"
-      [permittedActions]="permittedActions"
-      [allActions]="allActions"
-      [currentUser]="currentUser"
-      (sendVote)="emitVote($event)"
-      (sendDelete)="emitDelete($event)"
-      (sendFlag)="emitFlag($event)"
-    ></app-user-message>
+    <div class="reply-message" *ngFor="let rep of message.user_messages">
+      <app-user-message
+        [message]="rep"
+        [canReply]="false"
+        [permittedActions]="permittedActions"
+        [allActions]="allActions"
+        [currentUser]="currentUser"
+        (sendVote)="emitVote($event)"
+        (sendDelete)="emitDelete($event)"
+        (sendFlag)="emitFlag($event)"
+      ></app-user-message>
+    </div>
 
     <div class="reply-form" *ngIf="showReplyForm">
       <form *ngIf="canReply" [formGroup]="userMessageReplyForm" (ngSubmit)="emitReply()">
