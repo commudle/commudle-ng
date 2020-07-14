@@ -1,7 +1,9 @@
 <div class="votes">
   <p [ngSwitch]="icon">
-    <span *ngIf="totalVotes > 0"> {{ totalVotes }}  </span>
-    <nb-icon *ngSwitchCase="'heart'" icon="heart" [ngClass]="{'voted-heart': myVote, 'unvoted': !myVote}"></nb-icon>
-    <nb-icon *ngSwitchCase="'star'" icon="star" [ngClass]="{'voted-star': myVote, 'unvoted': !myVote}"></nb-icon>
+    <span class="count" *ngIf="totalVotes > 0"> {{ totalVotes }}  </span>
+    <span (click)="toggleVote()">
+      <nb-icon *ngSwitchCase="'heart'" icon="heart" [ngClass]="{'voted-heart': myVote, 'unvoted': !myVote}"></nb-icon>
+      <nb-icon *ngSwitchCase="'star'" icon="star" [ngClass]="{'voted-star': myVote, 'unvoted': !myVote}"></nb-icon>
+    </span>
   </p>
 </div>

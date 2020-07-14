@@ -28,13 +28,9 @@
       </div>
       <div class="stats">
         <p class="stars">
-          <span *ngIf="communityBuild.votes_count > 0">
-            {{ communityBuild.votes_count }}
-          </span>
-          <nb-icon icon="star"></nb-icon>
           <app-votes-display
-            [parentType]="'CommunityBuild'"
-            [parentId]="communityBuild.id"
+            [votableType]="'CommunityBuild'"
+            [votableId]="communityBuild.id"
             [icon]="'star'"
             >
           </app-votes-display>
