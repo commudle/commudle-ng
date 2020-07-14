@@ -45,7 +45,7 @@
         <nb-card>
           <nb-card-body>
             <div>
-              <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true"></app-user-profile-horizontal>
+              <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
             </div>
           </nb-card-body>
         </nb-card>
@@ -93,7 +93,7 @@
       <nb-card-header>You are watching this with</nb-card-header>
       <nb-card-body>
         <div class="visit-user" *ngFor="let user of userVisitData.visiting_users">
-          <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
+          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
         </div>
       </nb-card-body>
     </nb-card>
@@ -103,7 +103,7 @@
       <nb-card-header>Attendees</nb-card-header>
       <nb-card-body>
         <div class="visit-user" *ngFor="let user of userVisitData.watched_users">
-          <app-user-profile-horizontal [user]="user"></app-user-profile-horizontal>
+          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
         </div>
       </nb-card-body>
     </nb-card>

@@ -6,6 +6,14 @@
         Home
       </a>
     </nb-list-item>
+
+    <nb-list-item *ngIf="currentUser && currentUser.has_community_builds">
+      <a [routerLink]="['/builds/my-builds']">
+        <nb-icon icon="bulb-outline"></nb-icon>
+        My Builds
+      </a>
+    </nb-list-item>
+
     <!-- <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/my-profile']" >
         <nb-user size="tiny"
@@ -41,6 +49,11 @@
         <nb-accordion-item-body>
           <a [routerLink]="['/sys-admin', 'admin-surveys']">
             Admin Surveys
+          </a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body>
+          <a [routerLink]="['/sys-admin', 'community-builds']">
+            Community Builds
           </a>
         </nb-accordion-item-body>
       </nb-accordion-item>

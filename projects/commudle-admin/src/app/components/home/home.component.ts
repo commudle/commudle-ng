@@ -8,6 +8,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { EventsService } from '../../services/events.service';
 import { ExternalApisService } from '../../services/external-apis.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -28,13 +29,25 @@ export class HomeComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private meta: Meta
   ) { }
 
   ngOnInit() {
+    this.setMeta();
     this.authWatchService.currentUser$.subscribe(currentUser => this.currentUser = currentUser);
     this.getCommunities();
     this.getUpcomingEvents();
+  }
+
+  setMeta() {
+    this.meta.updateTag({name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({name: 'og:title', content: "Commudle | Communities | Let's Share & Learn"});
+    this.meta.updateTag({
+      name: 'og:description',
+      content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
+    });
+    this.meta.updateTag({name: 'og:type', content: 'website'});
   }
 
   login() {
