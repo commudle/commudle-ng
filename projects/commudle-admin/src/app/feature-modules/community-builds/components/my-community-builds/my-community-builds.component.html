@@ -75,7 +75,7 @@
               </button>
             </div>
             <div>
-              <button nbButton status="danger" outline fullWidth size="tiny" (click)="destroyBuild(i)">
+              <button nbButton status="danger" outline fullWidth size="tiny" (click)="openDeleteConfirmation(cb, i)">
                 <nb-icon icon="close-circle"></nb-icon>
                 Delete
               </button>
@@ -95,6 +95,14 @@
   <ng-template #imageTemplate let-data>
     <div class="image-window">
       <img src="{{data.imageUrl}}">
+    </div>
+  </ng-template>
+
+  <ng-template #confirmDeleteTemplate let-data>
+    
+    <div>
+      <button nbButton size="small" status="basic" (click)="destroyBuild(data.index)">Yes</button>
+      <button nbButton size="small" status="danger" (click)="windowRef.close()">No</button>
     </div>
   </ng-template>
 </div>
