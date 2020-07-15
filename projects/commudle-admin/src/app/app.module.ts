@@ -26,7 +26,8 @@ import {
   NbListModule,
   NbTooltipModule,
   NbWindowModule,
-  NbAccordionModule} from '@nebular/theme';
+  NbAccordionModule,
+  NbBadgeModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -56,6 +57,7 @@ import { SpeakerResourceFormComponent } from './components/speaker-resource-form
 import { AppInitService } from './services/app-init.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EventCardComponent } from './components/home/event-card/event-card.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -82,6 +84,7 @@ export function initApp(appInitService: AppInitService) {
     BasicUserProfileComponent,
     SpeakerResourceFormComponent,
     EventCardComponent,
+    EditProfileComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -120,6 +123,7 @@ export function initApp(appInitService: AppInitService) {
     NbTooltipModule,
     NbWindowModule.forRoot(),
     NbAccordionModule,
+    NbBadgeModule,
 
     //other external npm modules
     Ng2CompleterModule,

@@ -9,6 +9,7 @@ import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { InitResolver } from './resolvers/init.resolver';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'fill-form/:data_form_entity_id',
     component: FillDataFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'my-profile/edit',
+    component: EditProfileComponent,
     canActivate: [AuthGuard]
   },
   {

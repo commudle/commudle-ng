@@ -10,14 +10,30 @@
   color: #3366ff !important;
 }
 
-nb-user {
-  ::ng-deep {
-    .user-picture.image {
-      background-size: contain !important;
-      background-position: center;
+a.profile-edit-link {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  nb-user {
+    ::ng-deep {
+      .user-picture.image {
+        background-size: contain !important;
+        background-position: center;
+      }
+      .user-name {
+        font-size: 0.9735rem !important;
+        color: grey;
+      }
     }
   }
+
+  .incomplete-badge {
+    margin-left: 0.5rem;
+  }
+
 }
+
+
 
 
 nb-accordion {
