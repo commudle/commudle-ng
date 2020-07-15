@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { PollsChannel } from '../services/websockets/polls.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -12,7 +12,7 @@ import { PollCreateFormComponent } from './poll-create-form/poll-create-form.com
   templateUrl: './polls.component.html',
   styleUrls: ['./polls.component.scss']
 })
-export class PollsComponent implements OnInit {
+export class PollsComponent implements OnInit, OnDestroy {
   @ViewChild('newPollTemplate') newPollTemplate: TemplateRef<any>;
   @ViewChild('fillPollTemplate') fillPollTemplate: TemplateRef<any>;
 
@@ -53,6 +53,11 @@ export class PollsComponent implements OnInit {
     this.allActions = this.pollsChannel.ACTIONS;
     this.pollsChannel.subscribe(this.pollableType, this.pollableId);
     this.receiveData();
+  }
+
+
+  ngOnDestroy(): void {
+    this.pollsChannel.unsubscribe();
   }
 
   newPoll() {
