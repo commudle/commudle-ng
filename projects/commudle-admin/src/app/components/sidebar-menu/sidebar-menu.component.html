@@ -14,14 +14,19 @@
       </a>
     </nb-list-item>
 
-    <!-- <nb-list-item *ngIf="currentUser">
-      <a [routerLink]="['/my-profile']" >
-        <nb-user size="tiny"
-             name="My Profile"
-             picture="{{ currentUser.avatar }}">
+    <nb-list-item *ngIf="currentUser">
+      <a class="profile-edit-link" [routerLink]="['/my-profile/edit']" >
+        <nb-user
+          size="tiny"
+          name="My Profile"
+          picture="{{ currentUser.avatar }}"
+        >
         </nb-user>
+        <span class="incomplete-badge" *ngIf="!currentUser.profile_completed">
+          <app-badge [text]="'Incomplete'" [color]="'red'" [fontSize]="'small'"></app-badge>
+        </span>
       </a>
-    </nb-list-item> -->
+    </nb-list-item>
 
   </nb-list>
 
