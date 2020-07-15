@@ -85,6 +85,15 @@
     margin-bottom: 0;
   }
 
+  a.community-builds-feature {
+    text-decoration: none;
+    nb-card {
+      h4 {
+        margin: 0;
+      }
+    }
+  }
+
   a.github {
     text-decoration: none;
     nb-card {
