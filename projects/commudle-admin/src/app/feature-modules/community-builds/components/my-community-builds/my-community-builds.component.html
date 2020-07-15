@@ -7,6 +7,18 @@
     </nb-card-body>
   </nb-card>
 
+  <div class="add-new-build">
+    <button nbButton status="primary" size='medium' [routerLink]="['/builds/create']">
+      <nb-icon icon="plus"></nb-icon>
+      New Build!
+    </button>
+    &nbsp;
+    <button nbButton status="warning" size='medium' [routerLink]="['/builds']">
+      <nb-icon icon="bulb"></nb-icon>
+      See Others' Builds
+    </button>
+  </div>
+
   <div class="community-builds">
     <nb-card>
       <nb-card-body>
@@ -15,6 +27,7 @@
             <h5>
               {{ cb.name }}
               <a target="_blank" class="external-link" [routerLink]="['/builds', cb.slug]">
+                <small *ngIf="[EPublishStatus.draft, EPublishStatus.submitted].includes(cb.publish_status)">Preview</small>
                 <nb-icon icon="external-link"></nb-icon>
               </a>
             </h5>
@@ -27,7 +40,7 @@
           <div class="status">
             <p>
               <app-badge
-              [text]="cb.publish_status"
+              [text]="cb.publish_status | titlecase"
               [color]="EPublishStatusColors[cb.publish_status]">
             </app-badge>
             </p>
@@ -39,9 +52,11 @@
           </div>
           <div class="stats">
             <div>
-              <p>
-                {{ cb.votes_count }} <nb-icon icon="star" status="warning"></nb-icon>
-              </p>
+              <app-votes-display
+                [votableType]="'CommunityBuild'"
+                [votableId]="cb.id"
+                [icon]="'star'"
+              ></app-votes-display>
             </div>
             <div class="tags">
               <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
@@ -58,6 +73,12 @@
         </div>
       </nb-card-body>
     </nb-card>
+  </div>
+  <div class="add-new-build" *ngIf="cBuilds.length > 5">
+    <button nbButton status="primary" size='medium' [routerLink]="['/builds/create']">
+      <nb-icon icon="plus"></nb-icon>
+      New Build!
+    </button>
   </div>
 
   <ng-template #imageTemplate let-data>
