@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class MyCommunityBuildsComponent implements OnInit {
   moment = moment;
-  cBuilds: ICommunityBuild[];
+  cBuilds: ICommunityBuild[] = [];
   EPublishStatus = EPublishStatus;
   EPublishStatusColors = EPublishStatusColors;
   publishStatuses = Object.keys(EPublishStatus);
