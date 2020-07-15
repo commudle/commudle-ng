@@ -35,7 +35,7 @@
             >
           </app-votes-display>
         </p>
-        <p class="comments">
+        <p class="comments" [routerLink]="['/builds', communityBuild.slug]">
           <span *ngIf="communityBuild.chat_messages_count > 0">
             {{ communityBuild.chat_messages_count }}
           </span>
