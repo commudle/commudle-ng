@@ -33,9 +33,7 @@ export class CreateCommunityBuildComponent implements OnInit {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: [''],
-    contact: [''],
-    open_sourced: [''],
+    link: ['']
   });
 
 

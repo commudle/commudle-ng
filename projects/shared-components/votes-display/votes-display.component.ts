@@ -20,6 +20,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
 
   VotersComponent = VotersComponent;
 
+  userSubscription;
   currentUser: ICurrentUser;
   permittedActions = [];
 
@@ -40,7 +41,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(
+    this.userSubscription = this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
         this.initData();
@@ -49,6 +50,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.userSubscription.unsubscribe();
     this.voteChannel.unsubscribe(this.votableType, this.votableId);
   }
 
