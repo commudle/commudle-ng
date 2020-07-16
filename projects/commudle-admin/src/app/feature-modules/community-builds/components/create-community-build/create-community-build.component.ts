@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
@@ -17,12 +17,12 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   cBuild: ICommunityBuild;
   tags;
-  linkFieldLabel = 'Link*';
+  linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
+  redirectTo;
 
   embeddedLink;
-  teamNeeded = true;
   uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
@@ -32,12 +32,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     name: ['', Validators.required],
     build_type: ['', Validators.required],
     description: ['', Validators.required],
-    project_status: [''],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: ['', Validators.required],
-    contact: [''],
-    open_sourced: [''],
-    need_team: ['']
+    link: ['']
   });
 
 
@@ -47,6 +43,7 @@ export class CreateCommunityBuildComponent implements OnInit {
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private communityBuildsService: CommunityBuildsService,
     private toastLogService: LibToastLogService
   ) { }
@@ -108,12 +105,10 @@ export class CreateCommunityBuildComponent implements OnInit {
     switch (val) {
       case EBuildType.slides: {
         this.linkFieldLabel = 'Iframe for Embedding OR Link*';
-        this.teamNeeded = false;
         break;
       }
       default: {
-        this.linkFieldLabel = 'Link*';
-        this.teamNeeded = true;
+        this.linkFieldLabel = 'Any Link?';
         this.embeddedLink = null;
       }
     }
@@ -218,6 +213,7 @@ export class CreateCommunityBuildComponent implements OnInit {
   submitTags() {
     this.communityBuildsService.updateTags(this.cBuild.id, this.tags.split(',')).subscribe(
       data => {
+        this.router.navigate(['/builds/my-builds']);
         this.toastLogService.successDialog('Saved!');
       }
     );

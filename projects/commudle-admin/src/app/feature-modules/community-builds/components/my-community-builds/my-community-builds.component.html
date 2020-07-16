@@ -7,14 +7,32 @@
     </nb-card-body>
   </nb-card>
 
+  <div class="add-new-build">
+    <button nbButton status="primary" size='medium' [routerLink]="['/my-profile/edit']">
+      <nb-icon icon="person"></nb-icon>
+      Complete Profile
+    </button>
+    &nbsp;
+    <button nbButton status="primary" size='medium' [routerLink]="['/builds/create']">
+      <nb-icon icon="plus"></nb-icon>
+      New Build!
+    </button>
+    &nbsp;
+    <button nbButton status="warning" size='medium' [routerLink]="['/builds']">
+      <nb-icon icon="bulb"></nb-icon>
+      See What Others Are Building
+    </button>
+  </div>
+
   <div class="community-builds">
     <nb-card>
       <nb-card-body>
-        <div class="community-build" *ngFor="let cb of cBuilds">
+        <div class="community-build" *ngFor="let cb of cBuilds; let i = index">
           <div class="content">
             <h5>
               {{ cb.name }}
               <a target="_blank" class="external-link" [routerLink]="['/builds', cb.slug]">
+                <small *ngIf="[EPublishStatus.draft, EPublishStatus.submitted].includes(cb.publish_status)">Preview</small>
                 <nb-icon icon="external-link"></nb-icon>
               </a>
             </h5>
@@ -27,7 +45,7 @@
           <div class="status">
             <p>
               <app-badge
-              [text]="cb.publish_status"
+              [text]="cb.publish_status | titlecase"
               [color]="EPublishStatusColors[cb.publish_status]">
             </app-badge>
             </p>
@@ -39,9 +57,11 @@
           </div>
           <div class="stats">
             <div>
-              <p>
-                {{ cb.votes_count }} <nb-icon icon="star" status="warning"></nb-icon>
-              </p>
+              <app-votes-display
+                [votableType]="'CommunityBuild'"
+                [votableId]="cb.id"
+                [icon]="'star'"
+              ></app-votes-display>
             </div>
             <div class="tags">
               <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
@@ -54,15 +74,35 @@
                 Edit
               </button>
             </div>
+            <div>
+              <button nbButton status="danger" outline fullWidth size="tiny" (click)="openDeleteConfirmation(cb, i)">
+                <nb-icon icon="close-circle"></nb-icon>
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       </nb-card-body>
     </nb-card>
   </div>
+  <div class="add-new-build" *ngIf="cBuilds.length > 5">
+    <button nbButton status="primary" size='medium' [routerLink]="['/builds/create']">
+      <nb-icon icon="plus"></nb-icon>
+      New Build!
+    </button>
+  </div>
 
   <ng-template #imageTemplate let-data>
     <div class="image-window">
       <img src="{{data.imageUrl}}">
+    </div>
+  </ng-template>
+
+  <ng-template #confirmDeleteTemplate let-data>
+    
+    <div>
+      <button nbButton size="small" status="basic" (click)="destroyBuild(data.index)">Yes</button>
+      <button nbButton size="small" status="danger" (click)="windowRef.close()">No</button>
     </div>
   </ng-template>
 </div>

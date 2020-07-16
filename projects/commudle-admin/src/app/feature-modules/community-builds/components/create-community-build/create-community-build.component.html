@@ -1,20 +1,38 @@
 <div class="community-build">
 
+  <nb-card class="page-header">
+    <nb-card-body>
+      <h1>
+        <nb-icon icon="bulb-outline" status="warning"></nb-icon>
+        Share Your Build!
+      </h1>
+      <p>
+        We're super excited to know about your Build. Just fill the details below and give us 2 days to publish it 😃
+      </p>
+      <ul *ngIf="!cBuild">
+        <li>
+          <strong>Project:</strong> Code should be open sourced!
+        </li>
+        <li>
+          <strong>Product:</strong> Should be live :D
+        </li>
+        <li>
+          <strong>Slides:</strong> You delivered / are planning to use them for a Tech Session
+        </li>
+        <li>
+          <strong>Course:</strong> Anything from which people can learn, can be both online/offline. Should be unique or FREE!
+        </li>
+        <li>
+          <strong>Other:</strong> Everything else! We'll keep adding more categories
+        </li>
+      </ul>
+    </nb-card-body>
+  </nb-card>
+
   <nb-card class="form-card">
     <nb-card-body>
 
       <form [formGroup]="communityBuildForm">
-
-        <div class="field">
-          <label fullWidth>
-            What's the name?*
-            <input type="text" nbInput fullWidth size="large" formControlName="name">
-          </label>
-          <span *ngIf="communityBuildForm.get('name').touched && communityBuildForm.get('name').invalid && communityBuildForm.get('name').errors.required" class="validation-error-text">
-            Required Field
-          </span>
-        </div>
-
 
         <div class="field">
           <label fullWidth>
@@ -38,7 +56,25 @@
 
         <div class="field">
           <label fullWidth>
+            Name*
+            <input type="text" nbInput fullWidth size="large" formControlName="name">
+          </label>
+          <span *ngIf="communityBuildForm.get('name').touched && communityBuildForm.get('name').invalid && communityBuildForm.get('name').errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
             {{linkFieldLabel}}
+            <span
+              [nbPopover]="googleSlidesEmbed"
+              nbPopoverTrigger="hover"
+              *ngIf="this.communityBuildForm.get('build_type').value == EBuildType.slides"
+              class="text-info clickable"
+            >
+              How to embed Google Slides
+            </span>
             <input type="url" nbInput fullWidth size="large" formControlName="link">
           </label>
           <span *ngIf="communityBuildForm.get('link').touched && communityBuildForm.get('link').invalid && communityBuildForm.get('link').errors.required" class="validation-error-text">
@@ -51,23 +87,25 @@
 
         <div class="field">
           <label>
-            What would you like the community to know (please describe!)?*
+            How is it useful for others?*
           </label>
             <editor
               formControlName="description"
               apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
              [init]="{
-              height: 300,
+              height: 500,
               menubar: false,
               plugins: [
-                'advlist autolink lists link charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
+                'advlist lists autolink link charmap preview anchor',
+                'visualblocks code table charmap',
+                'insertdatetime table paste code help wordcount autoresize'
               ],
               toolbar:
-                'undo redo | formatselect | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | removeformat | help'
+                'formatselect | bold italic backcolor | \
+                link | alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | table | charmap | removeformat | help',
+              default_link_target: '_blank',
+              branding: false
             }">
 
             </editor>
@@ -95,13 +133,13 @@
           </div>
         </div>
 
-        <div class="field" *ngIf="teamNeeded">
+        <!-- <div class="field" *ngIf="teamNeeded">
           <label fullWidth>
             <nb-checkbox status="basic" formControlName="need_team">
               I am looking for people to join this
             </nb-checkbox>
           </label>
-        </div>
+        </div> -->
 
         <div class="field">
           <label fullWidth>
@@ -120,7 +158,7 @@
 
         <div>
           <p class="text-info">
-            *Once you click 'Submit for Approval', we'll just review it once and publish it within 72 hours. In case of any changes, we'll reach out to your email!
+            *After you click 'Submit for Approval', we'll just review it once and publish it within 2 days. In case of any changes, we'll reach out on your email!
           </p>
         </div>
 
@@ -150,4 +188,43 @@
     </nb-card-body>
   </nb-card>
 
+
+  <ng-template #googleSlidesEmbed>
+    <div>
+      <ol>
+        <li>Open your Google Slides</li>
+        <li>At the top, click <strong>File</strong> and then <strong>Publish to the web</strong></li>
+        <li>In the window that appears, <strong>click Embed</strong></li>
+        <li>
+          Choose a publishing option:
+          <strong>
+            Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the slides <strong>(Default)</strong>.
+          </strong>
+        </li>
+        <li>
+          Click Publish
+        </li>
+        <li>
+          Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
+          <small>
+            <code>
+              <div>
+                <div>&lt;iframe src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;</div>
+                </div>
+            </code>
+          </small>
+        </li>
+      </ol>
+
+      <p>
+        &nbsp; &nbsp;
+        <small>
+          <a href="https://support.google.com/docs/answer/183965?co=GENIE.Platform%3DDesktop&hl=en">
+            Source
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </small>
+      </p>
+    </div>
+  </ng-template>
 </div>

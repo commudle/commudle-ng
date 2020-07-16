@@ -24,6 +24,14 @@
       </div>
       <div *ngIf="embedCode" class="embed" [innerHTML]="embedCode">
       </div>
+      <div *ngIf="cBuild.link && !embedCode" class="link">
+        <p>
+          Visit the {{cBuild.build_type}}:
+          <a target="_blank" href="{{ cBuild.link }}">
+            {{ cBuild.link }} <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </p>
+      </div>
       <div class="description">
         <div [innerHTML]="cBuild.description"></div>
       </div>
@@ -33,14 +41,6 @@
             <img src="{{ image.url }}" alt="{{ cBuild.name }}">
           </div>
         </div>
-      </div>
-      <div *ngIf="cBuild.link && !embedCode" class="link">
-        <p>
-          Visit the {{cBuild.build_type}}:
-          <a target="_blank" href="{{ cBuild.link }}">
-            {{ cBuild.link }} <nb-icon icon="external-link"></nb-icon>
-          </a>
-        </p>
       </div>
       <div class="author-details">
         <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>

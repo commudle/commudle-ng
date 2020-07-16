@@ -28,6 +28,7 @@ export const API_ROUTES = {
     SHOW: 'api/v2/community_builds/show',
     CREATE: 'api/v2/community_builds',
     UPDATE: 'api/v2/community_builds',
+    DELETE: 'api/v2/community_builds',
     UPDATE_TAGS: 'api/v2/community_builds/update_tags',
     UPDATE_PUBLISH_STATUS: 'api/v2/community_builds/update_publish_status',
 
@@ -35,7 +36,6 @@ export const API_ROUTES = {
       INDEX: 'api/v2/community_builds/public',
       SHOW: 'api/v2/community_builds/public/show',
       TOGGLE_VOTE: 'api/v2/community_builds/public/toggle_vote',
-
     }
   },
 
