@@ -23,6 +23,7 @@ const routes: Routes = [
       },
       {
         path: ':event_id',
+        runGuardsAndResolvers: 'always',
         resolve: {
           event: EventDetailsResolver
         },
