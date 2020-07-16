@@ -46,7 +46,6 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { CommunityFormsListStatsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
 import { CommunityFormsListActionsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { EmailerComponent } from './components/emailer/emailer.component';
 import { HomeComponent } from './components/home/home.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -58,6 +57,7 @@ import { AppInitService } from './services/app-init.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EventCardComponent } from './components/home/event-card/event-card.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -76,7 +76,6 @@ export function initApp(appInitService: AppInitService) {
     CommunityTeamComponent,
     CommunityFormsListStatsComponent,
     CommunityFormsListActionsComponent,
-    EmailerComponent,
     HomeComponent,
     FillDataFormComponent,
     LogoutComponent,
@@ -94,6 +93,7 @@ export function initApp(appInitService: AppInitService) {
     FontAwesomeModule,
     ReactiveFormsModule,
     EditorModule,
+    AppSharedComponentsModule,
     SharedComponentsModule,
 
 
@@ -156,7 +156,7 @@ export function initApp(appInitService: AppInitService) {
   entryComponents: [
     CommunityFormsListStatsComponent,
     CommunityFormsListActionsComponent,
-    EmailerComponent
+    // EmailerComponent
   ],
   bootstrap: [AppComponent]
 })

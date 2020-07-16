@@ -7,11 +7,11 @@
         name="members"
         formControlName="members"
         (valueChange)="toggleEventSpecificEmail($event)">
-        <nb-radio value="all">
-          General Email to All Members
+        <nb-radio value="{{ EemailTypes.GENERAL_ALL }}">
+          General Email (to All or a Specific Member)
         </nb-radio>
         <nb-radio value="event">
-          Select From Event
+          Event Specific Emails
         </nb-radio>
       </nb-radio-group>
     </div>
@@ -65,55 +65,55 @@
         </div>
       </div>
     </div>
-      <div class="fieldset" *ngIf="[EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes(selectedEmailType) == true">
-        <div>
-          <label>
-            To
-            <input type="text" nbInput fullWidth formControlName="recipient_email" placeholder="Enter 1 email addresses or leave blank for all matching members">
-          </label>
-        </div>
-        <div>
-          <nb-checkbox status="basic" formControlName="resend">
-            Resend (if already sent)
-          </nb-checkbox>
-        </div>
-
-      </div>
-      <div class="fieldset">
+    <div class="fieldset" *ngIf="[EemailTypes.GENERAL_ALL, EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes(selectedEmailType) == true">
+      <div>
         <label>
-          Subject*
-          <input type="text" nbInput fullWidth formControlName="subject">
+          To
+          <input type="text" nbInput fullWidth formControlName="recipient_email" placeholder="Enter 1 email addresses or leave blank for all matching members">
         </label>
-        <span *ngIf="eMailForm['controls'].subject.touched && eMailForm['controls'].subject.invalid && eMailForm['controls'].subject.errors.required" class="validation-error-text">
-          Required Field
-        </span>
       </div>
-      <div class="fieldset">
-        <label>
-          Message From Organizers
-        </label>
-        <span *ngIf="eMailForm['controls'].body.touched && eMailForm['controls'].body.invalid && eMailForm['controls'].body.errors.required" class="validation-error-text">
-          Required Field
-        </span>
-          <editor
-            formControlName="body"
-            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-           [init]="{
-            height: 200,
-            menubar: false,
-            plugins: [
-              'advlist autolink lists link image charmap print preview anchor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar:
-              'undo redo | formatselect | bold italic backcolor | \
-              alignleft aligncenter alignright alignjustify | \
-              bullist numlist outdent indent | removeformat | help'
-          }">
+      <div>
+        <nb-checkbox status="basic" formControlName="resend">
+          Resend (if already sent)
+        </nb-checkbox>
+      </div>
 
-          </editor>
-      </div>
+    </div>
+    <div class="fieldset">
+      <label>
+        Subject*
+        <input type="text" nbInput fullWidth formControlName="subject">
+      </label>
+      <span *ngIf="eMailForm['controls'].subject.touched && eMailForm['controls'].subject.invalid && eMailForm['controls'].subject.errors.required" class="validation-error-text">
+        Required Field
+      </span>
+    </div>
+    <div class="fieldset">
+      <label>
+        Message From Organizers
+      </label>
+      <span *ngIf="eMailForm['controls'].body.touched && eMailForm['controls'].body.invalid && eMailForm['controls'].body.errors.required" class="validation-error-text">
+        Required Field
+      </span>
+        <editor
+          formControlName="body"
+          apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+          [init]="{
+          height: 200,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+          ],
+          toolbar:
+            'undo redo | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help'
+        }">
+
+        </editor>
+    </div>
 
 
     <div class="submit-button">

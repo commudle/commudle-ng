@@ -143,14 +143,13 @@ export class EditDataFormComponent implements OnInit {
   setDataFormQuestions(questions: IQuestion[]): FormArray {
     const formArray = new FormArray([]);
     questions.forEach(q => {
-
       const exisingQuestionForm = this.fb.group({
         id: q.id,
         question_type_id: [{value: q.question_type_id, disabled: q.has_responses}],
         title: [{value: q.title, disabled: q.has_responses}],
         description: [{value: q.description, disabled: q.has_responses}],
-        required: [{value: q.required, disabled: q.has_responses}],
-        disabled: [{value: q.disabled, disabled: q.has_responses}],
+        required: [q.required],
+        disabled: [q.disabled],
         has_responses: q.has_responses,
         question_choices: this.fb.array([
           this.initQuestionChoice()
@@ -167,6 +166,7 @@ export class EditDataFormComponent implements OnInit {
     const formArray = new FormArray([]);
     questionChoices.forEach(qc => {
       formArray.push(this.fb.group({
+        id: [qc.id],
         title: [{value: qc.title, disabled: qc.has_responses}],
         has_responses: qc.has_responses,
       }));
