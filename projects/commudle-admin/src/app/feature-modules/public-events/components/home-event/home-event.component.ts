@@ -71,7 +71,6 @@ export class HomeEventComponent implements OnInit {
       event => {
         this.event = event;
         this.title.setTitle(this.event.name);
-        this.setMeta();
         this.getCommunity(event.kommunity_id);
         this.getDiscussionChat();
       }
@@ -82,6 +81,7 @@ export class HomeEventComponent implements OnInit {
     this.communitiesService.getCommunityDetails(communityId).subscribe(
       community => {
         this.community = community;
+        this.setMeta();
       }
     );
   }
