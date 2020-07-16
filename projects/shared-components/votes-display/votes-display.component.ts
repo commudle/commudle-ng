@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { VoteChannel } from '../services/websockets/vote.channel';
@@ -11,7 +11,7 @@ import { VotersComponent } from './voters/voters.component';
   templateUrl: './votes-display.component.html',
   styleUrls: ['./votes-display.component.scss']
 })
-export class VotesDisplayComponent implements OnInit {
+export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() votableType: string;
   @Input() votableId: number;
   @Input() voteType: string;
@@ -20,6 +20,7 @@ export class VotesDisplayComponent implements OnInit {
 
   VotersComponent = VotersComponent;
 
+  userSubscription;
   currentUser: ICurrentUser;
   permittedActions = [];
 
@@ -40,14 +41,17 @@ export class VotesDisplayComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(
+    this.userSubscription = this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
         this.initData();
       }
     );
+  }
 
-
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+    this.voteChannel.unsubscribe(this.votableType, this.votableId);
   }
 
   initData() {
@@ -99,9 +103,5 @@ export class VotesDisplayComponent implements OnInit {
     );
   }
 
-
-  getVoters() {
-
-  }
 
 }

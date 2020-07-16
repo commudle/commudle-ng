@@ -74,18 +74,28 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card accent="primary" class="new-feature">
-      <nb-card-body>
-        <h4>
-          Are you building something?
-        </h4>
-        <p>
-          Let's share it with the community.
-          <br>
-          Write to us: <span class="text-primary">more@commudle.com</span>
-        </p>
-      </nb-card-body>
-    </nb-card>
+    <a [routerLink]="['/builds/create']" class="community-builds-feature">
+      <nb-card accent="primary">
+        <nb-card-body>
+          <h4>
+            <app-badge [text]="'New'" [color]="'#3465ff'"></app-badge>
+            <br>
+            Community Builds!
+          </h4>
+          <p>
+            Share anything related to Tech which you have built and can be used by others.
+          </p>
+          <p>
+            It could be a <strong>Project</strong>, <strong>Tech Session Slides</strong>, <strong>Tutorial</strong> or anything else.
+            <br/>
+            <br/>
+            Sharing is what the Community is about!
+          </p>
+          <p class="text-info">CLICK HERE</p>
+        </nb-card-body>
+      </nb-card>
+    </a>
+
 
     <a class="github" href="https://github.com/commudle/commudle-ng">
       <nb-card >
