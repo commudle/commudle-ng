@@ -44,6 +44,7 @@ import { UserEventRegistrationsComponent } from './components/user-event-registr
 import { UserDetailsComponent } from './components/user-event-registrations/user-details/user-details.component';
 import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-video-stream/event-embedded-video-stream.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     FormsModule,
     ReactiveFormsModule,
     EditorModule,
+    AppSharedComponentsModule,
     SharedComponentsModule,
     YouTubePlayerModule,
 

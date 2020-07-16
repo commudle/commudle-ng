@@ -9,10 +9,10 @@ import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
 import { NbWindowService } from '@nebular/theme';
-import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 
 @Component({
   selector: 'app-user-details-cell',
@@ -89,6 +89,21 @@ export class UserDetailsCellComponent implements OnInit, OnChanges {
       }
     );
 
+  }
+
+
+  openGeneralEmailWindow() {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send Email To ${this.user.name}`,
+        context: {
+          community: this.community,
+          mailType: EemailTypes.GENERAL_ALL,
+          recipientEmail: this.user.email
+        }
+      }
+    );
   }
 
 
