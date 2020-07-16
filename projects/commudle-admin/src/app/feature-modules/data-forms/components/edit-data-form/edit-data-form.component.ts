@@ -143,7 +143,6 @@ export class EditDataFormComponent implements OnInit {
   setDataFormQuestions(questions: IQuestion[]): FormArray {
     const formArray = new FormArray([]);
     questions.forEach(q => {
-      console.log(q.required, q.disabled, q.title);
       const exisingQuestionForm = this.fb.group({
         id: q.id,
         question_type_id: [{value: q.question_type_id, disabled: q.has_responses}],
