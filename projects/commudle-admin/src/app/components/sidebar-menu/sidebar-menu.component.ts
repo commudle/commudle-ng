@@ -50,6 +50,7 @@ export class SidebarMenuComponent implements OnInit {
 
 
   getManagingCommunities(userRoles) {
+    this.managedCommunities = [];
     for (let u of userRoles) {
       this.communitiesService.getRoleCommunities(u).subscribe(data => {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];

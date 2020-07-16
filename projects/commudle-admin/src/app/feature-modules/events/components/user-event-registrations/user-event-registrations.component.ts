@@ -10,7 +10,7 @@ import { switchMap, debounceTime } from 'rxjs/operators';
 import { UserEventRegistrationsService } from '../../../../services/user-event-registrations.service';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { NbWindowService } from '@nebular/theme';
-import { EmailerComponent } from '../../../../components/emailer/emailer.component';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 
 @Component({
   selector: 'app-user-event-registrations',

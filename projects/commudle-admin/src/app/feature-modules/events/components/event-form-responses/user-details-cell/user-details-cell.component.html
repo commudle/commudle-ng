@@ -1,6 +1,9 @@
 <div>
   <div class="user-details-container">
-    <h6>{{ user.name }}</h6>
+    <h6>
+      {{ user.name }}
+      <nb-icon class="clickable" icon="email" status="info" (click)="openGeneralEmailWindow()"></nb-icon>
+    </h6>
     <div class="user-avatar">
       <img src="{{ user.avatar }}" alt="{{ user.name }}">
     </div>

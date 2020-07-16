@@ -190,7 +190,6 @@ export class CreateCommunityBuildComponent implements OnInit {
 
 
   createCommunityBuild(publishStatus: EPublishStatus) {
-    console.log(this.buildFormData(publishStatus));
     this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe(
       data => {
         this.cBuild = data;

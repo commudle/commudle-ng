@@ -207,8 +207,16 @@ export class EmailerComponent implements OnInit {
 
     this.eventsService.communityEventsForEmail(this.community.id).subscribe(data => {
       this.events = data.events;
-      this.prefillForm('event_id');
-      this.prefillForm('recipient_email');
+
+      if (this.event) {
+        this.prefillForm('event_id');
+      } else {
+        this.prefillForm('general_all');
+      }
+
+      if (this.recipientEmail) {
+        this.prefillForm('recipient_email');
+      }
     });
 
   }
@@ -253,16 +261,15 @@ export class EmailerComponent implements OnInit {
 
     // if not, then reset the form below the event select
     switch ($event) {
-      case 'all':
+      case EemailTypes.GENERAL_ALL:
+        this.selectedEmailType = EemailTypes.GENERAL_ALL;
         this.isEventSpecificEmail = false;
-        this.eMailForm.reset();
 
         this.eMailForm.get('body').setValidators(Validators.required);
         this.eMailForm.get('body').updateValueAndValidity();
         this.eventDataFormEntityGroups = [];
         this.selectedEvent = undefined;
         this.selectedEventDataFormEntityGroup = undefined;
-        this.selectedEmailType = undefined;
         break;
       case 'event':
         this.isEventSpecificEmail = true;
@@ -337,6 +344,13 @@ export class EmailerComponent implements OnInit {
 
     if (!this.prefillCompleted) {
       switch (fieldToFill) {
+        case EemailTypes.GENERAL_ALL:
+          this.eMailForm.patchValue({
+            members: EemailTypes.GENERAL_ALL,
+          });
+          this.toggleEventSpecificEmail(EemailTypes.GENERAL_ALL);
+          break;
+
         case 'event_id':
           if (this.event) {
             this.isEventSpecificEmail = true;
