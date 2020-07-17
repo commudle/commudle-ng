@@ -6,16 +6,16 @@
     <p class="name {{ size }}"><strong>{{ user.name }}</strong></p>
     <p class="designation {{ size }}">{{ user.designation }}</p>
     <div class="user-social-links {{ size }}" *ngIf="socialMediaLinks">
-      <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
+      <a target="_blank" *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
         <nb-icon icon="linkedin" status="primary"></nb-icon>
       </a>
-      <a *ngIf="user.twitter" href="{{ user.twitter | completeurl:'twitter' }}">
+      <a target="_blank" *ngIf="user.twitter" href="{{ user.twitter | completeurl:'twitter' }}">
         <nb-icon icon="twitter" status="primary"></nb-icon>
       </a>
-      <a *ngIf="user.github" href="{{ user.github | completeurl:'github' }}">
+      <a target="_blank" *ngIf="user.github" href="{{ user.github | completeurl:'github' }}">
         <nb-icon icon="github" status="primary"></nb-icon>
       </a>
-      <a *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
+      <a target="_blank" *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
         <nb-icon icon="info" status="primary"></nb-icon>
       </a>
     </div>
