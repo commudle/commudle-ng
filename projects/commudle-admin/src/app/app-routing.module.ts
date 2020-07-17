@@ -57,6 +57,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/community-builds/community-builds.module').then(m => m.CommunityBuildsModule)
   },
   {
+    path: 'labs',
+    loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
+  },
+  {
     path: 'admin',
     children: [
       // {
