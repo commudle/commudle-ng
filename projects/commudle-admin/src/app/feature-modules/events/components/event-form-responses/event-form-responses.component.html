@@ -8,6 +8,15 @@
         <div class="group-actions">
           <button nbButton status="primary" outline size="small" (click)="openRSVPEmailWindow()">Send All RSVP Emails</button>
           <button nbButton status="primary" outline size="small" (click)="openEntryPassEmailWindow()">Send All Entry Passes</button>
+
+          <button
+            nbButton
+            status="info"
+            outline size="small"
+            (click)="sendCSV()">
+            <nb-icon icon="email-outline"></nb-icon>
+            CSV
+          </button>
         </div>
       </nb-card-body>
     </nb-card>
