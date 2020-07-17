@@ -119,6 +119,7 @@ export class EventFormResponsesComponent implements OnInit {
 
 
   registrationStatusFilter(selectedRegistrationStatusId) {
+    this.page = 1;
     this.registrationStatusId = selectedRegistrationStatusId;
     this.getResponses();
   }
