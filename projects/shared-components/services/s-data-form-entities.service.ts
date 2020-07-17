@@ -26,4 +26,11 @@ export class SDataFormEntitiesService {
     );
   }
 
+  emailCSV(dataFormEntityId): Observable<boolean> {
+    let params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.EMAIL_CSV), { params }
+    );
+  }
+
 }

@@ -119,6 +119,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/data_form_entities/get_form_entities',
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+    EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
   },
 
 
