@@ -1,0 +1,28 @@
+<div class="create-lab">
+
+  <div>
+    <nb-card>
+      <nb-card-body>
+        <form class="community-edit-details-form" [formGroup]="labForm" (ngSubmit)="createLab()">
+          <div>
+            <label fullWidth>
+              Name*
+              <input type="text" nbInput fullWidth formControlName="name">
+            </label>
+            <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+
+          <div>
+            <button nbButton [disabled]="!labForm.valid" type="submit" status="primary" fullWidth>
+              Next
+            </button>
+          </div>
+
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>
