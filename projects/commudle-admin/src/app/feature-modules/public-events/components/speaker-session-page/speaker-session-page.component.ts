@@ -34,6 +34,7 @@ export class SpeakerSessionPageComponent implements OnInit {
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
 
   discussion: IDiscussion;
+  chat: IDiscussion;
 
   pollableType;
   pollableId;
@@ -113,6 +114,7 @@ export class SpeakerSessionPageComponent implements OnInit {
         } else {
           this.getEventEmbeddedVideoStream();
           this.getDiscussionQnA();
+          this.getDiscussionChat();
           this.title.setTitle(`Live Session | ${this.event.name}`);
           this.pollableId = this.event.id;
           this.pollableType = 'Event';
@@ -126,6 +128,7 @@ export class SpeakerSessionPageComponent implements OnInit {
       data => {
         this.trackSlot = data;
         this.getDiscussionQnA();
+        this.getDiscussionChat();
         this.speaker = data.user;
         this.startTime = this.trackSlot.start_time;
         this.endTime = this.trackSlot.end_time;
@@ -152,6 +155,24 @@ export class SpeakerSessionPageComponent implements OnInit {
       this.discussionsService.pGetOrCreateQnAForEvent(this.event.id).subscribe(
         data => {
           this.discussion = data;
+        }
+      );
+    }
+
+  }
+
+
+  getDiscussionChat() {
+    if (this.trackSlot) {
+      this.discussionsService.pGetOrCreateChatForTrackSlot(this.trackSlot.id).subscribe(
+        data => {
+          this.chat = data;
+        }
+      );
+    } else {
+      this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe(
+        data => {
+          this.chat = data;
         }
       );
     }

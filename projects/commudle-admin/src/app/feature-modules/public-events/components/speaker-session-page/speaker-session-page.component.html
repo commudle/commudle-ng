@@ -73,10 +73,13 @@
       <nb-card>
         <nb-card-body>
           <nb-tabset>
-            <nb-tab tabTitle="Live Questions" *ngIf="discussion">
+            <nb-tab tabTitle="Chat" *ngIf="discussion" tabIcon="message-square-outline">
+              <app-discussion-chat [discussion]="chat"></app-discussion-chat>
+            </nb-tab>
+            <nb-tab tabTitle="Live Questions" *ngIf="discussion" tabIcon="question-mark-circle-outline">
               <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
             </nb-tab>
-            <nb-tab tabTitle="Polls">
+            <nb-tab tabTitle="Polls" tabIcon="trending-up">
               <div *ngIf="pollableId && pollableType">
                 <app-polls [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
               </div>
