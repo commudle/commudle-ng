@@ -85,21 +85,27 @@ export class PollsComponent implements OnInit, OnDestroy {
               if (this.windowRefCreatePoll) {
                 this.windowRefCreatePoll.close();
               }
-              this.polls.unshift(data.poll);
+              let pollExists = this.polls.findIndex(p => p.id === data.poll.id);
+              if (pollExists === -1) {
+                this.polls.unshift(data.poll);
+              }
               break;
             }
             case (this.pollsChannel.ACTIONS.START): {
               const pollIndex = this.polls.findIndex(p => p.id === data.poll.id);
-              this.polls[pollIndex].status = EPollStatuses.OPEN;
-              this.selectedPoll = data.poll;
-              if (this.currentUser && !this.polls[pollIndex].already_filled) {
-                this.windowRefFillPoll = this.windowService.open(
-                  this.fillPollTemplate,
-                  {
-                    title: `Poll!`,
-                  }
-                );
+              if (this.polls[pollIndex].status !== EPollStatuses.OPEN) {
+                this.polls[pollIndex].status = EPollStatuses.OPEN;
+                this.selectedPoll = data.poll;
+                if (this.currentUser && !this.polls[pollIndex].already_filled) {
+                  this.windowRefFillPoll = this.windowService.open(
+                    this.fillPollTemplate,
+                    {
+                      title: `Poll!`,
+                    }
+                  );
+                }
               }
+
               break;
             }
             case (this.pollsChannel.ACTIONS.START_SELF): {
