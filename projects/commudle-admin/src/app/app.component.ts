@@ -21,6 +21,9 @@ export class AppComponent {
   userContextMenu = [
     { title: 'Logout', link: '/logout' },
   ];
+  cookieMessage: any;
+  cookieDismiss: any;
+  cookieLinkText: any;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -51,6 +54,23 @@ export class AppComponent {
 
   redirectToHome() {
     this.router.navigate(['/']);
+  }
+
+  ngOnInit(){
+     let cc = window as any;
+     cc.cookieconsent.initialise({
+      container: document.getElementById("cookieconsent"),
+      palette:{
+        popup: { background: "#3366ff" },
+        button: { background: "#ffe000" },
+      },
+      revokable: true,
+      onStatusChange: function(status) {
+        console.log(this.hasConsented() ?
+        'enable cookies' : 'disable cookies');
+      },
+      "theme": "classic"
+    });
   }
 
 
