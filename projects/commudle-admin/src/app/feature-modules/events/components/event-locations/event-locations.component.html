@@ -8,80 +8,74 @@
       </small>
     </p>
   </div>
-  <div *ngIf="event.editable">
-    <button nbButton (click)="showAddEventLocationForm()" status="primary">
+  <div *ngIf="event.editable" class="add-event-button">
+    <button nbButton size="small" (click)="showAddEventLocationForm()" status="primary">
       <nb-icon icon="plus-circle-outline"></nb-icon>
       &nbsp;
       Add
     </button>
   </div>
-  <div class="event-locations-list">
-    <div *ngFor="let loc of eventLocations; let i=index">
-      <nb-card class="event-location">
-        <nb-card-header>
-          <div class="header-icon">
-            <nb-icon *ngIf="loc.location" icon="pin-outline"></nb-icon>
-            <nb-icon *ngIf="loc.event_type === EEventType.ONLINE_ONLY" icon="video-outline"></nb-icon>
-          </div>
-          <div class="event-location-details">
-            <p *ngIf="loc.event_type === EEventType.OFFLINE_ONLY">
-              {{ loc.location.name }}
-              <br>
-              <small>
-                {{ loc.location.address }}
-              </small>
-              <br>
-              <small>
-               <a href="{{loc.location.map_link}}"> <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map</a>
-              </small>
-            </p>
-            <div *ngIf="loc.event_type === EEventType.ONLINE_ONLY">
-              <p>ONLINE STREAMING (ID: {{loc.id}}) &nbsp; <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
+
+  <div class="event-location-details">
+    <nb-card style="border: 0; margin-bottom: 0">
+      <nb-card-body class="event-list">
+
+        <nb-tabset>
+          <nb-tab *ngFor="let loc of eventLocations; let i=index" style="padding: 0"
+                  tabTitle="{{ loc.event_type === EEventType.OFFLINE_ONLY ? loc.location.name : 'ID: ' + loc.id }}"
+                  tabIcon="{{ loc.event_type === EEventType.OFFLINE_ONLY ? 'pin-outline' : 'video-outline' }}"
+                  badgeText="{{ loc.event_location_tracks.length }}" badgePosition="top right" badgeStatus="primary">
+
+            <div *ngIf="loc.event_type === EEventType.ONLINE_ONLY" class="event-online-details">
+              <p>
+                <strong>Name</strong>: Online Streaming (ID: {{loc.id}}) &nbsp;
+                <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo"
+                         nbPopoverTrigger="hover"></nb-icon>
               </p>
               <ng-template #embeddedVideo>
-                <app-video-stream [videoCode]="loc.embedded_video_stream.embed_code" [videoSource]="loc.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
+                <div class="embedded-video" *ngIf="loc.embedded_video_stream"
+                     [innerHTML]="sanitizedEmbeddedHTML(loc.embedded_video_stream.embed_code)"></div>
               </ng-template>
             </div>
-            <p *ngIf="event.editable">
-              <fa-icon [icon]="faPen" class="clickable" (click)="showEditEventLocationForm(loc)"></fa-icon>
-              &nbsp;
-              <fa-icon [icon]="faTrash" class="clickable" (click)="confirmDeleteEventLocation(loc)"></fa-icon>
-            </p>
-          </div>
-        </nb-card-header>
-        <nb-card-body>
-          <app-event-location-tracks
-            [eventLocations] = "eventLocations"
-            [eventLocationTracks]="loc.event_location_tracks"
-            [event]="event"
-            [community]="community"
-            [eventLocationId]="loc.id"
-            [eventSpeakers]="eventSpeakers"
-            (addTrack)="addTrack($event, i)"
-            (updateTrack)="updateTrack($event, i)"
-            (removeTrack)="removeTrack($event, i)"
-            (addSession)="addSlot($event, i)"
-            (updateSession)="updateSlot($event, i)"
-            (removeSession)="removeSlot($event, i)">
-          </app-event-location-tracks>
-        </nb-card-body>
-      </nb-card>
-    </div>
 
+            <div *ngIf="loc.event_type === EEventType.OFFLINE_ONLY" class="event-offline-details">
+              <p>
+                <strong>Name</strong>: {{ loc.location.name }}; &nbsp;
+                <a href="{{ loc.location.map_link }}">{{ loc.location.address }}</a>
+              </p>
+            </div>
+
+            <div *ngIf="event.editable" class="event-edit-icons">
+              <fa-icon [icon]="faTrash" class="clickable" (click)="confirmDeleteEventLocation(loc)"></fa-icon>
+              <fa-icon [icon]="faPen" class="clickable" (click)="showEditEventLocationForm(loc)"></fa-icon>
+            </div>
+
+            <app-event-location-tracks [eventLocations]="eventLocations"
+                                       [eventLocationTracks]="loc.event_location_tracks"
+                                       [event]="event" [community]="community" [eventLocationId]="loc.id"
+                                       [eventSpeakers]="eventSpeakers"
+                                       (addTrack)="addTrack($event, i)" (updateTrack)="updateTrack($event, i)"
+                                       (removeTrack)="removeTrack($event, i)" (addSession)="addSlot($event, i)"
+                                       (updateSession)="updateSlot($event, i)" (removeSession)="removeSlot($event, i)">
+            </app-event-location-tracks>
+
+          </nb-tab>
+        </nb-tabset>
+
+      </nb-card-body>
+    </nb-card>
   </div>
 
-
-
-
   <ng-template #eventLocationFormTemplate let-data *ngIf="event.editable">
-    <form class="event-location-form" [formGroup]="eventLocationForm" (ngSubmit)="data.operationType == 'create' ? addEventLocation() : editEventLocation(data.eventLocation) ">
+    <form class="event-location-form" [formGroup]="eventLocationForm"
+          (ngSubmit)="data.operationType == 'create' ? addEventLocation() : editEventLocation(data.eventLocation) ">
       <div>
         <nb-radio-group
           class="options"
           name="event-type"
           formControlName="event_type"
-          (valueChange)="toggleEventTypeValidations($event)"
-          >
+          (valueChange)="toggleEventTypeValidations($event)">
+
           <nb-radio [value]="EEventType.OFFLINE_ONLY">
             Offline Event
           </nb-radio>
@@ -94,35 +88,42 @@
         </nb-radio-group>
       </div>
       <div *ngIf="selectedEventType === EEventType.OFFLINE_ONLY" class="offline-event-fields" formGroupName="location">
-          <div>
-            <label fullWidth>
-              Name*
-              <input type="text" nbInput fullWidth formControlName="name">
-            </label>
-            <span *ngIf="eventLocationForm['controls'].location['controls'].name.touched && eventLocationForm['controls'].location['controls'].name.invalid && eventLocationForm['controls'].location['controls'].name.errors.required" class="validation-error-text">
+        <div>
+          <label fullWidth>
+            Name*
+            <input type="text" nbInput fullWidth formControlName="name">
+          </label>
+          <span
+            *ngIf="eventLocationForm['controls'].location['controls'].name.touched && eventLocationForm['controls'].location['controls'].name.invalid && eventLocationForm['controls'].location['controls'].name.errors.required"
+            class="validation-error-text">
               Required Field
             </span>
-          </div>
-          <div>
-            <label fullWidth>
-              Address*
-              <input type="text" nbInput fullWidth formControlName="address">
-            </label>
-            <span *ngIf="eventLocationForm['controls'].location['controls'].address.touched && eventLocationForm['controls'].location['controls'].address.invalid && eventLocationForm['controls'].location['controls'].address.errors.required" class="validation-error-text">
+        </div>
+        <div>
+          <label fullWidth>
+            Address*
+            <input type="text" nbInput fullWidth formControlName="address">
+          </label>
+          <span
+            *ngIf="eventLocationForm['controls'].location['controls'].address.touched && eventLocationForm['controls'].location['controls'].address.invalid && eventLocationForm['controls'].location['controls'].address.errors.required"
+            class="validation-error-text">
               Required Field
             </span>
-          </div>
-          <div>
-            <label fullWidth>
-              Map Link*
-              <input type="text" nbInput fullWidth formControlName="map_link">
-            </label>
-            <span *ngIf="eventLocationForm['controls'].location['controls'].map_link.touched && eventLocationForm['controls'].location['controls'].map_link.invalid && eventLocationForm['controls'].location['controls'].map_link.errors.required" class="validation-error-text">
+        </div>
+        <div>
+          <label fullWidth>
+            Map Link*
+            <input type="text" nbInput fullWidth formControlName="map_link">
+          </label>
+          <span
+            *ngIf="eventLocationForm['controls'].location['controls'].map_link.touched && eventLocationForm['controls'].location['controls'].map_link.invalid && eventLocationForm['controls'].location['controls'].map_link.errors.required"
+            class="validation-error-text">
               Required Field
             </span>
-          </div>
+        </div>
       </div>
-      <div class="online-event-fields" *ngIf="selectedEventType === EEventType.ONLINE_ONLY" formGroupName="embedded_video_stream">
+      <div class="online-event-fields" *ngIf="selectedEventType === EEventType.ONLINE_ONLY"
+           formGroupName="embedded_video_stream">
         <p>
           <small>
             <i>Fill these if your event has a common overall video stream for viewing</i>
@@ -147,24 +148,30 @@
 
         <div>
           <label>
-            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
+            <span
+              *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
               Video Url
             </span>
-            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
+            <span
+              *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.JITSI_MEET">
               Jitsi Meeting ID (people will be required to log in to join)
             </span>
 
-            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+            <span
+              *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.EXTERNAL_LINK">
               Paste link here
             </span>
 
-            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.OTHER">
+            <span
+              *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.OTHER">
               Embed Code
             </span>
 
             <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>
           </label>
-          <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required" class="validation-error-text">
+          <span
+            *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required"
+            class="validation-error-text">
             Required Field
           </span>
         </div>
@@ -191,7 +198,6 @@
   </ng-template>
 
 
-
   <ng-template #helpText let-data>
     <h5>Here's how it works</h5>
     <div>
@@ -215,7 +221,8 @@
           OR you can choose to enter a different stream for each track [if filled, this will override the event stream]
         </li>
         <li>
-          OR you can have individual streams for each session [if filled, this will override both track and event streams]
+          OR you can have individual streams for each session [if filled, this will override both track and event
+          streams]
         </li>
       </ul>
     </div>
