@@ -1,18 +1,18 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ElementRef } from '@angular/core';
-import { IEventLocationTrack } from 'projects/shared-models/event-location-track.model';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {IEventLocationTrack} from 'projects/shared-models/event-location-track.model';
 import * as moment from 'moment';
-import { ITrackSlot } from 'projects/shared-models/track-slot.model';
-import { faClock, faInfo, faPlusCircle, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
-import { NbWindowService } from '@nebular/theme';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { EventLocationTracksService } from 'projects/commudle-admin/src/app/services/event-location-tracks.service';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { IEventLocation, EEventType } from 'projects/shared-models/event-location.model';
-import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
-import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { IEvent } from 'projects/shared-models/event.model';
+import {ITrackSlot} from 'projects/shared-models/track-slot.model';
+import {faClock, faInfo, faPen, faPlusCircle, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {NbWindowService} from '@nebular/theme';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EventLocationTracksService} from 'projects/commudle-admin/src/app/services/event-location-tracks.service';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
+import {EEventType, IEventLocation} from 'projects/shared-models/event-location.model';
+import {TrackSlotsService} from 'projects/commudle-admin/src/app/services/track_slots.service';
+import {EEmbeddedVideoStreamSources} from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
+import {DomSanitizer} from '@angular/platform-browser';
+import {ICommunity} from 'projects/shared-models/community.model';
+import {IEvent} from 'projects/shared-models/event.model';
 
 
 @Component({
@@ -85,7 +85,8 @@ export class EventLocationTracksComponent implements OnInit {
     private eventLocationTracksService: EventLocationTracksService,
     private trackSlotsService: TrackSlotsService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.hours = [...Array(24).keys()];
@@ -95,8 +96,8 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
     this.scrollFromTop();
   }
 
@@ -105,56 +106,53 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   slotSessionHeight(slot: ITrackSlot): number {
-    let diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
+    const diff = moment(slot.end_time).diff(slot.start_time, 'minutes');
     return (0.5 * diff) + 2.5;
   }
 
   slotSessionOffsetFromTop(slot: ITrackSlot): number {
-    return ((moment(slot.start_time).hours() * 0.5 * 60 ) + ((moment(slot.start_time).minute()) * 0.5) + 2.5);
+    return ((moment(slot.start_time).hours() * 0.5 * 60) + ((moment(slot.start_time).minute()) * 0.5) + 2.5);
   }
 
   scrollFromTop() {
     if (this.eventLocationTracks.length > 0 && this.eventLocationTracks[0].track_slots.length > 0) {
-     this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.5 * 850);
+      this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.5 * 850);
     }
   }
 
 
-  showAddSlotForm(eventLocationTrack, hour, minute) {
+  showAddSlotForm(eventLocationTrack) {
     this.trackSlotForm.reset();
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: eventLocationTrack.id,
-      date: this.minSlotDate,
-      start_time: moment(`${hour}:${minute}`, 'H:m').format('HH:mm'),
-      end_time: moment(`${hour}:${minute+5}`, 'H:m').format('HH:mm')
+      date: this.minSlotDate
     });
 
     this.windowRef = this.windowService.open(
       this.trackSlotFormTemplate,
-      { title: 'Add a session', context: {operationType: 'create'}},
+      {title: 'Add a session', context: {operationType: 'create'}},
     );
-
   }
 
   addSlot() {
     this.windowRef.close();
     const newSlot = this.trackSlotForm.get('track_slot').value;
-    let startTime = moment({
+    const startTime = moment({
       years: newSlot.date.getFullYear(),
       months: newSlot.date.getMonth(),
       date: newSlot.date.getDate(),
     });
 
-    delete newSlot['date'];
-    const sTime = newSlot['start_time'].split(':');
-    newSlot['start_time'] = startTime.set({hour: sTime[0], minute: sTime[1]}).toDate();
+    delete newSlot.date;
+    const sTime = newSlot.start_time.split(':');
+    newSlot.start_time = startTime.set({hour: sTime[0], minute: sTime[1]}).toDate();
 
-    const eTime = newSlot['end_time'].split(':');
-    newSlot['end_time'] = startTime.set({hour: eTime[0], minute: eTime[1]}).toDate();
+    const eTime = newSlot.end_time.split(':');
+    newSlot.end_time = startTime.set({hour: eTime[0], minute: eTime[1]}).toDate();
 
     this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
       this.addSession.emit(data);
-      this.toastLogService.successDialog("Slot Added!");
+      this.toastLogService.successDialog('Slot Added!');
       this.trackSlotForm.reset();
     });
   }
@@ -179,29 +177,29 @@ export class EventLocationTracksComponent implements OnInit {
 
     this.windowRef = this.windowService.open(
       this.trackSlotFormTemplate,
-      { title: 'Edit Session', context: {operationType: 'edit', trackSlotId: trackSlot.id}},
+      {title: 'Edit Session', context: {operationType: 'edit', trackSlotId: trackSlot.id}},
     );
   }
 
   editSlot(trackSlotId) {
     this.windowRef.close();
     const slot = this.trackSlotForm.get('track_slot').value;
-    let startTime = moment({
+    const startTime = moment({
       years: slot.date.getFullYear(),
       months: slot.date.getMonth(),
       date: slot.date.getDate(),
     });
 
-    delete slot['date'];
-    const sTime = slot['start_time'].split(':');
-    slot['start_time'] = startTime.set({hour: sTime[0], minute: sTime[1]}).toDate();
+    delete slot.date;
+    const sTime = slot.start_time.split(':');
+    slot.start_time = startTime.set({hour: sTime[0], minute: sTime[1]}).toDate();
 
-    const eTime = slot['end_time'].split(':');
-    slot['end_time'] = startTime.set({hour: eTime[0], minute: eTime[1]}).toDate();
+    const eTime = slot.end_time.split(':');
+    slot.end_time = startTime.set({hour: eTime[0], minute: eTime[1]}).toDate();
 
     this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
       this.updateSession.emit(data);
-      this.toastLogService.successDialog("Slot Updated!");
+      this.toastLogService.successDialog('Slot Updated!');
       this.trackSlotForm.reset();
     });
   }
@@ -209,14 +207,14 @@ export class EventLocationTracksComponent implements OnInit {
   confirmDeleteSlot(trackSlot) {
     this.windowRef = this.windowService.open(
       this.deleteTrackSlotTemplate,
-      { title: `Delete ${trackSlot.session_title}`, context: { trackSlot } },
+      {title: `Delete ${trackSlot.session_title}`, context: {trackSlot}},
     );
   }
 
 
   deleteSlot(deleteConf, trackSlot) {
     if (deleteConf) {
-      this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data)=>{
+      this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
         this.removeSession.emit(trackSlot);
         this.toastLogService.successDialog('Deleted');
       });
@@ -225,12 +223,11 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
 
-
   showAddTrackForm() {
     this.eventLocationTrackForm.reset();
     this.windowRef = this.windowService.open(
       this.eventLocationTrackFormTemplate,
-      { title: 'Add a track', context: {operationType: 'create'} },
+      {title: 'Add a track', context: {operationType: 'create'}},
     );
   }
 
@@ -241,11 +238,11 @@ export class EventLocationTracksComponent implements OnInit {
       this.event.id,
       this.eventLocationId,
       this.eventLocationTrackForm.get('event_location_track').value
-      ).subscribe((data) => {
-        this.addTrack.emit(data);
-        this.toastLogService.successDialog("New Track Added!");
-        this.eventLocationTrackForm.reset();
-      });
+    ).subscribe((data) => {
+      this.addTrack.emit(data);
+      this.toastLogService.successDialog('New Track Added!');
+      this.eventLocationTrackForm.reset();
+    });
   }
 
   showEditTrackForm(eventLocationTrack) {
@@ -262,7 +259,7 @@ export class EventLocationTracksComponent implements OnInit {
 
     this.windowRef = this.windowService.open(
       this.eventLocationTrackFormTemplate,
-      { title: `Edit ${eventLocationTrack.name}`, context: {operationType: 'edit', eventLocationTrackId: eventLocationTrack.id} },
+      {title: `Edit ${eventLocationTrack.name}`, context: {operationType: 'edit', eventLocationTrackId: eventLocationTrack.id}},
     );
   }
 
@@ -271,25 +268,25 @@ export class EventLocationTracksComponent implements OnInit {
     this.eventLocationTracksService.updateEventLocationTrack(
       eventLocationTrackId,
       this.eventLocationTrackForm.get('event_location_track').value).subscribe(
-        data => {
-          this.updateTrack.emit(data);
-          this.toastLogService.successDialog(`Updated to ${data.name}`);
-          this.eventLocationTrackForm.reset();
-        }
-      );
+      data => {
+        this.updateTrack.emit(data);
+        this.toastLogService.successDialog(`Updated to ${data.name}`);
+        this.eventLocationTrackForm.reset();
+      }
+    );
   }
 
-  confirmDeleteTrack(eventLocationTrack){
+  confirmDeleteTrack(eventLocationTrack) {
     this.windowRef = this.windowService.open(
       this.deleteEventLocationTrackTemplate,
-      { title: `Delete ${eventLocationTrack.name}`, context: {eventLocationTrackId: eventLocationTrack.id} },
+      {title: `Delete ${eventLocationTrack.name}`, context: {eventLocationTrackId: eventLocationTrack.id}},
     );
   }
 
 
   deleteTrack(deleteConf, eventLocationTrackId) {
     if (deleteConf) {
-      this.eventLocationTracksService.deleteEventLocationTrack(eventLocationTrackId).subscribe((data)=>{
+      this.eventLocationTracksService.deleteEventLocationTrack(eventLocationTrackId).subscribe((data) => {
         this.removeTrack.emit(eventLocationTrackId);
         this.toastLogService.successDialog('Deleted');
       });
@@ -299,7 +296,7 @@ export class EventLocationTracksComponent implements OnInit {
 
   findLocation() {
     const location = this.eventLocations.find(el => el.id === this.eventLocationId);
-    if (location.event_type === EEventType.ONLINE_ONLY ) {
+    if (location.event_type === EEventType.ONLINE_ONLY) {
       (this.eventLocationTrackForm.controls.event_location_track as FormGroup).addControl(
         'embedded_video_stream', this.fb.group({
           source: [''],
@@ -317,9 +314,7 @@ export class EventLocationTracksComponent implements OnInit {
     this.eventLocation = location;
   }
 
-
   sanitizedEmbeddedHTML(val) {
-    return  this.sanitizer.bypassSecurityTrustHtml(val);
-   }
-
+    return this.sanitizer.bypassSecurityTrustHtml(val);
+  }
 }
