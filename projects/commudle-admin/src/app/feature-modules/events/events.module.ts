@@ -1,22 +1,24 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {EventsRoutingModule} from './events-routing.module';
-import {CreateEventComponent} from './components/create-event/create-event.component';
-import {EditEventComponent} from './components/edit-event/edit-event.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { EventsRoutingModule } from './events-routing.module';
+import { CreateEventComponent } from './components/create-event/create-event.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
-  NbAccordionModule,
-  NbActionsModule,
-  NbAlertModule,
-  NbAutocompleteModule,
-  NbButtonModule,
-  NbCardModule,
   NbCheckboxModule,
-  NbDatepickerModule,
-  NbIconModule,
+  NbSelectModule,
   NbInputModule,
+  NbCardModule,
+  NbButtonModule,
+  NbDatepickerModule,
+  NbAlertModule,
   NbListModule,
+  NbTooltipModule,
+  NbWindowModule,
+  NbIconModule,
+  NbAutocompleteModule,
+  NbToggleModule,
   NbPopoverModule,
   NbRadioModule,
   NbAccordionModule
@@ -83,7 +85,9 @@ import { AppSharedComponentsModule } from '../../app-shared-components/app-share
     NgxMaterialTimepickerModule,
 
 
-    // Nebular
+
+
+    //Nebular
     NbButtonModule,
     NbCardModule,
     NbInputModule,
@@ -101,10 +105,7 @@ import { AppSharedComponentsModule } from '../../app-shared-components/app-share
     NbRadioModule,
     NbToggleModule,
     NbAccordionModule,
-    NbTooltipModule,
-    NbTabsetModule,
-    NbActionsModule
+    NbTooltipModule
   ]
 })
-export class EventsModule {
-}
+export class EventsModule { }
