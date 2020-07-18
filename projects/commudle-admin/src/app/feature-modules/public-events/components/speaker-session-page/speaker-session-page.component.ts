@@ -185,7 +185,9 @@ export class SpeakerSessionPageComponent implements OnInit {
   getEventEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe(
       data => {
-        this.embeddedVideoStream = data;
+        if (data) {
+          this.embeddedVideoStream = data;
+        }
       }
     );
   }
