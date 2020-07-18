@@ -35,6 +35,7 @@ export class SpeakerSessionPageComponent implements OnInit {
 
   discussion: IDiscussion;
   chat: IDiscussion;
+  currentTab;
 
   pollableType;
   pollableId;
@@ -54,6 +55,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   endTime;
 
   currentUser: ICurrentUser;
+  chatCount = 0;
+  questionCount = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -196,6 +199,39 @@ export class SpeakerSessionPageComponent implements OnInit {
       this.playerWidth = 700;
       this.playerHeight = 410;
     }
+  }
+
+
+  tabUpdate(tab, type) {
+    switch (type) {
+      case 'new': {
+        switch (tab) {
+          case 'chat':
+            if (this.currentTab !== 'chat') {
+              this.chatCount += 1;
+            }
+            break;
+          case 'qna':
+            if (this.currentTab !== 'qna') {
+              this.questionCount += 1;
+            }
+            break;
+        }
+        break;
+      }
+      case 'open': {
+        switch (tab) {
+          case 'chat':
+            this.chatCount = 0;
+            break;
+          case 'qna':
+            this.questionCount = 0;
+            break;
+        }
+        break;
+      }
+    }
+
   }
 
 }
