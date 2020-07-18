@@ -41,6 +41,7 @@ import { ResponsesTableComponent } from './form-responses/responses-table/respon
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
+import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { VotersComponent } from './votes-display/voters/voters.component';
     ResponsesTableComponent,
     UserDetailsCellComponent,
     VotesDisplayComponent,
-    VotersComponent
+    VotersComponent,
+    CookieConsentComponent
   ],
   imports: [
     CommonModule,
