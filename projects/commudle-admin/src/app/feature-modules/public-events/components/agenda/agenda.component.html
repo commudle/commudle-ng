@@ -1,6 +1,10 @@
 <div *ngIf="eventLocations.length > 0">
   <nb-card>
+    <nb-card-header>
+      <h6><nb-icon icon="pin-outline"></nb-icon> Schedule</h6>
+    </nb-card-header>
     <nb-card-body>
+      <h6>All Events</h6>
       <nb-tabset>
         <nb-tab *ngFor="let el of eventLocations; let i = index;" tabTitle="{{ getLocationName(el) }}" tabIcon="{{ getTabIcon(el) }}">
           <app-event-location-tracks
