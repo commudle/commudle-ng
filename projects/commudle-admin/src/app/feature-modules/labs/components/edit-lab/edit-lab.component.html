@@ -24,8 +24,25 @@
             </div>
 
             <div class="submit-button">
-              <button nbButton [disabled]="!labForm.valid" type="submit" status="primary">
-                Let's Start!
+              <button
+                [disabled]="!labForm.valid"
+                type="submit"
+                nbButton
+                outline
+                status="info"
+                >
+                <nb-icon icon="edit"></nb-icon>
+                Save as Draft
+              </button>
+              <button
+                [disabled]="!labForm.valid"
+                type="submit"
+                nbButton
+                outline
+                status="primary"
+                >
+                <nb-icon icon="checkmark"></nb-icon>
+                Publish
               </button>
             </div>
 
