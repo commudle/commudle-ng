@@ -253,7 +253,7 @@ export const API_ROUTES = {
 
   LABS: {
     CREATE: 'api/v2/labs',
-    SHOW: 'api/v2/labs',
+    SHOW: 'api/v2/labs/show',
   },
 
 

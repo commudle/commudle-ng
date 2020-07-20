@@ -12,10 +12,19 @@
 
     form {
 
-      input {
-        font-size: 1.8rem;
-        font-weight: 300;
+      .overview {
+        input {
+          font-size: 1.8rem;
+          font-weight: 300;
+        }
+
+        >div {
+          margin-bottom: 1rem;
+        }
+
+
       }
+
 
       .submit-button {
         margin-top: 1rem;
