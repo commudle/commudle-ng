@@ -31,7 +31,7 @@ export class LabsService {
   getLab(labId): Observable<ILab> {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.post<ILab>(
-      this.apiRoutesService.getRoute(API_ROUTES.LABS.CREATE), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.SHOW), {params}
     );
   }
 }
