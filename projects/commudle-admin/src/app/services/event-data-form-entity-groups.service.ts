@@ -61,6 +61,15 @@ export class EventDataFormEntityGroupsService {
   }
 
 
+  mailCSV(eventDataFormEntityGroupId): Observable<boolean> {
+    let params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.EMAIL_CSV),
+      { params }
+    );
+  }
+
+
   pGetPublicOpenDataForms(eventId): Observable<IEventDataFormEntityGroups> {
     let params = new HttpParams().set('event_id', eventId);
     return this.http.get<IEventDataFormEntityGroups>(
