@@ -25,6 +25,25 @@
 
       }
 
+      .lab-step {
+        margin-top: 2.5rem;
+        h3.steps-counter {
+          font-weight: 300;
+          margin-bottom: 0;
+        }
+
+        .name input {
+          font-size: 1.5rem;
+          font-weight: 300;
+          margin-bottom: 1rem;
+        }
+      }
+
+
+      .add-step-button {
+        margin-top: 1.5rem;
+      }
+
 
       .submit-button {
         margin-top: 1rem;

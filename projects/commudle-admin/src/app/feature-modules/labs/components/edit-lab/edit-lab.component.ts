@@ -19,12 +19,7 @@ export class EditLabComponent implements OnInit {
   lab: ILab;
 
 
-  labForm = this.fb.group({
-    name: ['', Validators.required],
-    description: ['', Validators.required],
-    lab_steps: this.fb.array([
-    ])
-  });
+  labForm: FormGroup;
 
 
   initStep(): FormGroup {
@@ -43,7 +38,7 @@ export class EditLabComponent implements OnInit {
     (this.labForm.get('lab_steps') as FormArray).push(this.initStep());
   }
 
-  removeQuestionButtonClick(stepIndex: number) {
+  removeStep(stepIndex: number) {
     (this.labForm.get('lab_steps') as FormArray).removeAt(stepIndex);
   }
 
@@ -54,6 +49,13 @@ export class EditLabComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.labForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      lab_steps: this.fb.array([])
+    });
+
     this.activatedRoute.params.subscribe(
       data => {
         this.labId = data.lab_id;
