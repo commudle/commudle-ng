@@ -57,4 +57,17 @@ export class DataFormsService {
     );
   }
 
+
+  cloneCommunityForm(dataFormId): Observable<IDataForm> {
+    return this.http.post<IDataForm>(
+      this.apiRoutesService.getRoute(API_ROUTES.CLONE_COMMUNITY_DATA_FORM),
+      {
+        data_form_id: dataFormId,
+      }
+    );
+  }
+
+
+
+
 }
