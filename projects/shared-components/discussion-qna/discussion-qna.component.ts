@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -19,6 +19,7 @@ import { DiscussionQnAChannel } from '../services/websockets/discussion-qna.chan
 export class DiscussionQnAComponent implements OnInit, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
+  @Output() newMessage = new EventEmitter();
 
   moment = moment;
 
@@ -172,10 +173,12 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
             case(this.discussionQnaChannel.ACTIONS.ADD): {
               this.messages.push(data.user_message);
               this.scrollToBottom();
+              this.newMessage.emit();
               break;
             }
             case(this.discussionQnaChannel.ACTIONS.REPLY): {
               this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+              this.newMessage.emit();
               break;
             }
             case(this.discussionQnaChannel.ACTIONS.DELETE): {
