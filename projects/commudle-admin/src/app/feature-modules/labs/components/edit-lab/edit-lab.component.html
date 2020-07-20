@@ -14,13 +14,83 @@
           </p>
 
           <form class="community-edit-details-form" [formGroup]="labForm">
-            <div>
+            <div class="overview">
+              <div>
+                <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
 
-              <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
+                <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
+                  Required Field
+                </span>
+              </div>
+              <div>
+                <editor
+                  formControlName="description"
+                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                  [init]="{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                      'advlist lists autolink link charmap preview anchor',
+                      'visualblocks code table charmap',
+                      'insertdatetime table paste code help wordcount autoresize'
+                    ],
+                    toolbar:
+                      'formatselect | bold italic backcolor | \
+                      link | alignleft aligncenter alignright alignjustify | \
+                      bullist numlist outdent indent | table | charmap | removeformat | help',
+                    default_link_target: '_blank',
+                    branding: false
+                  }">
 
-              <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
-                Required Field
-              </span>
+                </editor>
+              </div>
+
+            </div>
+
+            <div formArrayName="lab_steps" *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i=index">
+              <div class="lab-step">
+                <h3 class="steps-counter">
+                  Step {{ i+1 }}
+                </h3>
+
+                <div>
+                  <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
+
+                  <span *ngIf="lStep['controls'].name.touched && lStep['controls'].name.invalid && lStep['controls'].name.errors.required" class="validation-error-text">
+                    Required Field
+                  </span>
+                </div>
+                <div>
+                  <editor
+                    formControlName="description"
+                    apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                    [init]="{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        'advlist lists autolink link charmap preview anchor',
+                        'visualblocks code table charmap',
+                        'insertdatetime table paste code help wordcount autoresize'
+                      ],
+                      toolbar:
+                        'formatselect | bold italic backcolor | \
+                        link | alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | table | charmap | removeformat | help',
+                      default_link_target: '_blank',
+                      branding: false
+                    }">
+
+                  </editor>
+                </div>
+              </div>
+            </div>
+
+            <div class="add-step-button">
+              <button nbButton size="small" (click)="addStep()" status="primary" fullWidth>
+                <fa-icon [icon]="faPlus"></fa-icon>
+                &nbsp;
+                Add Step
+              </button>
             </div>
 
             <div class="submit-button">
