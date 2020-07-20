@@ -47,18 +47,18 @@
 
             </div>
 
-            <div formArrayName="lab_steps" *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i=index">
-              <div class="lab-step">
+            <div formArrayName="lab_steps" *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i=index;">
+              <div class="lab-step" [formGroupName]="i">
                 <h3 class="steps-counter">
-                  Step {{ i+1 }}
+                  {{ i+1 }}. {{ this.lStep.get('name').value }}
                 </h3>
 
-                <div>
-                  <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
+                <div class="name">
+                  <input type="text" nbInput fullWidth fieldSize="large" formControlName="name" placeholder="Type a name..">
 
-                  <span *ngIf="lStep['controls'].name.touched && lStep['controls'].name.invalid && lStep['controls'].name.errors.required" class="validation-error-text">
+                  <!-- <span *ngIf="lStep.get('name').touched && lStep.get('name').invalid && lStep.get('name').errors.required" class="validation-error-text">
                     Required Field
-                  </span>
+                  </span> -->
                 </div>
                 <div>
                   <editor
@@ -81,6 +81,9 @@
                     }">
 
                   </editor>
+                  <!-- <span *ngIf="lStep.get('description').touched && lStep.get('description').invalid && lStep.get('description').errors.required" class="validation-error-text">
+                    Required Field
+                  </span> -->
                 </div>
               </div>
             </div>
