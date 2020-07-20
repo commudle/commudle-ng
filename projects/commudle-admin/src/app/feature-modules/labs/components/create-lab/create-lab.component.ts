@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { LabsService } from '../../services/labs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-lab',
@@ -7,6 +10,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-lab.component.scss']
 })
 export class CreateLabComponent implements OnInit {
+  faFlask = faFlask;
 
 
   labForm = this.fb.group({
@@ -14,7 +18,9 @@ export class CreateLabComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private labsService: LabsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -22,7 +28,12 @@ export class CreateLabComponent implements OnInit {
 
 
   createLab() {
-
+    this.labsService.createLab(this.labForm.get('name').value).subscribe(
+      (data) => {
+        console.log(data.slug);
+        this.router.navigate(['/labs', data.slug, 'edit']);
+      }
+    );
   }
 
 }

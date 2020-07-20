@@ -4,6 +4,7 @@ import { IUser } from './user.model';
 export interface ILab {
   id: number;
   name: string;
+  slug: string;
   description: string;
   header_image: IAttachedFile;
   user: IUser;

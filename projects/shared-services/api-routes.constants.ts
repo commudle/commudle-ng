@@ -250,6 +250,10 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat'
   },
 
+  LABS: {
+    CREATE: 'api/v2/labs',
+  },
+
 
   USER_EVENT_REGISTRATIONS: {
     INDEX: 'api/v2/user_event_registrations',

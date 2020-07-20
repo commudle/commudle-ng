@@ -1,3 +1,31 @@
 .create-lab {
   width: 100%;
+
+  .page-container {
+
+    .header {
+      font-weight: 300;
+      fa-icon {
+        color: #4e74ff;
+      }
+    }
+
+    form {
+
+      input {
+        font-size: 1.8rem;
+        font-weight: 300;
+      }
+
+      .submit-button {
+        margin-top: 1rem;
+      }
+    }
+
+    @media screen and (min-width: 1020px) {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+  }
+
 }
