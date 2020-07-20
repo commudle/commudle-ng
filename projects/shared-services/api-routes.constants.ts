@@ -92,6 +92,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/event_data_form_entity_groups',
     DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
+    EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
 
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms'
   },
@@ -118,6 +119,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/data_form_entities/get_form_entities',
     SHOW: 'api/v2/data_form_entities',
     UPDATE_VISIBILITY: 'api/v2/data_form_entities/update_visibility',
+    EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
   },
 
 
