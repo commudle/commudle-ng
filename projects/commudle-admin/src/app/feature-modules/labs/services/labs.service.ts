@@ -28,6 +28,16 @@ export class LabsService {
     );
   }
 
+  updateLab(labId, data): Observable<ILab> {
+    return this.http.post<ILab>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE),
+      {
+        lab: data,
+        lab_id: labId
+      }
+    );
+  }
+
 
   getLab(labId): Observable<ILab> {
     const params = new HttpParams().set('lab_id', labId);
@@ -52,6 +62,15 @@ export class LabsService {
     return this.http.delete<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.DELETE_HEADER_IMAGE),
       {params}
+    );
+  }
+
+
+  updateTags(labId, tags): Observable<boolean> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE_TAGS),
+      {tags, lab_id: labId}
     );
   }
 }

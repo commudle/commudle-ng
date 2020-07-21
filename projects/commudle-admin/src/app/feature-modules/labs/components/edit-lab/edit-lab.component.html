@@ -83,6 +83,8 @@
               <div class="lab-step" [formGroupName]="i">
                 <h3 class="steps-counter">
                   {{ i+1 }}. {{ this.lStep.get('name').value }}
+                  &nbsp;
+                  <nb-icon icon="close-circle-outline" status="danger" class="clickable" (click)="removeStep(i)"></nb-icon>
                 </h3>
 
                 <div class="name">
@@ -121,11 +123,25 @@
             </div>
 
             <div class="add-step-button">
-              <button nbButton size="small" (click)="addStep()" status="primary" fullWidth>
+              <button nbButton size="medium" outline (click)="addStep()" status="primary" fullWidth>
                 <fa-icon [icon]="faPlus"></fa-icon>
                 &nbsp;
                 Add Step
               </button>
+            </div>
+
+            <div class="tags">
+              <label fullWidth>
+                <app-badge [text]="'Tags help you get a better visibility. Add a few below...'" [color]="'#4e74ff'"></app-badge>
+                <input
+                  type="text"
+                  nbInput
+                  fullWidth
+                  size="large"
+                  [(ngModel)]="tags"
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Enter tags separated by comma (a, b, c...)">
+              </label>
             </div>
 
             <div class="submit-button">
@@ -135,6 +151,7 @@
                 nbButton
                 outline
                 status="info"
+                (click)="updateLab(EPublishStatus.draft)"
                 >
                 <nb-icon icon="edit"></nb-icon>
                 Save as Draft
@@ -145,6 +162,7 @@
                 nbButton
                 outline
                 status="primary"
+                (click)="updateLab(EPublishStatus.published)"
                 >
                 <nb-icon icon="checkmark"></nb-icon>
                 Publish

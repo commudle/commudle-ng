@@ -3,7 +3,7 @@ import { faFlask, faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { LabsService } from '../../services/labs.service';
 import { ActivatedRoute } from '@angular/router';
-import { ILab } from 'projects/shared-models/lab.model';
+import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
@@ -15,6 +15,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class EditLabComponent implements OnInit {
   faFlask = faFlask;
   faPlus = faPlusCircle;
+  EPublishStatus = EPublishStatus;
 
   labId;
   lab: ILab;
@@ -22,6 +23,7 @@ export class EditLabComponent implements OnInit {
   uploadedHeaderImage;
   uploadedHeaderImageFile: File;
 
+  tags;
 
 
   headerImageForm = this.fb.group({
@@ -34,7 +36,8 @@ export class EditLabComponent implements OnInit {
     return this.fb.group({
       id: [],
       name: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      publish_status: []
     });
   }
 
@@ -78,6 +81,7 @@ export class EditLabComponent implements OnInit {
     this.labsService.getLab(this.labId).subscribe(
       data => {
         this.lab = data;
+        this.tags = data.tags.toString();
         this.prefillForm();
       }
     );
@@ -88,7 +92,8 @@ export class EditLabComponent implements OnInit {
     if (this.lab) {
       this.labForm.patchValue({
         name: this.lab.name,
-        description: this.lab.description
+        description: this.lab.description,
+        publish_status: this.lab.publish_status
       });
 
       if (this.lab.lab_steps) {
@@ -151,6 +156,32 @@ export class EditLabComponent implements OnInit {
         this.uploadedHeaderImage = null;
         this.lab.header_image = null;
         this.toastLogService.successDialog('Deleted');
+      }
+    );
+  }
+
+
+  // lab_steps
+  updateLab(publishStatus) {
+    this.labForm.patchValue({
+      publish_status: publishStatus
+    });
+    this.labsService.updateLab(this.lab.slug, this.labForm.value).subscribe(
+      data => {
+        if (data) {
+          this.lab = data;
+          this.submitTags();
+        }
+      }
+    );
+  }
+
+  // tags
+  submitTags() {
+    this.labsService.updateTags(this.lab.id, this.tags.split(',')).subscribe(
+      data => {
+        // this.router.navigate(['/builds/my-builds']);
+        this.toastLogService.successDialog('Saved!');
       }
     );
   }

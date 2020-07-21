@@ -13,4 +13,14 @@ export interface ILab {
   created_at: Date;
   updated_at: Date;
   lab_steps: ILabStep[];
+  tags: string[];
+}
+
+
+export enum EPublishStatus {
+  draft = 'draft',
+  submitted = 'submitted',
+  published = 'published',
+  flagged = 'flagged',
+  removed = 'removed'
 }
