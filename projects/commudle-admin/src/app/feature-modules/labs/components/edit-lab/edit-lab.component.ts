@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 
 @Component({
   selector: 'app-edit-lab',
@@ -30,6 +32,28 @@ export class EditLabComponent implements OnInit {
     header_image: ['', Validators.required],
   });
   labForm: FormGroup;
+
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['blockquote', 'code-block'],
+
+    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    [{ 'direction': 'rtl' }],                         // text direction
+
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+
+    ['clean'],                                         // remove formatting button
+
+    ['link', 'image', 'video']                         // link and image, video
+  ]
 
 
   initStep(): FormGroup {
@@ -57,11 +81,11 @@ export class EditLabComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private labsService: LabsService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private apiRoutesService: ApiRoutesService
   ) { }
 
   ngOnInit() {
-
     this.labForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -156,6 +180,17 @@ export class EditLabComponent implements OnInit {
         this.uploadedHeaderImage = null;
         this.lab.header_image = null;
         this.toastLogService.successDialog('Deleted');
+      }
+    );
+  }
+
+
+  // upload_inline_images
+  uploadTextImage(blobInfo, success, failure) {
+    console.log('called', this);
+    this.labsService.uploadTextImage(this.lab.id, blobInfo).subscribe(
+      data => {
+        success(data);
       }
     );
   }
