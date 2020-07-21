@@ -257,7 +257,8 @@ export const API_ROUTES = {
     SHOW: 'api/v2/labs/show',
     UPLOAD_HEADER_IMAGE: 'api/v2/labs/upload_header_image',
     DELETE_HEADER_IMAGE: 'api/v2/labs/delete_header_image',
-    UPDATE_TAGS: 'api/v2/labs/update_tags'
+    UPDATE_TAGS: 'api/v2/labs/update_tags',
+    UPLOAD_TEXT_IMAGE: 'api/v2/labs/upload_text_image'
   },
 
 

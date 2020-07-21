@@ -65,6 +65,16 @@ export class LabsService {
     );
   }
 
+  uploadTextImage(labId, image): Observable<string> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.post<string>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.UPLOAD_TEXT_IMAGE),
+      image,
+      {params}
+    );
+  }
+
+
 
   updateTags(labId, tags): Observable<boolean> {
     const params = new HttpParams().set('lab_id', labId);

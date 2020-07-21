@@ -28,9 +28,13 @@
               "projects/commudle-admin/src/assets"
             ],
             "styles": [
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.snow.css",
+              "./node_modules/quill/dist/quill.bubble.css",
               "projects/commudle-admin/src/styles.scss"
             ],
             "scripts": [
+              "./node_modules/quill/dist/quill.js",
               "projects/commudle-admin/src/assets/scripts/jitsi-meet.js"
             ]
           },
