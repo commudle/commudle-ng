@@ -10,7 +10,53 @@
       }
     }
 
-    form {
+
+    form.lab-header-image {
+      margin-bottom: 2rem;
+      label {
+        position: relative;
+        padding: 150px 0;
+
+        >span {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          font-size: 1.5rem;
+          font-weight: 300;
+          color: grey;
+
+          nb-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem
+          }
+        }
+
+        input {
+          display: none;
+        }
+      }
+
+      .uploaded-header-image {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          max-width: 100%;
+        }
+      }
+
+
+      .delete-header-image-button {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    form.lab-form {
 
       .overview {
         input {

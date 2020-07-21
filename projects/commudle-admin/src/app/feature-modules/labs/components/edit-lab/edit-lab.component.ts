@@ -5,6 +5,7 @@ import { LabsService } from '../../services/labs.service';
 import { ActivatedRoute } from '@angular/router';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-edit-lab',
@@ -18,7 +19,14 @@ export class EditLabComponent implements OnInit {
   labId;
   lab: ILab;
 
+  uploadedHeaderImage;
+  uploadedHeaderImageFile: File;
 
+
+
+  headerImageForm = this.fb.group({
+    header_image: ['', Validators.required],
+  });
   labForm: FormGroup;
 
 
@@ -45,7 +53,8 @@ export class EditLabComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private labsService: LabsService
+    private labsService: LabsService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -101,6 +110,49 @@ export class EditLabComponent implements OnInit {
       formArray.push(existingStepform);
     });
     return formArray;
+  }
+
+
+  // Header image functionality
+  displaySelectedHeaderImage(event: any) {
+
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      if (file.size > 2425190) {
+        this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
+        return;
+      }
+      this.uploadedHeaderImageFile = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.uploadedHeaderImage = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+      this.updateHeaderImage();
+    }
+
+  }
+
+  updateHeaderImage() {
+    const formData: any = new FormData();
+    formData.append('header_image', this.uploadedHeaderImageFile);
+    this.labsService.updateHeaderImage(this.lab.id, formData).subscribe(
+      data => {
+        this.lab.header_image = data;
+        this.toastLogService.successDialog('Updated!');
+      }
+    );
+  }
+
+  deleteEventHeader() {
+    this.labsService.deleteHeaderImage(this.lab.id).subscribe(
+      data => {
+        this.uploadedHeaderImage = null;
+        this.lab.header_image = null;
+        this.toastLogService.successDialog('Deleted');
+      }
+    );
   }
 
 }

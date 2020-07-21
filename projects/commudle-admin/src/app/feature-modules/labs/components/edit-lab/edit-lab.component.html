@@ -1,6 +1,6 @@
 <div class="create-lab">
 
-  <div>
+  <div *ngIf="lab">
     <nb-card>
       <nb-card-body>
 
@@ -13,7 +13,39 @@
 
           </p>
 
-          <form class="community-edit-details-form" [formGroup]="labForm">
+          <form class='lab-header-image' [formGroup]="headerImageForm">
+            <div class="header-image">
+              <div>
+                <div class="uploaded-header-image" *ngIf="uploadedHeaderImage || lab.header_image">
+                  <img src="{{uploadedHeaderImage || lab.header_image.url}}" alt="Profile Picture">
+                </div>
+                <button
+                  class="delete-header-image-button"
+                  nbButton
+                  outline
+                  size="tiny"
+                  status="danger"
+                  *ngIf="uploadedHeaderImage || lab.header_image"
+                  (click)="deleteEventHeader()">
+                  <nb-icon icon="close-circle"></nb-icon>
+                  Delete Image
+                </button>
+              </div>
+              <label class="clickable" [ngClass]="{'hidden': uploadedHeaderImage || (lab.header_image && lab.header_image.url)}">
+                <span>
+                  <span>
+                    <nb-icon icon="image-outline"></nb-icon>
+                  </span>
+                  <span>
+                    Click to upload a header image
+                  </span>
+                </span>
+                <input formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
+              </label>
+            </div>
+          </form>
+
+          <form class="lab-form" [formGroup]="labForm">
             <div class="overview">
               <div>
                 <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
