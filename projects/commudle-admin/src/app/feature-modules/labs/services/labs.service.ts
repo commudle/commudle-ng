@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,25 @@ export class LabsService {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.SHOW), {params}
+    );
+  }
+
+
+
+  updateHeaderImage(labId, headerImage): Observable<IAttachedFile> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.post<IAttachedFile>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.UPLOAD_HEADER_IMAGE),
+      headerImage,
+      {params}
+    );
+  }
+
+  deleteHeaderImage(labId): Observable<boolean> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.delete<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.DELETE_HEADER_IMAGE),
+      {params}
     );
   }
 }
