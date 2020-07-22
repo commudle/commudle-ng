@@ -4,7 +4,7 @@
       <nb-tabset>
         <nb-tab *ngFor="let el of eventLocations; let i = index;" tabTitle="{{ getLocationName(el) }}" tabIcon="{{ getTabIcon(el) }}">
           <app-event-location-tracks
-            *ngIf="el.location"
+            *ngIf="el.location || el.embedded_video_stream"
             [event]="event"
             [community]="community"
             [eventLocation]="el"
