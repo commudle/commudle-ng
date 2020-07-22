@@ -14,6 +14,14 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item *ngIf="currentUser && currentUser.has_labs">
+      <a [routerLink]="['/labs/my-labs']">
+        <fa-icon [icon]="faFlask"></fa-icon>
+        &nbsp;
+        My Labs
+      </a>
+    </nb-list-item>
+
     <nb-list-item *ngIf="currentUser">
       <a class="profile-edit-link" [routerLink]="['/my-profile/edit']" >
         <nb-user
