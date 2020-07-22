@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SysAdminComponent } from './sys-admin.component';
 import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
+import { LabsComponent } from './components/labs/labs.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'community-builds',
     component: CommunityBuildsComponent
+  },
+  {
+    path: 'labs',
+    component: LabsComponent
   }
 ];
 
