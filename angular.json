@@ -31,7 +31,6 @@
               "projects/commudle-admin/src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/quill/dist/quill.js",
               "projects/commudle-admin/src/assets/scripts/jitsi-meet.js"
             ]
           },
