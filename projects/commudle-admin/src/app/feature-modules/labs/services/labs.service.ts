@@ -5,6 +5,7 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
+import { ILabs } from 'projects/shared-models/labs.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class LabsService {
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService
   ) { }
+
+  getAll(): Observable<ILabs> {
+    return this.http.get<ILabs>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.INDEX)
+    );
+  }
 
 
   createLab(name): Observable<ILab> {
@@ -74,6 +81,12 @@ export class LabsService {
     );
   }
 
+  destroy(labId): Observable<boolean> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.delete<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.DELETE), {params}
+    );
+  }
 
 
   updateTags(labId, tags): Observable<boolean> {
