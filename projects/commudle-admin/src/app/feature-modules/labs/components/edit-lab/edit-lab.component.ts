@@ -24,6 +24,7 @@ export class EditLabComponent implements OnInit {
 
   uploadedHeaderImage;
   uploadedHeaderImageFile: File;
+  imagesList = [];
 
   tags;
 
@@ -33,27 +34,6 @@ export class EditLabComponent implements OnInit {
   });
   labForm: FormGroup;
 
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-    [{ 'direction': 'rtl' }],                         // text direction
-
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-
-    ['clean'],                                         // remove formatting button
-
-    ['link', 'image', 'video']                         // link and image, video
-  ]
 
 
   initStep(): FormGroup {
@@ -105,6 +85,11 @@ export class EditLabComponent implements OnInit {
     this.labsService.getLab(this.labId).subscribe(
       data => {
         this.lab = data;
+
+        for (let img of this.lab.images) {
+          this.imagesList.push({title: img.url, value: img.url});
+        }
+
         this.tags = data.tags.toString();
         this.prefillForm();
       }
@@ -187,10 +172,14 @@ export class EditLabComponent implements OnInit {
 
   // upload_inline_images
   uploadTextImage(blobInfo, success, failure) {
-    console.log('called', this);
-    this.labsService.uploadTextImage(this.lab.id, blobInfo).subscribe(
+    const formData: any = new FormData();
+    formData.append('image', blobInfo.blob());
+    this.labsService.uploadTextImage(this.lab.id, formData).subscribe(
       data => {
-        success(data);
+        if (data) {
+          this.imagesList.push({title: data, value: data});
+          success(data);
+        }
       }
     );
   }
