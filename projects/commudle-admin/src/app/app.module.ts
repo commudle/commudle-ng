@@ -58,7 +58,6 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { EventCardComponent } from './components/home/event-card/event-card.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
-import { QuillModule } from 'ngx-quill';
 
 
 export function initApp(appInitService: AppInitService) {
