@@ -9,13 +9,15 @@ import { NbCardModule, NbInputModule, NbButtonModule, NbIconModule } from '@nebu
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { MyLabsComponent } from './components/my-labs/my-labs.component';
 
 
 @NgModule({
   declarations: [
     LabsComponent,
     CreateLabComponent,
-    EditLabComponent
+    EditLabComponent,
+    MyLabsComponent
   ],
   imports: [
     CommonModule,

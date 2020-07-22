@@ -5,6 +5,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunitiesService } from '../../services/communities.service';
+import { faFlask } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -12,7 +13,7 @@ import { CommunitiesService } from '../../services/communities.service';
   styleUrls: ['./sidebar-menu.component.scss']
 })
 export class SidebarMenuComponent implements OnInit {
-
+  faFlask = faFlask;
   currentUser: ICurrentUser;
   managedCommunities: ICommunity[] = [];
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
