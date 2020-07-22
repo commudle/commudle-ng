@@ -97,8 +97,6 @@ export function initApp(appInitService: AppInitService) {
     EditorModule,
     AppSharedComponentsModule,
     SharedComponentsModule,
-    QuillModule.forRoot(),
-
 
     // external service modules
     LibErrorHandlerModule,

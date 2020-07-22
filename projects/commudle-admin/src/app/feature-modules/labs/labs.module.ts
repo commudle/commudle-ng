@@ -9,7 +9,7 @@ import { NbCardModule, NbInputModule, NbButtonModule, NbIconModule } from '@nebu
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-import { QuillModule } from 'ngx-quill';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +25,6 @@ import { QuillModule } from 'ngx-quill';
     EditorModule,
     FontAwesomeModule,
     SharedComponentsModule,
-    QuillModule,
 
 
 

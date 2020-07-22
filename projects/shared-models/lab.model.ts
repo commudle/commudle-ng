@@ -10,6 +10,7 @@ export interface ILab {
   header_image: IAttachedFile;
   user: IUser;
   publish_status: string;
+  images: IAttachedFile[];
   created_at: Date;
   updated_at: Date;
   lab_steps: ILabStep[];

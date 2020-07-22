@@ -55,18 +55,13 @@
                 </span>
               </div>
               <div>
-                <quill-editor
-                  formControlName="description"
-                  theme="snow"
-                  modules
-                >
-              </quill-editor>
-                <!-- <editor
+
+                <editor
                   formControlName="description"
                   apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
                   [init]="{
                     height: 500,
-                    menubar: true,
+                    menubar: false,
                     plugins: [
                       'advlist lists autolink link charmap preview anchor',
                       'visualblocks code table charmap image codesample',
@@ -77,12 +72,15 @@
                       link | alignleft aligncenter alignright alignjustify | \
                       bullist numlist outdent indent | image | table | codesample | removeformat | help',
                     default_link_target: '_blank',
+                    image_list: imagesList,
                     image_advtab: true,
                     branding: false,
-                    images_upload_handler: this.uploadTextImage
+                    images_upload_handler: this.uploadTextImage.bind(this),
+                    toolbar_location: 'bottom',
+                    toolbar_sticky: true
                   }">
 
-                </editor> -->
+                </editor>
               </div>
 
             </div>
@@ -111,15 +109,20 @@
                       menubar: false,
                       plugins: [
                         'advlist lists autolink link charmap preview anchor',
-                        'visualblocks code table charmap',
+                        'visualblocks code table charmap image codesample',
                         'insertdatetime table paste code help wordcount autoresize'
                       ],
                       toolbar:
                         'formatselect | bold italic backcolor | \
                         link | alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | table | charmap | removeformat | help',
+                        bullist numlist outdent indent | image | table | codesample | removeformat | help',
                       default_link_target: '_blank',
-                      branding: false
+                      image_list: imagesList,
+                      image_advtab: true,
+                      branding: false,
+                      images_upload_handler: this.uploadTextImage.bind(this),
+                      toolbar_location: 'bottom',
+                      toolbar_sticky: true
                     }">
 
                   </editor>
