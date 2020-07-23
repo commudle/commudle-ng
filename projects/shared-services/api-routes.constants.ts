@@ -290,6 +290,12 @@ export const API_ROUTES = {
 
   },
 
+  USER_OBJECT_VISITS: {
+    CREATE: 'api/v2/user_object_visits',
+    MARK_END_TIME: 'api/v2/user_object_visits/mark_end_time',
+
+  },
+
 
   VOTES: {
     PUBLIC: {
