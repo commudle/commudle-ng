@@ -66,6 +66,24 @@
           <div>
             <app-lab-step *ngIf="selectedLabStep >= 0" [step]="lab.lab_steps[selectedLabStep]"></app-lab-step>
           </div>
+
+          <!-- show author details at the end too -->
+          <div class="end-step-user-display" *ngIf="selectedLabStep === lab.lab_steps.length - 1">
+            <div class="user">
+              <app-user-profile-horizontal [user]="lab.user" [aboutMe]="true"></app-user-profile-horizontal>
+            </div>
+            <p>
+              <app-votes-display
+                [votableType]="'Lab'"
+                [votableId]="lab.id"
+                [icon]="'star'"
+                [size]="'large'"
+              ></app-votes-display>
+              <small>
+                A star would make my day!
+              </small>
+            </p>
+          </div>
         </nb-card-body>
         <nb-card-footer>
           <div class="steps-navigation">

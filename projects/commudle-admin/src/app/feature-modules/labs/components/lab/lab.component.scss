@@ -76,6 +76,21 @@
         }
       }
 
+      .end-step-user-display {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        p {
+          margin: 0 1rem;
+        }
+
+        .user {
+          width: 300px;
+          border: 1px solid lightgrey;
+        }
+      }
+
     }
 
     @media (min-width: 800px) {
