@@ -15,6 +15,7 @@ export interface ILab {
   updated_at: Date;
   lab_steps: ILabStep[];
   tags: string[];
+  last_visited_step_id: number;
 }
 
 

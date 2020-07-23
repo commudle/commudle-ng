@@ -24,6 +24,10 @@
             <span *ngIf="selectedLabStep >= i">
               <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
             </span>
+
+            <span *ngIf="lastVisitedStepId === step.id && i < lab.lab_steps.length - 1">
+              <app-badge [text]="'Continue'" [color]="'#4e74ff'" [fontSize]="'small'"></app-badge>
+            </span>
            </div>
           </nb-list-item>
           <nb-list-item class="interactions">
