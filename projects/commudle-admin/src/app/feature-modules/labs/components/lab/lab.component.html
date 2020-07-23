@@ -48,6 +48,7 @@
       </nb-card>
     </div>
     <div class="content">
+      <app-user-object-visit-pixel [parentId]="lab.id" [parentType]="'Lab'"></app-user-object-visit-pixel>
       <nb-card>
         <nb-card-body>
           <div class="introduction" *ngIf="selectedLabStep === -1">

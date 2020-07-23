@@ -8,6 +8,8 @@ import { ICurrentUser } from '../shared-models/current_user.model';
 import { DOCUMENT } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +61,9 @@ export class LibAuthwatchService {
 
   // check if user is already signed in
   checkAlreadySignedIn(): Observable<boolean> {
+    if (!this.cookieService.check(environment.session_cookie_name)) {
+      this.cookieService.set(environment.session_cookie_name, uuidv4(), 30, environment.base_url);
+    }
     return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION),
       {}).pipe(

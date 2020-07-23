@@ -21,7 +21,7 @@ import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
     EditLabComponent,
     MyLabsComponent,
     LabComponent,
-    LabStepComponent
+    LabStepComponent,
   ],
   imports: [
     CommonModule,
