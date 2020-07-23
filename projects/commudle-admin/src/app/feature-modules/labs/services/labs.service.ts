@@ -90,10 +90,16 @@ export class LabsService {
 
 
   updateTags(labId, tags): Observable<boolean> {
-    const params = new HttpParams().set('lab_id', labId);
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE_TAGS),
       {tags, lab_id: labId}
+    );
+  }
+
+  addLabStepVisit(labStepId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.ADD_LAB_STEP_VISIT),
+      {lab_step_id: labStepId}
     );
   }
 
