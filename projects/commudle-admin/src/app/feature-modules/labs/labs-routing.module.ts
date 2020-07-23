@@ -6,6 +6,7 @@ import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { CreateLabComponent } from './components/create-lab/create-lab.component';
 import { EditLabComponent } from './components/edit-lab/edit-lab.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
+import { LabComponent } from './components/lab/lab.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: ':lab_id/edit',
     canActivate: [AuthGuard],
     component: EditLabComponent
+
+  },
+  {
+    path: ':lab_id',
+    component: LabComponent
 
   }
 ];

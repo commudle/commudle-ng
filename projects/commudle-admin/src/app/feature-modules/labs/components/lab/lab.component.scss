@@ -1,0 +1,96 @@
+.lab {
+  width: 100%;
+
+  .body {
+    display: flex;
+
+    .menu {
+      display: none;
+
+      .steps {
+        .title {
+          p {
+            margin: 0;
+            fa-icon {
+              color: #4e74ff;
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      max-width: 100%;
+      >nb-card {
+        width: 100%;
+        .introduction {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          h1.lab-title {
+            font-weight: 300;
+          }
+
+          .header-image {
+            max-width: 100%;
+            overflow: hidden;
+            img {
+              width: 100%;
+            }
+          }
+
+          >div.intro-content {
+            width: 100%;
+            ::ng-deep {
+              img {
+               max-width: 100%;
+               height: auto;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    @media (min-width: 800px) {
+      .menu {
+        display: inline-flex !important;
+        position: sticky;
+        top: 4rem;
+        height: fit-content;
+        width: 250px;
+        margin: 0 0.5rem 0 0;
+
+        nb-card {
+          width: 100%;
+        }
+      }
+
+      .content {
+        min-width: 500px;
+        width: 70%;
+      }
+    }
+  }
+
+  .steps-navigation {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .steps-status {
+      .successful-completion {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

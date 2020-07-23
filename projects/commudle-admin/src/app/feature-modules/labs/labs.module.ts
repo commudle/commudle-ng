@@ -5,11 +5,13 @@ import { LabsComponent } from './components/labs/labs.component';
 import { CreateLabComponent } from './components/create-lab/create-lab.component';
 import { EditLabComponent } from './components/edit-lab/edit-lab.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NbCardModule, NbInputModule, NbButtonModule, NbIconModule } from '@nebular/theme';
+import { NbCardModule, NbInputModule, NbButtonModule, NbIconModule, NbListModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
+import { LabComponent } from './components/lab/lab.component';
+import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { MyLabsComponent } from './components/my-labs/my-labs.component';
     LabsComponent,
     CreateLabComponent,
     EditLabComponent,
-    MyLabsComponent
+    MyLabsComponent,
+    LabComponent,
+    LabStepComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +38,8 @@ import { MyLabsComponent } from './components/my-labs/my-labs.component';
     NbCardModule,
     NbInputModule,
     NbButtonModule,
-    NbIconModule
+    NbIconModule,
+    NbListModule
 
   ]
 })
