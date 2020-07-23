@@ -58,6 +58,14 @@ export class DiscussionsService {
     );
   }
 
+  pGetOrCreateForLabChat(labId): Observable<IDiscussion> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT),
+      { params }
+    );
+  }
+
 
 
 }

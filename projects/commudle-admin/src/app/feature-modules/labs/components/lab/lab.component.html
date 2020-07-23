@@ -3,21 +3,12 @@
   <div class="body">
     <div class="menu">
       <nb-card>
-        <nb-card-header>
-          <div>
-            <app-votes-display
-            [votableType]="'Lab'"
-            [votableId]="lab.id"
-            [icon]="'star'"
-          ></app-votes-display>
-          </div>
-        </nb-card-header>
         <nb-list class="steps">
           <nb-list-item class="clickable title" (click)="setStep(-1)">
             <div>
               <p>
                 <fa-icon [icon]="faFlask"></fa-icon>
-                {{ lab.name }}
+                Introduction
               </p>
             </div>
           </nb-list-item>
@@ -26,12 +17,28 @@
             (click)="setStep(i)"
             *ngFor="let step of lab.lab_steps; let i = index">
            <div>
-            {{ i+1 }}.
+            <span class="step-count">
+              {{ i+1 }}.
+            </span>
             {{ step.name }}
             <span *ngIf="selectedLabStep >= i">
               <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
             </span>
            </div>
+          </nb-list-item>
+          <nb-list-item class="interactions">
+            <div>
+              <p>
+                <app-votes-display
+                  [votableType]="'Lab'"
+                  [votableId]="lab.id"
+                  [icon]="'star'"
+                ></app-votes-display>
+              </p>
+              <p class="clickable" *ngIf="discussionChat" (click)="scroll(discussionChatContainer)">
+                <nb-icon icon="message-circle-outline"></nb-icon>
+              </p>
+            </div>
           </nb-list-item>
         </nb-list>
       </nb-card>
@@ -43,6 +50,14 @@
             <h1 class="lab-title">
               {{lab.name}}
             </h1>
+            <div class="user-profile">
+              <app-user-profile-horizontal [user]="lab.user" [size]="'medium'"></app-user-profile-horizontal>
+            </div>
+            <div class="tags">
+              <div *ngFor="let tag of lab.tags">
+                <app-badge [text]="tag" [color]="'lightgrey'"></app-badge>
+              </div>
+            </div>
             <div class="header-image">
               <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
             </div>
@@ -85,6 +100,17 @@
           </div>
         </nb-card-footer>
       </nb-card>
+      <div #discussionChatContainer>
+        <nb-card class="discussion-chat" *ngIf="discussionChat">
+          <nb-card-header>
+            Discussion
+          </nb-card-header>
+          <nb-card-body>
+            <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
     </div>
   </div>
 </div>

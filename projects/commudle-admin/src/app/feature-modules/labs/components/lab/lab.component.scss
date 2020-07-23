@@ -16,6 +16,21 @@
             }
           }
         }
+
+        .step-count {
+          font-size: 0.8rem;
+        }
+      }
+
+      .interactions {
+        >div {
+          display: flex;
+          justify-content: space-around;
+          flex-direction: row;
+          p {
+            margin: 0 1rem 0 0;
+          }
+        }
       }
     }
 
@@ -30,6 +45,15 @@
 
           h1.lab-title {
             font-weight: 300;
+          }
+
+          .tags {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            >div {
+              margin: 0 0.3rem;
+            }
           }
 
           .header-image {
@@ -92,5 +116,9 @@
         font-size: 1.5rem;
       }
     }
+  }
+
+  .discussion-chat {
+    height: 500px;
   }
 }

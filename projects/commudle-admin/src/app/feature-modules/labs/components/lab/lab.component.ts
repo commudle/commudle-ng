@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
 
 @Component({
   selector: 'app-lab',
@@ -17,13 +19,15 @@ export class LabComponent implements OnInit {
   selectedLabStep = -1;
   selectedStepDescription;
   labDescription;
+  discussionChat: IDiscussion;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
     private title: Title,
-    private meta: Meta
+    private meta: Meta,
+    private discussionsService: DiscussionsService
   ) { }
 
   ngOnInit() {
@@ -38,6 +42,7 @@ export class LabComponent implements OnInit {
       data => {
         this.lab = data;
         this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
+        this.getDiscussionChat();
       }
     );
   }
@@ -50,6 +55,16 @@ export class LabComponent implements OnInit {
 
   changeStep(count) {
     this.selectedLabStep += count;
+  }
+
+  getDiscussionChat() {
+    this.discussionsService.pGetOrCreateForLabChat(this.lab.id).subscribe(
+      data => this.discussionChat = data
+    );
+  }
+
+  scroll(el) {
+    el.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"})
   }
 
 }
