@@ -263,6 +263,10 @@ export const API_ROUTES = {
     UPLOAD_TEXT_IMAGE: 'api/v2/labs/upload_text_image',
     DELETE: 'api/v2/labs',
     UPDATE_PUBLISH_STATUS: 'api/v2/labs/update_publish_status',
+
+    PUBLIC: {
+      SHOW: 'api/v2/labs/public'
+    }
   },
 
 

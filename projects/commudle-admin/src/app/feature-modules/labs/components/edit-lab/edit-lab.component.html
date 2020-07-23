@@ -94,7 +94,7 @@
                 </h3>
 
                 <div class="name">
-                  <input type="text" nbInput fullWidth fieldSize="large" formControlName="name" placeholder="Type a name..">
+                  <input type="text" nbInput fullWidth fieldSize="large" formControlName="name" placeholder="Add a Title">
 
                   <!-- <span *ngIf="lStep.get('name').touched && lStep.get('name').invalid && lStep.get('name').errors.required" class="validation-error-text">
                     Required Field
@@ -134,7 +134,7 @@
             </div>
 
             <div class="add-step-button">
-              <button nbButton size="medium" outline (click)="addStep()" status="primary" fullWidth>
+              <button nbButton size="medium" (click)="addStep()" status="basic" fullWidth>
                 <fa-icon [icon]="faPlus"></fa-icon>
                 &nbsp;
                 Add Step
@@ -143,7 +143,7 @@
 
             <div class="tags">
               <label fullWidth>
-                <app-badge [text]="'Tags help you get a better visibility. Add a few below...'" [color]="'#4e74ff'"></app-badge>
+                <app-badge [text]="'Tags, help, you, get, a, better, visibility, 😃'" [color]="'#4e74ff'"></app-badge>
                 <input
                   type="text"
                   nbInput
@@ -155,7 +155,7 @@
               </label>
             </div>
 
-            <div class="submit-button">
+            <div class="actions">
               <button
                 [disabled]="!labForm.valid"
                 type="submit"

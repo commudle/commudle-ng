@@ -72,7 +72,7 @@
       }
 
       .lab-step {
-        margin-top: 2.5rem;
+        margin-top: 4.5rem;
         h3.steps-counter {
           font-weight: 300;
           margin-bottom: 0;
@@ -91,14 +91,18 @@
       }
 
 
-      .submit-button {
+      .actions {
         margin-top: 1rem;
+
+        button {
+          margin-right: 0.5rem;
+        }
       }
     }
 
 
     .tags {
-      margin-top: 2rem;
+      margin-top: 3.5rem;
     }
 
     @media screen and (min-width: 1020px) {
