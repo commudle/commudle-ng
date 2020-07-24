@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/c
 import * as moment from 'moment';
 import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { LabsService } from '../../services/labs.service';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NbWindowService } from '@nebular/theme';
@@ -22,13 +22,31 @@ export class LabsComponent implements OnInit {
   selectedTag;
 
   constructor(
-    private labsService: LabsService
+    private labsService: LabsService,
+    private meta: Meta,
+    private title: Title
   ) {
   }
 
   ngOnInit() {
     this.getTags();
     this.getLabs(null);
+    this.setMeta();
+  }
+
+  setMeta() {
+    this.title.setTitle('Labs | Learn Something New!');
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `https://commudle.com/assets/images/commudle-logo192.png`
+      });
+    this.meta.updateTag({ name: 'og:title', content: 'Labs | Learn Something New!' });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!'
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'website'});
   }
 
   getTags() {
