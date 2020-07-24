@@ -28,7 +28,6 @@ export class UserVisitsChannel {
 
 
   subscribe(sessionToken, url, appToken) {
-    console.log(appToken);
     this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {

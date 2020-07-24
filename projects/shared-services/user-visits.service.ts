@@ -33,7 +33,6 @@ export class UserVisitsService {
       if (this.subscription) {
         this.userVisitsChannel.unsubscribe();
       }
-      console.log(this.authWatchService.getAppToken());
       this.subscription = this.userVisitsChannel.subscribe(
         this.cookieService.get(environment.session_cookie_name),
         url,

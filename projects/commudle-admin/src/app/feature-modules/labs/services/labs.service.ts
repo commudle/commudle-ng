@@ -6,6 +6,8 @@ import { ILab } from 'projects/shared-models/lab.model';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { ILabs } from 'projects/shared-models/labs.model';
+import { ITag } from 'projects/shared-models/tag.model';
+import { ITags } from 'projects/shared-models/tags.model';
 
 @Injectable({
   providedIn: 'root'
@@ -104,10 +106,27 @@ export class LabsService {
   }
 
 
+  pIndex(tag): Observable<ILabs> {
+    let params = new HttpParams();
+    if (tag) {
+      params = params.set('tag', tag);
+    }
+    console.log(params);
+    return this.http.get<ILabs>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), {params}
+    );
+  }
+
   pShow(labId): Observable<ILab> {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.SHOW), {params}
+    );
+  }
+
+  pTags(): Observable<ITags> {
+    return this.http.get<ITags>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.TAGS)
     );
   }
 }

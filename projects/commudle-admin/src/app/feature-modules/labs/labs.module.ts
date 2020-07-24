@@ -12,6 +12,7 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabComponent } from './components/lab/lab.component';
 import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
+import { LabCardComponent } from './components/labs/lab-card/lab-card.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
     MyLabsComponent,
     LabComponent,
     LabStepComponent,
+    LabCardComponent,
   ],
   imports: [
     CommonModule,
