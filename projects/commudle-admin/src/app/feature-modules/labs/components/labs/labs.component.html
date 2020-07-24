@@ -1,1 +1,45 @@
-<p>labs works!</p>
+<div class="labs-home">
+  <div class="header">
+    <h1>
+      <fa-icon [icon]="faFlask"></fa-icon>
+      Labs
+    </h1>
+    <p>
+      The best way to learn, is step by step. Here you'll find a number of curated labs,
+      created by everyone who learnt something new and wants to make it easy for others to learn too!
+    </p>
+  </div>
+  <div class="tags-list">
+    <nb-card>
+      <nb-card-body>
+        <div class="tags">
+          <a
+            class="tag clickable"
+            (click)="getLabs(null)"
+            [ngClass]="{'selected-tag': (this.selectedTag === null)}"
+            >
+            <p>
+              all
+            </p>
+          </a>
+          <a
+            class="tag clickable"
+            *ngFor="let tag of popularTags"
+            (click)="getLabs(tag.name)"
+            [ngClass]="{'selected-tag': (this.selectedTag === tag.name)}"
+            >
+            <p>
+              {{ tag.name }} <small *ngIf="tag.object_count > 0"> ({{tag.object_count}})</small>
+            </p>
+          </a>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="labs">
+    <div class="lab" *ngFor="let lab of labs">
+      <app-lab-card [lab]="lab"></app-lab-card>
+    </div>
+  </div>
+
+</div>

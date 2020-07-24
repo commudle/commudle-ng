@@ -267,7 +267,9 @@ export const API_ROUTES = {
     ADD_LAB_STEP_VISIT: 'api/v2/labs/add_lab_step_visit',
 
     PUBLIC: {
-      SHOW: 'api/v2/labs/public'
+      SHOW: 'api/v2/labs/public/show',
+      TAGS: 'api/v2/labs/public/tags',
+      INDEX: 'api/v2/labs/public'
     }
   },
 
