@@ -69,7 +69,8 @@ export class EditLabComponent implements OnInit {
     this.labForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      lab_steps: this.fb.array([])
+      lab_steps: this.fb.array([]),
+      publish_status: []
     });
 
     this.activatedRoute.params.subscribe(
