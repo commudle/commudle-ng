@@ -31,21 +31,21 @@ export class VoteChannel {
   ) {}
 
 
-  subscribe(votableType, votableId) {
+  subscribe(votableType, votableId, uuid) {
     return this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
 
-          this.channelData[`${votableId}_${votableType}`] = new BehaviorSubject(null);
-          this.channelData$[`${votableId}_${votableType}`] = this.channelData[`${votableId}_${votableType}`].asObservable();
+          this.channelData[`${votableId}_${votableType}_${uuid}`] = new BehaviorSubject(null);
+          this.channelData$[`${votableId}_${votableType}_${uuid}`] = this.channelData[`${votableId}_${votableType}_${uuid}`].asObservable();
 
-          this.subscriptions[`${votableId}_${votableType}`] = connection.subscriptions.create({
+          this.subscriptions[`${votableId}_${votableType}_${uuid}`] = connection.subscriptions.create({
             channel: APPLICATION_CABLE_CHANNELS.VOTE_CHANNEL,
             votable_type: votableType,
             votable_id: votableId
           }, {
             received: (data) => {
-              this.channelData[`${votableId}_${votableType}`].next(data);
+              this.channelData[`${votableId}_${votableType}_${uuid}`].next(data);
             }
           });
         }
@@ -54,8 +54,8 @@ export class VoteChannel {
   }
 
 
-  sendData(votableType, votableId, action, data) {
-    this.subscriptions[`${votableId}_${votableType}`].send({
+  sendData(votableType, votableId, uuid, action, data) {
+    this.subscriptions[`${votableId}_${votableType}_${uuid}`].send({
       perform: action,
       data
     });
@@ -63,8 +63,8 @@ export class VoteChannel {
 
 
 
-  unsubscribe(votableType, votableId) {
-    this.subscriptions[`${votableId}_${votableType}`].unsubscribe();
+  unsubscribe(votableType, votableId, uuid) {
+    this.subscriptions[`${votableId}_${votableType}_${uuid}`].unsubscribe();
   }
 
 }

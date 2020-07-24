@@ -1,0 +1,117 @@
+.create-lab {
+  width: 100%;
+
+  .page-container {
+
+    .header {
+      font-weight: 300;
+      fa-icon {
+        color: #4e74ff;
+      }
+    }
+
+
+    form.lab-header-image {
+      margin-bottom: 2rem;
+      label {
+        position: relative;
+        padding: 150px 0;
+
+        >span {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          font-size: 1.5rem;
+          font-weight: 300;
+          color: grey;
+
+          nb-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem
+          }
+        }
+
+        input {
+          display: none;
+        }
+      }
+
+      .uploaded-header-image {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          max-width: 100%;
+        }
+      }
+
+
+      .delete-header-image-button {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    form.lab-form {
+
+      .overview {
+        input {
+          font-size: 1.8rem;
+          font-weight: 300;
+        }
+
+        >div {
+          margin-bottom: 1rem;
+        }
+
+
+      }
+
+      .lab-step {
+        margin-top: 4.5rem;
+        h3.steps-counter {
+          font-weight: 300;
+          margin-bottom: 0;
+        }
+
+        .name input {
+          font-size: 1.5rem;
+          font-weight: 300;
+          margin-bottom: 1rem;
+        }
+      }
+
+
+      .add-step-button {
+        margin-top: 1.5rem;
+      }
+
+      .publish-notification {
+        margin-top: 3.5rem;
+      }
+
+      .actions {
+        margin-top: 1rem;
+
+        button {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+
+    .tags {
+      margin-top: 3.5rem;
+    }
+
+    @media screen and (min-width: 1020px) {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+  }
+
+}

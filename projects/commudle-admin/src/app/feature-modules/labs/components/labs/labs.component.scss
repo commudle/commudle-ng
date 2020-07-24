@@ -1,0 +1,78 @@
+.labs-home {
+  min-height: 50vh;
+  padding: 1rem;
+  background: linear-gradient(0deg, rgba(255,255,255,0) 18%, rgba(78,116,255,0.8281687675070029) 50%, rgba(78,116,255,1) 100%);
+
+
+  .header {
+    margin-bottom: 3.5rem;
+    h1 {
+      font-weight: 300;
+      color: white;
+    }
+
+    p {
+      color: white;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+    }
+  }
+
+  .tags-list {
+    margin-top: 1rem;
+    overflow-x: auto;
+    nb-card {
+      nb-card-body {
+        padding: 0.5rem 0.75rem;
+        .tags {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+
+
+          a.create-lab-button {
+            margin-right: 1.5rem;
+          }
+
+          a.tag {
+            text-decoration: none;
+            margin-right: 1.5rem;
+
+            :hover {
+              text-decoration: underline;
+            }
+
+            &.selected-tag {
+              border-bottom: 3px solid #5176fe;
+            }
+
+            p {
+              margin: 0;
+              font-size: 1.2rem;
+              small {
+                color: grey;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .labs {
+    .lab {
+      width: 100%;
+    }
+
+    @media (min-width: 800px) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      .lab {
+        width: 30%;
+        margin: 0 1rem;
+      }
+    }
+  }
+}

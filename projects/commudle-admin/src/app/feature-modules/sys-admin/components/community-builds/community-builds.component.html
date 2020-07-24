@@ -19,9 +19,6 @@
             <h5>
               {{ cb.name }}
             </h5>
-            <p>
-              <small *ngIf="cb.need_team">Needs a Team</small>
-            </p>
             <p *ngIf="cb.link">
               <a target="_blank" href="{{ cb.link }}">
                 {{ cb.link }}
@@ -41,9 +38,11 @@
           </div>
           <div class="stats">
             <div>
-              <p>
-                {{ cb.votes_count }} <nb-icon icon="star" status="warning"></nb-icon>
-              </p>
+              <app-votes-display
+                [votableType]="'CommunityBuild'"
+                [votableId]="cb.id"
+                [icon]="'star'"
+              ></app-votes-display>
             </div>
             <div class="tags">
               <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>

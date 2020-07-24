@@ -1,0 +1,43 @@
+<div class="create-lab">
+
+  <div>
+    <nb-card>
+      <nb-card-body>
+
+        <div class="page-container">
+          <h2 class="header">
+            <fa-icon [icon]="faFlask" size="1x"></fa-icon>
+            What is the name of your Lab?
+          </h2>
+          <p>
+            A Lab is a place where people can perform something practically, under someone's guidance. So, let's begin with a name of what do you want to teach.
+            <br>
+            For instance, it could be <i>Create your first HTML Web Page</i> OR <i>Begin with Machine Learning</i>.
+            <br>
+            <br>
+            Let's begin with a name, and you'll be able to change it later!
+          </p>
+
+          <form class="community-edit-details-form" [formGroup]="labForm" (ngSubmit)="createLab()">
+            <div>
+
+              <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
+
+              <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
+                Required Field
+              </span>
+            </div>
+
+            <div class="submit-button">
+              <button nbButton [disabled]="!labForm.valid" type="submit" status="primary">
+                Let's Start!
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>
