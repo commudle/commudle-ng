@@ -5,6 +5,7 @@
 
 
   .header {
+    margin-bottom: 3.5rem;
     h1 {
       font-weight: 300;
       color: white;
@@ -20,31 +21,42 @@
   .tags-list {
     margin-top: 1rem;
     overflow-x: auto;
-    .tags {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
+    nb-card {
+      nb-card-body {
+        padding: 0.5rem 0.75rem;
+        .tags {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
 
-      a.tag {
-        text-decoration: none;
-        margin-right: 1.5rem;
 
-        :hover {
-          text-decoration: underline;
-        }
+          a.create-lab-button {
+            margin-right: 1.5rem;
+          }
 
-        &.selected-tag {
-          border-bottom: 3px solid #5176fe;
-        }
+          a.tag {
+            text-decoration: none;
+            margin-right: 1.5rem;
 
-        p {
-          margin: 0;
-          font-size: 1.2rem;
-          small {
-            color: grey;
+            :hover {
+              text-decoration: underline;
+            }
+
+            &.selected-tag {
+              border-bottom: 3px solid #5176fe;
+            }
+
+            p {
+              margin: 0;
+              font-size: 1.2rem;
+              small {
+                color: grey;
+              }
+            }
           }
         }
       }
+
     }
   }
 
@@ -59,7 +71,7 @@
       flex-wrap: wrap;
       .lab {
         width: 30%;
-        margin: 1rem;
+        margin: 0 1rem;
       }
     }
   }

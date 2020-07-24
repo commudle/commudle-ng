@@ -7,6 +7,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NbWindowService } from '@nebular/theme';
 import { EPublishStatusColors } from 'projects/shared-models/community-build.model';
+import { faFlask } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-my-labs',
@@ -14,6 +15,7 @@ import { EPublishStatusColors } from 'projects/shared-models/community-build.mod
   styleUrls: ['./my-labs.component.scss']
 })
 export class MyLabsComponent implements OnInit, OnDestroy {
+  faFlask = faFlask;
   @ViewChild('confirmDeleteTemplate') confirmDeleteTemplate: TemplateRef<any>;
   moment = moment;
   userSubscription;

@@ -5,14 +5,26 @@
       Labs
     </h1>
     <p>
-      The best way to learn, is step by step. Here you'll find a number of curated labs,
-      created by everyone who learnt something new and wants to make it easy for others to learn too!
+      The best way to learn, is step by step.
+      <br>
+      We introduce <strong>Labs</strong>,
+      a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!
     </p>
   </div>
   <div class="tags-list">
     <nb-card>
       <nb-card-body>
         <div class="tags">
+          <a
+            nbButton
+            class="create-lab-button"
+            [routerLink]="['/labs/create']"
+            size="tiny"
+            status="primary"
+            >
+            <nb-icon icon="plus"></nb-icon>
+            Create a Lab
+          </a>
           <a
             class="tag clickable"
             (click)="getLabs(null)"

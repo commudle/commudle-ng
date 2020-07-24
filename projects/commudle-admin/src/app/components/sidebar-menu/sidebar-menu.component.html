@@ -7,14 +7,14 @@
       </a>
     </nb-list-item>
 
-    <nb-list-item *ngIf="currentUser && currentUser.has_community_builds">
+    <nb-list-item>
       <a [routerLink]="['/builds/my-builds']">
         <nb-icon icon="bulb-outline"></nb-icon>
         My Builds
       </a>
     </nb-list-item>
 
-    <nb-list-item *ngIf="currentUser && currentUser.has_labs">
+    <nb-list-item>
       <a [routerLink]="['/labs/my-labs']">
         <fa-icon [icon]="faFlask"></fa-icon>
         &nbsp;
