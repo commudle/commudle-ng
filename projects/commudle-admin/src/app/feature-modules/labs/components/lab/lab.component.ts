@@ -45,10 +45,26 @@ export class LabComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
+  setMeta() {
+    this.title.setTitle(this.lab.name);
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `${this.lab.header_image ? this.lab.header_image : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: this.lab.name });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'article'});
+  }
+
   getLab(labId) {
     this.labsService.pShow(labId).subscribe(
       data => {
         this.lab = data;
+        this.setMeta()
         this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
         this.lastVisitedStepId = this.lab.last_visited_step_id;
         this.getDiscussionChat();
