@@ -111,7 +111,6 @@ export class LabsService {
     if (tag) {
       params = params.set('tag', tag);
     }
-    console.log(params);
     return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), {params}
     );

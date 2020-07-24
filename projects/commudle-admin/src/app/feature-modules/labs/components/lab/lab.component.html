@@ -63,10 +63,10 @@
                 <app-badge [text]="tag" [color]="'lightgrey'"></app-badge>
               </div>
             </div>
-            <div class="header-image">
+            <div *ngIf="lab.header_image" class="header-image">
               <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
             </div>
-            <div class="intro-content" [innerHTML]="labDescription"></div>
+            <div class="intro-content" [innerHTML]="lab.description"></div>
           </div>
           <div>
             <app-lab-step *ngIf="selectedLabStep >= 0" [step]="lab.lab_steps[selectedLabStep]"></app-lab-step>
@@ -109,7 +109,7 @@
               </span>
 
               <span class="successful-completion" *ngIf="selectedLabStep === lab.lab_steps.length - 1">
-                🥇 Kudos, you've completed it all!
+                🚀🏆 Kudos, you've completed it all!
               </span>
 
             </p>

@@ -35,7 +35,7 @@
     }
 
     .content {
-      max-width: 100%;
+      width: 100%;
       >nb-card {
         width: 100%;
         min-height: 50vh;
@@ -74,6 +74,12 @@
               }
             }
           }
+        }
+
+        nb-card-footer {
+          position: sticky;
+          bottom: 0;
+          background-color: white;
         }
       }
 
@@ -130,6 +136,9 @@
     .steps-status {
       .successful-completion {
         font-size: 1.5rem;
+        text-align: right;
+        line-height: 1.5rem;
+        display: inline-block;
       }
     }
   }
