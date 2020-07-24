@@ -1,0 +1,81 @@
+.labs {
+  .lab {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+    .content {
+      >h5 {
+        margin: 0
+      }
+
+      >p {
+        margin: 0
+      }
+
+      >div {
+        margin: 0;
+      }
+
+      .images {
+        display: flex;
+        .image {
+          width: 200px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+    }
+
+    .creator {
+      max-width: 100%;
+    }
+
+    .stats {
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        app-badge {
+          margin: 3px;
+        }
+      }
+    }
+
+    .actions {
+      >div {
+        margin: 0.5rem 0;
+      }
+    }
+
+    @media (min-width: 800px) {
+      flex-direction: row;
+
+      .content {
+        width: 60%
+      }
+
+      .creator {
+        width: 15%;
+      }
+
+      .stats {
+        width: 10%;
+      }
+    }
+  }
+}
+
+.image-window {
+  max-width: 100vw;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}

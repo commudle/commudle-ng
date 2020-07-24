@@ -7,10 +7,18 @@
       </a>
     </nb-list-item>
 
-    <nb-list-item *ngIf="currentUser && currentUser.has_community_builds">
+    <nb-list-item>
       <a [routerLink]="['/builds/my-builds']">
         <nb-icon icon="bulb-outline"></nb-icon>
         My Builds
+      </a>
+    </nb-list-item>
+
+    <nb-list-item>
+      <a [routerLink]="['/labs/my-labs']">
+        <fa-icon [icon]="faFlask"></fa-icon>
+        &nbsp;
+        My Labs
       </a>
     </nb-list-item>
 
@@ -59,6 +67,11 @@
         <nb-accordion-item-body>
           <a [routerLink]="['/sys-admin', 'community-builds']">
             Community Builds
+          </a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body>
+          <a [routerLink]="['/sys-admin', 'labs']">
+            Labs
           </a>
         </nb-accordion-item-body>
       </nb-accordion-item>
