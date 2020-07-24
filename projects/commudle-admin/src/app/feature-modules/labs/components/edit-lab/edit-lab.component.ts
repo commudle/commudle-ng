@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faFlask, faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { LabsService } from '../../services/labs.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -62,7 +62,7 @@ export class EditLabComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private labsService: LabsService,
     private toastLogService: LibToastLogService,
-    private apiRoutesService: ApiRoutesService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -206,6 +206,7 @@ export class EditLabComponent implements OnInit {
       data => {
         // this.router.navigate(['/builds/my-builds']);
         this.toastLogService.successDialog('Saved!');
+        this.router.navigate(['/labs/my-labs']);
       }
     );
   }
