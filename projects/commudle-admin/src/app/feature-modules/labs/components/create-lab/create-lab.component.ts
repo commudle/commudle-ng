@@ -30,7 +30,6 @@ export class CreateLabComponent implements OnInit {
   createLab() {
     this.labsService.createLab(this.labForm.get('name').value).subscribe(
       (data) => {
-        console.log(data.slug);
         this.router.navigate(['/labs', data.slug, 'edit']);
       }
     );

@@ -5,6 +5,7 @@ import { VoteChannel } from '../services/websockets/vote.channel';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { SVotesService } from '../services/s-votes.service';
 import { VotersComponent } from './voters/voters.component';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-votes-display',
@@ -17,6 +18,8 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() voteType: string;
   @Input() icon: string;
   @Input() size;
+
+  uuid = uuidv4();
 
   VotersComponent = VotersComponent;
 
@@ -51,13 +54,13 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
-    this.voteChannel.unsubscribe(this.votableType, this.votableId);
+    this.voteChannel.unsubscribe(this.votableType, this.votableId, this.uuid);
   }
 
   initData() {
     this.getAllVotes();
 
-    this.voteChannel.subscribe(this.votableType, this.votableId);
+    this.voteChannel.subscribe(this.votableType, this.votableId, this.uuid);
     this.receiveData();
   }
 
@@ -75,13 +78,14 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   toggleVote() {
     this.voteChannel.sendData(
       this.votableType, this.votableId,
+      this.uuid,
       this.voteChannel.ACTIONS.TOGGLE_VOTE,
       {}
     );
   }
 
   receiveData() {
-    this.voteChannel.channelData$[`${this.votableId}_${this.votableType}`].subscribe(
+    this.voteChannel.channelData$[`${this.votableId}_${this.votableType}_${this.uuid}`].subscribe(
       data => {
         if (data) {
           switch (data.action) {
