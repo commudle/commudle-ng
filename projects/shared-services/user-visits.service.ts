@@ -5,6 +5,7 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { UserVisitsChannel } from 'projects/shared-services/websockets/user-visits.channel';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { LibAuthwatchService } from './lib-authwatch.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,24 +19,30 @@ export class UserVisitsService {
 
   constructor(
     private http: HttpClient,
-    private apiRoutesService: ApiRoutesService,
     private userVisitsChannel: UserVisitsChannel,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private authWatchService: LibAuthwatchService
   ) {
 
   }
 
 
   subscribe(url) {
-    if (this.subscription) {
-      this.userVisitsChannel.unsubscribe();
+    const appToken = this.authWatchService.getAppToken();
+    if (appToken) {
+      if (this.subscription) {
+        this.userVisitsChannel.unsubscribe();
+      }
+      console.log(this.authWatchService.getAppToken());
+      this.subscription = this.userVisitsChannel.subscribe(
+        this.cookieService.get(environment.session_cookie_name),
+        url,
+        this.authWatchService.getAppToken()
+      );
     }
 
-    this.subscription = this.userVisitsChannel.subscribe(
-      this.cookieService.get(environment.session_cookie_name),
-      url
-    );
   }
+
 
   receiveData() {
 

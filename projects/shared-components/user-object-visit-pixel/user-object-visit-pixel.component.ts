@@ -3,6 +3,7 @@ import { UserObjectVisitsService } from '../services/user-object-visits.service'
 import { Location, DOCUMENT } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-user-object-visit-pixel',
@@ -25,7 +26,7 @@ export class UserObjectVisitPixelComponent implements OnInit, OnDestroy, AfterVi
     private userObjectVisitsService: UserObjectVisitsService,
     private location: Location,
     private cookieService: CookieService,
-    private elementRef: ElementRef
+    private authWatchService: LibAuthwatchService
   ) { }
 
   ngOnInit() {
@@ -71,7 +72,8 @@ export class UserObjectVisitPixelComponent implements OnInit, OnDestroy, AfterVi
       url: this.location.path(),
       session_token: this.cookieService.get(environment.session_cookie_name),
       parent_type: this.parentType,
-      parent_id: this.parentId
+      parent_id: this.parentId,
+      app_token: this.authWatchService.getAppToken()
     };
 
     this.userObjectVisitsService.create(userObjectVisit).subscribe(data => {

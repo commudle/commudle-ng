@@ -38,6 +38,7 @@
       max-width: 100%;
       >nb-card {
         width: 100%;
+        min-height: 50vh;
         .introduction {
           display: flex;
           flex-direction: column;

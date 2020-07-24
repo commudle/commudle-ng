@@ -22,6 +22,8 @@ export class LibAuthwatchService {
   private currentUser: BehaviorSubject<ICurrentUser> = new BehaviorSubject(null);
   public currentUser$ = this.currentUser.asObservable();
 
+  private appToken;
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private http: HttpClient,
@@ -41,23 +43,9 @@ export class LibAuthwatchService {
 
   }
 
-
-  // for logout
-  // deleteAuthCookie() {
-
-  //   this.signOut().subscribe();
-  //   // const date = new Date();
-  //   // // consider the cookie to be expired
-  //   // date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
-
-  //   // // set the new expiry date on the cookie
-  //   // this.document.cookie = this.authCookieName+"=; expires="+date.toUTCString()+"; path=/";
-  //   this.cookieService.delete(environment.auth_cookie_name);
-  //   this.currentUser.next(null);
-  //   this.currentUserVerified.next(false);
-
-  // }
-
+  getAppToken() {
+    return this.appToken;
+  }
 
   // check if user is already signed in
   checkAlreadySignedIn(): Observable<boolean> {
@@ -68,6 +56,7 @@ export class LibAuthwatchService {
       this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION),
       {}).pipe(
         tap(data => {
+          this.appToken = data.app_token;
           if (data.user) {
             this.currentUser.next(data.user);
             this.currentUserVerified.next(true);
