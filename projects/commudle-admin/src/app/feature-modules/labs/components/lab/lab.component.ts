@@ -64,7 +64,7 @@ export class LabComponent implements OnInit, OnDestroy {
     this.labsService.pShow(labId).subscribe(
       data => {
         this.lab = data;
-        this.setMeta()
+        this.setMeta();
         this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
         this.lastVisitedStepId = this.lab.last_visited_step_id;
         this.getDiscussionChat();
