@@ -38,8 +38,19 @@ export class AppComponent {
         this.currentUser = currentUser;
         this.actionCableConnectionSocket.connectToServer();
       });
-  }
 
+      this.router.events.subscribe(event =>{
+        setTimeout(() => {
+                if (window.screen.width <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ){
+                  document.getElementById("commudleSidebar").classList.remove('expanded');
+                  document.getElementById("commudleSidebar").classList.add('collapsed');
+                }
+                if(window.screen.width >= 1000){
+                  this.sidebarService.expand();
+                }
+            }, 10);
+      });
+  }
 
   toggleSidebar() {
     this.sidebarService.toggle(false, 'left');
@@ -53,5 +64,15 @@ export class AppComponent {
     this.router.navigate(['/']);
   }
 
+  demo(e){
+    console.log(e)
+    console.log("Hello");
+  }
+
+  closeSidebarMobile(){
+    if (window.screen.width <= 1000) {
+      this.sidebarService.collapse();
+    }
+  }
 
 }
