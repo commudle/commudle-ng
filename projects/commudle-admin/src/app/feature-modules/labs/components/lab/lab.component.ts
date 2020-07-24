@@ -60,10 +60,12 @@ export class LabComponent implements OnInit, OnDestroy {
   setStep(index) {
     this.lastVisitedStepId = null;
     this.selectedLabStep = index;
+    this.lastVisitedStepId = null;
   }
 
   changeStep(count) {
     this.selectedLabStep += count;
+    this.lastVisitedStepId = null;
   }
 
   getDiscussionChat() {
