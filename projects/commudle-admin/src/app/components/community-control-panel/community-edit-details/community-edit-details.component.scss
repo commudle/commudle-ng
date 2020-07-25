@@ -28,14 +28,13 @@
   }
 
   .uploaded-logo-image{
-    height: 150px;
-    max-width: 300px;
+    width: 300px;
     overflow: hidden;
     // background: #d3d3d36b;
     margin: 0 auto;
     text-align: center;
     img {
-      width: 100%;
+      max-width: 100%;
 
     }
 
