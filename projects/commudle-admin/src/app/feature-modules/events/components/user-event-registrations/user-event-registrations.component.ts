@@ -119,7 +119,7 @@ export class UserEventRegistrationsComponent implements OnInit {
 
   setResponses(data) {
     this.totalEntries = data.total;
-    this.rows = data.data_form_entity_response_groups;
+    this.rows = data.user_event_registrations;
     this.isLoading = false;
     this.emptyMessage = 'No entries found';
 
@@ -148,7 +148,6 @@ export class UserEventRegistrationsComponent implements OnInit {
         }
       }
     );
-
   }
 
 
