@@ -188,9 +188,11 @@ export class EditLabComponent implements OnInit {
 
   // lab_steps
   updateLab(publishStatus) {
-    this.labForm.patchValue({
-      publish_status: publishStatus
-    });
+    if (this.lab.publish_status !== EPublishStatus.published) {
+      this.labForm.patchValue({
+        publish_status: publishStatus
+      });
+    }
     this.labsService.updateLab(this.lab.slug, this.labForm.value).subscribe(
       data => {
         if (data) {
