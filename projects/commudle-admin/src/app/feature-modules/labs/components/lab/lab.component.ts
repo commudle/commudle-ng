@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef } from '@angular/core';
 import { LabsService } from '../../services/labs.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-lab',
@@ -23,6 +24,7 @@ export class LabComponent implements OnInit, OnDestroy {
   discussionChat: IDiscussion;
   routeSubscription;
 
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private labsService: LabsService,
@@ -30,6 +32,7 @@ export class LabComponent implements OnInit, OnDestroy {
     private title: Title,
     private meta: Meta,
     private discussionsService: DiscussionsService,
+    @Inject(DOCUMENT) private doc: Document
   ) { }
 
   ngOnInit() {
@@ -60,6 +63,16 @@ export class LabComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'og:type', content: 'article'});
   }
 
+
+
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+  }
+
   getLab(labId) {
     this.labsService.pShow(labId).subscribe(
       data => {
@@ -74,12 +87,13 @@ export class LabComponent implements OnInit, OnDestroy {
 
 
   setStep(index) {
+    this.scrollToTop();
     this.lastVisitedStepId = null;
     this.selectedLabStep = index;
-    this.lastVisitedStepId = null;
   }
 
   changeStep(count) {
+    this.scrollToTop();
     this.selectedLabStep += count;
     this.lastVisitedStepId = null;
   }
@@ -91,7 +105,7 @@ export class LabComponent implements OnInit, OnDestroy {
   }
 
   scroll(el) {
-    el.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"})
+    el.scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
   }
 
 
