@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { NbIconLibraries } from '@nebular/theme';
+
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,9 @@ export class AppComponent {
     private actionCableConnectionSocket: ActionCableConnectionSocket,
     private sidebarService: NbSidebarService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    // to register font awesome in nb-icon
+    // private iconLibraries: NbIconLibraries
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
@@ -38,6 +42,11 @@ export class AppComponent {
         this.currentUser = currentUser;
         this.actionCableConnectionSocket.connectToServer();
       });
+      // this.iconLibraries.registerFontPack('solid', {packClass: 'fas', iconClassPrefix: 'fa'});
+      // this.iconLibraries.registerFontPack('regular', {packClass: 'far', iconClassPrefix: 'fa'});
+      // this.iconLibraries.registerFontPack('light', {packClass: 'fal', iconClassPrefix: 'fa'});
+      // this.iconLibraries.registerFontPack('duotone', {packClass: 'fad', iconClassPrefix: 'fa'});
+      // this.iconLibraries.registerFontPack('brands', {packClass: 'fab', iconClassPrefix: 'fa'});
 
       this.router.events.subscribe(event =>{
         setTimeout(() => {
@@ -54,9 +63,7 @@ export class AppComponent {
       });
   }
 
-  ngAfterViewInit(): void {
-    (<any>window).twttr.widgets.load();
-  }
+
 
   toggleSidebar() {
     this.sidebarService.toggle(false, 'left');
@@ -70,10 +77,5 @@ export class AppComponent {
     this.router.navigate(['/']);
   }
 
-  closeSidebarMobile(){
-    if (window.screen.width <= 1000) {
-      this.sidebarService.collapse();
-    }
-  }
 
 }

@@ -33,11 +33,12 @@
 
   </nb-layout-header>
 
-  <nb-sidebar responsive="true" id="commudleSidebar">
+  <nb-sidebar responsive="true">
     <app-sidebar-menu></app-sidebar-menu>
   </nb-sidebar>
 
-  <nb-layout-column (click)="closeSidebarMobile()">
+  <nb-layout-column>
+
     <router-outlet></router-outlet>
   </nb-layout-column>
 
@@ -54,3 +55,4 @@
 
 
 <app-user-visit-tracker></app-user-visit-tracker>
+
