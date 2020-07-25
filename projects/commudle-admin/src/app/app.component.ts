@@ -42,7 +42,9 @@ export class AppComponent {
       this.router.events.subscribe(event =>{
         setTimeout(() => {
                 if (window.screen.width <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ){
+                  // remove expanded class
                   document.getElementById("commudleSidebar").classList.remove('expanded');
+                  // add collaapsed class
                   document.getElementById("commudleSidebar").classList.add('collapsed');
                 }
                 if(window.screen.width >= 1000){
