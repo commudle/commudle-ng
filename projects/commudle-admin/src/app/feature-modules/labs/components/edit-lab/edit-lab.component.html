@@ -157,15 +157,16 @@
 
             <p class="publish-notification text-basic">
               <i>
-                <small>
+                <small *ngIf="this.lab.publish_status !== EPublishStatus.published">
                   *We aim to have amazing and really useful content in Labs.
               Once you submit for a Review, your Lab will be Live in 24 hours!
                 </small>
               </i>
             </p>
 
-            <div class="actions">
+            <div class="actions" >
               <button
+                *ngIf="this.lab.publish_status !== EPublishStatus.published"
                 [disabled]="!labForm.valid"
                 type="submit"
                 nbButton
@@ -185,7 +186,14 @@
                 (click)="updateLab(EPublishStatus.submitted)"
                 >
                 <nb-icon icon="checkmark"></nb-icon>
-                Submit For Review
+
+                <span *ngIf="this.lab.publish_status !== EPublishStatus.published">
+                  Submit For Review
+                </span>
+            
+                <span *ngIf="this.lab.publish_status == EPublishStatus.published">
+                  Save Changes
+                </span>
               </button>
             </div>
 
