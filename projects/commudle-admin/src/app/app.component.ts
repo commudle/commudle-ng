@@ -48,9 +48,21 @@ export class AppComponent {
       // this.iconLibraries.registerFontPack('duotone', {packClass: 'fad', iconClassPrefix: 'fa'});
       // this.iconLibraries.registerFontPack('brands', {packClass: 'fab', iconClassPrefix: 'fa'});
 
-
-
+      this.router.events.subscribe(event =>{
+        setTimeout(() => {
+                if (window.screen.width <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ){
+                  // remove expanded class
+                  document.getElementById("commudleSidebar").classList.remove('expanded');
+                  // add collaapsed class
+                  document.getElementById("commudleSidebar").classList.add('collapsed');
+                }
+                if(window.screen.width >= 1000){
+                  this.sidebarService.expand();
+                }
+            }, 10);
+      });
   }
+
 
 
   toggleSidebar() {
