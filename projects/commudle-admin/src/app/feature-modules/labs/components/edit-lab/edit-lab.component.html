@@ -1,0 +1,198 @@
+<div class="create-lab">
+
+  <div *ngIf="lab">
+    <nb-card>
+      <nb-card-body>
+
+        <div class="page-container">
+          <h2 class="header">
+            <fa-icon [icon]="faFlask" size="1x"></fa-icon>
+            Let's complete it!
+          </h2>
+          <p>
+
+          </p>
+
+          <form class='lab-header-image' [formGroup]="headerImageForm">
+            <div class="header-image">
+              <div>
+                <div class="uploaded-header-image" *ngIf="uploadedHeaderImage || lab.header_image">
+                  <img src="{{uploadedHeaderImage || lab.header_image.url}}" alt="Profile Picture">
+                </div>
+                <button
+                  class="delete-header-image-button"
+                  nbButton
+                  outline
+                  size="tiny"
+                  status="danger"
+                  *ngIf="uploadedHeaderImage || lab.header_image"
+                  (click)="deleteEventHeader()">
+                  <nb-icon icon="close-circle"></nb-icon>
+                  Delete Image
+                </button>
+              </div>
+              <label class="clickable" [ngClass]="{'hidden': uploadedHeaderImage || (lab.header_image && lab.header_image.url)}">
+                <span>
+                  <span>
+                    <nb-icon icon="image-outline"></nb-icon>
+                  </span>
+                  <span>
+                    Click to upload a header image (optional)
+                  </span>
+                </span>
+                <input formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
+              </label>
+            </div>
+          </form>
+
+          <form class="lab-form" [formGroup]="labForm">
+            <div class="overview">
+              <div>
+                <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
+
+                <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
+                  Required Field
+                </span>
+              </div>
+              <div>
+
+                <editor
+                  formControlName="description"
+                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                  [init]="{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                      'advlist lists autolink link charmap preview anchor',
+                      'visualblocks code table charmap image codesample',
+                      'insertdatetime table paste code help wordcount autoresize'
+                    ],
+                    toolbar:
+                      'formatselect | bold italic backcolor | \
+                      link | alignleft aligncenter alignright alignjustify | \
+                      bullist numlist outdent indent | image | table | codesample | removeformat | help',
+                    default_link_target: '_blank',
+                    image_list: imagesList,
+                    image_advtab: true,
+                    branding: false,
+                    images_upload_handler: this.uploadTextImage.bind(this),
+                    toolbar_location: 'bottom',
+                    toolbar_sticky: true
+                  }">
+
+                </editor>
+              </div>
+
+            </div>
+
+            <div formArrayName="lab_steps" *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i=index;">
+              <div class="lab-step" [formGroupName]="i">
+                <h3 class="steps-counter">
+                  {{ i+1 }}. {{ this.lStep.get('name').value }}
+                  &nbsp;
+                  <nb-icon icon="close-circle-outline" status="danger" class="clickable" (click)="removeStep(i)"></nb-icon>
+                </h3>
+
+                <div class="name">
+                  <input type="text" nbInput fullWidth fieldSize="large" formControlName="name" placeholder="Add a Title">
+
+                  <!-- <span *ngIf="lStep.get('name').touched && lStep.get('name').invalid && lStep.get('name').errors.required" class="validation-error-text">
+                    Required Field
+                  </span> -->
+                </div>
+                <div>
+                  <editor
+                    formControlName="description"
+                    apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                    [init]="{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        'advlist lists autolink link charmap preview anchor',
+                        'visualblocks code table charmap image codesample',
+                        'insertdatetime table paste code help wordcount autoresize'
+                      ],
+                      toolbar:
+                        'formatselect | bold italic backcolor | \
+                        link | alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | image | table | codesample | removeformat | help',
+                      default_link_target: '_blank',
+                      image_list: imagesList,
+                      image_advtab: true,
+                      branding: false,
+                      images_upload_handler: this.uploadTextImage.bind(this),
+                      toolbar_location: 'bottom',
+                      toolbar_sticky: true
+                    }">
+
+                  </editor>
+                  <!-- <span *ngIf="lStep.get('description').touched && lStep.get('description').invalid && lStep.get('description').errors.required" class="validation-error-text">
+                    Required Field
+                  </span> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="add-step-button">
+              <button nbButton size="medium" (click)="addStep()" status="basic" fullWidth>
+                <fa-icon [icon]="faPlus"></fa-icon>
+                &nbsp;
+                Add Step
+              </button>
+            </div>
+
+            <div class="tags">
+              <label fullWidth>
+                <app-badge [text]="'Tags, help, you, get, a, better, visibility, 😃'" [color]="'#4e74ff'"></app-badge>
+                <input
+                  type="text"
+                  nbInput
+                  fullWidth
+                  size="large"
+                  [(ngModel)]="tags"
+                  [ngModelOptions]="{standalone: true}"
+                  placeholder="Enter tags separated by comma (a, b, c...)">
+              </label>
+            </div>
+
+            <p class="publish-notification text-basic">
+              <i>
+                <small>
+                  *We aim to have amazing and really useful content in Labs.
+              Once you submit for a Review, your Lab will be Live in 24 hours!
+                </small>
+              </i>
+            </p>
+
+            <div class="actions">
+              <button
+                [disabled]="!labForm.valid"
+                type="submit"
+                nbButton
+                outline
+                status="info"
+                (click)="updateLab(EPublishStatus.draft)"
+                >
+                <nb-icon icon="edit"></nb-icon>
+                Save as Draft
+              </button>
+              <button
+                [disabled]="!labForm.valid"
+                type="submit"
+                nbButton
+                outline
+                status="primary"
+                (click)="updateLab(EPublishStatus.submitted)"
+                >
+                <nb-icon icon="checkmark"></nb-icon>
+                Submit For Review
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

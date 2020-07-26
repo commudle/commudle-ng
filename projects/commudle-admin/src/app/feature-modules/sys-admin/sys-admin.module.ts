@@ -7,6 +7,7 @@ import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.
 import { NbCardModule, NbWindowModule, NbIconModule, NbButtonModule, NbListModule, NbSelectModule } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
+import { LabsComponent } from './components/labs/labs.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { CommunityBuildsComponent } from './components/community-builds/communit
     SysAdminComponent,
     AdminSurveysComponent,
     CommunityBuildsComponent,
+    LabsComponent,
   ],
   imports: [
     CommonModule,

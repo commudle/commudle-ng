@@ -46,6 +46,7 @@ export const API_ROUTES = {
   GET_DATA_FORM: 'api/v2/data_forms',
   CREATE_DATA_FORM: 'api/v2/data_forms',
   UPDATE_DATA_FORM: 'api/v2/data_forms',
+  CLONE_COMMUNITY_DATA_FORM: 'api/v2/data_forms/clone_community_data_form',
 
 
   // question_types
@@ -245,9 +246,31 @@ export const API_ROUTES = {
   DISCUSSIONS: {
 
     PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
+    PUBLIC_GET_OR_CREATE_CHAT_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_for_track_slot_chat',
     PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat',
-    PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat'
+    PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat',
+    PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat'
+  },
+
+  LABS: {
+    INDEX: 'api/v2/labs',
+    CREATE: 'api/v2/labs',
+    UPDATE: 'api/v2/labs/update',
+    SHOW: 'api/v2/labs/show',
+    UPLOAD_HEADER_IMAGE: 'api/v2/labs/upload_header_image',
+    DELETE_HEADER_IMAGE: 'api/v2/labs/delete_header_image',
+    UPDATE_TAGS: 'api/v2/labs/update_tags',
+    UPLOAD_TEXT_IMAGE: 'api/v2/labs/upload_text_image',
+    DELETE: 'api/v2/labs',
+    UPDATE_PUBLISH_STATUS: 'api/v2/labs/update_publish_status',
+    ADD_LAB_STEP_VISIT: 'api/v2/labs/add_lab_step_visit',
+
+    PUBLIC: {
+      SHOW: 'api/v2/labs/public/show',
+      TAGS: 'api/v2/labs/public/tags',
+      INDEX: 'api/v2/labs/public'
+    }
   },
 
 
@@ -266,6 +289,12 @@ export const API_ROUTES = {
   USER_MESSAGES: {
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
+
+  },
+
+  USER_OBJECT_VISITS: {
+    CREATE: 'api/v2/user_object_visits',
+    MARK_END_TIME: 'api/v2/user_object_visits/mark_end_time',
 
   },
 

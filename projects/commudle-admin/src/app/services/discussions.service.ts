@@ -24,6 +24,15 @@ export class DiscussionsService {
     );
   }
 
+
+  pGetOrCreateChatForTrackSlot(trackSlotId): Observable<IDiscussion> {
+    const params = new HttpParams().set('track_slot_id', trackSlotId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_CHAT_FOR_TRACK_SLOT),
+      { params }
+    );
+  }
+
   pGetOrCreateQnAForEvent(eventId): Observable<IDiscussion> {
     const params = new HttpParams().set('event_id', eventId);
     return this.http.get<IDiscussion>(
@@ -45,6 +54,14 @@ export class DiscussionsService {
     const params = new HttpParams().set('community_build_id', communityBuildId);
     return this.http.get<IDiscussion>(
       this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT),
+      { params }
+    );
+  }
+
+  pGetOrCreateForLabChat(labId): Observable<IDiscussion> {
+    const params = new HttpParams().set('lab_id', labId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT),
       { params }
     );
   }

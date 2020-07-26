@@ -41,6 +41,7 @@ import { ResponsesTableComponent } from './form-responses/responses-table/respon
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
+import { UserObjectVisitPixelComponent } from './user-object-visit-pixel/user-object-visit-pixel.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { VotersComponent } from './votes-display/voters/voters.component';
     ResponsesTableComponent,
     UserDetailsCellComponent,
     VotesDisplayComponent,
-    VotersComponent
+    VotersComponent,
+    UserObjectVisitPixelComponent,
   ],
   imports: [
     CommonModule,
@@ -106,7 +108,8 @@ import { VotersComponent } from './votes-display/voters/voters.component';
     DataFormFillComponent,
     UserVisitTrackerComponent,
     FormResponsesComponent,
-    VotesDisplayComponent
+    VotesDisplayComponent,
+    UserObjectVisitPixelComponent
   ]
 })
 export class SharedComponentsModule { }
