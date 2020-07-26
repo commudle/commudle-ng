@@ -26,7 +26,7 @@ export class EditLabComponent implements OnInit {
   uploadedHeaderImageFile: File;
   imagesList = [];
 
-  tags;
+  tags = '';
 
 
   headerImageForm = this.fb.group({

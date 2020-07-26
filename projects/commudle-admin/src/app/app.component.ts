@@ -52,10 +52,6 @@ export class AppComponent {
       });
   }
 
-  ngAfterViewInit(): void {
-    (<any>window).twttr.widgets.load();
-  }
-
   toggleSidebar() {
     this.sidebarService.toggle(false, 'left');
   }
@@ -68,7 +64,7 @@ export class AppComponent {
     this.router.navigate(['/']);
   }
 
-  closeSidebarMobile(){
+  closeSidebarMobile() {
     if (window.screen.width <= 1000) {
       this.sidebarService.collapse();
     }
