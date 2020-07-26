@@ -16,7 +16,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class CreateCommunityBuildComponent implements OnInit {
 
   cBuild: ICommunityBuild;
-  tags;
+  tags = '';
   linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
@@ -177,7 +177,13 @@ export class CreateCommunityBuildComponent implements OnInit {
       key => (!(cBuildFormValue[key] == null) ? formData.append(`community_build[${key}]`, cBuildFormValue[key]) : '')
       );
 
-    formData.append('community_build[publish_status]', publishStatus);
+
+    if (this.cBuild && this.cBuild.publish_status === EPublishStatus.published) {
+      formData.append('community_build[publish_status]', this.cBuild.publish_status);
+    } else {
+      formData.append('community_build[publish_status]', publishStatus);
+    }
+
 
     for (let i = 0; i < this.uploadedImagesFiles.length; i++) {
       Object.keys(this.uploadedImagesFiles[i]).forEach(
@@ -200,6 +206,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
 
   updateCommunityBuild(publishStatus: EPublishStatus) {
+
     this.communityBuildsService.update(this.cBuild.id, this.buildFormData(publishStatus)).subscribe(
       data => {
         this.cBuild = data;
