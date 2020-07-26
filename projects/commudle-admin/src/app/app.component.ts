@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
-import { NbIconLibraries } from '@nebular/theme';
-
 
 @Component({
   selector: 'app-root',
@@ -31,9 +29,7 @@ export class AppComponent {
     private actionCableConnectionSocket: ActionCableConnectionSocket,
     private sidebarService: NbSidebarService,
     private titleService: Title,
-    private router: Router,
-    // to register font awesome in nb-icon
-    // private iconLibraries: NbIconLibraries
+    private router: Router
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
@@ -42,18 +38,11 @@ export class AppComponent {
         this.currentUser = currentUser;
         this.actionCableConnectionSocket.connectToServer();
       });
-      // this.iconLibraries.registerFontPack('solid', {packClass: 'fas', iconClassPrefix: 'fa'});
-      // this.iconLibraries.registerFontPack('regular', {packClass: 'far', iconClassPrefix: 'fa'});
-      // this.iconLibraries.registerFontPack('light', {packClass: 'fal', iconClassPrefix: 'fa'});
-      // this.iconLibraries.registerFontPack('duotone', {packClass: 'fad', iconClassPrefix: 'fa'});
-      // this.iconLibraries.registerFontPack('brands', {packClass: 'fab', iconClassPrefix: 'fa'});
 
       this.router.events.subscribe(event => {
         setTimeout(() => {
                 if (window.screen.width <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ){
-                  // remove expanded class
                   document.getElementById("commudleSidebar").classList.remove('expanded');
-                  // add collaapsed class
                   document.getElementById("commudleSidebar").classList.add('collapsed');
                 }
                 if (window.screen.width >= 1000)  {
@@ -63,7 +52,9 @@ export class AppComponent {
       });
   }
 
-
+  ngAfterViewInit(): void {
+    (<any>window).twttr.widgets.load();
+  }
 
   toggleSidebar() {
     this.sidebarService.toggle(false, 'left');
@@ -77,5 +68,10 @@ export class AppComponent {
     this.router.navigate(['/']);
   }
 
+  closeSidebarMobile(){
+    if (window.screen.width <= 1000) {
+      this.sidebarService.collapse();
+    }
+  }
 
 }
