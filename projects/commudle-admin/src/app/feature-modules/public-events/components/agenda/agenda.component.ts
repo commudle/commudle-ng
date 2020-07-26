@@ -13,6 +13,7 @@ import * as _ from 'lodash';
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss']
 })
+
 export class AgendaComponent implements OnInit {
   moment = moment;
 
@@ -52,15 +53,25 @@ export class AgendaComponent implements OnInit {
     this.eventLocations[locationIndex].event_location_tracks[data.track_index].track_slots[data.track_slot_index].user_vote = data.preference;
   }
 
+  // TODO: Have to fix this, not working as intended
   getUpcomingEvents() {
+    let allEvents: Array<ITrackSlot> = [];
     let upcomingEvents: Array<ITrackSlot> = [];
 
-    this.eventLocations.forEach(el => el.event_location_tracks.forEach(elt => elt.track_slots.forEach(slot => upcomingEvents.push(slot))));
+    this.eventLocations.forEach(el => el.event_location_tracks.forEach(elt => elt.track_slots.forEach(slot => allEvents.push(slot))));
 
-    upcomingEvents = _.sortBy(upcomingEvents, slot => { // @ts-ignore
+    allEvents = _.sortBy(allEvents, slot => { // @ts-ignore
       return new moment(slot.start_time);
     });
 
-    return upcomingEvents;
+    allEvents.forEach(slot => {
+      // @ts-ignore
+      if ((new moment(slot.start_time)).valueOf() > moment.now()) {
+        upcomingEvents.push(slot);
+      }
+    });
+
+    // return upcomingEvents;
+    return allEvents;
   }
 }

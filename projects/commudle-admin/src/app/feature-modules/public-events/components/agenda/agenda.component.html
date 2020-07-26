@@ -7,13 +7,13 @@
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <h6>Upcoming Events</h6>
-      <div class="event-upcoming">
+      <h6 *ngIf="getUpcomingEvents().length">Upcoming Events</h6>
+      <div class="event-upcoming" *ngIf="getUpcomingEvents().length">
         <nb-card *ngFor="let slot of getUpcomingEvents()">
           <nb-card-body>
             <div class="upcoming-session-time">
               <nb-icon icon="clock-outline"></nb-icon>&nbsp;
-              <p>{{ moment(slot.start_time).format('h:m A') }}</p>
+              <p>{{ moment(slot.start_time).format('h:mm A') }}</p>
             </div>
             <p class="upcoming-session-title">{{ slot.session_title }}</p>
             <nb-actions size="small">
