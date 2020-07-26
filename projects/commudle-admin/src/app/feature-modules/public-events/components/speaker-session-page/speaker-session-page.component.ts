@@ -34,6 +34,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
 
   discussion: IDiscussion;
+  chat: IDiscussion;
+  currentTab;
 
   pollableType;
   pollableId;
@@ -53,6 +55,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   endTime;
 
   currentUser: ICurrentUser;
+  chatCount = 0;
+  questionCount = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -113,6 +117,7 @@ export class SpeakerSessionPageComponent implements OnInit {
         } else {
           this.getEventEmbeddedVideoStream();
           this.getDiscussionQnA();
+          this.getDiscussionChat();
           this.title.setTitle(`Live Session | ${this.event.name}`);
           this.pollableId = this.event.id;
           this.pollableType = 'Event';
@@ -126,6 +131,7 @@ export class SpeakerSessionPageComponent implements OnInit {
       data => {
         this.trackSlot = data;
         this.getDiscussionQnA();
+        this.getDiscussionChat();
         this.speaker = data.user;
         this.startTime = this.trackSlot.start_time;
         this.endTime = this.trackSlot.end_time;
@@ -158,10 +164,30 @@ export class SpeakerSessionPageComponent implements OnInit {
 
   }
 
+
+  getDiscussionChat() {
+    if (this.trackSlot) {
+      this.discussionsService.pGetOrCreateChatForTrackSlot(this.trackSlot.id).subscribe(
+        data => {
+          this.chat = data;
+        }
+      );
+    } else {
+      this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe(
+        data => {
+          this.chat = data;
+        }
+      );
+    }
+
+  }
+
   getEventEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe(
       data => {
-        this.embeddedVideoStream = data;
+        if (data) {
+          this.embeddedVideoStream = data;
+        }
       }
     );
   }
@@ -175,6 +201,39 @@ export class SpeakerSessionPageComponent implements OnInit {
       this.playerWidth = 700;
       this.playerHeight = 410;
     }
+  }
+
+
+  tabUpdate(tab, type) {
+    switch (type) {
+      case 'new': {
+        switch (tab) {
+          case 'chat':
+            if (this.currentTab !== 'chat') {
+              this.chatCount += 1;
+            }
+            break;
+          case 'qna':
+            if (this.currentTab !== 'qna') {
+              this.questionCount += 1;
+            }
+            break;
+        }
+        break;
+      }
+      case 'open': {
+        switch (tab) {
+          case 'chat':
+            this.chatCount = 0;
+            break;
+          case 'qna':
+            this.questionCount = 0;
+            break;
+        }
+        break;
+      }
+    }
+
   }
 
 }
