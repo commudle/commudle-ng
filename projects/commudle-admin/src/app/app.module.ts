@@ -59,6 +59,7 @@ import { EventCardComponent } from './components/home/event-card/event-card.comp
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 
+
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
 }
@@ -95,7 +96,6 @@ export function initApp(appInitService: AppInitService) {
     EditorModule,
     AppSharedComponentsModule,
     SharedComponentsModule,
-
 
     // external service modules
     LibErrorHandlerModule,

@@ -27,14 +27,15 @@ export class UserVisitsChannel {
   ) {}
 
 
-  subscribe(sessionToken, url) {
+  subscribe(sessionToken, url, appToken) {
     this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
             channel: APPLICATION_CABLE_CHANNELS.USER,
             session_token: sessionToken,
-            url: url
+            url: url,
+            app_token: appToken
           }, {
             received: (data) => {
               this.channelData.next(data);

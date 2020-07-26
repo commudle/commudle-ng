@@ -4,6 +4,17 @@
       <h3>
         Edit Form
       </h3>
+
+      <div *ngIf="dataForm && dataForm.parent_type === 'Kommunity'">
+        <button
+          class="clone-form-button"
+          nbButton outline style="info"
+          size="small"
+          status="info"
+          (click)="cloneCommunityDataForm()">
+          Clone This Form
+        </button>
+      </div>
     </nb-card-header>
   </nb-card>
   <form class="edit-data-form" [formGroup]="editDataForm">

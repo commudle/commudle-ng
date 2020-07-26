@@ -120,13 +120,16 @@ export class EditDataFormComponent implements OnInit {
     });
 
     // set the controls
-    this.dataFormsService.getDataFormDetails(this.activatedRoute.snapshot.params['id']).subscribe(
-      (dataForm) => {
-        this.dataForm = dataForm;
-        this.titleService.setTitle(`Edit ${this.dataForm.name} Form`);
-        this.fillExistingDataForm();
-      }
-    );
+    this.activatedRoute.params.subscribe(data => {
+      this.dataFormsService.getDataFormDetails(data.id).subscribe(
+        (dataForm) => {
+          this.dataForm = dataForm;
+          this.titleService.setTitle(`Edit ${this.dataForm.name} Form`);
+          this.fillExistingDataForm();
+        }
+      );
+    });
+
 
   }
 
@@ -186,5 +189,12 @@ export class EditDataFormComponent implements OnInit {
     }));
   }
 
-
+  cloneCommunityDataForm() {
+    this.dataFormsService.cloneCommunityForm(this.dataForm.id).subscribe(
+      data => {
+        this.router.navigate(['/admin/forms', data.id, 'edit']);
+        this.toastLogService.successDialog('Form Cloned!');
+      }
+    );
+  }
 }

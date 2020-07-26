@@ -4,11 +4,16 @@
     <nb-card-body>
       <h4>My Builds</h4>
       <p>Here's a list of builds you've shared with the community!</p>
+      <p>
+        <small>
+          (We're coming up with analytics on how many users spent time on your lab soon)
+        </small>
+      </p>
     </nb-card-body>
   </nb-card>
 
   <div class="add-new-build">
-    <button nbButton status="primary" size='medium' [routerLink]="['/my-profile/edit']">
+    <button *ngIf="incompleteProfile" nbButton status="primary" size='medium' [routerLink]="['/my-profile/edit']">
       <nb-icon icon="person"></nb-icon>
       Complete Profile
     </button>
@@ -99,7 +104,7 @@
   </ng-template>
 
   <ng-template #confirmDeleteTemplate let-data>
-    
+
     <div>
       <button nbButton size="small" status="basic" (click)="destroyBuild(data.index)">Yes</button>
       <button nbButton size="small" status="danger" (click)="windowRef.close()">No</button>
