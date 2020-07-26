@@ -23,7 +23,7 @@ export class CommunitiesService {
 
     return this.http.get<ICommunities>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.USER_ROLE_COMMUNITIES), { params }
-    )
+    );
     // .pipe(
     //   tap((data: ICommunities) => {
     //     this.organizerCommunities.next(data.communities);

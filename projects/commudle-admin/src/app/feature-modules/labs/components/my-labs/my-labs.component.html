@@ -1,0 +1,110 @@
+<div>
+
+  <nb-card>
+    <nb-card-body>
+      <h4>
+        <fa-icon class="text-primary" [icon]="faFlask"></fa-icon> My Labs
+      </h4>
+      <p>All your labs, at one place!</p>
+      <p>
+        <small>
+          (We're coming up with analytics on how many users spent time on your lab soon)
+        </small>
+      </p>
+    </nb-card-body>
+  </nb-card>
+
+  <div class="add-new-lab">
+    <button *ngIf="incompleteProfile" nbButton status="primary" size='medium' [routerLink]="['/my-profile/edit']">
+      <nb-icon icon="person"></nb-icon>
+      Complete Profile
+    </button>
+    &nbsp;
+    <button nbButton status="primary" size='medium' [routerLink]="['/labs/create']">
+      <nb-icon icon="plus"></nb-icon>
+      New Lab!
+    </button>
+    &nbsp;
+    <button nbButton status="warning" size='medium' [routerLink]="['/labs']">
+      <nb-icon icon="arrowhead-right-outline"></nb-icon>
+      More Labs
+    </button>
+  </div>
+
+  <div class="labs">
+    <nb-card>
+      <nb-card-body>
+        <div class="lab" *ngFor="let lab of labs; let i = index">
+          <div class="content">
+            <h5>
+              {{ lab.name }}
+              <a target="_blank" class="external-link" [routerLink]="['/labs', lab.slug]">
+                <small *ngIf="[EPublishStatus.draft, EPublishStatus.submitted].includes(lab.publish_status)">Preview</small>
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+            </h5>
+            <p>
+              <small>
+                {{ moment(lab.created_at).fromNow() }}
+              </small>
+            </p>
+          </div>
+          <div class="status">
+            <p>
+              <app-badge
+              [text]="lab.publish_status | titlecase"
+              [color]="EPublishStatusColors[lab.publish_status]">
+            </app-badge>
+            </p>
+          </div>
+          <div class="stats">
+            <div>
+              <app-votes-display
+                [votableType]="'Lab'"
+                [votableId]="lab.id"
+                [icon]="'star'"
+              ></app-votes-display>
+            </div>
+            <div class="tags">
+              <app-badge *ngFor="let t of lab.tags" [text]="t"></app-badge>
+            </div>
+          </div>
+          <div class="actions">
+            <div>
+              <button nbButton status="info" outline fullWidth size="tiny" [routerLink]="['/labs', lab.slug, 'edit']">
+                <nb-icon icon="edit"></nb-icon>
+                Edit
+              </button>
+            </div>
+            <div>
+              <button nbButton status="danger" outline fullWidth size="tiny" (click)="openDeleteConfirmation(lab, i)">
+                <nb-icon icon="close-circle"></nb-icon>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="add-new-build" *ngIf="labs.length > 5">
+    <button nbButton status="primary" size='medium' [routerLink]="['/labs/create']">
+      <nb-icon icon="plus"></nb-icon>
+      New Lab!
+    </button>
+  </div>
+
+  <ng-template #imageTemplate let-data>
+    <div class="image-window">
+      <img src="{{data.imageUrl}}">
+    </div>
+  </ng-template>
+
+  <ng-template #confirmDeleteTemplate let-data>
+
+    <div>
+      <button nbButton size="small" status="basic" (click)="destroyBuild(data.index)">Yes</button>
+      <button nbButton size="small" status="danger" (click)="windowRef.close()">No</button>
+    </div>
+  </ng-template>
+</div>

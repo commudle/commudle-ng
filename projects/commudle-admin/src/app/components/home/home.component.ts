@@ -8,7 +8,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { EventsService } from '../../services/events.service';
 import { ExternalApisService } from '../../services/external-apis.service';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +30,8 @@ export class HomeComponent implements OnInit {
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
     private eventsService: EventsService,
-    private meta: Meta
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   setMeta() {
+    this.title.setTitle("Commudle | Communities | Let's Share & Learn");
     this.meta.updateTag({name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({name: 'og:title', content: "Commudle | Communities | Let's Share & Learn"});
     this.meta.updateTag({

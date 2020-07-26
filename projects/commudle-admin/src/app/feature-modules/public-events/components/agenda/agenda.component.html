@@ -37,11 +37,11 @@
         <nb-tab *ngFor="let el of eventLocations; let i = index;"
                 tabIcon="{{ getTabIcon(el) }}" tabTitle="{{ getLocationName(el) }}">
           <app-event-location-tracks
-            (updateSessionPreference)="updateSessionPreference($event, i)"
-            *ngIf="el.location"
+            *ngIf="el.location || el.embedded_video_stream"
+            [event]="event"
             [community]="community"
             [eventLocation]="el"
-            [event]="event"
+            (updateSessionPreference)="updateSessionPreference($event, i)"
           ></app-event-location-tracks>
         </nb-tab>
       </nb-tabset>

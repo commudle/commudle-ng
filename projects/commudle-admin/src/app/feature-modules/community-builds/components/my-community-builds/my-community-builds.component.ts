@@ -37,7 +37,7 @@ export class MyCommunityBuildsComponent implements OnInit {
 
     this.authWatchService.currentUser$.subscribe(
       data => {
-        if (!data.profile_completed) {
+        if (data && !data.profile_completed) {
           this.incompleteProfile = true;
         }
       }
