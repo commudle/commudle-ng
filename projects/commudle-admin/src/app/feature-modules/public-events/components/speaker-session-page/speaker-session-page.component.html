@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <div *ngIf="userVisitData">
+      <div *ngIf="userVisitData" class="attendees">
 
         <nb-card class="visit-users" *ngIf="userVisitData.visiting_users.length > 0 && moment().isBetween(moment(startTime), moment(endTime))">
           <nb-card-header>You are watching this with</nb-card-header>
