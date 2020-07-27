@@ -53,7 +53,7 @@ export class AppComponent {
   }
 
   toggleSidebar() {
-    this.sidebarService.toggle(false, 'left');
+    this.sidebarService.toggle(false, 'mainMenu');
   }
 
   login() {
@@ -66,7 +66,7 @@ export class AppComponent {
 
   closeSidebarMobile() {
     if (window.screen.width <= 1000) {
-      this.sidebarService.collapse();
+      this.sidebarService.collapse('mainMenu');
     }
   }
 
