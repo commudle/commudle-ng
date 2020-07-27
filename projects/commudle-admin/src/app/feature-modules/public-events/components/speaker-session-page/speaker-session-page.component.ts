@@ -202,7 +202,6 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    console.log('resized', this.videoContainer.nativeElement, this.videoContainer.nativeElement.offsetWidth, this.videoContainer.nativeElement.clientHeight);
     if (window.innerWidth <= 1000) {
       this.playerWidth = window.innerWidth - 20;
       this.playerHeight = (this.playerWidth as number) / 1.78;
