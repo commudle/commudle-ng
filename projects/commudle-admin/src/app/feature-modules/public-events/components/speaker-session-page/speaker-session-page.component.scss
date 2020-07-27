@@ -311,6 +311,23 @@
           }
         }
 
+        .visit-users {
+          width: 100%;
+
+          nb-card-body {
+            display: flex;
+            flex-wrap: wrap;
+          }
+
+          .visit-user {
+            width: 200px;
+            margin: 0.5rem;
+            border: 1px solid lightgrey;
+            border-radius: 5px;
+          }
+        }
+      
+
         .video-stream {
           width: 100%;
           min-height: 95vh;
