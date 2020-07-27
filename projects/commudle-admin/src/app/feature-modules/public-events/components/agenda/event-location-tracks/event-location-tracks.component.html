@@ -10,12 +10,12 @@
     <nb-card *ngFor="let elt of eventLocation.event_location_tracks; let elti = index;">
       <nb-card-header>
         <nb-icon icon="arrowhead-right-outline"></nb-icon>&nbsp;
-        <p class="track-name">{{ elt.name }} </p>&nbsp;
+        <p class="track-name">{{ elt.name }}</p>&nbsp;
         <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
       </nb-card-header>
       <nb-card-body style="padding: 0;">
         <nb-list>
-          <nb-list-item *ngFor="let slot of elt.track_slots; let tsi = index;">
+          <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index;">
             <nb-actions class="medium">
               <nb-action>
                 <div class="session-time">

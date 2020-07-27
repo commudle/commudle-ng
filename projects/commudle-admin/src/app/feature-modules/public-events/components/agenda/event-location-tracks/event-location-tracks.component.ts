@@ -4,6 +4,7 @@ import {ICommunity} from 'projects/shared-models/community.model';
 import {IEventLocation} from 'projects/shared-models/event-location.model';
 import * as moment from 'moment';
 import {TrackSlotsService} from 'projects/commudle-admin/src/app/services/track_slots.service';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-event-location-tracks',
@@ -36,5 +37,12 @@ export class EventLocationTracksComponent implements OnInit {
         })
       }
     );
+  }
+
+  sortTrackSlots(track_slots) {
+    return _.sortBy(track_slots, slot => {
+      // @ts-ignore
+      return new moment(slot.start_time);
+    });
   }
 }
