@@ -41,8 +41,9 @@
 
       <h6>All Events</h6>
       <nb-tabset>
-        <nb-tab *ngFor="let el of eventLocations; let i = index;" tabIcon="{{ getTabIcon(el) }}"
-                tabTitle="{{ getLocationName(el) }}">
+        <nb-tab *ngFor="let el of eventLocations; let i = index;"
+                tabIcon="{{ getTabIcon(el) }}" tabTitle="{{ getLocationName(el) }}"
+                badgeText="{{ el.event_location_tracks.length }}" badgeStatus="info" badgePosition="top right">
           <app-event-location-tracks
             (updateSessionPreference)="updateSessionPreference($event, i)"
             *ngIf="el.location || el.embedded_video_stream"
