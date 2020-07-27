@@ -1,155 +1,155 @@
-.speaker-session-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  .card-row {
-    display: flex;
-    flex-direction: column;
+// .speaker-session-details {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   width: 100%;
+//   .card-row {
+//     display: flex;
+//     flex-direction: column;
 
-    width: 100%;
-    @media screen and (min-width: 1000px) {
-      flex-direction: row;
-      margin: 0 -0.5rem;
-    }
+//     width: 100%;
+//     @media screen and (min-width: 1000px) {
+//       flex-direction: row;
+//       margin: 0 -0.5rem;
+//     }
 
-    .card-session-details {
-      width: 100%;
+//     .card-session-details {
+//       width: 100%;
 
-      @media screen and (min-width: 1000px) {
-        width: 60%;
-      }
-
-
-      .session-details {
-        .community {
-          width: fit-content;
-        }
-
-        a {
-          text-decoration: none;
-        }
-        p {
-          margin-left: 0.5rem;
-        }
-
-        h4 {
-          margin-top: 0.3rem;
-          margin-bottom: 0;
-        }
-
-        .visitors {
-          color: #4e4e4e;
-        }
-
-      }
-
-      .track-slot-details {
-        margin-left: 0.3rem;
-      }
-
-      .speaker-details {
-
-        nb-card-body {
-          display: flex;
-          align-items: center;
-          text-align: center;
-          width: 100%;
-
-          h5, p {
-            margin-bottom: 0.5rem;
-          }
-          .avatar {
-            width: 75px;
-            img {
-              width: 100%;
-            }
-          }
-
-          .social-links {
-            display: flex;
-            justify-content: space-around;
-            nb-icon {
-              color: #477dff;
-            }
-          }
-
-          .about-me {
-            word-break: break-word;
-            width: 60%;
-            margin-left: 1rem;
-            text-align: left;
-          }
-        }
-      }
-    }
-
-    .video-stream {
-      height: 300px;
-
-      @media screen and (min-width: 1000px) {
-        height: 460px;
-      }
-
-      nb-card {
-        height: 100%;
-      }
+//       @media screen and (min-width: 1000px) {
+//         width: 60%;
+//       }
 
 
-      &.external_link {
-        height: 11rem !important;
-      }
+//       .session-details {
+//         .community {
+//           width: fit-content;
+//         }
 
-    }
+//         a {
+//           text-decoration: none;
+//         }
+//         p {
+//           margin-left: 0.5rem;
+//         }
 
-    .card-live-discussion {
-      width: 100%;
+//         h4 {
+//           margin-top: 0.3rem;
+//           margin-bottom: 0;
+//         }
 
-      nb-tabset {
-        height: 95%;
-        // min-height: 300px;
-        nb-tab {
-          height: 100%;
-          max-height: 75vh;
-          overflow: auto;
-        }
-      }
+//         .visitors {
+//           color: #4e4e4e;
+//         }
 
-      @media screen and (min-width: 1000px) {
-        width: 40%;
+//       }
 
-        nb-card {
-          height: 100%;
-        }
+//       .track-slot-details {
+//         margin-left: 0.3rem;
+//       }
 
-        nb-tabset {
+//       .speaker-details {
 
-          nb-tab {
-            max-height: 100vh;
-          }
-        }
-      }
-    }
+//         nb-card-body {
+//           display: flex;
+//           align-items: center;
+//           text-align: center;
+//           width: 100%;
 
-  }
+//           h5, p {
+//             margin-bottom: 0.5rem;
+//           }
+//           .avatar {
+//             width: 75px;
+//             img {
+//               width: 100%;
+//             }
+//           }
+
+//           .social-links {
+//             display: flex;
+//             justify-content: space-around;
+//             nb-icon {
+//               color: #477dff;
+//             }
+//           }
+
+//           .about-me {
+//             word-break: break-word;
+//             width: 60%;
+//             margin-left: 1rem;
+//             text-align: left;
+//           }
+//         }
+//       }
+//     }
+
+//     .video-stream {
+//       height: 300px;
+
+//       @media screen and (min-width: 1000px) {
+//         height: 460px;
+//       }
+
+//       nb-card {
+//         height: 100%;
+//       }
 
 
-  .visit-users {
-    width: 100%;
+//       &.external_link {
+//         height: 11rem !important;
+//       }
 
-    nb-card-body {
-      display: flex;
-      flex-wrap: wrap;
-    }
+//     }
 
-    .visit-user {
-      width: 200px;
-      margin: 0.5rem;
-      border: 1px solid lightgrey;
-      border-radius: 5px;
-    }
-  }
-}
+//     .card-live-discussion {
+//       width: 100%;
+
+//       nb-tabset {
+//         height: 95%;
+//         // min-height: 300px;
+//         nb-tab {
+//           height: 100%;
+//           max-height: 75vh;
+//           overflow: auto;
+//         }
+//       }
+
+//       @media screen and (min-width: 1000px) {
+//         width: 40%;
+
+//         nb-card {
+//           height: 100%;
+//         }
+
+//         nb-tabset {
+
+//           nb-tab {
+//             max-height: 100vh;
+//           }
+//         }
+//       }
+//     }
+
+//   }
+
+
+//   .visit-users {
+//     width: 100%;
+
+//     nb-card-body {
+//       display: flex;
+//       flex-wrap: wrap;
+//     }
+
+//     .visit-user {
+//       width: 200px;
+//       margin: 0.5rem;
+//       border: 1px solid lightgrey;
+//       border-radius: 5px;
+//     }
+//   }
+// }
 
 
 
@@ -163,3 +163,89 @@
 //     flex-direction: row;
 //   }
 // }
+
+
+.speaker-session-details {
+  display: flex;
+  flex-direction: column;
+
+
+    .card-row {
+      display: flex;
+
+
+      .card-session-details {
+        .session-details {
+
+          nb-card {
+            margin: 0;
+            nb-card-body {
+              .community {
+                width: fit-content;
+              }
+
+              .track-slot-details {
+                h4 {
+                  margin: 0;
+                }
+              }
+
+              .visitors {
+                margin: 0;
+              }
+
+              .live-notification {
+                margin: 0;
+              }
+            }
+            }
+          }
+      }
+
+      @media screen and (min-width: 1000px) {
+        flex-direction: row;
+        margin: 0 -0.5rem;
+
+        .card-session-details {
+          width: 75%;
+        }
+
+        .card-live-discussion {
+          width: 25%;
+          height: fit-content;
+          position: sticky;
+          top: 3.5rem;
+
+          nb-card {
+            height: 100vh;
+            nb-card-body {
+              width: 100%;
+
+              nb-tabset {
+                height: 100%;
+
+                nb-tab {
+                  padding: 0;
+                  height: 90%;
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+
+        .video-stream {
+          width: 100%;
+          min-height: 100vh;
+          nb-card {
+            min-height: 100vh;
+            nb-card-body {
+              padding: 0;
+
+            }
+          }
+        }
+
+      }
+    }
+}
