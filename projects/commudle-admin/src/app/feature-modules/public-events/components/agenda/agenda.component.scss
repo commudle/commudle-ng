@@ -38,11 +38,19 @@ nb-card-body h6 {
 
   .upcoming-session-title {
     font-size: large;
-    margin: 1rem 0;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .track-name {
+    font-size: 0.9rem;
+    margin-top: 0;
     text-align: center;
   }
 
   nb-actions {
     justify-content: center;
+
   }
 }

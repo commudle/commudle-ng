@@ -5,6 +5,13 @@
     .track-name {
       display: inline-block;
       margin: 0;
+      font-size: 1.3rem;
+    }
+
+    @media all and (max-width: 767px){
+      .track-name {
+        font-size: 1.1rem;
+      }
     }
 
     .session-time {
@@ -53,23 +60,6 @@
         p {
           font-size: 1rem;
         }
-      }
-    }
-
-    .session-speaker {
-      padding: 1px 12px;
-      border-color: rgba(0, 0, 0, 0.12);
-      border-width: thin;
-      border-style: solid;
-      border-radius: 5px;
-      min-width: max-content;
-
-      small {
-        font-weight: 400;
-      }
-
-      nb-icon {
-        font-size: 0.875rem;
       }
     }
   }

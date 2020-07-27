@@ -8,7 +8,7 @@
     </nb-card-header>
     <nb-card-body>
       <h6 *ngIf="getUpcomingEvents().length">Upcoming Events</h6>
-      <div class="event-upcoming" *ngIf="getUpcomingEvents().length">
+      <div *ngIf="getUpcomingEvents().length" class="event-upcoming">
         <nb-card *ngFor="let slot of getUpcomingEvents()">
           <nb-card-body>
             <div class="upcoming-session-time">
@@ -16,6 +16,13 @@
               <p>{{ moment(slot.start_time).format('h:mm A') }}</p>
             </div>
             <p class="upcoming-session-title">{{ slot.session_title }}</p>
+            <div *ngFor="let el of eventLocations">
+              <div *ngFor="let elt of el.event_location_tracks">
+                <div *ngFor="let originalSlot of elt.track_slots">
+                  <p *ngIf="slot.id === originalSlot.id" class="track-name">({{ elt.name }})</p>
+                </div>
+              </div>
+            </div>
             <nb-actions size="small">
               <nb-action *ngIf="slot.user">
                 <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.avatar }}" showTitle="false"
@@ -24,7 +31,7 @@
               <nb-action>
                 <a [queryParams]="{track_slot_id: slot.id}"
                    [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
-                  <nb-icon icon="external-link"></nb-icon>
+                  <nb-icon icon="external-link" status="primary"></nb-icon>
                 </a>
               </nb-action>
             </nb-actions>
@@ -34,14 +41,14 @@
 
       <h6>All Events</h6>
       <nb-tabset>
-        <nb-tab *ngFor="let el of eventLocations; let i = index;"
-                tabIcon="{{ getTabIcon(el) }}" tabTitle="{{ getLocationName(el) }}">
+        <nb-tab *ngFor="let el of eventLocations; let i = index;" tabIcon="{{ getTabIcon(el) }}"
+                tabTitle="{{ getLocationName(el) }}">
           <app-event-location-tracks
+            (updateSessionPreference)="updateSessionPreference($event, i)"
             *ngIf="el.location || el.embedded_video_stream"
-            [event]="event"
             [community]="community"
             [eventLocation]="el"
-            (updateSessionPreference)="updateSessionPreference($event, i)"
+            [event]="event"
           ></app-event-location-tracks>
         </nb-tab>
       </nb-tabset>
