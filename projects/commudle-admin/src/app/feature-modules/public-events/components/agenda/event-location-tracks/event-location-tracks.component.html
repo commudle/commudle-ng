@@ -9,7 +9,8 @@
   <div class="track-container">
     <nb-card *ngFor="let elt of eventLocation.event_location_tracks; let elti = index;">
       <nb-card-header>
-        <p class="track-name">{{ elt.name | slice:0:15 }} </p>&nbsp;
+        <nb-icon icon="arrowhead-right-outline"></nb-icon>&nbsp;
+        <p class="track-name">{{ elt.name }} </p>&nbsp;
         <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
       </nb-card-header>
       <nb-card-body style="padding: 0;">
@@ -31,11 +32,9 @@
                   </div>
                 </div>
               </nb-action>
-              <nb-action *ngIf="slot.user">
-                <div class="session-speaker">
-                  <nb-icon icon="person-outline"></nb-icon>&nbsp;
-                  <small>{{ slot.user.name }}</small>
-                </div>
+              <nb-action *ngIf="slot.user" style="min-width: max-content">
+                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.avatar }}" showTitle="false"
+                         size="small"></nb-user>
               </nb-action>
               <nb-action *ngIf="slot.user_vote != null && event.editable">
                 <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">
@@ -46,7 +45,7 @@
               <nb-action>
                 <a [queryParams]="{track_slot_id: slot.id}"
                    [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
-                  <nb-icon icon="external-link"></nb-icon>
+                  <nb-icon icon="external-link" status="primary"></nb-icon>
                 </a>
               </nb-action>
             </nb-actions>
