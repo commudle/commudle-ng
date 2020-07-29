@@ -13,7 +13,7 @@
               External Link (to another platform)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-              Other (Embed Code)
+              Other (Embedded Iframe)
             </nb-option>
           </nb-select>
         </div>
@@ -32,7 +32,7 @@
             </span>
 
             <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.OTHER">
-              Embed Code
+              Other (Embedded Iframe)
             </span>
 
             <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>

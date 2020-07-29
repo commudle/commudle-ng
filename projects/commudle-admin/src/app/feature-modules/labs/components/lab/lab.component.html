@@ -103,7 +103,7 @@
             </a>
 
             <p class="steps-status text-info">
-              <span *ngIf="selectedLabStep === -1">
+              <span *ngIf="selectedLabStep === -1 && lab.lab_steps.length > 0">
                 Total {{ lab.lab_steps.length }} Steps!
               </span>
 
@@ -111,7 +111,7 @@
                 {{ selectedLabStep + 1 }} / {{ lab.lab_steps.length }}
               </span>
 
-              <span class="successful-completion" *ngIf="selectedLabStep === lab.lab_steps.length - 1">
+              <span class="successful-completion" *ngIf="selectedLabStep === lab.lab_steps.length - 1 && lab.lab_steps.length > 0">
                 🚀🏆 Kudos, you've completed it all!
               </span>
 
