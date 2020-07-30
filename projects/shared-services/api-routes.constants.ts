@@ -244,7 +244,9 @@ export const API_ROUTES = {
   },
 
   DISCUSSIONS: {
-
+    GET_PERSONAL_CHATS: 'api/v2/discussions/get_personal_chats',
+    GET_OR_CREATE_PERSONAL_CHAT: 'api/v2/discussions/get_or_create_personal_chat',
+    GET_PERSONAL_CHAT: 'api/v2/discussions/get_personal_chat',
     PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
     PUBLIC_GET_OR_CREATE_CHAT_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_for_track_slot_chat',
     PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
