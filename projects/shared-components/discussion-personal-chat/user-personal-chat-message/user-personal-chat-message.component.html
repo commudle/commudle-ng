@@ -1,0 +1,84 @@
+<div>
+  <div class="message">
+    <div class="author-image">
+      <img src="{{ message.user.avatar }}" alt="{{ message.user.name }}">
+    </div>
+    <div class="content-controls">
+      <div class="author-details">
+        <p>
+          <strong>
+            {{ message.user.name }}
+          </strong>
+          <small>
+            {{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}
+          </small>
+        </p>
+      </div>
+      <div class="content">{{ message.content }}</div>
+      <div class="details-flag">
+        <div class="clickable" (click)="login() && permittedActions.includes(allActions.FLAG) && emitFlag(message.id)">
+          <p [ngClass]="{'error-text': message.flags_count > 0}" nbTooltip="Report this message. (3 reports will delete it)" nbTooltipStatus="warning">
+            <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>
+            <nb-icon icon="flag-outline"></nb-icon>
+          </p>
+        </div>
+        <div
+          class="clickable"
+          *ngIf="permittedActions.includes(allActions.DELETE)"
+          (click)="login() && (permittedActions.includes(allActions.DELETE) || (currentUser && message.user.id === currentUser.id)) && emitDelete(message.id)"
+          nbTooltip="Delete" nbTooltipStatus="warning">
+          <p>
+            <nb-icon icon="close-circle-outline"></nb-icon>
+          </p>
+        </div>
+        <div class="votes clickable" (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Like!" nbTooltipStatus="danger">
+          <p [ngClass]="{'low' : (message.votes_count > 0 && message.votes_count <= 2), 'medium': (message.votes_count > 2 && message.votes_count <= 4), 'high': (message.votes_count > 4)}">
+            <nb-icon icon="heart-outline" *ngIf="message.votes_count === 0" status="danger"></nb-icon>
+            <nb-icon icon="heart" *ngIf="message.votes_count > 0" status="danger"></nb-icon>
+            {{ message.votes_count > 0 ? message.votes_count : '' }}
+          </p>
+        </div>
+        <div *ngIf="permittedActions.includes(allActions.ADD) && canReply" class="clickable reply-button" (click)="toggleReplyForm()">
+          <p class="text-info">
+            <small>Reply</small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="replies-container" *ngIf="canReply">
+    <div class="reply-message" *ngFor="let rep of message.user_messages">
+      <app-user-personal-chat-message
+        [message]="rep"
+        [canReply]="false"
+        [permittedActions]="permittedActions"
+        [allActions]="allActions"
+        [currentUser]="currentUser"
+        (sendVote)="emitVote($event)"
+        (sendDelete)="emitDelete($event)"
+        (sendFlag)="emitFlag($event)"
+      ></app-user-personal-chat-message>
+    </div>
+
+    <div class="reply-form" *ngIf="showReplyForm">
+      <form *ngIf="canReply" [formGroup]="userMessageReplyForm" (ngSubmit)="emitReply()">
+          <input
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="tiny"
+          formControlName="content"
+          placeholder="Reply (max 200 characters)"
+          >
+          <button [disabled]="!userMessageReplyForm.valid" type="submit" nbButton fullWidth size="tiny" status="info">
+            <nb-icon icon="corner-down-left-outline"></nb-icon>
+          </button>
+      </form>
+    </div>
+  </div>
+
+
+
+</div>
+
