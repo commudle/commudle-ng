@@ -1,0 +1,34 @@
+.user-chats {
+
+  .chat-container {
+    min-width: 80vw;
+    min-height: 80vh;
+    display: flex;
+
+    .discussion {
+      width: 100%;
+      border: 1px solid lightgrey;
+      padding: 10px;
+    }
+    @media (min-width: 800px) {
+      .users-list {
+        width: 20%;
+        max-height: 80vh;
+        overflow-y: auto;
+        .chat-user {
+          width: 100%;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          justify-content: space-between;
+        };
+      }
+
+      .discussion {
+        width: 80%;
+        position: sticky;
+        top: 0;
+      }
+    }
+  }
+}

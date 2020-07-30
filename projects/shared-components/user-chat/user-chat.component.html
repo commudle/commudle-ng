@@ -1,0 +1,20 @@
+<div class="user-chats">
+  <div class="chat-container">
+    <div class="users-list">
+      <nb-list>
+        <nb-list-item *ngFor="let chatUser of allPersonalChatUsers" class="clickable" (click)="getDiscussion(chatUser)">
+          <div class="chat-user" >
+            <app-user-profile-horizontal [user]="chatUser.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
+            <nb-icon icon="arrowhead-right" *ngIf="selectedDiscussionFollower && selectedDiscussionFollower.id === chatUser.id"></nb-icon>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </div>
+    <div class="discussion">
+      <app-discussion-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-chat>
+      <div class="filler" *ngIf="!discussion">
+        Select a user to view messages
+      </div>
+    </div>
+  </div>
+</div>

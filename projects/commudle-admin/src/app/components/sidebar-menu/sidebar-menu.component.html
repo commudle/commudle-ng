@@ -36,6 +36,14 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item *ngIf="currentUser">
+      <a class="clickable" (click)="openChat()">
+        <nb-icon icon="message-square-outline"></nb-icon>
+        &nbsp;
+        Messages
+      </a>
+    </nb-list-item>
+
   </nb-list>
 
   <div *ngIf="managedCommunities.length > 0">

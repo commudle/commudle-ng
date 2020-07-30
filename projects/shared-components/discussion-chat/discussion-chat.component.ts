@@ -168,6 +168,7 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
   receiveData() {
     this.discussionChatChannel.channelData$.subscribe(
       (data) => {
+        console.log(data);
         if (data) {
           switch (data.action) {
             case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
