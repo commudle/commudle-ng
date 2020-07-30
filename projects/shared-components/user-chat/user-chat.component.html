@@ -11,7 +11,7 @@
       </nb-list>
     </div>
     <div class="discussion">
-      <app-discussion-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-chat>
+      <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
       <div class="filler" *ngIf="!discussion">
         Select a user to view messages
       </div>
