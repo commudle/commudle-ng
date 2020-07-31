@@ -16,7 +16,7 @@
       <nb-card-body style="padding: 0;">
         <nb-list>
           <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index;">
-            <nb-actions class="medium">
+            <nb-actions size="giant">
               <nb-action>
                 <div class="session-time">
                   <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
@@ -25,23 +25,34 @@
               </nb-action>
               <nb-action>
                 <div class="session-title">
-                  <p>{{ slot.session_title }}</p>
                   <div *ngIf="slot.tags_list">
                     <app-badge *ngFor="let tag of slot.tags_list.split(',')"
                                [fontSize]="'small'" [text]="tag"></app-badge>
                   </div>
+                  <p>{{ slot.session_title }}</p>
+                  <div *ngIf="slot.user" style="display: inline-block; margin-right: 0.5rem">
+                    <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.avatar }}" showTitle="false"
+                             size="small"></nb-user>
+                  </div>
+                  <div *ngIf="slot.user_vote != null && event.editable"
+                       style="display: inline-block; writing-mode: vertical-lr;">
+                    <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">
+                      <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>
+                      <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>
+                    </div>
+                  </div>
                 </div>
               </nb-action>
-              <nb-action *ngIf="slot.user" style="min-width: max-content">
-                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.avatar }}" showTitle="false"
-                         size="small"></nb-user>
-              </nb-action>
-              <nb-action *ngIf="slot.user_vote != null && event.editable">
-                <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">
-                  <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>
-                  <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>
-                </div>
-              </nb-action>
+              <!--              <nb-action *ngIf="slot.user" style="min-width: max-content">-->
+              <!--                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.avatar }}" showTitle="false"-->
+              <!--                         size="small"></nb-user>-->
+              <!--              </nb-action>-->
+              <!--              <nb-action *ngIf="slot.user_vote != null && event.editable">-->
+              <!--                <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">-->
+              <!--                  <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>-->
+              <!--                  <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>-->
+              <!--                </div>-->
+              <!--              </nb-action>-->
               <nb-action>
                 <a [queryParams]="{track_slot_id: slot.id}"
                    [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
