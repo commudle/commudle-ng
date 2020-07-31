@@ -15,9 +15,9 @@
   </nb-card>
 
   <div class="add-new-lab">
-    <button *ngIf="incompleteProfile" nbButton status="primary" size='medium' [routerLink]="['/my-profile/edit']">
-      <nb-icon icon="person"></nb-icon>
-      Complete Profile
+    <button *ngIf="incompleteProfile" nbButton status="danger" size='medium' [routerLink]="['/my-profile/edit']">
+      <nb-icon icon="alert-circle"></nb-icon>
+      Click Here To Complete Your Profile
     </button>
     &nbsp;
     <button nbButton status="primary" size='medium' [routerLink]="['/labs/create']">
@@ -31,7 +31,7 @@
     </button>
   </div>
 
-  <div class="labs">
+  <div class="labs" *ngIf="labs.length > 0">
     <nb-card>
       <nb-card-body>
         <div class="lab" *ngFor="let lab of labs; let i = index">
