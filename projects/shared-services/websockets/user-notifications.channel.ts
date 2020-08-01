@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class DiscussionPersonalChatChannel {
+export class UserNotificationsChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
-    ADD: 'add',
-    REPLY: 'reply',
-    VOTE: 'vote',
-    FLAG: 'flag',
-    DELETE: 'delete',
-    ERROR: 'error'
+    NEW_MESSAGE: 'new_message'
   };
 
   actionCable = actionCable;
@@ -27,26 +23,32 @@ export class DiscussionPersonalChatChannel {
   private channelData: BehaviorSubject<any> = new BehaviorSubject(null);
   public channelData$ = this.channelData.asObservable();
 
+  private newMessagesCounter: BehaviorSubject<IDiscussionFollower[]> = new BehaviorSubject([]);
+  public newMessagesCounter$ = this.newMessagesCounter.asObservable();
+
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
   ) {}
 
 
-  subscribe(discussionId) {
+  subscribe() {
+    this.unsubscribe();
     this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_PERSONAL_CHAT_CHANNEL,
-            room: discussionId
+            channel: APPLICATION_CABLE_CHANNELS.USER_NOTIFICATIONS,
           }, {
             received: (data) => {
+              console.log(data);
               this.channelData.next(data);
+              this.setNotifications(data);
             }
           });
         }
       }
     );
+    return this.subscription;
   }
 
 
@@ -59,8 +61,30 @@ export class DiscussionPersonalChatChannel {
 
 
 
+  setNotifications(data) {
+    switch (data.action) {
+      case this.ACTIONS.NEW_MESSAGE : {
+        let currentValue = this.newMessagesCounter.getValue();
+        currentValue.unshift(data.discussion_follower);
+        this.newMessagesCounter.next(currentValue);
+        console.log(currentValue);
+        break;
+      }
+    }
+  }
+
+
+  resetMessageCounter() {
+    this.newMessagesCounter.next([]);
+  }
+
+
+
   unsubscribe() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.channelData.next(null);
+    }
   }
 
 }

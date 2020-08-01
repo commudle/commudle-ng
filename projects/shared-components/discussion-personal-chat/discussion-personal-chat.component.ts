@@ -92,7 +92,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   getDiscussionMessages() {
     if (!this.allMessagesLoaded && !this.loadingMessages) {
       this.loadingMessages = true;
-      this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
+      this.userMessagesService.getPersonalChatDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
         data => {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
@@ -169,7 +169,6 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   receiveData() {
     this.discussionChatChannel.channelData$.subscribe(
       (data) => {
-        console.log(data);
         if (data) {
           switch (data.action) {
             case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
@@ -192,7 +191,9 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
                 this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
               } else {
                 const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+                if (this.messages[qi]) {
+                  this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+                }
               }
 
               break;
