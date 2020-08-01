@@ -3,7 +3,7 @@ import {ICommunity} from 'projects/shared-models/community.model';
 import {IEvent} from 'projects/shared-models/event.model';
 import {EventLocationsService} from 'projects/commudle-admin/src/app/services/event-locations.service';
 import {IEventLocation} from 'projects/shared-models/event-location.model';
-import {ITrackSlot} from "projects/shared-models/track-slot.model";
+import {ITrackSlot} from 'projects/shared-models/track-slot.model';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
@@ -42,7 +42,7 @@ export class AgendaComponent implements OnInit {
   }
 
   getLocationName(eventLocation: IEventLocation) {
-    return (eventLocation.embedded_video_stream ? 'Video Stream' : (eventLocation.location ? eventLocation.location.name : ""));
+    return (eventLocation.embedded_video_stream ? 'Video Stream' : (eventLocation.location ? eventLocation.location.name : ''));
   }
 
   getTabIcon(eventLocation: IEventLocation) {
@@ -50,28 +50,24 @@ export class AgendaComponent implements OnInit {
   }
 
   updateSessionPreference(data, locationIndex) {
+    // tslint:disable-next-line:max-line-length
     this.eventLocations[locationIndex].event_location_tracks[data.track_index].track_slots[data.track_slot_index].user_vote = data.preference;
   }
 
-  // TODO: Have to fix this, not working as intended
   getUpcomingEvents() {
     let allEvents: Array<ITrackSlot> = [];
-    let upcomingEvents: Array<ITrackSlot> = [];
+    const upcomingEvents: Array<ITrackSlot> = [];
 
     this.eventLocations.forEach(el => el.event_location_tracks.forEach(elt => elt.track_slots.forEach(slot => allEvents.push(slot))));
 
-    allEvents = _.sortBy(allEvents, slot => { // @ts-ignore
-      return new moment(slot.start_time);
-    });
+    allEvents = _.sortBy(allEvents, slot => moment(slot.start_time));
 
     allEvents.forEach(slot => {
-      // @ts-ignore
-      if ((new moment(slot.start_time)).valueOf() > moment.now()) {
+      if (moment(slot.start_time).isAfter(moment())) {
         upcomingEvents.push(slot);
       }
     });
 
-    // return upcomingEvents;
-    return allEvents;
+    return upcomingEvents;
   }
 }
