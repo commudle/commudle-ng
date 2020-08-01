@@ -289,9 +289,9 @@ export const API_ROUTES = {
   },
 
   USER_MESSAGES: {
+    PERSONAL_CHAT_DISCUSSION_MESSAGES: 'api/v2/user_messages/personal_chat_discussion_messages',
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
-
   },
 
   USER_OBJECT_VISITS: {

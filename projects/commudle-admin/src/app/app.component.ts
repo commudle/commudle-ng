@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { UserNotificationsChannel } from 'projects/shared-services/websockets/user-notifications.channel';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,8 @@ export class AppComponent {
     private actionCableConnectionSocket: ActionCableConnectionSocket,
     private sidebarService: NbSidebarService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private userNotificationsChannel: UserNotificationsChannel
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
@@ -37,6 +39,7 @@ export class AppComponent {
       this.authWatchService.currentUser$.subscribe(currentUser => {
         this.currentUser = currentUser;
         this.actionCableConnectionSocket.connectToServer();
+        this.userNotificationsChannel.subscribe();
       });
 
       this.router.events.subscribe(event => {
