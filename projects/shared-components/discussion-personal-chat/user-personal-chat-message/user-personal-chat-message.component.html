@@ -24,8 +24,8 @@
         </div>
         <div
           class="clickable"
-          *ngIf="permittedActions.includes(allActions.DELETE)"
-          (click)="login() && (permittedActions.includes(allActions.DELETE) || (currentUser && message.user.id === currentUser.id)) && emitDelete(message.id)"
+          *ngIf="currentUser && message.user.id === currentUser.id"
+          (click)="login() && (currentUser && message.user.id === currentUser.id) && emitDelete(message.id)"
           nbTooltip="Delete" nbTooltipStatus="warning">
           <p>
             <nb-icon icon="close-circle-outline"></nb-icon>
