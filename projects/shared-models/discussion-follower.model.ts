@@ -4,5 +4,5 @@ export interface IDiscussionFollower {
   id: number;
   user: IUser;
   discussion_id: number;
-  unread: boolean;
+  unread_user_ids: number[];
 }
