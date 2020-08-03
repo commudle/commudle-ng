@@ -3,7 +3,8 @@ import { SDiscussionsService } from '../services/s-discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { UserNotificationsChannel } from 'projects/shared-services/websockets/user-notifications.channel';
-import { kill } from 'process';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 @Component({
   selector: 'app-user-chat',
@@ -16,14 +17,21 @@ export class UserChatComponent implements OnInit, OnDestroy {
   allPersonalChatUsers: IDiscussionFollower[] = [];
   selectedDiscussionFollower: IDiscussionFollower;
   discussion: IDiscussion;
+  currentUser: ICurrentUser;
+  currentUserSubscription;
   messageSub;
 
   constructor(
     private sDiscussionService: SDiscussionsService,
-    private userNotificationsChannel: UserNotificationsChannel
+    private userNotificationsChannel: UserNotificationsChannel,
+    private authWatchService: LibAuthwatchService
   ) { }
 
   ngOnInit() {
+
+    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(
+      data => this.currentUser = data
+    );
     if (this.discussionUserIds) {
       this.findOrCreateDiscussion();
     } else {
@@ -36,6 +44,7 @@ export class UserChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.messageSub.unsubscribe();
+    this.currentUserSubscription.unsubscribe();
   }
 
   findOrCreateDiscussion() {
@@ -52,7 +61,9 @@ export class UserChatComponent implements OnInit, OnDestroy {
       data => {
         this.allPersonalChatUsers = data.discussion_followers;
         if (this.selectedDiscussionFollower) {
-          this.getDiscussion(this.selectedDiscussionFollower);
+          this.getDiscussion(
+            this.selectedDiscussionFollower,
+            this.allPersonalChatUsers.findIndex(k => k.id === this.selectedDiscussionFollower.id));
         }
 
         this.liveUpdates();
@@ -60,14 +71,15 @@ export class UserChatComponent implements OnInit, OnDestroy {
     );
   }
 
-  getDiscussion(discussionFollower) {
+  getDiscussion(discussionFollower, index) {
     this.discussion = null;
     this.selectedDiscussionFollower = discussionFollower;
 
     // also set the last read time and unread messages on the server side for this API
     this.sDiscussionService.getPersonalChat(this.selectedDiscussionFollower.discussion_id).subscribe(
       data => {
-        this.allPersonalChatUsers.find(k => k.id === discussionFollower.id).unread = false;
+        const unreadIndex = this.allPersonalChatUsers[index].unread_user_ids.findIndex(k => k === this.currentUser.id);
+        this.allPersonalChatUsers[index].unread_user_ids.splice(unreadIndex, 1);
         this.discussion = data;
       }
     );
@@ -83,10 +95,11 @@ export class UserChatComponent implements OnInit, OnDestroy {
             )) {
           let index = this.allPersonalChatUsers.findIndex(k => k.id === value[0].id);
           if (index > -1) {
-            this.allPersonalChatUsers[index].unread = true;
-          } else {
-            this.allPersonalChatUsers.unshift(value[0]);
+
+            this.allPersonalChatUsers.splice(index, 1);
           }
+          this.allPersonalChatUsers.unshift(value[0]);
+
           this.userNotificationsChannel.resetMessageCounter();
 
         }

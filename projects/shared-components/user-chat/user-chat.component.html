@@ -2,7 +2,7 @@
   <div class="chat-container">
     <div class="users-list">
       <nb-list>
-        <nb-list-item *ngFor="let chatUser of allPersonalChatUsers" class="clickable" (click)="getDiscussion(chatUser)">
+        <nb-list-item *ngFor="let chatUser of allPersonalChatUsers; let i = index" class="clickable" (click)="getDiscussion(chatUser, i)">
           <div class="chat-user" >
             <div class="user-details">
               <app-user-profile-horizontal [user]="chatUser.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
@@ -10,7 +10,7 @@
                 [text]="'Unread'"
                 [color]="'#ff5c1e'"
                 [fontSize]="'small'"
-                *ngIf="chatUser.unread"></app-badge>
+                *ngIf="chatUser.unread_user_ids.includes(currentUser.id)"></app-badge>
             </div>
             <nb-icon icon="arrowhead-right" *ngIf="selectedDiscussionFollower && selectedDiscussionFollower.id === chatUser.id"></nb-icon>
           </div>

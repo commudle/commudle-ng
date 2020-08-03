@@ -12,6 +12,7 @@ import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.
 export class UserNotificationsChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
+    LOAD_NOTIFICATIONS: 'load_notifications',
     NEW_MESSAGE: 'new_message'
   };
 
@@ -63,11 +64,14 @@ export class UserNotificationsChannel {
 
   setNotifications(data) {
     switch (data.action) {
+      case this.ACTIONS.LOAD_NOTIFICATIONS : {
+        this.newMessagesCounter.next(data.discussion_followers);
+        break;
+      }
       case this.ACTIONS.NEW_MESSAGE : {
         let currentValue = this.newMessagesCounter.getValue();
         currentValue.unshift(data.discussion_follower);
         this.newMessagesCounter.next(currentValue);
-        console.log(currentValue);
         break;
       }
     }
