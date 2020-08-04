@@ -61,6 +61,7 @@ export class DiscussionPersonalChatChannel {
 
 
   unsubscribe() {
+    this.channelData.next(null);
     this.subscription.unsubscribe();
   }
 

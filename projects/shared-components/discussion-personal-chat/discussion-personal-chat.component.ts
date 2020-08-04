@@ -25,6 +25,8 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   moment = moment;
 
   currentUser: ICurrentUser;
+  currentUserSubscription;
+  channelSubscription;
   messages: IUserMessage[] = [];
   permittedActions = [];
   blocked = false;
@@ -51,7 +53,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(
+    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(
       user => this.currentUser = user
     );
     this.discussionChatChannel.subscribe(`${this.discussion.id}`);
@@ -62,7 +64,10 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
+    this.currentUserSubscription.unsubscribe();
     this.discussionChatChannel.unsubscribe();
+    this.channelSubscription.unsubscribe();
+
   }
 
   scrollToBottom() {
@@ -175,8 +180,9 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
 
   receiveData() {
-    this.discussionChatChannel.channelData$.subscribe(
+    this.channelSubscription = this.discussionChatChannel.channelData$.subscribe(
       (data) => {
+        console.log('here', data, this.discussion.id);
         if (data) {
           switch (data.action) {
             case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
@@ -234,6 +240,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
             }
             case(this.discussionChatChannel.ACTIONS.ERROR): {
               this.toastLogService.warningDialog(data.message, 2000);
+              break;
             }
           }
         }
