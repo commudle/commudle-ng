@@ -36,6 +36,19 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item *ngIf="currentUser">
+      <a class="clickable" (click)="openChat()">
+        <nb-icon icon="message-square-outline"></nb-icon>
+        &nbsp;
+        <span>
+          Messages
+        </span>
+        <span *ngIf="unreadMessagesCount > 0">
+          <app-badge [text]="unreadMessagesCount + ' New'" [color]="'red'" [fontSize]="'small'"></app-badge>
+        </span>
+      </a>
+    </nb-list-item>
+
   </nb-list>
 
   <div *ngIf="managedCommunities.length > 0">
