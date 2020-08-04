@@ -62,8 +62,8 @@ export class UserChatComponent implements OnInit, OnDestroy {
         this.allPersonalChatUsers = data.discussion_followers;
         if (this.selectedDiscussionFollower) {
           this.getDiscussion(
-            this.selectedDiscussionFollower,
-            this.allPersonalChatUsers.findIndex(k => k.id === this.selectedDiscussionFollower.id));
+            [this.selectedDiscussionFollower, this.allPersonalChatUsers.findIndex(k => k.id === this.selectedDiscussionFollower.id)]
+            );
         }
 
         this.liveUpdates();
@@ -71,7 +71,9 @@ export class UserChatComponent implements OnInit, OnDestroy {
     );
   }
 
-  getDiscussion(discussionFollower, index) {
+  getDiscussion(discussionFollowerValues) {
+    const discussionFollower = discussionFollowerValues[0];
+    const index = discussionFollowerValues[1];
     this.discussion = null;
     this.selectedDiscussionFollower = discussionFollower;
 
