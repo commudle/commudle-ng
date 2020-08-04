@@ -27,6 +27,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   messages: IUserMessage[] = [];
   permittedActions = [];
+  blocked = false;
   pageSize = 10;
   nextPage = 1;
   allMessagesLoaded = false;
@@ -165,6 +166,13 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     );
   }
 
+  blockChat() {
+    this.discussionChatChannel.sendData(
+      this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK,
+      {}
+    );
+  }
+
 
   receiveData() {
     this.discussionChatChannel.channelData$.subscribe(
@@ -173,6 +181,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
           switch (data.action) {
             case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
               this.permittedActions = data.permitted_actions;
+              this.blocked = data.blocked;
               break;
             }
             case(this.discussionChatChannel.ACTIONS.ADD): {
@@ -213,6 +222,13 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
               } else {
                 const qi = this.findMessageIndex(data.parent_id);
                 this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+              }
+              break;
+            }
+            case(this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK): {
+              this.blocked = data.blocked;
+              if (this.blocked) {
+                this.toastLogService.warningDialog('You can only see and not send any messages.', 5000);
               }
               break;
             }

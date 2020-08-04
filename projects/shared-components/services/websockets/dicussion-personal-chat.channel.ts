@@ -16,6 +16,7 @@ export class DiscussionPersonalChatChannel {
     VOTE: 'vote',
     FLAG: 'flag',
     DELETE: 'delete',
+    TOGGLE_BLOCK: 'toggle_block',
     ERROR: 'error'
   };
 
