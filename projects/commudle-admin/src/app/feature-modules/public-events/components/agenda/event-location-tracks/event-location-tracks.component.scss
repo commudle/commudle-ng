@@ -1,121 +1,73 @@
 .event-location-tracks {
-  $slot-width: 190px;
-  $slot-height: 30px;
+  max-width: 719px;
 
-  max-height: 70vh;
-  width: 500px;
-  max-width: 100vw;
-  overflow-y: auto;
-  overflow-x: auto;
-  .header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: fit-content;
-
-
-
-    p {
-      margin: 0
-    }
-
-    .time-column-name {
-      width: 70px;
-      height: $slot-height;
+  .track-container {
+    nb-action {
+      nb-icon {
+        font-size: 1.3rem;
+      }
     }
 
     .track-name {
-      width: $slot-width;
-      height: $slot-height;
-      background: #3465ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        color: white;
-      }
+      display: inline-block;
+      margin: 0;
+      font-size: 1.3rem;
     }
-  }
 
-  .timetable {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    .time-cell {
-      width: $slot-width;
-      height: $slot-height;
-      border: 1px dotted lightgrey;
-
-      p {
-        margin: 0
+    @media all and (max-width: 767px) {
+      .track-name {
+        font-size: 1.1rem;
       }
     }
 
-    .time-cell-display {
-      width: 70px;
-      height: $slot-height;
-      border: 1px dotted lightgrey;
-      display: flex;
-      align-items: center;
-      padding: 0.2rem;
-
+    .session-time {
       p {
         margin: 0;
-        font-size: 0.8rem;
-        color: grey;
+        text-align: right;
+      }
+
+      p:nth-of-type(1) {
+        font-size: 1.2rem;
+      }
+
+      p:nth-of-type(2) {
+        margin-top: 0.2rem;
+        font-size: 0.9rem;
+      }
+
+      @media all and (max-width: 767px) {
+        p:nth-of-type(1) {
+          font-size: 1rem;
+        }
+
+        p:nth-of-type(2) {
+          font-size: 0.8rem;
+        }
       }
     }
 
+    .session-title {
+      min-width: max-content;
 
-    .track {
-      position: relative;
+      p:nth-of-type(1) {
+        font-size: 1.2rem;
+        font-weight: normal;
+        width: 500px;
+        margin: 0 0 0.3rem;
+      }
 
-      .track-slot {
-        position: absolute;
-        background: white;
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-        padding: 0.5rem;
-        overflow-y: auto;
-        box-shadow: 1px 1px 5px 1px lightgrey;
-        width: 98%;
+      app-badge {
+        margin-right: 0.3rem;
+        margin-bottom: 0.3rem;
+      }
+    }
 
-        nb-icon {
-          font-size: 0.8rem;
-        }
-
-        .session-preference {
-          margin: 0.5rem 0;
-          nb-icon {
-            font-size: 1.5rem;
-          }
-        }
-
-        .slot-user {
-          display: flex;
-          align-items: center;
-          .slot-user-picture {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 0.2rem;
-            img {
-              width: 100%;
-            }
-          }
+    @media all and (max-width: 767px) {
+      .session-title {
+        p:nth-of-type(1) {
+          font-size: 1rem;
         }
       }
     }
   }
 }
-
-.sticky-left {
-  position: sticky;
-  left: 0;
-  background: white;
-  z-index: 1;
-}
-
-
