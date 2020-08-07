@@ -28,12 +28,12 @@
     </div>
     <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
       <div class="event" *ngFor="let event of upcomingEvents">
-        <app-event-card [event]="event"></app-event-card>
+        <!-- <app-event-card [event]="event"></app-event-card> -->
       </div>
     </div>
     <div class="past-events" *ngIf="upcomingEvents.length == 0">
       <div class="event" *ngFor="let event of pastEvents">
-        <app-event-card [event]="event"></app-event-card>
+        <!-- <app-event-card [event]="event"></app-event-card> -->
       </div>
     </div>
   </div>

@@ -34,25 +34,25 @@ export class AppComponent {
     private userNotificationsChannel: UserNotificationsChannel
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
-      this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
+      // this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
       this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
       this.authWatchService.currentUser$.subscribe(currentUser => {
         this.currentUser = currentUser;
-        this.actionCableConnectionSocket.connectToServer();
-        this.userNotificationsChannel.subscribe();
+        // this.actionCableConnectionSocket.connectToServer();
+        // this.userNotificationsChannel.subscribe();
       });
 
-      this.router.events.subscribe(event => {
-        setTimeout(() => {
-                if (window.screen.width <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ){
-                  document.getElementById("commudleSidebar").classList.remove('expanded');
-                  document.getElementById("commudleSidebar").classList.add('collapsed');
-                }
-                if (window.screen.width >= 1000)  {
-                  this.sidebarService.expand();
-                }
-            }, 10);
-      });
+      // this.router.events.subscribe(event => {
+      //   setTimeout(() => {
+      //           if (window.innerWidth <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ) {
+      //             this.document.getElementById("commudleSidebar").classList.remove('expanded');
+      //             this.document.getElementById("commudleSidebar").classList.add('collapsed');
+      //           }
+      //           if (window.innerWidth >= 1000)  {
+      //             this.sidebarService.expand();
+      //           }
+      //       }, 10);
+      // });
   }
 
   toggleSidebar() {
@@ -68,7 +68,7 @@ export class AppComponent {
   }
 
   closeSidebarMobile() {
-    if (window.screen.width <= 1000) {
+    if (window.innerWidth <= 1000) {
       this.sidebarService.collapse('mainMenu');
     }
   }
