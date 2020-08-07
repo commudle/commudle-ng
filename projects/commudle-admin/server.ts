@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const template = fs.readFileSync(path.join(__dirname, '../../dist', 'commudle-admin', 'index.html')).toString();
 const win = domino.createWindow(template);
+(global as any).WebSocket = require('ws');
 global['window'] = win;
 global['document'] = win.document;
 global['DOMTokenList'] = win.DOMTokenList;
