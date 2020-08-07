@@ -149,6 +149,10 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
         if (this.speaker) {
           this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
           this.meta.updateTag({ name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
+        } else {
+          this.title.setTitle(`${this.trackSlot.session_title}`);
+          this.meta.updateTag({ name: 'og:title', content: `${this.trackSlot.session_title}` });
+
         }
       }
     );
