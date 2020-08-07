@@ -39,11 +39,11 @@
         </nb-card>
       </div>
 
-      <h6>All Events</h6>
+      <h6 *ngIf="eventLocations.length > 1">This Event Is At Multiple Locations!</h6>
       <nb-tabset>
         <nb-tab *ngFor="let el of eventLocations; let i = index;"
                 tabIcon="{{ getTabIcon(el) }}" tabTitle="{{ getLocationName(el) }}"
-                badgeText="{{ el.event_location_tracks.length }}" badgeStatus="info" badgePosition="top right">
+                badgeText="{{ el.event_location_tracks.length > 1 ? el.event_location_tracks.length + ' Tracks' : '' }}" badgeStatus="primary" badgePosition="top right">
           <app-event-location-tracks
             (updateSessionPreference)="updateSessionPreference($event, i)"
             *ngIf="el.location || el.embedded_video_stream"
