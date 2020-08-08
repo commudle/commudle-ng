@@ -66,6 +66,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
+  // this method is causing a problem in SSR
   randomShine() {
     setInterval(() => {
       this.shineIndex = Math.floor(Math.random() * this.communities.length) + 0;
