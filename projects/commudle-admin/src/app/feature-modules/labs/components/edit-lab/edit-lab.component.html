@@ -62,6 +62,7 @@
                   [init]="{
                     height: 500,
                     menubar: false,
+                    convert_urls: false,
                     plugins: [
                       'advlist lists autolink link charmap preview anchor',
                       'visualblocks code table charmap image codesample',
@@ -107,6 +108,7 @@
                     [init]="{
                       height: 500,
                       menubar: false,
+                      convert_urls: false,
                       plugins: [
                         'advlist lists autolink link charmap preview anchor',
                         'visualblocks code table charmap image codesample',
@@ -190,7 +192,7 @@
                 <span *ngIf="this.lab.publish_status !== EPublishStatus.published">
                   Submit For Review
                 </span>
-            
+
                 <span *ngIf="this.lab.publish_status == EPublishStatus.published">
                   Save Changes
                 </span>
