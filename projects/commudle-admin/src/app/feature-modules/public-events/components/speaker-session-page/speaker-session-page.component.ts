@@ -120,14 +120,14 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
               this.pollableType = 'TrackSlot';
             }
           );
-        } else {
-          this.getEventEmbeddedVideoStream();
-          this.getDiscussionQnA();
-          this.getDiscussionChat();
-          this.title.setTitle(`Live Session | ${this.event.name}`);
-          this.pollableId = this.event.id;
-          this.pollableType = 'Event';
-        }
+        }// else {
+        //   this.getEventEmbeddedVideoStream();
+        //   this.getDiscussionQnA();
+        //   this.getDiscussionChat();
+        //   this.title.setTitle(`Live Session | ${this.event.name}`);
+        //   this.pollableId = this.event.id;
+        //   this.pollableType = 'Event';
+        // }
       }
     );
   }
