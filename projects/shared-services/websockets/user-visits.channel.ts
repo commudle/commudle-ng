@@ -58,8 +58,10 @@ export class UserVisitsChannel {
 
 
   unsubscribe() {
-    this.subscription.unsubscribe();
-    this.channelData.next(null);
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.channelData.next(null);
+    }
   }
 
 }

@@ -64,7 +64,9 @@ export class VoteChannel {
 
 
   unsubscribe(votableType, votableId, uuid) {
-    this.subscriptions[`${votableId}_${votableType}_${uuid}`].unsubscribe();
+    if (this.subscriptions[`${votableId}_${votableType}_${uuid}`]) {
+      this.subscriptions[`${votableId}_${votableType}_${uuid}`].unsubscribe();
+    }
   }
 
 }
