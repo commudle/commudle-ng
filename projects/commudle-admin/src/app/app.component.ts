@@ -42,17 +42,17 @@ export class AppComponent {
         // this.userNotificationsChannel.subscribe();
       });
 
-      // this.router.events.subscribe(event => {
-      //   setTimeout(() => {
-      //           if (window.innerWidth <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ) {
-      //             this.document.getElementById("commudleSidebar").classList.remove('expanded');
-      //             this.document.getElementById("commudleSidebar").classList.add('collapsed');
-      //           }
-      //           if (window.innerWidth >= 1000)  {
-      //             this.sidebarService.expand();
-      //           }
-      //       }, 10);
-      // });
+      this.router.events.subscribe(event => {
+        setTimeout(() => {
+                if (window.innerWidth <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ) {
+                  this.document.getElementById("commudleSidebar").classList.remove('expanded');
+                  this.document.getElementById("commudleSidebar").classList.add('collapsed');
+                }
+                if (window.innerWidth >= 1000)  {
+                  this.sidebarService.expand();
+                }
+            }, 10);
+      });
   }
 
   toggleSidebar() {

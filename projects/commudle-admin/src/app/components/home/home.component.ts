@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
     this.communitiesService.pGetCommunities().subscribe(
       data => {
         this.communities = data.communities;
-        this.randomShine();
+        // this.randomShine();
       }
     );
   }
