@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -12,13 +13,16 @@ export class LabStepComponent implements OnInit, OnDestroy {
   @Input() step: ILabStep;
   userSubscription;
   currentUser;
+  stepDescription;
 
   constructor(
     private authWatchService: LibAuthwatchService,
-    private labsService: LabsService
+    private labsService: LabsService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
+    this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
     this.userSubscription = this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
