@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, HostListener, OnDestroy, ElementRef, Inject, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, HostListener, OnDestroy, ElementRef, Inject, ViewChild, AfterViewInit, PLATFORM_ID } from '@angular/core';
 import { UserObjectVisitsService } from '../services/user-object-visits.service';
-import { Location, DOCUMENT } from '@angular/common';
+import { Location, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -11,6 +11,8 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
   styleUrls: ['./user-object-visit-pixel.component.scss']
 })
 export class UserObjectVisitPixelComponent implements OnInit, OnDestroy, AfterViewInit {
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   @ViewChild('pixel') private pixel: ElementRef;
 
   @Input() parentType;
@@ -23,6 +25,7 @@ export class UserObjectVisitPixelComponent implements OnInit, OnDestroy, AfterVi
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private userObjectVisitsService: UserObjectVisitsService,
     private location: Location,
     private cookieService: CookieService,
@@ -49,19 +52,21 @@ export class UserObjectVisitPixelComponent implements OnInit, OnDestroy, AfterVi
   }
 
   updateServer() {
-    const rect = this.pixel.nativeElement.getBoundingClientRect();
-    if (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || this.document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || this.document.documentElement.clientWidth)
-    ) {
-      if (!this.userObjectVisitId && !this.loading) {
-        this.markVisit();
-      }
-    } else {
-      if (this.userObjectVisitId && !this.loading) {
-        this.markEndTime();
+    if (this.isBrowser) {
+      const rect = this.pixel.nativeElement.getBoundingClientRect();
+      if (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <= (window.innerHeight || this.document.documentElement.clientHeight) &&
+          rect.right <= (window.innerWidth || this.document.documentElement.clientWidth)
+      ) {
+        if (!this.userObjectVisitId && !this.loading) {
+          this.markVisit();
+        }
+      } else {
+        if (this.userObjectVisitId && !this.loading) {
+          this.markEndTime();
+        }
       }
     }
   }

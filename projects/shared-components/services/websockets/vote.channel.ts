@@ -20,8 +20,8 @@ export class VoteChannel {
   private subscriptions = {};
 
   // all the communications received will be observables
-  // private channelData: BehaviorSubject<any> = new BehaviorSubject(null);
-  // public channelData$ = this.channelData.asObservable();
+  private channelsList: BehaviorSubject<any> = new BehaviorSubject(new Set());
+  public channelsList$ = this.channelsList.asObservable();
 
   private channelData = {};
   public channelData$ = {};
@@ -35,9 +35,9 @@ export class VoteChannel {
     return this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
-
           this.channelData[`${votableId}_${votableType}_${uuid}`] = new BehaviorSubject(null);
           this.channelData$[`${votableId}_${votableType}_${uuid}`] = this.channelData[`${votableId}_${votableType}_${uuid}`].asObservable();
+          this.channelsList.next(this.channelsList.getValue().add(`${votableId}_${votableType}_${uuid}`));
 
           this.subscriptions[`${votableId}_${votableType}_${uuid}`] = connection.subscriptions.create({
             channel: APPLICATION_CABLE_CHANNELS.VOTE_CHANNEL,
