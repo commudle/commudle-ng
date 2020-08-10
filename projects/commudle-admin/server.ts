@@ -58,6 +58,11 @@ export function app() {
     maxAge: '1y'
   }));
 
+
+  server.get('/admin/**', (req, res) => {
+    res.sendFile(join(distFolder, 'index.html'));
+  });
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
