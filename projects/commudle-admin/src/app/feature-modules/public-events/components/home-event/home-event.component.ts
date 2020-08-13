@@ -47,6 +47,7 @@ export class HomeEventComponent implements OnInit {
   }
 
   setMeta() {
+    this.title.setTitle(`${this.event.name} | ${this.community.name}`);
     this.meta.updateTag(
       {
         name: 'og:image',
@@ -83,7 +84,6 @@ export class HomeEventComponent implements OnInit {
     this.eventsService.pGetEvent(eventId).subscribe(
       event => {
         this.event = event;
-        this.title.setTitle(`${this.event.name} | ${this.community.name}`);
         this.getCommunity(event.kommunity_id);
         this.getDiscussionChat();
       }
