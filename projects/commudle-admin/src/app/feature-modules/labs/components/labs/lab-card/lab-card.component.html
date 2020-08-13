@@ -3,7 +3,7 @@
     <nb-card-body>
       <div class="title">
         <p>
-          {{ lab.name }}
+          {{ lab.name | slice:0:80 }}
           <br>
           <small> Published {{ moment(lab.created_at).format('Do MMM YYYY') }}</small>
         </p>
@@ -18,7 +18,7 @@
               {{ lab.user.name | slice:0:30 }}
               <br>
               <small>
-                {{ lab.user.designation | slice:0:50 }}
+                {{ lab.user.designation | slice:0:40 }}
               </small>
             </p>
           </div>
