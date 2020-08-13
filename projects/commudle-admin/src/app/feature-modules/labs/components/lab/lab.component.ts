@@ -59,7 +59,7 @@ export class LabComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle(this.lab.name);
+    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag(
       {
         name: 'og:image',
@@ -70,7 +70,7 @@ export class LabComponent implements OnInit, OnDestroy {
         name: 'og:image:secure_url',
         content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
-    this.meta.updateTag({ name: 'og:title', content: this.lab.name });
+    this.meta.updateTag({ name: 'og:title', content: `${this.lab.name} | By ${this.lab.user.name}` });
     this.meta.updateTag({
       name: 'og:description',
       content: this.lab.description.replace(/<[^>]*>/g, '')
@@ -82,7 +82,7 @@ export class LabComponent implements OnInit, OnDestroy {
         name: 'twitter:image',
         content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
-    this.meta.updateTag({ name: 'twitter:title', content: this.lab.name });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.lab.name} | By ${this.lab.user.name}` });
     this.meta.updateTag({
       name: 'twitter:description',
       content: this.lab.description.replace(/<[^>]*>/g, '')
