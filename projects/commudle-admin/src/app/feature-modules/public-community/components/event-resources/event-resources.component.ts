@@ -24,6 +24,7 @@ export class EventResourcesComponent implements OnInit {
 
   setMeta() {
     this.meta.updateTag({ name: 'og:title', content: `Expert Sessions | ${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Expert Sessions | ${this.community.name}` });
   }
 
   ngOnInit() {

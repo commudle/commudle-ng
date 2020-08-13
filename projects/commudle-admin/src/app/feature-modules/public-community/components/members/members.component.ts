@@ -27,6 +27,7 @@ export class MembersComponent implements OnInit {
 
   setMeta() {
     this.meta.updateTag({ name: 'og:title', content: `Members | ${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Members | ${this.community.name}` });
   }
 
   ngOnInit() {

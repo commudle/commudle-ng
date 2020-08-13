@@ -26,12 +26,31 @@ export class CommunityBuildComponent implements OnInit {
         name: 'og:image',
         content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
-    this.meta.updateTag({ name: 'og:title', content: this.communityBuild.name });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: `${this.communityBuild.name} | ${this.communityBuild.user.name}` });
     this.meta.updateTag({
       name: 'og:description',
       content: this.communityBuild.description.replace(/<[^>]*>/g, '')
     });
     this.meta.updateTag({ name: 'og:type', content: 'website'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag(
+      { name: 'twitter:title', content: `${this.communityBuild.name} | ${this.communityBuild.user.name}` }
+      );
+
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: this.communityBuild.description.replace(/<[^>]*>/g, '')
+    });
   }
 
   ngOnInit() {
