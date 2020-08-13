@@ -27,6 +27,7 @@ export class AboutComponent implements OnInit {
 
   setMeta() {
     this.meta.updateTag({ name: 'og:title', content: `${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.community.name}` });
   }
 
   ngOnInit() {

@@ -27,6 +27,7 @@ export class EventsComponent implements OnInit {
 
   setMeta() {
     this.meta.updateTag({ name: 'og:title', content: `Events | ${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Events | ${this.community.name}` });
   }
 
   ngOnInit() {

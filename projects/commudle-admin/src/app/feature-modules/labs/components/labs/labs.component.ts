@@ -41,12 +41,28 @@ export class LabsComponent implements OnInit {
         name: 'og:image',
         content: `https://commudle.com/assets/images/commudle-logo192.png`
       });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `https://commudle.com/assets/images/commudle-logo192.png`
+      });
     this.meta.updateTag({ name: 'og:title', content: 'Labs | Learn Something New!' });
     this.meta.updateTag({
       name: 'og:description',
       content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!'
     });
     this.meta.updateTag({ name: 'og:type', content: 'website'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `https://commudle.com/assets/images/commudle-logo192.png`
+      });
+    this.meta.updateTag({ name: 'twitter:title', content: 'Labs | Learn Something New!' });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!'
+    });
   }
 
   getTags() {

@@ -13,6 +13,7 @@ import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabComponent } from './components/lab/lab.component';
 import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
 import { LabCardComponent } from './components/labs/lab-card/lab-card.component';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 
 
 @NgModule({
@@ -42,7 +43,6 @@ import { LabCardComponent } from './components/labs/lab-card/lab-card.component'
     NbButtonModule,
     NbIconModule,
     NbListModule
-
   ]
 })
 export class LabsModule { }
