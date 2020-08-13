@@ -51,4 +51,6 @@ Thumbs.db
 .firebasesrc
 /projects/commudle-admin/.serverless
 
-
+# Scripts
+ssr-deployment-prod.sh
+ssr-deployment-staging.sh
