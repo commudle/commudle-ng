@@ -47,14 +47,28 @@ export class HomeEventComponent implements OnInit {
   }
 
   setMeta() {
+    this.title.setTitle(`${this.event.name} | ${this.community.name}`);
     this.meta.updateTag(
       {
         name: 'og:image',
         content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
       });
-    this.meta.updateTag({ name: 'og:title', content: this.event.name });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: `${this.event.name} | ${this.community.name}` });
     this.meta.updateTag({ name: 'og:description', content: this.event.description.replace(/<[^>]*>/g, '')});
     this.meta.updateTag({ name: 'og:type', content: 'website'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.event.name} | ${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:description', content: this.event.description.replace(/<[^>]*>/g, '')});
   }
 
   ngOnInit() {
@@ -70,7 +84,6 @@ export class HomeEventComponent implements OnInit {
     this.eventsService.pGetEvent(eventId).subscribe(
       event => {
         this.event = event;
-        this.title.setTitle(this.event.name);
         this.getCommunity(event.kommunity_id);
         this.getDiscussionChat();
       }

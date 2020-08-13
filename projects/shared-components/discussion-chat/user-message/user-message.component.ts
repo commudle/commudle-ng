@@ -17,7 +17,7 @@ export class UserMessageComponent implements OnInit {
   @Input() permittedActions;
   @Input() allActions;
   @Input() currentUser: ICurrentUser;
-  @Output() sendVote = new EventEmitter();
+  // @Output() sendVote = new EventEmitter();
   @Output() sendReply = new EventEmitter();
   @Output() sendFlag = new EventEmitter();
   @Output() sendDelete = new EventEmitter();
@@ -50,9 +50,9 @@ export class UserMessageComponent implements OnInit {
     return true;
   }
 
-  emitVote(userMessageId) {
-    this.sendVote.emit(userMessageId);
-  }
+  // emitVote(userMessageId) {
+  //   this.sendVote.emit(userMessageId);
+  // }
 
   emitFlag(userMessageId) {
     this.sendFlag.emit(userMessageId);

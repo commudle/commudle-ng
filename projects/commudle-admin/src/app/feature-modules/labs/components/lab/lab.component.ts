@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { LabsService } from '../../services/labs.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { DOCUMENT } from '@angular/common';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 
 @Component({
   selector: 'app-lab',
@@ -23,6 +24,7 @@ export class LabComponent implements OnInit, OnDestroy {
   lastVisitedStepId;
   discussionChat: IDiscussion;
   routeSubscription;
+  codeHighlighted = false;
 
 
   constructor(
@@ -32,7 +34,8 @@ export class LabComponent implements OnInit, OnDestroy {
     private title: Title,
     private meta: Meta,
     private discussionsService: DiscussionsService,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: Document,
+    private prismJsHighlightCodeService: PrismJsHighlightCodeService
   ) { }
 
   ngOnInit() {
@@ -48,19 +51,43 @@ export class LabComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
+  highlightCodeSnippets() {
+    if (!this.codeHighlighted) {
+      this.prismJsHighlightCodeService.highlightAll();
+      this.codeHighlighted = true;
+    }
+  }
+
   setMeta() {
-    this.title.setTitle(this.lab.name);
+    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag(
       {
         name: 'og:image',
-        content: `${this.lab.header_image ? this.lab.header_image : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
-    this.meta.updateTag({ name: 'og:title', content: this.lab.name });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: `${this.lab.name} | By ${this.lab.user.name}` });
     this.meta.updateTag({
       name: 'og:description',
       content: this.lab.description.replace(/<[^>]*>/g, '')
     });
     this.meta.updateTag({ name: 'og:type', content: 'article'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+
   }
 
 
@@ -81,6 +108,7 @@ export class LabComponent implements OnInit, OnDestroy {
         this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
         this.lastVisitedStepId = this.lab.last_visited_step_id;
         this.getDiscussionChat();
+        this.highlightCodeSnippets();
       }
     );
   }

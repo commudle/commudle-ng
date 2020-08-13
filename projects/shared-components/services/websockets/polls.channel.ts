@@ -64,7 +64,9 @@ export class PollsChannel {
 
 
   unsubscribe() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

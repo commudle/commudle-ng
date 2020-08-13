@@ -41,7 +41,6 @@ export class UserNotificationsChannel {
             channel: APPLICATION_CABLE_CHANNELS.USER_NOTIFICATIONS,
           }, {
             received: (data) => {
-              console.log(data);
               this.channelData.next(data);
               this.setNotifications(data);
             }
