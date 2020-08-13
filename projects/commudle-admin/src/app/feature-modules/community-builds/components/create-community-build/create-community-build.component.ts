@@ -50,12 +50,20 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   setMeta() {
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({ name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({ name: 'og:title', content: `Share Your Build | Community Builds` });
     this.meta.updateTag({
       name: 'og:description',
       content: `Project, Slides from a Session, an Online Course, share it all with the community!`
     });
     this.meta.updateTag({ name: 'og:type', content: 'website'});
+
+    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({ name: 'twitter:title', content: `Share Your Build | Community Builds` });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: `Project, Slides from a Session, an Online Course, share it all with the community!`
+    });
   }
 
   ngOnInit() {
