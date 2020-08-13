@@ -53,7 +53,7 @@ export class LabComponent implements OnInit, OnDestroy {
     this.meta.updateTag(
       {
         name: 'og:image',
-        content: `${this.lab.header_image ? this.lab.header_image : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
     this.meta.updateTag({ name: 'og:title', content: this.lab.name });
     this.meta.updateTag({
