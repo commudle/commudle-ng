@@ -1,5 +1,5 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { Component, OnInit, Input, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, AfterViewChecked, OnChanges } from '@angular/core';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LabsService } from '../../../services/labs.service';
@@ -10,7 +10,7 @@ import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-hi
   templateUrl: './lab-step.component.html',
   styleUrls: ['./lab-step.component.scss']
 })
-export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class LabStepComponent implements OnInit, OnChanges, OnDestroy, AfterViewChecked {
   @Input() step: ILabStep;
   userSubscription;
   currentUser;
@@ -29,9 +29,12 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.userSubscription = this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
-        this.addLabStepVisit();
       }
     );
+  }
+
+  ngOnChanges() {
+    this.addLabStepVisit();
   }
 
   ngOnDestroy(): void {
