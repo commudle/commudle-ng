@@ -87,13 +87,19 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
 
 
   toggleVote() {
-    this.voteChannel.sendData(
-      this.votableType, this.votableId,
-      this.uuid,
-      this.voteChannel.ACTIONS.TOGGLE_VOTE,
-      {}
-    );
+    if (this.currentUser) {
+      this.voteChannel.sendData(
+        this.votableType, this.votableId,
+        this.uuid,
+        this.voteChannel.ACTIONS.TOGGLE_VOTE,
+        {}
+      );
+    } else {
+      this.authWatchService.logInUser();
+    }
+
   }
+
 
   receiveData() {
     this.votesChannelListSubscription = this.voteChannel.channelsList$.subscribe(

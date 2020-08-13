@@ -25,7 +25,6 @@ export class LabStepComponent implements OnInit, OnChanges, OnDestroy, AfterView
   ) { }
 
   ngOnInit() {
-    this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
     this.userSubscription = this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
@@ -34,6 +33,7 @@ export class LabStepComponent implements OnInit, OnChanges, OnDestroy, AfterView
   }
 
   ngOnChanges() {
+    this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
     this.addLabStepVisit();
   }
 
