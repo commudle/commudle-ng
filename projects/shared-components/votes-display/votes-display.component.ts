@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -6,6 +7,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { SVotesService } from '../services/s-votes.service';
 import { VotersComponent } from './voters/voters.component';
 import { v4 as uuidv4 } from 'uuid';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-votes-display',
@@ -24,6 +26,9 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   VotersComponent = VotersComponent;
 
   userSubscription;
+  votesChannelSubscription: Subscription;
+  votesChannelListSubscription: Subscription;
+  votesChannelDataSubscription: Subscription;
   currentUser: ICurrentUser;
   permittedActions = [];
 
@@ -54,13 +59,19 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
+    if (this.votesChannelDataSubscription) {
+      this.votesChannelDataSubscription.unsubscribe();
+    }
     this.voteChannel.unsubscribe(this.votableType, this.votableId, this.uuid);
   }
 
   initData() {
     this.getAllVotes();
-
-    this.voteChannel.subscribe(this.votableType, this.votableId, this.uuid);
+    if (this.votesChannelSubscription) {
+      this.votesChannelDataSubscription.unsubscribe();
+      this.voteChannel.unsubscribe(this.votableType, this.votableId, this.uuid);
+    }
+    this.votesChannelSubscription = this.voteChannel.subscribe(this.votableType, this.votableId, this.uuid);
     this.receiveData();
   }
 
@@ -76,34 +87,46 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
 
 
   toggleVote() {
-    this.voteChannel.sendData(
-      this.votableType, this.votableId,
-      this.uuid,
-      this.voteChannel.ACTIONS.TOGGLE_VOTE,
-      {}
-    );
+    if (this.currentUser) {
+      this.voteChannel.sendData(
+        this.votableType, this.votableId,
+        this.uuid,
+        this.voteChannel.ACTIONS.TOGGLE_VOTE,
+        {}
+      );
+    } else {
+      this.authWatchService.logInUser();
+    }
+
   }
 
+
   receiveData() {
-    this.voteChannel.channelData$[`${this.votableId}_${this.votableType}_${this.uuid}`].subscribe(
+    this.votesChannelListSubscription = this.voteChannel.channelsList$.subscribe(
       data => {
-        if (data) {
-          switch (data.action) {
-            case (this.voteChannel.ACTIONS.SET_PERMISSIONS): {
-              this.permittedActions = data.permitted_actions;
-              break;
+        if (data.has(`${this.votableId}_${this.votableType}_${this.uuid}`) && !this.votesChannelDataSubscription) {
+          this.votesChannelDataSubscription = this.voteChannel.channelData$[`${this.votableId}_${this.votableType}_${this.uuid}`].subscribe(
+            data => {
+              if (data) {
+                switch (data.action) {
+                  case (this.voteChannel.ACTIONS.SET_PERMISSIONS): {
+                    this.permittedActions = data.permitted_actions;
+                    break;
+                  }
+                  case (this.voteChannel.ACTIONS.TOGGLE_VOTE): {
+                    data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
+                    this.myVote = (data.increment && data.user_id === this.currentUser.id) ? true : false;
+                    break;
+                  }
+                  case (this.voteChannel.ACTIONS.ERROR): {
+                    this.toastLogService.warningDialog(data.message, 2000);
+                  }
+                }
+              }
             }
-            case (this.voteChannel.ACTIONS.TOGGLE_VOTE): {
-              data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
-              this.myVote = (data.increment && data.user_id == this.currentUser.id) ? true : false;
-              break;
-            }
-            case (this.voteChannel.ACTIONS.ERROR): {
-              this.toastLogService.warningDialog(data.message, 2000);
-            }
-          }
+          );
         }
-      }
+      },
     );
   }
 

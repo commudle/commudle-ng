@@ -3,7 +3,9 @@
     <img src="{{ user.avatar }}" alt="{{ user.name }}">
   </div>
   <div class="profile-info">
-    <p class="name {{ size }}"><strong>{{ user.name }}</strong></p>
+    <p class="name {{ size }}">
+      <strong>{{ user.name }}</strong>
+    </p>
     <p class="designation {{ size }}">{{ user.designation }}</p>
     <div class="user-social-links {{ size }}" *ngIf="socialMediaLinks">
       <a target="_blank" *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
@@ -17,6 +19,9 @@
       </a>
       <a target="_blank" *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
         <nb-icon icon="info" status="primary"></nb-icon>
+      </a>
+      <a class="clickable" (click)="openChatWithUser()">
+        <nb-icon icon="message-circle-outline" status="basic"></nb-icon>
       </a>
     </div>
     <div class="about-me {{ size }}" *ngIf="aboutMe">

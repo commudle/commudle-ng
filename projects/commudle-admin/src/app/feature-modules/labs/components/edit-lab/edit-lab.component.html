@@ -62,6 +62,7 @@
                   [init]="{
                     height: 500,
                     menubar: false,
+                    convert_urls: false,
                     plugins: [
                       'advlist lists autolink link charmap preview anchor',
                       'visualblocks code table charmap image codesample',
@@ -70,7 +71,20 @@
                     toolbar:
                       'formatselect | bold italic backcolor | \
                       link | alignleft aligncenter alignright alignjustify | \
-                      bullist numlist outdent indent | image | table | codesample | removeformat | help',
+                      bullist numlist outdent indent | image | table | codesample | code | removeformat | help',
+                    codesample_languages: [
+                      { text: 'HTML/XML', value: 'markup' },
+                      { text: 'CSS', value: 'css' },
+                      { text: 'JavaScript', value: 'javascript' },
+                      { text: 'TypeScript', value: 'typescript' },
+                      { text: 'PHP', value: 'php' },
+                      { text: 'Ruby', value: 'ruby' },
+                      { text: 'Python', value: 'python' },
+                      { text: 'Java', value: 'java' },
+                      { text: 'C', value: 'c' },
+                      { text: 'C#', value: 'csharp' },
+                      { text: 'C++', value: 'cpp' }
+                    ],
                     default_link_target: '_blank',
                     image_list: imagesList,
                     image_advtab: true,
@@ -107,6 +121,7 @@
                     [init]="{
                       height: 500,
                       menubar: false,
+                      convert_urls: false,
                       plugins: [
                         'advlist lists autolink link charmap preview anchor',
                         'visualblocks code table charmap image codesample',
@@ -115,7 +130,20 @@
                       toolbar:
                         'formatselect | bold italic backcolor | \
                         link | alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | image | table | codesample | removeformat | help',
+                        bullist numlist outdent indent | image | table | codesample | code | removeformat | help',
+                      codesample_languages: [
+                        { text: 'HTML/XML', value: 'markup' },
+                        { text: 'CSS', value: 'css' },
+                        { text: 'JavaScript', value: 'javascript' },
+                        { text: 'TypeScript', value: 'typescript' },
+                        { text: 'PHP', value: 'php' },
+                        { text: 'Ruby', value: 'ruby' },
+                        { text: 'Python', value: 'python' },
+                        { text: 'Java', value: 'java' },
+                        { text: 'C', value: 'c' },
+                        { text: 'C#', value: 'csharp' },
+                        { text: 'C++', value: 'cpp' }
+                      ],
                       default_link_target: '_blank',
                       image_list: imagesList,
                       image_advtab: true,
@@ -190,7 +218,7 @@
                 <span *ngIf="this.lab.publish_status !== EPublishStatus.published">
                   Submit For Review
                 </span>
-            
+
                 <span *ngIf="this.lab.publish_status == EPublishStatus.published">
                   Save Changes
                 </span>

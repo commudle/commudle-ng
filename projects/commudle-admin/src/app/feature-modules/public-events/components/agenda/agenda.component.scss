@@ -1,12 +1,56 @@
+nb-tabset nb-tab {
+  padding: 0;
+}
 
+nb-card-body h6 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
 
-@media screen and (max-width: 1000px) {
-  nb-tabset {
-    ::ng-deep {
-      nb-tab {
-        padding: 1rem 0;
-      }
+.event-upcoming {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 719px;
+
+  nb-card {
+    width: 250px;
+    margin: 10px;
+    flex: 0 0 auto;
+  }
+
+  .upcoming-session-time {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+
+    nb-icon {
+      font-size: 0.95rem;
+      color: lightslategray;
+    }
+
+    p {
+      margin: 0;
+      display: inline-block;
+      color: lightslategray;
     }
   }
 
+  .upcoming-session-title {
+    font-size: large;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .track-name {
+    font-size: 0.9rem;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  nb-actions {
+    justify-content: center;
+
+  }
 }

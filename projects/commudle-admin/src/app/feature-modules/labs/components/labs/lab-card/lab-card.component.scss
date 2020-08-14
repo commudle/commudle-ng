@@ -1,9 +1,13 @@
 .lab {
   overflow: hidden;
   nb-card {
-    height: 140px;
+    height: 170px;
     nb-card-body {
       padding: 0.8rem 0.6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
       .title {
         margin-bottom: 1rem;
         p {

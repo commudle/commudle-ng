@@ -96,7 +96,7 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
           }
-          this.messages.unshift(...data.user_messages);
+          this.messages.unshift(...data.user_messages.reverse());
           this.loadingMessages = false;
           if (this.nextPage === 1) {
             this.scrollToBottom();
@@ -127,14 +127,14 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
   }
 
 
-  sendVote(userMessageId) {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.VOTE,
-      {
-        user_message_id: userMessageId
-      }
-    );
-  }
+  // sendVote(userMessageId) {
+  //   this.discussionChatChannel.sendData(
+  //     this.discussionChatChannel.ACTIONS.VOTE,
+  //     {
+  //       user_message_id: userMessageId
+  //     }
+  //   );
+  // }
 
   sendFlag(userMessageId) {
     this.discussionChatChannel.sendData(
@@ -204,15 +204,15 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
               }
               break;
             }
-            case(this.discussionChatChannel.ACTIONS.VOTE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
-              }
-              break;
-            }
+            // case(this.discussionChatChannel.ACTIONS.VOTE): {
+            //   if (data.parent_type === 'Discussion') {
+            //     this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
+            //   } else {
+            //     const qi = this.findMessageIndex(data.parent_id);
+            //     this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+            //   }
+            //   break;
+            // }
             case(this.discussionChatChannel.ACTIONS.ERROR): {
               this.toastLogService.warningDialog(data.message, 2000);
             }
