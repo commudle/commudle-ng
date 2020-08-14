@@ -58,9 +58,11 @@ export class DiscussionQnAChannel {
   }
 
 
-
   unsubscribe() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
+
 
 }

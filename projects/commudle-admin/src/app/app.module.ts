@@ -58,6 +58,7 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { EventCardComponent } from './components/home/event-card/event-card.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -135,6 +136,7 @@ export function initApp(appInitService: AppInitService) {
     Title,
     CookieService,
     NbSidebarService,
+    PrismJsHighlightCodeService,
     {
       provide: APP_INITIALIZER,
       useFactory: initApp, deps: [AppInitService],

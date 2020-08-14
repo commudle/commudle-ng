@@ -244,7 +244,9 @@ export const API_ROUTES = {
   },
 
   DISCUSSIONS: {
-
+    GET_PERSONAL_CHATS: 'api/v2/discussions/get_personal_chats',
+    GET_OR_CREATE_PERSONAL_CHAT: 'api/v2/discussions/get_or_create_personal_chat',
+    GET_PERSONAL_CHAT: 'api/v2/discussions/get_personal_chat',
     PUBLIC_GET_OR_CREATE_QNA_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_qna_for_track_slot',
     PUBLIC_GET_OR_CREATE_CHAT_FOR_TRACK_SLOT: 'api/v2/discussions/public_get_or_create_for_track_slot_chat',
     PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
@@ -287,9 +289,9 @@ export const API_ROUTES = {
   },
 
   USER_MESSAGES: {
+    PERSONAL_CHAT_DISCUSSION_MESSAGES: 'api/v2/user_messages/personal_chat_discussion_messages',
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
-
   },
 
   USER_OBJECT_VISITS: {

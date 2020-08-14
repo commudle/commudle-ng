@@ -60,7 +60,9 @@ export class DiscussionChatChannel {
 
 
   unsubscribe() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
