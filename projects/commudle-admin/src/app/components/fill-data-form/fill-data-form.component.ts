@@ -61,6 +61,9 @@ export class FillDataFormComponent implements OnInit {
 
 
   setMeta() {
+    this.meta.updateTag({ name: 'description', content: `Fill the form for ${this.dataFormEntity.name}`});
+
+
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
     this.meta.updateTag({ name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
     this.meta.updateTag({ name: 'og:title', content: `${this.dataFormEntity.name}` });

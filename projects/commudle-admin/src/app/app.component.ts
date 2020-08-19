@@ -49,6 +49,7 @@ export class AppComponent {
 
       });
 
+
       this.router.events.subscribe(event => {
         setTimeout(() => {
                 if (window.innerWidth <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ) {
@@ -56,7 +57,7 @@ export class AppComponent {
                   this.document.getElementById("commudleSidebar").classList.add('collapsed');
                 }
                 if (window.innerWidth >= 1000)  {
-                  this.sidebarService.expand();
+                  this.sidebarService.expand('mainMenu');
                 }
             }, 10);
       });

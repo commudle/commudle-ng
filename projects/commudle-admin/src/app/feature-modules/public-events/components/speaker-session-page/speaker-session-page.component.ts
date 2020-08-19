@@ -73,6 +73,8 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
   ) {}
 
   setMeta() {
+    this.meta.updateTag({ name: 'description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
+
     this.meta.updateTag(
       {
         name: 'og:image',

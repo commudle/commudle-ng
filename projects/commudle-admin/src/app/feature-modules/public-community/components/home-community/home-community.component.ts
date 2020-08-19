@@ -20,6 +20,7 @@ export class HomeCommunityComponent implements OnInit {
   ) { }
 
   setMeta() {
+    this.meta.updateTag({ name: 'description', content: this.community.mini_description});
     this.meta.updateTag({ name: 'og:image', content: this.community.logo_path });
     this.meta.updateTag({ name: 'og:image:secure_url', content: this.community.logo_path });
     this.meta.updateTag({ name: 'og:title', content: this.community.name });
