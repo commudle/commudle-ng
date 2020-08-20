@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { IFixedEmails } from 'projects/shared-models/fixed-emails.model';
 
 
 
@@ -41,9 +42,9 @@ export class StatsCommunitiesService {
   }
 
 
-  emails(communityId): Observable<any> {
+  emails(communityId): Observable<IFixedEmails> {
     let params = new HttpParams().set('community_id', communityId);
-    return this.http.get<any>(
+    return this.http.get<IFixedEmails>(
       this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.EMAILS), { params }
     );
   }
