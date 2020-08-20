@@ -1,3 +1,6 @@
+import { IPoll } from 'projects/shared-models/poll.model';
+import { NbWindowService } from '@nebular/theme';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { RandomColorsService } from 'projects/shared-services/random-colors.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
@@ -9,6 +12,9 @@ import { Chart } from 'chart.js';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import * as _ from 'lodash';
+import { DiscussionChatComponent } from 'projects/shared-components/discussion-chat/discussion-chat.component';
+import { DiscussionQnAComponent } from 'projects/shared-components/discussion-qna/discussion-qna.component';
+import { PollResultComponent } from 'projects/shared-components/poll-result/poll-result.component';
 
 
 @Component({
@@ -26,8 +32,8 @@ export class EventStatsComponent implements OnInit {
   totalFemaleRegistrations = 0;
   totalOtherGenderRegistrations = 0;
   attendees;
-  discussions;
-  pollables;
+  discussions: IDiscussion[] = [];
+  polls: IPoll[] = [];
 
   entryPassesChart;
   attendeesChart;
@@ -36,8 +42,7 @@ export class EventStatsComponent implements OnInit {
     private statsEventsService: StatsEventsService,
     private activatedRoute: ActivatedRoute,
     private title: Title,
-    private randomColors: RandomColorsService
-
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
@@ -50,6 +55,8 @@ export class EventStatsComponent implements OnInit {
       this.getUniqueVisitors();
       this.getRegistrations();
       this.getAttendees();
+      this.getDiscussions();
+      this.getPolls();
     });
   }
 
@@ -170,11 +177,44 @@ export class EventStatsComponent implements OnInit {
   }
 
   getDiscussions() {
-
+    this.statsEventsService.discussions(this.event.slug).subscribe(
+      data => {
+        this.discussions = data.discussions;
+      }
+    );
   }
 
-  getPollables() {
-
+  openDiscussionWindow(discussion: IDiscussion) {
+    let currentDiscussionType;
+    switch (discussion.discussion_type) {
+      case 'chat':
+        currentDiscussionType = DiscussionChatComponent;
+        break;
+      case 'question_answers':
+        currentDiscussionType = DiscussionQnAComponent;
+        break;
+    }
+    this.windowService.open(
+      currentDiscussionType,
+      {title: discussion.parent_name, context: { discussion }, windowClass: 'full-screen-height' },
+    );
   }
+
+
+  getPolls() {
+    this.statsEventsService.polls(this.event.slug).subscribe(
+      data => {
+        this.polls = data.polls;
+      }
+    );
+  }
+
+  openPollWindow(poll: IPoll) {
+    this.windowService.open(
+      PollResultComponent,
+      {title: 'Poll', context: { pollId: poll.id } },
+    );
+  }
+
 
 }

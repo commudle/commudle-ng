@@ -80,4 +80,13 @@ nb-window.full-screen-width {
   width: 100vw;
 }
 
+nb-window.full-screen-height {
+  nb-card {
+    height: 100vh;
+    nb-card-body {
+      height: 90vh;
+    }
+  }
+}
+
 

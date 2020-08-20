@@ -31,7 +31,7 @@ import { PollsComponent } from './polls/polls.component';
 import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-form.component';
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
 import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.component';
-import { PollResultComponent } from './polls/poll-result/poll-result.component';
+import { PollResultComponent } from './poll-result/poll-result.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
 import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
 import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-tracker.component';
@@ -111,6 +111,7 @@ import { DiscussionPersonalChatComponent } from './discussion-personal-chat/disc
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
+    PollResultComponent,
     NewDataFormComponent,
     DataFormFillComponent,
     UserVisitTrackerComponent,

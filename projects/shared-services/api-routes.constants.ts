@@ -323,7 +323,7 @@ export const API_ROUTES = {
       SIMPLE_EVENT_REGISTRATION: '/api/v2/stats/events/simple_event_registration',
       ATTENDEES: '/api/v2/stats/events/attendees',
       DISCUSSIONS: '/api/v2/stats/events/discussions',
-      POLLABLES: '/api/v2/stats/events/pollables'
+      POLLS: '/api/v2/stats/events/polls'
     },
 
     COMMUNITIES: {

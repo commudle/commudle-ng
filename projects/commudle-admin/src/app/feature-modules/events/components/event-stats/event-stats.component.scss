@@ -118,6 +118,7 @@
         text-align: center;
         position: relative;
         width: 330px;
+        padding: 1rem 0;
         p {
           font-size: 1.2rem;
           margin: 0;
@@ -128,6 +129,83 @@
         text-align: center;
         span {
           font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  nb-card.stat-card.discussions {
+    nb-card-header {
+      h3 {
+        font-weight: 300;
+        margin: 0;
+        nb-icon {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    nb-card-body {
+      nb-list {
+        nb-list-item {
+          p {
+            margin: 0;
+            word-break: break-all;
+            padding: 0 5px;
+          }
+          .type {
+            width: 20%;
+          }
+
+          .parent {
+            width: 50%;
+          }
+
+          .messages {
+            width: 10%;
+          }
+        }
+      }
+    }
+  }
+
+  nb-card.stat-card.polls {
+    nb-card-header {
+      h3 {
+        font-weight: 300;
+        margin: 0;
+        nb-icon {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    nb-card-body {
+      nb-list {
+        nb-list-item {
+          display: flex;
+          flex-wrap: wrap;
+
+          p {
+            margin: 0;
+            padding: 0 5px;
+            word-break: break-all;
+          }
+          .question {
+            width: 30%;
+          }
+
+          .pollable {
+            width: 30%;
+          }
+
+          .responses {
+            width: 10%;
+          }
+
+          .results {
+            width: 10%;
+          }
         }
       }
     }
