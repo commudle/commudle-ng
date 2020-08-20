@@ -1,4 +1,4 @@
-import { NbListModule, NbIconModule } from '@nebular/theme';
+import { NbListModule, NbIconModule, NbButtonModule, NbAlertModule, NbCardModule } from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommunityEmailsListComponent } from './components/community-emails-list/community-emails-list.component';
@@ -12,7 +12,10 @@ import { CommunityEmailsListComponent } from './components/community-emails-list
 
     // Nebular
     NbListModule,
-    NbIconModule
+    NbIconModule,
+    NbCardModule,
+    NbButtonModule,
+    NbAlertModule
   ],
   exports: [
     CommunityEmailsListComponent

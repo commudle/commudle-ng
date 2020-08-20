@@ -48,7 +48,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
                 data: [
                   chartData.male,
                   chartData.female,
-                  chartData.prefer_not_to_answer + chartData.na,
+                  chartData.prefer_not_to_answer + chartData.NA,
                 ],
                 backgroundColor: ['blue', '#ff43bc', 'purple']
             }],
@@ -83,7 +83,7 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 type: 'time',
-                distribution: 'series',
+                distribution: 'linear',
                 time: {
                   unit: 'month'
                 },
@@ -129,14 +129,16 @@ export class CommunityStatsComponent implements OnInit, OnDestroy {
             scales: {
               xAxes: [{
                 type: 'time',
-                distribution: 'series',
+                distribution: 'linear',
                 time: {
-                  unit: 'month'
+                  unit: 'month',
+                  unitStepSize: 1
                 },
                 scaleLabel: {
                   // display: true,
                   // labelString: 'Time'
-                }
+                },
+
               }],
               yAxes: [{
                 scaleLabel: {

@@ -56,10 +56,11 @@ export class AppComponent {
                   this.document.getElementById("commudleSidebar").classList.remove('expanded');
                   this.document.getElementById("commudleSidebar").classList.add('collapsed');
                 }
-                if (window.innerWidth >= 1000)  {
-                  this.sidebarService.expand('mainMenu');
-                }
             }, 10);
+        if (this.isBrowser) {
+          if (window.innerWidth >= 1000)  {
+            this.sidebarService.expand('mainMenu');          }
+        }
       });
   }
 
