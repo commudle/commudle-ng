@@ -1,8 +1,10 @@
+import { IDiscussions } from './../../../../../shared-models/discussions.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { IPolls } from 'projects/shared-models/polls.model';
 
 
 
@@ -50,18 +52,18 @@ export class StatsEventsService {
 
 
 
-  discussions(eventId): Observable<any> {
+  discussions(eventId): Observable<IDiscussions> {
     let params = new HttpParams().set('event_id', eventId);
-    return this.http.get<any>(
+    return this.http.get<IDiscussions>(
       this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.DISCUSSIONS), { params }
     );
   }
 
 
-  pollables(eventId): Observable<any> {
+  polls(eventId): Observable<IPolls> {
     let params = new HttpParams().set('event_id', eventId);
-    return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.POLLABLES), { params }
+    return this.http.get<IPolls>(
+      this.apiRoutesService.getRoute(API_ROUTES.STATS.EVENTS.POLLS), { params }
     );
   }
 
