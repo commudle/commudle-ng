@@ -1,0 +1,65 @@
+<div class="community-stats">
+  <a [routerLink]="['/admin/communities', community.slug]">
+    <nb-icon icon="arrow-ios-back"></nb-icon>
+    Back
+  </a>
+  <nb-card class="page-header">
+    <nb-card-header>
+      <h3>
+        <nb-icon icon="trending-up-outline"></nb-icon>
+        {{community.name}}
+        <small>
+          Community Stats
+        </small>
+      </h3>
+    </nb-card-header>
+  </nb-card>
+
+
+  <nb-card class="stat-card members">
+    <nb-card-header>
+      <h3>
+        Members
+      </h3>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        {{ this.community.member_count }}
+        <br/>
+        <br/>
+        Total Members
+      </p>
+      <div class="chart-container">
+        <p>
+          Diversity in Unity
+        </p>
+        <canvas id="chart-member-distibution"></canvas>
+      </div>
+
+      <div class="wide chart-container">
+        <p>
+          Member Growth Over Time!
+        </p>
+        <canvas id="chart-member-growth"></canvas>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card class="stat-card events">
+    <nb-card-header>
+      <h3>
+        Events
+      </h3>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="wide chart-container">
+        <p>
+          Member Growth Over Time!
+        </p>
+        <canvas id="chart-community-events-timeline"></canvas>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+</div>
