@@ -58,7 +58,6 @@ export class MyCommunityBuildsComponent implements OnInit {
       data => {
         if (data) {
           this.cBuilds.splice(buildIndex, 1);
-          this.windowRef.close();
           this.toastLogService.successDialog('Deleted');
         }
       }

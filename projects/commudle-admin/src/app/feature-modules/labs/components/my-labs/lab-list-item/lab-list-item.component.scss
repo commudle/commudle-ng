@@ -1,7 +1,7 @@
-.community-build {
+.lab {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0 0;
+  padding: 1rem 0;
 
   &:not(:last-child){
     border-bottom: 1px solid lightgrey;
@@ -36,11 +36,6 @@
     }
   }
 
-  .build-type {
-    p {
-      margin: 0;
-    }
-  }
 
   .status {
     p {
@@ -73,10 +68,6 @@
 
     .content {
       width: 60%;
-    }
-
-    .build-type {
-      width: 10%;
     }
 
     .status {

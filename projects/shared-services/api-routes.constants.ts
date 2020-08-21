@@ -142,10 +142,14 @@ export const API_ROUTES = {
 
 
   // event_entry_passes
-  CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
-  CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
-  TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
-  TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
+
+  EVENT_ENTRY_PASSES: {
+    CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
+    CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
+    TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
+    TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
+    AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance'
+  },
 
 
   // locations
