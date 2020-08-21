@@ -36,6 +36,10 @@ export class LabsComponent implements OnInit {
 
   setMeta() {
     this.title.setTitle('Labs | Learn Something New!');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!'
+    });
     this.meta.updateTag(
       {
         name: 'og:image',

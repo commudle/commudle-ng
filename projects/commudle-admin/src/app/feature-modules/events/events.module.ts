@@ -45,6 +45,7 @@ import { UserDetailsComponent } from './components/user-event-registrations/user
 import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-video-stream/event-embedded-video-stream.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
+import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { AppSharedComponentsModule } from '../../app-shared-components/app-share
     AppSharedComponentsModule,
     SharedComponentsModule,
     YouTubePlayerModule,
+    ReusableComponentsModule,
 
 
     // External

@@ -59,6 +59,10 @@ export class LabComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
     this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag(
       {

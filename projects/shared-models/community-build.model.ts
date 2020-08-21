@@ -8,7 +8,7 @@ export interface ICommunityBuild {
   slug: string;
   description: string;
   build_type: string;
-  publish_status: string;
+  publish_status: EPublishStatus;
   link: string;
   created_at: Date;
   votes_count: number;

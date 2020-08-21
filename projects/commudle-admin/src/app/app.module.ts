@@ -59,6 +59,7 @@ import { EventCardComponent } from './components/home/event-card/event-card.comp
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -86,6 +87,7 @@ export function initApp(appInitService: AppInitService) {
     SpeakerResourceFormComponent,
     EventCardComponent,
     EditProfileComponent,
+    CommunityStatsComponent,
   ],
   imports: [
     AppRoutingModule,

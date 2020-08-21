@@ -9,7 +9,7 @@ export interface ILab {
   description: string;
   header_image: IAttachedFile;
   user: IUser;
-  publish_status: string;
+  publish_status: EPublishStatus;
   images: IAttachedFile[];
   created_at: Date;
   updated_at: Date;

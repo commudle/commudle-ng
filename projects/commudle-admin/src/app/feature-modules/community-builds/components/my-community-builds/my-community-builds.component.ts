@@ -1,3 +1,4 @@
+import { StatsCommunityBuildsService } from './../../../../services/stats/stats-community-builds.service';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import * as moment from 'moment';
 import { ICommunityBuild, EPublishStatus, EPublishStatusColors } from 'projects/shared-models/community-build.model';
@@ -13,7 +14,6 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
   styleUrls: ['./my-community-builds.component.scss']
 })
 export class MyCommunityBuildsComponent implements OnInit {
-  @ViewChild('confirmDeleteTemplate') confirmDeleteTemplate: TemplateRef<any>;
   moment = moment;
   cBuilds: ICommunityBuild[] = [];
   EPublishStatus = EPublishStatus;
@@ -27,7 +27,6 @@ export class MyCommunityBuildsComponent implements OnInit {
     private title: Title,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
-    private windowService: NbWindowService
   ) {
     title.setTitle('My Builds');
    }
@@ -53,19 +52,12 @@ export class MyCommunityBuildsComponent implements OnInit {
     );
   }
 
-  openDeleteConfirmation(cBuild, index) {
-    this.windowRef = this.windowService.open(
-      this.confirmDeleteTemplate,
-      {title: `Are you sure you want to delete ${cBuild.name}?`, context: { name: cBuild.name, index: index } },
-    );
-  }
-
-  destroyBuild(index) {
-    this.communityBuildsService.destroy(this.cBuilds[index].id).subscribe(
+  destroyBuild(buildId) {
+    const buildIndex = this.cBuilds.findIndex(k => k.id === buildId);
+    this.communityBuildsService.destroy(this.cBuilds[buildIndex].id).subscribe(
       data => {
         if (data) {
-          this.cBuilds.splice(index, 1);
-          this.windowRef.close();
+          this.cBuilds.splice(buildIndex, 1);
           this.toastLogService.successDialog('Deleted');
         }
       }
