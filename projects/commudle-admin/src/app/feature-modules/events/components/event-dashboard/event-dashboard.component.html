@@ -30,10 +30,22 @@
                 </div>
               </div>
               <div>
-                <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+                <a *ngIf="event.editable" nbButton status="primary" size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+                  <fa-icon [icon]="faEdit"></fa-icon>
+                  &nbsp;
+                  Edit Timings and Description
+                </a>
+                <br>
+                <br>
+                <a nbButton status="info" outline size="small" target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+                  Public Event Page
                   <nb-icon icon="external-link"></nb-icon>
-                  <br>
-                  Event Page
+                </a>
+                &nbsp;
+                <a nbButton status="success" size="small" [routerLink]="['stats']">
+                  <nb-icon icon="trending-up-outline"></nb-icon>
+                  Stats<sup>Beta</sup>
+                  &nbsp; <nb-icon icon="external-link"></nb-icon>
                 </a>
               </div>
             </div>
@@ -42,13 +54,6 @@
                 <fa-icon [icon]="faInfoCircle"></fa-icon>
                 &nbsp;
                 <div [innerHTML]="event.description" ></div>
-              </div>
-              <div *ngIf="event.editable">
-                <a nbButton status="primary" size="tiny" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
-                  <fa-icon [icon]="faEdit"></fa-icon>
-                  &nbsp;
-                  Edit
-                </a>
               </div>
             </div>
           </div>
@@ -339,7 +344,13 @@
     </div>
   </div>
 
-
+  <div class="card-row">
+    <div class="card-col">
+      <div class="community-emails">
+        <app-community-emails-list [communityId]="event.kommunity_id"></app-community-emails-list>
+      </div>
+    </div>
+  </div>
 
 
 </div>

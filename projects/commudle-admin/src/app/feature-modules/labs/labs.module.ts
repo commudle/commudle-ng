@@ -14,6 +14,7 @@ import { LabComponent } from './components/lab/lab.component';
 import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
 import { LabCardComponent } from './components/labs/lab-card/lab-card.component';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-hi
     LabComponent,
     LabStepComponent,
     LabCardComponent,
+    LabListItemComponent,
   ],
   imports: [
     CommonModule,

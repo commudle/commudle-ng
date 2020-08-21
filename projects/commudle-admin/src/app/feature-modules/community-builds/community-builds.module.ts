@@ -21,6 +21,7 @@ import { CommunityBuildsComponent } from './components/community-builds/communit
 import { CommunityBuildDetailsComponent } from './components/community-build-details/community-build-details.component';
 import { CommunityBuildHListItemComponent } from './components/community-build-h-list-item/community-build-h-list-item.component';
 import { CommunityBuildComponent } from './components/community-build/community-build.component';
+import { BuildListItemComponent } from './components/my-community-builds/build-list-item/build-list-item.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { CommunityBuildComponent } from './components/community-build/community-
     CommunityBuildDetailsComponent,
     CommunityBuildHListItemComponent,
     CommunityBuildComponent,
+    BuildListItemComponent,
   ],
   imports: [
     CommonModule,

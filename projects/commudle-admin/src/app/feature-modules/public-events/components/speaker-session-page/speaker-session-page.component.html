@@ -31,6 +31,7 @@
                 {{ moment(endTime).format('h:mm A') }}
               </small>
             </p>
+            <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
 
             <div *ngIf="speaker" class="speaker-details">
               <div>
