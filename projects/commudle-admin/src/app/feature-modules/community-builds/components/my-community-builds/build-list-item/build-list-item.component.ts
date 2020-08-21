@@ -41,6 +41,7 @@ export class BuildListItemComponent implements OnInit {
 
   destroyBuild(buildId) {
     this.deleteBuild.emit(buildId);
+    this.windowRef.close()
   }
 
   getStats() {
@@ -48,7 +49,7 @@ export class BuildListItemComponent implements OnInit {
       data => {
         this.stats = data;
       }
-    )
+    );
   }
 
 

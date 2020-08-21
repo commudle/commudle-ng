@@ -10,7 +10,7 @@ import { IFixedEmails } from 'projects/shared-models/fixed-emails.model';
 @Injectable({
   providedIn: 'root'
 })
-export class StatsCommunitiesService {
+export class StatsLabsService {
 
   constructor(
     private http: HttpClient,
@@ -18,34 +18,10 @@ export class StatsCommunitiesService {
   ) { }
 
 
-
-  membersDistribution(communityId): Observable<any> {
-    let params = new HttpParams().set('community_id', communityId);
+  userEngagement(labId): Observable<any> {
+    let params = new HttpParams().set('lab_id', labId);
     return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.MEMBERS_DISTRIBUTION), { params }
-    );
-  }
-
-  membersTimeline(communityId): Observable<any> {
-    let params = new HttpParams().set('community_id', communityId);
-    return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.MEMBERS_TIMELINE), { params }
-    );
-  }
-
-
-  eventsTimeLine(communityId): Observable<any> {
-    let params = new HttpParams().set('community_id', communityId);
-    return this.http.get<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.EVENTS_TIMELINE), { params }
-    );
-  }
-
-
-  emails(communityId): Observable<IFixedEmails> {
-    let params = new HttpParams().set('community_id', communityId);
-    return this.http.get<IFixedEmails>(
-      this.apiRoutesService.getRoute(API_ROUTES.STATS.COMMUNITIES.EMAILS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.STATS.LABS.USER_ENGAGEMENT), { params }
     );
   }
 
