@@ -48,6 +48,8 @@ export class HomeEventComponent implements OnInit {
 
   setMeta() {
     this.title.setTitle(`${this.event.name} | ${this.community.name}`);
+    this.meta.updateTag({ name: 'description', content: this.event.description.replace(/<[^>]*>/g, '')});
+
     this.meta.updateTag(
       {
         name: 'og:image',

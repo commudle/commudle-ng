@@ -11,6 +11,7 @@ export interface IPoll {
   status: EPollStatuses;
   total_responses: number;
   already_filled: boolean;
+  pollable_name: string;
 }
 
 

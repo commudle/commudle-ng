@@ -43,6 +43,10 @@ export class HomeComponent implements OnInit {
 
   setMeta() {
     this.title.setTitle("Commudle | Communities | Let's Share & Learn");
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
+    });
     this.meta.updateTag({name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({name: 'og:title', content: "Commudle | Communities | Let's Share & Learn"});

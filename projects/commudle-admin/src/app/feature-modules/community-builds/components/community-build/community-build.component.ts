@@ -21,6 +21,10 @@ export class CommunityBuildComponent implements OnInit {
   ) { }
 
   setMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content: this.communityBuild.description.replace(/<[^>]*>/g, '')
+    });
     this.meta.updateTag(
       {
         name: 'og:image',
