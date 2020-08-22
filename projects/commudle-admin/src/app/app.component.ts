@@ -49,16 +49,18 @@ export class AppComponent {
 
       });
 
+
       this.router.events.subscribe(event => {
         setTimeout(() => {
                 if (window.innerWidth <= 1000 && document.getElementById("commudleSidebar").classList.contains('expanded') ) {
                   this.document.getElementById("commudleSidebar").classList.remove('expanded');
                   this.document.getElementById("commudleSidebar").classList.add('collapsed');
                 }
-                if (window.innerWidth >= 1000)  {
-                  this.sidebarService.expand();
-                }
             }, 10);
+        if (this.isBrowser) {
+          if (window.innerWidth >= 1000)  {
+            this.sidebarService.expand('mainMenu');          }
+        }
       });
   }
 

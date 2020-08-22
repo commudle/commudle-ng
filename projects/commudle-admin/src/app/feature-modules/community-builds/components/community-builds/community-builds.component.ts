@@ -25,6 +25,10 @@ export class CommunityBuildsComponent implements OnInit {
   }
 
   setMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content: `Project, Slides from a Session, an Online Course, share it all with the community!`
+    });
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({ name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({ name: 'og:title', content: `Community Builds | Share What You've Built!` });

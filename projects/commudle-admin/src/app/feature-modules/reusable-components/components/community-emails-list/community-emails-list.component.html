@@ -1,0 +1,36 @@
+<div class="community-emails">
+  <nb-card>
+    <nb-card-header>
+      List of last 25 emails sent
+      <button class="refresh-button" nbButton status="primary" outline size="tiny" (click)="getEmails()">
+        <nb-icon icon="refresh-outline"></nb-icon>
+        Refresh
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+
+        <nb-list>
+          <nb-list-item *ngFor="let email of emails">
+            <div class="email">
+              <p class="subject">
+                <nb-icon status="basic" icon="email-outline"></nb-icon>
+                {{ email.subject }}
+                <small>
+                  (by {{email.user.name}})
+                </small>
+              </p>
+              <div>
+                <p class="recipient-count">{{email.emails_count}} Recipients</p>
+                <p class="sent_at">Sent at: {{moment(email.created_at).format('LT DD-MM-YYYY')}}</p>
+                <p *ngIf="email.message" class="text-info clickable" (click)="openEmailPreview(email)">View Additional Message</p>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<ng-template #emailMessageTemplate let-data>
+  <div [innerHTML]="data.message"></div>
+</ng-template>

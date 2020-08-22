@@ -16,7 +16,6 @@ import { faFlask } from '@fortawesome/free-solid-svg-icons';
 })
 export class MyLabsComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
-  @ViewChild('confirmDeleteTemplate') confirmDeleteTemplate: TemplateRef<any>;
   moment = moment;
   userSubscription;
 
@@ -65,19 +64,14 @@ export class MyLabsComponent implements OnInit, OnDestroy {
     );
   }
 
-  openDeleteConfirmation(cBuild, index) {
-    this.windowRef = this.windowService.open(
-      this.confirmDeleteTemplate,
-      {title: `Are you sure you want to delete ${cBuild.name}?`, context: { name: cBuild.name, index: index } },
-    );
-  }
 
-  destroyBuild(index) {
-    this.labsService.destroy(this.labs[index].id).subscribe(
+
+  destroyLab(labId) {
+    const labIndex = this.labs.findIndex(k => k.id === labId);
+    this.labsService.destroy(this.labs[labIndex].id).subscribe(
       data => {
         if (data) {
-          this.labs.splice(index, 1);
-          this.windowRef.close();
+          this.labs.splice(labIndex, 1);
           this.toastLogService.successDialog('Deleted');
         }
       }

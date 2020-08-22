@@ -28,6 +28,7 @@ import { CollaborationCommunitiesComponent } from './components/collaboration-co
 import { TeamComponent } from './components/team/team.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
+import { AutoAttendanceComponent } from './components/auto-attendance/auto-attendance.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AttendingMembersComponent } from './components/attending-members/attend
     TeamComponent,
     EventLocationTracksComponent,
     AttendingMembersComponent,
+    AutoAttendanceComponent,
   ],
     imports: [
         CommonModule,

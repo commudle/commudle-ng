@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -18,6 +18,7 @@ import { UserVisitsService } from 'projects/shared-services/user-visits.service'
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { NbSidebarService } from '@nebular/theme';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -25,6 +26,7 @@ import { NbSidebarService } from '@nebular/theme';
   styleUrls: ['./speaker-session-page.component.scss']
 })
 export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('videoContainer') private videoContainer: ElementRef;
 
   trackSlot: ITrackSlot;
@@ -69,10 +71,13 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
     private meta: Meta,
     private userVisitsService: UserVisitsService,
     private authWatchService: LibAuthwatchService,
-    private nbSidebarService: NbSidebarService
+    private nbSidebarService: NbSidebarService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   setMeta() {
+    this.meta.updateTag({ name: 'description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
+
     this.meta.updateTag(
       {
         name: 'og:image',
@@ -97,7 +102,6 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.nbSidebarService.collapse('mainMenu');
     this.resolveData();
 
     this.authWatchService.currentUser$.subscribe(
@@ -115,6 +119,10 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.onResize();
+    if (this.isBrowser) {
+      this.nbSidebarService.collapse('mainMenu');
+    }
+
   }
 
   resolveData() {

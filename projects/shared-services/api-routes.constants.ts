@@ -142,10 +142,14 @@ export const API_ROUTES = {
 
 
   // event_entry_passes
-  CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
-  CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
-  TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
-  TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
+
+  EVENT_ENTRY_PASSES: {
+    CREATE_EVENT_ENTRY_PASS: 'api/v2/event_entry_passes',
+    CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
+    TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
+    TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
+    AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance'
+  },
 
 
   // locations
@@ -312,6 +316,35 @@ export const API_ROUTES = {
   EXTERNAL: {
     GITHUB_API: 'https://api.github.com/repos/commudle/commudle-ng',
     GITHUB_REPO: 'https://github.com/commudle/commudle-ng'
+  },
+
+
+  STATS: {
+
+    EVENTS: {
+      UNIQUE_VISITORS: '/api/v2/stats/events/unique_visitors',
+      CUSTOM_REGISTRATION: '/api/v2/stats/events/custom_registration',
+      SIMPLE_EVENT_REGISTRATION: '/api/v2/stats/events/simple_event_registration',
+      ATTENDEES: '/api/v2/stats/events/attendees',
+      DISCUSSIONS: '/api/v2/stats/events/discussions',
+      POLLS: '/api/v2/stats/events/polls'
+    },
+
+    COMMUNITIES: {
+      MEMBERS_DISTRIBUTION: '/api/v2/stats/communities/members_distribution',
+      MEMBERS_TIMELINE: '/api/v2/stats/communities/members_timeline',
+      EVENTS_TIMELINE: '/api/v2/stats/communities/events_timeline',
+      EMAILS: '/api/v2/stats/communities/emails',
+    },
+
+    LABS: {
+      USER_ENGAGEMENT: '/api/v2/stats/labs/user_engagement',
+    },
+
+
+    COMMUNITY_BUILDS: {
+      USER_ENGAGEMENT: '/api/v2/stats/community_builds/user_engagement',
+    },
   }
 
 };
