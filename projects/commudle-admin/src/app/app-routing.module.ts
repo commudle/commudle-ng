@@ -50,6 +50,10 @@ const routes: Routes = [
     component: SpeakerResourceFormComponent
   },
   {
+    path: 'community-groups',
+    loadChildren: () => import('./feature-modules/community-groups/community-groups.module').then(m => m.CommunityGroupsModule)
+  },
+  {
     path: 'sys-admin',
     loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule),
     canActivate: [AuthGuard]
