@@ -19,6 +19,7 @@ export class SidebarMenuComponent implements OnInit {
   currentUser: ICurrentUser;
   managedCommunities: ICommunity[] = [];
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
+  communityAdminRoles = []
   isSystemAdmin = false;
 
   unreadMessagesCount = 0;
