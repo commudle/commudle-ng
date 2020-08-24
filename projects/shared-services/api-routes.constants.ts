@@ -39,6 +39,12 @@ export const API_ROUTES = {
     }
   },
 
+  COMMUNITY_GROUPS: {
+    CREATE: 'api/v2/community_groups',
+    UPDATE: 'api/v2/community_groups',
+    SHOW: 'api/v2/community_groups/show'
+  },
+
 
 
   // data_forms

@@ -1,45 +1,58 @@
 .community-group-form {
-  form {
+  .header {
+    h1 {
+      font-weight: 300;
+    }
+  }
+  .form {
+    max-width: 1000px;
+    margin: 0 auto;
+    form {
+      .logo {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        label {
+          position: relative;
+          padding: 150px 0;
 
-    .logo {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
-      label {
-        position: relative;
-        padding: 150px 0;
+          >span {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-        >span {
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: grey;
 
-          font-size: 1.5rem;
-          font-weight: 300;
-          color: grey;
+            nb-icon {
+              font-size: 4rem;
+              margin-bottom: 0.5rem
+            }
+          }
 
-          nb-icon {
-            font-size: 4rem;
-            margin-bottom: 0.5rem
+          input {
+            display: none;
           }
         }
 
-        input {
-          display: none;
+        .uploaded-logo {
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            max-width: 100%;
+          }
+        }
+
+        .delete-logo-button {
+          text-align: center;
         }
       }
 
-      .uploaded-logo {
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          max-width: 100%;
-        }
-      }
     }
-
   }
+
 }

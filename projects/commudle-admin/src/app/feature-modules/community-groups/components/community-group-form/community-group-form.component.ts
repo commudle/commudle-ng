@@ -1,7 +1,10 @@
-import { LibToastLogService } from './../../../../../../../shared-services/lib-toastlog.service';
-import { ICommunityGroup } from './../../../../../../../shared-models/community-group.model';
+
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
+import { ICommunityGroup } from 'projects/shared-models/community-group.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-community-group-form',
@@ -16,16 +19,34 @@ export class CommunityGroupFormComponent implements OnInit {
 
   communityGroupForm = this.fb.group({
     name: ['', Validators.required],
-    logo: ['', Validators.required],
+    logo: [''],
     description: ['', Validators.required]
   });
 
   constructor(
     private fb: FormBuilder,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private communityGroupsService: CommunityGroupsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(data => {
+      if (data.community_group_id) {
+        this.getCommunityGroup(data.community_group_id);
+      }
+    });
+  }
+
+  getCommunityGroup(communityGroupId) {
+    this.communityGroupsService.show(communityGroupId).subscribe(data => {
+      this.communityGroup = data;
+      this.communityGroupForm.patchValue({
+        name: this.communityGroup.name,
+        description: this.communityGroup.description
+      });
+    });
   }
 
   displaySelectedLogo(event: any) {
@@ -46,7 +67,37 @@ export class CommunityGroupFormComponent implements OnInit {
 
   }
 
+  removeLogo() {
+    this.uploadedLogoImage = null;
+    this.communityGroup.logo = null;
+    this.uploadedLogoImageFile = null;
+    this.communityGroupForm.get('logo').patchValue('');
+  }
+
+
   createOrUpdateCommunityGroup() {
+    const formData: any = new FormData();
+
+    const communityGroupFormData = this.communityGroupForm.value;
+    Object.keys(communityGroupFormData).forEach(
+      key => (!(communityGroupFormData[key] == null) ? formData.append(`community_group[${key}]`, communityGroupFormData[key]) : '')
+      );
+
+    if (this.uploadedLogoImageFile) {
+      formData.append('community_group[logo]', this.uploadedLogoImageFile);
+    }
+    if (!this.communityGroup) {
+
+      this.communityGroupsService.create(formData).subscribe(
+        data => {
+          this.communityGroup = data;
+        }
+      );
+    } else {
+      this.communityGroupsService.update(this.communityGroup.slug, formData).subscribe(data => {
+        console.log(data);
+      });
+    }
 
   }
 
