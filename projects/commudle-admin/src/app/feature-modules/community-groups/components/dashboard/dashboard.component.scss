@@ -1,0 +1,26 @@
+.community-group-dashboard {
+  >nb-card {
+    >nb-card-header {
+      display: flex;
+      align-items: center;
+      .logo {
+        width: 100px;
+        img {
+          width: 100%;
+        }
+      }
+
+      h1 {
+        margin: 0 0.5rem;
+        font-weight: 300;
+        small {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .tab-content {
+      width: 100%;
+    }
+  }
+}

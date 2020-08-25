@@ -91,14 +91,23 @@ export class CommunityGroupFormComponent implements OnInit {
       this.communityGroupsService.create(formData).subscribe(
         data => {
           this.communityGroup = data;
+          this.redirect();
         }
       );
     } else {
-      this.communityGroupsService.update(this.communityGroup.slug, formData).subscribe(data => {
-        console.log(data);
-      });
+      this.communityGroupsService.update(this.communityGroup.slug, formData).subscribe(
+        data => {
+          this.communityGroup = data;
+          this.redirect();
+        }
+      );
     }
 
+  }
+
+  redirect() {
+    this.toastLogService.successDialog('Saved!');
+    this.router.navigate(['/admin/community-groups', this.communityGroup.slug])
   }
 
 }
