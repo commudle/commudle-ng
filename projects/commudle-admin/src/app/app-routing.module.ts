@@ -12,6 +12,7 @@ import { SpeakerResourceFormComponent } from './components/speaker-resource-form
 import { InitResolver } from './resolvers/init.resolver';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
+import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
 
 const routes: Routes = [
   {
@@ -50,10 +51,6 @@ const routes: Routes = [
     component: SpeakerResourceFormComponent
   },
   {
-    path: 'community-groups',
-    loadChildren: () => import('./feature-modules/community-groups/community-groups.module').then(m => m.CommunityGroupsModule)
-  },
-  {
     path: 'sys-admin',
     loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule),
     canActivate: [AuthGuard]
@@ -76,6 +73,14 @@ const routes: Routes = [
       //     expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
       //   },
       // },
+      {
+        path: 'communities/new',
+        component: CommunityCreateComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR]
+        },
+      },
       {
         path: 'communities/:name',
         component: CommunityControlPanelComponent,
@@ -102,7 +107,11 @@ const routes: Routes = [
       {
         path: 'communities/:community_id/event-dashboard',
         loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
-      }
+      },
+      {
+        path: 'community-groups',
+        loadChildren: () => import('./feature-modules/community-groups/community-groups.module').then(m => m.CommunityGroupsModule)
+      },
     ],
 
   },

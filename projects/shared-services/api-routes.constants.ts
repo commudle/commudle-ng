@@ -13,6 +13,7 @@ export const API_ROUTES = {
 
   // communities
   COMMUNITIES: {
+    CREATE: 'api/v2/communities',
     USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
@@ -42,7 +43,8 @@ export const API_ROUTES = {
   COMMUNITY_GROUPS: {
     CREATE: 'api/v2/community_groups',
     UPDATE: 'api/v2/community_groups',
-    SHOW: 'api/v2/community_groups/show'
+    SHOW: 'api/v2/community_groups/show',
+    COMMUNITIES: 'api/v2/community_groups/communities'
   },
 
 

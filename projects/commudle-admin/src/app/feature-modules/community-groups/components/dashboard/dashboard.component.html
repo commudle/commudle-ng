@@ -1,0 +1,39 @@
+<div class="community-group-dashboard">
+  <nb-card *ngIf="communityGroup">
+    <nb-card-header>
+      <div class="logo">
+        <img src="{{ communityGroup.logo.url }}">
+      </div>
+      <h1>
+        {{communityGroup.name}}
+        <small>Dashboard</small>
+      </h1>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-tabset>
+        <nb-tab tabTitle="About">
+          <div class="tab-content" [innerHTML]="communityGroup.description">
+          </div>
+          <button nbButton size="small" status="primary" [routerLink]="['/admin/community-groups', communityGroup.slug, 'edit']">Edit</button>
+        </nb-tab>
+        <nb-tab tabTitle="Chapters">
+          <a target="_blank" nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}">
+            <nb-icon icon="plus"></nb-icon>
+            Add New Chapter
+            &nbsp;
+            <nb-icon icon="external-link-outline"></nb-icon>
+          </a>
+          <div class="chapters">
+            <div *ngFor="let community of communities">
+              <p>{{community.name}}</p>
+            </div>
+          </div>
+        </nb-tab>
+        <nb-tab tabTitle="Team">
+          Team
+        </nb-tab>
+       </nb-tabset>
+    </nb-card-body>
+  </nb-card>
+
+</div>

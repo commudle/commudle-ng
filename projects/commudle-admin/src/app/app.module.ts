@@ -60,6 +60,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
+import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -88,6 +89,7 @@ export function initApp(appInitService: AppInitService) {
     EventCardComponent,
     EditProfileComponent,
     CommunityStatsComponent,
+    CommunityCreateComponent,
   ],
   imports: [
     AppRoutingModule,
