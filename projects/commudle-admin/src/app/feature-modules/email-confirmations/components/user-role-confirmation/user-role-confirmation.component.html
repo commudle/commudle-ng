@@ -20,13 +20,24 @@
               </a>
             </p>
           </div>
-          <div class="community">
+          <div class="community" *ngIf="community">
             <div class="logo">
               <img src="{{ community.logo_path }}" alt="{{ community.name }}">
             </div>
             <p>
               <a [routerLink]="['/communities', community.slug]">
                 {{ community.name }}
+              </a>
+            </p>
+          </div>
+
+          <div class="community" *ngIf="communityGroup">
+            <div class="logo">
+              <img src="{{ communityGroup.logo }}" alt="{{ communityGroup.name }}">
+            </div>
+            <p>
+              <a [routerLink]="['/admin/community-groups', communityGroup.slug]">
+                {{ communityGroup.name }}
               </a>
             </p>
           </div>

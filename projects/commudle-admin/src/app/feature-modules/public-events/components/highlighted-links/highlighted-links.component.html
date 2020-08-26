@@ -8,7 +8,8 @@
             [routerLink]="['/fill-form', form.data_form_entity_id]"
             [queryParams]="{ next: currentRoute }"
             size="small"
-            status="primary">
+            status="primary"
+            nbTooltip="{{form.name}}">
             <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.SPEAKER" icon="award"></nb-icon>
             <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.ATTENDEE" icon="people"></nb-icon>
             <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.FEEDBACK" icon="bulb"></nb-icon>
