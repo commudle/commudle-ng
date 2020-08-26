@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/public-events/public-events.module').then(m => m.PublicEventsModule)
   },
   {
+    path: 'orgs',
+    loadChildren: () => import('./feature-modules/public-community-groups/public-community-groups.module').then(m => m.PublicCommunityGroupsModule)
+  },
+  {
     path: 'fill-form/:data_form_entity_id',
     component: FillDataFormComponent,
     canActivate: [AuthGuard]
@@ -109,7 +113,7 @@ const routes: Routes = [
         loadChildren: () => import('./feature-modules/events/events.module').then(m => m.EventsModule)
       },
       {
-        path: 'community-groups',
+        path: 'orgs',
         loadChildren: () => import('./feature-modules/community-groups/community-groups.module').then(m => m.CommunityGroupsModule)
       },
     ],

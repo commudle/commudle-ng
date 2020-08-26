@@ -73,6 +73,13 @@ export class UserRolesUsersService {
     );
   }
 
+  pGetCommunityGroupLeaders(communityGroupId): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS), { params }
+    );
+  }
+
 
   pGetCommunityMembers(communityId, page, count): Observable<IUsers> {
     let params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);

@@ -45,4 +45,19 @@ export class CommunityGroupsService {
     );
   }
 
+
+  pShow(communityGroupId): Observable<ICommunityGroup> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    return this.http.get<ICommunityGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.SHOW), { params }
+    );
+  }
+
+  pCommunities(communityGroupId): Observable<ICommunities> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    return this.http.get<ICommunities>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.PUBLIC.COMMUNITIES), { params }
+    );
+  }
+
 }

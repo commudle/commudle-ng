@@ -1,0 +1,26 @@
+<div>
+  <nb-card>
+    <nb-card-body>
+      <h3 class="lh-fw chapter-count" *ngIf="this.communities.length > 1">
+        {{this.communities.length}} Chapters
+      </h3>
+
+      <div class="chapters">
+        <div class="community" *ngFor="let community of communities" [routerLink]="['/communities', community.slug]">
+          <h4 class="lh-fw">
+            {{community.name | slice:0:20}}
+          </h4>
+          <p>
+            <nb-icon icon="people-outline"></nb-icon>
+            {{ community.member_count }}
+          </p>
+
+          <a [routerLink]="['/communities', community.slug]">
+            Details
+          </a>
+        </div>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+</div>
