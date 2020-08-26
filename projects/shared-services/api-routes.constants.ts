@@ -45,6 +45,7 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/community_groups',
     SHOW: 'api/v2/community_groups/show',
     COMMUNITIES: 'api/v2/community_groups/communities',
+    MANAGING_COMMUNITY_GROUPS: 'api/v2/community_groups/get_managing_community_groups',
 
     PUBLIC: {
       SHOW: 'api/v2/community_groups/public',

@@ -5,6 +5,7 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 import { ICommunities } from 'projects/shared-models/communities.model';
+import { ICommunityGroups } from 'projects/shared-models/community-groups.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,12 @@ export class CommunityGroupsService {
     let params = new HttpParams().set('community_group_id', communityGroupId);
     return this.http.get<ICommunityGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.SHOW), { params }
+    );
+  }
+
+  getManagingCommunityGroups(): Observable<ICommunityGroups> {
+    return this.http.get<ICommunityGroups>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_GROUPS.MANAGING_COMMUNITY_GROUPS)
     );
   }
 
