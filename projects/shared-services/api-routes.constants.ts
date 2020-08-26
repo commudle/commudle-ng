@@ -44,7 +44,12 @@ export const API_ROUTES = {
     CREATE: 'api/v2/community_groups',
     UPDATE: 'api/v2/community_groups',
     SHOW: 'api/v2/community_groups/show',
-    COMMUNITIES: 'api/v2/community_groups/communities'
+    COMMUNITIES: 'api/v2/community_groups/communities',
+
+    PUBLIC: {
+      SHOW: 'api/v2/community_groups/public',
+      COMMUNITIES: 'api/v2/community_groups/public/communities',
+    }
   },
 
 
@@ -215,7 +220,8 @@ export const API_ROUTES = {
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
 
     PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
-    PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members'
+    PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
+    PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/public_get_admin_community_group_users'
   },
 
   // event_collaboration_communities

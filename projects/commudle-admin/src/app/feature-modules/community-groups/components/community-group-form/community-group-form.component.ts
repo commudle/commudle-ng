@@ -107,7 +107,7 @@ export class CommunityGroupFormComponent implements OnInit {
 
   redirect() {
     this.toastLogService.successDialog('Saved!');
-    this.router.navigate(['/admin/community-groups', this.communityGroup.slug])
+    this.router.navigate(['/admin/orgs', this.communityGroup.slug]);
   }
 
 }

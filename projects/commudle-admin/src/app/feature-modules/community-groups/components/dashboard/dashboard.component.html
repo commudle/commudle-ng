@@ -14,7 +14,7 @@
         <nb-tab tabTitle="About">
           <div class="about-community-group" [innerHTML]="communityGroup.description">
           </div>
-          <button nbButton size="small" status="primary" [routerLink]="['/admin/community-groups', communityGroup.slug, 'edit']">Edit</button>
+          <button nbButton size="small" status="primary" [routerLink]="['/admin/orgs', communityGroup.slug, 'edit']">Edit</button>
         </nb-tab>
         <nb-tab tabTitle="Chapters">
           <a nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}">
