@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CommunityGroupsRoutingModule } from './community-groups-routing.module';
 import { CommunityGroupFormComponent } from './components/community-group-form/community-group-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     EditorModule,
+    SharedComponentsModule,
 
     // Nebular
     NbCardModule,

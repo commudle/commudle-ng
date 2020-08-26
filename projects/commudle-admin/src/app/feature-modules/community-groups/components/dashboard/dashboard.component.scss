@@ -19,8 +19,80 @@
       }
     }
 
-    .tab-content {
-      width: 100%;
+    @media screen and (max-width: 800px) {
+      nb-card-body {
+        padding: 1rem 0;
+      }
+    }
+
+
+    nb-tabset {
+      ::ng-deep {
+        ul.tabset {
+          overflow-x: auto !important;
+          padding: 5px !important;
+        }
+      }
+    }
+
+    .chapters {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin-top: 1rem;
+      .community-chapter {
+        padding: 0.5rem;
+        height: 150px;
+        width: 100%;
+        border: 1px solid grey;
+        border-radius: 5px;
+        margin: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h3, p {
+          margin: 0;
+        }
+
+        .links {
+          a {
+            display: block;
+            text-decoration: none;
+          }
+        }
+
+      }
+
+      @media screen and (min-width: 800px) {
+        flex-direction: row;
+        .community-chapter {
+          width: 30%;
+        }
+      }
+    }
+
+    .team-invitation-form {
+      form {
+        p {
+          margin-top: 0;
+        }
+        width: fit-content;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding: 0.5rem;
+      }
+    }
+
+    .team {
+      .member {
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border: 1px solid lightgrey;
+        margin: 0.5rem 0;
+      }
     }
   }
 }
