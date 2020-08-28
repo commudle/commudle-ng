@@ -36,10 +36,12 @@
               </small>
             </p>
             <div *ngIf="loc.event_type === EEventType.ONLINE_ONLY">
-              <p>ONLINE STREAMING (ID: {{loc.id}}) &nbsp; <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
+              <p>ONLINE STREAMING (ID: {{loc.id}}) &nbsp; <nb-icon icon='tv-outline' *ngIf="loc.embedded_video_stream" [nbPopover]="embeddedVideo" nbPopoverTrigger="click" ></nb-icon>
               </p>
               <ng-template #embeddedVideo>
-                <app-video-stream [videoCode]="loc.embedded_video_stream.embed_code" [videoSource]="loc.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
+                <div class="embedded-video-popover">
+                  <app-video-stream [videoCode]="loc.embedded_video_stream.embed_code" [videoSource]="loc.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
+                </div>
               </ng-template>
             </div>
             <p *ngIf="event.editable">
