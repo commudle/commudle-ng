@@ -10,11 +10,12 @@
             size="small"
             status="primary"
             nbTooltip="{{form.name}}">
-            <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.SPEAKER" icon="award"></nb-icon>
-            <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.ATTENDEE" icon="people"></nb-icon>
-            <nb-icon *ngIf="form.registration_type.name === ERegistationTypes.FEEDBACK" icon="bulb"></nb-icon>
-            {{ form.name }}
+            <nb-icon *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.SPEAKER" icon="award"></nb-icon>
+            <nb-icon *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.ATTENDEE" icon="people"></nb-icon>
+            <nb-icon *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK" icon="bulb"></nb-icon>
             <nb-icon class="edit-icon" *ngIf="form.already_filled" icon="edit"></nb-icon>
+
+            {{ form.name }}
           </a>
         </div>
       </div>
