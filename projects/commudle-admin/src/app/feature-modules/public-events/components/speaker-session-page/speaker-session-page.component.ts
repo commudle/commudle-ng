@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -17,13 +17,17 @@ import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stre
 import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { NbSidebarService } from '@nebular/theme';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-speaker-session-page',
   templateUrl: './speaker-session-page.component.html',
   styleUrls: ['./speaker-session-page.component.scss']
 })
-export class SpeakerSessionPageComponent implements OnInit {
+export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  @ViewChild('videoContainer') private videoContainer: ElementRef;
 
   trackSlot: ITrackSlot;
   speaker: IUser;
@@ -34,6 +38,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   dataFormEntityResponseGroup: IDataFormEntityResponseGroup;
 
   discussion: IDiscussion;
+  chat: IDiscussion;
+  currentTab;
 
   pollableType;
   pollableId;
@@ -53,6 +59,8 @@ export class SpeakerSessionPageComponent implements OnInit {
   endTime;
 
   currentUser: ICurrentUser;
+  chatCount = 0;
+  questionCount = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -62,20 +70,35 @@ export class SpeakerSessionPageComponent implements OnInit {
     private title: Title,
     private meta: Meta,
     private userVisitsService: UserVisitsService,
-    private authWatchService: LibAuthwatchService
-  ) {
-    this.onResize();
-  }
+    private authWatchService: LibAuthwatchService,
+    private nbSidebarService: NbSidebarService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {}
 
   setMeta() {
+    this.meta.updateTag({ name: 'description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
+
     this.meta.updateTag(
       {
         name: 'og:image',
         content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
       });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      });
     this.meta.updateTag({ name: 'og:title', content: `${this.event.name} | Live` });
     this.meta.updateTag({ name: 'og:description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
     this.meta.updateTag({ name: 'og:type', content: 'website'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.event.name} | Live` });
+    this.meta.updateTag({ name: 'twitter:description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
   }
 
   ngOnInit() {
@@ -92,6 +115,14 @@ export class SpeakerSessionPageComponent implements OnInit {
         this.userVisitData = data;
       }
     );
+  }
+
+  ngAfterViewInit() {
+    this.onResize();
+    if (this.isBrowser) {
+      this.nbSidebarService.collapse('mainMenu');
+    }
+
   }
 
   resolveData() {
@@ -113,6 +144,7 @@ export class SpeakerSessionPageComponent implements OnInit {
         } else {
           this.getEventEmbeddedVideoStream();
           this.getDiscussionQnA();
+          this.getDiscussionChat();
           this.title.setTitle(`Live Session | ${this.event.name}`);
           this.pollableId = this.event.id;
           this.pollableType = 'Event';
@@ -126,16 +158,25 @@ export class SpeakerSessionPageComponent implements OnInit {
       data => {
         this.trackSlot = data;
         this.getDiscussionQnA();
+        this.getDiscussionChat();
         this.speaker = data.user;
         this.startTime = this.trackSlot.start_time;
         this.endTime = this.trackSlot.end_time;
         if (this.trackSlot.embedded_video_stream) {
           this.embeddedVideoStream = this.trackSlot.embedded_video_stream;
+          this.onResize();
         }
 
         if (this.speaker) {
           this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
           this.meta.updateTag({ name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
+          this.meta.updateTag({ name: 'twitter:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
+        } else {
+          this.title.setTitle(`${this.trackSlot.session_title}`);
+          this.meta.updateTag({ name: 'og:title', content: `${this.trackSlot.session_title}` });
+          this.meta.updateTag({ name: 'twitter:title', content: `${this.trackSlot.session_title}` });
+
+
         }
       }
     );
@@ -158,23 +199,77 @@ export class SpeakerSessionPageComponent implements OnInit {
 
   }
 
+
+  getDiscussionChat() {
+    if (this.trackSlot) {
+      this.discussionsService.pGetOrCreateChatForTrackSlot(this.trackSlot.id).subscribe(
+        data => {
+          this.chat = data;
+        }
+      );
+    } else {
+      this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe(
+        data => {
+          this.chat = data;
+        }
+      );
+    }
+
+  }
+
   getEventEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe(
       data => {
-        this.embeddedVideoStream = data;
+        if (data) {
+          this.embeddedVideoStream = data;
+          this.onResize();
+        }
       }
     );
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    if (window.innerWidth <= 800) {
+    if (window.innerWidth <= 1000) {
       this.playerWidth = window.innerWidth - 20;
       this.playerHeight = (this.playerWidth as number) / 1.78;
     } else {
-      this.playerWidth = 700;
-      this.playerHeight = 410;
+      this.playerWidth = this.videoContainer.nativeElement.offsetWidth - 20;
+      this.playerHeight = this.videoContainer.nativeElement.offsetHeight - 25;
     }
+  }
+
+
+  tabUpdate(tab, type) {
+    switch (type) {
+      case 'new': {
+        switch (tab) {
+          case 'chat':
+            if (this.currentTab !== 'chat') {
+              this.chatCount += 1;
+            }
+            break;
+          case 'qna':
+            if (this.currentTab !== 'qna') {
+              this.questionCount += 1;
+            }
+            break;
+        }
+        break;
+      }
+      case 'open': {
+        switch (tab) {
+          case 'chat':
+            this.chatCount = 0;
+            break;
+          case 'qna':
+            this.questionCount = 0;
+            break;
+        }
+        break;
+      }
+    }
+
   }
 
 }

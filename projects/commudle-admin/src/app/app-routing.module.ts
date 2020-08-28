@@ -1,3 +1,4 @@
+import { CommunityDetailsResolver } from './resolvers/community-details.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
@@ -9,6 +10,8 @@ import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { InitResolver } from './resolvers/init.resolver';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,11 @@ const routes: Routes = [
   {
     path: 'fill-form/:data_form_entity_id',
     component: FillDataFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'my-profile/edit',
+    component: EditProfileComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -51,6 +59,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/community-builds/community-builds.module').then(m => m.CommunityBuildsModule)
   },
   {
+    path: 'labs',
+    loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
+  },
+  {
     path: 'admin',
     children: [
       // {
@@ -64,6 +76,17 @@ const routes: Routes = [
         path: 'communities/:name',
         component: CommunityControlPanelComponent,
         canActivate: [AuthGuard],
+        data: {
+          expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
+        },
+      },
+      {
+        path: 'communities/:community_id/stats',
+        component: CommunityStatsComponent,
+        canActivate: [AuthGuard],
+        resolve: {
+          community: CommunityDetailsResolver
+        },
         data: {
           expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
         },

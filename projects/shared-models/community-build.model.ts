@@ -8,9 +8,8 @@ export interface ICommunityBuild {
   slug: string;
   description: string;
   build_type: string;
-  publish_status: string;
+  publish_status: EPublishStatus;
   link: string;
-  need_team: boolean;
   created_at: Date;
   votes_count: number;
   flags_count: number;
@@ -25,7 +24,6 @@ export enum EBuildType {
   project = 'project',
   product = 'product',
   slides = 'slides',
-  programme = 'programme',
   course = 'course',
   other = 'other'
 }

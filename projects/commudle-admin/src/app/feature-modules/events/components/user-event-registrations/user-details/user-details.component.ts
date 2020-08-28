@@ -10,8 +10,8 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { NbWindowService } from '@nebular/theme';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
 import { UserEventRegistrationsService } from 'projects/commudle-admin/src/app/services/user-event-registrations.service';
-import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 
 @Component({
   selector: 'app-user-details',

@@ -5,16 +5,16 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
 import { HomeEventComponent } from './components/home-event/home-event.component';
 import { SpeakerSessionPageComponent } from './components/speaker-session-page/speaker-session-page.component';
 import {
-  NbCardModule,
-  NbListModule,
-  NbInputModule,
-  NbButtonModule,
-  NbIconModule,
-  NbTooltipModule,
-  NbPopoverModule,
-  NbTabsetModule,
-  NbBadgeModule,
-  NbAlertModule,
+    NbCardModule,
+    NbListModule,
+    NbInputModule,
+    NbButtonModule,
+    NbIconModule,
+    NbTooltipModule,
+    NbPopoverModule,
+    NbTabsetModule,
+    NbBadgeModule,
+    NbAlertModule, NbActionsModule, NbUserModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -28,6 +28,7 @@ import { CollaborationCommunitiesComponent } from './components/collaboration-co
 import { TeamComponent } from './components/team/team.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
+import { AutoAttendanceComponent } from './components/auto-attendance/auto-attendance.component';
 
 @NgModule({
   declarations: [
@@ -43,25 +44,28 @@ import { AttendingMembersComponent } from './components/attending-members/attend
     TeamComponent,
     EventLocationTracksComponent,
     AttendingMembersComponent,
+    AutoAttendanceComponent,
   ],
-  imports: [
-    CommonModule,
-    PublicEventsRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedComponentsModule,
+    imports: [
+        CommonModule,
+        PublicEventsRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedComponentsModule,
 
-    // Nebular
-    NbCardModule,
-    NbListModule,
-    NbInputModule,
-    NbButtonModule,
-    NbIconModule,
-    NbTooltipModule,
-    NbPopoverModule,
-    NbTabsetModule,
-    NbBadgeModule,
-    NbAlertModule
-  ]
+        // Nebular
+        NbCardModule,
+        NbListModule,
+        NbInputModule,
+        NbButtonModule,
+        NbIconModule,
+        NbTooltipModule,
+        NbPopoverModule,
+        NbTabsetModule,
+        NbBadgeModule,
+        NbAlertModule,
+        NbActionsModule,
+        NbUserModule
+    ]
 })
 export class PublicEventsModule { }

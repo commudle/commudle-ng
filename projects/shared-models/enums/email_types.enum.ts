@@ -1,6 +1,7 @@
 
 export enum EemailTypes {
   SEND_LINK = "send_link",
+  GENERAL_ALL = 'general_all',
   ALL = "all",
   REGISTERED = "registered",
   WAITING = "waiting",

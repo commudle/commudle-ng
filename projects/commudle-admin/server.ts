@@ -5,6 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const template = fs.readFileSync(path.join(__dirname, '../../dist', 'commudle-admin', 'index.html')).toString();
 const win = domino.createWindow(template);
+(global as any).WebSocket = require('ws');
+(global as any).XMLHttpRequest = require('xhr2');
 global['window'] = win;
 global['document'] = win.document;
 global['DOMTokenList'] = win.DOMTokenList;
@@ -57,6 +59,11 @@ export function app() {
     maxAge: '1y'
   }));
 
+
+  server.get('/admin/**', (req, res) => {
+    res.sendFile(join(distFolder, 'index.html'));
+  });
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
@@ -70,9 +77,9 @@ function run() {
 
   // Start up the Node server
   const server = app();
-  server.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
+  // server.listen(port, () => {
+  //   console.log(`Node Express server listening on http://localhost:${port}`);
+  // });
 }
 
 // Webpack will replace 'require' with '__webpack_require__'

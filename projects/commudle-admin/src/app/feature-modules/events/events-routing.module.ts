@@ -1,3 +1,4 @@
+import { EventStatsComponent } from './components/event-stats/event-stats.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateEventComponent } from './components/create-event/create-event.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       },
       {
         path: ':event_id',
+        runGuardsAndResolvers: 'always',
         resolve: {
           event: EventDetailsResolver
         },
@@ -46,6 +48,10 @@ const routes: Routes = [
           {
             path: 'form-responses',
             component: EventFormResponsesComponent
+          },
+          {
+            path: 'stats',
+            component: EventStatsComponent
           },
           {
             path: ':event_simple_registration_id/user-event-registrations',

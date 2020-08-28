@@ -1,0 +1,157 @@
+.lab {
+  width: 100%;
+
+  .body {
+    display: flex;
+
+    .menu {
+      display: none;
+
+      .steps {
+        .title {
+          p {
+            margin: 0;
+            fa-icon {
+              color: #4e74ff;
+            }
+          }
+        }
+
+        .step-count {
+          font-size: 0.8rem;
+        }
+      }
+
+      .interactions {
+        >div {
+          display: flex;
+          justify-content: space-around;
+          flex-direction: row;
+          p {
+            margin: 0 1rem 0 0;
+          }
+        }
+      }
+    }
+
+    .content {
+      width: 100%;
+      >nb-card {
+        width: 100%;
+        min-height: 50vh;
+        .introduction {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          h1.lab-title {
+            font-weight: 300;
+          }
+
+          .tags {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            >div {
+              margin: 0 0.3rem;
+            }
+          }
+
+          .header-image {
+            max-width: 100%;
+            overflow: hidden;
+            img {
+              width: 100%;
+            }
+          }
+
+          >div.intro-content {
+            width: 100%;
+            ::ng-deep {
+              img {
+               max-width: 100%;
+               height: auto;
+              }
+
+              code {
+                white-space: break-spaces;
+              }
+
+            }
+          }
+        }
+
+        nb-card-footer {
+          position: sticky;
+          bottom: 0;
+          background-color: white;
+        }
+      }
+
+      .end-step-user-display {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        p {
+          margin: 0 1rem;
+          a {
+            margin-left: 1rem;
+          }
+        }
+
+        .user {
+          width: 300px;
+          border: 1px solid lightgrey;
+        }
+      }
+
+    }
+
+    @media (min-width: 800px) {
+      .menu {
+        display: inline-flex !important;
+        position: sticky;
+        top: 4rem;
+        height: fit-content;
+        width: 250px;
+        margin: 0 0.5rem 0 0;
+
+        nb-card {
+          width: 100%;
+        }
+      }
+
+      .content {
+        min-width: 500px;
+        width: 70%;
+      }
+    }
+  }
+
+  .steps-navigation {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .steps-status {
+      .successful-completion {
+        font-size: 1.5rem;
+        text-align: right;
+        line-height: 1.5rem;
+        display: inline-block;
+      }
+    }
+  }
+
+  .discussion-chat {
+    height: 500px;
+  }
+}

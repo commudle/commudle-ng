@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, Inject, PLATFORM_ID} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -9,6 +9,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionQnAChannel } from '../services/websockets/discussion-qna.channel';
+import { isPlatformBrowser } from '@angular/common';
 
 
 @Component({
@@ -17,8 +18,10 @@ import { DiscussionQnAChannel } from '../services/websockets/discussion-qna.chan
   styleUrls: ['./discussion-qna.component.scss']
 })
 export class DiscussionQnAComponent implements OnInit, OnDestroy {
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
+  @Output() newMessage = new EventEmitter();
 
   moment = moment;
 
@@ -39,6 +42,7 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
 
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
@@ -172,10 +176,12 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
             case(this.discussionQnaChannel.ACTIONS.ADD): {
               this.messages.push(data.user_message);
               this.scrollToBottom();
+              this.newMessage.emit();
               break;
             }
             case(this.discussionQnaChannel.ACTIONS.REPLY): {
               this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+              this.newMessage.emit();
               break;
             }
             case(this.discussionQnaChannel.ACTIONS.DELETE): {
@@ -227,9 +233,12 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
 
 
   reorder() {
-    setInterval(() => {
-      this.messages = (this.messages.sort((a, b) => a.votes_count > b.votes_count ? -1 : a.votes_count < b.votes_count ? 1 : 0));
-    }, 10000);
+    if (this.isBrowser) {
+      setInterval(() => {
+        this.messages = (this.messages.sort((a, b) => a.votes_count > b.votes_count ? -1 : a.votes_count < b.votes_count ? 1 : 0));
+      }, 10000);
+    }
+
   }
 
 }

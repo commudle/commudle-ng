@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
@@ -16,13 +16,13 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class CreateCommunityBuildComponent implements OnInit {
 
   cBuild: ICommunityBuild;
-  tags;
-  linkFieldLabel = 'Link*';
+  tags = '';
+  linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
+  redirectTo;
 
   embeddedLink;
-  teamNeeded = true;
   uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
   buildTypes = Object.keys(EBuildType);
@@ -32,12 +32,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     name: ['', Validators.required],
     build_type: ['', Validators.required],
     description: ['', Validators.required],
-    project_status: [''],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: ['', Validators.required],
-    contact: [''],
-    open_sourced: [''],
-    need_team: ['']
+    link: ['']
   });
 
 
@@ -47,18 +43,31 @@ export class CreateCommunityBuildComponent implements OnInit {
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private communityBuildsService: CommunityBuildsService,
     private toastLogService: LibToastLogService
   ) { }
 
   setMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content: `Project, Slides from a Session, an Online Course, share it all with the community!`
+    });
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({ name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({ name: 'og:title', content: `Share Your Build | Community Builds` });
     this.meta.updateTag({
       name: 'og:description',
       content: `Project, Slides from a Session, an Online Course, share it all with the community!`
     });
     this.meta.updateTag({ name: 'og:type', content: 'website'});
+
+    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
+    this.meta.updateTag({ name: 'twitter:title', content: `Share Your Build | Community Builds` });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: `Project, Slides from a Session, an Online Course, share it all with the community!`
+    });
   }
 
   ngOnInit() {
@@ -108,12 +117,10 @@ export class CreateCommunityBuildComponent implements OnInit {
     switch (val) {
       case EBuildType.slides: {
         this.linkFieldLabel = 'Iframe for Embedding OR Link*';
-        this.teamNeeded = false;
         break;
       }
       default: {
-        this.linkFieldLabel = 'Link*';
-        this.teamNeeded = true;
+        this.linkFieldLabel = 'Any Link?';
         this.embeddedLink = null;
       }
     }
@@ -182,7 +189,13 @@ export class CreateCommunityBuildComponent implements OnInit {
       key => (!(cBuildFormValue[key] == null) ? formData.append(`community_build[${key}]`, cBuildFormValue[key]) : '')
       );
 
-    formData.append('community_build[publish_status]', publishStatus);
+
+    if (this.cBuild && this.cBuild.publish_status === EPublishStatus.published) {
+      formData.append('community_build[publish_status]', this.cBuild.publish_status);
+    } else {
+      formData.append('community_build[publish_status]', publishStatus);
+    }
+
 
     for (let i = 0; i < this.uploadedImagesFiles.length; i++) {
       Object.keys(this.uploadedImagesFiles[i]).forEach(
@@ -195,7 +208,6 @@ export class CreateCommunityBuildComponent implements OnInit {
 
 
   createCommunityBuild(publishStatus: EPublishStatus) {
-    console.log(this.buildFormData(publishStatus));
     this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe(
       data => {
         this.cBuild = data;
@@ -206,6 +218,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
 
   updateCommunityBuild(publishStatus: EPublishStatus) {
+
     this.communityBuildsService.update(this.cBuild.id, this.buildFormData(publishStatus)).subscribe(
       data => {
         this.cBuild = data;
@@ -218,6 +231,7 @@ export class CreateCommunityBuildComponent implements OnInit {
   submitTags() {
     this.communityBuildsService.updateTags(this.cBuild.id, this.tags.split(',')).subscribe(
       data => {
+        this.router.navigate(['/builds/my-builds']);
         this.toastLogService.successDialog('Saved!');
       }
     );

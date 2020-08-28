@@ -31,13 +31,23 @@
             <nb-icon icon="close-circle-outline"></nb-icon>
           </p>
         </div>
-        <div class="votes clickable" (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Like!" nbTooltipStatus="danger">
+        <div class="votes">
+          <p>
+            <app-votes-display
+            [votableType]="'UserMessage'"
+            [votableId]="message.id"
+            [icon]="'heart'"
+            [size]="'small'"
+          ></app-votes-display>
+          </p>
+        </div>
+        <!-- <div class="votes clickable" (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Like!" nbTooltipStatus="danger">
           <p [ngClass]="{'low' : (message.votes_count > 0 && message.votes_count <= 2), 'medium': (message.votes_count > 2 && message.votes_count <= 4), 'high': (message.votes_count > 4)}">
             <nb-icon icon="heart-outline" *ngIf="message.votes_count === 0" status="danger"></nb-icon>
             <nb-icon icon="heart" *ngIf="message.votes_count > 0" status="danger"></nb-icon>
             {{ message.votes_count > 0 ? message.votes_count : '' }}
           </p>
-        </div>
+        </div> -->
         <div *ngIf="permittedActions.includes(allActions.ADD) && canReply" class="clickable reply-button" (click)="toggleReplyForm()">
           <p class="text-info">
             <small>Reply</small>
@@ -55,7 +65,6 @@
         [permittedActions]="permittedActions"
         [allActions]="allActions"
         [currentUser]="currentUser"
-        (sendVote)="emitVote($event)"
         (sendDelete)="emitDelete($event)"
         (sendFlag)="emitFlag($event)"
       ></app-user-message>

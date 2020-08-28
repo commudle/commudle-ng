@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IPoll, EPollStatuses } from 'projects/shared-models/poll.model';
 import { NbWindowService } from '@nebular/theme';
-import { PollResultComponent } from '../poll-result/poll-result.component';
+import { PollResultComponent } from 'projects/shared-components/poll-result/poll-result.component';
+
 
 @Component({
   selector: 'app-poll-list-item',

@@ -12,10 +12,11 @@ import { IQuestion } from 'projects/shared-models/question.model';
 import { EventDataFormEntityGroupsService } from 'projects/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'projects/shared-models/event_data_form_enity_group.model';
 import { NbWindowService } from '@nebular/theme';
-import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-event-form-responses',
@@ -60,7 +61,8 @@ export class EventFormResponsesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private windowService: NbWindowService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -119,6 +121,7 @@ export class EventFormResponsesComponent implements OnInit {
 
 
   registrationStatusFilter(selectedRegistrationStatusId) {
+    this.page = 1;
     this.registrationStatusId = selectedRegistrationStatusId;
     this.getResponses();
   }
@@ -214,6 +217,17 @@ export class EventFormResponsesComponent implements OnInit {
       }
     );
 
+  }
+
+
+  sendCSV() {
+    this.eventDataFormEntityGroupsService.mailCSV(this.eventDataFormEntityGroupId).subscribe(
+      data => {
+        if (data) {
+          this.toastLogService.successDialog('CSV will be delivered to your email!', 5000);
+        }
+      }
+    );
   }
 
 }

@@ -1,0 +1,18 @@
+.community-emails {
+  height: 100%;
+  nb-card {
+    height: 100%;
+    nb-list {
+      nb-list-item {
+        .email {
+          >div {
+            display: flex;
+            p {
+              margin: 0 1.5rem 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

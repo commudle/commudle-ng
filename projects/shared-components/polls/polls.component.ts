@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { PollsChannel } from '../services/websockets/polls.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -12,7 +12,7 @@ import { PollCreateFormComponent } from './poll-create-form/poll-create-form.com
   templateUrl: './polls.component.html',
   styleUrls: ['./polls.component.scss']
 })
-export class PollsComponent implements OnInit {
+export class PollsComponent implements OnInit, OnDestroy {
   @ViewChild('newPollTemplate') newPollTemplate: TemplateRef<any>;
   @ViewChild('fillPollTemplate') fillPollTemplate: TemplateRef<any>;
 
@@ -55,6 +55,11 @@ export class PollsComponent implements OnInit {
     this.receiveData();
   }
 
+
+  ngOnDestroy(): void {
+    this.pollsChannel.unsubscribe();
+  }
+
   newPoll() {
     this.windowRefCreatePoll = this.windowService.open(
       this.newPollTemplate,
@@ -80,21 +85,27 @@ export class PollsComponent implements OnInit {
               if (this.windowRefCreatePoll) {
                 this.windowRefCreatePoll.close();
               }
-              this.polls.unshift(data.poll);
+              let pollExists = this.polls.findIndex(p => p.id === data.poll.id);
+              if (pollExists === -1) {
+                this.polls.unshift(data.poll);
+              }
               break;
             }
             case (this.pollsChannel.ACTIONS.START): {
               const pollIndex = this.polls.findIndex(p => p.id === data.poll.id);
-              this.polls[pollIndex].status = EPollStatuses.OPEN;
-              this.selectedPoll = data.poll;
-              if (this.currentUser && !this.polls[pollIndex].already_filled) {
-                this.windowRefFillPoll = this.windowService.open(
-                  this.fillPollTemplate,
-                  {
-                    title: `Poll!`,
-                  }
-                );
+              if (this.polls[pollIndex].status !== EPollStatuses.OPEN) {
+                this.polls[pollIndex].status = EPollStatuses.OPEN;
+                this.selectedPoll = data.poll;
+                if (this.currentUser && !this.polls[pollIndex].already_filled) {
+                  this.windowRefFillPoll = this.windowService.open(
+                    this.fillPollTemplate,
+                    {
+                      title: `Poll!`,
+                    }
+                  );
+                }
               }
+
               break;
             }
             case (this.pollsChannel.ACTIONS.START_SELF): {
