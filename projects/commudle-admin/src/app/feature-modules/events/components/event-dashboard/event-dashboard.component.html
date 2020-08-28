@@ -170,313 +170,6 @@
         <app-event-embedded-video-stream *ngIf="!event.custom_agenda" [event]="event" [community]="community"></app-event-embedded-video-stream>
       </nb-card-body>
     </nb-card>
-
-    <nb-card class="event-guide">
-      <nb-card-body>
-        <p class="text-info">
-          <strong>
-            It's simple!
-          </strong>
-        </p>
-        <nb-accordion>
-          <nb-accordion-item [expanded]="true">
-           <nb-accordion-item-header>Status</nb-accordion-item-header>
-           <nb-accordion-item-body>
-             <ul>
-               <li>
-                 <p>
-                  <strong>Draft</strong>: Only the organizers and people who have the link can see the event
-                 </p>
-               </li>
-               <li>
-                <p>
-                  <strong>Open</strong>: The event is visible on the community page
-                </p>
-              </li>
-              <li>
-                <p>
-                  <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
-                </p>
-              </li>
-              <li>
-                <p>
-                  <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
-                </p>
-              </li>
-             </ul>
-             <p> * <small>Event can be edited upto 5 days after completion</small></p>
-           </nb-accordion-item-body>
-          </nb-accordion-item>
-          <nb-accordion-item>
-            <nb-accordion-item-header>Registration Type</nb-accordion-item-header>
-            <nb-accordion-item-body>
-              <ul>
-                <li>
-                  <p>
-                   <strong>One Click Registration</strong>
-                  </p>
-                  <p>
-                    <small>Members can register for the event in a single click </small>
-                    <br>
-                    <small>You can view their registrations from the 'View Registrations' link and send them unique entry passes</small>
-                  </p>
-                </li>
-                <li>
-                 <p>
-                   <strong>Registration Forms [Higher attendance percentage!]</strong>
-                 </p>
-                 <p>
-                  <small>Use the forms you created on <strong><a [routerLink]="['/admin/communities', community.slug]">{{ community.name }}</a></strong> page</small>
-                </p>
-                  <ul>
-                    <li>
-                      <p><strong>STEP 1</strong>: Roll out forms</p>
-                      <p>
-                        <small>Form Type: <strong>Attendee</strong> For people who will be attending the event</small>
-                        <br>
-                        <small>Form Type: <strong>Speaker</strong> Use this for call for papers</small>
-                      </p>
-                    </li>
-                    <li>
-                      <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>
-                      <p>
-                        <small>Click on 'View Responses'</small>
-                        <small><strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed'</small>
-                        <br>
-                        <small><strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed', the email also contains a link to add the slides they will be using for sharing with the community later on</small>
-                      </p>
-                    </li>
-                    <li>
-                      <p><strong>STEP 3</strong>: Event Day!</p>
-                      <p>
-                        <small>Mark the attendance!</small>
-                      </p>
-                    </li>
-                    <li>
-                      <p><strong>STEP 4</strong>: Feedbacks</p>
-                      <p>
-                        <small>Send feedback forms in 1 click, to those who attended</small>
-                      </p>
-                    </li>
-                  </ul>
-               </li>
-              </ul>
-            </nb-accordion-item-body>
-           </nb-accordion-item>
-          <nb-accordion-item>
-           <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>
-           <nb-accordion-item-body>
-             <ul>
-               <li>
-                 <p>
-                  <strong>Single Session (online only)</strong>
-                  <br>
-                  Choose between
-                    <strong>Youtube Streaming</strong>,
-                    <strong><a href="https://meet.jit.si/">Jitsi Call</a></strong>
-                    and <strong>any other Embed</strong>. [ZOOM integration coming soon!
-                 </p>
-               </li>
-               <li>
-                <p>
-                  <strong>Multiple Locations / Tracks / Sessions</strong>
-                  <br>
-                  This option is when you have a more organized event
-                </p>
-                <ul>
-                  <li>
-                    <p>
-                      You can create multiple locations (either offline or online)
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Each location can have multiple tracks
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Each Track can have multiple slots
-                    </p>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <p>
-                  <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
-                </p>
-              </li>
-              <li>
-                <p>
-                  <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
-                </p>
-              </li>
-             </ul>
-           </nb-accordion-item-body>
-          </nb-accordion-item>
-          <nb-accordion-item>
-            <nb-accordion-item-header>Collaborating Communities</nb-accordion-item-header>
-            <nb-accordion-item-body>
-              <p>Just search from all the communities on Commudle and create collaborations!</p>
-            </nb-accordion-item-body>
-           </nb-accordion-item>
-         </nb-accordion>
-      </nb-card-body>
-    </nb-card>
-
-    <nb-card class="event-guide">
-      <nb-card-body>
-        <p class="text-info">
-          <strong>
-            It's simple!
-          </strong>
-        </p>
-        <nb-accordion>
-          <nb-accordion-item [expanded]="true">
-           <nb-accordion-item-header>Status</nb-accordion-item-header>
-           <nb-accordion-item-body>
-             <ul>
-               <li>
-                 <p>
-                  <strong>Draft</strong>: Only the organizers and people who have the link can see the event
-                 </p>
-               </li>
-               <li>
-                <p>
-                  <strong>Open</strong>: The event is visible on the community page
-                </p>
-              </li>
-              <li>
-                <p>
-                  <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
-                </p>
-              </li>
-              <li>
-                <p>
-                  <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
-                </p>
-              </li>
-             </ul>
-             <p> * <small>Event can be edited upto 5 days after completion</small></p>
-           </nb-accordion-item-body>
-          </nb-accordion-item>
-          <nb-accordion-item>
-            <nb-accordion-item-header>Registration Type</nb-accordion-item-header>
-            <nb-accordion-item-body>
-              <ul>
-                <li>
-                  <p>
-                   <strong>One Click Registration</strong>
-                  </p>
-                  <p>
-                    <small>Members can register for the event in a single click </small>
-                    <br>
-                    <small>You can view their registrations from the 'View Registrations' link and send them unique entry passes</small>
-                  </p>
-                </li>
-                <li>
-                 <p>
-                   <strong>Registration Forms [Higher attendance percentage!]</strong>
-                 </p>
-                 <p>
-                  <small>Use the forms you created on <strong><a [routerLink]="['/admin/communities', community.slug]">{{ community.name }}</a></strong> page</small>
-                </p>
-                  <ul>
-                    <li>
-                      <p><strong>STEP 1</strong>: Roll out forms</p>
-                      <p>
-                        <small>Form Type: <strong>Attendee</strong> For people who will be attending the event</small>
-                        <br>
-                        <small>Form Type: <strong>Speaker</strong> Use this for call for papers</small>
-                      </p>
-                    </li>
-                    <li>
-                      <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>
-                      <p>
-                        <small>Click on 'View Responses'</small>
-                        <small><strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed'</small>
-                        <br>
-                        <small><strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed', the email also contains a link to add the slides they will be using for sharing with the community later on</small>
-                      </p>
-                    </li>
-                    <li>
-                      <p><strong>STEP 3</strong>: Event Day!</p>
-                      <p>
-                        <small>Mark the attendance!</small>
-                      </p>
-                    </li>
-                    <li>
-                      <p><strong>STEP 4</strong>: Feedbacks</p>
-                      <p>
-                        <small>Send feedback forms in 1 click, to those who attended</small>
-                      </p>
-                    </li>
-                  </ul>
-               </li>
-              </ul>
-            </nb-accordion-item-body>
-           </nb-accordion-item>
-          <nb-accordion-item>
-           <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>
-           <nb-accordion-item-body>
-             <ul>
-               <li>
-                 <p>
-                  <strong>Single Session (online only)</strong>
-                  <br>
-                  Choose between
-                    <strong>Youtube Streaming</strong>,
-                    <strong><a href="https://meet.jit.si/">Jitsi Call</a></strong>
-                    and <strong>any other Embed</strong>. [ZOOM integration coming soon!
-                 </p>
-               </li>
-               <li>
-                <p>
-                  <strong>Multiple Locations / Tracks / Sessions</strong>
-                  <br>
-                  This option is when you have a more organized event
-                </p>
-                <ul>
-                  <li>
-                    <p>
-                      You can create multiple locations (either offline or online)
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Each location can have multiple tracks
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Each Track can have multiple slots
-                    </p>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <p>
-                  <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
-                </p>
-              </li>
-              <li>
-                <p>
-                  <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
-                </p>
-              </li>
-             </ul>
-           </nb-accordion-item-body>
-          </nb-accordion-item>
-          <nb-accordion-item>
-            <nb-accordion-item-header>Collaborating Communities</nb-accordion-item-header>
-            <nb-accordion-item-body>
-              <p>Just search from all the communities on Commudle and create collaborations!</p>
-            </nb-accordion-item-body>
-           </nb-accordion-item>
-         </nb-accordion>
-      </nb-card-body>
-    </nb-card>
-
     <nb-card>
       <nb-card-header>
         Collaborating Communities
@@ -498,7 +191,160 @@
     <div class="community-emails">
       <app-community-emails-list [communityId]="event.kommunity_id"></app-community-emails-list>
     </div>
-  </div>
 
+    <nb-card class="event-guide">
+      <nb-card-body>
+        <p class="text-info">
+          <strong>
+            It's simple!
+          </strong>
+        </p>
+        <nb-accordion>
+          <nb-accordion-item>
+           <nb-accordion-item-header>Status</nb-accordion-item-header>
+           <nb-accordion-item-body>
+             <ul>
+               <li>
+                 <p>
+                  <strong>Draft</strong>: Only the organizers and people who have the link can see the event
+                 </p>
+               </li>
+               <li>
+                <p>
+                  <strong>Open</strong>: The event is visible on the community page
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
+                </p>
+              </li>
+             </ul>
+             <p> * <small>Event can be edited upto 5 days after completion</small></p>
+           </nb-accordion-item-body>
+          </nb-accordion-item>
+          <nb-accordion-item>
+            <nb-accordion-item-header>Registration Type</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <ul>
+                <li>
+                  <p>
+                   <strong>One Click Registration</strong>
+                  </p>
+                  <p>
+                    <small>Members can register for the event in a single click </small>
+                    <br>
+                    <small>You can view their registrations from the 'View Registrations' link and send them unique entry passes</small>
+                  </p>
+                </li>
+                <li>
+                 <p>
+                   <strong>Registration Forms [Higher attendance percentage!]</strong>
+                 </p>
+                 <p>
+                  <small>Use the forms you created on <strong><a [routerLink]="['/admin/communities', community.slug]">{{ community.name }}</a></strong> page</small>
+                </p>
+                  <ul>
+                    <li>
+                      <p><strong>STEP 1</strong>: Roll out forms</p>
+                      <p>
+                        <small>Form Type: <strong>Attendee</strong> For people who will be attending the event</small>
+                        <br>
+                        <small>Form Type: <strong>Speaker</strong> Use this for call for papers</small>
+                      </p>
+                    </li>
+                    <li>
+                      <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>
+                      <p>
+                        <small>Click on 'View Responses'</small>
+                        <small><strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed'</small>
+                        <br>
+                        <small><strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to 'Confirmed', the email also contains a link to add the slides they will be using for sharing with the community later on</small>
+                      </p>
+                    </li>
+                    <li>
+                      <p><strong>STEP 3</strong>: Event Day!</p>
+                      <p>
+                        <small>Mark the attendance!</small>
+                      </p>
+                    </li>
+                    <li>
+                      <p><strong>STEP 4</strong>: Feedbacks</p>
+                      <p>
+                        <small>Send feedback forms in 1 click, to those who attended</small>
+                      </p>
+                    </li>
+                  </ul>
+               </li>
+              </ul>
+            </nb-accordion-item-body>
+           </nb-accordion-item>
+          <nb-accordion-item>
+           <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>
+           <nb-accordion-item-body>
+             <ul>
+               <li>
+                 <p>
+                  <strong>Single Session (online only)</strong>
+                  <br>
+                  Choose between
+                    <strong>Youtube Streaming</strong>,
+                    <strong><a href="https://meet.jit.si/">Jitsi Call</a></strong>
+                    and <strong>any other Embed</strong>. [ZOOM integration coming soon!
+                 </p>
+               </li>
+               <li>
+                <p>
+                  <strong>Multiple Locations / Tracks / Sessions</strong>
+                  <br>
+                  This option is when you have a more organized event
+                </p>
+                <ul>
+                  <li>
+                    <p>
+                      You can create multiple locations (either offline or online)
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Each location can have multiple tracks
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Each Track can have multiple slots
+                    </p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>
+                  <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members
+                </p>
+              </li>
+              <li>
+                <p>
+                  <strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page
+                </p>
+              </li>
+             </ul>
+           </nb-accordion-item-body>
+          </nb-accordion-item>
+          <nb-accordion-item>
+            <nb-accordion-item-header>Collaborating Communities</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <p>Just search from all the communities on Commudle and create collaborations!</p>
+            </nb-accordion-item-body>
+           </nb-accordion-item>
+         </nb-accordion>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
 
 </div>
