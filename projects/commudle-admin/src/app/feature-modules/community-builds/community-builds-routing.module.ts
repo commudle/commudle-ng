@@ -30,7 +30,6 @@ const routes: Routes = [
   },
   {
     path: ':community_build_id',
-    canActivate: [AuthGuard],
     component: CommunityBuildComponent
   },
 ];

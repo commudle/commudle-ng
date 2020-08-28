@@ -1,0 +1,142 @@
+<div class="lab" *ngIf="lab">
+
+  <div class="body">
+    <div class="menu">
+      <nb-card>
+        <nb-list class="steps">
+          <nb-list-item class="clickable title" (click)="setStep(-1)">
+            <div>
+              <p>
+                <fa-icon [icon]="faFlask"></fa-icon>
+                Introduction
+              </p>
+            </div>
+          </nb-list-item>
+          <nb-list-item
+            class="clickable"
+            (click)="setStep(i)"
+            *ngFor="let step of lab.lab_steps; let i = index">
+           <div>
+            <span class="step-count">
+              {{ i+1 }}.
+            </span>
+            {{ step.name }}
+            <span *ngIf="selectedLabStep >= i">
+              <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
+            </span>
+
+            <span *ngIf="lastVisitedStepId === step.id && i < lab.lab_steps.length - 1">
+              <app-badge [text]="'Continue'" [color]="'#4e74ff'" [fontSize]="'small'"></app-badge>
+            </span>
+           </div>
+          </nb-list-item>
+          <nb-list-item class="interactions">
+            <div>
+              <p>
+                <app-votes-display
+                  [votableType]="'Lab'"
+                  [votableId]="lab.id"
+                  [icon]="'star'"
+                ></app-votes-display>
+              </p>
+              <p class="clickable" *ngIf="discussionChat" (click)="scroll(discussionChatContainer)">
+                <nb-icon icon="message-circle-outline"></nb-icon>
+              </p>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-card>
+    </div>
+    <div class="content">
+      <app-user-object-visit-pixel [parentId]="lab.id" [parentType]="'Lab'"></app-user-object-visit-pixel>
+      <nb-card>
+        <nb-card-body>
+          <div class="introduction" *ngIf="selectedLabStep === -1">
+            <h1 class="lab-title">
+              {{lab.name}}
+            </h1>
+            <div class="user-profile">
+              <app-user-profile-horizontal [user]="lab.user" [size]="'medium'"></app-user-profile-horizontal>
+            </div>
+            <div class="tags">
+              <div *ngFor="let tag of lab.tags">
+                <app-badge [text]="tag" [color]="'lightgrey'"></app-badge>
+              </div>
+            </div>
+            <div *ngIf="lab.header_image" class="header-image">
+              <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
+            </div>
+            <div class="intro-content" [innerHTML]="labDescription"></div>
+          </div>
+          <div>
+            <app-lab-step *ngIf="selectedLabStep >= 0" [step]="lab.lab_steps[selectedLabStep]"></app-lab-step>
+          </div>
+
+          <!-- show author details at the end too -->
+          <div class="end-step-user-display" *ngIf="selectedLabStep === lab.lab_steps.length - 1">
+            <div class="user">
+              <app-user-profile-horizontal [user]="lab.user" [aboutMe]="true"></app-user-profile-horizontal>
+            </div>
+            <p>
+              <app-votes-display
+                [votableType]="'Lab'"
+                [votableId]="lab.id"
+                [icon]="'star'"
+                [size]="'large'"
+              ></app-votes-display>
+              <small>
+                A star would make my day!
+              </small>
+            </p>
+            <p>
+              <a [routerLink]="['/labs']">All Labs <nb-icon icon="arrow-ios-forward"></nb-icon></a>
+            </p>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div class="steps-navigation">
+            <a class="clickable text-info" *ngIf="selectedLabStep != -1" (click)="changeStep(-1)">
+              <p>
+                <nb-icon icon="arrow-ios-back"></nb-icon>
+                Previous
+              </p>
+            </a>
+
+            <p class="steps-status text-info">
+              <span *ngIf="selectedLabStep === -1 && lab.lab_steps.length > 0">
+                Total {{ lab.lab_steps.length }} Steps!
+              </span>
+
+              <span *ngIf="selectedLabStep >= 0 && selectedLabStep < lab.lab_steps.length - 1">
+                {{ selectedLabStep + 1 }} / {{ lab.lab_steps.length }}
+              </span>
+
+              <span class="successful-completion" *ngIf="selectedLabStep === lab.lab_steps.length - 1 && lab.lab_steps.length > 0">
+                🚀🏆 Kudos, you've completed it all!
+              </span>
+
+            </p>
+
+            <a class="clickable text-info" *ngIf="selectedLabStep < lab.lab_steps.length - 1" (click)="changeStep(1)">
+              <p>
+                Next
+                <nb-icon icon="arrow-ios-forward"></nb-icon>
+              </p>
+            </a>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+      <div #discussionChatContainer>
+        <nb-card class="discussion-chat" *ngIf="discussionChat">
+          <nb-card-header>
+            Discussion
+          </nb-card-header>
+          <nb-card-body>
+            <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+    </div>
+  </div>
+</div>

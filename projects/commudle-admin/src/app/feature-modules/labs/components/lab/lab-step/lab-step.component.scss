@@ -1,0 +1,14 @@
+.lab-step {
+  .content {
+    ::ng-deep {
+      img {
+       max-width: 100%;
+       height: auto;
+      }
+
+      code {
+        white-space: break-spaces;
+      }
+    }
+  }
+}

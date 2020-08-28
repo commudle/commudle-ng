@@ -10,7 +10,7 @@ import { switchMap, debounceTime } from 'rxjs/operators';
 import { UserEventRegistrationsService } from '../../../../services/user-event-registrations.service';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { NbWindowService } from '@nebular/theme';
-import { EmailerComponent } from '../../../../components/emailer/emailer.component';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 
 @Component({
   selector: 'app-user-event-registrations',
@@ -119,7 +119,7 @@ export class UserEventRegistrationsComponent implements OnInit {
 
   setResponses(data) {
     this.totalEntries = data.total;
-    this.rows = data.data_form_entity_response_groups;
+    this.rows = data.user_event_registrations;
     this.isLoading = false;
     this.emptyMessage = 'No entries found';
 
@@ -148,7 +148,6 @@ export class UserEventRegistrationsComponent implements OnInit {
         }
       }
     );
-
   }
 
 

@@ -13,19 +13,14 @@
                   {{ event.name }}
                 </a>
               </p>
-              <p class="visitors" *ngIf="userVisitData">
-                <span *ngIf="userVisitData.visiting_users_count > 0">
-                  {{userVisitData.visiting_users_count}} watching now
-                </span>
-              </p>
-            </div>
-            <div class="track-slot-details" *ngIf="trackSlot">
-              <h4>
-                {{trackSlot.session_title}}
-              </h4>
+              <div class="track-slot-details" *ngIf="trackSlot">
+                <h4>
+                  {{trackSlot.session_title}}
+                </h4>
+              </div>
             </div>
 
-            <p *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
+            <p class="live-notification" *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
               <span class="live-notification text-success">
                 <nb-icon icon="flash"></nb-icon>
                 Live Now!
@@ -36,48 +31,99 @@
                 {{ moment(endTime).format('h:mm A') }}
               </small>
             </p>
+            <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
+
+            <div *ngIf="speaker" class="speaker-details">
+              <div>
+                <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
+              </div>
+            </div>
+            <p class="visitors" *ngIf="userVisitData">
+              <span *ngIf="userVisitData.visiting_users_count > 0">
+                {{userVisitData.visiting_users_count}} watching now
+              </span>
+            </p>
 
           </nb-card-body>
         </nb-card>
       </div>
 
-      <div *ngIf="speaker" class="speaker-details">
-        <nb-card>
-          <nb-card-body>
-            <div>
-              <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
-            </div>
-          </nb-card-body>
-        </nb-card>
+
+
+      <div #videoContainer class="video-stream">
+        <div *ngIf="embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
+          <nb-card>
+            <nb-card-body>
+              <div>
+                <app-video-stream
+                  [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : embeddedVideoStream.embed_code"
+                  [videoSource]="embeddedVideoStream.source"
+                  [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? 'Coming Soon' : 'Loading Video...'))"
+                  [width]="playerWidth"
+                  [height]="playerHeight"
+                >
+                </app-video-stream>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
       </div>
 
-      <div *ngIf="embeddedVideoStream" class="video-stream {{ embeddedVideoStream.source }}">
-        <nb-card>
+      <div *ngIf="userVisitData" class="attendees">
+
+        <nb-card class="visit-users" *ngIf="userVisitData.visiting_users.length > 0 && moment().isBetween(moment(startTime), moment(endTime))">
+          <nb-card-header>You are watching this with</nb-card-header>
           <nb-card-body>
-            <div>
-            <app-video-stream
-              [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : embeddedVideoStream.embed_code"
-              [videoSource]="embeddedVideoStream.source"
-              [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? 'Coming Soon' : 'Loading Video...'))"
-              [width]="playerWidth"
-              [height]="playerHeight"
-            >
-            </app-video-stream>
+            <div class="visit-user" *ngFor="let user of userVisitData.visiting_users">
+              <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
             </div>
           </nb-card-body>
         </nb-card>
+
+
+        <nb-card class="visit-users" *ngIf="userVisitData.watched_users.length >= 1 && moment() > moment(endTime)">
+          <nb-card-header>Attendees</nb-card-header>
+          <nb-card-body>
+            <div class="visit-user" *ngFor="let user of userVisitData.watched_users">
+              <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+            </div>
+          </nb-card-body>
+        </nb-card>
+
+
       </div>
     </div>
 
     <div class="card-live-discussion">
       <nb-card>
         <nb-card-body>
-          <nb-tabset>
-            <nb-tab tabTitle="Live Questions" *ngIf="discussion">
-              <app-discussion-qna [discussion]="discussion"></app-discussion-qna>
+          <nb-tabset fullWidth responsive (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
+            <nb-tab
+              tabTitle="Chat"
+              *ngIf="chat"
+              tabIcon="message-square-outline"
+              badgeText="{{ chatCount > 0 ? chatCount : '' }}"
+              badgeStatus="success"
+              [tabId]="'chat'"
+              >
+              <app-discussion-chat [discussion]="chat" (newMessage)="tabUpdate('chat', 'new')" ></app-discussion-chat>
             </nb-tab>
-            <nb-tab tabTitle="Polls">
-              <div *ngIf="pollableId && pollableType">
+            <nb-tab
+              tabTitle="QnA"
+              *ngIf="discussion"
+              tabIcon="question-mark-circle-outline"
+              badgeText="{{ questionCount > 0 ? questionCount : '' }}"
+              badgeStatus="success"
+              [tabId]="'qna'">
+              <app-discussion-qna [discussion]="discussion" (newMessage)="tabUpdate('qna', 'new')"></app-discussion-qna>
+            </nb-tab>
+            <nb-tab
+              tabTitle="Polls"
+              *ngIf="pollableId && pollableType"
+              tabIcon="trending-up"
+              [tabId]="'poll'"
+              >
+              <div>
                 <app-polls [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
               </div>
             </nb-tab>
@@ -87,28 +133,6 @@
     </div>
   </div>
 
-  <div class="card-row" *ngIf="userVisitData">
 
-    <nb-card class="visit-users" *ngIf="userVisitData.visiting_users.length > 0 && moment().isBetween(moment(startTime), moment(endTime))">
-      <nb-card-header>You are watching this with</nb-card-header>
-      <nb-card-body>
-        <div class="visit-user" *ngFor="let user of userVisitData.visiting_users">
-          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
-        </div>
-      </nb-card-body>
-    </nb-card>
-
-
-    <nb-card class="visit-users" *ngIf="userVisitData.watched_users.length >= 1 && moment() > moment(endTime)">
-      <nb-card-header>Attendees</nb-card-header>
-      <nb-card-body>
-        <div class="visit-user" *ngFor="let user of userVisitData.watched_users">
-          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
-        </div>
-      </nb-card-body>
-    </nb-card>
-
-
-  </div>
 
 </div>

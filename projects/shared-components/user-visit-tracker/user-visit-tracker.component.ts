@@ -21,27 +21,36 @@ export class UserVisitTrackerComponent implements OnInit {
     private location: Location,
     private userVisitsService: UserVisitsService,
     private authWatchService: LibAuthwatchService
-  ) {
-
-   }
+  ) {}
 
   ngOnInit() {
     this.currentRoute = this.router.url;
-    this.authWatchService.currentUser$.subscribe(currentUser => {
-      this.currentUser = currentUser;
-    });
 
     this.userVisits();
     this.userVisitsService.receiveData();
   }
 
   userVisits() {
+    // create a visit if the route changes
     this.router.events.subscribe(val => {
       if (this.location.path() !== this.currentRoute) {
-        this.currentRoute = this.location.path();
-        this.userVisitsService.subscribe(this.currentRoute);
+       this.sendLog();
       }
+
     });
+
+    // create a visit if the user changes
+    this.authWatchService.currentUser$.subscribe(
+      data => {
+        this.sendLog();
+      }
+    );
+  }
+
+  sendLog() {
+
+    this.currentRoute = this.location.path();
+    this.userVisitsService.subscribe(this.currentRoute);
   }
 
 }

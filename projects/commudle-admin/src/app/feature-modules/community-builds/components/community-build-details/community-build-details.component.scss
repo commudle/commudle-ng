@@ -50,6 +50,7 @@
     .images {
       overflow-x: auto;
       margin-bottom: 1.5rem;
+      background: #d3d3d33b;
       .image-stripe {
         display: flex;
         flex-wrap: nowrap;
@@ -82,12 +83,9 @@
 
     .link {
       margin-bottom: 1rem;
-      background: #5072ff;
       p {
         margin: 0;
-        color: white;
         a {
-          color: white;
         }
       }
     }

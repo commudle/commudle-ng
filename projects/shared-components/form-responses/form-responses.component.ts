@@ -4,6 +4,7 @@ import { SDataFormEntitiesService } from '../services/s-data-form-entities.servi
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { SDataFormsService } from '../services/s-data-forms.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-form-responses',
@@ -17,7 +18,8 @@ export class FormResponsesComponent implements OnInit {
 
   constructor(
     private sDataFormEntitiesService: SDataFormEntitiesService,
-    private dataFormsService: SDataFormsService
+    private dataFormsService: SDataFormsService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,14 @@ export class FormResponsesComponent implements OnInit {
     this.dataFormsService.getDataFormDetails(this.dataFormId).subscribe((data) => {
       this.dataForm = data;
     });
+  }
+
+  emailCSV(dfeId) {
+    this.sDataFormEntitiesService.emailCSV(dfeId).subscribe(
+      data => {
+        this.toastLogService.successDialog('CSV will be delivered to your inbox soon!', 3000);
+      }
+    );
   }
 
 }

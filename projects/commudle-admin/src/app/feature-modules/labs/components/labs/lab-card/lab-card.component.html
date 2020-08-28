@@ -1,0 +1,32 @@
+<div class="lab">
+  <nb-card>
+    <nb-card-body>
+      <div class="title">
+        <p>
+          {{ lab.name | slice:0:80 }}
+          <br>
+          <small> Published {{ moment(lab.created_at).format('Do MMM YYYY') }}</small>
+        </p>
+      </div>
+      <div class="body">
+        <div class="header">
+          <div class="image" *ngIf="lab.header_image">
+            <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
+          </div>
+          <div class="author">
+            <p>
+              {{ lab.user.name | slice:0:30 }}
+              <br>
+              <small>
+                {{ lab.user.designation | slice:0:40 }}
+              </small>
+            </p>
+          </div>
+        </div>
+        <a nbButton size="tiny" outline status="info" [routerLink]="['/labs', lab.slug]">
+          Start Here
+        </a>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

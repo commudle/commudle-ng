@@ -38,6 +38,7 @@
     }
     @media screen and (min-width: 800px) {
       width: 25%;
+      min-width: 330px;
       height: 350px;
       overflow-x: initial;
     }
@@ -83,6 +84,15 @@
   nb-card {
     width: 100%;
     margin-bottom: 0;
+  }
+
+  a.community-builds-feature {
+    text-decoration: none;
+    nb-card {
+      h4 {
+        margin: 0;
+      }
+    }
   }
 
   a.github {

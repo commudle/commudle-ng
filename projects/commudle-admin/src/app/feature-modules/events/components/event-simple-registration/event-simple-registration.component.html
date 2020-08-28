@@ -3,7 +3,7 @@
   <div>
     <div class="control-status-example">
       <nb-checkbox [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN" (checkedChange)="toggleRegistration()">
-        Registrations {{eventSimpleRegistration.status}}
+        Click to {{eventSimpleRegistration.status == 'open' ? 'Close' : 'Open'}} Registrations
       </nb-checkbox>
     </div>
     <div>

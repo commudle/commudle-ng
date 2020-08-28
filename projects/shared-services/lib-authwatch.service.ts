@@ -8,6 +8,8 @@ import { ICurrentUser } from '../shared-models/current_user.model';
 import { DOCUMENT } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,8 @@ export class LibAuthwatchService {
   // private authCookieName = 'commudle_user_auth';
   private currentUser: BehaviorSubject<ICurrentUser> = new BehaviorSubject(null);
   public currentUser$ = this.currentUser.asObservable();
+
+  private appToken;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -39,30 +43,20 @@ export class LibAuthwatchService {
 
   }
 
-
-  // for logout
-  // deleteAuthCookie() {
-
-  //   this.signOut().subscribe();
-  //   // const date = new Date();
-  //   // // consider the cookie to be expired
-  //   // date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
-
-  //   // // set the new expiry date on the cookie
-  //   // this.document.cookie = this.authCookieName+"=; expires="+date.toUTCString()+"; path=/";
-  //   this.cookieService.delete(environment.auth_cookie_name);
-  //   this.currentUser.next(null);
-  //   this.currentUserVerified.next(false);
-
-  // }
-
+  getAppToken() {
+    return this.appToken;
+  }
 
   // check if user is already signed in
   checkAlreadySignedIn(): Observable<boolean> {
+    if (!this.cookieService.check(environment.session_cookie_name)) {
+      this.cookieService.set(environment.session_cookie_name, uuidv4(), 30, environment.base_url);
+    }
     return this.http.post<any>(
       this.apiRoutesService.getRoute(API_ROUTES.VERIFY_AUTHENTICATION),
       {}).pipe(
         tap(data => {
+          this.appToken = data.app_token;
           if (data.user) {
             this.currentUser.next(data.user);
             this.currentUserVerified.next(true);

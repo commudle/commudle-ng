@@ -1,0 +1,42 @@
+<div class="user-chats">
+  <div class="chat-container">
+    <div class="users-list">
+      <nb-list>
+        <nb-list-item *ngFor="let chatUser of allPersonalChatUsers; let i = index" class="clickable" (click)="getDiscussion([chatUser, i])">
+          <div class="chat-user" >
+            <div class="user-details">
+              <app-user-profile-horizontal [user]="chatUser.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
+              <app-badge
+                [text]="'Unread'"
+                [color]="'#ff5c1e'"
+                [fontSize]="'small'"
+                *ngIf="chatUser.unread_user_ids.includes(currentUser.id)"></app-badge>
+            </div>
+            <nb-icon icon="arrowhead-right" *ngIf="selectedDiscussionFollower && selectedDiscussionFollower.id === chatUser.id"></nb-icon>
+          </div>
+        </nb-list-item>
+      </nb-list>
+      <nb-select placeholder="Select a User" (selectedChange)="getDiscussion($event)" filled status="primary">
+        <nb-option  *ngFor="let chatUser of allPersonalChatUsers; let i = index" [value]="[chatUser, i]">
+          <div class="chat-user" >
+            <div class="user-details">
+              <app-user-profile-horizontal [user]="chatUser.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
+              <app-badge
+                [text]="'Unread'"
+                [color]="'#ff5c1e'"
+                [fontSize]="'small'"
+                *ngIf="chatUser.unread_user_ids.includes(currentUser.id)"></app-badge>
+            </div>
+          </div>
+        </nb-option>
+      </nb-select>
+
+    </div>
+    <div class="discussion">
+      <app-discussion-personal-chat *ngIf="discussion"  [discussion]="discussion"></app-discussion-personal-chat>
+      <div class="filler" *ngIf="!discussion">
+        Select a user to view messages
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -19,6 +19,8 @@ import { DiscussionChatChannel } from '../services/websockets/dicussion-chat.cha
 export class DiscussionChatComponent implements OnInit, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
+  @Output() newMessage = new EventEmitter();
+
 
   moment = moment;
 
@@ -94,7 +96,7 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
           }
-          this.messages.unshift(...data.user_messages);
+          this.messages.unshift(...data.user_messages.reverse());
           this.loadingMessages = false;
           if (this.nextPage === 1) {
             this.scrollToBottom();
@@ -125,14 +127,14 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
   }
 
 
-  sendVote(userMessageId) {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.VOTE,
-      {
-        user_message_id: userMessageId
-      }
-    );
-  }
+  // sendVote(userMessageId) {
+  //   this.discussionChatChannel.sendData(
+  //     this.discussionChatChannel.ACTIONS.VOTE,
+  //     {
+  //       user_message_id: userMessageId
+  //     }
+  //   );
+  // }
 
   sendFlag(userMessageId) {
     this.discussionChatChannel.sendData(
@@ -175,10 +177,12 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
             case(this.discussionChatChannel.ACTIONS.ADD): {
               this.messages.push(data.user_message);
               this.scrollToBottom();
+              this.newMessage.emit();
               break;
             }
             case(this.discussionChatChannel.ACTIONS.REPLY): {
               this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+              this.newMessage.emit();
               break;
             }
             case(this.discussionChatChannel.ACTIONS.DELETE): {
@@ -200,15 +204,15 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
               }
               break;
             }
-            case(this.discussionChatChannel.ACTIONS.VOTE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
-              }
-              break;
-            }
+            // case(this.discussionChatChannel.ACTIONS.VOTE): {
+            //   if (data.parent_type === 'Discussion') {
+            //     this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
+            //   } else {
+            //     const qi = this.findMessageIndex(data.parent_id);
+            //     this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+            //   }
+            //   break;
+            // }
             case(this.discussionChatChannel.ACTIONS.ERROR): {
               this.toastLogService.warningDialog(data.message, 2000);
             }

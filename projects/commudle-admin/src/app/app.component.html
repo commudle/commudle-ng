@@ -33,12 +33,11 @@
 
   </nb-layout-header>
 
-  <nb-sidebar responsive="true">
+  <nb-sidebar state="collapsed" responsive="true" id="commudleSidebar" [tag]="'mainMenu'">
     <app-sidebar-menu></app-sidebar-menu>
   </nb-sidebar>
 
-  <nb-layout-column>
-
+  <nb-layout-column (click)="closeSidebarMobile()">
     <router-outlet></router-outlet>
   </nb-layout-column>
 
@@ -55,4 +54,3 @@
 
 
 <app-user-visit-tracker></app-user-visit-tracker>
-

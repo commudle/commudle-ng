@@ -20,15 +20,22 @@ export class HomeCommunityComponent implements OnInit {
   ) { }
 
   setMeta() {
+    this.meta.updateTag({ name: 'description', content: this.community.mini_description});
     this.meta.updateTag({ name: 'og:image', content: this.community.logo_path });
+    this.meta.updateTag({ name: 'og:image:secure_url', content: this.community.logo_path });
     this.meta.updateTag({ name: 'og:title', content: this.community.name });
     this.meta.updateTag({ name: 'og:description', content: this.community.mini_description});
     this.meta.updateTag({ name: 'og:type', content: 'profile'});
+
+    this.meta.updateTag({ name: 'twitter:image', content: this.community.logo_path });
+    this.meta.updateTag({ name: 'twitter:title', content: this.community.name });
+    this.meta.updateTag({ name: 'twitter:description', content: this.community.mini_description});
   }
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(data => {
       this.community = data.community;
+      this.title.setTitle(`${this.community.name}`);
       this.setMeta();
     });
   }
@@ -37,7 +44,6 @@ export class HomeCommunityComponent implements OnInit {
     this.communitiesService.pGetCommunityDetails(communityId).subscribe(
       data => {
         this.community = data;
-        this.title.setTitle(`${this.community.name}`);
       }
     );
   }

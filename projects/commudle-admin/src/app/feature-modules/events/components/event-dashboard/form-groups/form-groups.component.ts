@@ -11,11 +11,9 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbWindowService } from '@nebular/theme';
-import { EmailerComponent } from 'projects/commudle-admin/src/app/components/emailer/emailer.component';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { ERegistationTypes } from 'projects/shared-models/enums/registration_types.enum';
-import { NewDataFormComponent } from 'projects/shared-components/new-data-form/new-data-form.component';
-
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 
 @Component({
   selector: 'app-form-groups',

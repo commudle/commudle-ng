@@ -31,7 +31,7 @@ import { PollsComponent } from './polls/polls.component';
 import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-form.component';
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
 import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.component';
-import { PollResultComponent } from './polls/poll-result/poll-result.component';
+import { PollResultComponent } from './poll-result/poll-result.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
 import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
 import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-tracker.component';
@@ -41,6 +41,11 @@ import { ResponsesTableComponent } from './form-responses/responses-table/respon
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
+import { UserObjectVisitPixelComponent } from './user-object-visit-pixel/user-object-visit-pixel.component';
+import { UserChatComponent } from './user-chat/user-chat.component';
+import { DiscussionPersonalChatChannel } from './services/websockets/dicussion-personal-chat.channel';
+import { UserPersonalChatMessageComponent } from './discussion-personal-chat/user-personal-chat-message/user-personal-chat-message.component';
+import { DiscussionPersonalChatComponent } from './discussion-personal-chat/discussion-personal-chat.component';
 
 
 @NgModule({
@@ -66,7 +71,11 @@ import { VotersComponent } from './votes-display/voters/voters.component';
     ResponsesTableComponent,
     UserDetailsCellComponent,
     VotesDisplayComponent,
-    VotersComponent
+    VotersComponent,
+    UserObjectVisitPixelComponent,
+    UserChatComponent,
+    DiscussionPersonalChatComponent,
+    UserPersonalChatMessageComponent
   ],
   imports: [
     CommonModule,
@@ -102,11 +111,15 @@ import { VotersComponent } from './votes-display/voters/voters.component';
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
+    PollResultComponent,
     NewDataFormComponent,
     DataFormFillComponent,
     UserVisitTrackerComponent,
     FormResponsesComponent,
-    VotesDisplayComponent
+    VotesDisplayComponent,
+    UserObjectVisitPixelComponent,
+    UserChatComponent,
+    DiscussionPersonalChatComponent
   ]
 })
 export class SharedComponentsModule { }

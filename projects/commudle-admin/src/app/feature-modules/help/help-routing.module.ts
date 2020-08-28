@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateEventComponent } from './create-event/create-event.component';
-
+import { HelpHomeComponent } from './components/help-home/help-home.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 
 const routes: Routes = [
   {
-    path: 'create-event',
-    component: CreateEventComponent
+    path: '',
+    component: HelpHomeComponent,
+    children: [
+      {
+        path: 'events',
+        children: [
+          {
+            path: 'create',
+            component: CreateEventComponent
+          }
+        ]
+      }
+    ]
    }
 ];
 
