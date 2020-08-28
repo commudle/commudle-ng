@@ -1,3 +1,4 @@
+import { NbSidebarService } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ActivatedRoute } from '@angular/router';
@@ -41,11 +42,12 @@ export class EventDashboardComponent implements OnInit {
     private titleService: Title,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sidebarService: NbSidebarService
   ) {}
 
   ngOnInit() {
-
+    this.sidebarService.collapse('mainMenu');
     this.activatedRoute.data.subscribe(data => {
       this.event = data.event;
 

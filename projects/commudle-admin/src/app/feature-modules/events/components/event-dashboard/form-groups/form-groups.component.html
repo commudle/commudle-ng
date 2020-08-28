@@ -5,8 +5,8 @@
         <div class="edfeg-details" *ngIf="edfeg.data_form_entity">
           <div class="display-details">
             <div class="copy-link clickable">
-              <a *ngIf="event.editable" class="text-info" [routerLink]="['/fill-form', edfeg.data_form_entity.id]">
-                <nb-icon icon="copy-outline"></nb-icon>
+              <a *ngIf="event.editable" class="text-primary" [routerLink]="['/fill-form', edfeg.data_form_entity.id]">
+                <nb-icon icon="external-link"></nb-icon>
                 <br>
                 <small>Link to fill</small>
               </a>
@@ -89,11 +89,12 @@
           <div>
             <label fullWidth>
               Name*
+              <span *ngIf="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched && eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').invalid && eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').errors.required " class="validation-error-text">
+                Required Field
+              </span>
               <input type="text" nbInput fullWidth formControlName="name" fieldSize="tiny">
             </label>
-            <span *ngIf="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched && eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').invalid && eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').errors.required " class="validation-error-text">
-              Required Field
-            </span>
+
           </div>
 
 
@@ -112,7 +113,8 @@
         <div class="data-form-select">
           <label>
             Select Form
-            <nb-select  placeholder="Which Form? *" formControlName="data_form_id" status="primary" size="tiny" outline>
+            <br>
+            <nb-select  placeholder="Which Form? *" formControlName="data_form_id" status="primary" size="tiny">
               <nb-option *ngFor="let df of communityDataForms" [value]="df.id">
                 {{ df.name }}
               </nb-option>
@@ -131,7 +133,7 @@
       </div>
 
       <div class="save-button-bottom">
-        <button [disabled]="!eventDataFormEntityGroupForm.valid" type="submit" nbButton fullWidth outline status="link" size="tiny">
+        <button [disabled]="!eventDataFormEntityGroupForm.valid" type="submit" nbButton fullWidth outline status="primary" size="tiny">
           Save
         </button>
       </div>
