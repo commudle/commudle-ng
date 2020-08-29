@@ -4,6 +4,7 @@
     <div class="control-status">
       <nb-checkbox
         status="control"
+        [disabled]="!event.editable"
         [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
         (checkedChange)="toggleRegistration()">
         Click to {{eventSimpleRegistration.status == 'open' ? 'Close' : 'Open'}} Registrations
