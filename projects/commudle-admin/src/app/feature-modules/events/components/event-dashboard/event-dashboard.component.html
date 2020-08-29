@@ -20,7 +20,7 @@
           </div>
           <div class="item" (click)="scroll(eventCollaborations)" nbTooltip="Collaboration, Volunteers" nbTooltipPlacement="end">
             <a>
-              Collaborations
+              Extended Team
             </a>
           </div>
           <div class="item" (click)="scroll(communityEmails)">
@@ -94,12 +94,12 @@
                       outline
                       size="tiny"
                       status="danger"
-                      *ngIf="uploadedHeaderImage || event.header_image_path"
+                      *ngIf="event.editable && (uploadedHeaderImage || event.header_image_path)"
                       (click)="deleteEventHeader()">
                       Delete
                     </button>
                   </div>
-                  <input formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
+                  <input *ngIf="event.editable" formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
                 </div>
               </div>
             </form>
@@ -213,7 +213,7 @@
 
     <div class="item-group" #eventCollaborations>
       <p class="item-group-title">
-        Collaborations
+        Extended Team
       </p>
       <div #eventCommunityCollaborations>
         <nb-card>
