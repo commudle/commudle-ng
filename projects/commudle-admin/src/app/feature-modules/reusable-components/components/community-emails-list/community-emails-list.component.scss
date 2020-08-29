@@ -2,6 +2,12 @@
   height: 100%;
   nb-card {
     height: 100%;
+
+    nb-card-header {
+      background: #ececec;
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
     nb-list {
       nb-list-item {
         .email {
