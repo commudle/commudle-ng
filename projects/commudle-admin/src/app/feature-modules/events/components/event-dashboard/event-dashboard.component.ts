@@ -111,6 +111,10 @@ export class EventDashboardComponent implements OnInit {
     );
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({block: "start", behavior: "smooth"});
+  }
+
   deleteEventHeader() {
     this.eventsService.deleteHeaderImage(this.event.id).subscribe(
       data => {

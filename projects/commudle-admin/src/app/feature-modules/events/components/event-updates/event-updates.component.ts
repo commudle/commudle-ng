@@ -44,6 +44,7 @@ export class EventUpdatesComponent implements OnInit {
     this.eventUpdatesService.createEventUpdate(this.eventUpdateForm.value, this.event.id).subscribe(
       data => {
         this.eventUpdates.unshift(data);
+        this.eventUpdateForm.reset();
       }
     );
   }
@@ -54,7 +55,7 @@ export class EventUpdatesComponent implements OnInit {
       data => {
         this.eventUpdates.splice(index, 1);
       }
-    )
+    );
   }
 
 }

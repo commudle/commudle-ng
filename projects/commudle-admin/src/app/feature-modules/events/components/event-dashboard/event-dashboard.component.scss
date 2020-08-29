@@ -4,7 +4,52 @@
   .side-menu.responsive {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
+    // height: 5rem;
+    z-index: 2;
+    box-shadow: 2px -5px 15px -7px lightgrey;
+
+
+    nb-card {
+      margin-bottom: 0;
+      nb-card-body {
+        padding: 5px;
+      }
+    }
+
+    .menu-items {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+
+      .item {
+        padding: 0 5px;
+
+        a {
+          display: block;
+          height: 100%;
+          width: fit-content;
+          text-decoration: none;
+          padding: 0.5rem 0.5rem;
+          text-transform: uppercase;
+          font-size: 12px;
+          color: #4e4e4e;
+          white-space: nowrap;
+
+          nb-icon {
+            vertical-align: bottom;
+          }
+        }
+      }
+
+      .item.external-links {
+        display: flex;
+        button {
+          margin: 0 5px;
+        }
+      }
+    }
 
     @media screen and (min-width: 800px) {
       width: 30%;
@@ -12,6 +57,33 @@
       position: sticky;
       height: fit-content;
       top: 5.2rem;
+      .menu-items {
+        flex-direction: column;
+        .item {
+          text-align: right;
+          cursor: pointer;
+          :hover {
+            text-decoration: underline !important;
+          }
+          a {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            padding: 0.5rem 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: #4e4e4e;
+            width: 100%;
+          }
+        }
+
+        .item.external-links {
+          flex-direction: column;
+          button {
+            margin: 5px 0;
+          }
+        }
+      }
     }
 
 
@@ -22,8 +94,33 @@
     @media screen and (min-width: 800px) {
       width: 70%;
     }
+
+    .item-group {
+      margin-bottom: 3.5rem;
+      .item-group-title {
+        display: flex;
+        padding-right: 5px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        color: grey;
+        padding-left: 5px;
+      }
+      .item-group-title:after {
+        content: '';
+        flex: 1 1;
+        border-bottom: 2px solid grey;
+        margin: auto 0 auto 0.5rem;
+      }
+    }
+
     nb-card {
       margin-bottom: 0.5rem;
+      nb-card-header {
+        // background: #ececec;
+        font-weight: 300;
+        font-size: 1rem;
+        padding: 0 0.5rem;
+      }
     }
     .event-details {
       display: flex;
@@ -36,7 +133,7 @@
     .advanced-option-switch {
       display: flex;
       align-items: center;
-
+      margin-bottom: 1rem;
       p {
         margin: 0 0.5rem;
       }
