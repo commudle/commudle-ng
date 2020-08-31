@@ -179,6 +179,9 @@
     // }
 
     .event-timings{
+      fa-icon {
+        color: grey;
+      }
       >div{
         display: flex;
         p{
@@ -193,6 +196,7 @@
       fa-icon{
         margin-top: 1rem;
         margin-right: 0.5rem;
+        color: grey;
       }
       display: flex;
     }

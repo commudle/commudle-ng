@@ -170,7 +170,7 @@
 
       <div #eventUpdates>
         <nb-card *ngIf="event.event_status.name != EEventStatuses.DRAFT">
-          <nb-card-header>Posted Updates</nb-card-header>
+          <nb-card-header>Updates / Timeline</nb-card-header>
           <nb-card-body>
             <app-event-updates
             [event]="event"
@@ -205,15 +205,15 @@
           <nb-card-body>
             <div class="advanced-option-switch" *ngIf="event.editable">
               <p>
-                Single Session
+                Simple Hosting
                 <br>
                 (online only)
               </p>
               <nb-toggle status="primary" [checked]="event.custom_agenda" (checkedChange)="updateAgendaType($event)"></nb-toggle>
               <p>
-                Multiple Locations / Tracks / Sessions
+                Custom Schedule
                 <br>
-                (online or offline)
+                (online/offline with Multiple Tracks)
               </p>
             </div>
             <app-event-locations *ngIf="event.custom_agenda" [event]="event" [community]="community"></app-event-locations>
@@ -227,6 +227,7 @@
       <p class="item-group-title">
         Extended Team
       </p>
+
       <div #eventCommunityCollaborations>
         <nb-card>
           <nb-card-header>
@@ -241,7 +242,6 @@
         </nb-card>
       </div>
 
-
       <div #eventVolunteers>
         <nb-card>
           <nb-card-body>
@@ -249,6 +249,18 @@
           </nb-card-body>
         </nb-card>
       </div>
+
+      <div #sponsors>
+        <nb-card>
+          <nb-card-header>
+            Sponsors & Partners
+          </nb-card-header>
+          <nb-card-body>
+            <app-sponsors [event]="event"></app-sponsors>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
     </div>
 
 
@@ -358,7 +370,7 @@
                <ul>
                  <li>
                    <p>
-                    <strong>Single Session (online only)</strong>
+                    <strong>Simple Hosting (online only)</strong>
                     <br>
                     Choose between
                       <strong>Youtube Streaming</strong>,

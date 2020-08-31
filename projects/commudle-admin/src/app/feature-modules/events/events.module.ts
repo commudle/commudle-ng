@@ -21,7 +21,8 @@ import {
   NbToggleModule,
   NbPopoverModule,
   NbRadioModule,
-  NbAccordionModule
+  NbAccordionModule,
+  NbTabsetModule
  } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
@@ -109,7 +110,8 @@ import { SponsorsComponent } from './components/sponsors/sponsors.component';
     NbRadioModule,
     NbToggleModule,
     NbAccordionModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbTabsetModule
   ]
 })
 export class EventsModule { }
