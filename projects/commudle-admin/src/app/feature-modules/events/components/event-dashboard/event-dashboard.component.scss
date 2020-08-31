@@ -40,6 +40,10 @@
           nb-icon {
             vertical-align: bottom;
           }
+
+          small {
+            display: none;
+          }
         }
       }
 
@@ -74,6 +78,11 @@
             font-size: 0.85rem;
             color: #4e4e4e;
             width: 100%;
+
+            small {
+              display: block;
+              color: grey;
+            }
           }
         }
 
@@ -120,13 +129,15 @@
         font-weight: 300;
         font-size: 1rem;
         padding: 0 0.5rem;
+        color: grey;
       }
     }
     .event-details {
       display: flex;
       flex-direction: column;
-      h1 {
+      h3 {
         margin-top: 0;
+        margin-bottom: 0.5rem;
       }
     }
 
@@ -171,22 +182,19 @@
       >div{
         display: flex;
         p{
-          margin: 0 1rem 1rem;
+          margin: 0 1rem 0.5rem;
         }
       }
     }
 
     .event-description {
       background-color: #f9f9f9;
+      min-height: 200px;
       fa-icon{
         margin-top: 1rem;
         margin-right: 0.5rem;
       }
       display: flex;
-      >div{
-        height: 15rem;
-        overflow: scroll;
-      }
     }
 
 

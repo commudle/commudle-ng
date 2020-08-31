@@ -11,16 +11,22 @@
           <div class="item" (click)="scroll(eventInfo)" nbTooltip="Status, Header Image, Basic Details" nbTooltipPlacement="end">
             <a>
               Event Info
+              <br>
+              <small>Status - Basic Details</small>
             </a>
           </div>
           <div class="item" (click)="scroll(eventManager)" nbTooltip="Registrations, Agenda, Updates" nbTooltipPlacement="end">
             <a>
               Management
+              <br>
+              <small>Registrations - Agenda - Upates</small>
             </a>
           </div>
           <div class="item" (click)="scroll(eventCollaborations)" nbTooltip="Collaboration, Volunteers" nbTooltipPlacement="end">
             <a>
               Extended Team
+              <br>
+              <small>Collborations - Volunteers - Sponsors</small>
             </a>
           </div>
           <div class="item" (click)="scroll(communityEmails)">
@@ -56,6 +62,54 @@
         Event Info
       </p>
       <div #eventStatus>
+        <div #eventBasicDetails>
+          <nb-card>
+            <nb-card-header>
+              Basic Details
+            </nb-card-header>
+            <nb-card-body>
+              <div class="event-details">
+                <div class="name-links">
+                  <h3 class="lh-fw">
+                    {{ event.name }}
+                  </h3>
+                  <div class="event-timings">
+                    <div *ngIf="event.start_time">
+                      <fa-icon [icon]="faClock"></fa-icon>
+                      <p>
+                          {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
+                        to
+                          {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+
+                          {{ moment(event.end_time).format('z') }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="details">
+                    <div class="event-description">
+                      <fa-icon [icon]="faInfoCircle"></fa-icon>
+                      &nbsp;
+                      <div [innerHTML]="event.description" ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <a
+                      *ngIf="event.editable"
+                      nbButton
+                      status="primary"
+                      size="small"
+                      outline
+                      [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+                      <fa-icon [icon]="faEdit"></fa-icon>
+                      &nbsp;
+                      Edit Basic Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
         <nb-card>
           <nb-card-header>
             Status
@@ -106,48 +160,6 @@
           </nb-card-body>
         </nb-card>
       </div>
-      <div #eventBasicDetails>
-        <nb-card>
-          <nb-card-header>
-            Basic Details
-          </nb-card-header>
-          <nb-card-body>
-            <div class="event-details">
-              <div class="name-links">
-                <h1 class="lh-fw">
-                  {{ event.name }}
-                </h1>
-                <div class="event-timings">
-                  <div *ngIf="event.start_time">
-                    <fa-icon [icon]="faClock"></fa-icon>
-                    <p>
-                        {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
-                      to
-                        {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
-
-                        {{ moment(event.end_time).format('z') }}
-                    </p>
-                  </div>
-                </div>
-                <div class="details">
-                  <div class="event-description">
-                    <fa-icon [icon]="faInfoCircle"></fa-icon>
-                    &nbsp;
-                    <div [innerHTML]="event.description" ></div>
-                  </div>
-                </div>
-                <div>
-                  <a *ngIf="event.editable" nbButton status="primary" size="small" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
-                    <fa-icon [icon]="faEdit"></fa-icon>
-                    &nbsp;
-                    Edit Basic Details
-                  </a>
-                </div>
-              </div>
-            </div>
-          </nb-card-body>
-        </nb-card>
-      </div>
     </div>
 
 
@@ -171,7 +183,7 @@
       <div #eventRegistrations>
         <nb-card >
           <nb-card-header>
-            Registration Type
+            Registrations
           </nb-card-header>
           <nb-card-body>
             <div class="advanced-option-switch" *ngIf="event.editable">
