@@ -1,0 +1,146 @@
+.sponsors {
+  .event-sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .event-sponsor {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 250px;
+      margin: 0.5rem;
+      border: 1px dotted lightgrey;
+      border-radius: 5px;
+      .logo {
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+      .details {
+        margin-left: 5px;
+      }
+
+      .remove-sponsor-button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    .new-sponsor-button {
+      height: 80px;
+      width: 250px;
+      padding: 5px;
+      margin: 0.5rem;
+
+      border: 1px dashed grey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        nb-icon {
+          font-size: 1.2rem;
+        }
+        color: grey;
+        text-align: center;
+      }
+    }
+  }
+}
+
+nb-tabset.new-event-sponsor-options {
+  nb-tab {
+    padding: 0;
+  }
+  form {
+    .logo {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      label {
+        position: relative;
+        padding: 150px 0;
+
+        >span {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          font-size: 1.5rem;
+          font-weight: 300;
+          color: grey;
+
+          nb-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem
+          }
+        }
+
+        input {
+          display: none;
+        }
+      }
+
+      .uploaded-logo {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75px;
+        height: 75px;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        margin: 0 auto;
+        img {
+          max-width: 100%;
+        }
+      }
+
+      .delete-logo-button {
+        text-align: center;
+      }
+    }
+  }
+
+  .existing-sponsors {
+    max-height: 80vh;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .sponsor {
+      width: 120px;
+      height: 100px;
+      background: #d3d3d333;
+      padding: 3px;
+      margin: 0.5rem;
+      .logo {
+        margin: 0 auto;
+        width: 90%;
+        height: 80%;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+
+      .name {
+        text-align: center;
+        margin: 0;
+      }
+    }
+  }
+}
+
+

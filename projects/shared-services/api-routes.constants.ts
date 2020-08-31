@@ -123,6 +123,15 @@ export const API_ROUTES = {
   },
 
 
+  EVENT_SPONSORS: {
+    CREATE: 'api/v2/event_sponsors',
+    INDEX: 'api/v2/event_sponsors',
+    EXISTING_SPONSORS: 'api/v2/event_sponsors/get_existing',
+    ADD_EXISTING_SPONSOR: 'api/v2/event_sponsors/add_existing_sponsor',
+    DESTROY: 'api/v2/event_sponsors'
+  },
+
+
 
 
   // registration_types
