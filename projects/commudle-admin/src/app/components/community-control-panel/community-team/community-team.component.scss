@@ -3,44 +3,16 @@
   display: flex;
   flex-wrap: wrap;
   .user-profile {
-    height: 160px;
-    border: 0.5px solid #ff3e60;
+    border: 0.5px solid grey;
     padding: 5px;
-    width: 110px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+
     margin: 1rem;
-    text-align: center;
-    .user-avatar {
-      margin: 0 auto;
-      width: 50px;
-      height: 50px;
-      overflow: hidden;
-      border-radius: 50%;
-      border: 0.5px solid lightgrey;
-      img {
-        width: 100%;
-        vertical-align: text-top;
-      }
-    }
-
-    .user-name {
-      margin: 0;
-    }
-
-    .user-designation {
-      margin: 0;
-    }
-
-    .user-social-links {
-      display: flex;
-      justify-content: space-around;
-      height: 1rem;
-      a {
-        text-decoration: none;
-        color: grey;
-        nb-icon {
-          font-size: 1rem;
-        }
-      }
+    @media screen and (min-width: 1000px) {
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }
