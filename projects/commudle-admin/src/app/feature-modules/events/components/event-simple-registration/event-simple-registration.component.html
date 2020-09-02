@@ -1,13 +1,13 @@
 <div class="user-event-registration" *ngIf="eventSimpleRegistration">
 
   <div>
-    <div class="control-status">
+    <div class="control-status" [ngClass]="{'open': (eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN)}">
       <nb-checkbox
         status="control"
         [disabled]="!event.editable"
         [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
         (checkedChange)="toggleRegistration()">
-        Click to {{eventSimpleRegistration.status == 'open' ? 'Close' : 'Open'}} Registrations
+        Registrations are {{eventSimpleRegistration.status}}
       </nb-checkbox>
     </div>
     <div>

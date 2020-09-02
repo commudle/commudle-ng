@@ -308,7 +308,10 @@ export const API_ROUTES = {
   USER_EVENT_REGISTRATIONS: {
     INDEX: 'api/v2/user_event_registrations',
     UPDATE_REGISTRATION_STATUS: 'api/v2/user_event_registrations/update_registration_status',
-
+    INVITE_AS_SPEAKER: 'api/v2/user_event_registrations/invite_as_speaker',
+    SPEAKERS: 'api/v2/user_event_registrations/speakers',
+    REMOVE_SPEAKER: 'api/v2/user_event_registrations/remove_speaker',
+    RESEND_SPEAKER_INVITATION: 'api/v2/user_event_registrations/resend_speaker_invitation',
 
     PUBLIC: {
       SHOW: 'api/v2/user_event_registrations/public_show',
