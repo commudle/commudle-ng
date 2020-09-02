@@ -109,6 +109,7 @@ export class FormGroupsComponent implements OnInit {
       ).subscribe((data) => {
         this.eventDataFormEntityGroups.push(data);
         this.toastLogService.successDialog("Form Created");
+        this.eventDataFormEntityGroupForm.reset();
       });
   }
 

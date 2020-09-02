@@ -57,6 +57,36 @@
 
 
   <div class="page-column">
+    <div #eventSchedule>
+      <nb-card>
+        <nb-card-header>
+          Schedule
+        </nb-card-header>
+        <nb-card-body>
+          <div class="advanced-option-switch" *ngIf="event.editable">
+            <p>
+              Simple Hosting
+              <br>
+              (online only)
+            </p>
+            <nb-toggle status="primary" [disabled]="!event.custom_registration" [checked]="event.custom_agenda" (checkedChange)="updateAgendaType($event)"></nb-toggle>
+            <p>
+              Custom Schedule
+              <br>
+              (online/offline with Multiple Tracks)
+            </p>
+          </div>
+          <p *ngIf="event.custom_registration">
+            <small>
+              *Speakers can be selected by using Speaker Form in the registrations section above!
+            </small>
+          </p>
+          <app-event-locations *ngIf="event.custom_agenda" [event]="event" [community]="community"></app-event-locations>
+          <app-event-speakers *ngIf="!event.custom_agenda && !event.custom_registration" [event]="event"></app-event-speakers>
+          <app-event-embedded-video-stream *ngIf="!event.custom_agenda" [event]="event" [community]="community"></app-event-embedded-video-stream>
+        </nb-card-body>
+      </nb-card>
+    </div>
     <div class="item-group" #eventInfo>
       <p class="item-group-title">
         Event Info
@@ -197,30 +227,7 @@
         </nb-card>
       </div>
 
-      <div #eventSchedule>
-        <nb-card>
-          <nb-card-header>
-            Schedule
-          </nb-card-header>
-          <nb-card-body>
-            <div class="advanced-option-switch" *ngIf="event.editable">
-              <p>
-                Simple Hosting
-                <br>
-                (online only)
-              </p>
-              <nb-toggle status="primary" [checked]="event.custom_agenda" (checkedChange)="updateAgendaType($event)"></nb-toggle>
-              <p>
-                Custom Schedule
-                <br>
-                (online/offline with Multiple Tracks)
-              </p>
-            </div>
-            <app-event-locations *ngIf="event.custom_agenda" [event]="event" [community]="community"></app-event-locations>
-            <app-event-embedded-video-stream *ngIf="!event.custom_agenda" [event]="event" [community]="community"></app-event-embedded-video-stream>
-          </nb-card-body>
-        </nb-card>
-      </div>
+
     </div>
 
     <div class="item-group" #eventCollaborations>

@@ -1,5 +1,6 @@
 import { IUser } from './user.model';
 import { IEmbeddedVideoStream } from './embedded_video_stream.model';
+import { ISpeakerResource } from './speaker_resource.model';
 
 export interface ITrackSlot {
   id: number;
@@ -13,5 +14,7 @@ export interface ITrackSlot {
   embedded_video_stream: IEmbeddedVideoStream;
   event_id: number;
   user_vote: boolean;
+  speaker_resource: ISpeakerResource;
+  rsvp_token: string;
 
 }

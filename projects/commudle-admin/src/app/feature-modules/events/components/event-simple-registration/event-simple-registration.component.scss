@@ -15,9 +15,12 @@
   }
 
   .control-status {
-    background-color: #4ba4ff;
+    background-color: lightgrey;
     border-radius: 5px;
     padding: 0.5rem;
+    &.open {
+      background-color: #4ba4ff;
+    }
   }
 }
 

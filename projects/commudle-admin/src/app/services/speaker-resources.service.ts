@@ -18,17 +18,17 @@ export class SpeakerResourcesService {
   ) { }
 
 
-  getByToken(token): Observable<ISpeakerResource> {
-    const params = new HttpParams().set('token', token);
+  getByToken(token, eventId): Observable<ISpeakerResource> {
+    const params = new HttpParams().set('token', token).set('event_id', eventId);
     return this.http.get<ISpeakerResource>(
       this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.SHOW_BY_TOKEN), {params}
     );
   }
 
-  createOrUpdateByToken(token, speakerResourceData): Observable<ISpeakerResource> {
+  createOrUpdateByToken(token, speakerResourceData, eventId): Observable<ISpeakerResource> {
     return this.http.post<ISpeakerResource>(
       this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.CREATE_OR_UPDATE_BY_TOKEN),
-      { token, speaker_resource: speakerResourceData }
+      { token, speaker_resource: speakerResourceData, event_id: eventId }
     );
   }
 
