@@ -102,6 +102,14 @@ export class UserEventRegistrationsService {
     );
   }
 
+  pSpeakers(eventId): Observable<IUserEventRegistrations> {
+    let params = new HttpParams().set('event_id', eventId);
+
+    return this.http.get<IUserEventRegistrations>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.PUBLIC.SPEAKERS), { params }
+    );
+  }
+
 
 
 

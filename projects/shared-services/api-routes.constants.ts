@@ -316,7 +316,8 @@ export const API_ROUTES = {
     PUBLIC: {
       SHOW: 'api/v2/user_event_registrations/public_show',
       TOGGLE: 'api/v2/user_event_registrations/public_toggle',
-      INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users'
+      INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users',
+      SPEAKERS: 'api/v2/user_event_registrations/public_speakers',
     }
   },
 

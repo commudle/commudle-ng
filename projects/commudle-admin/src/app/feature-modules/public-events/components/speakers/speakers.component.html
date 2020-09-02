@@ -1,4 +1,4 @@
-<div *ngIf="speakers.length > 0">
+<div *ngIf="speakers.length > 0 || simpleAgendaSpeakers.length > 0">
   <nb-card>
     <nb-card-header>
       <h6>
@@ -7,6 +7,9 @@
     </nb-card-header>
     <nb-card-body>
       <div class="speaker" *ngFor="let speaker of speakers">
+        <app-user-profile-horizontal [user]="speaker.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+      </div>
+      <div class="speaker" *ngFor="let speaker of simpleAgendaSpeakers">
         <app-user-profile-horizontal [user]="speaker.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
     </nb-card-body>
