@@ -228,6 +228,7 @@ export const API_ROUTES = {
     DELETE: 'api/v2/user_roles_users/',
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
+    GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
 
     PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
     PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
