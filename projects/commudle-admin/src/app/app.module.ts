@@ -27,7 +27,8 @@ import {
   NbTooltipModule,
   NbWindowModule,
   NbAccordionModule,
-  NbBadgeModule} from '@nebular/theme';
+  NbBadgeModule,
+  NbTabsetModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -61,6 +62,8 @@ import { AppSharedComponentsModule } from './app-shared-components/app-shared-co
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
 import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
+import { CommunityEventsListActionsComponent } from './components/community-control-panel/community-events-list/community-events-list-actions/community-events-list-actions.component';
+import { CommunityEventsListDateComponent } from './components/community-control-panel/community-events-list/community-events-list-date/community-events-list-date.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -90,6 +93,8 @@ export function initApp(appInitService: AppInitService) {
     EditProfileComponent,
     CommunityStatsComponent,
     CommunityCreateComponent,
+    CommunityEventsListActionsComponent,
+    CommunityEventsListDateComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -129,6 +134,7 @@ export function initApp(appInitService: AppInitService) {
     NbWindowModule.forRoot(),
     NbAccordionModule,
     NbBadgeModule,
+    NbTabsetModule,
 
     //other external npm modules
     Ng2CompleterModule,

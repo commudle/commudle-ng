@@ -9,14 +9,14 @@
             <input type="text" nbInput fullWidth formControlName="name">
           </label>
         </div>
-
+      </div>
+      <div role="group">
         <div>
           <label>
             Logo*
             <input type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
           </label>
         </div>
-
       </div>
 
       <div>
@@ -36,7 +36,9 @@
             <input type="text" nbInput fullWidth formControlName="contact_email">
           </label>
         </div>
+      </div>
 
+      <div role="group">
         <div>
           <label>
             Website
@@ -45,10 +47,9 @@
         </div>
       </div>
 
-      <div role='individual'>
+      <div role='group' class="about">
           <label>
             About*
-          </label>
             <editor
               formControlName="about"
               apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
@@ -68,14 +69,15 @@
             }">
 
             </editor>
-
+          </label>
       </div>
 
-      <div role="individual">
+      <div role="group">
         <label>
           Mini Description*
-        </label>
           <input type="text" nbInput fullWidth formControlName="mini_description">
+
+        </label>
       </div>
 
       <div role="group">
@@ -84,8 +86,11 @@
             Facebook
             <input type="text" nbInput fullWidth formControlName="facebook">
           </label>
-
         </div>
+      </div>
+
+
+      <div role="group">
         <div>
           <label>
             Twitter
@@ -101,7 +106,9 @@
             <input type="text" nbInput fullWidth formControlName="github">
           </label>
         </div>
+      </div>
 
+      <div role="group">
         <div>
           <label>
             Linkedin

@@ -1,0 +1,8 @@
+<div *ngIf="rowData.start_time">
+  <p>
+    {{ moment(rowData.start_time).format('Do MMM YYYY h:mm A') }}
+  </p>
+  <p class="upcoming" *ngIf="moment(rowData.start_time) > moment()">
+    {{ moment(rowData.start_time).fromNow() | titlecase }}
+  </p>
+</div>

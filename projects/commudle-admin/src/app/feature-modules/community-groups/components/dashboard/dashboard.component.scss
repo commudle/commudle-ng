@@ -89,9 +89,18 @@
         padding: 0.5rem;
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
         flex-wrap: wrap;
         border: 1px solid lightgrey;
         margin: 0.5rem 0;
+        width: 800px;
+        max-width: 100%;
+        align-items: center;
+
+        @media screen and (min-width: 800px) {
+          flex-direction: row;
+
+        }
       }
     }
   }

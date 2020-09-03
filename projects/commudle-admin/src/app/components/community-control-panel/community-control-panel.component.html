@@ -1,86 +1,52 @@
 <div>
-  <div>
-    <nb-card>
-      <nb-card-body>
-        <div *ngIf="community">
-          <div class="basic-details">
-            <div>
-              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
-            </div>
-            <h4>{{ community.name }}</h4>
+
+  <nb-card>
+    <nb-card-body>
+      <div *ngIf="community">
+        <div class="basic-details">
+          <div>
+            <img src="{{ community.logo_path }}" alt="{{ community.name }}">
           </div>
-
-          <p>
-            <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
-            &nbsp;
-            &nbsp;
-            <a [routerLink]="['/communities', community.slug]" target="_blank">
-              <nb-icon icon="external-link"></nb-icon> Public Page
-            </a>
-
-            &nbsp;&nbsp;
-            <a nbButton status="success" size="small" [routerLink]="['stats']">
-              <nb-icon icon="trending-up-outline"></nb-icon>
-              Stats <sup>Beta</sup>
-              &nbsp; <nb-icon icon="external-link"></nb-icon>
-            </a>
-          </p>
-
+          <h4>{{ community.name }}</h4>
         </div>
 
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="card-row">
-    <div class="card-col">
-      <nb-card>
-        <nb-card-header>Events</nb-card-header>
-        <nb-card-body>
-          <app-community-events-list></app-community-events-list>
-        </nb-card-body>
-      </nb-card>
-      <nb-card>
-        <nb-card-header>Forms</nb-card-header>
-        <nb-card-body>
-          <app-community-forms-list></app-community-forms-list>
-        </nb-card-body>
-      </nb-card>
+        <p>
+          <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
+          &nbsp;
+          &nbsp;
+          <a nbButton status="info" size="small" target="_blank" [routerLink]="['/communities', community.slug]">
+            Public Page
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
 
+          &nbsp;&nbsp;
+          <a nbButton status="success" size="small" [routerLink]="['stats']">
+            <nb-icon icon="trending-up-outline"></nb-icon>
+            Stats <sup>Beta</sup>
+            &nbsp; <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </p>
+      </div>
+      <div>
+        <nb-tabset>
+          <nb-tab tabTitle="Events">
+            <app-community-events-list></app-community-events-list>
+          </nb-tab>
+          <nb-tab tabTitle="Forms">
+            <app-community-forms-list></app-community-forms-list>
+          </nb-tab>
+          <nb-tab tabTitle="Edit Details">
+            <app-community-edit-details
+        (updateCommunity)="setCommunity($event)"></app-community-edit-details>
+          </nb-tab>
+          <nb-tab tabTitle="Team">
+            <app-community-team [community]="community"></app-community-team>
 
+          </nb-tab>
+        </nb-tabset>
+      </div>
 
-    </div>
-  </div>
-  <div class="card-row">
-    <div class="card-col">
-      <nb-card>
-        <nb-card-header>Edit Details</nb-card-header>
-        <nb-card-body>
-          <app-community-edit-details
-          (updateCommunity)="setCommunity($event)"></app-community-edit-details>
-        </nb-card-body>
-      </nb-card>
-    </div>
-    <div class="card-col">
-      <!-- <nb-card>
-        <nb-card-header>
-          Emails
-        </nb-card-header>
-        <nb-card-body>
-          <button nbButton>
-            Send Emails
-          </button>
-        </nb-card-body>
-      </nb-card> -->
-      <nb-card>
-        <nb-card-header>
-          <nb-icon icon="people"></nb-icon>
-          Team
-        </nb-card-header>
-        <nb-card-body>
-          <app-community-team [community]="community"></app-community-team>
-        </nb-card-body>
-      </nb-card>
-    </div>
-
-  </div>
+    </nb-card-body>
+  </nb-card>
 </div>
+
