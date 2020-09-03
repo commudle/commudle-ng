@@ -5,7 +5,7 @@
         <div class="edfeg-details" *ngIf="edfeg.data_form_entity">
           <div class="display-details">
             <div class="copy-link clickable">
-              <a *ngIf="event.editable" class="text-primary" [routerLink]="['/fill-form', edfeg.data_form_entity.id]">
+              <a *ngIf="event.editable" class="text-primary" target="_blank" [routerLink]="['/fill-form', edfeg.data_form_entity.id]">
                 <nb-icon icon="external-link"></nb-icon>
                 <br>
                 <small>Link to fill</small>

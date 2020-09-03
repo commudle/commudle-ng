@@ -1,5 +1,5 @@
-import { NbSidebarService } from '@nebular/theme';
-import { Component, OnInit } from '@angular/core';
+import { NbSidebarService, NbWindowService } from '@nebular/theme';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -18,6 +18,8 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   styleUrls: ['./event-dashboard.component.scss']
 })
 export class EventDashboardComponent implements OnInit {
+  @ViewChild('eventGuideTemplate') eventGuideTemplate: TemplateRef<any>;
+
   moment = moment;
   EEventStatuses = EEventStatuses;
 
@@ -43,7 +45,8 @@ export class EventDashboardComponent implements OnInit {
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
-    private sidebarService: NbSidebarService
+    private sidebarService: NbSidebarService,
+    private windowService: NbWindowService
   ) {}
 
   ngOnInit() {
@@ -124,6 +127,12 @@ export class EventDashboardComponent implements OnInit {
         this.toastLogService.successDialog('Deleted');
       }
     );
+  }
+
+  openGuide() {
+    this.windowService.open(this.eventGuideTemplate, {
+      title: "It's simple!"
+    });
   }
 
 }
