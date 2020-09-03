@@ -89,4 +89,8 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     );
   }
 
+  autocompleteDisplay(value) {
+    return value.name;
+  }
+
 }
