@@ -118,6 +118,8 @@ export class EventDashboardComponent implements OnInit {
   deleteEventHeader() {
     this.eventsService.deleteHeaderImage(this.event.id).subscribe(
       data => {
+        this.uploadedHeaderImage = null;
+        this.uploadedHeaderImageFile = null;
         this.event = data;
         this.toastLogService.successDialog('Deleted');
       }

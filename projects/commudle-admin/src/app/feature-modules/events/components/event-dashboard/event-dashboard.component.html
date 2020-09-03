@@ -1,13 +1,36 @@
+<div class="page-header">
+  <p>
+    <a nbButton ghost size="tiny" class="padding-0" [routerLink]="['/admin/communities', community.slug]">
+      <nb-icon icon="arrow-ios-back"></nb-icon> Back
+    </a>
+  </p>
+  <nb-card>
+    <nb-card-body>
+      <p class="text-basic">
+        <small>Dashboard</small>
+      </p>
+      <h1 class="lh-fw">
+        {{ event.name }}
+      </h1>
+      <div class="links">
+        <a nbButton status="info" size="small" target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+          Public Event Page
+          <nb-icon icon="external-link"></nb-icon>
+        </a>
+        <a nbButton status="info" size="small" target="_blank" [routerLink]="['stats']">
+          <nb-icon icon="trending-up-outline"></nb-icon>
+          Stats<sup>Beta</sup>
+          &nbsp; <nb-icon icon="external-link"></nb-icon>
+        </a>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
 <div class="event-dashboard">
   <div class="side-menu responsive">
     <nb-card>
       <nb-card-body>
         <div class="menu-items">
-          <div class="item">
-            <a [routerLink]="['/admin/communities', community.slug]">
-              <nb-icon icon="arrow-ios-back"></nb-icon> Back
-            </a>
-          </div>
           <div class="item" (click)="scroll(eventInfo)" nbTooltip="Status, Header Image, Basic Details" nbTooltipPlacement="end">
             <a>
               Event Info
@@ -34,17 +57,6 @@
               Emails Sent
             </a>
           </div>
-          <div class="item external-links">
-            <button nbButton status="primary" size="tiny" target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug]">
-              Public Event Page
-              <nb-icon icon="external-link"></nb-icon>
-            </button>
-            <button nbButton  status="success" size="tiny" target="_blank" [routerLink]="['stats']">
-              <nb-icon icon="trending-up-outline"></nb-icon>
-              Stats<sup>Beta</sup>
-              &nbsp; <nb-icon icon="external-link"></nb-icon>
-            </button>
-          </div>
           <div class="item" (click)="scroll(eventGuide)">
             <a>
               Help
@@ -62,14 +74,66 @@
       <p class="item-group-title">
         Event Info
       </p>
-      <div #eventStatus>
+      <div>
+        <app-event-status [event]="event" (updatedEventStatus)="updateEventStatus($event)"></app-event-status>
         <div #eventBasicDetails>
           <nb-card>
             <nb-card-header>
               Basic Details
             </nb-card-header>
             <nb-card-body>
+              <div class="event-header-image">
+                <form [formGroup]="eventHeaderImageForm">
+                  <div class="row">
+                    <div>
+                      <div>
+                        <div class="uploaded-header-image" *ngIf="uploadedHeaderImage || event.header_image_path">
+                          <img src="{{uploadedHeaderImage || event.header_image_path}}" alt="Profile Picture">
+                        </div>
+                        <button
+                          class="delete-header-image-button"
+                          nbButton
+                          outline
+                          size="tiny"
+                          status="danger"
+                          *ngIf="event.editable && (uploadedHeaderImage || event.header_image_path)"
+                          (click)="deleteEventHeader()">
+                          Delete
+                        </button>
+                      </div>
+                      <label class="clickable">
+                        <div class="uploaded-header-image filler" *ngIf="!(uploadedHeaderImage || event.header_image_path)">
+                          <p>
+                            Click To Add
+                            Header Image
+                          </p>
+                          <p>
+                            <small>
+                              (1000 x 350)
+                            </small>
+                          </p>
+                        </div>
+                        <input *ngIf="event.editable" formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
+                      </label>
+                    </div>
+                  </div>
+                </form>
+              </div>
               <div class="event-details">
+                <div>
+                  <a
+                    *ngIf="event.editable"
+                    nbButton
+                    status="primary"
+                    size="tiny"
+                    ghost
+                    class="padding-0 edit-button"
+                    [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                    &nbsp;
+                    Edit Basic Details
+                  </a>
+                </div>
                 <div class="name-links">
                   <h3 class="lh-fw">
                     {{ event.name }}
@@ -93,32 +157,11 @@
                       <div [innerHTML]="event.description" ></div>
                     </div>
                   </div>
-                  <div>
-                    <a
-                      *ngIf="event.editable"
-                      nbButton
-                      status="primary"
-                      size="small"
-                      outline
-                      [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']">
-                      <fa-icon [icon]="faEdit"></fa-icon>
-                      &nbsp;
-                      Edit Basic Details
-                    </a>
-                  </div>
                 </div>
               </div>
             </nb-card-body>
           </nb-card>
         </div>
-        <nb-card>
-          <nb-card-header>
-            Status
-          </nb-card-header>
-          <nb-card-body>
-            <app-event-status [event]="event" (updatedEventStatus)="updateEventStatus($event)"></app-event-status>
-          </nb-card-body>
-        </nb-card>
       </div>
       <div  #eventHeaderImage>
         <nb-card class="event-header-image" *ngIf="event.editable || event.header_image_path">
@@ -126,38 +169,7 @@
             Header Image
           </nb-card-header>
           <nb-card-body>
-            <form [formGroup]="eventHeaderImageForm">
-              <div class="row">
-                <div>
-                  <div>
-                    <div class="uploaded-header-image filler" *ngIf="!(uploadedHeaderImage || event.header_image_path)">
-                      <p>
-                        Header Image
-                      </p>
-                      <p>
-                        <small>
-                          (1000 x 350)
-                        </small>
-                      </p>
-                    </div>
-                    <div class="uploaded-header-image" *ngIf="uploadedHeaderImage || event.header_image_path">
-                      <img src="{{uploadedHeaderImage || event.header_image_path}}" alt="Profile Picture">
-                    </div>
-                    <button
-                      class="delete-header-image-button"
-                      nbButton
-                      outline
-                      size="tiny"
-                      status="danger"
-                      *ngIf="event.editable && (uploadedHeaderImage || event.header_image_path)"
-                      (click)="deleteEventHeader()">
-                      Delete
-                    </button>
-                  </div>
-                  <input *ngIf="event.editable" formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
-                </div>
-              </div>
-            </form>
+
           </nb-card-body>
         </nb-card>
       </div>
