@@ -54,7 +54,7 @@
         padding: 0 5px;
 
         a {
-          display: block;
+          display: flex;
           height: 100%;
           width: fit-content;
           text-decoration: none;
@@ -64,7 +64,7 @@
           white-space: nowrap;
 
           nb-icon {
-            vertical-align: bottom;
+            margin-right: 5px;
           }
 
           small {
@@ -98,13 +98,12 @@
       .menu-items {
         flex-direction: column;
         .item {
-          text-align: right;
+          text-align: left;
           cursor: pointer;
           :hover {
             text-decoration: underline !important;
           }
           a {
-            display: block;
             height: 100%;
             text-decoration: none;
             padding: 0.5rem 0.5rem;
@@ -166,6 +165,7 @@
       }
     }
     .event-details {
+      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
       h3 {
@@ -173,7 +173,7 @@
         margin-bottom: 0.5rem;
       }
       .edit-button {
-        margin: 0 0 1rem;
+        margin: 1rem 0 0;
       }
     }
 
@@ -285,8 +285,15 @@
       }
     }
 
+    nb-accordion {
+      margin: 0.5rem 0;
+      nb-accordion-item-body {
+        background: #f4f7ff73;
+      }
+    }
+
     .community-emails {
-      height: 400px;
+      height: 450px;
       overflow-y: auto;
     }
   }
