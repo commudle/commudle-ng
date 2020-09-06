@@ -196,6 +196,18 @@ export const API_ROUTES = {
   UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
+  HOME: {
+    PUBLIC: {
+      UPCOMING_EVENTS: 'api/v2/home/public/upcoming_events',
+      PAST_RANDOM_EVENTS: 'api/v2/home/public/past_random_events',
+      LABS: 'api/v2/home/public/labs',
+      COMMUNITY_BUILDS: 'api/v2/home/public/community_builds',
+      COMMUNITIES: 'api/v2/home/public/communities',
+    }
+
+  },
+
+
 
   POLLS: {
     PUBLIC: {

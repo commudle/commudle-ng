@@ -70,7 +70,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 80%;
-        margin: 0.5rem auto 0;
+        margin: 0 auto;
         .user {
           display: flex;
           flex-direction: column;
@@ -91,6 +91,10 @@
         p {
           margin: 5px 0 0;
         }
+      }
+
+      .register-button {
+        text-align: center;
       }
     }
   }

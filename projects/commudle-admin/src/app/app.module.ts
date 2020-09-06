@@ -64,6 +64,11 @@ import { CommunityStatsComponent } from './components/community-control-panel/co
 import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
 import { CommunityEventsListActionsComponent } from './components/community-control-panel/community-events-list/community-events-list-actions/community-events-list-actions.component';
 import { CommunityEventsListDateComponent } from './components/community-control-panel/community-events-list/community-events-list-date/community-events-list-date.component';
+import { CommunityBuildCardComponent } from './components/home/community-build-card/community-build-card.component';
+import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
+import { AboutComponent } from './components/home/about/about.component';
+import { FeaturesComponent } from './components/home/features/features.component';
+import { CommunitiesComponent } from './components/home/communities/communities.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -95,6 +100,10 @@ export function initApp(appInitService: AppInitService) {
     CommunityCreateComponent,
     CommunityEventsListActionsComponent,
     CommunityEventsListDateComponent,
+    CommunityBuildCardComponent,
+    AboutComponent,
+    FeaturesComponent,
+    CommunitiesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -106,6 +115,7 @@ export function initApp(appInitService: AppInitService) {
     EditorModule,
     AppSharedComponentsModule,
     SharedComponentsModule,
+    ReusableComponentsModule,
 
     // external service modules
     LibErrorHandlerModule,

@@ -12,9 +12,9 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabComponent } from './components/lab/lab.component';
 import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
-import { LabCardComponent } from './components/labs/lab-card/lab-card.component';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
+import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-lis
     MyLabsComponent,
     LabComponent,
     LabStepComponent,
-    LabCardComponent,
     LabListItemComponent,
   ],
   imports: [
@@ -36,6 +35,7 @@ import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-lis
     EditorModule,
     FontAwesomeModule,
     SharedComponentsModule,
+    ReusableComponentsModule,
 
 
 
