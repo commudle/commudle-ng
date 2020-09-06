@@ -18,6 +18,8 @@ div.page.home {
       margin: 0 auto;
 
       display: flex;
+      flex-wrap: wrap-reverse;
+      align-items: center;
 
       .header-text {
         h1 {
@@ -46,6 +48,13 @@ div.page.home {
           border-radius: 5px;
         }
       }
+
+      .header-banner {
+        img {
+          filter: brightness(5);
+          width: 170px;
+        }
+      }
     }
 
 
@@ -54,6 +63,7 @@ div.page.home {
 
       >div {
         max-width: $max-page-width;
+        justify-content: space-between;
       }
 
       .header-text {
@@ -68,6 +78,9 @@ div.page.home {
           font-size: 17px;
           line-height: 20px;
         }
+      }
+
+      .header-banner {
       }
     }
   }

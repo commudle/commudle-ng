@@ -18,11 +18,15 @@
           For open communities, <strong>it's free!</strong>
         </p>
 
-        <a class="clickable" >
+        <a class="clickable" (click)="scrollALittle()">
           Start Now <nb-icon icon="arrow-ios-downward"></nb-icon>
         </a>
       </div>
-
+      <div class="header-banner">
+        <div class="main-logo clickable">
+          <img src="/assets/images/commudle-logo192.png">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -39,7 +43,7 @@
           Live Polls and QnA during the events.
         </p>
         <p>
-          <a nbButton status="info" size="small" [routerLink]="['/fill-form', 406]">
+          <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
             Start Your Community
           </a>
 
@@ -127,7 +131,7 @@
           <br>
           <br>
           <a nbButton status="info" size="small" [routerLink]="['/communities']">
-            All Communities
+            View All Communities
           </a>
         </p>
       </div>
@@ -184,7 +188,7 @@
           </span>
 
         </div>
-        <a [routerLink]="['/fill-form', 406]" nbButton fullWidth status="success" size="medium">
+        <a [routerLink]="['/fill-form', 465]" nbButton fullWidth status="success" size="medium">
           <nb-icon icon="plus-circle-outline"></nb-icon>
           I Want Access!
         </a>

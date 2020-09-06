@@ -1,1 +1,14 @@
-<p>communities works!</p>
+<div class="communities">
+  <div class="page-header">
+    <h1 class="lh-fw">
+      Communities
+    </h1>
+    <p>Click on any Community to visit!</p>
+  </div>
+
+  <div class="communities-list">
+    <div *ngFor="let community of communities">
+      <app-community-badge [community]="community"></app-community-badge>
+    </div>
+  </div>
+</div>
