@@ -129,4 +129,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  scrollALittle() {
+    window.scrollTo({
+      top: 400,
+      behavior: 'smooth'
+    });
+
+  }
 }
