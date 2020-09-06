@@ -1,7 +1,10 @@
-<div class="lab">
+<div class="lab clickable" [routerLink]="['/labs', lab.slug]">
   <nb-card>
     <nb-card-body>
       <div class="title">
+        <div class="image" *ngIf="lab.header_image">
+          <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
+        </div>
         <p>
           {{ lab.name | slice:0:80 }}
           <br>
@@ -10,8 +13,8 @@
       </div>
       <div class="body">
         <div class="header">
-          <div class="image" *ngIf="lab.header_image">
-            <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
+          <div class="image" *ngIf="lab.user.avatar">
+            <img src="{{ lab.user.avatar }}" alt="{{ lab.user.name }}">
           </div>
           <div class="author">
             <p>

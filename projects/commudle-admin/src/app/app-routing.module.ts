@@ -13,11 +13,26 @@ import { InitResolver } from './resolvers/init.resolver';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
 import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
+import { CommunitiesComponent } from './components/home/communities/communities.component';
+import { FeaturesComponent } from './components/home/features/features.component';
+import { AboutComponent } from './components/home/about/about.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'features',
+    component: FeaturesComponent
+  },
+  {
+    path: 'communities',
+    component: CommunitiesComponent
   },
   {
     path: 'communities/:community_id',

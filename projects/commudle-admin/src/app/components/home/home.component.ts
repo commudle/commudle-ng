@@ -9,6 +9,10 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { EventsService } from '../../services/events.service';
 import { ExternalApisService } from '../../services/external-apis.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { HomeService } from '../../services/home.service';
+import { ICommunityBuild } from 'projects/shared-models/community-build.model';
+import { ILab } from 'projects/shared-models/lab.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +20,14 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  moment = moment;
   currentUser: ICurrentUser;
   communities: ICommunity[] = [];
 
   upcomingEvents: IEvent[] = [];
   pastEvents: IEvent[] = [];
+  labs: ILab[] = [];
+  communityBuilds: ICommunityBuild[] = [];
   shineIndex = 0;
 
   photoGrid = [];
@@ -28,8 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private authWatchService: LibAuthwatchService,
-    private communitiesService: CommunitiesService,
-    private eventsService: EventsService,
+    private homeService: HomeService,
     private meta: Meta,
     private title: Title
   ) { }
@@ -39,6 +45,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authWatchService.currentUser$.subscribe(currentUser => this.currentUser = currentUser);
     this.getCommunities();
     this.getUpcomingEvents();
+    this.getLabs();
+    this.getCommunityBuilds();
   }
 
   ngOnDestroy() {
@@ -74,16 +82,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   getCommunities() {
-    this.communitiesService.pGetCommunities().subscribe(
+    this.homeService.pCommunities().subscribe(
       data => {
         this.communities = data.communities;
-        // this.randomShine();
       }
     );
   }
 
-
-  // this method is causing a problem in SSR
   randomShine() {
     setInterval(() => {
       this.shineIndex = Math.floor(Math.random() * this.communities.length) + 0;
@@ -91,20 +96,36 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getUpcomingEvents() {
-    this.eventsService.pGetUpcomingEvents().subscribe(
+    this.homeService.pUpcomingEvents().subscribe(
       data => {
         this.upcomingEvents = data.events;
         if (this.upcomingEvents.length === 0) {
-          this.getRandomPastEvents();
+          this.getRandomPastEvents(5);
         }
       }
     );
   }
 
-  getRandomPastEvents() {
-    this.eventsService.pGetRandomPastEvents(4).subscribe(
+  getRandomPastEvents(count) {
+    this.homeService.pPastRandomEvents(count).subscribe(
       data => {
         this.pastEvents = data.events;
+      }
+    );
+  }
+
+  getLabs() {
+    this.homeService.pLabs().subscribe(
+      data => {
+        this.labs = data.labs;
+      }
+    );
+  }
+
+  getCommunityBuilds() {
+    this.homeService.pCommunityBuilds().subscribe(
+      data => {
+        this.communityBuilds = data.community_builds;
       }
     );
   }

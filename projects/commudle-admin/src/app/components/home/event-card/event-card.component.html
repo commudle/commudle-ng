@@ -42,6 +42,9 @@
             <span *ngIf="totalCount > 0">... + {{ totalCount + 15 }} More</span>
           </p>
         </div>
+        <p *ngIf="event.start_time && moment(event.start_time) > moment()" class="register-button">
+          <a class="padding-0" nbButton ghost status="basic">Register</a>
+        </p>
       </nb-card-body>
     </nb-card>
   </a>

@@ -177,3 +177,9 @@ nb-window.full-screen-height {
 .padding-0 {
   padding: 0 !important;
 }
+
+.hide-mobile {
+  @media screen and (max-width: 800px){
+    display: none !important;
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../../../assets/styles/variables.scss';
+
+.features {
+  max-width: $home-max-page-width;
+  padding: 1rem;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 3.5rem;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
