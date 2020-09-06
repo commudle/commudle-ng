@@ -7,13 +7,57 @@
       Features, for Communities
     </h1>
     <p>
-      Or should we say, almost everything you need!
+      Or should we say, almost everything you need, including a few questions!
+    </p>
+    <p>
+      <a nbButton status="info" size="small" [routerLink]="['/fill-form', 406]">
+        Start Your Community
+      </a>
     </p>
   </div>
 
   <div class="features-list">
-    <nb-accordion>
-      <nb-accordion-item>
+    <nb-accordion multi>
+      <nb-accordion-item [expanded]="true">
+        <nb-accordion-item-header>
+          <h4 class="lh-fw">
+            Is it Free?
+          </h4>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <p>
+            <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+            &nbsp;
+            For Developer/Design communities being run not-for-profit by individuals (or a team), <strong>It's Absolutely Free</strong>
+          </p>
+          <p>
+            <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+            &nbsp;
+            If you're a for-profit organization, we'll devise a custom plan which suits your needs perfectly.
+            <a nbButton ghost status="info" size="small" class="padding-0" [routerLink]="['/fill-form', 406]">
+              Fill This Form
+            </a>
+            and we'll get back to you
+          </p>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+      <nb-accordion-item [expanded]="true">
+        <nb-accordion-item-header>
+          <h4 class="lh-fw">
+            How do I create a new independent Community
+          </h4>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <p>
+            <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+            &nbsp;
+            Simple, <a nbButton ghost status="info" size="small" [routerLink]="['/fill-form', 406]" class="padding-0">
+              Fill This Form
+            </a>, and we'll reach out to you super fast and schedule a 1:1 demo for you
+          </p>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+      <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>
           <h4 class="lh-fw">
             Communities
@@ -46,8 +90,7 @@
           </p>
         </nb-accordion-item-body>
       </nb-accordion-item>
-
-      <nb-accordion-item>
+      <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>
           <h4 class="lh-fw">
             Events
@@ -60,6 +103,8 @@
             Support for both <strong>Online</strong> & <strong>Offline</strong> events
           </p>
           <p>
+            <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
+            &nbsp;
             Live Chat, QnA and Polls to keep your attendees engaged!
           </p>
           <p>
@@ -92,7 +137,7 @@
           <p>
             <nb-icon icon="checkmark-square-2" status="success"></nb-icon>
             &nbsp;
-             <strong class="text-info">Preserve Your Content</strong>: Speakers can add the details of their
+             <strong>Preserve Your Content</strong>: Speakers can add the details of their
             session directly into Commudle, for access by your members and all the world!
           </p>
           <p>
@@ -135,7 +180,7 @@
           </p>
         </nb-accordion-item-body>
       </nb-accordion-item>
-      <nb-accordion-item>
+      <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>
           <h4 class="lh-fw">
             Offline Events
@@ -173,7 +218,7 @@
           </p>
         </nb-accordion-item-body>
       </nb-accordion-item>
-      <nb-accordion-item>
+      <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>
           <h4 class="lh-fw">
             Online Events
@@ -211,5 +256,11 @@
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
+
+    <p>
+      <a nbButton status="info" size="small" [routerLink]="['/fill-form', 406]">
+        Start Your Community
+      </a>
+    </p>
   </div>
 </div>
