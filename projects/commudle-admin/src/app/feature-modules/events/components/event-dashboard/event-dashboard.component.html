@@ -66,7 +66,7 @@
                         </button>
                       </div>
                       <label class="clickable">
-                        <div class="uploaded-header-image filler" *ngIf="!(uploadedHeaderImage || event.header_image_path)">
+                        <div class="uploaded-header-image filler" *ngIf="(!(uploadedHeaderImage || event.header_image_path) && event.editable)">
                           <p>
                             Click To Add
                             Header Image <small>(optional)</small>
@@ -263,7 +263,7 @@
               <span>
                 Event Manager
                 <br>
-                <small>Registrations - Agenda - Upates</small>
+                <small>Registrations - Agenda - Updates</small>
               </span>
             </a>
           </div>

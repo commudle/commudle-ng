@@ -1,3 +1,132 @@
+// ::ng-deep {
+//   nb-layout-column {
+//     background-color: white;
+//     padding: 0 !important;
+//   }
+// }
+
+$max-page-width: 1320px;
+
+div.page.home {
+  section.page-header {
+    // background: white;
+    background-color: #3b49df;
+
+    padding: 1rem;
+    >div {
+      margin: 0 auto;
+
+      display: flex;
+
+      .header-text {
+        h1 {
+          margin: 0;
+
+          // color: #232323f0;
+          color: white;
+
+          span.light-font {
+            font-weight: 300;
+          }
+        }
+        p {
+          color: #f0f0f0;;
+        }
+
+        a {
+          display: block;
+          margin-top: 45px;
+          width: fit-content;
+          text-decoration: none;
+          color: white;
+          border: 1px solid white;
+          font-size: 20px;
+          padding: 10px;
+          border-radius: 5px;
+        }
+      }
+    }
+
+
+    @media screen and (min-width: 800px) {
+      margin: -36px;
+
+      >div {
+        max-width: $max-page-width;
+      }
+
+      .header-text {
+        padding: 5rem 0 3rem;
+        width: 50%;
+        h1 {
+          font-size: 55px;
+          line-height: 58px;
+        }
+        p {
+          margin-top: 0.5rem;
+          font-size: 17px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}
+
+section.events {
+  margin: 2rem 0;
+  padding: 0 1rem;
+  .header-text {
+    h2 {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #565656;
+      nb-icon {
+        font-size: 40px;
+      }
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
+
+  .upcoming-events, .past-events {
+    width: 100%;
+    height: 380px;
+    overflow-y: hidden;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    // border-left: 1px solid #b7b7b7;
+    // border-top: 1px solid #b7b7b7;
+    // border-bottom: 1px solid #b7b7b7;
+
+    padding: 0.5rem;
+    // border-top-left-radius: 10px;
+    // border-bottom-left-radius: 10px;
+
+    .event {
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    margin: 5rem 0 3rem;
+
+    >div {
+      max-width: $max-page-width;
+      margin: 0 auto;
+    }
+    .event {
+      margin: 0.5rem 1rem;
+    }
+  }
+}
+
+
+
 .section.main {
   display: flex;
   flex-direction: column;

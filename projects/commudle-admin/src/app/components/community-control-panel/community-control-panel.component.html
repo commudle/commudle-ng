@@ -35,7 +35,7 @@
           <nb-tab tabTitle="Forms">
             <app-community-forms-list></app-community-forms-list>
           </nb-tab>
-          <nb-tab tabTitle="Edit Details">
+          <nb-tab tabTitle="Edit Details" [lazyLoad]="true">
             <app-community-edit-details
         (updateCommunity)="setCommunity($event)"></app-community-edit-details>
           </nb-tab>

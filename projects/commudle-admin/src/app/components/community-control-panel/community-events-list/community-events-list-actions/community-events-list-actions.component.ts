@@ -12,7 +12,6 @@ export class CommunityEventsListActionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.rowData)
   }
 
 }
