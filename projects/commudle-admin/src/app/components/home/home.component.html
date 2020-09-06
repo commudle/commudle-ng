@@ -1,4 +1,53 @@
-<div>
+<div class="page home">
+  <section class="page-header">
+    <div>
+      <div class="header-text">
+        <h1>
+          <span class="light-font">
+            Join A Tech Community
+            <br>
+            Or
+          </span>
+           Build One!
+        </h1>
+        <p>
+          With Commudle, manage your <strong>Tech Community</strong>,
+          <br>
+          organize events, learn & grow, together!
+        </p>
+
+        <a class="clickable" >
+          Start Now <nb-icon icon="arrow-ios-downward"></nb-icon>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="events">
+    <div>
+      <div class="header-text">
+        <h2>
+          <nb-icon icon="calendar-outline"></nb-icon>
+          Events
+        </h2>
+        <p>
+          Establish your identity as a Community. Organize events, be it online or offline, all at one place
+        </p>
+      </div>
+      <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
+        <div class="event" *ngFor="let event of upcomingEvents">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </div>
+      <div class="past-events" *ngIf="upcomingEvents.length == 0">
+        <div class="event" *ngFor="let event of pastEvents">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="section main">
 
     <div class="about-commudle">
@@ -26,16 +75,7 @@
         </p>
       </div>
     </div>
-    <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
-      <div class="event" *ngFor="let event of upcomingEvents">
-        <app-event-card [event]="event"></app-event-card>
-      </div>
-    </div>
-    <div class="past-events" *ngIf="upcomingEvents.length == 0">
-      <div class="event" *ngFor="let event of pastEvents">
-        <app-event-card [event]="event"></app-event-card>
-      </div>
-    </div>
+
   </div>
 
   <div class="section updates">

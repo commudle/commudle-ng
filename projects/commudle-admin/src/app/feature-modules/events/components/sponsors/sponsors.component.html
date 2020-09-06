@@ -51,7 +51,7 @@
         </div>
       </div>
     </nb-tab>
-    <nb-tab  tabTitle="Add New">
+    <nb-tab  tabTitle="Add New" [active]="existingSponsors.length == 0">
       <form [formGroup]="sponsorForm" (ngSubmit)="createSponsor()">
         <div class="logo field">
           <div class="uploaded-logo" *ngIf="uploadedLogoImage">

@@ -58,8 +58,9 @@ export class AppComponent {
                 }
             }, 10);
         if (this.isBrowser) {
-          if (window.innerWidth >= 1000)  {
-            this.sidebarService.expand('mainMenu');          }
+          // if (window.innerWidth >= 1000)  {
+          //   this.sidebarService.expand('mainMenu');
+          // }
         }
       });
   }

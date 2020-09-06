@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -15,7 +15,7 @@ import { Meta, Title } from '@angular/platform-browser';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   communities: ICommunity[] = [];
 
@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
     this.authWatchService.currentUser$.subscribe(currentUser => this.currentUser = currentUser);
     this.getCommunities();
     this.getUpcomingEvents();
+  }
+
+  ngOnDestroy() {
+    console.log('destroyed');
   }
 
   setMeta() {
