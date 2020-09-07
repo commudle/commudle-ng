@@ -1,44 +1,165 @@
-<div>
-  <div class="section main">
-
-    <div class="about-commudle">
-      <div class="logo">
-        <img src="/assets/images/commudle-logo128.png" alt="Commudle">
-      </div>
-      <div class="revamp-text">
-        <p class="header"> Welcome to Commudle! </p>
+<div class="page home">
+  <section class="page-header">
+    <div>
+      <div class="header-text">
+        <h1>
+          <span class="light-font">
+            Join A Tech Community
+            <br>
+            Or
+          </span>
+           Build One!
+        </h1>
         <p>
-          A platform for Tech Communities to Organize Events & Share Knowledge  😃
+          With Commudle, manage your <strong>Tech Community</strong>,
+          <br>
+          organize events, learn & grow, together.
+          <br>
+          For open communities, <strong>it's free!</strong>
+        </p>
+
+        <a class="clickable" (click)="scrollALittle()">
+          Start Now <nb-icon icon="arrow-ios-downward"></nb-icon>
+        </a>
+      </div>
+      <div class="header-banner">
+        <div class="main-logo clickable">
+          <img src="/assets/images/commudle-logo192.png">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events">
+    <div>
+      <div class="header-text">
+        <h3>
+          <nb-icon icon="calendar-outline"></nb-icon>
+          Events
+        </h3>
+        <p>
+          Establish your identity as a Community. Organize events, be it online or offline, all at one place.
+          <br>
+          Live Polls and QnA during the events.
+        </p>
+        <p>
+          <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
+            Start Your Community
+          </a>
+
+          &nbsp;
+
+          <a nbButton status="info" size="small" outline [routerLink]="['/features']">
+            Why Commudle?
+          </a>
+        </p>
+      </div>
+      <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
+        <div class="event" [ngClass]="{'upcoming-event': moment(event.start_time) > moment()}" *ngFor="let event of upcomingEvents">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </div>
+      <div class="past-events" *ngIf="upcomingEvents.length == 0">
+        <div class="event" *ngFor="let event of pastEvents">
+          <app-event-card [event]="event"></app-event-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="labs" *ngIf="labs.length > 0">
+    <div>
+      <div class="header-text">
+        <h3>
+          Learn from or Write a <strong>Lab</strong>, Step by Step
+        </h3>
+        <p>
+          Labs are a great way to write those tutorials when you want to share something new you've learnt!
           <br>
           <br>
-          <nb-icon icon="video"></nb-icon> Online Events are now supported!
-          <br>
+          <a nbButton status="info" size="small" [routerLink]="['/labs']">
+            View All
+          </a>
+        </p>
+      </div>
+      <div class="labs">
+        <div class="lab" *ngFor="let lab of labs">
+          <app-lab-card [lab]="lab"></app-lab-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="builds" *ngIf="communityBuilds.length > 0">
+    <div>
+      <div class="header-text">
+        <h3>
+          Innovations, when the
           <strong>
-            It's FREE for Communities, will always be.
+            Community Builds
+          </strong>
+        </h3>
+        <p>
+          For the ones who always keep making something new, let's find them and share what they've built, a software, a course, a robot or even a car!.
+          <br>
+          <br>
+          <a nbButton status="info" size="small" [routerLink]="['/builds']">
+            View All
+          </a>
+        </p>
+      </div>
+      <div class="builds">
+        <div class="build" *ngFor="let build of communityBuilds">
+          <app-community-build-card [communityBuild]="build"></app-community-build-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="communities-list" *ngIf="communities.length > 0">
+    <div>
+      <div class="header-text">
+        <h3 class="header-communities">
+          <nb-icon icon="people"></nb-icon>
+          A Growing Family!
+        </h3>
+        <p>
+          Commudle is home to <strong>more than 80 Communities</strong> and <strong>20,000 Users</strong>. Guess What, it's <strong>
+            Free!
           </strong>
           <br>
           <br>
-          <span class="clickable" [routerLink]="['fill-form', 406]">
-            <u>
-              Click Here to Join!
-            </u>
-          </span>
+          <a nbButton status="info" size="small" [routerLink]="['/communities']">
+            View All Communities
+          </a>
         </p>
       </div>
-    </div>
-    <div class="upcoming-events" *ngIf="upcomingEvents.length > 0">
-      <div class="event" *ngFor="let event of upcomingEvents">
-        <app-event-card [event]="event"></app-event-card>
-      </div>
-    </div>
-    <div class="past-events" *ngIf="upcomingEvents.length == 0">
-      <div class="event" *ngFor="let event of pastEvents">
-        <app-event-card [event]="event"></app-event-card>
-      </div>
-    </div>
-  </div>
 
-  <div class="section updates">
+      <div class="communities">
+        <div class="community" *ngFor="let community of communities; let i=index" nbTooltip="{{community.name}}">
+          <div class="logo">
+            <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="github">
+    <a href="https://github.com/commudle/commudle-ng">
+      <nb-card >
+        <nb-card-body>
+          <nb-icon icon="github"></nb-icon>
+          <p>Accepting Open Source Contributions!</p>
+          <p>
+            Yes, the frontend is built on Angular 10 and completely open sourced. CLICK HERE to begin with a 'Good First Issue!'
+          </p>
+        </nb-card-body>
+      </nb-card>
+    </a>
+  </section>
+  <!-- <div class="section updates">
 
     <nb-card class="stats">
       <nb-card-body>
@@ -67,65 +188,12 @@
           </span>
 
         </div>
-        <a [routerLink]="['/fill-form', 406]" nbButton fullWidth status="success" size="medium">
+        <a [routerLink]="['/fill-form', 465]" nbButton fullWidth status="success" size="medium">
           <nb-icon icon="plus-circle-outline"></nb-icon>
           I Want Access!
         </a>
       </nb-card-body>
     </nb-card>
-
-    <a [routerLink]="['/builds']" class="community-builds-feature">
-      <nb-card accent="primary">
-        <nb-card-body>
-          <h4>
-            <app-badge [text]="'New'" [color]="'#3465ff'"></app-badge>
-            <br>
-            Community Builds!
-          </h4>
-          <p>
-            Share anything related to Tech which you have built and can be used by others.
-          </p>
-          <p>
-            It could be a <strong>Project</strong>, <strong>Tech Session Slides</strong>, <strong>Tutorial</strong> or anything else.
-            <br/>
-            <br/>
-            Sharing is what the Community is about!
-          </p>
-          <p class="text-info">CLICK HERE</p>
-        </nb-card-body>
-      </nb-card>
-    </a>
-
-
-    <a class="github" href="https://github.com/commudle/commudle-ng">
-      <nb-card >
-        <nb-card-body>
-          <nb-icon icon="github"></nb-icon>
-          <p>We're Open Sourced!</p>
-        </nb-card-body>
-      </nb-card>
-    </a>
-
-  </div>
-
-  <nb-card class="section communities-list" *ngIf="communities.length > 0">
-    <nb-card-body>
-      <h3 class="header-communities">
-        A Growing Family!
-      </h3>
-      <div class="communities">
-        <div class="community" *ngFor="let community of communities; let i=index" [ngClass]="{'shine': i === shineIndex || 1%shineIndex === 0}">
-          <app-community-badge [community]="community"></app-community-badge>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <!-- <div class="section description">
-    <div class="photo-grid">
-      <div *ngFor="let photo of photoGrid"></div>
-    </div>
   </div> -->
-  <!-- <div class="photo-grid"
-    Home Component
-  </div> -->
+
 </div>

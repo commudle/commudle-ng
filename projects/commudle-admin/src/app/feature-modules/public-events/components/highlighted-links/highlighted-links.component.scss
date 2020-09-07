@@ -1,3 +1,7 @@
+nb-card-body {
+  padding: 0.5rem !important;
+}
+
 .open-forms {
   display: flex;
   flex-direction: row;
@@ -12,7 +16,7 @@
 
     @media screen and (min-width: 800px) {
       a {
-        // width: 90%;
+        width: 95%;
         overflow: hidden;
         text-align: left;
         display: inline-block;

@@ -63,7 +63,7 @@ export class AgendaComponent implements OnInit {
     allEvents = _.sortBy(allEvents, slot => moment(slot.start_time));
 
     allEvents.forEach(slot => {
-      if (moment(slot.start_time).isAfter(moment())) {
+      if (moment(slot.start_time).isAfter(moment()) && moment().isAfter(moment(this.event.start_time))) {
         upcomingEvents.push(slot);
       }
     });

@@ -26,11 +26,34 @@ export class UserRolesUsersService {
     );
   }
 
-  createUserRolesUser(communityId, userRolesUserData): Observable<IUserRolesUser> {
+
+  getEventVolunteers(eventId): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_EVENT_VOLUNTEERS), { params }
+    );
+  }
+
+
+  getCommunityGroupLeaders(communityGroupId): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_ADMIN_COMMUNITY_GROUP_USERS), { params }
+    );
+  }
+
+  createUserRolesUser(userRolesUserData): Observable<IUserRolesUser> {
     return this.http.post<IUserRolesUser>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
-        community_id: communityId,
         user_roles_user: userRolesUserData
+      }
+    );
+  }
+
+  addEventVolunteer(email, eventId): Observable<IUserRolesUser> {
+    return this.http.post<IUserRolesUser>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
+        email, event_id: eventId
       }
     );
   }
@@ -64,6 +87,13 @@ export class UserRolesUsersService {
     let params = new HttpParams().set('community_id', communityId).set('user_role_name', userRoleName);
     return this.http.get<IUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE), { params }
+    );
+  }
+
+  pGetCommunityGroupLeaders(communityGroupId): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('community_group_id', communityGroupId);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS), { params }
     );
   }
 

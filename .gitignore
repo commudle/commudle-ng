@@ -54,3 +54,8 @@ Thumbs.db
 # Scripts
 ssr-deployment-prod.sh
 ssr-deployment-staging.sh
+
+
+#
+.ebextensions/
+dist.zip

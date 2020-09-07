@@ -5,8 +5,10 @@
   .event-status {
     flex-grow: 1;
     text-align: center;
-    padding: 0.5rem;
-    border: 0.5px solid lightgrey;
+    padding: 5px;;
+    height: fit-content;
+    border: 0.5px solid #ffffff59;
+    background: #cfcfcf;
     &:hover {
       color: #507eff;
       border-color: #507eff;
@@ -20,12 +22,15 @@
 
 .rules {
   padding: 1rem;
+  background: #d7ebff;
 }
 
 .info {
-  padding: 0.5rem;
+  padding: 0rem;
+  display: flex;
+  align-items: center;
   nb-icon {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 }
 

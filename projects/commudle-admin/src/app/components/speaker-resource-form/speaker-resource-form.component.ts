@@ -16,6 +16,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 })
 export class SpeakerResourceFormComponent implements OnInit {
   token: string;
+  eventId: number;
   speakerResource: ISpeakerResource;
   community: ICommunity;
   embedGoogleSlidesCode: any;
@@ -52,13 +53,14 @@ export class SpeakerResourceFormComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       data => {
         this.token = data['token'];
+        this.eventId = data['event_id']
         this.getSpeakerResource();
       }
     );
   }
 
   getSpeakerResource() {
-    this.speakerResourcesService.getByToken(this.token).subscribe(
+    this.speakerResourcesService.getByToken(this.token, this.eventId).subscribe(
       data => {
         this.speakerResource = data;
         if (this.speakerResource.id) {
@@ -81,9 +83,9 @@ export class SpeakerResourceFormComponent implements OnInit {
   }
 
   submitForm() {
-    this.speakerResourcesService.createOrUpdateByToken(this.token, this.speakerResourceForm.value).subscribe(
+    this.speakerResourcesService.createOrUpdateByToken(this.token, this.speakerResourceForm.value, this.eventId).subscribe(
       data => {
-        this.toastLogService.successDialog("Saved!");
+        this.toastLogService.successDialog('Saved!');
         this.router.navigate(['/communities', this.community.slug, 'events', this.speakerResource.event.slug]);
       }
     );
