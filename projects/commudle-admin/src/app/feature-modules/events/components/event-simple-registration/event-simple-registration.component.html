@@ -1,21 +1,25 @@
 <div class="user-event-registration" *ngIf="eventSimpleRegistration">
 
   <div>
-    <div class="control-status-example">
-      <nb-checkbox [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN" (checkedChange)="toggleRegistration()">
-        Click to {{eventSimpleRegistration.status == 'open' ? 'Close' : 'Open'}} Registrations
+    <div class="control-status" [ngClass]="{'open': (eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN)}">
+      <nb-checkbox
+        status="control"
+        [disabled]="!event.editable"
+        [checked]="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
+        (checkedChange)="toggleRegistration()">
+        Registrations are {{eventSimpleRegistration.status}}
       </nb-checkbox>
     </div>
     <div>
       <a
+        class="send-email-button"
+        *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
         nbButton
-        outline
-        status="info"
-        size="tiny"
+        status="primary"
+        size="small"
         (click)="openEmailWindow()">
         <nb-icon icon="email-outline"></nb-icon>
-        &nbsp;
-        Send By EMail
+        Send Registration Link
       </a>
     </div>
 

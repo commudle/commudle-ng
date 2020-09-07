@@ -17,6 +17,17 @@ export class CommunitiesService {
     private apiRoutesService: ApiRoutesService
   ) { }
 
+  create(communityData, communityGroupId = null): Observable<ICommunity> {
+    let params;
+    if (communityGroupId) {
+      params = new HttpParams().set('community_group_id', communityGroupId);
+    }
+    return this.http.post<ICommunity>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.CREATE), {
+        community: communityData
+      }, {params}
+    );
+  }
 
   getRoleCommunities(role): Observable<ICommunities> {
     const params = new HttpParams().set('role', role);

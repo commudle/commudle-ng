@@ -4,12 +4,14 @@ import { EmailerComponent } from './emailer/emailer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbRadioModule, NbSelectModule, NbInputModule, NbButtonModule, NbCheckboxModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { SpeakerResourcePreviewComponent } from './speaker-resource-preview/speaker-resource-preview.component';
 
 
 
 @NgModule({
   declarations: [
-    EmailerComponent
+    EmailerComponent,
+    SpeakerResourcePreviewComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 
   ],
   exports: [
-    EmailerComponent
+    EmailerComponent,
+    SpeakerResourcePreviewComponent
   ]
 })
 export class AppSharedComponentsModule { }

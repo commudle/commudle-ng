@@ -21,7 +21,8 @@ import {
   NbToggleModule,
   NbPopoverModule,
   NbRadioModule,
-  NbAccordionModule
+  NbAccordionModule,
+  NbTabsetModule
  } from '@nebular/theme';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
@@ -46,6 +47,8 @@ import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-v
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
+import { SponsorsComponent } from './components/sponsors/sponsors.component';
+import { EventSpeakersComponent } from './components/event-speakers/event-speakers.component';
 
 
 @NgModule({
@@ -68,6 +71,8 @@ import { ReusableComponentsModule } from '../reusable-components/reusable-compon
     UserEventRegistrationsComponent,
     UserDetailsComponent,
     EventEmbeddedVideoStreamComponent,
+    SponsorsComponent,
+    EventSpeakersComponent,
   ],
   imports: [
     CommonModule,
@@ -107,7 +112,8 @@ import { ReusableComponentsModule } from '../reusable-components/reusable-compon
     NbRadioModule,
     NbToggleModule,
     NbAccordionModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbTabsetModule
   ]
 })
 export class EventsModule { }

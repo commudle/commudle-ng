@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
+import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 
 @Component({
   selector: 'app-user-role-confirmation',
@@ -14,6 +15,7 @@ export class UserRoleConfirmationComponent implements OnInit {
   userRolesUser: IUserRolesUser;
   community: ICommunity;
   event: IEvent;
+  communityGroup: ICommunityGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,6 +36,7 @@ export class UserRoleConfirmationComponent implements OnInit {
         this.userRolesUser = data.user_roles_user;
         this.community = data.community;
         this.event = data.event;
+        this.communityGroup = data.community_group;
       }
     );
   }

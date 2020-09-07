@@ -51,7 +51,7 @@
 
   </nb-list>
 
-  <div *ngIf="managedCommunities.length > 0">
+  <div *ngIf="managedCommunities.length > 0 || managedCommunityGroups.length > 0">
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Organizer Menu</nb-accordion-item-header>
@@ -64,6 +64,15 @@
             </nb-user>
           </a>
         </nb-accordion-item-body>
+        <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
+
+          <a [routerLink]="['/admin', 'orgs', cGroup.slug]" (click)="closeSidebar()">
+            <nb-user size="tiny"
+                name="{{cGroup.name}}"
+                picture="{{ cGroup.logo.url }}">
+            </nb-user>
+          </a>
+        </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
   </div>
@@ -72,6 +81,11 @@
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>System Admin</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <a [routerLink]="['/sys-admin']">
+            Admin Home
+          </a>
+        </nb-accordion-item-body>
         <nb-accordion-item-body>
           <a [routerLink]="['/sys-admin', 'admin-surveys']">
             Admin Surveys

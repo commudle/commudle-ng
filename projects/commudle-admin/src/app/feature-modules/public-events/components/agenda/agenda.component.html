@@ -7,7 +7,7 @@
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <h6 *ngIf="getUpcomingEvents().length">Upcoming Events</h6>
+      <h6 *ngIf="getUpcomingEvents().length">Upcoming Sessions</h6>
       <div *ngIf="getUpcomingEvents().length" class="event-upcoming">
         <nb-card *ngFor="let slot of getUpcomingEvents()">
           <nb-card-body>

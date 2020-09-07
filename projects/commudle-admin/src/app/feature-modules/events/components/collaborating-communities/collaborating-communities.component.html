@@ -33,7 +33,7 @@
       placeholder="Enter Name..."
       [nbAutocomplete]="auto" />
 
-      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)" [handleDisplayFn]="autocompleteDisplay">
 
         <nb-option *ngFor="let option of communities" [value]="option">
           {{ option.name }}

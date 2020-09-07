@@ -5,7 +5,7 @@
       <br/>
       <span> {{ fillerText }} </span>
     </p>
-    <div *ngIf="videoCode">
+    <div class="youtube-player" *ngIf="videoCode">
       <youtube-player
         *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
         videoId="{{ playerUrl }}"

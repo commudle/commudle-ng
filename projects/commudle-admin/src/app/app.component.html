@@ -13,7 +13,12 @@
           </p>
         </div>
       </div>
-      <div>
+      <div class="menu-right-container">
+        <a nbButton ghost class="hide-mobile" [routerLink]="['/']">Home</a>
+        <a nbButton ghost class="hide-mobile" [routerLink]="['/about']">About</a>
+        <a nbButton ghost class="hide-mobile" [routerLink]="['/communities']">Communities</a>
+        <a nbButton ghost class="hide-mobile" [routerLink]="['/labs']">Labs</a>
+        <a nbButton ghost class="hide-mobile" [routerLink]="['/builds']">Builds</a>
         <nb-user
           *ngIf="currentUser"
           size="medium"
@@ -23,7 +28,7 @@
         >
         </nb-user>
         <button *ngIf="!currentUser"
-          (click)="login()" nbButton status="primary">
+          (click)="login()" nbButton ghost status="info">
           <nb-icon icon="log-in-outline"></nb-icon>
           Log in / Sign Up
         </button>
