@@ -84,11 +84,21 @@
               <nb-icon icon="person-outline"></nb-icon>
               {{ slot.user.name }}
             </p>
+            <div *ngIf="event.editable">
+              <a target="_blank" *ngIf="!slot.speaker_resource" class="text-info" [routerLink]="['/speaker-resource-form']" [queryParams]="{token: slot.rsvp_token, event_id: event.slug}">
+                <nb-icon icon="clipboard-outline"></nb-icon>
+                Add session details
+              </a>
+              <a target="_blank" *ngIf="slot.speaker_resource" class="clickable text-info" [routerLink]="['/speaker-resource-form']" [queryParams]="{token: slot.rsvp_token, event_id: event.slug}">
+                <nb-icon icon="clipboard-outline"></nb-icon>
+                <span *ngIf="slot.speaker_resource">Edit Session Details/Slides</span>
+              </a>
+            </div>
             <p>
               <small>
                 <a target="_blank" [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" [queryParams]="{track_slot_id: slot.id}">
                   <nb-icon icon="external-link"></nb-icon>
-                  Session Page
+                  Public Session Page
                 </a>
               </small>
             </p>

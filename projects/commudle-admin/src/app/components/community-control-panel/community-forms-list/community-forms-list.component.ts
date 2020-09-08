@@ -19,7 +19,7 @@ export class CommunityFormsListComponent implements OnInit {
   tableSettings = {
     actions: false,
     pager: {
-      perPage: 3
+      perPage: 10
     },
     columns: {
       name: {

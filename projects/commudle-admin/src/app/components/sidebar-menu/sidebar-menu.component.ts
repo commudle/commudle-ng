@@ -1,3 +1,4 @@
+import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
 import { Component, OnInit } from '@angular/core';
 import { NbMenuItem, NbSidebarService, NbWindowService } from '@nebular/theme';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -8,6 +9,7 @@ import { CommunitiesService } from '../../services/communities.service';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { UserChatComponent } from 'projects/shared-components/user-chat/user-chat.component';
 import { UserNotificationsChannel } from 'projects/shared-services/websockets/user-notifications.channel';
+import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -18,7 +20,9 @@ export class SidebarMenuComponent implements OnInit {
   faFlask = faFlask;
   currentUser: ICurrentUser;
   managedCommunities: ICommunity[] = [];
+  managedCommunityGroups: ICommunityGroup[] = [];
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
+  communityAdminRoles = [];
   isSystemAdmin = false;
 
   unreadMessagesCount = 0;
@@ -26,6 +30,7 @@ export class SidebarMenuComponent implements OnInit {
   constructor(
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
+    private communityGroupsService: CommunityGroupsService,
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
     private notificationsChannel: UserNotificationsChannel
@@ -55,6 +60,10 @@ export class SidebarMenuComponent implements OnInit {
         if (currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
           this.isSystemAdmin = true;
         }
+
+        if (currentUser.user_roles.includes(EUserRoles.COMMUNITY_ADMIN)) {
+          this.getManagingCommunityGroups();
+        }
       }
     });
   }
@@ -67,6 +76,14 @@ export class SidebarMenuComponent implements OnInit {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];
       });
     }
+  }
+
+  getManagingCommunityGroups() {
+    this.communityGroupsService.getManagingCommunityGroups().subscribe(
+      data => {
+        this.managedCommunityGroups = data.community_groups;
+      }
+    );
   }
 
   closeSidebar() {

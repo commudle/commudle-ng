@@ -1,0 +1,15 @@
+.community-group {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  div.logo {
+    max-width: 200px;
+    img: {
+      width: 100%;
+    }
+  }
+
+  h1.name {
+    margin-top: 0;
+  }
+}

@@ -115,7 +115,7 @@ export class EventLocationTracksComponent implements OnInit {
 
   scrollFromTop() {
     if (this.eventLocationTracks.length > 0 && this.eventLocationTracks[0].track_slots.length > 0) {
-     this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.5 * 850);
+     this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.5 * 950);
     }
   }
 

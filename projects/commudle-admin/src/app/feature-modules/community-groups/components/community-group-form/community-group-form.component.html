@@ -1,0 +1,97 @@
+<div class="community-group-form">
+  <nb-card class="header">
+    <nb-card-body *ngIf="!communityGroup">
+      <h1>
+        New Community Group
+      </h1>
+      <p>
+        A community group can have multiple community chapters in it.
+      </p>
+    </nb-card-body>
+
+    <nb-card-body *ngIf="communityGroup">
+      <h1>
+        Edit {{communityGroup.name}}
+      </h1>
+    </nb-card-body>
+  </nb-card>
+  <nb-card class="form">
+    <nb-card-body>
+      <form class="community-edit-details-form" [formGroup]="communityGroupForm" (ngSubmit)="createOrUpdateCommunityGroup()">
+        <div>
+          <div role="group" >
+            <div>
+              <label fullWidth>
+                Name*
+                <input type="text" nbInput fullWidth formControlName="name">
+              </label>
+            </div>
+
+            <div class="logo">
+              <div class="uploaded-logo" *ngIf="uploadedLogoImage || communityGroup && communityGroup.logo">
+                <img src="{{uploadedLogoImage || communityGroup.logo.url}}" alt="Profile Picture">
+              </div>
+              <div class="delete-logo-button">
+                <button
+                  nbButton
+                  outline
+                  size="tiny"
+                  status="danger"
+                  *ngIf="uploadedLogoImage || communityGroup && communityGroup.logo"
+                  (click)="removeLogo()">
+                  <nb-icon icon="close-circle"></nb-icon>
+                  Remove Logo
+                </button>
+              </div>
+
+              <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage || (communityGroup && communityGroup.logo && communityGroup.logo.url)}">
+                <span>
+                  <span>
+                    <nb-icon icon="image-outline"></nb-icon>
+                  </span>
+                  <span>
+                    Click to upload a Logo image
+                  </span>
+                </span>
+                <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+              </label>
+            </div>
+
+            <label>
+              About*
+            </label>
+              <editor
+                formControlName="description"
+                apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+               [init]="{
+                height: 300,
+                menubar: false,
+                convert_urls: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | \
+                  alignleft aligncenter alignright alignjustify | \
+                  bullist numlist outdent indent | removeformat | help'
+              }">
+
+              </editor>
+
+          </div>
+
+        </div>
+
+
+        <div>
+          <button [disabled]="!communityGroupForm.valid || ((communityGroup && !communityGroup.logo) && !uploadedLogoImage)" type="submit" nbButton status="primary" fullWidth>
+            Save
+          </button>
+        </div>
+
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

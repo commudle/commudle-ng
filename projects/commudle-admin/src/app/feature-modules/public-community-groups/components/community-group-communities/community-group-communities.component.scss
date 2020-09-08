@@ -1,0 +1,30 @@
+
+.chapter-count {
+  margin: 0;
+}
+
+.chapters {
+  display: flex;
+  flex-wrap: wrap;
+  .community {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: 100%;
+    border: 1px solid lightgrey;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    h4 {
+      margin: 0;
+      padding: 5px;
+      background: #4e74ff;
+      color: white;
+      border-radius: 5px;
+    }
+    @media screen and (min-width: 800px){
+
+      width: 300px;
+    }
+  }
+}

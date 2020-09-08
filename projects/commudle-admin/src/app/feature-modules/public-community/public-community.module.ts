@@ -25,7 +25,13 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 @NgModule({
-  declarations: [HomeCommunityComponent, AboutComponent, EventsComponent, MembersComponent, EventResourcesComponent],
+  declarations: [
+    HomeCommunityComponent,
+    AboutComponent,
+    EventsComponent,
+    MembersComponent,
+    EventResourcesComponent
+  ],
   imports: [
     CommonModule,
     PublicCommunityRoutingModule,

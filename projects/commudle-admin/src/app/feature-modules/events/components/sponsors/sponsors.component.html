@@ -1,0 +1,107 @@
+<div class="sponsors">
+  <div class="event-sponsors">
+    <div class="new-sponsor-button clickable" (click)="openForm()" *ngIf="event.editable">
+      <p>
+        <nb-icon icon="plus"></nb-icon>
+        <br>
+        <span>
+          Add Sponsor
+        </span>
+      </p>
+    </div>
+    <!-- list of sponsors -->
+    <div *ngFor="let eventSponsor of sponsors; let i = index;" class="event-sponsor">
+      <div class="logo">
+        <img src="{{ eventSponsor.sponsor.logo.url }}" alt="{{eventSponsor.sponsor.name}}">
+      </div>
+      <div class="details">
+        <p>
+          {{eventSponsor.sponsor.name}}
+          <br>
+          <small>
+            <a target="_blank" href="{{eventSponsor.sponsor.link}}">
+              {{eventSponsor.sponsor.link}}
+            </a>
+          </small>
+        </p>
+        <a class="remove-sponsor-button clickable" (click)="removeSponsor(eventSponsor.id, i)" *ngIf="event.editable">
+          <p>
+            <small>
+              <nb-icon icon="close-circle-outline" status="danger"></nb-icon>
+            </small>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #sponsorFormTemplate *ngIf="event.editable">
+
+  <nb-tabset class="new-event-sponsor-options">
+    <nb-tab tabTitle="Choose">
+      <div class="existing-sponsors">
+        <div class="sponsor clickable" *ngFor="let sponsor of existingSponsors" (click)="addExistingSponsor(sponsor.id)">
+          <div class="logo">
+            <img src="{{sponsor.logo.url}}" alt="{{sponsor.name}}">
+          </div>
+          <p class="name" nbTooltip="sponsor.link">
+            <small>{{sponsor.name}}</small>
+          </p>
+        </div>
+      </div>
+    </nb-tab>
+    <nb-tab  tabTitle="Add New" [active]="existingSponsors.length == 0">
+      <form [formGroup]="sponsorForm" (ngSubmit)="createSponsor()">
+        <div class="logo field">
+          <div class="uploaded-logo" *ngIf="uploadedLogoImage">
+            <img src="{{uploadedLogoImage}}" alt="Profile Picture">
+          </div>
+          <div class="delete-logo-button">
+            <button
+              nbButton
+              outline
+              size="tiny"
+              status="danger"
+              *ngIf="uploadedLogoImage"
+              (click)="removeLogo()">
+              <nb-icon icon="close-circle"></nb-icon>
+              Remove Logo
+            </button>
+          </div>
+
+          <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage }">
+            <span>
+              <span>
+                <nb-icon icon="image-outline"></nb-icon>
+              </span>
+              <span>
+                Click to upload a Logo <small>(200x200)</small>*
+              </span>
+            </span>
+            <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+          </label>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
+            Name*
+            <input type="text" nbInput fullWidth formControlName="name">
+          </label>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
+            Link
+            <input type="text" nbInput fullWidth formControlName="link">
+          </label>
+        </div>
+        <button nbButton [disabled]="!sponsorForm.valid" status="primary" type="submit">
+          Submit
+        </button>
+
+      </form>
+    </nb-tab>
+  </nb-tabset>
+
+</ng-template>

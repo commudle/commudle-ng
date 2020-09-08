@@ -89,4 +89,97 @@ nb-window.full-screen-height {
   }
 }
 
+.lh-fw {
+  font-weight: 300 !important;
+}
 
+// nb-tabset {
+//   ::ng-deep {
+//     ul.tabset {
+//       overflow-x: auto !important;
+//       padding: 5px !important;
+//     }
+//   }
+// }
+
+
+// responsive page menu
+.page-menu.responsive {
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+
+  nb-card {
+    margin: 0;
+    nb-card-body {
+      padding: 0.5rem;
+    }
+  }
+
+  box-shadow: 2px -5px 15px -7px lightgrey;
+
+  .menu-items {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    justify-content: space-evenly;
+    a {
+      cursor: pointer;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      color: black;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      nb-icon {
+        // color: grey !important;
+      }
+      span {
+        display: none;
+        // font-size: 10px;
+        // text-align: center;
+      }
+    }
+    nb-icon {
+
+      font-size: 1.5rem;
+    }
+
+    .active {
+      border-bottom: 3px solid #232b45;
+    }
+  }
+  @media screen and (min-width: 800px){
+    position: sticky;
+    top: 3.5rem;
+    box-shadow: none;
+    nb-card {
+      margin-bottom: 1rem;
+      .menu-items {
+        justify-content: flex-start;
+        a {
+          margin-right: 1.5rem;
+          span {
+            display: inline;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.padding-0 {
+  padding: 0 !important;
+}
+
+.hide-mobile {
+  @media screen and (max-width: 800px){
+    display: none !important;
+  }
+}

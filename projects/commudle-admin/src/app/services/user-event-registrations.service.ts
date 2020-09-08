@@ -42,6 +42,40 @@ export class UserEventRegistrationsService {
     );
   }
 
+  inviteAsSpeaker(eventId, email): Observable<IUserEventRegistration> {
+    return this.http.post<IUserEventRegistration>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.INVITE_AS_SPEAKER), {
+        event_id: eventId,
+        email: email
+       }
+    );
+  }
+
+  speakers(eventId): Observable<IUserEventRegistrations> {
+    let params = new HttpParams().set('event_id', eventId);
+
+    return this.http.get<IUserEventRegistrations>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.SPEAKERS), { params }
+    );
+  }
+
+  removeSpeaker(userEventRegistrationId): Observable<any> {
+    let params = new HttpParams().set('user_event_registration_id', userEventRegistrationId);
+
+    return this.http.delete<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.REMOVE_SPEAKER), { params }
+    );
+  }
+
+  resendSpeakerInvitation(userEventRegistrationId): Observable<boolean> {
+    let params = new HttpParams().set('user_event_registration_id', userEventRegistrationId);
+
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.RESEND_SPEAKER_INVITATION), {}, { params }
+    );
+  }
+
+
 
   pShow(eventId): Observable<IUserEventRegistration> {
     const params = new HttpParams().set('event_id', eventId);
@@ -65,6 +99,14 @@ export class UserEventRegistrationsService {
 
     return this.http.get<IUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.PUBLIC.INTERESTED_MEMBERS), { params }
+    );
+  }
+
+  pSpeakers(eventId): Observable<IUserEventRegistrations> {
+    let params = new HttpParams().set('event_id', eventId);
+
+    return this.http.get<IUserEventRegistrations>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_EVENT_REGISTRATIONS.PUBLIC.SPEAKERS), { params }
     );
   }
 

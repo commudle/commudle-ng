@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { NbSidebarService, NbWindowService } from '@nebular/theme';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -17,6 +18,8 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   styleUrls: ['./event-dashboard.component.scss']
 })
 export class EventDashboardComponent implements OnInit {
+  @ViewChild('eventGuideTemplate') eventGuideTemplate: TemplateRef<any>;
+
   moment = moment;
   EEventStatuses = EEventStatuses;
 
@@ -41,11 +44,13 @@ export class EventDashboardComponent implements OnInit {
     private titleService: Title,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private sidebarService: NbSidebarService,
+    private windowService: NbWindowService
   ) {}
 
   ngOnInit() {
-
+    this.sidebarService.collapse('mainMenu');
     this.activatedRoute.data.subscribe(data => {
       this.event = data.event;
 
@@ -109,13 +114,25 @@ export class EventDashboardComponent implements OnInit {
     );
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({block: "start", behavior: "smooth"});
+  }
+
   deleteEventHeader() {
     this.eventsService.deleteHeaderImage(this.event.id).subscribe(
       data => {
+        this.uploadedHeaderImage = null;
+        this.uploadedHeaderImageFile = null;
         this.event = data;
         this.toastLogService.successDialog('Deleted');
       }
     );
+  }
+
+  openGuide() {
+    this.windowService.open(this.eventGuideTemplate, {
+      title: "It's simple!"
+    });
   }
 
 }

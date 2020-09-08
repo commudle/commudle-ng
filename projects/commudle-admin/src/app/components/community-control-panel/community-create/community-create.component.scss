@@ -1,0 +1,27 @@
+.community-form {
+  .page-header {
+    p, h1 {
+      margin: 0;
+    }
+
+    .community-group {
+      .logo {
+        width: 100px;
+        img {
+          width: 100px;
+        }
+      }
+    }
+  }
+
+  .form-container {
+    width: 1000px;
+    margin: 0 auto;
+    form {
+      >div {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
+}
