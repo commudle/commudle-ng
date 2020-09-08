@@ -2,41 +2,21 @@
   <div *ngIf="organizers.length > 0">
     <h6>Community Organizers</h6>
     <div class="organizers">
-      <div *ngFor="let org of organizers; let i=index;">
-        <div class="user-profile">
-          <div class="user-avatar">
-            <img src="{{ org.user.avatar }}" alt="{{org.user.name}}">
-          </div>
-          <div class="user-details">
-            <p class="user-name" nbTooltip="{{ org.user.name }}">{{ org.user.name | slice:0:10 }}</p>
-            <p class="user-designation" nbTooltip="{{ org.user.designation }}" nbTooltipStatus="primary">
-              <small>{{ org.user.designation | slice:0:10 }}</small>
-            </p>
-            <div class="user-social-links">
-              <a href="{{ org.user.linkedin }}">
-                <nb-icon icon="linkedin"></nb-icon>
-              </a>
-              <a href="{{ org.user.twitter }}">
-                <nb-icon icon="twitter"></nb-icon>
-              </a>
-              <a href="{{ org.user.github }}">
-                <nb-icon icon="github"></nb-icon>
-              </a>
-              <a href="{{ org.user.personal_website }}">
-                <nb-icon icon="info"></nb-icon>
-              </a>
-            </div>
-          </div>
-          <div class="actions">
-            <a *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
-              <small>Resend Invite</small>
-            </a>
-            <br>
-            <a (click)="remove(org,'organizer', i)">
-              <small>Remove</small>
-            </a>
-          </div>
+      <div class="user-profile" *ngFor="let org of organizers; let i=index;">
+
+        <div class="user-details">
+          <app-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
         </div>
+        <div class="actions">
+          <a *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
+            <small>Resend Invite</small>
+          </a>
+          <br>
+          <a (click)="remove(org,'organizers', i)">
+            <small>Remove</small>
+          </a>
+        </div>
+
       </div>
     </div>
 
@@ -45,41 +25,19 @@
   <div *ngIf="eventOrganizers.length > 0">
     <h6>Event Managers</h6>
     <div class="event_organizers">
-      <div *ngFor="let org of eventOrganizers; let i=index;">
-        <div class="user-profile">
-          <div class="user-avatar">
-            <img src="{{ org.user.avatar }}" alt="{{org.user.name}}">
-          </div>
-          <div class="user-details">
-            <p class="user-name" nbTooltip="{{ org.user.name }}">{{ org.user.name | slice:0:10 }}</p>
-            <p class="user-designation" nbTooltip="{{ org.user.designation }}">
-              <small>{{ org.user.designation | slice:0:10 }}</small>
-            </p>
-            <div class="user-social-links">
-              <a href="{{ org.user.linkedin }}">
-                <nb-icon icon="linkedin"></nb-icon>
-              </a>
-              <a href="{{ org.user.twitter }}">
-                <nb-icon icon="twitter"></nb-icon>
-              </a>
-              <a href="{{ org.user.github }}">
-                <nb-icon icon="github"></nb-icon>
-              </a>
-              <a href="{{ org.user.personal_website }}">
-                <nb-icon icon="info"></nb-icon>
-              </a>
-            </div>
-          </div>
-          <div class="actions">
-            <a *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
-              <small>
-                Resend Invitation
-              </small>
-            </a>
-            <a (click)="remove(org, 'eventOrganizers', i)">
-              <small>Remove</small>
-            </a>
-          </div>
+      <div class="user-profile" *ngFor="let org of eventOrganizers; let i=index;">
+        <div class="user-details">
+          <app-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+        </div>
+        <div class="actions">
+          <a *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
+            <small>
+              Resend Invitation
+            </small>
+          </a>
+          <a (click)="remove(org, 'eventOrganizers', i)">
+            <small>Remove</small>
+          </a>
         </div>
       </div>
     </div>

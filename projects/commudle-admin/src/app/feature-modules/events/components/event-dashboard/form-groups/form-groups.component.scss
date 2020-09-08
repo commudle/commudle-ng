@@ -1,16 +1,20 @@
 .event-data-form-groups-list {
   nb-list-item {
     align-self: center;
-
+    border-bottom: none;
+    width: 100%;
     @media screen and (min-width: 640px) {
       align-self: flex-start;
     }
 
     .edfeg-details{
+      background: #f4f7ff;
       display: flex;
       flex-direction: column;
+      width: 100%;
       @media screen and (min-width: 640px) {
         flex-direction: row;
+        justify-content: space-between;
       }
 
       >div{
@@ -25,12 +29,17 @@
 
         .basic-details {
           padding: 0.25rem;
-          width: 10rem;
+          // width: 10rem;
           p {
-            margin: 0.5rem;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
           }
 
           overflow: hidden;
+        }
+
+        @media screen and (min-width: 1000px) {
+          width: 50%;
         }
 
       }
@@ -41,7 +50,6 @@
         display: flex;
 
         @media screen and (min-width: 640px) {
-          max-width: 25%;
           width: 9.5rem;
           max-width: 50%;
           padding: 0.25rem;
@@ -90,8 +98,18 @@
     >div {
       flex-direction: row;
       flex-wrap: nowrap;
+      justify-content: space-between;
       >div{
         margin: 0 0.25rem;
+        width: 30%;
+
+        label {
+          width: 100%;
+
+          nb-select, input {
+            width: 100%;
+          }
+        }
       }
     }
   }

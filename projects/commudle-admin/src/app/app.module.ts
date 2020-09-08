@@ -27,7 +27,8 @@ import {
   NbTooltipModule,
   NbWindowModule,
   NbAccordionModule,
-  NbBadgeModule} from '@nebular/theme';
+  NbBadgeModule,
+  NbTabsetModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -60,6 +61,14 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
+import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
+import { CommunityEventsListActionsComponent } from './components/community-control-panel/community-events-list/community-events-list-actions/community-events-list-actions.component';
+import { CommunityEventsListDateComponent } from './components/community-control-panel/community-events-list/community-events-list-date/community-events-list-date.component';
+import { CommunityBuildCardComponent } from './components/home/community-build-card/community-build-card.component';
+import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
+import { AboutComponent } from './components/home/about/about.component';
+import { FeaturesComponent } from './components/home/features/features.component';
+import { CommunitiesComponent } from './components/home/communities/communities.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -88,6 +97,13 @@ export function initApp(appInitService: AppInitService) {
     EventCardComponent,
     EditProfileComponent,
     CommunityStatsComponent,
+    CommunityCreateComponent,
+    CommunityEventsListActionsComponent,
+    CommunityEventsListDateComponent,
+    CommunityBuildCardComponent,
+    AboutComponent,
+    FeaturesComponent,
+    CommunitiesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -99,6 +115,7 @@ export function initApp(appInitService: AppInitService) {
     EditorModule,
     AppSharedComponentsModule,
     SharedComponentsModule,
+    ReusableComponentsModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -127,6 +144,7 @@ export function initApp(appInitService: AppInitService) {
     NbWindowModule.forRoot(),
     NbAccordionModule,
     NbBadgeModule,
+    NbTabsetModule,
 
     //other external npm modules
     Ng2CompleterModule,

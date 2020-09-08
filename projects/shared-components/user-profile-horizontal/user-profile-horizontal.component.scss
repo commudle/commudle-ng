@@ -17,6 +17,12 @@
       min-height: 75px;
       margin-right: 0.75rem;
     }
+
+    &.small {
+      width: 50px;
+      min-height: 50px;
+      margin-right: 0.5rem;
+    }
   }
 
   .profile-info {
@@ -29,6 +35,10 @@
       &.medium {
         font-size: 1.2rem;
       }
+      &.small {
+        font-size: 1rem;
+        font-weight: 300;
+      }
     }
 
     .designation {
@@ -37,6 +47,9 @@
 
       &.medium {
         font-size: 0.9rem;
+      }
+      &.small {
+        font-size: 0.8rem;
       }
     }
 
@@ -56,6 +69,12 @@
           font-size: 1rem;
         }
       }
+
+      &.small {
+        nb-icon {
+          font-size: 0.9rem;
+        }
+      }
     }
 
     .about-me {
@@ -63,6 +82,10 @@
 
       &.medium {
         font-size: 0.8rem;
+      }
+
+      &.small {
+        font-size: 0.7rem;
       }
     }
 

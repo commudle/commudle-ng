@@ -13,6 +13,7 @@ export const API_ROUTES = {
 
   // communities
   COMMUNITIES: {
+    CREATE: 'api/v2/communities',
     USER_ROLE_COMMUNITIES: 'api/v2/communities/user_role_communities',
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
@@ -36,6 +37,19 @@ export const API_ROUTES = {
       INDEX: 'api/v2/community_builds/public',
       SHOW: 'api/v2/community_builds/public/show',
       TOGGLE_VOTE: 'api/v2/community_builds/public/toggle_vote',
+    }
+  },
+
+  COMMUNITY_GROUPS: {
+    CREATE: 'api/v2/community_groups',
+    UPDATE: 'api/v2/community_groups',
+    SHOW: 'api/v2/community_groups/show',
+    COMMUNITIES: 'api/v2/community_groups/communities',
+    MANAGING_COMMUNITY_GROUPS: 'api/v2/community_groups/get_managing_community_groups',
+
+    PUBLIC: {
+      SHOW: 'api/v2/community_groups/public',
+      COMMUNITIES: 'api/v2/community_groups/public/communities',
     }
   },
 
@@ -109,6 +123,15 @@ export const API_ROUTES = {
   },
 
 
+  EVENT_SPONSORS: {
+    CREATE: 'api/v2/event_sponsors',
+    INDEX: 'api/v2/event_sponsors',
+    EXISTING_SPONSORS: 'api/v2/event_sponsors/get_existing',
+    ADD_EXISTING_SPONSOR: 'api/v2/event_sponsors/add_existing_sponsor',
+    DESTROY: 'api/v2/event_sponsors'
+  },
+
+
 
 
   // registration_types
@@ -173,6 +196,18 @@ export const API_ROUTES = {
   UPDATE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
+  HOME: {
+    PUBLIC: {
+      UPCOMING_EVENTS: 'api/v2/home/public/upcoming_events',
+      PAST_RANDOM_EVENTS: 'api/v2/home/public/past_random_events',
+      LABS: 'api/v2/home/public/labs',
+      COMMUNITY_BUILDS: 'api/v2/home/public/community_builds',
+      COMMUNITIES: 'api/v2/home/public/communities',
+    }
+
+  },
+
+
 
   POLLS: {
     PUBLIC: {
@@ -200,13 +235,16 @@ export const API_ROUTES = {
   // user_roles_users
   USER_ROLES_USERS: {
     GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',
+    GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/get_admin_community_group_users',
     CREATE: 'api/v2/user_roles_users/',
     DELETE: 'api/v2/user_roles_users/',
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
+    GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
 
     PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
-    PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members'
+    PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
+    PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/public_get_admin_community_group_users'
   },
 
   // event_collaboration_communities
@@ -283,12 +321,16 @@ export const API_ROUTES = {
   USER_EVENT_REGISTRATIONS: {
     INDEX: 'api/v2/user_event_registrations',
     UPDATE_REGISTRATION_STATUS: 'api/v2/user_event_registrations/update_registration_status',
-
+    INVITE_AS_SPEAKER: 'api/v2/user_event_registrations/invite_as_speaker',
+    SPEAKERS: 'api/v2/user_event_registrations/speakers',
+    REMOVE_SPEAKER: 'api/v2/user_event_registrations/remove_speaker',
+    RESEND_SPEAKER_INVITATION: 'api/v2/user_event_registrations/resend_speaker_invitation',
 
     PUBLIC: {
       SHOW: 'api/v2/user_event_registrations/public_show',
       TOGGLE: 'api/v2/user_event_registrations/public_toggle',
-      INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users'
+      INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users',
+      SPEAKERS: 'api/v2/user_event_registrations/public_speakers',
     }
   },
 

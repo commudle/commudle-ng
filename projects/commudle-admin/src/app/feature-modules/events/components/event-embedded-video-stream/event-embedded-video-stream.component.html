@@ -1,6 +1,6 @@
 <div class="embedded-video-stream" *ngIf="!event.custom_agenda">
   <div class="embedded-video-stream-form">
-    <form  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
+    <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">

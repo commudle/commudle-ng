@@ -2,7 +2,9 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-
+  .send-email-button {
+    margin-top: 1rem;
+  }
   .registration-count {
     p {
       span {
@@ -11,4 +13,15 @@
       margin: 0;
     }
   }
+
+  .control-status {
+    background-color: lightgrey;
+    border-radius: 5px;
+    padding: 0.5rem;
+    &.open {
+      background-color: #4ba4ff;
+    }
+  }
 }
+
+

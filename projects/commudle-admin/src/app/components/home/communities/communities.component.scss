@@ -1,0 +1,30 @@
+@import '../../../../assets/styles/variables.scss';
+
+.communities {
+  max-width: $home-max-page-width;
+  padding: 1rem;
+  margin: 0 auto;
+
+  .page-header {
+    text-align: center;
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  .communities-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .community {
+      width: fit-content
+    }
+  }
+
+}

@@ -7,9 +7,23 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
       .title {
         margin-bottom: 1rem;
+        display: flex;
+        .image {
+          width: 50px;
+          height: 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-right: 10px;
+          img {
+            width: 100%;
+            overflow: hidden;
+          }
+        }
+
         p {
           margin: 0;
           font-weight: 400;
@@ -36,6 +50,8 @@
             justify-content: center;
             align-items: center;
             margin-right: 10px;
+            border-radius: 50%;
+            overflow: hidden;
             img {
               width: 100%;
               overflow: hidden;
