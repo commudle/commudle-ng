@@ -50,9 +50,15 @@
   }
 
   nb-layout-footer {
+    ::ng-deep {
+      nav {
+        flex-direction: column;
+      }
+    }
     .main-logo {
       display: flex;
       align-items: center;
+      justify-content: center;
       margin-left: 0.8rem;
       img {
         width: 35px;
@@ -65,5 +71,34 @@
 
       }
     }
+
+    .links {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+      .social {
+        margin: 0 1rem;
+        a {
+          margin: 5px;
+          color: grey;
+          nb-icon {
+            font-size: 1.3rem;
+          }
+        }
+      }
+
+      .pages, .policies {
+        display: flex;
+        flex-direction: column;
+        a {
+          margin: 0 0 0.5rem;
+          text-decoration: none;
+          color: grey;
+        }
+      }
+    }
   }
+
+
 }
