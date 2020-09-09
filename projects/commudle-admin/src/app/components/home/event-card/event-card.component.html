@@ -39,7 +39,7 @@
             </div>
           </div>
           <p>
-            <span *ngIf="totalCount - users.length > 0">... + {{ totalCount - users.length }} More</span>
+            <span *ngIf="totalCount - displayUsers.length > 0">... + {{ totalCount - displayUsers.length }} More</span>
           </p>
         </div>
         <p *ngIf="event.start_time && moment(event.start_time) > moment()" class="register-button">
