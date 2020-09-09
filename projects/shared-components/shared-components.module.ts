@@ -15,7 +15,8 @@ import {
   NbBadgeModule,
   NbAccordionModule,
   NbPopoverModule,
-  NbListModule} from '@nebular/theme';
+  NbListModule,
+  NbAlertModule} from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { BadgeComponent } from './badge/badge.component';
 import { DiscussionChatComponent } from './discussion-chat/discussion-chat.component';
@@ -98,7 +99,8 @@ import { DiscussionPersonalChatComponent } from './discussion-personal-chat/disc
     NbBadgeModule,
     NbAccordionModule,
     NbPopoverModule,
-    NbListModule
+    NbListModule,
+    NbAlertModule
   ],
   exports: [
     WorkInProgressComponent,
