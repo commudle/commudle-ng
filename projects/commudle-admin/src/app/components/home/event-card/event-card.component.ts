@@ -61,6 +61,7 @@ export class EventCardComponent implements OnInit {
     this.userEventRegistrationsService.pEventInterestedUsers(this.event.id).subscribe(
       data => {
         this.users = data.users;
+        this.displayUsers = this.users.slice(0, 5);
         this.totalCount = data.total;
 
       }
