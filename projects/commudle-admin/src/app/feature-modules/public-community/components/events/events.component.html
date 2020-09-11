@@ -10,7 +10,11 @@
           <div class="details">
             <h5>
               <nb-icon nbTooltip="Completed" *ngIf="moment(event.end_time) < moment()" icon="checkmark-circle-2" status="success"></nb-icon>
+              <app-badge [text]="'New'" [color]="'#50d338'" *ngIf="moment(event.start_time) > moment()"></app-badge>
+              <app-badge [text]="'Live'" [color]="'rgb(255 45 45)'" *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"></app-badge>
+
               {{ event.name }}
+              <span class="collaboration" *ngIf="event.kommunity_id != community.id">(Collaboration)</span>
             </h5>
             <div>
               <div *ngIf="event.start_time && event.end_time" [ngClass]="{'timings' : moment(event.end_time) > moment(), 'past-timings': moment(event.end_time) <= moment()}">
