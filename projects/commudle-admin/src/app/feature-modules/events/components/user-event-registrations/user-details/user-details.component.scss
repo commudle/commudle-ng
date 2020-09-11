@@ -32,10 +32,10 @@
     display: flex;
     flex-wrap: wrap;
     >div{
-      padding: 5px;
-      border: 0.5px solid lightgrey;
       cursor: pointer;
       p{
+        padding: 5px;
+        border: 0.5px solid lightgrey;
         font-size: 12px;
         margin: 0;
         color: blue;

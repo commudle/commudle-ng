@@ -1,0 +1,24 @@
+.sponsors {
+  nb-list-item.sponsor {
+    border-top: none;
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      .logo {
+        width: 100px;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+
+      p.name {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-left: 5px;
+      }
+    }
+  }
+}
