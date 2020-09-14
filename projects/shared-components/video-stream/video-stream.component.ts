@@ -1,3 +1,4 @@
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,6 +13,7 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   api;
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
+  environment = environment;
 
   @Input() videoSource: string;
   @Input() videoCode: any;

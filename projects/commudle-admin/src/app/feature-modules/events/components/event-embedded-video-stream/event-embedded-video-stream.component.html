@@ -3,14 +3,17 @@
     <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
+            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
+              Zoom (Meeting ID)
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
+              External Link (to another platform)
+            </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
               YouTube (URL)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
               Jitsi (https://meet.jit.si/) [Works only on Desktop]
-            </nb-option>
-            <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
-              External Link (to another platform)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
               Other (Embedded Iframe)
@@ -20,6 +23,9 @@
 
         <div>
           <label>
+            <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+              Zoom Meeting ID
+            </span>
             <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
               Video Url
             </span>
