@@ -31,6 +31,14 @@
       </p>
     </div>
 
+    <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.ZOOM)">
+      <iframe
+        src="http://localhost:4000/?meeting_number=77487847561&email=somethingelse@gmail.com&name=arpan&signature=a3A2RTllcWZUSkNYS2JZWGZVZ2RPQS43NzQ4Nzg0NzU2MS4xNjAwMDUzNTgzMDE3LjAuQVBaUkJsbUc3Sk56R01hMmk5SlVjMTY0MTlDQURpaXZiKzdtOE5ZMHRtRT0="
+      frameborder="0"
+      [width]="width || 640"
+      [height]="height || 360"></iframe>
+    </div>
+
     <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">
       <div [innerHTML]="playerUrl"></div>
     </div>
