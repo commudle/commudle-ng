@@ -68,16 +68,22 @@
                 Speakers
               </span>
             </a>
-            <a  (click)="scroll(collaborationCommunities)" *ngIf="hasCollaborationCommunities">
-              <nb-icon icon="people" status="basic"></nb-icon>
-              <span>
-                Collaborations
-              </span>
-            </a>
             <a  (click)="scroll(eventChat)" *ngIf="discussionChat">
               <nb-icon icon="message-square-outline"></nb-icon>
               <span>
                 Comments
+              </span>
+            </a>
+            <a  (click)="scroll(sponsors)" *ngIf="hasSponsors">
+              <nb-icon icon="briefcase-outline"></nb-icon>
+              <span>
+                Sponsors
+              </span>
+            </a>
+            <a  (click)="scroll(collaborationCommunities)" *ngIf="hasCollaborationCommunities">
+              <nb-icon icon="people" status="basic"></nb-icon>
+              <span>
+                Collaborations
               </span>
             </a>
             <a  (click)="scroll(volunteers)" *ngIf="hasVolunteers">
@@ -117,6 +123,9 @@
         </div>
         <div class="all-speakers" #speakers>
           <app-speakers [event]="event" [community]="community" (hasSpeakers)="hasSpeakers = $event"></app-speakers>
+        </div>
+        <div class="sponsors" #sponsors>
+          <app-sponsors [event]="event" (hasSponsors)="hasSponsors = $event"></app-sponsors>
         </div>
         <div class="partner-communities" #collaborationCommunities>
           <app-collaboration-communities [event]="event" [community]="community" (hasCollaborationCommunities)="hasCollaborationCommunities = $event"></app-collaboration-communities>

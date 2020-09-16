@@ -8,7 +8,7 @@ import { IUser } from 'projects/shared-models/user.model';
 import * as moment from 'moment';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
-import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
