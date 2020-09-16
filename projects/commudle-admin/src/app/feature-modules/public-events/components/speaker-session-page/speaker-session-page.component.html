@@ -61,6 +61,12 @@
                   [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? 'Coming Soon' : 'Loading Video...'))"
                   [width]="playerWidth"
                   [height]="playerHeight"
+                  [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
+                  [zoomPassword]="embeddedVideoStream.zoom_password"
+                  [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"
+                  [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
+                  [userEmail]="this.currentUser.email"
+                  [userName]="this.currentUser.name"
                 >
                 </app-video-stream>
               </div>

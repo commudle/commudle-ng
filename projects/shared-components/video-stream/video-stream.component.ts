@@ -21,6 +21,15 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   @Input() width: number;
   @Input() height: number;
 
+  @Input() userEmail: string;
+  @Input() userName: string;
+
+  // zoom specific parameters
+  @Input() zoomSignature: string;
+  @Input() zoomHostEmail: string;
+  @Input() zoomPassword: string;
+  @Input() zoomHostSignature: string;
+
   playerUrl: any;
 
   constructor(
@@ -48,6 +57,9 @@ export class VideoStreamComponent implements OnInit, OnChanges {
         case EEmbeddedVideoStreamSources.JITSI_MEET:
           this.playerUrl = this.videoCode;
           this.initJitsi();
+          break;
+        case EEmbeddedVideoStreamSources.ZOOM:
+          this.playerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.createZoomUrl());
           break;
         case EEmbeddedVideoStreamSources.EXTERNAL_LINK:
           this.playerUrl = this.videoCode;
@@ -85,6 +97,12 @@ export class VideoStreamComponent implements OnInit, OnChanges {
       this.api.dispose();
     }
     this.api = new JitsiMeetExternalAPI(domain, options);
+  }
+
+
+  createZoomUrl() {
+    return encodeURI(`${environment.zoom_call_server_url}?email=${this.userEmail}&meeting_number=${this.videoCode}&name=${this.userName}&signature=${this.zoomSignature}&host_email=${this.zoomHostEmail}&host_signature=${this.zoomHostSignature}&password=${this.zoomPassword}`);
+
   }
 
 }
