@@ -4,16 +4,17 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:3000',
-  action_cable_url: 'http://localhost:3000/live',
-  auth_cookie_name: 'dev_commudle_user_auth',
+  // base_url: 'http://localhost:3000',
+  // action_cable_url: 'http://localhost:3000/live',
+  // auth_cookie_name: 'dev_commudle_user_auth',
+
   zoom_call_server_url: 'http://localhost:4000',
 
   session_cookie_name: 'cmdle_sess',
 
-  // base_url: 'https://json.commudle.com',
-  // action_cable_url: 'https://json.commudle.com/live',
-  // auth_cookie_name: 'commudle_user_auth'
+  base_url: 'https://json.commudle.com',
+  action_cable_url: 'https://json.commudle.com/live',
+  auth_cookie_name: 'commudle_user_auth'
 };
 
 /*
