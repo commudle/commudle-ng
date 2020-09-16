@@ -2,9 +2,9 @@
   <div class="embedded-video-stream-form">
     <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
-          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
+          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
             <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
-              Zoom (Meeting ID)
+              Zoom
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
               External Link (to another platform)
@@ -40,12 +40,28 @@
             <span *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.OTHER">
               Other (Embedded Iframe)
             </span>
-
-            <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>
+            <span *ngIf="embeddedVideoStreamForm['controls'].embed_code.touched && embeddedVideoStreamForm['controls'].embed_code.invalid && embeddedVideoStreamForm['controls'].embed_code.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+            <textarea placeholder="Type here" nbInput fullWidth formControlName="embed_code"></textarea>
           </label>
-          <span *ngIf="embeddedVideoStreamForm['controls'].embed_code.touched && embeddedVideoStreamForm['controls'].embed_code.invalid && embeddedVideoStreamForm['controls'].embed_code.errors.required" class="validation-error-text">
-            Required Field
-          </span>
+
+        </div>
+        <div *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+          <label>
+            Meeting/Webinar Host Email <span *ngIf="embeddedVideoStreamForm['controls'].zoom_host_email.touched && embeddedVideoStreamForm['controls'].zoom_host_email.invalid && embeddedVideoStreamForm['controls'].zoom_host_email.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+            <input nbInput fullWidth formControlName="zoom_host_email" placeholder="Type email id here">
+          </label>
+        </div>
+        <div *ngIf="embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+          <label>
+            Meeting/Webinar Password (visible only to organizers) <span *ngIf="embeddedVideoStreamForm['controls'].zoom_password.touched && embeddedVideoStreamForm['controls'].zoom_password.invalid && embeddedVideoStreamForm['controls'].zoom_password.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+            <input nbInput fullWidth formControlName="zoom_password" placeholder="Type password here">
+          </label>
         </div>
 
       <div class="save-button-bottom">
@@ -57,7 +73,18 @@
     </form>
   </div>
   <div class="preview">
-    <app-video-stream [videoSource]="embeddedVideoStreamForm.get('source').value" [videoCode]="embeddedVideoStreamForm.get('embed_code').value" [fillerText]="'Auto Preview'"></app-video-stream>
+    <app-video-stream
+      [videoSource]="embeddedVideoStreamForm.get('source').value"
+      [videoCode]="embeddedVideoStreamForm.get('embed_code').value"
+      [fillerText]="'Auto Preview'"
+      [zoomHostEmail]="evs.zoom_host_email"
+      [zoomPassword]="evs.zoom_password"
+      [zoomSignature]="evs.zoom_attendee_signature"
+      [zoomHostSignature]="evs.zoom_host_signature"
+      [userEmail]="this.currentUser.email"
+      [userName]="this.currentUser.name"
+      >
+    </app-video-stream>
   </div>
 
 

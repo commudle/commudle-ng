@@ -131,7 +131,10 @@
           </small>
         </p>
         <div>
-          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small">
+          <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateZoomValidators()">
+            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
+              Zoom
+            </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
               YouTube (URL)
             </nb-option>
@@ -149,6 +152,9 @@
 
         <div>
           <label>
+            <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+              Zoom Meeting ID
+            </span>
             <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.YOUTUBE">
               Video Url
             </span>
@@ -163,12 +169,29 @@
             <span *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.OTHER">
               Other (Embedded Iframe)
             </span>
-
+            <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required" class="validation-error-text">
+              Required Field
+            </span>
             <textarea placeholder="" nbInput fullWidth formControlName="embed_code"></textarea>
           </label>
-          <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.touched && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].embed_code.errors.required" class="validation-error-text">
-            Required Field
-          </span>
+
+        </div>
+
+        <div *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+          <label>
+            Meeting/Webinar Host Email <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].zoom_host_email.touched && eventLocationForm['controls'].embedded_video_stream['controls'].zoom_host_email.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].zoom_host_email.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+            <input nbInput fullWidth formControlName="zoom_host_email" placeholder="Type email id here">
+          </label>
+        </div>
+        <div *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+          <label>
+            Meeting/Webinar Password (visible only to organizers) <span *ngIf="eventLocationForm['controls'].embedded_video_stream['controls'].zoom_password.touched && eventLocationForm['controls'].embedded_video_stream['controls'].zoom_password.invalid && eventLocationForm['controls'].embedded_video_stream['controls'].zoom_password.errors.required" class="validation-error-text">
+              Required Field
+            </span>
+            <input nbInput fullWidth formControlName="zoom_password" placeholder="Type password here">
+          </label>
         </div>
       </div>
 
