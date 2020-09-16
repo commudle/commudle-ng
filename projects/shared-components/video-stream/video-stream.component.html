@@ -31,6 +31,16 @@
       </p>
     </div>
 
+    <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.ZOOM) && zoomSignature">
+      <iframe
+        [src]="this.playerUrl"
+        allow="camera; microphone"
+        frameborder="0"
+        [width]="width || 640"
+        [height]="height || 360">
+      </iframe>
+    </div>
+
     <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">
       <div [innerHTML]="playerUrl"></div>
     </div>

@@ -30,6 +30,7 @@ export class HomeEventComponent implements OnInit {
   hasVolunteers = false;
   hasOpenForms = false;
   hasInterestedMembers = false;
+  hasSponsors = false;
 
 
   constructor(

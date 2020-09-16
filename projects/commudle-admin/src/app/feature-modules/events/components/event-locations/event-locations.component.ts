@@ -47,13 +47,12 @@ export class EventLocationsComponent implements OnInit {
     event_type: [EEventType.OFFLINE_ONLY, Validators.required],
     embedded_video_stream: this.fb.group({
       source: [''],
-      embed_code: ['']
+      embed_code: [''],
+      zoom_host_email: ['', Validators.email],
+      zoom_password: ['']
     })
   });
   selectedEventType = EEventType.OFFLINE_ONLY;
-
-
-
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -102,6 +101,19 @@ export class EventLocationsComponent implements OnInit {
     this.eventLocationForm.get('location').get('name').updateValueAndValidity();
     this.eventLocationForm.get('location').get('address').updateValueAndValidity();
     this.eventLocationForm.get('location').get('map_link').updateValueAndValidity();
+  }
+
+  updateZoomValidators() {
+    if (this.eventLocationForm.get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM) {
+      this.eventLocationForm.get('embedded_video_stream').get('zoom_host_email').setValidators([Validators.required, Validators.email]);
+      this.eventLocationForm.get('embedded_video_stream').get('zoom_password').setValidators(Validators.required);
+    } else {
+      this.eventLocationForm.get('embedded_video_stream').get('zoom_host_email').clearValidators();
+      this.eventLocationForm.get('embedded_video_stream').get('zoom_password').clearValidators();
+    }
+
+    this.eventLocationForm.get('embedded_video_stream').get('zoom_host_email').updateValueAndValidity();
+    this.eventLocationForm.get('embedded_video_stream').get('zoom_password').updateValueAndValidity();
   }
 
 

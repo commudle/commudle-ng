@@ -136,7 +136,10 @@
               </small>
             </p>
             <div>
-              <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+              <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateEventLocationTrackFormZoomValidators()">
+                <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
+                  Zoom
+                </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
                   YouTube (URL)
                 </nb-option>
@@ -153,8 +156,21 @@
             </div>
             <div>
               <label fullWidth>
-                Video Url / Embed Iframe / External Link (depending on the source above)
+                Video Url / Zoom Meeting Id / Embed Iframe / External Link (depending on the source above)
                 <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+              </label>
+            </div>
+
+            <div *ngIf="eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+              <label>
+                Meeting/Webinar Host Email*
+                <input nbInput fullWidth formControlName="zoom_host_email" placeholder="Type email id here">
+              </label>
+            </div>
+            <div *ngIf="eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+              <label>
+                Meeting/Webinar Password (visible only to organizers)*
+                <input nbInput fullWidth formControlName="zoom_password" placeholder="Type password here">
               </label>
             </div>
           </div>
@@ -239,7 +255,10 @@
               </small>
             </p>
             <div>
-              <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small">
+              <nb-select placeholder="Source" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateTrackSlotFormZoomValidators()">
+                <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
+                  Zoom
+                </nb-option>
                 <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
                   YouTube (URL)
                 </nb-option>
@@ -253,8 +272,20 @@
             </div>
             <div>
               <label fullWidth>
-                Video Url / Embed Iframe (depending on the source above)
+                Video Url / Zoom Meeting ID / Embed Iframe (depending on the source above)
                 <textarea type="text" nbInput fullWidth formControlName="embed_code"></textarea>
+              </label>
+            </div>
+            <div *ngIf="trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+              <label>
+                Meeting/Webinar Host Email*
+                <input nbInput fullWidth formControlName="zoom_host_email" placeholder="Type email id here">
+              </label>
+            </div>
+            <div *ngIf="trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM">
+              <label>
+                Meeting/Webinar Password (visible only to organizers)*
+                <input nbInput fullWidth formControlName="zoom_password" placeholder="Type password here">
               </label>
             </div>
           </div>

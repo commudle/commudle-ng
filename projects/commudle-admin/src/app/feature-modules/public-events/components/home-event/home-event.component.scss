@@ -67,11 +67,11 @@
           color: black;
           span {
             display: none;
+            font-size: 0.9rem;
           }
         }
         nb-icon {
-
-          font-size: 1.5rem;
+          font-size: 1.2rem;
         }
       }
       @media screen and (min-width: 800px){
@@ -86,6 +86,10 @@
               margin-right: 1.5rem;
               span {
                 display: inline;
+              }
+
+              nb-icon {
+                font-size: 1rem;
               }
             }
           }
