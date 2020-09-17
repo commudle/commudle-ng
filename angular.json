@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
-              "projects/commudle-admin/src/assets"
+              "projects/commudle-admin/src/assets",
+              "projects/commudle-admin/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/commudle-admin/src/styles.scss"
@@ -61,7 +62,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "projects/commudle-admin/ngsw-config.json"
             }
           }
         },
@@ -91,7 +94,8 @@
             "karmaConfig": "projects/commudle-admin/karma.conf.js",
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
-              "projects/commudle-admin/src/assets"
+              "projects/commudle-admin/src/assets",
+              "projects/commudle-admin/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/commudle-admin/src/styles.scss"
@@ -186,13 +190,13 @@
           "options": {
             "tsConfig": "projects/lib-authwatch/tsconfig.lib.json",
             "project": "projects/lib-authwatch/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/lib-authwatch/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -226,13 +230,13 @@
           "options": {
             "tsConfig": "projects/api-routes/tsconfig.lib.json",
             "project": "projects/api-routes/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/api-routes/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -266,13 +270,13 @@
           "options": {
             "tsConfig": "projects/lib-error-handler/tsconfig.lib.json",
             "project": "projects/lib-error-handler/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/lib-error-handler/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -306,13 +310,13 @@
           "options": {
             "tsConfig": "projects/lib-api-parser/tsconfig.lib.json",
             "project": "projects/lib-api-parser/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/lib-api-parser/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -334,6 +338,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "commudle-admin"
+    }
+  },
+  "defaultProject": "commudle-admin",
+  "cli": {
+    "analytics": "cf8e00a7-db17-4117-b21a-47b21a640a66"
+  }
 }

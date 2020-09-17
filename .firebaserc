@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "commudle-eacee",
-    "staging": "commudle-ssr-test"
+    "default": "commudle-test"
   }
 }

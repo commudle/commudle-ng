@@ -50,6 +50,7 @@ Thumbs.db
 /.firebase
 .firebasesrc
 /projects/commudle-admin/.serverless
+firebase.json
 
 # Scripts
 ssr-deployment-prod.sh
