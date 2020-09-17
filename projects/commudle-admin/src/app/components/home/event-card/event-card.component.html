@@ -28,7 +28,7 @@
         </div>
         <div *ngIf="community" class="community">
           <app-community-badge [community]="community"></app-community-badge>
-          <p *ngIf="users.length === 0">
+          <p *ngIf="users.length === 0" class="community-description">
             {{ community.mini_description | slice:0:50 }}
           </p>
         </div>
