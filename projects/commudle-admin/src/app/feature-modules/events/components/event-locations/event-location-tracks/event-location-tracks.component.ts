@@ -38,8 +38,8 @@ export class EventLocationTracksComponent implements OnInit {
   eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
-  @Input() eventLocations: IEventLocation[];
-  @Input() eventLocationTracks: IEventLocationTrack[];
+  @Input() eventLocations: IEventLocation[] = [];
+  @Input() eventLocationTracks: IEventLocationTrack[] = [];
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() eventLocationId;
@@ -114,7 +114,7 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   scrollFromTop() {
-    if (this.eventLocationTracks.length > 0 && this.eventLocationTracks[0].track_slots.length > 0) {
+    if (this.eventLocationTracks && this.eventLocationTracks.length > 0 && this.eventLocationTracks[0].track_slots.length > 0) {
      this.tracksContainer.nativeElement.scrollTop = ((moment(this.eventLocationTracks[0].track_slots[0].start_time).hours()) * 0.5 * 950);
     }
   }
@@ -303,14 +303,18 @@ export class EventLocationTracksComponent implements OnInit {
       (this.eventLocationTrackForm.controls.event_location_track as FormGroup).addControl(
         'embedded_video_stream', this.fb.group({
           source: [''],
-          embed_code: ['']
+          embed_code: [''],
+          zoom_host_email: ['', Validators.email],
+          zoom_password: ['']
         })
       );
 
       (this.trackSlotForm.controls.track_slot as FormGroup).addControl(
         'embedded_video_stream', this.fb.group({
           source: [''],
-          embed_code: ['']
+          embed_code: [''],
+          zoom_host_email: ['', Validators.email],
+          zoom_password: ['']
         })
       );
     }
@@ -321,5 +325,35 @@ export class EventLocationTracksComponent implements OnInit {
   sanitizedEmbeddedHTML(val) {
     return  this.sanitizer.bypassSecurityTrustHtml(val);
    }
+
+
+  updateTrackSlotFormZoomValidators() {
+    if (this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM) {
+      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_host_email').setValidators([Validators.required, Validators.email]);
+      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_password').setValidators(Validators.required);
+    } else {
+      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_host_email').clearValidators();
+      this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_password').clearValidators();
+    }
+
+    this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_host_email').updateValueAndValidity();
+    this.trackSlotForm.get('track_slot').get('embedded_video_stream').get('zoom_password').updateValueAndValidity();
+  }
+
+
+
+  updateEventLocationTrackFormZoomValidators() {
+    if (this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM) {
+      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').setValidators([Validators.required, Validators.email]);
+      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').setValidators(Validators.required);
+    } else {
+      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').clearValidators();
+      this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').clearValidators();
+    }
+
+    this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_host_email').updateValueAndValidity();
+    this.eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('zoom_password').updateValueAndValidity();
+  }
+
 
 }

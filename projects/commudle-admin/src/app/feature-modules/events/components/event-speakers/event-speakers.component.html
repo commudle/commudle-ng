@@ -35,6 +35,10 @@
         <a (click)="resendRequest(speaker.id)" class="clickable text-info">
           <nb-icon icon="email"></nb-icon>
           Resend Invitation
+          <br>
+          <small>
+            {{speaker.user.email}}
+          </small>
         </a>
         <a (click)="removeSpeaker(speaker.id, i)" class="clickable text-danger">
           <nb-icon icon="close-circle-outline" status="danger"></nb-icon>

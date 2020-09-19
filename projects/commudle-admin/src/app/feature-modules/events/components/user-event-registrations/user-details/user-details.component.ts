@@ -30,6 +30,7 @@ export class UserDetailsComponent implements OnInit, OnChanges {
   @Input() userResponse: IUserEventRegistration;
   user: IUser;
 
+
   @Output() updatedRegistrationStatus = new EventEmitter();
   @Output() updateEntryPass = new EventEmitter();
 
