@@ -8,6 +8,8 @@ export const environment = {
   // action_cable_url: 'http://localhost:3000/live',
   // auth_cookie_name: 'dev_commudle_user_auth',
 
+  zoom_call_server_url: 'http://localhost:4000',
+
   session_cookie_name: 'cmdle_sess',
 
   base_url: 'https://json.commudle.com',

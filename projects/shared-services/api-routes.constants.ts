@@ -128,7 +128,11 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_sponsors',
     EXISTING_SPONSORS: 'api/v2/event_sponsors/get_existing',
     ADD_EXISTING_SPONSOR: 'api/v2/event_sponsors/add_existing_sponsor',
-    DESTROY: 'api/v2/event_sponsors'
+    DESTROY: 'api/v2/event_sponsors',
+
+    PUBLIC: {
+      INDEX: 'api/v2/event_sponsors/public'
+    }
   },
 
 
@@ -364,28 +368,28 @@ export const API_ROUTES = {
   STATS: {
 
     EVENTS: {
-      UNIQUE_VISITORS: '/api/v2/stats/events/unique_visitors',
-      CUSTOM_REGISTRATION: '/api/v2/stats/events/custom_registration',
-      SIMPLE_EVENT_REGISTRATION: '/api/v2/stats/events/simple_event_registration',
-      ATTENDEES: '/api/v2/stats/events/attendees',
-      DISCUSSIONS: '/api/v2/stats/events/discussions',
-      POLLS: '/api/v2/stats/events/polls'
+      UNIQUE_VISITORS: 'api/v2/stats/events/unique_visitors',
+      CUSTOM_REGISTRATION: 'api/v2/stats/events/custom_registration',
+      SIMPLE_EVENT_REGISTRATION: 'api/v2/stats/events/simple_event_registration',
+      ATTENDEES: 'api/v2/stats/events/attendees',
+      DISCUSSIONS: 'api/v2/stats/events/discussions',
+      POLLS: 'api/v2/stats/events/polls'
     },
 
     COMMUNITIES: {
-      MEMBERS_DISTRIBUTION: '/api/v2/stats/communities/members_distribution',
-      MEMBERS_TIMELINE: '/api/v2/stats/communities/members_timeline',
-      EVENTS_TIMELINE: '/api/v2/stats/communities/events_timeline',
-      EMAILS: '/api/v2/stats/communities/emails',
+      MEMBERS_DISTRIBUTION: 'api/v2/stats/communities/members_distribution',
+      MEMBERS_TIMELINE: 'api/v2/stats/communities/members_timeline',
+      EVENTS_TIMELINE: 'api/v2/stats/communities/events_timeline',
+      EMAILS: 'api/v2/stats/communities/emails',
     },
 
     LABS: {
-      USER_ENGAGEMENT: '/api/v2/stats/labs/user_engagement',
+      USER_ENGAGEMENT: 'api/v2/stats/labs/user_engagement',
     },
 
 
     COMMUNITY_BUILDS: {
-      USER_ENGAGEMENT: '/api/v2/stats/community_builds/user_engagement',
+      USER_ENGAGEMENT: 'api/v2/stats/community_builds/user_engagement',
     },
   }
 

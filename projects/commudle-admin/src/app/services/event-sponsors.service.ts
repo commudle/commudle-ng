@@ -58,5 +58,11 @@ export class EventSponsorsService {
   }
 
 
+  pIndex(eventId): Observable<IEventSponsors> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<IEventSponsors>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_SPONSORS.PUBLIC.INDEX), {params}
+    );
+  }
 
 }

@@ -4,4 +4,6 @@ export const environment = {
   action_cable_url: 'https://json.commudle.com/live',
   auth_cookie_name: 'commudle_user_auth',
   session_cookie_name: 'cmdle_sess',
+  zoom_call_server_url: 'https://zoom.commudle.com',
+
 };

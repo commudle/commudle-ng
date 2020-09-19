@@ -29,7 +29,9 @@ export class AgendaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEventLocations();
+    if (this.event.custom_agenda) {
+      this.getEventLocations();
+    }
   }
 
   getEventLocations() {

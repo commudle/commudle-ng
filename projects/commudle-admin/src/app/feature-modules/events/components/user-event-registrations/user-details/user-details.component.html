@@ -27,7 +27,7 @@
   <div class="registration-status-details">
     <div class="registration-status-list">
       <div *ngFor="let rs of registrationStatuses" (click)="event.editable && updateRegistrationStatus(rs.id)">
-        <p [ngClass]="{'selected-status': (rs.id == userResponse.registration_status.id), 'disabled': !event.editable}" >{{ rs.name }}</p>
+        <p *ngIf="rs.name != 'shortlisted'" [ngClass]="{'selected-status': (rs.id == userResponse.registration_status.id), 'disabled': !event.editable}" >{{ rs.name }}</p>
       </div>
     </div>
     <div *ngIf="(userResponse.registration_status.name == 'confirmed') && (userResponse.entry_pass != null)">

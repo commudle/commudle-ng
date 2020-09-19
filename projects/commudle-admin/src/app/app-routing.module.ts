@@ -83,6 +83,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
   },
   {
+    path: 'policies',
+    loadChildren: () => import('./feature-modules/policies/policies.module').then(m => m.PoliciesModule)
+  },
+  {
     path: 'admin',
     children: [
       // {
