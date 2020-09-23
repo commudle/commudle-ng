@@ -18,14 +18,20 @@
           For open communities, <strong>it's free!</strong>
         </p>
 
-        <a class="clickable" (click)="scrollALittle()">
+        <a class="clickable start-button" (click)="scrollALittle()">
           Start Now <nb-icon icon="arrow-ios-downward"></nb-icon>
         </a>
       </div>
       <div class="header-banner">
-        <div class="main-logo clickable">
-          <img src="/assets/images/commudle-logo192.png">
+        <div class="sponsored-image clickable">
+          <a [routerLink]="['/communities/encore-2020/events']" class="clickable">
+            <p>EVENT PARTNERS FOR</p>
+          <img src="https://commudle-extra-assets.s3.ap-south-1.amazonaws.com/encore-logo.png" alt="Encore 2020">
+          </a>
         </div>
+        <!-- <div class="main-logo clickable">
+          <img src="/assets/images/commudle-logo192.png">
+        </div> -->
       </div>
     </div>
   </section>
