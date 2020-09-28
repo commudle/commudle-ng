@@ -21,7 +21,7 @@ export class FillDataFormComponent implements OnInit {
   dataFormEntity: IDataFormEntity;
   Visibility: Visibility;
   formClosed = false;
-  showProfileForm = true;
+  showProfileForm = false;
   redirectRoute: any;
   event: IEvent;
   community: ICommunity;
