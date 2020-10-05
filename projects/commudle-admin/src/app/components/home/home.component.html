@@ -23,15 +23,15 @@
         </a>
       </div>
       <div class="header-banner">
-        <div class="sponsored-image clickable">
+        <!-- <div class="sponsored-image clickable">
           <a [routerLink]="['/communities/encore-2020/events']" class="clickable">
             <p>EVENT PARTNERS FOR</p>
-          <img src="https://commudle-extra-assets.s3.ap-south-1.amazonaws.com/encore-logo.png" alt="Encore 2020">
+          <img src="" alt="">
           </a>
-        </div>
-        <!-- <div class="main-logo clickable">
-          <img src="/assets/images/commudle-logo192.png">
         </div> -->
+        <div class="main-logo clickable" [routerLink]="[]">
+          <img src="/assets/images/commudle-logo192.png">
+        </div>
       </div>
     </div>
   </section>
@@ -50,7 +50,7 @@
         </p>
         <p>
           <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
-            Start Your Community
+            Get Early Access For Your Community
           </a>
 
           &nbsp;
