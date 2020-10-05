@@ -93,6 +93,7 @@
         flex-direction: row;
         align-items: flex-start;
         flex-wrap: wrap;
+        margin-top: 1.5rem;
         p {
           margin: 0 1rem;
           a {
@@ -143,7 +144,7 @@
 
     .steps-status {
       .successful-completion {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         text-align: right;
         line-height: 1.5rem;
         display: inline-block;
