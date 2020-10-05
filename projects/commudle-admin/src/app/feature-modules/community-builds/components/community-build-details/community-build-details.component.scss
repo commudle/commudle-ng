@@ -8,7 +8,7 @@
       padding: 1rem 0;
     }
 
-    .header, .embed, .link, .description, .tags, .author-details, .stats {
+    .header, .embed, .link, .description, .author-details, .stats {
       padding: 0 1.5rem;
     }
 
@@ -103,7 +103,6 @@
     }
 
     .tags {
-      margin-top: 3rem;
       display: flex;
       flex-wrap: wrap;
       app-badge {
