@@ -1,0 +1,7 @@
+fix lab style
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch fixes-features
+# Changes to be committed:
+#	modified:   projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.scss
+#

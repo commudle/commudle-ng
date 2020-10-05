@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
-              "projects/commudle-admin/src/assets"
+              "projects/commudle-admin/src/assets",
+              "projects/commudle-admin/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/commudle-admin/src/styles.scss"
@@ -61,7 +62,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "projects/commudle-admin/ngsw-config.json"
             }
           }
         },
@@ -91,7 +94,8 @@
             "karmaConfig": "projects/commudle-admin/karma.conf.js",
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
-              "projects/commudle-admin/src/assets"
+              "projects/commudle-admin/src/assets",
+              "projects/commudle-admin/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/commudle-admin/src/styles.scss"

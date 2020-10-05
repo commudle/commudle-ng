@@ -69,6 +69,8 @@ import { ReusableComponentsModule } from './feature-modules/reusable-components/
 import { AboutComponent } from './components/home/about/about.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { CommunitiesComponent } from './components/home/communities/communities.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -149,6 +151,7 @@ export function initApp(appInitService: AppInitService) {
     //other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
   ],
   providers: [
