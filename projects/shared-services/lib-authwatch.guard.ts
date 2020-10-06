@@ -1,3 +1,4 @@
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { Injectable, Inject } from '@angular/core';
 import {
   CanActivate,
@@ -20,11 +21,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private errorHandlerService: LibErrorHandlerService) {}
 
 
-  isLoggedIn(): boolean {
+  isLoggedIn(next, state): boolean {
     this.authService.currentUserVerified$.subscribe(verified => {
       if (verified === false) {
         // if the user is not logged in then redirect to the login screen
-        this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
+        this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(environment.app_url + state.url)}`;
         return false;
       }
 
@@ -47,7 +48,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-      return this.isLoggedIn();
+      return this.isLoggedIn(next, state);
   }
 
 
@@ -58,7 +59,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
 
-  
+
 
   // canLoad(route: Route): boolean {
 

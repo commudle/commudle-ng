@@ -228,7 +228,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
     );
   }
 
-  @HostListener('window:resize', ['$event'])
+  // @HostListener('window:resize', ['$event'])
   onResize(event?) {
     if (window.innerWidth <= 1000) {
       this.playerWidth = window.innerWidth - 20;

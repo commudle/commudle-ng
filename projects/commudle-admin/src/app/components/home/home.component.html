@@ -18,12 +18,18 @@
           For open communities, <strong>it's free!</strong>
         </p>
 
-        <a class="clickable" (click)="scrollALittle()">
+        <a class="clickable start-button" (click)="scrollALittle()">
           Start Now <nb-icon icon="arrow-ios-downward"></nb-icon>
         </a>
       </div>
       <div class="header-banner">
-        <div class="main-logo clickable">
+        <!-- <div class="sponsored-image clickable">
+          <a [routerLink]="['/communities/encore-2020/events']" class="clickable">
+            <p>EVENT PARTNERS FOR</p>
+          <img src="" alt="">
+          </a>
+        </div> -->
+        <div class="main-logo clickable" [routerLink]="[]">
           <img src="/assets/images/commudle-logo192.png">
         </div>
       </div>
@@ -44,7 +50,7 @@
         </p>
         <p>
           <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
-            Start Your Community
+            Get Early Access For Your Community
           </a>
 
           &nbsp;

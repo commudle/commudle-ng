@@ -14,6 +14,9 @@
         <h1>
           {{ cBuild.name }}
         </h1>
+        <div class="tags">
+          <app-badge *ngFor="let tag of cBuild.tags" [text]="tag" [color]="'#b7b7b7'"></app-badge>
+        </div>
         <p class="author">
           {{ cBuild.user.name }} <span *ngIf="cBuild.user.designation">, {{ cBuild.user.designation }}</span>
           <br>
@@ -64,10 +67,6 @@
       <div class="comments" *ngIf="discussionChat">
         <p>Discussion</p>
         <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
-      </div>
-
-      <div class="tags">
-        <app-badge *ngFor="let tag of cBuild.tags" [text]="tag"></app-badge>
       </div>
     </nb-card-body>
   </nb-card>

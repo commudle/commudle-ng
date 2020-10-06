@@ -65,8 +65,8 @@
                   [zoomPassword]="embeddedVideoStream.zoom_password"
                   [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"
                   [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
-                  [userEmail]="this.currentUser.email"
-                  [userName]="this.currentUser.name"
+                  [userEmail]="currentUser ? currentUser.email : ''"
+                  [userName]="currentUser ? currentUser.name : ''"
                 >
                 </app-video-stream>
               </div>

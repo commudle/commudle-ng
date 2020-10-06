@@ -6,7 +6,11 @@
     <p class="name {{ size }}">
       <strong>{{ user.name }}</strong>
     </p>
-    <p class="designation {{ size }}">{{ user.designation }}</p>
+    <p class="designation {{ size }}" *ngIf="aboutMe">{{ user.designation }}</p>
+    <p class="designation {{ size }}" *ngIf="!aboutMe">
+      {{ user.designation | slice:0:25 }}
+      <span *ngIf="user.designation && user.designation.length > 25">...</span>
+    </p>
     <div class="user-social-links {{ size }}" *ngIf="socialMediaLinks">
       <a target="_blank" *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
         <nb-icon icon="linkedin" status="primary"></nb-icon>
