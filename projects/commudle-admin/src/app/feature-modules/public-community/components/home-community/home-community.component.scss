@@ -1,8 +1,8 @@
 .home-component {
   max-width: 1000px;
   margin: 0 auto;
-  .page-header {
 
+  .page-header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,7 @@
     .logo {
       width: 200px;
       overflow: hidden;
+
       img {
         width: 100%;
       }
@@ -21,6 +22,7 @@
       h1 {
         margin-top: 0;
       }
+
       .member-count {
         a {
           text-decoration: none;
@@ -35,6 +37,10 @@
         a {
           text-decoration: none;
           margin: 0 0.5rem;
+        }
+
+        a:nth-of-type(1) {
+          margin-left: 0;
         }
       }
     }
@@ -74,7 +80,6 @@
   left: 0;
   z-index: 10;
 
-
   nb-card {
     margin: 0;
   }
@@ -87,6 +92,7 @@
     overflow-x: auto;
     width: 100%;
     justify-content: space-evenly;
+
     a {
       cursor: pointer;
       margin: 0 0.5rem;
@@ -98,12 +104,14 @@
       nb-icon {
         // color: grey !important;
       }
+
       span {
         display: none;
         // font-size: 10px;
         // text-align: center;
       }
     }
+
     nb-icon {
 
       font-size: 1.5rem;
@@ -113,22 +121,25 @@
       border-bottom: 3px solid #232b45;
     }
   }
-  @media screen and (min-width: 800px){
+
+  @media screen and (min-width: 800px) {
     position: sticky;
     top: 3.5rem;
     box-shadow: none;
     nb-card {
       margin-bottom: 1rem;
+
       .menu-items {
         justify-content: flex-start;
+
         a {
           margin-right: 1.5rem;
+
           span {
             display: inline;
           }
         }
       }
     }
-
   }
 }
