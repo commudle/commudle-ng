@@ -11,7 +11,7 @@
           </app-badge>
         </div>
         <p class="name">
-          {{ communityBuild.name }}
+          {{ communityBuild.name | slice:0:20 }} <span *ngIf="communityBuild.name.length > 18">...</span>
           <br>
           <small>{{ moment(communityBuild.created_at).fromNow() }}</small>
         </p>

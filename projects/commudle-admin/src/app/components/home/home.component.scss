@@ -22,6 +22,7 @@ div.page.home {
       align-items: center;
 
       .header-text {
+        text-align: center;
         h1 {
           margin: 0;
 
@@ -49,11 +50,43 @@ div.page.home {
         }
       }
 
+
+
       .header-banner {
-        img {
-          filter: brightness(5);
-          width: 170px;
+
+        .sponsored-image {
+          text-align: center;
+          padding: 5px;
+          border-radius: 5px;
+          box-shadow: 0px 0px 5px 2px white;
+          margin-bottom: 1.5rem;
+          p {
+            text-decoration: none;
+            margin: 0;
+            color: white;
+            margin-bottom: -24px;
+            font-size: 12px
+          }
+          img {
+            width: 350px;
+            max-width: 90%;
+            height: 150px;
+            filter: brightess(5);
+            margin-bottom: -12px;
+          }
         }
+
+        .main-logo {
+          text-align: center;
+          img {
+            filter: brightness(5);
+            width: 170px;
+          }
+        }
+      }
+
+      .start-button {
+        margin: 0 auto;
       }
     }
 
@@ -69,6 +102,7 @@ div.page.home {
       .header-text {
         padding: 5rem 0 3rem;
         width: 50%;
+        text-align: left !important;
         h1 {
           font-size: 55px;
           line-height: 58px;
@@ -81,6 +115,11 @@ div.page.home {
       }
 
       .header-banner {
+        text-align: left;
+      }
+
+      .start-button {
+        margin: 0 !important;
       }
     }
   }
@@ -185,6 +224,11 @@ section.labs, section.builds {
     height: fit-content;
 
     .lab {
+      min-width: 93%;
+      margin: 0 1rem 0 0;
+    }
+
+    .build {
       min-width: 93%;
       margin: 0 1rem 0 0;
     }

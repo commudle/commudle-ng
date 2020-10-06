@@ -18,7 +18,7 @@ export class FeaturesComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle('Features')
+    this.title.setTitle('Features');
     this.meta.updateTag({
       name: 'description',
       content: 'From being able to manage a large community, to organizing engaging events, commudle has everything!'
