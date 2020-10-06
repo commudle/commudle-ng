@@ -28,7 +28,7 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -71,6 +71,7 @@ import { FeaturesComponent } from './components/home/features/features.component
 import { CommunitiesComponent } from './components/home/communities/communities.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -106,6 +107,7 @@ export function initApp(appInitService: AppInitService) {
     AboutComponent,
     FeaturesComponent,
     CommunitiesComponent,
+    SwUpdateComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -147,6 +149,7 @@ export function initApp(appInitService: AppInitService) {
     NbAccordionModule,
     NbBadgeModule,
     NbTabsetModule,
+    NbToastrModule.forRoot(),
 
     //other external npm modules
     Ng2CompleterModule,
