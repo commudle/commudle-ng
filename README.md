@@ -24,6 +24,7 @@ This is a community management platform for Tech Communities across the world. T
   - In the left side navigation bar, under *Storage* you can find *Cookies*.
   - By clicking on it, you can find a cookie named **commudle_user_auth** with its corresponding value.
   - Copy this particular cookie and its value to `http://localhost:4200`'s cookies and refresh the page to get signed in.
+  - [Contribution Guidelines](CONTRIBUTING.md)
 
 ## Build for production
 - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.

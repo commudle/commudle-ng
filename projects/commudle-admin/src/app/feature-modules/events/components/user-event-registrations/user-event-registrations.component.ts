@@ -1,3 +1,4 @@
+import { EventSimpleRegistrationsService } from 'projects/commudle-admin/src/app/services/event-simple-registrations.service';
 import { Component, OnInit } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -11,6 +12,7 @@ import { UserEventRegistrationsService } from '../../../../services/user-event-r
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-user-event-registrations',
@@ -46,6 +48,8 @@ export class UserEventRegistrationsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private registrationStatusesService: RegistrationStatusesService,
     private userEventRegistrationsService: UserEventRegistrationsService,
+    private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
+    private toastLogService: LibToastLogService,
     private windowService: NbWindowService
   ) { }
 
@@ -145,6 +149,17 @@ export class UserEventRegistrationsComponent implements OnInit {
           event: this.event,
           // eventDataFormEntityGroupId: this.eventDataFormEntityGroup.id,
           mailType: EemailTypes.ENTRY_PASS,
+        }
+      }
+    );
+  }
+
+
+  sendCSV() {
+    this.eventSimpleRegistrationsService.emailCSV(this.event.slug).subscribe(
+      data => {
+        if (data) {
+          this.toastLogService.successDialog('Data will be sent to your email ASAP', 5000);
         }
       }
     );
