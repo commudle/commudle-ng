@@ -116,7 +116,7 @@ export const API_ROUTES = {
   EVENT_SIMPLE_REGISTATIONS: {
     FIND_OR_CREATE: 'api/v2/event_simple_registrations/find_or_create',
     TOGGLE_STATUS: 'api/v2/event_simple_registrations/toggle_status',
-
+    EMAIL_CSV: 'api/v2/event_simple_registrations/email_csv',
     PUBLIC: {
       SHOW: 'api/v2/event_simple_registrations/public_show',
     }
