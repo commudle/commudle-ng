@@ -34,6 +34,14 @@ export class EventSimpleRegistrationsService {
   }
 
 
+  emailCSV(eventId): Observable<boolean> {
+    let params = new HttpParams().set('event_id', eventId);
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_SIMPLE_REGISTATIONS.EMAIL_CSV), {params}
+    );
+  }
+
+
 
   pGet(eventId): Observable<IEventSimpleRegistration> {
     const params = new HttpParams().set('event_id', eventId);
