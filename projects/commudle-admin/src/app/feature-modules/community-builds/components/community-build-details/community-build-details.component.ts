@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import * as moment from 'moment';
-import {NbWindowRef, NbWindowService} from '@nebular/theme';
+import {NbWindowService} from '@nebular/theme';
 import {DomSanitizer} from '@angular/platform-browser';
 import {CBuildTypeDisplay, EBuildType, ICommunityBuild} from 'projects/shared-models/community-build.model';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
@@ -24,7 +24,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   CBuildTypeDisplay = CBuildTypeDisplay;
   hasIframe = false;
   embedCode: any;
-  windowRef: NbWindowRef;
+  currImage = null;
 
   constructor(
     private windowService: NbWindowService,
@@ -42,32 +42,21 @@ export class CommunityBuildDetailsComponent implements OnInit {
     }
   }
 
-  openImage(title, url) {
-    this.windowRef = this.windowService.open(
+  openImage(title, image) {
+    this.currImage = image;
+    this.windowService.open(
       this.imageTemplate,
       {
         title,
-        context: {
-          imageUrl: url
-        }
       },
     );
   }
 
-  imageNav(url, direction) {
-    let curIndex;
+  imageNav(direction) {
     const lenImages = this.cBuild.images.length;
-
-    for (const image of this.cBuild.images) {
-      if (url === image.url) {
-        curIndex = this.cBuild.images.indexOf(image);
-        break;
-      }
-    }
-    curIndex = (curIndex + direction + lenImages) % lenImages;
-
-    this.windowRef.close();
-    this.openImage(this.cBuild.name, this.cBuild.images[curIndex].url);
+    const currentIndex = this.cBuild.images.indexOf(this.currImage);
+    const nextIndex = (currentIndex + direction + lenImages) % lenImages;
+    this.currImage = this.cBuild.images[nextIndex];
   }
 
   getDiscussionChat() {
