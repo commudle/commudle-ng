@@ -66,6 +66,7 @@ export class UserEventRegistrationsComponent implements OnInit {
     // get all registration statuses
     this.registrationStatusesService.getRegistrationStatuses().subscribe((data) => {
       this.registrationStatuses = data.registration_statuses;
+      this.registrationStatuses.splice(this.registrationStatuses.findIndex(k => k.name === 'shortlisted'), 1);
     });
     this.updateFilter();
     // this.getResponses();
