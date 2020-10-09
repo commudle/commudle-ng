@@ -8,7 +8,7 @@
             [text]="cBuild.build_type | titlecase"
             [color]="CBuildTypeDisplay[cBuild.build_type].color"
             [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
-            >
+          >
           </app-badge>
         </div>
         <h1>
@@ -31,7 +31,8 @@
         <p>
           Visit the {{cBuild.build_type}}:
           <a target="_blank" href="{{ cBuild.link }}">
-            {{ cBuild.link }} <nb-icon icon="external-link"></nb-icon>
+            {{ cBuild.link }}
+            <nb-icon icon="external-link"></nb-icon>
           </a>
         </p>
       </div>
@@ -46,7 +47,8 @@
         </div>
       </div>
       <div class="author-details">
-        <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
+        <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true"
+                                     [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
 
       <div class="stats">
@@ -56,7 +58,7 @@
             [votableId]="cBuild.id"
             [icon]="'star'"
             [size]="'large'"
-            >
+          >
           </app-votes-display>
           <span>
             Give a star to encourage!
@@ -75,6 +77,10 @@
 
 <ng-template #imageTemplate let-data>
   <div class="image-window">
-    <img src="{{data.imageUrl}}">
+    <img src="{{data.imageUrl}}" alt="Image">
+    <div class="controls">
+      <button nbButton size="small" (click)="imageNav(data.imageUrl, -1)">Previous</button>
+      <button nbButton size="small" (click)="imageNav(data.imageUrl, 1)">Next</button>
+    </div>
   </div>
 </ng-template>
