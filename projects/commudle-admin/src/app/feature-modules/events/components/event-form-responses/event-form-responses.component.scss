@@ -79,9 +79,10 @@
 .group-actions {
   display: flex;
   flex-wrap: wrap;
-  button{
+  button, nb-select {
     margin: 0.5rem;
   }
+
 }
 
 
