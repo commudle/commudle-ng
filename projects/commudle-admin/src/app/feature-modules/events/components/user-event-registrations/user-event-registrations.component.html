@@ -141,7 +141,7 @@
 
 <ng-template #confirmStatusChange let-data>
   <p>
-    This will change the status of all {{totalEntries}} entries and <strong>cannot be undone</strong>.
+    This will change the status of all entries and <strong>cannot be undone</strong>.
   </p>
   <div>
     <button nbButton outline size="medium" status="success" (click)="bulkStatusChange(data.registration_status.id)">Yes</button>
