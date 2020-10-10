@@ -8,7 +8,7 @@
             [text]="cBuild.build_type | titlecase"
             [color]="CBuildTypeDisplay[cBuild.build_type].color"
             [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
-            >
+          >
           </app-badge>
         </div>
         <h1>
@@ -31,7 +31,8 @@
         <p>
           Visit the {{cBuild.build_type}}:
           <a target="_blank" href="{{ cBuild.link }}">
-            {{ cBuild.link }} <nb-icon icon="external-link"></nb-icon>
+            {{ cBuild.link }}
+            <nb-icon icon="external-link"></nb-icon>
           </a>
         </p>
       </div>
@@ -40,13 +41,14 @@
       </div>
       <div class="images" *ngIf="cBuild.images.length > 0">
         <div class="image-stripe">
-          <div class="image clickable" *ngFor="let image of cBuild.images" (click)="openImage(cBuild.name, image.url)">
+          <div class="image clickable" *ngFor="let image of cBuild.images" (click)="openImage(cBuild.name, image)">
             <img src="{{ image.url }}" alt="{{ cBuild.name }}">
           </div>
         </div>
       </div>
       <div class="author-details">
-        <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
+        <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true"
+                                     [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
 
       <div class="stats">
@@ -56,7 +58,7 @@
             [votableId]="cBuild.id"
             [icon]="'star'"
             [size]="'large'"
-            >
+          >
           </app-votes-display>
           <span>
             Give a star to encourage!
@@ -73,8 +75,18 @@
 
 </div>
 
-<ng-template #imageTemplate let-data>
+<ng-template #imageTemplate>
   <div class="image-window">
-    <img src="{{data.imageUrl}}">
+    <img src="{{ this.currImage.url }}" alt="Image">
+    <div class="controls">
+      <button nbButton size="small" shape="round" (click)="imageNav(-1)">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+        <span>Previous</span>
+      </button>
+      <button nbButton size="small" shape="round" (click)="imageNav(1)">
+        <span>Next</span>
+        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+      </button>
+    </div>
   </div>
 </ng-template>

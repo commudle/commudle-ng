@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
-import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
+import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import * as moment from 'moment';
-import { NbWindowService } from '@nebular/theme';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ICommunityBuild, EBuildType, CBuildTypeDisplay } from 'projects/shared-models/community-build.model';
-import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
-import { IDiscussion } from 'projects/shared-models/discussion.model';
+import {NbWindowService} from '@nebular/theme';
+import {DomSanitizer} from '@angular/platform-browser';
+import {CBuildTypeDisplay, EBuildType, ICommunityBuild} from 'projects/shared-models/community-build.model';
+import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
+import {IDiscussion} from 'projects/shared-models/discussion.model';
 
 @Component({
   selector: 'app-community-build-details',
   templateUrl: './community-build-details.component.html',
   styleUrls: ['./community-build-details.component.scss']
 })
+
 export class CommunityBuildDetailsComponent implements OnInit {
   @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 
@@ -24,12 +24,14 @@ export class CommunityBuildDetailsComponent implements OnInit {
   CBuildTypeDisplay = CBuildTypeDisplay;
   hasIframe = false;
   embedCode: any;
+  currImage = null;
 
   constructor(
     private windowService: NbWindowService,
     private discussionsService: DiscussionsService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.getDiscussionChat();
@@ -40,16 +42,21 @@ export class CommunityBuildDetailsComponent implements OnInit {
     }
   }
 
-
-  openImage(title, url) {
+  openImage(title, image) {
+    this.currImage = image;
     this.windowService.open(
       this.imageTemplate,
-      { title,
-        context: {
-          imageUrl: url
-        }
+      {
+        title,
       },
     );
+  }
+
+  imageNav(direction) {
+    const lenImages = this.cBuild.images.length;
+    const currentIndex = this.cBuild.images.indexOf(this.currImage);
+    const nextIndex = (currentIndex + direction + lenImages) % lenImages;
+    this.currImage = this.cBuild.images[nextIndex];
   }
 
   getDiscussionChat() {
@@ -57,5 +64,4 @@ export class CommunityBuildDetailsComponent implements OnInit {
       data => this.discussionChat = data
     );
   }
-
 }
