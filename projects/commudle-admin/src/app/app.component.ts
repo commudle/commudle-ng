@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
   }
 
   openWindow() {
-    this.windowService.open(CookieConsentComponent, { title: 'Cookie Consent', hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
+    this.windowService.open(CookieConsentComponent, { title: 'We use cookies', hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
   }
 
   toggleSidebar() {
