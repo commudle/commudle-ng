@@ -41,6 +41,18 @@ export class EventSimpleRegistrationsService {
     );
   }
 
+  changeBulkRegistrationStatus(registrationStatusId, eventId): Observable<boolean> {
+
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_SIMPLE_REGISTATIONS.CHANGE_BULK_REGISTRATION_STATUS), {
+        registration_status_id: registrationStatusId,
+        event_id: eventId
+
+       }
+    );
+  }
+
+
 
 
   pGet(eventId): Observable<IEventSimpleRegistration> {

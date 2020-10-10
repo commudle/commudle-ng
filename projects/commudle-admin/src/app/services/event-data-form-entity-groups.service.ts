@@ -70,6 +70,18 @@ export class EventDataFormEntityGroupsService {
   }
 
 
+  changeBulkRegistrationStatus(registrationStatusId, eventDataFormEntityGroupId): Observable<boolean> {
+
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.CHANGE_BULK_REGISTRATION_STATUS), {
+        registration_status_id: registrationStatusId,
+        event_data_form_entity_group_id: eventDataFormEntityGroupId
+
+       }
+    );
+  }
+
+
   pGetPublicOpenDataForms(eventId): Observable<IEventDataFormEntityGroups> {
     let params = new HttpParams().set('event_id', eventId);
     return this.http.get<IEventDataFormEntityGroups>(
