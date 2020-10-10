@@ -34,6 +34,9 @@
         h5 {
           margin: 0 0 0.5rem;
           font-weight: 200;
+          display: flex;
+          align-items: flex-start;
+          line-height: 1.2rem;
         }
 
         .timings {
@@ -61,38 +64,52 @@
 
   .event.upcoming {
     margin: 0 0 1rem;
-    .header-image {
-      width: 100px;
-      margin-right: 1rem;
 
-      display: flex;
-      align-items: flex-start;
-      overflow: hidden;
-      img {
-        width: 100%;
+    nb-card-body {
+      flex-direction: column;
+      align-items: center;
+
+      .header-image {
+        width: 500px;
+        max-width: 90vw;
+        height: auto !important;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+
+        nb-icon {
+          font-size: 3rem;
+        }
       }
 
-      nb-icon {
-        font-size: 3rem;
-      }
-    }
+      .details {
+        h5 {
+          margin: 0 0 0.5rem;
+          font-weight: 400;
+          font-size: 2.5rem;
+          line-height: 2.5rem !important;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
 
-    .details {
-      h5 {
-        margin: 0 0 0.5rem;
-        font-weight: 400;
-        font-size: 2.5rem;
-      }
-
-      .past-timings {
-        p {
-
-          font-size: 1.2rem;
-          nb-icon {
+        .timings {
+          text-align: center;
+          p {
+            color: grey;
             font-size: 1.2rem;
+            nb-icon {
+              font-size: 1.2rem;
+            }
           }
         }
       }
     }
+
   }
 }

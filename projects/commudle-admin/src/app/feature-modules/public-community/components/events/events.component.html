@@ -1,19 +1,22 @@
 <div class="events" *ngIf="events.length > 0">
   <div *ngFor="let event of events">
     <a class="clickable" [routerLink]="['/communities', community.slug, 'events', event.slug]">
-      <nb-card class="event" [ngClass]="{'upcoming' : moment(event.end_time) > moment()}">
+      <nb-card class="event" [ngClass]="{'upcoming' : moment(event.end_time) > moment() && event.header_image_path}">
         <nb-card-body>
           <div class="header-image">
+            <span>
+              <app-badge [text]="'New'" [color]="'#50d338'" *ngIf="moment(event.start_time) > moment()"></app-badge>
+              <app-badge [text]="'Live'" [color]="'rgb(255 45 45)'" *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"></app-badge>
+            </span>
             <img *ngIf="event.header_image_path" src="{{ event.header_image_path }}" alt="{{ event.name }}">
             <nb-icon *ngIf="!event.header_image_path" icon="link" status="primary"></nb-icon>
           </div>
           <div class="details">
             <h5>
               <nb-icon nbTooltip="Completed" *ngIf="moment(event.end_time) < moment()" icon="checkmark-circle-2" status="success"></nb-icon>
-              <app-badge [text]="'New'" [color]="'#50d338'" *ngIf="moment(event.start_time) > moment()"></app-badge>
-              <app-badge [text]="'Live'" [color]="'rgb(255 45 45)'" *ngIf="moment(event.start_time) <= moment() && moment(event.end_time) >= moment()"></app-badge>
-
-              {{ event.name }}
+              <span class="event-name">
+                {{ event.name }}
+              </span>
               <span class="collaboration" *ngIf="event.kommunity_id != community.id">(Collaboration)</span>
             </h5>
             <div>
