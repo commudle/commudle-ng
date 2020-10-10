@@ -72,6 +72,7 @@ import { CommunitiesComponent } from './components/home/communities/communities.
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
+import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -184,6 +185,7 @@ export function initApp(appInitService: AppInitService) {
   entryComponents: [
     CommunityFormsListStatsComponent,
     CommunityFormsListActionsComponent,
+    CookieConsentComponent
     // EmailerComponent
   ],
   bootstrap: [AppComponent]
