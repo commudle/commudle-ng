@@ -1,5 +1,5 @@
 import { EventSimpleRegistrationsService } from 'projects/commudle-admin/src/app/services/event-simple-registrations.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
@@ -20,10 +20,13 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   styleUrls: ['./user-event-registrations.component.scss']
 })
 export class UserEventRegistrationsComponent implements OnInit {
+  @ViewChild('confirmStatusChange', { read: TemplateRef }) confirmStatusChange: TemplateRef<HTMLElement>;
 
   event: IEvent;
   community: ICommunity;
   registrationStatuses: IRegistrationStatus[];
+  windowRef;
+  bulkStatus;
 
   isLoading = true;
   rows = [];
@@ -63,6 +66,7 @@ export class UserEventRegistrationsComponent implements OnInit {
     // get all registration statuses
     this.registrationStatusesService.getRegistrationStatuses().subscribe((data) => {
       this.registrationStatuses = data.registration_statuses;
+      this.registrationStatuses.splice(this.registrationStatuses.findIndex(k => k.name === 'shortlisted'), 1);
     });
     this.updateFilter();
     // this.getResponses();
@@ -163,6 +167,33 @@ export class UserEventRegistrationsComponent implements OnInit {
         }
       }
     );
+  }
+
+
+  bulkStatusChangeConfirmation(registrationStatus) {
+    this.windowRef = this.windowService.open(
+      this.confirmStatusChange,
+      {
+        title: `Are you sure?`,
+        context: {
+          registration_status: registrationStatus
+        }
+      }
+    );
+  }
+
+
+  bulkStatusChange(registrationStatusId) {
+    this.eventSimpleRegistrationsService.changeBulkRegistrationStatus(registrationStatusId, this.event.id).subscribe(
+      data => {
+        if (data) {
+          this.getResponses();
+          this.toastLogService.successDialog('Updated!');
+        }
+      }
+    );
+    this.bulkStatus = null;
+    this.windowRef.close();
   }
 
 

@@ -22,6 +22,22 @@
               <nb-icon icon="email-outline"></nb-icon>
               CSV
           </button>
+
+          <nb-select
+            *ngIf="event.editable"
+            placeholder="Bulk Status Change"
+            (selectedChange)="bulkStatusChangeConfirmation($event)"
+            filled
+            status="info"
+            size="small"
+            [(ngModel)]="bulkStatus"
+            [ngModelOptions]="{standalone: true}"
+            >
+
+            <nb-option *ngFor="let rs of registrationStatuses" [value]="rs">
+              {{ rs.name | titlecase }}
+            </nb-option>
+          </nb-select>
         </div>
 
       </nb-card-body>
@@ -120,3 +136,15 @@
 
   </div>
 </div>
+
+
+
+<ng-template #confirmStatusChange let-data>
+  <p>
+    This will change the status of all entries and <strong>cannot be undone</strong>.
+  </p>
+  <div>
+    <button nbButton outline size="medium" status="success" (click)="bulkStatusChange(data.registration_status.id)">Yes</button>
+    <button nbButton outline size="medium" status="danger" (click)="windowRef.close()">No</button>
+  </div>
+</ng-template>

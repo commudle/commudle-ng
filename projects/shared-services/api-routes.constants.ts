@@ -108,6 +108,7 @@ export const API_ROUTES = {
     DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
+    CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
 
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms'
   },
@@ -117,6 +118,7 @@ export const API_ROUTES = {
     FIND_OR_CREATE: 'api/v2/event_simple_registrations/find_or_create',
     TOGGLE_STATUS: 'api/v2/event_simple_registrations/toggle_status',
     EMAIL_CSV: 'api/v2/event_simple_registrations/email_csv',
+    CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_simple_registrations/change_bulk_registration_status',
     PUBLIC: {
       SHOW: 'api/v2/event_simple_registrations/public_show',
     }
