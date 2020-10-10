@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CommunityBuildDetailsComponent } from './community-build-details.component';
+import {CommunityBuildDetailsComponent} from './community-build-details.component';
 
 describe('CommunityBuildDetailsComponent', () => {
   let component: CommunityBuildDetailsComponent;
@@ -8,9 +8,9 @@ describe('CommunityBuildDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommunityBuildDetailsComponent ]
+      declarations: [CommunityBuildDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
