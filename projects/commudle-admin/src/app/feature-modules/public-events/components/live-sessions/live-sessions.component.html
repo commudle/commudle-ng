@@ -1,4 +1,4 @@
-<div *ngIf="liveSessions.length > 0 || (!event.custom_agenda && moment().isBetween(moment(event.start_time), moment(event.end_time)))">
+<div *ngIf="liveSessions.length > 0 || (!event.custom_agenda && moment().isBetween(moment(event.start_time).subtract(25, 'minutes'), moment(event.end_time)))">
   <nb-card>
     <nb-card-header *ngIf="(moment() > moment(event.start_time)) || liveSessions.length > 0">
       <nb-icon
@@ -23,10 +23,11 @@
       <div *ngIf="!event.custom_agenda">
         <div class="session">
           <a
-            *ngIf="(moment() < moment(event.start_time))"
+            [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+            *ngIf="moment().isBetween(moment(event.start_time).subtract(25, 'minutes'), moment(event.start_time))"
             target="_blank"
             >
-            <h6 class="title">Going Live Soon!
+            <h6 class="title text-info">Going Live Soon! Click Here To Go To Session Page
               <small><nb-icon icon="external-link"></nb-icon></small>
             </h6>
           </a>
