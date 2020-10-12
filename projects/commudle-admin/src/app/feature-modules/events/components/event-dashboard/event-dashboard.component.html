@@ -183,6 +183,11 @@
                 (online/offline with Multiple Tracks)
               </p>
             </div>
+            <p *ngIf="!event.custom_agenda">
+              <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
+                Public Session Page <nb-icon icon="external-link"></nb-icon>
+              </a>
+            </p>
             <p *ngIf="event.custom_registration">
               <small>
                 *Speakers can be selected by using Speaker Form in the registrations section above!
