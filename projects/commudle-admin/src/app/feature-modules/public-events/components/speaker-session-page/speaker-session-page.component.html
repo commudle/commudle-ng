@@ -58,7 +58,7 @@
                 <app-video-stream
                   [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : embeddedVideoStream.embed_code"
                   [videoSource]="embeddedVideoStream.source"
-                  [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? 'Coming Soon' : 'Loading Video...'))"
+                  [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? ('Starting in ' + moment(startTime).fromNow(true)) : 'Loading Video...'))"
                   [width]="playerWidth"
                   [height]="playerHeight"
                   [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
