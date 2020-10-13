@@ -2,11 +2,14 @@
   <nb-card>
     <nb-card-body>
       <div class="title">
-        <div class="image" *ngIf="lab.header_image">
-          <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
+        <div class="image">
+          <img *ngIf="lab.header_image" src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
+          <div class="header-filler" *ngIf="!lab.header_image">
+            <nb-icon icon="link-outline"></nb-icon>
+          </div>
         </div>
         <p>
-          {{ lab.name | slice:0:80 }}
+          {{ lab.name | slice:0:55 }} <span *ngIf="lab.name.length > 55">...</span>
           <br>
           <small> Published {{ moment(lab.created_at).format('Do MMM YYYY') }}</small>
         </p>
@@ -26,9 +29,19 @@
             </p>
           </div>
         </div>
-        <a nbButton size="tiny" outline status="info" [routerLink]="['/labs', lab.slug]">
-          Start Here
-        </a>
+        <div class="actions">
+          <p>
+            <app-votes-display
+            [votableType]="'Lab'"
+            [votableId]="lab.id"
+            [icon]="'star'"
+            ></app-votes-display>
+          </p>
+          <a nbButton size="tiny" ghost status="info" [routerLink]="['/labs', lab.slug]">
+            Start Here
+          </a>
+        </div>
+
       </div>
     </nb-card-body>
   </nb-card>

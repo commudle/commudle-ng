@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CommunityEmailsListComponent } from './components/community-emails-list/community-emails-list.component';
 import { LabCardComponent } from './components/lab-card/lab-card.component';
 import { RouterModule } from '@angular/router';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 
 
 
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    SharedComponentsModule,
 
     // Nebular
     NbListModule,

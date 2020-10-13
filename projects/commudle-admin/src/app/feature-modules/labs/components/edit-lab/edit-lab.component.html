@@ -64,12 +64,12 @@
                     menubar: false,
                     convert_urls: false,
                     plugins: [
-                      'textcolor advlist lists autolink link charmap preview anchor',
+                      'textcolor emoticons advlist lists autolink link charmap preview anchor',
                       'visualblocks code table charmap image codesample',
                       'insertdatetime table paste code help wordcount autoresize'
                     ],
                     toolbar:
-                      'formatselect | bold italic forecolor backcolor | codesample | \
+                      'formatselect | bold italic forecolor backcolor | codesample emoticons | \
                       link | alignleft aligncenter alignright alignjustify | \
                       bullist numlist outdent indent | image | table | code | removeformat | help',
                     codesample_languages: [
@@ -119,18 +119,19 @@
                     formControlName="description"
                     apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
                     [init]="{
+                      placeholder: 'Start typing here...*',
                       height: 500,
                       menubar: false,
                       convert_urls: false,
                       plugins: [
-                        'textcolor advlist lists autolink link charmap preview anchor',
+                        'textcolor emoticons advlist lists autolink link charmap preview anchor',
                         'visualblocks code table charmap image codesample',
                         'insertdatetime table paste code help wordcount autoresize'
                       ],
                       toolbar:
-                        'formatselect | bold italic forecolor backcolor | \
+                        'formatselect | bold italic forecolor backcolor | codesample emoticons| \
                         link | alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | image | table | codesample | code | removeformat | help',
+                        bullist numlist outdent indent | image | table | code | removeformat | help',
                       codesample_languages: [
                         { text: 'HTML/XML', value: 'markup' },
                         { text: 'CSS', value: 'css' },
@@ -226,6 +227,10 @@
                 <span *ngIf="autoSaving">
                   Auto Saving...
                 </span>
+              </button>
+              <button nbButton ghost status="info" [routerLink]="['/labs', lab.slug]">
+                Preview
+                <nb-icon icon="external-link"></nb-icon>
               </button>
             </div>
 
