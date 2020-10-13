@@ -52,6 +52,7 @@ export class LabStepComponent implements OnInit, OnChanges, OnDestroy, AfterView
   }
 
   addLabStepVisit() {
+    console.log('here');
     if (this.currentUser) {
       this.labsService.addLabStepVisit(this.step.id).subscribe();
     }

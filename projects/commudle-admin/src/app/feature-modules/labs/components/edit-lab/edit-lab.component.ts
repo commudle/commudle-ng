@@ -7,6 +7,7 @@ import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { isPlatformBrowser } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-lab',
@@ -65,7 +66,8 @@ export class EditLabComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
-
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -84,6 +86,42 @@ export class EditLabComponent implements OnInit {
     );
   }
 
+  setMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+    this.title.setTitle(`Edit ${this.lab.name} | By ${this.lab.user.name}`);
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'article'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'twitter:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+
+  }
+
 
   getLab() {
     this.labsService.getLab(this.labId).subscribe(
@@ -93,7 +131,7 @@ export class EditLabComponent implements OnInit {
         for (let img of this.lab.images) {
           this.imagesList.push({title: img.url, value: img.url});
         }
-
+        this.setMeta();
         this.tags = data.tags.toString();
         this.prefillForm();
       }
