@@ -1,3 +1,4 @@
+import { EUserRoles } from './../../../../../../../shared-models/enums/user_roles.enum';
 import { Component, OnInit } from '@angular/core';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 import { ActivatedRoute } from '@angular/router';
@@ -16,6 +17,7 @@ export class UserRoleConfirmationComponent implements OnInit {
   community: ICommunity;
   event: IEvent;
   communityGroup: ICommunityGroup;
+  EUserRoles = EUserRoles;
 
   constructor(
     private activatedRoute: ActivatedRoute,

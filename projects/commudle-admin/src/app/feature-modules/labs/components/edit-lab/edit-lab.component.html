@@ -10,7 +10,7 @@
             Let's complete it!
           </h2>
           <p>
-
+            <small>*Changes will be autosaved every 10 seconds</small>
           </p>
 
           <form class='lab-header-image' [formGroup]="headerImageForm">
@@ -64,14 +64,14 @@
                     menubar: false,
                     convert_urls: false,
                     plugins: [
-                      'advlist lists autolink link charmap preview anchor',
+                      'textcolor advlist lists autolink link charmap preview anchor',
                       'visualblocks code table charmap image codesample',
                       'insertdatetime table paste code help wordcount autoresize'
                     ],
                     toolbar:
-                      'formatselect | bold italic backcolor | \
+                      'formatselect | bold italic forecolor backcolor | codesample | \
                       link | alignleft aligncenter alignright alignjustify | \
-                      bullist numlist outdent indent | image | table | codesample | code | removeformat | help',
+                      bullist numlist outdent indent | image | table | code | removeformat | help',
                     codesample_languages: [
                       { text: 'HTML/XML', value: 'markup' },
                       { text: 'CSS', value: 'css' },
@@ -123,12 +123,12 @@
                       menubar: false,
                       convert_urls: false,
                       plugins: [
-                        'advlist lists autolink link charmap preview anchor',
+                        'textcolor advlist lists autolink link charmap preview anchor',
                         'visualblocks code table charmap image codesample',
                         'insertdatetime table paste code help wordcount autoresize'
                       ],
                       toolbar:
-                        'formatselect | bold italic backcolor | \
+                        'formatselect | bold italic forecolor backcolor | \
                         link | alignleft aligncenter alignright alignjustify | \
                         bullist numlist outdent indent | image | table | codesample | code | removeformat | help',
                       codesample_languages: [
@@ -206,7 +206,7 @@
                 Save as Draft
               </button>
               <button
-                [disabled]="!labForm.valid"
+                [disabled]="!labForm.valid || autoSaving"
                 type="submit"
                 nbButton
                 outline
@@ -215,12 +215,16 @@
                 >
                 <nb-icon icon="checkmark"></nb-icon>
 
-                <span *ngIf="this.lab.publish_status !== EPublishStatus.published">
+                <span *ngIf="this.lab.publish_status !== EPublishStatus.published && !autoSaving">
                   Submit For Review
                 </span>
 
-                <span *ngIf="this.lab.publish_status == EPublishStatus.published">
+                <span *ngIf="this.lab.publish_status == EPublishStatus.published && !autoSaving">
                   Save Changes
+                </span>
+
+                <span *ngIf="autoSaving">
+                  Auto Saving...
                 </span>
               </button>
             </div>
