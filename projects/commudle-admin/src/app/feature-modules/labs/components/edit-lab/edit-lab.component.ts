@@ -239,7 +239,7 @@ export class EditLabComponent implements OnInit {
         publish_status: publishStatus
       });
     }
-    this.labsService.updateLab(this.lab.slug, this.labForm.value).subscribe(
+    this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe(
       data => {
         if (data) {
           this.lab = data;
@@ -253,7 +253,7 @@ export class EditLabComponent implements OnInit {
   //auto save every 30 seconds
   autoSaveLab() {
     this.autoSaving = true;
-    this.labsService.updateLab(this.lab.slug, this.labForm.value).subscribe(
+    this.labsService.updateLab(this.lab.slug, this.labForm.value, true).subscribe(
       data => {
         if (data) {
           this.lab = data;
