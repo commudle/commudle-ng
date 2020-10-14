@@ -50,7 +50,7 @@ export class CommunityFormsListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.newFormParentId = this.activatedRoute.snapshot.params['name'];
+      this.newFormParentId = this.activatedRoute.parent.snapshot.params['name'];
       this.getDataForms();
     });
   }

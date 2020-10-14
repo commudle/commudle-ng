@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from '../../../services/communities.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-community-edit-details',
@@ -36,12 +37,14 @@ export class CommunityEditDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private communitiesService: CommunitiesService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    @Inject(DOCUMENT) private document: Document,
+
   ) {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.parent.params.subscribe(params => {
       this.getCommunityDetails(params.name);
     });
   }
@@ -82,10 +85,9 @@ export class CommunityEditDetailsComponent implements OnInit {
       formData.append('community[logo_image]', this.uploadedLogoFile);
     }
     this.communitiesService.updateCommunity(formData, this.community.id).subscribe((community) => {
-      this.toastLogService.successDialog('Updated!');
+      this.toastLogService.successDialog('Updated! Reloading the app for changes to apply...');
       this.community = community;
-      this.updateCommunity.emit(this.community);
-
+      this.document.location.reload();
     });
   }
 

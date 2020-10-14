@@ -2,7 +2,7 @@
   <p>
     {{ moment(rowData.start_time).format('Do MMM YYYY h:mm A') }}
   </p>
-  <p class="upcoming" *ngIf="moment(rowData.start_time) > moment()">
+  <p class="upcoming" *ngIf="moment(rowData.start_time) > moment() && rowData.event_status.name != EEventStatuses.CANCELED">
     {{ moment(rowData.start_time).fromNow() | titlecase }}
   </p>
 </div>
