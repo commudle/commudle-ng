@@ -1,41 +1,45 @@
-.organizers, .event_organizers {
-  display: flex;
-  flex-wrap: wrap;
-  .user-profile {
-    border: 0.5px solid lightgrey;
-    border-radius: 5px;
-    padding: 5px;
-    width: 800px;
-    max-width: 90vw;
-    justify-content: center;
+.community-team {
+  padding: 1.5rem;
+  .organizers, .event_organizers {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    .user-profile {
+      border: 0.5px solid lightgrey;
+      border-radius: 5px;
+      padding: 5px;
+      width: 800px;
+      max-width: 90vw;
+      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
 
-    margin: 0.5rem;
-    @media screen and (min-width: 1000px) {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+      margin: 0.5rem;
+      @media screen and (min-width: 1000px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
   }
-}
 
-h6 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.user-roles-user-form {
-  display: flex;
-  flex-wrap: wrap;
-
-  >div {
-    margin-right: 1rem;
+  h6 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  .save-button-bottom {
-    margin-top: 18px;
+  .user-roles-user-form {
+    display: flex;
+    flex-wrap: wrap;
+
+    >div {
+      margin-right: 1rem;
+    }
+
+    .save-button-bottom {
+      margin-top: 18px;
+    }
+
   }
 
 }

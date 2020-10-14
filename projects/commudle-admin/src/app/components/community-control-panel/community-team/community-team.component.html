@@ -1,4 +1,4 @@
-<div>
+<div class="community-team">
   <div *ngIf="organizers.length > 0">
     <h6>Community Organizers</h6>
     <div class="organizers">
@@ -8,11 +8,11 @@
           <app-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
         </div>
         <div class="actions">
-          <a *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
+          <a class="clickable" *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
             <small>Resend Invite</small>
           </a>
           <br>
-          <a (click)="remove(org,'organizers', i)">
+          <a class="clickable" (click)="remove(org,'organizers', i)">
             <small>Remove</small>
           </a>
         </div>

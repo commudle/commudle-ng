@@ -28,7 +28,6 @@ export class CommunityEventsListComponent implements OnInit {
       date: {
         title: 'Date',
         filter: false,
-        sort: false,
         type: 'custom',
         renderComponent: CommunityEventsListDateComponent,
       },

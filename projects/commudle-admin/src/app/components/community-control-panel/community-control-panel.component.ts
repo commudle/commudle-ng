@@ -1,6 +1,8 @@
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -9,16 +11,46 @@ import { Title } from '@angular/platform-browser';
 })
 export class CommunityControlPanelComponent implements OnInit {
   community: ICommunity;
+
+  tabs: any[] = [
+    {
+      title: 'Events',
+      route: `./`
+    },
+    {
+      title: 'Forms',
+      route: `./forms`
+    },
+    {
+      title: 'Edit Details',
+      route: `./edit`
+    },
+    {
+      title: 'Team',
+      route: `./team`
+    }
+  ];
+
   constructor(
-    private titleService: Title
+    private titleService: Title,
+    private communitiesService: CommunitiesService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.setCommunity();
+  }
 
 
-  setCommunity(community) {
-    this.community = community;
-    this.setTitle();
+  setCommunity() {
+    this.activatedRoute.params.subscribe(params => {
+      let communityId = this.activatedRoute.snapshot.params['name'];
+      this.communitiesService.getCommunityDetails(communityId).subscribe(
+        data => {
+          this.community = data;
+        }
+      );
+    });
   }
 
   setTitle() {

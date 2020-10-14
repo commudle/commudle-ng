@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ICommunity } from 'projects/shared-models/community.model';
 import { UserRolesUsersService } from '../../../services/user_roles_users.service';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUserRolesUser, EUserRolesUserStatus } from 'projects/shared-models/user_roles_user.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-community-team',
   templateUrl: './community-team.component.html',
   styleUrls: ['./community-team.component.scss']
 })
 export class CommunityTeamComponent implements OnInit, OnChanges {
-  @Input() community: ICommunity;
+  communityId;
   EUserRolesUserStatus = EUserRolesUserStatus;
   EUserRoles = EUserRoles;
 
@@ -27,22 +27,29 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
   constructor(
     private userRolesUsersService: UserRolesUsersService,
     private fb: FormBuilder,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.communityId = this.activatedRoute.parent.snapshot.params['name'];
+      this.getRoles();
+    });
   }
 
   ngOnChanges() {
+  }
 
-    if (this.community) {
+  getRoles() {
+    if (this.communityId) {
       this.userRolesUsersService.getCommunityUsersByRole(
-        this.community.id, EUserRoles.ORGANIZER).subscribe(
+        this.communityId, EUserRoles.ORGANIZER).subscribe(
           data => this.organizers = data.user_roles_users
         );
 
       this.userRolesUsersService.getCommunityUsersByRole(
-        this.community.id, EUserRoles.EVENT_ORGANIZER).subscribe(
+        this.communityId, EUserRoles.EVENT_ORGANIZER).subscribe(
           data => this.eventOrganizers = data.user_roles_users
         );
     }
@@ -74,7 +81,7 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
     let newUserRolesUser = this.userRolesUserForm.value;
 
     newUserRolesUser.parent_type = 'Kommunity';
-    newUserRolesUser.parent_id = this.community.id;
+    newUserRolesUser.parent_id = this.communityId;
     this.userRolesUsersService.createUserRolesUser(newUserRolesUser).subscribe(
       data => {
         switch (data.user_role.name) {

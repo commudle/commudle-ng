@@ -1,3 +1,5 @@
+import { CommunityFormsListComponent } from './components/community-control-panel/community-forms-list/community-forms-list.component';
+import { CommunityEventsListComponent } from './components/community-control-panel/community-events-list/community-events-list.component';
 import { CommunityDetailsResolver } from './resolvers/community-details.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -16,6 +18,8 @@ import { CommunityCreateComponent } from './components/community-control-panel/c
 import { CommunitiesComponent } from './components/home/communities/communities.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { AboutComponent } from './components/home/about/about.component';
+import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
+import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
 
 const routes: Routes = [
   {
@@ -111,6 +115,24 @@ const routes: Routes = [
         data: {
           expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
         },
+        children: [
+          {
+            path: '',
+            component: CommunityEventsListComponent
+          },
+          {
+            path: 'forms',
+            component: CommunityFormsListComponent
+          },
+          {
+            path: 'edit',
+            component: CommunityEditDetailsComponent
+          },
+          {
+            path: 'team',
+            component: CommunityTeamComponent
+          }
+        ]
       },
       {
         path: 'communities/:community_id/stats',
