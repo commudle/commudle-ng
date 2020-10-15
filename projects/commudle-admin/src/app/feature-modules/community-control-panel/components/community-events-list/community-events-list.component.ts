@@ -2,9 +2,9 @@ import { CommunityEventsListActionsComponent } from './community-events-list-act
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { EventsService } from '../../../services/events.service';
 import { IEvent } from 'projects/shared-models/event.model';
 import { CommunityEventsListDateComponent } from './community-events-list-date/community-events-list-date.component';
+import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 
 @Component({
   selector: 'app-community-events-list',
@@ -57,7 +57,7 @@ export class CommunityEventsListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.communityId = params.name;
+      this.communityId = params.community_id;
       this.getCommunityEvents();
     });
   }

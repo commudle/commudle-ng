@@ -3,7 +3,7 @@ import { CommunitiesService } from 'projects/commudle-admin/src/app/services/com
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { StatsCommunitiesService } from '../../../services/stats/stats-communities.service';
+import { StatsCommunitiesService } from 'projects/commudle-admin/src/app/services/stats/stats-communities.service';
 
 @Component({
   selector: 'app-community-stats',

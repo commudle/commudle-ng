@@ -1,11 +1,8 @@
-import { CommunityFormsListComponent } from './components/community-control-panel/community-forms-list/community-forms-list.component';
-import { CommunityEventsListComponent } from './components/community-control-panel/community-events-list/community-events-list.component';
 import { CommunityDetailsResolver } from './resolvers/community-details.resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
-import { CommunityControlPanelComponent } from './components/community-control-panel/community-control-panel.component';
 import { HomeComponent } from './components/home/home.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
@@ -13,13 +10,9 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { InitResolver } from './resolvers/init.resolver';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
-import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
 import { CommunitiesComponent } from './components/home/communities/communities.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { AboutComponent } from './components/home/about/about.component';
-import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
-import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
 
 const routes: Routes = [
   {
@@ -101,49 +94,12 @@ const routes: Routes = [
       //   },
       // },
       {
-        path: 'communities/new',
-        component: CommunityCreateComponent,
-        canActivate: [AuthGuard],
-        data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR]
-        },
-      },
-      {
-        path: 'communities/:name',
-        component: CommunityControlPanelComponent,
+        path: 'communities',
         canActivate: [AuthGuard],
         data: {
           expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
         },
-        children: [
-          {
-            path: '',
-            component: CommunityEventsListComponent
-          },
-          {
-            path: 'forms',
-            component: CommunityFormsListComponent
-          },
-          {
-            path: 'edit',
-            component: CommunityEditDetailsComponent
-          },
-          {
-            path: 'team',
-            component: CommunityTeamComponent
-          }
-        ]
-      },
-      {
-        path: 'communities/:community_id/stats',
-        component: CommunityStatsComponent,
-        canActivate: [AuthGuard],
-        resolve: {
-          community: CommunityDetailsResolver
-        },
-        data: {
-          expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
-        },
+        loadChildren: () => import('./feature-modules/community-control-panel/community-control-panel.module').then(m => m.CommunityGroupsModule)
       },
       {
         path: 'forms',

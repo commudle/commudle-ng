@@ -35,17 +35,10 @@ import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CommunityControlPanelComponent } from './components/community-control-panel/community-control-panel.component';
-import { CommunityFormsListComponent } from './components/community-control-panel/community-forms-list/community-forms-list.component';
-import { CommunityEventsListComponent } from './components/community-control-panel/community-events-list/community-events-list.component';
-import { CommunityEditDetailsComponent } from './components/community-control-panel/community-edit-details/community-edit-details.component';
-import { CommunityTeamComponent } from './components/community-control-panel/community-team/community-team.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from "ng2-smart-table";
 import { Ng2CompleterModule } from 'ng2-completer';
-import { CommunityFormsListStatsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
-import { CommunityFormsListActionsComponent } from './components/community-control-panel/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { HomeComponent } from './components/home/home.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
@@ -60,10 +53,6 @@ import { EventCardComponent } from './components/home/event-card/event-card.comp
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
-import { CommunityStatsComponent } from './components/community-control-panel/community-stats/community-stats.component';
-import { CommunityCreateComponent } from './components/community-control-panel/community-create/community-create.component';
-import { CommunityEventsListActionsComponent } from './components/community-control-panel/community-events-list/community-events-list-actions/community-events-list-actions.component';
-import { CommunityEventsListDateComponent } from './components/community-control-panel/community-events-list/community-events-list-date/community-events-list-date.component';
 import { CommunityBuildCardComponent } from './components/home/community-build-card/community-build-card.component';
 import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
 import { AboutComponent } from './components/home/about/about.component';
@@ -84,13 +73,6 @@ export function initApp(appInitService: AppInitService) {
     DashboardComponent,
     OrganizerCommunitiesListComponent,
     CommunityComponent,
-    CommunityControlPanelComponent,
-    CommunityFormsListComponent,
-    CommunityEventsListComponent,
-    CommunityEditDetailsComponent,
-    CommunityTeamComponent,
-    CommunityFormsListStatsComponent,
-    CommunityFormsListActionsComponent,
     HomeComponent,
     FillDataFormComponent,
     LogoutComponent,
@@ -99,10 +81,6 @@ export function initApp(appInitService: AppInitService) {
     SpeakerResourceFormComponent,
     EventCardComponent,
     EditProfileComponent,
-    CommunityStatsComponent,
-    CommunityCreateComponent,
-    CommunityEventsListActionsComponent,
-    CommunityEventsListDateComponent,
     CommunityBuildCardComponent,
     AboutComponent,
     FeaturesComponent,
@@ -180,11 +158,6 @@ export function initApp(appInitService: AppInitService) {
       useClass: ApiParserResponseInterceptor,
       multi: true
     }
-  ],
-  entryComponents: [
-    CommunityFormsListStatsComponent,
-    CommunityFormsListActionsComponent,
-    // EmailerComponent
   ],
   bootstrap: [AppComponent]
 })

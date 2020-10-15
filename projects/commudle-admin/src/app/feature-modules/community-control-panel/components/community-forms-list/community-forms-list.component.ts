@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DataFormsService } from '../../../services/data_forms.service';
 import { ActivatedRoute } from '@angular/router';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { CommunityFormsListStatsComponent } from './community-forms-list-stats/community-forms-list-stats.component';
 import { CommunityFormsListActionsComponent } from './community-forms-list-actions/community-forms-list-actions.component';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 
 
 @Component({
@@ -50,7 +50,7 @@ export class CommunityFormsListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.newFormParentId = this.activatedRoute.parent.snapshot.params['name'];
+      this.newFormParentId = this.activatedRoute.parent.snapshot.params['community_id'];
       this.getDataForms();
     });
   }

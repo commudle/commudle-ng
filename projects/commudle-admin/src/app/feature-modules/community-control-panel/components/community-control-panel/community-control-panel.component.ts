@@ -44,7 +44,7 @@ export class CommunityControlPanelComponent implements OnInit {
 
   setCommunity() {
     this.activatedRoute.params.subscribe(params => {
-      let communityId = this.activatedRoute.snapshot.params['name'];
+      let communityId = this.activatedRoute.snapshot.params['community_id'];
       this.communitiesService.getCommunityDetails(communityId).subscribe(
         data => {
           this.community = data;
