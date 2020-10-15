@@ -2,9 +2,9 @@ import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ActivatedRoute } from '@angular/router';
-import { CommunitiesService } from '../../../services/communities.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { DOCUMENT } from '@angular/common';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 
 @Component({
   selector: 'app-community-edit-details',
@@ -45,7 +45,7 @@ export class CommunityEditDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.parent.params.subscribe(params => {
-      this.getCommunityDetails(params.name);
+      this.getCommunityDetails(params.community_id);
     });
   }
 

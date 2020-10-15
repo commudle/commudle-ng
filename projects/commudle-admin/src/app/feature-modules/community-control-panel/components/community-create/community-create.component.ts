@@ -2,9 +2,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
-import { CommunitiesService } from '../../../services/communities.service';
-import { CommunityGroupsService } from '../../../services/community-groups.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
 
 @Component({
   selector: 'app-community-create',

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { UserRolesUsersService } from '../../../services/user_roles_users.service';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUserRolesUser, EUserRolesUserStatus } from 'projects/shared-models/user_roles_user.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 @Component({
   selector: 'app-community-team',
   templateUrl: './community-team.component.html',
@@ -33,7 +33,7 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.communityId = this.activatedRoute.parent.snapshot.params['name'];
+      this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
       this.getRoles();
     });
   }
