@@ -184,7 +184,7 @@ export class EditDataFormComponent implements OnInit {
       this.dataForm = dataForm;
       this.fillExistingDataForm();
       this.toastLogService.successDialog('Updated!');
-      this.router.navigate(['/admin/communities', this.dataForm.parent_id]);
+      this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
 
     }));
   }

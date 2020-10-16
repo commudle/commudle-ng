@@ -37,12 +37,13 @@ export class LabsService {
     );
   }
 
-  updateLab(labId, data): Observable<ILab> {
+  updateLab(labId, data, autoSave): Observable<ILab> {
     return this.http.post<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE),
       {
         lab: data,
-        lab_id: labId
+        lab_id: labId,
+        autosave: autoSave
       }
     );
   }
