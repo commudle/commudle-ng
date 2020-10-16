@@ -1,0 +1,132 @@
+<div>
+
+  <form class="community-edit-details-form" [formGroup]="communityForm" (ngSubmit)="updateCommunityDetails()">
+    <div formGroupName="community">
+      <div role="group" >
+        <div>
+          <label fullWidth>
+            Name*
+            <input type="text" nbInput fullWidth formControlName="name">
+          </label>
+        </div>
+      </div>
+      <div role="group">
+        <div>
+          <label>
+            Logo*
+            <input type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <div class="uploaded-logo" *ngIf="uploadedLogo == null">
+        </div>
+        <div class="uploaded-logo-image" *ngIf="uploadedLogo">
+          <img src={{uploadedLogo}} alt="uploaded-logo">
+        </div>
+      </div>
+
+
+
+      <div role="group">
+        <div>
+          <label>
+            Email*
+            <input type="text" nbInput fullWidth formControlName="contact_email">
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Website
+            <input type="text" nbInput fullWidth formControlName="website">
+          </label>
+        </div>
+      </div>
+
+      <div role='group' class="about">
+          <label>
+            About*
+            <editor
+              formControlName="about"
+              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+             [init]="{
+              height: 300,
+              menubar: false,
+              convert_urls: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }">
+
+            </editor>
+          </label>
+      </div>
+
+      <div role="group">
+       <div>
+        <label>
+          Mini Description*
+          <input type="text" nbInput fullWidth formControlName="mini_description">
+
+        </label>
+       </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Facebook
+            <input type="text" nbInput fullWidth formControlName="facebook">
+          </label>
+        </div>
+      </div>
+
+
+      <div role="group">
+        <div>
+          <label>
+            Twitter
+            <input type="text" nbInput fullWidth formControlName="twitter">
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Github
+            <input type="text" nbInput fullWidth formControlName="github">
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Linkedin
+            <input type="text" nbInput fullWidth formControlName="linkedin">
+          </label>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div>
+      <button [disabled]="!communityForm.valid" type="submit" nbButton status="primary">
+        Save
+      </button>
+    </div>
+
+  </form>
+</div>

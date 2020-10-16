@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { faFlask, faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { LabsService } from '../../services/labs.service';
@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
-import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-lab',
@@ -18,6 +18,8 @@ export class EditLabComponent implements OnInit {
   faFlask = faFlask;
   faPlus = faPlusCircle;
   EPublishStatus = EPublishStatus;
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  autoSaving = false;
 
   labId;
   lab: ILab;
@@ -62,7 +64,10 @@ export class EditLabComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private labsService: LabsService,
     private toastLogService: LibToastLogService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -81,6 +86,42 @@ export class EditLabComponent implements OnInit {
     );
   }
 
+  setMeta() {
+    this.meta.updateTag({
+      name: 'description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+    this.title.setTitle(`Edit ${this.lab.name} | By ${this.lab.user.name}`);
+    this.meta.updateTag(
+      {
+        name: 'og:image',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag(
+      {
+        name: 'og:image:secure_url',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'og:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'article'});
+
+    this.meta.updateTag(
+      {
+        name: 'twitter:image',
+        content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      });
+    this.meta.updateTag({ name: 'twitter:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: this.lab.description.replace(/<[^>]*>/g, '')
+    });
+
+  }
+
 
   getLab() {
     this.labsService.getLab(this.labId).subscribe(
@@ -90,7 +131,7 @@ export class EditLabComponent implements OnInit {
         for (let img of this.lab.images) {
           this.imagesList.push({title: img.url, value: img.url});
         }
-
+        this.setMeta();
         this.tags = data.tags.toString();
         this.prefillForm();
       }
@@ -110,6 +151,12 @@ export class EditLabComponent implements OnInit {
         (this.labForm as FormGroup).setControl('lab_steps', this.setLabFormSteps(this.lab.lab_steps));
       }
 
+    }
+
+    if (this.isBrowser) {
+      setInterval(() => {
+        this.autoSaveLab();
+      }, 10000);
     }
   }
 
@@ -186,14 +233,13 @@ export class EditLabComponent implements OnInit {
   }
 
 
-  // lab_steps
   updateLab(publishStatus) {
     if (this.lab.publish_status !== EPublishStatus.published) {
       this.labForm.patchValue({
         publish_status: publishStatus
       });
     }
-    this.labsService.updateLab(this.lab.slug, this.labForm.value).subscribe(
+    this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe(
       data => {
         if (data) {
           this.lab = data;
@@ -203,13 +249,29 @@ export class EditLabComponent implements OnInit {
     );
   }
 
+
+  //auto save every 30 seconds
+  autoSaveLab() {
+    this.autoSaving = true;
+    this.labsService.updateLab(this.lab.slug, this.labForm.value, true).subscribe(
+      data => {
+        if (data) {
+          this.lab = data;
+          this.submitTags(false);
+          this.autoSaving = false;
+        }
+      }
+    );
+  }
+
   // tags
-  submitTags() {
+  submitTags(redirect=true) {
     this.labsService.updateTags(this.lab.id, this.tags.split(',')).subscribe(
       data => {
-        // this.router.navigate(['/builds/my-builds']);
-        this.toastLogService.successDialog('Saved!');
-        this.router.navigate(['/labs/my-labs']);
+        if (redirect) {
+          this.toastLogService.successDialog('Saved!');
+          this.router.navigate(['/labs/my-labs']);
+        }
       }
     );
   }

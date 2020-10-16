@@ -242,6 +242,7 @@ export const API_ROUTES = {
   USER_ROLES_USERS: {
     GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',
     GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/get_admin_community_group_users',
+    COMMUNITY_MEMBERS: 'api/v2/user_roles_users/community_members',
     CREATE: 'api/v2/user_roles_users/',
     DELETE: 'api/v2/user_roles_users/',
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',

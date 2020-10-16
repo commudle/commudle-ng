@@ -38,7 +38,7 @@ export class CreateDataFormComponent implements OnInit {
   saveDataForm(data) {
     this.dataFormsService.createDataForm(data, this.parentId, this.parentType).subscribe((dataForm => {
       this.toastLogService.successDialog('New Form Created!');
-      this.router.navigate(['/admin/communities', this.parentId]);
+      this.router.navigate(['/admin/communities', this.parentId, 'forms']);
     }));
   }
 

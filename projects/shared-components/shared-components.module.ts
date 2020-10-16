@@ -47,6 +47,7 @@ import { UserChatComponent } from './user-chat/user-chat.component';
 import { DiscussionPersonalChatChannel } from './services/websockets/dicussion-personal-chat.channel';
 import { UserPersonalChatMessageComponent } from './discussion-personal-chat/user-personal-chat-message/user-personal-chat-message.component';
 import { DiscussionPersonalChatComponent } from './discussion-personal-chat/discussion-personal-chat.component';
+import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { DiscussionPersonalChatComponent } from './discussion-personal-chat/disc
     UserObjectVisitPixelComponent,
     UserChatComponent,
     DiscussionPersonalChatComponent,
-    UserPersonalChatMessageComponent
+    UserPersonalChatMessageComponent,
+    CookieConsentComponent
   ],
   imports: [
     CommonModule,
@@ -121,7 +123,8 @@ import { DiscussionPersonalChatComponent } from './discussion-personal-chat/disc
     VotesDisplayComponent,
     UserObjectVisitPixelComponent,
     UserChatComponent,
-    DiscussionPersonalChatComponent
+    DiscussionPersonalChatComponent,
+    CookieConsentComponent
   ]
 })
 export class SharedComponentsModule { }

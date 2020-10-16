@@ -17,13 +17,13 @@
             (click)="setStep(i)"
             *ngFor="let step of lab.lab_steps; let i = index">
            <div>
-            <span class="step-count">
+            <span class="step-count" *ngIf="selectedLabStep < i">
               {{ i+1 }}.
             </span>
-            {{ step.name }}
             <span *ngIf="selectedLabStep >= i">
               <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
             </span>
+            {{ step.name }}
 
             <span *ngIf="lastVisitedStepId === step.id && i < lab.lab_steps.length - 1">
               <app-badge [text]="'Continue'" [color]="'#4e74ff'" [fontSize]="'small'"></app-badge>
