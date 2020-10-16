@@ -1,8 +1,10 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CookieConsentService } from './services/cookie-consent.service';
+import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { environment } from '../environments/environment';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { NbSidebarService } from '@nebular/theme';
+import { NbSidebarService, NbWindowService, NbWindowState } from '@nebular/theme';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Router } from '@angular/router';
@@ -16,7 +18,7 @@ import { UserNotificationsChannel } from 'projects/shared-services/websockets/us
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   faBars = faBars;
@@ -34,7 +36,9 @@ export class AppComponent {
     private sidebarService: NbSidebarService,
     private titleService: Title,
     private router: Router,
-    private userNotificationsChannel: UserNotificationsChannel
+    private userNotificationsChannel: UserNotificationsChannel,
+    private windowService: NbWindowService,
+    private cookieConsentService: CookieConsentService
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
@@ -62,7 +66,17 @@ export class AppComponent {
           //   this.sidebarService.expand('mainMenu');
           // }
         }
-      });
+      }); 
+  }
+
+  ngOnInit() {
+    if (!this.cookieConsentService.isCookieConsentAccepted()) {
+      this.openWindow();
+    }
+  }
+
+  openWindow() {
+    this.windowService.open(CookieConsentComponent, { title: 'We use cookies', hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
   }
 
   toggleSidebar() {
