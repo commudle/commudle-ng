@@ -28,6 +28,10 @@ export class CommunityControlPanelComponent implements OnInit {
     {
       title: 'Team',
       route: `./team`
+    },
+    {
+      title: 'Members',
+      route: `./members`
     }
   ];
 

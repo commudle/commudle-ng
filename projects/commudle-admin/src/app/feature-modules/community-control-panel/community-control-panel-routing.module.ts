@@ -9,6 +9,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { CommunityCreateComponent } from './components/community-create/community-create.component';
+import { CommunityMembersComponent } from './components/community-members/community-members.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'edit',
         component: CommunityEditDetailsComponent
+      },
+      {
+        path: 'members',
+        component: CommunityMembersComponent
       },
       {
         path: 'team',

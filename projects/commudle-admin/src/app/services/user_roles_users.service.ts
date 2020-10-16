@@ -42,6 +42,14 @@ export class UserRolesUsersService {
     );
   }
 
+  getCommunityMembers(query, communityId, count, page): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('community_id', communityId).set('query', query).set('count', count).set('page', page);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_MEMBERS), { params }
+    );
+  }
+
+
   createUserRolesUser(userRolesUserData): Observable<IUserRolesUser> {
     return this.http.post<IUserRolesUser>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {

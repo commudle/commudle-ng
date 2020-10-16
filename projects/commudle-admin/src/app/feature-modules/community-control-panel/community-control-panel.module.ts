@@ -2,7 +2,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CommunityControlPanelRoutingModule } from './community-control-panel-routing.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbCardModule, NbButtonModule, NbInputModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbSelectModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbInputModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbSelectModule, NbFormFieldModule } from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -18,6 +18,7 @@ import { CommunityFormsListStatsComponent } from './components/community-forms-l
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommunityMembersComponent } from './components/community-members/community-members.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommunityFormsListActionsComponent,
     CommunityFormsListStatsComponent,
     CommunityStatsComponent,
-    CommunityTeamComponent
+    CommunityTeamComponent,
+    CommunityMembersComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NbRouteTabsetModule,
     NbTabsetModule,
     NbSelectModule,
-
+    NbFormFieldModule
 
   ],
   entryComponents: [

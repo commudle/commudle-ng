@@ -1,0 +1,56 @@
+<div class="community-members">
+
+  <form [formGroup]="searchForm">
+    <div class="name-filter">
+
+      <nb-form-field>
+        <nb-icon nbPrefix icon="search"></nb-icon>
+        <input
+          nbInput
+          placeholder="Search by Name, Tagline or About Me..."
+          type="text"
+          fullWidth
+          fieldSize="small"
+          formControlName="name"
+          [disabled]="isLoading"
+        />
+      </nb-form-field>
+    </div>
+  </form>
+
+  <div class="pages">
+    <p class="clickable" (click)="getPageData(page - 1)" *ngIf="page>1">
+      <nb-icon icon="arrow-ios-back"></nb-icon>
+    </p>
+    <div *ngFor="let p of [page-2, page-1, page, page+1, page+2];">
+      <p *ngIf="p > 0 && (count * p < total)"  class="clickable" (click)="getPageData(p)" [ngClass]="{'selected-page': (this.page === p)}">
+        {{p}}
+      </p>
+    </div>
+
+    <p class="clickable" (click)="getPageData(page + 1)" *ngIf="(count * page < total)">
+      <nb-icon icon="arrow-ios-forward"></nb-icon>
+    </p>
+  </div>
+  <div class="members-list" *ngIf="!isLoading">
+    <div class="member" *ngFor="let userRole of userRolesUsers">
+      <app-badge *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER" [text]="'Organizer'" [fontSize]="'small'" [color]="'blue'"></app-badge>
+      <app-user-profile-horizontal [user]="userRole.user" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
+    </div>
+  </div>
+  <div class="pages" *ngIf="total > 25 && !isLoading">
+    <p class="clickable" (click)="getPageData(page - 1)" *ngIf="page>1">
+      <nb-icon icon="arrow-ios-back"></nb-icon>
+    </p>
+    <div *ngFor="let p of [page-2, page-1, page, page+1, page+2];">
+      <p *ngIf="p > 0 && (count * p < total)"  class="clickable" (click)="getPageData(p)" [ngClass]="{'selected-page': (this.page === p)}">
+        {{p}}
+      </p>
+    </div>
+
+    <p class="clickable" (click)="getPageData(page + 1)">
+      <nb-icon icon="arrow-ios-forward"></nb-icon>
+    </p>
+  </div>
+
+</div>
