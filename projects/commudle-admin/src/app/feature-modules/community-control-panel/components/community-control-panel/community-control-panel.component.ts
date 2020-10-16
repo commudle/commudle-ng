@@ -18,21 +18,23 @@ export class CommunityControlPanelComponent implements OnInit {
       route: `./`
     },
     {
-      title: 'Forms',
-      route: `./forms`
+      title: 'Members',
+      route: `./members`
     },
     {
-      title: 'Edit Details',
-      route: `./edit`
+      title: 'Forms',
+      route: `./forms`
     },
     {
       title: 'Team',
       route: `./team`
     },
     {
-      title: 'Members',
-      route: `./members`
+      title: 'Edit Details',
+      route: `./edit`
     }
+
+
   ];
 
   constructor(
