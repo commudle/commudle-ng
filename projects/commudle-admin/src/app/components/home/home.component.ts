@@ -88,11 +88,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  randomShine() {
-    setInterval(() => {
-      this.shineIndex = Math.floor(Math.random() * this.communities.length) + 0;
-    }, 1000);
-  }
 
   getUpcomingEvents() {
     this.homeService.pUpcomingEvents().subscribe(
