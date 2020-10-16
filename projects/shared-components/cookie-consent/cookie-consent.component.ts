@@ -1,6 +1,6 @@
 import { NbWindowRef } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
-import { CookieConsentService } from '../../services/cookie-consent.service';
+import { CookieConsentService } from 'projects/commudle-admin/src/app/services/cookie-consent.service';
 
 @Component({
   selector: 'app-cookie-consent',
@@ -17,6 +17,10 @@ export class CookieConsentComponent implements OnInit {
   acceptCookieConsent() {
     this.cookieConsentService.acceptCookieConsent();
     this.ref.close();
+  }
+
+  disagreeCookieConsent() {
+    window.close();
   }
 
 }

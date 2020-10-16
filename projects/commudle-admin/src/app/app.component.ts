@@ -1,5 +1,4 @@
 import { CookieConsentService } from './services/cookie-consent.service';
-import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
 import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { environment } from '../environments/environment';
@@ -12,6 +11,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { UserNotificationsChannel } from 'projects/shared-services/websockets/user-notifications.channel';
+import { CookieConsentComponent } from 'projects/shared-components/cookie-consent/cookie-consent.component';
 
 @Component({
   selector: 'app-root',
@@ -71,13 +71,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (!this.cookieConsentService.isCookieConsentAccepted()) {
-      this.openWindow();
+      this.windowService.open(CookieConsentComponent, { title: "Let's Share Cookies!", hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
     }
   }
 
-  openWindow() {
-    this.windowService.open(CookieConsentComponent, { title: 'We use cookies', hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
-  }
 
   toggleSidebar() {
     this.sidebarService.toggle(false, 'mainMenu');
