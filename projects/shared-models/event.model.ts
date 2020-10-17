@@ -17,4 +17,5 @@ export interface IEvent {
   custom_registration: boolean;
   custom_agenda: boolean;
   editable: boolean;
+  kommunity_slug: string;
 }
