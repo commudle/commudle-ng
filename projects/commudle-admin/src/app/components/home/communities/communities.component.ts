@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommunitiesService } from '../../../services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { Meta, Title } from '@angular/platform-browser';
+import { FormBuilder } from '@angular/forms';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-communities',
@@ -9,11 +11,19 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./communities.component.scss']
 })
 export class CommunitiesComponent implements OnInit {
-
+  page = 1;
+  count = 10;
+  total = 0;
   communities: ICommunity[] = [];
+  isLoading = false;
+
+  searchForm = this.fb.group({
+    name: ['']
+  });
 
   constructor(
     private communitiesService: CommunitiesService,
+    private fb: FormBuilder,
     private title: Title,
     private meta: Meta
   ) { }
@@ -21,15 +31,37 @@ export class CommunitiesComponent implements OnInit {
   ngOnInit() {
     this.setMeta();
     this.getAllCommunities();
+    this.search();
   }
 
 
   getAllCommunities() {
-    this.communitiesService.pGetCommunities().subscribe(
+    this.isLoading = true;
+    this.communitiesService.pGetCommunities(this.page, this.count, this.searchForm.get('name').value).subscribe(
       data => {
         this.communities = data.communities;
+        this.isLoading = false;
+        this.page = (+data.page);
+        this.total = data.total;
       }
     );
+  }
+
+
+  search() {
+    this.searchForm.valueChanges.pipe(
+      debounceTime(800),
+      switchMap(() => {
+        this.page = 1;
+        this.isLoading = true;
+        return this.communitiesService.pGetCommunities(this.page, this.count, this.searchForm.get('name').value);
+      })
+    ).subscribe(data => {
+      this.communities = data.communities;
+      this.isLoading = false;
+      this.page = (+data.page);
+      this.total = data.total;
+    });
   }
 
   setMeta() {

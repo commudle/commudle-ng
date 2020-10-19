@@ -11,6 +11,27 @@
     </p>
   </div>
 
+  <div>
+    <form [formGroup]="searchForm">
+      <div class="name-filter">
+
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search"></nb-icon>
+          <input
+            nbInput
+            placeholder="Search by Name, Tagline or About Me..."
+            type="text"
+            fullWidth
+            fieldSize="medium"
+            formControlName="name"
+            [disabled]="isLoading"
+          />
+        </nb-form-field>
+      </div>
+    </form>
+
+  </div>
+
   <div class="communities-list">
     <div *ngFor="let community of communities">
       <app-community-badge [community]="community"></app-community-badge>
