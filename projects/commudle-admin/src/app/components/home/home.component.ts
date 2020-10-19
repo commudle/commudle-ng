@@ -53,14 +53,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle("Commudle | Communities | Let's Share & Learn");
+    this.title.setTitle("Commudle");
     this.meta.updateTag({
       name: 'description',
       content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
     });
     this.meta.updateTag({name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
     this.meta.updateTag({name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
-    this.meta.updateTag({name: 'og:title', content: "Commudle | Communities | Let's Share & Learn"});
+    this.meta.updateTag({name: 'og:title', content: "Commudle, Growing With Developer Communities"});
     this.meta.updateTag({
       name: 'og:description',
       content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.meta.updateTag({name: 'og:type', content: 'website'});
 
     this.meta.updateTag({name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
-    this.meta.updateTag({name: 'twitter:title', content: "Commudle | Communities | Let's Share & Learn"});
+    this.meta.updateTag({name: 'twitter:title', content: "Commudle, Growing With Developer Communities"});
     this.meta.updateTag({
       name: 'twitter:description',
       content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
