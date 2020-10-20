@@ -66,8 +66,9 @@ export class CommunitiesComponent implements OnInit {
     ).subscribe(data => {
       this.communities = data.communities;
       this.isLoading = false;
-      this.page = (+data.page);
+      this.page = (+data.page) + 1;
       this.total = data.total;
+      this.getCommunities();
     });
   }
 
