@@ -49,7 +49,6 @@ export class CommunitiesComponent implements OnInit {
         if (this.communities.length < this.total) {
           this.page += 1;
           this.getCommunities();
-          console.log(this.communities.length);
         }
       }
     );
