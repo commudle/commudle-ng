@@ -20,7 +20,7 @@ div.page.home {
       display: flex;
       flex-wrap: wrap-reverse;
       align-items: center;
-
+      justify-content: center;
       .header-text {
         text-align: center;
         h1 {
@@ -53,7 +53,6 @@ div.page.home {
 
 
       .header-banner {
-
         .sponsored-image {
           text-align: center;
           padding: 5px;

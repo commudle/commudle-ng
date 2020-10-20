@@ -1,3 +1,4 @@
+import { TruncateTextPipe } from './truncate-text.pipe';
 import { NgModule } from '@angular/core';
 import { CompleteUrlPipe } from './complete-url.pipe';
 
@@ -5,12 +6,14 @@ import { CompleteUrlPipe } from './complete-url.pipe';
 
 @NgModule({
   declarations: [
-    CompleteUrlPipe
+    CompleteUrlPipe,
+    TruncateTextPipe
   ],
   imports: [
   ],
   exports: [
-    CompleteUrlPipe
+    CompleteUrlPipe,
+    TruncateTextPipe
   ]
 })
 export class SharedPipesModule { }

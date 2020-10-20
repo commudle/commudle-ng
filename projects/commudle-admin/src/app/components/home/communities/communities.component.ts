@@ -12,8 +12,9 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 })
 export class CommunitiesComponent implements OnInit {
   page = 1;
-  count = 10;
+  count = 5;
   total = 0;
+  activeCommunities: ICommunity[] = [];
   communities: ICommunity[] = [];
   isLoading = false;
 
@@ -30,19 +31,26 @@ export class CommunitiesComponent implements OnInit {
 
   ngOnInit() {
     this.setMeta();
-    this.getAllCommunities();
+    this.getCommunities();
     this.search();
   }
 
 
-  getAllCommunities() {
+
+  getCommunities() {
     this.isLoading = true;
     this.communitiesService.pGetCommunities(this.page, this.count, this.searchForm.get('name').value).subscribe(
       data => {
-        this.communities = data.communities;
+        this.communities = this.communities.concat(data.communities);
         this.isLoading = false;
         this.page = (+data.page);
         this.total = data.total;
+
+        if (this.communities.length < this.total) {
+          this.page += 1;
+          this.getCommunities();
+          console.log(this.communities.length);
+        }
       }
     );
   }
