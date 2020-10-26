@@ -5,12 +5,18 @@
     </div>
     <div class="details">
       <h1>{{ community.name }}</h1>
-      <p class="member-count">
-        <a [routerLink]="['members']">
-          <nb-icon icon="people" status="basic"></nb-icon>
-          {{ community.member_count }} Members
-        </a>
-      </p>
+      <div class="membership">
+        <p class="member-count">
+          <a [routerLink]="['members']">
+            <nb-icon icon="people" status="basic"></nb-icon>
+            {{ community.member_count }} Members
+          </a>
+        </p>
+        <div class="membership-toggle">
+          <app-membership-toggle [community]="community"></app-membership-toggle>
+        </div>
+      </div>
+
       <div class="community-social-links">
         <a *ngIf="community.facebook" href="{{ community.facebook | completeurl:'facebook' }}" target="_blank"
            rel="noreferrer">
