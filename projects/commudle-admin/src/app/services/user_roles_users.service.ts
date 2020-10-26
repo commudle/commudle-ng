@@ -112,4 +112,19 @@ export class UserRolesUsersService {
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_MEMBERS), { params }
     );
   }
+
+  pCheckMembership(communityId): Observable<boolean> {
+    let params = new HttpParams().set('community_id', communityId);
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_CHECK_MEMBERSHIP), { params }
+    );
+  }
+
+  pToggleMembership(communityId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_TOGGLE_MEMBERSHIP), {
+        community_id: communityId
+      }
+    );
+  }
 }
