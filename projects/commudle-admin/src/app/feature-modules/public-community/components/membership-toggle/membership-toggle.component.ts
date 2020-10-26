@@ -2,6 +2,7 @@ import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { NbDialogService } from '@nebular/theme';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-membership-toggle',
@@ -16,7 +17,8 @@ export class MembershipToggleComponent implements OnInit {
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,9 @@ export class MembershipToggleComponent implements OnInit {
     this.userRolesUsersService.pToggleMembership(this.community.slug).subscribe(
       data => {
         this.isMember = data;
+        if (this.isMember) {
+          this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
+        }
         this.dialogRef.close();
       }
     );

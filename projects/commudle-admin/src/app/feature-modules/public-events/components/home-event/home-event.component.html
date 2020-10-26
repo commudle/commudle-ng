@@ -88,19 +88,19 @@
           <p>
             <nb-icon icon="clock-outline"></nb-icon>
             <span>
-              {{ moment(event.start_time).format('dddd') }}
+              {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('dddd') }}
             </span>
             <br>
             <small>
               <strong>
-                {{ moment(event.start_time).format('Do MMM, YYYY h:mm A') }}
+                {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('Do MMM, YYYY h:mm A') }}
               </strong>
               to
               <strong *ngIf="event.end_time.getDate != event.start_time.getDate">
-                {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+                {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('dddd Do MMM, YYYY h:mm A') }}
               </strong>
               <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
-                {{ moment(event.end_time).format('h:mm A') }}
+                {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('h:mm A') }}
               </strong>
               <span *ngIf="event.timezone">
                 <br>
