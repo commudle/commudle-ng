@@ -1,3 +1,4 @@
+import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -18,6 +19,7 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 export class HomeEventComponent implements OnInit {
   moment = moment;
   momentTimezone = momentTimezone;
+  EEventStatuses = EEventStatuses;
 
   community: ICommunity;
   event: IEvent;

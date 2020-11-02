@@ -28,7 +28,7 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule, NbFormFieldModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -61,6 +61,8 @@ import { CommunitiesComponent } from './components/home/communities/communities.
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
+import { HomeCommunityCardComponent } from './components/home/communities/home-community-card/home-community-card.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -86,6 +88,7 @@ export function initApp(appInitService: AppInitService) {
     FeaturesComponent,
     CommunitiesComponent,
     SwUpdateComponent,
+    HomeCommunityCardComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -98,6 +101,7 @@ export function initApp(appInitService: AppInitService) {
     AppSharedComponentsModule,
     SharedComponentsModule,
     ReusableComponentsModule,
+    SharedPipesModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -128,6 +132,7 @@ export function initApp(appInitService: AppInitService) {
     NbBadgeModule,
     NbTabsetModule,
     NbToastrModule.forRoot(),
+    NbFormFieldModule,
 
     //other external npm modules
     Ng2CompleterModule,

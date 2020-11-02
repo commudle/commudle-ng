@@ -209,6 +209,7 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
               } else {
                 const qi = this.findMessageIndex(data.parent_id);
                 this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+                this.reorder();
               }
               break;
             }
@@ -234,9 +235,7 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
 
   reorder() {
     if (this.isBrowser) {
-      setInterval(() => {
-        this.messages = (this.messages.sort((a, b) => a.votes_count > b.votes_count ? -1 : a.votes_count < b.votes_count ? 1 : 0));
-      }, 10000);
+      this.messages = (this.messages.sort((a, b) => a.votes_count > b.votes_count ? -1 : a.votes_count < b.votes_count ? 1 : 0));
     }
 
   }

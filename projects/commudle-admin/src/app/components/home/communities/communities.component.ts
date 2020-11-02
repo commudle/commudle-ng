@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommunitiesService } from '../../../services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { Meta, Title } from '@angular/platform-browser';
+import { FormBuilder } from '@angular/forms';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-communities',
@@ -9,27 +11,65 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./communities.component.scss']
 })
 export class CommunitiesComponent implements OnInit {
-
+  page = 1;
+  count = 5;
+  total = 0;
+  activeCommunities: ICommunity[] = [];
   communities: ICommunity[] = [];
+  isLoading = false;
+
+  searchForm = this.fb.group({
+    name: ['']
+  });
 
   constructor(
     private communitiesService: CommunitiesService,
+    private fb: FormBuilder,
     private title: Title,
     private meta: Meta
   ) { }
 
   ngOnInit() {
     this.setMeta();
-    this.getAllCommunities();
+    this.getCommunities();
+    this.search();
   }
 
 
-  getAllCommunities() {
-    this.communitiesService.pGetCommunities().subscribe(
+
+  getCommunities() {
+    this.isLoading = true;
+    this.communitiesService.pGetCommunities(this.page, this.count, this.searchForm.get('name').value).subscribe(
       data => {
-        this.communities = data.communities;
+        this.communities = this.communities.concat(data.communities);
+        this.isLoading = false;
+        this.page = (+data.page);
+        this.total = data.total;
+
+        if (this.communities.length < this.total) {
+          this.page += 1;
+          this.getCommunities();
+        }
       }
     );
+  }
+
+
+  search() {
+    this.searchForm.valueChanges.pipe(
+      debounceTime(800),
+      switchMap(() => {
+        this.page = 1;
+        this.isLoading = true;
+        return this.communitiesService.pGetCommunities(this.page, this.count, this.searchForm.get('name').value);
+      })
+    ).subscribe(data => {
+      this.communities = data.communities;
+      this.isLoading = false;
+      this.page = (+data.page) + 1;
+      this.total = data.total;
+      this.getCommunities();
+    });
   }
 
   setMeta() {

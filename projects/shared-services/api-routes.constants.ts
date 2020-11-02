@@ -251,7 +251,9 @@ export const API_ROUTES = {
 
     PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
     PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
-    PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/public_get_admin_community_group_users'
+    PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/public_get_admin_community_group_users',
+    PUBLIC_CHECK_MEMBERSHIP: 'api/v2/user_roles_users/public_check_membership',
+    PUBLIC_TOGGLE_MEMBERSHIP: 'api/v2/user_roles_users/public_toggle_membership'
   },
 
   // event_collaboration_communities

@@ -142,8 +142,8 @@
         </p>
       </div>
 
-      <div class="communities">
-        <div class="community" *ngFor="let community of communities; let i=index" nbTooltip="{{community.name}}">
+      <div class="communities" [routerLink]="['/communities']">
+        <div class="community clickable" *ngFor="let community of communities; let i=index" nbTooltip="{{community.name}}">
           <div class="logo">
             <img src="{{ community.logo_path }}" alt="{{ community.name }}">
           </div>

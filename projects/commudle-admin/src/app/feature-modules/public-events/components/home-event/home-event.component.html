@@ -14,25 +14,6 @@
           <h1 class="name">
             {{ event.name }}
           </h1>
-          <div *ngIf="event.start_time && event.end_time" class="timings">
-            <p>
-              <nb-icon icon="clock-outline"></nb-icon>
-              <strong>
-                {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}
-              </strong>
-              to
-              <strong *ngIf="event.end_time.getDate != event.start_time.getDate">
-                {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
-              </strong>
-              <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
-                {{ moment(event.end_time).format('h:mm A') }}
-              </strong>
-              <span *ngIf="event.timezone">
-                <nb-icon icon="globe"></nb-icon>
-                {{ momentTimezone.tz(event.timezone).format('z') }}
-              </span>
-            </p>
-          </div>
         </div>
       </div>
       <div class="image" *ngIf="event.header_image_path">
@@ -98,11 +79,37 @@
     </div>
 
     <div class="event-components">
-      <div class="highlighted-info" [ngClass]="{'hidden': !(hasOpenForms || hasInterestedMembers)}">
+      <div class="highlighted-info" [ngClass]="{'hidden': !(hasOpenForms || hasInterestedMembers || event.start_time)}">
         <!-- links to forms + event slides + people who went -->
         <!-- this will show the link to the forms if the event is live -->
         <!-- else this will just show the links to event slides -->
-        <app-highlighted-links [event]="event" [community]="community" (hasOpenForms)="hasOpenForms = $event"></app-highlighted-links>
+        <app-highlighted-links *ngIf="event.editable || (event.event_status.name == EEventStatuses.OPEN)" [event]="event" [community]="community" (hasOpenForms)="hasOpenForms = $event"></app-highlighted-links>
+        <div *ngIf="event.start_time && event.end_time" class="timings">
+          <p>
+            <nb-icon icon="clock-outline"></nb-icon>
+            <span>
+              {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('dddd') }}
+            </span>
+            <br>
+            <small>
+              <strong>
+                {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('Do MMM, YYYY h:mm A') }}
+              </strong>
+              to
+              <strong *ngIf="event.end_time.getDate != event.start_time.getDate">
+                {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('dddd Do MMM, YYYY h:mm A') }}
+              </strong>
+              <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
+                {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('h:mm A') }}
+              </strong>
+              <span *ngIf="event.timezone">
+                <br>
+                <nb-icon icon="globe"></nb-icon>
+                {{ momentTimezone.tz(event.timezone).format('z') }}
+              </span>
+            </small>
+          </p>
+        </div>
         <app-attending-members [event]="event" [community]="community" (hasInterestedMembers)="hasInterestedMembers = $event"></app-attending-members>
 
       </div>

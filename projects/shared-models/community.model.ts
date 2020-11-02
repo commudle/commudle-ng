@@ -13,5 +13,6 @@ export interface ICommunity {
   website: string;
   linkedin: string;
   member_count: number;
+  event_count: number;
 
 }

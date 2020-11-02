@@ -1,25 +1,43 @@
+<div class="page-header">
+  <h1 class="lh-fw">
+    Communities
+  </h1>
+  <p class="text-basic">Communities are the core of Software Development today. With Commudle, you can connect with Developers across the world who are learning and building together. Here are some of the most active communities!</p>
+  <p>
+    <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
+      Apply For Early Access
+    </a>
+    <a nbButton status="info" size="small" outline [routerLink]="['/features']">
+      Why Commudle?
+    </a>
+  </p>
+</div>
 <div class="communities">
-  <div class="page-header">
-    <h1 class="lh-fw">
-      Communities
-    </h1>
-    <p>Click on any Community to visit!</p>
-    <p>
-      <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
-        Apply For Early Access
-      </a>
-    </p>
+  <div>
+    <form [formGroup]="searchForm">
+      <div class="name-filter">
+
+        <nb-form-field>
+          <nb-icon nbPrefix icon="search"></nb-icon>
+          <input
+            nbInput
+            placeholder="Find a Community by Name, City..."
+            type="text"
+            fullWidth
+            fieldSize="large"
+            status="primary"
+            formControlName="name"
+            [disabled]="isLoading"
+          />
+        </nb-form-field>
+      </div>
+    </form>
+
   </div>
 
   <div class="communities-list">
     <div *ngFor="let community of communities">
-      <app-community-badge [community]="community"></app-community-badge>
+      <app-home-community-card [community]="community"></app-home-community-card>
     </div>
   </div>
-
-  <p *ngIf="communities.length > 20" class="early-access-button bottom">
-    <a nbButton status="info" size="small" [routerLink]="['/fill-form', 465]">
-      Apply For Early Access
-    </a>
-  </p>
 </div>

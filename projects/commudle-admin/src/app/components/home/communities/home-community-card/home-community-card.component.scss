@@ -1,0 +1,50 @@
+:host {
+  height: 100%;
+  width: 100%;
+
+  nb-card {
+    width: 300px;
+    height: 300px;
+    nb-card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      .logo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        overflow: hidden;
+        img {
+          width: 100%;
+          overflow: hidden;
+        }
+      }
+
+      .name {
+        margin: 5px 0;
+        text-align: center;
+      }
+
+      .mini-description {
+        margin: 0;
+        color: grey;
+      }
+
+      .stats {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        p {
+          margin: 0;
+        }
+
+        a {
+          color: black;
+        }
+      }
+    }
+  }
+}
