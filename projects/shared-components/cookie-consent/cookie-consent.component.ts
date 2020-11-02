@@ -1,6 +1,7 @@
 import { NbWindowRef } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
 import { CookieConsentService } from 'projects/commudle-admin/src/app/services/cookie-consent.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cookie-consent',
@@ -9,7 +10,11 @@ import { CookieConsentService } from 'projects/commudle-admin/src/app/services/c
 })
 export class CookieConsentComponent implements OnInit {
 
-  constructor(private cookieConsentService: CookieConsentService, protected ref: NbWindowRef) { }
+  constructor(
+    private cookieConsentService: CookieConsentService,
+    protected ref: NbWindowRef,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit() {
   }
@@ -20,7 +25,8 @@ export class CookieConsentComponent implements OnInit {
   }
 
   disagreeCookieConsent() {
-    window.close();
+    this.cookieService.deleteAll();
+    window.location.href="about:blank";
   }
 
 }

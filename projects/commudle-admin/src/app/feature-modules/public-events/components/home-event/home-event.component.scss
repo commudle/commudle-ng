@@ -39,6 +39,15 @@
       }
     }
 
+    .event-components {
+      .highlighted-info {
+        .timings {
+          background-color: white;
+          padding: 0.5rem;
+        }
+      }
+    }
+
     .page-menu {
       position: fixed;
       background-color: white;
@@ -74,6 +83,9 @@
           font-size: 1.2rem;
         }
       }
+
+
+
       @media screen and (min-width: 800px){
         position: sticky;
         top: 3.5rem;

@@ -1,6 +1,6 @@
 <div class="events" *ngIf="events.length > 0">
   <div *ngFor="let event of events">
-    <a class="clickable" [routerLink]="['/communities', community.slug, 'events', event.slug]">
+    <a class="clickable" [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
       <nb-card class="event" [ngClass]="{'upcoming' : moment(event.end_time) > moment() && event.header_image_path}">
         <nb-card-body>
           <div class="header-image">

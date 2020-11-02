@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     ) {
       this.apiRoutes.setBaseUrl(environment.base_url);
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
-      this.titleService.setTitle("Commudle | Communities | Let's Share & Learn");
+      this.titleService.setTitle("Commudle");
       this.authWatchService.currentUser$.subscribe(currentUser => {
         this.currentUser = currentUser;
 

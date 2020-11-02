@@ -23,12 +23,24 @@
         margin-top: 0;
       }
 
-      .member-count {
-        a {
-          text-decoration: none;
-          color: black;
+      .membership {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .member-count {
+          a {
+            text-decoration: none;
+            color: black;
+          }
         }
+
+        .membership-toggle {
+          margin: 0 0.8rem;
+        }
+
       }
+
+
 
       .community-social-links {
         display: flex;
@@ -56,6 +68,11 @@
       }
 
       .details {
+
+        .membership {
+          flex-direction: row;
+        }
+
         .community-social-links {
           justify-content: flex-start;
 

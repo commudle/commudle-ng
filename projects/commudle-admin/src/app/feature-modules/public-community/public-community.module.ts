@@ -13,7 +13,7 @@ import {
   NbPopoverModule,
   NbTabsetModule,
   NbAlertModule,
-  NbBadgeModule
+  NbBadgeModule, NbSelectModule, NbOptionModule, NbDialogModule
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -22,6 +22,7 @@ import { EventsComponent } from './components/events/events.component';
 import { MembersComponent } from './components/members/members.component';
 import { EventResourcesComponent } from './components/event-resources/event-resources.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { MembershipToggleComponent } from './components/membership-toggle/membership-toggle.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     AboutComponent,
     EventsComponent,
     MembersComponent,
-    EventResourcesComponent
+    EventResourcesComponent,
+    MembershipToggleComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,10 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     NbPopoverModule,
     NbTabsetModule,
     NbAlertModule,
-    NbBadgeModule
+    NbBadgeModule,
+    NbSelectModule,
+    NbOptionModule,
+    NbDialogModule.forChild()
   ]
 })
 export class PublicCommunityModule { }

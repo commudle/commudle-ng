@@ -75,9 +75,10 @@ export class CommunitiesService {
 
 
   // Public api communication
-  pGetCommunities(): Observable<ICommunities> {
+  pGetCommunities(page, count, query): Observable<ICommunities> {
+    let params = new HttpParams().set('page', page).set('count', count).set('query', query);
     return this.http.get<ICommunities>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC_INDEX)
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.PUBLIC_INDEX), {params}
     );
   }
 

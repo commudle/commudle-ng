@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { faFlask, faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { LabsService } from '../../services/labs.service';
@@ -14,12 +14,13 @@ import { Meta, Title } from '@angular/platform-browser';
   templateUrl: './edit-lab.component.html',
   styleUrls: ['./edit-lab.component.scss']
 })
-export class EditLabComponent implements OnInit {
+export class EditLabComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
   faPlus = faPlusCircle;
   EPublishStatus = EPublishStatus;
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
   autoSaving = false;
+  autoSaveInterval;
 
   labId;
   lab: ILab;
@@ -84,6 +85,10 @@ export class EditLabComponent implements OnInit {
         this.getLab();
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.autoSaveInterval.clearInterval();
   }
 
   setMeta() {
@@ -154,7 +159,7 @@ export class EditLabComponent implements OnInit {
     }
 
     if (this.isBrowser) {
-      setInterval(() => {
+      this.autoSaveInterval = setInterval(() => {
         this.autoSaveLab();
       }, 10000);
     }
