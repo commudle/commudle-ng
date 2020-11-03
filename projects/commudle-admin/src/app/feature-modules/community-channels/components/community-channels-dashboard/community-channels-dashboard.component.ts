@@ -11,6 +11,7 @@ export class CommunityChannelsDashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('called');
   }
 
 }

@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/public-events/public-events.module').then(m => m.PublicEventsModule)
   },
   {
+    path: 'communities/:community_id/channels',
+    loadChildren: () => import('./feature-modules/community-channels/community-channels.module').then(m => m.CommunityChannelsModule)
+  },
+  {
     path: 'orgs',
     loadChildren: () => import('./feature-modules/public-community-groups/public-community-groups.module').then(m => m.PublicCommunityGroupsModule)
   },
