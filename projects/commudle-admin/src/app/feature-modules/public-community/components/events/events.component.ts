@@ -5,7 +5,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { IEvent } from 'projects/shared-models/event.model';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -22,10 +22,12 @@ export class EventsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
-    private meta: Meta
+    private meta: Meta,
+    private title: Title
   ) { }
 
   setMeta() {
+    this.title.setTitle(`Events | ${this.community.name}`);
     this.meta.updateTag({ name: 'og:title', content: `Events | ${this.community.name}` });
     this.meta.updateTag({ name: 'twitter:title', content: `Events | ${this.community.name}` });
   }

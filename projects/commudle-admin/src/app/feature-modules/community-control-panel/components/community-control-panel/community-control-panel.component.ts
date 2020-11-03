@@ -54,13 +54,14 @@ export class CommunityControlPanelComponent implements OnInit {
       this.communitiesService.getCommunityDetails(communityId).subscribe(
         data => {
           this.community = data;
+          this.setTitle();
         }
       );
     });
   }
 
   setTitle() {
-    this.titleService.setTitle(`${this.community.name} | Community Admin`);
+    this.titleService.setTitle(`Admin Dashboard | ${this.community.name}`);
   }
 
 }
