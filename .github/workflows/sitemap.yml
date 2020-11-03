@@ -1,0 +1,23 @@
+name: Build sitemap
+
+on:
+  schedule:
+    # Every week At 00:00 on Sunday
+    - cron: '0 0 * * 0'
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - run: python sitemap-generator/main.py
+      - name: Commit sitemap
+        run: |
+          git config --global user.name "Commudle"
+          git config --global user.email "admin@commudle.com"
+          git add -A
+          git commit -m "Generate sitemap.xml"
+          git push

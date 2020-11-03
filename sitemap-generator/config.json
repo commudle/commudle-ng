@@ -1,0 +1,6 @@
+{
+  "domain": "https://commudle.com/",
+  "parserobots": false,
+  "debug": true,
+  "output": "../projects/commudle-admin/src/sitemap.xml"
+}
