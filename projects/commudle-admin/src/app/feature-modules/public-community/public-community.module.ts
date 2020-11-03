@@ -23,7 +23,7 @@ import { MembersComponent } from './components/members/members.component';
 import { EventResourcesComponent } from './components/event-resources/event-resources.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { MembershipToggleComponent } from './components/membership-toggle/membership-toggle.component';
-import { CommunityChannelsListComponent } from './community-channels-list/community-channels-list.component';
+import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
 
 
 @NgModule({
