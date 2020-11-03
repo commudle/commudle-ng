@@ -63,6 +63,7 @@ import { environment } from '../environments/environment';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { HomeCommunityCardComponent } from './components/home/communities/home-community-card/home-community-card.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -138,6 +139,7 @@ export function initApp(appInitService: AppInitService) {
     Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    CommunityChannelsModule,
 
   ],
   providers: [
