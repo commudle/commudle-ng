@@ -1,0 +1,35 @@
+.community-channels-dashboard {
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  .community-list {
+
+  }
+
+  .community-channel-list {
+
+  }
+
+  .community-channel-discussion {
+
+  }
+
+
+  @media screen and (min-width: 1200px) {
+    .community-list {
+      width: 100px;
+    }
+
+    .community-channel-list {
+      width: 200px;
+    }
+
+    .community-channel-discussion {
+      min-width: 1000px;
+      flex-grow: 1;
+    }
+  }
+
+}
