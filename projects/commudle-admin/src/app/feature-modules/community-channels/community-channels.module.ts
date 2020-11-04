@@ -6,6 +6,8 @@ import { CommunityListComponent } from './components/community-list/community-li
 import { CommunityChannelFormComponent } from './components/community-channel-form/community-channel-form.component';
 import { CommunityChannelListComponent } from './components/community-channel-list/community-channel-list.component';
 import { CommunityChannelDiscussionComponent } from './components/community-channel-discussion/community-channel-discussion.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule } from '@nebular/theme';
 
 
 
@@ -19,7 +21,15 @@ import { CommunityChannelDiscussionComponent } from './components/community-chan
   ],
   imports: [
     CommonModule,
-    CommunityChannelsRoutingModule
+    CommunityChannelsRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+
+    // nebular
+    NbInputModule,
+    NbButtonModule,
+    NbIconModule,
+    NbCardModule
   ],
   exports: [
     CommunityChannelsDashboardComponent
