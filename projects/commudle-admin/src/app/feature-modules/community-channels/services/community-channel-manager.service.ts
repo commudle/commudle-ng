@@ -14,6 +14,10 @@ export class CommunityChannelManagerService {
   private selectedCommunity: BehaviorSubject<ICommunity> = new BehaviorSubject(null);
   public selectedCommunity$ = this.selectedCommunity.asObservable();
 
+  // communityChannels
+  private communityChannels: BehaviorSubject<ICommunityChannel[]> = new BehaviorSubject(null);
+  public communityChannels$ = this.communityChannels.asObservable();
+
   // channel
   private selectedChannel: BehaviorSubject<ICommunityChannel> = new BehaviorSubject(null);
   public selectedChannel$ = this.selectedChannel.asObservable();
@@ -27,10 +31,15 @@ export class CommunityChannelManagerService {
 
   setCommunity(community: ICommunity) {
     this.selectedCommunity.next(community);
+    this.getChannels();
   }
 
   setChannel(channel: ICommunityChannel) {
     this.selectedChannel.next(channel);
+  }
+
+  getChannels() {
+
   }
 
 }
