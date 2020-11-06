@@ -4,6 +4,8 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
+import { NbWindowService } from '@nebular/theme';
+import { CommunityChannelDiscussionComponent } from '../community-channel-discussion/community-channel-discussion.component';
 
 @Component({
   selector: 'app-community-channels-dashboard',
@@ -19,7 +21,8 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   constructor(
     private usersService: UsersService,
     private activatedRoute: ActivatedRoute,
-    private communityChannelManagerService: CommunityChannelManagerService
+    private communityChannelManagerService: CommunityChannelManagerService,
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
