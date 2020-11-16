@@ -1,7 +1,60 @@
 <ng-template #formTemplate let-data >
   <nb-card>
     <nb-card-header>Template Dialog</nb-card-header>
-    <nb-card-body></nb-card-body>
+    <nb-card-body>
+      <form [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
+        <div class="logo field">
+          <div class="uploaded-logo" *ngIf="uploadedLogoImage">
+            <img src="{{uploadedLogoImage}}" alt="Profile Picture">
+          </div>
+          <div class="delete-logo-button">
+            <button
+              nbButton
+              outline
+              size="tiny"
+              status="danger"
+              *ngIf="uploadedLogoImage" 
+              (click)="removeLogo()">
+              <nb-icon icon="close-circle"></nb-icon>
+              Remove Logo
+            </button>
+          </div>
+
+          <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage }">
+            <span>
+              <span>
+                <nb-icon icon="image-outline"></nb-icon>
+              </span>
+              <span>
+                Click to upload a Logo <small>(200x200)</small>*
+              </span>
+            </span>
+            <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+          </label>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
+            Name*
+            <input type="text" nbInput fullWidth formControlName="name">
+          </label>
+        </div>
+
+        <div class="field">
+          <label fullWidth>
+            Link
+            <input type="text" nbInput fullWidth formControlName="link">
+          </label>
+        </div>
+        <button nbButton [disabled]="!communityChannelForm.valid" status="primary" type="submit">
+          Submit
+        </button>
+        <button nbButton status="danger" (click)="closeForm()" type="button">
+          Cancel
+        </button>
+      </form>
+
+    </nb-card-body>
     <nb-card-footer>
     </nb-card-footer>
   </nb-card>

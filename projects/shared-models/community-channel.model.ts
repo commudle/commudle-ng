@@ -1,3 +1,4 @@
+import { IAttachedFile } from './attached-file.model';
 import { IUser } from './user.model';
 
 export interface ICommunityChannel {
@@ -7,6 +8,7 @@ export interface ICommunityChannel {
   description: string;
   join_token: string;
   is_private: boolean;
+  logo: IAttachedFile;
 
 }
 

@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogService, NbWindowService } from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
+import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { ICommunity } from 'projects/shared-models/community.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
-import { CommunityChannelDiscussionComponent } from '../community-channel-discussion/community-channel-discussion.component';
 
 @Component({
   selector: 'app-community-channel-form',
@@ -15,11 +16,17 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   @ViewChild('formTemplate', {static: true}) formTemplate: TemplateRef<any>;
   subscriptions = [];
   community: ICommunity;
+  existingChannel: ICommunityChannel;
   dialogRef;
+
+  uploadedLogoImageFile: File;
+  uploadedLogoImage;
+
 
   // community channel form
   communityChannelForm = this.fb.group({
     kommunity_id: ['', Validators.required],
+    logo: ['', Validators.required],
     name: ['', Validators.required],
     description: ['', Validators.required],
     group_name: ['', Validators.required],
@@ -32,7 +39,7 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private dialogService: NbDialogService,
-    private windowService: NbWindowService
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit() {
@@ -71,6 +78,45 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   closeForm() {
     this.dialogRef.close();
     this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+  }
+
+
+  submitForm() {
+
+  }
+
+  createCommunityChannel() {
+
+  }
+
+  updateCommunityChannel() {
+
+  }
+
+
+  displaySelectedLogo(event: any) {
+
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      if (file.size > 2425190) {
+        this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
+        return;
+      }
+      this.uploadedLogoImageFile = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.uploadedLogoImage = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeLogo() {
+    this.uploadedLogoImage = null;
+    this.uploadedLogoImageFile = null;
+    this.communityChannelForm.get('logo').patchValue('');
+
+    // if we are editing the community channel here, then send a request to the server to remove the logo
   }
 
 }

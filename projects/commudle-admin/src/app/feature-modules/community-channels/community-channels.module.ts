@@ -31,7 +31,6 @@ import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModu
     NbIconModule,
     NbCardModule,
     NbDialogModule.forChild(),
-    NbWindowModule.forChild()
   ],
   exports: [
     CommunityChannelsDashboardComponent
