@@ -37,6 +37,7 @@ export class EventFormResponsesComponent implements OnInit {
   dataForm: IDataForm;
   questions: IQuestion[] = [];
   bulkStatus;
+  bulkStatusChangeForCanceled = false;
   windowRef;
 
   isLoading = true;
@@ -244,11 +245,16 @@ export class EventFormResponsesComponent implements OnInit {
         }
       }
     );
+
+    this.windowRef.onClose.subscribe(() => {
+      this.bulkStatus = null;
+      this.bulkStatusChangeForCanceled = false;
+    });
   }
 
 
   bulkStatusChange(registrationStatusId) {
-    this.eventDataFormEntityGroupsService.changeBulkRegistrationStatus(registrationStatusId, this.eventDataFormEntityGroupId).subscribe(
+    this.eventDataFormEntityGroupsService.changeBulkRegistrationStatus(registrationStatusId, this.eventDataFormEntityGroupId, this.bulkStatusChangeForCanceled).subscribe(
       data => {
         if (data) {
           this.getResponses();

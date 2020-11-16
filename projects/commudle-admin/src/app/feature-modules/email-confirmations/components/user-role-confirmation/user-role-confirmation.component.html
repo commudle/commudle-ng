@@ -24,7 +24,12 @@
             <div class="logo">
               <img src="{{ community.logo_path }}" alt="{{ community.name }}">
             </div>
-            <p>
+            <p *ngIf="[EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name)">
+              <a [routerLink]="['/admin/communities', community.slug]">
+                {{ community.name }} (Admin Panel)
+              </a>
+            </p>
+            <p *ngIf="!([EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name))">
               <a [routerLink]="['/communities', community.slug]">
                 {{ community.name }}
               </a>
