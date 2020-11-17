@@ -4,12 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommunityChannelFormComponent } from './components/community-channel-form/community-channel-form.component';
 import { CommunityChannelResolver } from './resolvers/community-channel.resolver';
 import { CommunityChannelDiscussionComponent } from './components/community-channel-discussion/community-channel-discussion.component';
+import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 
 
 const routes: Routes = [
   {
     path: '',
     component: CommunityChannelsDashboardComponent,
+    resolve: {
+      community: CommunityDetailsResolver
+    },
     children: [
       {
         path: 'new-channel',
