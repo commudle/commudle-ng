@@ -27,6 +27,7 @@ export class UserEventRegistrationsComponent implements OnInit {
   registrationStatuses: IRegistrationStatus[];
   windowRef;
   bulkStatus;
+  bulkStatusChangeForCanceled = false;
 
   isLoading = true;
   rows = [];
@@ -180,11 +181,16 @@ export class UserEventRegistrationsComponent implements OnInit {
         }
       }
     );
+
+    this.windowRef.onClose.subscribe(() => {
+      this.bulkStatus = null;
+      this.bulkStatusChangeForCanceled = false;
+    });
   }
 
 
   bulkStatusChange(registrationStatusId) {
-    this.eventSimpleRegistrationsService.changeBulkRegistrationStatus(registrationStatusId, this.event.id).subscribe(
+    this.eventSimpleRegistrationsService.changeBulkRegistrationStatus(registrationStatusId, this.event.id, this.bulkStatusChangeForCanceled).subscribe(
       data => {
         if (data) {
           this.getResponses();
