@@ -26,10 +26,10 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   // community channel form
   communityChannelForm = this.fb.group({
     kommunity_id: ['', Validators.required],
-    logo: ['', Validators.required],
+    logo: [''],
     name: ['', Validators.required],
     description: ['', Validators.required],
-    group_name: ['', Validators.required],
+    group_name: [''],
     is_private: [false, Validators.required]
   });
 
@@ -47,6 +47,10 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     this.communityChannelManagerService.selectedCommunity$.subscribe(
       data => {
         this.community = data;
+        this.communityChannelForm.patchValue({
+          kommunity_id: this.community.slug
+        });
+
       }
     );
 
@@ -98,6 +102,7 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
 
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
+      console.log(file);
       if (file.size > 2425190) {
         this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
         return;

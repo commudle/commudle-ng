@@ -29,7 +29,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     let subs = this.activatedRoute.params.subscribe(
       data => {
         if (!this.selectedCommunity || data.community_id !== this.selectedCommunity.slug) {
-          this.selectedCommunity = this.activatedRoute.snapshot.data.community;
+          this.selectedCommunity = this.activatedRoute.snapshot.data.community;;
           this.communityChannelManagerService.setCommunity(this.selectedCommunity);
         }
       }
