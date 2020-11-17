@@ -143,8 +143,11 @@
   <p>
     This will change the status of all entries and <strong>cannot be undone</strong>.
   </p>
+  <p>
+    <nb-checkbox [(ngModel)]="bulkStatusChangeForCanceled">Change status of 'Canceled' responses also</nb-checkbox>
+  </p>
   <div>
-    <button nbButton outline size="medium" status="success" (click)="bulkStatusChange(data.registration_status.id)">Yes</button>
-    <button nbButton outline size="medium" status="danger" (click)="windowRef.close()">No</button>
+    <button nbButton ghost size="medium" status="success" (click)="bulkStatusChange(data.registration_status.id)">Yes</button>
+    <button nbButton ghost size="medium" status="danger" (click)="windowRef.close()">No</button>
   </div>
 </ng-template>
