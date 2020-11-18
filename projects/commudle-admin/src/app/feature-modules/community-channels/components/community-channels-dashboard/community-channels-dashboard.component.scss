@@ -9,7 +9,9 @@
   }
 
   .community-channel-list {
-
+    background: white;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .community-channel-discussion {

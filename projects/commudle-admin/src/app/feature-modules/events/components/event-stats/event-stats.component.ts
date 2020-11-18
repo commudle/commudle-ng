@@ -9,8 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { StatsEventsService } from 'projects/commudle-admin/src/app/services/stats/stats-events.service';
 import { Chart } from 'chart.js';
-import * as moment from 'moment';
-import * as momentTimezone from 'moment-timezone';
 import * as _ from 'lodash';
 import { DiscussionChatComponent } from 'projects/shared-components/discussion-chat/discussion-chat.component';
 import { DiscussionQnAComponent } from 'projects/shared-components/discussion-qna/discussion-qna.component';

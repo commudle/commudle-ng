@@ -1,6 +1,33 @@
 <div class="community-channel-list">
-  <a nbButton ghost size="tiny" [routerLink]="['new-channel']">
-    <nb-icon icon="plus"></nb-icon>
-    Add Channel
-  </a>
+  <p>
+    <a nbButton ghost size="tiny" [routerLink]="['new-channel']">
+      <nb-icon icon="plus"></nb-icon>
+      New Channel
+    </a>
+  </p>
+
+  <div class="channel-group" *ngFor="let chGroup of groupedChannels | keyvalue">
+    <div class="group-name">
+      <p>
+        {{(chGroup.key | uppercase) || 'GENERAL'}}
+      </p>
+      <p>
+        <a nbButton ghost size="tiny" [routerLink]="['new-channel']" [queryParams]="{group_name: chGroup.key}">
+          <nb-icon icon="plus"></nb-icon>
+        </a>
+      </p>
+    </div>
+    <div class="channels">
+      <ul>
+        <li *ngFor="let channel of chGroup.value">
+          <p>
+            {{channel.name}}
+          </p>
+          <p class="clickable">
+            <nb-icon icon="more-vertical"></nb-icon>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
