@@ -1,6 +1,9 @@
 <ng-template #formTemplate let-data>
   <nb-card>
-    <nb-card-header>Template Dialog</nb-card-header>
+    <nb-card-header>
+      <span *ngIf="!existingChannel">New Channel for {{community.name}}</span>
+      <span *ngIf="existingChannel">Edit {{ existingChannel.name }}</span>
+    </nb-card-header>
     <nb-card-body>
       <form class="community-channel-form" [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
         <div class="logo field">
@@ -10,7 +13,7 @@
           <div class="delete-logo-button">
             <button
               nbButton
-              outline
+              ghost
               size="tiny"
               status="danger"
               *ngIf="uploadedLogoImage"
@@ -71,7 +74,5 @@
       </form>
 
     </nb-card-body>
-    <nb-card-footer>
-    </nb-card-footer>
   </nb-card>
 </ng-template>

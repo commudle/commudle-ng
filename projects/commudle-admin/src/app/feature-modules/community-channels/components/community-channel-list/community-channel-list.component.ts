@@ -2,6 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
+interface EGroupedCommunityChannels {
+  [groupName: string]: ICommunityChannel[];
+}
+
 @Component({
   selector: 'app-community-channel-list',
   templateUrl: './community-channel-list.component.html',
@@ -9,7 +13,7 @@ import { CommunityChannelManagerService } from '../../services/community-channel
 })
 export class CommunityChannelListComponent implements OnInit, OnDestroy {
   subscriptions = [];
-  channels: ICommunityChannel[];
+  groupedChannels: EGroupedCommunityChannels;
   selectedChannel: ICommunityChannel;
 
   constructor(
@@ -17,9 +21,10 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.communityChannelManagerService.selectedCommunity$.subscribe(
+    this.subscriptions.push(this.communityChannelManagerService.communityChannels$.subscribe(
       data => {
-        // get all the permitted channels for this user
+        this.groupedChannels = data;
+        console.log(this.groupedChannels);
       }
     ));
   }

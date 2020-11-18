@@ -40,6 +40,13 @@ export const API_ROUTES = {
     }
   },
 
+  COMMUNITY_CHANNELS: {
+    INDEX: 'api/v2/community_channels',
+    CREATE: 'api/v2/community_channels',
+    UPDATE: 'api/v2/community_channels',
+    DELETE: 'api/v2/community_channels'
+  },
+
   COMMUNITY_GROUPS: {
     CREATE: 'api/v2/community_groups',
     UPDATE: 'api/v2/community_groups',

@@ -4,6 +4,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { CommunityChannelsService } from './community-channels.service';
+import * as _ from 'lodash';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 
 @Injectable({
@@ -15,7 +18,7 @@ export class CommunityChannelManagerService {
   public selectedCommunity$ = this.selectedCommunity.asObservable();
 
   // communityChannels
-  private communityChannels: BehaviorSubject<ICommunityChannel[]> = new BehaviorSubject(null);
+  private communityChannels: BehaviorSubject<any> = new BehaviorSubject(null);
   public communityChannels$ = this.communityChannels.asObservable();
 
   // channel
@@ -26,6 +29,8 @@ export class CommunityChannelManagerService {
   constructor(
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService,
+    private communityChannelsService: CommunityChannelsService,
+    private toastLogService: LibToastLogService
   ) { }
 
 
@@ -39,7 +44,27 @@ export class CommunityChannelManagerService {
   }
 
   getChannels() {
+    this.communityChannelsService.index(this.selectedCommunity.value.slug).subscribe(
+      data => {
+        this.communityChannels.next(_.groupBy(data.community_channels, ch => ch.group_name));
+      }
+    );
+  }
 
+  createChannel(channelData) {
+    this.communityChannelsService.create(this.selectedCommunity.value.slug, channelData).subscribe(
+      data => {
+        // select this channel
+        this.selectedChannel.next(data);
+
+        // add this channel to the group in the list of channels
+        let allChannels = this.communityChannels.value;
+        allChannels[data.group_name] ? (allChannels[data.group_name].push(data)) : (allChannels[data.group_name] = [data])
+        this.communityChannels.next(allChannels);
+
+        this.toastLogService.successDialog(`${data.name} Created!`);
+      }
+    );
   }
 
 }

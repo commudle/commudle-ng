@@ -1,0 +1,30 @@
+.community-channel-list {
+  padding: 0.5rem;
+  width: 100%;
+
+  .channel-group {
+    margin-bottom: 1.5rem;
+    .group-name {
+      display: flex;
+      justify-content: space-between;
+      p {
+        font-size: 0.8rem;
+        color: grey;
+        min-width: 10px;
+
+        nb-icon {
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    .channels {
+      ul {
+        list-style: none;
+        padding-left: 0.5rem;
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
+}

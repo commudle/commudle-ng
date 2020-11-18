@@ -6,6 +6,7 @@ export interface ICommunityChannel {
   kommunity_id: number;
   name: string;
   description: string;
+  group_name: string;
   join_token: string;
   is_private: boolean;
   logo: IAttachedFile;

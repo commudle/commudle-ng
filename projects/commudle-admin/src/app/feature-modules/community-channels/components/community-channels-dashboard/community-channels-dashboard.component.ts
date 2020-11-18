@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { NbWindowService } from '@nebular/theme';
 import { CommunityChannelDiscussionComponent } from '../community-channel-discussion/community-channel-discussion.component';
+import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 
 @Component({
   selector: 'app-community-channels-dashboard',
@@ -17,6 +18,7 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   currentUser: ICurrentUser;
   selectedCommunity: ICommunity;
+  communityChannels: ICommunityChannel[];
 
   constructor(
     private usersService: UsersService,
@@ -26,15 +28,20 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    let subs = this.activatedRoute.params.subscribe(
+    this.subscriptions.push(this.activatedRoute.params.subscribe(
       data => {
         if (!this.selectedCommunity || data.community_id !== this.selectedCommunity.slug) {
           this.selectedCommunity = this.activatedRoute.snapshot.data.community;;
           this.communityChannelManagerService.setCommunity(this.selectedCommunity);
         }
       }
-    );
-    this.subscriptions.push(subs);
+    ));
+
+    this.subscriptions.push(this.communityChannelManagerService.communityChannels$.subscribe(
+      data => {
+        this.communityChannels = data;
+      }
+    ));
   }
 
   ngOnDestroy() {

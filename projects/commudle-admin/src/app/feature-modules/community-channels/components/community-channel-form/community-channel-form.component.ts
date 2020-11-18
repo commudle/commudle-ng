@@ -25,7 +25,6 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
 
   // community channel form
   communityChannelForm = this.fb.group({
-    kommunity_id: ['', Validators.required],
     logo: [''],
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -47,18 +46,16 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     this.communityChannelManagerService.selectedCommunity$.subscribe(
       data => {
         this.community = data;
-        this.communityChannelForm.patchValue({
-          kommunity_id: this.community.slug
-        });
-
       }
     );
 
     // get the channel category name (optional)
     this.activatedRoute.queryParams.subscribe(
       data => {
-        if (data.community_channel_group) {
-
+        if (data.group_name) {
+          this.communityChannelForm.patchValue({
+            group_name: data.group_name
+          });
         }
       }
     );
@@ -74,7 +71,8 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
 
 
   openForm() {
-    this.dialogRef = this.dialogService.open(this.formTemplate, {}).onClose.subscribe(() => {
+    this.dialogRef = this.dialogService.open(this.formTemplate, {});
+    this.dialogRef.onClose.subscribe(() => {
       this.router.navigate(['../'], {relativeTo: this.activatedRoute});
     });
   }
@@ -86,7 +84,18 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
 
 
   submitForm() {
+    const formData: any = new FormData();
 
+    const communityChannelFormData = this.communityChannelForm.value;
+    Object.keys(communityChannelFormData).forEach(
+      key => (!(communityChannelFormData[key] == null) ? formData.append(`community_channel[${key}]`, communityChannelFormData[key]) : '')
+      );
+
+    if (this.uploadedLogoImageFile) {
+      formData.append('community_channel[logo]', this.uploadedLogoImageFile);
+    }
+    this.communityChannelManagerService.createChannel(formData);
+    this.closeForm();
   }
 
   createCommunityChannel() {
@@ -102,7 +111,6 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
 
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      console.log(file);
       if (file.size > 2425190) {
         this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
         return;
