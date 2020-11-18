@@ -42,6 +42,7 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    console.log('initiated');
     // get the selected community
     this.communityChannelManagerService.selectedCommunity$.subscribe(
       data => {

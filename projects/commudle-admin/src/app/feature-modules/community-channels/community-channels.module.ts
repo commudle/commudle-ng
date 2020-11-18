@@ -7,7 +7,14 @@ import { CommunityChannelFormComponent } from './components/community-channel-fo
 import { CommunityChannelListComponent } from './components/community-channel-list/community-channel-list.component';
 import { CommunityChannelDiscussionComponent } from './components/community-channel-discussion/community-channel-discussion.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModule, NbWindowModule, NbCheckboxModule, NbContextMenuModule } from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbDialogModule,
+  NbIconModule,
+  NbInputModule,
+  NbCheckboxModule } from '@nebular/theme';
+import { ChannelSettingsComponent } from './components/community-channel-list/channel-settings/channel-settings.component';
 
 
 
@@ -17,7 +24,8 @@ import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModu
     CommunityListComponent,
     CommunityChannelFormComponent,
     CommunityChannelListComponent,
-    CommunityChannelDiscussionComponent
+    CommunityChannelDiscussionComponent,
+    ChannelSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +40,6 @@ import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModu
     NbCardModule,
     NbCheckboxModule,
     NbDialogModule.forChild(),
-    NbContextMenuModule
   ],
   exports: [
     CommunityChannelsDashboardComponent
