@@ -24,7 +24,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.communityChannelManagerService.communityChannels$.subscribe(
       data => {
         this.groupedChannels = data;
-        console.log(this.groupedChannels);
       }
     ));
   }
