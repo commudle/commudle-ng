@@ -10,42 +10,36 @@ import { ChannelSettingsComponent } from './components/community-channel-list/ch
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'app',
     component: CommunityChannelsDashboardComponent,
-    pathMatch: 'full',
     resolve: {
       community: CommunityDetailsResolver
     },
     children: [
       {
         path: 'new-channel',
-        outlet: 'popup',
+        outlet: 'p',
         component: CommunityChannelFormComponent,
+      },
+      {
+        path: 'settings/:community_channel_id',
+        outlet: 'p',
+        component: ChannelSettingsComponent
       },
       {
         path: ':community_channel_id',
         component: CommunityChannelDiscussionComponent,
         resolve: {
           // community: CommunityChannelResolver
-        },
-        children: [
-          {
-            path: 'edit',
-            component: CommunityChannelFormComponent
-          },
-          {
-            path: 'settings',
-            component: ChannelSettingsComponent
-          }
-        ]
+        }
       },
     ],
   },
-  // {
-  //   path: 'new-channel',
-  //     component: CommunityChannelFormComponent,
-  //     outlet: 'popup'
-  // },
+  {
+    path: '',
+    redirectTo: 'app',
+    pathMatch: 'full'
+  },
 
 ];
 

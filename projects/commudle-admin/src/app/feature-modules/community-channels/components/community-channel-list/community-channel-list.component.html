@@ -1,6 +1,6 @@
 <div class="community-channel-list">
   <p>
-    <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'popup': ['new-channel']}}]">
+    <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]">
       <nb-icon icon="plus"></nb-icon>
       New Channel
     </a>
@@ -12,7 +12,7 @@
         {{(chGroup.key | uppercase) || 'GENERAL'}}
       </p>
       <p>
-        <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'popup': ['new-channel']}}]" [queryParams]="{group_name: chGroup.key}">
+        <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]" [queryParams]="{group_name: chGroup.key}">
           <nb-icon icon="plus"></nb-icon>
         </a>
       </p>
@@ -26,7 +26,7 @@
             </a>
           </p>
           <p>
-            <a [routerLink]="['settings']">
+            <a [routerLink]="[{outlets: {'p': ['settings', channel.id]}}]">
               <nb-icon icon="settings"></nb-icon>
             </a>
           </p>

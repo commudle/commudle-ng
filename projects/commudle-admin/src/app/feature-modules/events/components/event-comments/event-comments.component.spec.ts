@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EventCommentsComponent } from './event-comments.component';
 
@@ -6,7 +6,7 @@ describe('EventCommentsComponent', () => {
   let component: EventCommentsComponent;
   let fixture: ComponentFixture<EventCommentsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EventCommentsComponent ]
     })
