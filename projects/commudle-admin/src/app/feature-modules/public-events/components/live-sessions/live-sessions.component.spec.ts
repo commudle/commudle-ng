@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LiveSessionsComponent } from './live-sessions.component';
 
@@ -6,7 +6,7 @@ describe('LiveSessionsComponent', () => {
   let component: LiveSessionsComponent;
   let fixture: ComponentFixture<LiveSessionsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LiveSessionsComponent ]
     })

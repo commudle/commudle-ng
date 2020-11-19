@@ -124,9 +124,14 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled',
-    enableTracing: true
+    relativeLinkResolution: 'legacy'
 })],
   exports: [RouterModule],
   providers: [InitResolver]
 })
 export class AppRoutingModule { }
+
+
+// NAMED OUTLETS
+// p = popup
+// 

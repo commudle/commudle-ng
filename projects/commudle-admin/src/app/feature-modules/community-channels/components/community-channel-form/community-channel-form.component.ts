@@ -42,7 +42,6 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.log('initiated');
     // get the selected community
     this.communityChannelManagerService.selectedCommunity$.subscribe(
       data => {
@@ -64,6 +63,7 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.dialogRef.close();
     for (let subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
@@ -74,13 +74,12 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
   openForm() {
     this.dialogRef = this.dialogService.open(this.formTemplate, {});
     this.dialogRef.onClose.subscribe(() => {
-      this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      this.router.navigate([{outlets: {p: null}}], {relativeTo: this.activatedRoute.parent});
     });
   }
 
   closeForm() {
     this.dialogRef.close();
-    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
   }
 
 
