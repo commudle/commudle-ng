@@ -88,7 +88,9 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.autoSaveInterval.clearInterval();
+    if (this.autoSaveInterval) {
+      clearInterval(this.autoSaveInterval);
+    }
   }
 
   setMeta() {
