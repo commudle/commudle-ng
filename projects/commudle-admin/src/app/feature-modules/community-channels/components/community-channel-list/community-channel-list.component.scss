@@ -1,7 +1,7 @@
 .community-channel-list {
   padding: 0.5rem;
   width: 100%;
-
+  height: 100%;
   .channel-group {
     margin-bottom: 1.5rem;
     .group-name {
@@ -27,6 +27,10 @@
           nb-icon {
             font-size: 0.8rem;
             color: grey;
+          }
+
+          .name {
+
           }
         }
       }

@@ -98,14 +98,6 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     this.closeForm();
   }
 
-  createCommunityChannel() {
-
-  }
-
-  updateCommunityChannel() {
-
-  }
-
 
   displaySelectedLogo(event: any) {
 

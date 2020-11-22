@@ -20,13 +20,13 @@
     <div class="channels">
       <ul>
         <li *ngFor="let channel of chGroup.value">
-          <p>
-            <a [routerLink]="[channel.id]">
+          <p class="name">
+            <a [routerLink]="[channel.id]" (click)="selectChannel(channel)">
               {{channel.name}}
             </a>
           </p>
           <p>
-            <a [routerLink]="[{outlets: {'p': ['settings', channel.id]}}]">
+            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]">
               <nb-icon icon="settings"></nb-icon>
             </a>
           </p>

@@ -1,0 +1,19 @@
+<ng-template #settingsTemplate let-data>
+  <nb-card>
+    <nb-card-header>
+      Settings
+    </nb-card-header>
+    <nb-card-body>
+      <div>
+        <div class="menu">
+          <p>
+            <a [routerLink]="['edit']">Edit</a>
+          </p>
+        </div>
+        <div class="menu-outlet">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
