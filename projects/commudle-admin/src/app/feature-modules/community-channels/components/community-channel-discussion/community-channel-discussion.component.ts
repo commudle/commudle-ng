@@ -20,6 +20,7 @@ export class CommunityChannelDiscussionComponent implements OnInit {
       this.communityChannelManagerService.selectedChannel$.subscribe(
         data => {
           this.selectedChannel = data;
+          console.log(this.selectedChannel);
         }
       )
     );

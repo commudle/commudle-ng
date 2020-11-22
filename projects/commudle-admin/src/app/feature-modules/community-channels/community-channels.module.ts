@@ -14,7 +14,9 @@ import {
   NbIconModule,
   NbInputModule,
   NbCheckboxModule } from '@nebular/theme';
-import { ChannelSettingsComponent } from './components/community-channel-list/channel-settings/channel-settings.component';
+import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
+import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
+import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
 
 
 
@@ -25,7 +27,9 @@ import { ChannelSettingsComponent } from './components/community-channel-list/ch
     CommunityChannelFormComponent,
     CommunityChannelListComponent,
     CommunityChannelDiscussionComponent,
-    ChannelSettingsComponent
+    ChannelSettingsComponent,
+    EditChannelComponent,
+    DiscussionCommunityChannelComponent
   ],
   imports: [
     CommonModule,

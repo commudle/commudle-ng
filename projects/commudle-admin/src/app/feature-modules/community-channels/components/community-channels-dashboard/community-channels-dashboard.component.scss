@@ -1,5 +1,5 @@
 .community-channels-dashboard {
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -15,7 +15,8 @@
   }
 
   .community-channel-discussion {
-
+    background: white;
+    overflow: hidden;
   }
 
 

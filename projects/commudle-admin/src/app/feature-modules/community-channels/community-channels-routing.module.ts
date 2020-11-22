@@ -5,7 +5,8 @@ import { CommunityChannelFormComponent } from './components/community-channel-fo
 import { CommunityChannelResolver } from './resolvers/community-channel.resolver';
 import { CommunityChannelDiscussionComponent } from './components/community-channel-discussion/community-channel-discussion.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
-import { ChannelSettingsComponent } from './components/community-channel-list/channel-settings/channel-settings.component';
+import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
+import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,13 @@ const routes: Routes = [
       {
         path: 'settings/:community_channel_id',
         outlet: 'p',
-        component: ChannelSettingsComponent
+        component: ChannelSettingsComponent,
+        children: [
+          {
+            path: 'edit',
+            component: EditChannelComponent
+          }
+        ]
       },
       {
         path: ':community_channel_id',
