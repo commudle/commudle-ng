@@ -1,0 +1,18 @@
+<form (ngSubmit)="emitMessage()" [formGroup]="sendUserMessageForm">
+  <input
+  type="text"
+  nbInput
+  fullWidth
+  formControlName="content"
+  placeholder="Add a Comment (max 200 characters)"
+  >
+ <div class="clickable">
+   <label>
+     <nb-icon icon="attach"></nb-icon>
+     <input type="file" accept="image/*" nbInput fullWidth class="hidden">
+   </label>
+ </div>
+ <button [disabled]="!sendUserMessageForm.valid || disabled" type="submit" nbButton ghost fullWidth ghost status="info">
+   <nb-icon icon="corner-down-left-outline"></nb-icon>
+ </button>
+</form>

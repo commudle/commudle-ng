@@ -17,7 +17,7 @@ export class CommunityChannelManagerService {
   private selectedCommunity: BehaviorSubject<ICommunity> = new BehaviorSubject(null);
   public selectedCommunity$ = this.selectedCommunity.asObservable();
 
-  // communityChannels
+  // communityChannels grouped by their group names
   private communityChannels: BehaviorSubject<any> = new BehaviorSubject(null);
   public communityChannels$ = this.communityChannels.asObservable();
 

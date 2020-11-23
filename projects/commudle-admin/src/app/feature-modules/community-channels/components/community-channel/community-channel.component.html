@@ -1,0 +1,14 @@
+<div class="community-channel">
+  <header>
+    <p>
+      Header menu
+    </p>
+  </header>
+  <main *ngIf="discussion">
+    <div class="discussion">
+      <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
+    </div>
+    <div class="members"></div>
+    <div class="resources"></div>
+  </main>
+</div>

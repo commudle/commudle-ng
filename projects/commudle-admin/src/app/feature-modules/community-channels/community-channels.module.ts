@@ -5,7 +5,6 @@ import { CommunityChannelsRoutingModule } from './community-channels-routing.mod
 import { CommunityListComponent } from './components/community-list/community-list.component';
 import { CommunityChannelFormComponent } from './components/community-channel-form/community-channel-form.component';
 import { CommunityChannelListComponent } from './components/community-channel-list/community-channel-list.component';
-import { CommunityChannelDiscussionComponent } from './components/community-channel-discussion/community-channel-discussion.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
@@ -17,6 +16,9 @@ import {
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
+import { CommunityChannelMessageComponent } from './components/discussion-community-channel/community-channel-message/community-channel-message.component';
+import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
+import { SendMessageFormComponent } from './components/discussion-community-channel/send-message-form/send-message-form.component';
 
 
 
@@ -26,10 +28,12 @@ import { DiscussionCommunityChannelComponent } from './components/discussion-com
     CommunityListComponent,
     CommunityChannelFormComponent,
     CommunityChannelListComponent,
-    CommunityChannelDiscussionComponent,
     ChannelSettingsComponent,
     EditChannelComponent,
-    DiscussionCommunityChannelComponent
+    DiscussionCommunityChannelComponent,
+    CommunityChannelMessageComponent,
+    CommunityChannelComponent,
+    SendMessageFormComponent,
   ],
   imports: [
     CommonModule,

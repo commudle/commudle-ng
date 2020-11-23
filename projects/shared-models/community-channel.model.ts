@@ -2,6 +2,7 @@ import { IAttachedFile } from './attached-file.model';
 import { IUser } from './user.model';
 
 export interface ICommunityChannel {
+  id: number;
   user: IUser;
   kommunity_id: number;
   name: string;

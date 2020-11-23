@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommunityChannelFormComponent } from './components/community-channel-form/community-channel-form.component';
 import { CommunityChannelResolver } from './resolvers/community-channel.resolver';
-import { CommunityChannelDiscussionComponent } from './components/community-channel-discussion/community-channel-discussion.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
+import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
 
 
 const routes: Routes = [
@@ -35,7 +35,7 @@ const routes: Routes = [
       },
       {
         path: ':community_channel_id',
-        component: CommunityChannelDiscussionComponent,
+        component: CommunityChannelComponent,
         resolve: {
           // community: CommunityChannelResolver
         }
