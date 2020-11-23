@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  button, div {
+    width: 20%;
+    max-width: 40px;
+    margin-left: 5px;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+}

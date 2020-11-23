@@ -3,11 +3,9 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import * as moment from 'moment';
-import { FormBuilder, Validators } from '@angular/forms';
-import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 
 @Component({
-  selector: 'app-user-personal-chat-message',
+  selector: 'app-community-channel-message',
   templateUrl: './community-channel-message.component.html',
   styleUrls: ['./community-channel-message.component.scss']
 })
@@ -27,15 +25,8 @@ export class CommunityChannelMessageComponent implements OnInit {
   showReplyForm = false;
 
 
-
-  userMessageReplyForm = this.fb.group({
-    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
-  });
-
-
   constructor(
     private authWatchService: LibAuthwatchService,
-    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -54,17 +45,13 @@ export class CommunityChannelMessageComponent implements OnInit {
     this.sendVote.emit(userMessageId);
   }
 
-  emitFlag(userMessageId) {
-    this.sendFlag.emit(userMessageId);
-  }
 
   emitDelete(userMessageId) {
     this.sendDelete.emit(userMessageId);
   }
 
-  emitReply() {
-    this.sendReply.emit(this.userMessageReplyForm.value);
-    this.userMessageReplyForm.reset();
+  emitReply(data) {
+    this.sendReply.emit(data);
   }
 
   toggleReplyForm() {

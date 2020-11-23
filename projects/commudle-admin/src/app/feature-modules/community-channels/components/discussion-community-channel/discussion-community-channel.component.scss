@@ -4,13 +4,6 @@
     min-height: 100px;
     height: 100%;
     position: relative;
-
-    .block-chat {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-
     .messages {
       height: 90%;
       overflow-y: auto;

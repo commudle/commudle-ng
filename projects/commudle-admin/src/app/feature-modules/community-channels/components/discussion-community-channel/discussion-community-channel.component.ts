@@ -8,10 +8,11 @@ import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-val
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
+import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 
 
 @Component({
-  selector: 'app-discussion-personal-chat',
+  selector: 'app-discussion-community-channel',
   templateUrl: './discussion-community-channel.component.html',
   styleUrls: ['./discussion-community-channel.component.scss']
 })
@@ -24,8 +25,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
   moment = moment;
 
   currentUser: ICurrentUser;
-  currentUserSubscription;
-  channelSubscription;
+  subscriptions = [];
   messages: IUserMessage[] = [];
   permittedActions = [];
   blocked = false;
@@ -46,27 +46,30 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
-    private discussionChatChannel: DiscussionPersonalChatChannel,
+    private communityChannelChannel: CommunityChannelChannel,
     private authWatchService: LibAuthwatchService
 
   ) { }
 
   ngOnInit() {
-    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
       user => this.currentUser = user
-    );
-    this.discussionChatChannel.subscribe(`${this.discussion.id}`);
+    ));
+
+    this.communityChannelChannel.subscribe(`${this.discussion.id}`)
+
+
     this.receiveData();
-    this.allActions = this.discussionChatChannel.ACTIONS;
+    this.allActions = this.communityChannelChannel.ACTIONS;
     this.getDiscussionMessages();
   }
 
 
   ngOnDestroy() {
-    this.currentUserSubscription.unsubscribe();
-    this.discussionChatChannel.unsubscribe();
-    this.channelSubscription.unsubscribe();
-
+    this.communityChannelChannel.unsubscribe();
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
   }
 
   scrollToBottom() {
@@ -97,7 +100,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
   getDiscussionMessages() {
     if (!this.allMessagesLoaded && !this.loadingMessages) {
       this.loadingMessages = true;
-      this.userMessagesService.getPersonalChatDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
+      this.userMessagesService.pGetCommunityChannelDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
         data => {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
@@ -120,12 +123,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
     this.showReplyForm === messageId ? (this.showReplyForm = 0) : (this.showReplyForm = messageId);
   }
 
-  sendMessage() {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.ADD,
+  sendMessage(data) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.ADD,
       {
         user_message: {
-          content: this.chatMessageForm.get('content').value
+          content: data.content
         }
       }
     );
@@ -134,26 +137,18 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
 
 
   sendVote(userMessageId) {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.VOTE,
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.VOTE,
       {
         user_message_id: userMessageId
       }
     );
   }
 
-  sendFlag(userMessageId) {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.FLAG,
-      {
-        user_message_id: userMessageId
-      }
-    );
-  }
 
   delete(userMessageId) {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.DELETE,
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.DELETE,
       {
         user_message_id: userMessageId
       }
@@ -161,8 +156,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
   }
 
   sendReply(replyContent, userMessageId) {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.REPLY,
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.REPLY,
       {
         user_message_id: userMessageId,
         reply_message: replyContent
@@ -170,80 +165,83 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
     );
   }
 
+  // TODO CHANNEL convert this to remove member
   blockChat() {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK,
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.TOGGLE_BLOCK,
       {}
     );
   }
 
 
   receiveData() {
-    this.channelSubscription = this.discussionChatChannel.channelData$.subscribe(
-      (data) => {
-        if (data) {
-          switch (data.action) {
-            case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
-              this.permittedActions = data.permitted_actions;
-              this.blocked = data.blocked;
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.ADD): {
-              this.messages.push(data.user_message);
-              this.scrollToBottom();
-              this.newMessage.emit();
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.REPLY): {
-              this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
-              this.newMessage.emit();
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.DELETE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                if (this.messages[qi]) {
-                  this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+    this.subscriptions.push(
+      this.communityChannelChannel.channelData$.subscribe(
+        (data) => {
+          if (data) {
+            switch (data.action) {
+              case(this.communityChannelChannel.ACTIONS.SET_PERMISSIONS): {
+                this.permittedActions = data.permitted_actions;
+                this.blocked = data.blocked;
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.ADD): {
+                this.messages.push(data.user_message);
+                this.scrollToBottom();
+                this.newMessage.emit();
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.REPLY): {
+                this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+                this.newMessage.emit();
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.DELETE): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  if (this.messages[qi]) {
+                    this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+                  }
                 }
-              }
 
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.FLAG): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+                break;
               }
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.VOTE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+              case(this.communityChannelChannel.ACTIONS.FLAG): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+                }
+                break;
               }
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK): {
-              this.blocked = data.blocked;
-              if (this.blocked) {
-                this.toastLogService.warningDialog('You can only see and not send any messages.', 5000);
+              case(this.communityChannelChannel.ACTIONS.VOTE): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+                }
+                break;
               }
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.ERROR): {
-              this.toastLogService.warningDialog(data.message, 2000);
-              break;
+              case(this.communityChannelChannel.ACTIONS.TOGGLE_BLOCK): {
+                this.blocked = data.blocked;
+                if (this.blocked) {
+                  this.toastLogService.warningDialog('You can only see and not send any messages.', 5000);
+                }
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.ERROR): {
+                this.toastLogService.warningDialog(data.message, 2000);
+                break;
+              }
             }
           }
-        }
 
-      }
+        }
+      )
     );
   }
 

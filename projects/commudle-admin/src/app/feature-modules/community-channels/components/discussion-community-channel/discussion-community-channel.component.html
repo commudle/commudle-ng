@@ -1,13 +1,8 @@
 <div class="discussion-chat-component">
   <div #messagesContainer class="messages"  (scroll)="loadPreviousMessages()">
     <div>
-      <button class="block-chat" nbButton size="tiny" status="basic" outline *ngIf="discussion" (click)="blockChat()">
-        <span *ngIf="blocked">Unblock</span>
-        <span *ngIf="!blocked">Block</span>
-      </button>
-
       <div class="message" *ngFor="let um of messages">
-        <app-user-personal-chat-message
+        <app-community-channel-message
           [message]="um"
           [canReply]="true && !blocked"
           [permittedActions]="permittedActions"
@@ -16,29 +11,21 @@
           (sendReply)="sendReply($event, um.id)"
           (sendVote)="sendVote($event)"
           (sendDelete)="delete($event)"
-          (sendFlag)="sendFlag($event)"
-          ></app-user-personal-chat-message>
+          ></app-community-channel-message>
       </div>
       <div *ngIf="messages.length === 0" class="filler-message">
         <h4>
-          Be the first one to comment!
+          Begin with a Welcome Message!
         </h4>
       </div>
     </div>
   </div>
   <div class="send-message-form">
-    <form *ngIf="currentUser && !blocked" [formGroup]="chatMessageForm" (ngSubmit)="sendMessage()">
-       <input
-       type="text"
-       nbInput
-       fullWidth
-       formControlName="content"
-       placeholder="Add a Comment (max 200 characters)"
-       >
-       <button [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)" type="submit" nbButton fullWidth status="info">
-         <nb-icon icon="corner-down-left-outline"></nb-icon>
-       </button>
-    </form>
+    
+    <app-send-message-form
+      *ngIf="currentUser && !blocked"
+      (sendMessage)="sendMessage($event)"
+    ></app-send-message-form>
 
     <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
       Post a Message

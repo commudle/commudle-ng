@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
@@ -17,15 +18,21 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   selectedChannel: ICommunityChannel;
 
   constructor(
-    private communityChannelManagerService: CommunityChannelManagerService
+    private communityChannelManagerService: CommunityChannelManagerService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.communityChannelManagerService.communityChannels$.subscribe(
-      data => {
-        this.groupedChannels = data;
-      }
-    ));
+    this.subscriptions.push(
+      this.communityChannelManagerService.communityChannels$.subscribe(
+        data => {
+          this.groupedChannels = data;
+          if (this.groupedChannels) {
+            this.presetChannel();
+          }
+        }
+      )
+    );
   }
 
   ngOnDestroy() {
@@ -34,6 +41,29 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  // get the channel id from route, find it from the groupedChannels and set it as selected channel
+  presetChannel() {
+    if (this.activatedRoute.firstChild) {
+      this.subscriptions.push(
+        this.activatedRoute.firstChild.params.subscribe(
+          data => {
+            if (data.community_channel_id) {
+              Object.entries(this.groupedChannels).forEach(
+                ([key, values]) => {
+                  let ch = values.find(k => k.id == data.community_channel_id);
+                  if (ch) {
+                    this.communityChannelManagerService.setChannel(ch);
+                    return true;
+                  }
+                }
+              );
+            }
+          }
+        )
+      )
+    }
+  }
 
   selectChannel(channel) {
     this.selectedChannel = channel;

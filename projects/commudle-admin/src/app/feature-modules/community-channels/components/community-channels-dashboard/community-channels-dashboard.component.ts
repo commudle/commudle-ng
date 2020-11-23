@@ -5,7 +5,6 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { NbWindowService } from '@nebular/theme';
-import { CommunityChannelDiscussionComponent } from '../community-channel-discussion/community-channel-discussion.component';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 
 @Component({

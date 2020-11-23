@@ -38,10 +38,11 @@ export class CommunityChannelChannel {
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_PERSONAL_CHAT_CHANNEL,
+            channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_COMMUNITY_CHAT_CHANNEL_CHANNEL,
             room: discussionId
           }, {
             received: (data) => {
+              console.log(data);
               this.channelData.next(data);
             }
           });
