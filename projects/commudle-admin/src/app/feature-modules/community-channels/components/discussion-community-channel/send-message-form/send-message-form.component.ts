@@ -83,7 +83,6 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
 
   addFiles(event) {
-    console.log('hero')
     if (event.target.files && event.target.files.length > 0) {
       if (event.target.files.length > 5 || (event.target.files.length + this.uploadedFiles.length > 5) ) {
         this.toastLogService.warningDialog('Max 5 files can be attached', 3000);
@@ -117,7 +116,6 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
 
   removeFile(index) {
-    console.log(index);
     if (this.uploadedAttachementFiles[index]['id']) {
       this.uploadedAttachementFiles[index]['delete'] = true;
     } else {
