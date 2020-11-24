@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -9,6 +9,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { CommunityChannelChannel } from '../../services/websockets/community-cha
   templateUrl: './discussion-community-channel.component.html',
   styleUrls: ['./discussion-community-channel.component.scss']
 })
-export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
+export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
@@ -47,21 +48,46 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
     private communityChannelChannel: CommunityChannelChannel,
-    private authWatchService: LibAuthwatchService
-
+    private authWatchService: LibAuthwatchService,
+    private discussionsService: DiscussionsService
   ) { }
 
   ngOnInit() {
+    // this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
+    //   user => this.currentUser = user
+    // ));
+
+    // this.communityChannelChannel.subscribe(`${this.discussion.id}`);
+
+
+    // this.receiveData();
+    // this.allActions = this.communityChannelChannel.ACTIONS;
+    // this.getDiscussionMessages();
+  }
+
+  ngOnChanges() {
+    this.communityChannelChannel.unsubscribe();
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+    this.allMessagesLoaded = false;
+    this.messages = [];
+    this.pageSize = 10;
+    this.nextPage = 1;
+    this.blocked = false;
+    this.showReplyForm = 0;
+
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
       user => this.currentUser = user
     ));
 
-    this.communityChannelChannel.subscribe(`${this.discussion.id}`)
+    this.communityChannelChannel.subscribe(`${this.discussion.id}`);
 
 
     this.receiveData();
     this.allActions = this.communityChannelChannel.ACTIONS;
     this.getDiscussionMessages();
+
   }
 
 
@@ -127,12 +153,14 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
     this.communityChannelChannel.sendData(
       this.communityChannelChannel.ACTIONS.ADD,
       {
-        user_message: {
-          content: data.content
-        }
+        user_message: data
       }
     );
     this.chatMessageForm.reset();
+  }
+
+  sendAttachmentMessage(data) {
+    this.discussionsService.communityChannelNewAttachmentMessage(data, 'Discussion', this.discussion.id).subscribe();
   }
 
 
@@ -165,6 +193,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
     );
   }
 
+  sendAttachmentReply(replyContent, userMessageId) {
+    this.discussionsService.communityChannelNewAttachmentMessage(replyContent, 'UserMessage', userMessageId).subscribe();
+
+  }
+
   // TODO CHANNEL convert this to remove member
   blockChat() {
     this.communityChannelChannel.sendData(
@@ -186,12 +219,14 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnDestroy {
                 break;
               }
               case(this.communityChannelChannel.ACTIONS.ADD): {
+                console.log(data);
                 this.messages.push(data.user_message);
                 this.scrollToBottom();
                 this.newMessage.emit();
                 break;
               }
               case(this.communityChannelChannel.ACTIONS.REPLY): {
+                console.log(data);
                 this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
                 this.newMessage.emit();
                 break;

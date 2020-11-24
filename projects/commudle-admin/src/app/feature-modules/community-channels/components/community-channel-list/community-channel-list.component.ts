@@ -53,7 +53,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
                 ([key, values]) => {
                   let ch = values.find(k => k.id == data.community_channel_id);
                   if (ch) {
-                    this.communityChannelManagerService.setChannel(ch);
+                    this.selectChannel(ch);
                     return true;
                   }
                 }
@@ -66,6 +66,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
   selectChannel(channel) {
+    console.log('called');
     this.selectedChannel = channel;
     this.communityChannelManagerService.setChannel(channel);
   }

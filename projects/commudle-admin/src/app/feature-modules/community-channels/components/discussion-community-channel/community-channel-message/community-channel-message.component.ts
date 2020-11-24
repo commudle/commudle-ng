@@ -17,6 +17,7 @@ export class CommunityChannelMessageComponent implements OnInit {
   @Input() currentUser: ICurrentUser;
   @Output() sendVote = new EventEmitter();
   @Output() sendReply = new EventEmitter();
+  @Output() sendAttachmentReply = new EventEmitter();
   @Output() sendFlag = new EventEmitter();
   @Output() sendDelete = new EventEmitter();
 
@@ -52,6 +53,10 @@ export class CommunityChannelMessageComponent implements OnInit {
 
   emitReply(data) {
     this.sendReply.emit(data);
+  }
+
+  emitAttachmentReply(data) {
+    this.sendAttachmentReply.emit(data);
   }
 
   toggleReplyForm() {

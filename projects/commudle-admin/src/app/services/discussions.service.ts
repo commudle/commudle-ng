@@ -76,5 +76,13 @@ export class DiscussionsService {
   }
 
 
+  communityChannelNewAttachmentMessage(formData, parentType, parentId): Observable<boolean> {
+    const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.COMMUNITY_CHANNEL.NEW_ATTACHMENT_MESSAGE), formData,
+      { params }
+    );
+  }
+
 
 }
