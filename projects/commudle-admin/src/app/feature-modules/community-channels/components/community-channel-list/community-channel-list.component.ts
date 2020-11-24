@@ -66,7 +66,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
   selectChannel(channel) {
-    console.log('called');
     this.selectedChannel = channel;
     this.communityChannelManagerService.setChannel(channel);
   }

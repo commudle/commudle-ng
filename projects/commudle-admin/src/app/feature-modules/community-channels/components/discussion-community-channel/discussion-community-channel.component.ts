@@ -219,14 +219,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
                 break;
               }
               case(this.communityChannelChannel.ACTIONS.ADD): {
-                console.log(data);
                 this.messages.push(data.user_message);
                 this.scrollToBottom();
                 this.newMessage.emit();
                 break;
               }
               case(this.communityChannelChannel.ACTIONS.REPLY): {
-                console.log(data);
                 this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
                 this.newMessage.emit();
                 break;
