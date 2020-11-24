@@ -21,7 +21,7 @@
       <ul>
         <li *ngFor="let channel of chGroup.value">
           <p class="name">
-            <a [routerLink]="[channel.id]" (click)="selectChannel(channel)">
+            <a [routerLink]="[channel.id]">
               {{channel.name}}
             </a>
           </p>

@@ -104,7 +104,9 @@ export class CreateCommunityBuildComponent implements OnInit {
       this.uploadedImagesFiles.push({
         id: img.id,
         file: null,
-        url: img.url
+        url: img.url,
+        name: null,
+        type: null
       });
 
       this.uploadedImages.push(img.url);
@@ -150,7 +152,9 @@ export class CreateCommunityBuildComponent implements OnInit {
         const imgFile: IAttachedFile = {
           id: null,
           file: file,
-          url: null
+          url: null,
+          name: null,
+          type: null
         };
         this.uploadedImagesFiles.push(imgFile);
         const reader = new FileReader();
@@ -218,7 +222,6 @@ export class CreateCommunityBuildComponent implements OnInit {
 
 
   updateCommunityBuild(publishStatus: EPublishStatus) {
-
     this.communityBuildsService.update(this.cBuild.id, this.buildFormData(publishStatus)).subscribe(
       data => {
         this.cBuild = data;

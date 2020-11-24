@@ -58,6 +58,8 @@
       <app-send-message-form
         *ngIf="canReply"
         (sendMessage)="emitReply($event)"
+        (sendAttachmentMessage)="emitAttachmentReply($event)"
+        [attachmentDisplay]="'bottom'"
       ></app-send-message-form>
     </div>
   </div>
