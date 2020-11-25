@@ -36,7 +36,7 @@
    <div>
      <label class="clickable">
        <nb-icon icon="attach"></nb-icon>
-       <input type="file" nbInput fullWidth class="hidden" multiple (change)="addFiles($event)">
+       <input type="file" nbInput fullWidth class="hidden" multiple (change)="addFiles($event)" #fileInput>
      </label>
    </div>
    <button [disabled]="!sendUserMessageForm.valid || disabled" type="submit" nbButton ghost fullWidth ghost status="info">
