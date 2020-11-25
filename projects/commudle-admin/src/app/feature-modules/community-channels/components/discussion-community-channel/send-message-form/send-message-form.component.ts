@@ -11,6 +11,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 })
 export class SendMessageFormComponent implements OnInit, AfterViewInit {
   @ViewChild('inputElement', {static: true}) inputElement: ElementRef;
+  @ViewChild('fileInput', {static: true})  fileInput: ElementRef;
 
   @Input() disabled: boolean;
   @Input() attachmentDisplay = 'top';
@@ -53,6 +54,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.sendUserMessageForm.reset();
     this.uploadedAttachementFiles = [];
     this.uploadedFiles = [];
+    this.fileInput.nativeElement.value = '';
   }
 
 
