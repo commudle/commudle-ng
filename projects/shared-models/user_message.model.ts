@@ -1,3 +1,4 @@
+import { IAttachedFile } from './attached-file.model';
 import { IUser } from './user.model';
 
 export interface IUserMessage {
@@ -10,4 +11,5 @@ export interface IUserMessage {
   votes_count: number;
   flags_count: number;
   user_messages: IUserMessage[];
+  attachments: IAttachedFile[];
 }

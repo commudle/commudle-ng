@@ -15,6 +15,28 @@
         </p>
       </div>
       <div class="content">{{ message.content }}</div>
+      <div class="attachments" *ngIf="message.attachments.length > 0">
+        <div class="file" *ngFor="let file of message.attachments; let i=index;">
+          <a class="download-link clickable" href="{{file.url}}" target="_blank">
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+          <div class="file-preview" *ngIf="!file.type.includes('image')">
+            <p class="name">
+              <small>
+                {{file.name | slice:0:20 }}
+              </small>
+            </p>
+            <p class="extension">
+              <small>
+                {{file.name.split('.').reverse()[0]}}
+              </small>
+            </p>
+          </div>
+          <div class="image-file-preview" *ngIf="file.type.includes('image')">
+            <img src="{{file.url}}" alt="{{ file.name }}">
+          </div>
+        </div>
+      </div>
       <div class="details-flag">
         <div
           class="clickable"
