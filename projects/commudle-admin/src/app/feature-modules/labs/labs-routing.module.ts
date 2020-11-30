@@ -7,6 +7,7 @@ import { CreateLabComponent } from './components/create-lab/create-lab.component
 import { EditLabComponent } from './components/edit-lab/edit-lab.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabComponent } from './components/lab/lab.component';
+import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
 
 const routes: Routes = [
   {
@@ -32,8 +33,13 @@ const routes: Routes = [
   },
   {
     path: ':lab_id',
-    component: LabComponent
-
+    component: LabComponent,
+    children: [
+      {
+        path: 'steps/:step_id',
+        component: LabStepComponent
+      }
+    ]
   }
 ];
 
