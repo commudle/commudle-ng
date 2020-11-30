@@ -28,6 +28,10 @@ const routes: Routes = [
     component: FeaturesComponent
   },
   {
+    path: 'users',
+    loadChildren: () => import('./feature-modules/users/users.module').then(m => m.UsersModule)
+  },
+  {
     path: 'communities',
     component: CommunitiesComponent
   },

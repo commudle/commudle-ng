@@ -11,4 +11,5 @@ export interface IUser {
   twitter: string;
   gender: string;
   avatar: string;
+  username: string;
 }

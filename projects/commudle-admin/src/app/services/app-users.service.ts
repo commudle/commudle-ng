@@ -23,4 +23,17 @@ export class AppUsersService {
       this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), userProfileData
     );
   }
+
+  checkUsername(username): Observable<boolean> {
+    let params = new HttpParams().set('username', username);
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.CHECK_USERNAME), {params});
+  }
+
+  setUsername(username): Observable<boolean> {
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SET_USERNAME),
+      {username}
+      );
+  }
 }
