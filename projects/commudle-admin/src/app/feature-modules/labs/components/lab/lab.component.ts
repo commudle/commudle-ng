@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { LabsService } from '../../services/labs.service';
 import { ILab } from 'projects/shared-models/lab.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
@@ -23,7 +23,7 @@ export class LabComponent implements OnInit, OnDestroy {
   labDescription;
   lastVisitedStepId;
   discussionChat: IDiscussion;
-  routeSubscription;
+  routeSubscriptions = [];
   codeHighlighted = false;
 
 
@@ -33,6 +33,7 @@ export class LabComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private title: Title,
     private meta: Meta,
+    private router: Router,
     private discussionsService: DiscussionsService,
     @Inject(DOCUMENT) private doc: Document,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService
@@ -40,15 +41,19 @@ export class LabComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.routeSubscription = this.activatedRoute.params.subscribe(data => {
-      this.getLab(data.lab_id);
-    });
+    this.routeSubscriptions.push(
+      this.activatedRoute.params.subscribe(data => {
+        this.getLab(data.lab_id);
+      })
+    );
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.routeSubscription.unsubscribe();
+    for (const subs of this.routeSubscriptions) {
+      subs.unsubscribe();
+    }
   }
 
   highlightCodeSnippets() {
@@ -113,6 +118,17 @@ export class LabComponent implements OnInit, OnDestroy {
         this.lastVisitedStepId = this.lab.last_visited_step_id;
         this.getDiscussionChat();
         this.highlightCodeSnippets();
+
+        if (this.activatedRoute.firstChild) {
+          this.routeSubscriptions.push(
+            this.activatedRoute.firstChild.params.subscribe(data => {
+              if (data.step_id) {
+                this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id == data.step_id);
+                this.setStep(this.selectedLabStep);
+              }
+            })
+          );
+        }
       }
     );
   }
