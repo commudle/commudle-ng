@@ -1,5 +1,22 @@
 <div>
 
+  <div class="username">
+      <form [formGroup]="usernameForm">
+        <label>
+          Choose a username to enable your public profile
+          <nb-form-field>
+            <nb-icon nbPrefix icon="at-outline"></nb-icon>
+            <input
+              type="text"
+              nbInput
+              status="primary"
+              [disabled]="!changeUsername"
+              (change)="checkUsername()"
+              >
+          </nb-form-field>
+        </label>
+      </form>
+  </div>
   <form [formGroup]="userProfileForm" (ngSubmit)="updateUserDetails()">
     <div class="row">
       <div>
@@ -33,7 +50,7 @@
       <div>
         <label>
           What's Your Tagline?*
-          <input type="text" nbInput fullWidth formControlName="designation">
+          <input type="text" nbInput fullWidth formControlName="designation" placeholder="CEO, Commudle">
         </label>
         <span *ngIf="userProfileForm['controls'].designation.touched && userProfileForm['controls'].designation.invalid && userProfileForm['controls'].designation.errors.required" class="validation-error-text">
           Required Field
