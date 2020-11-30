@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataFormEntitiesService } from '../../services/data-form-entities.service';
 import { IDataFormEntity, Visibility } from 'projects/shared-models/data_form_entity.model';
@@ -10,6 +10,9 @@ import { Title, Meta } from '@angular/platform-browser';
 import { LibErrorHandlerService } from 'projects/lib-error-handler/src/public-api';
 import { DataFormEntityResponsesService } from '../../services/data-form-entity-responses.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { NbDialogService } from '@nebular/theme';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 
 @Component({
@@ -17,7 +20,9 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   templateUrl: './fill-data-form.component.html',
   styleUrls: ['./fill-data-form.component.scss']
 })
-export class FillDataFormComponent implements OnInit {
+export class FillDataFormComponent implements OnInit, OnDestroy {
+  @ViewChild('formConfirmationDialog', {static: true}) formConfirmationDialog: TemplateRef<any>;
+
   dataFormEntity: IDataFormEntity;
   Visibility: Visibility;
   formClosed = false;
@@ -26,6 +31,9 @@ export class FillDataFormComponent implements OnInit {
   event: IEvent;
   community: ICommunity;
   selectedFormResponse: any;
+  subscriptions = [];
+  currentUser: ICurrentUser;
+  dialogRef;
 
   existingResponses;
 
@@ -39,24 +47,43 @@ export class FillDataFormComponent implements OnInit {
     private meta: Meta,
     private errorHandler: LibErrorHandlerService,
     private dataFormEntityResponsesService: DataFormEntityResponsesService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private dialogService: NbDialogService,
+    private authWatchService: LibAuthwatchService
   ) { }
 
   ngOnInit() {
-    this.redirectRoute = ['/'];
-    this.activatedRoute.params.subscribe(params => {
-      this.getDataFormEntity(params.data_form_entity_id);
-    });
-
-
-    this.activatedRoute.queryParams.subscribe(
-      data => {
-        if (data.next) {
-
-          this.redirectRoute = [decodeURIComponent(data.next)];
-        }
-      }
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe(params => {
+        this.getDataFormEntity(params.data_form_entity_id);
+      })
     );
+
+    this.subscriptions.push(
+      this.activatedRoute.queryParams.subscribe(
+        data => {
+          if (data.next) {
+            this.redirectRoute = [decodeURIComponent(data.next)];
+          }
+        }
+      )
+    );
+
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        data => this.currentUser = data
+      )
+    );
+  }
+
+  ngOnDestroy() {
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
   }
 
 
@@ -143,9 +170,9 @@ export class FillDataFormComponent implements OnInit {
         if (!this.event.header_image_path) {
           this.meta.updateTag({name: 'og:image', content: this.community.logo_path});
         }
-        if (!this.redirectRoute) {
-          this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
-        }
+        // if (!this.redirectRoute) {
+        //   this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
+        // }
       }
     );
   }
@@ -156,14 +183,18 @@ export class FillDataFormComponent implements OnInit {
       this.dataFormEntity.id,
       $event).subscribe(
       data => {
-        this.toastLogService.successDialog('Saved!');
+        // this.toastLogService.successDialog('Saved!');
         this.redirectTo();
       }
     );
   }
 
   redirectTo() {
-    this.router.navigate(this.redirectRoute);
+    if (this.redirectRoute) {
+      this.router.navigate(this.redirectRoute);
+    } else {
+      this.dialogRef = this.dialogService.open(this.formConfirmationDialog);
+    }
   }
 
 }
