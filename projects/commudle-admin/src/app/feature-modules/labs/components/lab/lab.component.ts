@@ -66,7 +66,7 @@ export class LabComponent implements OnInit, OnDestroy {
   setMeta() {
     this.meta.updateTag({
       name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '')
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
     this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag(
@@ -82,7 +82,7 @@ export class LabComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'og:title', content: `${this.lab.name} | By ${this.lab.user.name}` });
     this.meta.updateTag({
       name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '')
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
     this.meta.updateTag({ name: 'og:type', content: 'article'});
 
@@ -94,7 +94,7 @@ export class LabComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'twitter:title', content: `${this.lab.name} | By ${this.lab.user.name}` });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '')
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
 
   }
