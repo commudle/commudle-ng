@@ -8,6 +8,7 @@ import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { ILabs } from 'projects/shared-models/labs.model';
 import { ITag } from 'projects/shared-models/tag.model';
 import { ITags } from 'projects/shared-models/tags.model';
+import { ILabStep } from 'projects/shared-models/lab-step.model';
 
 @Injectable({
   providedIn: 'root'
@@ -127,6 +128,14 @@ export class LabsService {
   pTags(): Observable<ITags> {
     return this.http.get<ITags>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.TAGS)
+    );
+  }
+
+
+  pGetStep(stepId): Observable<ILabStep> {
+    let params = new HttpParams().set('lab_step_id', stepId);
+    return this.http.get<ILabStep>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.GET_STEPS), {params}
     );
   }
 }
