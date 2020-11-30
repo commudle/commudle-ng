@@ -1,18 +1,19 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { Component, OnInit, Input, OnDestroy, AfterViewChecked, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, AfterViewChecked} from '@angular/core';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LabsService } from '../../../services/labs.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lab-step',
   templateUrl: './lab-step.component.html',
   styleUrls: ['./lab-step.component.scss']
 })
-export class LabStepComponent implements OnInit, OnChanges, OnDestroy, AfterViewChecked {
+export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   @Input() step: ILabStep;
-  userSubscription;
+  subscriptions = []
   currentUser;
   stepDescription;
   codeHighlighted = false;
@@ -21,26 +22,39 @@ export class LabStepComponent implements OnInit, OnChanges, OnDestroy, AfterView
     private authWatchService: LibAuthwatchService,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
-    private prismJsHighlightCodeService: PrismJsHighlightCodeService
+    private prismJsHighlightCodeService: PrismJsHighlightCodeService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.userSubscription = this.authWatchService.currentUser$.subscribe(
-      data => {
-        this.currentUser = data;
-      }
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        data => {
+          this.currentUser = data;
+        }
+      )
     );
-  }
 
-  ngOnChanges() {
-    this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
-    this.addLabStepVisit();
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe(data => {
+        this.labsService.pGetStep(data.step_id).subscribe(
+          stepData => {
+            this.step = stepData;
+            this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
+            this.addLabStepVisit();
+          }
+        );
+      })
+    );
+
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.userSubscription.unsubscribe();
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
 
   }
 
