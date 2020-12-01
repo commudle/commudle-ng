@@ -4,30 +4,36 @@
     <div class="menu">
       <nb-card>
         <nb-list class="steps">
-          <nb-list-item class="clickable title" (click)="setStep(-1)">
+          <nb-list-item class="clickable title" (click)="setStep(-1)" [routerLink]="['/labs', lab.slug]">
             <div>
               <p>
-                <fa-icon [icon]="faFlask"></fa-icon>
+                <a [routerLink]="['/labs', lab.slug]">
+                  <fa-icon [icon]="faFlask"></fa-icon>
                 Introduction
+                </a>
               </p>
             </div>
           </nb-list-item>
           <nb-list-item
             class="clickable"
-            (click)="setStep(i)"
-            *ngFor="let step of lab.lab_steps; let i = index">
+            *ngFor="let step of lab.lab_steps; let i = index"
+            [routerLink]="['steps', lab.lab_steps[i].id]"
+            (click)="setStep(i)">
            <div>
-            <span class="step-count" *ngIf="selectedLabStep < i">
-              {{ i+1 }}.
-            </span>
-            <span *ngIf="selectedLabStep >= i">
-              <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
-            </span>
-            {{ step.name }}
+             <a [routerLink]="['steps', lab.lab_steps[i].id]">
+              <span class="step-count" *ngIf="selectedLabStep < i">
+                {{ i+1 }}.
+              </span>
+              <span *ngIf="selectedLabStep >= i">
+                <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
+              </span>
+              {{ step.name }}
 
-            <span *ngIf="lastVisitedStepId === step.id && i < lab.lab_steps.length - 1">
-              <app-badge [text]="'Continue'" [color]="'#4e74ff'" [fontSize]="'small'"></app-badge>
-            </span>
+              <span *ngIf="lastVisitedStepId === step.id && i < lab.lab_steps.length - 1">
+                <app-badge [text]="'Continue'" [color]="'#4e74ff'" [fontSize]="'small'"></app-badge>
+              </span>
+             </a>
+
            </div>
           </nb-list-item>
           <nb-list-item class="interactions">
@@ -69,7 +75,7 @@
             <div class="intro-content" [innerHTML]="labDescription"></div>
           </div>
           <div>
-            <app-lab-step *ngIf="selectedLabStep >= 0" [step]="lab.lab_steps[selectedLabStep]"></app-lab-step>
+            <router-outlet></router-outlet>
           </div>
 
           <!-- show author details at the end too -->
@@ -93,16 +99,16 @@
             </p>
           </div>
         </nb-card-body>
-        <nb-card-footer>
+        <nb-card-footer [ngClass]="{'completed': selectedLabStep === lab.lab_steps.length - 1 && lab.lab_steps.length > 0}">
           <div class="steps-navigation">
-            <a class="padding-0 text-info" *ngIf="selectedLabStep != -1" (click)="changeStep(-1)">
+            <a class="padding-0" *ngIf="selectedLabStep != -1" (click)="changeStep(-1)" [routerLink]="selectedLabStep == 0 ? [] : ['steps', this.lab.lab_steps[selectedLabStep - 1].id]">
               <p>
                 <nb-icon icon="arrow-ios-back"></nb-icon>
                 Previous
               </p>
             </a>
 
-            <p class="steps-status text-info">
+            <p class="steps-status">
               <span *ngIf="selectedLabStep === -1 && lab.lab_steps.length > 0">
                 Total {{ lab.lab_steps.length }} Steps!
               </span>
@@ -112,16 +118,21 @@
               </span>
 
               <span class="successful-completion" *ngIf="selectedLabStep === lab.lab_steps.length - 1 && lab.lab_steps.length > 0">
-                🚀🏆 Kudos, you've completed it all!
+                🏆 Completed!
               </span>
 
             </p>
 
-            <a class="clickable text-info" *ngIf="selectedLabStep < lab.lab_steps.length - 1" (click)="changeStep(1)">
+            <a class="clickable text-info" *ngIf="selectedLabStep < lab.lab_steps.length - 1" (click)="changeStep(1)" [routerLink]="['steps', this.lab.lab_steps[selectedLabStep + 1].id]">
               <p>
                 Next
                 <nb-icon icon="arrow-ios-forward"></nb-icon>
               </p>
+            </a>
+
+            <a class="more-labs-link" [routerLink]="['/labs']" *ngIf="selectedLabStep === lab.lab_steps.length - 1 && lab.lab_steps.length > 0">
+              <nb-icon icon="grid-outline"></nb-icon>
+              More Labs
             </a>
           </div>
         </nb-card-footer>

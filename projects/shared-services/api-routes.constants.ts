@@ -335,7 +335,8 @@ export const API_ROUTES = {
     PUBLIC: {
       SHOW: 'api/v2/labs/public/show',
       TAGS: 'api/v2/labs/public/tags',
-      INDEX: 'api/v2/labs/public'
+      INDEX: 'api/v2/labs/public',
+      GET_STEPS: 'api/v2/labs/public/steps'
     }
   },
 

@@ -15,12 +15,14 @@ export class EventResourcesComponent implements OnInit {
   moment = moment;
   community: ICommunity;
   speakerResources: ISpeakerResource[];
+  sanitizedResources = {};
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private speakerResourcesService: SpeakerResourcesService,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private sanitizer: DomSanitizer
   ) { }
 
   setMeta() {
@@ -44,12 +46,15 @@ export class EventResourcesComponent implements OnInit {
     this.speakerResourcesService.pCommunitySpeakerResources(this.community.id).subscribe(
       data => {
         this.speakerResources = data.speaker_resources;
+
+        for (const spr of this.speakerResources) {
+          if (spr.embedded_content) {
+            this.sanitizedResources[`${spr.id}`] = this.sanitizer.bypassSecurityTrustHtml(spr.embedded_content);
+          }
+        }
       }
     );
   }
 
-  // sanitizedText(text) {
-  //   return this.sanitizer.bypassSecurityTrustHtml(text);
-  // }
 
 }

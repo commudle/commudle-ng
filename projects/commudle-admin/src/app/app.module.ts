@@ -28,7 +28,7 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule, NbFormFieldModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -64,6 +64,7 @@ import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { HomeCommunityCardComponent } from './components/home/communities/home-community-card/home-community-card.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
+import { EventsComponent } from './components/home/events/events.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -90,6 +91,7 @@ export function initApp(appInitService: AppInitService) {
     CommunitiesComponent,
     SwUpdateComponent,
     HomeCommunityCardComponent,
+    EventsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -135,6 +137,7 @@ export function initApp(appInitService: AppInitService) {
     NbTabsetModule,
     NbToastrModule.forRoot(),
     NbFormFieldModule,
+    NbDialogModule.forRoot(),
 
     //other external npm modules
     Ng2CompleterModule,
