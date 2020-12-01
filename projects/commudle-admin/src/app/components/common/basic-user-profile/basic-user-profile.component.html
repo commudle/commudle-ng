@@ -1,20 +1,36 @@
-<div>
+<div *ngIf="currentUser">
 
   <div class="username">
-      <form [formGroup]="usernameForm">
-        <label>
-          Choose a username to enable your public profile
-          <nb-form-field>
-            <nb-icon nbPrefix icon="at-outline"></nb-icon>
-            <input
-              type="text"
-              nbInput
-              status="primary"
-              [disabled]="!changeUsername"
-              (change)="checkUsername()"
-              >
-          </nb-form-field>
-        </label>
+      <form [formGroup]="usernameForm" (ngSubmit)="setUsername()">
+        <div>
+          <label>
+            Choose a username to for your public profile
+            <nb-form-field>
+              <nb-icon nbPrefix icon="at-outline"></nb-icon>
+              <input
+                type="text"
+                nbInput
+                status="primary"
+                fieldSize="small"
+                formControlName="username"
+                (change)="checkUsername()"
+                >
+            </nb-form-field>
+          </label>
+          <p class="field-error validation-error-text" *ngIf="usernameForm.controls.username.errors" icon="alert-circle-outline" status="danger">
+            <small>
+              *Username cannot contain spaces & special characters
+            </small>
+          </p>
+        </div>
+        <div>
+          <button nbButton size="small" [nbSpinner]="checkingUsername" status="success" type="submit" [disabled]="!validusername || (currentUsername == lastUsername) || checkingUsername">
+            Save
+          </button>
+          <a class="public-profile-link" nbButton size="small" status="info" outline [routerLink]="['/users', currentUser.username]">
+            Go To Profile Page
+          </a>
+        </div>
       </form>
   </div>
   <form [formGroup]="userProfileForm" (ngSubmit)="updateUserDetails()">

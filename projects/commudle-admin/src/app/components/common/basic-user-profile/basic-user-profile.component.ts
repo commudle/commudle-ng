@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AppUsersService } from '../../../services/app-users.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { NoSpecialCharactersValidator, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -17,8 +18,9 @@ export class BasicUserProfileComponent implements OnInit {
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
   validusername = false;
+  lastUsername = '';
   currentUsername = '';
-  changeUsername = false;
+  checkingUsername = false;
 
   userProfileForm = this.fb.group({
     name: ['', Validators.required],
@@ -33,7 +35,7 @@ export class BasicUserProfileComponent implements OnInit {
   });
 
   usernameForm = this.fb.group({
-    username: ['', Validators.required]
+    username: ['', [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator]]
   })
 
   constructor(
@@ -49,13 +51,15 @@ export class BasicUserProfileComponent implements OnInit {
         this.currentUser = currentUser;
         this.userProfileForm.patchValue(this.currentUser);
         this.uploadedProfilePicture = this.currentUser.avatar;
-
-        if (!this.currentUser.username) {
-          this.changeUsername = true;
-        }
+        this.currentUsername = this.lastUsername = this.currentUser.username;
+        this.usernameForm.patchValue({
+          username: this.currentUser.username
+        })
       }
 
     });
+
+    this.checkUsername();
   }
 
 
@@ -103,8 +107,9 @@ export class BasicUserProfileComponent implements OnInit {
     this.usernameForm.valueChanges.pipe(
       debounceTime(800),
       switchMap(() => {
-
-        return this.usersService.checkUsername(this.usernameForm.get('username').value);
+        this.checkingUsername = true;
+        this.currentUsername = this.usernameForm.get('username').value;
+        return this.usersService.checkUsername(this.currentUsername);
       })
     ).subscribe((data) => {
       if (data == true) {
@@ -112,6 +117,8 @@ export class BasicUserProfileComponent implements OnInit {
       } else {
         this.validusername = false;
       }
+
+      this.checkingUsername = false;
     });
   }
 
@@ -119,8 +126,9 @@ export class BasicUserProfileComponent implements OnInit {
     let newUsername = this.usernameForm.get('username').value;
     this.usersService.setUsername(newUsername).subscribe(
       data => {
-        if (data == newUsername) {
+        if (data) {
           this.toastLogService.successDialog('Updated!');
+          this.lastUsername = newUsername;
           // get the user again from the server
           this.authWatchService.checkAlreadySignedIn().subscribe();
         }
