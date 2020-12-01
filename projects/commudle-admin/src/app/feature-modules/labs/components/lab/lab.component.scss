@@ -20,6 +20,11 @@
         .step-count {
           font-size: 0.8rem;
         }
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
       }
 
       .interactions {
@@ -82,9 +87,26 @@
         }
 
         nb-card-footer {
-          position: sticky;
+          position: fixed;
+          z-index: 2;
+          width: 100%;
           bottom: 0;
-          background-color: white;
+          background-color: grey;
+          padding: 0.5rem;
+          border: none;
+          border-radius: 0;
+
+          &.completed {
+            background-color: #5073ff;
+          }
+
+          p {
+            color: white;
+          }
+
+          @media (min-width: 800px) {
+            position: sticky;
+          }
         }
       }
 
@@ -149,6 +171,10 @@
         line-height: 1.5rem;
         display: inline-block;
       }
+    }
+
+    .more-labs-link {
+      color: white;
     }
   }
 

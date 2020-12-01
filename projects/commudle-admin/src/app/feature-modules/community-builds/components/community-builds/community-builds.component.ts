@@ -57,7 +57,6 @@ export class CommunityBuildsComponent implements OnInit {
         data => {
           this.communityBuilds = this.communityBuilds.concat(data.community_builds);
           this.page += 1;
-          this.count += 1;
           this.total = data.total;
           this.isLoading = false;
           if (this.communityBuilds.length >= this.total) {
