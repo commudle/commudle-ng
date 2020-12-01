@@ -9,6 +9,10 @@ import * as _ from 'lodash';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 
+export interface IGroupedCommunityChannels {
+  [groupName: string]: ICommunityChannel[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,6 +41,21 @@ export class CommunityChannelManagerService {
   setCommunity(community: ICommunity) {
     this.selectedCommunity.next(community);
     this.getChannels();
+  }
+
+
+  findChannel(channelId) {
+
+    let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+    Object.entries(groupedChannels).forEach(
+      ([key, values]) => {
+        let ch = values.find(k => k.id == channelId);
+        if (ch) {
+          this.setChannel(ch)
+          return ch;
+        }
+      }
+    );
   }
 
   setChannel(channel: ICommunityChannel) {
