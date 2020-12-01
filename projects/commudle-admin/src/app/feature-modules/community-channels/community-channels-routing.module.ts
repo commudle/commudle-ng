@@ -7,6 +7,7 @@ import { CommunityDetailsResolver } from '../../resolvers/community-details.reso
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
+import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
           {
             path: 'edit',
             component: EditChannelComponent
+          },
+          {
+            path: 'invite',
+            component: InviteFormComponent
           }
         ]
       },

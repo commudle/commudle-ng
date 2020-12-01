@@ -25,6 +25,7 @@
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
+          flex-wrap: nowrap;
 
           nb-icon {
             font-size: 0.8rem;
@@ -32,7 +33,16 @@
           }
 
           .name {
+            max-width: 80%;
+          }
 
+          .settings {
+            display: flex;
+            align-items: baseline;
+            width: 25%;
+            a {
+              padding: 3px;
+            }
           }
         }
       }

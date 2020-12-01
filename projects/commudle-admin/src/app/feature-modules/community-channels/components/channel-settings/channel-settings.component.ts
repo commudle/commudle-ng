@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
 @Component({
   selector: 'app-channel-settings',
@@ -17,7 +18,8 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private communityChannelManagerService: CommunityChannelManagerService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   // function to find and set the correct selected channel
   setChannel(channelId) {
     this.openDialog();
+    this.channel = this.communityChannelManagerService.findChannel(channelId);
   }
 
 

@@ -12,6 +12,7 @@
         {{(chGroup.key | uppercase) || 'GENERAL'}}
       </p>
       <p>
+
         <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]" [queryParams]="{group_name: chGroup.key}">
           <nb-icon icon="plus"></nb-icon>
         </a>
@@ -25,7 +26,10 @@
               {{channel.name}}
             </a>
           </p>
-          <p>
+          <p class="settings">
+            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]">
+              <nb-icon icon="person-add"></nb-icon>
+            </a>
             <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]">
               <nb-icon icon="settings"></nb-icon>
             </a>

@@ -14,17 +14,41 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   subscriptions = [];
   selectedChannel: ICommunityChannel;
   discussion: IDiscussion;
+  initialized = false;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+
+    this.subscriptions.push(
+      this.communityChannelManagerService.communityChannels$.subscribe(
+        data => {
+          if (data && !this.initialized) {
+            this.initialize();
+            this.initialized = true;
+          }
+        }
+      )
+    );
+  }
+
+  ngOnDestroy(): void {
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+  }
+
+
+  initialize() {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe(
-        data => this.communityChannelManagerService.findChannel(data.community_channel_id)
+        data => {
+          this.communityChannelManagerService.setChannel(this.communityChannelManagerService.findChannel(data.community_channel_id));
+        }
       )
     );
 
@@ -38,12 +62,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
         }
       )
     );
-  }
-
-  ngOnDestroy(): void {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
   }
 
   getDiscussion() {
