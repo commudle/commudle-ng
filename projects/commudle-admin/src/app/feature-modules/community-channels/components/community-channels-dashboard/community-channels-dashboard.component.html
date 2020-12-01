@@ -8,6 +8,6 @@
   <div class="community-channel-discussion">
 
     <router-outlet></router-outlet>
-    <router-outlet name="p"></router-outlet>
+    <router-outlet name="p" *ngIf="channelsQueried"></router-outlet>
   </div>
 </div>

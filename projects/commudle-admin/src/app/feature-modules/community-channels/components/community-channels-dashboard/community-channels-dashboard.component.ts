@@ -17,7 +17,8 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
   currentUser: ICurrentUser;
   selectedCommunity: ICommunity;
-  communityChannels: ICommunityChannel[];
+  communityChannels;
+  channelsQueried = false;
 
   constructor(
     private usersService: UsersService,
@@ -39,6 +40,9 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.communityChannelManagerService.communityChannels$.subscribe(
       data => {
         this.communityChannels = data;
+        if (data) {
+          this.channelsQueried = true;
+        }
       }
     ));
   }

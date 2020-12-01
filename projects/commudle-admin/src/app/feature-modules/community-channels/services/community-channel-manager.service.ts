@@ -22,7 +22,7 @@ export class CommunityChannelManagerService {
   public selectedCommunity$ = this.selectedCommunity.asObservable();
 
   // communityChannels grouped by their group names
-  private communityChannels: BehaviorSubject<any> = new BehaviorSubject(null);
+  private communityChannels: BehaviorSubject<IGroupedCommunityChannels> = new BehaviorSubject(null);
   public communityChannels$ = this.communityChannels.asObservable();
 
   // channel
@@ -44,18 +44,20 @@ export class CommunityChannelManagerService {
   }
 
 
-  findChannel(channelId) {
+  findChannel(channelId): ICommunityChannel {
 
     let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+    let chn = null;
     Object.entries(groupedChannels).forEach(
       ([key, values]) => {
         let ch = values.find(k => k.id == channelId);
-        if (ch) {
-          this.setChannel(ch)
-          return ch;
+        if (ch && chn == null) {
+          chn = ch;
         }
       }
     );
+
+    return chn;
   }
 
   setChannel(channel: ICommunityChannel) {

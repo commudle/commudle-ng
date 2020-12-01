@@ -1,13 +1,21 @@
 <ng-template #settingsTemplate let-data>
   <nb-card>
     <nb-card-header>
-      Settings
+      Control Panel
+      <span>
+        <small>
+          <nb-icon icon="close-circle" status="basic"></nb-icon>
+        </small>
+      </span>
     </nb-card-header>
     <nb-card-body>
       <div>
         <div class="menu">
           <p>
             <a [routerLink]="['edit']">Edit</a>
+          </p>
+          <p>
+            <a [routerLink]="['invite']">Invite</a>
           </p>
         </div>
         <div class="menu-outlet">

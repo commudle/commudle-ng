@@ -42,7 +42,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   }
 
 
-  // get the channel id from route, find it from the groupedChannels and set it as selected channel
   presetChannel() {
     this.subscriptions.push(
       this.communityChannelManagerService.selectedChannel$.subscribe(

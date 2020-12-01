@@ -19,6 +19,7 @@ import { DiscussionCommunityChannelComponent } from './components/discussion-com
 import { CommunityChannelMessageComponent } from './components/discussion-community-channel/community-channel-message/community-channel-message.component';
 import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
 import { SendMessageFormComponent } from './components/discussion-community-channel/send-message-form/send-message-form.component';
+import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
 
 
 
@@ -34,6 +35,7 @@ import { SendMessageFormComponent } from './components/discussion-community-chan
     CommunityChannelMessageComponent,
     CommunityChannelComponent,
     SendMessageFormComponent,
+    InviteFormComponent,
   ],
   imports: [
     CommonModule,
