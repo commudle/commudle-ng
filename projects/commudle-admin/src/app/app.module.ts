@@ -28,7 +28,7 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -138,6 +138,7 @@ export function initApp(appInitService: AppInitService) {
     NbToastrModule.forRoot(),
     NbFormFieldModule,
     NbDialogModule.forRoot(),
+    NbSpinnerModule,
 
     //other external npm modules
     Ng2CompleterModule,
