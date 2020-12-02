@@ -45,6 +45,14 @@ export const API_ROUTES = {
     CREATE: 'api/v2/community_channels',
     UPDATE: 'api/v2/community_channels',
     DELETE: 'api/v2/community_channels',
+    JOIN_TOKEN: 'api/v2/community_channels/join_token',
+    RESET_JOIN_TOKEN: 'api/v2/community_channels/reset_join_token',
+    MEMBERS: {
+      INVITE: 'api/v2/community_channels/members/invite',
+      JOIN_BY_TOKEN: 'api/v2/community_channels/members/join_by_token',
+      TOGGLE_ADMIN: 'api/v2/community_channels/members/toggle_admin',
+      REMOVE: 'api/v2/community_channels/members/remove',
+    }
   },
 
   COMMUNITY_GROUPS: {

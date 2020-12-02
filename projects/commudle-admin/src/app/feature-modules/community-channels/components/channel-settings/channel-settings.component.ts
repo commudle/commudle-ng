@@ -46,7 +46,7 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
 
 
   openDialog() {
-    this.dialogRef = this.dialogService.open(this.settingsTemplate, {});
+    this.dialogRef = this.dialogService.open(this.settingsTemplate, {autoFocus: true});
     this.dialogRef.onClose.subscribe(() => {
       this.router.navigate([{outlets: {p: null}}], {relativeTo: this.activatedRoute.parent});
     });
