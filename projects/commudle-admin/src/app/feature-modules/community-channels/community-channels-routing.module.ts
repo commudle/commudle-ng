@@ -8,9 +8,14 @@ import { ChannelSettingsComponent } from './components/channel-settings/channel-
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
 import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
+import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 
 
 const routes: Routes = [
+  {
+    path: 'join/:token',
+    component: JoinByTokenComponent
+  },
   {
     path: 'app',
     component: CommunityChannelsDashboardComponent,
@@ -50,7 +55,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'app',
-    pathMatch: 'full'
+    pathMatch: 'prefix'
   },
 
 ];

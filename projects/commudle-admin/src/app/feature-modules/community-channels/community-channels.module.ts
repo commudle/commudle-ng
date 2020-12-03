@@ -12,7 +12,8 @@ import {
   NbDialogModule,
   NbIconModule,
   NbInputModule,
-  NbCheckboxModule } from '@nebular/theme';
+  NbCheckboxModule,
+  NbFormFieldModule} from '@nebular/theme';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -20,6 +21,7 @@ import { CommunityChannelMessageComponent } from './components/discussion-commun
 import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
 import { SendMessageFormComponent } from './components/discussion-community-channel/send-message-form/send-message-form.component';
 import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
+import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 
 
 
@@ -36,6 +38,7 @@ import { InviteFormComponent } from './components/channel-settings/invite-form/i
     CommunityChannelComponent,
     SendMessageFormComponent,
     InviteFormComponent,
+    JoinByTokenComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +53,7 @@ import { InviteFormComponent } from './components/channel-settings/invite-form/i
     NbCardModule,
     NbCheckboxModule,
     NbDialogModule.forChild(),
+    NbFormFieldModule
   ],
   exports: [
     CommunityChannelsDashboardComponent

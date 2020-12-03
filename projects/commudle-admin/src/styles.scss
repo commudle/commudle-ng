@@ -43,9 +43,18 @@ input {
   display: none;
 }
 
+.fontw-300 {
+  font-weight: 300 !important;
+}
 
+.margin0 {
+  margin: 0 !important;
+}
 
-
+.menu-active {
+  color: #2296ff !important;
+  font-weight: bold;
+}
 // Override Nebular
 
 .nb-theme-default nb-layout-header.fixed ~ .layout-container {

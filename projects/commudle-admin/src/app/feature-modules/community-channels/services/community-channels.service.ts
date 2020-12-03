@@ -1,3 +1,4 @@
+import { IUserRolesUser } from './../../../../../../shared-models/user_roles_user.model';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -41,16 +42,17 @@ export class CommunityChannelsService {
   }
 
   resetJointoken(communityChannelId): Observable<string> {
-    const params = new HttpParams().set('community_channel_id', communityChannelId);
     return this.http.put<string>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.RESET_JOIN_TOKEN), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.RESET_JOIN_TOKEN), {
+        community_channel_id: communityChannelId
+      }
     );
   }
 
 
-  inviteMember(communityChannelId, userRoleData): Observable<string> {
+  inviteMembers(communityChannelId, userRoleData): Observable<IUserRolesUser> {
     const params = new HttpParams().set('community_channel_id', communityChannelId);
-    return this.http.post<string>(
+    return this.http.post<IUserRolesUser>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.INVITE),
       {
         user_roles_user: userRoleData
@@ -59,29 +61,26 @@ export class CommunityChannelsService {
     );
   }
 
-  joinByToken(token, userRoleData): Observable<string> {
-    const params = new HttpParams().set('token', token);
-    return this.http.post<string>(
+  joinByToken(token): Observable<boolean> {
+    return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.JOIN_BY_TOKEN),
-      {
-        user_roles_user: userRoleData
-      },
-      {params}
+      {token}
     );
   }
 
-  toggleAdmin(userRolesUserId): Observable<string> {
-    const params = new HttpParams().set('user_roles_user_id', userRolesUserId);
-    return this.http.put<string>(
+  toggleAdmin(userRolesUserId): Observable<IUserRolesUser> {
+    return this.http.put<IUserRolesUser>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.TOGGLE_ADMIN),
-      {params}
+      {
+        user_roles_user_id: userRolesUserId
+      }
     );
   }
 
 
-  removeMembership(userRolesUserId): Observable<string> {
+  removeMembership(userRolesUserId): Observable<any> {
     const params = new HttpParams().set('user_roles_user_id', userRolesUserId);
-    return this.http.delete<string>(
+    return this.http.delete<any>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.REMOVE),
       {params}
     );
