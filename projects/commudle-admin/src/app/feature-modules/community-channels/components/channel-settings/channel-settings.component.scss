@@ -13,12 +13,23 @@ nb-card {
       display: flex;
       flex-wrap: nowrap;
       .menu {
-        flex-grow: 1;
+        width: 15%;
         text-align: right;
         padding-right: 0.5rem;
+
+        a {
+          text-decoration: none;
+          color: grey;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
       .menu-outlet {
-        flex-grow: 5;
+        width: 85%;
+        padding: 0.5rem;
+        overflow-x: hidden;
       }
     }
   }

@@ -1,7 +1,11 @@
 <ng-template #settingsTemplate let-data>
   <nb-card>
     <nb-card-header>
-      Control Panel
+      <div>
+        <h4 class="margin0 fontw-300">
+          {{channel.name}} > Settings
+        </h4>
+      </div>
       <span>
         <small>
           <nb-icon icon="close-circle" status="basic"></nb-icon>
@@ -12,10 +16,10 @@
       <div class="container">
         <div class="menu">
           <p>
-            <a [routerLink]="['edit']">Edit</a>
+            <a [routerLink]="['edit']" routerLinkActive="menu-active">Edit</a>
           </p>
           <p>
-            <a [routerLink]="['invite']">Invite</a>
+            <a [routerLink]="['invite']" routerLinkActive="menu-active">Invite</a>
           </p>
         </div>
         <div class="menu-outlet">
