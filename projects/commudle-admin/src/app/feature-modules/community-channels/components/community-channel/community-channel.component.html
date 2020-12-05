@@ -1,14 +1,16 @@
 <div class="community-channel">
   <header>
-    <p>
-      Header menu
-    </p>
+    <nb-actions>
+      <nb-action icon="people" link="members">Members</nb-action>
+      <nb-action icon="clipboard-outline">Pinned Messages</nb-action>
+    </nb-actions>
   </header>
   <main *ngIf="discussion">
     <div class="discussion">
       <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
     </div>
-    <div class="members"></div>
-    <div class="resources"></div>
+    <div class="resources">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 </div>

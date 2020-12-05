@@ -48,6 +48,8 @@ import { DiscussionPersonalChatChannel } from './services/websockets/dicussion-p
 import { UserPersonalChatMessageComponent } from './discussion-personal-chat/user-personal-chat-message/user-personal-chat-message.component';
 import { DiscussionPersonalChatComponent } from './discussion-personal-chat/discussion-personal-chat.component';
 import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
+import { UserProfileMiniComponent } from './user-profile-mini/user-profile-mini.component';
+import { UserLiveStatusComponent } from './user-live-status/user-live-status.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { CookieConsentComponent } from './cookie-consent/cookie-consent.componen
     UserChatComponent,
     DiscussionPersonalChatComponent,
     UserPersonalChatMessageComponent,
-    CookieConsentComponent
+    CookieConsentComponent,
+    UserProfileMiniComponent,
+    UserLiveStatusComponent
   ],
   imports: [
     CommonModule,
@@ -124,7 +128,9 @@ import { CookieConsentComponent } from './cookie-consent/cookie-consent.componen
     UserObjectVisitPixelComponent,
     UserChatComponent,
     DiscussionPersonalChatComponent,
-    CookieConsentComponent
+    CookieConsentComponent,
+    UserProfileMiniComponent,
+    UserLiveStatusComponent
   ]
 })
 export class SharedComponentsModule { }

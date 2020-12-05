@@ -13,7 +13,10 @@ import {
   NbIconModule,
   NbInputModule,
   NbCheckboxModule,
-  NbFormFieldModule} from '@nebular/theme';
+  NbFormFieldModule,
+  NbActionsModule,
+  NbListModule,
+  NbContextMenuModule} from '@nebular/theme';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -22,6 +25,9 @@ import { CommunityChannelComponent } from './components/community-channel/commun
 import { SendMessageFormComponent } from './components/discussion-community-channel/send-message-form/send-message-form.component';
 import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
+import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { MemberComponent } from './components/channel-members/member/member.component';
 
 
 
@@ -39,12 +45,15 @@ import { JoinByTokenComponent } from './components/join-by-token/join-by-token.c
     SendMessageFormComponent,
     InviteFormComponent,
     JoinByTokenComponent,
+    ChannelMembersComponent,
+    MemberComponent
   ],
   imports: [
     CommonModule,
     CommunityChannelsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedComponentsModule,
 
     // nebular
     NbInputModule,
@@ -53,7 +62,10 @@ import { JoinByTokenComponent } from './components/join-by-token/join-by-token.c
     NbCardModule,
     NbCheckboxModule,
     NbDialogModule.forChild(),
-    NbFormFieldModule
+    NbFormFieldModule,
+    NbActionsModule,
+    NbListModule,
+    NbContextMenuModule
   ],
   exports: [
     CommunityChannelsDashboardComponent

@@ -8,6 +8,7 @@ import { ICommunityChannel } from 'projects/shared-models/community-channel.mode
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ICommunityChannels } from 'projects/shared-models/community-channels.model';
 import { tokenize } from 'prismjs';
+import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 
 
 @Injectable({
@@ -68,6 +69,16 @@ export class CommunityChannelsService {
     );
   }
 
+
+  membersList(communityChannelId, page, count): Observable<IUserRolesUsers> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId).set('page', page).set('count', count);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.INDEX),
+      {params}
+    );
+  }
+
+
   toggleAdmin(userRolesUserId): Observable<IUserRolesUser> {
     return this.http.put<IUserRolesUser>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.TOGGLE_ADMIN),
@@ -82,6 +93,15 @@ export class CommunityChannelsService {
     const params = new HttpParams().set('user_roles_user_id', userRolesUserId);
     return this.http.delete<any>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.REMOVE),
+      {params}
+    );
+  }
+
+
+  exitChannel(channelId): Observable<any> {
+    const params = new HttpParams().set('community_channel_id', channelId);
+    return this.http.delete<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.EXIT_CHANNEL),
       {params}
     );
   }

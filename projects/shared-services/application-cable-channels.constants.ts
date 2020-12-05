@@ -1,7 +1,8 @@
 
 
 export const APPLICATION_CABLE_CHANNELS = {
-  USER: 'ApplicationCable::V2::Channels::UserChannel',
+  USER_VISITS: 'ApplicationCable::V2::Channels::UserVisitsChannel',
+  USER_LIVE_STATUS: 'ApplicationCable::V2::Channels::UserLiveStatusChannel',
   USER_NOTIFICATIONS: 'ApplicationCable::V2::Channels::UserNotificationsChannel',
   DISCUSSION_QNA: 'ApplicationCable::V2::Channels::DiscussionQnaChannel',
   DISCUSSION_CHAT_CHANNEL: 'ApplicationCable::V2::Channels::DiscussionChatChannel',
