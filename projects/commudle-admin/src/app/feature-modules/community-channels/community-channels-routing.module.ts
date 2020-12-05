@@ -9,6 +9,7 @@ import { EditChannelComponent } from './components/channel-settings/edit-channel
 import { CommunityChannelComponent } from './components/community-channel/community-channel.component';
 import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
+import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
 
 
 const routes: Routes = [
@@ -48,7 +49,13 @@ const routes: Routes = [
         component: CommunityChannelComponent,
         resolve: {
           // community: CommunityChannelResolver
-        }
+        },
+        children: [
+          {
+            path: 'members',
+            component: ChannelMembersComponent
+          }
+        ]
       },
     ],
   },

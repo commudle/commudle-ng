@@ -5,19 +5,21 @@
   flex-wrap: nowrap;
   header {
     height: 2.5rem;
+    padding: 0.5rem;
   }
 
   main {
     padding: 0.5rem;
     height: calc(100% - 2.5rem);
+    display: flex;
+    flex-wrap: nowrap;
     .discussion{
       height: 100%;
+      flex-grow: 1;
     }
 
-    .members, .resources {
-      position: absolute;
-      top: 2.5rem;
-      right: 0;
+    .resources {
+      max-width: 100vw;
     }
   }
 

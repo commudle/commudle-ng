@@ -1,0 +1,24 @@
+.channel-members {
+  width: 300px;
+  max-width: 100vw;
+  height: 100%;
+
+  nb-card {
+    height: 100%;
+    nb-card-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem;
+    }
+
+    nb-list {
+      nb-list-item {
+        border: none;
+        padding: 0.5rem;
+        >div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -32,7 +32,7 @@ export class UserVisitsChannel {
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.USER,
+            channel: APPLICATION_CABLE_CHANNELS.USER_VISITS,
             session_token: sessionToken,
             url: url,
             app_token: appToken

@@ -48,10 +48,12 @@ export const API_ROUTES = {
     JOIN_TOKEN: 'api/v2/community_channels/join_token',
     RESET_JOIN_TOKEN: 'api/v2/community_channels/reset_join_token',
     MEMBERS: {
+      INDEX:  'api/v2/community_channels/members',
       INVITE: 'api/v2/community_channels/members/invite',
       JOIN_BY_TOKEN: 'api/v2/community_channels/members/join_by_token',
       TOGGLE_ADMIN: 'api/v2/community_channels/members/toggle_admin',
       REMOVE: 'api/v2/community_channels/members/remove',
+      EXIT_CHANNEL: 'api/v2/community_channels/members/exit_channel'
     }
   },
 

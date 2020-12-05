@@ -83,7 +83,7 @@ export class CommunityChannelManagerService {
         allChannels[data.group_name] ? (allChannels[data.group_name].push(data)) : (allChannels[data.group_name] = [data])
         this.communityChannels.next(allChannels);
 
-        this.toastLogService.successDialog(`${data.name} Created!`);
+        this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
       }
     );
   }
