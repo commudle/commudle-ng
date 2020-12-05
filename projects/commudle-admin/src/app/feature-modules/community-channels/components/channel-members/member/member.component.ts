@@ -1,6 +1,6 @@
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
+import { EUserRolesUserStatus, IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NbMenuService, NbWindowService, NB_WINDOW } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
@@ -22,6 +22,7 @@ export class MemberComponent implements OnInit, OnDestroy {
   @Output() removeFromChannel = new EventEmitter();
   showLiveStatus = false;
   EUserRoles = EUserRoles;
+  EUserRolesUserStatus = EUserRolesUserStatus;
   currentUser: ICurrentUser;
   contextMenuClickSubscription;
 
@@ -73,18 +74,20 @@ export class MemberComponent implements OnInit, OnDestroy {
         }
       );
     }
+    console.log(this.currentUserIsAdmin);
+    if (this.currentUserIsAdmin) {
+      (this.userRolesUser.user_role.name !== EUserRoles.COMMUNITY_CHANNEL_ADMIN) ? (this.contextMenuItems.push({title: 'Make Admin'})) : (this.contextMenuItems.push({title: 'Remove Admin'}))
 
-    if (this.userRolesUser.user_role.name == EUserRoles.COMMUNITY_CHANNEL_ADMIN && this.currentUserIsAdmin) {
-      (this.userRolesUser.user_role.name == EUserRoles.COMMUNITY_CHANNEL_ADMIN) ? (this.contextMenuItems.push({title: 'Make Admin'})) : (this.contextMenuItems.push({title: 'Remove Admin'}))
-
-      this.contextMenuItems.push({title: 'Remove From Channel'});
     }
 
     if (this.currentUser.username === this.userRolesUser.user.username) {
       this.contextMenuItems.push({
         title: 'Exit Channel'
       });
+    } else if (this.currentUserIsAdmin) {
+      this.contextMenuItems.push({title: 'Remove From Channel'})
     }
+
     this.handleContextMenuItemClick();
   }
 
