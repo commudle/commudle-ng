@@ -34,6 +34,16 @@
 
           .name {
             max-width: 80%;
+
+            a {
+              text-decoration: none;
+              color: grey;
+            }
+
+            .selected-channel {
+              color: #249aff;
+              font-weight: bold;
+            }
           }
 
           .settings {

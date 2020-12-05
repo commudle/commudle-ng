@@ -74,7 +74,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
         if (data.user_roles_users.length == data.count) {
           this.getMembers();
         } else if (this.allUsers.length > 0) {
-          this.currentUserIsAdmin = (this.allUsers.find(k => k.user.username === this.currentUser.username).user_role.name === EUserRoles.COMMUNITY_CHANNEL_ADMIN );
+          this.currentUserIsAdmin = (this.allUsers.find(k => k.user.username === this.currentUser.username).user_role.name === EUserRoles.COMMUNITY_CHANNEL_ADMIN);
         }
 
 
@@ -87,6 +87,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   toggleAdmin(index) {
     // send request to toggle
     this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
+      console.log(data);
       this.allUsers[index] = data;
     });
   }
