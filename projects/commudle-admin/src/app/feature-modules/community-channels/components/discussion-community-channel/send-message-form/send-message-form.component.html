@@ -24,21 +24,32 @@
   </div>
 
   <form (ngSubmit)="emitMessage()" (keyup.enter)="emitMessage()" [formGroup]="sendUserMessageForm">
-    <textarea
-    nbInput
-    fullWidth
-    formControlName="content"
-    placeholder="Add a Comment (max 200 characters)"
-    rows="1"
-    #inputElement
-    >
-    </textarea>
-   <div>
-     <label class="clickable">
-       <nb-icon icon="attach"></nb-icon>
-       <input type="file" nbInput fullWidth class="hidden" multiple (change)="addFiles($event)" #fileInput>
-     </label>
-   </div>
+    <nb-form-field>
+      <div nbPrefix class="nbPrefix">
+        <label class="clickable">
+          <nb-icon icon="attach"></nb-icon>
+          <input type="file" nbInput fullWidth class="hidden" multiple (change)="addFiles($event)" #fileInput>
+        </label>
+        <a nbButton ghost class="emoji-button" (click)="toggleEmojiForm()"> 😃 </a>
+        <emoji-mart
+          *ngIf="showEmojiForm"
+          class="emoji-mart"
+          set="twitter"
+          title="Select an emoji!"
+          (emojiSelect)="selectEmoji($event)"
+          ></emoji-mart>
+      </div>
+      <textarea
+        nbInput
+        fullWidth
+        formControlName="content"
+        placeholder="Type here..."
+        rows="1"
+        #inputElement
+      >
+      </textarea>
+
+    </nb-form-field>
    <button [disabled]="!sendUserMessageForm.valid || disabled" type="submit" nbButton ghost fullWidth ghost status="info">
      <nb-icon icon="corner-down-left-outline"></nb-icon>
    </button>

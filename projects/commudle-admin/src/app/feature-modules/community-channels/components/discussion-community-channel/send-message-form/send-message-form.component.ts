@@ -1,3 +1,4 @@
+import { concat } from 'rxjs';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
@@ -20,13 +21,14 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   uploadedAttachementFiles: IAttachedFile[] = [];
   uploadedFiles = [];
+  showEmojiForm = false;
 
   sendUserMessageForm = this.fb.group({
     content: [
       '', [
           Validators.required,
           Validators.minLength(1),
-          Validators.maxLength(200),
+          Validators.maxLength(1000),
           NoWhitespaceValidator
         ]
       ]
@@ -124,6 +126,23 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       this.uploadedAttachementFiles.splice(index, 1);
       this.uploadedFiles.splice(index, 1);
     }
+  }
+
+
+  selectInput() {
+    this.showEmojiForm = false;
+  }
+
+  toggleEmojiForm() {
+    this.showEmojiForm = !this.showEmojiForm;
+  }
+
+  selectEmoji(event) {
+    let currentValue = this.sendUserMessageForm.get('content').value || '';
+    this.sendUserMessageForm.patchValue({
+      content: currentValue.concat(`${event.emoji.native}  `)
+    })
+    this.inputElement.nativeElement.focus();
   }
 
 }
