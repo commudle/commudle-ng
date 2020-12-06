@@ -26,11 +26,11 @@
     }
 
     .community-channel-list {
-      width: 200px;
+      width: 200px !important;
     }
 
     .community-channel-discussion {
-      min-width: 1000px;
+      width: 1000px;
       flex-grow: 1;
     }
   }

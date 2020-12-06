@@ -2,21 +2,42 @@
   position: relative;
   form {
     display: flex;
-    align-items: center;
+    align-items: self-start;
+    nb-form-field {
+      width: 100%;
+      position: relative;
 
-    textarea {
-      font-weight: 400;
-    }
-    button, div {
-      width: 20%;
-      max-width: 40px;
-      margin-left: 5px;
+      textarea {
+        font-weight: 400;
+        resize: none;
+        padding-left: 3.5rem;
+      }
+
+      .nbPrefix {
+        display: flex;
+        align-items: center;
+        margin-left: 1rem;
+        margin-top: -5px;
+        .emoji-button {
+          padding: 0.1rem;
+        }
+
+        emoji-mart {
+          position: absolute;
+          bottom: 50px;
+          left: 25px;
+        }
+      }
+
     }
 
-    div {
+    >button {
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 20%;
+      max-width: 40px;
+      margin-left: 5px;
     }
   }
 

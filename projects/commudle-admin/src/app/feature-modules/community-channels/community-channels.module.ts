@@ -28,6 +28,7 @@ import { JoinByTokenComponent } from './components/join-by-token/join-by-token.c
 import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { MemberComponent } from './components/channel-members/member/member.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 
@@ -54,6 +55,7 @@ import { MemberComponent } from './components/channel-members/member/member.comp
     ReactiveFormsModule,
     FormsModule,
     SharedComponentsModule,
+    PickerModule,
 
     // nebular
     NbInputModule,

@@ -74,7 +74,6 @@ export class MemberComponent implements OnInit, OnDestroy {
         }
       );
     }
-    console.log(this.currentUserIsAdmin);
     if (this.currentUserIsAdmin) {
       (this.userRolesUser.user_role.name !== EUserRoles.COMMUNITY_CHANNEL_ADMIN) ? (this.contextMenuItems.push({title: 'Make Admin'})) : (this.contextMenuItems.push({title: 'Remove Admin'}))
 
