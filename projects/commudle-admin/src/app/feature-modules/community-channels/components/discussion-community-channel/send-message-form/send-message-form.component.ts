@@ -1,9 +1,13 @@
+import { IUser } from 'projects/shared-models/user.model';
 import { concat } from 'rxjs';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { CommunityChannelsService } from '../../../services/community-channels.service';
+import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
+import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 
 @Component({
   selector: 'app-send-message-form',
@@ -13,11 +17,14 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class SendMessageFormComponent implements OnInit, AfterViewInit {
   @ViewChild('inputElement', {static: true}) inputElement: ElementRef;
   @ViewChild('fileInput', {static: true})  fileInput: ElementRef;
-
   @Input() disabled: boolean;
   @Input() attachmentDisplay = 'top';
   @Output() sendMessage = new EventEmitter();
   @Output() sendAttachmentMessage = new EventEmitter();
+  subscriptions = [];
+  taggableUsers: IUser[] = [];
+  communityChannel: ICommunityChannel;
+
 
   uploadedAttachementFiles: IAttachedFile[] = [];
   uploadedFiles = [];
@@ -37,10 +44,18 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private communityChannelsService: CommunityChannelsService,
+    private communityChannelManagerService: CommunityChannelManagerService
   ) { }
 
   ngOnInit(): void {
+    this.subscriptions.push(
+    this.communityChannelManagerService.selectedChannel$.subscribe(
+      data => this.communityChannel = data
+    )
+
+    )
   }
 
   ngAfterViewInit() {
@@ -50,7 +65,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   emitMessage() {
     if (this.uploadedFiles.length > 0) {
       this.emitAttachmentMessage();
-    } else {
+    } else if (this.sendUserMessageForm.valid){
       this.emitTextMessage();
     }
     this.sendUserMessageForm.reset();
@@ -145,4 +160,11 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.inputElement.nativeElement.focus();
   }
 
+  getTaggableUsers(query) {
+    this.communityChannelsService.getTaggableUsers(query, this.communityChannel.id).subscribe(
+      data => {
+        this.taggableUsers = data.users;
+      }
+    )
+  }
 }

@@ -107,3 +107,25 @@
   }
 
 }
+
+.mention-list-template {
+  display: flex;
+  >div {
+    overflow: hidden;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 5px;
+    img {
+      width: 100%;
+
+    }
+  }
+
+
+  p.name {
+    margin: 0;
+
+    text-decoration: none !important;
+  }
+}

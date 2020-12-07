@@ -1,3 +1,4 @@
+import { IUser } from 'projects/shared-models/user.model';
 import { IUserRolesUser } from './../../../../../../shared-models/user_roles_user.model';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -9,6 +10,7 @@ import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ICommunityChannels } from 'projects/shared-models/community-channels.model';
 import { tokenize } from 'prismjs';
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
+import { IUsers } from 'projects/shared-models/users.model';
 
 
 @Injectable({
@@ -102,6 +104,15 @@ export class CommunityChannelsService {
     const params = new HttpParams().set('community_channel_id', channelId);
     return this.http.delete<any>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.EXIT_CHANNEL),
+      {params}
+    );
+  }
+
+
+  getTaggableUsers(query, channelId):  Observable<IUsers> {
+    const params = new HttpParams().set('query', query).set('community_channel_id', channelId);
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.TAGGABLE_USERS),
       {params}
     );
   }
