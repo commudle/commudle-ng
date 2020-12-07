@@ -3,6 +3,7 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import * as moment from 'moment';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
 
 @Component({
   selector: 'app-community-channel-message',

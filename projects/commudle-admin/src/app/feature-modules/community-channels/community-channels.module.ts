@@ -29,6 +29,7 @@ import { ChannelMembersComponent } from './components/channel-members/channel-me
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { MemberComponent } from './components/channel-members/member/member.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { MentionModule } from 'angular-mentions';
 
 
 
@@ -56,6 +57,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     FormsModule,
     SharedComponentsModule,
     PickerModule,
+    MentionModule,
 
     // nebular
     NbInputModule,

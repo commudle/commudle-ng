@@ -45,6 +45,10 @@
         formControlName="content"
         placeholder="Type here..."
         rows="1"
+        [mention]="taggableUsers"
+        [mentionConfig]="{dropUp: true, labelKey: 'username'}"
+        [mentionListTemplate]="mentionListTemplate"
+        (searchTerm)="getTaggableUsers($event)"
         #inputElement
       >
       </textarea>
@@ -55,3 +59,17 @@
    </button>
   </form>
 </div>
+
+
+<ng-template #mentionListTemplate let-item="item">
+  <div class="mention-list-template">
+    <div class="avatar">
+      <img src="{{item.avatar}}" alt="{{item.avatar}}">
+    </div>
+    <p class="name">
+      {{item.name}}
+      <br>
+      <small>@{{item.username}}</small>
+    </p>
+  </div>
+</ng-template>

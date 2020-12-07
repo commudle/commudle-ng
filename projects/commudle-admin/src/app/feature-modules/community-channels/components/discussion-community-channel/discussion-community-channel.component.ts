@@ -1,3 +1,4 @@
+import { IUser } from 'projects/shared-models/user.model';
 import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
@@ -10,6 +11,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { CommunityChannelsService } from '../../services/community-channels.service';
 
 
 @Component({
@@ -286,5 +288,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   findReplyIndex(questionIndex, replyId) {
     return this.messages[questionIndex].user_messages.findIndex(q => (q.id === replyId));
   }
+
+
+
 
 }
