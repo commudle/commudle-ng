@@ -1,78 +1,68 @@
-<ng-template #formTemplate let-data>
-  <nb-card>
-    <nb-card-header>
-      <span *ngIf="!existingChannel">New Channel for {{community.name}}</span>
-      <span *ngIf="existingChannel">Edit {{ existingChannel.name }}</span>
-    </nb-card-header>
-    <nb-card-body>
-      <form class="community-channel-form" [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
-        <div class="logo field">
-          <div class="uploaded-logo" *ngIf="uploadedLogoImage">
-            <img src="{{uploadedLogoImage}}" alt="Profile Picture">
-          </div>
-          <div class="delete-logo-button">
-            <button
-              nbButton
-              ghost
-              size="tiny"
-              status="danger"
-              *ngIf="uploadedLogoImage"
-              (click)="removeLogo()">
-              <nb-icon icon="close-circle"></nb-icon>
-              Remove Logo
-            </button>
-          </div>
+<div>
 
-          <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage }">
-            <span>
-              <span>
-                <nb-icon icon="image-outline"></nb-icon>
-              </span>
-              <span>
-                Click To Upload A Logo
-                <br>
-                <small>(200x200)</small>
-              </span>
-            </span>
-            <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
-          </label>
-        </div>
-
-        <div class="field">
-          <label fullWidth>
-            Name*
-            <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="name">
-          </label>
-        </div>
-
-        <div class="field">
-          <label fullWidth>
-            Description*
-            <textarea type="text" fieldSize="small" nbInput fullWidth formControlName="description"></textarea>
-          </label>
-        </div>
-
-        <div class="field">
-          <nb-checkbox status="basic" formControlName="is_private">
-            Private
-          </nb-checkbox>
-        </div>
-
-        <div class="field">
-          <label fullWidth>
-            Group Name (optional)
-            <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="group_name">
-          </label>
-        </div>
-
-        <button nbButton ghost size="small" [disabled]="!communityChannelForm.valid" status="success" type="submit">
-          Submit
+  <form class="community-channel-form" [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
+    <div class="logo field">
+      <div class="uploaded-logo" *ngIf="uploadedLogoImage">
+        <img src="{{uploadedLogoImage}}" alt="Profile Picture">
+      </div>
+      <div class="delete-logo-button">
+        <button
+          nbButton
+          ghost
+          size="tiny"
+          status="danger"
+          *ngIf="uploadedLogoImage"
+          (click)="removeLogo()">
+          <nb-icon icon="close-circle"></nb-icon>
+          Remove Logo
         </button>
-        <button nbButton ghost size="small" status="danger" (click)="closeForm()" type="button">
-          Cancel
-        </button>
-      </form>
+      </div>
 
-    </nb-card-body>
-  </nb-card>
-</ng-template>
+      <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage }">
+        <span>
+          <span>
+            <nb-icon icon="image-outline"></nb-icon>
+          </span>
+          <span>
+            Click To Upload A Logo
+            <br>
+            <small>(200x200)</small>
+          </span>
+        </span>
+        <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+      </label>
+    </div>
+
+    <div class="field">
+      <label fullWidth>
+        Name*
+        <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="name">
+      </label>
+    </div>
+
+    <div class="field">
+      <label fullWidth>
+        Description*
+        <textarea type="text" fieldSize="small" nbInput fullWidth formControlName="description"></textarea>
+      </label>
+    </div>
+
+    <div class="field">
+      <nb-checkbox status="basic" formControlName="is_private">
+        Private
+      </nb-checkbox>
+    </div>
+
+    <div class="field">
+      <label fullWidth>
+        Group Name (optional)
+        <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="group_name">
+      </label>
+    </div>
+
+    <button nbButton ghost size="small" [disabled]="!communityChannelForm.valid" status="success" type="submit">
+      Submit
+    </button>
+  </form>
+
+</div>

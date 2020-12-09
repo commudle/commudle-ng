@@ -24,7 +24,6 @@ export class MemberComponent implements OnInit, OnDestroy {
   EUserRoles = EUserRoles;
   EUserRolesUserStatus = EUserRolesUserStatus;
   currentUser: ICurrentUser;
-  contextMenuClickSubscription;
 
   contextMenuItems = [];
 
@@ -92,41 +91,38 @@ export class MemberComponent implements OnInit, OnDestroy {
 
 
   handleContextMenuItemClick() {
-
-    if (this.contextMenuClickSubscription) {
-      this.contextMenuClickSubscription.unsubscribe();
-    }
-
-    this.contextMenuClickSubscription = this.menuService.onItemClick()
-    .pipe(
-      filter(({tag}) => tag === `community-channel-member-menu-${this.userRolesUser.user.username}`),
-      map(({item: title}) => title)
-    ).subscribe(
-      menuItem => {
-        switch (menuItem.title) {
-          case 'Personal Chat': {
-            this.openChatWithUser(this.userRolesUser.user.id);
-            break;
-          }
-          case 'Make Admin': {
-            this.makeAdmin.emit();
-            break;
-          }
-          case 'Remove Admin': {
-            this.removeAdmin.emit();
-            break;
-          }
-          case 'Remove From Channel': {
-            this.removeFromChannel.emit();
-            break;
-          }
-          case 'Exit Channel': {
-            this.exitChannel.emit();
-            break;
+    this.subscriptions.push(
+      this.menuService.onItemClick()
+      .pipe(
+        filter(({tag}) => tag === `community-channel-member-menu-${this.userRolesUser.user.username}`),
+        map(({item: title}) => title)
+      ).subscribe(
+        menuItem => {
+          switch (menuItem.title) {
+            case 'Personal Chat': {
+              this.openChatWithUser(this.userRolesUser.user.id);
+              break;
+            }
+            case 'Make Admin': {
+              this.makeAdmin.emit();
+              break;
+            }
+            case 'Remove Admin': {
+              this.removeAdmin.emit();
+              break;
+            }
+            case 'Remove From Channel': {
+              this.removeFromChannel.emit();
+              break;
+            }
+            case 'Exit Channel': {
+              this.exitChannel.emit();
+              break;
+            }
           }
         }
-      }
-    )
+      )
+    );
   }
 
   openChatWithUser(userId) {

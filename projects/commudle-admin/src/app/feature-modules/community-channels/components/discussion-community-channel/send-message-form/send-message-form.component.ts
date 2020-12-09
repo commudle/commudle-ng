@@ -8,6 +8,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { CommunityChannelsService } from '../../../services/community-channels.service';
 import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
 
 @Component({
   selector: 'app-send-message-form',
@@ -18,13 +19,16 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   @ViewChild('inputElement', {static: true}) inputElement: ElementRef;
   @ViewChild('fileInput', {static: true})  fileInput: ElementRef;
   @Input() disabled: boolean;
+  @Input() rows: number;
   @Input() attachmentDisplay = 'top';
+  @Input() editableMessage: IUserMessage;
   @Output() sendMessage = new EventEmitter();
   @Output() sendAttachmentMessage = new EventEmitter();
+  @Output() sendUpdatedTextMessage = new EventEmitter();
+  @Output() sendUpdatedAttachmentMessage = new EventEmitter();
   subscriptions = [];
   taggableUsers: IUser[] = [];
   communityChannel: ICommunityChannel;
-
 
   uploadedAttachementFiles: IAttachedFile[] = [];
   uploadedFiles = [];
@@ -51,11 +55,15 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.subscriptions.push(
-    this.communityChannelManagerService.selectedChannel$.subscribe(
-      data => this.communityChannel = data
-    )
-
-    )
+      this.communityChannelManagerService.selectedChannel$.subscribe(
+        data => this.communityChannel = data
+      )
+    );
+    if (this.editableMessage) {
+      this.sendUserMessageForm.patchValue({
+        content: this.editableMessage.content
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -63,11 +71,16 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   }
 
   emitMessage() {
-    if (this.uploadedFiles.length > 0) {
-      this.emitAttachmentMessage();
-    } else if (this.sendUserMessageForm.valid){
-      this.emitTextMessage();
+    if (!this.editableMessage) {
+      if (this.uploadedFiles.length > 0) {
+        this.emitAttachmentMessage();
+      } else if (this.sendUserMessageForm.valid){
+        this.emitTextMessage();
+      }
+    } else {
+
     }
+
     this.sendUserMessageForm.reset();
     this.uploadedAttachementFiles = [];
     this.uploadedFiles = [];
@@ -77,6 +90,10 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   emitTextMessage() {
     this.sendMessage.emit(this.sendUserMessageForm.value);
+  }
+
+  emitUpdatedTextMessage() {
+    this.sendUpdatedTextMessage.emit(this.sendUserMessageForm.value);
   }
 
 
@@ -98,6 +115,25 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
 
     this.sendAttachmentMessage.emit(formData);
+  }
+
+  emitUpdatedAttachmentMessage() {
+    const formData: any = new FormData();
+    const userMessageFormValue = this.sendUserMessageForm.value;
+    Object.keys(userMessageFormValue).forEach(
+      key => {
+        formData.append(`user_message[${key}]`, userMessageFormValue[key])
+      }
+      );
+
+
+    for (let i = 0; i < this.uploadedAttachementFiles.length; i++) {
+      Object.keys(this.uploadedAttachementFiles[i]).forEach(
+        key => formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key])
+        );
+    }
+    
+    this.sendUpdatedAttachmentMessage.emit(formData);
   }
 
 

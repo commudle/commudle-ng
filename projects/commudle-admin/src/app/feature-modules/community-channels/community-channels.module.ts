@@ -30,6 +30,8 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { MemberComponent } from './components/channel-members/member/member.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { MentionModule } from 'angular-mentions';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 
 
 
@@ -48,7 +50,8 @@ import { MentionModule } from 'angular-mentions';
     InviteFormComponent,
     JoinByTokenComponent,
     ChannelMembersComponent,
-    MemberComponent
+    MemberComponent,
+    NewCommunityChannelComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +61,7 @@ import { MentionModule } from 'angular-mentions';
     SharedComponentsModule,
     PickerModule,
     MentionModule,
+    SharedPipesModule,
 
     // nebular
     NbInputModule,

@@ -27,13 +27,15 @@ export class DiscussionChatChannel {
   private channelData: BehaviorSubject<any> = new BehaviorSubject(null);
   public channelData$ = this.channelData.asObservable();
 
+  private actionCableSubscription;
+
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
   ) {}
 
 
   subscribe(discussionId) {
-    this.actionCableConnection.acSocket$.subscribe(
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
@@ -62,6 +64,8 @@ export class DiscussionChatChannel {
   unsubscribe() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+      this.actionCableSubscription.unsubscribe();
+      this.channelData.next(null);
     }
   }
 

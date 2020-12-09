@@ -26,32 +26,61 @@
           justify-content: space-between;
           align-items: flex-start;
           flex-wrap: nowrap;
+          margin-bottom: 1rem;
+
 
           nb-icon {
             font-size: 0.8rem;
             color: grey;
           }
 
-          .name {
-            max-width: 80%;
+          div.details {
+            width: 80%;
+            display: flex;
+            .logo {
+              width: 35px;
+              border-radius: 50%;
+              overflow: hidden;
+              margin-right: 0.2rem;
+              text-align: center;
+              img {
+                width: 100%;
+              }
 
-            a {
-              text-decoration: none;
-              color: grey;
+              nb-icon {
+                font-size: 1.2rem;
+                color: #4e74ff;
+              }
             }
 
-            .selected-channel {
-              color: #249aff;
-              font-weight: bold;
+            .name {
+              width: 80%;
+              margin: 0;
+              font-size: 12px;
+              a {
+                text-decoration: none;
+                color: black;
+
+                .private {
+                  padding: 0;
+                }
+              }
+
+              .selected-channel {
+                color: #249aff;
+                font-weight: bold;
+              }
             }
+
           }
 
           .settings {
             display: flex;
             align-items: baseline;
             width: 25%;
+            margin: 0;
             a {
-              padding: 3px;
+              padding: 0 3px;
             }
           }
         }

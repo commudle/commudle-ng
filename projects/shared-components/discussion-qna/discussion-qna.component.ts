@@ -34,6 +34,7 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
   loadingMessages = false;
   showReplyForm = 0;
   allActions;
+  subscriptions = [];
 
 
   chatMessageForm = this.fb.group({
@@ -52,8 +53,10 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(
-      user => this.currentUser = user
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        user => this.currentUser = user
+      )
     );
     this.discussionQnaChannel.subscribe(`${this.discussion.id}`);
     this.receiveData();
@@ -63,6 +66,9 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.discussionQnaChannel.unsubscribe();
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
   }
 
   scrollToBottom() {
@@ -165,61 +171,63 @@ export class DiscussionQnAComponent implements OnInit, OnDestroy {
 
 
   receiveData() {
-    this.discussionQnaChannel.channelData$.subscribe(
-      (data) => {
-        if (data) {
-          switch (data.action) {
-            case(this.discussionQnaChannel.ACTIONS.SET_PERMISSIONS): {
-              this.permittedActions = data.permitted_actions;
-              break;
-            }
-            case(this.discussionQnaChannel.ACTIONS.ADD): {
-              this.messages.push(data.user_message);
-              this.scrollToBottom();
-              this.newMessage.emit();
-              break;
-            }
-            case(this.discussionQnaChannel.ACTIONS.REPLY): {
-              this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
-              this.newMessage.emit();
-              break;
-            }
-            case(this.discussionQnaChannel.ACTIONS.DELETE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+    this.subscriptions.push(
+      this.discussionQnaChannel.channelData$.subscribe(
+        (data) => {
+          if (data) {
+            switch (data.action) {
+              case(this.discussionQnaChannel.ACTIONS.SET_PERMISSIONS): {
+                this.permittedActions = data.permitted_actions;
+                break;
               }
+              case(this.discussionQnaChannel.ACTIONS.ADD): {
+                this.messages.push(data.user_message);
+                this.scrollToBottom();
+                this.newMessage.emit();
+                break;
+              }
+              case(this.discussionQnaChannel.ACTIONS.REPLY): {
+                this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+                this.newMessage.emit();
+                break;
+              }
+              case(this.discussionQnaChannel.ACTIONS.DELETE): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+                }
 
-              break;
-            }
-            case(this.discussionQnaChannel.ACTIONS.FLAG): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+                break;
               }
-              break;
-            }
-            case(this.discussionQnaChannel.ACTIONS.VOTE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
-                this.reorder();
+              case(this.discussionQnaChannel.ACTIONS.FLAG): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+                }
+                break;
               }
-              break;
-            }
-            case(this.discussionQnaChannel.ACTIONS.ERROR): {
-              this.toastLogService.warningDialog(data.message, 2000);
+              case(this.discussionQnaChannel.ACTIONS.VOTE): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+                  this.reorder();
+                }
+                break;
+              }
+              case(this.discussionQnaChannel.ACTIONS.ERROR): {
+                this.toastLogService.warningDialog(data.message, 2000);
+              }
             }
           }
-        }
 
-      }
+        }
+      )
     );
   }
 

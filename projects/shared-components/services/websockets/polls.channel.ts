@@ -24,6 +24,7 @@ export class PollsChannel {
   actionCable = actionCable;
 
   private subscription;
+  private actionCableSubscription;
 
   // all the communications received will be observables
   private channelData: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -35,7 +36,7 @@ export class PollsChannel {
 
 
   subscribe(pollableType, pollableId) {
-    this.actionCableConnection.acSocket$.subscribe(
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
@@ -65,7 +66,9 @@ export class PollsChannel {
 
   unsubscribe() {
     if (this.subscription) {
+      this.channelData.next(null);
       this.subscription.unsubscribe();
+      this.actionCableSubscription.unsubscribe();
     }
   }
 

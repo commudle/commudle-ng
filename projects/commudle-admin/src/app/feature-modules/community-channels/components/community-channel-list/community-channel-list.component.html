@@ -20,11 +20,19 @@
     <div class="channels">
       <ul>
         <li *ngFor="let channel of chGroup.value">
-          <p class="name">
-            <a [routerLink]="[channel.id]" routerLinkActive="selected-channel">
-              {{channel.name}}
-            </a>
-          </p>
+          <div class="details" [routerLink]="[channel.id]">
+            <div class="logo" *ngIf="channel.logo">
+              <img src="{{channel.logo.url}}">
+            </div>
+            <p class="name">
+              <a [routerLink]="[channel.id]" routerLinkActive="selected-channel">
+                <span class="private" *ngIf="channel.is_private">
+                  <nb-icon icon="lock" alt="Private Channel"></nb-icon>
+                </span>
+                {{channel.name}}
+              </a>
+            </p>
+          </div>
           <p class="settings">
             <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]">
               <nb-icon icon="person-add"></nb-icon>
