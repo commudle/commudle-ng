@@ -34,6 +34,7 @@
         <emoji-mart
           *ngIf="showEmojiForm"
           class="emoji-mart"
+          [ngClass]="{'edit': editableMessage}"
           set="twitter"
           title="Select an emoji!"
           (emojiSelect)="selectEmoji($event)"
@@ -44,17 +45,18 @@
         fullWidth
         formControlName="content"
         placeholder="Type here..."
-        rows="1"
+        rows="{{rows || 1}}"
         [mention]="taggableUsers"
         [mentionConfig]="{dropUp: true, labelKey: 'username'}"
         [mentionListTemplate]="mentionListTemplate"
         (searchTerm)="getTaggableUsers($event)"
+        (click)="selectInput()"
         #inputElement
       >
       </textarea>
 
     </nb-form-field>
-   <button [disabled]="!sendUserMessageForm.valid || disabled" type="submit" nbButton ghost fullWidth ghost status="info">
+   <button [disabled]="!sendUserMessageForm.valid || disabled" type="submit" nbButton outline fullWidth status="info">
      <nb-icon icon="corner-down-left-outline"></nb-icon>
    </button>
   </form>

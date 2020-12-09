@@ -10,6 +10,7 @@ import { CommunityChannelComponent } from './components/community-channel/commun
 import { InviteFormComponent } from './components/channel-settings/invite-form/invite-form.component';
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
+import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
       {
         path: 'new-channel',
         outlet: 'p',
-        component: CommunityChannelFormComponent,
+        component: NewCommunityChannelComponent,
       },
       {
         path: 'settings/:community_channel_id',

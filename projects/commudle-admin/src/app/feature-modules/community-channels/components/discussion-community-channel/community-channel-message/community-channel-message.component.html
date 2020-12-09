@@ -14,7 +14,7 @@
           </small>
         </p>
       </div>
-      <div class="content">{{ message.content }}</div>
+      <div class="content" [innerHTML]="message.content | textToLinks"></div>
       <div class="attachments" *ngIf="message.attachments.length > 0">
         <div class="file" *ngFor="let file of message.attachments; let i=index;">
           <a class="download-link clickable" href="{{file.url}}" target="_blank">
@@ -38,15 +38,6 @@
         </div>
       </div>
       <div class="details-flag">
-        <div
-          class="clickable"
-          *ngIf="currentUser && message.user.id === currentUser.id"
-          (click)="login() && (currentUser && message.user.id === currentUser.id) && emitDelete(message.id)"
-          nbTooltip="Delete" nbTooltipStatus="warning">
-          <p>
-            <nb-icon icon="close-circle-outline"></nb-icon>
-          </p>
-        </div>
         <div class="votes clickable" (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Like!" nbTooltipStatus="danger">
           <p [ngClass]="{'low' : (message.votes_count > 0 && message.votes_count <= 2), 'medium': (message.votes_count > 2 && message.votes_count <= 4), 'high': (message.votes_count > 4)}">
             <nb-icon icon="heart-outline" *ngIf="message.votes_count === 0" status="danger"></nb-icon>
@@ -58,6 +49,9 @@
           <p class="text-info">
             <small>Reply</small>
           </p>
+        </div>
+        <div class="message-context-menu clickable" [nbContextMenu]="contextMenuItems" [nbContextMenuTag]="'community-channel-message-menu-'.concat((message.id).toString())">
+          <nb-icon icon="more-vertical" status="basic"></nb-icon>
         </div>
       </div>
     </div>
@@ -85,8 +79,22 @@
       ></app-send-message-form>
     </div>
   </div>
-
-
-
 </div>
+
+
+
+<!-- <ng-template #editMessageTemplate>
+  <div class="edit-message-form">
+    <app-send-message-form
+    *ngIf="canEdit"
+    (sendMessage)="emitReply($event)"
+    (sendAttachmentMessage)="emitAttachmentReply($event)"
+    (sendUpdatedTextMessage)="emitUpdate($event)"
+    (sendUpdatedAttachmentMessage)="emitAttachmentUpdate($event)"
+    [attachmentDisplay]="'bottom'"
+    [editableMessage]="message"
+    [rows]="2"
+  ></app-send-message-form>
+  </div>
+</ng-template> -->
 

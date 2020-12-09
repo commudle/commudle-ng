@@ -20,7 +20,7 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
-
+  subscriptions = [];
 
   moment = moment;
 
@@ -47,11 +47,13 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
     private discussionChatChannel: DiscussionChatChannel,
     private authWatchService: LibAuthwatchService
 
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(
-      user => this.currentUser = user
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        user => this.currentUser = user
+      )
     );
     this.discussionChatChannel.subscribe(`${this.discussion.id}`);
     this.receiveData();
@@ -61,6 +63,10 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.discussionChatChannel.unsubscribe();
+
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
   }
 
   scrollToBottom() {
@@ -166,60 +172,62 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
 
 
   receiveData() {
-    this.discussionChatChannel.channelData$.subscribe(
-      (data) => {
-        if (data) {
-          switch (data.action) {
-            case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
-              this.permittedActions = data.permitted_actions;
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.ADD): {
-              this.messages.push(data.user_message);
-              this.scrollToBottom();
-              this.newMessage.emit();
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.REPLY): {
-              this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
-              this.newMessage.emit();
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.DELETE): {
-              if (data.parent_type === 'Discussion') {
-                this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+    this.subscriptions.push(
+      this.discussionChatChannel.channelData$.subscribe(
+        (data) => {
+          if (data) {
+            switch (data.action) {
+              case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
+                this.permittedActions = data.permitted_actions;
+                break;
               }
+              case(this.discussionChatChannel.ACTIONS.ADD): {
+                this.messages.push(data.user_message);
+                this.scrollToBottom();
+                this.newMessage.emit();
+                break;
+              }
+              case(this.discussionChatChannel.ACTIONS.REPLY): {
+                this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+                this.newMessage.emit();
+                break;
+              }
+              case(this.discussionChatChannel.ACTIONS.DELETE): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+                }
 
-              break;
-            }
-            case(this.discussionChatChannel.ACTIONS.FLAG): {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+                break;
               }
-              break;
-            }
-            // case(this.discussionChatChannel.ACTIONS.VOTE): {
-            //   if (data.parent_type === 'Discussion') {
-            //     this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
-            //   } else {
-            //     const qi = this.findMessageIndex(data.parent_id);
-            //     this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
-            //   }
-            //   break;
-            // }
-            case(this.discussionChatChannel.ACTIONS.ERROR): {
-              this.toastLogService.warningDialog(data.message, 2000);
+              case(this.discussionChatChannel.ACTIONS.FLAG): {
+                if (data.parent_type === 'Discussion') {
+                  this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
+                } else {
+                  const qi = this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+                }
+                break;
+              }
+              // case(this.discussionChatChannel.ACTIONS.VOTE): {
+              //   if (data.parent_type === 'Discussion') {
+              //     this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
+              //   } else {
+              //     const qi = this.findMessageIndex(data.parent_id);
+              //     this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+              //   }
+              //   break;
+              // }
+              case(this.discussionChatChannel.ACTIONS.ERROR): {
+                this.toastLogService.warningDialog(data.message, 2000);
+              }
             }
           }
-        }
 
-      }
+        }
+      )
     );
   }
 

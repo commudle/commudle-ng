@@ -12,6 +12,7 @@ import { UserMessagesService } from 'projects/commudle-admin/src/app/services/us
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { CommunityChannelsService } from '../../services/community-channels.service';
+import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
 
 @Component({
@@ -51,20 +52,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private userMessagesService: UserMessagesService,
     private communityChannelChannel: CommunityChannelChannel,
     private authWatchService: LibAuthwatchService,
-    private discussionsService: DiscussionsService
+    private discussionsService: DiscussionsService,
+    private communityChannelManagerService: CommunityChannelManagerService
   ) { }
 
   ngOnInit() {
-    // this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
-    //   user => this.currentUser = user
-    // ));
-
-    // this.communityChannelChannel.subscribe(`${this.discussion.id}`);
-
-
-    // this.receiveData();
-    // this.allActions = this.communityChannelChannel.ACTIONS;
-    // this.getDiscussionMessages();
   }
 
   ngOnChanges() {
@@ -166,6 +158,22 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
 
+
+  // sendUpdatedMessage(data) {
+  //   this.communityChannelChannel.sendData(
+  //     this.communityChannelChannel.ACTIONS.UPDATE,
+  //     {
+  //       user_message: data
+  //     }
+  //   );
+  //   this.chatMessageForm.reset();
+  // }
+
+  // sendUpdatedAttachmentMessage(data) {
+  //   this.discussionsService.communityChannelUpdatedAttachmentMessage(data,).subscribe();
+  // }
+
+
   sendVote(userMessageId) {
     this.communityChannelChannel.sendData(
       this.communityChannelChannel.ACTIONS.VOTE,
@@ -229,6 +237,17 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               case(this.communityChannelChannel.ACTIONS.REPLY): {
                 this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
                 this.newMessage.emit();
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.UPDATE): {
+                // if (data.parent_type === 'UserMessage') {
+                //   let parentMessage = this.findMessageIndex(data.parent_id);
+                //   let childMessage = this.findReplyIndex(parentMessage, data.id);
+                //   this.messages[parentMessage].user_messages[childMessage] = data;
+                // } else {
+                //   this.messages[this.findMessageIndex(data.parent_id)] = data;
+                // }
+                // this.newMessage.emit();
                 break;
               }
               case(this.communityChannelChannel.ACTIONS.DELETE): {

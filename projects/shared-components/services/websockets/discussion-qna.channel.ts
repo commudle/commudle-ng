@@ -22,6 +22,7 @@ export class DiscussionQnAChannel {
   actionCable = actionCable;
 
   private subscription;
+  private actionCableSubscription;
 
   // all the communications received will be observables
   private channelData: BehaviorSubject<any> = new BehaviorSubject(null);
@@ -33,7 +34,7 @@ export class DiscussionQnAChannel {
 
 
   subscribe(discussionId) {
-    this.actionCableConnection.acSocket$.subscribe(
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
       connection => {
         if (connection) {
           this.subscription = connection.subscriptions.create({
@@ -60,7 +61,9 @@ export class DiscussionQnAChannel {
 
   unsubscribe() {
     if (this.subscription) {
+      this.channelData.next = null;
       this.subscription.unsubscribe();
+      this.actionCableSubscription.unsubscribe();
     }
   }
 

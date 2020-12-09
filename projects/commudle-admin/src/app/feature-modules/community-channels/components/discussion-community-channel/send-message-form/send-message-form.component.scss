@@ -26,6 +26,12 @@
           position: absolute;
           bottom: 50px;
           left: 25px;
+
+          &.edit {
+            bottom: 0;
+            top: 50px;
+            left: 0;
+          }
         }
       }
 

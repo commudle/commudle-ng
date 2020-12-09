@@ -85,4 +85,13 @@ export class DiscussionsService {
   }
 
 
+  communityChannelUpdatedAttachmentMessage(formData, userMessageId): Observable<boolean> {
+    const params = new HttpParams().set('user_message_id', userMessageId);
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.COMMUNITY_CHANNEL.UPDATED_ATTACHMENT_MESSAGE), formData,
+      { params }
+    );
+  }
+
+
 }
