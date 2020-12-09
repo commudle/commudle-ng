@@ -2,8 +2,8 @@
 
   <form class="community-channel-form" [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
     <div class="logo field">
-      <div class="uploaded-logo" *ngIf="uploadedLogoImage">
-        <img src="{{uploadedLogoImage}}" alt="Profile Picture">
+      <div class="uploaded-logo" *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)">
+        <img src="{{uploadedLogoImage || existingChannel.logo.url}}" alt="Profile Picture">
       </div>
       <div class="delete-logo-button">
         <button
@@ -11,14 +11,15 @@
           ghost
           size="tiny"
           status="danger"
-          *ngIf="uploadedLogoImage"
+          *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)"
+          type="button"
           (click)="removeLogo()">
           <nb-icon icon="close-circle"></nb-icon>
           Remove Logo
         </button>
       </div>
 
-      <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage }">
+      <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage || (existingChannel && existingChannel.logo) }">
         <span>
           <span>
             <nb-icon icon="image-outline"></nb-icon>
@@ -60,8 +61,8 @@
       </label>
     </div>
 
-    <button nbButton ghost size="small" [disabled]="!communityChannelForm.valid" status="success" type="submit">
-      Submit
+    <button nbButton outline size="small" [disabled]="!communityChannelForm.valid" status="success" type="submit">
+      Save
     </button>
   </form>
 

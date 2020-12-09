@@ -48,6 +48,7 @@ export const API_ROUTES = {
     JOIN_TOKEN: 'api/v2/community_channels/join_token',
     RESET_JOIN_TOKEN: 'api/v2/community_channels/reset_join_token',
     TAGGABLE_USERS: 'api/v2/community_channels/taggable_users',
+    DELETE_LOGO: 'api/v2/community_channels/delete_logo',
     MEMBERS: {
       INDEX:  'api/v2/community_channels/members',
       INVITE: 'api/v2/community_channels/members/invite',

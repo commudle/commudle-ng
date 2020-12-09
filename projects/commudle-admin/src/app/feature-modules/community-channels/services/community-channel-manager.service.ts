@@ -88,4 +88,21 @@ export class CommunityChannelManagerService {
     );
   }
 
+
+  findAndUpdateChannel(channel) {
+    // get all the channels
+    let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+
+    Object.entries(groupedChannels).forEach(
+      ([key, values], i) => {
+        let ch = values.find(k => k.id == channel.id);
+        if (ch) {
+          groupedChannels[key][i] = channel;
+        }
+      }
+    );
+      console.log(groupedChannels);
+    this.communityChannels.next(groupedChannels);
+  }
+
 }
