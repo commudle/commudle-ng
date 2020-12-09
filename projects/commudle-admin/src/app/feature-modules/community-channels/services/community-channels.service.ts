@@ -30,6 +30,14 @@ export class CommunityChannelsService {
     );
   }
 
+
+  update(communityChannelId, channelData): Observable<ICommunityChannel> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId);
+    return this.http.put<ICommunityChannel>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.UPDATE), channelData, {params}
+    );
+  }
+
   index(communityId): Observable<ICommunityChannels> {
     const params = new HttpParams().set('community_id', communityId);
     return this.http.get<ICommunityChannels>(
@@ -113,6 +121,16 @@ export class CommunityChannelsService {
     const params = new HttpParams().set('query', query).set('community_channel_id', channelId);
     return this.http.get<IUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.TAGGABLE_USERS),
+      {params}
+    );
+  }
+
+
+  deleteLogo(communityChannelId): Observable<boolean> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId);
+
+    return this.http.delete<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE_LOGO),
       {params}
     );
   }

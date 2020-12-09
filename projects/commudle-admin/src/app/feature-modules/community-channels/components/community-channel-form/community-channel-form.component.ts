@@ -4,6 +4,7 @@ import { ICommunityChannel } from 'projects/shared-models/community-channel.mode
 import { ICommunity } from 'projects/shared-models/community.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
+import { CommunityChannelsService } from '../../services/community-channels.service';
 
 @Component({
   selector: 'app-community-channel-form',
@@ -33,6 +34,7 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
+    private communityChannelsService: CommunityChannelsService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService
   ) { }
@@ -70,7 +72,12 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     if (this.uploadedLogoImageFile) {
       formData.append('community_channel[logo]', this.uploadedLogoImageFile);
     }
-    this.communityChannelManagerService.createChannel(formData);
+
+    if (this.existingChannel) {
+      this.updateChannel(formData);
+    } else {
+      this.communityChannelManagerService.createChannel(formData);
+    }
 
     this.saved.emit();
 
@@ -100,6 +107,26 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     this.communityChannelForm.get('logo').patchValue('');
 
     // if we are editing the community channel here, then send a request to the server to remove the logo
+    if (this.existingChannel && this.existingChannel.logo) {
+      this.communityChannelsService.deleteLogo(this.existingChannel.id).subscribe(
+        data => {
+          if (data) {
+            this.existingChannel.logo = null;
+            this.communityChannelManagerService.findAndUpdateChannel(this.existingChannel);
+          }
+        }
+      )
+    }
+  }
+
+  updateChannel(formData) {
+    this.communityChannelsService.update(this.existingChannel.id, formData).subscribe(
+      data => {
+        this.existingChannel = data;
+        this.communityChannelManagerService.findAndUpdateChannel(data);
+        this.toastLogService.successDialog('Updated', 3000);
+      }
+    )
   }
 
 }

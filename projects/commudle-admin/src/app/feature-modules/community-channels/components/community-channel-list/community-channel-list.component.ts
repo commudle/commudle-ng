@@ -27,12 +27,11 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       this.communityChannelManagerService.communityChannels$.subscribe(
         data => {
           this.groupedChannels = data;
-          if (this.groupedChannels) {
-            this.presetChannel();
-          }
         }
       )
     );
+
+    this.presetChannel();
   }
 
   ngOnDestroy() {

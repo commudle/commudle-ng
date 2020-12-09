@@ -30,6 +30,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
           if (data && !this.initialized) {
             this.initialize();
             this.initialized = true;
+          } else if (this.initialized && this.selectedChannel) {
+            this.communityChannelManagerService.setChannel(this.communityChannelManagerService.findChannel(this.selectedChannel.id));
+            this.getDiscussion();
           }
         }
       )
