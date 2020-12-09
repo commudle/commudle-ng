@@ -11,6 +11,7 @@ import { ICommunityChannels } from 'projects/shared-models/community-channels.mo
 import { tokenize } from 'prismjs';
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IUsers } from 'projects/shared-models/users.model';
+import { ICommunities } from 'projects/shared-models/communities.model';
 
 
 @Injectable({
@@ -22,6 +23,13 @@ export class CommunityChannelsService {
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService,
   ) { }
+
+
+  getUserChannelCommunities(): Observable<ICommunities> {
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.USER_CHANNEL_COMMUNITIES)
+    );
+  }
 
   create(communityId, channelData): Observable<ICommunityChannel> {
     const params = new HttpParams().set('community_id', communityId);

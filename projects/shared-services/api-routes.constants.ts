@@ -41,6 +41,7 @@ export const API_ROUTES = {
   },
 
   COMMUNITY_CHANNELS: {
+    USER_CHANNEL_COMMUNITIES: 'api/v2/community_channels/user_channel_communities',
     INDEX: 'api/v2/community_channels',
     CREATE: 'api/v2/community_channels',
     UPDATE: 'api/v2/community_channels',

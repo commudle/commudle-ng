@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
 interface EGroupedCommunityChannels {
@@ -16,6 +17,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   subscriptions = [];
   groupedChannels: EGroupedCommunityChannels;
   selectedChannel: ICommunityChannel;
+  selectedCommunity: ICommunity;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -23,6 +25,15 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+
+    this.subscriptions.push(
+      this.communityChannelManagerService.selectedCommunity$.subscribe(
+        data => {
+          this.selectedCommunity = data;
+        }
+      )
+    )
+
     this.subscriptions.push(
       this.communityChannelManagerService.communityChannels$.subscribe(
         data => {

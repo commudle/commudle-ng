@@ -193,3 +193,8 @@ nb-window.full-screen-height {
     display: none !important;
   }
 }
+
+
+:focus {
+  outline: none;
+}

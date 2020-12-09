@@ -1,0 +1,15 @@
+.community-list {
+  width: 100px;
+  .community {
+    width: 75px;
+    height: 75px;
+    img {
+      width: 100%;
+    }
+
+    &.selected {
+      box-shadow: 1px 1px 7px 4px #00d0ff;
+    }
+  }
+}
+  
