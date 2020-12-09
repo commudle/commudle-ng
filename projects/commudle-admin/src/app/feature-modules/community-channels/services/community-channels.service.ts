@@ -38,6 +38,15 @@ export class CommunityChannelsService {
     );
   }
 
+  delete(communityChannelId): Observable<boolean> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId);
+
+    return this.http.delete<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE),
+      {params}
+    );
+  }
+
   index(communityId): Observable<ICommunityChannels> {
     const params = new HttpParams().set('community_id', communityId);
     return this.http.get<ICommunityChannels>(

@@ -32,6 +32,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { MentionModule } from 'angular-mentions';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
+import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
 
 
 
@@ -51,7 +52,8 @@ import { NewCommunityChannelComponent } from './components/new-community-channel
     JoinByTokenComponent,
     ChannelMembersComponent,
     MemberComponent,
-    NewCommunityChannelComponent
+    NewCommunityChannelComponent,
+    ArchiveChannelComponent
   ],
   imports: [
     CommonModule,
