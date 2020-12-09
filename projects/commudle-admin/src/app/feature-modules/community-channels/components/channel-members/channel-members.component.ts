@@ -87,7 +87,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   toggleAdmin(index) {
     // send request to toggle
     this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
-      console.log(data);
       this.allUsers[index] = data;
     });
   }

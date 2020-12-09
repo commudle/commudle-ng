@@ -95,14 +95,35 @@ export class CommunityChannelManagerService {
 
     Object.entries(groupedChannels).forEach(
       ([key, values], i) => {
-        let ch = values.find(k => k.id == channel.id);
-        if (ch) {
-          groupedChannels[key][i] = channel;
+        let ch = values.findIndex(k => k.id == channel.id);
+        if (ch != -1) {
+          groupedChannels[key][ch] = channel;
         }
       }
     );
-      console.log(groupedChannels);
     this.communityChannels.next(groupedChannels);
+  }
+
+
+  deleteChannel(channelId) {
+    this.communityChannelsService.delete(channelId).subscribe(
+      data => {
+            // get all the channels
+        let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+        this.toastLogService.successDialog('Channel was deleted');
+        Object.entries(groupedChannels).forEach(
+          ([key, values], i) => {
+            let ch = values.findIndex(k => k.id == channelId);
+            if (ch != -1) {
+              groupedChannels[key].splice(ch, 1);
+            }
+          }
+        );
+        this.communityChannels.next(groupedChannels);
+
+      }
+    )
+
   }
 
 }

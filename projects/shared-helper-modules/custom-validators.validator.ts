@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { AbstractControl, FormControl, ValidatorFn } from "@angular/forms";
 
 
 export function NoWhitespaceValidator(control: FormControl) {
@@ -33,4 +33,14 @@ export function NoSpecialCharactersValidator(control: FormControl) {
 // }
 
 
+export function MatchStringValidator(text: string) {
+  return (control: AbstractControl): {[key: string]: any} | null => {
+    if (control.value == text) {
+      return null;
+    } else {
+      return { matchString: false };
+    }
+
+  };
+}
 

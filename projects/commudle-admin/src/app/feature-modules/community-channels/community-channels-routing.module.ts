@@ -11,6 +11,7 @@ import { InviteFormComponent } from './components/channel-settings/invite-form/i
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
+import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
           {
             path: 'invite',
             component: InviteFormComponent
+          },
+          {
+            path: 'delete',
+            component: ArchiveChannelComponent
           }
         ]
       },
