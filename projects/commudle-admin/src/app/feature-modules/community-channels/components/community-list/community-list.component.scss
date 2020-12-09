@@ -1,5 +1,8 @@
 .community-list {
-  width: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
   .community {
     width: 75px;
     height: 75px;
@@ -12,4 +15,3 @@
     }
   }
 }
-  

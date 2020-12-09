@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { BehaviorSubject } from 'rxjs';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { CommunityChannelsService } from './community-channels.service';
 import * as _ from 'lodash';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { AppUsersService } from '../../../services/app-users.service';
 
 
 export interface IGroupedCommunityChannels {
@@ -21,9 +20,17 @@ export class CommunityChannelManagerService {
   private selectedCommunity: BehaviorSubject<ICommunity> = new BehaviorSubject(null);
   public selectedCommunity$ = this.selectedCommunity.asObservable();
 
+  // get the roles for the selected community
+  private communityRoles: BehaviorSubject<[]> = new BehaviorSubject([]);
+  public communityRoles$ = this.communityRoles.asObservable();
+
   // communityChannels grouped by their group names
   private communityChannels: BehaviorSubject<IGroupedCommunityChannels> = new BehaviorSubject(null);
   public communityChannels$ = this.communityChannels.asObservable();
+
+  // get the role for all channels
+  private allChannelRoles: BehaviorSubject<any> = new BehaviorSubject({});
+  public allChannelRoles$ = this.allChannelRoles.asObservable();
 
   // channel
   private selectedChannel: BehaviorSubject<ICommunityChannel> = new BehaviorSubject(null);
@@ -31,14 +38,18 @@ export class CommunityChannelManagerService {
 
 
   constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService,
     private communityChannelsService: CommunityChannelsService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private usersService: AppUsersService
   ) { }
 
 
   setCommunity(community: ICommunity) {
+    this.usersService.getMyRoles('Kommunity', community.id).subscribe(
+      data => {
+        this.communityRoles.next(data);
+      }
+    );
     this.selectedCommunity.next(community);
     this.getChannels();
   }
@@ -67,6 +78,14 @@ export class CommunityChannelManagerService {
   getChannels() {
     this.communityChannelsService.index(this.selectedCommunity.value.slug).subscribe(
       data => {
+        let channels = data.community_channels;
+        for (const ch of channels) {
+          this.usersService.getMyRoles('CommunityChannel', ch.id).subscribe(
+            data => {
+              console.log(data);
+            }
+          )
+        }
         this.communityChannels.next(_.groupBy(data.community_channels, ch => ch.group_name));
       }
     );

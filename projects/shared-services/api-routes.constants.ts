@@ -304,7 +304,8 @@ export const API_ROUTES = {
   USERS: {
     UPDATE_PROFILE: 'api/v2/users/update_profile',
     CHECK_USERNAME: 'api/v2/users/check_username',
-    SET_USERNAME: 'api/v2/users/set_username'
+    SET_USERNAME: 'api/v2/users/set_username',
+    GET_MY_ROLES: 'api/v2/users/get_my_roles'
   },
 
   SPEAKER_RESOURCES: {

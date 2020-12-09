@@ -74,6 +74,9 @@
                   padding: 0;
                 }
               }
+              &:hover {
+                text-decoration: underline;
+              }
 
               .selected-channel {
                 color: #249aff;

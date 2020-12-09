@@ -11,6 +11,6 @@ export interface ICommunityChannel {
   join_token: string;
   is_private: boolean;
   logo: IAttachedFile;
-
+  my_roles: any[];
 }
 

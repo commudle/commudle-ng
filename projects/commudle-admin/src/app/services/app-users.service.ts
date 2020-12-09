@@ -36,4 +36,11 @@ export class AppUsersService {
       {username}
       );
   }
+
+
+  getMyRoles(parentType, parentId): Observable<[]> {
+    let params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
+    return this.http.get<[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_MY_ROLES), {params});
+  }
 }
