@@ -23,12 +23,9 @@ export class CommunityListComponent implements OnInit {
     this.communityChannelsService.getUserChannelCommunities().subscribe(
       data => {
         this.communities = data.communities;
-
-        if (this.communities.findIndex(k => k.id === this.selectedCommunity.id) !== -1) {
+        if (this.communities.findIndex(k => k.slug === this.selectedCommunity.slug) == -1) {
           this.communities.unshift(this.selectedCommunity);
         }
-
-        console.log(this.communities);
       }
     );
   }

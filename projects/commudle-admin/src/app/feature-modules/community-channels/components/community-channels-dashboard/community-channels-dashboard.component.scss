@@ -5,13 +5,13 @@
   justify-content: center;
 
   .community-list {
-
   }
 
   .community-channel-list {
     background: white;
     overflow-y: auto;
     overflow-x: hidden;
+    border-right: 1px dotted grey;
   }
 
   .community-channel-discussion {
@@ -22,7 +22,7 @@
 
   @media screen and (min-width: 1200px) {
     .community-list {
-      width: 100px;
+      width: 80px;
     }
 
     .community-channel-list {

@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { ICommunity } from 'projects/shared-models/community.model';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
 interface EGroupedCommunityChannels {
@@ -18,13 +20,22 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   groupedChannels: EGroupedCommunityChannels;
   selectedChannel: ICommunityChannel;
   selectedCommunity: ICommunity;
+  currentUser: ICurrentUser;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
-    private activatedRoute: ActivatedRoute
+    private authWatchService: LibAuthwatchService
   ) { }
 
   ngOnInit() {
+
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        data => {
+          this.currentUser = data;
+        }
+      )
+    )
 
     this.subscriptions.push(
       this.communityChannelManagerService.selectedCommunity$.subscribe(

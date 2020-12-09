@@ -12,12 +12,14 @@ import { JoinByTokenComponent } from './components/join-by-token/join-by-token.c
 import { ChannelMembersComponent } from './components/channel-members/channel-members.component';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
+import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 
 
 const routes: Routes = [
   {
     path: 'join/:token',
-    component: JoinByTokenComponent
+    component: JoinByTokenComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'app',
@@ -30,6 +32,7 @@ const routes: Routes = [
         path: 'new-channel',
         outlet: 'p',
         component: NewCommunityChannelComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings/:community_channel_id',

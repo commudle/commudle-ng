@@ -2,7 +2,7 @@
   <div class="community" *ngIf="selectedCommunity">
     <app-community-badge [community]="selectedCommunity"></app-community-badge>
   </div>
-  <p>
+  <p *ngIf="currentUser">
     <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]">
       <nb-icon icon="plus"></nb-icon>
       New Channel
@@ -36,7 +36,7 @@
               </a>
             </p>
           </div>
-          <p class="settings">
+          <p class="settings" *ngIf="currentUser">
             <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]">
               <nb-icon icon="person-add"></nb-icon>
             </a>
