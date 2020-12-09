@@ -1,4 +1,7 @@
 <div class="community-channel-list">
+  <div class="community" *ngIf="selectedCommunity">
+    <app-community-badge [community]="selectedCommunity"></app-community-badge>
+  </div>
   <p>
     <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]">
       <nb-icon icon="plus"></nb-icon>

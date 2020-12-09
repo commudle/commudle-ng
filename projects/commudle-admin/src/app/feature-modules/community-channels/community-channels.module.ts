@@ -16,7 +16,8 @@ import {
   NbFormFieldModule,
   NbActionsModule,
   NbListModule,
-  NbContextMenuModule} from '@nebular/theme';
+  NbContextMenuModule,
+  NbTooltipModule} from '@nebular/theme';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -75,7 +76,8 @@ import { ArchiveChannelComponent } from './components/channel-settings/archive-c
     NbFormFieldModule,
     NbActionsModule,
     NbListModule,
-    NbContextMenuModule
+    NbContextMenuModule,
+    NbTooltipModule
   ],
   exports: [
     CommunityChannelsDashboardComponent

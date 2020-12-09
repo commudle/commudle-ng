@@ -2,6 +2,15 @@
   padding: 0.5rem;
   width: 100%;
   height: 100%;
+
+  .community {
+    width: 100%;
+    position: sticky;
+    padding-top: 0.5rem;
+    top: 0.5rem;
+    background-color: white;
+  }
+
   .channel-group {
     margin-bottom: 1.5rem;
     .group-name {
