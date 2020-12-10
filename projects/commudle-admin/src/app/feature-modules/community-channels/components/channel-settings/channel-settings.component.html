@@ -15,13 +15,13 @@
     <nb-card-body>
       <div class="container">
         <div class="menu">
-          <p>
+          <p *ngIf="this.channelRoles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
             <a [routerLink]="['edit']" routerLinkActive="menu-active">Edit</a>
           </p>
-          <p>
+          <p  *ngIf="!this.channel.is_private || this.channelRoles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
             <a [routerLink]="['invite']" routerLinkActive="menu-active">Invite</a>
           </p>
-          <p>
+          <p *ngIf="this.channelRoles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
             <a [routerLink]="['delete']" routerLinkActive="menu-active">Delete</a>
           </p>
         </div>

@@ -19,7 +19,7 @@
         </small>
       </p>
     </div>
-    <button nbButton status="info" outline size="tiny" (click)="refreshJoinToken()">
+    <button nbButton status="info" outline size="tiny" (click)="refreshJoinToken()" *ngIf="channelsRoles[communityChannel.id] && channelsRoles[communityChannel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
       <nb-icon icon="refresh"></nb-icon>
       Create New Link
     </button>

@@ -17,7 +17,7 @@ export class BasicUserProfileComponent implements OnInit {
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
-  validusername = false;
+  validusername;
   lastUsername = '';
   currentUsername = '';
   checkingUsername = false;

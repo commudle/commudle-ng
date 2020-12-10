@@ -1,3 +1,4 @@
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -21,6 +22,9 @@ export class InviteFormComponent implements OnInit, OnDestroy {
   appURL;
   linkCopied = false;
 
+  channelsRoles = {};
+  EUserRoles = EUserRoles;
+
   memberInviteForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]]
   });
@@ -42,6 +46,14 @@ export class InviteFormComponent implements OnInit, OnDestroy {
         data => {
           this.communityChannel = this.communityChannelManagerService.findChannel(data.community_channel_id);
           this.getJoinToken();
+        }
+      )
+    );
+
+    this.subscriptions.push(
+      this.communityChannelManagerService.allChannelRoles$.subscribe(
+        data => {
+          this.channelsRoles = data;
         }
       )
     );

@@ -46,20 +46,24 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
   constructor(
     private authWatchService: LibAuthwatchService,
     private menuService: NbMenuService,
-    private dialogService: NbDialogService
   ) { }
 
   ngOnInit() {
+    this.authWatchService.currentUser$.subscribe(
+      data => {
+        this.currentUser = data;
+        if (this.currentUser.username === this.message.user.username) {
+          this.canEdit = true;
+          // this.contextMenuItems.push({
+          //   title: 'Edit'
+          // });
+          this.contextMenuItems.push({
+            title: 'Delete'
+          });
+        }
+      }
+    )
 
-    if (this.currentUser.username === this.message.user.username) {
-      this.canEdit = true;
-      // this.contextMenuItems.push({
-      //   title: 'Edit'
-      // });
-      this.contextMenuItems.push({
-        title: 'Delete'
-      });
-    }
 
     this.handleContextMenu();
   }

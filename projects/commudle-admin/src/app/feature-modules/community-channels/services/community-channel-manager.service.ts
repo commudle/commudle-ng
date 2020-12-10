@@ -29,9 +29,8 @@ export class CommunityChannelManagerService {
   public communityChannels$ = this.communityChannels.asObservable();
 
   // get the role for all channels
-  private allChannelRoles: BehaviorSubject<any> = new BehaviorSubject({});
+  private allChannelRoles: BehaviorSubject<{}> = new BehaviorSubject({});
   public allChannelRoles$ = this.allChannelRoles.asObservable();
-
   // channel
   private selectedChannel: BehaviorSubject<ICommunityChannel> = new BehaviorSubject(null);
   public selectedChannel$ = this.selectedChannel.asObservable();
@@ -78,17 +77,36 @@ export class CommunityChannelManagerService {
   getChannels() {
     this.communityChannelsService.index(this.selectedCommunity.value.slug).subscribe(
       data => {
-        let channels = data.community_channels;
-        for (const ch of channels) {
-          this.usersService.getMyRoles('CommunityChannel', ch.id).subscribe(
-            data => {
-              console.log(data);
-            }
-          )
-        }
+        this.getAllChannelRoles(data.community_channels);
         this.communityChannels.next(_.groupBy(data.community_channels, ch => ch.group_name));
       }
     );
+  }
+
+
+  getAllChannelRoles(channels) {
+    let roles = this.allChannelRoles.value;
+    for (const [i, ch] of channels.entries()) {
+      this.usersService.getMyRoles('CommunityChannel', ch.id).subscribe(
+        data => {
+          roles[`${ch.id}`] = data;
+
+          if (i === channels.length) {
+            this.allChannelRoles.next(roles);
+          }
+        }
+      )
+    }
+  }
+
+  getChannelRoles(channel) {
+    let roles = this.allChannelRoles.value;
+    this.usersService.getMyRoles('CommunityChannel', channel.id).subscribe(
+      data => {
+        roles[`${channel.id}`] = data;
+        this.allChannelRoles.next(roles);
+      }
+    )
   }
 
   createChannel(channelData) {
@@ -101,7 +119,7 @@ export class CommunityChannelManagerService {
         let allChannels = this.communityChannels.value;
         allChannels[data.group_name] ? (allChannels[data.group_name].push(data)) : (allChannels[data.group_name] = [data])
         this.communityChannels.next(allChannels);
-
+        this.getChannelRoles(channelData);
         this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
       }
     );
