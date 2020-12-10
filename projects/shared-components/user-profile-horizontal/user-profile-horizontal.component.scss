@@ -44,6 +44,7 @@
     .designation {
       margin: 0;
       font-size: 0.8rem;
+      word-break: break-all;
 
       &.medium {
         font-size: 0.9rem;

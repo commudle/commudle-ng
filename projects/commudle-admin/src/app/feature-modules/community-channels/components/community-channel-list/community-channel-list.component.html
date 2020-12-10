@@ -2,7 +2,7 @@
   <div class="community" *ngIf="selectedCommunity">
     <app-community-badge [community]="selectedCommunity"></app-community-badge>
   </div>
-  <p *ngIf="currentUser">
+  <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
     <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]">
       <nb-icon icon="plus"></nb-icon>
       New Channel
@@ -37,10 +37,10 @@
             </p>
           </div>
           <p class="settings" *ngIf="currentUser">
-            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]">
+            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]" *ngIf="!channel.is_private">
               <nb-icon icon="person-add"></nb-icon>
             </a>
-            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]">
+            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]" *ngIf="channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
               <nb-icon icon="settings"></nb-icon>
             </a>
           </p>

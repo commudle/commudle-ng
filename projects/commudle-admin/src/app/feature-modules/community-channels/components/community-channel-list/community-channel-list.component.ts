@@ -1,3 +1,4 @@
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
@@ -21,6 +22,9 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   selectedChannel: ICommunityChannel;
   selectedCommunity: ICommunity;
   currentUser: ICurrentUser;
+  EUserRoles = EUserRoles;
+  communityRoles = [];
+  channelsRoles = {};
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -52,6 +56,22 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
         }
       )
     );
+
+    this.subscriptions.push(
+      this.communityChannelManagerService.communityRoles$.subscribe(
+        data => {
+          this.communityRoles = data;
+        }
+      )
+    )
+
+    this.subscriptions.push(
+      this.communityChannelManagerService.allChannelRoles$.subscribe(
+        data => {
+          this.channelsRoles = data;
+        }
+      )
+    )
 
     this.presetChannel();
   }

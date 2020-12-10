@@ -7,7 +7,6 @@
           [canReply]="true && !blocked"
           [permittedActions]="permittedActions"
           [allActions]="allActions"
-          [currentUser]="currentUser"
           (sendReply)="sendReply($event, um.id)"
           (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
           (sendVote)="sendVote($event)"

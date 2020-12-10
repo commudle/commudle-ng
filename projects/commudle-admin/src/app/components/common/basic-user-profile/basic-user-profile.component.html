@@ -22,6 +22,11 @@
               *Username cannot contain spaces & special characters
             </small>
           </p>
+          <p class="field-error validation-error-text" *ngIf="validusername == false && currentUsername != currentUser.username" icon="alert-circle-outline" status="danger">
+            <small>
+              *Username already taken
+            </small>
+          </p>
         </div>
         <div>
           <button nbButton size="small" [nbSpinner]="checkingUsername" status="success" type="submit" [disabled]="!validusername || (currentUsername == lastUsername) || checkingUsername">

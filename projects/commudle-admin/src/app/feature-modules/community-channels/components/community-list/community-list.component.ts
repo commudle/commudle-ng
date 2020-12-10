@@ -10,6 +10,7 @@ import { CommunityChannelsService } from '../../services/community-channels.serv
 export class CommunityListComponent implements OnInit {
   @Input() selectedCommunity: ICommunity;
   communities: ICommunity[];
+
   constructor(
     private communityChannelsService: CommunityChannelsService
   ) { }

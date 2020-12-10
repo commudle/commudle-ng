@@ -1,3 +1,4 @@
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
@@ -14,6 +15,10 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   subscriptions = [];
   channel: ICommunityChannel;
   dialogRef;
+  EUserRoles = EUserRoles;
+
+  allChannelsRoles = {};
+  channelRoles = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,7 +32,16 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
       this.activatedRoute.params.subscribe(data => {
         this.setChannel(data.community_channel_id);
       })
-    )
+    );
+
+    this.subscriptions.push(
+      this.communityChannelManagerService.allChannelRoles$.subscribe(
+        data => {
+          this.allChannelsRoles = data;
+          this.setRoles();
+        }
+      )
+    );
   }
 
 
@@ -42,6 +56,12 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   setChannel(channelId) {
     this.openDialog();
     this.channel = this.communityChannelManagerService.findChannel(channelId);
+    this.setRoles();
+  }
+
+
+  setRoles() {
+    this.channelRoles = this.allChannelsRoles[this.channel.id];
   }
 
 
