@@ -52,7 +52,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
     this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
-        if (this.currentUser.username === this.message.user.username) {
+        if (this.currentUser && this.currentUser.username === this.message.user.username) {
           this.canEdit = true;
           // this.contextMenuItems.push({
           //   title: 'Edit'

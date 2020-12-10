@@ -6,6 +6,8 @@ import { CommunityChannelsService } from './community-channels.service';
 import * as _ from 'lodash';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { AppUsersService } from '../../../services/app-users.service';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 
 export interface IGroupedCommunityChannels {
@@ -16,6 +18,8 @@ export interface IGroupedCommunityChannels {
   providedIn: 'root'
 })
 export class CommunityChannelManagerService {
+  private currentUser;
+
   // community
   private selectedCommunity: BehaviorSubject<ICommunity> = new BehaviorSubject(null);
   public selectedCommunity$ = this.selectedCommunity.asObservable();
@@ -39,23 +43,29 @@ export class CommunityChannelManagerService {
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private toastLogService: LibToastLogService,
-    private usersService: AppUsersService
+    private usersService: AppUsersService,
   ) { }
 
+  setCurrentUser(user: ICurrentUser) {
+    this.currentUser = user;
+  }
 
   setCommunity(community: ICommunity) {
-    this.usersService.getMyRoles('Kommunity', community.id).subscribe(
-      data => {
-        this.communityRoles.next(data);
-      }
-    );
     this.selectedCommunity.next(community);
+
+    if (this.currentUser) {
+      this.usersService.getMyRoles('Kommunity', community.id).subscribe(
+        data => {
+          this.communityRoles.next(data);
+        }
+      );
+    }
+
     this.getChannels();
   }
 
 
   findChannel(channelId): ICommunityChannel {
-
     let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
     let chn = null;
     Object.entries(groupedChannels).forEach(
@@ -85,17 +95,19 @@ export class CommunityChannelManagerService {
 
 
   getAllChannelRoles(channels) {
-    let roles = this.allChannelRoles.value;
-    for (const [i, ch] of channels.entries()) {
-      this.usersService.getMyRoles('CommunityChannel', ch.id).subscribe(
-        data => {
-          roles[`${ch.id}`] = data;
+    if (this.currentUser) {
+      let roles = this.allChannelRoles.value;
+      for (const [i, ch] of channels.entries()) {
+        this.usersService.getMyRoles('CommunityChannel', ch.id).subscribe(
+          data => {
+            roles[`${ch.id}`] = data;
 
-          if (i === channels.length) {
-            this.allChannelRoles.next(roles);
+            if (i === channels.length) {
+              this.allChannelRoles.next(roles);
+            }
           }
-        }
-      )
+        )
+      }
     }
   }
 

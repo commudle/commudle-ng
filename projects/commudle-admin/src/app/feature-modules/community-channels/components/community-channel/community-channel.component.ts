@@ -15,6 +15,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   selectedChannel: ICommunityChannel;
   discussion: IDiscussion;
   initialized = false;
+  notFound = false;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -32,7 +33,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
             this.initialized = true;
           } else if (this.initialized && this.selectedChannel) {
             this.communityChannelManagerService.setChannel(this.communityChannelManagerService.findChannel(this.selectedChannel.id));
-            this.getDiscussion();
+            this.getDiscussion(this.selectedChannel.id);
           }
         }
       )
@@ -50,25 +51,21 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.params.subscribe(
         data => {
-          this.communityChannelManagerService.setChannel(this.communityChannelManagerService.findChannel(data.community_channel_id));
-        }
-      )
-    );
-
-    this.subscriptions.push(
-      this.communityChannelManagerService.selectedChannel$.subscribe(
-        data => {
-          this.selectedChannel = data;
-          if (this.selectedChannel) {
-            this.getDiscussion();
+          const selectedCh = this.communityChannelManagerService.findChannel(data.community_channel_id);
+          if (selectedCh) {
+            this.notFound = false;
+            this.communityChannelManagerService.setChannel(selectedCh);
+            this.getDiscussion(selectedCh.id);
+          } else {
+            this.notFound = true;
           }
         }
       )
     );
   }
 
-  getDiscussion() {
-    this.discussionsService.pGetOrCreateForCommunityChannel(this.selectedChannel.id).subscribe(
+  getDiscussion(channelId) {
+    this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe(
       data => {
         this.discussion = data;
       }

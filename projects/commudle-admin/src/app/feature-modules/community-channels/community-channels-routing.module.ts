@@ -62,7 +62,8 @@ const routes: Routes = [
         children: [
           {
             path: 'members',
-            component: ChannelMembersComponent
+            component: ChannelMembersComponent,
+            canActivate: [AuthGuard]
           }
         ]
       },
