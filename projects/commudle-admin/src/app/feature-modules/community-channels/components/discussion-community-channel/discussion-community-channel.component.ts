@@ -1,3 +1,4 @@
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUser } from 'projects/shared-models/user.model';
 import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
@@ -11,7 +12,6 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
-import { CommunityChannelsService } from '../../services/community-channels.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 
 
@@ -32,14 +32,15 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   subscriptions = [];
   messages: IUserMessage[] = [];
   permittedActions = [];
-  blocked = false;
+  blocked = true;
   pageSize = 10;
   nextPage = 1;
   allMessagesLoaded = false;
   loadingMessages = false;
   showReplyForm = 0;
   allActions;
-
+  channelRoles = {};
+  EUserRoles = EUserRoles;
 
   chatMessageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
@@ -72,11 +73,20 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.showReplyForm = 0;
 
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
-      user => this.currentUser = user
+      user => {
+        this.currentUser = user;
+        this.setBlocked();
+      }
     ));
 
-    this.communityChannelChannel.subscribe(`${this.discussion.id}`);
+    this.communityChannelManagerService.allChannelRoles$.subscribe(
+      data => {
+        this.channelRoles = data;
+        this.setBlocked();
+      }
+    )
 
+    this.communityChannelChannel.subscribe(`${this.discussion.id}`);
 
     this.receiveData();
     this.allActions = this.communityChannelChannel.ACTIONS;
@@ -89,6 +99,16 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.communityChannelChannel.unsubscribe();
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
+    }
+  }
+
+
+  setBlocked() {
+
+    if (this.currentUser && this.channelRoles && this.channelRoles[this.discussion.parent_id]) {
+      this.blocked = !(this.channelRoles[`${this.discussion.parent_id}`].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || this.channelRoles[`${this.discussion.parent_id}`].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))
+    } else {
+      this.blocked = true;
     }
   }
 
@@ -225,7 +245,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
             switch (data.action) {
               case(this.communityChannelChannel.ACTIONS.SET_PERMISSIONS): {
                 this.permittedActions = data.permitted_actions;
-                this.blocked = data.blocked;
                 break;
               }
               case(this.communityChannelChannel.ACTIONS.ADD): {
@@ -277,13 +296,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
                 } else {
                   const qi = this.findMessageIndex(data.parent_id);
                   this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
-                }
-                break;
-              }
-              case(this.communityChannelChannel.ACTIONS.TOGGLE_BLOCK): {
-                this.blocked = data.blocked;
-                if (this.blocked) {
-                  this.toastLogService.warningDialog('You can only see and not send any messages.', 5000);
                 }
                 break;
               }

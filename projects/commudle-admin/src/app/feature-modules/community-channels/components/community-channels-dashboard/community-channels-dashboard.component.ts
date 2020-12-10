@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { NbWindowService } from '@nebular/theme';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-community-channels-dashboard',
@@ -21,13 +22,21 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   channelsQueried = false;
 
   constructor(
-    private usersService: UsersService,
+    private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
     private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        data => {
+          this.communityChannelManagerService.setCurrentUser(data);
+        }
+      )
+    )
+    
     this.subscriptions.push(this.activatedRoute.params.subscribe(
       data => {
         if (!this.selectedCommunity || data.community_id !== this.selectedCommunity.slug) {

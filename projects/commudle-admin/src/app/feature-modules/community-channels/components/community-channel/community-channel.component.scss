@@ -23,4 +23,22 @@
     }
   }
 
+
+  main.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    p {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      color: grey;
+
+      nb-icon {
+        font-size: 4rem;
+        color: lightgrey;
+      }
+    }
+  }
+
 }

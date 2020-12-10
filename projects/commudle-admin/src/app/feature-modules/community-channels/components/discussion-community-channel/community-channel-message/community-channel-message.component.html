@@ -50,7 +50,12 @@
             <small>Reply</small>
           </p>
         </div>
-        <div class="message-context-menu clickable" [nbContextMenu]="contextMenuItems" [nbContextMenuTag]="'community-channel-message-menu-'.concat((message.id).toString())">
+        <div
+          *ngIf="contextMenuItems.length > 0"
+          class="message-context-menu clickable"
+          [nbContextMenu]="contextMenuItems"
+          [nbContextMenuTag]="'community-channel-message-menu-'.concat((message.id).toString())"
+          >
           <nb-icon icon="more-vertical" status="basic"></nb-icon>
         </div>
       </div>
