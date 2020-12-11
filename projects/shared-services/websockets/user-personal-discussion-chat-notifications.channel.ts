@@ -9,7 +9,7 @@ import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.
 @Injectable({
   providedIn: 'root'
 })
-export class UserNotificationsChannel {
+export class UserPersonalDiscussionChatNotificationsChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
     LOAD_NOTIFICATIONS: 'load_notifications',

@@ -11,6 +11,7 @@
           font-size: 1.5rem;
           cursor: pointer;
           color: grey;
+          position: relative;
           fa-icon {
             vertical-align: sub;
             &:hover{
@@ -105,13 +106,18 @@
         .social {
           margin: 0.5rem 0 0;
         }
-        
+
         .pages, .policies {
           margin-top: 0.5rem;
         }
       }
     }
   }
+
+  nb-sidebar {
+    transition: width 0.1s;
+  }
+
 
 
 }

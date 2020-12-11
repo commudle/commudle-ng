@@ -1,4 +1,4 @@
-<div>
+<div class="sidebar">
   <nb-list class="sidebar-common-menu">
     <nb-list-item>
       <a [routerLink]="['/']" (click)="closeSidebar()" >
@@ -43,7 +43,7 @@
         <span>
           Messages
         </span>
-        <span *ngIf="unreadMessagesCount > 0">
+        <span *ngIf="unreadMessagesCount > 0 && chatWindowRef == null">
           <app-badge [text]="unreadMessagesCount + ' New'" [color]="'red'" [fontSize]="'small'"></app-badge>
         </span>
       </a>
