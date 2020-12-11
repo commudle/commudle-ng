@@ -5,8 +5,9 @@
       <div class="menu-left-container">
         <div class="sidebar-toggle" (click)="toggleSidebar()">
           <fa-icon [icon]="faBars" size="1x"></fa-icon>
+          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" status="danger" [position]="'top end'"></nb-badge>
         </div>
-        <div class="main-logo clickable" (click)="redirectToHome()">
+        <div class="main-logo clickable" [routerLink]="['/']">
           <img src="/assets/images/commudle-logo72.png">
           <p>
             Commudle
@@ -47,7 +48,7 @@
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-    <div class="main-logo clickable" (click)="redirectToHome()">
+    <div class="main-logo clickable" [routerLink]="['/']">
       <img src="/assets/images/commudle-logo72.png">
       <p>
         more@commudle.com
