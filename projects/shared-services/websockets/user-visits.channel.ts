@@ -15,6 +15,7 @@ export class UserVisitsChannel {
   };
 
   actionCable = actionCable;
+  private cableConnection;
 
   private subscription;
 
@@ -24,26 +25,28 @@ export class UserVisitsChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
-  ) {}
+  ) {
+    this.actionCableConnection.acSocket$.subscribe(
+      connection => {
+        this.cableConnection = connection;
+      }
+    );
+  }
 
 
   subscribe(sessionToken, url, appToken) {
-    this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        if (connection) {
-          this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.USER_VISITS,
-            session_token: sessionToken,
-            url: url,
-            app_token: appToken
-          }, {
-            received: (data) => {
-              this.channelData.next(data);
-            }
-          });
+    if (this.cableConnection) {
+      this.subscription = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.USER_VISITS,
+        session_token: sessionToken,
+        url: url,
+        app_token: appToken
+      }, {
+        received: (data) => {
+          this.channelData.next(data);
         }
-      }
-    );
+      });
+    }
     return this.subscription;
   }
 

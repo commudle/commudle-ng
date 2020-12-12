@@ -17,6 +17,8 @@ export class UserPersonalDiscussionChatNotificationsChannel {
   };
 
   actionCable = actionCable;
+  actionCableSubscription;
+  private cableConnection;
 
   private subscription;
 
@@ -29,25 +31,27 @@ export class UserPersonalDiscussionChatNotificationsChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
-  ) {}
+  ) {
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
+      connection => {
+        this.cableConnection = connection;
+      }
+    );
+  }
 
 
   subscribe() {
     this.unsubscribe();
-    this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        if (connection) {
-          this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.USER_NOTIFICATIONS,
-          }, {
-            received: (data) => {
-              this.channelData.next(data);
-              this.setNotifications(data);
-            }
-          });
+    if (this.cableConnection) {
+      this.subscription = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.USER_PERSONAL_DISCUSSION_CHAT_NOTIFICATIONS,
+      }, {
+        received: (data) => {
+          this.channelData.next(data);
+          this.setNotifications(data);
         }
-      }
-    );
+      });
+    }
     return this.subscription;
   }
 

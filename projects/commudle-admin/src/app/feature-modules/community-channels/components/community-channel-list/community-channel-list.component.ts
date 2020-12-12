@@ -1,6 +1,6 @@
+import { CommunityChannelNotificationsChannel } from './../../services/websockets/community-channel-notifications.channel';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -25,10 +25,12 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   EUserRoles = EUserRoles;
   communityRoles = [];
   channelsRoles = {};
+  channelNotifications = [];
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
-    private authWatchService: LibAuthwatchService
+    private authWatchService: LibAuthwatchService,
+    private communityChannelNotifications: CommunityChannelNotificationsChannel
   ) { }
 
   ngOnInit() {
@@ -38,42 +40,40 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
         data => {
           this.currentUser = data;
         }
-      )
-    )
-
-    this.subscriptions.push(
+      ),
       this.communityChannelManagerService.selectedCommunity$.subscribe(
         data => {
           this.selectedCommunity = data;
         }
-      )
-    )
-
-    this.subscriptions.push(
+      ),
       this.communityChannelManagerService.communityChannels$.subscribe(
         data => {
           this.groupedChannels = data;
         }
-      )
-    );
-
-    this.subscriptions.push(
+      ),
       this.communityChannelManagerService.communityRoles$.subscribe(
         data => {
           this.communityRoles = data;
         }
-      )
-    )
-
-    this.subscriptions.push(
+      ),
       this.communityChannelManagerService.allChannelRoles$.subscribe(
         data => {
           this.channelsRoles = data;
         }
-      )
+      ),
+      this.communityChannelNotifications.notifications$.subscribe(
+        data => {
+          this.channelNotifications = data.map(a => a.id);
+          this.markRead();
+        }
+      ),
+      this.communityChannelManagerService.selectedChannel$.subscribe(
+        data => {
+          this.selectedChannel = data;
+          this.markRead();
+        }
+      ),
     )
-
-    this.presetChannel();
   }
 
   ngOnDestroy() {
@@ -82,14 +82,12 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     }
   }
 
-
-  presetChannel() {
-    this.subscriptions.push(
-      this.communityChannelManagerService.selectedChannel$.subscribe(
-        data => this.selectedChannel = data
-      )
-    );
+  markRead() {
+    if (this.selectedChannel && this.channelNotifications.includes(this.selectedChannel.id)) {
+      this.communityChannelNotifications.markRead(this.selectedChannel.id);
+    }
   }
+
 
 
 

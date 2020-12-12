@@ -16,6 +16,8 @@ export class UserLiveStatusChannel {
   };
 
   actionCable = actionCable;
+  actionCableSubscription;
+  private cableConnection;
 
   private subscriptions = {};
 
@@ -28,28 +30,32 @@ export class UserLiveStatusChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
-  ) {}
+  ) {
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
+      connection => {
+        this.cableConnection = connection;
+      }
+    );
+  }
 
 
   subscribe(userId, uuid) {
-    return this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        if (connection) {
-          this.channelData[`${userId}_${uuid}`] = new BehaviorSubject(null);
-          this.channelData$[`${userId}_${uuid}`] = this.channelData[`${userId}_${uuid}`].asObservable();
-          this.channelsList.next(this.channelsList.getValue().add(`${userId}_${uuid}`));
+    if (this.cableConnection) {
+      this.channelData[`${userId}_${uuid}`] = new BehaviorSubject(null);
+      this.channelData$[`${userId}_${uuid}`] = this.channelData[`${userId}_${uuid}`].asObservable();
+      this.channelsList.next(this.channelsList.getValue().add(`${userId}_${uuid}`));
 
-          this.subscriptions[`${userId}_${uuid}`] = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.USER_LIVE_STATUS,
-            user_id: userId
-          }, {
-            received: (data) => {
-              this.channelData[`${userId}_${uuid}`].next(data);
-            }
-          });
+      this.subscriptions[`${userId}_${uuid}`] = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.USER_LIVE_STATUS,
+        user_id: userId
+      }, {
+        received: (data) => {
+          this.channelData[`${userId}_${uuid}`].next(data);
         }
-      }
-    );
+      });
+    }
+
+    return this.channelData[`${userId}_${uuid}`];
   }
 
 

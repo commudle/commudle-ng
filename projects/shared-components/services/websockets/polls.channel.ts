@@ -22,6 +22,7 @@ export class PollsChannel {
   };
 
   actionCable = actionCable;
+  private cableConnection;
 
   private subscription;
   private actionCableSubscription;
@@ -32,26 +33,29 @@ export class PollsChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
-  ) {}
+  ) {
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
+      connection => {
+        this.cableConnection = connection;
+      }
+    );
+  }
 
 
   subscribe(pollableType, pollableId) {
-    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        if (connection) {
-          this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.POLL_CHANNEL,
-            pollable_type: pollableType,
-            pollable_id: pollableId
-          }, {
-            received: (data) => {
-              (data);
-              this.channelData.next(data);
-            }
-          });
+    if (this.cableConnection) {
+      this.subscription = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.POLL_CHANNEL,
+        pollable_type: pollableType,
+        pollable_id: pollableId
+      }, {
+        received: (data) => {
+          this.channelData.next(data);
         }
-      }
-    );
+      });
+    }
+
+    return this.subscription;
   }
 
 

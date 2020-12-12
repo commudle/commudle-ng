@@ -34,10 +34,16 @@
                 </span>
                 {{channel.name}}
               </a>
+              <app-badge
+                *ngIf="channelNotifications.includes(channel.id) && (!selectedChannel || selectedChannel.id !== channel.id)"
+                [dotMode]="true"
+                [color]="'red'"
+                [position]="'top right'">
+              </app-badge>
             </p>
           </div>
           <p class="settings" *ngIf="currentUser">
-            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]" *ngIf="!channel.is_private">
+            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]" *ngIf="(!channel.is_private && (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ) || (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))">
               <nb-icon icon="person-add"></nb-icon>
             </a>
             <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]" *ngIf="channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">

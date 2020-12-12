@@ -1,5 +1,5 @@
-<div>
-  <p [ngClass]="{'small-text': fontSize == 'small'}" [ngStyle]="{'background-color': bg}">
+<div class="{{ position }}" [ngClass]="{'dotmode': dotMode === true}" [ngStyle]="{'background-color': bg}">
+  <p [ngClass]="{'small-text': fontSize == 'small'}" >
     <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
     {{ text }}
   </p>

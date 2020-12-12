@@ -20,6 +20,7 @@ export class DiscussionQnAChannel {
   };
 
   actionCable = actionCable;
+  private cableConnection;
 
   private subscription;
   private actionCableSubscription;
@@ -30,24 +31,28 @@ export class DiscussionQnAChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
-  ) {}
+  ) {
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
+      connection => {
+        this.cableConnection = connection;
+      }
+    );
+  }
 
 
   subscribe(discussionId) {
-    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        if (connection) {
-          this.subscription = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_QNA,
-            room: discussionId
-          }, {
-            received: (data) => {
-              this.channelData.next(data);
-            }
-          });
+    if (this.cableConnection) {
+      this.subscription = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_QNA,
+        room: discussionId
+      }, {
+        received: (data) => {
+          this.channelData.next(data);
         }
-      }
-    );
+      });
+    }
+
+    return this.subscription;
   }
 
 
