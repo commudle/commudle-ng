@@ -22,7 +22,7 @@
   </div>
   <div class="send-message-form">
     <app-send-message-form
-      *ngIf="currentUser && !blocked"
+      *ngIf="channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))"
       (sendMessage)="sendMessage($event)"
       (sendAttachmentMessage)="sendAttachmentMessage($event)"
     ></app-send-message-form>

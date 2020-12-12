@@ -22,4 +22,19 @@ div {
       }
     }
   }
+
+  &.dotmode {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    p {
+      display: none;
+    }
+  }
+}
+
+:host.top.right {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

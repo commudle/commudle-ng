@@ -16,6 +16,7 @@ export class VoteChannel {
   };
 
   actionCable = actionCable;
+  private cableConnection;
 
   private subscriptions = {};
 
@@ -28,29 +29,35 @@ export class VoteChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket
-  ) {}
+  ) {
+    this.actionCableConnection.acSocket$.subscribe(
+      connection => {
+        this.cableConnection = connection;
+      }
+    )
+  }
+
 
 
   subscribe(votableType, votableId, uuid) {
-    return this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        if (connection) {
-          this.channelData[`${votableId}_${votableType}_${uuid}`] = new BehaviorSubject(null);
-          this.channelData$[`${votableId}_${votableType}_${uuid}`] = this.channelData[`${votableId}_${votableType}_${uuid}`].asObservable();
-          this.channelsList.next(this.channelsList.getValue().add(`${votableId}_${votableType}_${uuid}`));
+    if (this.cableConnection) {
+      this.channelData[`${votableId}_${votableType}_${uuid}`] = new BehaviorSubject(null);
+      this.channelData$[`${votableId}_${votableType}_${uuid}`] = this.channelData[`${votableId}_${votableType}_${uuid}`].asObservable();
+      this.channelsList.next(this.channelsList.getValue().add(`${votableId}_${votableType}_${uuid}`));
 
-          this.subscriptions[`${votableId}_${votableType}_${uuid}`] = connection.subscriptions.create({
-            channel: APPLICATION_CABLE_CHANNELS.VOTE_CHANNEL,
-            votable_type: votableType,
-            votable_id: votableId
-          }, {
-            received: (data) => {
-              this.channelData[`${votableId}_${votableType}_${uuid}`].next(data);
-            }
-          });
+      this.subscriptions[`${votableId}_${votableType}_${uuid}`] = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.VOTE_CHANNEL,
+        votable_type: votableType,
+        votable_id: votableId
+      }, {
+        received: (data) => {
+          this.channelData[`${votableId}_${votableType}_${uuid}`].next(data);
         }
-      }
-    );
+      });
+    }
+
+    return this.subscriptions[`${votableId}_${votableType}_${uuid}`];
+
   }
 
 

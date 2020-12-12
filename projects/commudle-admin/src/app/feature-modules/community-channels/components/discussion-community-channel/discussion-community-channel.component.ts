@@ -75,14 +75,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
       user => {
         this.currentUser = user;
-        this.setBlocked();
       }
     ));
 
     this.communityChannelManagerService.allChannelRoles$.subscribe(
       data => {
         this.channelRoles = data;
-        this.setBlocked();
       }
     )
 
@@ -102,15 +100,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     }
   }
 
-
-  setBlocked() {
-
-    if (this.currentUser && this.channelRoles && this.channelRoles[this.discussion.parent_id]) {
-      this.blocked = !(this.channelRoles[`${this.discussion.parent_id}`].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || this.channelRoles[`${this.discussion.parent_id}`].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))
-    } else {
-      this.blocked = true;
-    }
-  }
 
   scrollToBottom() {
     // TODO find a fix to this settimeout for scrolling to bottom on every new message loaded
