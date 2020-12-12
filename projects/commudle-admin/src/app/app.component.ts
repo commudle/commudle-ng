@@ -61,17 +61,22 @@ export class AppComponent implements OnInit {
                   this.document.getElementById("commudleSidebar").classList.add('collapsed');
                 }
             }, 10);
-        if (this.isBrowser) {
-          // if (window.innerWidth >= 1000)  {
-          //   this.sidebarService.expand('mainMenu');
-          // }
-        }
       });
   }
 
   ngOnInit() {
     if (!this.cookieConsentService.isCookieConsentAccepted()) {
       this.windowService.open(CookieConsentComponent, { title: "Let's Share Cookies!", hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
+    }
+    this.checkHTTPS();
+  }
+
+
+  checkHTTPS() {
+    if (this.isBrowser) {
+      if (environment.production && location.protocol !== 'https:') {
+        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+      }
     }
   }
 
