@@ -1,8 +1,20 @@
 <div class="community-channel">
   <header>
+    <div class="channel-details">
+      <div *ngIf="selectedChannel">
+        <p [nbTooltip]="selectedChannel.description" [nbTooltipPlacement]="'bottom'">
+          <nb-icon icon="info-outline"></nb-icon>
+          <span [innerHTML]="selectedChannel.description | truncatetext: 200 | textToLinks"></span>
+        </p>
+      </div>
+
+    </div>
     <nb-actions>
-      <nb-action icon="people" link="members">Members</nb-action>
-      <nb-action icon="clipboard-outline">Pinned Messages</nb-action>
+      <nb-action class="channel-list-menu-button" icon="menu-arrow" (click)="toggleCommunityListDisplay()" *ngIf="hasNotifications" [badgePosition]="'top right'" [badgeStatus]="'danger'" [badgeDot]="true">
+      </nb-action>
+      <nb-action class="channel-list-menu-button" icon="menu-arrow" (click)="toggleCommunityListDisplay()" *ngIf="!hasNotifications">
+      </nb-action>
+      <nb-action icon="people" link="members"></nb-action>
     </nb-actions>
   </header>
   <main *ngIf="discussion">

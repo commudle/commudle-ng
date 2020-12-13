@@ -1,8 +1,8 @@
 <div class="community-channels-dashboard">
-  <div class="community-list">
+  <div class="community-list" [ngClass]="{'show': showCommunityList === true}">
     <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
   </div>
-  <div class="community-channel-list">
+  <div class="community-channel-list" [ngClass]="{'show': showCommunityList}">
     <app-community-channel-list></app-community-channel-list>
   </div>
   <div class="community-channel-discussion">

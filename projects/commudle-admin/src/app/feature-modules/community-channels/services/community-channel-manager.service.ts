@@ -8,6 +8,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { AppUsersService } from '../../../services/app-users.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 export interface IGroupedCommunityChannels {
@@ -40,10 +41,17 @@ export class CommunityChannelManagerService {
   public selectedChannel$ = this.selectedChannel.asObservable();
 
 
+  // to toggle the view of channels list and the list of communities in the sidebar
+  private showCommunityList: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public showCommunityList$ = this.showCommunityList.asObservable();
+
+
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private toastLogService: LibToastLogService,
     private usersService: AppUsersService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   setCurrentUser(user: ICurrentUser) {
@@ -132,7 +140,7 @@ export class CommunityChannelManagerService {
         let allChannels = this.communityChannels.value;
         allChannels[data.group_name] ? (allChannels[data.group_name].push(data)) : (allChannels[data.group_name] = [data])
         this.communityChannels.next(allChannels);
-        this.getChannelRoles(channelData);
+        this.getChannelRoles(data);
         this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
       }
     );
@@ -170,10 +178,13 @@ export class CommunityChannelManagerService {
           }
         );
         this.communityChannels.next(groupedChannels);
-
+        this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels']);
       }
     )
+  }
 
+  setCommunityListview(value: boolean) {
+    this.showCommunityList.next(value);
   }
 
 }
