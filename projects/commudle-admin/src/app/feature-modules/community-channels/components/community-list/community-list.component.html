@@ -7,5 +7,11 @@
       nbTooltipPlacement="right"
       routerLinkActive="selected">
     <img src="{{comm.logo_path}}" alt="{{comm.name}}">
+    <app-badge
+      *ngIf="channelNotifications.includes(comm.slug) && (!selectedCommunity || selectedCommunity.slug !== comm.slug)"
+      [dotMode]="true"
+      [color]="'red'"
+      [position]="'top right'">
+    </app-badge>
   </div>
 </div>

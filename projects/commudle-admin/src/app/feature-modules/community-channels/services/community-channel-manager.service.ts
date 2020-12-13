@@ -51,6 +51,7 @@ export class CommunityChannelManagerService {
   }
 
   setCommunity(community: ICommunity) {
+    this.selectedChannel.next(null);
     this.selectedCommunity.next(community);
 
     if (this.currentUser) {

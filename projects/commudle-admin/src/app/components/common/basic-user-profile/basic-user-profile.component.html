@@ -32,7 +32,7 @@
           <button nbButton size="small" [nbSpinner]="checkingUsername" status="success" type="submit" [disabled]="!validusername || (currentUsername == lastUsername) || checkingUsername">
             Save
           </button>
-          <a class="public-profile-link" nbButton size="small" status="info" outline [routerLink]="['/users', currentUser.username]">
+          <a class="public-profile-link" nbButton size="small" status="primary"  [routerLink]="['/users', currentUser.username]">
             Go To Profile Page
           </a>
         </div>

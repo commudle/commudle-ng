@@ -4,7 +4,9 @@
   </div>
   <div class="profile-info">
     <p class="name {{ size }}">
-      <strong>{{ user.name }}</strong>
+      <a class="clickable" [routerLink]="['/users', user.username]">
+        {{user.name}}
+      </a>
     </p>
     <p class="designation {{ size }}" *ngIf="aboutMe">{{ user.designation }}</p>
     <p class="designation {{ size }}" *ngIf="!aboutMe">

@@ -3,7 +3,7 @@ import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { environment } from '../environments/environment';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { NbSidebarService, NbWindowService, NbWindowState } from '@nebular/theme';
+import { NbMenuItem, NbSidebarService, NbWindowService, NbWindowState } from '@nebular/theme';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Router } from '@angular/router';
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   faBars = faBars;
   currentUser: ICurrentUser;
-  userContextMenu = [
+  userContextMenu: NbMenuItem[] = [
     { title: 'Logout', link: '/logout' },
   ];
 
@@ -53,6 +53,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.authWatchService.currentUser$.subscribe(currentUser => {
       this.currentUser = currentUser;
+
+      if (this.currentUser) {
+        this.userContextMenu.unshift({
+          title: `@${currentUser.username}`,
+          link: `/users/${currentUser.username}`,
+          badge: {
+            text: 'Profile',
+            status: 'basic',
+          },
+        })
+      }
 
       if (this.isBrowser) {
         this.actionCableConnectionSocket.connectToServer();

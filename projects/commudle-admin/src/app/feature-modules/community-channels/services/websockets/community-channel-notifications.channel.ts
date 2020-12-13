@@ -57,6 +57,7 @@ export class CommunityChannelNotificationsChannel {
 
 
   setNotifications(data) {
+    console.log(data);
     switch (data.action) {
       case this.ACTIONS.LOAD_NOTIFICATIONS: {
         this.notifications.next(data.community_channels);

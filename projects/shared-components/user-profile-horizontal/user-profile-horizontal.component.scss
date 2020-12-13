@@ -31,7 +31,13 @@
     text-align: left;
     .name {
       margin: 0;
-
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       &.medium {
         font-size: 1.2rem;
       }
