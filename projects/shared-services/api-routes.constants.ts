@@ -302,6 +302,7 @@ export const API_ROUTES = {
   },
 
   USERS: {
+    GET_PROFILE: 'api/v2/users',
     UPDATE_PROFILE: 'api/v2/users/update_profile',
     CHECK_USERNAME: 'api/v2/users/check_username',
     SET_USERNAME: 'api/v2/users/set_username',

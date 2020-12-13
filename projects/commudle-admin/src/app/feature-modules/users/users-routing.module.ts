@@ -10,7 +10,7 @@ const routes: Routes = [
     component: UsersComponent,
     children: [
       {
-        path: ':user_id',
+        path: ':username',
         component: PublicProfileComponent
       }
     ]

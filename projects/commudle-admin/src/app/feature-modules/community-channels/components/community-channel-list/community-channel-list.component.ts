@@ -1,6 +1,6 @@
 import { CommunityChannelNotificationsChannel } from './../../services/websockets/community-channel-notifications.channel';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -76,10 +76,12 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     )
   }
 
+
   ngOnDestroy() {
     for (let subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
+
   }
 
   markRead() {

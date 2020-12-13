@@ -17,6 +17,12 @@ export class AppUsersService {
     private apiRoutesService: ApiRoutesService
   ) { }
 
+  getProfile(username): Observable<IUser> {
+    let params = new HttpParams().set('username', username);
+    return this.http.get<IUser>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_PROFILE), {params}
+    );
+  }
 
   updateUserProfile(userProfileData): Observable<IUser> {
     return this.http.put<IUser>(
