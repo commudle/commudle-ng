@@ -4,6 +4,7 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
+import { CommunityChannelNotificationsChannel } from '../../services/websockets/community-channel-notifications.channel';
 
 @Component({
   selector: 'app-community-channel',
@@ -16,11 +17,15 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   discussion: IDiscussion;
   initialized = false;
   notFound = false;
+  displayCommunityList = false;
+  hasNotifications = false;
+  sidebarOpen = false;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
     private activatedRoute: ActivatedRoute,
+    private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel
   ) { }
 
   ngOnInit() {
@@ -35,6 +40,14 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
             this.communityChannelManagerService.setChannel(this.communityChannelManagerService.findChannel(this.selectedChannel.id));
             this.getDiscussion(this.selectedChannel.id);
           }
+        }
+      ),
+      this.communityChannelManagerService.selectedChannel$.subscribe(
+        data => this.selectedChannel = data
+      ),
+      this.communityChannelNotificationsChannel.hasNotifications$.subscribe(
+        data => {
+          this.hasNotifications = data;
         }
       )
     );
@@ -68,8 +81,14 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe(
       data => {
         this.discussion = data;
+        this.communityChannelManagerService.setCommunityListview(false);
       }
     );
+  }
+
+  toggleCommunityListDisplay() {
+    this.communityChannelManagerService.setCommunityListview(!this.displayCommunityList);
+    this.displayCommunityList = !this.displayCommunityList;
   }
 
 }

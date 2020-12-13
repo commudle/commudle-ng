@@ -27,7 +27,7 @@ export class CommunityChannelNotificationsChannel {
 
 
   private hasNotifications: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public hasNotifications$ = this.notifications.asObservable();
+  public hasNotifications$ = this.hasNotifications.asObservable();
 
 
   constructor(
@@ -57,7 +57,6 @@ export class CommunityChannelNotificationsChannel {
 
 
   setNotifications(data) {
-    console.log(data);
     switch (data.action) {
       case this.ACTIONS.LOAD_NOTIFICATIONS: {
         this.notifications.next(data.community_channels);
@@ -74,6 +73,13 @@ export class CommunityChannelNotificationsChannel {
         break;
       }
     }
+    this.setHasNotifications();
+  }
+
+
+  setHasNotifications() {
+    let value = this.notifications.value.length > 0 ? true : false;
+    this.hasNotifications.next(value);
   }
 
 

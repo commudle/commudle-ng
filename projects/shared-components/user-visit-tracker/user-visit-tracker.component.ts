@@ -4,8 +4,7 @@ import { UserVisitsService } from '../../shared-services/user-visits.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Router, NavigationEnd, Event } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-user-visit-tracker',

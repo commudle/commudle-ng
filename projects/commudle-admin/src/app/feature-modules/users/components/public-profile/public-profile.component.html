@@ -33,7 +33,7 @@
           </a>
         </div>
 
-        <a *ngIf="currentUser.id === user.id" nbButton [routerLink]="['/my-profile/edit']" size="tiny" status="primary" class="edit-profile-button">
+        <a *ngIf="currentUser && currentUser.id === user.id" nbButton [routerLink]="['/my-profile/edit']" size="tiny" status="primary" class="edit-profile-button">
           <nb-icon icon="edit"></nb-icon>
           Edit Profile
         </a>

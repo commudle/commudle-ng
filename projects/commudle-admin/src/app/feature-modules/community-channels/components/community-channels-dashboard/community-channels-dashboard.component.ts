@@ -20,12 +20,12 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   selectedCommunity: ICommunity;
   communityChannels;
   channelsQueried = false;
+  showCommunityList = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
-    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
@@ -34,26 +34,29 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
         data => {
           this.communityChannelManagerService.setCurrentUser(data);
         }
+      ),
+      this.activatedRoute.params.subscribe(
+        data => {
+          if (!this.selectedCommunity || data.community_id !== this.selectedCommunity.slug) {
+            this.selectedCommunity = this.activatedRoute.snapshot.data.community;;
+            this.communityChannelManagerService.setCommunity(this.selectedCommunity);
+          }
+        }
+      ),
+      this.communityChannelManagerService.communityChannels$.subscribe(
+        data => {
+          this.communityChannels = data;
+          if (data) {
+            this.channelsQueried = true;
+          }
+        }
+      ),
+      this.communityChannelManagerService.showCommunityList$.subscribe(
+        data => {
+          this.showCommunityList = data;
+        }
       )
     )
-    
-    this.subscriptions.push(this.activatedRoute.params.subscribe(
-      data => {
-        if (!this.selectedCommunity || data.community_id !== this.selectedCommunity.slug) {
-          this.selectedCommunity = this.activatedRoute.snapshot.data.community;;
-          this.communityChannelManagerService.setCommunity(this.selectedCommunity);
-        }
-      }
-    ));
-
-    this.subscriptions.push(this.communityChannelManagerService.communityChannels$.subscribe(
-      data => {
-        this.communityChannels = data;
-        if (data) {
-          this.channelsQueried = true;
-        }
-      }
-    ));
   }
 
   ngOnDestroy() {
