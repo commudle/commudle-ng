@@ -13,12 +13,14 @@ export class UserProfileHorizontalComponent implements OnInit {
   @Input() size: string;
   @Input() aboutMe: boolean;
   @Input() socialMediaLinks: boolean;
+  @Input() showLiveStatus: boolean;
 
   constructor(
     private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
+    console.log(this.showLiveStatus)
   }
 
   openChatWithUser() {
@@ -29,5 +31,7 @@ export class UserProfileHorizontalComponent implements OnInit {
       }
     });
   }
+
+
 
 }

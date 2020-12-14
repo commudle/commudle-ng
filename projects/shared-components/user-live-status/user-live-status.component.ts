@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserLiveStatusChannel } from '../services/websockets/user-live-status.channel';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,7 +11,9 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
 
   uuid = uuidv4();
   @Input() userId: number;
+  @Input() position: string;
   @Output() isOnline = new EventEmitter();
+  online = false;
   subscriptions = [];
   receiveDataSubscription;
 
@@ -31,6 +33,10 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
         },
       )
     );
+
+    if (!this.position) {
+      this.position = 'top left';
+    }
   }
 
 
@@ -45,21 +51,33 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
   }
 
 
+  @HostBinding('class')
+  get themeClass(){
+    if (this.position) {
+      return this.position;
+    }
+    return '';
+  };
+
+
   receiveData() {
     this.receiveDataSubscription = this.userLiveStatusChannel.channelData$[`${this.userId}_${this.uuid}`].subscribe(
       data => {
         if (data) {
           switch (data.action) {
             case (this.userLiveStatusChannel.ACTIONS.IS_ONLINE): {
+              this.online = true;
               this.isOnline.emit(true);
               break;
             }
             case (this.userLiveStatusChannel.ACTIONS.IS_OFFLINE): {
+              this.online = false;
               this.isOnline.emit(false);
               break;
             }
           }
         } else {
+          this.online = false;
           this.isOnline.emit(false);
         }
       }

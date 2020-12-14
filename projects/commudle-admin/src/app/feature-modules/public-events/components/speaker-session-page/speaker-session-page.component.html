@@ -81,7 +81,7 @@
           <nb-card-header>You are watching this with</nb-card-header>
           <nb-card-body>
             <div class="visit-user" *ngFor="let user of userVisitData.visiting_users">
-              <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+              <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true" [showLiveStatus]="true"></app-user-profile-horizontal>
             </div>
           </nb-card-body>
         </nb-card>
