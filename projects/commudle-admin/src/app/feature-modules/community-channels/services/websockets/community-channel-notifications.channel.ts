@@ -4,6 +4,7 @@ import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 
 @Injectable({
@@ -31,7 +32,8 @@ export class CommunityChannelNotificationsChannel {
 
 
   constructor(
-    private actionCableConnection: ActionCableConnectionSocket
+    private actionCableConnection: ActionCableConnectionSocket,
+    private authWatchService: LibAuthwatchService
   ) {
     this.cableSubscription = this.actionCableConnection.acSocket$.subscribe(
       connection => {
@@ -48,6 +50,7 @@ export class CommunityChannelNotificationsChannel {
     // hence this subscription was called in the constructor itself
       this.subscription = connection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.USER_COMMUNITY_CHANNEL_DISCUSSION_NOTIFICATIONS,
+        app_token: this.authWatchService.getAppToken()
       }, {
         received: (data) => {
           this.setNotifications(data);

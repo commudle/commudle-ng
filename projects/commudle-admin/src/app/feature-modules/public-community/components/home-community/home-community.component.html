@@ -69,7 +69,7 @@
               Members
             </span>
           </a>
-          <a [routerLink]="['public-channels']" routerLinkActive="active">
+          <a [routerLink]="['/communities', this.community.slug, 'channels']" routerLinkActive="active">
             <nb-icon icon="hash" status="success"></nb-icon>
             <span>
               Channels

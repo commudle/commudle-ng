@@ -3,8 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { UserVisitsChannel } from 'projects/shared-services/websockets/user-visits.channel';
-import { CookieService } from 'ngx-cookie-service';
-import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { LibAuthwatchService } from './lib-authwatch.service';
 
 @Injectable({
@@ -18,9 +16,7 @@ export class UserVisitsService {
   public visitors$ = this.visitors.asObservable();
 
   constructor(
-    private http: HttpClient,
     private userVisitsChannel: UserVisitsChannel,
-    private cookieService: CookieService,
     private authWatchService: LibAuthwatchService
   ) {
 
@@ -34,9 +30,7 @@ export class UserVisitsService {
         this.userVisitsChannel.unsubscribe();
       }
       this.subscription = this.userVisitsChannel.subscribe(
-        this.cookieService.get(environment.session_cookie_name),
-        url,
-        this.authWatchService.getAppToken()
+        url
       );
     }
 
