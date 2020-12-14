@@ -1,7 +1,5 @@
 <div class="user" class="{{size}}">
-  <div *ngIf="showLiveStatus" class="online-status" [ngClass]="{'online' : isOnline, 'offline' : !isOnline}">
-    <app-user-live-status [userId]="user.id" (isOnline)="setOnlineStatus($event)"></app-user-live-status>
-  </div>
+  <app-user-live-status *ngIf="showLiveStatus" [userId]="user.id"></app-user-live-status>
   <div class="profile-picture {{ size }}">
     <img src="{{ user.avatar }}" alt="{{ user.name }}">
   </div>

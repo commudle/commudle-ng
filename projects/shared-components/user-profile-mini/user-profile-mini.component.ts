@@ -13,7 +13,6 @@ export class UserProfileMiniComponent implements OnInit {
   @Input() size: string;
   @Input() designation: boolean;
   @Input() showLiveStatus: boolean;
-  isOnline = false;
 
   constructor(
     private windowService: NbWindowService
@@ -22,8 +21,5 @@ export class UserProfileMiniComponent implements OnInit {
   ngOnInit() {
   }
 
-  setOnlineStatus(status) {
-    this.isOnline = status;
-  }
 
 }
