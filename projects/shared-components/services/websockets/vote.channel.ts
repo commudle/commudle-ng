@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 
 @Injectable({
@@ -28,7 +29,8 @@ export class VoteChannel {
   public channelData$ = {};
 
   constructor(
-    private actionCableConnection: ActionCableConnectionSocket
+    private actionCableConnection: ActionCableConnectionSocket,
+    private authWatchService: LibAuthwatchService
   ) {
     this.actionCableConnection.acSocket$.subscribe(
       connection => {
@@ -48,7 +50,9 @@ export class VoteChannel {
       this.subscriptions[`${votableId}_${votableType}_${uuid}`] = this.cableConnection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.VOTE_CHANNEL,
         votable_type: votableType,
-        votable_id: votableId
+        votable_id: votableId,
+        app_token: this.authWatchService.getAppToken()
+
       }, {
         received: (data) => {
           this.channelData[`${votableId}_${votableType}_${uuid}`].next(data);

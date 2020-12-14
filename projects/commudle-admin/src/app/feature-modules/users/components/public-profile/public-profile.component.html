@@ -28,9 +28,9 @@
           <a nbButton ghost target="_blank" *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
             <nb-icon icon="info" status="primary"></nb-icon>
           </a>
-          <a nbButton ghost class="clickable" nbTooltip="Send Direct Message">
+          <!-- <a nbButton ghost class="clickable" nbTooltip="Send Direct Message">
             <nb-icon icon="message-square-outline" status="basic"></nb-icon>
-          </a>
+          </a> -->
         </div>
 
         <a *ngIf="currentUser && currentUser.id === user.id" nbButton [routerLink]="['/my-profile/edit']" size="tiny" status="primary" class="edit-profile-button">

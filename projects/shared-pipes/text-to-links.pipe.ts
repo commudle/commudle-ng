@@ -10,7 +10,7 @@ export class TextToLinksPipe implements PipeTransform {
     return this.sanitizer.bypassSecurityTrustHtml((text || "").replace(
       /([^\S]|^)(((https?\:\/\/)|(www\.))(\S+))/gi,
       this.matchText
-    ).replace(/@[a-zA-Z0-9]\w+\b/gi, "<a href='/users/$&'>$&</a>"));
+    ).replace(/@(\w+)/g, '<a href="/users/$1">@$1</a>'));
   }
 
   matchText (match, space, url){

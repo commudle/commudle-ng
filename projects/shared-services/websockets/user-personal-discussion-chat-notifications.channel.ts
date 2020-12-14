@@ -4,6 +4,7 @@ import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
+import { LibAuthwatchService } from '../lib-authwatch.service';
 
 
 @Injectable({
@@ -30,7 +31,8 @@ export class UserPersonalDiscussionChatNotificationsChannel {
   public newMessagesCounter$ = this.newMessagesCounter.asObservable();
 
   constructor(
-    private actionCableConnection: ActionCableConnectionSocket
+    private actionCableConnection: ActionCableConnectionSocket,
+    private authWatchService: LibAuthwatchService
   ) {
     this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
       connection => {
@@ -45,6 +47,7 @@ export class UserPersonalDiscussionChatNotificationsChannel {
     if (this.cableConnection) {
       this.subscription = this.cableConnection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.USER_PERSONAL_DISCUSSION_CHAT_NOTIFICATIONS,
+        app_token: this.authWatchService.getAppToken()
       }, {
         received: (data) => {
           this.channelData.next(data);

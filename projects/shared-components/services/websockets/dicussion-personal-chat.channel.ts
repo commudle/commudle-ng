@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 
 @Injectable({
@@ -30,7 +31,8 @@ export class DiscussionPersonalChatChannel {
   public channelData$ = this.channelData.asObservable();
 
   constructor(
-    private actionCableConnection: ActionCableConnectionSocket
+    private actionCableConnection: ActionCableConnectionSocket,
+    private authWatchService: LibAuthwatchService
   ) {
     this.actionCableConnection.acSocket$.subscribe(
       connection => {
@@ -43,7 +45,8 @@ export class DiscussionPersonalChatChannel {
     if (this.cableConnection) {
       this.subscription = this.cableConnection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_PERSONAL_CHAT_CHANNEL,
-        room: discussionId
+        room: discussionId,
+        app_token: this.authWatchService.getAppToken()
       }, {
         received: (data) => {
           this.channelData.next(data);

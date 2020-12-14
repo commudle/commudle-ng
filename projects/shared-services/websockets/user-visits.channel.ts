@@ -4,6 +4,9 @@ import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { isPlatformBrowser } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { LibAuthwatchService } from '../lib-authwatch.service';
 
 
 @Injectable({
@@ -30,6 +33,8 @@ export class UserVisitsChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
+    private cookieService: CookieService,
+    private authWatchService: LibAuthwatchService,
     @Inject(PLATFORM_ID) private platformId: Object,
 
   ) {
@@ -41,13 +46,13 @@ export class UserVisitsChannel {
   }
 
 
-  subscribe(sessionToken, url, appToken) {
+  subscribe(url) {
     if (this.cableConnection) {
       this.subscription = this.cableConnection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.USER_VISITS,
-        session_token: sessionToken,
+        session_token: this.cookieService.get(environment.session_cookie_name),
         url: url,
-        app_token: appToken
+        app_token: this.authWatchService.getAppToken()
       }, {
         received: (data) => {
           this.channelData.next(data);
