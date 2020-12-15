@@ -20,7 +20,6 @@ export class UserProfileHorizontalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.showLiveStatus)
   }
 
   openChatWithUser() {
