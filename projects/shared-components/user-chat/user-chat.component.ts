@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SDiscussionsService } from '../services/s-discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
-import { UserNotificationsChannel } from 'projects/shared-services/websockets/user-notifications.channel';
+import { UserPersonalDiscussionChatNotificationsChannel } from 'projects/shared-services/websockets/user-personal-discussion-chat-notifications.channel';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
@@ -23,7 +23,7 @@ export class UserChatComponent implements OnInit, OnDestroy {
 
   constructor(
     private sDiscussionService: SDiscussionsService,
-    private userNotificationsChannel: UserNotificationsChannel,
+    private userNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel,
     private authWatchService: LibAuthwatchService
   ) { }
 

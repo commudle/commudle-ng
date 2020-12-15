@@ -26,7 +26,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   VotersComponent = VotersComponent;
 
   userSubscription;
-  votesChannelSubscription: Subscription;
+  votesChannelSubscription;
   votesChannelListSubscription: Subscription;
   votesChannelDataSubscription: Subscription;
   currentUser: ICurrentUser;

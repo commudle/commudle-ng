@@ -1,0 +1,75 @@
+.community-channels-dashboard {
+  height: 95vh;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  .community-list {
+  }
+
+  .community-channel-list {
+    background: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px dotted grey;
+  }
+
+  .community-channel-discussion {
+    background: white;
+    overflow: hidden;
+  }
+
+
+  @media screen and (min-width: 1080px) {
+    .community-list {
+      width: 80px;
+    }
+
+    .community-channel-list {
+      width: 200px !important;
+    }
+
+    .community-channel-discussion {
+      width: 1000px;
+      flex-grow: 1;
+    }
+  }
+
+  @media screen and (max-width: 1079px) {
+    position: relative;
+    .community-list {
+      width: 0;
+      overflow: hidden;
+      &.show {
+        width: 80px;
+        position: absolute;
+        background-color: #f7f7f7;
+        height: 100vh;
+        left: 0;
+        overflow-y: auto;
+        z-index: 1;
+      }
+    }
+
+    .community-channel-list {
+      width: 0;
+      overflow: hidden;
+      
+      &.show {
+        width: 200px;
+        position: absolute;
+        background-color: white;
+        height: 100vh;
+        left: 80px;
+        overflow-y: auto;
+        z-index: 1;
+      }
+    }
+
+    .community-channel-discussion {
+      width: 1000px;
+      flex-grow: 1;
+    }
+  }
+
+}

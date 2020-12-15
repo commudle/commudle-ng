@@ -4,7 +4,7 @@ import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUser } from 'projects/shared-models/user.model';
 import { ActivatedRoute } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -22,10 +22,12 @@ export class AboutComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
-    private meta: Meta
+    private meta: Meta,
+    private title: Title
   ) { }
 
   setMeta() {
+    this.title.setTitle(`${this.community.name}`);
     this.meta.updateTag({ name: 'og:title', content: `${this.community.name}` });
     this.meta.updateTag({ name: 'twitter:title', content: `${this.community.name}` });
   }

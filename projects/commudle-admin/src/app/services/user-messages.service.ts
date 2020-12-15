@@ -41,4 +41,11 @@ export class UserMessagesService {
     );
   }
 
+  pGetCommunityChannelDiscussionMessages(discussionId, page, count): Observable<IUserMessages> {
+    const params = new HttpParams().set('discussion_id', discussionId).set('page', page).set('count', count);
+    return this.http.get<IUserMessages>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_MESSAGES.PUBLIC_COMMUNITY_CHANNEL_DISCUSSION_MESSAGES), {params}
+    );
+  }
+
 }

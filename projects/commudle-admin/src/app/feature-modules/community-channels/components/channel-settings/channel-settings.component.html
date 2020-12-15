@@ -1,0 +1,34 @@
+<ng-template #settingsTemplate let-data>
+  <nb-card>
+    <nb-card-header>
+      <div>
+        <h4 class="margin0 fontw-300">
+          {{channel.name}} > Settings
+        </h4>
+      </div>
+      <span (click)="closeDialog()" class="clickable">
+        <small>
+          <nb-icon icon="close-circle" status="basic"></nb-icon>
+        </small>
+      </span>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="container">
+        <div class="menu">
+          <p *ngIf="this.channelRoles && this.channelRoles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
+            <a [routerLink]="['edit']" routerLinkActive="menu-active">Edit</a>
+          </p>
+          <p  *ngIf="!this.channel.is_private || (this.channelRoles && this.channelRoles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))">
+            <a [routerLink]="['invite']" routerLinkActive="menu-active">Invite</a>
+          </p>
+          <p *ngIf="this.channelRoles && this.channelRoles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
+            <a [routerLink]="['delete']" routerLinkActive="menu-active">Delete</a>
+          </p>
+        </div>
+        <div class="menu-outlet">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

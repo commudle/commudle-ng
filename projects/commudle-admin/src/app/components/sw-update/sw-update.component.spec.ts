@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SwUpdateComponent } from './sw-update.component';
 
@@ -6,7 +6,7 @@ describe('SwUpdateComponent', () => {
   let component: SwUpdateComponent;
   let fixture: ComponentFixture<SwUpdateComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SwUpdateComponent ]
     })

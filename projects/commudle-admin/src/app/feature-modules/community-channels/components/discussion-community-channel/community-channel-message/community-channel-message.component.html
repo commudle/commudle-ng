@@ -1,0 +1,104 @@
+<div>
+  <div class="message">
+    <div class="author-image">
+      <img src="{{ message.user.avatar }}" alt="{{ message.user.name }}">
+    </div>
+    <div class="content-controls">
+      <div class="author-details">
+        <p>
+          <strong>
+            {{ message.user.name }}
+          </strong>
+          <small>
+            {{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}
+          </small>
+        </p>
+      </div>
+      <div class="content" [innerHTML]="message.content | textToLinks"></div>
+      <div class="attachments" *ngIf="message.attachments.length > 0">
+        <div class="file" *ngFor="let file of message.attachments; let i=index;">
+          <a class="download-link clickable" href="{{file.url}}" target="_blank">
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+          <div class="file-preview" *ngIf="!file.type.includes('image')">
+            <p class="name">
+              <small>
+                {{file.name | slice:0:20 }}
+              </small>
+            </p>
+            <p class="extension">
+              <small>
+                {{file.name.split('.').reverse()[0]}}
+              </small>
+            </p>
+          </div>
+          <div class="image-file-preview" *ngIf="file.type.includes('image')">
+            <img src="{{file.url}}" alt="{{ file.name }}">
+          </div>
+        </div>
+      </div>
+      <div class="details-flag">
+        <div class="votes clickable" (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)" nbTooltip="Like!" nbTooltipStatus="danger">
+          <p [ngClass]="{'low' : (message.votes_count > 0 && message.votes_count <= 2), 'medium': (message.votes_count > 2 && message.votes_count <= 4), 'high': (message.votes_count > 4)}">
+            <nb-icon icon="heart-outline" *ngIf="message.votes_count === 0" status="danger"></nb-icon>
+            <nb-icon icon="heart" *ngIf="message.votes_count > 0" status="danger"></nb-icon>
+            {{ message.votes_count > 0 ? message.votes_count : '' }}
+          </p>
+        </div>
+        <div *ngIf="permittedActions.includes(allActions.ADD) && canReply" class="clickable reply-button" (click)="toggleReplyForm()">
+          <p class="text-info">
+            <small>Reply</small>
+          </p>
+        </div>
+        <div
+          *ngIf="contextMenuItems.length > 0"
+          class="message-context-menu clickable"
+          [nbContextMenu]="contextMenuItems"
+          [nbContextMenuTag]="'community-channel-message-menu-'.concat((message.id).toString())"
+          >
+          <nb-icon icon="more-vertical" status="basic"></nb-icon>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="replies-container" *ngIf="canReply">
+    <div class="reply-message" *ngFor="let rep of message.user_messages">
+      <app-community-channel-message
+        [message]="rep"
+        [canReply]="false"
+        [permittedActions]="permittedActions"
+        [allActions]="allActions"
+        (sendVote)="emitVote($event)"
+        (sendDelete)="emitDelete($event)"
+      ></app-community-channel-message>
+    </div>
+
+    <div class="reply-form" *ngIf="showReplyForm">
+      <app-send-message-form
+        *ngIf="canReply"
+        (sendMessage)="emitReply($event)"
+        (sendAttachmentMessage)="emitAttachmentReply($event)"
+        [attachmentDisplay]="'bottom'"
+      ></app-send-message-form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <ng-template #editMessageTemplate>
+  <div class="edit-message-form">
+    <app-send-message-form
+    *ngIf="canEdit"
+    (sendMessage)="emitReply($event)"
+    (sendAttachmentMessage)="emitAttachmentReply($event)"
+    (sendUpdatedTextMessage)="emitUpdate($event)"
+    (sendUpdatedAttachmentMessage)="emitAttachmentUpdate($event)"
+    [attachmentDisplay]="'bottom'"
+    [editableMessage]="message"
+    [rows]="2"
+  ></app-send-message-form>
+  </div>
+</ng-template> -->
+

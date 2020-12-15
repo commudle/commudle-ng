@@ -28,6 +28,10 @@ const routes: Routes = [
     component: FeaturesComponent
   },
   {
+    path: 'users',
+    loadChildren: () => import('./feature-modules/users/users.module').then(m => m.UsersModule)
+  },
+  {
     path: 'communities',
     component: CommunitiesComponent
   },
@@ -38,6 +42,10 @@ const routes: Routes = [
   {
     path: 'communities/:community_id/events/:event_id',
     loadChildren: () => import('./feature-modules/public-events/public-events.module').then(m => m.PublicEventsModule)
+  },
+  {
+    path: 'communities/:community_id/channels',
+    loadChildren: () => import('./feature-modules/community-channels/community-channels.module').then(m => m.CommunityChannelsModule)
   },
   {
     path: 'orgs',
@@ -56,10 +64,6 @@ const routes: Routes = [
   {
     path: 'email-confirmations',
     loadChildren: () => import('./feature-modules/email-confirmations/email-confirmations.module').then(m => m.EmailConfirmationsModule)
-  },
-  {
-    path: 'help',
-    loadChildren: () => import('./feature-modules/help/help.module').then(m => m.HelpModule)
   },
   {
     path: 'speaker-resource-form',
@@ -123,9 +127,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
+    initialNavigation: 'enabled',
+    relativeLinkResolution: 'legacy'
 })],
   exports: [RouterModule],
   providers: [InitResolver]
 })
 export class AppRoutingModule { }
+
+
+// NAMED OUTLETS
+// p = popup
+// t = tab

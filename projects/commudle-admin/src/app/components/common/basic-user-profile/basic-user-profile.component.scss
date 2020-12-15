@@ -25,16 +25,6 @@
   background: #d3d3d36b;
   margin: 0 auto;
   position: relative;
-  &::before{
-    content: 'Picture';
-    position: absolute;
-    font-size: 2rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #b9b9b9;
-    font-weight: bolder;
-  }
 }
 
 
@@ -47,6 +37,22 @@
   text-align: center;
   img {
     height: 100%;
+  }
+}
+
+.username {
+  margin-bottom: 2rem;
+
+  .field-error {
+    margin: 0;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    button, .public-profile-link {
+      margin: 1.2rem 1rem 0;
+    }
   }
 }
 

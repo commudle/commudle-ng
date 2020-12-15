@@ -1,4 +1,4 @@
-<div>
+<div class="sidebar">
   <nb-list class="sidebar-common-menu">
     <nb-list-item>
       <a [routerLink]="['/']" (click)="closeSidebar()" >
@@ -23,7 +23,7 @@
     </nb-list-item>
 
     <nb-list-item *ngIf="currentUser">
-      <a class="profile-edit-link" [routerLink]="['/my-profile/edit']" >
+      <a class="profile-edit-link" [routerLink]="['/users', currentUser.username]" >
         <nb-user
           size="tiny"
           name="My Profile"
@@ -43,7 +43,7 @@
         <span>
           Messages
         </span>
-        <span *ngIf="unreadMessagesCount > 0">
+        <span *ngIf="unreadMessagesCount > 0 && chatWindowRef == null">
           <app-badge [text]="unreadMessagesCount + ' New'" [color]="'red'" [fontSize]="'small'"></app-badge>
         </span>
       </a>

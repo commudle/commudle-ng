@@ -1,0 +1,31 @@
+<div class="channel-members">
+  <nb-card>
+    <nb-card-header>
+      <div>
+        <p class="margin0 fontw-300">
+          <nb-icon icon="people" status="basic"></nb-icon>
+          Members
+        </p>
+      </div>
+      <span [routerLink]="['../']" class="clickable">
+        <small>
+          <nb-icon icon="close-circle" status="basic"></nb-icon>
+        </small>
+      </span>
+    </nb-card-header>
+    <nb-list>
+      <nb-list-item *ngFor="let u of allUsers; let i=index">
+        <div>
+          <app-member
+            [userRolesUser]="u"
+            [currentUserIsAdmin]="currentUserIsAdmin"
+            (makeAdmin)="toggleAdmin(i)"
+            (removeAdmin)="toggleAdmin(i)"
+            (exitChannel)="leaveChannel(i)"
+            (removeFromChannel)="removeFromChannel(i)"
+            ></app-member>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+</div>

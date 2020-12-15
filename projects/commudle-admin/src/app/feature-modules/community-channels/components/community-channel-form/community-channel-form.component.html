@@ -1,0 +1,69 @@
+<div>
+
+  <form class="community-channel-form" [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
+    <div class="logo field">
+      <div class="uploaded-logo" *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)">
+        <img src="{{uploadedLogoImage || existingChannel.logo.url}}" alt="Profile Picture">
+      </div>
+      <div class="delete-logo-button">
+        <button
+          nbButton
+          ghost
+          size="tiny"
+          status="danger"
+          *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)"
+          type="button"
+          (click)="removeLogo()">
+          <nb-icon icon="close-circle"></nb-icon>
+          Remove Logo
+        </button>
+      </div>
+
+      <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage || (existingChannel && existingChannel.logo) }">
+        <span>
+          <span>
+            <nb-icon icon="image-outline"></nb-icon>
+          </span>
+          <span>
+            Click To Upload A Logo
+            <br>
+            <small>(200x200)</small>
+          </span>
+        </span>
+        <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+      </label>
+    </div>
+
+    <div class="field">
+      <label fullWidth>
+        Name*
+        <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="name">
+      </label>
+    </div>
+
+    <div class="field">
+      <label fullWidth>
+        Description*
+        <textarea type="text" fieldSize="small" nbInput fullWidth formControlName="description"></textarea>
+      </label>
+    </div>
+
+    <div class="field">
+      <nb-checkbox status="basic" formControlName="is_private">
+        Private
+      </nb-checkbox>
+    </div>
+
+    <div class="field">
+      <label fullWidth>
+        Group Name (optional)
+        <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="group_name">
+      </label>
+    </div>
+
+    <button nbButton outline size="small" [disabled]="!communityChannelForm.valid" status="success" type="submit">
+      Save
+    </button>
+  </form>
+
+</div>

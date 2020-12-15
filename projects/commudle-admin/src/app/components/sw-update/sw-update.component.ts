@@ -23,6 +23,7 @@ export class SwUpdateComponent implements OnInit {
 
   ngOnInit() {
     if (this.isBrowser) {
+
       this.updates.available.subscribe(event => {
         this.toastLogService.warningDialog('Updating App...!');
 

@@ -1,0 +1,104 @@
+.community-channel-list {
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+
+  .community {
+    width: 100%;
+    position: sticky;
+    padding-top: 0.5rem;
+    top: 0.5rem;
+    background-color: white;
+  }
+
+  .channel-group {
+    margin-bottom: 1.5rem;
+    .group-name {
+      display: flex;
+      justify-content: space-between;
+      p {
+        font-size: 0.8rem;
+        color: grey;
+        min-width: 10px;
+        margin-bottom: 0;
+        word-break: break-all;
+      }
+    }
+
+    .channels {
+      ul {
+        list-style: none;
+        padding-left: 0.5rem;
+        margin: 0.5rem 0;
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-wrap: nowrap;
+          margin-bottom: 1rem;
+
+
+          nb-icon {
+            font-size: 0.8rem;
+            color: grey;
+          }
+
+          div.details {
+            width: 80%;
+            display: flex;
+            .logo {
+              width: 35px;
+              border-radius: 50%;
+              overflow: hidden;
+              margin-right: 0.2rem;
+              text-align: center;
+              img {
+                width: 100%;
+              }
+
+              nb-icon {
+                font-size: 1.2rem;
+                color: #4e74ff;
+              }
+            }
+
+            .name {
+              width: 80%;
+              margin: 0;
+              font-size: 12px;
+              position: relative;
+              a {
+                text-decoration: none;
+                color: black;
+
+                .private {
+                  padding: 0;
+                }
+              }
+              &:hover {
+                text-decoration: underline;
+              }
+
+              .selected-channel {
+                color: #249aff;
+                font-weight: bold;
+              }
+            }
+
+          }
+
+          .settings {
+            display: flex;
+            align-items: baseline;
+            width: 25%;
+            margin: 0;
+            a {
+              padding: 0 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
