@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { NbToastrService, NbIconConfig } from '@nebular/theme';
+import { NbToastrService, NbIconConfig, NbGlobalPosition, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -38,6 +38,23 @@ export class LibToastLogService {
         status: 'warning',
         duration: duration
       }
+    );
+  }
+
+
+  notificationDialog(message, icon="email-outline", duration = 5000) {
+    const iconConfig: NbIconConfig = { icon: icon, pack: 'eva' };
+    const position: NbGlobalPosition = NbGlobalPhysicalPosition.BOTTOM_LEFT;
+    this.toastrService.warning(
+      'Notification',
+      message,
+      {
+        icon: iconConfig,
+        position: position,
+        status: 'primary',
+        duration: duration
+      },
+
     );
   }
 }

@@ -1,0 +1,77 @@
+
+<div class="send-message-form">
+  <div *ngIf="uploadedFiles.length > 0" class="attachments {{attachmentDisplay}}">
+    <div class="file" *ngFor="let file of uploadedAttachementFiles; let i=index;">
+      <div class="remove clickable" (click)="removeFile(i)">
+        <nb-icon status="danger" icon="close-circle"></nb-icon>
+      </div>
+      <div class="file-preview" *ngIf="!file.file.type.includes('image')">
+        <p class="name">
+          <small>
+            {{file.file.name | slice:0:10 }}
+          </small>
+        </p>
+        <p class="extension">
+          <small>
+            {{file.file.name.split('.').reverse()[0]}}
+          </small>
+        </p>
+      </div>
+      <div class="image-file-preview" *ngIf="file.file.type.includes('image')">
+        <img src="{{uploadedFiles[i]}}" alt="{{ file.file.name }}">
+      </div>
+    </div>
+  </div>
+
+  <form (ngSubmit)="emitMessage()" (keyup.enter)="emitMessage()" [formGroup]="sendUserMessageForm">
+    <nb-form-field>
+      <div nbPrefix class="nbPrefix">
+        <label class="clickable">
+          <nb-icon icon="attach"></nb-icon>
+          <input type="file" nbInput fullWidth class="hidden" multiple (change)="addFiles($event)" #fileInput>
+        </label>
+        <a nbButton ghost class="emoji-button" (click)="toggleEmojiForm()"> 😃 </a>
+        <emoji-mart
+          *ngIf="showEmojiForm"
+          class="emoji-mart"
+          [ngClass]="{'edit': editableMessage}"
+          set="twitter"
+          title="Select an emoji!"
+          (emojiSelect)="selectEmoji($event)"
+          ></emoji-mart>
+      </div>
+      <textarea
+        nbInput
+        fullWidth
+        formControlName="content"
+        placeholder="Type here..."
+        rows="{{rows || 1}}"
+        [mention]="taggableUsers"
+        [mentionConfig]="{dropUp: true, labelKey: 'username'}"
+        [mentionListTemplate]="mentionListTemplate"
+        (searchTerm)="getTaggableUsers($event)"
+        (click)="selectInput()"
+        #inputElement
+      >
+      </textarea>
+
+    </nb-form-field>
+   <button [disabled]="!sendUserMessageForm.valid || disabled" type="submit" nbButton outline fullWidth status="info">
+     <nb-icon icon="corner-down-left-outline"></nb-icon>
+   </button>
+  </form>
+</div>
+
+
+<ng-template #mentionListTemplate let-item="item">
+  <div class="mention-list-template">
+    <div class="avatar">
+      <img src="{{item.avatar}}" alt="{{item.avatar}}">
+    </div>
+    <p class="name">
+      {{item.name}}
+      <br>
+      <small>@{{item.username}}</small>
+    </p>
+  </div>
+</ng-template>

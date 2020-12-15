@@ -36,6 +36,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   loadingMessages = false;
   showReplyForm = 0;
   allActions;
+  chatChannelSubscription;
 
 
   chatMessageForm = this.fb.group({
@@ -56,7 +57,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(
       user => this.currentUser = user
     );
-    this.discussionChatChannel.subscribe(`${this.discussion.id}`);
+    this.chatChannelSubscription = this.discussionChatChannel.subscribe(`${this.discussion.id}`);
     this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
     this.getDiscussionMessages();
@@ -65,7 +66,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.currentUserSubscription.unsubscribe();
-    this.discussionChatChannel.unsubscribe();
+    this.chatChannelSubscription.unsubscribe();
     this.channelSubscription.unsubscribe();
 
   }

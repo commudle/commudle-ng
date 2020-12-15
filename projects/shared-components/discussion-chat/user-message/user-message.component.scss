@@ -31,6 +31,11 @@
       }
     }
 
+    .content {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
     .details-flag {
       display: flex;
       justify-content: flex-start;

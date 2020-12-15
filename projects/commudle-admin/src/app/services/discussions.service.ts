@@ -67,5 +67,31 @@ export class DiscussionsService {
   }
 
 
+  pGetOrCreateForCommunityChannel(communityChannelId): Observable<IDiscussion> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT),
+      { params }
+    );
+  }
+
+
+  communityChannelNewAttachmentMessage(formData, parentType, parentId): Observable<boolean> {
+    const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.COMMUNITY_CHANNEL.NEW_ATTACHMENT_MESSAGE), formData,
+      { params }
+    );
+  }
+
+
+  communityChannelUpdatedAttachmentMessage(formData, userMessageId): Observable<boolean> {
+    const params = new HttpParams().set('user_message_id', userMessageId);
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.COMMUNITY_CHANNEL.UPDATED_ATTACHMENT_MESSAGE), formData,
+      { params }
+    );
+  }
+
 
 }

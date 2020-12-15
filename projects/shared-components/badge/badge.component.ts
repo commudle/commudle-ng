@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-badge',
@@ -10,8 +10,18 @@ export class BadgeComponent implements OnInit {
   @Input() fontSize; //can be 'small or regular'
   @Input() color;
   @Input() nbIcon;
+  @Input() dotMode;
+  @Input() position;
 
   bg;
+
+  @HostBinding('class')
+  get themeClass(){
+    if (this.position) {
+      return this.position;
+    }
+    return '';
+  };
 
   constructor() { }
 

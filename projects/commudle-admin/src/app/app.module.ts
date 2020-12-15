@@ -28,14 +28,14 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from "ng2-smart-table";
 import { Ng2CompleterModule } from 'ng2-completer';
@@ -63,6 +63,7 @@ import { environment } from '../environments/environment';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { HomeCommunityCardComponent } from './components/home/communities/home-community-card/home-community-card.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
 import { EventsComponent } from './components/home/events/events.component';
 
 
@@ -98,6 +99,7 @@ export function initApp(appInitService: AppInitService) {
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
+    FormsModule,
     ReactiveFormsModule,
     EditorModule,
     AppSharedComponentsModule,
@@ -136,11 +138,13 @@ export function initApp(appInitService: AppInitService) {
     NbToastrModule.forRoot(),
     NbFormFieldModule,
     NbDialogModule.forRoot(),
+    NbSpinnerModule,
 
     //other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    CommunityChannelsModule,
 
   ],
   providers: [

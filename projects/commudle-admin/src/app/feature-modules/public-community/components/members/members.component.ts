@@ -3,7 +3,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-members',
@@ -22,10 +22,12 @@ export class MembersComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
-    private meta: Meta
+    private meta: Meta,
+    private title: Title
   ) { }
 
   setMeta() {
+    this.title.setTitle(`Members | ${this.community.name}`);
     this.meta.updateTag({ name: 'og:title', content: `Members | ${this.community.name}` });
     this.meta.updateTag({ name: 'twitter:title', content: `Members | ${this.community.name}` });
   }

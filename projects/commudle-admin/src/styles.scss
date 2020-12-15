@@ -7,6 +7,7 @@
 
 @import "~prismjs/plugins/toolbar/prism-toolbar.css";
 @import "~prismjs/themes/prism-okaidia";
+@import '~@ctrl/ngx-emoji-mart/picker';
 
 @include nb-install() {
   @include nb-theme-global();
@@ -43,9 +44,18 @@ input {
   display: none;
 }
 
+.fontw-300 {
+  font-weight: 300 !important;
+}
 
+.margin0 {
+  margin: 0 !important;
+}
 
-
+.menu-active {
+  color: #2296ff !important;
+  font-weight: bold;
+}
 // Override Nebular
 
 .nb-theme-default nb-layout-header.fixed ~ .layout-container {
@@ -182,4 +192,9 @@ nb-window.full-screen-height {
   @media screen and (max-width: 800px){
     display: none !important;
   }
+}
+
+
+:focus {
+  outline: none;
 }

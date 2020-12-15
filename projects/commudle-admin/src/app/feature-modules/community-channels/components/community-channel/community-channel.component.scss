@@ -1,0 +1,81 @@
+.community-channel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  header {
+    height: 2.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    .channel-details {
+      min-width: 50%;
+      p {
+        nb-icon {
+          margin-right: 5px;
+        }
+        margin: 0;
+        color: grey;
+      }
+    }
+
+    nb-actions {
+      nb-action {
+        position: relative;
+        @media screen and (min-width: 1089px) {
+          &.channel-list-menu-button {
+            display: none;
+          }
+        }
+      }
+
+
+    }
+  }
+
+  main {
+    padding: 0.5rem;
+    height: calc(100% - 2.5rem);
+    display: flex;
+    flex-wrap: nowrap;
+    .discussion{
+      height: 100%;
+      flex-grow: 1;
+    }
+
+    .resources {
+      max-width: 100vw;
+    }
+
+    @media screen and (max-width: 1089px) {
+      position: relative;
+      .resources {
+        position: absolute;
+        max-width: 80%;
+        height: 100%;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+
+
+  main.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    p {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      color: grey;
+
+      nb-icon {
+        font-size: 4rem;
+        color: lightgrey;
+      }
+    }
+  }
+
+}

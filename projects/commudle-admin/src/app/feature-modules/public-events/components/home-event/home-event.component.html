@@ -110,7 +110,7 @@
             </small>
           </p>
         </div>
-        <div class="past-session-link" *ngIf="(moment() >= moment(event.start_time)) && !event.custom_agenda">
+        <div class="past-session-link" *ngIf="(moment() >= moment(event.end_time)) && !event.custom_agenda">
           <p class="title text-info">
             <a
             [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
@@ -118,7 +118,7 @@
 
               <small><nb-icon icon="monitor-outline"></nb-icon></small>
               <br>
-              Click here for past session
+              Click here to view event session
 
             </a>
           </p>

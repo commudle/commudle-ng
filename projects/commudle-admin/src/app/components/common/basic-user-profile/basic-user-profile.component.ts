@@ -1,10 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, Pipe } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AppUsersService } from '../../../services/app-users.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { debounceTime, switchMap } from 'rxjs/operators';
+import { NoSpecialCharactersValidator, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -15,6 +17,10 @@ export class BasicUserProfileComponent implements OnInit {
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
+  validusername;
+  lastUsername = '';
+  currentUsername = '';
+  checkingUsername = false;
 
   userProfileForm = this.fb.group({
     name: ['', Validators.required],
@@ -27,6 +33,10 @@ export class BasicUserProfileComponent implements OnInit {
     linkedin: [''],
     twitter: ['']
   });
+
+  usernameForm = this.fb.group({
+    username: ['', [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator]]
+  })
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -41,9 +51,15 @@ export class BasicUserProfileComponent implements OnInit {
         this.currentUser = currentUser;
         this.userProfileForm.patchValue(this.currentUser);
         this.uploadedProfilePicture = this.currentUser.avatar;
+        this.currentUsername = this.lastUsername = this.currentUser.username;
+        this.usernameForm.patchValue({
+          username: this.currentUser.username
+        })
       }
 
     });
+
+    this.checkUsername();
   }
 
 
@@ -84,6 +100,40 @@ export class BasicUserProfileComponent implements OnInit {
         this.toastLogService.successDialog("Your Profile is now updated!");
       }
     );
+  }
+
+
+  checkUsername() {
+    this.usernameForm.valueChanges.pipe(
+      debounceTime(800),
+      switchMap(() => {
+        this.checkingUsername = true;
+        this.currentUsername = this.usernameForm.get('username').value;
+        return this.usersService.checkUsername(this.currentUsername);
+      })
+    ).subscribe((data) => {
+      if (data == true) {
+        this.validusername = true;
+      } else {
+        this.validusername = false;
+      }
+
+      this.checkingUsername = false;
+    });
+  }
+
+  setUsername() {
+    let newUsername = this.usernameForm.get('username').value;
+    this.usersService.setUsername(newUsername).subscribe(
+      data => {
+        if (data) {
+          this.toastLogService.successDialog('Updated!');
+          this.lastUsername = newUsername;
+          // get the user again from the server
+          this.authWatchService.checkAlreadySignedIn().subscribe();
+        }
+      }
+    )
   }
 
 }

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import * as moment from 'moment';
-import { DomSanitizer, Meta } from '@angular/platform-browser';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event-resources',
@@ -21,12 +21,14 @@ export class EventResourcesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private speakerResourcesService: SpeakerResourcesService,
     private meta: Meta,
+    private title: Title,
     private sanitizer: DomSanitizer
   ) { }
 
   setMeta() {
-    this.meta.updateTag({ name: 'og:title', content: `Expert Sessions | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Expert Sessions | ${this.community.name}` });
+    this.title.setTitle(`Past Event Sessions | ${this.community.name}`);
+    this.meta.updateTag({ name: 'og:title', content: `Past Event Sessions | ${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Past Expert Sessions | ${this.community.name}` });
   }
 
   ngOnInit() {
