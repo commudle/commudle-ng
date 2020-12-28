@@ -1,0 +1,38 @@
+<div class="invite-form">
+  <div class="joining-link">
+    <div>
+      <p class="margin0">Link to join channel</p>
+      <nb-form-field (click)="copyJoinLinkToClipboard(tokenField)" class="clickable">
+        <nb-icon nbPrefix icon="copy-outline"></nb-icon>
+        <textarea
+          rows="1"
+          class="fontw-300"
+          readonly type="text"
+          nbInput
+          value="{{appURL}}/communities/{{communityChannel.kommunity_id}}/channels/join/{{joinToken}}"
+          #tokenField>
+        </textarea>
+      </nb-form-field>
+      <p class="text-info" *ngIf="linkCopied">
+        <small>
+          Link copied!
+        </small>
+      </p>
+    </div>
+    <button nbButton status="info" outline size="tiny" (click)="refreshJoinToken()" *ngIf="channelsRoles[communityChannel.id] && channelsRoles[communityChannel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
+      <nb-icon icon="refresh"></nb-icon>
+      Create New Link
+    </button>
+  </div>
+  <div class="form">
+    <form [formGroup]="memberInviteForm" (ngSubmit)="sendMemberInvite()">
+      <label>
+        Invite friends, enter email id
+        <br>
+        <input class="fontw-300" nbInput formControlName="email" placeholder="type here..." fieldSize="small">
+      </label>
+      <button type="submit" nbButton [disabled]="!memberInviteForm.valid" size="small" status="info" ghost>Send Invite</button>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,20 @@
+.invite-form {
+  .joining-link {
+    nb-form-field, textarea {
+      max-width: none;;
+    }
+    textarea {
+      resize: none;
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+
+
+  .form {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 2rem;
+  }
+}

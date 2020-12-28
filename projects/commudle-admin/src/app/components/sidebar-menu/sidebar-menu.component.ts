@@ -8,7 +8,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunitiesService } from '../../services/communities.service';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { UserChatComponent } from 'projects/shared-components/user-chat/user-chat.component';
-import { UserNotificationsChannel } from 'projects/shared-services/websockets/user-notifications.channel';
+import { UserPersonalDiscussionChatNotificationsChannel } from 'projects/shared-services/websockets/user-personal-discussion-chat-notifications.channel';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 
 @Component({
@@ -24,7 +24,7 @@ export class SidebarMenuComponent implements OnInit {
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
   communityAdminRoles = [];
   isSystemAdmin = false;
-
+  chatWindowRef;
   unreadMessagesCount = 0;
 
   constructor(
@@ -33,13 +33,13 @@ export class SidebarMenuComponent implements OnInit {
     private communityGroupsService: CommunityGroupsService,
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
-    private notificationsChannel: UserNotificationsChannel
+    private userPersonalChatNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel
   ) { }
 
   ngOnInit() {
     this.getCurrentUser();
 
-    this.notificationsChannel.newMessagesCounter$.subscribe(value => {
+    this.userPersonalChatNotificationsChannel.newMessagesCounter$.subscribe(value => {
       this.unreadMessagesCount = value.length;
     });
   }
@@ -93,7 +93,7 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   openChat() {
-    this.windowService.open(UserChatComponent, {title: 'Personal Messages'});
+    this.chatWindowRef = this.windowService.open(UserChatComponent, {title: 'Personal Messages'});
   }
 
 

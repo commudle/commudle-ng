@@ -16,5 +16,6 @@ export interface IUserRolesUser {
 export enum EUserRolesUserStatus {
   INVITED = "invited",
   ACCEPTED = "accepted",
-  REMOVED = "removed"
+  REMOVED = "removed",
+  JOINED_BY_TOKEN = "joined_by_token"
 }

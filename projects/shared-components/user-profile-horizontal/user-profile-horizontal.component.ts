@@ -13,6 +13,7 @@ export class UserProfileHorizontalComponent implements OnInit {
   @Input() size: string;
   @Input() aboutMe: boolean;
   @Input() socialMediaLinks: boolean;
+  @Input() showLiveStatus: boolean;
 
   constructor(
     private windowService: NbWindowService
@@ -29,5 +30,7 @@ export class UserProfileHorizontalComponent implements OnInit {
       }
     });
   }
+
+
 
 }

@@ -1,0 +1,36 @@
+<div class="community-channel">
+  <header>
+    <div class="channel-details">
+      <div *ngIf="selectedChannel">
+        <p [nbTooltip]="selectedChannel.description" [nbTooltipPlacement]="'bottom'">
+          <nb-icon icon="info-outline"></nb-icon>
+          <span [innerHTML]="selectedChannel.description | truncatetext: 200 | textToLinks"></span>
+        </p>
+      </div>
+
+    </div>
+    <nb-actions>
+      <nb-action class="channel-list-menu-button" icon="menu-arrow" (click)="toggleCommunityListDisplay()" *ngIf="hasNotifications" [badgePosition]="'top right'" [badgeStatus]="'danger'" [badgeDot]="true">
+      </nb-action>
+      <nb-action class="channel-list-menu-button" icon="menu-arrow" (click)="toggleCommunityListDisplay()" *ngIf="!hasNotifications">
+      </nb-action>
+      <nb-action icon="people" link="members"></nb-action>
+    </nb-actions>
+  </header>
+  <main *ngIf="discussion">
+    <div class="discussion">
+      <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
+    </div>
+    <div class="resources">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <main class="not-found" *ngIf="!discussion && notFound">
+    <p>
+      <nb-icon icon="alert-circle-outline"></nb-icon>
+      <br>
+      This channel is either private or does not exist! Please check with the organizers of the selected community
+    </p>
+  </main>
+</div>

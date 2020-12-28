@@ -40,6 +40,26 @@ export const API_ROUTES = {
     }
   },
 
+  COMMUNITY_CHANNELS: {
+    USER_CHANNEL_COMMUNITIES: 'api/v2/community_channels/user_channel_communities',
+    INDEX: 'api/v2/community_channels',
+    CREATE: 'api/v2/community_channels',
+    UPDATE: 'api/v2/community_channels',
+    DELETE: 'api/v2/community_channels',
+    JOIN_TOKEN: 'api/v2/community_channels/join_token',
+    RESET_JOIN_TOKEN: 'api/v2/community_channels/reset_join_token',
+    TAGGABLE_USERS: 'api/v2/community_channels/taggable_users',
+    DELETE_LOGO: 'api/v2/community_channels/delete_logo',
+    MEMBERS: {
+      INDEX:  'api/v2/community_channels/members',
+      INVITE: 'api/v2/community_channels/members/invite',
+      JOIN_BY_TOKEN: 'api/v2/community_channels/members/join_by_token',
+      TOGGLE_ADMIN: 'api/v2/community_channels/members/toggle_admin',
+      REMOVE: 'api/v2/community_channels/members/remove',
+      EXIT_CHANNEL: 'api/v2/community_channels/members/exit_channel'
+    }
+  },
+
   COMMUNITY_GROUPS: {
     CREATE: 'api/v2/community_groups',
     UPDATE: 'api/v2/community_groups',
@@ -282,7 +302,11 @@ export const API_ROUTES = {
   },
 
   USERS: {
-    UPDATE_PROFILE: 'api/v2/users/update_profile'
+    GET_PROFILE: 'api/v2/users',
+    UPDATE_PROFILE: 'api/v2/users/update_profile',
+    CHECK_USERNAME: 'api/v2/users/check_username',
+    SET_USERNAME: 'api/v2/users/set_username',
+    GET_MY_ROLES: 'api/v2/users/get_my_roles'
   },
 
   SPEAKER_RESOURCES: {
@@ -303,7 +327,12 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_QNA_FOR_EVENT: 'api/v2/discussions/public_get_or_create_qna_for_event',
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat',
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat',
-    PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat'
+    PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat',
+    PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT: 'api/v2/discussions/public_get_or_create_for_community_channel_chat',
+    COMMUNITY_CHANNEL: {
+      NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',
+      UPDATED_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/updated_attachment_message'
+    }
   },
 
   LABS: {
@@ -348,12 +377,12 @@ export const API_ROUTES = {
     PERSONAL_CHAT_DISCUSSION_MESSAGES: 'api/v2/user_messages/personal_chat_discussion_messages',
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
+    PUBLIC_COMMUNITY_CHANNEL_DISCUSSION_MESSAGES: 'api/v2/user_messages/public_community_channel_discussion_messages'
   },
 
   USER_OBJECT_VISITS: {
     CREATE: 'api/v2/user_object_visits',
     MARK_END_TIME: 'api/v2/user_object_visits/mark_end_time',
-
   },
 
 

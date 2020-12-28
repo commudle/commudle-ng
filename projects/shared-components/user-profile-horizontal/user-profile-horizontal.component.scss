@@ -1,5 +1,6 @@
 .user {
   padding: 0.5rem;
+  position: relative;
   display: flex;
   align-items: flex-start;
 
@@ -31,7 +32,13 @@
     text-align: left;
     .name {
       margin: 0;
-
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       &.medium {
         font-size: 1.2rem;
       }
@@ -44,6 +51,7 @@
     .designation {
       margin: 0;
       font-size: 0.8rem;
+      word-break: break-all;
 
       &.medium {
         font-size: 0.9rem;
@@ -90,5 +98,6 @@
     }
 
   }
+
 
 }

@@ -22,11 +22,15 @@
   <script src="https://meet.jit.si/external_api.js"></script>
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-69174626-3"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    var host = window.location.hostname;
+    if(host != "localhost") {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    gtag('config', 'UA-69174626-3');
+      gtag('config', 'UA-69174626-3');
+    }
+
   </script>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>

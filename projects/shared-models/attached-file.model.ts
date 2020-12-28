@@ -3,4 +3,6 @@ export interface IAttachedFile {
   id: any;
   url: string;
   file: File;
+  name: string;
+  type: string;
 }
