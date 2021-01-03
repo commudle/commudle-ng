@@ -66,6 +66,7 @@ faith may face temporary or permanent repercussions as determined by other
 members of the project's leadership.
 
 <a href="https://commudle.com/policies/terms-and-conditions" target="_blank">Terms and Conditions</a>
+---
 <a href="https://commudle.com/policies/privacy-policy" target="_blank">PRIVACY POLICY</a>
 
 ## Attribution
