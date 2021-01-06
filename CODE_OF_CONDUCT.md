@@ -65,9 +65,10 @@ Project maintainers who do not follow or enforce the Code of Conduct in good
 faith may face temporary or permanent repercussions as determined by other
 members of the project's leadership.
 
-<a href="https://commudle.com/policies/terms-and-conditions" target="_blank">Terms and Conditions</a>
----
-<a href="https://commudle.com/policies/privacy-policy" target="_blank">PRIVACY POLICY</a>
+
+### Disclaimer
+While participating in open source contributions with Commudle, you agree to our <a href="https://commudle.com/policies/terms-and-conditions" target="_blank">Terms & Conditions</a> and <a href="https://commudle.com/policies/privacy-policy" target="_blank">Privacy Policy</a>.
+
 
 ## Attribution
 
