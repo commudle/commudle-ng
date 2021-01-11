@@ -27,6 +27,7 @@ This is a community management platform for Tech Communities across the world. T
   - By clicking on it, you can find a cookie named **commudle_user_auth** with its corresponding value.
   - Copy this particular cookie and its value to `http://localhost:4200`'s cookies and refresh the page to get signed in.
   - [Contribution Guidelines](CONTRIBUTING.md)
+  - [Contributors.md](CONTRIBUTORS.md)
   - [Code Of Conduct](CODE_OF_CONDUCT.md)
 
 ## Build for production
