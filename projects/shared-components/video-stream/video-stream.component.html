@@ -5,6 +5,16 @@
       <br/>
       <span> {{ fillerText }} </span>
     </p>
+
+    <div class="hms-video" *ngIf="videoCode">
+      <youtube-player
+        *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
+        videoId="{{ playerUrl }}"
+        [width]="width || 640"
+        [height]="height || 360"
+      >
+    </youtube-player>
+
     <div class="youtube-player" *ngIf="videoCode">
       <youtube-player
         *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
