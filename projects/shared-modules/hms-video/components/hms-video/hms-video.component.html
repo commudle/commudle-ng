@@ -1,1 +1,5 @@
-<p>hms-video works!</p>
+<div class="hms-video">
+  <div class="state-container" [ngSwitch]="currentState">
+    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW"></app-local-preview>
+  </div>
+</div>

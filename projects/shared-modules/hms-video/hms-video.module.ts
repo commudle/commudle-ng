@@ -4,7 +4,7 @@ import { HmsVideoComponent } from './components/hms-video/hms-video.component';
 import { LocalPreviewComponent } from './components/local-preview/local-preview.component';
 import { ConferenceComponent } from './components/conference/conference.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { NbButtonModule, NbCheckboxModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCheckboxModule, NbInputModule, NbSelectModule, NbIconModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -25,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbButtonModule,
     NbInputModule,
     NbCheckboxModule,
-    NbSelectModule
+    NbSelectModule,
+    NbIconModule
 
   ],
   exports: [

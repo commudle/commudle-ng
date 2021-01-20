@@ -24,11 +24,14 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   @Input() userEmail: string;
   @Input() userName: string;
 
-  // zoom specific parameters
+  // zoom specific attributes
   @Input() zoomSignature: string;
   @Input() zoomHostEmail: string;
   @Input() zoomPassword: string;
   @Input() zoomHostSignature: string;
+
+  // hms specific attributes
+  @Input() hmsRoomId: string;
 
   playerUrl: any;
 
@@ -38,6 +41,7 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
+    console.log('videocode', this.videoCode, '123');
     this.setPreview();
     if (!this.fillerText) {
       this.fillerText = 'Loading...';

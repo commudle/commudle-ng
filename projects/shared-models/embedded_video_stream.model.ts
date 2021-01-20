@@ -11,4 +11,5 @@ export interface IEmbeddedVideoStream {
   zoom_password: string;
   zoom_host_signature: string;
   zoom_attendee_signature: string;
+  hms_room_id: string;
 }
