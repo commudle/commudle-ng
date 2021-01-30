@@ -34,7 +34,6 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from "ng2-smart-table";
@@ -65,6 +64,18 @@ import { HomeCommunityCardComponent } from './components/home/communities/home-c
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
 import { EventsComponent } from './components/home/events/events.component';
+
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { faFilm,
+faCalendar,
+fas } from '@fortawesome/free-solid-svg-icons';
+
+import { far } from '@fortawesome/free-regular-svg-icons';
+
 
 
 export function initApp(appInitService: AppInitService) {
@@ -173,4 +184,8 @@ export function initApp(appInitService: AppInitService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor() {
+    library.add(faFilm, faCalendar, fas, far);
+  }
+}
