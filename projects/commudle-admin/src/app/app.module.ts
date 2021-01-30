@@ -28,7 +28,7 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule, NbIconLibraries} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -173,4 +173,9 @@ export function initApp(appInitService: AppInitService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+constructor(private iconLibraries: NbIconLibraries) {
+    this.iconLibraries.registerFontPack('font-awesome', { iconClassPrefix: 'fa', packClass: 'fa' });
+  }
+
+}

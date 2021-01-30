@@ -29,7 +29,9 @@
               "projects/commudle-admin/src/manifest.webmanifest"
             ],
             "styles": [
-              "projects/commudle-admin/src/styles.scss"
+              "projects/commudle-admin/src/styles.scss",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.css"
+              // "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "projects/commudle-admin/src/assets/scripts/jitsi-meet.js"
