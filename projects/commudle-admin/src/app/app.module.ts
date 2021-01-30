@@ -28,7 +28,8 @@ import {
   NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule} from '@nebular/theme';
+  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule,
+  NbIconLibraries} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
@@ -67,16 +68,6 @@ import { EventsComponent } from './components/home/events/events.component';
 
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-
-import { faFilm,
-faCalendar,
-fas } from '@fortawesome/free-solid-svg-icons';
-
-import { far } from '@fortawesome/free-regular-svg-icons';
-
-
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -185,7 +176,7 @@ export function initApp(appInitService: AppInitService) {
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor() {
-    library.add(faFilm, faCalendar, fas, far);
+  constructor(private iconLibraries: NbIconLibraries) {
+    this.iconLibraries.registerFontPack('font-awesome', { iconClassPrefix: 'fa', packClass: 'fa' });
   }
 }
