@@ -1,0 +1,10 @@
+.chats-list {
+
+  nb-list-item {
+    transition: 0.25s ease-in-out;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+}

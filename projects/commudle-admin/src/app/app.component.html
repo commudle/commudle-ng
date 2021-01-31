@@ -5,7 +5,8 @@
       <div class="menu-left-container">
         <div class="sidebar-toggle" (click)="toggleSidebar()">
           <fa-icon [icon]="faBars" size="1x"></fa-icon>
-          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" status="danger" [position]="'top end'"></nb-badge>
+          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
+                    status="danger"></nb-badge>
         </div>
         <div class="main-logo clickable" [routerLink]="['/']">
           <img src="/assets/images/commudle-logo72.png">
@@ -29,7 +30,7 @@
         >
         </nb-user>
         <button *ngIf="!currentUser"
-          (click)="login()" nbButton ghost status="info">
+                (click)="login()" ghost nbButton status="info">
           <nb-icon icon="log-in-outline"></nb-icon>
           Log in / Sign Up
         </button>
@@ -86,6 +87,7 @@
 
 </nb-layout>
 
+<app-chats-container></app-chats-container>
 
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>
