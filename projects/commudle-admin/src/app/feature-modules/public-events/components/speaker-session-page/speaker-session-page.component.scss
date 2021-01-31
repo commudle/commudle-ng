@@ -135,8 +135,9 @@
                 height: 100%;
                 ::ng-deep {
                   ul.tabset {
+                    width: 100%;
                     overflow-x: auto;
-                    padding: 5px;
+                    padding: 5px 0;
                   }
                 }
 
