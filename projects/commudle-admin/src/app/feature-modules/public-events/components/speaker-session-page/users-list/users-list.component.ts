@@ -17,7 +17,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   uuid = uuidv4();
   @Input() embeddedVideoStream: IEmbeddedVideoStream
   @Input() event: IEvent;
-
+  channelName;
   subscriptions = [];
   usersListSubscription;
 
@@ -29,12 +29,20 @@ export class UsersListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.channelName = `${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`;
     if (this.event.event_status.name === EEventStatuses.COMPLETED) {
       this.getPastUsersList();
     } else {
       this.userObjectVisitChannel.subscribe(this.embeddedVideoStream.id, 'EmbeddedVideoStream', this.uuid);
       this.receiveData();
-      this.getCurrentUsersList();
+
+      this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(
+        data => {
+          if (data) {
+            this.getCurrentUsersList();
+          }
+        }
+      )
     }
   }
 
@@ -65,8 +73,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.userObjectVisitChannel.channelsList$.subscribe(
         data => {
-          if (data.has(`${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`) && !this.usersListSubscription) {
-            this.usersListSubscription = this.userObjectVisitChannel.channelData$[`${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`].subscribe(
+          if (data.has(this.channelName) && !this.usersListSubscription) {
+            this.usersListSubscription = this.userObjectVisitChannel.channelData$[this.channelName].subscribe(
               data => {
                 if (data) {
                   switch (data.action) {
@@ -76,18 +84,17 @@ export class UsersListComponent implements OnInit, OnDestroy {
                     }
                     case (this.userObjectVisitChannel.ACTIONS.CURRENT_USERS): {
                       this.usersList = data.users;
-                      console.log(data)
                       break;
                     }
                     case (this.userObjectVisitChannel.ACTIONS.USER_ADD): {
                       const existingUserIndex = this.usersList.findIndex(k => k.id === data.user.id);
-                      if (existingUserIndex === -1) {
+                      if (existingUserIndex === -1 && this.usersList.length > 0) {
                         this.usersList.push(data.user);
                       }
                       break;
                     }
                     case (this.userObjectVisitChannel.ACTIONS.USER_REMOVE): {
-                      const existingUserIndex = this.usersList.findIndex(k => k.id === data.user.id);
+                      const existingUserIndex = this.usersList.findIndex(k => k.id === data.user_id);
                       if (existingUserIndex !== -1) {
                         this.usersList.splice(existingUserIndex, 1);
                       }
