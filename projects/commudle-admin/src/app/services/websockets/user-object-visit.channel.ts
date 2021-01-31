@@ -20,14 +20,20 @@ export class UserObjectVisitChannel {
   actionCable = actionCable;
   private cableConnection;
 
+  // this contains all the subscriptions to the server through this channel
   private subscriptions = {};
 
   // all the communications received will be observables
   private channelsList: BehaviorSubject<any> = new BehaviorSubject(new Set());
   public channelsList$ = this.channelsList.asObservable();
 
+  // multiple components will connect through the same channel, so we are maintaining the data in objects and also the connection status
   private channelData = {};
   public channelData$ = {};
+
+  // connection statuses of each channel
+  private channelConnectionStatus = {};
+  public channelConnectionStatus$ = {};
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
@@ -43,25 +49,36 @@ export class UserObjectVisitChannel {
 
 
   subscribe(objectId, objectType, uuid) {
+    const connectionName = `${objectId}_${objectType}_${uuid}`;
     if (this.cableConnection) {
-      this.channelData[`${objectId}_${objectType}_${uuid}`] = new BehaviorSubject(null);
-      this.channelData$[`${objectId}_${objectType}_${uuid}`] = this.channelData[`${objectId}_${objectType}_${uuid}`].asObservable();
-      this.channelsList.next(this.channelsList.getValue().add(`${objectId}_${objectType}_${uuid}`));
+      this.channelData[connectionName] = new BehaviorSubject(null);
+      this.channelData$[connectionName] = this.channelData[connectionName].asObservable();
+      this.channelsList.next(this.channelsList.getValue().add(connectionName));
 
-      this.subscriptions[`${objectId}_${objectType}_${uuid}`] = this.cableConnection.subscriptions.create({
+      // setup the initial connection status
+      this.channelConnectionStatus[connectionName] = new BehaviorSubject(false);
+      this.channelConnectionStatus$[connectionName] = this.channelConnectionStatus[connectionName].asObservable();
+
+      this.subscriptions[connectionName] = this.cableConnection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.USER_OBJECT_VISIT,
         object_type: objectType,
         object_id: objectId,
         app_token: this.authWatchService.getAppToken()
 
       }, {
+        connected: () => {
+          this.channelConnectionStatus[connectionName].next(true);
+        },
         received: (data) => {
-          this.channelData[`${objectId}_${objectType}_${uuid}`].next(data);
+          this.channelData[connectionName].next(data);
+        },
+        disconnected: () => {
+          this.channelConnectionStatus[connectionName].next(false);
         }
       });
     }
 
-    return this.subscriptions[`${objectId}_${objectType}_${uuid}`];
+    return this.subscriptions[connectionName];
 
   }
 

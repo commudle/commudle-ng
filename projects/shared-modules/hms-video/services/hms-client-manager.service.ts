@@ -72,8 +72,6 @@ export class HmsClientManagerService {
 
   // subscribe to remote peer's stream
   getPeerStream(client: HMSClient, mId, roomId): Observable<any> {
-    console.log('PEER STREAM ADDing', mId, roomId);
-
     return from(client.subscribe(mId, roomId));
   }
 
