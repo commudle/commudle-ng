@@ -1,1 +1,6 @@
-<p>conference works!</p>
+<div class="conference">
+  <div class="user-videos">
+    <app-user-video *ngIf="localStream" [username]="user.name" [stream]="localStream"></app-user-video>
+    <app-user-video *ngFor="let peer of peers | keyvalue" [username]="peer.value['name']" [stream]="peer.value['stream']"></app-user-video>
+  </div>
+</div>

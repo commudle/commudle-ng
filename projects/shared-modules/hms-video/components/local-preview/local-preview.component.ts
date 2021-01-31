@@ -1,5 +1,9 @@
+import { EHmsStates } from './../../services/hms-video-state.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { LocalmediaService } from '../../services/localmedia.service';
+import { combineLatest } from 'rxjs';
+
 
 @Component({
   selector: 'app-local-preview',
@@ -7,6 +11,7 @@ import { LocalmediaService } from '../../services/localmedia.service';
   styleUrls: ['./local-preview.component.scss']
 })
 export class LocalPreviewComponent implements OnInit {
+  EHmsStates = EHmsStates;
   @ViewChild('previewVideo', {static: true}) previewVideo: ElementRef;
 
   roomId: string;
@@ -22,23 +27,28 @@ export class LocalPreviewComponent implements OnInit {
   mic = true;
 
   constructor(
-    private localMediaService: LocalmediaService
+    private localMediaService: LocalmediaService,
+    private hmsVideoStateService: HmsVideoStateService
   ) { }
 
   ngOnInit(): void {
     this.getDevices();
 
-    this.localMediaService.selectedAudioDevice$.subscribe(data => {
-      this.selectedAudioDevice = data;
-      if (data) {
-        this.getLocalStream(this.selectedAudioDevice, this.selectedVideoDevice);
-      }
-    });
+    const deviceListener =  combineLatest([
+      this.localMediaService.selectedAudioDevice$,
+      this.localMediaService.selectedVideoDevice$,
+      this.localMediaService.mic$,
+      this.localMediaService.camera$
+    ]);
 
-    this.localMediaService.selectedVideoDevice$.subscribe(data => {
-      this.selectedVideoDevice = data;
-      if (data) {
-        this.getLocalStream(this.selectedAudioDevice, this.selectedVideoDevice);
+    deviceListener.subscribe(data => {
+      this.selectedAudioDevice = data[0];
+      this.selectedVideoDevice = data[1];
+      this.mic = data[2];
+      this.camera = data[3];
+
+      if (this.selectedAudioDevice && this.selectedVideoDevice) {
+        this.getLocalStream();
       }
     });
 
@@ -67,30 +77,27 @@ export class LocalPreviewComponent implements OnInit {
         this.audioDevices = audio;
         this.videoDevices = video;
 
-        this.selectedAudioDevice = this.audioDevices[0];
-        this.selectedVideoDevice = this.videoDevices[0];
-        this.setAudioDevice();
-        this.setVideoDevice();
+        this.setAudioDevice(this.audioDevices[0]);
+        this.setVideoDevice(this.videoDevices[0]);
       }
     )
   }
 
-  setAudioDevice() {
-    this.localMediaService.updateAudioDevice(this.selectedAudioDevice);
+  setAudioDevice(audioDevice) {
+    this.localMediaService.updateAudioDevice(audioDevice);
   }
 
-  setVideoDevice() {
-    this.localMediaService.updateVideoDevice(this.selectedVideoDevice);
+  setVideoDevice(videoDevice) {
+    this.localMediaService.updateVideoDevice(videoDevice);
   }
 
 
-  getLocalStream(audioDevice?, videoDevice?) {
+  getLocalStream() {
     this.stopStream();
     let constraints = <any>{};
 
-    constraints.audio = (audioDevice ? ({deviceId: {exact: audioDevice.deviceId}}) : false);
-    constraints.video = (videoDevice ? ({deviceId: {exact: videoDevice.deviceId}}) : false);
-    console.log(constraints, audioDevice, videoDevice);
+    constraints.audio = (this.mic ? ({deviceId: {exact: this.selectedAudioDevice.deviceId}}) : false);
+    constraints.video = (this.camera ? ({deviceId: {exact: this.selectedVideoDevice.deviceId}}) : false);
     this.localMediaService.getLocalStream(constraints).subscribe(data => {
       if (data) {
         let video = this.previewVideo.nativeElement;
@@ -100,19 +107,11 @@ export class LocalPreviewComponent implements OnInit {
   }
 
   toggleMic() {
-    this.mic = !this.mic;
-    this.getLocalStream(
-      this.mic ? this.selectedAudioDevice : this.mic,
-      this.camera ? this.selectedVideoDevice : this.camera
-    )
+    this.localMediaService.updateMic(!this.mic);
   }
 
   toggleCamera() {
-    this.camera = !this.camera;
-    this.getLocalStream(
-      this.mic ? this.selectedAudioDevice : this.mic,
-      this.camera ? this.selectedVideoDevice : this.camera
-    )
+    this.localMediaService.updateCamera(!this.camera);
   }
 
   stopStream() {
@@ -124,5 +123,10 @@ export class LocalPreviewComponent implements OnInit {
       }
     }
   }
+
+  joinRoom() {
+    this.hmsVideoStateService.setState(EHmsStates.ROOM);
+  }
+
 
 }

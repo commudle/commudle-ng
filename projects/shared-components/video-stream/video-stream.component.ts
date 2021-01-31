@@ -41,7 +41,6 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    console.log('videocode', this.videoCode, '123');
     this.setPreview();
     if (!this.fillerText) {
       this.fillerText = 'Loading...';

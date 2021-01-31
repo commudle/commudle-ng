@@ -1,27 +1,43 @@
 .local-preview {
-  .local-video {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    width: 240px;
-    height: 180px;
-    margin: 0 auto;
-    video {
-      width: 100%;
-    }
+  width: 300px;
+  nb-card {
+    width: 100%;
+    .local-video {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+      width: 240px;
+      height: 180px;
+      margin: 0 auto;
+      video {
+        width: 100%;
+      }
 
-    .controls {
-      position: absolute;
-      bottom: 0;
-      font-size: 1.2rem;
-      button {
-        nb-icon {
-          color: white;
-          cursor: pointer;
+      .controls {
+        position: absolute;
+        bottom: 0;
+        font-size: 1.2rem;
+        button {
+          nb-icon {
+            color: white;
+            cursor: pointer;
+          }
         }
       }
     }
+
+    .sources {
+      label {
+        display: block;
+        margin-top: 1rem;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+    }
+
   }
 }

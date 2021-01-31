@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export enum EHmsStates {
   PREVIEW = 'preview',
+  ROOM = 'room'
 }
 
 

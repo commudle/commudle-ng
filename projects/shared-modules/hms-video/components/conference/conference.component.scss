@@ -1,0 +1,11 @@
+:host {
+  height: 100%;
+  width: 100%;
+
+  .conference {
+    .user-videos {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
