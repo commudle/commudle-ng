@@ -105,6 +105,14 @@
         <nb-card-body>
           <nb-tabset fullWidth responsive (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
             <nb-tab
+              tabTitle="People"
+              tabIcon="people-outline"
+              [tabId]="'people'"
+              *ngIf="embeddedVideoStream"
+            >
+              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event"></app-users-list>
+            </nb-tab>
+            <nb-tab
               tabTitle="Chat"
               *ngIf="chat"
               tabIcon="message-square-outline"

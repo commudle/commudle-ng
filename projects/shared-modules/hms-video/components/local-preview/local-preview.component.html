@@ -1,55 +1,59 @@
 <div class="local-preview">
-  <div class="local-video">
-    <video #previewVideo autoplay [muted]="true" playsinline></video>
-    <div class="controls">
-      <button nbButton ghost (click)="toggleCamera()">
-        <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
-      </button>
-      <button nbButton ghost (click)="toggleMic()">
-        <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
-      </button>
-    </div>
-  </div>
-  <div class="sources d-flex flex-column mt-4">
-    <!-- video source -->
-    <label>
-      Video Device
-      <nb-select
-        name="videoDevices"
-        status="primary"
-        size="medium"
-        [(ngModel)]="selectedVideoDevice"
-        [ngModelOptions]="{standalone: true}"
-        ngDefaultControl
-        fullWidth
-        (selectedChange)="setAudioDevice()"
-        >
-        <nb-option *ngFor="let dev of videoDevices" [value]="dev"> {{dev.label}} </nb-option>
-      </nb-select>
-    </label>
+  <nb-card>
+    <nb-card-body>
+      <div class="local-video">
+        <video #previewVideo autoplay [muted]="true" playsinline></video>
+        <div class="controls">
+          <button nbButton ghost (click)="toggleCamera()">
+            <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
+          </button>
+          <button nbButton ghost (click)="toggleMic()">
+            <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
+          </button>
+        </div>
+      </div>
+      <div class="sources d-flex flex-column mt-4">
+        <!-- video source -->
+        <label>
+          Video Device
+          <nb-select
+            name="videoDevices"
+            status="primary"
+            size="medium"
+            [(ngModel)]="selectedVideoDevice"
+            [ngModelOptions]="{standalone: true}"
+            ngDefaultControl
+            fullWidth
+            (selectedChange)="setVideoDevice($event)"
+            >
+            <nb-option *ngFor="let dev of videoDevices" [value]="dev"> {{dev.label}} </nb-option>
+          </nb-select>
+        </label>
 
-    <!-- mic source -->
-    <label>
-      Audio Device
-      <nb-select
-        name="audioDevices"
-        status="primary"
-        size="medium"
-        [(ngModel)]="selectedAudioDevice"
-        [ngModelOptions]="{standalone: true}"
-        ngDefaultControl
-        fullWidth
-        (selectedChange)="setVideoDevice()"
-        >
-        <nb-option *ngFor="let dev of audioDevices" [value]="dev"> {{dev.label}} </nb-option>
-      </nb-select>
-    </label>
-  </div>
+        <!-- mic source -->
+        <label>
+          Audio Device
+          <nb-select
+            name="audioDevices"
+            status="primary"
+            size="medium"
+            [(ngModel)]="selectedAudioDevice"
+            [ngModelOptions]="{standalone: true}"
+            ngDefaultControl
+            fullWidth
+            (selectedChange)="setAudioDevice($event)"
+            >
+            <nb-option *ngFor="let dev of audioDevices" [value]="dev"> {{dev.label}} </nb-option>
+          </nb-select>
+        </label>
+      </div>
 
-  <div>
-    <button nbButton status="primary" fullWidth>
-      Join
-    </button>
-  </div>
+      <div>
+        <button nbButton status="primary" outline fullWidth (click)="joinRoom()">
+          Join
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
 
 </div>

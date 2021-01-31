@@ -105,6 +105,13 @@ export class EventsService {
   }
 
 
+  embeddedVideoStreamPastVisitors(eventId, embeddedVideoStreamId): Observable<IUsers> {
+    const params = new HttpParams().set('event_id', eventId).set('embedded_video_stream_id', embeddedVideoStreamId);
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.EMBEDDED_VIDEO_STREAM_PAST_VISITORS), {params});
+  }
+
+
   pGetUpcomingEvents(): Observable<IEvents> {
     return this.http.get<IEvents>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.UPCOMING)

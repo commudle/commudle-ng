@@ -12,6 +12,12 @@ export class LocalmediaService {
   private selectedVideoDevice: BehaviorSubject<any> = new BehaviorSubject(null);
   public selectedVideoDevice$ = this.selectedVideoDevice.asObservable();
 
+  private camera: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public camera$ = this.camera.asObservable();
+
+  private mic: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public mic$ = this.mic.asObservable();
+
   constructor() { }
 
   getDevices(): Observable<MediaDeviceInfo[]> {
@@ -28,5 +34,13 @@ export class LocalmediaService {
 
   updateVideoDevice(device) {
     this.selectedVideoDevice.next(device);
+  }
+
+  updateCamera(value) {
+    this.camera.next(value)
+  }
+
+  updateMic(value) {
+    this.mic.next(value);
   }
 }

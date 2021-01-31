@@ -1,5 +1,6 @@
 <div class="hms-video">
   <div class="state-container" [ngSwitch]="currentState">
-    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW"></app-local-preview>
+    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW" class="local-preview"></app-local-preview>
+    <app-conference *ngSwitchCase="EHmsStates.ROOM" class="room" [roomId]="roomId"></app-conference>
   </div>
 </div>
