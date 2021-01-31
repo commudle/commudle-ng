@@ -1,70 +1,76 @@
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
-import { AuthTokenInterceptor } from 'projects/shared-services/lib-authwatch-token.interceptor';
-import { BrowserModule, Title } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {ApiParserResponseInterceptor} from 'projects/shared-services/api-parser-response.interceptor';
+import {AuthTokenInterceptor} from 'projects/shared-services/lib-authwatch-token.interceptor';
+import {BrowserModule, Title} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {
-  NbThemeModule,
-  NbLayoutModule,
-  NbSidebarModule,
-  NbButtonModule,
-  NbSidebarService,
-  NbCardModule,
-  NbRouteTabsetModule,
-  NbInputModule,
-  NbCheckboxModule,
-  NbSelectModule,
-  NbDatepickerModule,
-  NbRadioModule,
-  NbUserModule,
-  NbMenuModule,
-  NbContextMenuModule,
-  NbIconModule,
-  NbListModule,
-  NbTooltipModule,
-  NbWindowModule,
   NbAccordionModule,
   NbBadgeModule,
-  NbTabsetModule, NbToastrModule, NbFormFieldModule, NbDialogModule, NbSpinnerModule} from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
-import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
-import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule } from '@tinymce/tinymce-angular';
-import { Ng2SmartTableModule } from "ng2-smart-table";
-import { Ng2CompleterModule } from 'ng2-completer';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { HomeComponent } from './components/home/home.component';
-import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
-import { LogoutComponent } from './components/logout/logout.component';
-import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
-import { CookieService } from 'ngx-cookie-service';
-import { BasicUserProfileComponent } from './components/common/basic-user-profile/basic-user-profile.component';
-import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
-import { AppInitService } from './services/app-init.service';
-import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-import { EventCardComponent } from './components/home/event-card/event-card.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
-import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
-import { CommunityBuildCardComponent } from './components/home/community-build-card/community-build-card.component';
-import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
-import { AboutComponent } from './components/home/about/about.component';
-import { FeaturesComponent } from './components/home/features/features.component';
-import { CommunitiesComponent } from './components/home/communities/communities.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { SwUpdateComponent } from './components/sw-update/sw-update.component';
-import { HomeCommunityCardComponent } from './components/home/communities/home-community-card/home-community-card.component';
-import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
-import { EventsComponent } from './components/home/events/events.component';
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbContextMenuModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbLayoutModule,
+  NbListModule,
+  NbMenuModule,
+  NbRadioModule,
+  NbRouteTabsetModule,
+  NbSelectModule,
+  NbSidebarModule,
+  NbSidebarService,
+  NbSpinnerModule,
+  NbTabsetModule,
+  NbThemeModule,
+  NbToastrModule,
+  NbTooltipModule,
+  NbUserModule,
+  NbWindowModule
+} from '@nebular/theme';
+import {NbEvaIconsModule} from '@nebular/eva-icons';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {LibErrorHandlerModule} from 'projects/lib-error-handler/src/public-api';
+import {CommunityComponent} from './components/organizer-communities-list/community/community.component';
+import {OrganizerCommunitiesListComponent} from './components/organizer-communities-list/organizer-communities-list.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {EditorModule} from '@tinymce/tinymce-angular';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
+import {Ng2CompleterModule} from 'ng2-completer';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {HomeComponent} from './components/home/home.component';
+import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
+import {LogoutComponent} from './components/logout/logout.component';
+import {SidebarMenuComponent} from './components/sidebar-menu/sidebar-menu.component';
+import {CookieService} from 'ngx-cookie-service';
+import {BasicUserProfileComponent} from './components/common/basic-user-profile/basic-user-profile.component';
+import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
+import {AppInitService} from './services/app-init.service';
+import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
+import {EventCardComponent} from './components/home/event-card/event-card.component';
+import {EditProfileComponent} from './components/edit-profile/edit-profile.component';
+import {AppSharedComponentsModule} from './app-shared-components/app-shared-components.module';
+import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
+import {CommunityBuildCardComponent} from './components/home/community-build-card/community-build-card.component';
+import {ReusableComponentsModule} from './feature-modules/reusable-components/reusable-components.module';
+import {AboutComponent} from './components/home/about/about.component';
+import {FeaturesComponent} from './components/home/features/features.component';
+import {CommunitiesComponent} from './components/home/communities/communities.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {SwUpdateComponent} from './components/sw-update/sw-update.component';
+import {HomeCommunityCardComponent} from './components/home/communities/home-community-card/home-community-card.component';
+import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
+import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
+import {EventsComponent} from './components/home/events/events.component';
+import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -95,7 +101,7 @@ export function initApp(appInitService: AppInitService) {
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -106,6 +112,7 @@ export function initApp(appInitService: AppInitService) {
     SharedComponentsModule,
     ReusableComponentsModule,
     SharedPipesModule,
+    UserChatsModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -113,7 +120,7 @@ export function initApp(appInitService: AppInitService) {
 
 
     // Nebula modules
-    NbThemeModule.forRoot({ name: 'default' }),
+    NbThemeModule.forRoot({name: 'default'}),
     NbLayoutModule,
     NbEvaIconsModule,
     NbSidebarModule,
@@ -140,12 +147,11 @@ export function initApp(appInitService: AppInitService) {
     NbDialogModule.forRoot(),
     NbSpinnerModule,
 
-    //other external npm modules
+    // Other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     CommunityChannelsModule,
-
   ],
   providers: [
     AppInitService,
@@ -173,4 +179,5 @@ export function initApp(appInitService: AppInitService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,0 +1,10 @@
+<div class="chats-list">
+  <nb-list>
+    <nb-list-item (click)="getChat.emit([chatUser, i])" *ngFor="let chatUser of allPersonalChatUsers; let i = index"
+                  class="clickable">
+      <nb-user [name]="chatUser.user.name" [picture]="chatUser.user.avatar"></nb-user>&nbsp;
+      <app-badge *ngIf="chatUser.unread_user_ids.includes(currentUser.id)" [color]="'#ff5c1e'" [fontSize]="'small'"
+                 [text]="'Unread'"></app-badge>
+    </nb-list-item>
+  </nb-list>
+</div>

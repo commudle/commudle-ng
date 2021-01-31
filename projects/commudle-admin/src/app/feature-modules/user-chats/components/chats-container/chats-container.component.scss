@@ -1,0 +1,27 @@
+.chats-container {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+
+  .chats-list {
+    width: 300px;
+    position: fixed;
+    right: 5px;
+    bottom: 0;
+
+    nb-card {
+      margin: 0;
+
+      nb-card-body {
+        transition: max-height 0.3s ease-in-out;
+        padding: 0;
+      }
+    }
+  }
+
+  .chats-windows {
+    position: fixed;
+    right: 310px;
+    bottom: 0;
+  }
+}
