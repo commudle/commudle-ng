@@ -40,6 +40,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userObjectVisitChannel.unsubscribe(this.embeddedVideoStream.id, 'EmbeddedVideoStream', this.uuid);
+    this.usersListSubscription.unsubscribe();
   }
 
 
