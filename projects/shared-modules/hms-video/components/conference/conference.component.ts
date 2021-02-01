@@ -1,11 +1,12 @@
 import { HMSClient } from '@100mslive/hmsvideo-web';
-import { HmsClientManagerService } from './../../services/hms-client-manager.service';
-import { HmsApiService } from './../../services/hms-api.service';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { combineLatest } from 'rxjs';
+import { HmsLiveChannel } from '../settings/websockets/hms-live.channel';
+import { IHmsClient } from 'projects/shared-models/hms-client.model';
+import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 
 @Component({
   selector: 'app-conference',
@@ -13,10 +14,11 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./conference.component.scss']
 })
 export class ConferenceComponent implements OnInit, OnDestroy {
-  @Input() roomId;
+  @Input() roomId: string;
+  @Input() hmsClient: IHmsClient;
   user: ICurrentUser;
   loading = true;
-  clientToken: string;
+  selectedRole: string;
   client: any;
 
   audioDevice: MediaDeviceInfo;
@@ -33,9 +35,9 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
   constructor(
     private libAuthWatchService: LibAuthwatchService,
-    private hmsApiService: HmsApiService,
     private hmsClientManagerService: HmsClientManagerService,
-    private localMediaService: LocalmediaService
+    private localMediaService: LocalmediaService,
+    private hmsLiveChannel: HmsLiveChannel
   ) { }
 
   ngOnDestroy() {
@@ -71,19 +73,13 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     )
 
     // fetch the client token
-    this.getClient();
+    this.connectToClient();
   }
 
-  getClient() {
-    this.hmsApiService.getClientToken(this.roomId).subscribe(data => {
-      this.clientToken = data.token;
-      // create and connect the client to HMS Server using client token and join room
-      this.connectToClient();
-    });
-  }
+
 
   connectToClient() {
-    this.client = this.hmsClientManagerService.createClient(this.user.name, this.clientToken);
+    this.client = this.hmsClientManagerService.createClient(this.user.name, this.hmsClient.token);
     this.hmsClientManagerService.connectClient(this.client).subscribe(
       data => {
         this.setupListeners();
