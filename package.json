@@ -32,6 +32,7 @@
     "@angular/youtube-player": "^9.2.4",
     "@ctrl/ngx-emoji-mart": "^4.1.0",
     "@fortawesome/angular-fontawesome": "^0.5.0",
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
