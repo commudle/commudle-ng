@@ -17,7 +17,7 @@ export class HmsVideoComponent implements OnInit {
 
   ngOnInit(): void {
     // todo set this as per the user's role [webinar, or conference]
-    this.hmsVideoStateService.setState(EHmsStates.PREVIEW)
+    this.hmsVideoStateService.setState(EHmsStates.INIT);
 
     this.hmsVideoStateService.hmsState$.subscribe(
       data => this.currentState = data

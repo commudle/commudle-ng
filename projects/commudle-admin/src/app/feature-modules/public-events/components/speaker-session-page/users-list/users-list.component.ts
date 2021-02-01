@@ -110,4 +110,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
       )
     );
   }
+
+
+
+  inviteToStage(userId) {
+
+  }
+
 }

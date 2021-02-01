@@ -5,6 +5,7 @@ export const APPLICATION_CABLE_CHANNELS = {
   DISCUSSION_CHAT_CHANNEL: 'ApplicationCable::V2::Channels::DiscussionChatChannel',
   DISCUSSION_PERSONAL_CHAT_CHANNEL: 'ApplicationCable::V2::Channels::DiscussionPersonalChatChannel',
   DISCUSSION_COMMUNITY_CHAT_CHANNEL_CHANNEL: 'ApplicationCable::V2::Channels::DiscussionCommunityChannelChannel',
+  HMS_LIVE_CHANNEL: 'ApplicationCable::V2::Channels::HmsLiveChannel',
   POLL_CHANNEL: 'ApplicationCable::V2::Channels::PollChannel',
   USER_COMMUNITY_CHANNEL_DISCUSSION_NOTIFICATIONS: 'ApplicationCable::V2::Channels::UserCommunityChannelDiscussionNotificationsChannel',
   USER_LIVE_STATUS: 'ApplicationCable::V2::Channels::UserLiveStatusChannel',
