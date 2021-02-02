@@ -1,7 +1,7 @@
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IHmsClient } from 'projects/shared-models/hms-client.model';
+import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { Observable } from 'rxjs';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 

@@ -9,6 +9,8 @@
 @import "~prismjs/themes/prism-okaidia";
 @import '~@ctrl/ngx-emoji-mart/picker';
 
+@import './assets/styles/common-classes.scss';
+
 @include nb-install() {
   @include nb-theme-global();
 };
