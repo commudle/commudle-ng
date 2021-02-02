@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IHmsClient } from 'projects/shared-models/hms-client.model';
-import { HmsApiService } from '../../services/hms-api.service';
+import { EHmsRoles } from './../enums/hms-roles.enum';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
+import { EHmsStates, HmsVideoStateService } from '../../services/hms-video-state.service';
 
 @Component({
   selector: 'app-select-role',
@@ -9,24 +10,32 @@ import { HmsApiService } from '../../services/hms-api.service';
 })
 export class SelectRoleComponent implements OnInit {
   loading = true;
-  @Input() roomId: string;
-  client: IHmsClient;
 
+  @Input() roomId: string;
+  @Input() client: IHmsClient;
+  @Output() selectedRole = new EventEmitter();
+
+
+  EHmsRoles = EHmsRoles;
 
   constructor(
-    private hmsApiService: HmsApiService,
+    private hmsVideoStateService: HmsVideoStateService
 
   ) { }
 
   ngOnInit(): void {
-    this.getClient();
   }
 
-  getClient() {
-    this.hmsApiService.getClientToken(this.roomId).subscribe(data => {
-      this.loading = false;
-      this.client = data;
-    });
+  selectRole(role: EHmsRoles) {
+    this.selectedRole.emit(role);
+    switch (role) {
+      case EHmsRoles.VIEWER:
+        this.hmsVideoStateService.setState(EHmsStates.ROOM);
+        break;
+      default:
+        this.hmsVideoStateService.setState(EHmsStates.PREVIEW);
+
+    }
   }
 
 }

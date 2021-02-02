@@ -5,8 +5,9 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { combineLatest } from 'rxjs';
 import { HmsLiveChannel } from '../settings/websockets/hms-live.channel';
-import { IHmsClient } from 'projects/shared-models/hms-client.model';
+import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
+import { EHmsRoles } from '../enums/hms-roles.enum';
 
 @Component({
   selector: 'app-conference',
@@ -16,9 +17,14 @@ import { HmsClientManagerService } from '../../services/hms-client-manager.servi
 export class ConferenceComponent implements OnInit, OnDestroy {
   @Input() roomId: string;
   @Input() hmsClient: IHmsClient;
+  @Input() selectedRole: EHmsRoles;
+
+  EHmsRoles = EHmsRoles;
+
   user: ICurrentUser;
   loading = true;
-  selectedRole: string;
+
+  onStage = false;
   client: any;
 
   audioDevice: MediaDeviceInfo;
@@ -72,8 +78,19 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       }
     )
 
+    this.setStage();
+
+
     // fetch the client token
     this.connectToClient();
+  }
+
+
+  setStage() {
+    // put the user on the stage only if the selected role is a guest or
+    if ([EHmsRoles.GUEST, EHmsRoles.HOST].includes(this.selectedRole)) {
+      this.onStage = true;
+    }
   }
 
 
@@ -132,8 +149,10 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   joinRoom() {
     this.hmsClientManagerService.joinRoom(this.client, this.roomId).subscribe(
       data => {
-        // get the localstream
-        this.addLocalStream();
+        if (this.onStage) {
+          // get the localstream
+          this.addLocalStream();
+        }
       }
     );
   }

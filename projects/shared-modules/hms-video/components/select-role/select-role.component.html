@@ -1,5 +1,16 @@
 <nb-card class="select-role">
-  <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="info">
-    <button nbButton size="small">Join Session</button>
+  <nb-card-body *ngIf="client" class="d-flex justify-content-center align-items-center">
+    <div *ngIf="client.role === EHmsRoles.VIEWER">
+      <button nbButton status="primary" size="medium" (click)="selectRole(EHmsRoles.VIEWER)">Join Session</button>
+    </div>
+    <div *ngIf="client.role === EHmsRoles.GUEST">
+      <button nbButton size="small" status="primary" size="medium" (click)="selectRole(EHmsRoles.GUEST)">Join Stage</button>
+    </div>
+
+    <div *ngIf="client.role === EHmsRoles.HOST" class="d-flex flex-column justify-content-center align-items-center">
+      <button nbButton size="small" status="primary" size="medium" (click)="selectRole(EHmsRoles.HOST)">Join as a Host</button>
+      <p class="text-center">OR</p>
+      <button nbButton size="small" status="primary" size="medium" outline (click)="selectRole(EHmsRoles.VIEWER)">Join as a Viewer</button>
+    </div>
   </nb-card-body>
 </nb-card>

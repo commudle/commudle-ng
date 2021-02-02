@@ -1,7 +1,7 @@
 <div class="hms-video">
-  <div class="state-container" [ngSwitch]="currentState">
-    <app-select-role *ngSwitchCase="EHmsStates.INIT" class="select-role" [roomId]="roomId"></app-select-role>
+  <div class="state-container" [ngSwitch]="currentState" [nbSpinner]="loading" nbSpinnerStatus="info">
+    <app-select-role *ngSwitchCase="EHmsStates.INIT" class="select-role" [roomId]="roomId" [client]="client" (selectedRole)="setSelectedRole($event)"></app-select-role>
     <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW" class="local-preview"></app-local-preview>
-    <app-conference *ngSwitchCase="EHmsStates.ROOM" class="room" [roomId]="roomId"></app-conference>
+    <app-conference *ngSwitchCase="EHmsStates.ROOM" class="room" [roomId]="roomId" [hmsClient]="client" [selectedRole]="selectedRole"></app-conference>
   </div>
 </div>
