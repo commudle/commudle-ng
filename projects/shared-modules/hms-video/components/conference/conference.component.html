@@ -1,6 +1,43 @@
 <div class="conference">
-  <div class="user-videos">
+  <div class="user-videos d-flex flex-wrap">
     <app-user-video *ngIf="localStream" [username]="user.name" [stream]="localStream"></app-user-video>
     <app-user-video *ngFor="let peer of peers | keyvalue" [username]="peer.value['name']" [stream]="peer.value['stream']"></app-user-video>
+  </div>
+   <!-- controls should be visible to the user if they are on the stage or if they are the host -->
+   <div class="controls d-flex justify-content-center">
+    <div class="mic" *ngIf="onStage">
+      <button nbButton ghost (click)="toggleAudio()">
+        <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
+      </button>
+    </div>
+    <div class="camera" *ngIf="onStage">
+      <button nbButton ghost (click)="toggleVideo()">
+        <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
+      </button>
+    </div>
+    <div class="end-meeting" *ngIf="hmsClient.role === EHmsRoles.HOST">
+      <button nbButton ghost (click)="endConference()">
+        <nb-icon icon="phone" status="danger" pack="fas"></nb-icon>
+      </button>
+    </div>
+    <div class="screen" *ngIf="onStage">
+      <button nbButton ghost (click)="toggleScreen()">
+        <nb-icon *ngIf="!screenShare" icon="laptop" pack="fas" class="justify-content-center flex-column"></nb-icon>
+        <nb-icon *ngIf="screenShare" status="success" icon="laptop" pack="fas" class="d-flex justify-content-center flex-column"></nb-icon>
+      </button>
+    </div>
+    <div class="settings" *ngIf="onStage || hmsClient.role === EHmsRoles.HOST">
+      <button nbButton ghost (click)="toggleScreen()">
+        <nb-icon icon="settings"></nb-icon>
+      </button>
+    </div>
+    <!-- <div class="recording" *ngIf="hmsClient.role === EHmsRoles.HOST"></div> -->
+    <div class="stage" *ngIf="onStage || hmsClient.role === EHmsRoles.HOST">
+      <button nbButton ghost (click)="toggleStage()">
+        <span *ngIf="onStage">Exit </span>
+        <span *ngIf="!onStage">Join </span>
+        &nbsp; Stage
+      </button>
+    </div>
   </div>
 </div>

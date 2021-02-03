@@ -3,9 +3,35 @@
   width: 100%;
 
   .conference {
+    position: relative;
+    height: 100%;
     .user-videos {
       display: flex;
       flex-wrap: wrap;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      >div {
+        margin: 5px;
+      }
+
+      .end-meeting {
+        nb-icon {
+          transform: rotate(225deg);
+          font-size: 1.1rem;
+        }
+      }
+
+      .screen {
+        button {
+          nb-icon {
+            display: flex;
+          }
+        }
+      }
     }
   }
 }
