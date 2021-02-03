@@ -31,6 +31,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   videoDevice: MediaDeviceInfo;
   mic: boolean;
   camera: boolean;
+  screenShare = false;
 
   // streams
   localStream;
@@ -192,7 +193,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
 
 
-  // controls
+  // CONTROLS
   toggleVideo() {
     this.camera = !this.camera;
     this.camera ? this.localStream.unmute('video') : this.localStream.mute('video');
@@ -201,6 +202,18 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   toggleAudio() {
     this.mic = !this.mic;
     this.mic ? this.localStream.unmute('audio') : this.localStream.mute('audio');
+  }
+
+  toggleScreen() {
+
+  }
+
+  toggleStage() {
+
+  }
+
+  endConference() {
+
   }
 
 }
