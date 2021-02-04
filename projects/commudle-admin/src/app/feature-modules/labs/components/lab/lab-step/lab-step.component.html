@@ -1,6 +1,19 @@
-<div class="lab-step" *ngIf="step">
+
+<ng-template #dialog  let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header style="align-self: flex-end;">
+        <nb-icon icon="close" (click)="ref.close()"></nb-icon>
+    </nb-card-header>
+
+    <nb-card-body>
+      <img class="EnlargedImage" [src]="src" alt="">
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+<div class="lab-step" *ngIf="step" >
   <h2 class="step-title">
     {{ step.name }}
   </h2>
-  <div class="content" [innerHTML]="stepDescription"></div>
+  <div #content class="content" [innerHTML]="stepDescription">
+  </div>
 </div>
