@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef, AfterViewChecked, ViewChildren } from '@angular/core';
 import { LabsService } from '../../services/labs.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class LabComponent implements OnInit, OnDestroy {
   discussionChat: IDiscussion;
   routeSubscriptions = [];
   codeHighlighted = false;
-
+  // @ViewChild('introContent') private content : any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -115,6 +115,17 @@ export class LabComponent implements OnInit, OnDestroy {
         this.lab = data;
         this.setMeta();
         this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
+        
+        if(this.labDescription !=null){
+                          
+          // var imgTags= this.content.nativeElement.querySelectorAll("img");
+              
+          // for(var i=0;i<imgTags.length;i++){
+          //   console.log(imgTags[i]);
+          //   // imgTags[i].setAttribute('onclick',`imgClick(this)`);
+          //   imgTags[i].addEventListener("click",this.imgClick.bind(null,imgTags[i]),false)
+          // }
+        }
         this.lastVisitedStepId = this.lab.last_visited_step_id;
         this.getDiscussionChat();
         this.highlightCodeSnippets();
