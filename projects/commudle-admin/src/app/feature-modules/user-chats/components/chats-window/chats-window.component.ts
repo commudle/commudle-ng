@@ -1,4 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
+import {IDiscussion} from '../../../../../../../shared-models/discussion.model';
+import {SDiscussionsService} from '../../../../../../../shared-components/services/s-discussions.service';
 
 @Component({
   selector: 'app-chats-window',
@@ -7,13 +10,40 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChatsWindowComponent implements OnInit {
 
-  @Input() currentUser;
-  @Input() discussion;
+  // Predefined constants
+  chatsListHeight = 50;
+  chatsListWidth = 350;
 
-  constructor() {
+  discussion: IDiscussion;
+  @Input() discussionFollower: IDiscussionFollower;
+  @Output() removeFromUnread: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
+  @Output() removeChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
+
+  constructor(
+    private sDiscussionService: SDiscussionsService,
+  ) {
   }
 
   ngOnInit(): void {
+    this.getDiscussion();
   }
 
+  // Toggle chat list height
+  toggleChatHeight() {
+    this.chatsListHeight = 50 - this.chatsListHeight;
+  }
+
+  getDiscussion() {
+    // also set the last read time and unread messages on the server side for this API
+    this.sDiscussionService.getPersonalChat(this.discussionFollower.discussion_id).subscribe(
+      data => {
+        this.discussion = data;
+        this.removeFromUnread.emit(this.discussionFollower);
+      }
+    );
+  }
+
+  closeChat() {
+    this.removeChat.emit(this.discussionFollower);
+  }
 }

@@ -9,13 +9,18 @@ import {ICurrentUser} from '../../../../../../../shared-models/current_user.mode
 })
 export class ChatsListComponent implements OnInit {
 
-  @Input() allPersonalChatUsers: IDiscussionFollower[];
+  @Input() showLiveStatus: boolean;
   @Input() currentUser: ICurrentUser;
-  @Output() getChat: EventEmitter<any> = new EventEmitter<any>();
+  @Input() allPersonalChatUsers: IDiscussionFollower[];
+  @Output() getChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  openChat(chatUser) {
+    this.getChat.emit(chatUser);
   }
 }

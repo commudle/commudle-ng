@@ -1,9 +1,18 @@
 .chat-window {
-  height: 50vh;
-  width: 350px;
+  margin-left: 5px;
 
   nb-card {
     height: 100%;
     margin: 0;
+
+    .window-options {
+      display: flex;
+      justify-content: space-between;
+
+      .user-name {
+        margin: 0 10px 0 0;
+        align-self: center;
+      }
+    }
   }
 }

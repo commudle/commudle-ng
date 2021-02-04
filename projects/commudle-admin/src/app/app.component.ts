@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 import {Title} from '@angular/platform-browser';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
-import {UserPersonalDiscussionChatNotificationsChannel} from 'projects/shared-services/websockets/user-personal-discussion-chat-notifications.channel';
 import {AppCentralNotificationService} from './services/app-central-notifications.service';
 
 @Component({
@@ -37,7 +36,6 @@ export class AppComponent implements OnInit {
     private sidebarService: NbSidebarService,
     private titleService: Title,
     private router: Router,
-    private userNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel,
     private windowService: NbWindowService,
     private cookieConsentService: CookieConsentService,
     private appCentralNotificationsService: AppCentralNotificationService
@@ -65,11 +63,9 @@ export class AppComponent implements OnInit {
 
       if (this.isBrowser) {
         this.actionCableConnectionSocket.connectToServer();
-        this.userNotificationsChannel.subscribe();
       }
 
     });
-
 
     this.router.events.subscribe(event => {
       setTimeout(() => {
@@ -91,7 +87,6 @@ export class AppComponent implements OnInit {
 
 
   checkNotifications() {
-
     this.sidebarService.onCollapse().subscribe(
       data => {
         this.sideBarState = 'collapsed';
@@ -103,7 +98,6 @@ export class AppComponent implements OnInit {
         this.sideBarNotifications = data;
       }
     );
-
   }
 
 
