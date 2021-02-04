@@ -1,6 +1,6 @@
-import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { UserLiveStatusChannel } from '../services/websockets/user-live-status.channel';
-import { v4 as uuidv4 } from 'uuid';
+import {Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {UserLiveStatusChannel} from '../services/websockets/user-live-status.channel';
+import {v4 as uuidv4} from 'uuid';
 
 @Component({
   selector: 'app-user-live-status',
@@ -19,7 +19,16 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
 
   constructor(
     private userLiveStatusChannel: UserLiveStatusChannel
-  ) { }
+  ) {
+  }
+
+  @HostBinding('class')
+  get themeClass() {
+    if (this.position) {
+      return this.position;
+    }
+    return '';
+  };
 
   ngOnInit(): void {
     // subscribe to the channel with userid
@@ -39,7 +48,6 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
     }
   }
 
-
   ngOnDestroy() {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
@@ -49,16 +57,6 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
       this.receiveDataSubscription.unsubscribe();
     }
   }
-
-
-  @HostBinding('class')
-  get themeClass(){
-    if (this.position) {
-      return this.position;
-    }
-    return '';
-  };
-
 
   receiveData() {
     this.receiveDataSubscription = this.userLiveStatusChannel.channelData$[`${this.userId}_${this.uuid}`].subscribe(
@@ -81,8 +79,7 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
           this.isOnline.emit(false);
         }
       }
-    )
-
+    );
   }
 
 }

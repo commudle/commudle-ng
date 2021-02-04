@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {ChatsContainerComponent} from './components/chats-container/chats-container.component';
 import {ChatsListComponent} from './components/chats-list/chats-list.component';
 import {SharedComponentsModule} from '../../../../../shared-components/shared-components.module';
-import {NbCardModule, NbListModule, NbUserModule} from '@nebular/theme';
+import {NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbUserModule} from '@nebular/theme';
 import {ChatsWindowComponent} from './components/chats-window/chats-window.component';
 
 
@@ -18,6 +18,8 @@ import {ChatsWindowComponent} from './components/chats-window/chats-window.compo
     NbCardModule,
     NbListModule,
     NbUserModule,
+    NbButtonModule,
+    NbIconModule,
   ]
 })
 export class UserChatsModule {

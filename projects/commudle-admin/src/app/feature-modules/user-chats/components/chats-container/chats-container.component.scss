@@ -4,7 +4,6 @@
   z-index: 100;
 
   .chats-list {
-    width: 300px;
     position: fixed;
     right: 5px;
     bottom: 0;
@@ -20,6 +19,7 @@
   }
 
   .chats-windows {
+    display: flex;
     position: fixed;
     right: 310px;
     bottom: 0;

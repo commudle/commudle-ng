@@ -1,10 +1,15 @@
-<div class="chat-window">
+<div [style.height.vh]="chatsListHeight" [style.width.px]="chatsListWidth" class="chat-window">
   <nb-card>
-    <nb-card-header>
-      {{currentUser.user.name}}
+    <nb-card-header (click)="toggleChatHeight()">
+      <div class="window-options">
+        <p class="user-name">{{discussionFollower.user.name}}</p>
+        <button (click)="closeChat()" ghost nbButton>
+          <nb-icon icon="close" pack="eva"></nb-icon>
+        </button>
+      </div>
     </nb-card-header>
     <nb-card-body>
-      <app-discussion-personal-chat [discussion]="discussion"></app-discussion-personal-chat>
+      <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
     </nb-card-body>
   </nb-card>
 </div>
