@@ -9,6 +9,10 @@ import {ICurrentUser} from '../../../../../../../shared-models/current_user.mode
 })
 export class ChatsListComponent implements OnInit {
 
+  // Predefined constants
+  chatsListHeight = 75;
+  chatsListWidth = 300;
+
   @Input() showLiveStatus: boolean;
   @Input() currentUser: ICurrentUser;
   @Input() allPersonalChatUsers: IDiscussionFollower[];
@@ -18,6 +22,11 @@ export class ChatsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  // Toggle chats list height
+  toggleChatsListHeight() {
+    this.chatsListHeight = 75 - this.chatsListHeight;
   }
 
   openChat(chatUser) {

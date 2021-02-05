@@ -1,14 +1,14 @@
-<div [style.height.vh]="chatsListHeight" [style.width.px]="chatsListWidth" class="chat-window">
+<div [style.width.px]="chatsWindowWidth" class="chat-window">
   <nb-card>
-    <nb-card-header (click)="toggleChatHeight()">
+    <nb-card-header (click)="toggleChatsWindowHeight()" class="clickable">
       <div class="window-options">
-        <p class="user-name">{{discussionFollower.user.name}}</p>
+        <app-user-profile-mini [size]="'small'" [user]="discussionFollower.user"></app-user-profile-mini>
         <button (click)="closeChat()" ghost nbButton>
           <nb-icon icon="close" pack="eva"></nb-icon>
         </button>
       </div>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body [style.height.vh]="chatsWindowHeight">
       <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
     </nb-card-body>
   </nb-card>

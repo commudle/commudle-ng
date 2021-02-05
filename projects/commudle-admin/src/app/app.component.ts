@@ -18,6 +18,7 @@ import {AppCentralNotificationService} from './services/app-central-notification
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  window: Window = window;
   sideBarNotifications = false;
   sideBarState = 'collapsed';
   faBars = faBars;
@@ -85,7 +86,6 @@ export class AppComponent implements OnInit {
     this.checkNotifications();
   }
 
-
   checkNotifications() {
     this.sidebarService.onCollapse().subscribe(
       data => {
@@ -100,7 +100,6 @@ export class AppComponent implements OnInit {
     );
   }
 
-
   checkHTTPS() {
     if (this.isBrowser) {
       if (environment.production && location.protocol !== 'https:') {
@@ -108,7 +107,6 @@ export class AppComponent implements OnInit {
       }
     }
   }
-
 
   toggleSidebar() {
     this.sideBarState = (this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed');

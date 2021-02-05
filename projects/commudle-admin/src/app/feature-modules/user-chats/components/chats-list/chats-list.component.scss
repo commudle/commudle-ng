@@ -1,10 +1,16 @@
-.chats-list {
+nb-card {
+  margin: 0;
 
-  nb-list-item {
-    transition: 0.25s ease-in-out;
+  nb-card-body {
+    transition: max-height 0.3s ease-in-out;
+    padding: 0;
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.08);
+    nb-list-item {
+      transition: 0.25s ease-in-out;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
     }
   }
 }

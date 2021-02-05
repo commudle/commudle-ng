@@ -1,11 +1,11 @@
-import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { EUserRolesUserStatus, IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { NbMenuService, NbWindowService, NB_WINDOW } from '@nebular/theme';
-import { filter, map } from 'rxjs/operators';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { UserChatComponent } from 'projects/shared-components/user-chat/user-chat.component';
+import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
+import {Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {EUserRolesUserStatus, IUserRolesUser} from 'projects/shared-models/user_roles_user.model';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {NB_WINDOW, NbMenuService, NbWindowService} from '@nebular/theme';
+import {filter, map} from 'rxjs/operators';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {UserChatsService} from '../../../../user-chats/services/user-chats.service';
 
 @Component({
   selector: 'app-member',
@@ -31,23 +31,21 @@ export class MemberComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private menuService: NbMenuService,
     private windowService: NbWindowService,
+    private userChatsService: UserChatsService,
     @Inject(NB_WINDOW) private window
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe(
         data => {
           this.currentUser = data;
-          if (data) {
-            this.showLiveStatus = true;
-          } else {
-            this.showLiveStatus = false;
-          }
+          this.showLiveStatus = !!data;
           this.setContextMenuItems();
         }
       )
-    )
+    );
   }
 
   ngOnDestroy() {
@@ -55,7 +53,6 @@ export class MemberComponent implements OnInit, OnDestroy {
       subs.unsubscribe();
     }
   }
-
 
   setContextMenuItems() {
     this.contextMenuItems = [
@@ -66,16 +63,18 @@ export class MemberComponent implements OnInit, OnDestroy {
       }
     ];
 
-    if (this.userRolesUser.user.username != this.currentUser.username) {
+    if (this.userRolesUser.user.username !== this.currentUser.username) {
       this.contextMenuItems.push(
         {
           title: 'Personal Chat'
         }
       );
     }
-    if (this.currentUserIsAdmin) {
-      (this.userRolesUser.user_role.name !== EUserRoles.COMMUNITY_CHANNEL_ADMIN) ? (this.contextMenuItems.push({title: 'Make Admin'})) : (this.contextMenuItems.push({title: 'Remove Admin'}))
 
+    if (this.currentUserIsAdmin) {
+      (this.userRolesUser.user_role.name !== EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+        ? (this.contextMenuItems.push({title: 'Make Admin'}))
+        : (this.contextMenuItems.push({title: 'Remove Admin'}));
     }
 
     if (this.currentUser.username === this.userRolesUser.user.username) {
@@ -83,20 +82,19 @@ export class MemberComponent implements OnInit, OnDestroy {
         title: 'Exit Channel'
       });
     } else if (this.currentUserIsAdmin) {
-      this.contextMenuItems.push({title: 'Remove From Channel'})
+      this.contextMenuItems.push({title: 'Remove From Channel'});
     }
 
     this.handleContextMenuItemClick();
   }
 
-
   handleContextMenuItemClick() {
     this.subscriptions.push(
       this.menuService.onItemClick()
-      .pipe(
-        filter(({tag}) => tag === `community-channel-member-menu-${this.userRolesUser.user.username}`),
-        map(({item: title}) => title)
-      ).subscribe(
+        .pipe(
+          filter(({tag}) => tag === `community-channel-member-menu-${this.userRolesUser.user.username}`),
+          map(({item: title}) => title)
+        ).subscribe(
         menuItem => {
           switch (menuItem.title) {
             case 'Personal Chat': {
@@ -125,13 +123,14 @@ export class MemberComponent implements OnInit, OnDestroy {
     );
   }
 
-  openChatWithUser(userId) {
-    this.windowService.open(UserChatComponent, {
-      title: 'Personal Messages',
-      context: {
-        discussionUserIds: [userId]
-      }
-    });
+  openChatWithUser(userId: number) {
+    this.userChatsService.changeFollowerId(userId);
+    // this.windowService.open(UserChatComponent, {
+    //   title: 'Personal Messages',
+    //   context: {
+    //     discussionUserIds: [userId]
+    //   }
+    // });
   }
 
 }

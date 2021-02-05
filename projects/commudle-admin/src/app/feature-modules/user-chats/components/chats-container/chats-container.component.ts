@@ -5,6 +5,7 @@ import {ICurrentUser} from '../../../../../../../shared-models/current_user.mode
 import {SDiscussionsService} from '../../../../../../../shared-components/services/s-discussions.service';
 import {UserPersonalDiscussionChatNotificationsChannel} from '../../../../../../../shared-services/websockets/user-personal-discussion-chat-notifications.channel';
 import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
+import {UserChatsService} from '../../services/user-chats.service';
 
 @Component({
   selector: 'app-chats-container',
@@ -14,9 +15,7 @@ import {LibAuthwatchService} from '../../../../../../../shared-services/lib-auth
 })
 export class ChatsContainerComponent implements OnInit, OnDestroy {
 
-  // Predefined constants
-  chatsListHeight = 75;
-  chatsListWidth = 300;
+  // Number of allowed chat windows
   numChatWindows: number;
 
   // All the persons we can chat with
@@ -34,6 +33,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     private sDiscussionService: SDiscussionsService,
     private userNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel,
     private authWatchService: LibAuthwatchService,
+    private userChatsService: UserChatsService
   ) {
   }
 
@@ -49,23 +49,33 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     // Get the current user's chats
     this.sDiscussionService.getPersonalChats().subscribe(data => this.allPersonalChatUsers = data.discussion_followers);
 
+    // TODO: Make this better
     // Calculate screen width to find the number of chat windows that are allowed simultaneously
-    this.numChatWindows = Math.floor((window.innerWidth - this.chatsListWidth) / 355);
+    this.numChatWindows = Math.floor((window.innerWidth - 300) / 355);
+
+    // If clicked on messaging button in any user
+    this.userChatsService.followerIdChange$.subscribe(data => this.createChat(data));
   }
 
   ngOnDestroy() {
     this.currentUserSubscription.unsubscribe();
   }
 
-  // Toggle chat list height
-  toggleChatHeight() {
-    this.chatsListHeight = 75 - this.chatsListHeight;
+  createChat(followerId: number) {
+    this.sDiscussionService.getOrCreatePersonalChat([followerId]).subscribe(data => this.openChat(data));
   }
 
   // Open a chat based on the user clicked (event emitter from chats list component)
   openChat(follower: IDiscussionFollower) {
     // Add only if follower is not active
-    if (!this.discussionFollowers.includes(follower)) {
+    // Duplicates are added if done by .includes, hence this elaborate way of checking IDiscussionFollower id's
+    let isThere = false;
+    this.discussionFollowers.forEach(value => {
+      if (value.id === follower.id) {
+        isThere = true;
+      }
+    });
+    if (!isThere) {
       // Check if length exceeds the maximum allowed windows
       if (this.discussionFollowers.length >= this.numChatWindows) {
         // Unsubscribe the removed user
