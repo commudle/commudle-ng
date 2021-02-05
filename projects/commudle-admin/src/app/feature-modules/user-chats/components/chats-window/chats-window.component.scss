@@ -5,14 +5,13 @@
     height: 100%;
     margin: 0;
 
+    nb-card-body {
+      transition: 0.2s ease-in-out;
+    }
+
     .window-options {
       display: flex;
       justify-content: space-between;
-
-      .user-name {
-        margin: 0 10px 0 0;
-        align-self: center;
-      }
     }
   }
 }

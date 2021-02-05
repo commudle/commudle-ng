@@ -1,23 +1,16 @@
 <div class="chats-container">
   <div class="chats-list">
-    <nb-card>
-      <nb-card-header (click)="toggleChatHeight()" class="clickable">
-        Chats List
-      </nb-card-header>
-      <nb-card-body [style.maxHeight.vh]="chatsListHeight" [style.width.px]="chatsListWidth">
-        <app-chats-list (getChat)="openChat($event)"
-                        [allPersonalChatUsers]="allPersonalChatUsers"
-                        [currentUser]="currentUser"
-                        [showLiveStatus]="showLiveStatus"
-        ></app-chats-list>
-      </nb-card-body>
-    </nb-card>
+    <app-chats-list (getChat)="openChat($event)"
+                    [allPersonalChatUsers]="allPersonalChatUsers"
+                    [currentUser]="currentUser"
+                    [showLiveStatus]="showLiveStatus"
+    ></app-chats-list>
   </div>
   <div class="chats-windows">
     <app-chats-window (removeChat)="closeChat($event)"
+                      [discussionFollower]="follower"
                       (removeFromUnread)="removeFromUnread($event)"
                       *ngFor="let follower of discussionFollowers;"
-                      [discussionFollower]="follower"
     ></app-chats-window>
   </div>
 </div>

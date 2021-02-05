@@ -87,7 +87,7 @@
 
 </nb-layout>
 
-<app-chats-container *ngIf="currentUser"></app-chats-container>
+<app-chats-container *ngIf="currentUser && window.innerWidth > 1000"></app-chats-container>
 
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>

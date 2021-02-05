@@ -11,8 +11,8 @@ import {SDiscussionsService} from '../../../../../../../shared-components/servic
 export class ChatsWindowComponent implements OnInit {
 
   // Predefined constants
-  chatsListHeight = 50;
-  chatsListWidth = 350;
+  chatsWindowHeight = 50;
+  chatsWindowWidth = 350;
 
   discussion: IDiscussion;
   @Input() discussionFollower: IDiscussionFollower;
@@ -28,9 +28,9 @@ export class ChatsWindowComponent implements OnInit {
     this.getDiscussion();
   }
 
-  // Toggle chat list height
-  toggleChatHeight() {
-    this.chatsListHeight = 50 - this.chatsListHeight;
+  // Toggle chats window height
+  toggleChatsWindowHeight() {
+    this.chatsWindowHeight = 50 - this.chatsWindowHeight;
   }
 
   getDiscussion() {

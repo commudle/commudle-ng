@@ -7,15 +7,6 @@
     position: fixed;
     right: 5px;
     bottom: 0;
-
-    nb-card {
-      margin: 0;
-
-      nb-card-body {
-        transition: max-height 0.3s ease-in-out;
-        padding: 0;
-      }
-    }
   }
 
   .chats-windows {
@@ -23,5 +14,9 @@
     position: fixed;
     right: 310px;
     bottom: 0;
+
+    app-chats-window {
+      align-self: flex-end;
+    }
   }
 }
