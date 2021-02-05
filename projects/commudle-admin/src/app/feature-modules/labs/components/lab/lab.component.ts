@@ -9,6 +9,9 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { DOCUMENT } from '@angular/common';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { NbDialogService } from '@nebular/theme';
+
+
 
 @Component({
   selector: 'app-lab',
@@ -16,9 +19,17 @@ import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-hi
   styleUrls: ['./lab.component.scss'],
 })
 export class LabComponent implements OnInit, OnDestroy {
+
+  @ViewChild('introCon')private iContent:ElementRef;
+  @ViewChild('dialog')private dialog:any;
+  public src;
+
+
+
   faFlask = faFlask;
   lab: ILab;
   selectedLabStep = -1;
+  triggerDialogB = false;
   selectedStepDescription;
   labDescription;
   lastVisitedStepId;
@@ -36,7 +47,8 @@ export class LabComponent implements OnInit, OnDestroy {
     private router: Router,
     private discussionsService: DiscussionsService,
     @Inject(DOCUMENT) private doc: Document,
-    private prismJsHighlightCodeService: PrismJsHighlightCodeService
+    private prismJsHighlightCodeService: PrismJsHighlightCodeService,
+    private dialogService: NbDialogService
   ) { }
 
   ngOnInit() {
@@ -115,17 +127,7 @@ export class LabComponent implements OnInit, OnDestroy {
         this.lab = data;
         this.setMeta();
         this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
-        
-        if(this.labDescription !=null){
-                          
-          // var imgTags= this.content.nativeElement.querySelectorAll("img");
-              
-          // for(var i=0;i<imgTags.length;i++){
-          //   console.log(imgTags[i]);
-          //   // imgTags[i].setAttribute('onclick',`imgClick(this)`);
-          //   imgTags[i].addEventListener("click",this.imgClick.bind(null,imgTags[i]),false)
-          // }
-        }
+        this.triggerDialogB = false;
         this.lastVisitedStepId = this.lab.last_visited_step_id;
         this.getDiscussionChat();
         this.highlightCodeSnippets();
@@ -143,6 +145,30 @@ export class LabComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+
+ngAfterViewChecked()
+{
+
+  if(!this.triggerDialogB)
+  {
+    if(this.iContent){
+      let imagesList = this.iContent.nativeElement.querySelectorAll("img");
+      for(let i=0;i<imagesList.length;i++)
+      {
+         let g0 = imagesList[i];
+         console.log(g0)
+         g0.addEventListener("click", ()=>{
+          this.src = g0.src;
+          this.dialogService.open(this.dialog)
+          }, false);
+      }
+      this.triggerDialogB = true;
+    }
+  }
+}
+
+
 
 
   setStep(index) {
