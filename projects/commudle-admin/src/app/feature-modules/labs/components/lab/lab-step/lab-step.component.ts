@@ -25,7 +25,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   currentUser;
   stepDescription;
   codeHighlighted = false;
-  TriggerDialogB = false;
+  triggerDialogB = false;
   constructor(
     private authWatchService: LibAuthwatchService,
     private labsService: LabsService,
@@ -50,7 +50,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
           stepData => {
             this.step = stepData;
             this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
-            this.TriggerDialogB = false;
+            this.triggerDialogB = false;
             this.addLabStepVisit();
           }
         );
@@ -72,19 +72,19 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   ngAfterViewChecked() 
   {
 
-  if(!this.TriggerDialogB)
+  if(!this.triggerDialogB)
   {
     if(this.content){
-      let ImagesList = this.content.nativeElement.querySelectorAll("img");
-      for(var i=0;i<ImagesList.length;i++)
+      let imagesList = this.content.nativeElement.querySelectorAll("img");
+      for(let i=0;i<imagesList.length;i++)
       {
-         let g0 = ImagesList[i];
+         let g0 = imagesList[i];
          g0.addEventListener("click", ()=>{
           this.src = g0.src;
           this.dialogService.open(this.dialog)
           }, false);
       }
-      this.TriggerDialogB = true;
+      this.triggerDialogB = true;
     }
 
   }
