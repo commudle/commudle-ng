@@ -17,6 +17,8 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
 
   // Number of allowed chat windows
   numChatWindows: number;
+  // Chats windows distance from right
+  chatsWindowsRight = 310;
 
   // All the persons we can chat with
   allPersonalChatUsers: IDiscussionFollower[] = [];
@@ -46,6 +48,9 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     // TODO: Make this better
     // Calculate screen width to find the number of chat windows that are allowed simultaneously
     this.numChatWindows = Math.floor((window.innerWidth - 300) / 355);
+    if (window.innerWidth < 1000) {
+      this.chatsWindowsRight = 5;
+    }
 
     // If clicked on messaging button in any user profile
     this.userChatsService.followerIdChange$.subscribe(data => this.createChat(data));
