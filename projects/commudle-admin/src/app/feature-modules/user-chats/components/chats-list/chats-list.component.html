@@ -5,15 +5,10 @@
   <nb-card-body [style.maxHeight.vh]="chatsListHeight" [style.width.px]="chatsListWidth">
     <nb-list>
       <nb-list-item (click)="openChat(chatUser)" *ngFor="let chatUser of allPersonalChatUsers" class="clickable">
-        <app-user-profile-mini [showLiveStatus]="showLiveStatus"
-                               [size]="'small'"
-                               [user]="chatUser.user"
-        ></app-user-profile-mini>
+        <app-user-profile-mini [showLiveStatus]="showLiveStatus" [size]="'small'"
+                               [user]="chatUser.user"></app-user-profile-mini>
         <app-badge *ngIf="currentUser && chatUser.unread_user_ids.includes(currentUser.id)"
-                   [color]="'#ff5c1e'"
-                   [fontSize]="'small'"
-                   [text]="'Unread'"
-        ></app-badge>
+                   [color]="'#ff5c1e'" [fontSize]="'small'" [text]="'Unread'"></app-badge>
       </nb-list-item>
     </nb-list>
   </nb-card-body>

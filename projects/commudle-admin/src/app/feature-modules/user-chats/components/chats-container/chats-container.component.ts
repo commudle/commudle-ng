@@ -24,7 +24,6 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
   discussionFollowers: IDiscussionFollower[] = [];
   // The current user
   currentUser: ICurrentUser;
-  showLiveStatus = false;
   currentUserSubscription;
 
   uuid = uuidv4();
@@ -39,12 +38,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Get current user data
-    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(data => {
-      this.currentUser = data;
-      if (data) {
-        this.showLiveStatus = true;
-      }
-    });
+    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(data => this.currentUser = data);
 
     // Get the current user's chats
     this.sDiscussionService.getPersonalChats().subscribe(data => this.allPersonalChatUsers = data.discussion_followers);
@@ -53,7 +47,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     // Calculate screen width to find the number of chat windows that are allowed simultaneously
     this.numChatWindows = Math.floor((window.innerWidth - 300) / 355);
 
-    // If clicked on messaging button in any user
+    // If clicked on messaging button in any user profile
     this.userChatsService.followerIdChange$.subscribe(data => this.createChat(data));
   }
 
@@ -62,7 +56,13 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
   }
 
   createChat(followerId: number) {
-    this.sDiscussionService.getOrCreatePersonalChat([followerId]).subscribe(data => this.openChat(data));
+    this.sDiscussionService.getOrCreatePersonalChat([followerId]).subscribe(data => {
+      // If chatting to a brand new user, include that in allPersonalChatUsers
+      if (!this.allPersonalChatUsers.includes(data)) {
+        this.allPersonalChatUsers.unshift(data);
+      }
+      this.openChat(data);
+    });
   }
 
   // Open a chat based on the user clicked (event emitter from chats list component)
@@ -96,8 +96,10 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
 
   // If there has been a new message and the user has seen it, remove the unread badge
   removeFromUnread(follower: IDiscussionFollower) {
-    const index = this.discussionFollowers.indexOf(follower);
-    const unreadIndex = this.allPersonalChatUsers[index].unread_user_ids.findIndex(k => k === this.currentUser.id);
-    this.allPersonalChatUsers[index].unread_user_ids.splice(unreadIndex, 1);
+    const index = this.allPersonalChatUsers.indexOf(follower);
+    if (index > -1) {
+      const unreadIndex = this.allPersonalChatUsers[index].unread_user_ids.findIndex(k => k === this.currentUser.id);
+      this.allPersonalChatUsers[index].unread_user_ids.splice(unreadIndex, 1);
+    }
   }
 }

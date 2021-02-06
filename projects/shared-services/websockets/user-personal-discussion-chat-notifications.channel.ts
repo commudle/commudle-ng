@@ -21,12 +21,14 @@ export class UserPersonalDiscussionChatNotificationsChannel {
   actionCableSubscription;
   private cableConnection;
 
-  public channelData$ = {};
   private subscriptions = {};
+
   // all the communications received will be observables
   private channelList: BehaviorSubject<any> = new BehaviorSubject(new Set());
   public channelList$ = this.channelList.asObservable();
+
   private channelData = {};
+  public channelData$ = {};
 
   private newMessagesCounter: BehaviorSubject<IDiscussionFollower[]> = new BehaviorSubject([]);
   public newMessagesCounter$ = this.newMessagesCounter.asObservable();

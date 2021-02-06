@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
 import {ICurrentUser} from '../../../../../../../shared-models/current_user.model';
+import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-chats-list',
@@ -13,15 +14,19 @@ export class ChatsListComponent implements OnInit {
   chatsListHeight = 75;
   chatsListWidth = 300;
 
-  @Input() showLiveStatus: boolean;
+  showLiveStatus = false;
+
   @Input() currentUser: ICurrentUser;
   @Input() allPersonalChatUsers: IDiscussionFollower[];
   @Output() getChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
 
-  constructor() {
+  constructor(
+    private authWatchService: LibAuthwatchService,
+  ) {
   }
 
   ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe(data => this.showLiveStatus = !!data);
   }
 
   // Toggle chats list height
