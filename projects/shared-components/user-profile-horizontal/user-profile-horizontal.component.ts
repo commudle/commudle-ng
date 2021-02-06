@@ -24,12 +24,6 @@ export class UserProfileHorizontalComponent implements OnInit {
 
   openChatWithUser() {
     this.userChatsService.changeFollowerId(this.user.id);
-    // this.windowService.open(UserChatComponent, {
-    //   title: 'Personal Messages',
-    //   context: {
-    //     discussionUserIds: [this.user.id]
-    //   }
-    // });
   }
 
 }

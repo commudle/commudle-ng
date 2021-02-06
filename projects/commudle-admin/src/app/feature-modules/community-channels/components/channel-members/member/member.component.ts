@@ -125,12 +125,6 @@ export class MemberComponent implements OnInit, OnDestroy {
 
   openChatWithUser(userId: number) {
     this.userChatsService.changeFollowerId(userId);
-    // this.windowService.open(UserChatComponent, {
-    //   title: 'Personal Messages',
-    //   context: {
-    //     discussionUserIds: [userId]
-    //   }
-    // });
   }
 
 }

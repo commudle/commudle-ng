@@ -44,7 +44,6 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {VotesDisplayComponent} from './votes-display/votes-display.component';
 import {VotersComponent} from './votes-display/voters/voters.component';
 import {UserObjectVisitPixelComponent} from './user-object-visit-pixel/user-object-visit-pixel.component';
-import {UserChatComponent} from './user-chat/user-chat.component';
 import {UserPersonalChatMessageComponent} from './discussion-personal-chat/user-personal-chat-message/user-personal-chat-message.component';
 import {DiscussionPersonalChatComponent} from './discussion-personal-chat/discussion-personal-chat.component';
 import {CookieConsentComponent} from './cookie-consent/cookie-consent.component';
@@ -77,7 +76,6 @@ import {UserLiveStatusComponent} from './user-live-status/user-live-status.compo
     VotesDisplayComponent,
     VotersComponent,
     UserObjectVisitPixelComponent,
-    UserChatComponent,
     DiscussionPersonalChatComponent,
     UserPersonalChatMessageComponent,
     CookieConsentComponent,
@@ -126,7 +124,6 @@ import {UserLiveStatusComponent} from './user-live-status/user-live-status.compo
     FormResponsesComponent,
     VotesDisplayComponent,
     UserObjectVisitPixelComponent,
-    UserChatComponent,
     DiscussionPersonalChatComponent,
     CookieConsentComponent,
     UserProfileMiniComponent,
