@@ -3,7 +3,7 @@ import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
 import {environment} from '../environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {NbMenuItem, NbSidebarService, NbWindowService} from '@nebular/theme';
+import {NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {Router} from '@angular/router';
@@ -11,6 +11,7 @@ import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 import {Title} from '@angular/platform-browser';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
 import {AppCentralNotificationService} from './services/app-central-notifications.service';
+import {CookieConsentComponent} from '../../../shared-components/cookie-consent/cookie-consent.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,6 @@ import {AppCentralNotificationService} from './services/app-central-notification
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  window: Window = window;
   sideBarNotifications = false;
   sideBarState = 'collapsed';
   faBars = faBars;
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   userContextMenu: NbMenuItem[] = [
     {title: 'Logout', link: '/logout'},
   ];
+  cookieAccepted = false;
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -78,10 +79,16 @@ export class AppComponent implements OnInit {
       }, 10);
     });
 
-    // if (!this.cookieConsentService.isCookieConsentAccepted()) {
-    //   this.windowService.open(CookieConsentComponent,
-    //   { title: "Let's Share Cookies!", hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
-    // }
+    if (!this.cookieConsentService.isCookieConsentAccepted()) {
+      this.windowService.open(CookieConsentComponent, {
+        title: 'Let\'s Share Cookies!',
+        initialState: NbWindowState.MAXIMIZED
+      });
+    }
+
+    if (this.cookieConsentService.isCookieConsentAccepted()) {
+      this.cookieAccepted = true;
+    }
 
     this.checkNotifications();
   }
