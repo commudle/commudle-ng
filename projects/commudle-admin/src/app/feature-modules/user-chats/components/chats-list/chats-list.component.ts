@@ -37,4 +37,14 @@ export class ChatsListComponent implements OnInit {
   openChat(chatUser) {
     this.getChat.emit(chatUser);
   }
+
+  unreadCount(): number {
+    let count = 0;
+    for (const user of this.allPersonalChatUsers) {
+      if (user.unread_user_ids.includes(this.currentUser.id)) {
+        count++;
+      }
+    }
+    return count;
+  }
 }

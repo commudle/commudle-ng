@@ -1,6 +1,7 @@
 <nb-card>
   <nb-card-header (click)="toggleChatsListHeight()" class="clickable">
-    Chats List
+    Chats List&nbsp;
+    <app-badge [text]="unreadCount()"></app-badge>
   </nb-card-header>
   <nb-card-body [style.maxHeight.vh]="chatsListHeight" [style.width.px]="chatsListWidth">
     <nb-list>
