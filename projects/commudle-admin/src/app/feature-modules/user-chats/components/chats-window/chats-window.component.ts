@@ -30,7 +30,9 @@ export class ChatsWindowComponent implements OnInit {
 
   // Toggle chats window height
   toggleChatsWindowHeight() {
-    this.chatsWindowHeight = 50 - this.chatsWindowHeight;
+    if (window.innerWidth > 1000) {
+      this.chatsWindowHeight = 50 - this.chatsWindowHeight;
+    }
   }
 
   getDiscussion() {
