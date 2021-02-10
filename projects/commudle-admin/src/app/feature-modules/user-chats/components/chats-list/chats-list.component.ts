@@ -11,7 +11,7 @@ import {LibAuthwatchService} from '../../../../../../../shared-services/lib-auth
 export class ChatsListComponent implements OnInit {
 
   // Predefined constants
-  chatsListHeight = 75;
+  chatsListHeight = 0;
   chatsListWidth = 300;
 
   showLiveStatus = false;
