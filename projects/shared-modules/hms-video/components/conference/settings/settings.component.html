@@ -1,6 +1,9 @@
 <div class="settings">
   <nb-card>
     <nb-card-body>
+      <p *ngIf="invitation" class="text-center">
+        You are being invited to the Stage!
+      </p>
       <div class="local-video">
         <video #previewVideo autoplay [muted]="true" playsinline></video>
         <div class="controls">

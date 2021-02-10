@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-user-video',
@@ -9,6 +9,9 @@ export class UserVideoComponent implements OnInit, OnChanges {
   @ViewChild('userVideo', {static: true}) previewVideo: ElementRef;
   @Input() stream;
   @Input() userDetails;
+  @Input() overridable;
+  @Output() mutePeer = new EventEmitter();
+  @Output() removeFromStage = new EventEmitter()
   constructor() { }
 
   ngOnInit(): void {

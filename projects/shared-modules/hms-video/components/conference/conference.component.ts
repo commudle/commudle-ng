@@ -342,7 +342,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   }
 
   endConference() {
-
+    // show a notification popup
   }
 
 
@@ -387,6 +387,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   receiveChannelData() {
     const receiveDataSubscription = this.hmsLiveChannel.channelData$[this.client.uid].subscribe(
       data => {
+        console.log('RECEIVED', data);
         if (data.uid && !this.peers[data.uid]) {
           this.peers[data.uid] = {};
         }
@@ -406,11 +407,41 @@ export class ConferenceComponent implements OnInit, OnDestroy {
             }
           }
           break;
+          case this.hmsLiveChannel.ACTIONS.MUTE_PEER: {
+            if (this.mic) {
+              this.toggleAudio();
+            }
+          }
+          break;
+          case this.hmsLiveChannel.ACTIONS.REMOVE_FROM_STAGE: {
+            if (this.onStage) {
+              this.toggleStage();
+            }
+          }
+          break;
         }
       }
     )
 
     this.subscriptions.push(receiveDataSubscription);
+  }
+
+
+  // admin controls from hms live channel
+  mutePeer(uid) {
+    this.hmsLiveChannel.sendData(
+      this.hmsLiveChannel.ACTIONS.MUTE_PEER,
+      this.client.uid,
+      {uid}
+    )
+  }
+
+  removePeerFromStage(uid) {
+    this.hmsLiveChannel.sendData(
+      this.hmsLiveChannel.ACTIONS.REMOVE_FROM_STAGE,
+      this.client.uid,
+      {uid}
+    )
   }
 
 }
