@@ -7,8 +7,8 @@ import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@ang
 })
 export class UserVideoComponent implements OnInit, OnChanges {
   @ViewChild('userVideo', {static: true}) previewVideo: ElementRef;
-  @Input() username;
   @Input() stream;
+  @Input() userDetails;
   constructor() { }
 
   ngOnInit(): void {

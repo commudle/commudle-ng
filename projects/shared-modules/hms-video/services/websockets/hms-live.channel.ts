@@ -12,9 +12,13 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 export class HmsLiveChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
+    UPDATE_STATUS: 'update_status',
+    EXISTING_USER: 'existing_user',
+    UPDATE_CAMERA: 'update_camera',
+    UPDATE_MIC: 'update_mic',
     UPDATE_USER: 'update_user',
-    INVITE_GUEST: 'invite_guest',
-    REMOVE_GUEST: 'remove_guest',
+    INVITE_TO_STAGE: 'invite_to_stage',
+    REMOVE_FROM_STAGE: 'remove_from_stage',
     FORCE_MUTE_MIC: 'force_mute_mic',
     FORCE_MUTE_CAMERA: 'force_mute_camera'
 }
@@ -48,20 +52,24 @@ export class HmsLiveChannel {
 
 
 
-  subscribe(hmsRoomId, hmsClientUid, name, role, mic, camera) {
+  subscribe(hmsRoomId, hmsClientUid, hmsClientToken, name, role) {
     if (this.cableConnection) {
       this.channelData[`${hmsClientUid}`] = new BehaviorSubject(null);
       this.channelData$[`${hmsClientUid}`] = this.channelData[`${hmsClientUid}`].asObservable();
       this.channelsList.next(this.channelsList.getValue().add(`${hmsClientUid}`));
 
+      this.channelConnectionStatus[`${hmsClientUid}`] = new BehaviorSubject(null);
+      this.channelConnectionStatus$[`${hmsClientUid}`] = this.channelConnectionStatus[`${hmsClientUid}`].asObservable();
+      this.channelConnectionStatus[`${hmsClientUid}`].next(false);
+
+
       this.subscriptions[`${hmsClientUid}`] = this.cableConnection.subscriptions.create({
         channel: APPLICATION_CABLE_CHANNELS.HMS_LIVE_CHANNEL,
         hms_room_id: hmsRoomId,
         hms_client_uid: hmsClientUid,
+        hms_client_token: hmsClientToken,
         name,
         role,
-        mic,
-        camera,
         app_token: this.authWatchService.getAppToken()
 
       }, {
@@ -69,6 +77,7 @@ export class HmsLiveChannel {
           this.channelConnectionStatus[`${hmsClientUid}`].next(true);
         },
         received: (data) => {
+          console.log('RECEIVED', data);
           this.channelData[`${hmsClientUid}`].next(data);
         },
         disconnected: () => {

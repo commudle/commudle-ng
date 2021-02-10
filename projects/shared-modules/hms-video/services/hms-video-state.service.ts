@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export enum EHmsStates {
-  INIT = 'init',
+  INIT = 'select_role',
   PREVIEW = 'preview',
   ROOM = 'room'
 }

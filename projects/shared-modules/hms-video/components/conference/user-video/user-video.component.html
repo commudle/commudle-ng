@@ -1,3 +1,13 @@
 <div class="user-video">
   <video #userVideo autoplay [muted]="true" playsinline></video>
+  <div *ngIf="userDetails && !userDetails.camera && (stream.options && !stream.options.screen)" class="avatar d-flex justify-content-center align-items-center">
+    <img [src]="userDetails.avatar">
+  </div>
+  <div *ngIf="userDetails" class="user-info">
+
+    <nb-icon *ngIf="!userDetails.mic" icon="mic-off" status="danger"></nb-icon>
+    <p class="name">
+      {{userDetails.name}}
+    </p>
+  </div>
 </div>

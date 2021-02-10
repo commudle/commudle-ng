@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as moment from 'moment';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-users-list',
@@ -25,7 +26,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   constructor(
     private userObjectVisitChannel: UserObjectVisitChannel,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit(): void {
@@ -114,7 +116,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
 
   inviteToStage(userId) {
-
+    this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe(
+      data => {
+        this.toastLogService.successDialog('Invited, they will now see a popup', 2000);
+      }
+    )
   }
 
 }
