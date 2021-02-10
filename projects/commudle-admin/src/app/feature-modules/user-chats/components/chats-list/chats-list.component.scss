@@ -1,7 +1,20 @@
-nb-card {
+.chats-list {
   margin: 0;
 
-  nb-card-body {
+  .chats-list-header {
+    display: flex;
+
+    p {
+      margin: 0 15px 0 0;
+      align-self: center;
+    }
+
+    app-badge {
+      margin-top: 5px;
+    }
+  }
+
+  .chats-list-body {
     transition: max-height 0.3s ease-in-out;
     padding: 0;
 
