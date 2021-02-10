@@ -3,7 +3,7 @@ import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
 import {environment} from '../environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {NbMenuItem, NbSidebarService, NbWindowService, NbWindowState, NbIconLibraries} from '@nebular/theme';
+import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {Router} from '@angular/router';
@@ -42,13 +42,13 @@ export class AppComponent implements OnInit {
     private cookieConsentService: CookieConsentService,
     private appCentralNotificationsService: AppCentralNotificationService,
     private iconLibraries: NbIconLibraries
-    ) {
-      this.checkHTTPS();
-      this.apiRoutes.setBaseUrl(environment.base_url);
-      this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
-      this.titleService.setTitle('Commudle | Developer Communities, Together');
+  ) {
+    this.checkHTTPS();
+    this.apiRoutes.setBaseUrl(environment.base_url);
+    this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
+    this.titleService.setTitle('Commudle | Developer Communities, Together');
 
-      this.iconLibraries.registerFontPack('font-awesome', { iconClassPrefix: 'fa', packClass: 'fa' });
+    this.iconLibraries.registerFontPack('font-awesome', {iconClassPrefix: 'fa', packClass: 'fa'});
   }
 
   ngOnInit() {
