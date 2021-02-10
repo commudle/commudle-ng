@@ -18,9 +18,9 @@ export class HmsLiveChannel {
     UPDATE_MIC: 'update_mic',
     UPDATE_USER: 'update_user',
     INVITE_TO_STAGE: 'invite_to_stage',
+    MUTE_PEER: 'mute_peer',
     REMOVE_FROM_STAGE: 'remove_from_stage',
-    FORCE_MUTE_MIC: 'force_mute_mic',
-    FORCE_MUTE_CAMERA: 'force_mute_camera'
+
 }
 
   actionCable = actionCable;

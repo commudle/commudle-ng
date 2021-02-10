@@ -10,6 +10,9 @@
       <app-user-video
       [stream]="stream.value['stream']"
       [userDetails]="(peers[stream.value['uid']] ? peers[stream.value['uid']].user : {})"
+      [overridable]="serverClient.role === EHmsRoles.HOST"
+      (mutePeer)="mutePeer(stream.value['uid'])"
+      (removeFromStage)="removePeerFromStage(stream.value['uid'])"
       ></app-user-video>
     </div>
 
@@ -52,6 +55,6 @@
   </div>
 
   <div class="stream-settings" *ngIf="showSettings">
-    <app-settings [onStage]="onStage" [invitation]="false" (closeSettings)="this.showSettings = false" (joinStage)="toggleStage(); this.showSettings = false;"></app-settings>
+    <app-settings [onStage]="onStage" [invitation]="serverClient.role === EHmsRoles.VIEWER" (closeSettings)="this.showSettings = false" (joinStage)="toggleStage(); this.showSettings = false;"></app-settings>
   </div>
 </div>

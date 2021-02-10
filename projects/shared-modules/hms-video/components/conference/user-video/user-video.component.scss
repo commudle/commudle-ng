@@ -18,6 +18,21 @@
     }
   }
 
+  .override-controls {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    button {
+      background: #bbbbbbad;
+      nb-icon {
+        color: white;
+      }
+    }
+
+  }
+
   .user-info {
     position: absolute;
     bottom: 5px;
@@ -35,6 +50,12 @@
 
     nb-icon {
       font-size: 10px;
+    }
+  }
+
+  &:hover {
+    .override-controls {
+      visibility: visible;
     }
   }
 }
