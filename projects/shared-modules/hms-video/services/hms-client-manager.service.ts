@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HMSPeer, HMSClientConfig, HMSClient, LocalStream, HMSMediaStreamConstraints } from "@100mslive/hmsvideo-web";
+import { HMSPeer, HMSClientConfig, HMSClient, LocalStream, HMSMediaStreamConstraints, Stream } from "@100mslive/hmsvideo-web";
 import { from, Observable } from 'rxjs';
 
 @Injectable({
@@ -27,15 +27,15 @@ export class HmsClientManagerService {
 
 
   getLocalStream(
-    client: HMSClient, audioDevice: MediaDeviceInfo, videoDevice: MediaDeviceInfo
+    client: HMSClient, audioDevice: MediaDeviceInfo, videoDevice: MediaDeviceInfo, mic: boolean, camera: boolean
     ): Observable<any> {
     const localStreamConstraints: HMSMediaStreamConstraints = {
       resolution: 'vga',
       bitrate: 256,
       codec: 'VP8',
       frameRate: 20,
-      shouldPublishAudio: true,
-      shouldPublishVideo: true,
+      shouldPublishAudio: mic,
+      shouldPublishVideo: camera,
       advancedMediaConstraints: {
         audio: {
           deviceId: audioDevice.deviceId
@@ -49,6 +49,22 @@ export class HmsClientManagerService {
       client.getLocalStream(localStreamConstraints, {})
     );
   }
+
+  // this will publish both audio/video and screen streams
+  publishLocalStream(client: HMSClient, stream, roomId): Observable<any> {
+    return from(client.publish(stream, roomId));
+  }
+
+
+  unpublishLocalStream(client: HMSClient, stream, roomId): Observable<any> {
+    let tracks = stream.getTracks();
+    for (let track of tracks) {
+      track.stop();
+    }
+    return from(client.unpublish(stream, roomId));
+  }
+
+
 
   getLocalScreen(client: HMSClient): Observable<any> {
     const localScreenConstraints: HMSMediaStreamConstraints = {
@@ -65,10 +81,7 @@ export class HmsClientManagerService {
   }
 
 
-  // this will publish both audio/video and screen streams
-  publishLocalStream(client: HMSClient, stream, roomId): Observable<any> {
-    return from(client.publish(stream, roomId));
-  }
+
 
   // subscribe to remote peer's stream
   getPeerStream(client: HMSClient, mId, roomId): Observable<any> {

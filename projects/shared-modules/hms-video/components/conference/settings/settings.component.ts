@@ -1,44 +1,38 @@
-import { EHmsStates } from './../../services/hms-video-state.service';
-import { Component, ElementRef, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { HmsVideoStateService } from '../../services/hms-video-state.service';
-import { LocalmediaService } from '../../services/localmedia.service';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, OnDestroy, Input } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
-
+import { LocalmediaService } from '../../../services/localmedia.service';
 
 @Component({
-  selector: 'app-local-preview',
-  templateUrl: './local-preview.component.html',
-  styleUrls: ['./local-preview.component.scss']
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
-export class LocalPreviewComponent implements OnInit, OnDestroy {
-  @Input() hmsClient;
-  EHmsStates = EHmsStates;
+export class SettingsComponent implements OnInit, OnDestroy {
   @ViewChild('previewVideo', {static: true}) previewVideo: ElementRef;
+  @Input() onStage: boolean;
+  @Input() invitation: boolean;
+  @Output() closeSettings = new EventEmitter();
+  @Output() joinStage = new EventEmitter();
+  subscriptions = [];
 
-  roomId: string;
   audioDevices: Array<any> = [];
   videoDevices: Array<any> = [];
 
-  selectedVideoDevice: any;
+  selectedVideoDevice: MediaDeviceInfo;
   selectedAudioDevice: any;
 
   localMediaStream: any;
-
-  subscriptions = [];
 
   camera = true;
   mic = true;
 
   constructor(
     private localMediaService: LocalmediaService,
-    private hmsVideoStateService: HmsVideoStateService,
-    private hmsLiveChannel: HmsLiveChannel,
   ) { }
 
   ngOnInit(): void {
+    console.log(this.onStage);
     this.getDevices();
-    this.updateConfStatus();
 
     const deviceListener =  combineLatest([
       this.localMediaService.selectedAudioDevice$,
@@ -46,6 +40,7 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
       this.localMediaService.mic$,
       this.localMediaService.camera$
     ]);
+
 
     this.subscriptions.push(
       deviceListener.subscribe(data => {
@@ -59,10 +54,12 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
         }
       })
     );
+
   }
 
   ngOnDestroy() {
     this.stopStream();
+
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
@@ -71,8 +68,8 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
   getDevices() {
     this.localMediaService.getDevices().subscribe(
       devices => {
-        let audio: any = [];
-        let video: any = [];
+        const audio: MediaDeviceInfo[] = [];
+        const video: MediaDeviceInfo[] = [];
 
         for (let dev of devices) {
           // skipping audiooutput devices
@@ -90,9 +87,18 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
 
         this.audioDevices = audio;
         this.videoDevices = video;
+        if (!this.selectedAudioDevice) {
+          this.setAudioDevice(this.audioDevices[0]);
+        } else {
+          // set from id because the pre selected device ids aren't matching
+          this.setAudioDevice(this.audioDevices.find(k => k.deviceId === this.selectedAudioDevice.deviceId));
+        }
 
-        this.setAudioDevice(this.audioDevices[0]);
-        this.setVideoDevice(this.videoDevices[0]);
+        if (!this.selectedVideoDevice) {
+          this.setVideoDevice(this.videoDevices[0]);
+        } else {
+          this.setVideoDevice(this.videoDevices.find(k => k.deviceId === this.selectedVideoDevice.deviceId));
+        }
       }
     )
   }
@@ -116,7 +122,7 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
       constraints.video = (this.camera ? ({deviceId: {exact: this.selectedVideoDevice.deviceId}}) : false);
       this.localMediaService.getLocalStream(constraints).subscribe(data => {
         if (data) {
-          let video = this.previewVideo.nativeElement;
+          const video = this.previewVideo.nativeElement;
           video.srcObject = data;
         }
       });
@@ -133,27 +139,21 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
 
   stopStream() {
     if (this.localMediaStream) {
-      let tracks = this.localMediaStream.getValue().getTracks();
+      const tracks = this.localMediaStream.getValue().getTracks();
 
-      for (let track of tracks) {
+      for (const track of tracks) {
         track.stop();
       }
     }
   }
 
-  joinRoom() {
-    this.hmsVideoStateService.setState(EHmsStates.ROOM);
+
+  close() {
+    this.closeSettings.emit(false);
   }
 
-  updateConfStatus() {
-    this.hmsLiveChannel.sendData(
-      this.hmsLiveChannel.ACTIONS.UPDATE_STATUS,
-      this.hmsClient.uid,
-      {
-        status: this.hmsVideoStateService.states.PREVIEW
-      }
-    )
+  emitJoinStage() {
+    this.joinStage.emit(true);
   }
-
 
 }

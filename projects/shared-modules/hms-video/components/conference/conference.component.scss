@@ -8,6 +8,10 @@
     .user-videos {
       display: flex;
       flex-wrap: wrap;
+
+      .video {
+        max-width: 300px;
+      }
     }
 
     .controls {
@@ -32,6 +36,14 @@
           }
         }
       }
+    }
+
+    .stream-settings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 1s ease-in-out;
     }
   }
 }

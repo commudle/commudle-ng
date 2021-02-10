@@ -19,6 +19,15 @@
 }
 
 
+.justify-content-space-around {
+  justify-content: space-around;
+}
+
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
 .align-items-center {
   align-items: center;
 }
@@ -30,4 +39,8 @@
 
 .flex-nowrap {
   flex-wrap: nowrap;
+}
+
+.d-none {
+  display: none;
 }

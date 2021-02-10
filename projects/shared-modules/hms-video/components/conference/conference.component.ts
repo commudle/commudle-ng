@@ -4,10 +4,11 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { combineLatest } from 'rxjs';
-import { HmsLiveChannel } from '../settings/websockets/hms-live.channel';
+import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 import { EHmsRoles } from '../enums/hms-roles.enum';
+import { HmsVideoStateService } from '../../services/hms-video-state.service';
 
 @Component({
   selector: 'app-conference',
@@ -16,16 +17,17 @@ import { EHmsRoles } from '../enums/hms-roles.enum';
 })
 export class ConferenceComponent implements OnInit, OnDestroy {
   @Input() roomId: string;
-  @Input() hmsClient: IHmsClient;
+  @Input() serverClient: IHmsClient;
+  @Input() client: any;
   @Input() selectedRole: EHmsRoles;
-
+  subscriptions = [];
   EHmsRoles = EHmsRoles;
 
   user: ICurrentUser;
   loading = true;
 
+  showSettings = false;
   onStage = false;
-  client: any;
 
   audioDevice: MediaDeviceInfo;
   videoDevice: MediaDeviceInfo;
@@ -39,18 +41,26 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
   // list of all the peers in the room
   peers = {};
+  streams = {};
+
 
   constructor(
     private libAuthWatchService: LibAuthwatchService,
     private hmsClientManagerService: HmsClientManagerService,
     private localMediaService: LocalmediaService,
-    private hmsLiveChannel: HmsLiveChannel
+    private hmsLiveChannel: HmsLiveChannel,
+    private hmsVideoStateService: HmsVideoStateService
   ) { }
 
   ngOnDestroy() {
     if (this.client) {
       this.client.disconnect();
     }
+
+    for (let subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+
   }
 
   ngOnInit(): void {
@@ -68,6 +78,14 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       this.mic = data[2];
       this.camera = data[3];
 
+      if (this.localStream) {
+        this.modifyLocalStream(this.localStream);
+      }
+
+
+      this.updateCamera();
+      this.updateMic();
+
       // modify stream if the client is present (this will get changed from the settings component)
     });
 
@@ -80,7 +98,6 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     )
 
     this.setStage();
-
 
     // fetch the client token
     this.connectToClient();
@@ -97,7 +114,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
 
   connectToClient() {
-    this.client = this.hmsClientManagerService.createClient(this.user.name, this.hmsClient.token);
+    // this.client = this.hmsClientManagerService.createClient(this.user.name, this.hmsClient.token);
     this.hmsClientManagerService.connectClient(this.client).subscribe(
       data => {
         this.setupListeners();
@@ -120,12 +137,14 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
       // detect peer join
       this.client.on('peer-join', (room, peer) => {
-        this.peers[peer.peerId] = peer;
+        if (!this.peers[peer.uid]) {
+          this.peers[peer.uid] = peer;
+        }
       })
 
       // detect peer leave
       this.client.on('peer-leave', (room, peer) => {
-        delete this.peers[peer.peerId];
+        delete this.peers[peer.uid];
       });
 
       // display the peer's stream
@@ -136,7 +155,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       // remove the peer's stream
       this.client.on('stream-remove', (room, peer, streamInfo) => {
           // Remove remote stream if needed
-          delete this.peers[peer.peerId].stream;
+          delete this.streams[streamInfo.mid];
       });
 
       // detect temporary socket disconnections
@@ -150,6 +169,8 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   joinRoom() {
     this.hmsClientManagerService.joinRoom(this.client, this.roomId).subscribe(
       data => {
+        this.updateConfStatus();
+        this.receiveChannelData();
         if (this.onStage) {
           // get the localstream
           this.addLocalStream();
@@ -160,35 +181,126 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
   addLocalStream() {
     // get the local stream and the publish it to the room
-    this.hmsClientManagerService.getLocalStream(this.client, this.audioDevice, this.videoDevice).subscribe(
+    this.hmsClientManagerService.getLocalStream(this.client, this.audioDevice, this.videoDevice, this.mic, this.camera).subscribe(
       data => {
         this.localStream = data;
-
         // publish localstream to the room
-        this.hmsClientManagerService.publishLocalStream(this.client, this.localStream, this.roomId).subscribe();
+        this.hmsClientManagerService.publishLocalStream(this.client, this.localStream, this.roomId).subscribe(
+          data => {
+
+            // TODO remove this interval
+            let interval = setInterval(() => {
+              if (this.localStream.mid) {
+                this.onStage = true;
+                this.updateStreams(this.client.uid, this.localStream.mid, data);
+                clearInterval(interval);
+              }
+            }, 1000);
+          }
+        );
       }
     )
   }
 
-  modifyLocalStream() {
-
+  modifyLocalStream(stream) {
+    if (this.client) {
+      this.client.applyConstraints({
+        shouldPublishAudio: this.mic,
+        shouldPublishVideo: this.camera,
+        advancedMediaConstraints: {
+          audio: {
+            deviceId: this.audioDevice.deviceId
+          },
+          video: {
+            deviceId: this.videoDevice.deviceId
+          }
+        }
+      }, stream);
+    }
   }
+
+  removeLocalStream() {
+    delete this.streams[this.localStream.mid];
+    this.hmsClientManagerService.unpublishLocalStream(this.client, this.localStream, this.roomId).subscribe(
+      data => {
+        this.localStream = null;
+      }
+    );
+  }
+
+
+  addLocalScreen() {
+    this.hmsClientManagerService.getLocalScreen(this.client).subscribe(
+      data => {
+        this.localScreen = data;
+
+        // publish localscreen using the same method to the room
+        this.hmsClientManagerService.publishLocalStream(this.client, this.localScreen, this.roomId).subscribe(
+          data => {
+
+
+            // TODO remove this interval
+            let interval = setInterval(() => {
+              if (data.mid) {
+                clearInterval(interval);
+                this.localScreen = data;
+                this.screenShare = true;
+                this.localScreen.getVideoTracks().forEach(track => {
+                  if ('contentHint' in track) {
+                    track.contentHint = 'text';
+                  }
+                });
+
+                let track = this.localScreen.getVideoTracks()[0];
+                if (track) {
+                  track.addEventListener('ended', () => {
+                    this.removeLocalScreen();
+                  });
+                }
+                this.updateStreams(this.client.uid, this.localScreen.mid, data);
+              }
+            }, 1000);
+
+
+          }
+        );
+      }
+    )
+  }
+
+
+  removeLocalScreen() {
+    delete this.streams[this.localScreen.mid];
+    this.hmsClientManagerService.unpublishLocalStream(this.client, this.localScreen, this.roomId).subscribe(
+      data => {
+        this.screenShare = false;
+        console.log('STREAMS', this.streams);
+        this.localScreen = null;
+
+      }
+    );
+  }
+
 
   addPeerStream(peer, mId) {
     this.hmsClientManagerService.getPeerStream(this.client, mId, this.roomId).subscribe(
       data => {
-        if (!this.peers[peer.peerId]) {
-          this.peers[peer.peerId] = peer
+        if (!this.peers[peer.uid]) {
+          this.peers[peer.uid] = peer
         }
-        this.peers[peer.peerId].stream = data;
+        this.updateStreams(peer.uid, mId, data);
       }
     )
   }
 
   // this method is for the admin to be able to remove the stream of a peer
-  removePeerStream(peerId, stream, roomId) {
+  removePeerStream(uid, stream, roomId) {
 
     // find the peer, find the stream and remove it
+  }
+
+  updateStreams(uid, mid, stream) {
+    this.streams[mid] = {uid, mid, stream};
   }
 
 
@@ -197,23 +309,102 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   toggleVideo() {
     this.camera = !this.camera;
     this.camera ? this.localStream.unmute('video') : this.localStream.mute('video');
+    this.localMediaService.updateCamera(this.camera);
+    this.updateCamera();
   }
 
   toggleAudio() {
     this.mic = !this.mic;
     this.mic ? this.localStream.unmute('audio') : this.localStream.mute('audio');
+    this.localMediaService.updateMic(this.mic);
+    this.updateMic();
   }
 
   toggleScreen() {
-
+    !this.screenShare ? this.addLocalScreen() : this.removeLocalScreen();
   }
 
   toggleStage() {
-
+    if (this.onStage) {
+      this.removeLocalStream();
+      if (this.localScreen) {
+        this.removeLocalScreen();
+      }
+      this.onStage = !this.onStage;
+    } else {
+      if (!this.showSettings) {
+        this.showSettings = true;
+      } else {
+        this.addLocalStream();
+        this.onStage = !this.onStage;
+      }
+    }
   }
 
   endConference() {
 
+  }
+
+
+
+
+  // HMS Live Channel
+  updateConfStatus() {
+    this.hmsLiveChannel.sendData(
+      this.hmsLiveChannel.ACTIONS.UPDATE_STATUS,
+      this.client.uid,
+      {
+        status: this.hmsVideoStateService.states.ROOM
+      }
+    )
+
+    this.updateCamera();
+    this.updateMic();
+  }
+
+  updateCamera() {
+    this.hmsLiveChannel.sendData(
+      this.hmsLiveChannel.ACTIONS.UPDATE_CAMERA,
+      this.client.uid,
+      {
+        camera: this.camera
+      }
+    )
+  }
+
+  updateMic() {
+    this.hmsLiveChannel.sendData(
+      this.hmsLiveChannel.ACTIONS.UPDATE_MIC,
+      this.client.uid,
+      {
+        mic: this.mic
+      }
+    )
+  }
+
+
+
+  receiveChannelData() {
+    const receiveDataSubscription = this.hmsLiveChannel.channelData$[this.client.uid].subscribe(
+      data => {
+        if (data.uid && !this.peers[data.uid]) {
+          this.peers[data.uid] = {};
+        }
+        switch (data.action) {
+          case this.hmsLiveChannel.ACTIONS.EXISTING_USER: {
+            this.peers[data.uid].user = data.user
+          }
+          break;
+          case this.hmsLiveChannel.ACTIONS.UPDATE_USER: {
+            // do not update self user
+            this.peers[data.uid].user = data.user
+          }
+          break;
+        }
+      }
+    )
+
+    this.subscriptions.push(receiveDataSubscription);
   }
 
 }

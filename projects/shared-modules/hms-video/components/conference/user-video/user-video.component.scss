@@ -1,0 +1,40 @@
+.user-video {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #d3d3d342;
+  video {
+    width: 100%;
+  }
+
+  .avatar {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    img {
+      width: 100px;
+    }
+  }
+
+  .user-info {
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .name {
+      margin: 0;
+      background: #d3d3d36b;
+      padding: 0 3px;
+      color: white;
+      font-size: 10px;
+    }
+
+    nb-icon {
+      font-size: 10px;
+    }
+  }
+}

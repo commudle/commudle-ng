@@ -112,6 +112,17 @@ export class EventsService {
   }
 
 
+  inviteGuestToWebinarStage(userId, hmsRoomId): Observable<any> {
+    return this.http.post<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.INVITE_GUEST_TO_WEBINAR_STAGE),
+      {
+        user_id: userId,
+        hms_room_id: hmsRoomId
+      }
+      );
+  }
+
+
   pGetUpcomingEvents(): Observable<IEvents> {
     return this.http.get<IEvents>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.UPCOMING)
