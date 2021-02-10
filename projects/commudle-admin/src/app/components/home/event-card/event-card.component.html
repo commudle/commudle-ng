@@ -21,7 +21,7 @@
               {{ moment(event.start_time).format('dddd Do MMM, YYYY') }}
             </strong>
             <span *ngIf="event.timezone">
-              <nb-icon icon="globe"></nb-icon>
+              <nb-icon icon="globe" pack="font-awesome"></nb-icon>
               {{ momentTimezone.tz(event.timezone).format('z') }}
             </span>
           </p>
