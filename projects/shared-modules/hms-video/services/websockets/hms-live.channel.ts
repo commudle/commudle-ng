@@ -77,7 +77,6 @@ export class HmsLiveChannel {
           this.channelConnectionStatus[`${hmsClientUid}`].next(true);
         },
         received: (data) => {
-          console.log('RECEIVED', data);
           this.channelData[`${hmsClientUid}`].next(data);
         },
         disconnected: () => {
