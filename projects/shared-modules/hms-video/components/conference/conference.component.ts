@@ -400,6 +400,12 @@ export class ConferenceComponent implements OnInit, OnDestroy {
             this.peers[data.uid].user = data.user
           }
           break;
+          case this.hmsLiveChannel.ACTIONS.INVITE_TO_STAGE: {
+            if (!this.onStage) {
+              this.toggleStage();
+            }
+          }
+          break;
         }
       }
     )
