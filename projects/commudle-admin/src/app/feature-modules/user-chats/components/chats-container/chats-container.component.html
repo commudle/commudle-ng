@@ -2,6 +2,7 @@
   <div class="chats-list">
     <app-chats-list (getChat)="openChat($event)"
                     [currentUser]="currentUser"
+                    (moveUserToTop)="liveUpdates($event)"
                     [allPersonalChatUsers]="allPersonalChatUsers"
     ></app-chats-list>
   </div>

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
 import {ICurrentUser} from '../../../../../../../shared-models/current_user.model';
 import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
+import {UserChatNotificationsChannel} from '../../services/websockets/user-chat-notifications.channel';
 
 @Component({
   selector: 'app-chats-list',
@@ -15,18 +16,26 @@ export class ChatsListComponent implements OnInit {
   chatsListWidth = 300;
 
   showLiveStatus = false;
+  unreadCount = 0;
 
   @Input() currentUser: ICurrentUser;
   @Input() allPersonalChatUsers: IDiscussionFollower[];
   @Output() getChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
+  @Output() moveUserToTop: EventEmitter<IDiscussionFollower[]> = new EventEmitter<IDiscussionFollower[]>();
 
   constructor(
     private authWatchService: LibAuthwatchService,
+    private userChatNotificationsChannel: UserChatNotificationsChannel
   ) {
   }
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe(data => this.showLiveStatus = !!data);
+
+    this.userChatNotificationsChannel.subscribe();
+
+    // Live update for new messages
+    this.liveUpdates();
   }
 
   // Toggle chats list height
@@ -38,13 +47,14 @@ export class ChatsListComponent implements OnInit {
     this.getChat.emit(chatUser);
   }
 
-  unreadCount(): number {
-    let count = 0;
-    for (const user of this.allPersonalChatUsers) {
-      if (user.unread_user_ids.includes(this.currentUser.id)) {
-        count++;
+  liveUpdates() {
+    this.userChatNotificationsChannel.newMessagesCounter$.subscribe(value => {
+      if (value.length > 0) {
+        this.moveUserToTop.emit(value);
+
+        this.unreadCount = value.length;
+        this.userChatNotificationsChannel.resetMessageCounter();
       }
-    }
-    return count;
+    });
   }
 }

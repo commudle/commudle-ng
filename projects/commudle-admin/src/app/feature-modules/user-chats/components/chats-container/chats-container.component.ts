@@ -1,11 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {v4 as uuidv4} from 'uuid';
 import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
 import {ICurrentUser} from '../../../../../../../shared-models/current_user.model';
 import {SDiscussionsService} from '../../../../../../../shared-components/services/s-discussions.service';
-import {UserPersonalDiscussionChatNotificationsChannel} from '../../../../../../../shared-services/websockets/user-personal-discussion-chat-notifications.channel';
 import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
 import {UserChatsService} from '../../services/user-chats.service';
+import {UserChatMessagesChannel} from '../../services/websockets/user-chat-messages.channel';
 
 @Component({
   selector: 'app-chats-container',
@@ -28,11 +27,9 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   currentUserSubscription;
 
-  uuid = uuidv4();
-
   constructor(
     private sDiscussionService: SDiscussionsService,
-    private userNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel,
+    private userChatMessagesChannel: UserChatMessagesChannel,
     private authWatchService: LibAuthwatchService,
     private userChatsService: UserChatsService
   ) {
@@ -84,18 +81,17 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
       // Check if length exceeds the maximum allowed windows
       if (this.discussionFollowers.length >= this.numChatWindows) {
         // Unsubscribe the removed user
-        this.userNotificationsChannel.unsubscribe(this.currentUser.id, follower.discussion_id, this.uuid);
-        // Remove from the starting of the array
-        this.discussionFollowers.shift();
+        this.userChatMessagesChannel.unsubscribe(this.discussionFollowers.shift().discussion_id);
       }
       // Insert into the back of the array
       this.discussionFollowers.push(follower);
     }
   }
 
+  // Close and unsubscribe a particular chat
   closeChat(follower: IDiscussionFollower) {
     const index = this.discussionFollowers.indexOf(follower);
-    this.userNotificationsChannel.unsubscribe(this.currentUser.id, follower.discussion_id, this.uuid);
+    this.userChatMessagesChannel.unsubscribe(follower.discussion_id);
     this.discussionFollowers.splice(index, 1);
   }
 
@@ -106,5 +102,14 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
       const unreadIndex = this.allPersonalChatUsers[index].unread_user_ids.findIndex(k => k === this.currentUser.id);
       this.allPersonalChatUsers[index].unread_user_ids.splice(unreadIndex, 1);
     }
+  }
+
+  // Move the recent message user to the top
+  liveUpdates(value: IDiscussionFollower[]) {
+    const index = this.allPersonalChatUsers.findIndex(k => k.id === value[0].id);
+    if (index > -1) {
+      this.allPersonalChatUsers.splice(index, 1);
+    }
+    this.allPersonalChatUsers.unshift(value[0]);
   }
 }

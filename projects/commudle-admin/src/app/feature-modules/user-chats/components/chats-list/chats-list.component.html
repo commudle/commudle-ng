@@ -1,7 +1,8 @@
 <nb-card class="chats-list">
   <nb-card-header (click)="toggleChatsListHeight()" class="clickable chats-list-header">
     <p>Chats List</p>
-    <app-badge [text]="unreadCount()"></app-badge>
+    <app-badge *ngIf="unreadCount > 0 && chatsListHeight === 0" [fontSize]="'small'"
+               [text]="unreadCount + ' New'"></app-badge>
   </nb-card-header>
   <nb-card-body [style.maxHeight.vh]="chatsListHeight" [style.width.px]="chatsListWidth" class="chats-list-body">
     <nb-list>
