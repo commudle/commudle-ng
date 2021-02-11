@@ -20,7 +20,7 @@ export class HmsLiveChannel {
     INVITE_TO_STAGE: 'invite_to_stage',
     MUTE_PEER: 'mute_peer',
     REMOVE_FROM_STAGE: 'remove_from_stage',
-
+    END_STREAM: 'end_stream'
 }
 
   actionCable = actionCable;

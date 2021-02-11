@@ -12,7 +12,9 @@ import {
   NbIconModule,
   NbCardModule,
   NbSpinnerModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbDialogModule,
+  NbAlertModule
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserVideoComponent } from './components/conference/user-video/user-video.component';
@@ -46,7 +48,10 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     NbIconModule,
     NbCardModule,
     NbSpinnerModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbDialogModule.forChild(),
+    NbAlertModule
+
 
   ],
   exports: [
