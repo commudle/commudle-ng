@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
 import {IDiscussion} from '../../../../../../../shared-models/discussion.model';
 import {SDiscussionsService} from '../../../../../../../shared-components/services/s-discussions.service';
+import {UserChatMessagesChannel} from '../../services/websockets/user-chat-messages.channel';
 
 @Component({
   selector: 'app-chats-window',
@@ -21,6 +22,7 @@ export class ChatsWindowComponent implements OnInit {
 
   constructor(
     private sDiscussionService: SDiscussionsService,
+    private userChatMessagesChannel: UserChatMessagesChannel
   ) {
   }
 
@@ -40,6 +42,7 @@ export class ChatsWindowComponent implements OnInit {
     this.sDiscussionService.getPersonalChat(this.discussionFollower.discussion_id).subscribe(
       data => {
         this.discussion = data;
+        this.userChatMessagesChannel.subscribe(this.discussion.id);
         this.removeFromUnread.emit(this.discussionFollower);
       }
     );
