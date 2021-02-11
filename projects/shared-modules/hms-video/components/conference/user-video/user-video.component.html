@@ -3,7 +3,7 @@
   <div *ngIf="userDetails && !userDetails.camera && (stream.options && !stream.options.screen)" class="avatar d-flex justify-content-center align-items-center">
     <img [src]="userDetails.avatar">
   </div>
-  <div *ngIf="overridable" class="override-controls d-flex justify-content-center">
+  <div *ngIf="overridable && userDetails" class="override-controls d-flex justify-content-center">
     <button nbButton size="small" ghost (click)="mutePeer.emit()" *ngIf="userDetails.mic" nbTooltip="Mute">
       <nb-icon icon="mic-off-outline"></nb-icon>
     </button>

@@ -6,11 +6,50 @@
     position: relative;
     height: 100%;
     .user-videos {
+      width: 100%;
+      height: 90%;
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
-
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      overflow-y: auto;
+      transition: all 0.5s ease-in-out;
       .video {
-        max-width: 300px;
+        min-width: 300px;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+
+      &.max-one {
+
+        .video {
+          height: 100%;
+          width: 100%;
+          flex-grow: 1;
+        }
+      }
+
+      &.max-four {
+
+        .video {
+          height: 50%;
+          width: 50%;
+          flex-grow: 1;
+        }
+      }
+
+      &.more-than-four {
+        .video {
+          height: 25%;
+          width: 25%;
+          flex-grow: 1;
+        }
       }
     }
 
