@@ -1,5 +1,5 @@
 import { HMSClient } from '@100mslive/hmsvideo-web';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LocalmediaService } from '../../services/localmedia.service';
@@ -9,6 +9,7 @@ import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 import { EHmsRoles } from '../enums/hms-roles.enum';
 import { HmsVideoStateService } from '../../services/hms-video-state.service';
+import { NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'app-conference',
@@ -47,19 +48,34 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
   Math = Math;
 
+  screenShareStream = null;
+  webinarEnded = false;
 
   constructor(
     private libAuthWatchService: LibAuthwatchService,
     private hmsClientManagerService: HmsClientManagerService,
     private localMediaService: LocalmediaService,
     private hmsLiveChannel: HmsLiveChannel,
-    private hmsVideoStateService: HmsVideoStateService
+    private hmsVideoStateService: HmsVideoStateService,
+    private dialogService: NbDialogService
   ) { }
 
   ngOnDestroy() {
     if (this.client) {
       this.client.disconnect();
     }
+
+
+    if (this.localStream) {
+      this.removeLocalStream();
+    }
+
+    if (this.localScreen) {
+      this.removeLocalScreen();
+    }
+
+    // disconnect the client
+    this.client.disconnect();
 
     for (let subs of this.subscriptions) {
       subs.unsubscribe();
@@ -153,7 +169,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
       // display the peer's stream
       this.client.on('stream-add', (room,  peer, streamInfo) => {
-        this.addPeerStream(peer, streamInfo.mid);
+        this.addPeerStream(peer, streamInfo);
       });
 
       // remove the peer's stream
@@ -196,7 +212,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
             let interval = setInterval(() => {
               if (this.localStream.mid) {
                 this.onStage = true;
-                this.updateStreams(this.client.uid, this.localStream.mid, data);
+                this.updateStreams(this.client.uid, this.localStream.mid, data, this.localStream.options.screen);
                 clearInterval(interval);
               }
             }, 1000);
@@ -261,7 +277,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
                     this.removeLocalScreen();
                   });
                 }
-                this.updateStreams(this.client.uid, this.localScreen.mid, data);
+                this.updateStreams(this.client.uid, this.localScreen.mid, data, this.localStream.options.screen);
               }
             }, 1000);
 
@@ -278,7 +294,6 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     this.hmsClientManagerService.unpublishLocalStream(this.client, this.localScreen, this.roomId).subscribe(
       data => {
         this.screenShare = false;
-        console.log('STREAMS', this.streams);
         this.localScreen = null;
 
       }
@@ -286,29 +301,30 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   }
 
 
-  addPeerStream(peer, mId) {
-    this.hmsClientManagerService.getPeerStream(this.client, mId, this.roomId).subscribe(
+  addPeerStream(peer, streamInfo) {
+    this.hmsClientManagerService.getPeerStream(this.client, streamInfo.mid, this.roomId).subscribe(
       data => {
         if (!this.peers[peer.uid]) {
           this.peers[peer.uid] = peer
         }
-        this.updateStreams(peer.uid, mId, data);
+        this.updateStreams(peer.uid, streamInfo.mid, data, streamInfo.screen);
       }
     )
   }
 
-  // this method is for the admin to be able to remove the stream of a peer
-  removePeerStream(uid, stream, roomId) {
 
-    // find the peer, find the stream and remove it
-  }
-
-  updateStreams(uid, mid, stream) {
+  updateStreams(uid, mid, stream, screen?) {
     this.streams[mid] = {uid, mid, stream};
     this.numVids = Object.keys(this.streams).length;
+    if (screen || (stream.options && stream.options.screen)) {
+      this.screenShareStream = mid;
+    }
   }
 
   removeStream(mid) {
+    if (this.screenShareStream === mid) {
+      this.screenShareStream = null;
+    }
     delete this.streams[mid];
     this.numVids = Object.keys(this.streams).length;
   }
@@ -351,8 +367,37 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     }
   }
 
+  confirmEndConference(dialog: TemplateRef<any>) {
+    this.dialogService.open(dialog);
+  }
+
   endConference() {
-    // show a notification popup
+    // if user is a host
+    if (this.serverClient.role === EHmsRoles.HOST) {
+      this.hmsLiveChannel.sendData(
+        this.hmsLiveChannel.ACTIONS.END_STREAM,
+        this.client.uid,
+        {}
+      )
+    }
+    this.endAllStreams();
+  }
+
+
+  endAllStreams() {
+    if (this.localStream) {
+      this.removeLocalStream();
+    }
+
+    if (this.localScreen) {
+      this.removeLocalScreen();
+    }
+
+    // disconnect the client
+    // this.client.disconnect();
+
+    // if user is a viewer or a guest
+    this.webinarEnded = true;
   }
 
 
@@ -397,7 +442,6 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   receiveChannelData() {
     const receiveDataSubscription = this.hmsLiveChannel.channelData$[this.client.uid].subscribe(
       data => {
-        console.log('RECEIVED', data);
         if (data.uid && !this.peers[data.uid]) {
           this.peers[data.uid] = {};
         }
@@ -427,6 +471,10 @@ export class ConferenceComponent implements OnInit, OnDestroy {
             if (this.onStage) {
               this.toggleStage();
             }
+          }
+          break;
+          case this.hmsLiveChannel.ACTIONS.END_STREAM: {
+            this.endAllStreams();
           }
           break;
         }

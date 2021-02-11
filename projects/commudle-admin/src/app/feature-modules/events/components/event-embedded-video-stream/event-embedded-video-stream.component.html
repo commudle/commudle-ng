@@ -79,7 +79,7 @@
     <app-video-stream
       *ngIf="evs && currentUser"
       [videoSource]="embeddedVideoStreamForm.get('source').value"
-      [videoCode]="embeddedVideoStreamForm.get('embed_code').value"
+      [videoCode]="embeddedVideoStreamForm.get('embed_code').value || evs.hms_room_id"
       [fillerText]="'Auto Preview'"
       [zoomHostEmail]="evs.zoom_host_email"
       [zoomPassword]="evs.zoom_password"

@@ -93,8 +93,8 @@ export class HmsClientManagerService {
     return from(client.unsubscribe(stream, roomId));
   }
 
-  disconnectClient(client: HMSClient) {
-    client.disconnect();
-  }
+  // disconnectClient(client: HMSClient): Observable<void> {
+  //   return from(client.disconnect());
+  // }
 
 }
