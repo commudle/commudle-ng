@@ -1,8 +1,11 @@
 .user-video {
   overflow: hidden;
   position: relative;
-  border: 1px solid #d3d3d342;
+  border: 1px solid #d3d3d324;
+  height: 100%;
+  width: 100%;
   video {
+    height: 100%;
     width: 100%;
   }
 

@@ -1,5 +1,7 @@
 <div class="conference">
-  <div class="user-videos d-flex flex-wrap">
+  <div
+    class="user-videos"
+    [ngClass]="{'max-one': numVids === 1, 'max-four': (numVids > 1 && numVids <= 4), 'more-than-four': (numVids > 4)}">
     <!-- <app-user-video
       *ngIf="localStream && onStage"
       [userDetails]="peers[client.uid]"

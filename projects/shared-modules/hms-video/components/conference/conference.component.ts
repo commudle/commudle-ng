@@ -43,6 +43,10 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   peers = {};
   streams = {};
 
+  numVids = 0;
+
+  Math = Math;
+
 
   constructor(
     private libAuthWatchService: LibAuthwatchService,
@@ -155,7 +159,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       // remove the peer's stream
       this.client.on('stream-remove', (room, peer, streamInfo) => {
           // Remove remote stream if needed
-          delete this.streams[streamInfo.mid];
+          this.removeStream(streamInfo.mid);
       });
 
       // detect temporary socket disconnections
@@ -220,7 +224,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   }
 
   removeLocalStream() {
-    delete this.streams[this.localStream.mid];
+    this.removeStream(this.localStream.mid)
     this.hmsClientManagerService.unpublishLocalStream(this.client, this.localStream, this.roomId).subscribe(
       data => {
         this.localStream = null;
@@ -270,7 +274,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
 
   removeLocalScreen() {
-    delete this.streams[this.localScreen.mid];
+    this.removeStream(this.localScreen.mid);
     this.hmsClientManagerService.unpublishLocalStream(this.client, this.localScreen, this.roomId).subscribe(
       data => {
         this.screenShare = false;
@@ -301,6 +305,12 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
   updateStreams(uid, mid, stream) {
     this.streams[mid] = {uid, mid, stream};
+    this.numVids = Object.keys(this.streams).length;
+  }
+
+  removeStream(mid) {
+    delete this.streams[mid];
+    this.numVids = Object.keys(this.streams).length;
   }
 
 

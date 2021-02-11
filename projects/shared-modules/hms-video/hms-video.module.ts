@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserVideoComponent } from './components/conference/user-video/user-video.component';
 import { ControlsComponent } from './components/conference/controls/controls.component';
 import { SelectRoleComponent } from './components/select-role/select-role.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 
@@ -35,6 +36,7 @@ import { SelectRoleComponent } from './components/select-role/select-role.compon
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedPipesModule,
 
     // Nebular
     NbButtonModule,
