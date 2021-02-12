@@ -49,6 +49,7 @@ import {DiscussionPersonalChatComponent} from './discussion-personal-chat/discus
 import {CookieConsentComponent} from './cookie-consent/cookie-consent.component';
 import {UserProfileMiniComponent} from './user-profile-mini/user-profile-mini.component';
 import {UserLiveStatusComponent} from './user-live-status/user-live-status.component';
+import {HmsVideoModule} from 'projects/shared-modules/hms-video/hms-video.module';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import {UserLiveStatusComponent} from './user-live-status/user-live-status.compo
     YouTubePlayerModule,
     SharedPipesModule,
     NgxDatatableModule,
+    HmsVideoModule,
 
     // Nebular
     NbButtonModule,

@@ -1,0 +1,15 @@
+nb-list.users-list {
+  nb-list-item {
+    display: flex;
+    justify-content: space-between;
+    button.invite-to-stage {
+      display: none;
+    }
+
+    &:hover {
+      button.invite-to-stage {
+        display: block;
+      }
+    }
+  }
+}

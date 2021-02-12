@@ -51,12 +51,12 @@
 
 
       <div #videoContainer class="video-stream">
-        <div *ngIf="embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
+        <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>
             <nb-card-body>
               <div>
                 <app-video-stream
-                  [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : embeddedVideoStream.embed_code"
+                  [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : (embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id)"
                   [videoSource]="embeddedVideoStream.source"
                   [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? ('Starting in ' + moment(startTime).fromNow(true)) : 'Loading Video...'))"
                   [width]="playerWidth"
@@ -65,6 +65,7 @@
                   [zoomPassword]="embeddedVideoStream.zoom_password"
                   [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"
                   [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
+                  [hmsRoomId]="embeddedVideoStream.hms_room_id"
                   [userEmail]="currentUser ? currentUser.email : ''"
                   [userName]="currentUser ? currentUser.name : ''"
                 >
@@ -74,36 +75,20 @@
           </nb-card>
         </div>
       </div>
-
-      <div *ngIf="userVisitData" class="attendees">
-
-        <nb-card class="visit-users" *ngIf="userVisitData.visiting_users.length > 0 && moment().isBetween(moment(startTime), moment(endTime))">
-          <nb-card-header>You are watching this with</nb-card-header>
-          <nb-card-body>
-            <div class="visit-user" *ngFor="let user of userVisitData.visiting_users">
-              <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true" [showLiveStatus]="true"></app-user-profile-horizontal>
-            </div>
-          </nb-card-body>
-        </nb-card>
-
-
-        <nb-card class="visit-users" *ngIf="userVisitData.watched_users.length >= 1 && moment() > moment(endTime)">
-          <nb-card-header>Attendees</nb-card-header>
-          <nb-card-body>
-            <div class="visit-user" *ngFor="let user of userVisitData.watched_users">
-              <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
-            </div>
-          </nb-card-body>
-        </nb-card>
-
-
-      </div>
     </div>
 
     <div class="card-live-discussion">
       <nb-card>
         <nb-card-body>
           <nb-tabset fullWidth responsive (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
+            <nb-tab
+              tabTitle="People"
+              tabIcon="people-outline"
+              [tabId]="'people'"
+              *ngIf="embeddedVideoStream && isBrowser"
+            >
+              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event"></app-users-list>
+            </nb-tab>
             <nb-tab
               tabTitle="Chat"
               *ngIf="chat"
