@@ -85,16 +85,29 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   updateValidators() {
-    if (this.embeddedVideoStreamForm.get('source').value === EEmbeddedVideoStreamSources.ZOOM) {
-      this.embeddedVideoStreamForm.get('zoom_host_email').setValidators([Validators.required, Validators.email]);
-      this.embeddedVideoStreamForm.get('zoom_password').setValidators(Validators.required);
-    } else {
-      this.embeddedVideoStreamForm.get('zoom_host_email').clearValidators();
-      this.embeddedVideoStreamForm.get('zoom_password').clearValidators();
+    // remove the required validator from zoom attributes
+    this.embeddedVideoStreamForm.get('zoom_host_email').clearValidators();
+    this.embeddedVideoStreamForm.get('zoom_password').clearValidators();
+
+    // add required validator to embed_code
+    this.embeddedVideoStreamForm.get('embed_code').setValidators([Validators.required]);
+
+    switch (this.embeddedVideoStreamForm.get('source').value) {
+      case EEmbeddedVideoStreamSources.ZOOM: {
+        this.embeddedVideoStreamForm.get('zoom_host_email').setValidators([Validators.required, Validators.email]);
+        this.embeddedVideoStreamForm.get('zoom_password').setValidators(Validators.required);
+      }
+      break;
+      case EEmbeddedVideoStreamSources.COMMUDLE: {
+        this.embeddedVideoStreamForm.get('embed_code').clearValidators();
+      }
+      break;
+
     }
 
     this.embeddedVideoStreamForm.get('zoom_host_email').updateValueAndValidity();
     this.embeddedVideoStreamForm.get('zoom_password').updateValueAndValidity();
+    this.embeddedVideoStreamForm.get('embed_code').updateValueAndValidity();
   }
 
 

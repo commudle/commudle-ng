@@ -30,6 +30,7 @@ import { EventLocationTracksComponent } from './components/agenda/event-location
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
 import { AutoAttendanceComponent } from './components/auto-attendance/auto-attendance.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
+import { UsersListComponent } from './components/speaker-session-page/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SponsorsComponent } from './components/sponsors/sponsors.component';
     AttendingMembersComponent,
     AutoAttendanceComponent,
     SponsorsComponent,
+    UsersListComponent,
   ],
     imports: [
         CommonModule,

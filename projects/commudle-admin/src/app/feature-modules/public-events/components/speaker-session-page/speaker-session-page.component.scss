@@ -34,6 +34,17 @@
             }
             }
           }
+
+          .video-stream {
+            nb-card {
+              nb-card-body {
+                display: flex;
+                >div {
+                  flex-grow: 1;
+                }
+              }
+            }
+          }
       }
 
       @media screen and (max-width: 999px) and (orientation: portrait){
@@ -135,8 +146,15 @@
                 height: 100%;
                 ::ng-deep {
                   ul.tabset {
+                    width: 100%;
                     overflow-x: auto;
-                    padding: 5px;
+                    padding: 5px 0;
+
+                    li {
+                      a {
+                        padding: 5px 10px;
+                      }
+                    }
                   }
                 }
 
