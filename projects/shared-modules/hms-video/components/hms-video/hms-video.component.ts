@@ -1,5 +1,5 @@
 import { HMSClient } from '@100mslive/hmsvideo-web';
-import { Component, Input, OnChanges, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -72,12 +72,12 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   getClient() {
+    console.log('SERVICE', typeof this.hmsClientManagerService);
     this.hmsApiService.getClientToken(this.roomId).subscribe(data => {
       this.serverClient = data;
 
       // by default, the selected role will be same as the one we have received in the client
       this.selectedRole = this.serverClient.role;
-
       this.hmsClient = this.hmsClientManagerService.createClient(this.user.name, this.serverClient.token);
       this.subscribeChannel();
       this.loading = false;

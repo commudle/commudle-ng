@@ -9,6 +9,7 @@
     [stream]="streams[screenShareStream].stream"
     [userDetails]="(peers[streams[screenShareStream].uid] ? peers[streams[screenShareStream].uid].user : {})"
     [overridable]="serverClient.role === EHmsRoles.HOST"
+    [self]="false"
     (mutePeer)="mutePeer(streams[screenShareStream].uid)"
     (removeFromStage)="removePeerFromStage(streams[screenShareStream].uid)"
     ></app-user-video>
@@ -29,6 +30,7 @@
       [stream]="stream.value['stream']"
       [userDetails]="(peers[stream.value['uid']] ? peers[stream.value['uid']].user : {})"
       [overridable]="serverClient.role === EHmsRoles.HOST"
+      [self]="stream.value['uid'] === client.uid"
       (mutePeer)="mutePeer(stream.value['uid'])"
       (removeFromStage)="removePeerFromStage(stream.value['uid'])"
       ></app-user-video>

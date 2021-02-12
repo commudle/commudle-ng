@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HmsVideoComponent } from './components/hms-video/hms-video.component';
 import { LocalPreviewComponent } from './components/local-preview/local-preview.component';
 import { ConferenceComponent } from './components/conference/conference.component';
@@ -18,10 +18,10 @@ import {
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserVideoComponent } from './components/conference/user-video/user-video.component';
-import { ControlsComponent } from './components/conference/controls/controls.component';
 import { SelectRoleComponent } from './components/select-role/select-role.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
+import { HmsClientManagerService } from './services/hms-client-manager.service';
 
 
 @NgModule({
@@ -31,7 +31,6 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     ConferenceComponent,
     SettingsComponent,
     UserVideoComponent,
-    ControlsComponent,
     SelectRoleComponent
   ],
   imports: [
@@ -56,6 +55,14 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
   ],
   exports: [
     HmsVideoComponent
+  ],
+
+  providers: [
+    [
+      {
+        provide: 'HmsClientManagerService', useClass: HmsClientManagerService
+      }
+    ]
   ]
 })
 export class HmsVideoModule { }

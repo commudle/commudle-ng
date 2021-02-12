@@ -1,7 +1,8 @@
 import { environment } from 'projects/commudle-admin/src/environments/environment';
-import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 declare var JitsiMeetExternalAPI: any;
 @Component({
   selector: 'app-video-stream',
@@ -9,6 +10,7 @@ declare var JitsiMeetExternalAPI: any;
   styleUrls: ['./video-stream.component.scss']
 })
 export class VideoStreamComponent implements OnInit, OnChanges {
+  isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('jitsimeet', {static: false}) private jitsiMeet: ElementRef;
   api;
 
@@ -37,7 +39,9 @@ export class VideoStreamComponent implements OnInit, OnChanges {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object,
+
   ) { }
 
   ngOnInit() {

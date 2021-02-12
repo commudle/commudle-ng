@@ -136,6 +136,6 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-// NAMED OUTLETS
+// NAMED ROUTER OUTLETS
 // p = popup
 // t = tab

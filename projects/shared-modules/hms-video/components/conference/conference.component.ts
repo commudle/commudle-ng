@@ -1,15 +1,15 @@
 import { HMSClient } from '@100mslive/hmsvideo-web';
-import { Component, Input, OnInit, OnDestroy, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, TemplateRef, Inject } from '@angular/core';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { combineLatest } from 'rxjs';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
-import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 import { EHmsRoles } from '../enums/hms-roles.enum';
 import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { NbDialogService } from '@nebular/theme';
+import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 
 @Component({
   selector: 'app-conference',
@@ -61,21 +61,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnDestroy() {
-    if (this.client) {
-      this.client.disconnect();
-    }
-
-
-    if (this.localStream) {
-      this.removeLocalStream();
-    }
-
-    if (this.localScreen) {
-      this.removeLocalScreen();
-    }
-
-    // disconnect the client
-    this.client.disconnect();
+    this.endAllStreams();
 
     for (let subs of this.subscriptions) {
       subs.unsubscribe();

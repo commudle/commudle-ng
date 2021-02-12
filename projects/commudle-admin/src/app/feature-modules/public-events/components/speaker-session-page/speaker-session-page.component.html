@@ -51,7 +51,7 @@
 
 
       <div #videoContainer class="video-stream">
-        <div *ngIf="embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
+        <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>
             <nb-card-body>
               <div>
@@ -85,7 +85,7 @@
               tabTitle="People"
               tabIcon="people-outline"
               [tabId]="'people'"
-              *ngIf="embeddedVideoStream"
+              *ngIf="embeddedVideoStream && isBrowser"
             >
               <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event"></app-users-list>
             </nb-tab>
