@@ -1,29 +1,38 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { Component, OnInit, Input, OnDestroy, AfterViewChecked} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, AfterViewChecked, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LabsService } from '../../../services/labs.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { ActivatedRoute } from '@angular/router';
+import { NbDialogService } from '@nebular/theme';
+
 
 @Component({
   selector: 'app-lab-step',
   templateUrl: './lab-step.component.html',
   styleUrls: ['./lab-step.component.scss']
 })
+
 export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
+
+  @ViewChild('content')private content:ElementRef;
+  @ViewChild('dialog')private dialog:any;
+  public src;
+
   @Input() step: ILabStep;
   subscriptions = []
   currentUser;
   stepDescription;
   codeHighlighted = false;
-
+  triggerDialogB = false;
   constructor(
     private authWatchService: LibAuthwatchService,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialogService: NbDialogService
   ) { }
 
   ngOnInit() {
@@ -41,6 +50,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
           stepData => {
             this.step = stepData;
             this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
+            this.triggerDialogB = false;
             this.addLabStepVisit();
           }
         );
@@ -48,6 +58,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     );
 
   }
+
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
@@ -58,8 +69,28 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   }
 
-  ngAfterViewChecked() {
-    if (!this.codeHighlighted) {
+  ngAfterViewChecked() 
+  {
+
+  if(!this.triggerDialogB)
+  {
+    if(this.content){
+      let imagesList = this.content.nativeElement.querySelectorAll("img");
+      for(let i=0;i<imagesList.length;i++)
+      {
+         let g0 = imagesList[i];
+         g0.addEventListener("click", ()=>{
+          this.src = g0.src;
+          this.dialogService.open(this.dialog)
+          }, false);
+      }
+      this.triggerDialogB = true;
+    }
+
+  }
+
+    if (!this.codeHighlighted) 
+    {
       this.prismJsHighlightCodeService.highlightAll();
       this.codeHighlighted = true;
     }
