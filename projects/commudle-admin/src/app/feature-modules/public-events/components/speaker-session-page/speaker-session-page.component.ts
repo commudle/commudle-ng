@@ -29,7 +29,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
   styleUrls: ['./speaker-session-page.component.scss']
 })
 export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('videoContainer') private videoContainer: ElementRef;
 
   trackSlot: ITrackSlot;
@@ -286,14 +286,17 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   markUserObjectVisit() {
-    const userObjectVisit = {
-      url: this.location.path(),
-      session_token: this.cookieService.get(environment.session_cookie_name),
-      parent_type: 'EmbeddedVideoStream',
-      parent_id: this.embeddedVideoStream.id,
-      app_token: this.authWatchService.getAppToken()
-    };
-    this.userObjectVisitsService.create(userObjectVisit).subscribe()
+    if (this.isBrowser) {
+      const userObjectVisit = {
+        url: this.location.path(),
+        session_token: this.cookieService.get(environment.session_cookie_name),
+        parent_type: 'EmbeddedVideoStream',
+        parent_id: this.embeddedVideoStream.id,
+        app_token: this.authWatchService.getAppToken()
+      };
+      this.userObjectVisitsService.create(userObjectVisit).subscribe();
+    }
+
   }
 
 

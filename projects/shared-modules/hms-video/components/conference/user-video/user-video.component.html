@@ -1,5 +1,5 @@
 <div class="user-video">
-  <video #userVideo autoplay [muted]="true" playsinline></video>
+  <video #userVideo autoplay [muted]="self" playsinline></video>
   <div *ngIf="userDetails && !userDetails.camera && (stream.options && !stream.options.screen)" class="avatar d-flex justify-content-center align-items-center">
     <img [src]="userDetails.avatar">
   </div>

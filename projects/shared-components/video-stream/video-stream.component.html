@@ -1,5 +1,5 @@
 <div class="video-player-container">
-  <div class="video-player">
+  <div class="video-player" *ngIf="isBrowser">
     <p class="filler" *ngIf="!videoCode">
       <nb-icon icon="video"></nb-icon>
       <br/>

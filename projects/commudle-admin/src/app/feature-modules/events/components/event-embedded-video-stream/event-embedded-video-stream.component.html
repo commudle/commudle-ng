@@ -3,7 +3,7 @@
     <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
-            <nb-option [value]="EEmbeddedVideoStreamSources.COMMUDLE">
+            <nb-option *ngIf="[1, 74, 116].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
               Commudle Stage (powered by 100ms.live)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">

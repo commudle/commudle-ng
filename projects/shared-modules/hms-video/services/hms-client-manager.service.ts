@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HMSPeer, HMSClientConfig, HMSClient, LocalStream, HMSMediaStreamConstraints, Stream } from "@100mslive/hmsvideo-web";
+import { HMSPeer, HMSClientConfig, HMSClient, HMSMediaStreamConstraints } from "@100mslive/hmsvideo-web";
 import { from, Observable } from 'rxjs';
 
 @Injectable({

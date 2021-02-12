@@ -87,7 +87,7 @@ export class AppComponent implements OnInit {
           }, 10);
     });
 
-    if (!this.cookieConsentService.isCookieConsentAccepted()) {
+    if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       this.windowService.open(CookieConsentComponent, { title: "Let's Share Cookies!", hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
     }
 

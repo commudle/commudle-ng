@@ -10,6 +10,7 @@ export class UserVideoComponent implements OnInit, OnChanges {
   @Input() stream;
   @Input() userDetails;
   @Input() overridable;
+  @Input() self;
   @Output() mutePeer = new EventEmitter();
   @Output() removeFromStage = new EventEmitter()
   constructor() { }
