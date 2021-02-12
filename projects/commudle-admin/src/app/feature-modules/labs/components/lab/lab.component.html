@@ -1,3 +1,20 @@
+
+<ng-template #dialog  let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header style="align-self: flex-end;">
+        <nb-icon icon="close" (click)="ref.close()"></nb-icon>
+    </nb-card-header>
+
+    <nb-card-body>
+        <img class="Image" [src]="src" alt="">
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+
+
+
+
 <div class="lab" *ngIf="lab">
 
   <div class="body">
@@ -72,7 +89,7 @@
             <div *ngIf="lab.header_image" class="header-image">
               <img src="{{ lab.header_image.url }}" alt="{{ lab.name }}">
             </div>
-            <div class="intro-content" [innerHTML]="labDescription"></div>
+            <div class="intro-content" [innerHTML]="labDescription" #introCon ></div>
           </div>
           <div>
             <router-outlet></router-outlet>

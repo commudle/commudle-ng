@@ -1,0 +1,116 @@
+:host {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .webinar-ended {
+    nb-alert {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .conference {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+
+    .screen-video {
+      width: 80%;
+      height: 90%;
+
+    }
+
+    .user-videos {
+      width: 100%;
+      height: 90%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      overflow-y: auto;
+      transition: all 0.5s ease-in-out;
+      .video {
+        min-width: 300px;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+
+      &.max-one {
+
+        .video {
+          height: 100%;
+          width: 100%;
+          flex-grow: 1;
+        }
+      }
+
+      &.max-four {
+
+        .video {
+          height: 50%;
+          width: 50%;
+          flex-grow: 1;
+        }
+      }
+
+      &.more-than-four {
+        .video {
+          height: 25%;
+          width: 25%;
+          flex-grow: 1;
+        }
+      }
+
+      &.vertical {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 20%;
+        .video {
+          height: 200px;
+          width: 100%;
+        }
+      }
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      >div {
+        margin: 5px;
+      }
+
+      .end-meeting {
+        nb-icon {
+          transform: rotate(225deg);
+          font-size: 1.1rem;
+        }
+      }
+
+      .screen {
+        button {
+          nb-icon {
+            display: flex;
+          }
+        }
+      }
+    }
+
+    .stream-settings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 1s ease-in-out;
+    }
+  }
+}

@@ -74,9 +74,6 @@ export class UserLiveStatusComponent implements OnInit, OnDestroy {
               break;
             }
           }
-        } else {
-          this.online = false;
-          this.isOnline.emit(false);
         }
       }
     );
