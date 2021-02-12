@@ -3,11 +3,14 @@
     <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
+            <nb-option *ngIf="[1, 74, 116].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
+              Commudle Stage (powered by 100ms.live)
+            </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
               Zoom
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
-              External Link (to another platform)
+              External Link (to platforms like Google Meet)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
               YouTube (URL)
@@ -16,7 +19,7 @@
               Jitsi (https://meet.jit.si/) [Works only on Desktop]
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-              Other (Embedded Iframe)
+              IFrame (Embedded Iframe)
             </nb-option>
           </nb-select>
         </div>
@@ -43,7 +46,7 @@
             <span *ngIf="embeddedVideoStreamForm['controls'].embed_code.touched && embeddedVideoStreamForm['controls'].embed_code.invalid && embeddedVideoStreamForm['controls'].embed_code.errors.required" class="validation-error-text">
               Required Field
             </span>
-            <textarea placeholder="Type here" nbInput fullWidth formControlName="embed_code"></textarea>
+            <textarea placeholder="Type here" nbInput fullWidth formControlName="embed_code" [ngClass]="{'hidden': embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.COMMUDLE}"></textarea>
           </label>
 
         </div>
@@ -74,15 +77,17 @@
   </div>
   <div class="preview">
     <app-video-stream
+      *ngIf="evs && currentUser"
       [videoSource]="embeddedVideoStreamForm.get('source').value"
-      [videoCode]="embeddedVideoStreamForm.get('embed_code').value"
+      [videoCode]="embeddedVideoStreamForm.get('embed_code').value || evs.hms_room_id"
       [fillerText]="'Auto Preview'"
       [zoomHostEmail]="evs.zoom_host_email"
       [zoomPassword]="evs.zoom_password"
       [zoomSignature]="evs.zoom_attendee_signature"
       [zoomHostSignature]="evs.zoom_host_signature"
-      [userEmail]="this.currentUser.email"
-      [userName]="this.currentUser.name"
+      [hmsRoomId]="evs.hms_room_id"
+      [userEmail]="currentUser.email"
+      [userName]="currentUser.name"
       >
     </app-video-stream>
   </div>

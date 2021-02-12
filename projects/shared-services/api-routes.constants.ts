@@ -90,7 +90,6 @@ export const API_ROUTES = {
   EMBEDDED_VIDEO_STREAMS: {
     GET: 'api/v2/embedded_video_streams',
     CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
-
     PUBLIC: {
       GET: 'api/v2/embedded_video_streams/public'
     }
@@ -107,6 +106,8 @@ export const API_ROUTES = {
     UPDATE_CUSTOM_AGENDA: 'api/v2/events/update_custom_agenda',
     UPDATE_HEADER_IMAGE: 'api/v2/events/update_header_image',
     DELETE_HEADER_IMAGE: 'api/v2/events/delete_header_image',
+    EMBEDDED_VIDEO_STREAM_PAST_VISITORS: 'api/v2/events/embedded_video_stream_past_visitors',
+    INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
 
 
     PUBLIC: {
@@ -203,6 +204,12 @@ export const API_ROUTES = {
 
   // locations
   GET_LOCATIONS: 'api/v2/locations',
+
+
+  // hms_clients
+  HMS_CLIENT: {
+    CLIENT_TOKEN: 'api/v2/hms_clients/client_token'
+  },
 
 
   // event_locations

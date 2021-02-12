@@ -50,7 +50,8 @@ export class AppComponent implements OnInit {
       this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
       this.titleService.setTitle("Commudle | Developer Communities, Together");
 
-      this.iconLibraries.registerFontPack('font-awesome', { iconClassPrefix: 'fa', packClass: 'fa' });
+      this.iconLibraries.registerFontPack('fas', { iconClassPrefix: 'fa', packClass: 'fas' });
+      this.iconLibraries.registerFontPack('fab', { iconClassPrefix: 'fa', packClass: 'fab' });
   }
 
   ngOnInit() {
@@ -86,7 +87,7 @@ export class AppComponent implements OnInit {
           }, 10);
     });
 
-    if (!this.cookieConsentService.isCookieConsentAccepted()) {
+    if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       this.windowService.open(CookieConsentComponent, { title: "Let's Share Cookies!", hasBackdrop: false, initialState: NbWindowState.MAXIMIZED});
     }
 
