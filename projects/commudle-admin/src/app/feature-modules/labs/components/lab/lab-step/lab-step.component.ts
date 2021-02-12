@@ -69,16 +69,15 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   }
 
-  ngAfterViewChecked() 
-  {
+  ngAfterViewChecked() {
 
-  if(!this.triggerDialogB)
-  {
-    if(this.content){
-      let imagesList = this.content.nativeElement.querySelectorAll("img");
-      for(let i=0;i<imagesList.length;i++)
+  if (!this.triggerDialogB) {
+    if (this.content){
+      const imagesList = this.content.nativeElement.querySelectorAll("img");
+      for(const img of imagesList)
       {
-         let g0 = imagesList[i];
+         const g0 = img;
+         g0.classList.add('clickable');
          g0.addEventListener("click", ()=>{
           this.src = g0.src;
           this.dialogService.open(this.dialog)
@@ -89,7 +88,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   }
 
-    if (!this.codeHighlighted) 
+    if (!this.codeHighlighted)
     {
       this.prismJsHighlightCodeService.highlightAll();
       this.codeHighlighted = true;

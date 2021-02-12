@@ -153,14 +153,14 @@ ngAfterViewChecked()
   if(!this.triggerDialogB)
   {
     if(this.iContent){
-      let imagesList = this.iContent.nativeElement.querySelectorAll("img");
-      for(let i=0;i<imagesList.length;i++)
+      const imagesList = this.iContent.nativeElement.querySelectorAll('img');
+      for(const img of imagesList)
       {
-         let g0 = imagesList[i];
-         console.log(g0)
-         g0.addEventListener("click", ()=>{
+         const g0 = img;
+         g0.classList.add('clickable');
+         g0.addEventListener("click", () => {
           this.src = g0.src;
-          this.dialogService.open(this.dialog)
+          this.dialogService.open(this.dialog);
           }, false);
       }
       this.triggerDialogB = true;
