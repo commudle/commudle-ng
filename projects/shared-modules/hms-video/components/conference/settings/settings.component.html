@@ -1,5 +1,20 @@
 <div class="settings">
-  <nb-card>
+  <nb-card *ngIf="audioDevices.length == 0 && videoDevices.length == 0">
+    <nb-card-body>
+      <nb-alert accent="info">
+        <p *ngIf="invitation" class="text-center">
+          You are being invited to the Stage!
+        </p>
+        Please allow access to mic and camera devices to continue!
+      </nb-alert>
+      <div>
+        <button nbButton fullWidth status="info" (click)="getMediaPermission()">
+          Get Permission
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card *ngIf="audioDevices.length > 0 && videoDevices.length > 0">
     <nb-card-body>
       <p *ngIf="invitation" class="text-center">
         You are being invited to the Stage!
