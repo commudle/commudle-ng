@@ -73,7 +73,6 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   getClient() {
-    console.log('SERVICE', typeof this.hmsClientManagerService);
     this.hmsApiService.getClientToken(this.roomId).subscribe(data => {
       this.serverClient = data;
 
