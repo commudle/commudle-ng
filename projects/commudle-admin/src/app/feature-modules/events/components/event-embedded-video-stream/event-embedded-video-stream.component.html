@@ -4,22 +4,23 @@
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
             <nb-option *ngIf="[1, 74, 116].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
-              Commudle Stage (powered by 100ms.live)
-            </nb-option>
-            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
-              Zoom
+              <div>
+                Commudle Stage
+                  <br/>
+                  <small>
+                    (Upto 20 people on the stage and 80 people as viewers. Invite anyone to the stage, live!)
+                  </small>
+                  <br/>
+              </div>
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
               External Link (to platforms like Google Meet)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
-              YouTube (URL)
-            </nb-option>
-            <nb-option [value]="EEmbeddedVideoStreamSources.JITSI_MEET">
-              Jitsi (https://meet.jit.si/) [Works only on Desktop]
+              YouTube Live Embed (URL)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
-              IFrame (Embedded Iframe)
+              IFrame (Paste the code of any Iframe)
             </nb-option>
           </nb-select>
         </div>
@@ -69,7 +70,8 @@
 
       <div class="save-button-bottom">
         <button [disabled]="!embeddedVideoStreamForm.valid" type="submit" nbButton fullWidth status="info">
-          Save
+          <span *ngIf="!evs || !evs.hms_room_id">Save</span>
+          <span *ngIf="evs && evs.hms_room_id">Reset Room</span>
         </button>
       </div>
 
