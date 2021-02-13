@@ -40,19 +40,26 @@ export class UsersListComponent implements OnInit, OnDestroy {
       this.userObjectVisitChannel.subscribe(this.embeddedVideoStream.id, 'EmbeddedVideoStream', this.uuid);
       this.receiveData();
 
-      this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(
-        data => {
-          if (data) {
-            this.getCurrentUsersList();
+      this.subscriptions.push(
+        this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(
+          data => {
+            if (data) {
+              this.getCurrentUsersList();
+            }
           }
-        }
+        )
       )
     }
   }
 
   ngOnDestroy() {
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
     this.userObjectVisitChannel.unsubscribe(this.embeddedVideoStream.id, 'EmbeddedVideoStream', this.uuid);
-    this.usersListSubscription.unsubscribe();
+    if (this.usersListSubscription) {
+      this.usersListSubscription.unsubscribe();
+    }
   }
 
 
