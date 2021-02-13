@@ -1,9 +1,4 @@
-<div *ngIf="webinarEnded" class="webinar-ended">
-  <nb-alert accent="info">
-    This session has completed!
-  </nb-alert>
-</div>
-<div class="conference" *ngIf="!webinarEnded">
+<div class="conference">
   <div class="screen-video" *ngIf="screenShareStream">
     <app-user-video
     [stream]="streams[screenShareStream].stream"

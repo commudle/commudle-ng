@@ -18,6 +18,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   uuid = uuidv4();
   @Input() embeddedVideoStream: IEmbeddedVideoStream
   @Input() event: IEvent;
+  @Input() isAdmin = false;
+  @Input() activeEvent;
   channelName;
   subscriptions = [];
   usersListSubscription;

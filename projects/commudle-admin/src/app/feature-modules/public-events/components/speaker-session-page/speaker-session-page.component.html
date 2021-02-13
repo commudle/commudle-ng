@@ -87,7 +87,7 @@
               [tabId]="'people'"
               *ngIf="embeddedVideoStream && isBrowser"
             >
-              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event"></app-users-list>
+              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event" [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))" [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes[EUserRoles.EVENT_VOLUNTEER]"></app-users-list>
             </nb-tab>
             <nb-tab
               tabTitle="Chat"
