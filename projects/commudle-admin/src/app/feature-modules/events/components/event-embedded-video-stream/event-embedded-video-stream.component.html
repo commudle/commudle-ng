@@ -80,6 +80,7 @@
   <div class="preview">
     <app-video-stream
       *ngIf="evs && currentUser"
+      [currentUser]="currentUser"
       [videoSource]="embeddedVideoStreamForm.get('source').value"
       [videoCode]="embeddedVideoStreamForm.get('embed_code').value || evs.hms_room_id"
       [fillerText]="'Auto Preview'"
