@@ -1,5 +1,5 @@
 import { environment } from 'projects/commudle-admin/src/environments/environment';
-import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef, Inject, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
@@ -51,13 +51,16 @@ export class VideoStreamComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(): void {
-    this.setPreview();
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
   }
 
   setPreview() {
     if (this.videoCode) {
       switch (this.videoSource) {
+        case EEmbeddedVideoStreamSources.COMMUDLE:
+          this.changeDetectorRef.detectChanges();
+          break;
         case EEmbeddedVideoStreamSources.YOUTUBE:
           this.youtubeParser();
           break;
