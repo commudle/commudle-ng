@@ -6,7 +6,7 @@
       <span> {{ fillerText }} </span>
     </p>
 
-    <div class="youtube-player" *ngIf="videoCode || hmsRoomId">
+    <div class="youtube-player" *ngIf="currentUser">
       <app-hms-video
         *ngIf="videoSource == EEmbeddedVideoStreamSources.COMMUDLE"
         [roomId]="hmsRoomId">

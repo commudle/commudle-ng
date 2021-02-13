@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -29,7 +30,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   constructor(
     private userObjectVisitChannel: UserObjectVisitChannel,
     private eventsService: EventsService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
     if (this.event.event_status.name === EEventStatuses.COMPLETED) {
       this.getPastUsersList();
     } else {
-      this.userObjectVisitChannel.subscribe(this.embeddedVideoStream.id, 'EmbeddedVideoStream', this.uuid);
+      let parentType = 'EmbeddedVideoStream';
+      let parentId = this.embeddedVideoStream.id;
+
+      if (this.activatedRoute.snapshot.queryParams.track_slot_id) {
+        parentType = 'TrackSlot';
+        parentId = this.activatedRoute.snapshot.queryParams.track_slot_id;
+      }
+      this.userObjectVisitChannel.subscribe(parentId, parentType, this.uuid);
       this.receiveData();
 
       this.subscriptions.push(

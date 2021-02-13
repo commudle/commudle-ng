@@ -3,6 +3,7 @@ import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetec
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 declare var JitsiMeetExternalAPI: any;
 @Component({
   selector: 'app-video-stream',
@@ -16,7 +17,7 @@ export class VideoStreamComponent implements OnInit, OnChanges {
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   environment = environment;
-
+  @Input() currentUser: ICurrentUser;
   @Input() videoSource: string;
   @Input() videoCode: any;
   @Input() fillerText: string;

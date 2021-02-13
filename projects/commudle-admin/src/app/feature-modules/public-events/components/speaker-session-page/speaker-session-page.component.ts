@@ -23,6 +23,7 @@ import { UserObjectVisitsService } from 'projects/shared-components/services/use
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -83,6 +84,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     private location: Location,
     private cookieService: CookieService,
     private usersService: AppUsersService,
+    private userVisitsService: UserVisitsService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
@@ -127,6 +129,14 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
         }
       )
     );
+
+    this.subscriptions.push(
+      this.userVisitsService.visitors$.subscribe(
+        data => {
+          this.userVisitData = data;
+        }
+      )
+    );
   }
 
   ngAfterViewInit() {
@@ -138,11 +148,13 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   getMyRoles() {
-    this.usersService.getMyRoles('Kommunity', this.community.id).subscribe(
-      data => {
-        this.userRoles = data;
-      }
-    )
+    if (this.currentUser) {
+      this.usersService.getMyRoles('Kommunity', this.community.id).subscribe(
+        data => {
+          this.userRoles = data;
+        }
+      )
+    }
   }
 
   resolveData() {
@@ -187,7 +199,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
         this.endTime = this.trackSlot.end_time;
         if (this.trackSlot.embedded_video_stream) {
           this.embeddedVideoStream = this.trackSlot.embedded_video_stream;
-          this.markUserObjectVisit();
+          this.markUserObjectVisit('TrackSlot', this.trackSlot.id);
           this.onResize();
         }
 
@@ -246,7 +258,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
       data => {
         if (data) {
           this.embeddedVideoStream = data;
-          this.markUserObjectVisit();
+          this.markUserObjectVisit('EmbeddedVideoStream', this.embeddedVideoStream.id);
           this.onResize();
         }
       }
@@ -297,13 +309,13 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
 
   }
 
-  markUserObjectVisit() {
+  markUserObjectVisit(objectType, objectId) {
     if (this.isBrowser) {
       const userObjectVisit = {
         url: this.location.path(),
         session_token: this.cookieService.get(environment.session_cookie_name),
-        parent_type: 'EmbeddedVideoStream',
-        parent_id: this.embeddedVideoStream.id,
+        parent_type: objectType,
+        parent_id: objectId,
         app_token: this.authWatchService.getAppToken()
       };
       this.userObjectVisitsService.create(userObjectVisit).subscribe();
