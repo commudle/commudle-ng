@@ -66,6 +66,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.channelSubscription.unsubscribe();
     for (let subs of this.subscriptions) {
       subs.unsubscribe();
     }
@@ -98,14 +99,36 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
       this.serverClient.token,
       this.user.name,
       this.serverClient.role
-      );
-    this.hmsLiveChannel.channelConnectionStatus$[`${this.hmsClient.uid}`].subscribe(
-      data => {
-        if (data) {
-          this.connectedToChannel = true;
+    );
+
+    this.subscriptions.push(
+      this.hmsLiveChannel.channelConnectionStatus$[`${this.hmsClient.uid}`].subscribe(
+        data => {
+          if (data) {
+            this.connectedToChannel = true;
+          }
         }
-      }
-    )
+      )
+    );
+
+    this.subscriptions.push(
+      this.hmsLiveChannel.channelData$[`${this.hmsClient.uid}`].subscribe(
+        data => {
+          if (data) {
+            switch (data.action) {
+              case this.hmsLiveChannel.ACTIONS.SET_PERMISSIONS: {
+                if (data.room_ended === true) {
+                  this.hmsVideoStateService.setState(EHmsStates.ENDED);
+                }
+                break;
+              }
+            }
+          }
+        }
+      )
+    );
   }
 
 }
+
+

@@ -7,7 +7,7 @@ import { combineLatest } from 'rxjs';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { EHmsRoles } from '../enums/hms-roles.enum';
-import { HmsVideoStateService } from '../../services/hms-video-state.service';
+import { EHmsStates, HmsVideoStateService } from '../../services/hms-video-state.service';
 import { NbDialogService } from '@nebular/theme';
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 
@@ -49,7 +49,6 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   Math = Math;
 
   screenShareStream = null;
-  webinarEnded = false;
 
   constructor(
     private libAuthWatchService: LibAuthwatchService,
@@ -57,7 +56,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     private localMediaService: LocalmediaService,
     private hmsLiveChannel: HmsLiveChannel,
     private hmsVideoStateService: HmsVideoStateService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
   ) { }
 
   ngOnDestroy() {
@@ -367,23 +366,34 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       )
     }
     this.endAllStreams();
+
+    this.hmsVideoStateService.setState(EHmsStates.ENDED);
+
   }
 
 
   endAllStreams() {
+    let unsubscribableStreams = [];
+
     if (this.localStream) {
-      this.removeLocalStream();
+      unsubscribableStreams.push(this.hmsClientManagerService.unpublishLocalStream(this.client, this.localStream, this.roomId));
     }
 
     if (this.localScreen) {
-      this.removeLocalScreen();
+      unsubscribableStreams.push(this.hmsClientManagerService.unpublishLocalStream(this.client, this.localScreen, this.roomId));
     }
 
-    // disconnect the client
-    // this.client.disconnect();
+    const unsubscribeStreams =  combineLatest(unsubscribableStreams);
 
-    // if user is a viewer or a guest
-    this.webinarEnded = true;
+    unsubscribeStreams.subscribe(
+      data => {
+        // disconnect the client
+        this.hmsClientManagerService.disconnectClient(this.client);    // if user is a viewer or a guest
+      }, error => {
+        console.log('ERROR IN DISCONNECTING', error);
+      }
+    );
+
   }
 
 
