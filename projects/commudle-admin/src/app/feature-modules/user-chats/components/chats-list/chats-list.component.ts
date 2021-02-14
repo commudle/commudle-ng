@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
-import {ICurrentUser} from '../../../../../../../shared-models/current_user.model';
-import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
-import {UserChatNotificationsChannel} from '../../services/websockets/user-chat-notifications.channel';
+import {IDiscussionFollower} from 'projects/shared-models/discussion-follower.model';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {UserChatNotificationsChannel} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-notifications.channel';
 
 @Component({
   selector: 'app-chats-list',

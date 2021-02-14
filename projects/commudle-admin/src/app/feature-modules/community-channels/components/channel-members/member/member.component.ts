@@ -5,7 +5,7 @@ import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.servic
 import {NB_WINDOW, NbMenuService, NbWindowService} from '@nebular/theme';
 import {filter, map} from 'rxjs/operators';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {UserChatsService} from '../../../../user-chats/services/user-chats.service';
+import {UserChatsService} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 
 @Component({
   selector: 'app-member',

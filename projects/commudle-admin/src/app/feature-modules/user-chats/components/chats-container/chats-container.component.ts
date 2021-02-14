@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
-import {ICurrentUser} from '../../../../../../../shared-models/current_user.model';
-import {SDiscussionsService} from '../../../../../../../shared-components/services/s-discussions.service';
-import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
-import {UserChatsService} from '../../services/user-chats.service';
-import {UserChatMessagesChannel} from '../../services/websockets/user-chat-messages.channel';
+import {IDiscussionFollower} from 'projects/shared-models/discussion-follower.model';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {SDiscussionsService} from 'projects/shared-components/services/s-discussions.service';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {UserChatMessagesChannel} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-messages.channel';
+import {UserChatsService} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 
 @Component({
   selector: 'app-chats-container',
