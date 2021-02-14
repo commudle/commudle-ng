@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {ActionCableConnectionSocket} from '../../../../../../../shared-services/action-cable-connection.socket';
-import {LibAuthwatchService} from '../../../../../../../shared-services/lib-authwatch.service';
-import {APPLICATION_CABLE_CHANNELS} from '../../../../../../../shared-services/application-cable-channels.constants';
+import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {APPLICATION_CABLE_CHANNELS} from 'projects/shared-services/application-cable-channels.constants';
 
 @Injectable({
   providedIn: 'root'

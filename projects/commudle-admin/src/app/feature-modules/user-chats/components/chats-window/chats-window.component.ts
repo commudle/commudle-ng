@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IDiscussionFollower} from '../../../../../../../shared-models/discussion-follower.model';
-import {IDiscussion} from '../../../../../../../shared-models/discussion.model';
-import {SDiscussionsService} from '../../../../../../../shared-components/services/s-discussions.service';
-import {UserChatMessagesChannel} from '../../services/websockets/user-chat-messages.channel';
+import {IDiscussionFollower} from 'projects/shared-models/discussion-follower.model';
+import {IDiscussion} from 'projects/shared-models/discussion.model';
+import {SDiscussionsService} from 'projects/shared-components/services/s-discussions.service';
+import {UserChatMessagesChannel} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-messages.channel';
 
 @Component({
   selector: 'app-chats-window',
