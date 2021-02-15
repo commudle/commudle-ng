@@ -1,0 +1,21 @@
+.chats-container {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+
+  .chats-list {
+    position: fixed;
+    right: 5px;
+    bottom: 0;
+  }
+
+  .chats-windows {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+
+    app-chats-window {
+      align-self: flex-end;
+    }
+  }
+}
