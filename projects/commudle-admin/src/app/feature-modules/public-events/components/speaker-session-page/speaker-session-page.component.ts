@@ -1,3 +1,4 @@
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
@@ -14,7 +15,6 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
-import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { NbSidebarService } from '@nebular/theme';
@@ -22,6 +22,8 @@ import { isPlatformBrowser, Location } from '@angular/common';
 import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -65,7 +67,9 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   chatCount = 0;
   questionCount = 0;
 
+  userRoles = [];
   subscriptions = [];
+  EUserRoles = EUserRoles;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -79,6 +83,8 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     private nbSidebarService: NbSidebarService,
     private location: Location,
     private cookieService: CookieService,
+    private usersService: AppUsersService,
+    private userVisitsService: UserVisitsService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
@@ -116,11 +122,19 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
 
   ngOnInit() {
     this.resolveData();
-
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe(
         data => {
           this.currentUser = data;
+          this.getMyRoles();
+        }
+      )
+    );
+
+    this.subscriptions.push(
+      this.userVisitsService.visitors$.subscribe(
+        data => {
+          this.userVisitData = data;
         }
       )
     );
@@ -134,11 +148,22 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
 
   }
 
+  getMyRoles() {
+    if (this.currentUser && this.community) {
+      this.usersService.getMyRoles('Kommunity', this.community.id).subscribe(
+        data => {
+          this.userRoles = data;
+        }
+      )
+    }
+  }
+
   resolveData() {
     this.subscriptions.push(
       this.activatedRoute.data.subscribe(
         data => {
           this.community = data.community;
+          this.getMyRoles();
           this.event = data.event;
           this.setMeta();
           this.startTime = this.event.start_time;
@@ -175,7 +200,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
         this.endTime = this.trackSlot.end_time;
         if (this.trackSlot.embedded_video_stream) {
           this.embeddedVideoStream = this.trackSlot.embedded_video_stream;
-          this.markUserObjectVisit();
+          this.markUserObjectVisit('TrackSlot', this.trackSlot.id);
           this.onResize();
         }
 
@@ -234,7 +259,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
       data => {
         if (data) {
           this.embeddedVideoStream = data;
-          this.markUserObjectVisit();
+          this.markUserObjectVisit('EmbeddedVideoStream', this.embeddedVideoStream.id);
           this.onResize();
         }
       }
@@ -285,13 +310,13 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
 
   }
 
-  markUserObjectVisit() {
+  markUserObjectVisit(objectType, objectId) {
     if (this.isBrowser) {
       const userObjectVisit = {
         url: this.location.path(),
         session_token: this.cookieService.get(environment.session_cookie_name),
-        parent_type: 'EmbeddedVideoStream',
-        parent_id: this.embeddedVideoStream.id,
+        parent_type: objectType,
+        parent_id: objectId,
         app_token: this.authWatchService.getAppToken()
       };
       this.userObjectVisitsService.create(userObjectVisit).subscribe();

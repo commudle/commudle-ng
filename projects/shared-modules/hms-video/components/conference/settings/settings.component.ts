@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, OnDestroy, Input } from '@angular/core';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { combineLatest } from 'rxjs';
 import { LocalmediaService } from '../../../services/localmedia.service';
 
@@ -8,7 +9,7 @@ import { LocalmediaService } from '../../../services/localmedia.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  @ViewChild('previewVideo', {static: true}) previewVideo: ElementRef;
+  @ViewChild('previewVideo', {static: false}) previewVideo: ElementRef;
   @Input() onStage: boolean;
   @Input() invitation: boolean;
   @Output() closeSettings = new EventEmitter();
@@ -28,10 +29,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private localMediaService: LocalmediaService,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit(): void {
-    console.log(this.onStage);
     this.getDevices();
 
     const deviceListener =  combineLatest([
@@ -65,9 +66,25 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
   }
 
+  getMediaPermission() {
+    this.localMediaService.getMediaPermission().subscribe(
+      data => {
+        for (const track of data.getTracks()) {
+          track.stop();
+        }
+        this.getDevices();
+      },
+      error => {
+        this.toastLogService.warningDialog('Browser denied permission', 3000);
+      }
+    )
+  }
+
   getDevices() {
     this.localMediaService.getDevices().subscribe(
       devices => {
+        devices = devices.filter(dev => dev.deviceId !== '');
+
         const audio: MediaDeviceInfo[] = [];
         const video: MediaDeviceInfo[] = [];
 
@@ -122,6 +139,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       constraints.video = (this.camera ? ({deviceId: {exact: this.selectedVideoDevice.deviceId}}) : false);
       this.localMediaService.getLocalStream(constraints).subscribe(data => {
         if (data) {
+          this.localMediaStream = data;
           const video = this.previewVideo.nativeElement;
           video.srcObject = data;
         }
@@ -139,7 +157,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   stopStream() {
     if (this.localMediaStream) {
-      const tracks = this.localMediaStream.getValue().getTracks();
+      const tracks = this.localMediaStream.getTracks();
 
       for (const track of tracks) {
         track.stop();

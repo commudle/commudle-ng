@@ -56,6 +56,7 @@
             <nb-card-body>
               <div>
                 <app-video-stream
+                  [currentUser]="currentUser"
                   [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : (embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id)"
                   [videoSource]="embeddedVideoStream.source"
                   [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? ('Starting in ' + moment(startTime).fromNow(true)) : 'Loading Video...'))"
@@ -87,7 +88,7 @@
               [tabId]="'people'"
               *ngIf="embeddedVideoStream && isBrowser"
             >
-              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event"></app-users-list>
+              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event" [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))" [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes[EUserRoles.EVENT_VOLUNTEER]"></app-users-list>
             </nb-tab>
             <nb-tab
               tabTitle="Chat"
