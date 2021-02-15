@@ -4,7 +4,6 @@ import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parse
 import { AuthTokenInterceptor } from 'projects/shared-services/lib-authwatch-token.interceptor';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   NbThemeModule,
@@ -74,7 +73,6 @@ export function initApp(appInitService: AppInitService) {
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     OrganizerCommunitiesListComponent,
     CommunityComponent,
     HomeComponent,

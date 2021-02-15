@@ -1,6 +1,18 @@
-<div class="public-profile" *ngIf="user">
-  <header>
-    <!-- this will contain basic information about the user -->
+<div class="public-profile page-container page-padding" *ngIf="user">
+
+  <div class="basic-details">
+    <app-user-basic-details [user]="user"></app-user-basic-details>
+  </div>
+
+  <div class="user-content">
+    <app-user-cover-photo></app-user-cover-photo>
+    <app-user-content></app-user-content>
+  </div>
+
+
+</div>
+
+  <!-- <header>
     <nb-card>
       <nb-card-body>
         <div class="avatar">
@@ -28,9 +40,7 @@
           <a nbButton ghost target="_blank" *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
             <nb-icon icon="info" status="primary"></nb-icon>
           </a>
-          <!-- <a nbButton ghost class="clickable" nbTooltip="Send Direct Message">
-            <nb-icon icon="message-square-outline" status="basic"></nb-icon>
-          </a> -->
+
         </div>
 
         <a *ngIf="currentUser && currentUser.id === user.id" nbButton [routerLink]="['/my-profile/edit']" size="tiny" status="primary" class="edit-profile-button">
@@ -41,7 +51,6 @@
     </nb-card>
   </header>
   <main>
-    <!-- later, will display all the labs -->
     <div class="column-left">
       <nb-card *ngIf="user.about_me">
         <nb-card-body>
@@ -49,5 +58,5 @@
         </nb-card-body>
       </nb-card>
     </div>
-  </main>
-</div>
+  </main> -->
+
