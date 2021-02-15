@@ -3,7 +3,7 @@
     <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
-            <nb-option *ngIf="[1, 74, 116].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
+            <nb-option *ngIf="[1, 74, 116, 118].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
               <div>
                 Commudle Stage
                   <br/>
@@ -70,8 +70,8 @@
 
       <div class="save-button-bottom">
         <button [disabled]="!embeddedVideoStreamForm.valid" type="submit" nbButton fullWidth status="info">
-          <span *ngIf="!evs || !evs.hms_room_id">Save</span>
-          <span *ngIf="evs && evs.hms_room_id">Reset Room</span>
+          <span *ngIf="(!evs || !evs.hms_room_id || evs)">Save</span>
+          <span *ngIf="evs && evs.hms_room_id && embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.COMMUDLE">Reset Room</span>
         </button>
       </div>
 

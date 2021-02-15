@@ -366,9 +366,6 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       )
     }
     this.endAllStreams();
-
-    this.hmsVideoStateService.setState(EHmsStates.ENDED);
-
   }
 
 
@@ -384,6 +381,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     }
 
     const unsubscribeStreams =  combineLatest(unsubscribableStreams);
+    this.hmsVideoStateService.setState(EHmsStates.ENDED);
 
     unsubscribeStreams.subscribe(
       data => {
