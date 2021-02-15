@@ -19,7 +19,9 @@ import { AppCentralNotificationService } from './services/app-central-notificati
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
+
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
   sideBarNotifications = false;
   sideBarState = 'collapsed';

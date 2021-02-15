@@ -8,6 +8,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import * as momentTimezone from 'moment-timezone';
 import * as moment from 'moment';
 import { Title } from '@angular/platform-browser';
+import { values } from 'lodash';
 
 @Component({
   selector: 'app-create-event',
@@ -45,6 +46,8 @@ export class CreateEventComponent implements OnInit {
       end_date: [''],
       end_hour: [''],
       end_minute: [''],
+      start_time_pick:[''],
+      end_time_pick:[''],
       timezone: [momentTimezone.tz.guess(), Validators.required]
     })
   });
@@ -61,6 +64,8 @@ export class CreateEventComponent implements OnInit {
     }
 
   ngOnInit() {
+    var d = new Date();
+    console.log(d);
     this.allTimeZones = momentTimezone.tz.names();
     this.userTimeZone =  momentTimezone.tz.guess();
     this.activatedRoute.data.subscribe((data) => {
@@ -80,15 +85,17 @@ export class CreateEventComponent implements OnInit {
     delete formValue['end_minute'];
     delete formValue['start_date'];
     delete formValue['end_date'];
+    delete formValue['start_time_pick'];
+    delete formValue['end_time_pick'];
 
     if (this.setStartDateTime() && this.setEndDateTime()) {
       if (this.startTime > this.endTime) {
         this.toastLogService.warningDialog('End time has to be greater then start time');
         return
-      }else{
+      }
+      else{
         formValue['start_time'] = this.startTime;
         formValue['end_time'] = this.endTime;
-
       }
 
     }
@@ -103,8 +110,9 @@ export class CreateEventComponent implements OnInit {
 
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
-    this.startHour = this.eventForm.get('event').get('start_hour').value;
-    this.startMinute = this.eventForm.get('event').get('start_minute').value;
+    this.startHour = this.eventForm.get('event').get('start_time_pick').value.getHours();
+    this.startMinute = this.eventForm.get('event').get('start_time_pick').value.getMinutes();
+    console.log(this.eventForm.get('event').get('start_time_pick').value.getHours()," ", this.eventForm.get('event').get('start_time_pick').value.getMinutes());
 
     if (
       this.startDate !== ""
@@ -128,8 +136,8 @@ export class CreateEventComponent implements OnInit {
   setEndDateTime() {
 
     this.endDate = this.eventForm.get('event').get('start_date').value;
-    this.endHour = this.eventForm.get('event').get('end_hour').value;
-    this.endMinute = this.eventForm.get('event').get('end_minute').value;
+    this.endHour = this.eventForm.get('event').get('end_time_pick').value.getHours();
+    this.endMinute = this.eventForm.get('event').get('end_time_pick').value.getMinutes();
     if (
       this.endDate !== ""
       && this.endHour !== ""

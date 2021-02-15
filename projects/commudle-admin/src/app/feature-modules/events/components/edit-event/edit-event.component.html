@@ -41,22 +41,11 @@
 
               </div>
               <br>
+
               <div>
-                <div class="hour-select">
-                  <nb-select fullWidth placeholder="Hour" size="medium" formControlName="start_hour">
-                    <nb-option>NA</nb-option>
-                    <nb-option *ngFor="let i of hours" [value]="i+1">
-                      {{ i + 1 }}
-                    </nb-option>
-                  </nb-select>
-                </div>
-                <div class="minute-select" >
-                  <nb-select fullWidth placeholder="Minute" size="medium" formControlName="start_minute">
-                    <nb-option>NA</nb-option>
-                    <nb-option *ngFor="let i of minutes" [value]="i">
-                      {{ i }}
-                    </nb-option>
-                  </nb-select>
+                <div>
+                  <input nbInput type="text" [formControl]="formControlA" [nbTimepicker]="timepicker" formControlName="start_time_pick">
+                  <nb-timepicker #timepicker></nb-timepicker>
                 </div>
               </div>
             </div>
@@ -68,22 +57,13 @@
                 </label>
               <div>
 
-                  <div class="hour-select">
-                    <nb-select fullWidth placeholder="Hour" size="medium" formControlName="end_hour">
-                      <nb-option>NA</nb-option>
-                      <nb-option *ngFor="let i of hours" [value]="i+1">
-                        {{ i + 1 }}
-                      </nb-option>
-                    </nb-select>
+                <div>
+                  <div>
+                    <input nbInput type="text" [formControl]="formControlB" [nbTimepicker]="timepicker1" formControlName="end_time_pick">
+                    <nb-timepicker #timepicker1></nb-timepicker>
                   </div>
-                  <div class="minute-select">
-                    <nb-select fullWidth placeholder="Minute" size="medium" formControlName="end_minute">
-                      <nb-option>NA</nb-option>
-                      <nb-option *ngFor="let i of minutes" [value]="i">
-                        {{ i }}
-                      </nb-option>
-                    </nb-select>
-                  </div>
+                </div>
+
               </div>
             </div>
 
