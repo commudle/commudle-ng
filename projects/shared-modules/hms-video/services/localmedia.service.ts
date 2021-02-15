@@ -20,6 +20,10 @@ export class LocalmediaService {
 
   constructor() { }
 
+  getMediaPermission(): Observable<any> {
+    return from(navigator.mediaDevices.getUserMedia({audio: true, video: true}));
+  }
+
   getDevices(): Observable<MediaDeviceInfo[]> {
     return from(navigator.mediaDevices.enumerateDevices())
   }

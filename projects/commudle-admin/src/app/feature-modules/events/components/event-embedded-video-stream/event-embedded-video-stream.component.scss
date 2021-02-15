@@ -17,6 +17,13 @@
     overflow: auto;
   }
 
+  nb-option.selected {
+    background-color: red !important;
+    p {
+      color: white !important;
+    }
+  }
+
   // @media screen and (min-width: 920px) {
   //   flex-direction: row;
   //   flex-wrap: wrap;

@@ -4,6 +4,7 @@ import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { combineLatest } from 'rxjs';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
 export class LocalPreviewComponent implements OnInit, OnDestroy {
   @Input() hmsClient;
   EHmsStates = EHmsStates;
-  @ViewChild('previewVideo', {static: true}) previewVideo: ElementRef;
+  @ViewChild('previewVideo', {static: false}) previewVideo: ElementRef;
 
   roomId: string;
   audioDevices: Array<any> = [];
@@ -34,6 +35,7 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
     private localMediaService: LocalmediaService,
     private hmsVideoStateService: HmsVideoStateService,
     private hmsLiveChannel: HmsLiveChannel,
+    private toastLogService: LibToastLogService
   ) { }
 
   ngOnInit(): void {
@@ -68,9 +70,24 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
     }
   }
 
+  getMediaPermission() {
+    this.localMediaService.getMediaPermission().subscribe(
+      data => {
+        for (const track of data.getTracks()) {
+          track.stop();
+        }
+        this.getDevices();
+      },
+      error => {
+        this.toastLogService.warningDialog('Browser denied permission', 3000);
+      }
+    )
+  }
+
   getDevices() {
     this.localMediaService.getDevices().subscribe(
       devices => {
+        devices = devices.filter(dev => dev.deviceId !== '');
         let audio: any = [];
         let video: any = [];
 
@@ -116,6 +133,7 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
       constraints.video = (this.camera ? ({deviceId: {exact: this.selectedVideoDevice.deviceId}}) : false);
       this.localMediaService.getLocalStream(constraints).subscribe(data => {
         if (data) {
+          this.localMediaStream = data;
           let video = this.previewVideo.nativeElement;
           video.srcObject = data;
         }
@@ -133,9 +151,9 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
 
   stopStream() {
     if (this.localMediaStream) {
-      let tracks = this.localMediaStream.getValue().getTracks();
+      const tracks = this.localMediaStream.getTracks();
 
-      for (let track of tracks) {
+      for (const track of tracks) {
         track.stop();
       }
     }
