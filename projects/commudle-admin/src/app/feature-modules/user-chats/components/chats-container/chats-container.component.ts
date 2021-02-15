@@ -79,7 +79,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     });
     if (!isThere) {
       // Check if length exceeds the maximum allowed windows
-      if (this.discussionFollowers.length >= this.numChatWindows) {
+      if (this.discussionFollowers.length >= this.numChatWindows && this.discussionFollowers[0]) {
         // Unsubscribe the removed user
         this.userChatMessagesChannel.unsubscribe(this.discussionFollowers.shift().discussion_id);
       }
