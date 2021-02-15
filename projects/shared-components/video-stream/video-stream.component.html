@@ -8,7 +8,7 @@
 
     <div class="youtube-player" *ngIf="currentUser">
       <app-hms-video
-        *ngIf="videoSource == EEmbeddedVideoStreamSources.COMMUDLE"
+        *ngIf="(videoSource == EEmbeddedVideoStreamSources.COMMUDLE) && hmsRoomId"
         [roomId]="hmsRoomId">
       </app-hms-video>
 

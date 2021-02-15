@@ -126,6 +126,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
       this.authWatchService.currentUser$.subscribe(
         data => {
           this.currentUser = data;
+          this.getMyRoles();
         }
       )
     );
@@ -148,7 +149,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   getMyRoles() {
-    if (this.currentUser) {
+    if (this.currentUser && this.community) {
       this.usersService.getMyRoles('Kommunity', this.community.id).subscribe(
         data => {
           this.userRoles = data;

@@ -53,7 +53,7 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.ngOnInit();
+    this.setPreview();
   }
 
   setPreview() {
