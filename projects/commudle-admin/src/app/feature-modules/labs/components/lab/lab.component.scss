@@ -182,3 +182,16 @@
     height: 500px;
   }
 }
+
+
+.image{
+
+    @media screen and (min-width: 1300px){
+      width: 70vw;
+
+  }
+    @media screen and (max-width: 720px){
+      width: 80vw;
+
+  }
+}

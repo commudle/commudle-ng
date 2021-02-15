@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 export enum EHmsStates {
   INIT = 'select_role',
   PREVIEW = 'preview',
-  ROOM = 'room'
+  ROOM = 'room',
+  ENDED = 'ended'
 }
 
 
