@@ -1,4 +1,4 @@
-<div class="data-form-container">
+<div class="data-form-container page-padding">
   <nb-card>
     <nb-card-header>
       <h3>
@@ -8,7 +8,7 @@
       <div *ngIf="dataForm && dataForm.parent_type === 'Kommunity'">
         <button
           class="clone-form-button"
-          nbButton outline style="info"
+          nbButton outline status="info"
           size="small"
           status="info"
           (click)="cloneCommunityDataForm()">

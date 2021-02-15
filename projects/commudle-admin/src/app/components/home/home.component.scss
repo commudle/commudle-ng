@@ -1,11 +1,4 @@
-// ::ng-deep {
-//   nb-layout-column {
-//     background-color: white;
-//     padding: 0 !important;
-//   }
-// }
-
-$max-page-width: 1320px;
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
 div.page.home {
   section.page-header {
@@ -90,8 +83,7 @@ div.page.home {
     }
 
 
-    @media screen and (min-width: 800px) {
-      margin: -36px;
+    @media screen and (min-width: $tab-width) {
 
       >div {
         max-width: $max-page-width;

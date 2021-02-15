@@ -1,7 +1,27 @@
+// page structure
+.page-container {
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+.page-padding {
+  padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
+}
+
+
+// typography
 .text-center {
   text-align: center;
 }
 
+
+// cursor
+.cursor-disabled {
+  cursor: not-allowed !important;
+}
+
+
+// flex behaviour
 .d-flex {
   display: flex;
 }
@@ -46,17 +66,10 @@
 }
 
 
-.text-center {
-  text-align: center;
-}
-
-.cursor-disabled {
-  cursor: not-allowed !important;
-}
 
 
 
-
+// element size
 .image-popup {
   max-height: 100vh;
 }
