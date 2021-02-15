@@ -231,20 +231,30 @@
             <input nbInput fullWidth [nbDatepicker]="datepicker" placeholder="Date*" formControlName="date">
             <nb-datepicker #datepicker></nb-datepicker>
           </div>
+
+
+
           <div>
-            <input [ngxTimepicker]="startTimePicker" nbInput fullWidth formControlName="start_time" placeholder="Start Time*" [format]="24"  readonly>
-            <ngx-material-timepicker #startTimePicker></ngx-material-timepicker>
+            <input [nbTimepicker]="startTimePicker" [formControl]="formControlA"   nbInput fullWidth formControlName="start_time" placeholder="Start Time*"  readonly>
+            <nb-timepicker #startTimePicker></nb-timepicker>
             <span *ngIf="trackSlotForm['controls'].track_slot['controls'].start_time.touched && trackSlotForm['controls'].track_slot['controls'].start_time.invalid && trackSlotForm['controls'].track_slot['controls'].start_time.errors.required" class="validation-error-text">
               Required Field
             </span>
           </div>
+
+
+
           <div>
-            <input [ngxTimepicker]="endTimePicker" nbInput fullWidth formControlName="end_time" placeholder="End Time*" [format]="24" readonly>
-            <ngx-material-timepicker #endTimePicker></ngx-material-timepicker>
+            <input [nbTimepicker]="endTimePicker" [formControl]="formControlB" nbInput fullWidth formControlName="end_time" placeholder="End Time*" readonly>
+            <nb-timepicker #endTimePicker></nb-timepicker>
             <span *ngIf="trackSlotForm['controls'].track_slot['controls'].end_time.touched && trackSlotForm['controls'].track_slot['controls'].end_time.invalid && trackSlotForm['controls'].track_slot['controls'].end_time.errors.required" class="validation-error-text">
               Required Field
             </span>
           </div>
+
+
+
+
           <div>
             <input type="text" nbInput fullWidth formControlName="tags_list" placeholder="Tag A, Tag B, ...">
           </div>

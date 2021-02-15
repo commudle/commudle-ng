@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Title } from '@angular/platform-browser';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-event',
@@ -22,6 +23,9 @@ export class EditEventComponent implements OnInit {
   userTimeZone;
   hours = [...Array(24).keys()];
   minutes = [...Array(60).keys()];
+  // initialDate
+  formControlA;
+  formControlB;
 
   minDate = moment().subtract(1, 'days').toDate();
 
@@ -48,6 +52,8 @@ export class EditEventComponent implements OnInit {
       end_date: [''],
       end_hour: [''],
       end_minute: [''],
+      start_time_pick:[''],
+      end_time_pick:[''],
       timezone: ['', Validators.required]
     })
   });
@@ -81,6 +87,11 @@ export class EditEventComponent implements OnInit {
       if (this.event.start_time){
         let sTime = moment(this.event.start_time).toDate();
         let eTime = moment(this.event.end_time).toDate();
+        // this.initialDate = sTime;
+        // this.finalDate = eTime;
+        this.formControlA = new FormControl(sTime);
+        this.formControlB = new FormControl(eTime);
+        console.log(sTime, eTime);
         this.eventForm.get('event').patchValue({
           start_date: sTime,
           start_hour: sTime.getHours(),
@@ -132,8 +143,30 @@ export class EditEventComponent implements OnInit {
 
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
-    this.startHour = this.eventForm.get('event').get('start_hour').value;
-    this.startMinute = this.eventForm.get('event').get('start_minute').value;
+    // this.startHour = this.eventForm.get('event').get('start_hour').value;
+    // this.startMinute = this.eventForm.get('event').get('start_minute').value;
+
+    let holdVal = this.eventForm.get('event').get('start_time_pick').value;
+
+    console.log(holdVal);
+
+
+    if(holdVal=="")
+    {
+      console.log("StartingA");
+      this.startHour = this.formControlA.value.getHours();
+      this.startMinute = this.formControlA.value.getMinutes();
+    }
+
+    if(holdVal!="")
+    {
+      console.log("StartingB");
+      this.startHour = holdVal.getHours();
+      this.startMinute = holdVal.getMinutes();
+    }
+
+
+
     if (
       this.startDate !== ""
       && this.startHour !== ""
@@ -157,9 +190,29 @@ export class EditEventComponent implements OnInit {
 
   setEndDateTime() {
 
-    this.endDate = this.eventForm.get('event').get('start_date').value;
-    this.endHour = this.eventForm.get('event').get('end_hour').value;
-    this.endMinute = this.eventForm.get('event').get('end_minute').value;
+    this.endDate = this.eventForm.get('event').get('end_date').value;
+    // this.endHour = this.eventForm.get('event').get('end_hour').value;
+    // this.endMinute = this.eventForm.get('event').get('end_minute').value;
+
+    let holdVal = this.eventForm.get('event').get('end_time_pick').value;
+    console.log(holdVal);
+    
+    if(holdVal=="")
+    {
+      console.log("endingA");
+      this.endHour = this.formControlB.value.getHours();
+      this.endMinute = this.formControlB.value.getMinutes();
+    }
+
+    if(holdVal!="")
+    {
+      console.log("endingB");
+      this.endHour = holdVal.getHours();
+      this.endMinute = holdVal.getMinutes();
+    }
+
+
+
     if (
       this.endDate !== ""
       && this.endHour !== ""
