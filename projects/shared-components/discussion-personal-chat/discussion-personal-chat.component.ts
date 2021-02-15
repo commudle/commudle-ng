@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
-import { IDiscussion } from 'projects/shared-models/discussion.model';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {IDiscussion} from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
-import { IUserMessage } from 'projects/shared-models/user_message.model';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { FormBuilder, Validators } from '@angular/forms';
-import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
-import { DiscussionPersonalChatChannel } from '../services/websockets/dicussion-personal-chat.channel';
+import {IUserMessage} from 'projects/shared-models/user_message.model';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {FormBuilder, Validators} from '@angular/forms';
+import {NoWhitespaceValidator} from 'projects/shared-helper-modules/custom-validators.validator';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {UserMessagesService} from 'projects/commudle-admin/src/app/services/user-messages.service';
+import {DiscussionPersonalChatChannel} from '../services/websockets/dicussion-personal-chat.channel';
 
 
 @Component({
@@ -17,13 +17,9 @@ import { DiscussionPersonalChatChannel } from '../services/websockets/dicussion-
   styleUrls: ['./discussion-personal-chat.component.scss']
 })
 export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
-  @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
-
-
   moment = moment;
-
   currentUser: ICurrentUser;
   currentUserSubscription;
   channelSubscription;
@@ -37,12 +33,10 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   showReplyForm = 0;
   allActions;
   chatChannelSubscription;
-
-
   chatMessageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
   });
-
+  @ViewChild('messagesContainer') private messagesContainer: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -50,25 +44,21 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     private userMessagesService: UserMessagesService,
     private discussionChatChannel: DiscussionPersonalChatChannel,
     private authWatchService: LibAuthwatchService
-
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
-    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(
-      user => this.currentUser = user
-    );
-    this.chatChannelSubscription = this.discussionChatChannel.subscribe(`${this.discussion.id}`);
+    this.currentUserSubscription = this.authWatchService.currentUser$.subscribe(user => this.currentUser = user);
+    this.chatChannelSubscription = this.discussionChatChannel.subscribe(this.discussion.id);
     this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
     this.getDiscussionMessages();
   }
 
-
   ngOnDestroy() {
     this.currentUserSubscription.unsubscribe();
-    this.chatChannelSubscription.unsubscribe();
-    this.channelSubscription.unsubscribe();
-
+    this.chatChannelSubscription.unsubscribe(this.discussion.id);
+    this.channelSubscription.unsubscribe(this.discussion.id);
   }
 
   scrollToBottom() {
@@ -80,7 +70,6 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
         console.log(err);
       }
     }, 100);
-
   }
 
   loadPreviousMessages() {
@@ -111,19 +100,18 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
           }
 
           this.nextPage += 1;
-
         }
       );
     }
   }
 
-
   toggleReplyForm(messageId) {
-    this.showReplyForm === messageId ? (this.showReplyForm = 0) : (this.showReplyForm = messageId);
+    this.showReplyForm = this.showReplyForm === messageId ? 0 : messageId;
   }
 
   sendMessage() {
     this.discussionChatChannel.sendData(
+      this.discussion.id,
       this.discussionChatChannel.ACTIONS.ADD,
       {
         user_message: {
@@ -134,9 +122,9 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     this.chatMessageForm.reset();
   }
 
-
   sendVote(userMessageId) {
     this.discussionChatChannel.sendData(
+      this.discussion.id,
       this.discussionChatChannel.ACTIONS.VOTE,
       {
         user_message_id: userMessageId
@@ -146,6 +134,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
   sendFlag(userMessageId) {
     this.discussionChatChannel.sendData(
+      this.discussion.id,
       this.discussionChatChannel.ACTIONS.FLAG,
       {
         user_message_id: userMessageId
@@ -155,6 +144,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
   delete(userMessageId) {
     this.discussionChatChannel.sendData(
+      this.discussion.id,
       this.discussionChatChannel.ACTIONS.DELETE,
       {
         user_message_id: userMessageId
@@ -164,6 +154,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
   sendReply(replyContent, userMessageId) {
     this.discussionChatChannel.sendData(
+      this.discussion.id,
       this.discussionChatChannel.ACTIONS.REPLY,
       {
         user_message_id: userMessageId,
@@ -174,14 +165,14 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
 
   blockChat() {
     this.discussionChatChannel.sendData(
+      this.discussion.id,
       this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK,
       {}
     );
   }
 
-
   receiveData() {
-    this.channelSubscription = this.discussionChatChannel.channelData$.subscribe(
+    this.channelSubscription = this.discussionChatChannel.channelData$[this.discussion.id].subscribe(
       (data) => {
         if (data) {
           switch (data.action) {
@@ -210,7 +201,6 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
                   this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
                 }
               }
-
               break;
             }
             case(this.discussionChatChannel.ACTIONS.FLAG): {
@@ -248,7 +238,6 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
       }
     );
   }
-
 
   findMessageIndex(userMessageId) {
     return this.messages.findIndex(q => (q.id === userMessageId));
