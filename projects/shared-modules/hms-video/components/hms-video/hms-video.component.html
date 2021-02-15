@@ -13,5 +13,10 @@
 
     <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW" class="local-preview" [hmsClient]="hmsClient"></app-local-preview>
     <app-conference *ngSwitchCase="EHmsStates.ROOM" class="room" [roomId]="roomId" [serverClient]="serverClient" [serverClient]="serverClient" [client]="hmsClient" [selectedRole]="selectedRole"></app-conference>
+    <div *ngSwitchCase="EHmsStates.ENDED" class="webinar-ended">
+      <nb-alert accent="info">
+        This session has completed!
+      </nb-alert>
+    </div>
   </div>
 </div>

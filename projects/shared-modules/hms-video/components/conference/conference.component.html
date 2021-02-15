@@ -1,9 +1,4 @@
-<div *ngIf="webinarEnded" class="webinar-ended">
-  <nb-alert accent="info">
-    This session has completed!
-  </nb-alert>
-</div>
-<div class="conference" *ngIf="!webinarEnded">
+<div class="conference">
   <div class="screen-video" *ngIf="screenShareStream">
     <app-user-video
     [stream]="streams[screenShareStream].stream"
@@ -23,7 +18,7 @@
       [stream]="localStream"
       ></app-user-video>
     <app-user-video *ngIf="localScreen" [stream]="localScreen"></app-user-video> -->
-    <div class="video" *ngFor="let stream of streams | keyvalue" [ngStyle]="{'visibility': ((screenShareStream !== stream.key) ? 'visible' : 'hidden')}">
+    <div class="video" *ngFor="let stream of streams | keyvalue" [ngStyle]="{'display': ((screenShareStream !== stream.key) ? 'unset' : 'none')}">
       <!-- show only non screen video elements here -->
       <app-user-video
       *ngIf="screenShareStream !== stream.key"
@@ -50,12 +45,12 @@
       </button>
     </div>
     <div class="end-meeting" *ngIf="serverClient.role === EHmsRoles.HOST">
-      <button nbButton ghost (click)="confirmEndConference(endWebinarAlert)" [disabled]="screenShareStream && !screenShare">
+      <button nbButton ghost (click)="confirmEndConference(endWebinarAlert)" >
         <nb-icon icon="phone" status="danger" pack="fas"></nb-icon>
       </button>
     </div>
     <div class="screen" *ngIf="onStage">
-      <button nbButton ghost (click)="toggleScreen()">
+      <button nbButton ghost (click)="toggleScreen()" [disabled]="screenShareStream && !screenShare" [ngClass]="{'cursor-disabled': (screenShareStream && !screenShare) === true}">
         <nb-icon icon="laptop" pack="fas" status="{{ localScreen ? 'success' : 'basic' }}" class="justify-content-center flex-column"></nb-icon>
       </button>
     </div>

@@ -1,5 +1,15 @@
 <div class="local-preview">
-  <nb-card>
+  <nb-card *ngIf="audioDevices.length == 0 && videoDevices.length == 0">
+    <nb-card-body>
+      <nb-alert accent="info">Please allow access to mic and camera devices to continue!</nb-alert>
+      <div>
+        <button nbButton fullWidth status="info" (click)="getMediaPermission()">
+          Get Permission
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card *ngIf="audioDevices.length > 0 && videoDevices.length > 0">
     <nb-card-body>
       <div class="local-video">
         <video #previewVideo autoplay [muted]="true" playsinline></video>

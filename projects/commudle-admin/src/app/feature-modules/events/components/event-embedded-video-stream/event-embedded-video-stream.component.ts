@@ -76,10 +76,17 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   createOrUpdate() {
     this.embeddedVideoStreamsService.createOrUpdate(this.embeddedVideoStreamForm.value).subscribe(
       data => {
-        this.evs = data;
+        delete this.evs;
+        // firing after 1 second because it doesn't update the value otherwise
+        setTimeout(
+          () => {
+            this.evs = data;
+          }, 100
+        );
         this.embeddedVideoStreamForm.patchValue(data);
         this.updateValidators();
         this.toastLogService.successDialog('Saved!');
+
       }
     );
   }
