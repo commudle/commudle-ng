@@ -41,6 +41,7 @@ export class ChatsListComponent implements OnInit {
   // Toggle chats list height
   toggleChatsListHeight() {
     this.chatsListHeight = 75 - this.chatsListHeight;
+    this.unreadCount = 0;
   }
 
   openChat(chatUser) {
