@@ -24,8 +24,8 @@ export class EditEventComponent implements OnInit {
   hours = [...Array(24).keys()];
   minutes = [...Array(60).keys()];
   // initialDate
-  formControlA;
-  formControlB;
+  eventStartTimePicker;
+  eventEndTimePicker;
 
   minDate = moment().subtract(1, 'days').toDate();
 
@@ -47,11 +47,7 @@ export class EditEventComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       start_date: [''],
-      start_hour: [''],
-      start_minute: [''],
       end_date: [''],
-      end_hour: [''],
-      end_minute: [''],
       start_time_pick:[''],
       end_time_pick:[''],
       timezone: ['', Validators.required]
@@ -89,16 +85,11 @@ export class EditEventComponent implements OnInit {
         let eTime = moment(this.event.end_time).toDate();
         // this.initialDate = sTime;
         // this.finalDate = eTime;
-        this.formControlA = new FormControl(sTime);
-        this.formControlB = new FormControl(eTime);
-        console.log(sTime, eTime);
+        this.eventStartTimePicker = new FormControl(sTime);
+        this.eventEndTimePicker = new FormControl(eTime);
         this.eventForm.get('event').patchValue({
           start_date: sTime,
-          start_hour: sTime.getHours(),
-          start_minute: sTime.getMinutes(),
           end_date: eTime,
-          end_hour: eTime.getHours(),
-          end_minute: eTime.getMinutes(),
         });
       }
     });
@@ -113,10 +104,6 @@ export class EditEventComponent implements OnInit {
   updateEvent() {
 
     let formValue = this.eventForm.get('event').value;
-    delete formValue['start_hour'];
-    delete formValue['start_minute']
-    delete formValue['end_hour'];
-    delete formValue['end_minute'];
     delete formValue['start_date'];
     delete formValue['end_date'];
 
@@ -146,23 +133,19 @@ export class EditEventComponent implements OnInit {
     // this.startHour = this.eventForm.get('event').get('start_hour').value;
     // this.startMinute = this.eventForm.get('event').get('start_minute').value;
 
-    let holdVal = this.eventForm.get('event').get('start_time_pick').value;
-
-    console.log(holdVal);
+    let startTimePick = this.eventForm.get('event').get('start_time_pick').value;
 
 
-    if(holdVal=="")
+    if(startTimePick=="")
     {
-      console.log("StartingA");
-      this.startHour = this.formControlA.value.getHours();
-      this.startMinute = this.formControlA.value.getMinutes();
+      this.startHour = this.eventStartTimePicker.value.getHours();
+      this.startMinute = this.eventStartTimePicker.value.getMinutes();
     }
 
-    if(holdVal!="")
+    if(startTimePick!="")
     {
-      console.log("StartingB");
-      this.startHour = holdVal.getHours();
-      this.startMinute = holdVal.getMinutes();
+      this.startHour = startTimePick.getHours();
+      this.startMinute = startTimePick.getMinutes();
     }
 
 
@@ -194,21 +177,18 @@ export class EditEventComponent implements OnInit {
     // this.endHour = this.eventForm.get('event').get('end_hour').value;
     // this.endMinute = this.eventForm.get('event').get('end_minute').value;
 
-    let holdVal = this.eventForm.get('event').get('end_time_pick').value;
-    console.log(holdVal);
+    let endTimePick = this.eventForm.get('event').get('end_time_pick').value;
     
-    if(holdVal=="")
+    if(endTimePick=="")
     {
-      console.log("endingA");
-      this.endHour = this.formControlB.value.getHours();
-      this.endMinute = this.formControlB.value.getMinutes();
+      this.endHour = this.eventEndTimePicker.value.getHours();
+      this.endMinute = this.eventEndTimePicker.value.getMinutes();
     }
 
-    if(holdVal!="")
+    if(endTimePick!="")
     {
-      console.log("endingB");
-      this.endHour = holdVal.getHours();
-      this.endMinute = holdVal.getMinutes();
+      this.endHour = endTimePick.getHours();
+      this.endMinute = endTimePick.getMinutes();
     }
 
 

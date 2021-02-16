@@ -31,8 +31,8 @@ export class EventLocationTracksComponent implements OnInit {
   @ViewChild('tracksContainer') private tracksContainer: ElementRef;
   windowRef;
 
-  formControlA;
-  formControlB;
+  eventStartTimePicker;
+  eventEndTimePicker;
 
   faClock = faClock;
   faInfo = faInfo;
@@ -127,18 +127,7 @@ export class EventLocationTracksComponent implements OnInit {
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
     this.trackSlotForm.reset();
-        //     let sTime = moment(this.event.start_time).toDate();
-        // let eTime = moment(this.event.end_time).toDate();
-      console.log("clicked")
-    // this.trackSlotForm.get('track_slot').patchValue({
-    //   event_location_track_id: eventLocationTrack.id,
-    //   date: this.minSlotDate,
-    //   start_time: moment(`${hour}:${minute}`, 'H:m').format('HH:mm'),
-    //   end_time: moment(`${hour}:${minute+5}`, 'H:m').format('HH:mm')
-    // });
 
-    // let sTime = moment(`${hour}:${minute}`, 'H:m').format('HH:mm');
-    // let eTime = moment(`${hour}:${minute+5}`, 'H:m').format('HH:mm');
     let sTime = new Date();
     let eTime = new Date();
     sTime.setHours(hour);
@@ -149,8 +138,8 @@ export class EventLocationTracksComponent implements OnInit {
     
     // this.initialDate = sTime;
     // this.finalDate = eTime;
-    this.formControlA = new FormControl(sTime);
-    this.formControlB = new FormControl(eTime);
+    this.eventStartTimePicker = new FormControl(sTime);
+    this.eventEndTimePicker = new FormControl(eTime);
 
       this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: eventLocationTrack.id,
@@ -159,7 +148,6 @@ export class EventLocationTracksComponent implements OnInit {
       end_time: eTime
     });
 
-    // console.log(this.formControlA, this.formControlB);
 
 
 
@@ -168,7 +156,6 @@ export class EventLocationTracksComponent implements OnInit {
       { title: 'Add a session', context: {operationType: 'create'}},
     );
 
-    console.log(this.windowRef);
 
   }
 
@@ -191,7 +178,6 @@ export class EventLocationTracksComponent implements OnInit {
     const eTime = newSlot['end_time'];
     newSlot['end_time'] = startTime.set({hour: eTime.getHours(), minute: eTime.getMinutes}).toDate();
 
-    console.log("--------", newSlot);
 
 
     this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
@@ -203,7 +189,6 @@ export class EventLocationTracksComponent implements OnInit {
 
   showEditSlotForm(trackSlot) 
   {
-    console.log(trackSlot);
     this.trackSlotForm.reset();
     let sTime = trackSlot['start_time'];
     let eTime = trackSlot['end_time'];
@@ -213,9 +198,6 @@ export class EventLocationTracksComponent implements OnInit {
     let sTimeMinute = parseInt(sTimeArr[1]);
     let eTimeHour = parseInt(eTimeArr[0]);
     let eTimeMinute = parseInt(eTimeArr[1]);
-    let o = new Date();
-    console.log(o);
-    console.log(moment(sTime).toDate());
 
     let sTimeNew = new Date();
     let eTimeNew = new Date();
@@ -224,11 +206,10 @@ export class EventLocationTracksComponent implements OnInit {
 
     eTimeNew.setHours(eTimeHour);
     eTimeNew.setMinutes(eTimeMinute);
-    console.log(sTimeNew,"--",eTimeNew);
 
 
-    this.formControlA = new FormControl(sTimeNew);
-    this.formControlB = new FormControl(eTimeNew);
+    this.eventStartTimePicker = new FormControl(sTimeNew);
+    this.eventEndTimePicker = new FormControl(eTimeNew);
 
     let trackDate = moment(trackSlot.start_time).toDate();
 
@@ -247,7 +228,6 @@ export class EventLocationTracksComponent implements OnInit {
         embedded_video_stream: trackSlot.embedded_video_stream
       });
     }
-    console.log(this.trackSlotForm);
 
     this.windowRef = this.windowService.open(
       this.trackSlotFormTemplate,
@@ -271,7 +251,6 @@ export class EventLocationTracksComponent implements OnInit {
     const eTimeNew = slot['end_time'];
     slot['end_time'] = startTime.set({hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes()}).toDate();
 
-    console.log("--------", slot);
 
 
     this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
