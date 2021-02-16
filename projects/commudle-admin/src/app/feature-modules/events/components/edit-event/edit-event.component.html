@@ -44,7 +44,7 @@
 
               <div>
                 <div>
-                  <input nbInput type="text" [formControl]="formControlA" [nbTimepicker]="timepicker" formControlName="start_time_pick">
+                  <input nbInput type="text" [formControl]="eventStartTimePicker" [nbTimepicker]="timepicker" formControlName="start_time_pick">
                   <nb-timepicker #timepicker></nb-timepicker>
                 </div>
               </div>
@@ -59,7 +59,7 @@
 
                 <div>
                   <div>
-                    <input nbInput type="text" [formControl]="formControlB" [nbTimepicker]="timepicker1" formControlName="end_time_pick">
+                    <input nbInput type="text" [formControl]="eventEndTimePicker" [nbTimepicker]="timepicker1" formControlName="end_time_pick">
                     <nb-timepicker #timepicker1></nb-timepicker>
                   </div>
                 </div>

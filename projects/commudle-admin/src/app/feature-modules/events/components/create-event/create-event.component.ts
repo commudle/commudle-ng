@@ -41,11 +41,7 @@ export class CreateEventComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       start_date: [''],
-      start_hour: [''],
-      start_minute: [''],
       end_date: [''],
-      end_hour: [''],
-      end_minute: [''],
       start_time_pick:[''],
       end_time_pick:[''],
       timezone: [momentTimezone.tz.guess(), Validators.required]
@@ -65,7 +61,6 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit() {
     var d = new Date();
-    console.log(d);
     this.allTimeZones = momentTimezone.tz.names();
     this.userTimeZone =  momentTimezone.tz.guess();
     this.activatedRoute.data.subscribe((data) => {
@@ -79,10 +74,6 @@ export class CreateEventComponent implements OnInit {
 
 
     let formValue = this.eventForm.get('event').value;
-    delete formValue['start_hour'];
-    delete formValue['start_minute']
-    delete formValue['end_hour'];
-    delete formValue['end_minute'];
     delete formValue['start_date'];
     delete formValue['end_date'];
     delete formValue['start_time_pick'];
@@ -92,8 +83,7 @@ export class CreateEventComponent implements OnInit {
       if (this.startTime > this.endTime) {
         this.toastLogService.warningDialog('End time has to be greater then start time');
         return
-      }
-      else{
+      }else{
         formValue['start_time'] = this.startTime;
         formValue['end_time'] = this.endTime;
       }
@@ -110,9 +100,7 @@ export class CreateEventComponent implements OnInit {
 
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
-    this.startHour = this.eventForm.get('event').get('start_time_pick').value.getHours();
-    this.startMinute = this.eventForm.get('event').get('start_time_pick').value.getMinutes();
-    console.log(this.eventForm.get('event').get('start_time_pick').value.getHours()," ", this.eventForm.get('event').get('start_time_pick').value.getMinutes());
+    let startTimePick = this.eventForm.get('event').get('start_time_pick').value;
 
     if (
       this.startDate !== ""
@@ -124,8 +112,8 @@ export class CreateEventComponent implements OnInit {
           years: this.startDate.getFullYear(),
           months: this.startDate.getMonth(),
           date: this.startDate.getDate(),
-          hours: this.startHour,
-          minutes: this.startMinute
+          hours: startTimePick.getHours(),
+          minutes: startTimePick.getMinutes()
         }).toDate();
         return true;
     }
@@ -136,8 +124,7 @@ export class CreateEventComponent implements OnInit {
   setEndDateTime() {
 
     this.endDate = this.eventForm.get('event').get('start_date').value;
-    this.endHour = this.eventForm.get('event').get('end_time_pick').value.getHours();
-    this.endMinute = this.eventForm.get('event').get('end_time_pick').value.getMinutes();
+    let endTimePick = this.eventForm.get('event').get('end_time_pick').value;
     if (
       this.endDate !== ""
       && this.endHour !== ""
@@ -147,8 +134,8 @@ export class CreateEventComponent implements OnInit {
           years: this.endDate.getFullYear(),
           months: this.endDate.getMonth(),
           date: this.endDate.getDate(),
-          hours: this.endHour,
-          minutes: this.endMinute
+          hours: endTimePick.getHours(),
+          minutes: endTimePick.getMinutes()
         }).toDate();
         (this.endTime);
         return true;
