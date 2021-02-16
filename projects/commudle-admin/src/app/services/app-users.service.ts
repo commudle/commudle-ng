@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IUser } from 'projects/shared-models/user.model';
+import { ILabs } from 'projects/shared-models/labs.model';
+import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
 
 
 
@@ -48,5 +50,33 @@ export class AppUsersService {
     let params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
     return this.http.get<[]>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_MY_ROLES), {params});
+  }
+
+// admin panel view of list of labs
+  myLabs(): Observable<ILabs> {
+    return this.http.get<ILabs>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_LABS)
+    );
+  }
+
+// admin panel view of list of community builds
+  myCommunityBuilds(): Observable<ICommunityBuilds> {
+    return this.http.get<ICommunityBuilds>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_COMMUNITY_BUILDS)
+    );
+  }
+
+// list of labs on public profile
+  labs(): Observable<ICommunityBuilds> {
+    return this.http.get<ICommunityBuilds>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_COMMUNITY_BUILDS)
+    );
+  }
+
+// list of community builds on public profile
+  communityBuilds(): Observable<ICommunityBuilds> {
+    return this.http.get<ICommunityBuilds>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_COMMUNITY_BUILDS)
+    );
   }
 }
