@@ -1,0 +1,16 @@
+<div class="chats-container">
+  <div class="chats-list">
+    <app-chats-list (getChat)="openChat($event)"
+                    [currentUser]="currentUser"
+                    (moveUserToTop)="liveUpdates($event)"
+                    [allPersonalChatUsers]="allPersonalChatUsers"
+    ></app-chats-list>
+  </div>
+  <div [style.right.px]="chatsWindowsRight" class="chats-windows">
+    <app-chats-window (removeChat)="closeChat($event)"
+                      [discussionFollower]="follower"
+                      *ngFor="let follower of discussionFollowers;"
+                      (removeFromUnread)="removeFromUnread($event)"
+    ></app-chats-window>
+  </div>
+</div>
