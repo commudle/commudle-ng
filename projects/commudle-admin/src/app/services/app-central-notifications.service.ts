@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { UserPersonalDiscussionChatNotificationsChannel } from 'projects/shared-services/websockets/user-personal-discussion-chat-notifications.channel';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {BehaviorSubject} from 'rxjs';
 
 
 @Injectable({
@@ -20,13 +19,10 @@ export class AppCentralNotificationService {
   public notifications$ = this.notifications.asObservable();
 
   constructor(
-    private userPersonalDiscussionChatNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel,
     private authWatchService: LibAuthwatchService
   ) {
     this.getCurrentUser();
-    this.getNewMessagesNotifications();
   }
-
 
   getCurrentUser() {
     this.authWatchService.currentUser$.subscribe(
@@ -36,34 +32,15 @@ export class AppCentralNotificationService {
           this.sideBarNotificationsList.user_profile = true;
         } else {
           this.sideBarNotificationsList.user_profile = false;
-          this.resetSidebarNotifications();        }
-      }
-    )
-  }
-
-
-  getNewMessagesNotifications() {
-    this.userPersonalDiscussionChatNotificationsChannel.newMessagesCounter$.subscribe(
-      data => {
-        if (data.length > 0) {
-          this.sidebarNotifications.next(true);
-          this.sideBarNotificationsList.personal_chat_message = true;
-        } else {
-          this.sideBarNotificationsList.personal_chat_message = false;
           this.resetSidebarNotifications();
         }
       }
-    )
+    );
   }
-
 
   resetSidebarNotifications() {
     if (!Object.values(this.sideBarNotificationsList).includes(true)) {
       this.sidebarNotifications.next(false);
     }
   }
-
-
-
-
 }

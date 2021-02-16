@@ -1,0 +1,22 @@
+.chat-window {
+  margin-left: 5px;
+
+  nb-card {
+    height: 100%;
+    margin: 0;
+
+    nb-card-header {
+      padding: 0.25rem 0.375rem;
+
+      .window-options {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    nb-card-body {
+      transition: 0.2s ease-in-out;
+      padding: 0;
+    }
+  }
+}

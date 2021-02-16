@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IUser } from 'projects/shared-models/user.model';
-import { NbWindowService } from '@nebular/theme';
-import { UserChatComponent } from '../user-chat/user-chat.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {IUser} from 'projects/shared-models/user.model';
 
 @Component({
   selector: 'app-user-profile-mini',
@@ -14,12 +12,9 @@ export class UserProfileMiniComponent implements OnInit {
   @Input() designation: boolean;
   @Input() showLiveStatus: boolean;
 
-  constructor(
-    private windowService: NbWindowService
-  ) { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
-
 }

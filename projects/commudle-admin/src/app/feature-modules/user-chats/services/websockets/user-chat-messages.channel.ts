@@ -1,56 +1,47 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import * as actionCable from 'actioncable';
-import {APPLICATION_CABLE_CHANNELS} from 'projects/shared-services/application-cable-channels.constants';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-
+import {APPLICATION_CABLE_CHANNELS} from 'projects/shared-services/application-cable-channels.constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DiscussionPersonalChatChannel {
-  ACTIONS = {
-    SET_PERMISSIONS: 'set_permissions',
-    ADD: 'add',
-    REPLY: 'reply',
-    VOTE: 'vote',
-    FLAG: 'flag',
-    DELETE: 'delete',
-    TOGGLE_BLOCK: 'toggle_block',
-    ERROR: 'error'
-  };
+export class UserChatMessagesChannel {
 
-  actionCable = actionCable;
-  cableConnection;
-
+  actionCableSubscription;
   public channelData$ = {};
+  private cableConnection;
+  // Channel Data
+  private channelData = {};
+  // Subscriptions
   private subscriptions = {};
   // all the communications received will be observables
   private channelList: BehaviorSubject<any> = new BehaviorSubject(new Set());
   public channelList$ = this.channelList.asObservable();
-  private channelData = {};
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
     private authWatchService: LibAuthwatchService
   ) {
-    this.actionCableConnection.acSocket$.subscribe(
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
       connection => {
         this.cableConnection = connection;
-      });
+      }
+    );
   }
 
   subscribe(discussionId) {
+    this.unsubscribe(discussionId);
     const connectionName = discussionId;
     if (this.cableConnection) {
       this.channelData[connectionName] = new BehaviorSubject(null);
       this.channelData$[connectionName] = this.channelData[connectionName].asObservable();
       this.channelList.next(this.channelList.getValue().add(connectionName));
 
-      this.subscriptions[discussionId] = this.cableConnection.subscriptions.create({
-        channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_PERSONAL_CHAT_CHANNEL,
-        room: discussionId,
+      this.subscriptions[connectionName] = this.cableConnection.subscriptions.create({
+        channel: APPLICATION_CABLE_CHANNELS.USER_PERSONAL_DISCUSSION_CHAT_NOTIFICATIONS,
+        discussion_id: discussionId,
         app_token: this.authWatchService.getAppToken()
       }, {
         received: data => {
@@ -58,7 +49,6 @@ export class DiscussionPersonalChatChannel {
         }
       });
     }
-
     return this.subscriptions[connectionName];
   }
 
@@ -71,9 +61,8 @@ export class DiscussionPersonalChatChannel {
 
   unsubscribe(discussionId) {
     if (this.subscriptions[discussionId]) {
-      this.channelData[discussionId].next(null);
       this.subscriptions[discussionId].unsubscribe();
+      this.channelData[discussionId].next(null);
     }
   }
-
 }

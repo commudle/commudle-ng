@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IUser } from 'projects/shared-models/user.model';
-import { NbWindowService } from '@nebular/theme';
-import { UserChatComponent } from '../user-chat/user-chat.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {IUser} from 'projects/shared-models/user.model';
+import {UserChatsService} from '../../commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 
 @Component({
   selector: 'app-user-profile-horizontal',
@@ -16,21 +15,15 @@ export class UserProfileHorizontalComponent implements OnInit {
   @Input() showLiveStatus: boolean;
 
   constructor(
-    private windowService: NbWindowService
-  ) { }
+    private userChatsService: UserChatsService
+  ) {
+  }
 
   ngOnInit() {
   }
 
   openChatWithUser() {
-    this.windowService.open(UserChatComponent, {
-      title: 'Personal Messages',
-      context: {
-        discussionUserIds: [this.user.id]
-      }
-    });
+    this.userChatsService.changeFollowerId(this.user.id);
   }
-
-
 
 }

@@ -1,15 +1,13 @@
-import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
-import { Component, OnInit } from '@angular/core';
-import { NbMenuItem, NbSidebarService, NbWindowService } from '@nebular/theme';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { CommunitiesService } from '../../services/communities.service';
-import { faFlask } from '@fortawesome/free-solid-svg-icons';
-import { UserChatComponent } from 'projects/shared-components/user-chat/user-chat.component';
-import { UserPersonalDiscussionChatNotificationsChannel } from 'projects/shared-services/websockets/user-personal-discussion-chat-notifications.channel';
-import { ICommunityGroup } from 'projects/shared-models/community-group.model';
+import {CommunityGroupsService} from 'projects/commudle-admin/src/app/services/community-groups.service';
+import {Component, OnInit} from '@angular/core';
+import {NbSidebarService} from '@nebular/theme';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
+import {ICommunity} from 'projects/shared-models/community.model';
+import {CommunitiesService} from '../../services/communities.service';
+import {faFlask} from '@fortawesome/free-solid-svg-icons';
+import {ICommunityGroup} from 'projects/shared-models/community-group.model';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -22,33 +20,25 @@ export class SidebarMenuComponent implements OnInit {
   managedCommunities: ICommunity[] = [];
   managedCommunityGroups: ICommunityGroup[] = [];
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
-  communityAdminRoles = [];
   isSystemAdmin = false;
-  chatWindowRef;
-  unreadMessagesCount = 0;
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
-    private sidebarService: NbSidebarService,
-    private windowService: NbWindowService,
-    private userPersonalChatNotificationsChannel: UserPersonalDiscussionChatNotificationsChannel
-  ) { }
+    private sidebarService: NbSidebarService
+  ) {
+  }
 
   ngOnInit() {
     this.getCurrentUser();
-
-    this.userPersonalChatNotificationsChannel.newMessagesCounter$.subscribe(value => {
-      this.unreadMessagesCount = value.length;
-    });
   }
 
   getCurrentUser() {
     this.authWatchService.currentUser$.subscribe(currentUser => {
       this.currentUser = currentUser;
       if (currentUser) {
-      // check if current user is having a specific role and add corresponding items
+        // check if current user is having a specific role and add corresponding items
         const matchingOrganizerRoles = currentUser.user_roles.filter(
           (value) => -1 !== this.communityOrganizerRoles.indexOf(value)
         );
@@ -68,11 +58,10 @@ export class SidebarMenuComponent implements OnInit {
     });
   }
 
-
   getManagingCommunities(userRoles) {
     this.managedCommunities = [];
-    for (let u of userRoles) {
-      this.communitiesService.getRoleCommunities(u).subscribe(data => {
+    for (const role of userRoles) {
+      this.communitiesService.getRoleCommunities(role).subscribe(data => {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];
       });
     }
@@ -91,10 +80,5 @@ export class SidebarMenuComponent implements OnInit {
       this.sidebarService.collapse();
     }
   }
-
-  openChat() {
-    this.chatWindowRef = this.windowService.open(UserChatComponent, {title: 'Personal Messages'});
-  }
-
 
 }
