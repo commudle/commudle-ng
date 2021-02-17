@@ -314,6 +314,7 @@ export const API_ROUTES = {
     CHECK_USERNAME: 'api/v2/users/check_username',
     SET_USERNAME: 'api/v2/users/set_username',
     GET_MY_ROLES: 'api/v2/users/get_my_roles',
+    COMMUNITIES: 'api/v2/users/communities',
     MY_LABS: 'api/v2/users/my_labs',
     MY_COMMUNITY_BUILDS: 'api/v2/users/my_community_builds',
     LABS: 'api/v2/users/labs',
