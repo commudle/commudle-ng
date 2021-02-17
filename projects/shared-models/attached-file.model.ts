@@ -3,6 +3,12 @@ export interface IAttachedFile {
   id: any;
   url: string;
   file: File;
-  name: string;
-  type: string;
+  name?: string;
+  type?: string;
+  profile_banner?: string;
+  medium?: string;
+  small?: string;
+  thumbnail?: string;
 }
+
+
