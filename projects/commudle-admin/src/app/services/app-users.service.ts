@@ -6,6 +6,8 @@ import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { IUser } from 'projects/shared-models/user.model';
 import { ILabs } from 'projects/shared-models/labs.model';
 import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
+import { ITags } from 'projects/shared-models/tags.model';
+import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 
 
 
@@ -29,6 +31,18 @@ export class AppUsersService {
   updateUserProfile(userProfileData): Observable<IUser> {
     return this.http.put<IUser>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), userProfileData
+    );
+  }
+
+  updateTags(tags): Observable<ITags> {
+    return this.http.put<ITags>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), tags
+    );
+  }
+
+  updateProfileBannerImage(profileBannerImageData): Observable<IAttachedFile> {
+    return this.http.put<IAttachedFile>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), profileBannerImageData
     );
   }
 

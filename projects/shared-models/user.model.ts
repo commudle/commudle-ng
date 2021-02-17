@@ -1,3 +1,5 @@
+import { IAttachedFile } from "./attached-file.model";
+
 export interface IUser {
   id: number;
   name: string;
@@ -11,5 +13,6 @@ export interface IUser {
   twitter: string;
   gender: string;
   avatar: string;
+  profile_banner_image: IAttachedFile;
   username: string;
 }
