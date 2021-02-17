@@ -178,6 +178,11 @@ export class EventLocationTracksComponent implements OnInit {
     const eTime = newSlot['end_time'];
     newSlot['end_time'] = startTime.set({hour: eTime.getHours(), minute: eTime.getMinutes}).toDate();
 
+    if(newSlot['start_time'] >= newSlot['end_time'])
+    {
+      this.toastLogService.warningDialog("End time should be greater than Start time!");
+      return;
+    }
 
 
     this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
@@ -252,6 +257,12 @@ export class EventLocationTracksComponent implements OnInit {
     slot['end_time'] = startTime.set({hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes()}).toDate();
 
 
+
+    if(slot['start_time'] >= slot['end_time'])
+    {
+      this.toastLogService.warningDialog("End time should be greater than Start time!");
+      return;
+    }
 
     this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
       this.updateSession.emit(data);
