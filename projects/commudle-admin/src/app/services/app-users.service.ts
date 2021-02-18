@@ -37,13 +37,13 @@ export class AppUsersService {
 
   updateTags(tags): Observable<ITags> {
     return this.http.post<ITags>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), tags
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.TAGS), tags
     );
   }
 
   updateProfileBannerImage(profileBannerImageData): Observable<IAttachedFile> {
     return this.http.post<IAttachedFile>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.UPDATE_PROFILE), profileBannerImageData
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.PROFILE_BANNER_IMAGE), profileBannerImageData
     );
   }
 
