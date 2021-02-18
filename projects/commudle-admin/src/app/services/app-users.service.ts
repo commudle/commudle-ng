@@ -89,16 +89,18 @@ export class AppUsersService {
   }
 
 // list of labs on public profile
-  labs(): Observable<ILabs> {
+  labs(username): Observable<ILabs> {
+    let params = new HttpParams().set('username', username)
     return this.http.get<ILabs>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.LABS)
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.LABS), {params}
     );
   }
 
 // list of community builds on public profile
-  communityBuilds(): Observable<ICommunityBuilds> {
+  communityBuilds(username): Observable<ICommunityBuilds> {
+    let params = new HttpParams().set('username', username)
     return this.http.get<ICommunityBuilds>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITY_BUILDS)
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITY_BUILDS), {params}
     );
   }
 }
