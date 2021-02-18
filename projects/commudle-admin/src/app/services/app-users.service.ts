@@ -89,8 +89,8 @@ export class AppUsersService {
   }
 
 // list of labs on public profile
-  labs(): Observable<ICommunityBuilds> {
-    return this.http.get<ICommunityBuilds>(
+  labs(): Observable<ILabs> {
+    return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_COMMUNITY_BUILDS)
     );
   }
