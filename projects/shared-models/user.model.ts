@@ -1,4 +1,5 @@
 import { IAttachedFile } from "./attached-file.model";
+import { ITag } from "./tag.model";
 
 export interface IUser {
   id: number;
@@ -15,4 +16,5 @@ export interface IUser {
   avatar: string;
   profile_banner_image: IAttachedFile;
   username: string;
+  tags : ITag[];
 }
