@@ -72,26 +72,29 @@ export class EditEventComponent implements OnInit {
       // event is editable only if it's not canceled or completed)
       this.uneditable = ['completed', 'canceled'].includes(this.event.event_status.name);
 
-
-
       this.eventForm.get('event').patchValue({
         name: this.event.name,
         description: this.event.description,
         timezone: this.event.timezone
       });
 
+      let eventInstance = this.eventForm.get('event').value;
+      // console.log(this.eventForm.get('event').value);
+
       if (this.event.start_time){
         let sTime = moment(this.event.start_time).toDate();
         let eTime = moment(this.event.end_time).toDate();
-        // this.initialDate = sTime;
-        // this.finalDate = eTime;
-        this.eventStartTimePicker = new FormControl(sTime);
-        this.eventEndTimePicker = new FormControl(eTime);
+
         this.eventForm.get('event').patchValue({
           start_date: sTime,
           end_date: eTime,
+          start_time_pick: sTime, //patching start and end time saved to the form 
+          end_time_pick: eTime
         });
       }
+      // console.log(this.eventForm.get('event').value);
+      // console.log(new Date());
+
     });
 
 
@@ -106,18 +109,17 @@ export class EditEventComponent implements OnInit {
     let formValue = this.eventForm.get('event').value;
     delete formValue['start_date'];
     delete formValue['end_date'];
-
     formValue['start_time'] = '';
     formValue['end_time'] = '';
 
     if (this.setStartDateTime() && this.setEndDateTime()) {
       if (this.startTime > this.endTime) {
+        // console.log(this.startTime, " ", this.endDate);
         this.toastLogService.warningDialog('End time has to be greater then start time');
         return;
       } else {
         formValue['start_time'] = this.startTime;
         formValue['end_time'] = this.endTime;
-
       }
 
     }
@@ -134,19 +136,21 @@ export class EditEventComponent implements OnInit {
     // this.startMinute = this.eventForm.get('event').get('start_minute').value;
 
     let startTimePick = this.eventForm.get('event').get('start_time_pick').value;
+    // console.log(startTimePick, typeof(startTimePick));
+    this.startHour = startTimePick.getHours();
+    this.startMinute = startTimePick.getMinutes();
 
+    // if(startTimePick=="")
+    // {
+    //   this.startHour = this.eventStartTimePicker.value.getHours();
+    //   this.startMinute = this.eventStartTimePicker.value.getMinutes();
+    // }
 
-    if(startTimePick=="")
-    {
-      this.startHour = this.eventStartTimePicker.value.getHours();
-      this.startMinute = this.eventStartTimePicker.value.getMinutes();
-    }
-
-    if(startTimePick!="")
-    {
-      this.startHour = startTimePick.getHours();
-      this.startMinute = startTimePick.getMinutes();
-    }
+    // if(startTimePick!="")
+    // {
+    //   this.startHour = startTimePick.getHours();
+    //   this.startMinute = startTimePick.getMinutes();
+    // }
 
 
 
@@ -174,22 +178,10 @@ export class EditEventComponent implements OnInit {
   setEndDateTime() {
 
     this.endDate = this.eventForm.get('event').get('end_date').value;
-    // this.endHour = this.eventForm.get('event').get('end_hour').value;
-    // this.endMinute = this.eventForm.get('event').get('end_minute').value;
-
     let endTimePick = this.eventForm.get('event').get('end_time_pick').value;
-    
-    if(endTimePick=="")
-    {
-      this.endHour = this.eventEndTimePicker.value.getHours();
-      this.endMinute = this.eventEndTimePicker.value.getMinutes();
-    }
-
-    if(endTimePick!="")
-    {
-      this.endHour = endTimePick.getHours();
-      this.endMinute = endTimePick.getMinutes();
-    }
+    // console.log(endTimePick, typeof(endTimePick));
+    this.endHour = endTimePick.getHours();
+    this.endMinute = endTimePick.getMinutes();
 
 
 
@@ -199,9 +191,9 @@ export class EditEventComponent implements OnInit {
       && this.endMinute !== ""
     ) {
         this.endTime = moment({
-          years: this.endDate.getFullYear(),
-          months: this.endDate.getMonth(),
-          date: this.endDate.getDate(),
+          years: this.startDate.getFullYear(), //startDate because we still don't have multiple day tracks!
+          months: this.startDate.getMonth(), //so we gonna set the end and start date same, for now
+          date: this.startDate.getDate(),
           hours: this.endHour,
           minutes: this.endMinute
         }).toDate();

@@ -15,6 +15,7 @@ import { values } from 'lodash';
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.scss']
 })
+
 export class CreateEventComponent implements OnInit {
   event: IEvent;
   community: ICommunity;

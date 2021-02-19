@@ -235,7 +235,7 @@
 
 
           <div>
-            <input [nbTimepicker]="startTimePicker" [formControl]="eventStartTimePicker"   nbInput fullWidth formControlName="start_time" placeholder="Start Time*"  readonly>
+            <input [nbTimepicker]="startTimePicker"  nbInput fullWidth formControlName="start_time" placeholder="Start Time*"  readonly>
             <nb-timepicker #startTimePicker></nb-timepicker>
             <span *ngIf="trackSlotForm['controls'].track_slot['controls'].start_time.touched && trackSlotForm['controls'].track_slot['controls'].start_time.invalid && trackSlotForm['controls'].track_slot['controls'].start_time.errors.required" class="validation-error-text">
               Required Field
@@ -245,7 +245,7 @@
 
 
           <div>
-            <input [nbTimepicker]="endTimePicker" [formControl]="eventEndTimePicker" nbInput fullWidth formControlName="end_time" placeholder="End Time*" readonly>
+            <input [nbTimepicker]="endTimePicker" nbInput fullWidth formControlName="end_time" placeholder="End Time*" readonly>
             <nb-timepicker #endTimePicker></nb-timepicker>
             <span *ngIf="trackSlotForm['controls'].track_slot['controls'].end_time.touched && trackSlotForm['controls'].track_slot['controls'].end_time.invalid && trackSlotForm['controls'].track_slot['controls'].end_time.errors.required" class="validation-error-text">
               Required Field
