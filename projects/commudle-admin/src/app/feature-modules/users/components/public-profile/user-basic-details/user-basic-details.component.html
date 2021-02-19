@@ -1,1 +1,65 @@
-<p>user-basic-details works!</p>
+<div class="user-personal-details">
+
+  <div class="profile-photo">
+    <img alt="avatar" src="{{user.avatar}}">
+  </div>
+
+  <div class="user-details">
+    <div class="name">{{user.name}}</div>
+    <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
+    <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
+  </div>
+
+  <div *ngIf="currentUser && currentUser.id === user.id" class="edit-profile">
+    <button [routerLink]="['/my-profile/edit']" nbButton size="tiny">
+      <nb-icon icon="edit"></nb-icon>
+      Edit
+    </button>
+  </div>
+
+  <div class="user-tags">
+    <nb-tag-list>
+      <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
+      <nb-tag (click)="openEditTagWindow()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
+    </nb-tag-list>
+  </div>
+
+  <div *ngIf="currentUser && currentUser.id !== user.id" class="message-user">
+    <button (click)="openChatWithUser()" nbButton>Message
+      <nb-icon icon="paper-plane-outline"></nb-icon>
+    </button>
+  </div>
+
+  <div class="user-social">
+    <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}" nbButton
+       shape="round" target="_blank">
+      <nb-icon icon="linkedin" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.twitter" href="{{ user.twitter | completeurl:'twitter' }}" nbButton
+       shape="round" target="_blank">
+      <nb-icon icon="twitter" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.github" href="{{ user.github | completeurl:'github' }}" nbButton
+       shape="round" target="_blank">
+      <nb-icon icon="github" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}" nbButton
+       shape="round" target="_blank">
+      <nb-icon icon="globe-outline" status="primary"></nb-icon>
+    </a>
+  </div>
+
+  <hr>
+
+</div>
+
+<ng-template #editTags>
+  <p>
+    <nb-icon icon="info-outline"></nb-icon>
+    You can have a maximum of {{maxTags}} tags
+  </p>
+  <nb-tag-list (tagRemove)="onTagRemove($event)">
+    <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
+    <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput type="text">
+  </nb-tag-list>
+</ng-template>

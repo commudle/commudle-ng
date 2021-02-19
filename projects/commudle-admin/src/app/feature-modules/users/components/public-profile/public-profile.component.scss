@@ -2,13 +2,27 @@
 
 .public-profile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   min-height: 100vh;
 
+  .basic-details {
+    padding: 2rem;
+    flex: 1;
+    background: linear-gradient(188.21deg, #72C1FF 2.43%, #3DAAFA 102.6%);
+  }
 
-  @media (min-width: $tab-width) {
-    flex-direction: row;
-    flex-wrap: nowrap;
+  .user-content {
+    padding: 2rem;
+    flex: 3;
+  }
+
+  @media (max-width: $tab-width) {
+    flex-direction: column;
+
+    .user-content {
+      flex: 1;
+    }
   }
 
 
