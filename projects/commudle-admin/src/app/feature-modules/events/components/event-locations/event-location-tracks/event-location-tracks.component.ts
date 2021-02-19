@@ -136,11 +136,6 @@ export class EventLocationTracksComponent implements OnInit {
     eTime.setHours(hour);
     eTime.setMinutes(minute+5);
     
-    // this.initialDate = sTime;
-    // this.finalDate = eTime;
-    this.eventStartTimePicker = new FormControl(sTime);
-    this.eventEndTimePicker = new FormControl(eTime);
-
       this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: eventLocationTrack.id,
       date: this.minSlotDate,
@@ -148,7 +143,7 @@ export class EventLocationTracksComponent implements OnInit {
       end_time: eTime
     });
 
-
+  // console.log("----", this.trackSlotForm.get('track_slot').value)
 
 
     this.windowRef = this.windowService.open(
@@ -176,7 +171,7 @@ export class EventLocationTracksComponent implements OnInit {
 
     // const eTime = newSlot['end_time'].split(':');
     const eTime = newSlot['end_time'];
-    newSlot['end_time'] = startTime.set({hour: eTime.getHours(), minute: eTime.getMinutes}).toDate();
+    newSlot['end_time'] = startTime.set({hour: eTime.getHours(), minute: eTime.getMinutes()}).toDate();
 
     if(newSlot['start_time'] >= newSlot['end_time'])
     {
@@ -195,6 +190,7 @@ export class EventLocationTracksComponent implements OnInit {
   showEditSlotForm(trackSlot) 
   {
     this.trackSlotForm.reset();
+    // console.log(trackSlot);
     let sTime = trackSlot['start_time'];
     let eTime = trackSlot['end_time'];
     let sTimeArr = sTime.split('T')[1].split(':');
@@ -212,9 +208,7 @@ export class EventLocationTracksComponent implements OnInit {
     eTimeNew.setHours(eTimeHour);
     eTimeNew.setMinutes(eTimeMinute);
 
-
-    this.eventStartTimePicker = new FormControl(sTimeNew);
-    this.eventEndTimePicker = new FormControl(eTimeNew);
+    // console.log(sTimeNew, " ", eTimeNew);
 
     let trackDate = moment(trackSlot.start_time).toDate();
 
