@@ -1,4 +1,4 @@
-<nb-card class="community-card-container">
+<nb-card *ngIf="community.community" class="community-card-container">
   <nb-card-body>
     <img alt="{{community.community.name}}" src="{{community.community.logo_path}}">
     <div class="details">
