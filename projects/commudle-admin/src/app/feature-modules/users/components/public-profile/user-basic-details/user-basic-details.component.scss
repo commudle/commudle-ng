@@ -4,8 +4,8 @@
   .profile-photo {
     margin: 3rem auto;
     text-align: center;
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 50%;
     overflow: hidden;
 
@@ -45,10 +45,22 @@
     margin-bottom: 2rem;
 
     button {
-      color: white;
       border: none;
+      border-radius: 10px;
+      color: white;
       background-color: rgba(246, 247, 249, 0.4);
-      letter-spacing: 2px;
+      text-transform: none;
+      font-weight: 400;
+      letter-spacing: 1px;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
     }
   }
 
@@ -61,6 +73,15 @@
 
       &:last-child {
         cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        &:active {
+          transform: scale(1);
+        }
       }
     }
   }
@@ -71,6 +92,7 @@
 
     button {
       border: none;
+      border-radius: 10px;
       color: white;
       background-color: #536EFF;
       filter: drop-shadow(0px 4px 18px #536EFF);
@@ -91,8 +113,17 @@
     margin: 4rem 0;
 
     a {
-      margin: 0 0.35rem;
+      margin: 0.35rem;
       background-color: #D8ECFF;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
     }
   }
 
@@ -107,8 +138,8 @@
   @media (max-width: $tab-width) {
     .profile-photo {
       margin: 2rem auto;
-      width: 150px;
-      height: 150px;
+      max-width: 150px;
+      max-height: 150px;
     }
 
     .user-details {
