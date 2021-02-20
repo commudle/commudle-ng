@@ -1,0 +1,24 @@
+.user-cover-photo {
+  .cover-image {
+    height: 20vh;
+    background: #FFFFFF;
+    border: 1px solid #72C1FF;
+    box-sizing: border-box;
+    border-radius: 30px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  button {
+    border: none;
+    position: relative;
+    bottom: 35px;
+    left: 15px;
+    color: #536EFF !important;
+    background-color: rgba(196, 196, 196, 0.32) !important;
+  }
+}

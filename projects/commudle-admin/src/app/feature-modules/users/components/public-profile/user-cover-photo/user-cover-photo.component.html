@@ -1,1 +1,18 @@
-<p>user-cover-photo works!</p>
+<div class="user-cover-photo">
+  <div class="cover-image">
+    <img alt="Cover image" src="{{user.profile_banner_image.url}}">
+  </div>
+  <button (click)="openEditCoverImageWindow()" *ngIf="currentUser && currentUser.id === user.id" nbButton size="tiny">
+    <nb-icon icon="edit"></nb-icon>
+    Change Cover
+  </button>
+</div>
+
+<ng-template #editCoverPhoto>
+  <p>
+    <nb-icon icon="image-outline"></nb-icon>
+    Click to upload a Cover Image
+  </p>
+  <input (change)="displayCoverImage($event)" accept="image/*" fullWidth nbInput type="file">
+  <img *ngIf="coverImage" alt="Cover Image" src="{{coverImage}}" style="max-height: 20vh; margin-top: 1rem;">
+</ng-template>
