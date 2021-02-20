@@ -1,0 +1,71 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-content {
+  margin-top: 2rem;
+
+  nb-tabset {
+    overflow: auto;
+
+    nb-tab {
+      padding: 0;
+
+      .labs, .communities, .builds {
+        margin: 2rem 0 4rem;
+      }
+
+      .heading {
+        font-weight: bold;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        color: #536EFF;
+      }
+
+      .labs {
+        .lab-cards {
+          display: flex;
+          overflow: auto;
+
+          app-user-lab-card {
+            margin-right: 15px;
+          }
+        }
+      }
+
+      .communities {
+        .community-cards {
+          display: flex;
+          overflow: auto;
+
+          app-user-community-card {
+            margin-right: 15px;
+          }
+        }
+      }
+
+      .builds {
+        .build-cards {
+          display: grid;
+          grid-gap: 1.875rem;
+          grid-template-columns: repeat(2, 1fr);
+
+          app-user-build-card {
+          }
+        }
+      }
+
+      @media all and (max-width: $tab-width) {
+        .heading {
+          font-size: 1.25rem;
+          line-height: 1.25rem;
+        }
+
+        .builds {
+          .build-cards {
+            grid-template-columns: repeat(1, 1fr);
+          }
+        }
+      }
+    }
+  }
+
+}
