@@ -1,0 +1,40 @@
+.community-card-container {
+  width: 300px;
+  border: 2px solid #C4C4C4;
+  border-radius: 10px;
+  margin: 0;
+
+  nb-card-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+
+    img {
+      width: 96px;
+      height: min-content;
+    }
+
+    .details {
+      margin-left: 1rem;
+
+      .name {
+        color: #2F2E41;
+        margin-bottom: 0;
+      }
+
+      .role {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 0;
+        color: #536EFF;
+        text-transform: capitalize;
+      }
+
+      .count {
+        font-weight: 600;
+        color: #979797;
+      }
+    }
+  }
+}

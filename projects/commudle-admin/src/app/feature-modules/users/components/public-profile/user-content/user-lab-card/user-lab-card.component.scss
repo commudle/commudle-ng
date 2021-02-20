@@ -1,0 +1,23 @@
+.lab-card-container {
+  width: 300px;
+
+  nb-card-header {
+    padding: 0;
+  }
+
+  nb-card-body {
+    padding: 0.75rem;
+
+    .name {
+      font-weight: 600;
+      color: #536EFF;
+    }
+
+    .description {
+      font-size: 14px;
+      line-height: 16px;
+      color: #5C6972;
+      margin-bottom: 2rem;
+    }
+  }
+}

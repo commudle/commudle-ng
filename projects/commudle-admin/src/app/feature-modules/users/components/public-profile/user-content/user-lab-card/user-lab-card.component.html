@@ -1,0 +1,12 @@
+<nb-card class="lab-card-container">
+  <nb-card-header>
+    <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.url}}">
+    <nb-icon *ngIf="!lab.header_image" icon="link-outline"></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <p class="name">{{lab.name}}</p>
+    <p class="description">{{lab.description}}</p>
+    <nb-user [name]="'Name'" [title]="'Title'"></nb-user>
+    <!--    <nb-user [name]="lab.user.name" [title]="lab.user.designation" [picture]="lab.user.avatar"></nb-user>-->
+  </nb-card-body>
+</nb-card>

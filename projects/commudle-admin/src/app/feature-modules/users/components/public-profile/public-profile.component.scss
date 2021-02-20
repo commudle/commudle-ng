@@ -9,18 +9,25 @@
   .basic-details {
     padding: 2rem;
     flex: 1;
+    width: 25%;
     background: linear-gradient(188.21deg, #72C1FF 2.43%, #3DAAFA 102.6%);
   }
 
   .user-content {
     padding: 2rem;
     flex: 3;
+    width: 75%;
   }
 
   @media (max-width: $tab-width) {
     flex-direction: column;
 
+    .basic-details {
+      width: 100%;
+    }
+
     .user-content {
+      width: 100%;
       flex: 1;
     }
   }
