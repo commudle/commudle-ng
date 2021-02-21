@@ -60,7 +60,14 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
   createChat(followerId: number) {
     this.sDiscussionService.getOrCreatePersonalChat([followerId]).subscribe(data => {
       // If chatting to a brand new user, include that in allPersonalChatUsers
-      if (!this.allPersonalChatUsers.includes(data)) {
+      // Duplicates are added if done by .includes, hence this elaborate way of checking allPersonalChatUser id's
+      let isThere = false;
+      this.allPersonalChatUsers.forEach(value => {
+        if (value.id === data.id) {
+          isThere = true;
+        }
+      });
+      if (!isThere) {
         this.allPersonalChatUsers.unshift(data);
       }
       this.openChat(data);
@@ -70,7 +77,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
   // Open a chat based on the user clicked (event emitter from chats list component)
   openChat(follower: IDiscussionFollower) {
     // Add only if follower is not active
-    // Duplicates are added if done by .includes, hence this elaborate way of checking IDiscussionFollower id's
+    // Duplicates are added if done by .includes, hence this elaborate way of checking discussionFollower id's
     let isThere = false;
     this.discussionFollowers.forEach(value => {
       if (value.id === follower.id) {
