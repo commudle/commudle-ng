@@ -24,6 +24,7 @@
         .lab-cards {
           display: flex;
           overflow: auto;
+          align-items: center;
 
           app-user-lab-card {
             margin-right: 15px;
@@ -35,6 +36,7 @@
         .community-cards {
           display: flex;
           overflow: auto;
+          align-items: center;
 
           app-user-community-card {
             margin-right: 15px;
