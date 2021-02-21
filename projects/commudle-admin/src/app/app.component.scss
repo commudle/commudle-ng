@@ -1,6 +1,6 @@
-:host{
-  nb-layout-header{
-    .container{
+:host {
+  nb-layout-header {
+    .container {
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -14,11 +14,10 @@
           position: relative;
           fa-icon {
             vertical-align: sub;
-            &:hover{
+            &:hover {
               transform: rotate(25deg);
             }
           }
-
         }
 
         .main-logo {
@@ -35,11 +34,10 @@
             }
           }
 
-          p{
+          p {
             font-size: 1rem;
             color: #4481ff;
             margin: 0 0.5rem;
-
           }
         }
       }
@@ -50,74 +48,154 @@
     }
   }
 
+  // nb-layout-footer {
+  //   ::ng-deep {
+  //     nav {
+  //       flex-direction: column;
+  //     }
+  //   }
+  //   .main-logo {
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //     margin-left: 0.8rem;
+  //     img {
+  //       width: 35px;
+  //     }
+
+  //     p {
+  //       font-size: 1rem;
+  //       color: #4481ff;
+  //       margin: 0 0.5rem;
+
+  //     }
+  //   }
+
+  //   .links {
+  //     display: flex;
+  //     justify-content: space-around;
+  //     flex-wrap: wrap;
+  //     margin: 1rem 0;
+  //     .social {
+  //       margin: 0 1rem;
+  //       a {
+  //         margin: 5px;
+  //         color: grey;
+  //         nb-icon {
+  //           font-size: 1.3rem;
+  //         }
+  //       }
+  //     }
+
+  //     .pages, .policies {
+  //       display: flex;
+  //       flex-direction: column;
+  //       a {
+  //         margin: 0 0 0.5rem;
+  //         text-decoration: none;
+  //         color: grey;
+  //       }
+  //     }
+
+  //     @media screen and (max-width: 800px) {
+  //       flex-direction: column;
+  //       align-items: flex-start;
+  //       .social {
+  //         margin: 0.5rem 0 0;
+  //       }
+
+  //       .pages, .policies {
+  //         margin-top: 0.5rem;
+  //       }
+  //     }
+  //   }
+  // }
+
+  // nb-sidebar {
+  //   transition: width 0.1s;
+  // }
+@media(max-width:480px)
+{
   nb-layout-footer {
     ::ng-deep {
       nav {
+        display: flex;
         flex-direction: column;
+        background-image: linear-gradient(to right, rgba(83, 110, 255, 1), rgba(61, 170, 250, 1));
+        
       }
     }
+
+    
+
     .main-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 0.8rem;
+      padding-left: 10%;
       img {
-        width: 35px;
-      }
-
-      p {
-        font-size: 1rem;
-        color: #4481ff;
-        margin: 0 0.5rem;
-
+        filter: brightness(5);
+        width: 50px;
       }
     }
 
     .links {
       display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-      .social {
-        margin: 0 1rem;
-        a {
-          margin: 5px;
-          color: grey;
-          nb-icon {
-            font-size: 1.3rem;
-          }
-        }
+      padding-top: 7%;
+      padding-left: 10%;
+      a, a:hover {
+        text-decoration: none;
+        font-size: 12px;
+        color: white;
+        font-weight: 800;
+        font-family: "Work Sans";
       }
 
-      .pages, .policies {
+      .dev-pages {
         display: flex;
         flex-direction: column;
-        a {
-          margin: 0 0 0.5rem;
-          text-decoration: none;
-          color: grey;
+        width: 14%;
+        .dev1 { 
+
+          display: flex;
+          flex-direction: column;
+        }
+        .dev2 {
+          display: flex;
+          flex-direction: column;
+          padding-top: 16px;
         }
       }
 
-
-      @media screen and (max-width: 800px) {
+      .policies {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        .social {
-          margin: 0.5rem 0 0;
-        }
-
-        .pages, .policies {
-          margin-top: 0.5rem;
-        }
+        padding-left: 37%;
       }
     }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      gap: 3%;
+      padding-top: 5%;
+      nb-icon {
+        // height:25px;
+        font-size: 25px;
+        color: white;
+        // height:24px;
+        // width:25px;
+      }
+    }
+
+  .horizontalLine{
+    justify-content: center;
+
+  hr {
+    width: 15%;
+    border: 0;
+    height: 1px;
+    background: white;
+    margin-bottom: 3%;
   }
-
-  // nb-sidebar {
-  //   transition: width 0.1s;
-  // }
-
-
-
+}
+}
+}
 }

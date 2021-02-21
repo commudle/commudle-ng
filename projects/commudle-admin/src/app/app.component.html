@@ -47,7 +47,7 @@
     <router-outlet></router-outlet>
   </nb-layout-column>
 
-  <nb-layout-footer fixed>
+  <!-- <nb-layout-footer fixed>
     <div class="main-logo clickable" [routerLink]="['/']">
       <img src="/assets/images/commudle-logo72.png">
       <p>
@@ -82,8 +82,55 @@
         <a [routerLink]="['/policies/terms-and-conditions']">TERMS AND CONDITIONS</a>
       </div>
     </div>
-  </nb-layout-footer>
+  </nb-layout-footer> -->
 
+
+  <nb-layout-footer>
+    <div class="main-logo" [routerLink]="['/']">
+      <img class = "clickable" src="/assets/images/commudle-logo72.png">
+    </div>
+
+    <div class="links">
+        <div class="dev-pages">
+          <div class="dev1">
+            <a [routerLink]="['/']">HOME</a>
+            <a [routerLink]="['/about']">ABOUT</a>
+            <a [routerLink]="['/features']">FEATURES</a>
+            <a href = "#">FAQ</a>
+          </div>
+          <div class="dev2">
+            <a [routerLink]="['/communities']">COMMUNITIES</a>
+            <a [routerLink]="['/labs']">LABS</a>
+            <a [routerLink]="['/builds']">BUILDS</a>
+            <a href = "#">EVENTS</a>
+          </div>
+        </div>
+      
+        <div class="policies">
+          <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>
+          <a [routerLink]="['/policies/terms-and-conditions']">TERMS & CONDITIONS</a>
+        </div>
+    </div>
+     
+    <div class="social">
+        <a href="https://github.com/commudle/commudle-ng" target="_blank">
+          <nb-icon icon="twitter"></nb-icon>
+        </a>
+        <a href="https://linkedin.com/company/commudle" target="_blank">
+          <nb-icon icon="linkedin"></nb-icon>
+        </a>
+        <a href="https://twitter.com/commudle" target="_blank">
+          <nb-icon icon="facebook"></nb-icon>
+        </a>
+        <a href="https://facebook.com/commudle" target="_blank">
+          <nb-icon icon="github"></nb-icon>
+        </a>
+    </div>
+    
+    <div class="horizontalLine"><hr></div>
+      
+
+  </nb-layout-footer>
 </nb-layout>
 
 
