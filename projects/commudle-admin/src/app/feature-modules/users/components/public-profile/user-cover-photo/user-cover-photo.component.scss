@@ -15,9 +15,11 @@
 
   button {
     border: none;
+    border-radius: 10px;
+    text-transform: none;
     position: relative;
-    bottom: 35px;
-    left: 15px;
+    bottom: 40px;
+    left: 20px;
     color: #536EFF !important;
     background-color: rgba(196, 196, 196, 0.32) !important;
   }
