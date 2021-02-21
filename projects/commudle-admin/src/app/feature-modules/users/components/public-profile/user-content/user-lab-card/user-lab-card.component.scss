@@ -1,8 +1,11 @@
 .lab-card-container {
   width: 300px;
+  border: 1px solid #72C1FF;
+  border-radius: 5px;
 
   nb-card-header {
     padding: 0;
+    border-bottom: 1px solid #72C1FF;
   }
 
   nb-card-body {
