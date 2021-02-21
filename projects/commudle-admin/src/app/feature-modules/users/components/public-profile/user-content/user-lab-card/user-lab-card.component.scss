@@ -6,6 +6,11 @@
   nb-card-header {
     padding: 0;
     border-bottom: 1px solid #72C1FF;
+    line-height: 0;
+
+    img {
+      width: 100%;
+    }
   }
 
   nb-card-body {
@@ -18,7 +23,6 @@
 
     .description {
       font-size: 14px;
-      line-height: 16px;
       color: #5C6972;
       margin-bottom: 2rem;
     }

@@ -4,7 +4,7 @@
       <div class="labs">
         <p class="heading">My Labs ({{labs.length}})</p>
         <div class="lab-cards">
-          <app-user-lab-card *ngFor="let lab of labs" [lab]="lab"></app-user-lab-card>
+          <app-user-lab-card *ngFor="let lab of labs" [lab]="lab" [user]="user"></app-user-lab-card>
         </div>
       </div>
       <div class="communities">
