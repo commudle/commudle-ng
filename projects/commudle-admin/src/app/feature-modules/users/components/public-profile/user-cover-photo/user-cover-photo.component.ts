@@ -29,7 +29,7 @@ export class UserCoverPhotoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openEditCoverImageWindow() {
+  onCoverImageWindowOpen(): void {
     // Open a window to edit the tags
     this.editCoverPhotoWindow = this.windowService.open(
       this.editCoverPhoto,
@@ -39,23 +39,10 @@ export class UserCoverPhotoComponent implements OnInit {
         closeOnEsc: false
       },
     );
-
-    // When the window is closed, update the tags
-    this.editCoverPhotoWindow.onClose.subscribe(() => {
-      // Update only if a image is selected
-      if (this.coverImageFormData) {
-        this.appUsersService.updateProfileBannerImage(this.coverImageFormData).subscribe(() => {
-          this.toastrService.show('Your cover image has been updated!', `Success!`, {status: 'success'});
-          // TODO: Make this better
-          // Reload the page to show the updated cover image
-          setTimeout(() => window.location.reload(), 2000);
-        });
-      }
-    });
   }
 
   // Display the cover image below the input
-  displayCoverImage(event: any) {
+  displayCoverImage(event: any): void {
     // Check if file has been selected
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -71,6 +58,19 @@ export class UserCoverPhotoComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (_event) => this.coverImage = reader.result;
+    }
+  }
+
+  // Function to submit the cover image form
+  onCoverImageWindowSubmit(): void {
+    // Update only if a image is selected
+    if (this.coverImageFormData) {
+      this.appUsersService.updateProfileBannerImage(this.coverImageFormData).subscribe(() => {
+        this.toastrService.show('Your cover image has been updated!', `Success!`, {status: 'success'});
+        // TODO: Make this better
+        // Reload the page to show the updated cover image
+        setTimeout(() => window.location.reload(), 1500);
+      });
     }
   }
 }
