@@ -6,7 +6,7 @@
     flex-direction: row;
   }
 
-  >div {
+  > div {
     flex: 1 0 100%;
     flex-direction: column;
     margin: 0 0.5rem 0.8rem;
@@ -28,13 +28,14 @@
 }
 
 
-.uploaded-profile-image{
+.uploaded-profile-image {
   height: 150px;
   max-width: 300px;
   overflow: hidden;
   // background: #d3d3d36b;
   margin: 0 auto;
   text-align: center;
+
   img {
     height: 100%;
   }
@@ -50,7 +51,8 @@
   form {
     display: flex;
     flex-wrap: wrap;
-    button, .public-profile-link {
+
+    button {
       margin: 1.2rem 1rem 0;
     }
   }

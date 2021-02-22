@@ -11,7 +11,7 @@
   </div>
 
   <div *ngIf="currentUser && currentUser.id === user.id" class="edit-profile">
-    <button [routerLink]="['/my-profile/edit']" nbButton size="small">
+    <button (click)="onEditProfileWindowOpen()" nbButton size="small">
       <nb-icon icon="edit"></nb-icon>
       edit bio
     </button>
