@@ -18,6 +18,7 @@ import {CookieConsentComponent} from '../../../shared-components/cookie-consent/
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   sideBarNotifications = false;
   sideBarState = 'collapsed';
