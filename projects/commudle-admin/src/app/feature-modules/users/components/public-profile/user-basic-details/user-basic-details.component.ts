@@ -36,7 +36,7 @@ export class UserBasicDetailsComponent implements OnInit {
     this.user.tags.forEach(tag => this.tags.push(tag.name));
   }
 
-  openEditTagWindow() {
+  onTagWindowOpen(): void {
     // Boilerplate tag
     if (this.tags.length < 1) {
       this.tags.push('Delete this');
@@ -51,13 +51,16 @@ export class UserBasicDetailsComponent implements OnInit {
         closeOnEsc: false
       },
     );
+  }
 
-    // When the window is closed, update the tags
-    this.editTagWindow.onClose.subscribe(() => {
-      this.appUsersService.updateTags({tags: this.tags}).subscribe(() => {
-        this.toastrService.show('Your tags have been updated!', `Success!`, {status: 'success'});
-      });
+  // Function to submit the tag form
+  onTagWindowSubmit() {
+    // When the save button is clicked, update the tags
+    this.appUsersService.updateTags({tags: this.tags}).subscribe(() => {
+      this.toastrService.show('Your tags have been updated!', `Success!`, {status: 'success'});
     });
+    // Close the window
+    this.editTagWindow.close();
   }
 
   // Function to remove a tag
@@ -79,7 +82,7 @@ export class UserBasicDetailsComponent implements OnInit {
   }
 
   // Open a chat with the particular user
-  openChatWithUser() {
+  openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
   }
 }

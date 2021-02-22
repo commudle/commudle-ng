@@ -20,7 +20,7 @@
   <div class="user-tags">
     <nb-tag-list>
       <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
-      <nb-tag (click)="openEditTagWindow()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
+      <nb-tag (click)="onTagWindowOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
     </nb-tag-list>
   </div>
 
@@ -54,12 +54,13 @@
 </div>
 
 <ng-template #editTags>
-  <p>
+  <p style="margin-bottom: 0">
     <nb-icon icon="info-outline"></nb-icon>
     You can have a maximum of {{maxTags}} tags
   </p>
-  <nb-tag-list (tagRemove)="onTagRemove($event)">
+  <nb-tag-list (tagRemove)="onTagRemove($event)" style="margin: 2rem 0;">
     <nb-tag *ngFor="let tag of tags" [text]="tag" removable></nb-tag>
     <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput type="text">
   </nb-tag-list>
+  <button (click)="onTagWindowSubmit()" nbButton status="success">Save</button>
 </ng-template>
