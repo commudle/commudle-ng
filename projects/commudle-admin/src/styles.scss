@@ -12,6 +12,10 @@
 @include nb-install() {
   @include nb-theme-global();
 };
+
+
+@import './assets/styles/common-classes.scss';
+
 /* You can add global styles to this file, and also import other style files */
 
 .validation-error-text, .error-text{

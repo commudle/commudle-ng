@@ -1,0 +1,40 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  .hms-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    .state-container {
+      width: 100%;
+      height: 100%;
+
+      .select-role {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .local-preview {
+        width: fit-content;
+      }
+
+      .room {
+        width: 100%;
+        height: 100%;
+      }
+
+      .webinar-ended {
+        nb-alert {
+          position: absolute;
+          top: 25%;
+          left: 50%;
+          transform: translate(-50%, 0);
+        }
+      }
+    }
+  }
+}

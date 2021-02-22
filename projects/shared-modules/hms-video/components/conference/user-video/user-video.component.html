@@ -1,0 +1,21 @@
+<div class="user-video">
+  <video #userVideo autoplay [muted]="self" playsinline></video>
+  <div *ngIf="userDetails && !userDetails.camera && (stream.options && !stream.options.screen)" class="avatar d-flex justify-content-center align-items-center">
+    <img [src]="userDetails.avatar">
+  </div>
+  <div *ngIf="overridable && userDetails" class="override-controls d-flex justify-content-center">
+    <button nbButton size="small" ghost (click)="mutePeer.emit()" *ngIf="userDetails.mic" nbTooltip="Mute">
+      <nb-icon icon="mic-off-outline"></nb-icon>
+    </button>
+    <button nbButton size="small" ghost (click)="removeFromStage.emit()" nbTooltip="Remove from Stage">
+      <nb-icon icon="person-delete-outline"></nb-icon>
+    </button>
+  </div>
+  <div *ngIf="userDetails" class="user-info">
+
+    <nb-icon *ngIf="!userDetails.mic" icon="mic-off" status="danger"></nb-icon>
+    <p class="name">
+      {{userDetails.name}}
+    </p>
+  </div>
+</div>

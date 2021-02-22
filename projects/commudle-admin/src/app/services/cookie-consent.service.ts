@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,16 @@ export class CookieConsentService {
   private cookieConsentKey = 'cookie-consent';
   private acceptConsentValue = 'true';
 
-  constructor() { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) { }
 
   acceptCookieConsent() {
-    localStorage.setItem(this.cookieConsentKey, this.acceptConsentValue);
+    isPlatformBrowser(this.platformId) ? localStorage.setItem(this.cookieConsentKey, this.acceptConsentValue) : false;
   }
 
   isCookieConsentAccepted(): boolean {
-    const consentValue = localStorage.getItem(this.cookieConsentKey);
+    const consentValue = (isPlatformBrowser(this.platformId) ? localStorage.getItem(this.cookieConsentKey) : false);
     return consentValue === this.acceptConsentValue;
   }
 }

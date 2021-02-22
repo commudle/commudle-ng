@@ -1,0 +1,29 @@
+.chats-list {
+  margin: 0;
+
+  .chats-list-header {
+    display: flex;
+
+    p {
+      margin: 0 15px 0 0;
+      align-self: center;
+    }
+
+    app-badge {
+      margin-top: 5px;
+    }
+  }
+
+  .chats-list-body {
+    transition: max-height 0.3s ease-in-out;
+    padding: 0;
+
+    nb-list-item {
+      transition: 0.25s ease-in-out;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}

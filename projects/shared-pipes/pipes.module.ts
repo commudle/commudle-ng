@@ -2,6 +2,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
 import { NgModule } from '@angular/core';
 import { CompleteUrlPipe } from './complete-url.pipe';
 import { TextToLinksPipe } from './text-to-links.pipe';
+import { NumkeysPipe } from './numkeys.pipe';
 
 
 
@@ -10,6 +11,7 @@ import { TextToLinksPipe } from './text-to-links.pipe';
     CompleteUrlPipe,
     TruncateTextPipe,
     TextToLinksPipe,
+    NumkeysPipe
 
   ],
   imports: [
@@ -18,6 +20,7 @@ import { TextToLinksPipe } from './text-to-links.pipe';
     CompleteUrlPipe,
     TruncateTextPipe,
     TextToLinksPipe,
+    NumkeysPipe
 
   ]
 })

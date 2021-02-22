@@ -3,5 +3,6 @@ export enum EEmbeddedVideoStreamSources {
   JITSI_MEET = 'jitsi',
   EXTERNAL_LINK = 'external_link',
   OTHER = 'other',
-  ZOOM = 'zoom'
+  ZOOM = 'zoom',
+  COMMUDLE = 'commudle'
 }
