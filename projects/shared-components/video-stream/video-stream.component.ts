@@ -1,7 +1,9 @@
 import { environment } from 'projects/commudle-admin/src/environments/environment';
-import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, ChangeDetectorRef, Inject, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 declare var JitsiMeetExternalAPI: any;
 @Component({
   selector: 'app-video-stream',
@@ -9,12 +11,13 @@ declare var JitsiMeetExternalAPI: any;
   styleUrls: ['./video-stream.component.scss']
 })
 export class VideoStreamComponent implements OnInit, OnChanges {
+  isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('jitsimeet', {static: false}) private jitsiMeet: ElementRef;
   api;
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   environment = environment;
-
+  @Input() currentUser: ICurrentUser;
   @Input() videoSource: string;
   @Input() videoCode: any;
   @Input() fillerText: string;
@@ -24,17 +27,22 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   @Input() userEmail: string;
   @Input() userName: string;
 
-  // zoom specific parameters
+  // zoom specific attributes
   @Input() zoomSignature: string;
   @Input() zoomHostEmail: string;
   @Input() zoomPassword: string;
   @Input() zoomHostSignature: string;
 
+  // hms specific attributes
+  @Input() hmsRoomId: string;
+
   playerUrl: any;
 
   constructor(
     private sanitizer: DomSanitizer,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object,
+
   ) { }
 
   ngOnInit() {
@@ -44,13 +52,16 @@ export class VideoStreamComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.setPreview();
   }
 
   setPreview() {
     if (this.videoCode) {
       switch (this.videoSource) {
+        case EEmbeddedVideoStreamSources.COMMUDLE:
+          this.changeDetectorRef.detectChanges();
+          break;
         case EEmbeddedVideoStreamSources.YOUTUBE:
           this.youtubeParser();
           break;

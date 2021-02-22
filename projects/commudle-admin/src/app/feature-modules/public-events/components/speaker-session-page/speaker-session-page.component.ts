@@ -1,4 +1,5 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -14,19 +15,23 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
-import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { NbSidebarService } from '@nebular/theme';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 
 @Component({
   selector: 'app-speaker-session-page',
   templateUrl: './speaker-session-page.component.html',
   styleUrls: ['./speaker-session-page.component.scss']
 })
-export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
+  isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('videoContainer') private videoContainer: ElementRef;
 
   trackSlot: ITrackSlot;
@@ -62,6 +67,10 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
   chatCount = 0;
   questionCount = 0;
 
+  userRoles = [];
+  subscriptions = [];
+  EUserRoles = EUserRoles;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private trackSlotsService: TrackSlotsService,
@@ -69,9 +78,13 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private title: Title,
     private meta: Meta,
-    private userVisitsService: UserVisitsService,
+    private userObjectVisitsService: UserObjectVisitsService,
     private authWatchService: LibAuthwatchService,
     private nbSidebarService: NbSidebarService,
+    private location: Location,
+    private cookieService: CookieService,
+    private usersService: AppUsersService,
+    private userVisitsService: UserVisitsService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
@@ -101,19 +114,29 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
     this.meta.updateTag({ name: 'twitter:description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
   }
 
+  ngOnDestroy() {
+    for (let subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+  }
+
   ngOnInit() {
     this.resolveData();
-
-    this.authWatchService.currentUser$.subscribe(
-      data => {
-        this.currentUser = data;
-      }
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        data => {
+          this.currentUser = data;
+          this.getMyRoles();
+        }
+      )
     );
 
-    this.userVisitsService.visitors$.subscribe(
-      data => {
-        this.userVisitData = data;
-      }
+    this.subscriptions.push(
+      this.userVisitsService.visitors$.subscribe(
+        data => {
+          this.userVisitData = data;
+        }
+      )
     );
   }
 
@@ -125,31 +148,44 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
 
   }
 
-  resolveData() {
-    this.activatedRoute.data.subscribe(
-      data => {
-        this.community = data.community;
-        this.event = data.event;
-        this.setMeta();
-        this.startTime = this.event.start_time;
-        this.endTime = this.event.end_time;
-        if (this.event.custom_agenda) {
-          this.activatedRoute.queryParams.subscribe(
-            params => {
-              this.getTrackSlot(params.track_slot_id);
-              this.pollableId = params.track_slot_id;
-              this.pollableType = 'TrackSlot';
-            }
-          );
-        } else {
-          this.getEventEmbeddedVideoStream();
-          this.getDiscussionQnA();
-          this.getDiscussionChat();
-          this.title.setTitle(`Live Session | ${this.event.name}`);
-          this.pollableId = this.event.id;
-          this.pollableType = 'Event';
+  getMyRoles() {
+    if (this.currentUser && this.community) {
+      this.usersService.getMyRoles('Kommunity', this.community.id).subscribe(
+        data => {
+          this.userRoles = data;
         }
-      }
+      )
+    }
+  }
+
+  resolveData() {
+    this.subscriptions.push(
+      this.activatedRoute.data.subscribe(
+        data => {
+          this.community = data.community;
+          this.getMyRoles();
+          this.event = data.event;
+          this.setMeta();
+          this.startTime = this.event.start_time;
+          this.endTime = this.event.end_time;
+          if (this.event.custom_agenda) {
+            this.activatedRoute.queryParams.subscribe(
+              params => {
+                this.getTrackSlot(params.track_slot_id);
+                this.pollableId = params.track_slot_id;
+                this.pollableType = 'TrackSlot';
+              }
+            );
+          } else {
+            this.getEventEmbeddedVideoStream();
+            this.getDiscussionQnA();
+            this.getDiscussionChat();
+            this.title.setTitle(`Live Session | ${this.event.name}`);
+            this.pollableId = this.event.id;
+            this.pollableType = 'Event';
+          }
+        }
+      )
     );
   }
 
@@ -164,6 +200,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
         this.endTime = this.trackSlot.end_time;
         if (this.trackSlot.embedded_video_stream) {
           this.embeddedVideoStream = this.trackSlot.embedded_video_stream;
+          this.markUserObjectVisit('TrackSlot', this.trackSlot.id);
           this.onResize();
         }
 
@@ -222,6 +259,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
       data => {
         if (data) {
           this.embeddedVideoStream = data;
+          this.markUserObjectVisit('EmbeddedVideoStream', this.embeddedVideoStream.id);
           this.onResize();
         }
       }
@@ -271,5 +309,21 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit {
     }
 
   }
+
+  markUserObjectVisit(objectType, objectId) {
+    if (this.isBrowser) {
+      const userObjectVisit = {
+        url: this.location.path(),
+        session_token: this.cookieService.get(environment.session_cookie_name),
+        parent_type: objectType,
+        parent_id: objectId,
+        app_token: this.authWatchService.getAppToken()
+      };
+      this.userObjectVisitsService.create(userObjectVisit).subscribe();
+    }
+
+  }
+
+
 
 }
