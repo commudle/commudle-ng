@@ -5,6 +5,7 @@ import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {v4 as uuidv4} from 'uuid';
 import {UserChatsService} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
+import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -43,14 +44,11 @@ export class UserBasicDetailsComponent implements OnInit {
     }
 
     // Open a window to edit the tags
-    this.editTagWindow = this.windowService.open(
-      this.editTags,
-      {
-        title: 'Edit Tags',
-        closeOnBackdropClick: false,
-        closeOnEsc: false
-      },
-    );
+    this.editTagWindow = this.windowService.open(this.editTags, {
+      title: 'Edit Tags',
+      closeOnBackdropClick: false,
+      closeOnEsc: false
+    });
   }
 
   // Function to submit the tag form
@@ -84,5 +82,13 @@ export class UserBasicDetailsComponent implements OnInit {
   // Open a chat with the particular user
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
+  }
+
+  onEditProfileWindowOpen() {
+    this.windowService.open(BasicUserProfileComponent, {
+      title: 'Edit Profile Info',
+      closeOnEsc: false,
+      closeOnBackdropClick: false
+    });
   }
 }

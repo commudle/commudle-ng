@@ -49,12 +49,10 @@ import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.
 import {LogoutComponent} from './components/logout/logout.component';
 import {SidebarMenuComponent} from './components/sidebar-menu/sidebar-menu.component';
 import {CookieService} from 'ngx-cookie-service';
-import {BasicUserProfileComponent} from './components/common/basic-user-profile/basic-user-profile.component';
 import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
 import {AppInitService} from './services/app-init.service';
 import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
 import {EventCardComponent} from './components/home/event-card/event-card.component';
-import {EditProfileComponent} from './components/edit-profile/edit-profile.component';
 import {AppSharedComponentsModule} from './app-shared-components/app-shared-components.module';
 import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
 import {CommunityBuildCardComponent} from './components/home/community-build-card/community-build-card.component';
@@ -70,6 +68,7 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
 import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
+import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -85,10 +84,8 @@ export function initApp(appInitService: AppInitService) {
     FillDataFormComponent,
     LogoutComponent,
     SidebarMenuComponent,
-    BasicUserProfileComponent,
     SpeakerResourceFormComponent,
     EventCardComponent,
-    EditProfileComponent,
     CommunityBuildCardComponent,
     AboutComponent,
     FeaturesComponent,
@@ -96,6 +93,7 @@ export function initApp(appInitService: AppInitService) {
     SwUpdateComponent,
     HomeCommunityCardComponent,
     EventsComponent,
+    BasicUserProfileComponent,
   ],
   imports: [
     AppRoutingModule,
