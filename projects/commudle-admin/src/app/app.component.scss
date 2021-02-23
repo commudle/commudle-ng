@@ -64,7 +64,9 @@
         display: flex;
         flex-direction: column;
         background-image: linear-gradient(to right, rgba(83, 110, 255, 1), rgba(61, 170, 250, 1));
-        padding: 0!important;      
+        padding: 0!important;  
+        overflow:hidden;
+    
       }
     }
 
@@ -138,75 +140,82 @@
 
     .bottom-section-desktop
     {
-      // display:flex;
-      // .ellipses
-      // {
-      //   .ellipse7
-      //   {
-      //     height:20%;
-      //     width:10%;
-      //     position:absolute;
-      //     left:0;
-      //   }
-
-
-      //   .ellipse8
-      //   {
-
-      //     height:10%;
-      //     width:10%;
-      //     position:absolute;
-      //     left:0;
-      //   }
+      display:flex;
+      gap:20%;
+      .ellipses
+      {
+        position:relative;
+        .ellipse7
+        {
+          width: 160px;
+          height: 155px;
+          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+          border-radius: 100px 100px 100px 100px;
+          position:absolute;
+          left:-40px;
+          bottom:-30px;
+        }
+        .ellipse8
+        {
+          width: 140px;
+          height: 135px;
+          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+          border-radius: 100px 100px 100px 100px;
+          position:absolute;
+          left:70px;
+          bottom:-70px;
+          transform:rotate(45deg);
+        }
   
-      // }
-
-      padding-bottom:1%;
+      }
 
       .infoWeb
       {
-        .social 
-        {
-          display: flex;
-          justify-content: center;
-          gap: 1%;
-          padding-top: 5px;
-          order:3;
-          nb-icon {
-            font-size: 25px;
-            color: white;
-          }
-        }
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        width:56%;
 
-        .horizontalLine
-        {
-          justify-content: center;
-          order:2;
-          hr 
+          .social 
           {
-            width: 50%;
-            border: 0;
-            height: 2px;
-            background: white;
+            display: flex;
+            justify-content: center;
+            gap: 1%;
+            padding-top: 5px;
+            order:3;
+            nb-icon {
+              font-size: 25px;
+              color: white;
+            }
           }
-        }
 
-        .techStacks
-        {
-          display:flex;
-          justify-content:center;
-          order:4;
-          p
+          .horizontalLine
           {
-            color: whitesmoke;
-            font-family: "Work Sans";
-          } 
-        }
+            order:2;
+            hr 
+            {
+              width: 85%;
+              border: 0;
+              height: 2px;
+              background: white;
+            }
+          }
+
+          .techStacks
+          {
+            display:flex;
+            justify-content:center;
+            order:4;
+            p
+            {
+              color: whitesmoke;
+              font-family: "Work Sans";
+            }  
+          }
       }
     }
   }
 }
-
 
 
 
