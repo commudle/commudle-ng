@@ -91,8 +91,6 @@ export class EditEventComponent implements OnInit {
           end_time_pick: eTime
         });
       }
- 
-
     });
 
 
