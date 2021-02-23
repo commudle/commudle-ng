@@ -8,11 +8,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 0.25rem 0.75rem;
+    padding: 0.75rem;
 
     img {
       width: 96px;
       height: min-content;
+      padding: 16px;
+      border: 1px solid #536EFF;
+      border-radius: 5px;
     }
 
     .details {
@@ -22,7 +25,7 @@
         font-weight: 500;
         font-family: 'Work Sans', sans-serif !important;
         color: #2F2E41;
-        margin-bottom: 0;
+        margin: 0;
       }
 
       .role {
@@ -37,6 +40,7 @@
       .count {
         font-weight: 600;
         font-family: 'Work Sans', sans-serif !important;
+        margin: 0;
         color: #979797;
       }
     }
