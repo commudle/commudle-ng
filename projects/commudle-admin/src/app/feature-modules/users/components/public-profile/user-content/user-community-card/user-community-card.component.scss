@@ -19,6 +19,8 @@
       margin-left: 1rem;
 
       .name {
+        font-weight: 500;
+        font-family: 'Work Sans', sans-serif !important;
         color: #2F2E41;
         margin-bottom: 0;
       }
@@ -26,13 +28,15 @@
       .role {
         font-size: 14px;
         font-weight: 600;
+        font-family: 'Work Sans', sans-serif !important;
+        text-transform: capitalize;
         margin-top: 0;
         color: #536EFF;
-        text-transform: capitalize;
       }
 
       .count {
         font-weight: 600;
+        font-family: 'Work Sans', sans-serif !important;
         color: #979797;
       }
     }
