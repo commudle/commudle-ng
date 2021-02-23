@@ -1,6 +1,6 @@
 <div class="video-player-container">
   <div class="video-player" *ngIf="isBrowser">
-    <p class="filler" *ngIf="!started">
+    <p class="filler" *ngIf="!started || !currentUser">
       <nb-icon icon="video"></nb-icon>
       <br/>
       <span> {{ fillerText }} </span>
