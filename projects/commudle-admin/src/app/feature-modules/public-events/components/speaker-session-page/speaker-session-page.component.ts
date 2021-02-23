@@ -17,7 +17,7 @@ import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/ser
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { NbSidebarService } from '@nebular/theme';
+import { NbSidebarService, NbToggleModule } from '@nebular/theme';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -62,6 +62,14 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
 
   startTime;
   endTime;
+
+
+  checkToggle = false;
+  sideBarWidth = "0vw";
+
+
+
+
 
   currentUser: ICurrentUser;
   chatCount = 0;
@@ -145,6 +153,22 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     if (this.isBrowser) {
       this.nbSidebarService.collapse('mainMenu');
     }
+
+  }
+
+  toggleFunction()
+  {
+    if(this.checkToggle == false)
+    {
+      this.sideBarWidth = "23vw";
+    }
+
+    else
+    {
+      this.sideBarWidth = "0vw";
+    }
+
+    console.log(this.checkToggle, this.sideBarWidth);
 
   }
 

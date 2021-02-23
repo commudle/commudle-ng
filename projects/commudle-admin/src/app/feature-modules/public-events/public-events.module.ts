@@ -14,7 +14,7 @@ import {
     NbPopoverModule,
     NbTabsetModule,
     NbBadgeModule,
-    NbAlertModule, NbActionsModule, NbUserModule,
+    NbAlertModule, NbActionsModule, NbUserModule, NbToggleModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -69,7 +69,8 @@ import { UsersListComponent } from './components/speaker-session-page/users-list
         NbBadgeModule,
         NbAlertModule,
         NbActionsModule,
-        NbUserModule
+        NbUserModule,
+        NbToggleModule
     ]
 })
 export class PublicEventsModule { }

@@ -43,7 +43,7 @@
                 {{userVisitData.visiting_users_count}} watching now
               </span>
             </p>
-
+            <nb-toggle [(checked)] = "checkToggle" (click) = "toggleFunction()" status="primary">visibility</nb-toggle>
           </nb-card-body>
         </nb-card>
       </div>
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <div class="card-live-discussion">
+    <div [style.width] = "sideBarWidth" class="card-live-discussion">
       <nb-card>
         <nb-card-body>
           <nb-tabset fullWidth responsive (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
