@@ -20,23 +20,25 @@
     margin-bottom: 1.25rem;
 
     .name {
-      text-align: center;
       font-style: italic;
       font-weight: 600;
       font-size: 2rem;
+      text-align: center;
       line-height: 2rem;
       margin-bottom: 1.5rem;
     }
 
     .designation {
-      text-align: center;
+      font-weight: 500;
       font-size: 1.5rem;
+      text-align: center;
       line-height: 1.5rem;
       margin-bottom: 2rem;
     }
 
     .about {
       text-align: center;
+      font-size: 1rem;
     }
   }
 
@@ -49,8 +51,9 @@
       border-radius: 10px;
       color: white;
       background-color: rgba(246, 247, 249, 0.4);
-      text-transform: none;
       font-weight: 400;
+      font-family: 'Work Sans', sans-serif !important;
+      text-transform: none;
       letter-spacing: 1px;
       transition: all .2s ease-in-out;
 
@@ -70,6 +73,9 @@
     nb-tag {
       color: white;
       background-color: transparent;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Work Sans', sans-serif !important;
 
       &:last-child {
         cursor: pointer;

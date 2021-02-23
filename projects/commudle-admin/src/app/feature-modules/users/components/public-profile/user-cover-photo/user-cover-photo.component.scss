@@ -16,11 +16,13 @@
   button {
     border: none;
     border-radius: 10px;
-    text-transform: none;
     position: relative;
     bottom: 40px;
     left: 20px;
     color: #536EFF !important;
     background-color: rgba(196, 196, 196, 0.6) !important;
+    text-transform: none;
+    font-weight: 400;
+    font-family: 'Work Sans', sans-serif !important;
   }
 }

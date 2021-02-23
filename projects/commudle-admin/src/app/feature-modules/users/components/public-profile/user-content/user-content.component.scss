@@ -9,15 +9,18 @@
     nb-tab {
       padding: 0;
 
-      .labs, .communities {
-        margin: 2rem 0 4rem;
-
+      .labs, .communities, .builds {
         .heading {
-          font-weight: bold;
           font-size: 1.5rem;
+          font-weight: 700;
+          font-family: 'Work Sans', sans-serif !important;
           line-height: 1.5rem;
           color: #536EFF;
         }
+      }
+
+      .labs, .communities {
+        margin: 2rem 0 4rem;
 
         .cards {
           display: flex;
@@ -69,9 +72,11 @@
       }
 
       @media all and (max-width: $tab-width) {
-        .heading {
-          font-size: 1.25rem;
-          line-height: 1.25rem;
+        .labs, .communities, .builds {
+          .heading {
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+          }
         }
 
         .labs, .communities {
