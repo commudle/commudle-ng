@@ -1,19 +1,41 @@
 <div class="user-content">
   <nb-tabset>
+
     <nb-tab tabTitle="Contributions">
       <div class="labs">
         <p class="heading">My Labs ({{labs.length}})</p>
-        <div class="lab-cards">
+        <div #labCards [style.padding-left.px]="isScrollable(labCards) ? 62 : 0" class="cards">
           <app-user-lab-card *ngFor="let lab of labs" [lab]="lab" [user]="user"></app-user-lab-card>
         </div>
+        <div *ngIf="labNavButtonsHeight > 0 && isScrollable(labCards)" [style.bottom.px]="labNavButtonsHeight"
+             class="navigation">
+          <button (click)="scrollLeft(labCards)" nbButton size="large">
+            <nb-icon icon="arrow-back"></nb-icon>
+          </button>
+          <button (click)="scrollRight(labCards)" nbButton size="large">
+            <nb-icon icon="arrow-forward"></nb-icon>
+          </button>
+        </div>
       </div>
+
       <div class="communities">
         <p class="heading">My Communities ({{communities.length}})</p>
-        <div class="community-cards">
+        <div #communityCards [style.padding-left.px]="isScrollable(communityCards) ? 62 : 0" class="cards">
           <app-user-community-card *ngFor="let community of communities"
                                    [community]="community"></app-user-community-card>
         </div>
+        <div *ngIf="communityNavButtonsHeight > 0 && isScrollable(communityCards)"
+             [style.bottom.px]="communityNavButtonsHeight"
+             class="navigation">
+          <button (click)="scrollLeft(communityCards)" nbButton size="large">
+            <nb-icon icon="arrow-back"></nb-icon>
+          </button>
+          <button (click)="scrollRight(communityCards)" nbButton size="large">
+            <nb-icon icon="arrow-forward"></nb-icon>
+          </button>
+        </div>
       </div>
+
       <div class="builds">
         <p class="heading">My Builds ({{builds.length}})</p>
         <div class="build-cards">
@@ -21,11 +43,14 @@
         </div>
       </div>
     </nb-tab>
+
     <nb-tab tabTitle="Social">
       <p>List of <strong>orders</strong>.</p>
     </nb-tab>
+
     <nb-tab tabTitle="Highlights">
       <p>List of <strong>transactions</strong>.</p>
     </nb-tab>
+
   </nb-tabset>
 </div>
