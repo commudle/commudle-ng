@@ -46,8 +46,8 @@ export class UserCoverPhotoComponent implements OnInit {
     // Check if file has been selected
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      // If file size is greater than 2 Mb then reject
-      if (file.size > 2425190) {
+      // If file size is greater than 3 Mb then reject
+      if (file.size > 3145728) {
         this.toastrService.show('Image should be less than 2 Mb', 'Error', {status: 'danger'});
         return;
       }
