@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {NbToastrService, NbWindowRef, NbWindowService} from '@nebular/theme';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {IUser} from 'projects/shared-models/user.model';
@@ -14,13 +14,16 @@ export class UserCoverPhotoComponent implements OnInit {
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
 
-  @ViewChild('editCoverPhoto') editCoverPhoto: TemplateRef<any>;
-  editCoverPhotoWindow: NbWindowRef;
+  @Output() coverImageUpdate: EventEmitter<any> = new EventEmitter<any>();
+
+  @ViewChild('editCoverImage') editCoverImage: TemplateRef<any>;
+
+  editCoverImageDialog: NbDialogRef<any>;
   coverImageFormData: FormData;
   coverImage;
 
   constructor(
-    private windowService: NbWindowService,
+    private dialogService: NbDialogService,
     private appUsersService: AppUsersService,
     private toastrService: NbToastrService
   ) {
@@ -29,15 +32,13 @@ export class UserCoverPhotoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCoverImageWindowOpen(): void {
+  onCoverImageDialogOpen(): void {
     // Open a window to edit the tags
-    this.editCoverPhotoWindow = this.windowService.open(
-      this.editCoverPhoto,
-      {
-        title: 'Edit Cover Photo',
+    this.editCoverImageDialog = this.dialogService.open(
+      this.editCoverImage, {
         closeOnBackdropClick: false,
         closeOnEsc: false
-      },
+      }
     );
   }
 
@@ -48,7 +49,7 @@ export class UserCoverPhotoComponent implements OnInit {
       const file = event.target.files[0];
       // If file size is greater than 3 Mb then reject
       if (file.size > 3145728) {
-        this.toastrService.show('Image should be less than 2 Mb', 'Error', {status: 'danger'});
+        this.toastrService.show('Image should be less than 3 Mb', 'Error', {status: 'danger'});
         return;
       }
       // Create a new FormData
@@ -62,14 +63,16 @@ export class UserCoverPhotoComponent implements OnInit {
   }
 
   // Function to submit the cover image form
-  onCoverImageWindowSubmit(): void {
+  onCoverImageDialogSubmit(): void {
     // Update only if a image is selected
     if (this.coverImageFormData) {
       this.appUsersService.updateProfileBannerImage(this.coverImageFormData).subscribe(() => {
         this.toastrService.show('Your cover image has been updated!', `Success!`, {status: 'success'});
         // TODO: Make this better
         // Reload the page to show the updated cover image
-        setTimeout(() => window.location.reload(), 1500);
+        // setTimeout(() => window.location.reload(), 1500);
+        this.coverImageUpdate.emit();
+        this.editCoverImageDialog.close();
       });
     }
   }
