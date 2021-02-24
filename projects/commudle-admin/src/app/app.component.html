@@ -5,10 +5,11 @@
       <div class="menu-left-container">
         <div class="sidebar-toggle" (click)="toggleSidebar()">
           <fa-icon [icon]="faBars" size="1x"></fa-icon>
-          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" status="danger" [position]="'top end'"></nb-badge>
+          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
+                    status="danger"></nb-badge>
         </div>
         <div class="main-logo clickable" [routerLink]="['/']">
-          <img src="/assets/images/commudle-logo72.png">
+          <img alt="logo" src="/assets/images/commudle-logo72.png">
           <p>
             Commudle
           </p>
@@ -29,7 +30,7 @@
         >
         </nb-user>
         <button *ngIf="!currentUser"
-          (click)="login()" nbButton ghost status="info">
+                (click)="login()" ghost nbButton status="info">
           <nb-icon icon="log-in-outline"></nb-icon>
           Log in / Sign Up
         </button>
@@ -47,117 +48,46 @@
     <router-outlet></router-outlet>
   </nb-layout-column>
 
-  <nb-layout-footer>
-
-    <div class="Top-section-desktop">
-      <div class="main-logo" [routerLink]="['/']">
-        <img class = "clickable" src="/assets/images/commudle-logo72.png">
-      </div>
-
-      <div class="links">
-        <div class="dev1">
-          <a [routerLink]="['/']">HOME</a>
-          <a [routerLink]="['/about']">ABOUT</a>
-          <a [routerLink]="['/features']">FEATURES</a>
-        </div>
-
-        <div class="dev2">
-          <a [routerLink]="['/communities']">ALL COMMUNITIES</a>
-          <a [routerLink]="['/labs']">LABS</a>
-          <a [routerLink]="['/builds']">COMMUNITY BUILDS</a>
-        </div>
-      
-        <div class="policies">
-          <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>
-          <a [routerLink]="['/policies/terms-and-conditions']">TERMS & CONDITIONS</a>
-        </div>
-      
-        <a class = "frequentQuestions" href="#">FAQ</a>
-      </div>
-
+  <nb-layout-footer fixed>
+    <div class="main-logo clickable" [routerLink]="['/']">
+      <img alt="logo" src="/assets/images/commudle-logo72.png">
+      <p>
+        more@commudle.com
+      </p>
     </div>
-    
-
-    <div class="Top-section-mobile">
-      <div class="main-logo" [routerLink]="['/']">
-        <img class = "clickable" src="/assets/images/commudle-logo72.png">
-      </div>
-
-      <div class="links">
-        <div class="dev-pages">
-          <div class="dev1">
-            <a [routerLink]="['/']">HOME</a>
-            <a [routerLink]="['/about']">ABOUT</a>
-            <a [routerLink]="['/features']">FEATURES</a>
-            <a href = "#">FAQ</a>
-          </div>
-          <div class="dev2">
-            <a [routerLink]="['/communities']">COMMUNITIES</a>
-            <a [routerLink]="['/labs']">LABS</a>
-            <a [routerLink]="['/builds']">BUILDS</a>
-            <a href = "#">EVENTS</a>
-          </div>
-        </div>
-      
-        <div class="policies">
-          <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>
-          <a [routerLink]="['/policies/terms-and-conditions']">TERMS & CONDITIONS</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="bottom-section-desktop">
-      <!-- <div class="ellipses"> -->
-        <!-- <img class = "ellipse7" src="/assets/images/Ellipse7.png">
-        <img class = "ellipse8" src="/assets/images/Ellipse8.png"> -->
-      <!-- </div> -->
-      <div class="infoWeb">
-        <div class="horizontalLine"><hr></div>
-
-        <div class="social">
-          <a href="https://github.com/commudle/commudle-ng" target="_blank">
-            <nb-icon icon="twitter"></nb-icon>
-          </a>
-          <a href="https://linkedin.com/company/commudle" target="_blank">
-            <nb-icon icon="linkedin"></nb-icon>
-          </a>
-          <a href="https://twitter.com/commudle" target="_blank">
-            <nb-icon icon="facebook"></nb-icon>
-          </a>
-          <a href="https://facebook.com/commudle" target="_blank">
-            <nb-icon icon="github"></nb-icon>
-          </a>
-        </div>
-    
-        <div class="techStacks">
-          <p>made with angular11, RubyonRails, Postgres, Redis and Love</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bottom-section-mobile">
-      <div class="horizontalLine"><hr></div>
+    <div class="links">
       <div class="social">
         <a href="https://github.com/commudle/commudle-ng" target="_blank">
-          <nb-icon icon="twitter"></nb-icon>
+          <nb-icon icon="github"></nb-icon>
         </a>
         <a href="https://linkedin.com/company/commudle" target="_blank">
           <nb-icon icon="linkedin"></nb-icon>
         </a>
         <a href="https://twitter.com/commudle" target="_blank">
-          <nb-icon icon="facebook"></nb-icon>
+          <nb-icon icon="twitter"></nb-icon>
         </a>
         <a href="https://facebook.com/commudle" target="_blank">
-          <nb-icon icon="github"></nb-icon>
+          <nb-icon icon="facebook"></nb-icon>
         </a>
+      </div>
+      <div class="pages">
+        <a [routerLink]="['/']">HOME</a>
+        <a [routerLink]="['/about']">ABOUT</a>
+        <a [routerLink]="['/features']">FEATURES</a>
+        <a [routerLink]="['/communities']">ALL COMMUNITIES</a>
+        <a [routerLink]="['/labs']">LABS</a>
+        <a [routerLink]="['/builds']">COMMUNITY BUILDS</a>
+      </div>
+      <div class="policies">
+        <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>
+        <a [routerLink]="['/policies/terms-and-conditions']">TERMS AND CONDITIONS</a>
+      </div>
     </div>
-   </div>
-
-    
-
   </nb-layout-footer>
+
 </nb-layout>
 
+<app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>
 
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>
