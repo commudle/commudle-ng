@@ -7,7 +7,6 @@
         <nb-tag *ngFor="let tag of build.tags" [text]="tag[0]"></nb-tag>
       </nb-tag-list>
     </div>
-    <p
-      class="description">{{build.description || 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi earum est quidem sunt temporibus vel!'}}</p>
+    <p class="description">{{getDesc()}}</p>
   </nb-card-body>
 </nb-card>
