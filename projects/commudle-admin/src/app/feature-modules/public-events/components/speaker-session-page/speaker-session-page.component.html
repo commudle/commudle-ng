@@ -1,7 +1,7 @@
 <div class="speaker-session-details">
-  <div class="card-row">
-    <div class="card-session-details">
-      <div class="session-details">
+  <div class="card-row" #cardRow>
+    <div class="card-session-details" [style.width] = "backgroundWidth">
+      <div class="session-details" [style.width] = "backgroundWidth">
         <nb-card>
           <nb-card-body>
             <div>
@@ -55,7 +55,7 @@
       <div #videoContainer class="video-stream">
         <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>
-            <nb-card-body>
+            <nb-card-body [style.width] = "videoPlayerBox">
               <div>
                 <app-video-stream
                   [currentUser]="currentUser"
@@ -80,7 +80,7 @@
       </div>
     </div>
 
-    <div [style.width] = "sideBarWidth" class="card-live-discussion">
+    <div [style.width] = "sideBarWidth" #chatBox class="card-live-discussion">
       <nb-card>
         <nb-card-body>
           <nb-tabset fullWidth responsive (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
