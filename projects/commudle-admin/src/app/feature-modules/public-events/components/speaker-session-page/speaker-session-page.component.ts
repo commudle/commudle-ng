@@ -1,5 +1,5 @@
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID, OnDestroy} from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -24,6 +24,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { UserVisitsService } from 'projects/shared-services/user-visits.service';
+import { columnsTotalWidth } from '@swimlane/ngx-datatable';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -33,6 +35,8 @@ import { UserVisitsService } from 'projects/shared-services/user-visits.service'
 export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
   isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('videoContainer') private videoContainer: ElementRef;
+  @ViewChild('cardRow') private cardRow: ElementRef;
+  @ViewChild('chatBox') private chatBox: ElementRef;
 
   trackSlot: ITrackSlot;
   speaker: IUser;
@@ -53,9 +57,11 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   embeddedVideoStream: IEmbeddedVideoStream;
 
 
-  toggleCheck = false;
-  sideBarWidth = "0vw";
-
+  toggleCheck = true;
+  sideBarWidth = "23vw";
+  videoPlayerBox;
+  chatBoxWidth;
+  backgroundWidth;
 
 
   EEventStatuses = EEventStatuses;
@@ -93,6 +99,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
+
   setMeta() {
     this.meta.updateTag({ name: 'description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
 
@@ -126,19 +133,27 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
 
-  toggleFunction()
+  pixelsToInt(division)
   {
-    if(this.toggleCheck == true)
-    {
-      this.sideBarWidth = "0vw";
-      // this.videoBarWidth = "130vw"
-    }
+    return parseInt(division.split('p')[0]);
+  }
 
-    else
-    {
+  toggleFunction(){
+    if(this.toggleCheck == false){
       this.sideBarWidth = "23vw";
+      let videoBox = this.pixelsToInt(this.videoPlayerBox);
+      let bgWidth = this.pixelsToInt(this.backgroundWidth);
+      let chatWidth = this.pixelsToInt(this.chatBoxWidth);
+      videoBox -= chatWidth;
+      bgWidth -= chatWidth;
+      this.videoPlayerBox = String(videoBox)+'px';
+      this.backgroundWidth = String(bgWidth)+'px'; 
+    }else{
+      this.chatBoxWidth = String(this.chatBox.nativeElement.offsetWidth)+'px'; //to get the chatbox width real time
+      this.sideBarWidth = "0vw";
+      this.videoPlayerBox = String(this.cardRow.nativeElement.offsetWidth)+'px'; //to set the vcBox width
+      this.backgroundWidth = String(this.cardRow.nativeElement.offsetWidth)+'px'; //to set the "card-session-details" and "session-details" width 
     }
-    console.log(this.sideBarWidth);
   }
 
 
@@ -160,6 +175,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
         }
       )
     );
+
   }
 
   ngAfterViewInit() {
