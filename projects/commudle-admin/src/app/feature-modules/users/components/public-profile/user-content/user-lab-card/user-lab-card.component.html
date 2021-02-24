@@ -1,7 +1,6 @@
 <nb-card class="lab-card-container">
   <nb-card-header>
     <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.medium}}">
-    <nb-icon *ngIf="!lab.header_image" icon="link-outline"></nb-icon>
   </nb-card-header>
   <nb-card-body>
     <p class="name">{{lab.name}}</p>

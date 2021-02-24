@@ -10,12 +10,19 @@
     align-items: center;
     padding: 0.75rem;
 
-    img {
+    .image {
+      display: flex;
+      align-items: center;
       width: 96px;
-      height: min-content;
+      height: 96px;
       padding: 16px;
       border: 1px solid #536EFF;
       border-radius: 5px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
 
     .details {

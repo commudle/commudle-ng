@@ -19,4 +19,8 @@ export class UserBuildCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getDesc() {
+    // Remove HTML tags, take the first 100 characters and add '...'
+    return this.build.description.replace(/<[^>]+>/g, '').substr(0, 200).concat('...');
+  }
 }
