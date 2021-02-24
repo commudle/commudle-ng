@@ -1,10 +1,10 @@
 <div class="user-content">
-  <nb-tabset fullWidth>
+  <nb-tabset>
 
     <nb-tab tabTitle="Contributions">
       <div class="labs">
         <p class="heading">My Labs ({{labs.length}})</p>
-        <div #labCards [style.padding-left.px]="isScrollable(labCards) ? 62 : 0" class="cards">
+        <div #labCards class="cards">
           <app-user-lab-card *ngFor="let lab of labs" [lab]="lab" [user]="user"></app-user-lab-card>
         </div>
         <div *ngIf="labNavButtonsHeight > 0 && isScrollable(labCards)" [style.bottom.px]="labNavButtonsHeight"
@@ -20,7 +20,7 @@
 
       <div class="communities">
         <p class="heading">My Communities ({{communities.length}})</p>
-        <div #communityCards [style.padding-left.px]="isScrollable(communityCards) ? 62 : 0" class="cards">
+        <div #communityCards class="cards">
           <app-user-community-card *ngFor="let community of communities"
                                    [community]="community"></app-user-community-card>
         </div>
