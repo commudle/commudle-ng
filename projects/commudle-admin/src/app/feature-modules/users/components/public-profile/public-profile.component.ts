@@ -24,11 +24,8 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(
-      data => {
-        this.user = data;
-      }
-    );
+    // Get user's data
+    this.getUserData();
 
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe(
@@ -43,5 +40,10 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
+  }
+
+  // Get user's data
+  getUserData() {
+    this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => this.user = data);
   }
 }

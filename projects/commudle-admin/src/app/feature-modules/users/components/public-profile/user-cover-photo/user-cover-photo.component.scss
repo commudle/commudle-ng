@@ -35,3 +35,19 @@
     }
   }
 }
+
+.cover-image-dialog {
+  nb-card-body {
+    text-align: center;
+
+    img {
+      height: 168px;
+      margin-top: 1rem;
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
