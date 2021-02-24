@@ -63,7 +63,7 @@
       nav {
         display: flex;
         flex-direction: column;
-        background-image: linear-gradient(to right, rgba(83, 110, 255, 1), rgba(61, 170, 250, 1));
+        background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
         padding: 0!important;  
         overflow:hidden;
     
@@ -94,8 +94,7 @@
       }
 
       gap:20%;
-      padding-bottom: 10px;
-      padding-top:30px;
+      padding-top:40px;
 
       .links
       {
@@ -103,6 +102,7 @@
         display:flex;
         gap:18%;
         width:55%;
+        padding:19px;
         a, a:hover 
         {
           text-decoration: none;
@@ -141,19 +141,19 @@
     .bottom-section-desktop
     {
       display:flex;
-      gap:20%;
+      gap:21%;
       .ellipses
       {
         position:relative;
         .ellipse7
         {
-          width: 160px;
-          height: 155px;
+          width: 267px;
+          height: 262px;
           background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
-          border-radius: 100px 100px 100px 100px;
+          border-radius: 200px 200px 200px 200px;
           position:absolute;
-          left:-40px;
-          bottom:-30px;
+          left:-69px;
+          bottom:-20px;
         }
         .ellipse8
         {
@@ -162,7 +162,7 @@
           background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
           border-radius: 100px 100px 100px 100px;
           position:absolute;
-          left:70px;
+          left:126px;
           bottom:-70px;
           transform:rotate(45deg);
         }
@@ -192,6 +192,8 @@
           .horizontalLine
           {
             order:2;
+            padding-top: 102px;
+            padding-bottom:18px;
             hr 
             {
               width: 85%;
@@ -206,6 +208,7 @@
             display:flex;
             justify-content:center;
             order:4;
+            padding-bottom:36px;
             p
             {
               color: whitesmoke;
