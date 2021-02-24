@@ -17,7 +17,7 @@ import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/ser
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { NbSidebarService } from '@nebular/theme';
+import { NbSidebarService, NbToggleModule } from '@nebular/theme';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -51,6 +51,11 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
 
   speakerResource: ISpeakerResource;
   embeddedVideoStream: IEmbeddedVideoStream;
+
+
+  toggleCheck = false;
+  sideBarWidth = "0vw";
+
 
 
   EEventStatuses = EEventStatuses;
@@ -119,6 +124,23 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
       subs.unsubscribe();
     }
   }
+
+
+  toggleFunction()
+  {
+    if(this.toggleCheck == true)
+    {
+      this.sideBarWidth = "0vw";
+      // this.videoBarWidth = "130vw"
+    }
+
+    else
+    {
+      this.sideBarWidth = "23vw";
+    }
+    console.log(this.sideBarWidth);
+  }
+
 
   ngOnInit() {
     this.resolveData();
