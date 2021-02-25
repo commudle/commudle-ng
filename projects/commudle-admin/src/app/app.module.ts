@@ -68,7 +68,7 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
 import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
-import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -92,8 +92,7 @@ export function initApp(appInitService: AppInitService) {
     CommunitiesComponent,
     SwUpdateComponent,
     HomeCommunityCardComponent,
-    EventsComponent,
-    BasicUserProfileComponent,
+    EventsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -109,6 +108,7 @@ export function initApp(appInitService: AppInitService) {
     ReusableComponentsModule,
     SharedPipesModule,
     UserChatsModule,
+    UsersModule,
 
     // external service modules
     LibErrorHandlerModule,

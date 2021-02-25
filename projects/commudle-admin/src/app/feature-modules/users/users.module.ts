@@ -6,8 +6,11 @@ import {PublicProfileComponent} from './components/public-profile/public-profile
 import {
   NbButtonModule,
   NbCardModule,
+  NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbRadioModule,
+  NbSpinnerModule,
   NbTabsetModule,
   NbTagModule,
   NbTooltipModule,
@@ -21,6 +24,8 @@ import {UserLabCardComponent} from './components/public-profile/user-content/use
 import {UserBuildCardComponent} from './components/public-profile/user-content/user-build-card/user-build-card.component';
 import {UserCommunityCardComponent} from './components/public-profile/user-content/user-community-card/user-community-card.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -32,13 +37,15 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     UserBasicDetailsComponent,
     UserLabCardComponent,
     UserBuildCardComponent,
-    UserCommunityCardComponent
+    UserCommunityCardComponent,
+    BasicUserProfileComponent
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     SharedPipesModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
 
     // Nebular
     NbCardModule,
@@ -48,7 +55,13 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     NbTagModule,
     NbInputModule,
     NbTabsetModule,
-    NbUserModule
+    NbUserModule,
+    NbFormFieldModule,
+    NbSpinnerModule,
+    NbRadioModule
+  ],
+  exports: [
+    BasicUserProfileComponent
   ]
 })
 export class UsersModule {
