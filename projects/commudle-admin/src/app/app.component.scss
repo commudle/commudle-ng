@@ -1,3 +1,5 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 :host {
   nb-layout-header {
     .container {
@@ -53,100 +55,207 @@
 
   }
 
-
-@media only screen and (min-width: 480px)
-{
-  nb-layout-footer 
+  nb-layout-footer
   {
-    ::ng-deep 
+    ::ng-deep
     {
       nav {
         display: flex;
         flex-direction: column;
         background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
-        padding: 0!important;  
-        overflow:hidden;
-    
+        overflow: hidden;
+        padding: 0 !important;
       }
     }
 
-    .top-section-mobile
-    {
-      display:none;
+
+    .footer {
+      a, p {
+        font-family: $footer-font-family !important;
+      }
     }
+
+    .page-links {
+      display: flex;
+      flex-direction: row;
+
+      .links {
+        a {
+          text-decoration: none;
+          color: white;
+          font-weight: 600;
+        }
+      }
+    }
+
+
+    // .top-section-mobile
+    // {
+    //   .main-logo
+    //   {
+    //     padding-left: 10%;
+    //     img
+    //     {
+    //       filter: brightness(5);
+    //       width: 50px;
+    //     }
+    //   }
+
+    //   .links
+    //   {
+    //     display: flex;
+    //     padding-top: 14px;
+    //     padding-left: 38px;
+    //     a, a:hover
+    //     {
+    //       text-decoration: none;
+    //       font-size: 12px;
+    //       color: white;
+    //       font-weight: 800;
+    //       font-family: "Work Sans";
+    //     }
+
+    //     .dev-pages
+    //     {
+    //       display: flex;
+    //       flex-direction: column;
+    //       width: 14%;
+    //       .dev1
+    //       {
+    //         display: flex;
+    //         flex-direction: column;
+    //       }
+    //       .dev2
+    //       {
+    //         display: flex;
+    //         flex-direction: column;
+    //         padding-top: 16px;
+    //       }
+    //     }
+
+    //     .policies
+    //     {
+    //       display: flex;
+    //       flex-direction: column;
+    //       padding-left: 150px;
+    //     }
+    //   }
+    // }
 
     .bottom-section-mobile
     {
-      display:none;
+      // .social
+      // {
+      //   display: flex;
+      //   justify-content: center;
+      //   gap: 3%;
+      //   padding-top: 15px;
+      //   nb-icon
+      //   {
+      //     font-size: 25px;
+      //     color: white;
+      //   }
+      // }
+
+      // .horizontalLine
+      // {
+      //   justify-content: center;
+
+      //   hr
+      //   {
+      //     width: 15%;
+      //     border: 0;
+      //     height: 1px;
+      //     background: white;
+      //     margin-bottom: 3%;
+      //   }
+      // }
+
+      // .techStacks
+      // {
+      //   display:none;
+      // }
+
     }
+  }
 
-    .top-section-desktop
+  @media only screen and (min-width: $mobile-width)
+  {
+    nb-layout-footer
     {
-      display: flex;
-      .main-logo 
+      ::ng-deep
       {
-        padding-left:133px;
-        img 
-        {
-          filter: brightness(5);
-          width: 95px;
-        }
-      }
-
-      gap:20%;
-      padding-top:40px;
-
-      .links
-      {
-
-        display:flex;
-        gap:18%;
-        width:55%;
-        padding:19px;
-        a, a:hover 
-        {
-          text-decoration: none;
-          font-size: 12px;
-          color: white;
-          font-weight: 800;
-          font-family: "Work Sans";
-        }
-
-        .dev1
-        {
-          display:flex;
-          flex-direction: column;
-        }
-
-        .dev2
-        {
-          display:flex;
-          flex-direction: column;
-        }
-
-        .policies
-        {
-          display:flex;
-          flex-direction: column;
-        }
-
-        .frequentQuestions
-        {
+        nav {
           display: flex;
           flex-direction: column;
+          background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
         }
       }
-    }
 
-    .bottom-section-desktop
-    {
-      display:flex;
-      gap:21%;
-      .ellipses
-      {
-        position:relative;
-        .ellipse7
-        {
+      .footer {
+        height: 400px;
+        padding: 45px 90px 48px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .page-links {
+          width: 100%;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-items: center;
+
+          .logo {
+            width: 30%;
+            img {
+              filter: brightness(5);
+              width: 95px;
+            }
+          }
+
+          .links {
+            width: 70%;
+            display: flex;
+            justify-content: space-around;
+            &>div {
+              display: flex;
+              flex-direction: column;
+            }
+          }
+        }
+
+        .social-links {
+          width: 60%;
+
+          hr {
+            color: white
+          }
+
+          .links {
+            display: flex;
+            justify-content: center;
+
+            nb-icon {
+              color: white;
+              font-size: 30px;
+              margin: 24px 8px 18px;
+            }
+          }
+
+          .tech-stack {
+            text-align: center;
+            p {
+              margin: 0;
+              color: white;
+            }
+          }
+        }
+
+
+        .ellipse-large {
           width: 267px;
           height: 262px;
           background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
@@ -155,7 +264,8 @@
           left:-69px;
           bottom:-20px;
         }
-        .ellipse8
+
+        .ellipse-small
         {
           width: 140px;
           height: 135px;
@@ -166,172 +276,87 @@
           bottom:-70px;
           transform:rotate(45deg);
         }
-  
       }
 
-      .infoWeb
-      {
-        display:flex;
-        flex-direction:column;
-        justify-content: center;
-        width:56%;
+      // .bottom-section-desktop
+      // {
+      //   display:flex;
+      //   gap:21%;
+      //   .ellipses
+      //   {
+      //     position:relative;
+      //     .ellipse7
+      //     {
+      //       width: 267px;
+      //       height: 262px;
+      //       background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+      //       border-radius: 200px 200px 200px 200px;
+      //       position:absolute;
+      //       left:-69px;
+      //       bottom:-20px;
+      //     }
+      //     .ellipse8
+      //     {
+      //       width: 140px;
+      //       height: 135px;
+      //       background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+      //       border-radius: 100px 100px 100px 100px;
+      //       position:absolute;
+      //       left:126px;
+      //       bottom:-70px;
+      //       transform:rotate(45deg);
+      //     }
 
-          .social 
-          {
-            display: flex;
-            justify-content: center;
-            gap: 1%;
-            padding-top: 5px;
-            order:3;
-            nb-icon {
-              font-size: 25px;
-              color: white;
-            }
-          }
+      //   }
 
-          .horizontalLine
-          {
-            order:2;
-            padding-top: 102px;
-            padding-bottom:18px;
-            hr 
-            {
-              width: 85%;
-              border: 0;
-              height: 2px;
-              background: white;
-            }
-          }
+      //   .infoWeb
+      //   {
+      //     display:flex;
+      //     flex-direction:column;
+      //     justify-content: center;
+      //     width:56%;
 
-          .techStacks
-          {
-            display:flex;
-            justify-content:center;
-            order:4;
-            padding-bottom:36px;
-            p
-            {
-              color: whitesmoke;
-              font-family: "Work Sans";
-            }  
-          }
-      }
+      //       .social
+      //       {
+      //         display: flex;
+      //         justify-content: center;
+      //         gap: 1%;
+      //         padding-top: 5px;
+      //         order:3;
+      //         nb-icon {
+      //           font-size: 25px;
+      //           color: white;
+      //         }
+      //       }
+
+      //       .horizontalLine
+      //       {
+      //         order:2;
+      //         padding-top: 102px;
+      //         padding-bottom:18px;
+      //         hr
+      //         {
+      //           width: 85%;
+      //           border: 0;
+      //           height: 2px;
+      //           background: white;
+      //         }
+      //       }
+
+      //       .techStacks
+      //       {
+      //         display:flex;
+      //         justify-content:center;
+      //         order:4;
+      //         padding-bottom:36px;
+      //         p
+      //         {
+      //           color: whitesmoke;
+      //           font-family: "Work Sans";
+      //         }
+      //       }
+      //   }
+      // }
     }
   }
-}
-
-
-
-@media only screen and (max-width: 480px)
-  {
-  nb-layout-footer 
-  {
-    ::ng-deep 
-    {
-      nav {
-        display: flex;
-        flex-direction: column;
-        background-image: linear-gradient(to right, rgba(83, 110, 255, 1), rgba(61, 170, 250, 1));
-      }
-    }
-
-    .top-section-desktop
-    {
-      display:none;
-    }
-    .bottom-section-desktop
-    {
-      display:none;
-    }
-
-    .top-section-mobile
-    {
-      .main-logo 
-      {
-        padding-left: 10%;
-        img 
-        {
-          filter: brightness(5);
-          width: 50px;
-        }
-      }
-
-      .links 
-      {
-        display: flex;
-        padding-top: 14px;
-        padding-left: 38px;
-        a, a:hover
-        {
-          text-decoration: none;
-          font-size: 12px;
-          color: white;
-          font-weight: 800;
-          font-family: "Work Sans";
-        }
-
-        .dev-pages
-        {
-          display: flex;
-          flex-direction: column;
-          width: 14%;
-          .dev1
-          { 
-            display: flex;
-            flex-direction: column; 
-          }
-          .dev2
-          {
-            display: flex;
-            flex-direction: column;
-            padding-top: 16px;
-          }
-        }
-
-        .policies
-        {
-          display: flex;
-          flex-direction: column;
-          padding-left: 150px;
-        }
-      }
-    }
-
-    .bottom-section-mobile
-    {
-      .social 
-      {
-        display: flex;
-        justify-content: center;
-        gap: 3%;
-        padding-top: 15px;
-        nb-icon 
-        {
-          font-size: 25px;
-          color: white;
-        }
-      }
-
-      .horizontalLine
-      {
-        justify-content: center;
-
-        hr 
-        {
-          width: 15%;
-          border: 0;
-          height: 1px;
-          background: white;
-          margin-bottom: 3%;
-        }
-      }
-
-      .techStacks
-      {
-        display:none;
-      }
-
-    }
-  }
-}
 }
