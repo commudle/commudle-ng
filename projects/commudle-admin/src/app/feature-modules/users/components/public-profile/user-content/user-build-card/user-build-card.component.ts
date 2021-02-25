@@ -20,7 +20,11 @@ export class UserBuildCardComponent implements OnInit {
   }
 
   getDesc() {
+    // Decode HTML
+    const txt = document.createElement('textarea');
+    txt.innerHTML = this.build.description;
+    const htmlContent = txt.value;
     // Remove HTML tags, take the first 100 characters and add '...'
-    return this.build.description.replace(/<[^>]+>/g, '').substr(0, 200).concat('...');
+    return htmlContent.replace(/<[^>]+>/g, '').substr(0, 200).concat('...');
   }
 }
