@@ -64,12 +64,14 @@
         flex-direction: column;
         background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
         overflow: hidden;
-        padding: 30px 40px 15px;
+        padding: 0 !important;
       }
     }
 
 
     .footer {
+      padding: 30px 40px 15px;
+
       a, p {
         font-family: $footer-font-family !important;
       }
@@ -99,7 +101,8 @@
             a {
               text-decoration: none;
               color: white;
-              font-weight: 600;
+              font-weight: 900;
+              font-size: 12px;
             }
           }
 
@@ -134,7 +137,8 @@
         }
 
         .tech-stack {
-           display: none;
+          color: #f5f5f5;
+          display: none;
         }
       }
 
@@ -159,8 +163,7 @@
       }
 
       .footer {
-        height: 400px;
-        padding: 45px 90px 48px;
+        padding: 30px 100px 10px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -172,7 +175,6 @@
           flex-direction: row;
           flex-wrap: nowrap;
           justify-content: space-between;
-          align-items: center;
 
           .logo {
             width: 30%;
@@ -187,6 +189,14 @@
             &>div {
               width: unset;
             }
+
+            .two {
+              order: unset;
+            }
+
+            .four {
+              display: unset;
+            }
           }
         }
 
@@ -194,7 +204,6 @@
           width: 60%;
           flex-direction: column;
           hr {
-            border-top: 2px solid white;
             width: 100%;
           }
 
@@ -220,26 +229,26 @@
 
         .ellipse-large {
           visibility: visible;
-          width: 267px;
-          height: 253px;
+          width: 160px;
+          height: 155px;
           background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
-          border-radius: 200px 200px 200px 200px;
+          border-radius: 50%;
           position:absolute;
-          left: -69px;
-          bottom: -58px;
+          left: -40px;
+          bottom: -30px;
         }
 
         .ellipse-small
         {
           visibility: visible;
-          width: 155px;
-          height: 160px;
-          background: linear-gradient(276.85deg, #536EFF 9.92%, rgba(83, 110, 255, 0) 95.93%, rgba(61, 170, 250, 0.45) 95.94%);
-          border-radius: 100px 100px 100px 100px;
-          position:absolute;
-          left: 150px;
+          width: 140px;
+          height: 135px;
+          left: 70px;
           bottom: -70px;
-          transform: rotate(-42.5deg);
+          transform: rotate(45deg);
+          background: linear-gradient(226.61deg,#536eff 14.04%,rgba(114,193,255,.71) 73.46%);
+          border-radius: 100px 100px 100px 100px;
+          position: absolute;
         }
       }
     }
