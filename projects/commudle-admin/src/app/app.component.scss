@@ -64,7 +64,7 @@
         flex-direction: column;
         background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
         overflow: hidden;
-        padding: 0 !important;
+        padding: 30px 40px 15px;
       }
     }
 
@@ -73,108 +73,74 @@
       a, p {
         font-family: $footer-font-family !important;
       }
-    }
 
-    .page-links {
-      display: flex;
-      flex-direction: row;
+      .page-links {
+        display: flex;
+        flex-direction: column;
 
-      .links {
-        a {
-          text-decoration: none;
-          color: white;
-          font-weight: 600;
+        .logo {
+          img {
+            width: 50px;
+            filter: brightness(5);
+
+          }
+        }
+
+        .links {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          &>div {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 15px 0;
+            a {
+              text-decoration: none;
+              color: white;
+              font-weight: 600;
+            }
+          }
+
+          .two {
+            order: 2;
+          }
+
+          .four {
+            display: none;
+          }
         }
       }
-    }
 
 
-    // .top-section-mobile
-    // {
-    //   .main-logo
-    //   {
-    //     padding-left: 10%;
-    //     img
-    //     {
-    //       filter: brightness(5);
-    //       width: 50px;
-    //     }
-    //   }
+      .social-links {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        hr {
+          border-top: 1px solid white;
+          width: 65px;
+        }
 
-    //   .links
-    //   {
-    //     display: flex;
-    //     padding-top: 14px;
-    //     padding-left: 38px;
-    //     a, a:hover
-    //     {
-    //       text-decoration: none;
-    //       font-size: 12px;
-    //       color: white;
-    //       font-weight: 800;
-    //       font-family: "Work Sans";
-    //     }
+        .links {
+          display: flex;
+          nb-icon {
+            color: white;
+            font-size: 24px;
+            margin: 8px;
+          }
+        }
 
-    //     .dev-pages
-    //     {
-    //       display: flex;
-    //       flex-direction: column;
-    //       width: 14%;
-    //       .dev1
-    //       {
-    //         display: flex;
-    //         flex-direction: column;
-    //       }
-    //       .dev2
-    //       {
-    //         display: flex;
-    //         flex-direction: column;
-    //         padding-top: 16px;
-    //       }
-    //     }
+        .tech-stack {
+           display: none;
+        }
+      }
 
-    //     .policies
-    //     {
-    //       display: flex;
-    //       flex-direction: column;
-    //       padding-left: 150px;
-    //     }
-    //   }
-    // }
-
-    .bottom-section-mobile
-    {
-      // .social
-      // {
-      //   display: flex;
-      //   justify-content: center;
-      //   gap: 3%;
-      //   padding-top: 15px;
-      //   nb-icon
-      //   {
-      //     font-size: 25px;
-      //     color: white;
-      //   }
-      // }
-
-      // .horizontalLine
-      // {
-      //   justify-content: center;
-
-      //   hr
-      //   {
-      //     width: 15%;
-      //     border: 0;
-      //     height: 1px;
-      //     background: white;
-      //     margin-bottom: 3%;
-      //   }
-      // }
-
-      // .techStacks
-      // {
-      //   display:none;
-      // }
+      .ellipse-large, .ellipse-small {
+        visibility: hidden;
+      }
 
     }
   }
@@ -203,7 +169,7 @@
 
         .page-links {
           width: 100%;
-          display: flex;
+          flex-direction: row;
           flex-wrap: nowrap;
           justify-content: space-between;
           align-items: center;
@@ -211,41 +177,38 @@
           .logo {
             width: 30%;
             img {
-              filter: brightness(5);
-              width: 95px;
+              width: 100px;
             }
           }
 
           .links {
             width: 70%;
-            display: flex;
             justify-content: space-around;
             &>div {
-              display: flex;
-              flex-direction: column;
+              width: unset;
             }
           }
         }
 
         .social-links {
           width: 60%;
-
+          flex-direction: column;
           hr {
-            color: white
+            border-top: 2px solid white;
+            width: 100%;
           }
 
           .links {
-            display: flex;
             justify-content: center;
 
             nb-icon {
-              color: white;
               font-size: 30px;
               margin: 24px 8px 18px;
             }
           }
 
           .tech-stack {
+            display: block;
             text-align: center;
             p {
               margin: 0;
@@ -256,107 +219,29 @@
 
 
         .ellipse-large {
+          visibility: visible;
           width: 267px;
-          height: 262px;
+          height: 253px;
           background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
           border-radius: 200px 200px 200px 200px;
           position:absolute;
-          left:-69px;
-          bottom:-20px;
+          left: -69px;
+          bottom: -58px;
         }
 
         .ellipse-small
         {
-          width: 140px;
-          height: 135px;
-          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+          visibility: visible;
+          width: 155px;
+          height: 160px;
+          background: linear-gradient(276.85deg, #536EFF 9.92%, rgba(83, 110, 255, 0) 95.93%, rgba(61, 170, 250, 0.45) 95.94%);
           border-radius: 100px 100px 100px 100px;
           position:absolute;
-          left:126px;
-          bottom:-70px;
-          transform:rotate(45deg);
+          left: 150px;
+          bottom: -70px;
+          transform: rotate(-42.5deg);
         }
       }
-
-      // .bottom-section-desktop
-      // {
-      //   display:flex;
-      //   gap:21%;
-      //   .ellipses
-      //   {
-      //     position:relative;
-      //     .ellipse7
-      //     {
-      //       width: 267px;
-      //       height: 262px;
-      //       background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
-      //       border-radius: 200px 200px 200px 200px;
-      //       position:absolute;
-      //       left:-69px;
-      //       bottom:-20px;
-      //     }
-      //     .ellipse8
-      //     {
-      //       width: 140px;
-      //       height: 135px;
-      //       background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
-      //       border-radius: 100px 100px 100px 100px;
-      //       position:absolute;
-      //       left:126px;
-      //       bottom:-70px;
-      //       transform:rotate(45deg);
-      //     }
-
-      //   }
-
-      //   .infoWeb
-      //   {
-      //     display:flex;
-      //     flex-direction:column;
-      //     justify-content: center;
-      //     width:56%;
-
-      //       .social
-      //       {
-      //         display: flex;
-      //         justify-content: center;
-      //         gap: 1%;
-      //         padding-top: 5px;
-      //         order:3;
-      //         nb-icon {
-      //           font-size: 25px;
-      //           color: white;
-      //         }
-      //       }
-
-      //       .horizontalLine
-      //       {
-      //         order:2;
-      //         padding-top: 102px;
-      //         padding-bottom:18px;
-      //         hr
-      //         {
-      //           width: 85%;
-      //           border: 0;
-      //           height: 2px;
-      //           background: white;
-      //         }
-      //       }
-
-      //       .techStacks
-      //       {
-      //         display:flex;
-      //         justify-content:center;
-      //         order:4;
-      //         padding-bottom:36px;
-      //         p
-      //         {
-      //           color: whitesmoke;
-      //           font-family: "Work Sans";
-      //         }
-      //       }
-      //   }
-      // }
     }
   }
 }
