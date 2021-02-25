@@ -36,8 +36,10 @@
           display: flex;
           justify-content: space-between;
           position: relative;
+          pointer-events: none;
 
           button {
+            pointer-events: auto;
             margin: 0 0.5rem;
             border-radius: 50%;
             border: none;

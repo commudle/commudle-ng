@@ -1,4 +1,5 @@
-<nb-card *ngIf="community.community" class="community-card-container">
+<nb-card *ngIf="community.community" [routerLink]="['/communities', community.community.slug]"
+         class="community-card-container clickable">
   <nb-card-body>
     <div class="image">
       <img alt="{{community.community.name}}" src="{{community.community.logo_path}}">

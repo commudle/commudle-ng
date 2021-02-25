@@ -1,4 +1,4 @@
-<nb-card class="lab-card-container">
+<nb-card [routerLink]="['/labs', lab.slug]" class="lab-card-container clickable">
   <nb-card-header>
     <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.medium}}">
   </nb-card-header>
