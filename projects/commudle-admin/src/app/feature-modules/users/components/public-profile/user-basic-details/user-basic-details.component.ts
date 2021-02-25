@@ -1,11 +1,9 @@
 import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {NbTagComponent, NbTagInputAddEvent, NbToastrService, NbWindowRef, NbWindowService} from '@nebular/theme';
+import {NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService} from '@nebular/theme';
 import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {v4 as uuidv4} from 'uuid';
+import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {UserChatsService} from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
-import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -14,18 +12,23 @@ import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature
 })
 export class UserBasicDetailsComponent implements OnInit {
 
-  uuid = uuidv4();
-
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
 
   @ViewChild('editTags') editTags: TemplateRef<any>;
-  editTagWindow: NbWindowRef;
+  @ViewChild('editProfile') editProfile: TemplateRef<any>;
+
+  editTagDialog: NbDialogRef<any>;
+  editProfileDialog: NbDialogRef<any>;
+
+  // The updated tags
+  tagsDialog: string[] = [];
+  // The original tags
   tags: string[] = [];
   maxTags = 5;
 
   constructor(
-    private windowService: NbWindowService,
+    private dialogService: NbDialogService,
     private appUsersService: AppUsersService,
     private userChatsService: UserChatsService,
     private toastrService: NbToastrService
@@ -33,46 +36,54 @@ export class UserBasicDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserTags();
+  }
+
+  getUserTags() {
     // Get already available tags of the user
     this.user.tags.forEach(tag => this.tags.push(tag.name));
   }
 
-  onTagWindowOpen(): void {
-    // Boilerplate tag
-    if (this.tags.length < 1) {
-      this.tags.push('Delete this');
+  onTagDialogOpen(): void {
+    // Boilerplate tags
+    this.tagsDialog = [];
+    this.tags.forEach(tag => this.tagsDialog.push(tag));
+    if (this.tagsDialog.length < 1) {
+      this.tagsDialog.push('Commudle');
     }
-
-    // Open a window to edit the tags
-    this.editTagWindow = this.windowService.open(this.editTags, {
-      title: 'Edit Tags',
-      closeOnBackdropClick: false,
-      closeOnEsc: false
-    });
+    // Open a dialog to edit the tags
+    this.editTagDialog = this.dialogService.open(
+      this.editTags, {
+        closeOnBackdropClick: false,
+        closeOnEsc: false
+      }
+    );
   }
 
   // Function to submit the tag form
-  onTagWindowSubmit() {
+  onTagDialogSubmit() {
+    // Get the updated user tags
+    this.tags = this.tagsDialog;
     // When the save button is clicked, update the tags
     this.appUsersService.updateTags({tags: this.tags}).subscribe(() => {
       this.toastrService.show('Your tags have been updated!', `Success!`, {status: 'success'});
     });
-    // Close the window
-    this.editTagWindow.close();
+    // Close the dialog
+    this.editTagDialog.close();
   }
 
   // Function to remove a tag
   onTagRemove(tagToRemove: NbTagComponent): void {
-    this.tags = this.tags.filter(tag => tag !== tagToRemove.text);
+    this.tagsDialog = this.tagsDialog.filter(tag => tag !== tagToRemove.text);
   }
 
   // Function to add a tag
   onTagAdd({value, input}: NbTagInputAddEvent): void {
     // Add a tag if the value is not empty and the number of tags is under the allowed limit
-    if (value && this.tags.length < this.maxTags) {
+    if (value && this.tagsDialog.length < this.maxTags) {
       // Add a tag only if it is not present
-      if (!this.tags.includes(value)) {
-        this.tags.push(value);
+      if (!this.tagsDialog.includes(value)) {
+        this.tagsDialog.push(value);
       }
     }
     // Reset the input
@@ -84,11 +95,12 @@ export class UserBasicDetailsComponent implements OnInit {
     this.userChatsService.changeFollowerId(this.user.id);
   }
 
-  onEditProfileWindowOpen() {
-    this.windowService.open(BasicUserProfileComponent, {
-      title: 'Edit Profile Info',
-      closeOnEsc: false,
-      closeOnBackdropClick: false
-    });
+  onEditProfileDialogOpen() {
+    this.editProfileDialog = this.dialogService.open(
+      this.editProfile, {
+        closeOnEsc: false,
+        closeOnBackdropClick: false
+      }
+    );
   }
 }

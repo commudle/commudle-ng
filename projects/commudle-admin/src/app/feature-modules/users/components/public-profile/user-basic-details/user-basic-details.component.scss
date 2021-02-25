@@ -181,3 +181,31 @@
     }
   }
 }
+
+.tag-dialog {
+  nb-card-body {
+    text-align: center;
+
+    img {
+      height: 168px;
+      margin-top: 1rem;
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.profile-dialog {
+  nb-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nb-card-body {
+    padding: 0;
+  }
+}

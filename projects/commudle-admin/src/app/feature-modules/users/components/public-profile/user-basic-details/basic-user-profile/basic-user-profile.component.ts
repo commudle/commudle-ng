@@ -10,7 +10,6 @@ import {
   NoWhitespaceValidator,
   WhiteSpaceNotAllowedValidator
 } from 'projects/shared-helper-modules/custom-validators.validator';
-import {NbWindowRef} from '@nebular/theme';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -48,7 +47,6 @@ export class BasicUserProfileComponent implements OnInit {
     private fb: FormBuilder,
     private usersService: AppUsersService,
     private toastLogService: LibToastLogService,
-    protected windowRef: NbWindowRef
   ) {
   }
 
@@ -94,7 +92,6 @@ export class BasicUserProfileComponent implements OnInit {
     this.usersService.updateUserProfile(formData).subscribe(() => {
       this.authWatchService.updateSignedInUser();
       this.toastLogService.successDialog('Your Profile is now updated!');
-      this.windowRef.close();
     });
   }
 
