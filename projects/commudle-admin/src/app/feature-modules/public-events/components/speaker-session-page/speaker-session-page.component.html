@@ -1,7 +1,7 @@
-<div class="speaker-session-details">
+<div class="speaker-session-details" #speakerSessionDetails [ngClass]="{'fullscreen': isFullscreen === true}">
   <div class="card-row">
     <div class="card-session-details">
-      <div class="session-details">
+      <div class="session-details" *ngIf="!isFullscreen">
         <nb-card>
           <nb-card-body>
             <div>
@@ -31,8 +31,6 @@
                 {{ moment(endTime).format('h:mm A') }}
               </small>
             </p>
-            <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
-
             <div *ngIf="speaker" class="speaker-details">
               <div>
                 <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
@@ -51,11 +49,15 @@
 
 
       <div #videoContainer class="video-stream">
+        <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
+        <button class="fullscreen-button" size="tiny" nbButton (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen"> Go Fullscreen </button>
+
         <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>
             <nb-card-body>
               <div>
                 <app-video-stream
+                  [started] = "(moment() < moment(startTime) ? false: true)"
                   [currentUser]="currentUser"
                   [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : (embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id)"
                   [videoSource]="embeddedVideoStream.source"
@@ -81,14 +83,23 @@
     <div class="card-live-discussion">
       <nb-card>
         <nb-card-body>
-          <nb-tabset fullWidth responsive (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
+          <nb-tabset
+          fullWidth
+          responsive
+          (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
             <nb-tab
-              tabTitle="People"
+              tabTitle="People {{ userCount > 0 ? ('('+userCount+')') : '' }}"
               tabIcon="people-outline"
               [tabId]="'people'"
               *ngIf="embeddedVideoStream && isBrowser"
             >
-              <app-users-list [embeddedVideoStream]="embeddedVideoStream" [event]="event" [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))" [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes[EUserRoles.EVENT_VOLUNTEER]"></app-users-list>
+              <app-users-list
+              [embeddedVideoStream]="embeddedVideoStream"
+              [event]="event"
+              [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"
+              [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes[EUserRoles.EVENT_VOLUNTEER]"
+              (userCount) = "userCount = $event"
+              ></app-users-list>
             </nb-tab>
             <nb-tab
               tabTitle="Chat"
@@ -98,7 +109,8 @@
               badgeStatus="success"
               [tabId]="'chat'"
               >
-              <app-discussion-chat [discussion]="chat" (newMessage)="tabUpdate('chat', 'new')" ></app-discussion-chat>
+              <app-discussion-chat
+              [discussion]="chat" (newMessage)="tabUpdate('chat', 'new')" ></app-discussion-chat>
             </nb-tab>
             <nb-tab
               tabTitle="QnA"
@@ -107,7 +119,8 @@
               badgeText="{{ questionCount > 0 ? questionCount : '' }}"
               badgeStatus="success"
               [tabId]="'qna'">
-              <app-discussion-qna [discussion]="discussion" (newMessage)="tabUpdate('qna', 'new')"></app-discussion-qna>
+              <app-discussion-qna
+              [discussion]="discussion" (newMessage)="tabUpdate('qna', 'new')"></app-discussion-qna>
             </nb-tab>
             <nb-tab
               tabTitle="Polls"
@@ -116,7 +129,8 @@
               [tabId]="'poll'"
               >
               <div>
-                <app-polls [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
+                <app-polls
+                [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
               </div>
             </nb-tab>
            </nb-tabset>
@@ -124,7 +138,5 @@
       </nb-card>
     </div>
   </div>
-
-
 
 </div>

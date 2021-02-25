@@ -17,6 +17,7 @@ export class VideoStreamComponent implements OnInit, OnChanges {
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   environment = environment;
+  @Input() started: boolean;
   @Input() currentUser: ICurrentUser;
   @Input() videoSource: string;
   @Input() videoCode: any;
