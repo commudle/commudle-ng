@@ -18,7 +18,7 @@ import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stre
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { NbSidebarService } from '@nebular/theme';
-import { isPlatformBrowser, Location } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
@@ -71,6 +71,9 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   subscriptions = [];
   EUserRoles = EUserRoles;
 
+  userCount = 0;
+  isFullscreen = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private trackSlotsService: TrackSlotsService,
@@ -86,6 +89,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     private usersService: AppUsersService,
     private userVisitsService: UserVisitsService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
   ) {}
 
   setMeta() {
@@ -121,6 +125,12 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngOnInit() {
+    this.document.onfullscreenchange = (event) => {
+      if (!this.document.fullscreenElement) {
+        this.isFullscreen = false;
+      }
+    }
+
     this.resolveData();
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe(
@@ -320,6 +330,20 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
         app_token: this.authWatchService.getAppToken()
       };
       this.userObjectVisitsService.create(userObjectVisit).subscribe();
+    }
+
+  }
+
+
+  toggleFullScreen(element) {
+    if (!this.isFullscreen && !this.document.fullscreenElement) {
+      if (this.document.body.requestFullscreen) {
+        this.document.body.requestFullscreen();
+        this.isFullscreen = true;
+      }
+    } else if (this.document.fullscreenElement) {
+      this.document.exitFullscreen();
+      this.isFullscreen = false;
     }
 
   }

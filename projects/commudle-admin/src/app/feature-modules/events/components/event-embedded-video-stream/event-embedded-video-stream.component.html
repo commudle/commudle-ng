@@ -70,8 +70,8 @@
 
       <div class="save-button-bottom">
         <button [disabled]="!embeddedVideoStreamForm.valid" type="submit" nbButton fullWidth status="info">
-          <span *ngIf="(!evs || !evs.hms_room_id || evs)">Save</span>
-          <span *ngIf="evs && evs.hms_room_id && embeddedVideoStreamForm.get('source').value == EEmbeddedVideoStreamSources.COMMUDLE">Reset Room</span>
+          <span *ngIf="(!evs || !evs.hms_room_id || (evs && embeddedVideoStreamForm.get('source').value !== EEmbeddedVideoStreamSources.COMMUDLE))">Save</span>
+          <span *ngIf="evs && evs.hms_room_id && embeddedVideoStreamForm.get('source').value === EEmbeddedVideoStreamSources.COMMUDLE">Reset Room</span>
         </button>
       </div>
 
@@ -80,6 +80,7 @@
   <div class="preview">
     <app-video-stream
       *ngIf="evs && currentUser"
+      [started] = "true"
       [currentUser]="currentUser"
       [videoSource]="embeddedVideoStreamForm.get('source').value"
       [videoCode]="embeddedVideoStreamForm.get('embed_code').value || evs.hms_room_id"
