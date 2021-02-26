@@ -78,6 +78,8 @@ export class EventDashboardComponent implements OnInit {
         this.event = data;
       }
     );
+
+    console.log(this.community, " ", this.event);
   }
 
 

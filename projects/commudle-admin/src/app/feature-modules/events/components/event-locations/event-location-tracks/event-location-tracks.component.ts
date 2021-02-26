@@ -13,6 +13,8 @@ import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedd
 import { DomSanitizer } from '@angular/platform-browser';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
+import { FormControl } from '@angular/forms';
+
 
 
 @Component({
@@ -28,6 +30,9 @@ export class EventLocationTracksComponent implements OnInit {
   @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
   @ViewChild('tracksContainer') private tracksContainer: ElementRef;
   windowRef;
+
+  eventStartTimePicker;
+  eventEndTimePicker;
 
   faClock = faClock;
   faInfo = faInfo;
@@ -122,17 +127,30 @@ export class EventLocationTracksComponent implements OnInit {
 
   showAddSlotForm(eventLocationTrack, hour, minute) {
     this.trackSlotForm.reset();
-    this.trackSlotForm.get('track_slot').patchValue({
+
+    let sTime = new Date();
+    let eTime = new Date();
+    sTime.setHours(hour);
+    sTime.setMinutes(minute);
+
+    eTime.setHours(hour);
+    eTime.setMinutes(minute+5);
+    
+      this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: eventLocationTrack.id,
       date: this.minSlotDate,
-      start_time: moment(`${hour}:${minute}`, 'H:m').format('HH:mm'),
-      end_time: moment(`${hour}:${minute+5}`, 'H:m').format('HH:mm')
+      start_time: sTime,
+      end_time: eTime
     });
+
+  // console.log("----", this.trackSlotForm.get('track_slot').value)
+
 
     this.windowRef = this.windowService.open(
       this.trackSlotFormTemplate,
       { title: 'Add a session', context: {operationType: 'create'}},
     );
+
 
   }
 
@@ -145,12 +163,22 @@ export class EventLocationTracksComponent implements OnInit {
       date: newSlot.date.getDate(),
     });
 
-    delete newSlot['date'];
-    const sTime = newSlot['start_time'].split(':');
-    newSlot['start_time'] = startTime.set({hour: sTime[0], minute: sTime[1]}).toDate();
 
-    const eTime = newSlot['end_time'].split(':');
-    newSlot['end_time'] = startTime.set({hour: eTime[0], minute: eTime[1]}).toDate();
+    delete newSlot['date'];
+    // const sTime = newSlot['start_time'].split(':');
+    const sTime = newSlot['start_time'];
+    newSlot['start_time'] = startTime.set({hour: sTime.getHours(), minute: sTime.getMinutes()}).toDate();
+
+    // const eTime = newSlot['end_time'].split(':');
+    const eTime = newSlot['end_time'];
+    newSlot['end_time'] = startTime.set({hour: eTime.getHours(), minute: eTime.getMinutes()}).toDate();
+
+    if(newSlot['start_time'] >= newSlot['end_time'])
+    {
+      this.toastLogService.warningDialog("End time should be greater than Start time!");
+      return;
+    }
+
 
     this.trackSlotsService.createTrackSlot(newSlot).subscribe((data) => {
       this.addSession.emit(data);
@@ -159,13 +187,36 @@ export class EventLocationTracksComponent implements OnInit {
     });
   }
 
-  showEditSlotForm(trackSlot) {
+  showEditSlotForm(trackSlot) 
+  {
     this.trackSlotForm.reset();
+    // console.log(trackSlot);
+    let sTime = trackSlot['start_time'];
+    let eTime = trackSlot['end_time'];
+    let sTimeArr = sTime.split('T')[1].split(':');
+    let eTimeArr = eTime.split('T')[1].split(':');
+    let sTimeHour = parseInt(sTimeArr[0]);
+    let sTimeMinute = parseInt(sTimeArr[1]);
+    let eTimeHour = parseInt(eTimeArr[0]);
+    let eTimeMinute = parseInt(eTimeArr[1]);
+
+    let sTimeNew = new Date();
+    let eTimeNew = new Date();
+    sTimeNew.setHours(sTimeHour);
+    sTimeNew.setMinutes(sTimeMinute);
+
+    eTimeNew.setHours(eTimeHour);
+    eTimeNew.setMinutes(eTimeMinute);
+
+    // console.log(sTimeNew, " ", eTimeNew);
+
+    let trackDate = moment(trackSlot.start_time).toDate();
+
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: trackSlot.event_location_track_id,
-      date: moment(trackSlot.start_time).toDate(),
-      start_time: moment(trackSlot.start_time).format('HH:mm'),
-      end_time: moment(trackSlot.end_time).format('HH:mm'),
+      date: trackDate,
+      start_time: sTimeNew,
+      end_time: eTimeNew,
       session_title: trackSlot.session_title,
       tags_list: trackSlot.tags_list,
       speaker_registration_id: trackSlot.speaker_registration_id
@@ -193,11 +244,19 @@ export class EventLocationTracksComponent implements OnInit {
     });
 
     delete slot['date'];
-    const sTime = slot['start_time'].split(':');
-    slot['start_time'] = startTime.set({hour: sTime[0], minute: sTime[1]}).toDate();
+    const sTimeNew = slot['start_time'];
+    slot['start_time'] = startTime.set({hour: sTimeNew.getHours(), minute: sTimeNew.getMinutes()}).toDate();
 
-    const eTime = slot['end_time'].split(':');
-    slot['end_time'] = startTime.set({hour: eTime[0], minute: eTime[1]}).toDate();
+    const eTimeNew = slot['end_time'];
+    slot['end_time'] = startTime.set({hour: eTimeNew.getHours(), minute: eTimeNew.getMinutes()}).toDate();
+
+
+
+    if(slot['start_time'] >= slot['end_time'])
+    {
+      this.toastLogService.warningDialog("End time should be greater than Start time!");
+      return;
+    }
 
     this.trackSlotsService.updateTrackSlot(slot, trackSlotId).subscribe((data) => {
       this.updateSession.emit(data);
