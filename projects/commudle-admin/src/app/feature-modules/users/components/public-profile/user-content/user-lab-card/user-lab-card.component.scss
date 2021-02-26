@@ -9,6 +9,11 @@
     padding: 0;
     border-bottom: 1px solid #72C1FF;
     overflow: hidden;
+
+    img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
   }
 
   nb-card-body {
