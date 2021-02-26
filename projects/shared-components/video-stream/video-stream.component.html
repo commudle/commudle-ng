@@ -1,12 +1,12 @@
 <div class="video-player-container">
   <div class="video-player" *ngIf="isBrowser">
-    <p class="filler" *ngIf="!videoCode">
+    <p class="filler" *ngIf="!started || !currentUser">
       <nb-icon icon="video"></nb-icon>
       <br/>
       <span> {{ fillerText }} </span>
     </p>
 
-    <div class="youtube-player" *ngIf="currentUser">
+    <div class="youtube-player" *ngIf="currentUser && started">
       <app-hms-video
         *ngIf="(videoSource == EEmbeddedVideoStreamSources.COMMUDLE) && hmsRoomId"
         [roomId]="hmsRoomId">

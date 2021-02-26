@@ -79,7 +79,6 @@ export class EditEventComponent implements OnInit {
       });
 
       let eventInstance = this.eventForm.get('event').value;
-      // console.log(this.eventForm.get('event').value);
 
       if (this.event.start_time){
         let sTime = moment(this.event.start_time).toDate();
@@ -88,13 +87,10 @@ export class EditEventComponent implements OnInit {
         this.eventForm.get('event').patchValue({
           start_date: sTime,
           end_date: eTime,
-          start_time_pick: sTime, //patching start and end time saved to the form 
+          start_time_pick: sTime, //patching start and end time saved to the form
           end_time_pick: eTime
         });
       }
-      // console.log(this.eventForm.get('event').value);
-      // console.log(new Date());
-
     });
 
 
@@ -114,7 +110,6 @@ export class EditEventComponent implements OnInit {
 
     if (this.setStartDateTime() && this.setEndDateTime()) {
       if (this.startTime > this.endTime) {
-        // console.log(this.startTime, " ", this.endDate);
         this.toastLogService.warningDialog('End time has to be greater then start time');
         return;
       } else {
@@ -132,26 +127,11 @@ export class EditEventComponent implements OnInit {
 
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
-    // this.startHour = this.eventForm.get('event').get('start_hour').value;
-    // this.startMinute = this.eventForm.get('event').get('start_minute').value;
+
 
     let startTimePick = this.eventForm.get('event').get('start_time_pick').value;
-    // console.log(startTimePick, typeof(startTimePick));
     this.startHour = startTimePick.getHours();
     this.startMinute = startTimePick.getMinutes();
-
-    // if(startTimePick=="")
-    // {
-    //   this.startHour = this.eventStartTimePicker.value.getHours();
-    //   this.startMinute = this.eventStartTimePicker.value.getMinutes();
-    // }
-
-    // if(startTimePick!="")
-    // {
-    //   this.startHour = startTimePick.getHours();
-    //   this.startMinute = startTimePick.getMinutes();
-    // }
-
 
 
     if (
@@ -179,7 +159,6 @@ export class EditEventComponent implements OnInit {
 
     this.endDate = this.eventForm.get('event').get('end_date').value;
     let endTimePick = this.eventForm.get('event').get('end_time_pick').value;
-    // console.log(endTimePick, typeof(endTimePick));
     this.endHour = endTimePick.getHours();
     this.endMinute = endTimePick.getMinutes();
 
