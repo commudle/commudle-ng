@@ -1,5 +1,5 @@
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Inject, PLATFORM_ID, OnDestroy} from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
@@ -17,7 +17,7 @@ import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/ser
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { NbSidebarService } from '@nebular/theme';
+import { NbSidebarService, NbToggleModule } from '@nebular/theme';
 import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -74,6 +74,8 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   userCount = 0;
   isFullscreen = false;
 
+  sidebarMinimize = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private trackSlotsService: TrackSlotsService,
@@ -91,6 +93,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
   ) {}
+
 
   setMeta() {
     this.meta.updateTag({ name: 'description', content: `${this.event.description.replace(/<[^>]*>/g, '')}`});
@@ -124,6 +127,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     }
   }
 
+
   ngOnInit() {
     this.document.onfullscreenchange = (event) => {
       if (!this.document.fullscreenElement) {
@@ -148,6 +152,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
         }
       )
     );
+
   }
 
   ngAfterViewInit() {
@@ -345,7 +350,11 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
       this.document.exitFullscreen();
       this.isFullscreen = false;
     }
+  }
 
+
+  toggleSidebar() {
+    this.sidebarMinimize = !this.sidebarMinimize;
   }
 
 
