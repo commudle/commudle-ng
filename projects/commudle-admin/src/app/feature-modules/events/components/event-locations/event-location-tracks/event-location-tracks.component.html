@@ -26,7 +26,10 @@
           <nb-icon icon='tv-outline' [nbPopover]="embeddedVideo" nbPopoverTrigger="hover" ></nb-icon>
           <ng-template #embeddedVideo>
             <div class="embedded-video">
-              <app-video-stream [videoCode]="lt.embedded_video_stream.embed_code" [videoSource]="lt.embedded_video_stream.source" [fillerText]="'Auto Preview'" ></app-video-stream>
+              <!-- <app-video-stream
+              [videoCode]="lt.embedded_video_stream.embed_code"
+              [videoSource]="lt.embedded_video_stream.source"
+              [fillerText]="'Auto Preview'" ></app-video-stream> -->
             </div>
           </ng-template>
         </div>
