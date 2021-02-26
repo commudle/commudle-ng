@@ -4,7 +4,7 @@
       <nb-icon icon="message-circle-outline"></nb-icon>&nbsp; Messages
     </p>
     <app-badge *ngIf="unreadCount > 0 && chatsListHeight === 0" [fontSize]="'small'"
-               [text]="unreadCount + ' New'"></app-badge>
+               [color]="'#3b9bdf'" [text]="unreadCount + ' New'"></app-badge>
   </nb-card-header>
   <nb-card-body [style.maxHeight.vh]="chatsListHeight" [style.width.px]="chatsListWidth" class="chats-list-body">
     <nb-list>

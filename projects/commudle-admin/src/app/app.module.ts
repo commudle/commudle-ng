@@ -30,8 +30,9 @@ import {
   NbThemeModule,
   NbToastrModule,
   NbTooltipModule,
-  NbUserModule,
-  NbWindowModule
+  NbWindowModule,
+  NbTimepickerModule,
+  NbUserModule
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
@@ -142,6 +143,7 @@ export function initApp(appInitService: AppInitService) {
     NbFormFieldModule,
     NbDialogModule.forRoot(),
     NbSpinnerModule,
+    NbTimepickerModule.forRoot(),
 
     // Other external npm modules
     Ng2CompleterModule,
