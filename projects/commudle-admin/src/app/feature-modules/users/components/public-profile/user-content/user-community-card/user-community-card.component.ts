@@ -16,4 +16,8 @@ export class UserCommunityCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getCommunityName(): string {
+    const name = this.community.community.name;
+    return name.length < 30 ? name : name.substr(0, 30).concat('...');
+  }
 }

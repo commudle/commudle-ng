@@ -13,6 +13,7 @@
     .image {
       display: flex;
       align-items: center;
+      flex: 1;
       width: 96px;
       height: 96px;
       padding: 16px;
@@ -26,6 +27,7 @@
     }
 
     .details {
+      flex: 3;
       margin-left: 1rem;
 
       .name {
