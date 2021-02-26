@@ -1,6 +1,6 @@
 <div class="speaker-session-details" #speakerSessionDetails [ngClass]="{'fullscreen': isFullscreen === true}">
   <div class="card-row">
-    <div class="card-session-details">
+    <div class="card-session-details" [ngClass]="{'maxWidth': sidebarMinimize}">
       <div class="session-details" *ngIf="!isFullscreen">
         <nb-card>
           <nb-card-body>
@@ -41,14 +41,13 @@
                 {{userVisitData.visiting_users_count}} watching now
               </span>
             </p>
-
           </nb-card-body>
         </nb-card>
       </div>
 
 
 
-      <div #videoContainer class="video-stream">
+      <div class="video-stream" #videoContainer>
         <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
         <button class="fullscreen-button" size="tiny" nbButton (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen"> Go Fullscreen </button>
 
@@ -80,9 +79,18 @@
       </div>
     </div>
 
-    <div class="card-live-discussion">
+    <div class="card-live-discussion" [ngClass]="{'minWidth': sidebarMinimize}">
       <nb-card>
         <nb-card-body>
+          <button nbButton ghost status="primary" class="minimize-sidebar-button" *ngIf="!sidebarMinimize">
+            <nb-icon
+              icon="download-outline"
+              (click)="toggleSidebar()"
+              [ngStyle]="{'transform': 'rotate(-90deg)'}"
+            ></nb-icon>
+
+          </button>
+
           <nb-tabset
           fullWidth
           responsive
@@ -105,7 +113,7 @@
               tabTitle="Chat"
               *ngIf="chat"
               tabIcon="message-square-outline"
-              badgeText="{{ chatCount > 0 ? chatCount : '' }}"
+              badgeText="{{ chatCount > 0 ? '('+chatCount+')' : '' }}"
               badgeStatus="success"
               [tabId]="'chat'"
               >
@@ -116,7 +124,7 @@
               tabTitle="QnA"
               *ngIf="discussion"
               tabIcon="question-mark-circle-outline"
-              badgeText="{{ questionCount > 0 ? questionCount : '' }}"
+              badgeText="{{ questionCount > 0 ? '('+questionCount+')' : '' }}"
               badgeStatus="success"
               [tabId]="'qna'">
               <app-discussion-qna
@@ -134,6 +142,40 @@
               </div>
             </nb-tab>
            </nb-tabset>
+
+           <nb-list (click)="toggleSidebar()" class="clickable" [ngStyle]="{'visibility' : (sidebarMinimize ? 'visible' : 'hidden')}">
+             <nb-list-item>
+               <div>
+                 <p>
+                   <nb-icon icon="people-outline"></nb-icon>
+                  {{ userCount > 0 ? ('('+userCount+')') : '' }}
+                 </p>
+               </div>
+             </nb-list-item>
+             <nb-list-item>
+              <div>
+                <p>
+                  <nb-icon icon="message-square-outline"></nb-icon>
+                  {{ chatCount > 0 ? '('+chatCount+')' : ''  }}
+                </p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div>
+                <p>
+                  <nb-icon icon="question-mark-circle-outline"></nb-icon>
+                  {{ questionCount > 0 ? '('+questionCount+')' : '' }}
+                </p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div>
+                <p>
+                  <nb-icon icon="trending-up"></nb-icon>
+                </p>
+              </div>
+            </nb-list-item>
+           </nb-list>
         </nb-card-body>
       </nb-card>
     </div>

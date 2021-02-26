@@ -1,3 +1,4 @@
+
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
 :host {
@@ -16,10 +17,11 @@
           position: relative;
           fa-icon {
             vertical-align: sub;
-            &:hover {
+            &:hover{
               transform: rotate(25deg);
             }
           }
+
         }
 
         .main-logo {
@@ -36,10 +38,11 @@
             }
           }
 
-          p {
+          p{
             font-size: 1rem;
             color: #4481ff;
             margin: 0 0.5rem;
+
           }
         }
       }
@@ -48,11 +51,6 @@
         display: flex;
       }
     }
-
-  nb-sidebar {
-    transition: width 0.1s;
-  }
-
   }
 
   nb-layout-footer
@@ -60,7 +58,6 @@
     ::ng-deep
     {
       nav {
-        display: flex;
         flex-direction: column;
         background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
         overflow: hidden;
