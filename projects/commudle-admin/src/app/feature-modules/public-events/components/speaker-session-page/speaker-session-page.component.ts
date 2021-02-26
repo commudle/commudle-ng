@@ -18,14 +18,12 @@ import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stre
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { NbSidebarService, NbToggleModule } from '@nebular/theme';
-import { isPlatformBrowser, Location } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
 import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { UserVisitsService } from 'projects/shared-services/user-visits.service';
-import { columnsTotalWidth } from '@swimlane/ngx-datatable';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-speaker-session-page',
@@ -35,8 +33,6 @@ import { ThrowStmt } from '@angular/compiler';
 export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
   isBrowser: boolean = isPlatformBrowser(this.platformId);
   @ViewChild('videoContainer') private videoContainer: ElementRef;
-  @ViewChild('cardRow') private cardRow: ElementRef;
-  @ViewChild('chatBox') private chatBox: ElementRef;
 
   trackSlot: ITrackSlot;
   speaker: IUser;
@@ -57,13 +53,6 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   embeddedVideoStream: IEmbeddedVideoStream;
 
 
-  toggleCheck = true;
-  sideBarWidth = "23vw";
-  videoPlayerBox;
-  chatBoxWidth;
-  backgroundWidth;
-
-
   EEventStatuses = EEventStatuses;
   moment = moment;
   playerWidth;
@@ -82,6 +71,11 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   subscriptions = [];
   EUserRoles = EUserRoles;
 
+  userCount = 0;
+  isFullscreen = false;
+
+  sidebarMinimize = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private trackSlotsService: TrackSlotsService,
@@ -97,6 +91,7 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
     private usersService: AppUsersService,
     private userVisitsService: UserVisitsService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
   ) {}
 
 
@@ -133,31 +128,13 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
 
-  pixelsToInt(division)
-  {
-    return parseInt(division.split('p')[0]);
-  }
-
-  toggleFunction(){
-    if(this.toggleCheck == false){
-      this.sideBarWidth = "23vw";
-      let videoBox = this.pixelsToInt(this.videoPlayerBox);
-      let bgWidth = this.pixelsToInt(this.backgroundWidth);
-      let chatWidth = this.pixelsToInt(this.chatBoxWidth);
-      videoBox -= chatWidth;
-      bgWidth -= chatWidth;
-      this.videoPlayerBox = String(videoBox)+'px';
-      this.backgroundWidth = String(bgWidth)+'px'; 
-    }else{
-      this.chatBoxWidth = String(this.chatBox.nativeElement.offsetWidth)+'px'; //to get the chatbox width real time
-      this.sideBarWidth = "0vw";
-      this.videoPlayerBox = String(this.cardRow.nativeElement.offsetWidth)+'px'; //to set the vcBox width
-      this.backgroundWidth = String(this.cardRow.nativeElement.offsetWidth)+'px'; //to set the "card-session-details" and "session-details" width 
-    }
-  }
-
-
   ngOnInit() {
+    this.document.onfullscreenchange = (event) => {
+      if (!this.document.fullscreenElement) {
+        this.isFullscreen = false;
+      }
+    }
+
     this.resolveData();
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe(
@@ -360,6 +337,24 @@ export class SpeakerSessionPageComponent implements OnInit, AfterViewInit, OnDes
       this.userObjectVisitsService.create(userObjectVisit).subscribe();
     }
 
+  }
+
+
+  toggleFullScreen(element) {
+    if (!this.isFullscreen && !this.document.fullscreenElement) {
+      if (this.document.body.requestFullscreen) {
+        this.document.body.requestFullscreen();
+        this.isFullscreen = true;
+      }
+    } else if (this.document.fullscreenElement) {
+      this.document.exitFullscreen();
+      this.isFullscreen = false;
+    }
+  }
+
+
+  toggleSidebar() {
+    this.sidebarMinimize = !this.sidebarMinimize;
   }
 
 

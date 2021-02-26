@@ -7,6 +7,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, 
 })
 export class UserVideoComponent implements OnInit, OnChanges {
   @ViewChild('userVideo', {static: true}) previewVideo: ElementRef;
+  @Input() type;
   @Input() stream;
   @Input() userDetails;
   @Input() overridable;
