@@ -4,7 +4,7 @@
       <fa-icon [icon]="faCodeBranch"></fa-icon>
       <p class="name">{{build.name}}</p>
       <nb-tag-list class="tags">
-        <nb-tag *ngFor="let tag of build.tags" [text]="tag[0]"></nb-tag>
+        <nb-tag [text]="build.build_type"></nb-tag>
       </nb-tag-list>
     </div>
     <p class="description">{{getDesc()}}</p>

@@ -7,11 +7,11 @@
 
     .details {
       display: flex;
-      justify-content: space-between;
       align-items: center;
 
       fa-icon {
         font-size: 25px;
+        margin-right: 1rem;
         color: #FFD338;
       }
 
@@ -24,7 +24,7 @@
       }
 
       .tags {
-        max-width: 33%;
+        margin-left: auto;
       }
     }
 
