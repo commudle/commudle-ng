@@ -1,4 +1,26 @@
 .speaker-session-details {
+
+  &.fullscreen {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+
+    .video-stream {
+      height: 100%;
+      >div {
+        height: 100%;
+        nb-card {
+          margin-bottom: 0;
+          height: 100%;
+        }
+      }
+
+    }
+  }
+
   display: flex;
   flex-direction: column;
 
@@ -44,10 +66,30 @@
                 }
               }
             }
+
+            .fullscreen-button {
+              position: fixed;
+              z-index: 1040;
+              bottom: 0.5rem;
+              left: 2.5rem;
+              visibility: hidden;
+              transition: all 0.5s ease-in-out;
+            }
+
+            &:hover {
+              .fullscreen-button {
+                visibility: visible;
+              }
+            }
           }
       }
 
       @media screen and (max-width: 999px) and (orientation: portrait){
+
+        .fullscreen-button {
+
+          display: none !important;
+        }
         .session-details {
           display: none;
         }
@@ -149,6 +191,7 @@
                     width: 100%;
                     overflow-x: auto;
                     padding: 5px 0;
+                    justify-content: flex-start;
 
                     li {
                       a {
@@ -200,4 +243,31 @@
 
       }
     }
+}
+
+
+// nb-tabset override
+nb-tabset {
+  height: 100%;
+  ::ng-deep {
+    ul.tabset {
+      width: 100%;
+      overflow-x: auto;
+      padding: 5px 0;
+      justify-content: flex-start;
+
+      li {
+        a {
+          padding: 10px 10px;
+        }
+      }
+    }
+  }
+
+
+  nb-tab {
+    padding: 0;
+    height: 90%;
+    width: 100%;
+  }
 }
