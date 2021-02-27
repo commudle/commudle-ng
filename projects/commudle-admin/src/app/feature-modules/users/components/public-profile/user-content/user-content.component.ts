@@ -1,4 +1,14 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {ILab} from 'projects/shared-models/lab.model';
 import {ICommunityBuild} from 'projects/shared-models/community-build.model';
@@ -10,7 +20,8 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-user-content',
   templateUrl: './user-content.component.html',
-  styleUrls: ['./user-content.component.scss']
+  styleUrls: ['./user-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserContentComponent implements OnInit, OnDestroy, AfterViewChecked {
 

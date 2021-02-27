@@ -51,10 +51,10 @@
 
   <nb-layout-footer>
 
-    <div class="footer">
+    <div *ngIf="footerStatus" class="footer">
       <div class="page-links">
         <div class="logo" [routerLink]="['/']">
-          <img class="clickable" src="/assets/images/commudle-logo128.png">
+          <img alt="Logo" class="clickable" src="/assets/images/commudle-logo128.png">
         </div>
 
         <div class="links">
@@ -81,7 +81,6 @@
         </div>
 
       </div>
-
 
 
       <div class="social-links">
