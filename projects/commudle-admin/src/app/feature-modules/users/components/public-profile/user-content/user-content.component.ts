@@ -1,16 +1,18 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {ILab} from 'projects/shared-models/lab.model';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ICommunityBuild} from 'projects/shared-models/community-build.model';
 import {IUserRolesUser} from 'projects/shared-models/user_roles_user.model';
+import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
+import {ScreenWidthPx} from 'projects/commudle-admin/src/app/feature-modules/users/constants/user-profile';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user-content',
   templateUrl: './user-content.component.html',
   styleUrls: ['./user-content.component.scss']
 })
-export class UserContentComponent implements OnInit, AfterViewChecked {
+export class UserContentComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   @Input() user: IUser;
 
@@ -18,8 +20,13 @@ export class UserContentComponent implements OnInit, AfterViewChecked {
   communities: IUserRolesUser[] = [];
   builds: ICommunityBuild[] = [];
 
+  subscriptions: Subscription[] = [];
+
   communityNavButtonsHeight: number;
   labNavButtonsHeight: number;
+
+  window: Window = window;
+  readonly screenWidthPx = ScreenWidthPx;
 
   @ViewChild('communityCards') communityCards: ElementRef;
   @ViewChild('labCards') labCards: ElementRef;
@@ -32,11 +39,17 @@ export class UserContentComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     // Get the user's labs
-    this.appUsersService.labs(this.user.username).subscribe(value => this.labs = value.labs);
+    this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
+      return this.labs = value.labs;
+    }));
     // Get the user's communities
-    this.appUsersService.communities(this.user.username).subscribe(value => this.communities = value.user_roles_users);
+    this.subscriptions.push(this.appUsersService.communities(this.user.username).subscribe(value => {
+      return this.communities = value.user_roles_users;
+    }));
     // Get the user's builds
-    this.appUsersService.communityBuilds(this.user.username).subscribe(value => this.builds = value.community_builds);
+    this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
+      return this.builds = value.community_builds;
+    }));
   }
 
   ngAfterViewChecked(): void {
@@ -48,23 +61,27 @@ export class UserContentComponent implements OnInit, AfterViewChecked {
     this.cdr.detectChanges();
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
   // Check if the given element is scrollable
   isScrollable(element: HTMLDivElement) {
     return element.offsetWidth < element.scrollWidth;
   }
 
   scrollLeft(element: HTMLDivElement) {
-    // Scroll left by two cards when width > 1000px else scroll left by one card
+    // Scroll left by two cards when component width > tab width else scroll left by one card
     element.scrollTo({
-      left: (element.scrollLeft - 315 * (window.innerWidth > 1000 ? 2 : 1)),
+      left: (element.scrollLeft - 315 * (window.innerWidth > this.screenWidthPx.tab ? 2 : 1)),
       behavior: 'smooth'
     });
   }
 
   scrollRight(element: HTMLDivElement) {
-    // Scroll right by two cards when width > 1000px else scroll left by one card
+    // Scroll right by two cards when component width > tab width else scroll left by one card
     element.scrollTo({
-      left: (element.scrollLeft + 315 * (window.innerWidth > 1000 ? 2 : 1)),
+      left: (element.scrollLeft + 315 * (window.innerWidth > this.screenWidthPx.tab ? 2 : 1)),
       behavior: 'smooth'
     });
   }
