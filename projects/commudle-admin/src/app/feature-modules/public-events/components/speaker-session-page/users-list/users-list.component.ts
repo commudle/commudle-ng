@@ -1,6 +1,6 @@
 import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { UserObjectVisitChannel } from 'projects/commudle-admin/src/app/services/websockets/user-object-visit.channel';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { v4 as uuidv4 } from 'uuid';
@@ -21,6 +21,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
   @Input() isAdmin = false;
   @Input() activeEvent;
+  @Output() userCount = new EventEmitter();
   channelName;
   subscriptions = [];
   usersListSubscription;
@@ -76,6 +77,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.eventsService.embeddedVideoStreamPastVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe(
       data => {
         this.usersList = data.users;
+        this.userCount.emit(this.usersList.length);
       }
     );
   }
@@ -121,6 +123,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
                       break;
                     }
                   }
+                  this.userCount.emit(this.usersList.length);
                 }
               }
             );

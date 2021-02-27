@@ -1,6 +1,8 @@
+
 // page width
 $max-page-width: 1366px;
 $tab-width: 768px;
+$mobile-width: 480px;
 
 
 // page padding
@@ -37,4 +39,6 @@ $gradient-bottom-right: linear-gradient(135deg, #536effff, #29a5ffff, #ffd338ff,
 $gradient-top-left: linear-gradient(225deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 $gradient-bottom-left: linear-gradient(315deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 $gradient-radial: radial-gradient(#536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+
+$footer-font-family: "Work Sans";
 
