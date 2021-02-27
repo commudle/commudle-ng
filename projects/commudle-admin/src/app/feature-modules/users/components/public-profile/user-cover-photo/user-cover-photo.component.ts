@@ -68,9 +68,7 @@ export class UserCoverPhotoComponent implements OnInit {
     if (this.coverImageFormData) {
       this.appUsersService.updateProfileBannerImage(this.coverImageFormData).subscribe(() => {
         this.toastrService.show('Your cover image has been updated!', `Success!`, {status: 'success'});
-        // TODO: Make this better
-        // Reload the page to show the updated cover image
-        // setTimeout(() => window.location.reload(), 1500);
+        // Event emitter to update cover photo
         this.coverImageUpdate.emit();
         this.editCoverImageDialog.close();
       });
