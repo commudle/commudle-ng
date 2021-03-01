@@ -1,7 +1,13 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .create-lab {
   width: 100%;
+  background: $light-purple;
+  h1, p, input, div {
+    font-family: $primary-font-family;
+  }
 
-  .page-container {
+  .form-container {
 
     .header {
       font-weight: 300;
@@ -14,7 +20,12 @@
 
       input {
         font-size: 1.8rem;
-        font-weight: 300;
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          font-size: 1.3rem;
+        }
+        &::-moz-placeholder { /* Firefox 19+ */
+          font-size: 1.3rem;
+        }
       }
 
       .submit-button {
