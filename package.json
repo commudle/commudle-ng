@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "serve:hmr": "ng serve --hmr",
     "dev:ssr": "ng run commudle-admin:serve-ssr",
     "serve:ssr": "node dist/commudle-admin-server/main.js",
     "build:ssr": "ng build --prod && ng run commudle-admin:server:production",
