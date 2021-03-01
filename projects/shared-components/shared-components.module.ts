@@ -15,6 +15,7 @@ import {
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
+  NbTagModule,
   NbTooltipModule,
   NbWindowModule
 } from '@nebular/theme';
@@ -109,6 +110,7 @@ import {TagComponent} from './tag/tag.component';
     NbPopoverModule,
     NbListModule,
     NbAlertModule,
+    NbTagModule,
   ],
   exports: [
     WorkInProgressComponent,
