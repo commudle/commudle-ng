@@ -2,6 +2,7 @@
 
 .create-lab {
   width: 100%;
+  min-height: 90vh;
   background: $light-purple;
   h1, p, input, div {
     font-family: $primary-font-family;

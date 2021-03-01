@@ -22,6 +22,10 @@ $page-padding-bottom: 0.75rem;
 // $h1-description: 16px;
 
 
+// input font sizes
+$input-title: 20px;
+
+
 // color palette & gradients
 $neon-blue: #536effff;
 $blue-jeans: #29a5ffff;
@@ -31,6 +35,7 @@ $black-coral: #616476ff;
 $medium-aquamarine: #7be4a5ff;
 $bittersweet: #f27059ff;
 $light-purple: #EEEEFF;
+$callout-yellow: rgba(255, 211, 56, 0.35);
 
 $gradient-top: linear-gradient(0deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 $gradient-right: linear-gradient(90deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
