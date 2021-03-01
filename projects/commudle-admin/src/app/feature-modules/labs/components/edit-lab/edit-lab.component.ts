@@ -1,13 +1,13 @@
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
-import { faFlask, faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
-import { LabsService } from '../../services/labs.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
-import { ILabStep } from 'projects/shared-models/lab-step.model';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { isPlatformBrowser } from '@angular/common';
-import { Meta, Title } from '@angular/platform-browser';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {faFlask} from '@fortawesome/free-solid-svg-icons';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LabsService} from '../../services/labs.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EPublishStatus, ILab} from 'projects/shared-models/lab.model';
+import {ILabStep} from 'projects/shared-models/lab-step.model';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
+import {isPlatformBrowser} from '@angular/common';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-lab',
@@ -16,49 +16,20 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class EditLabComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
-  faPlus = faPlusCircle;
   EPublishStatus = EPublishStatus;
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
   autoSaving = false;
   autoSaveInterval;
-
   labId;
   lab: ILab;
-
   uploadedHeaderImage;
   uploadedHeaderImageFile: File;
   imagesList = [];
-
-  tags = '';
-
-
+  tags: string[] = [];
   headerImageForm = this.fb.group({
     header_image: ['', Validators.required],
   });
   labForm: FormGroup;
-
-
-
-  initStep(): FormGroup {
-    return this.fb.group({
-      id: [],
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      publish_status: []
-    });
-  }
-
-  get steps() {
-    return this.labForm.get('lab_steps') as FormArray;
-  }
-
-  addStep() {
-    (this.labForm.get('lab_steps') as FormArray).push(this.initStep());
-  }
-
-  removeStep(stepIndex: number) {
-    (this.labForm.get('lab_steps') as FormArray).removeAt(stepIndex);
-  }
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
     private fb: FormBuilder,
@@ -69,7 +40,29 @@ export class EditLabComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: Object,
     private meta: Meta,
     private title: Title
-  ) { }
+  ) {
+  }
+
+  get steps() {
+    return this.labForm.get('lab_steps') as FormArray;
+  }
+
+  initStep(): FormGroup {
+    return this.fb.group({
+      id: [],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      publish_status: []
+    });
+  }
+
+  addStep() {
+    (this.labForm.get('lab_steps') as FormArray).push(this.initStep());
+  }
+
+  removeStep(stepIndex: number) {
+    (this.labForm.get('lab_steps') as FormArray).removeAt(stepIndex);
+  }
 
   ngOnInit() {
     this.labForm = this.fb.group({
@@ -109,26 +102,24 @@ export class EditLabComponent implements OnInit, OnDestroy {
         name: 'og:image:secure_url',
         content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
-    this.meta.updateTag({ name: 'og:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({name: 'og:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}`});
     this.meta.updateTag({
       name: 'og:description',
       content: this.lab.description.replace(/<[^>]*>/g, '')
     });
-    this.meta.updateTag({ name: 'og:type', content: 'article'});
+    this.meta.updateTag({name: 'og:type', content: 'article'});
 
     this.meta.updateTag(
       {
         name: 'twitter:image',
         content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
       });
-    this.meta.updateTag({ name: 'twitter:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}` });
+    this.meta.updateTag({name: 'twitter:title', content: `Edit ${this.lab.name} | By ${this.lab.user.name}`});
     this.meta.updateTag({
       name: 'twitter:description',
       content: this.lab.description.replace(/<[^>]*>/g, '')
     });
-
   }
-
 
   getLab() {
     this.labsService.getLab(this.labId).subscribe(
@@ -139,12 +130,11 @@ export class EditLabComponent implements OnInit, OnDestroy {
           this.imagesList.push({title: img.url, value: img.url});
         }
         this.setMeta();
-        this.tags = data.tags.toString();
+        this.tags = data.tags;
         this.prefillForm();
       }
     );
   }
-
 
   prefillForm() {
     if (this.lab) {
@@ -157,7 +147,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
       if (this.lab.lab_steps) {
         (this.labForm as FormGroup).setControl('lab_steps', this.setLabFormSteps(this.lab.lab_steps));
       }
-
     }
 
     if (this.isBrowser) {
@@ -166,7 +155,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
       }, 10000);
     }
   }
-
 
   setLabFormSteps(labSteps: ILabStep[]): FormArray {
     const formArray = new FormArray([]);
@@ -181,10 +169,8 @@ export class EditLabComponent implements OnInit, OnDestroy {
     return formArray;
   }
 
-
   // Header image functionality
   displaySelectedHeaderImage(event: any) {
-
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file.size > 2425190) {
@@ -200,7 +186,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
       reader.readAsDataURL(file);
       this.updateHeaderImage();
     }
-
   }
 
   updateHeaderImage() {
@@ -224,7 +209,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
     );
   }
 
-
   // upload_inline_images
   uploadTextImage(blobInfo, success, failure) {
     const formData: any = new FormData();
@@ -238,7 +222,6 @@ export class EditLabComponent implements OnInit, OnDestroy {
       }
     );
   }
-
 
   updateLab(publishStatus) {
     if (this.lab.publish_status !== EPublishStatus.published) {
@@ -256,8 +239,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     );
   }
 
-
-  //auto save every 30 seconds
+  // auto save every 30 seconds
   autoSaveLab() {
     this.autoSaving = true;
     this.labsService.updateLab(this.lab.slug, this.labForm.value, true).subscribe(
@@ -271,9 +253,19 @@ export class EditLabComponent implements OnInit, OnDestroy {
     );
   }
 
+  onTagAdd(value: string) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value);
+    }
+  }
+
+  onTagDelete(value: string) {
+    this.tags = this.tags.filter(tag => tag !== value);
+  }
+
   // tags
-  submitTags(redirect=true) {
-    this.labsService.updateTags(this.lab.id, this.tags.split(',')).subscribe(
+  submitTags(redirect = true) {
+    this.labsService.updateTags(this.lab.id, this.tags).subscribe(
       data => {
         if (redirect) {
           this.toastLogService.successDialog('Saved!');
