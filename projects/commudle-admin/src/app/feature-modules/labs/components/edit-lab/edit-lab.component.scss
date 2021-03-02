@@ -147,16 +147,10 @@
 }
 
 
-// quill style
-quill-editor {
+// tinymce style
+editor {
   ::ng-deep {
-    .ql-toolbar.ql-snow {
-      border: none;
-      border-bottom: 1px solid grey;
-      text-align: center;
-    }
-
-    .ql-container.ql-snow {
+    div.tox.tox-tinymce {
       border: none;
     }
   }
