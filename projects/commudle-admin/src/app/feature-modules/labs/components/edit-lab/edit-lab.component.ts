@@ -46,7 +46,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     toolbar:
       'formatselect | bold italic forecolor backcolor | codesample emoticons| \
       link | alignleft aligncenter alignright alignjustify | \
-      bullist numlist outdent indent | image | code | removeformat | help',
+      bullist numlist outdent indent | image | code | removeformat',
     codesample_languages: [
       { text: 'HTML/XML', value: 'markup' },
       { text: 'CSS', value: 'css' },

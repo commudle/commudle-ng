@@ -10,20 +10,17 @@
 
 
   .page-container {
-    display: flex;
-    flex-direction: column;
-    margin: unset;
     padding-bottom: 50px;
 
     @media screen and (min-width: $max-page-width) {
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: center;
       .left-col {
         width: 264px;
       }
 
       .center-col {
-        width: 1020px;
+        width: 960;
         .container {
 
           .header {
@@ -137,7 +134,7 @@
       }
 
       .right-col {
-        width: 60px;
+        width: 120px;
       }
     }
 
