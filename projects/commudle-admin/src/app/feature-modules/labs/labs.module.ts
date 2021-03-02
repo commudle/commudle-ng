@@ -5,7 +5,7 @@ import { LabsComponent } from './components/labs/labs.component';
 import { CreateLabComponent } from './components/create-lab/create-lab.component';
 import { EditLabComponent } from './components/edit-lab/edit-lab.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NbCardModule, NbInputModule, NbButtonModule, NbIconModule, NbListModule } from '@nebular/theme';
+import { NbCardModule, NbInputModule, NbButtonModule, NbIconModule, NbListModule, NbDialogModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -15,6 +15,7 @@ import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { ReusableComponentsModule } from '../reusable-components/reusable-compon
     FontAwesomeModule,
     SharedComponentsModule,
     ReusableComponentsModule,
-
+    YouTubePlayerModule,
 
 
     // Nebular
@@ -44,7 +45,9 @@ import { ReusableComponentsModule } from '../reusable-components/reusable-compon
     NbInputModule,
     NbButtonModule,
     NbIconModule,
-    NbListModule
+    NbListModule,
+    NbDialogModule.forChild(),
+
   ]
 })
 export class LabsModule { }

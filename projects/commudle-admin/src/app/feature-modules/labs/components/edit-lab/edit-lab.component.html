@@ -3,7 +3,25 @@
   <div *ngIf="lab" class="page-container d-flex flex-column">
     <div class="left-col">
       <nb-card>
-        <nb-card-body></nb-card-body>
+        <nb-card-body>
+          <p>
+            A good Lab has steps / sections with images too. Here's a small guide on how to use this page:
+          </p>
+
+          <div class="d-flex justify-content-center align-items-center help-video clickable" (click)="openGuide(guideVideo)">
+            <p>Guide Video</p>
+            <nb-icon icon="play-circle-outline"></nb-icon>
+          </div>
+          <ng-template #guideVideo let-data>
+            <nb-card>
+              <nb-card-body>
+                <youtube-player
+                  videoId="Ef_7SgjaoEM"
+                ></youtube-player>
+              </nb-card-body>
+            </nb-card>
+          </ng-template>
+        </nb-card-body>
       </nb-card>
     </div>
     <div class="center-col">
@@ -41,6 +59,10 @@
                     </span>
                     <span>
                       Click to upload a header image (optional)
+                      <br>
+                      <small>
+                        (900px X 350px)
+                      </small>
                     </span>
                   </span>
                   <input formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
@@ -114,25 +136,16 @@
       <nb-card>
         <nb-card-body>
           <div class="tags">
-            <label fullWidth>
-              <app-badge [text]="'Tags, help, you, get, a, better, visibility, 😃'" [color]="'#4e74ff'"></app-badge>
-              <input
-                type="text"
-                nbInput
-                fullWidth
-                size="large"
-                [(ngModel)]="tags"
-                [ngModelOptions]="{standalone: true}"
-                placeholder="Enter tags separated by comma (a, b, c...)">
-            </label>
+            <p>Tags help you get a better visibility 😃</p>
+            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"
+                     [tags]="tags"></app-tag>
           </div>
         </nb-card-body>
       </nb-card>
       <div class="actions-card">
         <p class="publish-notification text-basic">
           <i *ngIf="this.lab.publish_status !== EPublishStatus.published">
-            *We aim to have amazing and really useful content in Labs.
-        Once you submit for a Review, your Lab will be Live in 24 hours!
+            *Once you submit for a Review, we will just do a brief check for originality and publish it in 24 hours!
           </i>
         </p>
 
@@ -173,7 +186,7 @@
       </div>
     </div>
     <div class="right-col">
-      <button nbButton ghost status="info" [routerLink]="['/labs', lab.slug]">
+      <button nbButton ghost [routerLink]="['/labs', lab.slug]">
         Preview
         <nb-icon icon="external-link"></nb-icon>
       </button>

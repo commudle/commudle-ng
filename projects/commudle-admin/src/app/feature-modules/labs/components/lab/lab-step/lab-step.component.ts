@@ -1,11 +1,13 @@
-import { DomSanitizer } from '@angular/platform-browser';
-import { Component, OnInit, Input, OnDestroy, AfterViewChecked, ElementRef, ViewChild, TemplateRef } from '@angular/core';
-import { ILabStep } from 'projects/shared-models/lab-step.model';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { LabsService } from '../../../services/labs.service';
-import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
-import { ActivatedRoute } from '@angular/router';
-import { NbDialogService } from '@nebular/theme';
+import {DomSanitizer} from '@angular/platform-browser';
+import {AfterViewChecked, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ILabStep} from 'projects/shared-models/lab-step.model';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
+import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
+import {ActivatedRoute} from '@angular/router';
+import {NbDialogService} from '@nebular/theme';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -16,16 +18,19 @@ import { NbDialogService } from '@nebular/theme';
 
 export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  @ViewChild('content')private content:ElementRef;
-  @ViewChild('dialog')private dialog:any;
   public src;
 
   @Input() step: ILabStep;
-  subscriptions = []
-  currentUser;
+
+  subscriptions: Subscription[] = [];
+  currentUser: ICurrentUser;
   stepDescription;
   codeHighlighted = false;
   triggerDialogB = false;
+
+  @ViewChild('content') private content: ElementRef;
+  @ViewChild('dialog') private dialog: any;
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private labsService: LabsService,
@@ -33,7 +38,8 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.subscriptions.push(
@@ -56,40 +62,31 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
         );
       })
     );
-
   }
 
-
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
-
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   ngAfterViewChecked() {
-
-  if (!this.triggerDialogB) {
-    if (this.content){
-      const imagesList = this.content.nativeElement.querySelectorAll("img");
-      for(const img of imagesList)
-      {
-         const g0 = img;
-         g0.classList.add('clickable');
-         g0.addEventListener("click", ()=>{
-          this.src = g0.src;
-          this.dialogService.open(this.dialog)
+    if (!this.triggerDialogB) {
+      if (this.content) {
+        const imagesList = this.content.nativeElement.querySelectorAll('img');
+        for (const img of imagesList) {
+          const g0 = img;
+          g0.classList.add('clickable');
+          g0.addEventListener('click', () => {
+            this.src = g0.src;
+            this.dialogService.open(this.dialog)
           }, false);
+        }
+        this.triggerDialogB = true;
       }
-      this.triggerDialogB = true;
     }
 
-  }
-
-    if (!this.codeHighlighted)
-    {
+    if (!this.codeHighlighted) {
       this.prismJsHighlightCodeService.highlightAll();
       this.codeHighlighted = true;
     }
