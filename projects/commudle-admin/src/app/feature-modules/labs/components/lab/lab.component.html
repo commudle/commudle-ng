@@ -12,7 +12,6 @@
 
 
 <div *ngIf="lab" class="lab page-padding">
-
   <div class="body">
     <div class="menu">
       <nb-card class="user">
@@ -28,29 +27,12 @@
                         class="clickable">
             <div>
               <a [routerLink]="['steps', lab.lab_steps[i].id]">
-                <!--                <span *ngIf="selectedLabStep >= i">-->
-                <!--                  <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>-->
-                <!--                </span>-->
                 <div>
                   {{ step.name }}
                 </div>
               </a>
             </div>
           </nb-list-item>
-          <!--          <nb-list-item class="interactions">-->
-          <!--            <div>-->
-          <!--              <p>-->
-          <!--                <app-votes-display-->
-          <!--                  [icon]="'star'"-->
-          <!--                  [votableId]="lab.id"-->
-          <!--                  [votableType]="'Lab'"-->
-          <!--                ></app-votes-display>-->
-          <!--              </p>-->
-          <!--              <p (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="clickable">-->
-          <!--                <nb-icon icon="message-circle-outline"></nb-icon>-->
-          <!--              </p>-->
-          <!--            </div>-->
-          <!--          </nb-list-item>-->
         </nb-list>
       </nb-card>
     </div>
@@ -87,23 +69,6 @@
           <div>
             <router-outlet></router-outlet>
           </div>
-
-          <!-- show author details at the end too -->
-          <div *ngIf="selectedLabStep === lab.lab_steps.length - 1" class="end-step-user-display">
-            <div class="user">
-              <app-user-profile-horizontal [aboutMe]="true" [user]="lab.user"></app-user-profile-horizontal>
-            </div>
-            <p>
-              <app-votes-display [icon]="'star'" [size]="'large'" [votableId]="lab.id"
-                                 [votableType]="'Lab'"></app-votes-display>
-              <small> A star would make my day! </small>
-            </p>
-            <p>
-              <a [routerLink]="['/labs']">All Labs
-                <nb-icon icon="arrow-ios-forward"></nb-icon>
-              </a>
-            </p>
-          </div>
         </nb-card-body>
         <nb-card-footer>
           <div class="steps-navigation">
@@ -139,7 +104,16 @@
           </nb-card-body>
         </nb-card>
       </div>
-
+    </div>
+    <div class="interactions">
+      <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
+      <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+        <nb-icon icon="message-circle"></nb-icon>
+        10
+      </div>
+      <div class="share">
+        <nb-icon icon="share"></nb-icon>
+      </div>
     </div>
   </div>
 </div>

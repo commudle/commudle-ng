@@ -8,6 +8,7 @@ $primary-color: #536EFF;
 
   .body {
     display: flex;
+    justify-content: center;
 
     .menu {
       display: none;
@@ -61,7 +62,6 @@ $primary-color: #536EFF;
       width: 100%;
 
       > nb-card {
-        width: 100%;
         min-height: 50vh;
         border: none;
         border-radius: 10px;
@@ -209,6 +209,24 @@ $primary-color: #536EFF;
         }
       }
 
+    }
+
+    .interactions {
+      width: 75px;
+      height: fit-content;
+      margin-left: 1rem;
+      position: sticky;
+      top: 50vh;
+      font-family: $primary-font-family;
+      font-weight: 500;
+
+      app-votes-display {
+        direction: rtl;
+      }
+
+      .discussion {
+        margin: 1.5rem 0;
+      }
     }
 
     @media (min-width: 800px) {
