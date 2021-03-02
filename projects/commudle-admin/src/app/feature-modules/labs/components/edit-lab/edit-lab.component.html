@@ -58,66 +58,12 @@
                 </div>
                 <div>
 
-                  <!-- <editor
+                  <editor
                     formControlName="description"
                     apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                    [init]="{
-                      height: 500,
-                      menubar: false,
-                      convert_urls: false,
-                      plugins: [
-                        'textcolor emoticons advlist lists autolink link charmap preview anchor',
-                        'visualblocks code table charmap image codesample',
-                        'insertdatetime table paste code help wordcount autoresize'
-                      ],
-                      toolbar:
-                        'formatselect | bold italic forecolor backcolor | codesample emoticons | \
-                        link | alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | image | table | code | removeformat | help',
-                      content_style: 'body {font-family: Work Sans}',
-                      codesample_languages: [
-                        { text: 'HTML/XML', value: 'markup' },
-                        { text: 'CSS', value: 'css' },
-                        { text: 'JavaScript', value: 'javascript' },
-                        { text: 'TypeScript', value: 'typescript' },
-                        { text: 'PHP', value: 'php' },
-                        { text: 'Ruby', value: 'ruby' },
-                        { text: 'Python', value: 'python' },
-                        { text: 'Java', value: 'java' },
-                        { text: 'C', value: 'c' },
-                        { text: 'C#', value: 'csharp' },
-                        { text: 'C++', value: 'cpp' }
-                      ],
-                      default_link_target: '_blank',
-                      image_list: imagesList,
-                      image_advtab: true,
-                      branding: false,
-                      images_upload_handler: this.uploadTextImage.bind(this),
-                      toolbar_location: 'bottom',
-                      toolbar_sticky: true
-                    }">
+                    [init]="tinyMCE">
 
-                  </editor> -->
-                  <quill-editor
-                    formControlName="description"
-                    [theme]="'snow'"
-                    [modules] = '{
-                      toolbar: [
-                        [{ "size": ["small", false, "large", "huge"] }],
-                        ["bold", "italic", "underline", "strike"],
-                        ["blockquote", "code-block"],
-                        [{ "list": "ordered" }, { "list": "bullet"} ],
-                        [{"background": []}],
-                        [{"align": []}],
-                        ["link", "image", "video"]
-                      ],
-                      "emoji-toolbar": true,
-                      "emoji-textarea": true,
-                      "emoji-shortname": true
-                    }'
-                    [trimOnValidation]="true"
-                    [styles]="{'position': 'sticky', 'top': 0}"
-                  ></quill-editor>
+                  </editor>
                 </div>
               </div>
             </form>
@@ -129,59 +75,18 @@
           <nb-card-body >
             <div >
               <div class="lab-step" [formGroupName]="i">
-                <h3 class="steps-counter">
-                  {{ i+1 }}. {{ this.lStep.get('name').value }}
+                <h3 class="steps-counter d-flex justify-content-start align-items-center">
+                  {{ i+1 }}.  <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Add a Title">
+
                   &nbsp;
                   <nb-icon icon="close-circle-outline" status="danger" class="clickable" (click)="removeStep(i)"></nb-icon>
                 </h3>
 
-                <div class="name">
-                  <input type="text" nbInput fullWidth fieldSize="large" formControlName="name" placeholder="Add a Title">
-
-                  <!-- <span *ngIf="lStep.get('name').touched && lStep.get('name').invalid && lStep.get('name').errors.required" class="validation-error-text">
-                    Required Field
-                  </span> -->
-                </div>
                 <div>
                   <editor
                     formControlName="description"
                     apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                    [init]="{
-                      placeholder: 'Start typing here...*',
-                      height: 500,
-                      menubar: false,
-                      convert_urls: false,
-                      plugins: [
-                        'textcolor emoticons advlist lists autolink link charmap preview anchor',
-                        'visualblocks code table charmap image codesample',
-                        'insertdatetime table paste code help wordcount autoresize'
-                      ],
-                      toolbar:
-                        'formatselect | bold italic forecolor backcolor | codesample emoticons| \
-                        link | alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | image | table | code | removeformat | help',
-                      content_style: 'body {font-family: Work Sans}',
-                      codesample_languages: [
-                        { text: 'HTML/XML', value: 'markup' },
-                        { text: 'CSS', value: 'css' },
-                        { text: 'JavaScript', value: 'javascript' },
-                        { text: 'TypeScript', value: 'typescript' },
-                        { text: 'PHP', value: 'php' },
-                        { text: 'Ruby', value: 'ruby' },
-                        { text: 'Python', value: 'python' },
-                        { text: 'Java', value: 'java' },
-                        { text: 'C', value: 'c' },
-                        { text: 'C#', value: 'csharp' },
-                        { text: 'C++', value: 'cpp' }
-                      ],
-                      default_link_target: '_blank',
-                      image_list: imagesList,
-                      image_advtab: true,
-                      branding: false,
-                      images_upload_handler: this.uploadTextImage.bind(this),
-                      toolbar_location: 'bottom',
-                      toolbar_sticky: true
-                    }">
+                    [init]="tinyMCE">
 
                   </editor>
                   <!-- <span *ngIf="lStep.get('description').touched && lStep.get('description').invalid && lStep.get('description').errors.required" class="validation-error-text">
