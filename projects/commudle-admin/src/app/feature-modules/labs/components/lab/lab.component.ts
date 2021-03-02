@@ -1,9 +1,8 @@
 import {AfterViewChecked, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {LabsService} from '../../services/labs.service';
+import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import {ILab} from 'projects/shared-models/lab.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer, Meta, Title} from '@angular/platform-browser';
-import {faFlask} from '@fortawesome/free-solid-svg-icons';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
 import {DOCUMENT} from '@angular/common';
@@ -24,7 +23,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   labDescription;
   triggerDialogB = false;
   lab: ILab;
-  faFlask = faFlask;
   selectedLabStep = -1;
   lastVisitedStepId;
   discussionChat: IDiscussion;
@@ -156,12 +154,10 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   getDiscussionChat() {
-    this.discussionsService.pGetOrCreateForLabChat(this.lab.id).subscribe(
-      data => this.discussionChat = data
-    );
+    this.discussionsService.pGetOrCreateForLabChat(this.lab.id).subscribe(data => this.discussionChat = data);
   }
 
-  scroll(el) {
+  scroll(el: HTMLElement) {
     el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
   }
 
