@@ -15,6 +15,7 @@ import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ReusableComponentsModule } from '../reusable-components/reusable-compon
     FontAwesomeModule,
     SharedComponentsModule,
     ReusableComponentsModule,
+    QuillModule.forRoot(),
 
 
 
