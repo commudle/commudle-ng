@@ -99,7 +99,24 @@
 
                   </editor> -->
                   <quill-editor
-                  formControlName="description"
+                    formControlName="description"
+                    [theme]="'snow'"
+                    [modules] = '{
+                      toolbar: [
+                        [{ "size": ["small", false, "large", "huge"] }],
+                        ["bold", "italic", "underline", "strike"],
+                        ["blockquote", "code-block"],
+                        [{ "list": "ordered" }, { "list": "bullet"} ],
+                        [{"background": []}],
+                        [{"align": []}],
+                        ["link", "image", "video"]
+                      ],
+                      "emoji-toolbar": true,
+                      "emoji-textarea": true,
+                      "emoji-shortname": true
+                    }'
+                    [trimOnValidation]="true"
+                    [styles]="{'position': 'sticky', 'top': 0}"
                   ></quill-editor>
                 </div>
               </div>

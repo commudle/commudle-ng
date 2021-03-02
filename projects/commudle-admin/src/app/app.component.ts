@@ -12,7 +12,7 @@ import {Title} from '@angular/platform-browser';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
 import {AppCentralNotificationService} from './services/app-central-notifications.service';
 import {CookieConsentComponent} from '../../../shared-components/cookie-consent/cookie-consent.component';
-
+import 'quill-emoji/dist/quill-emoji.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
