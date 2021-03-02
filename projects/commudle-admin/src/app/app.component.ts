@@ -1,7 +1,7 @@
 import {CookieConsentService} from './services/cookie-consent.service';
-import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
-import {environment} from '../environments/environment';
+import {environment} from 'projects/commudle-admin/src/environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
@@ -10,16 +10,16 @@ import {Router} from '@angular/router';
 import {DOCUMENT, isPlatformBrowser} from '@angular/common';
 import {Title} from '@angular/platform-browser';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
-import {AppCentralNotificationService} from './services/app-central-notifications.service';
-import {CookieConsentComponent} from '../../../shared-components/cookie-consent/cookie-consent.component';
-import 'quill-emoji/dist/quill-emoji.js';
+import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
+import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
+import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewChecked {
   sideBarNotifications = false;
   sideBarState = 'collapsed';
   faBars = faBars;
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     {title: 'Logout', link: '/logout'},
   ];
   cookieAccepted = false;
+  footerStatus = true;
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -42,15 +43,17 @@ export class AppComponent implements OnInit {
     private windowService: NbWindowService,
     private cookieConsentService: CookieConsentService,
     private appCentralNotificationsService: AppCentralNotificationService,
-    private iconLibraries: NbIconLibraries
+    private iconLibraries: NbIconLibraries,
+    private footerService: FooterService,
+    private cdr: ChangeDetectorRef
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
     this.titleService.setTitle('Commudle | Developer Communities, Together');
 
-      this.iconLibraries.registerFontPack('fas', { iconClassPrefix: 'fa', packClass: 'fas' });
-      this.iconLibraries.registerFontPack('fab', { iconClassPrefix: 'fa', packClass: 'fab' });
+    this.iconLibraries.registerFontPack('fas', {iconClassPrefix: 'fa', packClass: 'fas'});
+    this.iconLibraries.registerFontPack('fab', {iconClassPrefix: 'fa', packClass: 'fab'});
   }
 
   ngOnInit() {
@@ -98,18 +101,15 @@ export class AppComponent implements OnInit {
     this.checkNotifications();
   }
 
-  checkNotifications() {
-    this.sidebarService.onCollapse().subscribe(
-      data => {
-        this.sideBarState = 'collapsed';
-      }
-    );
+  ngAfterViewChecked(): void {
+    this.footerService.footerStatus$.subscribe(value => this.footerStatus = value);
+    this.cdr.detectChanges();
+  }
 
-    this.appCentralNotificationsService.sidebarNotifications$.subscribe(
-      data => {
-        this.sideBarNotifications = data;
-      }
-    );
+  checkNotifications() {
+    this.sidebarService.onCollapse().subscribe(data => this.sideBarState = 'collapsed');
+
+    this.appCentralNotificationsService.sidebarNotifications$.subscribe(data => this.sideBarNotifications = data);
   }
 
   checkHTTPS() {

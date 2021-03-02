@@ -1,37 +1,56 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+$primary-color: #536EFF;
+
 .lab {
   width: 100%;
+  background: $light-purple;
 
   .body {
     display: flex;
+    justify-content: center;
 
     .menu {
       display: none;
 
-      .steps {
-        .title {
-          p {
-            margin: 0;
-            fa-icon {
-              color: #4e74ff;
-            }
+      .user {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      nb-card {
+        border: none;
+        border-radius: 10px;
+
+        .steps {
+          border-radius: 10px;
+
+          nb-list-item:not(:last-child) {
+            border-bottom: 2px solid rgba(83, 110, 255, 0.35);
+            font-family: $primary-font-family;
           }
-        }
 
-        .step-count {
-          font-size: 0.8rem;
-        }
+          .active {
+            a {
+              color: white;
+            }
 
-        a {
-          text-decoration: none;
-          color: black;
+            background-color: $primary-color;
+          }
+
+          a {
+            text-decoration: none;
+            color: $primary-color;
+          }
         }
       }
 
       .interactions {
-        >div {
+        > div {
           display: flex;
           justify-content: space-around;
           flex-direction: row;
+
           p {
             margin: 0 1rem 0 0;
           }
@@ -41,60 +60,123 @@
 
     .content {
       width: 100%;
-      >nb-card {
-        width: 100%;
+
+      > nb-card {
         min-height: 50vh;
+        border: none;
+        border-radius: 10px;
+
         .introduction {
           display: flex;
           flex-direction: column;
-          align-items: center;
 
-          h1.lab-title {
-            font-weight: 300;
+          .lab-title {
+            font-size: 2.25rem;
+            line-height: 2.75rem;
+            font-weight: 500;
+            font-family: $primary-font-family;
+            text-transform: capitalize;
           }
 
-          .tags {
+          .lab-detail {
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            >div {
-              margin: 0 0.3rem;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+
+            .user-profile {
+              display: flex;
+              justify-content: flex-start;
+
+              .avatar {
+                img {
+                  height: 24px;
+                  width: 24px;
+                  border-radius: 50%;
+                }
+              }
+
+              .details {
+                width: max-content;
+                font-style: italic;
+
+                p {
+                  color: #979797;
+                  margin: 0 1rem 0 0.5rem;
+                  font-family: $primary-font-family;
+                }
+
+                .name {
+                  text-transform: capitalize;
+                  color: $primary-color;
+                }
+              }
+            }
+
+            .tags {
+              margin-left: 1rem;
+            }
+          }
+
+          @media all and (max-width: $tab-width) {
+            .lab-detail {
+              flex-direction: column;
+
+              .user-profile {
+                align-items: center;
+
+                .details {
+                  width: auto;
+                }
+              }
+
+              .tags {
+                margin: 1rem 0 0;
+              }
             }
           }
 
           .header-image {
             max-width: 100%;
             overflow: hidden;
+
             img {
               width: 100%;
             }
           }
 
-          >div.intro-content {
+          > div.intro-content {
             width: 100%;
+
             ::ng-deep {
               img {
-               max-width: 100%;
-               height: auto;
+                max-width: 100%;
+                height: auto;
               }
 
               code {
                 white-space: pre-wrap;
               }
 
+              > * {
+                font-family: $primary-font-family;
+              }
+            }
+          }
+        }
+
+        @media all and (max-width: $tab-width) {
+          .introduction {
+            .lab-title {
+              font-size: 1.5rem;
+              line-height: 1.75rem;
             }
           }
         }
 
         nb-card-footer {
-          position: fixed;
-          z-index: 2;
-          width: 100%;
-          bottom: 0;
-          background-color: grey;
-          padding: 0.5rem;
+          background-color: $light-purple;
+          padding: 1.5rem 0 0;
           border: none;
-          border-radius: 0;
 
           &.completed {
             background-color: #5073ff;
@@ -102,10 +184,6 @@
 
           p {
             color: white;
-          }
-
-          @media (min-width: 800px) {
-            position: sticky;
           }
         }
       }
@@ -116,8 +194,10 @@
         align-items: flex-start;
         flex-wrap: wrap;
         margin-top: 1.5rem;
+
         p {
           margin: 0 1rem;
+
           a {
             margin-left: 1rem;
           }
@@ -131,9 +211,28 @@
 
     }
 
+    .interactions {
+      width: 75px;
+      height: fit-content;
+      margin-left: 1rem;
+      position: sticky;
+      top: 50vh;
+      font-family: $primary-font-family;
+      font-weight: 500;
+
+      app-votes-display {
+        direction: rtl;
+      }
+
+      .discussion {
+        margin: 1.5rem 0;
+      }
+    }
+
     @media (min-width: 800px) {
       .menu {
         display: inline-flex !important;
+        flex-direction: column;
         position: sticky;
         top: 4rem;
         height: fit-content;
@@ -156,25 +255,11 @@
     display: flex;
     justify-content: space-between;
 
-    a {
-      text-decoration: none;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    .steps-status {
-      .successful-completion {
-        font-size: 1.3rem;
-        text-align: right;
-        line-height: 1.5rem;
-        display: inline-block;
-      }
-    }
-
-    .more-labs-link {
+    button {
       color: white;
+      background-color: $primary-color;
+      border-radius: 10px;
+      font-family: $primary-font-family;
     }
   }
 
@@ -183,15 +268,12 @@
   }
 }
 
-
-.image{
-
-    @media screen and (min-width: 1300px){
-      width: 70vw;
-
+.image {
+  @media screen and (min-width: 1300px) {
+    width: 70vw;
   }
-    @media screen and (max-width: 720px){
-      width: 80vw;
 
+  @media screen and (max-width: 720px) {
+    width: 80vw;
   }
 }
