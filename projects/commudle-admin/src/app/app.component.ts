@@ -13,7 +13,6 @@ import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable
 import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
