@@ -21,43 +21,14 @@
     .messages {
       height: max-content;
       overflow-y: auto;
+
+      .filler-message {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+        text-align: center;
+        font-family: $primary-font-family;
+        margin: 1.5rem 0;
+      }
     }
   }
-
-  //nb-card-body {
-  //  :host {
-  //    height: 100%;
-  //
-  //    .discussion-chat-component {
-  //      min-height: 100px;
-  //      height: 100%;
-  //      position: relative;
-  //
-  //      .messages {
-  //        height: 90%;
-  //        overflow-y: auto;
-  //
-  //        .message {
-  //          margin-bottom: 1rem;
-  //          border: 1px dotted lightgrey;
-  //          border-radius: 5px;
-  //          padding: 5px;
-  //        }
-  //
-  //        .filler-message {
-  //          position: absolute;
-  //          top: 50%;
-  //          left: 50%;
-  //          transform: translate(-50%, -50%);
-  //          width: 80%;
-  //          text-align: center;
-  //
-  //          h4 {
-  //            color: darkgrey;
-  //          }
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
 }
