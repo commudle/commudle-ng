@@ -1,0 +1,34 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.discussion {
+  border: none;
+  border-radius: 0;
+
+  nb-card-header {
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: $primary-font-family;
+    color: #2F2E41;
+  }
+
+  nb-card-body {
+    .discussion-chat-component {
+      .send-message-form {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .messages {
+      height: max-content;
+      overflow-y: auto;
+
+      .filler-message {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+        text-align: center;
+        font-family: $primary-font-family;
+        margin: 1.5rem 0;
+      }
+    }
+  }
+}
