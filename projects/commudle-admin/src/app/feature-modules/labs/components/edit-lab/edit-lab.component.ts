@@ -8,7 +8,7 @@ import {ILabStep} from 'projects/shared-models/lab-step.model';
 import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
 import {isPlatformBrowser} from '@angular/common';
 import {Meta, Title} from '@angular/platform-browser';
-
+import { NbDialogService } from '@nebular/theme';
 @Component({
   selector: 'app-edit-lab',
   templateUrl: './edit-lab.component.html',
@@ -31,6 +31,45 @@ export class EditLabComponent implements OnInit, OnDestroy {
   labForm: FormGroup;
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
+
+  tinyMCE = {
+    placeholder: 'Start typing here...*',
+    min_height: 500,
+    menubar: false,
+    convert_urls: false,
+    skin: 'outside',
+    content_style: "@import url('https://fonts.googleapis.com/css?family=Work Sans'); body {font-family: 'Work Sans'; font-size: 20px !important;}",
+    plugins: [
+      'textcolor emoticons advlist lists autolink link charmap preview anchor',
+      'visualblocks code charmap image codesample',
+      'insertdatetime table paste code help wordcount autoresize media'
+    ],
+    toolbar:
+      'formatselect | bold italic backcolor | codesample emoticons| \
+      link | alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | image media | code | removeformat',
+    codesample_languages: [
+      { text: 'HTML/XML', value: 'markup' },
+      { text: 'CSS', value: 'css' },
+      { text: 'JavaScript', value: 'javascript' },
+      { text: 'TypeScript', value: 'typescript' },
+      { text: 'PHP', value: 'php' },
+      { text: 'Ruby', value: 'ruby' },
+      { text: 'Python', value: 'python' },
+      { text: 'Java', value: 'java' },
+      { text: 'C', value: 'c' },
+      { text: 'C#', value: 'csharp' },
+      { text: 'C++', value: 'cpp' }
+    ],
+    default_link_target: '_blank',
+    image_list: this.imagesList,
+    image_advtab: true,
+    branding: false,
+    images_upload_handler: this.uploadTextImage.bind(this),
+    toolbar_location: 'top',
+    toolbar_sticky: true
+  }
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -39,7 +78,8 @@ export class EditLabComponent implements OnInit, OnDestroy {
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private dialogService: NbDialogService
   ) {
   }
 
@@ -273,6 +313,10 @@ export class EditLabComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  openGuide(element) {
+    this.dialogService.open(element);
   }
 
 }

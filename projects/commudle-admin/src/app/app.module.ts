@@ -117,7 +117,6 @@ export function initApp(appInitService: AppInitService) {
     LibErrorHandlerModule,
     NgxMaterialTimepickerModule,
 
-
     // Nebula modules
     NbThemeModule.forRoot({name: 'default'}),
     NbLayoutModule,

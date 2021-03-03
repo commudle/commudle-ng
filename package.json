@@ -58,6 +58,7 @@
     "ngx-cookie-service": "^3.0.4",
     "ngx-material-timepicker": "^5.5.1",
     "prismjs": "^1.21.0",
+    "quill": "^1.3.7",
     "rxjs": "~6.5.5",
     "rxjs-compat": "^6.5.5",
     "tslib": "^2.0.3",

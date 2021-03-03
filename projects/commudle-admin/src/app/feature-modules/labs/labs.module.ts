@@ -5,7 +5,16 @@ import {LabsComponent} from './components/labs/labs.component';
 import {CreateLabComponent} from './components/create-lab/create-lab.component';
 import {EditLabComponent} from './components/edit-lab/edit-lab.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbListModule, NbTooltipModule} from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbDialogModule,
+  NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbListModule,
+  NbTooltipModule
+} from '@nebular/theme';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
@@ -16,6 +25,7 @@ import {LabListItemComponent} from './components/my-labs/lab-list-item/lab-list-
 import {ReusableComponentsModule} from '../reusable-components/reusable-components.module';
 import {LabDiscussionComponent} from './components/lab/lab-discussion/lab-discussion.component';
 import {LabDiscussionMessageComponent} from './components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component';
+import {YouTubePlayerModule} from '@angular/youtube-player';
 
 
 @NgModule({
@@ -39,6 +49,7 @@ import {LabDiscussionMessageComponent} from './components/lab/lab-discussion/lab
     FontAwesomeModule,
     SharedComponentsModule,
     ReusableComponentsModule,
+    YouTubePlayerModule,
 
     // Nebular
     NbCardModule,
@@ -47,7 +58,8 @@ import {LabDiscussionMessageComponent} from './components/lab/lab-discussion/lab
     NbIconModule,
     NbListModule,
     NbFormFieldModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbDialogModule.forChild()
   ]
 })
 export class LabsModule {
