@@ -1,6 +1,6 @@
 <div>
 
-  <form class="community-edit-details-form" [formGroup]="communityForm" (ngSubmit)="updateCommunityDetails()">
+  <form class="community-edit-details-form" [formGroup]="communityForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="updateCommunityDetails()">
     <div formGroupName="community">
       <div role="group" >
         <div>
@@ -113,8 +113,9 @@
       <div role="group">
         <div>
           <label>
-            Linkedin
-            <input type="text" nbInput fullWidth formControlName="linkedin">
+            Tags
+            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"
+                       [tags]="tags"></app-tag>
           </label>
         </div>
 
