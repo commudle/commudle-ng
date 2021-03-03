@@ -9,6 +9,7 @@ import {DOCUMENT} from '@angular/common';
 import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
 import {NbDialogService} from '@nebular/theme';
 import {Subscription} from 'rxjs';
+import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private discussionsService: DiscussionsService,
     @Inject(DOCUMENT) private doc: Document,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private footerService: FooterService
   ) {
   }
 
@@ -51,12 +53,18 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.getLab(data.lab_id);
       })
     );
+
+    // Hide Footer
+    this.footerService.changeFooterStatus(false);
   }
 
   ngOnDestroy(): void {
     // Called once, before the instance is destroyed.
     // Add 'implements OnDestroy' to the class.
     this.routeSubscriptions.forEach(subscription => subscription.unsubscribe());
+
+    // Show Footer
+    this.footerService.changeFooterStatus(true);
   }
 
   highlightCodeSnippets() {
