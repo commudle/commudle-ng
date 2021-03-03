@@ -195,13 +195,16 @@
               nb-card-body {
                 padding: 0;
 
-                nb-list-item {
-                  padding: 5px 0;
-                  justify-content: center;
-                  p {
-                    color: grey;
-                    font-weight: 600;
-                    margin: 0;
+                nb-list {
+                  background: white;
+                  nb-list-item {
+                    padding: 5px 0;
+                    justify-content: center;
+                    p {
+                      color: grey;
+                      font-weight: 600;
+                      margin: 0;
+                    }
                   }
                 }
               }
