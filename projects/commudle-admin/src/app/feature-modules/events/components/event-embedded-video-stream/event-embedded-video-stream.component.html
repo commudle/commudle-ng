@@ -3,12 +3,12 @@
     <form *ngIf="event.editable"  [formGroup]="embeddedVideoStreamForm" (ngSubmit)="createOrUpdate()">
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
-            <nb-option *ngIf="[1, 74, 116, 118].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
+            <nb-option *ngIf="[1, 74, 116, 118, 121].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
               <div>
                 Commudle Stage
                   <br/>
                   <small>
-                    (Upto 20 people on the stage and 80 people as viewers. Invite anyone to the stage, live!)
+                    (Upto 20 people live on the stage and upto 500 viewers!)
                   </small>
                   <br/>
               </div>
