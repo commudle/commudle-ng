@@ -94,22 +94,15 @@
         </nb-card-footer>
       </nb-card>
 
-      <div #discussionChatContainer>
-        <nb-card *ngIf="discussionChat" class="discussion-chat">
-          <nb-card-header>
-            Discussion
-          </nb-card-header>
-          <nb-card-body>
-            <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
-          </nb-card-body>
-        </nb-card>
+      <div #discussionChatContainer class="lab-discussion">
+        <app-lab-discussion *ngIf="discussionChat" [discussion]="discussionChat"></app-lab-discussion>
       </div>
     </div>
     <div class="interactions">
       <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
       <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
         <nb-icon icon="message-circle"></nb-icon>
-        10
+        {{discussionChat.user_messages_count}}
       </div>
       <div class="share">
         <nb-icon icon="share"></nb-icon>

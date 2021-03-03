@@ -1,0 +1,63 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.discussion {
+  border: none;
+  border-radius: 0;
+
+  nb-card-header {
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: $primary-font-family;
+    color: #2F2E41;
+  }
+
+  nb-card-body {
+    .discussion-chat-component {
+      .send-message-form {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .messages {
+      height: max-content;
+      overflow-y: auto;
+    }
+  }
+
+  //nb-card-body {
+  //  :host {
+  //    height: 100%;
+  //
+  //    .discussion-chat-component {
+  //      min-height: 100px;
+  //      height: 100%;
+  //      position: relative;
+  //
+  //      .messages {
+  //        height: 90%;
+  //        overflow-y: auto;
+  //
+  //        .message {
+  //          margin-bottom: 1rem;
+  //          border: 1px dotted lightgrey;
+  //          border-radius: 5px;
+  //          padding: 5px;
+  //        }
+  //
+  //        .filler-message {
+  //          position: absolute;
+  //          top: 50%;
+  //          left: 50%;
+  //          transform: translate(-50%, -50%);
+  //          width: 80%;
+  //          text-align: center;
+  //
+  //          h4 {
+  //            color: darkgrey;
+  //          }
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+}
