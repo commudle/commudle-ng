@@ -20,22 +20,16 @@
           Post a Message
         </button>
       </div>
-      <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
+      <div #messagesContainer class="messages">
         <div>
-          <div *ngFor="let um of messages" class="message">
-            <app-lab-discussion-message
-              (sendDelete)="delete($event)"
-              (sendFlag)="sendFlag($event)"
-              (sendReply)="sendReply($event, um.id)"
-              [allActions]="allActions"
-              [canReply]="true"
-              [currentUser]="currentUser"
-              [message]="um"
-              [permittedActions]="permittedActions"
-            ></app-lab-discussion-message>
+          <div *ngFor="let um of messages">
+            <app-lab-discussion-message (sendDelete)="delete($event)" (sendFlag)="sendFlag($event)"
+                                        (sendReply)="sendReply($event, um.id)" [allActions]="allActions"
+                                        [canReply]="true" [currentUser]="currentUser" [message]="um"
+                                        [permittedActions]="permittedActions"></app-lab-discussion-message>
           </div>
           <div *ngIf="messages.length === 0" class="filler-message">
-            <h4> Be the first one to comment! </h4>
+            Be the first one to comment!
           </div>
         </div>
       </div>

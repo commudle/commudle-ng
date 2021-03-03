@@ -27,9 +27,8 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
   messages: IUserMessage[] = [];
   permittedActions = [];
   pageSize = 10;
-  nextPage = 1;
+  currentPageNumber = 1;
   allMessagesLoaded = false;
-  loadingMessages = false;
   showReplyForm = 0;
   allActions;
   chatMessageForm = this.fb.group({
@@ -52,6 +51,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
     this.discussionChatChannel.subscribe(`${this.discussion.id}`);
     this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
+    // Get all discussion messages
     this.getDiscussionMessages();
   }
 
@@ -61,24 +61,6 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  scrollToBottom() {
-    // TODO find a fix to this settimeout for scrolling to bottom on every new message loaded
-    setTimeout(() => {
-      try {
-        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight + 300;
-      } catch (err) {
-        console.log(err);
-      }
-    }, 100);
-
-  }
-
-  loadPreviousMessages() {
-    if (this.messagesContainer.nativeElement.scrollTop <= 300) {
-      this.getDiscussionMessages();
-    }
-  }
-
   login() {
     if (!this.currentUser) {
       this.authWatchService.logInUser();
@@ -86,24 +68,17 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  // TODO: Change
   getDiscussionMessages() {
-    if (!this.allMessagesLoaded && !this.loadingMessages) {
-      this.loadingMessages = true;
-      this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
-        data => {
-          if (data.user_messages.length !== this.pageSize) {
-            this.allMessagesLoaded = true;
-          }
-          this.messages.unshift(...data.user_messages.reverse());
-          this.loadingMessages = false;
-          if (this.nextPage === 1) {
-            this.scrollToBottom();
-          }
-
-          this.nextPage += 1;
+    if (!this.allMessagesLoaded) {
+      this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.currentPageNumber, this.pageSize).subscribe(data => {
+        if (data.user_messages.length === 0) {
+          this.allMessagesLoaded = true;
+        } else {
+          this.messages.push(...data.user_messages);
+          this.currentPageNumber += 1;
+          this.getDiscussionMessages();
         }
-      );
+      });
     }
   }
 
@@ -153,51 +128,47 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
 
   receiveData() {
     this.subscriptions.push(
-      this.discussionChatChannel.channelData$.subscribe(
-        (data) => {
-          if (data) {
-            switch (data.action) {
-              case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
-                this.permittedActions = data.permitted_actions;
-                break;
+      this.discussionChatChannel.channelData$.subscribe(data => {
+        if (data) {
+          switch (data.action) {
+            case(this.discussionChatChannel.ACTIONS.SET_PERMISSIONS): {
+              this.permittedActions = data.permitted_actions;
+              break;
+            }
+            case(this.discussionChatChannel.ACTIONS.ADD): {
+              this.messages.unshift(data.user_message);
+              this.newMessage.emit();
+              break;
+            }
+            case(this.discussionChatChannel.ACTIONS.REPLY): {
+              this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+              this.newMessage.emit();
+              break;
+            }
+            case(this.discussionChatChannel.ACTIONS.DELETE): {
+              if (data.parent_type === 'Discussion') {
+                this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
+              } else {
+                const qi = this.findMessageIndex(data.parent_id);
+                this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
               }
-              case(this.discussionChatChannel.ACTIONS.ADD): {
-                this.messages.push(data.user_message);
-                this.scrollToBottom();
-                this.newMessage.emit();
-                break;
+              break;
+            }
+            case(this.discussionChatChannel.ACTIONS.FLAG): {
+              if (data.parent_type === 'Discussion') {
+                this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
+              } else {
+                const qi = this.findMessageIndex(data.parent_id);
+                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
               }
-              case(this.discussionChatChannel.ACTIONS.REPLY): {
-                this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
-                this.newMessage.emit();
-                break;
-              }
-              case(this.discussionChatChannel.ACTIONS.DELETE): {
-                if (data.parent_type === 'Discussion') {
-                  this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
-                } else {
-                  const qi = this.findMessageIndex(data.parent_id);
-                  this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
-                }
-
-                break;
-              }
-              case(this.discussionChatChannel.ACTIONS.FLAG): {
-                if (data.parent_type === 'Discussion') {
-                  this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
-                } else {
-                  const qi = this.findMessageIndex(data.parent_id);
-                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
-                }
-                break;
-              }
-              case(this.discussionChatChannel.ACTIONS.ERROR): {
-                this.toastLogService.warningDialog(data.message, 2000);
-              }
+              break;
+            }
+            case(this.discussionChatChannel.ACTIONS.ERROR): {
+              this.toastLogService.warningDialog(data.message, 2000);
             }
           }
         }
-      )
+      })
     );
   }
 
