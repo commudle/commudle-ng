@@ -212,7 +212,8 @@ $primary-color: #536EFF;
     }
 
     .interactions {
-      width: 75px;
+      display: none;
+      width: 60px;
       height: fit-content;
       margin-left: 1rem;
       position: sticky;
@@ -226,6 +227,10 @@ $primary-color: #536EFF;
 
       .discussion {
         margin: 1.5rem 0;
+      }
+
+      nb-icon {
+        color: $primary-color;
       }
     }
 
@@ -247,6 +252,10 @@ $primary-color: #536EFF;
       .content {
         min-width: 500px;
         width: 70%;
+      }
+
+      .interactions {
+        display: block;
       }
     }
   }
