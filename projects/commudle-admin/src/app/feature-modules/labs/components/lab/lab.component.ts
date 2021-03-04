@@ -24,6 +24,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   labDescription;
   triggerDialogB = false;
   lab: ILab;
+  similarLabs: ILab[] = [];
   selectedLabStep = -1;
   lastVisitedStepId: number;
   discussionChat: IDiscussion;
@@ -114,6 +115,15 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.triggerDialogB = false;
       this.lastVisitedStepId = this.lab.last_visited_step_id;
       this.getDiscussionChat();
+      // Get only published labs
+      this.labsService.getSimilarLabs(this.lab.id).subscribe(value => {
+        this.similarLabs = [];
+        value.labs.forEach(similarLab => {
+          if (similarLab.publish_status === 'published' && similarLab.id !== this.lab.id) {
+            this.similarLabs.push(similarLab);
+          }
+        });
+      });
 
       if (this.activatedRoute.firstChild) {
         this.routeSubscriptions.push(

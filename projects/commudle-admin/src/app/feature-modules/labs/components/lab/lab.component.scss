@@ -19,8 +19,6 @@ $border-radius: 10px;
     margin: 0 auto;
 
     .menu {
-      //display: none;
-
       nb-card {
         border: none;
         border-radius: $border-radius;
@@ -80,6 +78,45 @@ $border-radius: 10px;
         a {
           text-decoration: none;
           color: $primary-color;
+        }
+      }
+
+      .related-labs {
+        margin: $spacing $spacing 0 0;
+
+        nb-card-header {
+          font-size: 1.1rem;
+          font-weight: 400;
+          font-family: $primary-font-family;
+          color: $primary-color;
+          padding: $spacing $spacing 0.5 * $spacing;
+          border-bottom: none;
+        }
+
+        nb-card-body {
+          padding: 0;
+
+          .details {
+            padding: $spacing;
+            transition: all 0.3s ease-in-out;
+
+            .name {
+              margin: 0;
+              font-size: 1rem;
+              font-family: $primary-font-family;
+            }
+
+            .type {
+              margin: 0;
+              font-size: 0.9rem;
+              font-family: $primary-font-family;
+              color: $primary-color;
+            }
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.05);
+            }
+          }
         }
       }
 
@@ -371,7 +408,7 @@ $border-radius: 10px;
   }
 
   .lab-discussion {
-    margin: 2 * $spacing 0 3 * $spacing;
+    margin: 2 * $spacing 0 4 * $spacing;
   }
 }
 
