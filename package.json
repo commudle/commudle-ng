@@ -50,6 +50,7 @@
     "eva-icons": "^1.1.2",
     "express": "^4.15.2",
     "lodash": "^4.17.15",
+    "logrocket": "^1.0.14",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "ng2-completer": "^9.0.1",
