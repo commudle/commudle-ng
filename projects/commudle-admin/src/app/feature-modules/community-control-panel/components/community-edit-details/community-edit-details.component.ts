@@ -16,7 +16,6 @@ export class CommunityEditDetailsComponent implements OnInit {
   community: ICommunity;
   uploadedLogo: any;
   uploadedLogoFile: File;
-  tags: string[] = [];
 
   @Output() updateCommunity = new EventEmitter();
 
