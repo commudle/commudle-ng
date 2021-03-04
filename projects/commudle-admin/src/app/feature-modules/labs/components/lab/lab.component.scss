@@ -1,59 +1,163 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
 $primary-color: #536EFF;
+$title: #2F2E41;
+$content: #231F20;
+
+$spacing: 16px;
+$border-radius: 10px;
 
 .lab {
   width: 100%;
   background: $light-purple;
+  padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
 
   .body {
     display: flex;
     justify-content: center;
+    max-width: $max-page-width;
+    margin: 0 auto;
 
     .menu {
-      display: none;
-
-      .user {
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-      }
-
       nb-card {
         border: none;
-        border-radius: 10px;
+        border-radius: $border-radius;
+      }
 
-        .steps {
-          border-radius: 10px;
+      .user {
+        padding: $spacing;
+        margin: 0 0 $spacing;
+        transition: all 0.3s ease-in-out;
 
-          nb-list-item:not(:last-child) {
-            border-bottom: 2px solid rgba(83, 110, 255, 0.35);
-            font-family: $primary-font-family;
-          }
-
-          .active {
-            a {
-              color: white;
+        nb-user {
+          &::ng-deep {
+            .user-picture.image {
+              height: 3.5rem;
+              width: 3.5rem;
             }
 
-            background-color: $primary-color;
+            .user-name {
+              font-size: 1.125rem;
+              line-height: 1.5rem;
+              font-family: $primary-font-family;
+            }
+
+            .user-title {
+              font-size: 0.875rem;
+              font-family: $primary-font-family;
+            }
+          }
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+      }
+
+      .steps {
+        margin: 0;
+
+        nb-list {
+          border: none;
+          border-radius: $border-radius;
+        }
+
+        nb-list-item:not(:last-child) {
+          border-bottom: 2px solid rgba(83, 110, 255, 0.35);
+          font-family: $primary-font-family;
+        }
+
+        .active {
+          a {
+            color: white;
           }
 
-          a {
-            text-decoration: none;
-            color: $primary-color;
+          background-color: $primary-color;
+        }
+
+        a {
+          text-decoration: none;
+          color: $primary-color;
+        }
+      }
+
+      .related-labs {
+        margin: $spacing $spacing 0 0;
+
+        nb-card-header {
+          font-size: 1.1rem;
+          font-weight: 400;
+          font-family: $primary-font-family;
+          color: $primary-color;
+          padding: $spacing $spacing 0.5 * $spacing;
+          border-bottom: none;
+        }
+
+        nb-card-body {
+          padding: 0;
+
+          .details {
+            padding: $spacing;
+            transition: all 0.3s ease-in-out;
+
+            .name {
+              margin: 0;
+              font-size: 1rem;
+              font-family: $primary-font-family;
+            }
+
+            .type {
+              margin: 0;
+              font-size: 0.9rem;
+              font-family: $primary-font-family;
+              color: $primary-color;
+            }
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.05);
+            }
           }
         }
       }
 
-      .interactions {
-        > div {
-          display: flex;
-          justify-content: space-around;
-          flex-direction: row;
+      .mobile-interactions {
+        display: none;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: $spacing 0 0;
+        font-family: $primary-font-family;
 
-          p {
-            margin: 0 1rem 0 0;
+        app-votes-display {
+          direction: rtl;
+
+          &::ng-deep {
+            p {
+              font-size: 1.5rem;
+              font-family: $primary-font-family;
+
+              span {
+                color: $primary-color;
+              }
+
+              nb-icon {
+                font-size: 1.5rem;
+
+                &:not(.voted-heart) {
+                  color: $primary-color;
+                }
+              }
+            }
           }
+        }
+
+        .discussion {
+          font-size: 1.5rem;
+          color: $primary-color;
+        }
+
+        nb-icon {
+          font-size: 1.5rem;
+          color: $primary-color;
         }
       }
     }
@@ -61,188 +165,216 @@ $primary-color: #536EFF;
     .content {
       width: 100%;
 
-      > nb-card {
-        min-height: 50vh;
+      nb-card {
+        min-height: 80vh;
         border: none;
-        border-radius: 10px;
+        border-radius: $border-radius;
+        margin: 0 $spacing $spacing;
 
-        .introduction {
-          display: flex;
-          flex-direction: column;
+        nb-card-body {
+          padding: 3 * $spacing;
 
-          .lab-title {
-            font-size: 2.25rem;
-            line-height: 2.75rem;
-            font-weight: 500;
-            font-family: $primary-font-family;
-            text-transform: capitalize;
-          }
-
-          .lab-detail {
+          .introduction {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
+            flex-direction: column;
 
-            .user-profile {
-              display: flex;
-              justify-content: flex-start;
-
-              .avatar {
-                img {
-                  height: 24px;
-                  width: 24px;
-                  border-radius: 50%;
-                }
-              }
-
-              .details {
-                width: max-content;
-                font-style: italic;
-
-                p {
-                  color: #979797;
-                  margin: 0 1rem 0 0.5rem;
-                  font-family: $primary-font-family;
-                }
-
-                .name {
-                  text-transform: capitalize;
-                  color: $primary-color;
-                }
-              }
+            .lab-title {
+              font-size: 2.25rem;
+              font-weight: 500;
+              font-family: $primary-font-family;
+              line-height: 2.75rem;
+              color: $title;
+              text-transform: capitalize;
+              margin: 0 0 1.25 * $spacing;
             }
 
-            .tags {
-              margin-left: 1rem;
-            }
-          }
-
-          @media all and (max-width: $tab-width) {
             .lab-detail {
-              flex-direction: column;
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 3 * $spacing;
 
               .user-profile {
-                align-items: center;
+                display: flex;
+                justify-content: flex-start;
+
+                .avatar {
+                  img {
+                    height: 24px;
+                    width: 24px;
+                    border-radius: 50%;
+                  }
+                }
 
                 .details {
-                  width: auto;
+                  width: max-content;
+                  font-style: italic;
+
+                  p {
+                    color: #979797;
+                    margin: 0 $spacing 0 0.5 * $spacing;
+                    font-family: $primary-font-family;
+                  }
+
+                  .name {
+                    text-transform: capitalize;
+                    color: $primary-color;
+                  }
                 }
               }
 
               .tags {
-                margin: 1rem 0 0;
+                margin-left: 4rem;
+
+                &::ng-deep {
+                  .nb-tag-list-tags-wrapper {
+                    nb-tag {
+                      font-size: 13px;
+                      font-family: $primary-font-family;
+                      text-transform: lowercase;
+                      color: $title;
+                      background-color: #DAE0FF;
+                      border: none;
+                      border-radius: 0.5 * $border-radius;
+                    }
+                  }
+                }
               }
             }
-          }
 
-          .header-image {
-            max-width: 100%;
-            overflow: hidden;
+            @media all and (max-width: $tab-width) {
+              .lab-detail {
+                flex-direction: column;
 
-            img {
-              width: 100%;
+                .user-profile {
+                  align-items: center;
+
+                  .details {
+                    width: auto;
+                  }
+                }
+
+                .tags {
+                  margin: $spacing 0 0;
+                }
+              }
             }
-          }
 
-          > div.intro-content {
-            width: 100%;
+            .header-image {
+              max-width: 900px;
+              max-height: 350px;
+              overflow: hidden;
 
-            ::ng-deep {
               img {
-                max-width: 100%;
-                height: auto;
+                width: 100%;
               }
+            }
 
-              code {
-                white-space: pre-wrap;
-              }
+            .intro-content {
+              width: 100%;
 
-              > * {
-                font-family: $primary-font-family;
+              ::ng-deep {
+                img {
+                  max-width: 100%;
+                  height: auto;
+                }
+
+                code {
+                  white-space: pre-wrap;
+                }
+
+                * {
+                  font-family: $primary-font-family;
+                }
+
+                @for $index from 1 through 6 {
+                  h#{$index} {
+                    color: $title;
+                  }
+                }
+
+                p, li {
+                  color: $content;
+                  font-size: 1.1rem;
+                  line-height: 1.5rem;
+                }
               }
             }
           }
         }
 
         @media all and (max-width: $tab-width) {
-          .introduction {
-            .lab-title {
-              font-size: 1.5rem;
-              line-height: 1.75rem;
+          nb-card-body {
+            padding: 1.25 * $spacing;
+
+            .introduction {
+              .lab-title {
+                font-size: 1.75rem;
+                line-height: 1.75rem;
+              }
             }
           }
         }
 
         nb-card-footer {
           background-color: $light-purple;
-          padding: 1.5rem 0 0;
+          padding: 1.5 * $spacing 0 0;
           border: none;
-
-          &.completed {
-            background-color: #5073ff;
-          }
-
-          p {
-            color: white;
-          }
         }
       }
-
-      .end-step-user-display {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin-top: 1.5rem;
-
-        p {
-          margin: 0 1rem;
-
-          a {
-            margin-left: 1rem;
-          }
-        }
-
-        .user {
-          width: 300px;
-          border: 1px solid lightgrey;
-        }
-      }
-
     }
 
     .interactions {
       display: none;
-      width: 60px;
+      width: max-content;
       height: fit-content;
-      margin-left: 1rem;
+      margin-left: $spacing;
       position: sticky;
       top: 50vh;
       font-family: $primary-font-family;
-      font-weight: 500;
 
       app-votes-display {
         direction: rtl;
+
+        &::ng-deep {
+          p {
+            font-size: 1.5rem;
+            font-family: $primary-font-family;
+
+            span {
+              color: $primary-color;
+            }
+
+            nb-icon {
+              font-size: 1.5rem;
+
+              &:not(.voted-heart) {
+                color: $primary-color;
+              }
+            }
+          }
+        }
       }
 
       .discussion {
-        margin: 1.5rem 0;
+        margin: 1.5 * $spacing 0 0;
+        font-size: 1.5rem;
+        color: $primary-color;
       }
 
       nb-icon {
+        font-size: 1.5rem;
         color: $primary-color;
       }
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: $tab-width) {
       .menu {
         display: inline-flex !important;
         flex-direction: column;
         position: sticky;
-        top: 4rem;
+        top: 4.5rem;
         height: fit-content;
         width: 250px;
-        margin: 0 0.5rem 0 0;
 
         nb-card {
           width: 100%;
@@ -265,24 +397,58 @@ $primary-color: #536EFF;
     justify-content: space-between;
 
     button {
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: $primary-font-family;
+      text-transform: capitalize;
       color: white;
       background-color: $primary-color;
-      border-radius: 10px;
-      font-family: $primary-font-family;
+      border-radius: $border-radius;
     }
   }
 
   .lab-discussion {
-    margin: 2rem 0 3rem;
+    margin: 2 * $spacing 0 4 * $spacing;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .lab {
+    padding: $spacing 0 0;
+
+    .body {
+      flex-direction: column;
+
+      .menu {
+        margin: 0 $spacing $spacing;
+
+        .steps {
+          nb-list {
+            &::ng-deep {
+              flex-direction: row;
+
+              nb-list-item:not(:last-child) {
+                border-bottom: 0;
+                border-right: 2px solid rgba(83, 110, 255, 0.35);
+              }
+            }
+          }
+        }
+
+        .mobile-interactions {
+          display: flex;
+        }
+      }
+    }
   }
 }
 
 .image {
-  @media screen and (min-width: 1300px) {
+  @media screen and (min-width: $max-page-width) {
     width: 70vw;
   }
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: $tab-width) {
     width: 80vw;
   }
 }

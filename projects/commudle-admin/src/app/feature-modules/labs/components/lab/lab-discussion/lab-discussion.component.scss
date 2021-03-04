@@ -1,8 +1,11 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
+$spacing: 16px;
+
 .discussion {
   border: none;
   border-radius: 0;
+  margin: $spacing;
 
   nb-card-header {
     font-size: 1.1rem;
@@ -14,21 +17,37 @@
   nb-card-body {
     .discussion-chat-component {
       .send-message-form {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.5 * $spacing;
+
+        nb-form-field {
+          textarea {
+            resize: none;
+
+            &::placeholder {
+              font-family: $primary-font-family;
+            }
+          }
+
+          &::ng-deep {
+            .nb-form-field-prefix-medium {
+              margin-bottom: auto;
+            }
+
+            .nb-form-field-suffix-medium {
+              margin: auto 0 0.35rem -4.25rem;
+
+              button {
+                text-transform: capitalize;
+                font-family: $primary-font-family;
+              }
+            }
+          }
+        }
       }
     }
 
     .messages {
       height: max-content;
-      overflow-y: auto;
-
-      .filler-message {
-        font-size: 1.5rem;
-        line-height: 1.75rem;
-        text-align: center;
-        font-family: $primary-font-family;
-        margin: 1.5rem 0;
-      }
     }
   }
 }

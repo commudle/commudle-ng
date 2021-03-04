@@ -24,10 +24,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   labDescription;
   triggerDialogB = false;
   lab: ILab;
+  similarLabs: ILab[] = [];
   selectedLabStep = -1;
-  lastVisitedStepId;
+  lastVisitedStepId: number;
   discussionChat: IDiscussion;
-  codeHighlighted = false;
+  messagesCount: number;
 
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
@@ -68,10 +69,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   highlightCodeSnippets() {
-    if (!this.codeHighlighted) {
-      this.prismJsHighlightCodeService.highlightAll();
-      this.codeHighlighted = true;
-    }
+    this.prismJsHighlightCodeService.highlightAll();
   }
 
   setMeta() {
@@ -117,7 +115,15 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.triggerDialogB = false;
       this.lastVisitedStepId = this.lab.last_visited_step_id;
       this.getDiscussionChat();
-      this.highlightCodeSnippets();
+      // Get only published labs
+      this.labsService.getSimilarLabs(this.lab.id).subscribe(value => {
+        this.similarLabs = [];
+        value.labs.forEach(similarLab => {
+          if (similarLab.publish_status === 'published' && similarLab.id !== this.lab.id) {
+            this.similarLabs.push(similarLab);
+          }
+        });
+      });
 
       if (this.activatedRoute.firstChild) {
         this.routeSubscriptions.push(
@@ -147,18 +153,21 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.triggerDialogB = true;
       }
     }
+    this.highlightCodeSnippets();
   }
 
   setStep(index) {
     this.scrollToTop();
     this.lastVisitedStepId = null;
     this.selectedLabStep = index;
+    this.highlightCodeSnippets();
   }
 
   changeStep(count) {
     this.scrollToTop();
     this.selectedLabStep += count;
     this.lastVisitedStepId = null;
+    this.highlightCodeSnippets();
   }
 
   getDiscussionChat() {
@@ -169,4 +178,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
   }
 
+  getMessagesCount(count: number) {
+    this.messagesCount = count;
+  }
 }

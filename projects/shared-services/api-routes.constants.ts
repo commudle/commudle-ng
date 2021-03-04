@@ -324,6 +324,7 @@ export const API_ROUTES = {
     UPLOAD_TEXT_IMAGE: 'api/v2/labs/upload_text_image',
     DELETE: 'api/v2/labs',
     ADD_LAB_STEP_VISIT: 'api/v2/labs/add_lab_step_visit',
+    SIMILAR_LABS: 'api/v2/labs/similar_labs',
     PUBLIC: {
       SHOW: 'api/v2/labs/public/show',
       TAGS: 'api/v2/labs/public/tags',

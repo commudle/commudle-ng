@@ -1,21 +1,12 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
+$spacing: 16px;
+
 .message {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: nowrap;
-
-  .author-image {
-    width: 40px;
-    height: auto;
-    margin-right: 5px;
-
-    img {
-      width: 100%;
-      border-radius: 50%;
-    }
-  }
 
   .content-controls {
     width: 100%;
@@ -30,6 +21,10 @@
         font-weight: 600;
         font-family: $primary-font-family;
         text-transform: capitalize;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .message-date {
@@ -59,6 +54,7 @@
 
         p {
           margin: 5px 0 0;
+          color: #808080;
         }
       }
     }
@@ -66,9 +62,36 @@
 }
 
 .replies-container {
-  margin: 1rem 0 1rem 1rem;
+  margin: $spacing 0 $spacing $spacing;
 
   .reply-message {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5 * $spacing;
+  }
+
+  .reply-form {
+    nb-form-field {
+      textarea {
+        resize: none;
+
+        &::placeholder {
+          font-family: $primary-font-family;
+        }
+      }
+
+      &::ng-deep {
+        .nb-form-field-prefix-medium {
+          margin-bottom: auto;
+        }
+
+        .nb-form-field-suffix-medium {
+          margin: auto 0 0.35rem -4.25rem;
+
+          button {
+            text-transform: capitalize;
+            font-family: $primary-font-family;
+          }
+        }
+      }
+    }
   }
 }
