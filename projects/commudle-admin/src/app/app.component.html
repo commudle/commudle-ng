@@ -3,12 +3,12 @@
   <nb-layout-header fixed>
     <div class="container">
       <div class="menu-left-container">
-        <div class="sidebar-toggle" (click)="toggleSidebar()">
+        <div (click)="toggleSidebar()" class="sidebar-toggle">
           <fa-icon [icon]="faBars" size="1x"></fa-icon>
           <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
                     status="danger"></nb-badge>
         </div>
-        <div class="main-logo clickable" [routerLink]="['/']">
+        <div [routerLink]="['/']" class="main-logo clickable">
           <img alt="logo" src="/assets/images/commudle-logo72.png">
           <p>
             Commudle
@@ -16,21 +16,21 @@
         </div>
       </div>
       <div class="menu-right-container">
-        <a nbButton ghost class="hide-mobile" [routerLink]="['/']">Home</a>
-        <a nbButton ghost class="hide-mobile" [routerLink]="['/about']">About</a>
-        <a nbButton ghost class="hide-mobile" [routerLink]="['/communities']">Communities</a>
-        <a nbButton ghost class="hide-mobile" [routerLink]="['/labs']">Labs</a>
-        <a nbButton ghost class="hide-mobile" [routerLink]="['/builds']">Builds</a>
+        <a [routerLink]="['/']" class="hide-mobile" ghost nbButton>Home</a>
+        <a [routerLink]="['/about']" class="hide-mobile" ghost nbButton>About</a>
+        <a [routerLink]="['/communities']" class="hide-mobile" ghost nbButton>Communities</a>
+        <a [routerLink]="['/labs']" class="hide-mobile" ghost nbButton>Labs</a>
+        <a [routerLink]="['/builds']" class="hide-mobile" ghost nbButton>Builds</a>
         <nb-user
           *ngIf="currentUser"
-          size="medium"
+          [nbContextMenu]="userContextMenu"
           name=""
           picture="{{ currentUser.avatar }}"
-          [nbContextMenu]="userContextMenu"
+          size="medium"
         >
         </nb-user>
-        <button *ngIf="!currentUser"
-                (click)="login()" ghost nbButton status="info">
+        <button (click)="login()"
+                *ngIf="!currentUser" ghost nbButton status="info">
           <nb-icon icon="log-in-outline"></nb-icon>
           Log in / Sign Up
         </button>
@@ -40,7 +40,7 @@
 
   </nb-layout-header>
 
-  <nb-sidebar state="collapsed" responsive="true" id="commudleSidebar" [tag]="'mainMenu'">
+  <nb-sidebar [tag]="'mainMenu'" id="commudleSidebar" responsive="true" state="collapsed">
     <app-sidebar-menu></app-sidebar-menu>
   </nb-sidebar>
 
@@ -49,12 +49,12 @@
   </nb-layout-column>
 
 
-  <nb-layout-footer>
+  <nb-layout-footer *ngIf="footerStatus">
 
     <div class="footer">
       <div class="page-links">
-        <div class="logo" [routerLink]="['/']">
-          <img class="clickable" src="/assets/images/commudle-logo128.png">
+        <div [routerLink]="['/']" class="logo">
+          <img alt="Logo" class="clickable" src="/assets/images/commudle-logo128.png">
         </div>
 
         <div class="links">
@@ -81,7 +81,6 @@
         </div>
 
       </div>
-
 
 
       <div class="social-links">
