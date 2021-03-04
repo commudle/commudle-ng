@@ -12,7 +12,7 @@ export interface ILab {
   publish_status: EPublishStatus;
   images: IAttachedFile[];
   created_at: Date;
-  updated_at: Date;
+  published_at: Date;
   lab_steps: ILabStep[];
   tags: string[];
   last_visited_step_id: number;

@@ -11,7 +11,7 @@
         <p>
           {{ lab.name | slice:0:55 }} <span *ngIf="lab.name.length > 55">...</span>
           <br>
-          <small> Published {{ moment(lab.created_at).format('Do MMM YYYY') }}</small>
+          <small> Published {{ moment(lab.published_at).format('Do MMM YYYY') }}</small>
         </p>
       </div>
       <div class="body">
