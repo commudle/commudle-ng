@@ -28,6 +28,9 @@ export class LabsComponent implements OnInit {
   ) {
   }
 
+
+  // the way this will work
+
   ngOnInit() {
     this.getTags();
     this.getLabs(null);
