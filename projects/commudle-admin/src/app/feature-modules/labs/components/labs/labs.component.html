@@ -1,4 +1,36 @@
-<div class="labs-home page-padding">
+<div class="labs-home">
+  <div class="page-container">
+
+    <section class="nav">
+      <!-- search bar component will contain the filter also -->
+      <app-search-bar></app-search-bar>
+
+      <!-- create lab button -->
+    </section>
+
+    <section class="header">
+      <!-- header text section -->
+      <app-header-text></app-header-text>
+      
+      <!-- header banner or the graphic -->
+      <app-header-banner></app-header-banner>
+    </section>
+
+
+    <section class="body">
+      <!-- display list of popular tags and horizontal rule if the search bar is empty -->
+      <div class="popular tags"></div>
+
+      <!-- List of lab cards -->
+      <div class="labs"></div>
+    </section>
+
+  </div>
+
+</div>
+
+
+<!-- <div class="labs-home page-padding">
   <div class="header">
     <h1>
       <fa-icon [icon]="faFlask"></fa-icon>
@@ -54,4 +86,4 @@
     </div>
   </div>
 
-</div>
+</div> -->
