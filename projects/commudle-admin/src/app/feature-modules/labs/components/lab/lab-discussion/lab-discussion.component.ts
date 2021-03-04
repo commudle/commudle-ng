@@ -20,6 +20,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
 
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
+  @Output() messagesCount: EventEmitter<number> = new EventEmitter<number>();
 
   subscriptions: Subscription[] = [];
   moment = moment;
@@ -73,6 +74,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
       this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.currentPageNumber, this.pageSize).subscribe(data => {
         if (data.user_messages.length === 0) {
           this.allMessagesLoaded = true;
+          this.messagesCount.emit(this.messages.length);
         } else {
           this.messages.push(...data.user_messages);
           this.currentPageNumber += 1;

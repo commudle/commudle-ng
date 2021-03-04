@@ -13,7 +13,8 @@ import {
   NbIconModule,
   NbInputModule,
   NbListModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbUserModule
 } from '@nebular/theme';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -59,7 +60,8 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     NbListModule,
     NbFormFieldModule,
     NbTooltipModule,
-    NbDialogModule.forChild()
+    NbDialogModule.forChild(),
+    NbUserModule
   ]
 })
 export class LabsModule {

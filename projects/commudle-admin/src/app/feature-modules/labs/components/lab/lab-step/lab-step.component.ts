@@ -25,7 +25,6 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   subscriptions: Subscription[] = [];
   currentUser: ICurrentUser;
   stepDescription;
-  codeHighlighted = false;
   triggerDialogB = false;
 
   @ViewChild('content') private content: ElementRef;
@@ -84,11 +83,6 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
         this.triggerDialogB = true;
       }
-    }
-
-    if (!this.codeHighlighted) {
-      this.prismJsHighlightCodeService.highlightAll();
-      this.codeHighlighted = true;
     }
   }
 
