@@ -19,13 +19,13 @@ export class SysAdminLabsService {
 
   getAll(): Observable<ILabs> {
     return this.http.get<ILabs>(
-      this.apiRoutesService.getRoute(API_ROUTES.LABS.INDEX)
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.ADMIN.INDEX)
     );
   }
 
   updatePublishStatus(labId, publishStatus): Observable<boolean> {
     return this.http.put<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE_PUBLISH_STATUS), {
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.ADMIN.UPDATE_PUBLISH_STATUS), {
         lab_id: labId,
         publish_status: publishStatus
       }

@@ -9,7 +9,11 @@
     </h5>
     <p>
       <small>
-        {{ moment(lab.created_at).fromNow() }}
+        Created: {{ moment(lab.created_at).fromNow() }}
+      </small>
+      <br/>
+      <small *ngIf="lab.publish_status === EPublishStatus.published">
+        Published: {{ moment(lab.published_at).fromNow() }}
       </small>
     </p>
     <div class="stats" *ngIf="stats">

@@ -1,4 +1,50 @@
-$home-max-page-width: 1320px;
+
+// page width
+$max-page-width: 1366px;
+$tab-width: 768px;
 $mobile-width: 480px;
 
-$footer-font-family: "Work Sans";
+$primary-font-family: "Work Sans";
+
+// page padding
+$page-horizontal-padding: 2.25rem;
+$page-padding-top: 2.25rem;
+$page-padding-bottom: 0.75rem;
+
+
+// cover-font-sizes [TODO commented: need more clarity]
+// $c-title: 48px;
+// $c-description: 18px;
+// $c-menu-text: 24px;
+
+// // body-font-sizes
+// $h1: 40px;
+// $h1-description: 16px;
+
+
+// input font sizes
+$input-title: 20px;
+
+
+// color palette & gradients
+$neon-blue: #536effff;
+$blue-jeans: #29a5ffff;
+$cyber-yellow: #ffd338ff;
+$white: #ffffffff;
+$black-coral: #616476ff;
+$medium-aquamarine: #7be4a5ff;
+$bittersweet: #f27059ff;
+$light-purple: #EEEEFF;
+$callout-yellow: rgba(255, 211, 56, 0.35);
+
+$gradient-top: linear-gradient(0deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-right: linear-gradient(90deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-bottom: linear-gradient(180deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-left: linear-gradient(270deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-top-right: linear-gradient(45deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-bottom-right: linear-gradient(135deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-top-left: linear-gradient(225deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-bottom-left: linear-gradient(315deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-radial: radial-gradient(#536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+
+

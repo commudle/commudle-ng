@@ -15,6 +15,7 @@ import {
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
+  NbTagModule,
   NbTooltipModule,
   NbWindowModule
 } from '@nebular/theme';
@@ -50,6 +51,7 @@ import {CookieConsentComponent} from './cookie-consent/cookie-consent.component'
 import {UserProfileMiniComponent} from './user-profile-mini/user-profile-mini.component';
 import {UserLiveStatusComponent} from './user-live-status/user-live-status.component';
 import {HmsVideoModule} from 'projects/shared-modules/hms-video/hms-video.module';
+import {TagComponent} from './tag/tag.component';
 
 
 @NgModule({
@@ -81,7 +83,8 @@ import {HmsVideoModule} from 'projects/shared-modules/hms-video/hms-video.module
     UserPersonalChatMessageComponent,
     CookieConsentComponent,
     UserProfileMiniComponent,
-    UserLiveStatusComponent
+    UserLiveStatusComponent,
+    TagComponent
   ],
   imports: [
     CommonModule,
@@ -107,6 +110,7 @@ import {HmsVideoModule} from 'projects/shared-modules/hms-video/hms-video.module
     NbPopoverModule,
     NbListModule,
     NbAlertModule,
+    NbTagModule,
   ],
   exports: [
     WorkInProgressComponent,
@@ -129,7 +133,8 @@ import {HmsVideoModule} from 'projects/shared-modules/hms-video/hms-video.module
     DiscussionPersonalChatComponent,
     CookieConsentComponent,
     UserProfileMiniComponent,
-    UserLiveStatusComponent
+    UserLiveStatusComponent,
+    TagComponent
   ]
 })
 export class SharedComponentsModule {

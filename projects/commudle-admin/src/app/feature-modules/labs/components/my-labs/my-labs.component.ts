@@ -8,6 +8,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { NbWindowService } from '@nebular/theme';
 import { EPublishStatusColors } from 'projects/shared-models/community-build.model';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 
 @Component({
   selector: 'app-my-labs',
@@ -32,13 +33,13 @@ export class MyLabsComponent implements OnInit, OnDestroy {
     private title: Title,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
-    private windowService: NbWindowService
+    private appUsersService: AppUsersService
   ) {
     title.setTitle('My Labs');
   }
 
   ngOnInit() {
-    this.getAllBuilds();
+    this.getAllLabs();
     this.userSubscription = this.authWatchService.currentUser$.subscribe(
       data => {
         if (data && !data.profile_completed) {
@@ -56,8 +57,8 @@ export class MyLabsComponent implements OnInit, OnDestroy {
   }
 
 
-  getAllBuilds() {
-    this.labsService.getAll().subscribe(
+  getAllLabs() {
+    this.appUsersService.myLabs().subscribe(
       data => {
         this.labs = data.labs;
       }
