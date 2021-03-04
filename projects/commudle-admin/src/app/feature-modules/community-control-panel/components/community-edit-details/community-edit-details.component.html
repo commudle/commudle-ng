@@ -113,8 +113,9 @@
       <div role="group">
         <div>
           <label>
-            Linkedin
-            <input type="text" nbInput fullWidth formControlName="linkedin">
+            Tags
+            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"
+                       [tags]="tags"></app-tag>
           </label>
         </div>
 

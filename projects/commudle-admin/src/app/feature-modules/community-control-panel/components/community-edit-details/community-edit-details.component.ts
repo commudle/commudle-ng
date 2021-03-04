@@ -12,6 +12,7 @@ import { CommunitiesService } from "projects/commudle-admin/src/app/services/com
   styleUrls: ["./community-edit-details.component.scss"],
 })
 export class CommunityEditDetailsComponent implements OnInit {
+  tags: string[] = [];
   community: ICommunity;
   uploadedLogo: any;
   uploadedLogoFile: File;
