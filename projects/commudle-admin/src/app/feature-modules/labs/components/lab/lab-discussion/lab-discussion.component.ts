@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
@@ -16,7 +16,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './lab-discussion.component.html',
   styleUrls: ['./lab-discussion.component.scss']
 })
-export class LabDiscussionComponent implements OnInit, OnDestroy {
+export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
@@ -25,11 +25,11 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   moment = moment;
   currentUser: ICurrentUser;
-  messages: IUserMessage[] = [];
   permittedActions = [];
+  messages: IUserMessage[] = [];
   pageSize = 10;
   currentPageNumber = 1;
-  allMessagesLoaded = false;
+  // allMessagesLoaded = false;
   showReplyForm = 0;
   allActions;
   chatMessageForm = this.fb.group({
@@ -52,8 +52,21 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
     this.discussionChatChannel.subscribe(`${this.discussion.id}`);
     this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
-    // Get all discussion messages
-    this.getDiscussionMessages();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.discussion) {
+      // Reset discussion parameters
+      this.messages = [];
+      this.pageSize = 10;
+      this.currentPageNumber = 1;
+      this.discussionChatChannel.unsubscribe();
+      this.discussionChatChannel.subscribe(`${this.discussion.id}`);
+      this.receiveData();
+      this.allActions = this.discussionChatChannel.ACTIONS;
+      // Get all discussion messages
+      this.getDiscussionMessages();
+    }
   }
 
   ngOnDestroy(): void {
@@ -70,18 +83,18 @@ export class LabDiscussionComponent implements OnInit, OnDestroy {
   }
 
   getDiscussionMessages() {
-    if (!this.allMessagesLoaded) {
-      this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.currentPageNumber, this.pageSize).subscribe(data => {
-        if (data.user_messages.length === 0) {
-          this.allMessagesLoaded = true;
-          this.messagesCount.emit(this.messages.length);
-        } else {
-          this.messages.push(...data.user_messages);
-          this.currentPageNumber += 1;
-          this.getDiscussionMessages();
-        }
-      });
-    }
+    // if (!this.allMessagesLoaded) {
+    this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.currentPageNumber, this.pageSize).subscribe(data => {
+      if (data.user_messages.length === 0) {
+        // this.allMessagesLoaded = true;
+        this.messagesCount.emit(this.messages.length);
+      } else {
+        this.messages.push(...data.user_messages);
+        this.currentPageNumber += 1;
+        this.getDiscussionMessages();
+      }
+    });
+    // }
   }
 
   toggleReplyForm(messageId) {
