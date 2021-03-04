@@ -323,13 +323,16 @@ export const API_ROUTES = {
     UPDATE_TAGS: 'api/v2/labs/update_tags',
     UPLOAD_TEXT_IMAGE: 'api/v2/labs/upload_text_image',
     DELETE: 'api/v2/labs',
-    UPDATE_PUBLISH_STATUS: 'api/v2/labs/update_publish_status',
     ADD_LAB_STEP_VISIT: 'api/v2/labs/add_lab_step_visit',
     PUBLIC: {
       SHOW: 'api/v2/labs/public/show',
       TAGS: 'api/v2/labs/public/tags',
       INDEX: 'api/v2/labs/public',
       GET_STEPS: 'api/v2/labs/public/steps'
+    },
+    ADMIN: {
+      INDEX: 'api/v2/labs/admin',
+      UPDATE_PUBLISH_STATUS: 'api/v2/labs/admin/update_publish_status'
     }
   },
 
