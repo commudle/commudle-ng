@@ -10,20 +10,21 @@
   </nb-card>
 </ng-template>
 
-
 <div *ngIf="lab" class="lab page-padding">
   <div class="body">
     <div class="menu">
-      <nb-card class="user">
-        <app-user-profile-mini [designation]="true" [user]="lab.user"></app-user-profile-mini>
+      <nb-card [routerLink]="['/users', lab.user.username]" class="user clickable">
+        <nb-user [name]="lab.user.name" [picture]="lab.user.avatar" [title]="lab.user.designation"></nb-user>
       </nb-card>
-      <nb-card>
-        <nb-list class="steps">
-          <nb-list-item (click)="setStep(-1)" [routerLink]="['/labs', lab.slug]" class="clickable active">
+      <nb-card class="steps">
+        <nb-list>
+          <nb-list-item (click)="setStep(-1)" [ngClass]="{'active': selectedLabStep === -1}"
+                        [routerLink]="['/labs', lab.slug]"
+                        class="clickable">
             <a [routerLink]="['/labs', lab.slug]">Overview</a>
           </nb-list-item>
           <nb-list-item (click)="setStep(i)" *ngFor="let step of lab.lab_steps; let i = index"
-                        [ngClass]="{'active': selectedLabStep >= i}" [routerLink]="['steps', lab.lab_steps[i].id]"
+                        [ngClass]="{'active': selectedLabStep === i}" [routerLink]="['steps', lab.lab_steps[i].id]"
                         class="clickable">
             <div>
               <a [routerLink]="['steps', lab.lab_steps[i].id]">
@@ -35,6 +36,13 @@
           </nb-list-item>
         </nb-list>
       </nb-card>
+      <div class="mobile-interactions">
+        <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
+        <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+          <nb-icon icon="message-circle-outline"></nb-icon>
+          {{messagesCount}}
+        </div>
+      </div>
     </div>
     <div class="content">
       <app-user-object-visit-pixel [parentId]="lab.id" [parentType]="'Lab'"></app-user-object-visit-pixel>
@@ -95,17 +103,15 @@
       </nb-card>
 
       <div #discussionChatContainer class="lab-discussion">
-        <app-lab-discussion *ngIf="discussionChat" [discussion]="discussionChat"></app-lab-discussion>
+        <app-lab-discussion (messagesCount)="getMessagesCount($event)" *ngIf="discussionChat"
+                            [discussion]="discussionChat"></app-lab-discussion>
       </div>
     </div>
     <div class="interactions">
-      <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
+      <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
       <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
-        <nb-icon icon="message-circle"></nb-icon>
-        {{discussionChat.user_messages_count}}
-      </div>
-      <div class="share">
-        <nb-icon icon="share"></nb-icon>
+        <nb-icon icon="message-circle-outline"></nb-icon>
+        {{messagesCount}}
       </div>
     </div>
   </div>

@@ -8,10 +8,11 @@
         <form (ngSubmit)="sendMessage()" *ngIf="currentUser" [formGroup]="chatMessageForm">
           <nb-form-field>
             <nb-icon icon="edit-2" nbPrefix></nb-icon>
-            <input formControlName="content" fullWidth nbInput placeholder="share your thoughts (max 200 characters)"
-                   shape="semi-round" type="text">
+            <textarea formControlName="content" fullWidth maxlength="1000" nbInput placeholder="Share Your Thoughts"
+                      rows="4" shape="semi-round"></textarea>
             <button [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)" ghost nbButton
                     nbSuffix shape="semi-round" status="primary" type="submit">
+              Post
               <nb-icon icon="paper-plane-outline"></nb-icon>
             </button>
           </nb-form-field>
@@ -23,13 +24,16 @@
       <div #messagesContainer class="messages">
         <div>
           <div *ngFor="let um of messages">
-            <app-lab-discussion-message (sendDelete)="delete($event)" (sendFlag)="sendFlag($event)"
-                                        (sendReply)="sendReply($event, um.id)" [allActions]="allActions"
-                                        [canReply]="true" [currentUser]="currentUser" [message]="um"
-                                        [permittedActions]="permittedActions"></app-lab-discussion-message>
-          </div>
-          <div *ngIf="messages.length === 0" class="filler-message">
-            Be the first one to comment!
+            <app-lab-discussion-message
+              (sendDelete)="delete($event)"
+              (sendFlag)="sendFlag($event)"
+              (sendReply)="sendReply($event, um.id)"
+              [allActions]="allActions"
+              [canReply]="true"
+              [currentUser]="currentUser"
+              [message]="um"
+              [permittedActions]="permittedActions">
+            </app-lab-discussion-message>
           </div>
         </div>
       </div>

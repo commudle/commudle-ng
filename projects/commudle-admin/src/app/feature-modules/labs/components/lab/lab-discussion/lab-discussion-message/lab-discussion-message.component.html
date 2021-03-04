@@ -5,7 +5,7 @@
     </div>
     <div class="content-controls">
       <div class="author-details">
-        <p class="author-name">{{message.user.name}}</p>
+        <p [routerLink]="['/users', message.user.username]" class="author-name clickable">{{message.user.name}}</p>
         <p class="message-date">{{moment(message.created_at).format("MMM D [']YY")}}</p>
       </div>
       <div class="content">{{message.content}}</div>
@@ -33,9 +33,7 @@
         </div>
         <div (click)="toggleReplyForm()" *ngIf="permittedActions.includes(allActions.ADD) && canReply"
              class="clickable">
-          <p>
-            <nb-icon icon="flip-2"></nb-icon>
-          </p>
+          <p><small>Reply</small></p>
         </div>
       </div>
     </div>
@@ -52,10 +50,11 @@
       <form (ngSubmit)="emitReply()" *ngIf="canReply" [formGroup]="userMessageReplyForm">
         <nb-form-field>
           <nb-icon icon="edit-2" nbPrefix></nb-icon>
-          <input formControlName="content" fullWidth nbInput placeholder="Reply (max 200 characters)" shape="semi-round"
-                 type="text">
+          <textarea formControlName="content" fullWidth maxlength="1000" nbInput placeholder="Reply"
+                    rows="3" shape="semi-round"></textarea>
           <button [disabled]="!userMessageReplyForm.valid" ghost nbButton nbSuffix shape="semi-round" status="primary"
                   type="submit">
+            Post
             <nb-icon icon="paper-plane-outline"></nb-icon>
           </button>
         </nb-form-field>
