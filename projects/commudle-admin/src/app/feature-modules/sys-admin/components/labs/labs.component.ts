@@ -25,11 +25,11 @@ export class LabsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllBuilds();
+    this.getAllLabs();
   }
 
 
-  getAllBuilds() {
+  getAllLabs() {
     this.labsService.getAll().subscribe(
       data => {
         this.labs = data.labs;
