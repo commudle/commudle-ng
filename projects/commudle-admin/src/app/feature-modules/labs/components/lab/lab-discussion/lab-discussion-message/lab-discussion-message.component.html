@@ -1,7 +1,7 @@
 <div>
   <div class="message">
-    <div class="author-image">
-      <img alt="{{message.user.name}}" src="{{message.user.avatar}}">
+    <div>
+      <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
     </div>
     <div class="content-controls">
       <div class="author-details">

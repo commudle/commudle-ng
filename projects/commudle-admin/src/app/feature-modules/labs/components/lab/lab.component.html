@@ -36,6 +36,17 @@
           </nb-list-item>
         </nb-list>
       </nb-card>
+      <nb-card *ngIf="similarLabs.length > 0" class="related-labs">
+        <nb-card-header>
+          RELATED
+        </nb-card-header>
+        <nb-card-body>
+          <div *ngFor="let lab of similarLabs" [routerLink]="['/labs', lab.slug]" class="details clickable">
+            <p class="name">{{lab.name}}</p>
+            <p class="type">LAB</p>
+          </div>
+        </nb-card-body>
+      </nb-card>
       <div class="mobile-interactions">
         <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
         <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">

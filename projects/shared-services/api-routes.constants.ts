@@ -325,6 +325,7 @@ export const API_ROUTES = {
     DELETE: 'api/v2/labs',
     UPDATE_PUBLISH_STATUS: 'api/v2/labs/update_publish_status',
     ADD_LAB_STEP_VISIT: 'api/v2/labs/add_lab_step_visit',
+    SIMILAR_LABS: 'api/v2/labs/similar_labs',
     PUBLIC: {
       SHOW: 'api/v2/labs/public/show',
       TAGS: 'api/v2/labs/public/tags',
