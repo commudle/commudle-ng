@@ -13,6 +13,7 @@ import {
   NbIconModule,
   NbInputModule,
   NbListModule,
+  NbSidebarModule,
   NbTooltipModule,
   NbUserModule
 } from '@nebular/theme';
@@ -27,10 +28,10 @@ import {ReusableComponentsModule} from '../reusable-components/reusable-componen
 import {LabDiscussionComponent} from './components/lab/lab-discussion/lab-discussion.component';
 import {LabDiscussionMessageComponent} from './components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component';
 import {YouTubePlayerModule} from '@angular/youtube-player';
-import { SearchBarComponent } from './components/labs/search-bar/search-bar.component';
-import { LabDisplayCardComponent } from './components/lab-display-card/lab-display-card.component';
-import { HeaderBannerComponent } from './components/labs/header-banner/header-banner.component';
-import { HeaderTextComponent } from './components/labs/header-text/header-text.component';
+import {SearchBarComponent} from './components/labs/search-bar/search-bar.component';
+import {LabDisplayCardComponent} from './components/lab-display-card/lab-display-card.component';
+import {HeaderBannerComponent} from './components/labs/header-banner/header-banner.component';
+import {HeaderTextComponent} from './components/labs/header-text/header-text.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { HeaderTextComponent } from './components/labs/header-text/header-text.c
     NbFormFieldModule,
     NbTooltipModule,
     NbDialogModule.forChild(),
-    NbUserModule
+    NbUserModule,
+    NbSidebarModule.forRoot()
   ],
   exports: [
     LabDisplayCardComponent
