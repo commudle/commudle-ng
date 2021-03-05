@@ -7,7 +7,7 @@ import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discu
 import {IDiscussion} from 'projects/shared-models/discussion.model';
 import {DOCUMENT} from '@angular/common';
 import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {NbDialogService} from '@nebular/theme';
+import {NbDialogService, NbSidebarService} from '@nebular/theme';
 import {Subscription} from 'rxjs';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
 
@@ -44,7 +44,8 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     @Inject(DOCUMENT) private doc: Document,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private dialogService: NbDialogService,
-    private footerService: FooterService
+    private footerService: FooterService,
+    private nbSidebarService: NbSidebarService
   ) {
   }
 
@@ -180,5 +181,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   getMessagesCount(count: number) {
     this.messagesCount = count;
+  }
+
+  toggleDetails() {
+    this.nbSidebarService.toggle(false, 'right');
   }
 }
