@@ -6,78 +6,79 @@
   min-height: 100vh;
 
 
-  @media (min-width: $tab-width) {
-    flex-direction: row;
-    flex-wrap: nowrap;
+  // @media (min-width: $tab-width) {
+  //   flex-direction: row;
+  //   flex-wrap: nowrap;
+  // }
+
+
+  header {
+   nb-card {
+    nb-card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      position: relative;
+      .name, .designation, .username {
+        text-align: center;
+      }
+
+      .avatar {
+        margin: 0 auto;
+        width: 138px;
+        height: 138px;
+        text-align: center;
+        img {
+          height: 100%;
+          vertical-align: top;
+        }
+      }
+      .name {
+        margin: 0.5rem 0;
+      }
+
+      .username {
+        margin: 0;
+      }
+
+      .tagline {
+
+      }
+
+      .social-links {
+        width: fit-content;
+        margin: 0 auto;
+        display: flex;
+        a {
+          nb-icon {
+            color: black;
+          }
+        }
+      }
+
+      .edit-profile-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
+   }
   }
 
 
-  // header {
-  //  nb-card {
-  //   nb-card-body {
-  //     display: flex;
-  //     flex-direction: column;
-  //     align-items: center;
-  //     margin-bottom: 0.5rem;
-  //     position: relative;
-  //     .name, .designation, .username {
-  //       text-align: center;
-  //     }
+  main {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 820px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      .column-left {
+        width: 40%;
+      }
+    }
 
-  //     .avatar {
-  //       margin: 0 auto;
-  //       width: 138px;
-  //       height: 138px;
-  //       text-align: center;
-  //       img {
-  //         height: 100%;
-  //         vertical-align: top;
-  //       }
-  //     }
-  //     .name {
-  //       margin: 0.5rem 0;
-  //     }
-
-  //     .username {
-  //       margin: 0;
-  //     }
-
-  //     .tagline {
-
-  //     }
-
-  //     .social-links {
-  //       width: fit-content;
-  //       margin: 0 auto;
-  //       display: flex;
-  //       a {
-  //         nb-icon {
-  //           color: black;
-  //         }
-  //       }
-  //     }
-
-  //     .edit-profile-button {
-  //       position: absolute;
-  //       top: 1rem;
-  //       right: 1rem;
-  //     }
-  //   }
-  //  }
-  // }
+  }
 
 
-  // main {
-  //   display: flex;
-  //   flex-direction: column;
-
-  // }
-
-  // @media (min-width: 820px) {
-  //   flex-direction: row;
-  //   flex-wrap: wrap;
-  //   .column-left {
-  //     width: 40%;
-  //   }
-  // }
 }
