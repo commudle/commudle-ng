@@ -13,6 +13,7 @@ import {
   NbIconModule,
   NbInputModule,
   NbListModule,
+  NbSidebarModule,
   NbTooltipModule,
   NbUserModule
 } from '@nebular/theme';
@@ -61,7 +62,8 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     NbFormFieldModule,
     NbTooltipModule,
     NbDialogModule.forChild(),
-    NbUserModule
+    NbUserModule,
+    NbSidebarModule.forRoot()
   ]
 })
 export class LabsModule {

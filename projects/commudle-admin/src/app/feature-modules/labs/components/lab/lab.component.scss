@@ -18,6 +18,10 @@ $border-radius: 10px;
     max-width: $max-page-width;
     margin: 0 auto;
 
+    nb-sidebar, .toggle-details {
+      display: none;
+    }
+
     .menu {
       nb-card {
         border: none;
@@ -82,7 +86,7 @@ $border-radius: 10px;
       }
 
       .related-labs {
-        margin: $spacing $spacing 0 0;
+        margin: $spacing 0 0;
 
         nb-card-header {
           font-size: 1.1rem;
@@ -369,8 +373,6 @@ $border-radius: 10px;
 
     @media (min-width: $tab-width) {
       .menu {
-        display: inline-flex !important;
-        flex-direction: column;
         position: sticky;
         top: 4.5rem;
         height: fit-content;
@@ -418,27 +420,79 @@ $border-radius: 10px;
 
     .body {
       flex-direction: column;
+      justify-content: normal;
+
+      .toggle-details {
+        display: block;
+        position: fixed;
+        top: 6 * $spacing;
+        left: 0;
+        font-size: 2.25rem;
+        padding: 0.2 * $spacing;
+        color: white;
+        background-color: $primary-color;
+        z-index: 3;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
 
       .menu {
-        margin: 0 $spacing $spacing;
+        display: none;
+      }
 
-        .steps {
-          nb-list {
-            &::ng-deep {
-              flex-direction: row;
+      nb-sidebar.right.expanded {
+        display: inherit;
 
-              nb-list-item:not(:last-child) {
-                border-bottom: 0;
-                border-right: 2px solid rgba(83, 110, 255, 0.35);
-              }
+        &::ng-deep {
+          .main-container {
+            z-index: 3;
+            top: 3.5 * $spacing;
+            right: 0;
+            width: 80vw;
+            padding: $spacing;
+            //background-color: $light-purple;
+            backdrop-filter: blur(20px);
+
+            .scrollable {
+              padding: 0;
             }
           }
         }
 
-        .mobile-interactions {
-          display: flex;
+        .menu {
+          display: inherit;
+          margin: 0;
+
+          .mobile-interactions {
+            display: flex;
+            margin-bottom: 3 * $spacing;
+          }
         }
       }
+
+      //.menu {
+      //  margin: 0 $spacing $spacing;
+      //position: absolute;
+      //width: 250px;
+      //left: -250px;
+
+      //.steps {
+      //  nb-list {
+      //    &::ng-deep {
+      //      flex-direction: row;
+      //
+      //      nb-list-item:not(:last-child) {
+      //        border-bottom: 0;
+      //        border-right: 2px solid rgba(83, 110, 255, 0.35);
+      //      }
+      //    }
+      //  }
+      //}
+
+      //  .mobile-interactions {
+      //    display: flex;
+      //  }
+      //}
     }
   }
 }
