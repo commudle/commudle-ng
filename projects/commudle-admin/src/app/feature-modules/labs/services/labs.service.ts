@@ -26,7 +26,6 @@ export class LabsService {
     );
   }
 
-
   createLab(name): Observable<ILab> {
     return this.http.post<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.CREATE),
@@ -49,15 +48,12 @@ export class LabsService {
     );
   }
 
-
   getLab(labId): Observable<ILab> {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.SHOW), {params}
     );
   }
-
-
 
   updateHeaderImage(labId, headerImage): Observable<IAttachedFile> {
     const params = new HttpParams().set('lab_id', labId);
@@ -92,7 +88,6 @@ export class LabsService {
     );
   }
 
-
   updateTags(labId, tags): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE_TAGS),
@@ -106,7 +101,6 @@ export class LabsService {
       {lab_step_id: labStepId}
     );
   }
-
 
   pIndex(tag): Observable<ILabs> {
     let params = new HttpParams();
@@ -143,6 +137,35 @@ export class LabsService {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.SIMILAR_LABS), {params}
+    )
+  }
+
+  // TODO: See if it can be done better using fromObject
+  searchTags(words: string[], page?: number, count?: number) {
+    let params = new HttpParams();
+    words.forEach(word => params = params.append('q[]', word));
+    if (page) {
+      params = params.append('page', String(page))
+    }
+    if (count) {
+      params = params.append('count', String(count))
+    }
+    return this.http.get<ITags>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.TAGS), {params}
+    )
+  }
+
+  searchLabsByTags(tags: string[], page?: number, count?: number) {
+    let params = new HttpParams();
+    tags.forEach(tag => params = params.append('q[]', tag));
+    if (page) {
+      params = params.append('page', String(page))
+    }
+    if (count) {
+      params = params.append('count', String(count))
+    }
+    return this.http.get<ILabs>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.LABS_BY_TAGS), {params}
     )
   }
 }
