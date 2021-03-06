@@ -1,16 +1,8 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
-
-$primary-color: #536EFF;
-$secondary-color: #EEEEFF;
-
-$content-color: #2F2E41;
-
-$spacing: 16px;
-$border-radius: 10px;
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .search-container {
   display: flex;
-  padding: 1.5 * $spacing 0 0;
+  padding: $space-24 0 0;
 
   .lab-search {
     width: 100%;
@@ -20,22 +12,22 @@ $border-radius: 10px;
       max-width: 100%;
 
       input {
-        height: 3 * $spacing;
+        height: $space-48;
         max-width: 100%;
         border: none;
         border-radius: 0;
-        background-color: $secondary-color;
+        background-color: $alice-blue;
         font-family: $primary-font-family;
 
         &::placeholder {
-          color: rgba($content-color, 0.7);
+          color: rgba($gunmetal, 0.7);
           font-family: $primary-font-family;
         }
       }
 
       &::ng-deep {
         .nb-form-field-prefix-medium {
-          color: $content-color;
+          color: $gunmetal;
         }
       }
     }
@@ -48,13 +40,13 @@ $border-radius: 10px;
       .lab-search-params {
         &::ng-deep {
           nb-tag-list {
-            height: 3 * $spacing;
+            height: $space-48;
             border: none;
             border-radius: 0;
-            background-color: $secondary-color;
+            background-color: $alice-blue;
 
             .nb-tag-list-tags-wrapper {
-              border-top: 1px solid rgba($content-color, 0.1);
+              border-top: 1px solid rgba($gunmetal, 0.1);
 
               nb-tag {
                 font-size: 0.9rem;
@@ -62,13 +54,13 @@ $border-radius: 10px;
                 font-family: $primary-font-family;
                 text-transform: lowercase;
                 border: none;
-                border-radius: 0.5 * $border-radius;
+                border-radius: $border-5;
                 background-color: #DAE0FF;
 
                 nb-icon {
-                  color: rgba($content-color, 0.5);
+                  color: rgba($gunmetal, 0.5);
                   font-size: 1.2rem;
-                  margin-left: 0.5 * $spacing;
+                  margin-left: $space-8;
                 }
               }
             }
@@ -86,11 +78,11 @@ $border-radius: 10px;
           width: 100%;
           font-size: 1rem;
           font-family: $primary-font-family;
-          color: rgba($content-color, 0.6);
+          color: rgba($gunmetal, 0.6);
           text-align: center;
           align-self: center;
           margin: 0;
-          padding: 0 $spacing;
+          padding: 0 $space-16;
         }
 
         ul {
@@ -100,7 +92,7 @@ $border-radius: 10px;
           list-style-type: none;
 
           li {
-            padding: 0.4 * $spacing $spacing;
+            padding: 0.4 * $space-16 $space-16;
             transition: all 0.2s ease-in-out;
             font-family: $primary-font-family;
 
@@ -117,9 +109,9 @@ $border-radius: 10px;
     min-width: max-content;
 
     button {
-      height: 3 * $spacing;
-      border: 1px solid $primary-color;
-      border-radius: 0.5 * $border-radius;
+      height: $space-48;
+      border: 1px solid $very-light-blue;
+      border-radius: $border-5;
 
       &::ng-deep {
         text-transform: capitalize;
@@ -129,24 +121,24 @@ $border-radius: 10px;
     }
 
     .filter-btn {
-      color: $primary-color;
+      color: $very-light-blue;
       background: white;
-      margin: 0 $spacing;
+      margin: 0 $space-16;
 
       &:hover {
         color: white;
-        background-color: $primary-color;
+        background-color: $very-light-blue;
       }
     }
 
     .create-lab-btn {
       color: white;
-      background-color: $primary-color;
+      background-color: $very-light-blue;
 
       &:hover {
-        color: $primary-color;
+        color: $very-light-blue;
         background-color: white;
-        border: 1px solid $primary-color;
+        border: 1px solid $very-light-blue;
       }
     }
   }
@@ -155,7 +147,7 @@ $border-radius: 10px;
     flex-direction: column;
 
     .lab-search {
-      margin: 0 $spacing $spacing;
+      margin: 0 $space-16 $space-16;
       width: initial;
     }
 
