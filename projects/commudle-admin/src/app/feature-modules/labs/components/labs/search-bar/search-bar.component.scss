@@ -1,0 +1,137 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+$primary-color: #536EFF;
+$secondary-color: #EEEEFF;
+
+$content-color: #2F2E41;
+
+$spacing: 16px;
+$border-radius: 10px;
+
+.search-container {
+  display: flex;
+  padding: 1.5 * $spacing 0 0;
+
+  .lab-search {
+    width: 100%;
+
+    .search-form {
+      max-width: 100%;
+
+      input {
+        height: 3 * $spacing;
+        max-width: 100%;
+        border: none;
+        border-radius: 0;
+        background-color: $secondary-color;
+        font-family: $primary-font-family;
+
+        &::placeholder {
+          color: $content-color;
+          opacity: 70%;
+          font-family: $primary-font-family;
+        }
+      }
+
+      &::ng-deep {
+        .nb-form-field-prefix-medium {
+          color: $content-color;
+        }
+      }
+    }
+
+    .search-suffix {
+      width: 100%;
+
+      .lab-search-params {
+
+      }
+
+      .tag-search-results {
+        display: none;
+        height: 30vh;
+        overflow: auto;
+        background-color: $light-purple;
+
+        p {
+          width: 100%;
+          font-size: 1rem;
+          font-family: $primary-font-family;
+          color: $content-color;
+          text-align: center;
+          align-self: center;
+          opacity: 60%;
+          margin: 0;
+          padding: 0 0.75 * $spacing;
+        }
+
+        ul {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+
+          li {
+            padding: 0.3 * $spacing 0.75 * $spacing;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+              background-color: darken($light-purple, 3%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .lab-actions {
+    min-width: max-content;
+
+    button {
+      height: 3 * $spacing;
+      border: 1px solid $primary-color;
+      border-radius: 0.5 * $border-radius;
+
+      &::ng-deep {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-family: $primary-font-family;
+      }
+    }
+
+    .filter-btn {
+      color: $primary-color;
+      background: white;
+      margin: 0 $spacing;
+
+      &:hover {
+        color: white;
+        background-color: $primary-color;
+      }
+    }
+
+    .create-lab-btn {
+      color: white;
+      background-color: $primary-color;
+
+      &:hover {
+        color: $primary-color;
+        background-color: white;
+        border: 1px solid $primary-color;
+      }
+    }
+  }
+
+  @media all and (max-width: $tab-width) {
+    flex-direction: column;
+
+    .lab-search {
+      margin: 0 $spacing $spacing;
+      width: initial;
+    }
+
+    .lab-actions {
+      align-self: center;
+    }
+  }
+}
