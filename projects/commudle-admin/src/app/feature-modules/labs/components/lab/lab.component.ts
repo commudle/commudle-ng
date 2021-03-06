@@ -29,6 +29,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   lastVisitedStepId: number;
   discussionChat: IDiscussion;
   messagesCount: number;
+  window: Window = window;
 
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
