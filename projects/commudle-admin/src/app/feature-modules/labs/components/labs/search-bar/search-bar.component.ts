@@ -18,6 +18,7 @@ export class SearchBarComponent implements OnInit {
 
   tagSearchParam = '';
   tagSearchResults: ITag[] = [];
+  labSearchParams: string[] = [];
   // tagSearchResults: Set<ITag> = new Set<ITag>();
 
   @ViewChild('searchBar') searchBar: ElementRef<HTMLInputElement>;
@@ -42,7 +43,6 @@ export class SearchBarComponent implements OnInit {
     } else {
       this.tagSearchResults = [];
     }
-    console.log(this.tagSearchParam);
   }
 
   clickHandler(event: any) {
@@ -50,15 +50,16 @@ export class SearchBarComponent implements OnInit {
     this.searchResultsDiv.nativeElement.style.display = elements.some(element => element.nativeElement.contains(event.target)) ? 'flex' : 'none';
   }
 
-  // onTagAdd(eventTarget: EventTarget) {
-  //   const value = (eventTarget as HTMLInputElement).value;
-  //   if (!this.searchParams.includes(value)) {
-  //     this.searchParams.push(value);
-  //   }
-  //   this.searchBar.nativeElement.value = '';
-  // }
-  //
-  // onTagDelete(value: string) {
-  //   this.searchParams = this.searchParams.filter(tag => tag !== value);
-  // }
+  onTagAdd(value: string) {
+    if (value !== '' && !this.labSearchParams.includes(value)) {
+      this.labSearchParams.push(value);
+      this.labsHomeService.getLabSearchResults(this.labSearchParams);
+    }
+    this.searchBar.nativeElement.value = '';
+  }
+
+  onTagDelete(value: string) {
+    this.labSearchParams = this.labSearchParams.filter(tag => tag !== value);
+    this.labsHomeService.getLabSearchResults(this.labSearchParams);
+  }
 }

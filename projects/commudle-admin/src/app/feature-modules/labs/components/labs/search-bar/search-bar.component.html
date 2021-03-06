@@ -2,19 +2,18 @@
   <div class="lab-search">
     <nb-form-field class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
-      <!--      <input #searchBar (input)="getTagResults()" (keyup.enter)="onTagAdd($event.target)"-->
-      <input #searchBar (input)="getTagSearchResults()" [(ngModel)]="tagSearchParam" nbInput
-             placeholder="Search labs on your favorite topics" type="text">
+      <input #searchBar (input)="getTagSearchResults()" (keyup.enter)="onTagAdd(tagSearchParam)"
+             [(ngModel)]="tagSearchParam" nbInput placeholder="Search labs on your favorite topics" type="text">
     </nb-form-field>
 
     <div class="search-suffix">
       <div #searchParamsDiv class="lab-search-params">
-        <!--        <app-tag (tagDelete)="onTagDelete($event)" [editable]="true" [inputDisabled]="true"-->
-        <!--                 [tags]="searchParams"></app-tag>-->
+        <app-tag (tagDelete)="onTagDelete($event)" [editable]="true" [inputDisabled]="true"
+                 [tags]="labSearchParams"></app-tag>
       </div>
       <div #searchResultsDiv class="tag-search-results">
         <ul *ngIf="tagSearchResults.length > 0">
-          <li *ngFor="let result of tagSearchResults">
+          <li (click)="onTagAdd(result.name)" *ngFor="let result of tagSearchResults">
             {{result.name}}
           </li>
         </ul>
