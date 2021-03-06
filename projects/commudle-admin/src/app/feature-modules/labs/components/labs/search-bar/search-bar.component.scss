@@ -14,6 +14,7 @@ $border-radius: 10px;
 
   .lab-search {
     width: 100%;
+    position: relative;
 
     .search-form {
       max-width: 100%;
@@ -27,8 +28,7 @@ $border-radius: 10px;
         font-family: $primary-font-family;
 
         &::placeholder {
-          color: $content-color;
-          opacity: 70%;
+          color: rgba($content-color, 0.7);
           font-family: $primary-font-family;
         }
       }
@@ -41,10 +41,39 @@ $border-radius: 10px;
     }
 
     .search-suffix {
-      width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
 
       .lab-search-params {
+        &::ng-deep {
+          nb-tag-list {
+            height: 3 * $spacing;
+            border: none;
+            border-radius: 0;
+            background-color: $secondary-color;
 
+            .nb-tag-list-tags-wrapper {
+              border-top: 1px solid rgba($content-color, 0.1);
+
+              nb-tag {
+                font-size: 0.9rem;
+                font-weight: 500;
+                font-family: $primary-font-family;
+                text-transform: lowercase;
+                border: none;
+                border-radius: 0.5 * $border-radius;
+                background-color: #DAE0FF;
+
+                nb-icon {
+                  color: rgba($content-color, 0.5);
+                  font-size: 1.2rem;
+                  margin-left: 0.5 * $spacing;
+                }
+              }
+            }
+          }
+        }
       }
 
       .tag-search-results {
@@ -57,12 +86,11 @@ $border-radius: 10px;
           width: 100%;
           font-size: 1rem;
           font-family: $primary-font-family;
-          color: $content-color;
+          color: rgba($content-color, 0.6);
           text-align: center;
           align-self: center;
-          opacity: 60%;
           margin: 0;
-          padding: 0 0.75 * $spacing;
+          padding: 0 $spacing;
         }
 
         ul {
@@ -72,8 +100,9 @@ $border-radius: 10px;
           list-style-type: none;
 
           li {
-            padding: 0.3 * $spacing 0.75 * $spacing;
+            padding: 0.4 * $spacing $spacing;
             transition: all 0.2s ease-in-out;
+            font-family: $primary-font-family;
 
             &:hover {
               background-color: darken($light-purple, 3%);

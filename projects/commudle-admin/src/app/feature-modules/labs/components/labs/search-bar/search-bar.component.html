@@ -1,19 +1,20 @@
 <div class="search-container">
-  <div class="lab-search">
+  <div (clickOutside)="toggleSearchSuffix(false)" appClickOutside class="lab-search">
     <nb-form-field class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
-      <input #searchBar (input)="getTagSearchResults()" (keyup.enter)="onTagAdd(tagSearchParam)"
+      <input #searchBar (focus)="toggleSearchSuffix(true)"
+             (input)="getTagSearchResults()" (keyup.enter)="onTagAdd(tagSearchParam)"
              [(ngModel)]="tagSearchParam" nbInput placeholder="Search labs on your favorite topics" type="text">
     </nb-form-field>
 
     <div class="search-suffix">
-      <div #searchParamsDiv class="lab-search-params">
+      <div #searchParamsDiv *ngIf="labSearchParams.length > 0" class="lab-search-params">
         <app-tag (tagDelete)="onTagDelete($event)" [editable]="true" [inputDisabled]="true"
                  [tags]="labSearchParams"></app-tag>
       </div>
       <div #searchResultsDiv class="tag-search-results">
         <ul *ngIf="tagSearchResults.length > 0">
-          <li (click)="onTagAdd(result.name)" *ngFor="let result of tagSearchResults">
+          <li (click)="onTagAdd(result.name, false)" *ngFor="let result of tagSearchResults" class="clickable">
             {{result.name}}
           </li>
         </ul>
