@@ -1,1 +1,38 @@
-<p>search-bar works!</p>
+<div class="search-container">
+  <div class="lab-search">
+    <nb-form-field class="search-form">
+      <nb-icon icon="search" nbPrefix></nb-icon>
+      <!--      <input #searchBar (input)="getTagResults()" (keyup.enter)="onTagAdd($event.target)"-->
+      <input #searchBar (input)="getTagSearchResults()" [(ngModel)]="tagSearchParam" nbInput
+             placeholder="Search labs on your favorite topics" type="text">
+    </nb-form-field>
+
+    <div class="search-suffix">
+      <div #searchParamsDiv class="lab-search-params">
+        <!--        <app-tag (tagDelete)="onTagDelete($event)" [editable]="true" [inputDisabled]="true"-->
+        <!--                 [tags]="searchParams"></app-tag>-->
+      </div>
+      <div #searchResultsDiv class="tag-search-results">
+        <ul *ngIf="tagSearchResults.length > 0">
+          <li *ngFor="let result of tagSearchResults">
+            {{result.name}}
+          </li>
+        </ul>
+        <p *ngIf="tagSearchResults.length === 0">
+          Quickly search your favorite topics, labs by industry experts or find an event you missed
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lab-actions">
+    <button [nbContextMenu]="filterLabItems" class="filter-btn" nbButton>
+      <nb-icon icon="options-2"></nb-icon>
+      Filters
+    </button>
+    <button class="create-lab-btn" nbButton routerLink="/labs/create">
+      <nb-icon icon="plus"></nb-icon>
+      Create Lab
+    </button>
+  </div>
+</div>

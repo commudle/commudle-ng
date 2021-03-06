@@ -10,6 +10,7 @@ export class TagComponent implements OnInit {
 
   @Input() tags: string[];
   @Input() editable: boolean;
+  @Input() inputDisabled: boolean;
 
   @Output() tagAdd: EventEmitter<string> = new EventEmitter<string>();
   @Output() tagDelete: EventEmitter<string> = new EventEmitter<string>();
