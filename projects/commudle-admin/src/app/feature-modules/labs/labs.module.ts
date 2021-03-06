@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
+  NbContextMenuModule,
   NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
@@ -71,7 +72,8 @@ import {HeaderTextComponent} from './components/labs/header-text/header-text.com
     NbTooltipModule,
     NbDialogModule.forChild(),
     NbUserModule,
-    NbSidebarModule.forRoot()
+    NbSidebarModule.forRoot(),
+    NbContextMenuModule
   ],
   exports: [
     LabDisplayCardComponent
