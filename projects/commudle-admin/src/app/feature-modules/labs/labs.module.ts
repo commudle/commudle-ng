@@ -34,6 +34,7 @@ import {LabDisplayCardComponent} from './components/lab-display-card/lab-display
 import {HeaderBannerComponent} from './components/labs/header-banner/header-banner.component';
 import {HeaderTextComponent} from './components/labs/header-text/header-text.component';
 import {ClickOutsideDirective} from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
+import {LabDetailsComponent} from './components/lab/lab-details/lab-details.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {ClickOutsideDirective} from 'projects/commudle-admin/src/app/feature-mod
     LabDisplayCardComponent,
     HeaderBannerComponent,
     HeaderTextComponent,
+    LabDetailsComponent,
     ClickOutsideDirective
   ],
   imports: [
