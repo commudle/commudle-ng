@@ -125,7 +125,6 @@ export class LabsService {
     );
   }
 
-
   pGetStep(stepId): Observable<ILabStep> {
     const params = new HttpParams().set('lab_step_id', stepId);
     return this.http.get<ILabStep>(
@@ -140,7 +139,6 @@ export class LabsService {
     )
   }
 
-  // TODO: See if it can be done better using fromObject
   searchTags(words: string[], page?: number, count?: number) {
     let params = new HttpParams();
     words.forEach(word => params = params.append('q[]', word));
