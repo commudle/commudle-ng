@@ -3,6 +3,16 @@
 .labs-home {
   background-color: $white;
   min-height: 100vh;
+
+  .page-container {
+    .body {
+      .labs {
+        gap:16px;
+        justify-content: center;
+      }
+
+    }
+  }
 }
 
 
