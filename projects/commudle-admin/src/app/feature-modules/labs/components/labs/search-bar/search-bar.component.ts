@@ -1,20 +1,20 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import {LabsHomeService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service';
 import {ITag} from 'projects/shared-models/tag.model';
+import {NbMenuService} from '@nebular/theme';
+import {Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent implements OnInit, OnDestroy {
 
-  filterLabItems = [
-    {title: 'Popular Labs'},
-    {title: 'New Labs'},
-    {title: 'Labs by Experts'}
-  ];
+  labFilters = [];
+  subscriptions: Subscription[] = [];
 
   tagSearchParam = '';
   tagSearchResults: ITag[] = [];
@@ -26,13 +26,54 @@ export class SearchBarComponent implements OnInit {
 
   constructor(
     private labsService: LabsService,
-    private labsHomeService: LabsHomeService
+    private labsHomeService: LabsHomeService,
+    private menuService: NbMenuService,
   ) {
   }
 
   ngOnInit(): void {
+    // Initialize Context Menu
+    this.setLabFilters();
     // Subscribe to tag search results
     this.labsHomeService.tagSearch$.subscribe(data => this.tagSearchResults = data);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  setLabFilters() {
+    this.labFilters.push({
+      title: 'Popular Labs'
+    });
+    this.labFilters.push({
+      title: 'New Labs'
+    });
+    this.labFilters.push({
+      title: 'Labs By Experts'
+    });
+
+    this.handleLabFilters();
+  }
+
+  handleLabFilters() {
+    this.subscriptions.push(
+      this.menuService.onItemClick().pipe(
+        map(({item: title}) => title)
+      ).subscribe(menuItem => {
+        switch (menuItem.title) {
+          case 'Popular Labs': {
+            break;
+          }
+          case 'New Labs': {
+            break;
+          }
+          case 'Labs By Experts': {
+            break;
+          }
+        }
+      })
+    );
   }
 
   getTagSearchResults() {
