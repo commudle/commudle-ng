@@ -6,9 +6,28 @@
 
   .page-container {
     .body {
+      .popular-tags {
+        display: flex;
+        gap: 32px;
+        padding-left: 156px;
+        font-family: $primary-font-family;
+        div {
+          font-size: 18px;
+        }
+      }
+
+      hr {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        margin-left: 100px;
+        width: 872px;
+
+      }
       .labs {
         gap:16px;
         justify-content: center;
+        flex-wrap: wrap;
+
       }
 
     }
