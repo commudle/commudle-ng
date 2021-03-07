@@ -6,7 +6,7 @@
         <!--padding-->
 
         <div class="title">
-            <a href=""><h4>{{ (lab.name.length>25)? (lab.name | slice:0:25)+'..':(lab.name) }}
+            <a href="/labs/{{lab.id}}"><h4>{{ (lab.name.length>25)? (lab.name | slice:0:25)+'..':(lab.name) }}
             </h4></a>
             <p>published at {{ lab.published_at | date}}</p>
         </div>
