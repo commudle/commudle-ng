@@ -13,6 +13,10 @@
         font-family: $primary-font-family;
         div {
           font-size: 18px;
+          p {
+            cursor: pointer;
+            margin: 0px;
+          }
         }
       }
 
@@ -23,12 +27,18 @@
         width: 872px;
 
       }
-      .labs {
-        gap:16px;
-        justify-content: center;
-        flex-wrap: wrap;
-
-      }
+      //this out lab inorder to align the labs
+      .labs-outer {
+        display: flex;
+        justify-content: space-around;
+        .labs {
+          gap:16px;
+          display:flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          width:1170px;
+        }
+    }
 
     }
   }
