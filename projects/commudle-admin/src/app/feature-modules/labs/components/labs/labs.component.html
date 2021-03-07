@@ -19,17 +19,24 @@
 
     <section class="body">
       <!-- display list of popular tags and horizontal rule if the search bar is empty -->
-      <div class="popular tags">
+      <div class="popular-tags">
         <!-- popular tags here -->
+        <div *ngFor="let popTag of popularTags; let i = index">
+          <!-- {{Lab}} -->
+          {{popTag.name}}
+        </div>
+
       </div>
+
+      <hr>
 
       <!-- List of lab cards -->
       <div class="labs d-flex ">
         <!-- lab-display-card-component here-->
-        <app-lab-display-card></app-lab-display-card>
-        <app-lab-display-card></app-lab-display-card>
-        <app-lab-display-card></app-lab-display-card>
-        <app-lab-display-card></app-lab-display-card>
+        <div *ngFor="let Lab of Labs; let i = index">
+          <!-- {{Lab}} -->
+          <app-lab-display-card [lab]="Lab"></app-lab-display-card>
+        </div>
       </div>
     </section>
 

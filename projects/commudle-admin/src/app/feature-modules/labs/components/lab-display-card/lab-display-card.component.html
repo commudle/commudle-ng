@@ -1,35 +1,40 @@
 <div class="lab-display-card">
     <div class="header-image">
-        <img src="" alt="">
+        <img src="{{lab.header_image.url}}" alt="">
     </div>
     <div class="content">
         <!--padding-->
 
         <div class="title">
-            <h4>title, npm install</h4> 
-            <p>date, published</p>
+            <a href=""><h4>{{ (lab.name.length>25)? (lab.name | slice:0:25)+'..':(lab.name) }}
+            </h4></a>
+            <p>published at {{ lab.published_at | date}}</p>
         </div>
 
         
         <div class="author-stats d-flex justify-content-space-between">
             <div class="author">
                 <div class="image">
-                    <img src="">
+                    <img src="{{lab.user.avatar}}">
                 </div>
                 <div class="details">
-                    <p class="name">dunmmy name</p>
-                    <p class="designation">designation</p>
+                    <p class="name">{{lab.user.name}}</p>
+                    <p class="designation">{{ (lab.user.about_me.length>25)? (lab.user.about_me | slice:0:25)+'..':(lab.user.about_me) }}
+                    </p>
                 </div>
             </div>
+            <!-- <nb-card>
+                <nb-card-body>
+                  <nb-user shape="round" name="John Doe" title="Engineer"></nb-user>
+                </nb-card-body>
+            </nb-card> -->
             <div class="stats">
                 <div class="views d-flex   align-items-center">
                     <p>102</p>
                     <nb-icon icon="eye"></nb-icon>
-                    
                 </div>
                 <div class="likes d-flex align-items-center">
-                        <p>102</p> 
-                    <nb-icon icon="heart"></nb-icon>               
+                    <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>             
                 </div>
             </div>
         </div>
