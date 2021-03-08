@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ILab } from 'projects/shared-models/lab.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {ILab} from 'projects/shared-models/lab.model';
 
 @Component({
   selector: 'app-lab-display-card',
@@ -7,9 +7,12 @@ import { ILab } from 'projects/shared-models/lab.model';
   styleUrls: ['./lab-display-card.component.scss'],
 })
 export class LabDisplayCardComponent implements OnInit {
+
   @Input() lab: ILab;
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

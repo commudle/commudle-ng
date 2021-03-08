@@ -1,4 +1,5 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .lab-display-card {
   width: 280px;
   height: 264px;
@@ -7,17 +8,20 @@
 
   p, div, h4 {
     font-family: $primary-font-family;
-    margin: 0px; //to remove default margin
+    margin: 0; //to remove default margin
   }
+
   .header-image {
     width: 100%;
     height: 134px;
     overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+
     img {
-        width: 100%;
+      width: 100%;
     }
+
     border-bottom: 1px solid #72C1FF;
   }
 
@@ -29,6 +33,7 @@
       a {
         text-decoration: none;
       }
+
       h4 {
         line-height: 23px;
         font-size: $fs-card-title;
@@ -44,45 +49,45 @@
     }
 
     .author-stats {
-      
+
       .author {
         display: flex;
         flex-direction: row;
+
         .image {
           width: 34px;
           height: 34px;
           margin-right: 6px;
           border-radius: 50%;
           overflow: hidden;
+
           img {
-              width: 100%;
+            width: 100%;
           }
         }
 
         .details {
           .name {
-              margin: 0px; 
-              font-family: $primary-font-family;
-              font-size: $fs-card-secondary;
-              line-height: $fs-card-secondary;
-              font-weight: 600;
-              color: #536EFF;
-
+            margin: 0;
+            font-family: $primary-font-family;
+            font-size: $fs-card-secondary;
+            line-height: $fs-card-secondary;
+            font-weight: 600;
+            color: #536EFF;
           }
+
           .designation {
-              margin: 0px;
-              font-family: $primary-font-family;
-              font-size: 9px;
+            margin: 0;
+            font-family: $primary-font-family;
+            font-size: 9px;
           }
-
         }
-
       }
 
       .stats {
         p, nb-icon {
-            font-size: $fs-card-secondary;
-            color: $neon-blue;
+          font-size: $fs-card-secondary;
+          color: $neon-blue;
         }
 
         gap: 4px;
