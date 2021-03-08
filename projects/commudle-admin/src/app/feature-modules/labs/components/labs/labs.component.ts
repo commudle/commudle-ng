@@ -77,7 +77,7 @@ export class LabsComponent implements OnInit {
   }
 
   getPopularTags() {
-    this.labsService.pTags().subscribe(data => this.popularTags = data.tags.slice(0, 7));
+    this.labsService.pTags().subscribe(data => this.popularTags = data.tags.slice(0, 6));
   }
 
   getPopularLabs(tag?: string) {
