@@ -1,37 +1,35 @@
-<div class="lab-display-card" [routerLink]="[lab.id]">
-    <div class="header-image">
-        <img src="{{lab.header_image.url}}" alt="">
+<div [routerLink]="[lab.id]" class="lab-display-card">
+  <div class="header-image">
+    <img alt="{{lab.name}}" src="{{lab.header_image.url}}">
+  </div>
+  <div class="content d-flex flex-column justify-content-space-between">
+    <!--padding-->
+    <div class="title">
+      <a [routerLink]="[lab.id]"><h4>{{lab.name | truncatetext:40}}
+      </h4></a>
+      <p>Published {{lab.published_at | date}}</p>
     </div>
-    <div class="content d-flex flex-column justify-content-space-between">
-        <!--padding-->
 
-        <div class="title">
-            <a [routerLink]="[lab.id]"><h4>{{ lab.name | truncatetext:40 }}
-            </h4></a>
-            <p>Published: {{ lab.published_at | date}}</p>
+    <div class="author-stats d-flex justify-content-space-between">
+      <div class="author d-flex align-items-end">
+        <div class="image">
+          <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">
         </div>
-
-        
-        <div class="author-stats d-flex justify-content-space-between">
-            <div class="author d-flex align-items-end">
-                <div class="image">
-                    <img src="{{lab.user.avatar}}">
-                </div>
-                <div class="details">
-                    <p class="name">{{lab.user.name}}</p>
-                    <p class="designation">{{ lab.user.designation | truncatetext:18 }}
-                    </p>
-                </div>
-            </div>
-            <div class="stats d-flex">
-                <div class="views d-flex align-items-center">
-                    <p>102</p>
-                    <nb-icon icon="eye"></nb-icon>
-                </div>
-                <div class="likes d-flex align-items-center">
-                    <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>             
-                </div>
-            </div>
+        <div class="details">
+          <p class="name">{{lab.user.name}}</p>
+          <p class="designation">{{lab.user.designation | truncatetext:18}}
+          </p>
         </div>
+      </div>
+      <div class="stats d-flex">
+        <div class="views d-flex align-items-center">
+          <p>{{lab.visits}}</p>
+          <nb-icon icon="eye"></nb-icon>
+        </div>
+        <div class="likes d-flex align-items-center">
+          <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
