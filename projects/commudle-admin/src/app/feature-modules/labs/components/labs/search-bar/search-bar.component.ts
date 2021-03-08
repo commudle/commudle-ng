@@ -78,7 +78,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   getTagSearchResults() {
     if (this.tagSearchParam !== '') {
-      this.labsHomeService.getTagSearchResults(Array(this.tagSearchParam));
+      this.labsHomeService.getTagSearchResults(this.tagSearchParam.split(' '));
     } else {
       this.tagSearchResults = [];
     }

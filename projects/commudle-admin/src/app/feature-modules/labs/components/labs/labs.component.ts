@@ -5,6 +5,7 @@ import { LabsService } from '../../services/labs.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { ITag } from 'projects/shared-models/tag.model';
+import { LabsHomeService } from '../../services/labs-home.service';
 
 @Component({
   selector: 'app-labs',
@@ -21,15 +22,22 @@ export class LabsComponent implements OnInit {
   constructor(
     private labsService: LabsService,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private labsHomeService: LabsHomeService
+
   ) {}
 
   // the way this will work
 
   ngOnInit() {
     this.getTags();
-    this.getLabs(null);
     this.setMeta();
+    this.labsHomeService.getLabSearchResults([]);
+    this.labsHomeService.labSearch$.subscribe(
+      data => {
+        this.labs = data;
+      }
+    )
   }
 
   setMeta() {

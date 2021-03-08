@@ -155,7 +155,7 @@ export class LabsService {
 
   searchLabsByTags(tags: string[], page?: number, count?: number) {
     let params = new HttpParams();
-    tags.forEach(tag => params = params.append('q[]', tag));
+    tags.forEach(tag => params = params.append('tag_names[]', tag));
     if (page) {
       params = params.append('page', String(page))
     }

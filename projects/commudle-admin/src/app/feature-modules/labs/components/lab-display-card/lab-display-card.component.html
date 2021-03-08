@@ -1,4 +1,4 @@
-<div class="lab-display-card">
+<div class="lab-display-card" [routerLink]="[lab.id]">
     <div class="header-image">
         <img src="{{lab.header_image.url}}" alt="">
     </div>
@@ -6,20 +6,20 @@
         <!--padding-->
 
         <div class="title">
-            <a href="/labs/{{lab.id}}"><h4>{{ lab.name | truncatetext:40 }}
+            <a [routerLink]="[lab.id]"><h4>{{ lab.name | truncatetext:40 }}
             </h4></a>
             <p>Published: {{ lab.published_at | date}}</p>
         </div>
 
         
         <div class="author-stats d-flex justify-content-space-between">
-            <div class="author">
+            <div class="author d-flex align-items-end">
                 <div class="image">
                     <img src="{{lab.user.avatar}}">
                 </div>
                 <div class="details">
                     <p class="name">{{lab.user.name}}</p>
-                    <p class="designation">{{ lab.user.about_me | truncatetext:20 }}
+                    <p class="designation">{{ lab.user.designation | truncatetext:18 }}
                     </p>
                 </div>
             </div>
