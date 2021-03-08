@@ -32,6 +32,7 @@ import {SearchBarComponent} from './components/labs/search-bar/search-bar.compon
 import {LabDisplayCardComponent} from './components/lab-display-card/lab-display-card.component';
 import {HeaderBannerComponent} from './components/labs/header-banner/header-banner.component';
 import {HeaderTextComponent} from './components/labs/header-text/header-text.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import {HeaderTextComponent} from './components/labs/header-text/header-text.com
     SharedComponentsModule,
     ReusableComponentsModule,
     YouTubePlayerModule,
+    SharedPipesModule,
 
     // Nebular
     NbCardModule,

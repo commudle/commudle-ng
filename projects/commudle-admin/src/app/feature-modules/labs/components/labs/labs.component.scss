@@ -6,37 +6,34 @@
 
   .page-container {
     .body {
-      .popular-tags {
-        display: flex;
-        gap: 32px;
-        padding-left: 156px;
-        font-family: $primary-font-family;
-        div {
-          font-size: 18px;
-          p {
-            cursor: pointer;
-            margin: 0px;
+      
+      .labs-container {        
+        padding-bottom: 130px;
+        max-width: 1170px;
+        margin: 0 auto;
+        .popular-tags {
+          display: flex;
+          gap: 32px;
+          // padding-left: 156px;
+          font-family: $primary-font-family;
+          div {
+            
+            p.tag {
+              margin: 0px;
+              color: $tag-grey;
+              font-size: $fs-tag;
+            }
           }
         }
-      }
+  
+        hr {
+          border: 1px solid rgba(47, 46, 65, 0.2);
+          margin: 25px auto;
 
-      hr {
-        margin-top: 24px;
-        margin-bottom: 24px;
-        margin-left: 100px;
-        width: 872px;
+        }
 
-      }
-      //this out lab inorder to align the labs
-      .labs-outer {
-        display: flex;
-        justify-content: space-around;
         .labs {
-          gap:16px;
-          display:flex;
-          justify-content: flex-start;
-          flex-wrap: wrap;
-          width:1170px;
+          gap: 16px;
         }
     }
 
