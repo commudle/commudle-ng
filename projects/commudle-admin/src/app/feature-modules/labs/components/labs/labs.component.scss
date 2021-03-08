@@ -31,7 +31,12 @@
 
         .labs {
           gap: $space-16;
-          justify-content: center;
+        }
+
+        @media all and (max-width: $tab-width) {
+          .labs {
+            justify-content: center;
+          }
         }
       }
     }

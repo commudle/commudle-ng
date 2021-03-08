@@ -86,7 +86,18 @@
 
         p, nb-icon {
           font-size: $fs-card-secondary;
+          margin-right: $space-4;
           color: $neon-blue;
+        }
+
+        .likes {
+          app-votes-display {
+            &::ng-deep {
+              p, nb-icon {
+                font-size: $fs-card-secondary;
+              }
+            }
+          }
         }
       }
     }
