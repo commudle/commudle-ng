@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { BehaviorSubject, Observable, concat } from 'rxjs';
 import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import {ITag} from 'projects/shared-models/tag.model';
 import {ILab} from 'projects/shared-models/lab.model';
@@ -27,6 +27,22 @@ export class LabsHomeService {
   }
 
   getLabSearchResults(value: string[], page?: number, count?: number) {
-    this.labsService.searchLabsByTags(value, page, count).subscribe(data => this.labSearch.next(data.labs));
+    this.labSearch.next([]);
+    this.getLabsByTags(
+      value,
+      (page || 1),
+      (count || 10)
+    )
+  }
+
+  getLabsByTags(value: string[], page, count) {
+    this.labsService.searchLabsByTags(value, page, count).subscribe(
+      data => {
+        if (data.labs.length > 0) {
+          this.labSearch.next(this.labSearch.getValue().concat(data.labs));
+          this.getLabsByTags(value, page+1, count);
+        }
+      }
+    )
   }
 }

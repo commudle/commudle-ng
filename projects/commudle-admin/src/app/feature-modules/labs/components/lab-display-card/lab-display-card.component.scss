@@ -46,8 +46,6 @@
     .author-stats {
       
       .author {
-        display: flex;
-        flex-direction: row;
         .image {
           width: 34px;
           height: 34px;
@@ -72,7 +70,8 @@
           .designation {
               margin: 0px;
               font-family: $primary-font-family;
-              font-size: 9px;
+              font-size: $fs-card-secondary;
+              line-height: $fs-card-secondary;
           }
 
         }
