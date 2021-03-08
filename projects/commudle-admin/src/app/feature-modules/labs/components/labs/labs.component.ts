@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
-import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
-import { LabsService } from '../../services/labs.service';
-import { Title, Meta } from '@angular/platform-browser';
-import { faFlask } from '@fortawesome/free-solid-svg-icons';
-import { ITag } from 'projects/shared-models/tag.model';
-import { LabsHomeService } from '../../services/labs-home.service';
+import {Component, OnInit} from '@angular/core';
+import {ILab} from 'projects/shared-models/lab.model';
+import {LabsService} from '../../services/labs.service';
+import {Meta, Title} from '@angular/platform-browser';
+import {ITag} from 'projects/shared-models/tag.model';
+import {LabsHomeService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service';
 
 @Component({
   selector: 'app-labs',
@@ -13,39 +11,36 @@ import { LabsHomeService } from '../../services/labs-home.service';
   styleUrls: ['./labs.component.scss'],
 })
 export class LabsComponent implements OnInit {
-  faFlask = faFlask;
 
-  popularTags: ITag[];
-  labs: ILab[];
-  selectedTag;
+  popularTags: ITag[] = [];
+  popularLabs: ILab[] = [];
+
+  searchedTags: string[] = [];
+  searchedLabs: ILab[] = [];
 
   constructor(
-    private labsService: LabsService,
     private meta: Meta,
     private title: Title,
+    private labsService: LabsService,
     private labsHomeService: LabsHomeService
-
-  ) {}
-
-  // the way this will work
+  ) {
+  }
 
   ngOnInit() {
-    this.getTags();
+    // Get popular tags and labs
+    this.getPopularTags();
+    this.getPopularLabs();
+    // Set meta details
     this.setMeta();
-    this.labsHomeService.getLabSearchResults([]);
-    this.labsHomeService.labSearch$.subscribe(
-      data => {
-        this.labs = data;
-      }
-    )
+    // Subscribe to searched lab updates
+    this.getSearchedLabs();
   }
 
   setMeta() {
     this.title.setTitle('Labs | Learn Something New!');
     this.meta.updateTag({
       name: 'description',
-      content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+      content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -61,11 +56,12 @@ export class LabsComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'og:description',
-      content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+      content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
     });
-    this.meta.updateTag({ name: 'og:type', content: 'website' });
-
+    this.meta.updateTag({
+      name: 'og:type',
+      content: 'website'
+    });
     this.meta.updateTag({
       name: 'twitter:image',
       content: `https://commudle.com/assets/images/commudle-logo192.png`,
@@ -76,21 +72,38 @@ export class LabsComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+      content: 'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
     });
   }
 
-  getTags() {
-    this.labsService
-      .pTags()
-      .subscribe((data) => (this.popularTags = data.tags.slice(0, 5)));
+  getPopularTags() {
+    this.labsService.pTags().subscribe(data => this.popularTags = data.tags.slice(0, 6));
   }
 
-  getLabs(tag) {
-    this.selectedTag = tag;
-    this.labsService.pIndex(tag).subscribe((data) => {
-      this.labs = data.labs;
+  getPopularLabs() {
+    this.labsService.searchLabsByTags([]).subscribe(data => this.popularLabs = data.labs);
+    // this.labsService.pIndex(tag).subscribe(data => this.popularLabs = data.labs);
+  }
+
+  getSearchedLabs() {
+    this.labsHomeService.labSearch$.subscribe(value => {
+      if (this.searchedTags.length !== 0) {
+        this.searchedLabs = value;
+      }
     });
+  }
+
+  onTagAdd(value: string) {
+    if (!this.searchedTags.includes(value)) {
+      this.searchedTags.push(value);
+      this.labsHomeService.getLabSearchResults(this.searchedTags);
+    }
+  }
+
+  onTagsUpdate(tags: string[]) {
+    this.searchedTags = tags;
+    if (this.searchedTags.length === 0) {
+      this.searchedLabs = [];
+    }
   }
 }
