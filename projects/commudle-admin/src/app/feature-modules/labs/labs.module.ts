@@ -35,6 +35,7 @@ import {HeaderBannerComponent} from './components/labs/header-banner/header-bann
 import {HeaderTextComponent} from './components/labs/header-text/header-text.component';
 import {ClickOutsideDirective} from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
 import {LabDetailsComponent} from './components/lab/lab-details/lab-details.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {LabDetailsComponent} from './components/lab/lab-details/lab-details.comp
     SharedComponentsModule,
     ReusableComponentsModule,
     YouTubePlayerModule,
+    SharedPipesModule,
 
     // Nebular
     NbCardModule,

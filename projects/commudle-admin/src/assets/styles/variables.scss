@@ -49,6 +49,12 @@ $page-padding-bottom: 0.75rem;
 // // body-font-sizes
 // $h1: 40px;
 // $h1-description: 16px;
+$fs-tag: 18px;
+
+
+// card font sizes
+$fs-card-title: 18px;
+$fs-card-secondary: 12px;
 
 // input font sizes
 $input-title: 20px;
@@ -79,3 +85,6 @@ $gradient-bottom-right: linear-gradient(135deg, #536effff, #29a5ffff, #ffd338ff,
 $gradient-top-left: linear-gradient(225deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 $gradient-bottom-left: linear-gradient(315deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 $gradient-radial: radial-gradient(#536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+
+$card-faded-text: rgba(47, 46, 65, 0.5);
+$tag-grey: #2F2E41;

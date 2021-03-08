@@ -3,6 +3,42 @@
 .labs-home {
   background-color: $white;
   min-height: 100vh;
+
+  .page-container {
+    .body {
+      
+      .labs-container {        
+        padding-bottom: 130px;
+        max-width: 1170px;
+        margin: 0 auto;
+        .popular-tags {
+          display: flex;
+          gap: 32px;
+          // padding-left: 156px;
+          font-family: $primary-font-family;
+          div {
+            
+            p.tag {
+              margin: 0px;
+              color: $tag-grey;
+              font-size: $fs-tag;
+            }
+          }
+        }
+  
+        hr {
+          border: 1px solid rgba(47, 46, 65, 0.2);
+          margin: 25px auto;
+
+        }
+
+        .labs {
+          gap: 16px;
+        }
+    }
+
+    }
+  }
 }
 
 
