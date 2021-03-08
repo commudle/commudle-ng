@@ -49,11 +49,7 @@
     }
 
     .author-stats {
-
       .author {
-        display: flex;
-        flex-direction: row;
-
         .image {
           width: 34px;
           height: 34px;
@@ -79,18 +75,19 @@
           .designation {
             margin: 0;
             font-family: $primary-font-family;
-            font-size: 9px;
+            font-size: $fs-card-secondary;
+            line-height: $fs-card-secondary;
           }
         }
       }
 
       .stats {
+        gap: 4px;
+
         p, nb-icon {
           font-size: $fs-card-secondary;
           color: $neon-blue;
         }
-
-        gap: 4px;
       }
     }
   }
