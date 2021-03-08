@@ -6,37 +6,33 @@
 
   .page-container {
     .body {
-      
-      .labs-container {        
-        padding-bottom: 130px;
-        max-width: 1170px;
-        margin: 0 auto;
+      padding: $space-16 0 $space-64;
+      max-width: 1170px;
+      margin: 0 auto;
+
+      .labs-container {
         .popular-tags {
           display: flex;
-          gap: 32px;
-          // padding-left: 156px;
+          flex-wrap: wrap;
           font-family: $primary-font-family;
-          div {
-            
-            p.tag {
-              margin: 0px;
-              color: $tag-grey;
-              font-size: $fs-tag;
-            }
+
+          .tag {
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-transform: lowercase;
+            color: $gunmetal;
           }
         }
-  
-        hr {
-          border: 1px solid rgba(47, 46, 65, 0.2);
-          margin: 25px auto;
 
+        hr {
+          border: 1px solid rgba($gunmetal, 0.2);
+          margin: $space-12 0 $space-32;
         }
 
         .labs {
-          gap: 16px;
+          gap: $space-16;
         }
-    }
-
+      }
     }
   }
 }
