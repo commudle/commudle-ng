@@ -102,7 +102,7 @@ export class LabsService {
     );
   }
 
-  pIndex(tag): Observable<ILabs> {
+  pIndex(tag?: string): Observable<ILabs> {
     let params = new HttpParams();
     if (tag) {
       params = params.set('tag', tag);
