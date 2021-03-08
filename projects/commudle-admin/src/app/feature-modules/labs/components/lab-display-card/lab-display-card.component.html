@@ -2,13 +2,13 @@
     <div class="header-image">
         <img src="{{lab.header_image.url}}" alt="">
     </div>
-    <div class="content">
+    <div class="content d-flex flex-column justify-content-space-between">
         <!--padding-->
 
         <div class="title">
-            <a href="/labs/{{lab.id}}"><h4>{{ (lab.name.length>25)? (lab.name | slice:0:25)+'..':(lab.name) }}
+            <a href="/labs/{{lab.id}}"><h4>{{ lab.name | truncatetext:40 }}
             </h4></a>
-            <p>published at {{ lab.published_at | date}}</p>
+            <p>Published: {{ lab.published_at | date}}</p>
         </div>
 
         
@@ -19,17 +19,12 @@
                 </div>
                 <div class="details">
                     <p class="name">{{lab.user.name}}</p>
-                    <p class="designation">{{ (lab.user.about_me.length>25)? (lab.user.about_me | slice:0:25)+'..':(lab.user.about_me) }}
+                    <p class="designation">{{ lab.user.about_me | truncatetext:20 }}
                     </p>
                 </div>
             </div>
-            <!-- <nb-card>
-                <nb-card-body>
-                  <nb-user shape="round" name="John Doe" title="Engineer"></nb-user>
-                </nb-card-body>
-            </nb-card> -->
-            <div class="stats">
-                <div class="views d-flex   align-items-center">
+            <div class="stats d-flex">
+                <div class="views d-flex align-items-center">
                     <p>102</p>
                     <nb-icon icon="eye"></nb-icon>
                 </div>
