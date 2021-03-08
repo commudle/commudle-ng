@@ -18,11 +18,28 @@
 
 
     <section class="body">
-      <!-- display list of popular tags and horizontal rule if the search bar is empty -->
-      <div class="popular tags"></div>
+     
 
       <!-- List of lab cards -->
-      <div class="labs"></div>
+      <div class="labs-container">
+         <!-- display list of popular tags and horizontal rule if the search bar is empty -->
+        <div class="popular-tags">
+          <!-- popular tags here -->
+          <div *ngFor="let tag of popularTags">
+            <!-- {{Lab}} -->
+            <p class="clickable tag" (click)="getLabs(tag.name)">{{tag.name}}</p>
+          </div>
+
+        </div>
+
+        <hr>
+        <div class="labs d-flex flex-wrap">
+          <!-- lab-display-card-component here-->
+          <div *ngFor="let lab of labs">
+            <app-lab-display-card [lab]="lab"></app-lab-display-card>
+          </div>
+        </div>
+      </div>
     </section>
 
   </div>
