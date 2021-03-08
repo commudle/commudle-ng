@@ -1,8 +1,8 @@
 <div class="search-container">
-  <div (clickOutside)="toggleSearchSuffix(false)" appClickOutside class="lab-search">
+  <div (clickOutside)="toggleSearchSuffix(false)" appClickOutside class="lab-search" (mouseleave)="toggleSearchSuffix(false)">
     <nb-form-field class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
-      <input #searchBar (focus)="toggleSearchSuffix(true)"
+      <input #searchBar (mouseenter)="toggleSearchSuffix(true)"
              (input)="getTagSearchResults()" (keyup.enter)="onTagAdd(tagSearchParam)"
              [(ngModel)]="tagSearchParam" nbInput placeholder="Search labs on your favorite topics" type="text">
     </nb-form-field>
