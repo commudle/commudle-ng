@@ -1,0 +1,158 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.search-container {
+  display: flex;
+  padding: $space-24 0 0;
+
+  .lab-search {
+    width: 100%;
+    position: relative;
+
+    .search-form {
+      max-width: 100%;
+
+      input {
+        height: $space-48;
+        max-width: 100%;
+        border: none;
+        border-radius: 0;
+        background-color: $alice-blue;
+        font-family: $primary-font-family;
+
+        &::placeholder {
+          color: rgba($gunmetal, 0.7);
+          font-family: $primary-font-family;
+        }
+      }
+
+      &::ng-deep {
+        .nb-form-field-prefix-medium {
+          color: $gunmetal;
+        }
+      }
+    }
+
+    .search-suffix {
+      position: absolute;
+      left: 0;
+      right: 0;
+
+      .lab-search-params {
+        &::ng-deep {
+          nb-tag-list {
+            height: $space-48;
+            border: none;
+            border-radius: 0;
+            background-color: $alice-blue;
+
+            .nb-tag-list-tags-wrapper {
+              border-top: 1px solid rgba($gunmetal, 0.1);
+
+              nb-tag {
+                font-size: 0.9rem;
+                font-weight: 500;
+                font-family: $primary-font-family;
+                text-transform: lowercase;
+                border: none;
+                border-radius: $border-5;
+                background-color: #DAE0FF;
+
+                nb-icon {
+                  color: rgba($gunmetal, 0.5);
+                  font-size: 1.2rem;
+                  margin-left: $space-8;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .tag-search-results {
+        display: none;
+        height: 30vh;
+        overflow: auto;
+        background-color: $light-purple;
+
+        p {
+          width: 100%;
+          font-size: 1rem;
+          font-family: $primary-font-family;
+          color: rgba($gunmetal, 0.6);
+          text-align: center;
+          align-self: center;
+          margin: 0;
+          padding: 0 $space-16;
+        }
+
+        ul {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+
+          li {
+            padding: 0.4 * $space-16 $space-16;
+            transition: all 0.2s ease-in-out;
+            font-family: $primary-font-family;
+
+            &:hover {
+              background-color: darken($light-purple, 3%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .lab-actions {
+    min-width: max-content;
+
+    button {
+      height: $space-48;
+      border: 1px solid $very-light-blue;
+      border-radius: $border-5;
+
+      &::ng-deep {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-family: $primary-font-family;
+      }
+    }
+
+    .filter-btn {
+      color: $very-light-blue;
+      background: white;
+      margin: 0 $space-16;
+
+      &:hover {
+        color: white;
+        background-color: $very-light-blue;
+      }
+    }
+
+    .create-lab-btn {
+      color: white;
+      background-color: $very-light-blue;
+
+      &:hover {
+        color: $very-light-blue;
+        background-color: white;
+        border: 1px solid $very-light-blue;
+      }
+    }
+  }
+
+  @media all and (max-width: $tab-width) {
+    flex-direction: column;
+
+    .lab-search {
+      margin: 0 $space-16 $space-16;
+      width: initial;
+    }
+
+    .lab-actions {
+      align-self: center;
+    }
+  }
+}
