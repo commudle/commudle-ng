@@ -1,0 +1,77 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.lab-header-text {
+  padding: $space-64 $space-48;
+
+  p {
+    margin: 0;
+    font-family: $primary-font-family;
+    color: $gunmetal;
+  }
+
+  .lab-content {
+    display: flex;
+    align-items: center;
+
+    .lab-text {
+      margin: 0 $space-48 0 0;
+
+      .lab-quote {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+      }
+
+      .lab-heading {
+        font-size: 1.75rem;
+        margin: $space-16 0 $space-12;
+
+        span {
+          font-weight: 600;
+          color: $very-light-blue;
+        }
+      }
+    }
+
+    .lab-image {
+      img {
+        height: 200px;
+        width: 200px;
+      }
+    }
+  }
+
+  .lab-content-search {
+    .lab-search-tags {
+      margin-bottom: $space-8;
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 2rem;
+      color: $very-light-blue;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .lab-header-text {
+    padding: $space-24 $space-16 $space-16;
+
+    .lab-content {
+      flex-direction: column;
+
+      .lab-text {
+        margin: 0;
+
+        .lab-quote {
+          font-size: 1rem;
+          line-height: 1.25rem;
+        }
+
+        .lab-heading {
+          font-size: 1.5rem;
+          line-height: 1.75rem;
+          margin: $space-12 0 $space-8;
+        }
+      }
+    }
+  }
+}
