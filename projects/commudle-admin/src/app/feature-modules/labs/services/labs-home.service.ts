@@ -23,6 +23,7 @@ export class LabsHomeService {
   }
 
   getTagSearchResults(value: string[], page?: number, count?: number) {
+    console.log('called');
     this.labsService.searchTags(value, page, count).subscribe(data => this.tagSearch.next(data.tags));
   }
 

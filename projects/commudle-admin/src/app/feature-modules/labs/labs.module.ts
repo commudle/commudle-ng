@@ -15,6 +15,7 @@ import {
   NbInputModule,
   NbListModule,
   NbSidebarModule,
+  NbSpinnerModule,
   NbTooltipModule,
   NbUserModule
 } from '@nebular/theme';
@@ -67,6 +68,7 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     ReusableComponentsModule,
     YouTubePlayerModule,
     SharedPipesModule,
+    NbSpinnerModule,
 
     // Nebular
     NbCardModule,
