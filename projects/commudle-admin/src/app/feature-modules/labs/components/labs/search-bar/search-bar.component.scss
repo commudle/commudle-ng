@@ -16,7 +16,7 @@
         max-width: 100%;
         border: none;
         border-radius: 0;
-        background-color: $alice-blue;
+        background-color: $light-purple;
         font-family: $primary-font-family;
 
         &::placeholder {
@@ -43,7 +43,7 @@
             height: $space-48;
             border: none;
             border-radius: 0;
-            background-color: $alice-blue;
+            background-color: $light-purple;
 
             .nb-tag-list-tags-wrapper {
               border-top: 1px solid rgba($gunmetal, 0.1);
@@ -110,7 +110,7 @@
 
     button {
       height: $space-48;
-      border: 1px solid $very-light-blue;
+      border: 1px solid $neon-blue;
       border-radius: $border-5;
 
       &::ng-deep {
@@ -121,25 +121,25 @@
     }
 
     .filter-btn {
-      color: $very-light-blue;
+      color: $neon-blue;
       background: white;
       margin: 0 $space-16;
 
       &:hover {
         color: white;
-        background-color: $very-light-blue;
+        background-color: $neon-blue;
       }
     }
 
     .create-lab-btn {
       margin: 0 $space-16;
       color: white;
-      background-color: $very-light-blue;
+      background-color: $neon-blue;
 
       &:hover {
-        color: $very-light-blue;
+        color: $neon-blue;
         background-color: white;
-        border: 1px solid $very-light-blue;
+        border: 1px solid $neon-blue;
       }
     }
   }
