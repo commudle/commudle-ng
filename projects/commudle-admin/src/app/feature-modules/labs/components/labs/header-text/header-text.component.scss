@@ -1,8 +1,6 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .lab-header-text {
-  padding: $space-64 $space-48;
-
   p {
     margin: 0;
     font-family: $primary-font-family;
@@ -14,7 +12,7 @@
     align-items: center;
 
     .lab-text {
-      margin: 0 $space-48 0 0;
+      margin: 0 $space-96 0 0;
 
       .lab-quote {
         font-size: 1.1rem;
@@ -27,15 +25,8 @@
 
         span {
           font-weight: 600;
-          color: $very-light-blue;
+          color: $neon-blue;
         }
-      }
-    }
-
-    .lab-image {
-      img {
-        height: 200px;
-        width: 200px;
       }
     }
   }
@@ -46,7 +37,7 @@
       font-size: 1.75rem;
       font-weight: 600;
       line-height: 2rem;
-      color: $very-light-blue;
+      color: $neon-blue;
     }
   }
 }

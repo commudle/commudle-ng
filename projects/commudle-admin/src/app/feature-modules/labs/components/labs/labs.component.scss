@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .labs-home {
   background-color: $white;
@@ -8,11 +8,25 @@
     @media all and (min-width: $max-page-width) {
       padding: $space-16 $space-136;
     }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: $space-28 0 $space-16;
+    }
+
+    @media all and (max-width: $tab-width) {
+      .header {
+        flex-direction: column;
+      }
+    }
+
     .body {
       margin: 0 auto;
 
       .labs-container {
         min-height: 500px;
+
         .popular-tags {
           display: flex;
           flex-wrap: wrap;
