@@ -60,12 +60,12 @@
         color: white;
       }
 
-      background-color: $very-light-blue;
+      background-color: $neon-blue;
     }
 
     a {
       text-decoration: none;
-      color: $very-light-blue;
+      color: $neon-blue;
     }
   }
 
@@ -76,7 +76,7 @@
       font-size: 1.1rem;
       font-weight: 400;
       font-family: $primary-font-family;
-      color: $very-light-blue;
+      color: $neon-blue;
       padding: $space-16 $space-16 0.5 * $space-16;
       border-bottom: none;
     }
@@ -98,7 +98,7 @@
           margin: 0;
           font-size: 0.9rem;
           font-family: $primary-font-family;
-          color: $very-light-blue;
+          color: $neon-blue;
         }
 
         &:hover {
@@ -124,14 +124,14 @@
           font-family: $primary-font-family;
 
           span {
-            color: $very-light-blue;
+            color: $neon-blue;
           }
 
           nb-icon {
             font-size: 1.5rem;
 
             &:not(.voted-heart) {
-              color: $very-light-blue;
+              color: $neon-blue;
             }
           }
         }
@@ -140,12 +140,12 @@
 
     .message-count {
       font-size: 1.5rem;
-      color: $very-light-blue;
+      color: $neon-blue;
     }
 
     nb-icon {
       font-size: 1.5rem;
-      color: $very-light-blue;
+      color: $neon-blue;
     }
   }
 }
