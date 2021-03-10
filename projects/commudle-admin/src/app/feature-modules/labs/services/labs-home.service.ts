@@ -37,6 +37,7 @@ export class LabsHomeService {
   }
 
   getLabsByTags(value: string[], page, count) {
+    console.log(page);
     this.labsService.searchLabsByTags(value, page, count).subscribe(
       data => {
         if (data.labs.length > 0) {
