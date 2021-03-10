@@ -134,25 +134,10 @@
           </div>
         </div>
 
-        <!-- <div class="field" *ngIf="teamNeeded">
-          <label fullWidth>
-            <nb-checkbox status="basic" formControlName="need_team">
-              I am looking for people to join this
-            </nb-checkbox>
-          </label>
-        </div> -->
-
         <div class="field">
           <label fullWidth>
             Tags
-            <input
-              type="text"
-              nbInput
-              fullWidth
-              size="large"
-              [(ngModel)]="tags"
-              [ngModelOptions]="{standalone: true}"
-              placeholder="Enter tags separated by comma (a, b, c...)">
+            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true" [tags]="tags"></app-tag>
           </label>
         </div>
 
