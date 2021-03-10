@@ -36,11 +36,12 @@
       position: absolute;
       left: 0;
       right: 0;
+      z-index: 2;
 
       .lab-search-params {
         &::ng-deep {
           nb-tag-list {
-            height: $space-48;
+            min-height: $space-48;
             border: none;
             border-radius: 0;
             background-color: $light-purple;
