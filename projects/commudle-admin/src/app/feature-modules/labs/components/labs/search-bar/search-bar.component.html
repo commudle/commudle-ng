@@ -1,10 +1,10 @@
 <div class="search-container">
-  <div (clickOutside)="toggleSearchSuffix(false)" appClickOutside class="lab-search" (mouseleave)="toggleSearchSuffix(false)">
+  <div (clickOutside)="toggleSearchSuffix(false)" appClickOutside class="lab-search">
     <nb-form-field class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
-      <input #searchBar (mouseenter)="toggleSearchSuffix(true)"
-             (input)="getTagSearchResults()" (keyup.enter)="onTagAdd(tagSearchParam)"
-             [(ngModel)]="tagSearchParam" nbInput placeholder="Search labs on your favorite topics" type="text">
+      <input #searchBar (input)="getTagSearchResults()" (keyup.enter)="onTagAdd(tagSearchParam)"
+             (mouseenter)="toggleSearchSuffix(true)" [(ngModel)]="tagSearchParam" nbInput
+             placeholder="Search labs on your favorite topics" type="text">
     </nb-form-field>
 
     <div class="search-suffix">

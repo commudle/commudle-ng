@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { BehaviorSubject, Observable, concat } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import {ITag} from 'projects/shared-models/tag.model';
 import {ILab} from 'projects/shared-models/lab.model';
@@ -23,27 +23,19 @@ export class LabsHomeService {
   }
 
   getTagSearchResults(value: string[], page?: number, count?: number) {
-    console.log('called');
     this.labsService.searchTags(value, page, count).subscribe(data => this.tagSearch.next(data.tags));
   }
 
   getLabSearchResults(value: string[], page?: number, count?: number) {
-    this.labSearch.next([]);
-    this.getLabsByTags(
-      value,
-      (page || 1),
-      (count || 10)
-    )
+    this.getLabsByTags(value, page || 1, count || 10, true);
   }
 
-  getLabsByTags(value: string[], page, count) {
-    this.labsService.searchLabsByTags(value, page, count).subscribe(
-      data => {
-        if (data.labs.length > 0) {
-          this.labSearch.next(this.labSearch.getValue().concat(data.labs));
-          this.getLabsByTags(value, page+1, count);
-        }
+  getLabsByTags(value: string[], page: number, count: number, initialize: boolean = false) {
+    this.labsService.searchLabsByTags(value, page, count).subscribe(data => {
+      if (data.labs.length > 0) {
+        this.labSearch.next((initialize ? [] : this.labSearch.getValue()).concat(data.labs));
+        this.getLabsByTags(value, page + 1, count);
       }
-    )
+    });
   }
 }

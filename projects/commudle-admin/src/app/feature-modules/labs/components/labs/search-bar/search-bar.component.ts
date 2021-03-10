@@ -94,10 +94,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   onTagAdd(value: string, clearInput: boolean = true) {
     if (value !== '' && !this.labSearchParams.includes(value)) {
       this.labSearchParams.push(value);
-      // Emit new set of tags
-      this.updateTags.emit(this.labSearchParams);
       // Get labs from service
       this.labsHomeService.getLabSearchResults(this.labSearchParams);
+      // Emit new set of tags
+      this.updateTags.emit(this.labSearchParams);
     }
     if (clearInput) {
       this.searchBar.nativeElement.value = '';
