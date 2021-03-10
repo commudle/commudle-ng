@@ -105,7 +105,7 @@ export class LabsService {
   pIndex(tag?: string): Observable<ILabs> {
     let params = new HttpParams();
     if (tag) {
-      params = params.set('tag', tag);
+      params = params.append('tag', tag);
     }
     return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), {params}

@@ -1,4 +1,4 @@
-<div>
+  <div>
   <h4>
     Labs
   </h4>
@@ -16,10 +16,11 @@
 
             <h5>
               {{ lab.name }}
-              <a [routerLink]="['/labs', lab.slug]">
+              <a [routerLink]="['/labs', lab.slug]" target="_blank">
                 <nb-icon icon="external-link" status="primary"></nb-icon>
               </a>
             </h5>
+            <p>{{lab.user.name}} &lt;{{lab.user.email}}&gt;</p>
           </div>
 
           <div class="stats">
@@ -49,6 +50,11 @@
             </div>
           </div>
         </div>
+      </nb-card-body>
+    </nb-card>
+    <nb-card *ngIf="this.loading">
+      <nb-card-body [nbSpinner]="loading">
+
       </nb-card-body>
     </nb-card>
   </div>
