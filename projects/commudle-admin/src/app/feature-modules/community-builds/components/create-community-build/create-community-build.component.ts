@@ -16,7 +16,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class CreateCommunityBuildComponent implements OnInit {
 
   cBuild: ICommunityBuild;
-  tags = '';
+  tags: string[] = [];
   linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
@@ -89,7 +89,7 @@ export class CreateCommunityBuildComponent implements OnInit {
             this.cBuild = data;
             this.title.setTitle(`${this.cBuild.name} | Edit`);
             this.prefillCommunityBuild();
-            this.tags = data.tags.toString();
+            this.tags = data.tags;
           }
         );
       }
@@ -231,8 +231,19 @@ export class CreateCommunityBuildComponent implements OnInit {
   }
 
 
+  onTagAdd(value: string) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value);
+    }
+  }
+
+  onTagDelete(value: string) {
+    this.tags = this.tags.filter((tag) => tag !== value);
+  }
+
+
   submitTags() {
-    this.communityBuildsService.updateTags(this.cBuild.id, this.tags.split(',')).subscribe(
+    this.communityBuildsService.updateTags(this.cBuild.id, this.tags).subscribe(
       data => {
         this.router.navigate(['/builds/my-builds']);
         this.toastLogService.successDialog('Saved!');
