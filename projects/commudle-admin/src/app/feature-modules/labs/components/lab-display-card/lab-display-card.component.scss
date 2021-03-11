@@ -30,10 +30,6 @@
     padding: 12px 16px 8px;
 
     .title {
-      a {
-        text-decoration: none;
-      }
-
       h4 {
         line-height: 23px;
         font-size: $fs-card-title;
@@ -90,11 +86,28 @@
           color: $neon-blue;
         }
 
+        .views {
+          p, nb-icon {
+            margin-top: 1px;
+          }
+        }
+
         .likes {
           app-votes-display {
             &::ng-deep {
-              p, nb-icon {
+              p {
+                span {
+                  font-size: $fs-card-secondary;
+                  color: $neon-blue;
+                }
+              }
+
+              nb-icon {
                 font-size: $fs-card-secondary;
+
+                &:not(.voted-heart) {
+                  color: $neon-blue;
+                }
               }
             }
           }

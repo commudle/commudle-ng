@@ -9,7 +9,7 @@ import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service'
 import {UserMessagesService} from 'projects/commudle-admin/src/app/services/user-messages.service';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {Subscription} from 'rxjs';
-import {LabDiscussionChatChannel} from '../../../services/websockets/lab-discussion-chat.channel';
+import {LabDiscussionChatChannel} from 'projects/commudle-admin/src/app/feature-modules/labs/services/websockets/lab-discussion-chat.channel';
 
 @Component({
   selector: 'app-lab-discussion',
@@ -29,14 +29,16 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
   messages: IUserMessage[] = [];
   pageSize = 10;
   currentPageNumber = 1;
-  // allMessagesLoaded = false;
   showReplyForm = 0;
   allActions;
   chatMessageForm = this.fb.group({
-    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
+    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]]
   });
+  limitRows = 5;
+  messageLastScrollHeight: number;
 
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
+  @ViewChild('messageInput') private messageInput: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -61,7 +63,6 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
       this.currentPageNumber = 1;
       this.discussionChatChannel.unsubscribe();
       this.discussionChatChannel.subscribe(`${this.discussion.id}`);
-      
       this.allActions = this.discussionChatChannel.ACTIONS;
       // Get all discussion messages
       this.getDiscussionMessages();
@@ -82,10 +83,8 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getDiscussionMessages() {
-    // if (!this.allMessagesLoaded) {
     this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.currentPageNumber, this.pageSize).subscribe(data => {
       if (data.user_messages.length === 0) {
-        // this.allMessagesLoaded = true;
         this.messagesCount.emit(this.messages.length);
       } else {
         this.messages.push(...data.user_messages);
@@ -93,7 +92,6 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
         this.getDiscussionMessages();
       }
     });
-    // }
   }
 
   toggleReplyForm(messageId) {
@@ -194,4 +192,17 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
     return this.messages[questionIndex].user_messages.findIndex(q => (q.id === replyId));
   }
 
+  handleInputSize() {
+    let rows = this.messageInput.nativeElement.getAttribute('rows');
+    this.messageInput.nativeElement.setAttribute('rows', '1');
+
+    if (rows < this.limitRows && this.messageInput.nativeElement.scrollHeight > this.messageLastScrollHeight) {
+      rows++;
+    } else if (rows > 1 && this.messageInput.nativeElement.scrollHeight < this.messageLastScrollHeight) {
+      rows--;
+    }
+
+    this.messageLastScrollHeight = this.messageInput.nativeElement.scrollHeight;
+    this.messageInput.nativeElement.setAttribute('rows', rows);
+  }
 }
