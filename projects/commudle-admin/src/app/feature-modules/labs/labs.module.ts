@@ -8,11 +8,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
+  NbContextMenuModule,
   NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbListModule,
+  NbSidebarModule,
+  NbSpinnerModule,
   NbTooltipModule,
   NbUserModule
 } from '@nebular/theme';
@@ -27,6 +30,13 @@ import {ReusableComponentsModule} from '../reusable-components/reusable-componen
 import {LabDiscussionComponent} from './components/lab/lab-discussion/lab-discussion.component';
 import {LabDiscussionMessageComponent} from './components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component';
 import {YouTubePlayerModule} from '@angular/youtube-player';
+import {SearchBarComponent} from './components/labs/search-bar/search-bar.component';
+import {LabDisplayCardComponent} from './components/lab-display-card/lab-display-card.component';
+import {HeaderBannerComponent} from './components/labs/header-banner/header-banner.component';
+import {HeaderTextComponent} from './components/labs/header-text/header-text.component';
+import {ClickOutsideDirective} from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
+import {LabDetailsComponent} from './components/lab/lab-details/lab-details.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 @NgModule({
@@ -40,6 +50,12 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     LabListItemComponent,
     LabDiscussionComponent,
     LabDiscussionMessageComponent,
+    SearchBarComponent,
+    LabDisplayCardComponent,
+    HeaderBannerComponent,
+    HeaderTextComponent,
+    LabDetailsComponent,
+    ClickOutsideDirective
   ],
   imports: [
     CommonModule,
@@ -51,6 +67,8 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     SharedComponentsModule,
     ReusableComponentsModule,
     YouTubePlayerModule,
+    SharedPipesModule,
+    NbSpinnerModule,
 
     // Nebular
     NbCardModule,
@@ -61,7 +79,12 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     NbFormFieldModule,
     NbTooltipModule,
     NbDialogModule.forChild(),
-    NbUserModule
+    NbUserModule,
+    NbSidebarModule.forRoot(),
+    NbContextMenuModule
+  ],
+  exports: [
+    LabDisplayCardComponent
   ]
 })
 export class LabsModule {

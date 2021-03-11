@@ -334,6 +334,10 @@ export const API_ROUTES = {
     ADMIN: {
       INDEX: 'api/v2/labs/admin',
       UPDATE_PUBLISH_STATUS: 'api/v2/labs/admin/update_publish_status'
+    },
+    SEARCH: {
+      TAGS: 'api/v2/labs/search_tags',
+      LABS_BY_TAGS: 'api/v2/labs'
     }
   },
 
