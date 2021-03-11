@@ -1,0 +1,110 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.lab-header-banner {
+  width: 352px;
+  padding: $space-16;
+
+  .lab-trending {
+    nb-card {
+      margin: 0;
+      border: 2px solid rgba($gunmetal, 0.14);
+      border-radius: $border-5;
+
+      nb-card-header {
+        padding: $space-8 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        font-family: $primary-font-family;
+        color: $gunmetal;
+        text-align: center;
+        border-bottom: none;
+      }
+
+      nb-card-body {
+        padding: 0 $space-16;
+
+        nb-list {
+          nb-list-item {
+            padding: $space-12 0;
+            border-bottom: 1px solid rgba($gunmetal, 0.22);
+
+            &:first-child {
+              border-top: none;
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            .trending-event-container {
+              display: flex;
+              width: 100%;
+
+              .event-image {
+                height: $space-56;
+                min-width: $space-56;
+                margin: 0 $space-8 0 0;
+
+                img {
+                  width: 100%;
+                  height: auto;
+                }
+              }
+
+              .event-details {
+                color: $gunmetal;
+                font-family: $primary-font-family;
+                width: 100%;
+
+                .event-name {
+                  font-size: 0.9rem;
+                  font-weight: 600;
+                  margin: 0 0 $space-4;
+                }
+
+                .event-content {
+                  font-size: 0.8rem;
+
+                  .event-description {
+                    margin: 0 0 $space-4;
+                  }
+
+                  .event-suffix {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .event-type {
+                      text-transform: uppercase;
+                      color: $neon-blue;
+                    }
+
+                    .event-stats {
+                      color: $cyber-yellow;
+
+                      nb-icon {
+                        font-size: 0.9rem;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .lab-graphic {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .lab-header-banner {
+    width: 320px;
+  }
+}
