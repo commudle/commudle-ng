@@ -17,9 +17,18 @@ export class SysAdminLabsService {
     private apiRoutesService: ApiRoutesService
   ) { }
 
-  getAll(): Observable<ILabs> {
+  getAll(page?, count?): Observable<ILabs> {
+    let params = new HttpParams();
+    if (page) {
+      params = params.append('page', page);
+    }
+
+    if (count) {
+      params = params.append('count', count);
+    }
+
     return this.http.get<ILabs>(
-      this.apiRoutesService.getRoute(API_ROUTES.LABS.ADMIN.INDEX)
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.ADMIN.INDEX), {params}
     );
   }
 

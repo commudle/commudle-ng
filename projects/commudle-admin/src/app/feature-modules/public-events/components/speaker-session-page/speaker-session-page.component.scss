@@ -1,3 +1,5 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .speaker-session-details {
 
   &.fullscreen {
@@ -7,6 +9,7 @@
     top: 0;
     left: 0;
     z-index: 1040;
+    background-color: $white;
 
     .video-stream {
       height: 100%;
@@ -19,6 +22,8 @@
       }
 
     }
+
+
   }
 
   display: flex;
@@ -31,31 +36,7 @@
 
 
       .card-session-details {
-        .session-details {
 
-          nb-card {
-            margin: 0;
-            nb-card-body {
-              .community {
-                width: fit-content;
-              }
-
-              .track-slot-details {
-                h4 {
-                  margin: 0;
-                }
-              }
-
-              .visitors {
-                margin: 0;
-              }
-
-              .live-notification {
-                margin: 0;
-              }
-            }
-            }
-          }
 
           .video-stream {
             nb-card {
@@ -314,5 +295,30 @@ nb-tabset {
     padding: 0;
     height: 90%;
     width: 100%;
+  }
+}
+.session-details {
+
+  nb-card {
+    margin: 0;
+    nb-card-body {
+      .community {
+        width: fit-content;
+      }
+
+      .track-slot-details {
+        h4 {
+          margin: 0;
+        }
+      }
+
+      .visitors {
+        margin: 0;
+      }
+
+      .live-notification {
+        margin: 0;
+      }
+    }
   }
 }

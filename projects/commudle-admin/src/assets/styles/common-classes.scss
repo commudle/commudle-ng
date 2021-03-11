@@ -1,6 +1,6 @@
 // page structure
 .page-container {
-  max-width: 1366px;
+  max-width: $max-page-width;
   margin: 0 auto;
 }
 
@@ -60,6 +60,10 @@
 
 .align-items-center {
   align-items: center;
+}
+
+.align-items-end {
+  align-items: flex-end;
 }
 
 

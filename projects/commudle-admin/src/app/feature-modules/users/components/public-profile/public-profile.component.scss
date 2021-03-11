@@ -70,15 +70,14 @@
   main {
     display: flex;
     flex-direction: column;
-    @media (min-width: 820px) {
-      flex-direction: row;
-      flex-wrap: wrap;
-      .column-left {
-        width: 40%;
-      }
-    }
 
   }
 
-
+  // @media (min-width: 820px) {
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
+  //   .column-left {
+  //     width: 40%;
+  //   }
+  // }
 }

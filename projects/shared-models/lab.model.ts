@@ -1,6 +1,6 @@
-import { IAttachedFile } from './attached-file.model';
-import { IUser } from './user.model';
-import { ILabStep } from './lab-step.model';
+import {IAttachedFile} from './attached-file.model';
+import {IUser} from './user.model';
+import {ILabStep} from './lab-step.model';
 
 export interface ILab {
   id: number;
@@ -16,8 +16,9 @@ export interface ILab {
   lab_steps: ILabStep[];
   tags: string[];
   last_visited_step_id: number;
+  votes?: number;
+  visits?: number;
 }
-
 
 export enum EPublishStatus {
   draft = 'draft',
