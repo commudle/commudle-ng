@@ -1,11 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
-
-$primary-color: #536EFF;
-$title: #2F2E41;
-$content: #231F20;
-
-$spacing: 16px;
-$border-radius: 10px;
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .lab {
   width: 100%;
@@ -18,148 +11,8 @@ $border-radius: 10px;
     max-width: $max-page-width;
     margin: 0 auto;
 
-    .menu {
-      nb-card {
-        border: none;
-        border-radius: $border-radius;
-      }
-
-      .user {
-        padding: $spacing;
-        margin: 0 0 $spacing;
-        transition: all 0.3s ease-in-out;
-
-        nb-user {
-          &::ng-deep {
-            .user-picture.image {
-              height: 3.5rem;
-              width: 3.5rem;
-            }
-
-            .user-name {
-              font-size: 1.125rem;
-              line-height: 1.5rem;
-              font-family: $primary-font-family;
-            }
-
-            .user-title {
-              font-size: 0.875rem;
-              font-family: $primary-font-family;
-            }
-          }
-        }
-
-        &:hover {
-          background: rgba(0, 0, 0, 0.05);
-        }
-      }
-
-      .steps {
-        margin: 0;
-
-        nb-list {
-          border: none;
-          border-radius: $border-radius;
-        }
-
-        nb-list-item:not(:last-child) {
-          border-bottom: 2px solid rgba(83, 110, 255, 0.35);
-          font-family: $primary-font-family;
-        }
-
-        .active {
-          a {
-            color: white;
-          }
-
-          background-color: $primary-color;
-        }
-
-        a {
-          text-decoration: none;
-          color: $primary-color;
-        }
-      }
-
-      .related-labs {
-        margin: $spacing $spacing 0 0;
-
-        nb-card-header {
-          font-size: 1.1rem;
-          font-weight: 400;
-          font-family: $primary-font-family;
-          color: $primary-color;
-          padding: $spacing $spacing 0.5 * $spacing;
-          border-bottom: none;
-        }
-
-        nb-card-body {
-          padding: 0;
-
-          .details {
-            padding: $spacing;
-            transition: all 0.3s ease-in-out;
-
-            .name {
-              margin: 0;
-              font-size: 1rem;
-              font-family: $primary-font-family;
-            }
-
-            .type {
-              margin: 0;
-              font-size: 0.9rem;
-              font-family: $primary-font-family;
-              color: $primary-color;
-            }
-
-            &:hover {
-              background: rgba(0, 0, 0, 0.05);
-            }
-          }
-        }
-      }
-
-      .mobile-interactions {
-        display: none;
-        flex-direction: row;
-        justify-content: space-around;
-        margin: $spacing 0 0;
-        font-family: $primary-font-family;
-
-        app-votes-display {
-          direction: rtl;
-
-          &::ng-deep {
-            p {
-              font-size: 1.5rem;
-              font-family: $primary-font-family;
-
-              span {
-                color: $primary-color;
-              }
-
-              nb-icon {
-                font-size: 1.5rem;
-
-                &:not(.voted-heart) {
-                  color: $primary-color;
-                }
-              }
-            }
-          }
-        }
-
-        .discussion {
-          font-size: 1.5rem;
-          color: $primary-color;
-        }
-
-        nb-icon {
-          font-size: 1.5rem;
-          color: $primary-color;
-        }
-      }
+    nb-sidebar, .toggle-details {
+      display: none;
     }
 
     .content {
@@ -168,11 +21,11 @@ $border-radius: 10px;
       nb-card {
         min-height: 80vh;
         border: none;
-        border-radius: $border-radius;
-        margin: 0 $spacing $spacing;
+        border-radius: $border-10;
+        margin: 0 $space-16 $space-16;
 
         nb-card-body {
-          padding: 3 * $spacing;
+          padding: $space-48;
 
           .introduction {
             display: flex;
@@ -183,15 +36,15 @@ $border-radius: 10px;
               font-weight: 500;
               font-family: $primary-font-family;
               line-height: 2.75rem;
-              color: $title;
+              color: $gunmetal;
               text-transform: capitalize;
-              margin: 0 0 1.25 * $spacing;
+              margin: 0 0 $space-20;
             }
 
             .lab-detail {
               display: flex;
               justify-content: space-between;
-              margin-bottom: 3 * $spacing;
+              margin-bottom: $space-48;
 
               .user-profile {
                 display: flex;
@@ -211,13 +64,13 @@ $border-radius: 10px;
 
                   p {
                     color: #979797;
-                    margin: 0 $spacing 0 0.5 * $spacing;
+                    margin: 0 $space-16 0 $space-8;
                     font-family: $primary-font-family;
                   }
 
                   .name {
                     text-transform: capitalize;
-                    color: $primary-color;
+                    color: $neon-blue;
                   }
                 }
               }
@@ -229,12 +82,13 @@ $border-radius: 10px;
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
                       font-size: 13px;
+                      font-weight: 400;
                       font-family: $primary-font-family;
                       text-transform: lowercase;
-                      color: $title;
+                      color: $gunmetal;
                       background-color: #DAE0FF;
                       border: none;
-                      border-radius: 0.5 * $border-radius;
+                      border-radius: $border-5;
                     }
                   }
                 }
@@ -254,7 +108,7 @@ $border-radius: 10px;
                 }
 
                 .tags {
-                  margin: $spacing 0 0;
+                  margin: $space-16 0 0;
                 }
               }
             }
@@ -288,12 +142,12 @@ $border-radius: 10px;
 
                 @for $index from 1 through 6 {
                   h#{$index} {
-                    color: $title;
+                    color: $gunmetal;
                   }
                 }
 
                 p, li {
-                  color: $content;
+                  color: $raisin-black;
                   font-size: 1.1rem;
                   line-height: 1.5rem;
                 }
@@ -302,9 +156,15 @@ $border-radius: 10px;
           }
         }
 
+        nb-card-footer {
+          padding: $space-24 0 0;
+          background-color: $light-purple;
+          border: none;
+        }
+
         @media all and (max-width: $tab-width) {
           nb-card-body {
-            padding: 1.25 * $spacing;
+            padding: $space-20;
 
             .introduction {
               .lab-title {
@@ -313,12 +173,12 @@ $border-radius: 10px;
               }
             }
           }
-        }
 
-        nb-card-footer {
-          background-color: $light-purple;
-          padding: 1.5 * $spacing 0 0;
-          border: none;
+          nb-card-footer {
+            position: sticky;
+            bottom: 0;
+            padding: $space-8 0 $space-64;
+          }
         }
       }
     }
@@ -327,7 +187,7 @@ $border-radius: 10px;
       display: none;
       width: max-content;
       height: fit-content;
-      margin-left: $spacing;
+      margin-left: $space-16;
       position: sticky;
       top: 50vh;
       font-family: $primary-font-family;
@@ -341,14 +201,14 @@ $border-radius: 10px;
             font-family: $primary-font-family;
 
             span {
-              color: $primary-color;
+              color: $neon-blue;
             }
 
             nb-icon {
               font-size: 1.5rem;
 
               &:not(.voted-heart) {
-                color: $primary-color;
+                color: $neon-blue;
               }
             }
           }
@@ -356,31 +216,18 @@ $border-radius: 10px;
       }
 
       .discussion {
-        margin: 1.5 * $spacing 0 0;
+        margin: $space-24 0 0;
         font-size: 1.5rem;
-        color: $primary-color;
+        color: $neon-blue;
       }
 
       nb-icon {
         font-size: 1.5rem;
-        color: $primary-color;
+        color: $neon-blue;
       }
     }
 
     @media (min-width: $tab-width) {
-      .menu {
-        display: inline-flex !important;
-        flex-direction: column;
-        position: sticky;
-        top: 4.5rem;
-        height: fit-content;
-        width: 250px;
-
-        nb-card {
-          width: 100%;
-        }
-      }
-
       .content {
         min-width: 500px;
         width: 70%;
@@ -402,41 +249,95 @@ $border-radius: 10px;
       font-family: $primary-font-family;
       text-transform: capitalize;
       color: white;
-      background-color: $primary-color;
-      border-radius: $border-radius;
+      background-color: $neon-blue;
+      border-radius: $border-10;
     }
   }
 
   .lab-discussion {
-    margin: 2 * $spacing 0 4 * $spacing;
+    margin: $space-32 0 $space-64;
   }
 }
 
 @media all and (max-width: $tab-width) {
   .lab {
-    padding: $spacing 0 0;
+    padding: $space-16 0 0;
 
     .body {
       flex-direction: column;
+      justify-content: normal;
 
-      .menu {
-        margin: 0 $spacing $spacing;
+      .toggle-details {
+        display: block;
+        position: fixed;
+        top: $space-96;
+        left: 0;
+        font-size: 2.25rem;
+        padding: $space-4;
+        color: white;
+        background-color: $neon-blue;
+        z-index: 3;
+        border-top-right-radius: $border-10;
+        border-bottom-right-radius: $border-10;
+      }
 
-        .steps {
-          nb-list {
-            &::ng-deep {
-              flex-direction: row;
+      .desktop-lab-details {
+        &::ng-deep {
+          .menu {
+            position: initial;
+            top: initial;
+            height: initial;
+            width: 100%;
 
-              nb-list-item:not(:last-child) {
-                border-bottom: 0;
-                border-right: 2px solid rgba(83, 110, 255, 0.35);
-              }
+            nb-card {
+              width: initial;
+            }
+
+            .user {
+              margin: 0 $space-16 $space-16;
             }
           }
         }
+      }
 
-        .mobile-interactions {
-          display: flex;
+      nb-sidebar.right.expanded {
+        display: inherit;
+
+        &::ng-deep {
+          .main-container {
+            z-index: 3;
+            top: $space-56;
+            right: 0;
+            width: 80vw;
+            height: calc(100vh - 3.5rem);
+            padding: $space-16;
+            backdrop-filter: blur(20px);
+
+            .scrollable {
+              padding: 0;
+
+              app-lab-details {
+                .menu {
+                  position: initial;
+                  top: initial;
+                  height: initial;
+                  width: 100%;
+
+                  nb-card {
+                    width: initial;
+                  }
+
+                  .user {
+                    margin: 0 $space-16 $space-16;
+                  }
+
+                  .related-labs {
+                    margin: $space-16 0 $space-56;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
