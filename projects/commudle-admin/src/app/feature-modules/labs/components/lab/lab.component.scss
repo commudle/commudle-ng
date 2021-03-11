@@ -70,7 +70,7 @@
 
                   .name {
                     text-transform: capitalize;
-                    color: $very-light-blue;
+                    color: $neon-blue;
                   }
                 }
               }
@@ -201,14 +201,14 @@
             font-family: $primary-font-family;
 
             span {
-              color: $very-light-blue;
+              color: $neon-blue;
             }
 
             nb-icon {
               font-size: 1.5rem;
 
               &:not(.voted-heart) {
-                color: $very-light-blue;
+                color: $neon-blue;
               }
             }
           }
@@ -218,12 +218,12 @@
       .discussion {
         margin: $space-24 0 0;
         font-size: 1.5rem;
-        color: $very-light-blue;
+        color: $neon-blue;
       }
 
       nb-icon {
         font-size: 1.5rem;
-        color: $very-light-blue;
+        color: $neon-blue;
       }
     }
 
@@ -249,7 +249,7 @@
       font-family: $primary-font-family;
       text-transform: capitalize;
       color: white;
-      background-color: $very-light-blue;
+      background-color: $neon-blue;
       border-radius: $border-10;
     }
   }
@@ -275,7 +275,7 @@
         font-size: 2.25rem;
         padding: $space-4;
         color: white;
-        background-color: $very-light-blue;
+        background-color: $neon-blue;
         z-index: 3;
         border-top-right-radius: $border-10;
         border-bottom-right-radius: $border-10;
