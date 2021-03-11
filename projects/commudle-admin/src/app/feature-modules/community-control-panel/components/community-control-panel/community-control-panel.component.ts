@@ -3,6 +3,9 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { NbWindowService } from '@nebular/theme';
+import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
+import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 
 @Component({
   selector: 'app-community-control-panel',
@@ -40,7 +43,8 @@ export class CommunityControlPanelComponent implements OnInit {
   constructor(
     private titleService: Title,
     private communitiesService: CommunitiesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private windowService: NbWindowService
   ) { }
 
   ngOnInit() {
@@ -62,6 +66,19 @@ export class CommunityControlPanelComponent implements OnInit {
 
   setTitle() {
     this.titleService.setTitle(`Admin Dashboard | ${this.community.name}`);
+  }
+
+  sendEmails() {
+    this.windowService.open(
+      EmailerComponent,
+      {
+        title: `Send Email to All ${this.community.member_count} Members`,
+        context: {
+          community: this.community,
+          mailType: EemailTypes.GENERAL_ALL,
+        }
+      }
+    );
   }
 
 }

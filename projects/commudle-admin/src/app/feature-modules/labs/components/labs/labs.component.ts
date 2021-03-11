@@ -81,15 +81,11 @@ export class LabsComponent implements OnInit {
   }
 
   getPopularLabs() {
-    this.labsService.searchLabsByTags([]).subscribe(data => this.popularLabs = data.labs);
+    this.labsHomeService.getLabSearchResults([]);
   }
 
   getSearchedLabs() {
-    this.labsHomeService.labSearch$.subscribe(value => {
-      if (this.searchedTags.length !== 0) {
-        this.searchedLabs = value;
-      }
-    });
+    this.labsHomeService.labSearch$.subscribe(value => this.searchedLabs = value);
   }
 
   onTagAdd(value: string) {
