@@ -7,9 +7,9 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {NoWhitespaceValidator} from 'projects/shared-helper-modules/custom-validators.validator';
 import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
 import {UserMessagesService} from 'projects/commudle-admin/src/app/services/user-messages.service';
-import {DiscussionChatChannel} from 'projects/shared-components/services/websockets/dicussion-chat.channel';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {Subscription} from 'rxjs';
+import {LabDiscussionChatChannel} from '../../../services/websockets/lab-discussion-chat.channel';
 
 @Component({
   selector: 'app-lab-discussion',
@@ -42,16 +42,15 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
-    private discussionChatChannel: DiscussionChatChannel,
+    private discussionChatChannel: LabDiscussionChatChannel,
     private authWatchService: LibAuthwatchService
   ) {
   }
 
   ngOnInit(): void {
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe(user => this.currentUser = user));
-    this.discussionChatChannel.subscribe(`${this.discussion.id}`);
-    this.receiveData();
     this.allActions = this.discussionChatChannel.ACTIONS;
+    this.receiveData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -62,7 +61,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
       this.currentPageNumber = 1;
       this.discussionChatChannel.unsubscribe();
       this.discussionChatChannel.subscribe(`${this.discussion.id}`);
-      this.receiveData();
+      
       this.allActions = this.discussionChatChannel.ACTIONS;
       // Get all discussion messages
       this.getDiscussionMessages();

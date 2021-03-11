@@ -1,0 +1,17 @@
+<div class="lab-header-text">
+  <div *ngIf="tags.length === 0" class="lab-content">
+    <div class="lab-text">
+      <p class="lab-quote">The best way to learn, is step by step.</p>
+      <p class="lab-heading">We introduce <span>Labs,</span></p>
+      <p class="lab-quote">a place where you will find tutorials created by everyone who learnt something new and wants
+        to make it easy for others to learn too!</p>
+    </div>
+  </div>
+
+  <div *ngIf="tags.length > 0" class="lab-content-search">
+    <div class="lab-search-tags">
+      Labs on {{tags.join(', ')}}
+    </div>
+    <p>{{getVisits()}} visits</p>
+  </div>
+</div>
