@@ -23,7 +23,6 @@ export class LabsHomeService {
   }
 
   getTagSearchResults(value: string[], page?: number, count?: number) {
-    console.log('called');
     this.labsService.searchTags(value, page, count).subscribe(data => this.tagSearch.next(data.tags));
   }
 
@@ -37,7 +36,6 @@ export class LabsHomeService {
   }
 
   getLabsByTags(value: string[], page, count) {
-    console.log(page);
     this.labsService.searchLabsByTags(value, page, count).subscribe(
       data => {
         if (data.labs.length > 0) {

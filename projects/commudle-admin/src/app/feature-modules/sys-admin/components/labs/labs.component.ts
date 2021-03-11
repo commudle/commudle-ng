@@ -32,7 +32,6 @@ export class LabsComponent implements OnInit {
 
 
   getAllLabs() {
-    console.log(this.page);
     this.labsService.getAll(this.page).subscribe(
       data => {
         if (data.labs.length > 0) {
