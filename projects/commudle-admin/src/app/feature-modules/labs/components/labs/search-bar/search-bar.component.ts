@@ -18,14 +18,15 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   tagSearchParam = '';
   tagSearchResults: ITag[] = [];
+  showTagSearchResults = false;
 
   @Input() labSearchParams: string[] = [];
 
   @Output() updateTags: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   @ViewChild('searchBar') searchBar: ElementRef<HTMLInputElement>;
-  @ViewChild('searchParamsDiv') searchParamsDiv: ElementRef<HTMLDivElement>;
-  @ViewChild('searchResultsDiv') searchResultsDiv: ElementRef<HTMLDivElement>;
+
+  // @ViewChild('searchResultsDiv') searchResultsDiv: ElementRef<HTMLDivElement>;
 
   constructor(
     private labsService: LabsService,
@@ -88,16 +89,17 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   toggleSearchSuffix(value: boolean) {
-    this.searchResultsDiv.nativeElement.style.display = value ? 'flex' : 'none';
+    this.showTagSearchResults = value;
+    // this.searchResultsDiv.nativeElement.style.display = value ? 'flex' : 'none';
   }
 
   onTagAdd(value: string, clearInput: boolean = true) {
     if (value !== '' && !this.labSearchParams.includes(value)) {
       this.labSearchParams.push(value);
-      // Emit new set of tags
-      this.updateTags.emit(this.labSearchParams);
       // Get labs from service
       this.labsHomeService.getLabSearchResults(this.labSearchParams);
+      // Emit new set of tags
+      this.updateTags.emit(this.labSearchParams);
     }
     if (clearInput) {
       this.searchBar.nativeElement.value = '';
@@ -108,7 +110,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   onTagDelete(value: string) {
     // TODO: Not sure how else to stop the div from closing
-    setTimeout(() => this.searchResultsDiv.nativeElement.style.display = 'flex', 0);
+    setTimeout(() => this.showTagSearchResults = true);
     this.labSearchParams = this.labSearchParams.filter(tag => tag !== value);
     // Get labs from service
     this.labsHomeService.getLabSearchResults(this.labSearchParams);
