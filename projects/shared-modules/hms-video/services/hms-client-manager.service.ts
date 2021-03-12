@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HMSPeer, HMSClientConfig, HMSClient, HMSMediaStreamConstraints } from "@100mslive/hmsvideo-web";
 import { from, Observable } from 'rxjs';
+import { HMSAnalyticsEventLevel } from '@100mslive/hmsvideo-web/lib/hms_config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class HmsClientManagerService {
   createClient(username, clientToken) {
     const config = new HMSClientConfig({
       endpoint: "wss://prod-in.100ms.live",
-      analyticsEventLevel: 0
+      analyticsEventLevel: HMSAnalyticsEventLevel.ERROR
     });
     const peer = new HMSPeer(username, clientToken, null);
 
