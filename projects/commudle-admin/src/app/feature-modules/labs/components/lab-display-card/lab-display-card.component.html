@@ -1,6 +1,7 @@
 <div class="lab-display-card">
   <div [routerLink]="[lab.slug]" class="header-image clickable">
-    <img alt="{{lab.name}}" src="{{lab.header_image.i350}}">
+    <img *ngIf="!lab.header_image" alt="{{lab.name}}" src="/assets/images/Lab-Default.png">
+    <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.i350}}">
   </div>
   <div class="content d-flex flex-column justify-content-space-between">
     <!--padding-->
@@ -16,8 +17,8 @@
         </div>
         <div class="details">
           <p class="name">{{lab.user.name}}</p>
-          <p class="designation">{{lab.user.designation | truncatetext:18}}
-          </p>
+          <p *ngIf="lab.user.designation" class="designation">{{lab.user.designation | truncatetext:18}}
+          <p *ngIf="!lab.user.designation" class="designation">Commudler</p>
         </div>
       </div>
       <div class="stats d-flex">
