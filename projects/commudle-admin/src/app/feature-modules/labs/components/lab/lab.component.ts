@@ -54,6 +54,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.routeSubscriptions.push(
       this.activatedRoute.params.subscribe(data => {
         this.getLab(data.lab_id);
+        this.setStep(-1);
       })
     );
 
