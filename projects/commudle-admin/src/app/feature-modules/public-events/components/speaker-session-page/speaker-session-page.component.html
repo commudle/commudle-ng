@@ -1,52 +1,50 @@
 <div class="speaker-session-details" #speakerSessionDetails [ngClass]="{'fullscreen': isFullscreen === true}">
+  <div class="session-details" *ngIf="!isFullscreen">
+    <nb-card>
+      <nb-card-body>
+        <div>
+          <div class="community">
+            <app-community-badge [community]="community"></app-community-badge>
+          </div>
+          <p>
+            <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
+              {{ event.name }}
+            </a>
+          </p>
+          <div class="track-slot-details" *ngIf="trackSlot">
+            <h4>
+              {{trackSlot.session_title}}
+            </h4>
+          </div>
+        </div>
+
+        <p class="live-notification" *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
+          <span class="live-notification text-success">
+            <nb-icon icon="flash"></nb-icon>
+            Live Now!
+          </span>
+          <small>
+            {{ moment(startTime).format('dddd Do MMM, YYYY h:mm A') }}
+            -
+            {{ moment(endTime).format('h:mm A') }}
+          </small>
+        </p>
+        <div *ngIf="speaker" class="speaker-details">
+          <div>
+            <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
+          </div>
+        </div>
+        <p class="visitors" *ngIf="userVisitData">
+          <span *ngIf="userVisitData.visiting_users_count > 0">
+            {{userVisitData.visiting_users_count}} watching now
+          </span>
+        </p>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
   <div class="card-row">
     <div class="card-session-details" [ngClass]="{'maxWidth': sidebarMinimize}">
-      <div class="session-details" *ngIf="!isFullscreen">
-        <nb-card>
-          <nb-card-body>
-            <div>
-              <div class="community">
-                <app-community-badge [community]="community"></app-community-badge>
-              </div>
-              <p>
-                <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
-                  {{ event.name }}
-                </a>
-              </p>
-              <div class="track-slot-details" *ngIf="trackSlot">
-                <h4>
-                  {{trackSlot.session_title}}
-                </h4>
-              </div>
-            </div>
-
-            <p class="live-notification" *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
-              <span class="live-notification text-success">
-                <nb-icon icon="flash"></nb-icon>
-                Live Now!
-              </span>
-              <small>
-                {{ moment(startTime).format('dddd Do MMM, YYYY h:mm A') }}
-                -
-                {{ moment(endTime).format('h:mm A') }}
-              </small>
-            </p>
-            <div *ngIf="speaker" class="speaker-details">
-              <div>
-                <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
-              </div>
-            </div>
-            <p class="visitors" *ngIf="userVisitData">
-              <span *ngIf="userVisitData.visiting_users_count > 0">
-                {{userVisitData.visiting_users_count}} watching now
-              </span>
-            </p>
-          </nb-card-body>
-        </nb-card>
-      </div>
-
-
-
       <div class="video-stream" #videoContainer>
         <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
         <button class="fullscreen-button" size="tiny" nbButton (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen"> Go Fullscreen </button>
