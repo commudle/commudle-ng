@@ -10,9 +10,10 @@ export class HmsClientManagerService {
 
   createClient(username, clientToken) {
     const config = new HMSClientConfig({
-      endpoint: "wss://prod-in.100ms.live"
+      endpoint: "wss://prod-in.100ms.live",
+      analyticsEventLevel: 0
     });
-    const peer = new HMSPeer(username, clientToken);
+    const peer = new HMSPeer(username, clientToken, null);
 
     return new HMSClient(peer, config);
   }
