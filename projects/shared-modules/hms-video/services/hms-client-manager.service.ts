@@ -34,8 +34,8 @@ export class HmsClientManagerService {
       bitrate: 256,
       codec: 'VP8',
       frameRate: 20,
-      shouldPublishAudio: mic,
-      shouldPublishVideo: camera,
+      shouldPublishAudio: true,
+      shouldPublishVideo: true,
       advancedMediaConstraints: {
         audio: {
           deviceId: audioDevice.deviceId
@@ -52,7 +52,7 @@ export class HmsClientManagerService {
 
   // this will publish both audio/video and screen streams
   publishLocalStream(client: HMSClient, stream, roomId): Observable<any> {
-    return from(client.publish(stream, roomId));
+    return from(client.publish(stream, roomId, null));
   }
 
 
@@ -85,7 +85,7 @@ export class HmsClientManagerService {
 
   // subscribe to remote peer's stream
   getPeerStream(client: HMSClient, mId, roomId): Observable<any> {
-    return from(client.subscribe(mId, roomId));
+    return from(client.subscribe(mId, roomId, null));
   }
 
   // unsubscribe from remote peer's stream
