@@ -21,6 +21,7 @@ export class CreateCommunityBuildComponent implements OnInit {
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
   redirectTo;
+  emails: {value: string} [] = [];
 
   embeddedLink;
   uploadedImagesFiles: IAttachedFile[] = [];
@@ -79,6 +80,14 @@ export class CreateCommunityBuildComponent implements OnInit {
     this.setMeta();
   }
 
+  addTeammate() {
+    this.emails.push({value: ''});
+    console.log(this.emails);
+  }
+
+  removeTeammate(index) {
+    this.emails.splice(index, 1);
+  }
 
   getCommunityBuild() {
     this.activatedRoute.params.subscribe(data => {

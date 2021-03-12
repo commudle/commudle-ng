@@ -64,6 +64,22 @@
           </span>
         </div>
 
+        <div class="field teammates">
+          <p>Add teammate</p>
+          <div class="list" *ngFor="let user of emails; let in=index">
+            <div class = "input-box d-flex justify-content-space-between align-items-center">
+              <input nbInput [(ngModel)]="emails[in].value" fullWidth>
+              <nb-icon class="clickable" (click) = "removeTeammate(in)" icon="close-circle"></nb-icon>
+            </div>
+          </div>
+          <button nbButton (click)="addTeammate()">
+            <a>
+              <nb-icon icon="plus"></nb-icon>
+              Add
+            </a>
+          </button>
+        </div>
+
         <div class="field">
           <label fullWidth>
             {{linkFieldLabel}}

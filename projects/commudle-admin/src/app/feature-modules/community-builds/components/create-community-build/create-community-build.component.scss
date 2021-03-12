@@ -1,5 +1,4 @@
 .community-build {
-
   nb-card.page-header {
     h1 {
       font-weight: 300;
@@ -21,6 +20,17 @@
     form {
       .field {
         margin-top: 1.5rem;
+      }
+
+      .field.teammates {
+        a {
+          text-decoration: none;
+        }
+        .list {
+          .input-box {
+            padding: 5px 0px;
+          }
+        }
       }
 
       .field.actions {
@@ -59,35 +69,34 @@
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
-        >div {
-          >div {
+        > div {
+          > div {
             margin: 0.5rem;
-          width: 100px;
-          height: 100px;
-          border: 1px dotted lightgrey;
-          border-radius: 5px;
-          overflow: hidden;
-          padding: 5px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          img {
-            width: 100%;;
-          }
+            width: 100px;
+            height: 100px;
+            border: 1px dotted lightgrey;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            img {
+              width: 100%;
+            }
 
-          p{
-            margin: 5px 0 0;
-            position: absolute;
-            bottom: 0;
-            nb-icon:hover{
-              border-radius: 50%;
-              background-color: white;
+            p {
+              margin: 5px 0 0;
+              position: absolute;
+              bottom: 0;
+              nb-icon:hover {
+                border-radius: 50%;
+                background-color: white;
+              }
             }
           }
-          }
-
         }
       }
     }
