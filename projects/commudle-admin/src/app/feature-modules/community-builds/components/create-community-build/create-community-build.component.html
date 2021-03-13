@@ -64,16 +64,16 @@
           </span>
         </div>
 
-        <div class="field teammates">
-          <p>Add teammate</p>
-          <div class="list" *ngFor="let user of emails; let in=index">
-            <div class = "input-box d-flex justify-content-space-between align-items-center">
-              <input nbInput [(ngModel)]="emails[in].value" fullWidth>
-              <nb-icon class="clickable" (click) = "removeTeammate(in)" icon="close-circle"></nb-icon>
+        <div class="field" formArrayName="emails">
+          <p>Add teammate</p> 
+            <div *ngFor="let email of communityBuildForm.controls.emails['controls']; let i = index" >
+              <div class="teammate-email d-flex align-items-center" [formGroupName]="i">
+                <input fullWidth nbInput formControlName='value'>
+                <nb-icon class="clickable" (click)="removeTeammate(i)" icon="close-circle"></nb-icon>
+              </div>
             </div>
-          </div>
-          <button nbButton (click)="addTeammate()">
-            <a>
+          <button class="add-button" nbButton (click)="addTeammate()">
+            <a style="text-decoration: none;">
               <nb-icon icon="plus"></nb-icon>
               Add
             </a>
