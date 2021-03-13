@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
@@ -21,8 +21,7 @@ export class CreateCommunityBuildComponent implements OnInit {
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
   redirectTo;
-  emails: {value: string} [] = [];
-
+  form: FormGroup;
   embeddedLink;
   uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
@@ -34,7 +33,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: ['']
+    link: [''],
+    emails: this.fb.array([])
   });
 
 
@@ -75,18 +75,23 @@ export class CreateCommunityBuildComponent implements OnInit {
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
-
     this.title.setTitle('Share Your Build!');
     this.setMeta();
   }
 
+
+  createInput() {
+    return this.fb.group({
+      value: [""]
+    });
+  }
+
   addTeammate() {
-    this.emails.push({value: ''});
-    console.log(this.emails);
+    (this.communityBuildForm.get('emails') as FormArray).push(this.createInput());
   }
 
   removeTeammate(index) {
-    this.emails.splice(index, 1);
+    (this.communityBuildForm.get('emails') as FormArray).removeAt(index);
   }
 
   getCommunityBuild() {

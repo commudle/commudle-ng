@@ -20,16 +20,12 @@
     form {
       .field {
         margin-top: 1.5rem;
-      }
 
-      .field.teammates {
-        a {
-          text-decoration: none;
+        .teammate-email {
+          padding: 5px 0px;
         }
-        .list {
-          .input-box {
-            padding: 5px 0px;
-          }
+        .add-button {
+          margin: 5px 0px;
         }
       }
 
