@@ -18,7 +18,7 @@
         <div class="details">
           <p class="name">{{lab.user.name}}</p>
           <p *ngIf="lab.user.designation" class="designation">{{lab.user.designation | truncatetext:18}}
-          <p *ngIf="!lab.user.designation" class="designation">Commudler</p>
+          <p *ngIf="!lab.user.designation" class="designation">--</p>
         </div>
       </div>
       <div class="stats d-flex">
