@@ -12,6 +12,7 @@ export const environment = {
 
   session_cookie_name: 'cmdle_sess',
 
+
   app_url: 'https://commudle.com',
   base_url: 'https://json.commudle.com',
   action_cable_url: 'https://json.commudle.com/live',
