@@ -1,6 +1,8 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .speaker-session-details {
+  display: flex;
+  flex-direction: column;
 
   &.fullscreen {
     position: fixed;
@@ -13,268 +15,269 @@
 
     .video-stream {
       height: 100%;
-      >div {
+
+      > div {
         height: 100%;
+
         nb-card {
           margin-bottom: 0;
           height: 100%;
         }
       }
-
     }
-
-
   }
 
-  display: flex;
-  flex-direction: column;
+  .card-row {
+    display: flex;
+    flex-direction: column;
+    height: 98.5vh;
 
+    .card-session-details {
+      .video-stream {
+        nb-card {
+          nb-card-body {
+            display: flex;
 
-    .card-row {
-      display: flex;
-      flex-direction: column;
+            > div {
+              flex-grow: 1;
+            }
+          }
+        }
 
+        .fullscreen-button {
+          position: absolute;
+          z-index: 1040;
+          bottom: 0.5rem;
+          left: 2.5rem;
+          visibility: hidden;
+          transition: all 0.5s ease-in-out;
+        }
+
+        &:hover {
+          .fullscreen-button {
+            visibility: visible;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 999px) and (orientation: portrait) {
+      .fullscreen-button {
+        display: none !important;
+      }
+
+      .session-details {
+        display: none;
+      }
+      .attendees {
+        display: none;
+      }
+
+      .video-stream {
+        width: 100%;
+        height: 40vh;
+        position: sticky;
+        top: 3.5rem;
+        left: 0;
+        z-index: 1;
+
+        nb-card {
+          height: 40vh;
+
+          nb-card-body {
+            padding: 0 0.5rem;
+          }
+        }
+      }
+
+      .card-live-discussion {
+        width: 100vw;
+        height: fit-content;
+        position: sticky;
+        overflow-y: auto;
+
+        nb-card {
+          height: 100vh;
+
+          nb-card-body {
+            width: 100%;
+            padding: 0.5rem 0.5rem;
+
+            .minimize-sidebar-button {
+              display: none;
+            }
+
+            nb-tabset {
+              height: 100%;
+
+              nb-tab {
+                padding: 0;
+                height: 90%;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 999px) and (orientation: landscape) {
+      .session-details {
+        display: none;
+      }
+
+      .attendees {
+        display: none;
+      }
+
+      .video-stream {
+        width: 100%;
+
+        > div {
+          height: 100vh;
+
+          nb-card {
+            height: 100%;
+
+            nb-card-body {
+              padding: 0 0.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: 1000px) {
+      flex-direction: row;
 
       .card-session-details {
+        width: 75%;
 
+        &.maxWidth {
+          width: 95%;
+        }
+      }
 
-          .video-stream {
-            nb-card {
-              nb-card-body {
-                display: flex;
-                >div {
-                  flex-grow: 1;
+      .card-live-discussion {
+        width: 25%;
+        height: fit-content;
+        position: sticky;
+        top: 3.5rem;
+
+        &.minWidth {
+          width: 5%;
+
+          nb-tabset {
+            display: none;
+          }
+
+          nb-card {
+            background: white;
+
+            nb-card-body {
+              padding: 0;
+
+              nb-list {
+                background: white;
+
+                nb-list-item {
+                  padding: 5px 0;
+                  justify-content: center;
+
+                  p {
+                    color: grey;
+                    font-weight: 600;
+                    margin: 0;
+                  }
                 }
               }
             }
+          }
+        }
 
-            .fullscreen-button {
+        nb-card {
+          height: 95vh;
+
+          nb-card-body {
+            width: 100%;
+
+            .minimize-sidebar-button {
               position: absolute;
-              z-index: 1040;
-              bottom: 0.5rem;
-              left: 2.5rem;
+              top: 0;
+              left: 0;
               visibility: hidden;
-              transition: all 0.5s ease-in-out;
             }
 
             &:hover {
-              .fullscreen-button {
+              .minimize-sidebar-button {
                 visibility: visible;
               }
             }
-          }
-      }
 
-      @media screen and (max-width: 999px) and (orientation: portrait){
-
-        .fullscreen-button {
-
-          display: none !important;
-        }
-        .session-details {
-          display: none;
-        }
-        .attendees {
-          display: none;
-        }
-
-        .video-stream {
-          width: 100%;
-          height: 40vh;
-          position: sticky;
-          top: 3.5rem;
-          left: 0;
-          z-index: 1;
-          nb-card {
-            height: 40vh;
-            nb-card-body {
-              padding: 0 0.5rem;
-
-            }
-          }
-        }
-
-        .card-live-discussion {
-          width: 100vw;
-          height: fit-content;
-          position: sticky;
-          overflow-y: auto;
-
-          nb-card {
-            height: 100vh;
-            nb-card-body {
-              width: 100%;
-              padding: 0.5rem 0.5rem;
-
-              .minimize-sidebar-button {
-                display: none;
-              }
-
-              nb-tabset {
-                height: 100%;
-                nb-tab {
-                  padding: 0;
-                  height: 90%;
-                  width: 100%;
-                }
-              }
-            }
-          }
-        }
-
-      }
-
-      @media screen and (max-width: 999px) and (orientation: landscape){
-        .session-details {
-          display: none;
-        }
-        .attendees {
-          display: none;
-        }
-
-        .video-stream {
-          width: 100%;
-          >div {
-            height: 100vh;
-            nb-card {
-              height: 100%;
-              nb-card-body {
-                padding: 0 0.5rem;
-
-              }
-            }
-          }
-        }
-
-      }
-
-      @media screen and (min-width: 1000px) {
-        flex-direction: row;
-        margin: 0 -0.5rem;
-
-        .card-session-details {
-          width: 75%;
-
-          &.maxWidth {
-            width: 95%;
-          }
-        }
-
-        .card-live-discussion {
-          width: 25%;
-          height: fit-content;
-          position: sticky;
-          top: 3.5rem;
-
-          &.minWidth {
-            width: 5%;
             nb-tabset {
-              display: none;
-            }
-            nb-card {
-              background:white;
-              nb-card-body {
-                padding: 0;
+              height: 100%;
 
-                nb-list {
-                  background: white;
-                  nb-list-item {
-                    padding: 5px 0;
-                    justify-content: center;
-                    p {
-                      color: grey;
-                      font-weight: 600;
-                      margin: 0;
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          nb-card {
-            height: 100vh;
-            nb-card-body {
-              width: 100%;
-
-              .minimize-sidebar-button {
-                position: absolute;
-                top: 0;
-                left: 0;
-                visibility: hidden;
-              }
-
-              &:hover {
-                .minimize-sidebar-button {
-                  visibility: visible;
-                }
-              }
-
-              nb-tabset {
-                height: 100%;
-                ::ng-deep {
-                  ul.tabset {
-                    width: 100%;
-                    overflow-x: auto;
-                    padding: 5px 0;
-                    justify-content: flex-start;
-
-                    li {
-                      a {
-                        padding: 5px 10px;
-                      }
-                    }
-                  }
-                }
-
-
-                nb-tab {
-                  padding: 0;
-                  height: 90%;
+              ::ng-deep {
+                ul.tabset {
                   width: 100%;
+                  overflow-x: auto;
+                  padding: 5px 0;
+                  justify-content: flex-start;
+
+                  li {
+                    a {
+                      padding: 5px 10px;
+                    }
+                  }
                 }
+              }
+
+              nb-tab {
+                padding: 0;
+                height: 90%;
+                width: 100%;
               }
             }
           }
         }
+      }
 
-        .visit-users {
-          width: 100%;
+      .visit-users {
+        width: 100%;
+
+        nb-card-body {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .visit-user {
+          width: 200px;
+          margin: 0.5rem;
+          border: 1px solid lightgrey;
+          border-radius: 5px;
+        }
+      }
+
+      .video-stream {
+        width: 100%;
+        min-height: 95vh;
+
+        nb-card {
+          min-height: 95vh;
 
           nb-card-body {
-            display: flex;
-            flex-wrap: wrap;
-          }
-
-          .visit-user {
-            width: 200px;
-            margin: 0.5rem;
-            border: 1px solid lightgrey;
-            border-radius: 5px;
+            padding: 0;
           }
         }
-
-
-        .video-stream {
-          width: 100%;
-          min-height: 95vh;
-          nb-card {
-            min-height: 95vh;
-            nb-card-body {
-              padding: 0 0.5rem;
-
-            }
-          }
-        }
-
       }
     }
+  }
 }
-
 
 // nb-tabset override
 nb-tabset {
   height: 100%;
+
   ::ng-deep {
     ul.tabset {
       width: 100%;
@@ -290,17 +293,17 @@ nb-tabset {
     }
   }
 
-
   nb-tab {
     padding: 0;
     height: 90%;
     width: 100%;
   }
 }
-.session-details {
 
+.session-details {
   nb-card {
     margin: 0;
+
     nb-card-body {
       .community {
         width: fit-content;
