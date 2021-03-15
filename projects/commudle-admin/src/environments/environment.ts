@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  app_url: 'http://localhost:4200',
+  // app_url: 'http://localhost:4200',
   // base_url: 'http://localhost:3000',
   // action_cable_url: 'http://localhost:3000/live',
   // auth_cookie_name: 'dev_commudle_user_auth',
@@ -12,7 +12,8 @@ export const environment = {
 
   session_cookie_name: 'cmdle_sess',
 
-  // app_url: 'https://commudle.com',
+
+  app_url: 'https://commudle.com',
   base_url: 'https://json.commudle.com',
   action_cable_url: 'https://json.commudle.com/live',
   auth_cookie_name: 'commudle_user_auth',
