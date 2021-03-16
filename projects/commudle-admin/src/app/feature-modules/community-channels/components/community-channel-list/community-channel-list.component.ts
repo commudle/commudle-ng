@@ -6,6 +6,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -30,7 +31,9 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private authWatchService: LibAuthwatchService,
-    private communityChannelNotifications: CommunityChannelNotificationsChannel
+    private communityChannelNotifications: CommunityChannelNotificationsChannel,
+    private title: Title,
+    private meta: Meta
   ) { }
 
   ngOnInit() {
@@ -70,6 +73,9 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       this.communityChannelManagerService.selectedChannel$.subscribe(
         data => {
           this.selectedChannel = data;
+          if (this.selectedChannel) {
+            this.setMeta();
+          }
           this.markRead();
         }
       ),
@@ -83,6 +89,26 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     }
 
   }
+
+
+
+  setMeta() {
+    console.log(this.selectedChannel);
+    this.title.setTitle(`${this.selectedChannel.name} | ${this.selectedCommunity.name}`)
+    this.meta.updateTag({ name: 'description', content: `${this.selectedChannel.description}`});
+
+
+    this.meta.updateTag({ name: 'og:image', content: this.selectedCommunity.logo_path });
+    this.meta.updateTag({ name: 'og:image:secure_url', content: this.selectedCommunity.logo_path });
+    this.meta.updateTag({ name: 'og:title', content: `${this.selectedChannel.name} | ${this.selectedCommunity.name}` });
+    this.meta.updateTag({ name: 'og:description', content: `${this.selectedChannel.description}`});
+    this.meta.updateTag( { name: 'og:type', content: 'website'});
+
+    this.meta.updateTag({ name: 'twitter:image', content: this.selectedCommunity.logo_path });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.selectedChannel.name} | ${this.selectedCommunity.name}` });
+    this.meta.updateTag({ name: 'twitter:description', content: `${this.selectedChannel.description}`});
+  }
+
 
   markRead() {
     if (this.selectedChannel && this.channelNotifications.includes(this.selectedChannel.id)) {
