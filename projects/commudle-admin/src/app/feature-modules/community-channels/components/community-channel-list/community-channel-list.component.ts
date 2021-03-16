@@ -93,7 +93,6 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
 
   setMeta() {
-    console.log(this.selectedChannel);
     this.title.setTitle(`${this.selectedChannel.name} | ${this.selectedCommunity.name}`)
     this.meta.updateTag({ name: 'description', content: `${this.selectedChannel.description}`});
 
