@@ -50,8 +50,8 @@
       <form (ngSubmit)="emitReply()" *ngIf="canReply" [formGroup]="userMessageReplyForm">
         <nb-form-field>
           <nb-icon icon="edit-2" nbPrefix></nb-icon>
-          <textarea formControlName="content" fullWidth maxlength="1000" nbInput placeholder="Reply"
-                    rows="3" shape="semi-round"></textarea>
+          <textarea #messageInput (input)="handleInputSize()" formControlName="content" fullWidth maxlength="1000"
+                    minlength="1" nbInput placeholder="Reply" rows="1" shape="semi-round"></textarea>
           <button [disabled]="!userMessageReplyForm.valid" ghost nbButton nbSuffix shape="semi-round" status="primary"
                   type="submit">
             Post

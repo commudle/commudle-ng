@@ -77,6 +77,12 @@ export const API_ROUTES = {
   // question_types
   ALL_QUESTION_TYPES: 'api/v2/question_types',
 
+  // email unsubscribe groups
+  EMAIL_UNSUBSCRIBE_GROUPS: {
+    SHOW: 'api/v2/email_unsubscribe_groups/show',
+    TOGGLE_USER_SUBSCRIPTION: 'api/v2/email_unsubscribe_groups/toggle_my_subscription'
+  },
+
   // embedded_video_streams
   EMBEDDED_VIDEO_STREAMS: {
     GET: 'api/v2/embedded_video_streams',
@@ -334,6 +340,10 @@ export const API_ROUTES = {
     ADMIN: {
       INDEX: 'api/v2/labs/admin',
       UPDATE_PUBLISH_STATUS: 'api/v2/labs/admin/update_publish_status'
+    },
+    SEARCH: {
+      TAGS: 'api/v2/labs/search_tags',
+      LABS_BY_TAGS: 'api/v2/labs'
     }
   },
 

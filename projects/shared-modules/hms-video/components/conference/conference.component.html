@@ -37,12 +37,12 @@
    <!-- controls should be visible to the user if they are on the stage or if they are the host -->
    <div class="controls d-flex justify-content-center">
     <div class="mic" *ngIf="onStage">
-      <button nbButton ghost (click)="toggleAudio()">
+      <button nbButton ghost (click)="toggleAudio(!this.mic)">
         <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
       </button>
     </div>
     <div class="camera" *ngIf="onStage">
-      <button nbButton ghost (click)="toggleVideo()">
+      <button nbButton ghost (click)="toggleVideo(!this.camera)">
         <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
       </button>
     </div>
