@@ -13,6 +13,8 @@ import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable
 import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
+import * as LogRocket from 'logrocket';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -68,6 +70,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
             text: 'Profile',
             status: 'basic',
           },
+        });
+
+        LogRocket.init('g90s8l/commudle');
+        LogRocket.identify(`${this.currentUser.username}`, {
+          name: `${this.currentUser.name}`,
+          email: `${this.currentUser.email}`,
         });
       }
 
