@@ -54,7 +54,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private communityChannelChannel: CommunityChannelChannel,
     private authWatchService: LibAuthwatchService,
     private discussionsService: DiscussionsService,
-    private communityChannelManagerService: CommunityChannelManagerService
+    private communityChannelManagerService: CommunityChannelManagerService,
   ) { }
 
   ngOnInit() {
