@@ -26,7 +26,6 @@ export class LabsService {
     );
   }
 
-
   createLab(name): Observable<ILab> {
     return this.http.post<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.CREATE),
@@ -49,15 +48,12 @@ export class LabsService {
     );
   }
 
-
   getLab(labId): Observable<ILab> {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<ILab>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.SHOW), {params}
     );
   }
-
-
 
   updateHeaderImage(labId, headerImage): Observable<IAttachedFile> {
     const params = new HttpParams().set('lab_id', labId);
@@ -92,7 +88,6 @@ export class LabsService {
     );
   }
 
-
   updateTags(labId, tags): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.UPDATE_TAGS),
@@ -107,11 +102,10 @@ export class LabsService {
     );
   }
 
-
-  pIndex(tag): Observable<ILabs> {
+  pIndex(tag?: string): Observable<ILabs> {
     let params = new HttpParams();
     if (tag) {
-      params = params.set('tag', tag);
+      params = params.append('tag', tag);
     }
     return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.PUBLIC.INDEX), {params}
@@ -131,7 +125,6 @@ export class LabsService {
     );
   }
 
-
   pGetStep(stepId): Observable<ILabStep> {
     const params = new HttpParams().set('lab_step_id', stepId);
     return this.http.get<ILabStep>(
@@ -143,6 +136,34 @@ export class LabsService {
     const params = new HttpParams().set('lab_id', labId);
     return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.LABS.SIMILAR_LABS), {params}
+    )
+  }
+
+  searchTags(words: string[], page?: number, count?: number) {
+    let params = new HttpParams();
+    words.forEach(word => params = params.append('q[]', word));
+    if (page) {
+      params = params.append('page', String(page))
+    }
+    if (count) {
+      params = params.append('count', String(count))
+    }
+    return this.http.get<ITags>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.TAGS), {params}
+    )
+  }
+
+  searchLabsByTags(tags: string[], page?: number, count?: number) {
+    let params = new HttpParams();
+    tags.forEach(tag => params = params.append('tag_names[]', tag));
+    if (page) {
+      params = params.append('page', String(page))
+    }
+    if (count) {
+      params = params.append('count', String(count))
+    }
+    return this.http.get<ILabs>(
+      this.apiRoutesService.getRoute(API_ROUTES.LABS.SEARCH.LABS_BY_TAGS), {params}
     )
   }
 }

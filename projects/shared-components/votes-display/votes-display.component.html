@@ -17,9 +17,9 @@
       </nb-icon>
       <nb-icon
         *ngSwitchCase="'heart-outline'"
+        [icon]="myVote ? 'heart' : 'heart-outline'"
         [ngClass]="{'voted-heart': myVote, 'unvoted': !myVote, 'has-votes': totalVotes > 0}"
-        class="hear"
-        icon="heart-outline">
+        class="hear">
       </nb-icon>
       <nb-icon
         *ngSwitchCase="'star'"
