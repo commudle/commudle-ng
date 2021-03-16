@@ -12,6 +12,7 @@
     .header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: $space-28 0 $space-16;
     }
 
@@ -41,7 +42,9 @@
         }
 
         hr {
-          border: 1px solid rgba($gunmetal, 0.2);
+          height: 2px;
+          background-color: rgba($gunmetal, 0.2);
+          border: none;
           margin: $space-12 0 $space-32;
         }
 

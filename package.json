@@ -16,7 +16,7 @@
   },
   "private": true,
   "dependencies": {
-    "@100mslive/hmsvideo-web": "^0.9.24",
+    "@100mslive/hmsvideo-web": "^0.9.25",
     "@akveo/ng2-completer": "^9.0.1",
     "@angular/animations": "~11.0.1",
     "@angular/cdk": "^10.2.7",
@@ -51,6 +51,7 @@
     "eva-icons": "^1.1.2",
     "express": "^4.15.2",
     "lodash": "^4.17.15",
+    "logrocket": "^1.0.14",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "ng2-completer": "^9.0.1",
