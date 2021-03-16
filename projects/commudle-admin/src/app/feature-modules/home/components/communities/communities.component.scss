@@ -1,0 +1,65 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.home-communities {
+  position: relative;
+  .page-header {
+    background-color: white;
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      &.text-basic {
+        max-width: $max-page-width;
+      }
+
+      a {
+        margin: 0.5rem;
+      }
+    }
+  }
+
+  .communities {
+    max-width: $max-page-width;
+    padding: 1rem;
+    margin: 0 auto;
+
+    .filter-form {
+      position: sticky;
+      top: 4.0rem;
+      z-index: 1;
+    }
+
+    .early-access-button.bottom {
+      text-align: center;
+    }
+
+
+    .communities-list {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      >div {
+        margin: 0 0.5rem 0.8rem 0.5rem;
+        width: 23%;
+      }
+
+      @media (max-width: 1200px) {
+        justify-content: center;
+        align-items: center;
+        >div {
+          width: 300px;
+        }
+      }
+    }
+
+  }
+}
