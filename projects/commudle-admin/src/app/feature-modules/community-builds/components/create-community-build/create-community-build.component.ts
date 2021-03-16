@@ -82,16 +82,20 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   createInput() {
     return this.fb.group({
-      value: [""]
+      value: ['', Validators.required]
     });
   }
 
+  get emailList() {
+    return this.communityBuildForm.get('emails') as FormArray;
+  }
+
   addTeammate() {
-    (this.communityBuildForm.get('emails') as FormArray).push(this.createInput());
+    this.emailList.push(this.createInput());
   }
 
   removeTeammate(index) {
-    (this.communityBuildForm.get('emails') as FormArray).removeAt(index);
+    this.emailList.removeAt(index);
   }
 
   getCommunityBuild() {

@@ -32,7 +32,7 @@
   <nb-card class="form-card">
     <nb-card-body>
 
-      <form [formGroup]="communityBuildForm">
+      <form [formGroup]="communityBuildForm" (keydown.enter)="$event.preventDefault()">
 
         <div class="field">
           <label fullWidth>
@@ -65,17 +65,20 @@
         </div>
 
         <div class="field" formArrayName="emails">
-          <p>Add teammate</p> 
+          <p>Add Teammate</p> 
             <div *ngFor="let email of communityBuildForm.controls.emails['controls']; let i = index" >
               <div class="teammate-email d-flex align-items-center" [formGroupName]="i">
-                <input fullWidth nbInput formControlName='value'>
-                <nb-icon class="clickable" (click)="removeTeammate(i)" icon="close-circle"></nb-icon>
+                <input fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
+                <nb-icon status="danger" class="clickable" (click)="removeTeammate(i)" icon="close-circle"></nb-icon>
               </div>
+              <span *ngIf="emailList.controls[i].get('value').touched && emailList.controls[i].get('value').invalid && emailList.controls[i].get('value').errors.required" class="validation-error-text">
+                Required Field
+              </span>
             </div>
           <button class="add-button" nbButton (click)="addTeammate()">
-            <a style="text-decoration: none;">
+            <a type="button" style="text-decoration: none;">
               <nb-icon icon="plus"></nb-icon>
-              Add
+              Add Teammate
             </a>
           </button>
         </div>
