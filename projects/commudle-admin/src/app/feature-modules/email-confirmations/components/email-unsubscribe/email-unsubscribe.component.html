@@ -1,0 +1,25 @@
+<div class="email-unsubscribe d-flex justify-content-center align-items-center" [nbSpinner]="loading">
+  <nb-card *ngIf="emailUnsubscribeGroup">
+    <nb-card-body>
+      <div class="details">
+        <h2 *ngIf="currentUser">
+          Hi {{currentUser.name}}
+        </h2>
+        <p>
+          Set Email Preferences for:
+          <br/>
+          <span>
+            {{emailUnsubscribeGroup.name}}
+          </span>
+        </p>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <p>Off</p>
+        &nbsp;
+        <nb-toggle [(ngModel)]="emailUnsubscribeGroup.subscribed" [ngModelOptions]="{standalone: true}" (checkedChange)="toggleSubscription()"></nb-toggle>
+        &nbsp;
+        <p>On</p>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

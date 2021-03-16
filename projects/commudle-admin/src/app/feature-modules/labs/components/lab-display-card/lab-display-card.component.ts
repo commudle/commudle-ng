@@ -11,6 +11,7 @@ export class LabDisplayCardComponent implements OnInit {
   @Input() lab: ILab;
 
   constructor() {
+    ;
   }
 
   ngOnInit(): void {

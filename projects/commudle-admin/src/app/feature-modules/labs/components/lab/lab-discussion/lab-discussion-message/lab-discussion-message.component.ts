@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {IUserMessage} from 'projects/shared-models/user_message.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
@@ -25,8 +25,12 @@ export class LabDiscussionMessageComponent implements OnInit {
   moment = moment;
   showReplyForm = false;
   userMessageReplyForm = this.fb.group({
-    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
+    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]]
   });
+  limitRows = 3;
+  messageLastScrollHeight: number;
+
+  @ViewChild('messageInput') private messageInput: ElementRef;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -59,5 +63,19 @@ export class LabDiscussionMessageComponent implements OnInit {
 
   toggleReplyForm() {
     this.showReplyForm = !this.showReplyForm;
+  }
+
+  handleInputSize() {
+    let rows = this.messageInput.nativeElement.getAttribute('rows');
+    this.messageInput.nativeElement.setAttribute('rows', '1');
+
+    if (rows < this.limitRows && this.messageInput.nativeElement.scrollHeight > this.messageLastScrollHeight) {
+      rows++;
+    } else if (rows > 1 && this.messageInput.nativeElement.scrollHeight < this.messageLastScrollHeight) {
+      rows--;
+    }
+
+    this.messageLastScrollHeight = this.messageInput.nativeElement.scrollHeight;
+    this.messageInput.nativeElement.setAttribute('rows', rows);
   }
 }
