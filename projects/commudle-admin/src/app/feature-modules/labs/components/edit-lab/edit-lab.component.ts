@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID, TemplateRef, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,7 +7,7 @@ import {ILabStep} from 'projects/shared-models/lab-step.model';
 import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
 import {isPlatformBrowser} from '@angular/common';
 import {Meta, Title} from '@angular/platform-browser';
-import {NbDialogService, NbToastrService} from '@nebular/theme';
+import {NbDialogRef, NbDialogService} from '@nebular/theme';
 
 @Component({
   selector: 'app-edit-lab',
@@ -66,6 +66,10 @@ export class EditLabComponent implements OnInit, OnDestroy {
     toolbar_location: 'top',
     toolbar_sticky: true
   }
+
+  @ViewChild('submitDialog') submitDialog: TemplateRef<any>;
+  submitDialogRef: NbDialogRef<any>;
+
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -77,8 +81,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: object,
     private meta: Meta,
     private title: Title,
-    private dialogService: NbDialogService,
-    private nbToastrService: NbToastrService
+    private dialogService: NbDialogService
   ) {
   }
 
@@ -257,31 +260,26 @@ export class EditLabComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateLab(publishStatus) {
+  updateLab(publishStatus, forceSubmit: boolean = true) {
     if (this.lab.publish_status !== EPublishStatus.published) {
       this.labForm.patchValue({
         publish_status: publishStatus
       });
     }
-    if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted) {
-      this.nbToastrService.warning(
-        'We suggest you create your lab in 3 or more sections as it becomes easier for the reader',
-        'Insufficient number of sections',
-        {
-          duration: 5000
-        }
-      );
+    if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && forceSubmit) {
+      this.submitDialogRef = this.dialogService.open(this.submitDialog);
     } else {
       this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe(data => {
         if (data) {
           this.lab = data;
           this.submitTags();
+          this.onSubmitDialogClose();
         }
       });
     }
   }
 
-  // auto save every 30 seconds
+  // auto save every 10 seconds
   autoSaveLab() {
     this.autoSaving = true;
     this.labsService.updateLab(this.lab.slug, this.labForm.value, true).subscribe(data => {
@@ -317,4 +315,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     this.dialogService.open(element);
   }
 
+  onSubmitDialogClose() {
+    this.submitDialogRef.close();
+  }
 }
