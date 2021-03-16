@@ -260,13 +260,13 @@ export class EditLabComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateLab(publishStatus, forceSubmit: boolean = true) {
+  updateLab(publishStatus, forceSubmit: boolean = false) {
     if (this.lab.publish_status !== EPublishStatus.published) {
       this.labForm.patchValue({
         publish_status: publishStatus
       });
     }
-    if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && forceSubmit) {
+    if (this.steps.length < 3 && publishStatus === EPublishStatus.submitted && !forceSubmit) {
       this.submitDialogRef = this.dialogService.open(this.submitDialog);
     } else {
       this.labsService.updateLab(this.lab.slug, this.labForm.value, false).subscribe(data => {
@@ -281,6 +281,13 @@ export class EditLabComponent implements OnInit, OnDestroy {
 
   // auto save every 10 seconds
   autoSaveLab() {
+    for (const [idx, step] of this.labForm.get('lab_steps').value.entries()) {
+      // If both steps are blank, then don't delete
+      if (step.name === '' && step.description === '') {
+        (this.labForm.get('lab_steps') as FormArray).removeAt(idx);
+      }
+    }
+
     this.autoSaving = true;
     this.labsService.updateLab(this.lab.slug, this.labForm.value, true).subscribe(data => {
       if (data) {
