@@ -175,3 +175,16 @@
   </div>
 
 </div>
+
+<ng-template #submitDialog>
+  <nb-card>
+    <nb-card-header>Insufficient number of sections</nb-card-header>
+    <nb-card-body>
+      We suggest you create your lab in 3 or more sections as it becomes easier for the reader
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="onSubmitDialogClose()" nbButton status="danger">Go back</button>
+      <button (click)="updateLab(EPublishStatus.submitted, false)" nbButton status="success">Continue</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
