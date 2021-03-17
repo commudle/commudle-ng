@@ -1,7 +1,7 @@
 import {AfterViewChecked, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import {ILab} from 'projects/shared-models/lab.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
 import {DomSanitizer, Meta, Title} from '@angular/platform-browser';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
@@ -10,7 +10,6 @@ import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-high
 import {NbDialogService, NbSidebarService} from '@nebular/theme';
 import {Subscription} from 'rxjs';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
-
 
 @Component({
   selector: 'app-lab',
@@ -57,6 +56,21 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.setStep(-1);
       })
     );
+
+    // Listen for url changes
+    this.router.events.subscribe((event: NavigationStart) => {
+      if (event.navigationTrigger === 'popstate') {
+        // Get step id from url
+        const stepId = parseInt(event.url.split('/').pop(), 10);
+        if (isNaN(stepId)) {
+          // Navigation between a step and overview
+          this.setStep(-1);
+        } else {
+          // Navigation between steps
+          this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === stepId);
+        }
+      }
+    });
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
