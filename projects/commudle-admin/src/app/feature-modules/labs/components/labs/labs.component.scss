@@ -9,6 +9,10 @@
       padding: $space-16 $space-136;
     }
 
+    @media all and (max-width: $max-page-width) and (min-width: $tab-width) {
+      padding: $space-16 $space-32;
+    }
+
     .header {
       display: flex;
       align-items: center;
@@ -55,6 +59,10 @@
         @media all and (max-width: $tab-width) {
           .labs {
             justify-content: center;
+          }
+
+          hr {
+            margin: $space-12 $space-16 $space-32;
           }
         }
       }
