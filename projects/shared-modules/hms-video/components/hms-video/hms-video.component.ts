@@ -8,7 +8,6 @@ import { HmsClientManagerService } from '../../services/hms-client-manager.servi
 import { EHmsStates, HmsVideoStateService } from '../../services/hms-video-state.service';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
 import { EHmsRoles } from '../enums/hms-roles.enum';
-
 @Component({
   selector: 'app-hms-video',
   templateUrl: './hms-video.component.html',
@@ -39,7 +38,8 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
     private hmsLiveChannel: HmsLiveChannel,
     private hmsClientManagerService: HmsClientManagerService,
     private authWatchService: LibAuthwatchService
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
     // todo set this as per the user's role [webinar, or conference]

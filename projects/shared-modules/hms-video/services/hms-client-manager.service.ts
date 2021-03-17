@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HMSPeer, HMSClientConfig, HMSClient, HMSMediaStreamConstraints } from "@100mslive/hmsvideo-web";
 import { from, Observable } from 'rxjs';
+import { HMSAnalyticsEventLevel } from '@100mslive/hmsvideo-web/lib/hms_config';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,10 @@ export class HmsClientManagerService {
 
   createClient(username, clientToken) {
     const config = new HMSClientConfig({
-      endpoint: "wss://prod-in.100ms.live"
+      endpoint: "wss://prod-in.100ms.live",
+      analyticsEventLevel: HMSAnalyticsEventLevel.ERROR
     });
-    const peer = new HMSPeer(username, clientToken);
+    const peer = new HMSPeer(username, clientToken, null);
 
     return new HMSClient(peer, config);
   }
@@ -34,8 +36,8 @@ export class HmsClientManagerService {
       bitrate: 256,
       codec: 'VP8',
       frameRate: 20,
-      shouldPublishAudio: mic,
-      shouldPublishVideo: camera,
+      shouldPublishAudio: true,
+      shouldPublishVideo: true,
       advancedMediaConstraints: {
         audio: {
           deviceId: audioDevice.deviceId
@@ -52,7 +54,7 @@ export class HmsClientManagerService {
 
   // this will publish both audio/video and screen streams
   publishLocalStream(client: HMSClient, stream, roomId): Observable<any> {
-    return from(client.publish(stream, roomId));
+    return from(client.publish(stream, roomId, null));
   }
 
 
@@ -85,7 +87,7 @@ export class HmsClientManagerService {
 
   // subscribe to remote peer's stream
   getPeerStream(client: HMSClient, mId, roomId): Observable<any> {
-    return from(client.subscribe(mId, roomId));
+    return from(client.subscribe(mId, roomId, null));
   }
 
   // unsubscribe from remote peer's stream

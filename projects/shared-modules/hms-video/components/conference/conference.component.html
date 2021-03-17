@@ -1,6 +1,7 @@
 <div class="conference">
   <div class="screen-video" *ngIf="screenShareStream">
     <app-user-video
+    [type]="'screenshare'"
     [stream]="streams[screenShareStream].stream"
     [userDetails]="(peers[streams[screenShareStream].uid] ? peers[streams[screenShareStream].uid].user : {})"
     [overridable]="serverClient.role === EHmsRoles.HOST"
@@ -22,6 +23,7 @@
       <!-- show only non screen video elements here -->
       <app-user-video
       *ngIf="screenShareStream !== stream.key"
+      [type]="'camera'"
       [stream]="stream.value['stream']"
       [userDetails]="(peers[stream.value['uid']] ? peers[stream.value['uid']].user : {})"
       [overridable]="serverClient.role === EHmsRoles.HOST"
@@ -35,12 +37,12 @@
    <!-- controls should be visible to the user if they are on the stage or if they are the host -->
    <div class="controls d-flex justify-content-center">
     <div class="mic" *ngIf="onStage">
-      <button nbButton ghost (click)="toggleAudio()">
+      <button nbButton ghost (click)="toggleAudio(!this.mic)">
         <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
       </button>
     </div>
     <div class="camera" *ngIf="onStage">
-      <button nbButton ghost (click)="toggleVideo()">
+      <button nbButton ghost (click)="toggleVideo(!this.camera)">
         <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
       </button>
     </div>

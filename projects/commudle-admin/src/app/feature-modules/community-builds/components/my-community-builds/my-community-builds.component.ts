@@ -7,6 +7,7 @@ import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services
 import { NbWindowService } from '@nebular/theme';
 import { Title } from '@angular/platform-browser';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 
 @Component({
   selector: 'app-my-community-builds',
@@ -27,6 +28,7 @@ export class MyCommunityBuildsComponent implements OnInit {
     private title: Title,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
+    private appUsersService: AppUsersService
   ) {
     title.setTitle('My Builds');
    }
@@ -45,7 +47,7 @@ export class MyCommunityBuildsComponent implements OnInit {
 
 
   getAllBuilds() {
-    this.communityBuildsService.getAll().subscribe(
+    this.appUsersService.myCommunityBuilds().subscribe(
       data => {
         this.cBuilds = data.community_builds;
       }

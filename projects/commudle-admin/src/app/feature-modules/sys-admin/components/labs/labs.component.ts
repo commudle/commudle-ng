@@ -14,9 +14,11 @@ export class LabsComponent implements OnInit {
 
 
   moment = moment;
-  labs: ILab[];
+  labs: ILab[] = [];
   EPublishStatus = EPublishStatus;
   publishStatuses = Object.keys(EPublishStatus);
+  page = 1;
+  loading = true;
 
   constructor(
     private toastLogService: LibToastLogService,
@@ -25,14 +27,20 @@ export class LabsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllBuilds();
+    this.getAllLabs();
   }
 
 
-  getAllBuilds() {
-    this.labsService.getAll().subscribe(
+  getAllLabs() {
+    this.labsService.getAll(this.page).subscribe(
       data => {
-        this.labs = data.labs;
+        if (data.labs.length > 0) {
+          this.labs = [...this.labs, ...data.labs];
+          this.page += 1;
+          this.getAllLabs();
+        } else {
+          this.loading = false;
+        }
       }
     );
   }

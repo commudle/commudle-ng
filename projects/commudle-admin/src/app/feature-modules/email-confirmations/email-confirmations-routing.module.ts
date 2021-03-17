@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { CollaborationCommunityComponent } from './components/collaboration-community/collaboration-community.component';
 import { UserRoleConfirmationComponent } from './components/user-role-confirmation/user-role-confirmation.component';
+import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-unsubscribe.component';
+import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 
 
 const routes: Routes = [
@@ -17,6 +19,11 @@ const routes: Routes = [
   {
     path: 'user-role',
     component: UserRoleConfirmationComponent
+  },
+  {
+    path: 'subscription/:eug',
+    component: EmailUnsubscribeComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
