@@ -1,6 +1,9 @@
-:host{
-  nb-layout-header{
-    .container{
+
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+:host {
+  nb-layout-header {
+    .container {
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -50,74 +53,201 @@
     }
   }
 
-  nb-layout-footer {
-    ::ng-deep {
+  nb-layout-footer
+  {
+    ::ng-deep
+    {
       nav {
         flex-direction: column;
-      }
-    }
-    .main-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 0.8rem;
-      img {
-        width: 35px;
-      }
-
-      p {
-        font-size: 1rem;
-        color: #4481ff;
-        margin: 0 0.5rem;
-
+        background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+        overflow: hidden;
+        padding: 0 !important;
       }
     }
 
-    .links {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-      .social {
-        margin: 0 1rem;
-        a {
-          margin: 5px;
-          color: grey;
-          nb-icon {
-            font-size: 1.3rem;
+
+    .footer {
+      padding: 30px 40px 15px;
+
+      a, p {
+        font-family: $primary-font-family !important;
+      }
+
+      .page-links {
+        display: flex;
+        flex-direction: column;
+
+        .logo {
+          img {
+            width: 50px;
+            filter: brightness(5);
+
+          }
+        }
+
+        .links {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          &>div {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 15px 0;
+            a {
+              text-decoration: none;
+              color: white;
+              font-weight: 900;
+              font-size: 12px;
+            }
+          }
+
+          .two {
+            order: 2;
+          }
+
+          .four {
+            display: none;
           }
         }
       }
 
-      .pages, .policies {
+
+      .social-links {
+        margin-top: 16px;
         display: flex;
-        flex-direction: column;
-        a {
-          margin: 0 0 0.5rem;
-          text-decoration: none;
-          color: grey;
+        flex-direction: column-reverse;
+        align-items: center;
+        hr {
+          border-top: 1px solid white;
+          width: 65px;
+        }
+
+        .links {
+          display: flex;
+          nb-icon {
+            color: white;
+            font-size: 24px;
+            margin: 8px;
+          }
+        }
+
+        .tech-stack {
+          color: #f5f5f5;
+          display: none;
         }
       }
 
+      .ellipse-large, .ellipse-small {
+        visibility: hidden;
+      }
 
-      @media screen and (max-width: 800px) {
+    }
+  }
+
+  @media only screen and (min-width: $mobile-width)
+  {
+    nb-layout-footer
+    {
+      ::ng-deep
+      {
+        nav {
+          display: flex;
+          flex-direction: column;
+          background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+        }
+      }
+
+      .footer {
+        padding: 30px 100px 10px;
+        position: relative;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        .social {
-          margin: 0.5rem 0 0;
+        align-items: center;
+        justify-content: space-between;
+
+        .page-links {
+          width: 100%;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+
+          .logo {
+            width: 30%;
+            img {
+              width: 100px;
+            }
+          }
+
+          .links {
+            width: 70%;
+            justify-content: space-around;
+            &>div {
+              width: unset;
+            }
+
+            .two {
+              order: unset;
+            }
+
+            .four {
+              display: unset;
+            }
+          }
         }
 
-        .pages, .policies {
-          margin-top: 0.5rem;
+        .social-links {
+          width: 60%;
+          flex-direction: column;
+          hr {
+            width: 100%;
+          }
+
+          .links {
+            justify-content: center;
+
+            nb-icon {
+              font-size: 30px;
+              margin: 24px 8px 18px;
+            }
+          }
+
+          .tech-stack {
+            display: block;
+            text-align: center;
+            p {
+              margin: 0;
+              color: white;
+            }
+          }
+        }
+
+
+        .ellipse-large {
+          visibility: visible;
+          width: 160px;
+          height: 155px;
+          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+          border-radius: 50%;
+          position:absolute;
+          left: -40px;
+          bottom: -30px;
+        }
+
+        .ellipse-small
+        {
+          visibility: visible;
+          width: 140px;
+          height: 135px;
+          left: 70px;
+          bottom: -70px;
+          transform: rotate(45deg);
+          background: linear-gradient(226.61deg,#536eff 14.04%,rgba(114,193,255,.71) 73.46%);
+          border-radius: 100px 100px 100px 100px;
+          position: absolute;
         }
       }
     }
   }
-
-  // nb-sidebar {
-  //   transition: width 0.1s;
-  // }
-
-
-
 }

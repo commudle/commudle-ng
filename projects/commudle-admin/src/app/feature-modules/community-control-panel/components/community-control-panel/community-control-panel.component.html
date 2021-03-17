@@ -1,4 +1,4 @@
-<div>
+<div class="page-padding">
 
   <nb-card>
     <nb-card-body>
@@ -14,17 +14,27 @@
           <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
           &nbsp;
           &nbsp;
-          <a nbButton status="info" size="small" target="_blank" [routerLink]="['/communities', community.slug]">
+
+          <button nbButton size="small" status="primary"
+                  (click)="sendEmails()">
+                  <nb-icon icon="email-outline"></nb-icon>
+                  Send Emails
+          </button>
+          &nbsp;
+          &nbsp;
+          <a nbButton size="small" status="primary" target="_blank" [routerLink]="['/communities', community.slug]">
             Public Page
             <nb-icon icon="external-link"></nb-icon>
           </a>
 
-          &nbsp;&nbsp;
-          <a nbButton status="success" size="small" [routerLink]="['stats']">
+          &nbsp;
+          &nbsp;
+          <a nbButton size="small" status="success" [routerLink]="['stats']">
             <nb-icon icon="trending-up-outline"></nb-icon>
             Stats <sup>Beta</sup>
             &nbsp; <nb-icon icon="external-link"></nb-icon>
           </a>
+
         </p>
       </div>
       <div>

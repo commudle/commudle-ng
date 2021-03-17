@@ -16,7 +16,7 @@
       margin-left: auto;
       margin-right: auto;
       &.text-basic {
-        max-width: $home-max-page-width;
+        max-width: $max-page-width;
       }
 
       a {
@@ -26,7 +26,7 @@
   }
 
   .communities {
-    max-width: $home-max-page-width;
+    max-width: $max-page-width;
     padding: 1rem;
     margin: 0 auto;
 

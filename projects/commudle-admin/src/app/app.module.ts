@@ -4,7 +4,6 @@ import {ApiParserResponseInterceptor} from 'projects/shared-services/api-parser-
 import {AuthTokenInterceptor} from 'projects/shared-services/lib-authwatch-token.interceptor';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {
   NbAccordionModule,
@@ -31,8 +30,9 @@ import {
   NbThemeModule,
   NbToastrModule,
   NbTooltipModule,
-  NbUserModule,
-  NbWindowModule
+  NbWindowModule,
+  NbTimepickerModule,
+  NbUserModule
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
@@ -80,7 +80,6 @@ export function initApp(appInitService: AppInitService) {
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     OrganizerCommunitiesListComponent,
     CommunityComponent,
     HomeComponent,
@@ -118,7 +117,6 @@ export function initApp(appInitService: AppInitService) {
     LibErrorHandlerModule,
     NgxMaterialTimepickerModule,
 
-
     // Nebula modules
     NbThemeModule.forRoot({name: 'default'}),
     NbLayoutModule,
@@ -146,6 +144,7 @@ export function initApp(appInitService: AppInitService) {
     NbFormFieldModule,
     NbDialogModule.forRoot(),
     NbSpinnerModule,
+    NbTimepickerModule.forRoot(),
 
     // Other external npm modules
     Ng2CompleterModule,

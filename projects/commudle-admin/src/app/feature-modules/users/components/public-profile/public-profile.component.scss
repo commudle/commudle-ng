@@ -1,6 +1,16 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .public-profile {
-  max-width: 1366px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+
+  // @media (min-width: $tab-width) {
+  //   flex-direction: row;
+  //   flex-wrap: nowrap;
+  // }
+
 
   header {
    nb-card {
@@ -63,11 +73,11 @@
 
   }
 
-  @media (min-width: 820px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    .column-left {
-      width: 40%;
-    }
-  }
+  // @media (min-width: 820px) {
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
+  //   .column-left {
+  //     width: 40%;
+  //   }
+  // }
 }
