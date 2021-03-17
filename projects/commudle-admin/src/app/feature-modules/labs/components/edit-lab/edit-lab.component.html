@@ -4,20 +4,16 @@
     <div class="left-col">
       <nb-card>
         <nb-card-body>
-          <p>
-            A good Lab has steps / sections with images too. Here's a small guide on how to use this page:
-          </p>
-
-          <div class="d-flex justify-content-center align-items-center help-video clickable" (click)="openGuide(guideVideo)">
+          <p>A good Lab has steps / sections with images too. Here's a small guide on how to use this page:</p>
+          <div (click)="openGuide(guideVideo)"
+               class="d-flex justify-content-center align-items-center help-video clickable">
             <p>Guide Video</p>
             <nb-icon icon="play-circle-outline"></nb-icon>
           </div>
           <ng-template #guideVideo let-data>
             <nb-card>
               <nb-card-body>
-                <youtube-player
-                  videoId="Ef_7SgjaoEM"
-                ></youtube-player>
+                <youtube-player videoId="Ef_7SgjaoEM"></youtube-player>
               </nb-card-body>
             </nb-card>
           </ng-template>
@@ -30,29 +26,24 @@
           <div class="container">
             <p class="text-center">
               <span class="text-highlight-yellow">
-                Changes will be autosaved every 10 seconds
+                Changes will be auto saved every 10 seconds
               </span>
             </p>
 
-            <form class='lab-header-image' [formGroup]="headerImageForm">
+            <form [formGroup]="headerImageForm" class='lab-header-image'>
               <div class="header-image">
                 <div>
-                  <div class="uploaded-header-image" *ngIf="uploadedHeaderImage || lab.header_image">
-                    <img src="{{uploadedHeaderImage || lab.header_image.url}}" alt="lab header image">
+                  <div *ngIf="uploadedHeaderImage || lab.header_image" class="uploaded-header-image">
+                    <img alt="lab header image" src="{{uploadedHeaderImage || lab.header_image.url}}">
                   </div>
-                  <button
-                    class="delete-header-image-button"
-                    nbButton
-                    outline
-                    size="tiny"
-                    status="danger"
-                    *ngIf="uploadedHeaderImage || lab.header_image"
-                    (click)="deleteEventHeader()">
+                  <button (click)="deleteEventHeader()" *ngIf="uploadedHeaderImage || lab.header_image"
+                          class="delete-header-image-button" nbButton outline size="tiny" status="danger">
                     <nb-icon icon="close-circle"></nb-icon>
                     Delete Image
                   </button>
                 </div>
-                <label class="clickable" [ngClass]="{'hidden': uploadedHeaderImage || (lab.header_image && lab.header_image.url)}">
+                <label [ngClass]="{'hidden': uploadedHeaderImage || (lab.header_image && lab.header_image.url)}"
+                       class="clickable">
                   <span class="d-flex justify-content-center align-items-center">
                     <span>
                       <nb-icon icon="image-outline"></nb-icon>
@@ -65,26 +56,27 @@
                       </small>
                     </span>
                   </span>
-                  <input formControlName="header_image" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedHeaderImage($event)">
+                  <input (change)="displaySelectedHeaderImage($event)" accept="image/*" formControlName="header_image"
+                         fullWidth nbInput type="file">
                 </label>
               </div>
             </form>
-            <form class="lab-form" [formGroup]="labForm">
+            <form [formGroup]="labForm" class="lab-form">
               <div class="overview">
                 <div>
-                  <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
-
-                  <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
+                  <input fieldSize="giant" formControlName="name" fullWidth nbInput placeholder="Type a name..."
+                         type="text">
+                  <span
+                    *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required"
+                    class="validation-error-text">
                     Required Field
                   </span>
                 </div>
                 <div>
-
                   <editor
-                    formControlName="description"
+                    [init]="tinyMCE"
                     apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                    [init]="tinyMCE">
-
+                    formControlName="description">
                   </editor>
                 </div>
               </div>
@@ -93,23 +85,24 @@
         </nb-card-body>
       </nb-card>
       <div *ngIf="labForm['controls'].lab_steps['controls'].length > 0" [formGroup]="labForm">
-        <nb-card formArrayName="lab_steps" *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i=index;">
-          <nb-card-body >
-            <div >
-              <div class="lab-step" [formGroupName]="i">
+        <nb-card *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i=index;"
+                 formArrayName="lab_steps">
+          <nb-card-body>
+            <div>
+              <div [formGroupName]="i" class="lab-step">
                 <h3 class="steps-counter d-flex justify-content-start align-items-center">
-                  {{ i+1 }}.  <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Add a Title">
-
-                  &nbsp;
-                  <nb-icon icon="close-circle-outline" status="danger" class="clickable" (click)="removeStep(i)"></nb-icon>
+                  {{ i + 1 }}.&nbsp;
+                  <input fieldSize="giant" formControlName="name" fullWidth nbInput placeholder="Add a Title"
+                         type="text">&nbsp;
+                  <nb-icon (click)="removeStep(i)" class="clickable" icon="close-circle-outline"
+                           status="danger"></nb-icon>
                 </h3>
 
                 <div>
                   <editor
-                    formControlName="description"
+                    [init]="tinyMCE"
                     apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-                    [init]="tinyMCE">
-
+                    formControlName="description">
                   </editor>
                   <!-- <span *ngIf="lStep.get('description').touched && lStep.get('description').invalid && lStep.get('description').errors.required" class="validation-error-text">
                     Required Field
@@ -121,13 +114,12 @@
         </nb-card>
       </div>
 
-
       <nb-card class="clickable">
         <nb-card-body (click)="addStep()">
           <div class="add-step-button text-center">
             <nb-icon icon="plus"></nb-icon>
-              <br/>
-              Add New Section
+            <br/>
+            Add New Section
           </div>
 
         </nb-card-body>
@@ -149,25 +141,14 @@
           </i>
         </p>
 
-        <div class="actions" >
-          <button
-            *ngIf="this.lab.publish_status !== EPublishStatus.published"
-            [disabled]="!labForm.valid"
-            type="submit"
-            nbButton
-            status="info"
-            (click)="updateLab(EPublishStatus.draft)"
-            >
+        <div class="actions">
+          <button (click)="updateLab(EPublishStatus.draft)" *ngIf="this.lab.publish_status !== EPublishStatus.published"
+                  [disabled]="!labForm.valid" nbButton status="info" type="submit">
             <nb-icon icon="edit"></nb-icon>
             Save as Draft
           </button>
-          <button
-            [disabled]="!labForm.valid || autoSaving"
-            type="submit"
-            nbButton
-            status="primary"
-            (click)="updateLab(EPublishStatus.submitted)"
-            >
+          <button (click)="updateLab(EPublishStatus.submitted)" [disabled]="!labForm.valid || autoSaving" nbButton
+                  status="primary" type="submit">
             <nb-icon icon="checkmark"></nb-icon>
 
             <span *ngIf="this.lab.publish_status !== EPublishStatus.published && !autoSaving">
@@ -186,12 +167,24 @@
       </div>
     </div>
     <div class="right-col">
-      <button nbButton ghost [routerLink]="['/labs', lab.slug]">
+      <button [routerLink]="['/labs', lab.slug]" ghost nbButton>
         Preview
         <nb-icon icon="external-link"></nb-icon>
       </button>
     </div>
-
   </div>
 
 </div>
+
+<ng-template #submitDialog>
+  <nb-card>
+    <nb-card-header>Insufficient number of sections</nb-card-header>
+    <nb-card-body>
+      We suggest you create your lab in 3 or more sections as it becomes easier for the reader
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="onSubmitDialogClose()" nbButton status="danger">Go back</button>
+      <button (click)="updateLab(EPublishStatus.submitted, true)" nbButton status="success">Continue</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
