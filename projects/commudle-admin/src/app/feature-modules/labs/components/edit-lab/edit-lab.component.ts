@@ -285,7 +285,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     this.labsService.updateLab(this.lab.slug, this.labForm.value, true).subscribe(
       data => {
         if (data) {
-          this.lab = data;
+          // this.lab = data;
           this.submitTags(false);
           this.autoSaving = false;
         }
