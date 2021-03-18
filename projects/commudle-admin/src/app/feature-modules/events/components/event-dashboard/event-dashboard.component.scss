@@ -37,11 +37,9 @@ h1 {
     }
   }
   .event-dashboard {
-    display: flex;
-    flex-direction: row-reverse;
     margin-top: $space-8;
     .side-menu.responsive {
-      background-color: white;
+      background-color: $white;
       position: fixed;
       bottom: 0;
       left: 0;
@@ -58,15 +56,12 @@ h1 {
       }
 
       .menu-items {
-        display: flex;
-        flex-direction: row;
         overflow-x: auto;
 
         .item {
           padding: 0 5px;
 
           a {
-            display: flex;
             height: 100%;
             width: fit-content;
             text-decoration: none;
@@ -86,7 +81,6 @@ h1 {
         }
 
         .item.external-links {
-          display: flex;
           button {
             margin: 0 5px;
           }
@@ -203,8 +197,6 @@ h1 {
       }
 
       .advanced-option-switch {
-        display: flex;
-        align-items: center;
         margin-bottom: 1rem;
         p {
           margin: 0 0.5rem;
@@ -248,9 +240,6 @@ h1 {
           }
           .uploaded-header-image {
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             img {
               max-width: 100%;
             }
@@ -260,10 +249,6 @@ h1 {
             height: 300px;
             width: 100%;
             background-color: #c5c5c538;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             p {
               margin: 0;
               font-size: 1.5rem;

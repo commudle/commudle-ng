@@ -34,7 +34,7 @@
             ]"
           >
             Public Event Page
-            <nb-icon icon="external-link"></nb-icon>
+            <nb-icon icon="external-link d-flex"></nb-icon>
           </a>
           <a
             nbButton
@@ -50,7 +50,7 @@
       </nb-card-body>
     </nb-card>
   </div>
-  <div class="event-dashboard">
+  <div class="event-dashboard d-flex flex-row-reverse">
     <div class="page-column">
       <div class="item-group" #eventInfo>
         <p class="item-group-title">Event Info</p>
@@ -69,7 +69,7 @@
                       <div>
                         <div>
                           <div
-                            class="uploaded-header-image"
+                            class="uploaded-header-image d-flex justify-content-center align-items-center"
                             *ngIf="
                               uploadedHeaderImage || event.header_image_path
                             "
@@ -98,7 +98,7 @@
                         </div>
                         <label class="clickable">
                           <div
-                            class="uploaded-header-image filler"
+                            class="uploaded-header-image filler d-flex flex-column align-items-center justify-content-center"
                             *ngIf="
                               !(
                                 uploadedHeaderImage || event.header_image_path
@@ -203,7 +203,7 @@
           <nb-card>
             <nb-card-header> Registrations </nb-card-header>
             <nb-card-body>
-              <div class="advanced-option-switch" *ngIf="event.editable">
+              <div class="advanced-option-switch d-flex align-items-center" *ngIf="event.editable">
                 <p>One Click Registration</p>
                 <nb-toggle
                   status="primary"
@@ -358,14 +358,14 @@
     <div class="side-menu responsive">
       <nb-card>
         <nb-card-body>
-          <div class="menu-items">
+          <div class="menu-items d-flex flex-row">
             <div
               class="item"
               (click)="scroll(eventInfo)"
               nbTooltip="Status, Header Image, Basic Details"
               nbTooltipPlacement="end"
             >
-              <a>
+              <a class="d-flex">
                 <nb-icon icon="info-outline"></nb-icon>
                 <span>
                   Event Info
