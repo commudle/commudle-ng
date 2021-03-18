@@ -49,10 +49,8 @@
       <div #videoContainer class="video-stream">
         <app-auto-attendance *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"
                              [eventId]="this.event.id"></app-auto-attendance>
-        <button (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen" class="fullscreen-button"
-                nbButton size="tiny">
-          Go Fullscreen
-        </button>
+        <nb-icon icon="expand" (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen" class="fullscreen-button"
+        nbButton size="tiny"></nb-icon>
 
         <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>
