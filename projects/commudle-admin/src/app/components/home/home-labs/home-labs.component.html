@@ -22,14 +22,14 @@
           <li *ngFor="let lab of labs" class="clickable">
             <p class="name">
               <a [routerLink]="['/labs', lab.slug]">
-                {{ lab.name }} ;lodvlc loruf horuf ohirufo hro
+                {{ lab.name | truncatetext:35 }}
               </a>
             </p>
             <p class="author">by {{ lab.user.name }}</p>
           </li>
         </ul>
       </div>
-      <p *ngIf="labs.length > 0" class="all-labs-link clickable">
+      <p *ngIf="labs.length > 0" class="all-labs-link clickable" [routerLink]="['/labs']">
         <a>All Labs >></a>
       </p>
     </nb-card-body>
