@@ -34,7 +34,7 @@ export class CreateCommunityBuildComponent implements OnInit {
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
     link: [''],
-    emails: this.fb.array([])
+    team: this.fb.array([])
   });
 
 
@@ -79,19 +79,12 @@ export class CreateCommunityBuildComponent implements OnInit {
     this.setMeta();
   }
 
-
-  createInput() {
-    return this.fb.group({
-      value: ['', Validators.required]
-    });
-  }
-
   get emailList() {
-    return this.communityBuildForm.get('emails') as FormArray;
+    return this.communityBuildForm.get('team') as FormArray;
   }
 
   addTeammate() {
-    this.emailList.push(this.createInput());
+    this.emailList.push(this.fb.group({value: ['', Validators.required]}));
   }
 
   removeTeammate(index) {
@@ -207,9 +200,13 @@ export class CreateCommunityBuildComponent implements OnInit {
   buildFormData(publishStatus): FormData {
     const formData: any = new FormData();
     const cBuildFormValue = this.communityBuildForm.value;
+    const team_members = cBuildFormValue['team'];
+
     Object.keys(cBuildFormValue).forEach(
-      key => (!(cBuildFormValue[key] == null) ? formData.append(`community_build[${key}]`, cBuildFormValue[key]) : '')
-      );
+      key =>{ if (cBuildFormValue[key] != null && key != 'team') {
+           formData.append(`community_build[${key}]`, cBuildFormValue[key]);
+        }
+      });
 
 
     if (this.cBuild && this.cBuild.publish_status === EPublishStatus.published) {
@@ -223,6 +220,16 @@ export class CreateCommunityBuildComponent implements OnInit {
       Object.keys(this.uploadedImagesFiles[i]).forEach(
         key => formData.append(`community_build[images][][${key}]`, this.uploadedImagesFiles[i][key])
         );
+    }
+
+    for (let i = 0; i < team_members.length; i++) {
+      Object.keys(team_members[i]).forEach(
+        key => formData.append(`community_build[team][][${key}]`, team_members[i][key])
+        );
+    }
+
+    for (var pair of formData.entries()) {
+      console.log(pair); 
     }
 
     return formData;
