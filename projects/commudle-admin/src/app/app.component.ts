@@ -51,7 +51,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
-    this.actionCableConnectionSocket.setBaseUrl(environment.action_cable_url);
+    this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
     this.titleService.setTitle('Commudle | Developer Communities, Together');
 
     this.iconLibraries.registerFontPack('fas', {iconClassPrefix: 'fa', packClass: 'fas'});

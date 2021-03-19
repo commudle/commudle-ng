@@ -21,6 +21,10 @@ export class TagComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getTags() {
+    return this.tags.filter(Boolean);
+  }
+
   onTagAdd({value, input}: NbTagInputAddEvent): void {
     this.tagAdd.emit(value);
     // Reset the input
