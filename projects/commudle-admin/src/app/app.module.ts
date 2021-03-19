@@ -72,6 +72,7 @@ import {CommunityChannelsModule} from './feature-modules/community-channels/comm
 import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
 import { HomeLabsComponent } from './components/home/home-labs/home-labs.component';
+import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -115,6 +116,7 @@ export function initApp(appInitService: AppInitService) {
     SharedPipesModule,
     UserChatsModule,
     CommunityChannelsModule,
+    SkeletonScreensModule,
 
 
     // external service modules

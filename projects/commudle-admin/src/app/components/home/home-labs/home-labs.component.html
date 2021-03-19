@@ -3,7 +3,22 @@
     <nb-card-body class="card-p16">
       <h3>Labs</h3>
       <div class="labs-list">
-        <ul>
+        <ul *ngIf="labs.length === 0">
+          <li>
+            <app-skeleton-text [rows]="3"></app-skeleton-text>
+          </li>
+          <li>
+            <app-skeleton-text [rows]="3"></app-skeleton-text>
+          </li>
+          <li>
+            <app-skeleton-text [rows]="3"></app-skeleton-text>
+          </li>
+          <li>
+            <app-skeleton-text [rows]="3"></app-skeleton-text>
+          </li>
+
+        </ul>
+        <ul *ngIf="labs.length > 0">
           <li *ngFor="let lab of labs" class="clickable">
             <p class="name">
               <a [routerLink]="['/labs', lab.slug]">
