@@ -71,6 +71,7 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
 import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
+import { HomeLabsComponent } from './components/home/home-labs/home-labs.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -97,6 +98,7 @@ export function initApp(appInitService: AppInitService) {
     SwUpdateComponent,
     HomeCommunityCardComponent,
     EventsComponent,
+    HomeLabsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -112,6 +114,8 @@ export function initApp(appInitService: AppInitService) {
     ReusableComponentsModule,
     SharedPipesModule,
     UserChatsModule,
+    CommunityChannelsModule,
+
 
     // external service modules
     LibErrorHandlerModule,
@@ -150,7 +154,6 @@ export function initApp(appInitService: AppInitService) {
     Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    CommunityChannelsModule,
   ],
   providers: [
     AppInitService,

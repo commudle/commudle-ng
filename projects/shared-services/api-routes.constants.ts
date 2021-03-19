@@ -207,6 +207,7 @@ export const API_ROUTES = {
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
   HOME: {
+    LABS: 'api/v2/home/labs',
     PUBLIC: {
       UPCOMING_EVENTS: 'api/v2/home/public/upcoming_events',
       PAST_RANDOM_EVENTS: 'api/v2/home/public/past_random_events',

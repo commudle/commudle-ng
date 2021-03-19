@@ -21,6 +21,11 @@ export class HomeService {
     private apiRoutesService: ApiRoutesService,
   ) { }
 
+  labs(): Observable<ILabs> {
+    return this.http.get<ILabs>(
+      this.apiRoutesService.getRoute(API_ROUTES.HOME.LABS)
+    );
+  }
 
   pCommunities(): Observable<ICommunities> {
     return this.http.get<ICommunities>(
