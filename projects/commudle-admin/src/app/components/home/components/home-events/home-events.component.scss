@@ -1,0 +1,38 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-events {
+  border: none;
+  border-radius: $border-10;
+  margin: 0;
+
+  nb-card-header {
+    font-size: 26px;
+    font-family: $primary-font-family;
+    font-weight: 600;
+    color: $gunmetal;
+    padding: $space-16 $space-16 $space-8;
+    border-bottom: none;
+  }
+
+  nb-card-body {
+    padding: $space-16;
+
+    .home-events-cards {
+      display: flex;
+      flex-flow: wrap;
+      gap: $space-16;
+    }
+
+    .home-events-controller {
+      display: flex;
+      justify-content: space-between;
+      padding-top: $space-16;
+
+      button {
+        background-color: $neon-blue;
+        color: $white;
+        border-radius: $border-5;
+      }
+    }
+  }
+}
