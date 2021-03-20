@@ -4,14 +4,18 @@
     {{registrations}} Registered
   </div>
   <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
-    <img alt="{{event.name}}" src="{{event.header_image_path}}">
+    <img *ngIf="event.header_image_path" alt="{{event.name}}" src="{{event.header_image_path}}">
+    <div *ngIf="!event.header_image_path">
+      <app-skeleton-text [rows]="1"></app-skeleton-text>
+    </div>
   </div>
   <div class="home-events-date">
     {{event.start_time | date:'MMM d'}}
   </div>
   <div class="home-events-details">
-    <p [routerLink]="['/communities', community.slug, 'events', event.slug]"
-       class="home-events-name clickable">{{event.name | truncatetext:35}}</p>
+    <p [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
+      {{event.name | truncatetext:35}}
+    </p>
     <div class="home-events-host">
       <nb-user [name]="community.name" [picture]="community.logo_path" [routerLink]="['/communities', community.slug]"
                [showTitle]="false"></nb-user>
