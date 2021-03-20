@@ -1,8 +1,9 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 
 .home {
   min-height: 100vh;
+  background-color: $light-purple;
 
   .left-column, .right-column {
     width: 264px;
@@ -12,11 +13,9 @@
 
   .center-column {
     width: 560px;
-    height: 500px;
-    background-color: white;
+    margin: $space-16;
   }
 }
-
 
 
 // div.page.home {
@@ -61,7 +60,6 @@
 //           border-radius: 5px;
 //         }
 //       }
-
 
 
 //       .header-banner {
@@ -345,7 +343,6 @@
 // }
 
 
-
 // .section.updates {
 //   display: flex;
 //   flex-direction: column;
@@ -364,7 +361,6 @@
 //       }
 //     }
 //   }
-
 
 
 //   nb-card.stats {
