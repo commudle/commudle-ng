@@ -17,9 +17,14 @@
       {{event.name | truncatetext:35}}
     </p>
     <div class="home-events-host">
-      <nb-user [name]="community.name" [picture]="community.logo_path" [routerLink]="['/communities', community.slug]"
-               [showTitle]="false"></nb-user>
-      <p *ngIf="event.start_time && moment(event.start_time) > moment()" class="home-events-register clickable">
+      <div [routerLink]="['/communities', community.slug]" class="home-events-community clickable">
+        <div class="home-events-community-logo">
+          <img alt="{{community.name}}" src="{{community.logo_path}}">
+        </div>
+        <div class="home-events-community-name">{{community.name | truncatetext:35}}</div>
+      </div>
+      <p *ngIf="event.start_time && moment(event.start_time) > moment()"
+         [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-register clickable">
         Register
       </p>
     </div>
