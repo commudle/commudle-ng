@@ -44,13 +44,16 @@
           }
         }
 
+        position: relative;
+
         .fullscreen-button {
           position: absolute;
           z-index: 1040;
-          bottom: 0.5rem;
-          left: 2.5rem;
+          top: 2rem;
+          right: 2rem;
           visibility: hidden;
           transition: all 0.5s ease-in-out;
+          color: $white;
         }
 
         &:hover {
@@ -288,6 +291,9 @@ nb-tabset {
       li {
         a {
           padding: 10px 10px;
+          span {
+            white-space: nowrap;
+          }
         }
       }
     }

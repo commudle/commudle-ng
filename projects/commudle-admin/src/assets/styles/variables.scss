@@ -56,7 +56,11 @@ $fs-tag: 18px;
 
 // card font sizes
 $fs-card-title: 18px;
+$fs-card-list-title: 14px;
 $fs-card-secondary: 12px;
+
+// font-weights
+$fw-500: 500;
 
 // input font sizes
 $input-title: 20px;
@@ -89,4 +93,5 @@ $gradient-bottom-left: linear-gradient(315deg, #536effff, #29a5ffff, #ffd338ff, 
 $gradient-radial: radial-gradient(#536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 
 $card-faded-text: rgba(47, 46, 65, 0.5);
+$card-text-grey: #898989;
 $tag-grey: #2F2E41;

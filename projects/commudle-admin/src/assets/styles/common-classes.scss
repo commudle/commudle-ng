@@ -40,8 +40,18 @@
   flex-direction: row;
 }
 
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .flex-column {
   flex-direction: column;
+}
+
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
 }
 
 .justify-content-center {
@@ -86,4 +96,10 @@
 // element size
 .image-popup {
   max-height: 100vh;
+}
+
+
+// card styles
+.card-p16 {
+  padding: 16px !important;
 }

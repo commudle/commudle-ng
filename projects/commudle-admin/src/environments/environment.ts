@@ -7,6 +7,7 @@ export const environment = {
   // app_url: 'http://localhost:4200',
   // base_url: 'http://localhost:3000',
   // action_cable_url: 'http://localhost:3000/live',
+  // anycable_url: 'ws://localhost:3334/cable',
   // auth_cookie_name: 'dev_commudle_user_auth',
   // zoom_call_server_url: 'http://localhost:4000',
 
@@ -16,6 +17,7 @@ export const environment = {
   app_url: 'https://commudle.com',
   base_url: 'https://json.commudle.com',
   action_cable_url: 'https://json.commudle.com/live',
+  anycable_url: 'wss://ws.commudle.com/cable',
   auth_cookie_name: 'commudle_user_auth',
   zoom_call_server_url: 'https://zoom.commudle.com',
 };
