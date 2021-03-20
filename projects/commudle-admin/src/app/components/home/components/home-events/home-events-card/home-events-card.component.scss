@@ -1,0 +1,109 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-events-card {
+  width: 256px;
+  border: 0.5px solid $silver-sand;
+  box-sizing: border-box;
+  position: relative;
+
+  .home-events-attending {
+    position: absolute;
+    height: 20px;
+    top: 8px;
+    right: 0;
+    border-radius: $border-5 0 0 $border-5;
+    background-color: $neon-blue;
+    color: $white;
+    padding: $space-4;
+    font-size: 11px;
+    font-family: $primary-font-family;
+    font-weight: 500;
+    line-height: 13px;
+
+    nb-icon {
+      font-size: 11px;
+    }
+  }
+
+  .home-events-image {
+    height: 156px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      object-position: left top;
+    }
+  }
+
+  .home-events-date {
+    position: absolute;
+    height: 56px;
+    width: 56px;
+    top: 120px;
+    right: 12px;
+    border-radius: $border-8;
+    background-color: $neon-blue;
+    color: $white;
+    padding: $space-8 $space-12;
+    font-size: 16px;
+    font-family: $primary-font-family;
+    font-weight: 500;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .home-events-details {
+    margin: $space-12 $space-12 $space-8;
+
+    .home-events-name {
+      margin: 0;
+      max-width: 171px;
+      height: 2rem;
+      font-size: 14px;
+      font-family: $primary-font-family;
+      font-weight: 600;
+      line-height: 16px;
+      color: $gunmetal;
+      // TODO: Can the below be done using TS?
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .home-events-host {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: $space-16;
+
+      nb-user {
+        ::ng-deep {
+          .user-picture {
+            height: 1.75rem;
+            width: 1.75rem;
+          }
+
+          .user-name {
+            font-size: 11px;
+            line-height: 11px;
+            color: $spanish-gray;
+            font-family: $primary-font-family;
+          }
+        }
+      }
+
+      .home-events-register {
+        margin: 0;
+        font-size: 14px;
+        font-family: $primary-font-family;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $neon-blue;
+      }
+    }
+  }
+}
