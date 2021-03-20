@@ -11,7 +11,7 @@
   </div>
   <div class="home-events-details">
     <p [routerLink]="['/communities', community.slug, 'events', event.slug]"
-       class="home-events-name clickable">{{event.name}}</p>
+       class="home-events-name clickable">{{event.name | truncatetext:35}}</p>
     <div class="home-events-host">
       <nb-user [name]="community.name" [picture]="community.logo_path" [routerLink]="['/communities', community.slug]"
                [showTitle]="false"></nb-user>

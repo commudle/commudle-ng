@@ -72,7 +72,7 @@ import {CommunityChannelsModule} from './feature-modules/community-channels/comm
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
 import {HomeEventsComponent} from './components/home/components/home-events/home-events.component';
 import {HomeEventsCardComponent} from './components/home/components/home-events/home-events-card/home-events-card.component';
-import {HomeLabsComponent} from './components/home/home-labs/home-labs.component';
+import {HomeLabsComponent} from './components/home/components/home-labs/home-labs.component';
 import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
 
 
