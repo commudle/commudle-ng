@@ -28,11 +28,11 @@ import {
   NbSpinnerModule,
   NbTabsetModule,
   NbThemeModule,
+  NbTimepickerModule,
   NbToastrModule,
   NbTooltipModule,
-  NbWindowModule,
-  NbTimepickerModule,
-  NbUserModule
+  NbUserModule,
+  NbWindowModule
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
@@ -69,8 +69,9 @@ import {SwUpdateComponent} from './components/sw-update/sw-update.component';
 import {HomeCommunityCardComponent} from './components/home/communities/home-community-card/home-community-card.component';
 import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
-import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
+import {HomeEventsComponent} from './components/home/components/home-events/home-events.component';
+import {HomeEventsCardComponent} from './components/home/components/home-events/home-events-card/home-events-card.component';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -96,7 +97,8 @@ export function initApp(appInitService: AppInitService) {
     CommunitiesComponent,
     SwUpdateComponent,
     HomeCommunityCardComponent,
-    EventsComponent,
+    HomeEventsComponent,
+    HomeEventsCardComponent
   ],
   imports: [
     AppRoutingModule,
