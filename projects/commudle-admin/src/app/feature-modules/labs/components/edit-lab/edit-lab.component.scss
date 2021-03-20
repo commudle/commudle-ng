@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .create-lab {
   width: 100%;
@@ -8,13 +8,13 @@
     font-family: $primary-font-family;
   }
 
-
   .page-container {
     padding-bottom: 50px;
 
     @media screen and (min-width: $max-page-width) {
       flex-direction: row;
       justify-content: center;
+
       .left-col {
         width: 264px;
 
@@ -25,6 +25,7 @@
           border-radius: 10px;
           background: #f1f1ff;
           position: relative;
+
           p {
             position: absolute;
             top: 50%;
@@ -32,6 +33,7 @@
             transform: translate(-50%, -50%);
             color: $neon-blue;
           }
+
           nb-icon {
             font-size: 35px;
           }
@@ -46,23 +48,24 @@
 
       .center-col {
         width: 960px;
-        .container {
 
+        .container {
           .header {
             font-weight: 300;
+
             fa-icon {
               color: #4e74ff;
             }
           }
 
-
           form.lab-header-image {
             margin-bottom: 2rem;
+
             label {
               position: relative;
               padding: 150px 0;
 
-              >span {
+              > span {
                 height: 100%;
                 padding: 10px;
                 border: 2px dashed lightgrey;
@@ -88,11 +91,11 @@
               display: flex;
               justify-content: center;
               align-items: center;
+
               img {
                 max-width: 100%;
               }
             }
-
 
             .delete-header-image-button {
               display: block;
@@ -101,22 +104,20 @@
           }
 
           form.lab-form {
-
             .overview {
               input {
                 font-size: $input-title;
                 font-weight: 300;
               }
 
-              >div {
+              > div {
                 margin-bottom: 1rem;
               }
-
-
             }
 
             .lab-step {
               margin-top: 4.5rem;
+
               h3.steps-counter {
                 font-weight: 300;
                 margin-bottom: 0;
@@ -128,9 +129,7 @@
                 margin-bottom: 1rem;
               }
             }
-
           }
-
 
           .tags {
             margin-top: 3.5rem;
@@ -149,6 +148,7 @@
         .actions-card {
           margin: 8px;
         }
+
         .actions {
           margin-top: 1rem;
 
@@ -161,18 +161,14 @@
       .right-col {
         width: 120px;
 
-        >button {
+        > button {
           position: sticky;
           top: 4.5rem;
         }
       }
     }
-
-
   }
-
 }
-
 
 // tinymce style
 editor {
