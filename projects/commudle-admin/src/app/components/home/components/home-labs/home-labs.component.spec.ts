@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HomeLabsComponent } from './home-labs.component';
+import {HomeLabsComponent} from 'projects/commudle-admin/src/app/components/home/components/home-labs/home-labs.component';
 
 describe('HomeLabsComponent', () => {
   let component: HomeLabsComponent;
@@ -8,9 +8,9 @@ describe('HomeLabsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeLabsComponent ]
+      declarations: [HomeLabsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
