@@ -200,11 +200,11 @@ export class CreateCommunityBuildComponent implements OnInit {
   buildFormData(publishStatus): FormData {
     const formData: any = new FormData();
     const cBuildFormValue = this.communityBuildForm.value;
-    const team_members = cBuildFormValue['team'];
 
     Object.keys(cBuildFormValue).forEach(
-      key =>{ if (cBuildFormValue[key] != null && key != 'team') {
-           formData.append(`community_build[${key}]`, cBuildFormValue[key]);
+      key =>{ 
+        if (cBuildFormValue[key] != null && key!='team') {
+          formData.append(`community_build[${key}]`, cBuildFormValue[key]);
         }
       });
 
@@ -222,14 +222,8 @@ export class CreateCommunityBuildComponent implements OnInit {
         );
     }
 
-    for (let i = 0; i < team_members.length; i++) {
-      Object.keys(team_members[i]).forEach(
-        key => formData.append(`community_build[team][][${key}]`, team_members[i][key])
-        );
-    }
-
-    for (var pair of formData.entries()) {
-      console.log(pair); 
+    for(let entries in cBuildFormValue['team']) {
+      formData.append(`community_build[team][][value]`, cBuildFormValue['team'][entries]['value']);
     }
 
     return formData;
