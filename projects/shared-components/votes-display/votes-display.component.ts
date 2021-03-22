@@ -7,7 +7,6 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { SVotesService } from '../services/s-votes.service';
 import { VotersComponent } from './voters/voters.component';
 import { v4 as uuidv4 } from 'uuid';
-import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-votes-display',

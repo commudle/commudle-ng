@@ -54,6 +54,9 @@ export class UserVisitsChannel {
         url: url,
         app_token: this.authWatchService.getAppToken()
       }, {
+        connected: () => {
+          this.sendData(this.ACTIONS.VISITORS, {});
+        },
         received: (data) => {
           this.channelData.next(data);
         }
