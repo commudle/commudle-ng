@@ -22,6 +22,7 @@ import { CommunityBuildDetailsComponent } from './components/community-build-det
 import { CommunityBuildHListItemComponent } from './components/community-build-h-list-item/community-build-h-list-item.component';
 import { CommunityBuildComponent } from './components/community-build/community-build.component';
 import { BuildListItemComponent } from './components/my-community-builds/build-list-item/build-list-item.component';
+import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { BuildListItemComponent } from './components/my-community-builds/build-l
     CommunityBuildHListItemComponent,
     CommunityBuildComponent,
     BuildListItemComponent,
+    TeammateInviteConfirmationComponent,
   ],
   imports: [
     CommonModule,

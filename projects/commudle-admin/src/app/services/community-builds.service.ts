@@ -80,6 +80,16 @@ export class CommunityBuildsService {
     );
   }
 
+
+  confirmTeammateInvite(communityBuildId, token): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CONFIRM_TEAMMATE_INVITE), {
+        community_build_id: communityBuildId,
+        token
+      }
+    );
+  }
+
   pGetAll(page, count): Observable<ICommunityBuilds> {
     const params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<ICommunityBuilds>(
