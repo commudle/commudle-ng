@@ -1,0 +1,20 @@
+<nb-card class="home-events">
+  <nb-card-header>
+    Upcoming Events
+  </nb-card-header>
+  <nb-card-body>
+    <div class="home-events-cards">
+      <app-home-events-card *ngFor="let event of events | slice:eventsStartIdx:(eventsStartIdx + 4)"
+                            [event]="event"></app-home-events-card>
+    </div>
+    <div class="home-events-controller">
+      <button (click)="updateEventsIdx(-4)" *ngIf="eventsStartIdx !== 0" nbButton size="small">
+        <nb-icon icon="arrow-left"></nb-icon>
+      </button>
+      <span></span>
+      <button (click)="updateEventsIdx(4)" *ngIf="eventsStartIdx + 4 !== maxEventsCount" nbButton size="small">
+        <nb-icon icon="arrow-right"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

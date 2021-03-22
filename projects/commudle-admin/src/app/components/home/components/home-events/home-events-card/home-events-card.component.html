@@ -1,0 +1,33 @@
+<div *ngIf="community && event" class="home-events-card">
+  <div *ngIf="registrations > 0" class="home-events-attending">
+    <nb-icon icon="people"></nb-icon>
+    {{registrations}} Registered
+  </div>
+  <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
+    <div class="home-events-image-overlay"></div>
+    <img *ngIf="event.header_image_path" alt="{{event.name}}" src="{{event.header_image_path}}">
+    <div *ngIf="!event.header_image_path">
+      <app-skeleton-text [rows]="1"></app-skeleton-text>
+    </div>
+  </div>
+  <div class="home-events-date">
+    {{moment(event.start_time).format('MMM D')}}
+  </div>
+  <div class="home-events-details">
+    <p [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
+      {{event.name | truncatetext:35}}
+    </p>
+    <div class="home-events-host">
+      <div [routerLink]="['/communities', community.slug]" class="home-events-community clickable">
+        <div class="home-events-community-logo">
+          <img alt="{{community.name}}" src="{{community.logo_path}}">
+        </div>
+        <div class="home-events-community-name">{{community.name | truncatetext:35}}</div>
+      </div>
+      <p *ngIf="event.start_time && moment(event.start_time) > moment()"
+         [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-register clickable">
+        Register
+      </p>
+    </div>
+  </div>
+</div>
