@@ -28,6 +28,9 @@ export const API_ROUTES = {
     DELETE: 'api/v2/community_builds',
     UPDATE_TAGS: 'api/v2/community_builds/update_tags',
     UPDATE_PUBLISH_STATUS: 'api/v2/community_builds/update_publish_status',
+    CONFIRM_TEAMMATE_INVITE: 'api/v2/community_builds/confirm_teammate_invite',
+    RESEND_TEAMMATE_INVITE: 'api/v2/community_builds/resend_teammate_invite',
+    REMOVE_TEAMMATE: 'api/v2/community_builds/remove_teammate',
     PUBLIC: {
       INDEX: 'api/v2/community_builds/public',
       SHOW: 'api/v2/community_builds/public/show',
