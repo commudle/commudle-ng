@@ -35,7 +35,7 @@ export class BuildListItemComponent implements OnInit {
   openDeleteConfirmation(cBuild) {
     this.windowRef = this.windowService.open(
       this.confirmDeleteTemplate,
-      {title: `Are you sure you want to delete ${cBuild.name}?`, context: { name: cBuild.name } },
+      {title: `Are you sure you want to delete ${cBuild.name}?`, context: { cb: cBuild } },
     );
   }
 

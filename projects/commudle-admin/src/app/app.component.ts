@@ -72,11 +72,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
           },
         });
 
-        LogRocket.init('g90s8l/commudle');
-        LogRocket.identify(`${this.currentUser.username}`, {
-          name: `${this.currentUser.name}`,
-          email: `${this.currentUser.email}`,
-        });
+        // LogRocket.init('g90s8l/commudle');
+        // LogRocket.identify(`${this.currentUser.username}`, {
+        //   name: `${this.currentUser.name}`,
+        //   email: `${this.currentUser.email}`,
+        // });
       }
 
       if (this.isBrowser) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
 import { ActionCableConnectionSocket } from '../../../shared-services/action-cable-connection.socket';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
@@ -69,7 +69,7 @@ export class DiscussionQnAChannel {
 
   unsubscribe() {
     if (this.subscription) {
-      this.channelData.next = null;
+      this.channelData.next(null);
       this.subscription.unsubscribe();
       this.actionCableSubscription.unsubscribe();
     }
