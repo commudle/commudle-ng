@@ -86,13 +86,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
     });
 
     this.router.events.subscribe(event => {
-      setTimeout(() => {
-        if (window.innerWidth <= 1000 && document.getElementById('commudleSidebar').classList.contains('expanded')) {
-          this.document.getElementById('commudleSidebar').classList.remove('expanded');
-          this.document.getElementById('commudleSidebar').classList.add('collapsed');
-          this.sideBarState = 'collapsed';
-        }
-      }, 10);
+      if (this.isBrowser) {
+        setTimeout(() => {
+          if (window.innerWidth <= 1000 && document.getElementById('commudleSidebar').classList.contains('expanded')) {
+            this.document.getElementById('commudleSidebar').classList.remove('expanded');
+            this.document.getElementById('commudleSidebar').classList.add('collapsed');
+            this.sideBarState = 'collapsed';
+          }
+        }, 10);
+      }
     });
 
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
