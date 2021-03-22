@@ -1,0 +1,55 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-communities {
+  margin: $space-16 0 0;
+  border: 0;
+  border-radius: $border-10;
+
+  nb-card-header {
+    font-size: 26px;
+    font-family: $primary-font-family;
+    font-weight: $fw-600;
+    color: $gunmetal;
+    padding: $space-32 $space-16 $space-8 $space-28;
+    border-bottom: none;
+  }
+
+  nb-card-body {
+    padding: 0;
+
+    nb-list {
+      .home-communities-details {
+        padding: $space-16 $space-16 $space-16 $space-28;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+
+        nb-user {
+          &::ng-deep {
+            .user-name {
+              font-family: $primary-font-family;
+              font-weight: 600;
+              color: $gunmetal;
+            }
+
+            .user-title {
+              font-family: $primary-font-family;
+              font-style: italic;
+              color: $spanish-gray;
+            }
+          }
+        }
+
+        button {
+          font-family: $primary-font-family;
+          font-weight: 400;
+          text-transform: capitalize;
+          color: white;
+          background-color: $neon-blue;
+          border: none;
+        }
+      }
+    }
+  }
+}
