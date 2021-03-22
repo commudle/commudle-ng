@@ -18,6 +18,7 @@ export interface ILab {
   last_visited_step_id: number;
   votes?: number;
   visits?: number;
+  createdSince?: string;
 }
 
 export enum EPublishStatus {
