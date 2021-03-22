@@ -72,11 +72,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
           },
         });
 
-        LogRocket.init('g90s8l/commudle');
-        LogRocket.identify(`${this.currentUser.username}`, {
-          name: `${this.currentUser.name}`,
-          email: `${this.currentUser.email}`,
-        });
+        // LogRocket.init('g90s8l/commudle');
+        // LogRocket.identify(`${this.currentUser.username}`, {
+        //   name: `${this.currentUser.name}`,
+        //   email: `${this.currentUser.email}`,
+        // });
       }
 
       if (this.isBrowser) {
@@ -86,13 +86,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
     });
 
     this.router.events.subscribe(event => {
-      setTimeout(() => {
-        if (window.innerWidth <= 1000 && document.getElementById('commudleSidebar').classList.contains('expanded')) {
-          this.document.getElementById('commudleSidebar').classList.remove('expanded');
-          this.document.getElementById('commudleSidebar').classList.add('collapsed');
-          this.sideBarState = 'collapsed';
-        }
-      }, 10);
+      if (this.isBrowser) {
+        setTimeout(() => {
+          if (window.innerWidth <= 1000 && document.getElementById('commudleSidebar').classList.contains('expanded')) {
+            this.document.getElementById('commudleSidebar').classList.remove('expanded');
+            this.document.getElementById('commudleSidebar').classList.add('collapsed');
+            this.sideBarState = 'collapsed';
+          }
+        }, 10);
+      }
     });
 
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
