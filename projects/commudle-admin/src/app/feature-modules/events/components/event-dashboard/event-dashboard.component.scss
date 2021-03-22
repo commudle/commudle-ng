@@ -1,303 +1,275 @@
-.page-header {
-  p {
-    margin: 0;
-  }
-  nb-card {
-    p {
-      margin: 5px;
-    }
-    h1 {
-      margin: 0;
-      small {
-        font-size: 1rem;
-      }
-    }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      a {
-        margin: 1rem 1rem 5px 0;
-        nb-icon {
-          font-size: 0.5rem;
-        }
-      }
-    }
-  }
+@import "projects/commudle-admin/src/assets/styles/variables.scss";
+p,
+h1 {
+  font-family: $primary-font-family;
 }
-.event-dashboard {
-  display: flex;
-  justify-content: space-around;
-  .side-menu.responsive {
-    background-color: white;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    // height: 5rem;
-    z-index: 2;
-    box-shadow: 2px -5px 15px -7px lightgrey;
 
+.event-page {
+  justify-content: center;
+  .page-header {
+    margin-bottom: $space-8;
+
+    p {
+      margin: 0px;
+    }
     nb-card {
-      margin-bottom: 0;
-      nb-card-body {
-        padding: 5px;
+      margin: 0px;
+      p {
+        margin: 5px;
       }
-    }
-
-    .menu-items {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-
-      .item {
-        padding: 0 5px;
-
-        a {
-          display: flex;
-          height: 100%;
-          width: fit-content;
-          text-decoration: none;
-          padding: 0.5rem 0.5rem;
-          text-transform: uppercase;
-          font-size: 12px;
-          white-space: nowrap;
-
-          nb-icon {
-            margin-right: 5px;
-          }
-
-          small {
-            display: none;
-          }
+      h1 {
+        margin: 0;
+        small {
+          font-size: 1rem;
         }
       }
 
-      .item.external-links {
+      .links {
         display: flex;
-        button {
-          margin: 0 5px;
+        flex-wrap: wrap;
+        a {
+          margin: 1rem 1rem 5px 0;
+          nb-icon {
+            font-size: 0.5rem;
+          }
         }
       }
     }
+  }
+  .event-dashboard {
+    margin-top: $space-8;
+    .side-menu.responsive {
+      background-color: $white;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      box-shadow: 2px -5px 15px -7px lightgrey;
 
-    @media screen and (min-width: 800px) {
-      width: 20%;
-      max-width: 100vw;
-      position: sticky;
-      height: fit-content;
-      top: 5.2rem;
-      box-shadow: none;
       nb-card {
-        border: none;
+        margin-bottom: 0;
         nb-card-body {
-          background: #edf1f7;
-          border: none;
+          padding: 5px;
         }
       }
+
       .menu-items {
-        flex-direction: column;
+        overflow-x: auto;
+
         .item {
-          text-align: left;
-          cursor: pointer;
-          :hover {
-            text-decoration: underline !important;
-          }
+          padding: 0 5px;
+
           a {
             height: 100%;
+            width: fit-content;
             text-decoration: none;
             padding: 0.5rem 0.5rem;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            color: grey;
-            width: 100%;
+            font-size: 12px;
+            white-space: nowrap;
+
+            nb-icon {
+              margin-right: 5px;
+            }
 
             small {
-              display: block;
+              display: none;
             }
           }
         }
 
         .item.external-links {
-          flex-direction: column;
           button {
-            margin: 5px 0;
+            margin: 0 5px;
           }
         }
       }
-    }
 
-
-  }
-
-  .page-column {
-    width: 100%;
-    @media screen and (min-width: 800px) {
-      width: 75%;
-    }
-
-    .item-group {
-      margin-bottom: 3.5rem;
-      .item-group-title {
-        display: flex;
-        padding-right: 5px;
-        text-transform: uppercase;
-        font-size: 1rem;
-        color: grey;
-        padding-left: 5px;
-      }
-      .item-group-title:after {
-        content: '';
-        flex: 1 1;
-        border-bottom: 2px solid grey;
-        margin: auto 0 auto 0.5rem;
-      }
-    }
-
-    nb-card {
-      margin-bottom: 0.5rem;
-      nb-card-header {
-        // background: #ececec;
-        font-weight: 300;
-        font-size: 1rem;
-        padding: 0 0.5rem;
-        color: grey;
-      }
-    }
-    .event-details {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
-      .edit-button {
-        margin: 1rem 0 0;
-      }
-    }
-
-    .advanced-option-switch {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      p {
-        margin: 0 0.5rem;
-      }
-    }
-
-    // .card-row {
-    //   display: flex;
-    //   flex-direction: column;
-    //   margin: 0 -0.5rem;
-
-    //   @media screen and (min-width: 800px) {
-    //     flex-direction: row;
-    //   }
-
-    //   @media screen and (max-width: 800px) {
-    //     .event-guide {
-    //       display: none;
-    //     }
-    //   }
-
-    // }
-
-    // .card-col {
-    //   flex: 1 0 100%;
-    //   flex-direction: column;
-    //   margin: 0 0.5rem;
-    //   position: relative;
-    //   @media screen and (min-width: 800px) {
-    //     flex: 1 0 calc(50% - 1rem);
-    //     flex-direction: row;
-    //   }
-    // }
-
-    .event-timings{
-      fa-icon {
-        color: grey;
-      }
-      >div{
-        display: flex;
-        p{
-          margin: 0 1rem 0.5rem;
-        }
-      }
-    }
-
-    .event-description {
-      background-color: #f9f9f9;
-      min-height: 200px;
-      fa-icon{
-        margin-top: 1rem;
-        margin-right: 0.5rem;
-        color: grey;
-      }
-      display: flex;
-    }
-
-
-    fa-icon{
-      vertical-align: text-top;
-    }
-
-
-    .event-header-image {
-      form {
-        width: 800px;
-        max-width: 100%;
-        margin: 0 auto;
-        input {
-          display: none;
-        }
-        .uploaded-header-image {
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          img {
-            max-width: 100%;
+      @media screen and (min-width: 800px) {
+        width: 20%;
+        max-width: 100vw;
+        position: sticky;
+        height: fit-content;
+        top: 5.2rem;
+        box-shadow: none;
+        margin-right: $space-8;
+        width: 25%;
+        nb-card {
+          border: none;
+          margin: 0px;
+          nb-card-body {
+            border: none;
           }
         }
-
-
-        .uploaded-header-image.filler {
-          height: 300px;
-          width: 100%;
-          background-color: #c5c5c538;
-          display: flex;
+        .menu-items {
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          p {
-            margin: 0;
-            font-size: 1.5rem;
-            color: grey;
+          .item {
+            text-align: left;
+            cursor: pointer;
+            :hover {
+              text-decoration: underline !important;
+            }
+            a {
+              height: 100%;
+              text-decoration: none;
+              padding: 0.5rem 0.5rem;
+              text-transform: uppercase;
+              font-size: 0.85rem;
+              color: rgb(34, 43, 69);
+              width: 100%;
+
+              small {
+                display: block;
+              }
+            }
           }
 
+          .item.external-links {
+            flex-direction: column;
+            button {
+              margin: 5px 0;
+            }
+          }
         }
+      }
+    }
 
-        .delete-header-image-button {
-          display: block;
+    .page-column {
+      width: 100%;
+      @media screen and (min-width: 800px) {
+        width: 75%;
+      }
+
+      .item-group {
+        margin-bottom: 3.5rem;
+        margin-left: $space-8;
+        > div {
+          nb-card {
+            margin-left: 0px;
+            margin-right: 0px;
+          }
+          > div {
+            nb-card {
+              margin-left: 0px;
+              margin-right: 0px;
+            }
+          }
+        }
+        .item-group-title {
+          margin: 0px;
+          display: flex;
+          padding-right: 5px;
+          text-transform: uppercase;
+          font-size: 1rem;
+          color: grey;
+        }
+        .item-group-title:after {
+          content: "";
+          flex: 1 1;
+          border-bottom: 2px solid grey;
+          margin: auto 0 auto 0.5rem;
+        }
+      }
+
+      nb-card {
+        margin-bottom: 0.5rem;
+        nb-card-header {
+          font-weight: 300;
+          font-size: 1rem;
+          padding: 0 0.5rem;
+          color: grey;
+        }
+      }
+      .event-details {
+        margin-top: 1.5rem;
+        h3 {
+          margin-top: 0;
+          margin-bottom: 0.5rem;
+        }
+        .edit-button {
+          margin: 1rem 0 0;
+        }
+      }
+
+      .advanced-option-switch {
+        margin-bottom: 1rem;
+        p {
+          margin: 0 0.5rem;
+        }
+      }
+      
+      .event-timings {
+        fa-icon {
+          color: grey;
+        }
+        > div {
+          display: flex;
+          p {
+            margin: 0 1rem 0.5rem;
+          }
+        }
+      }
+
+      .event-description {
+        background-color: #f9f9f9;
+        min-height: 200px;
+        fa-icon {
+          margin-top: 1rem;
+          margin-right: 0.5rem;
+          color: grey;
+        }
+        display: flex;
+      }
+
+      fa-icon {
+        vertical-align: text-top;
+      }
+
+      .event-header-image {
+        form {
+          width: 800px;
+          max-width: 100%;
           margin: 0 auto;
+          input {
+            display: none;
+          }
+          .uploaded-header-image {
+            overflow: hidden;
+            img {
+              max-width: 100%;
+            }
+          }
+
+          .uploaded-header-image.filler {
+            height: 300px;
+            width: 100%;
+            background-color: #c5c5c538;
+            p {
+              margin: 0;
+              font-size: 1.5rem;
+              color: grey;
+            }
+          }
+
+          .delete-header-image-button {
+            display: block;
+            margin: 0 auto;
+          }
         }
       }
-    }
 
-    nb-accordion {
-      margin: 0.5rem 0;
-      nb-accordion-item-body {
-        background: #f4f7ff73;
+      nb-accordion {
+        margin: 0.5rem 0;
+        nb-accordion-item-body {
+          background: #f4f7ff73;
+        }
       }
-    }
 
-    .community-emails {
-      height: 450px;
-      overflow-y: auto;
+      .community-emails {
+        height: 450px;
+        overflow-y: auto;
+      }
     }
   }
 }
-
-
-
