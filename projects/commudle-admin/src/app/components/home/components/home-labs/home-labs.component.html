@@ -16,7 +16,6 @@
           <li>
             <app-skeleton-text [rows]="3"></app-skeleton-text>
           </li>
-
         </ul>
         <ul *ngIf="labs.length > 0">
           <li *ngFor="let lab of labs" class="clickable">
@@ -29,7 +28,7 @@
           </li>
         </ul>
       </div>
-      <p *ngIf="labs.length > 0" class="all-labs-link clickable" [routerLink]="['/labs']">
+      <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-link clickable">
         <a>All Labs >></a>
       </p>
     </nb-card-body>

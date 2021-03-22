@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ILab } from 'projects/shared-models/lab.model';
-import { HomeService } from '../../../services/home.service';
+import {Component, OnInit} from '@angular/core';
+import {ILab} from 'projects/shared-models/lab.model';
+import {HomeService} from 'projects/commudle-admin/src/app/services/home.service';
 
 @Component({
   selector: 'app-home-labs',
@@ -10,21 +10,18 @@ import { HomeService } from '../../../services/home.service';
 export class HomeLabsComponent implements OnInit {
 
   labs: ILab[] = [];
+
   constructor(
     private homeService: HomeService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.getLabs();
   }
 
-
   getLabs() {
-    this.homeService.labs().subscribe(
-      data => {
-        this.labs = data.labs;
-      }
-    );
+    this.homeService.labs().subscribe(data => this.labs = data.labs);
   }
 
 }
