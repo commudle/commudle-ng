@@ -10,7 +10,7 @@ nb-card-header, div, a {
   border-radius: $border-10;
 
   nb-card-header {
-    font-size: 26px;
+    font-size: $fs-26;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-32 $space-28 $space-16;
@@ -57,13 +57,13 @@ nb-card-header, div, a {
 
           .home-community-details {
             .home-community-name {
-              font-size: 14px;
+              font-size: $fs-14;
               font-weight: 600;
               color: $gunmetal;
             }
 
             .home-community-member-count {
-              font-size: 12px;
+              font-size: $fs-12;
               font-style: italic;
               color: $spanish-gray;
             }

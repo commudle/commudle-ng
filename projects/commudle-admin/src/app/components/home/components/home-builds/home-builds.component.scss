@@ -11,7 +11,7 @@ nb-card-header, a {
   border-radius: $border-10;
 
   nb-card-header {
-    font-size: 26px;
+    font-size: $fs-26;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-16 $space-12 $space-20;
