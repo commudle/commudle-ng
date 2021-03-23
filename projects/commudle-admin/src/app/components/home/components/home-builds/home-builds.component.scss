@@ -21,6 +21,11 @@
     .home-builds-list {
       nb-list-item {
         padding: $space-12 0;
+        flex-direction: column;
+
+        app-skeleton-text {
+          width: 100%;
+        }
 
         &:last-child {
           border-bottom: none;
