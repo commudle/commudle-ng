@@ -4,24 +4,15 @@
       <h3>Labs</h3>
       <div class="labs-list">
         <ul *ngIf="labs.length === 0">
-          <li>
-            <app-skeleton-text [rows]="3"></app-skeleton-text>
-          </li>
-          <li>
-            <app-skeleton-text [rows]="3"></app-skeleton-text>
-          </li>
-          <li>
-            <app-skeleton-text [rows]="3"></app-skeleton-text>
-          </li>
-          <li>
-            <app-skeleton-text [rows]="3"></app-skeleton-text>
+          <li *ngFor="let _ of [].constructor(4)">
+            <app-skeleton-text [rows]="2"></app-skeleton-text>
           </li>
         </ul>
         <ul *ngIf="labs.length > 0">
           <li *ngFor="let lab of labs" class="clickable">
             <p class="name">
               <a [routerLink]="['/labs', lab.slug]">
-                {{ lab.name | truncatetext:35 }}
+                {{ lab.name | truncatetext:45 }}
               </a>
             </p>
             <p class="author">by {{ lab.user.name }}</p>
@@ -29,7 +20,7 @@
         </ul>
       </div>
       <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-link clickable">
-        <a>All Labs >></a>
+        <a>View all</a>
       </p>
     </nb-card-body>
   </nb-card>

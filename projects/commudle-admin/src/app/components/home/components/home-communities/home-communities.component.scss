@@ -1,0 +1,101 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-communities {
+  margin: $space-16 0 0;
+  border: 0;
+  border-radius: $border-10;
+
+  nb-card-header {
+    font-size: 26px;
+    font-family: $primary-font-family;
+    font-weight: $fw-600;
+    color: $gunmetal;
+    padding: $space-32 $space-28 $space-16;
+    border-bottom: none;
+  }
+
+  .home-communities-list {
+    padding: 0;
+
+    nb-list {
+      nb-list-item {
+        padding: $space-16;
+        margin-bottom: $space-8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+
+        app-skeleton-text {
+          width: 100%;
+        }
+
+        .home-community {
+          display: flex;
+          align-items: center;
+          margin-right: $space-8;
+
+          .home-community-image {
+            display: flex;
+            align-items: center;
+            min-height: 2.5rem;
+            max-height: 2.5rem;
+            min-width: 2.5rem;
+            max-width: 2.5rem;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 0.5px solid #E9E8E8;
+            margin-right: $space-8;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .home-community-details {
+            font-family: $primary-font-family;
+
+            .home-community-name {
+              font-size: 14px;
+              font-weight: 600;
+              color: $gunmetal;
+            }
+
+            .home-community-member-count {
+              font-size: 12px;
+              font-style: italic;
+              color: $spanish-gray;
+            }
+          }
+        }
+
+        .home-communities-join {
+          padding: $space-4 $space-12;
+          font-family: $primary-font-family;
+          font-weight: 400;
+          text-transform: capitalize;
+          color: white;
+          background-color: $neon-blue;
+          border: none;
+
+        }
+
+        .home-communities-join.active {
+          color: $neon-blue;
+          background-color: white;
+          border: 0.5px solid $neon-blue;
+        }
+      }
+    }
+
+    .home-communities-all {
+      padding: $space-8 $space-28 $space-24;
+      text-align: center;
+
+      a {
+        font-family: $primary-font-family;
+        color: rgba($neon-blue, 0.95);
+      }
+    }
+  }
+}
