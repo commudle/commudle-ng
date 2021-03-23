@@ -1,0 +1,15 @@
+<nb-card class="home-builds">
+  <nb-card-header>
+    Builds
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list class="home-builds-list">
+      <nb-list-item *ngFor="let build of builds">
+        <app-home-builds-card [build]="build"></app-home-builds-card>
+      </nb-list-item>
+    </nb-list>
+    <div *ngIf="builds.length > 0" [routerLink]="['/builds']" class="home-builds-all clickable">
+      <a>View all</a>
+    </div>
+  </nb-card-body>
+</nb-card>
