@@ -20,6 +20,7 @@
     nb-list {
       nb-list-item {
         padding: $space-16 $space-16 $space-16 $space-28;
+        margin-bottom: $space-8;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -29,18 +30,39 @@
           width: 100%;
         }
 
-        nb-user {
+        .home-community {
+          display: flex;
+          align-items: center;
           margin-right: $space-8;
 
-          &::ng-deep {
-            .user-name {
-              font-family: $primary-font-family;
+          .home-community-image {
+            display: flex;
+            align-items: center;
+            min-height: 2.5rem;
+            max-height: 2.5rem;
+            min-width: 2.5rem;
+            max-width: 2.5rem;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 0.5px solid #E9E8E8;
+            margin-right: $space-8;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .home-community-details {
+            font-family: $primary-font-family;
+
+            .home-community-name {
+              font-size: 14px;
               font-weight: 600;
               color: $gunmetal;
             }
 
-            .user-title {
-              font-family: $primary-font-family;
+            .home-community-member-count {
+              font-size: 12px;
               font-style: italic;
               color: $spanish-gray;
             }
@@ -60,7 +82,7 @@
     }
 
     .home-communities-all {
-      padding: $space-16 $space-28 $space-24;
+      padding: $space-8 $space-28 $space-24;
       text-align: center;
 
       a {

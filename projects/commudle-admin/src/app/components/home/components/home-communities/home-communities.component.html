@@ -10,9 +10,19 @@
     </nb-list>
     <nb-list *ngIf="communities.length > 0">
       <nb-list-item *ngFor="let community of communities" class="clickable">
-        <nb-user [picture]="community.logo_image.i64"
-                 name="{{community.name | truncatetext:20}}"
-                 title="{{community.member_count.toString() + ' Members'}}"></nb-user>
+        <div class="home-community">
+          <div class="home-community-image">
+            <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
+          </div>
+          <div class="home-community-details">
+            <div class="home-community-name">
+              {{community.name | truncatetext:20}}
+            </div>
+            <div class="home-community-member-count">
+              {{community.member_count.toString() + ' Members'}}
+            </div>
+          </div>
+        </div>
         <button class="home-communities-join" nbButton shape="round">Join</button>
       </nb-list-item>
     </nb-list>
