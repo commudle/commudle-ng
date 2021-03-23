@@ -2,12 +2,22 @@
   <nb-card-header>
     Communities
   </nb-card-header>
-  <nb-card-body>
-    <nb-list>
-      <nb-list-item class="home-communities-details">
-        <nb-user name="Name" title="Title"></nb-user>
-        <button nbButton shape="round">Join</button>
+  <nb-card-body class="home-communities-list">
+    <nb-list *ngIf="communities.length === 0">
+      <nb-list-item *ngFor="let _ of [].constructor(7)">
+        <app-skeleton-text [rows]="2"></app-skeleton-text>
       </nb-list-item>
     </nb-list>
+    <nb-list *ngIf="communities.length > 0">
+      <nb-list-item *ngFor="let community of communities" class="clickable">
+        <nb-user [picture]="community.logo_image.i64"
+                 name="{{community.name | truncatetext:20}}"
+                 title="{{community.member_count.toString() + ' Members'}}"></nb-user>
+        <button class="home-communities-join" nbButton shape="round">Join</button>
+      </nb-list-item>
+    </nb-list>
+    <div *ngIf="communities.length > 0" [routerLink]="['/communities']" class="home-communities-all clickable">
+      <a>View All</a>
+    </div>
   </nb-card-body>
 </nb-card>
