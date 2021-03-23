@@ -77,6 +77,13 @@
           color: white;
           background-color: $neon-blue;
           border: none;
+
+        }
+
+        .home-communities-join.active {
+          color: $neon-blue;
+          background-color: white;
+          border: 0.5px solid $neon-blue;
         }
       }
     }
