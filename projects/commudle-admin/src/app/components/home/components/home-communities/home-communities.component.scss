@@ -10,7 +10,7 @@
     font-family: $primary-font-family;
     font-weight: $fw-600;
     color: $gunmetal;
-    padding: $space-32 $space-16 $space-8 $space-28;
+    padding: $space-32 $space-28 $space-16;
     border-bottom: none;
   }
 
@@ -19,7 +19,7 @@
 
     nb-list {
       nb-list-item {
-        padding: $space-16 $space-16 $space-16 $space-28;
+        padding: $space-16;
         margin-bottom: $space-8;
         display: flex;
         justify-content: space-between;
@@ -93,6 +93,7 @@
       text-align: center;
 
       a {
+        font-family: $primary-font-family;
         color: rgba($neon-blue, 0.95);
       }
     }
