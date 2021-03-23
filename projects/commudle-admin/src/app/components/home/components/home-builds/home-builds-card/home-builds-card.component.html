@@ -1,4 +1,4 @@
-<div class="home-build-card">
+<div [routerLink]="['/builds', build.slug]" class="home-build-card clickable">
   <div class="home-build-card-prefix">
     <div class="home-build-card-tags">
       <div *ngFor="let tag of build.tags.slice(0, 2)" class="home-build-card-tag">{{tag}}</div>
