@@ -62,6 +62,10 @@
     .home-communities-all {
       padding: $space-16 $space-28 $space-24;
       text-align: center;
+
+      a {
+        color: rgba($neon-blue, 0.95);
+      }
     }
   }
 }
