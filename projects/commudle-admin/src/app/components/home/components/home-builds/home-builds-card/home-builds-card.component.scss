@@ -15,7 +15,7 @@ div {
 
       .home-build-card-tag {
         padding: 0 $space-8;
-        font-size: 12px;
+        font-size: $fs-12;
         color: $neon-blue;
         background-color: #E9ECFB;
         border-radius: $border-20;
@@ -27,7 +27,7 @@ div {
     margin: $space-8 0;
 
     .home-build-card-name {
-      font-size: 14px;
+      font-size: $fs-14;
       font-weight: 600;
       line-height: 16px;
       color: $gunmetal;
@@ -35,7 +35,7 @@ div {
 
     .home-build-card-description {
       margin-top: $space-4;
-      font-size: 12px;
+      font-size: $fs-12;
       font-style: italic;
       line-height: 14px;
       color: rgba($spanish-gray, 0.7);
@@ -48,11 +48,11 @@ div {
     align-items: center;
 
     .home-build-card-interactions {
-      font-size: 12px;
+      font-size: $fs-12;
       color: $gunmetal;
 
       nb-icon {
-        font-size: 16px;
+        font-size: $fs-16;
         color: $silver-sand;
       }
     }
@@ -64,7 +64,7 @@ div {
 
       .home-build-card-author-name {
         display: none;
-        font-size: 12px;
+        font-size: $fs-12;
         line-height: 14px;
         color: $gunmetal;
         padding-right: $space-4;
