@@ -14,9 +14,9 @@
     {{moment(event.start_time).format('MMM D')}}
   </div>
   <div class="home-events-details">
-    <p [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
+    <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
       {{event.name | truncatetext:35}}
-    </p>
+    </div>
     <div class="home-events-host">
       <div [routerLink]="['/communities', community.slug]" class="home-events-community clickable">
         <div class="home-events-community-logo">
@@ -24,10 +24,10 @@
         </div>
         <div class="home-events-community-name">{{community.name | truncatetext:35}}</div>
       </div>
-      <p *ngIf="event.start_time && moment(event.start_time) > moment()"
-         [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-register clickable">
+      <div *ngIf="event.start_time && moment(event.start_time) > moment()"
+           [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-register clickable">
         Register
-      </p>
+      </div>
     </div>
   </div>
 </div>

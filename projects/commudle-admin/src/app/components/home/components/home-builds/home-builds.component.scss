@@ -1,5 +1,9 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
+nb-card-header, a {
+  font-family: $primary-font-family;
+}
+
 .home-builds {
   margin: $space-16 0 0;
   padding: $space-16;
@@ -8,7 +12,6 @@
 
   nb-card-header {
     font-size: 26px;
-    font-family: $primary-font-family;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-16 $space-12 $space-20;
@@ -38,7 +41,6 @@
       text-align: center;
 
       a {
-        font-family: $primary-font-family;
         color: rgba($neon-blue, 0.95);
       }
     }
