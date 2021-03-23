@@ -1,5 +1,9 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
+div {
+  font-family: $primary-font-family;
+}
+
 .home-events-card {
   width: 256px;
   border: 0.5px solid $silver-sand;
@@ -20,14 +24,13 @@
     background-color: $neon-blue;
     color: $white;
     padding: $space-4;
-    font-size: 11px;
-    font-family: $primary-font-family;
+    font-size: $fs-12;
     font-weight: $fw-500;
     line-height: 13px;
     z-index: 2;
 
     nb-icon {
-      font-size: 11px;
+      font-size: $fs-12;
     }
   }
 
@@ -68,8 +71,7 @@
     background-color: $neon-blue;
     color: $white;
     padding: $space-8 $space-12;
-    font-size: 16px;
-    font-family: $primary-font-family;
+    font-size: $fs-16;
     font-weight: $fw-500;
     word-break: break-word;
     text-align: center;
@@ -79,11 +81,9 @@
     margin: $space-12 $space-12 $space-8;
 
     .home-events-name {
-      margin: 0;
       max-width: 171px;
       height: 2rem;
-      font-size: 14px;
-      font-family: $primary-font-family;
+      font-size: $fs-14;
       font-weight: $fw-600;
       line-height: 16px;
       color: $gunmetal;
@@ -117,17 +117,15 @@
 
         .home-events-community-name {
           margin: 0 $space-16 0 $space-8;
-          font-size: 11px;
-          line-height: 11px;
+          font-size: $fs-12;
+          line-height: 12px;
           color: $spanish-gray;
-          font-family: $primary-font-family;
         }
       }
 
       .home-events-register {
-        margin: 0;
-        font-size: 14px;
-        font-family: $primary-font-family;
+        font-size: $fs-14;
+
         font-weight: $fw-600;
         text-transform: uppercase;
         color: $neon-blue;

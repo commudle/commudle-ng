@@ -1,5 +1,9 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
+div {
+  font-family: $primary-font-family;
+}
+
 .home-build-card {
   .home-build-card-prefix {
     display: flex;
@@ -11,8 +15,7 @@
 
       .home-build-card-tag {
         padding: 0 $space-8;
-        font-size: 12px;
-        font-family: $primary-font-family;
+        font-size: $fs-12;
         color: $neon-blue;
         background-color: #E9ECFB;
         border-radius: $border-20;
@@ -22,10 +25,9 @@
 
   .home-build-card-content {
     margin: $space-8 0;
-    font-family: $primary-font-family;
 
     .home-build-card-name {
-      font-size: 14px;
+      font-size: $fs-14;
       font-weight: 600;
       line-height: 16px;
       color: $gunmetal;
@@ -33,7 +35,7 @@
 
     .home-build-card-description {
       margin-top: $space-4;
-      font-size: 12px;
+      font-size: $fs-12;
       font-style: italic;
       line-height: 14px;
       color: rgba($spanish-gray, 0.7);
@@ -46,11 +48,11 @@
     align-items: center;
 
     .home-build-card-interactions {
-      font-size: 12px;
+      font-size: $fs-12;
       color: $gunmetal;
 
       nb-icon {
-        font-size: 16px;
+        font-size: $fs-16;
         color: $silver-sand;
       }
     }
@@ -62,8 +64,7 @@
 
       .home-build-card-author-name {
         display: none;
-        font-size: 12px;
-        font-family: $primary-font-family;
+        font-size: $fs-12;
         line-height: 14px;
         color: $gunmetal;
         padding-right: $space-4;
