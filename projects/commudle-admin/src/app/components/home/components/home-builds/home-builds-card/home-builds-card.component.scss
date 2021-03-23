@@ -1,0 +1,92 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-build-card {
+  .home-build-card-prefix {
+    display: flex;
+    justify-content: space-between;
+
+    .home-build-card-tags {
+      display: flex;
+      gap: $space-4;
+
+      .home-build-card-tag {
+        padding: 0 $space-8;
+        font-size: 12px;
+        font-family: $primary-font-family;
+        color: $neon-blue;
+        background-color: #E9ECFB;
+        border-radius: $border-20;
+      }
+    }
+  }
+
+  .home-build-card-content {
+    margin: $space-8 0;
+    font-family: $primary-font-family;
+
+    .home-build-card-name {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16px;
+      color: $gunmetal;
+    }
+
+    .home-build-card-description {
+      margin-top: $space-4;
+      font-size: 12px;
+      font-style: italic;
+      line-height: 14px;
+      color: rgba($spanish-gray, 0.7);
+    }
+  }
+
+  .home-build-card-suffix {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .home-build-card-interactions {
+      font-size: 12px;
+      color: $gunmetal;
+
+      nb-icon {
+        font-size: 16px;
+        color: $silver-sand;
+      }
+    }
+
+    .home-build-card-author {
+      display: flex;
+      align-items: center;
+      height: 16px;
+
+      .home-build-card-author-name {
+        display: none;
+        font-size: 12px;
+        font-family: $primary-font-family;
+        line-height: 14px;
+        color: $gunmetal;
+        padding-right: $space-4;
+      }
+
+      img {
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &:hover {
+    .home-build-card-suffix {
+      .home-build-card-author {
+        border-radius: $border-8;
+        background-color: #E9ECFB;
+        padding-left: $space-8;
+
+        .home-build-card-author-name {
+          display: block;
+        }
+      }
+    }
+  }
+}
