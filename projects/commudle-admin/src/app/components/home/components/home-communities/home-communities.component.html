@@ -9,7 +9,8 @@
       </nb-list-item>
     </nb-list>
     <nb-list *ngIf="communities.length > 0">
-      <nb-list-item *ngFor="let community of communities; let i = index" class="clickable">
+      <nb-list-item *ngFor="let community of communities; let i = index" [routerLink]="['/communities', community.slug]"
+                    class="clickable">
         <div class="home-community">
           <div class="home-community-image">
             <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
