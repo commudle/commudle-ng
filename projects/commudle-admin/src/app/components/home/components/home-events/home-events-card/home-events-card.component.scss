@@ -102,9 +102,13 @@
         .home-events-community-logo {
           display: flex;
           align-items: center;
-          height: 1.75rem;
-          width: 1.75rem;
+          min-height: 1.75rem;
+          max-height: 1.75rem;
+          min-width: 1.75rem;
+          max-width: 1.75rem;
           overflow: hidden;
+          border-radius: 50%;
+          border: 0.5px solid #E9E8E8;
 
           img {
             width: 100%;

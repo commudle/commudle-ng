@@ -1,0 +1,46 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-builds {
+  margin: $space-16 0 0;
+  padding: $space-16;
+  border: 0;
+  border-radius: $border-10;
+
+  nb-card-header {
+    font-size: 26px;
+    font-family: $primary-font-family;
+    font-weight: $fw-600;
+    color: $gunmetal;
+    padding: $space-16 $space-12 $space-20;
+    border-bottom: none;
+  }
+
+  nb-card-body {
+    padding: 0;
+
+    .home-builds-list {
+      nb-list-item {
+        padding: $space-12 0;
+        flex-direction: column;
+
+        app-skeleton-text {
+          width: 100%;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .home-builds-all {
+      padding: $space-12 0 $space-8;
+      text-align: center;
+
+      a {
+        font-family: $primary-font-family;
+        color: rgba($neon-blue, 0.95);
+      }
+    }
+  }
+}
