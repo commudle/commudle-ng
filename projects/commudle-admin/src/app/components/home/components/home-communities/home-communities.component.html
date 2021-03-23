@@ -9,7 +9,7 @@
       </nb-list-item>
     </nb-list>
     <nb-list *ngIf="communities.length > 0">
-      <nb-list-item *ngFor="let community of communities" class="clickable">
+      <nb-list-item *ngFor="let community of communities; let i = index" class="clickable">
         <div class="home-community">
           <div class="home-community-image">
             <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
@@ -23,7 +23,10 @@
             </div>
           </div>
         </div>
-        <button class="home-communities-join" nbButton shape="round">Join</button>
+        <button *ngIf="community.id" [ngClass]="communityStatus[i] ? 'active' : ''" class="home-communities-join"
+                nbButton shape="round">
+          {{communityStatus[i] ? 'Joined' : 'Join'}}
+        </button>
       </nb-list-item>
     </nb-list>
     <div *ngIf="communities.length > 0" [routerLink]="['/communities']" class="home-communities-all clickable">
