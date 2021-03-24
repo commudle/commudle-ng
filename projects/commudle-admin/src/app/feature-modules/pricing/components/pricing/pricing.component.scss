@@ -2,5 +2,34 @@
 
 .pricing {
   min-height: 100vh;
-  background-color: $white;
+  background-color: white;
+
+  p, a, h1, div {
+    font-family: $primary-font-family;
+    color: $gunmetal;
+  }
+
+  .page-container {
+    .header {
+      padding-top: $space-72;
+      h1 {
+        margin: 0;
+      }
+
+      p {
+        font-size: $fs-tag;
+        line-height: 22px;
+      }
+    }
+
+    .plans {
+      margin-top: $space-24;
+    }
+
+
+
+    @media (max-width: $tab-width) {
+      padding: 0 $space-24;
+    }
+  }
 }
