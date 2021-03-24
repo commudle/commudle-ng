@@ -1,26 +1,35 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
 .features {
-  div, a, p {
+  div, a, p, h3 {
     font-family: $primary-font-family;
   }
   width: fit-content;
   >nb-card {
     width: fit-content;
+    margin: 0;
     .item-container {
       >div {
         display: flex;
-        border-bottom: 1px solid $lightgrey;
 
-        &:hover {
+        &:not(:first-child):hover {
           .item {
             background-color: $lightgreen2 !important;
           }
         }
 
         .item {
+          border-bottom: 1px solid $lightgrey;
           width: 320px;
           padding: $space-12;
+
+          &.purchase-button {
+            border: none;
+          }
+
+          &.header {
+            top: 200px;
+          }
 
           &.feature {
             font-weight: 500;
@@ -30,9 +39,32 @@
               font-size: $fs-text;
             }
 
+            &.paidplan.header {
+              >div {
+                margin-bottom: $space-12;
+                h3 {
+                  margin-bottom: 0;
+                  line-height: 26px;
+                  small {
+                    font-size: $fs-text;
+                    font-weight: 600;
+                  }
+                }
+
+                p {
+                  margin: 0;
+                  font-weight: 600;
+                }
+              }
+            }
+
             &.paidplan {
               background-color: $lightgreen;
-              font-size: $fs-text
+              font-size: $fs-text;
+            }
+
+            &.enterpriseplan {
+              font-size: $fs-text;
             }
           }
 

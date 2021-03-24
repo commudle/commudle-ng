@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PricingRoutingModule } from './pricing-routing.module';
 import { PricingComponent } from './components/pricing/pricing.component';
-import { NbCardModule, NbIconModule, NbListModule, NbTooltipModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbTooltipModule } from '@nebular/theme';
 import { CommudleFeaturesComponent } from './components/commudle-features/commudle-features.component';
 
 
@@ -21,7 +21,8 @@ import { CommudleFeaturesComponent } from './components/commudle-features/commud
     NbCardModule,
     NbListModule,
     NbIconModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbButtonModule
   ]
 })
 export class PricingModule { }
