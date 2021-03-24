@@ -1,0 +1,48 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.features {
+  div, a, p {
+    font-family: $primary-font-family;
+  }
+  width: fit-content;
+  >nb-card {
+    width: fit-content;
+    .item-container {
+      >div {
+        display: flex;
+        border-bottom: 1px solid $lightgrey;
+
+        &:hover {
+          .item {
+            background-color: $lightgreen2 !important;
+          }
+        }
+
+        .item {
+          width: 320px;
+          padding: $space-12;
+
+          &.feature {
+            font-weight: 500;
+            font-size: $fs-tag;
+            &.freeplan {
+              background-color: white;
+              font-size: $fs-text;
+            }
+
+            &.paidplan {
+              background-color: $lightgreen;
+              font-size: $fs-text
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $tab-width) {
+    width: 90vw;
+    overflow-x: auto;
+  }
+}
