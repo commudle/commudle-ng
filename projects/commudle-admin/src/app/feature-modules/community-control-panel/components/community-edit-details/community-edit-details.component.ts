@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { ActivatedRoute } from '@angular/router';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { DOCUMENT } from '@angular/common';
-import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {ICommunity} from 'projects/shared-models/community.model';
+import {ActivatedRoute} from '@angular/router';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
+import {DOCUMENT} from '@angular/common';
+import {CommunitiesService} from 'projects/commudle-admin/src/app/services/communities.service';
 
 @Component({
   selector: 'app-community-edit-details',
@@ -55,7 +55,7 @@ export class CommunityEditDetailsComponent implements OnInit {
       this.community = data;
       this.updateCommunity.emit(this.community);
       this.communityForm.get('community').patchValue(this.community);
-      this.uploadedLogo = this.community.logo_path;
+      this.uploadedLogo = this.community.logo_image.url;
     });
   }
 
