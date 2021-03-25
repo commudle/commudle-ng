@@ -1,0 +1,107 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+nb-card-header, div, a {
+  font-family: $primary-font-family;
+}
+
+.home-experts {
+  margin: $space-16 0 0;
+  border: 0;
+  border-radius: $border-10;
+
+  nb-card-header {
+    font-size: $fs-26;
+    font-weight: $fw-600;
+    color: $gunmetal;
+    padding: $space-28 $space-16 $space-24;
+    border-bottom: none;
+  }
+
+  .home-experts-list {
+    padding: 0;
+
+    nb-list {
+      nb-list-item {
+        padding: 0 $space-16 $space-16;
+        margin-bottom: $space-8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+
+        app-skeleton-text {
+          width: 100%;
+        }
+
+        .home-expert {
+          display: flex;
+          align-items: center;
+          margin-right: $space-8;
+
+          .home-expert-image {
+            display: flex;
+            align-items: center;
+            min-height: 2rem;
+            max-height: 2rem;
+            min-width: 2rem;
+            max-width: 2rem;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-right: $space-8;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .home-expert-details {
+            .home-expert-name {
+              font-size: $fs-14;
+              font-weight: 600;
+              color: $gunmetal;
+            }
+
+            .home-expert-designation {
+              font-size: $fs-12;
+              font-style: italic;
+              line-height: 14px;
+              color: $card-text-grey;
+            }
+
+            .home-expert-member-count {
+              font-size: $fs-12;
+              font-style: italic;
+              line-height: 14px;
+              color: $neon-blue;
+            }
+          }
+        }
+
+        .home-experts-join {
+          padding: $space-4 $space-12;
+          font-family: $primary-font-family;
+          font-weight: 400;
+          text-transform: capitalize;
+          color: white;
+          background-color: $neon-blue;
+          border: none;
+        }
+
+        .home-experts-join.active {
+          color: $neon-blue;
+          background-color: white;
+          border: 0.5px solid $neon-blue;
+        }
+      }
+    }
+
+    .home-experts-all {
+      padding: $space-4 $space-16 $space-16;
+      text-align: center;
+
+      a {
+        color: rgba($neon-blue, 0.95);
+      }
+    }
+  }
+}
