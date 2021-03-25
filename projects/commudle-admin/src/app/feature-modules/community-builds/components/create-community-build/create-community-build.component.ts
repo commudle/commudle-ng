@@ -6,7 +6,8 @@ import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-
+import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
+import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 
 @Component({
   selector: 'app-create-community-build',
@@ -17,6 +18,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   cBuild: ICommunityBuild;
   tags: string[] = [];
+  contributors: IUserRolesUser[] = [];
   linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
@@ -46,7 +48,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private communityBuildsService: CommunityBuildsService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private userRolesUsersService: UserRolesUsersService
   ) { }
 
   setMeta() {
@@ -107,7 +110,24 @@ export class CreateCommunityBuildComponent implements OnInit {
     });
   }
 
+  sendInvitationMail(userRolesUser) {
+    this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe(
+      (data) => {
+        this.toastLogService.successDialog("Invite sent again!");
+      }
+    );
+  }
+
+  removeTeammember(userRolesUser) {
+    this.communityBuildsService.removeTeammate(this.cBuild.id, userRolesUser.id).subscribe(
+      (data) => {
+        this.toastLogService.successDialog("Teammate Removed!");
+      }
+    );
+  }
+
   prefillCommunityBuild() {
+
     this.communityBuildForm.patchValue(this.cBuild);
     this.setBuildType();
 
@@ -122,6 +142,10 @@ export class CreateCommunityBuildComponent implements OnInit {
 
       this.uploadedImages.push(img.url);
     }
+
+    this.contributors = this.cBuild.user_roles_users;
+
+    this.contributors.sort((a,b) => a.status.localeCompare(b.status));
   }
 
 
