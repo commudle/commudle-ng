@@ -51,6 +51,13 @@
                                      [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
 
+      <div class="teammate-details" *ngIf="contributors.length > 0">
+        <p>teammates</p>
+          <div *ngFor="let contri of contributors;">
+            <app-user-profile-horizontal [user]="contri.user" [aboutMe]="true"
+                                     [socialMediaLinks]="true"></app-user-profile-horizontal>
+          </div>
+      </div>
       <div class="stats">
         <p class="stars">
           <app-votes-display
