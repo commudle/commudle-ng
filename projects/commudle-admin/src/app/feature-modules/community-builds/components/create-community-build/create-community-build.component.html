@@ -64,11 +64,22 @@
           </span>
         </div>
 
+        <div class="field" *ngIf="contributors.length > 0">
+          Teammates
+          <div *ngFor="let mates of contributors;">
+              <div *ngIf="mates.status == 'invited' || mates.status == 'accepted'" class="d-flex justify-content-space-between align-items-center">
+                <app-user-profile-horizontal [user]="mates.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+                <small *ngIf="mates.status == 'invited'" (click)="sendInvitationMail(mates)" class="clickable" style="color: blue;">resend</small>
+                <small *ngIf="mates.status == 'accepted'" (click)="removeTeammember(mates)" class="clickable" style="color: blue;">remove</small>
+              </div>
+          </div>
+        </div>
+
         <div class="field" formArrayName="team">
           <p>Add Teammate</p> 
             <div *ngFor="let email of communityBuildForm.controls.team['controls']; let i = index" >
               <div class="teammate-email d-flex align-items-center" [formGroupName]="i">
-                <input fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
+                <input required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
                 <nb-icon status="danger" class="clickable" (click)="removeTeammate(i)" icon="close-circle"></nb-icon>
               </div>
               <span *ngIf="emailList.controls[i].get('value').touched && emailList.controls[i].get('value').invalid && emailList.controls[i].get('value').errors.required" class="validation-error-text">
