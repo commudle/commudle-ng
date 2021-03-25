@@ -36,10 +36,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getDiscussionChat();
-    console.log(this.cBuild);
     this.contributors = this.cBuild.user_roles_users;
-    console.log(this.contributors);
-
     if (this.cBuild.link.startsWith('<iframe') && this.cBuild.link.endsWith('</iframe>')) {
       this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.link);
     } else {
