@@ -1,0 +1,38 @@
+<nb-card class="home-experts">
+  <nb-card-header>
+    Our Experts
+  </nb-card-header>
+  <nb-card-body class="home-experts-list">
+    <nb-list *ngIf="experts.length === 0">
+      <nb-list-item *ngFor="let _ of [].constructor(3)">
+        <app-skeleton-text [rows]="2"></app-skeleton-text>
+      </nb-list-item>
+    </nb-list>
+    <nb-list *ngIf="experts.length > 0">
+      <nb-list-item *ngFor="let expert of experts; let i = index" class="clickable">
+        <div class="home-expert">
+          <div class="home-expert-image">
+            <img alt="{{expert.name}}" src="{{expert.avatar}}">
+          </div>
+          <div class="home-expert-details">
+            <div class="home-expert-name">
+              {{expert.name | truncatetext:10}}
+            </div>
+            <div class="home-expert-designation">
+              {{expert.designation | truncatetext:10}}
+            </div>
+            <div class="home-expert-member-count">
+              {{expert.followers.toString() + ' followers'}}
+            </div>
+          </div>
+        </div>
+        <button [ngClass]="expert.following ? 'active' : ''" class="home-experts-join" nbButton shape="round">
+          {{expert.following ? 'Following' : 'Follow'}}
+        </button>
+      </nb-list-item>
+    </nb-list>
+    <div *ngIf="experts.length > 0" class="home-experts-all clickable">
+      <a>Meet all</a>
+    </div>
+  </nb-card-body>
+</nb-card>
