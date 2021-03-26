@@ -15,12 +15,11 @@ import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
 
 export class CommunityBuildDetailsComponent implements OnInit {
   @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
-
   moment = moment;
   @Input() cBuild: ICommunityBuild;
   @Input() showComments: boolean;
   discussionChat: IDiscussion;
-  contributors: IUserRolesUser[] = [];
+  teammates: IUserRolesUser[] = [];
   EBuildType = EBuildType;
   CBuildTypeDisplay = CBuildTypeDisplay;
   hasIframe = false;
@@ -36,7 +35,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getDiscussionChat();
-    this.contributors = this.cBuild.user_roles_users;
+    this.teammates = this.cBuild.user_roles_users;
     if (this.cBuild.link.startsWith('<iframe') && this.cBuild.link.endsWith('</iframe>')) {
       this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.link);
     } else {

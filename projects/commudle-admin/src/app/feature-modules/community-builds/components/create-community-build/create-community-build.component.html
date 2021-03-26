@@ -64,13 +64,16 @@
           </span>
         </div>
 
-        <div class="field" *ngIf="contributors.length > 0">
+        <div class="field" *ngIf="teammates.length > 0">
           Teammates
-          <div *ngFor="let mates of contributors;">
-              <div *ngIf="mates.status == 'invited' || mates.status == 'accepted'" class="d-flex justify-content-space-between align-items-center">
-                <app-user-profile-horizontal [user]="mates.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
-                <small *ngIf="mates.status == 'invited'" (click)="sendInvitationMail(mates)" class="clickable" style="color: blue;">resend</small>
-                <small *ngIf="mates.status == 'accepted'" (click)="removeTeammember(mates)" class="clickable" style="color: blue;">remove</small>
+          <div *ngFor="let teammate of teammates;">
+              <div *ngIf="teammate.status == eUserRolesUserStatus.INVITED || teammate.status == eUserRolesUserStatus.ACCEPTED" class="d-flex justify-content-space-between align-items-center">
+                <app-user-profile-horizontal [user]="teammate.user" [aboutMe] = "true"></app-user-profile-horizontal>
+                <div class="d-flex flex-column justify-content-space-between"*ngIf="teammate.status == eUserRolesUserStatus.INVITED">
+                  <small (click)="sendInvitationMail(teammate)" class="option clickable">Resend</small>
+                  <small (click)="removeTeammember(teammate)" class="option clickable">Remove</small>
+                </div>
+                <small *ngIf="teammate.status == eUserRolesUserStatus.ACCEPTED" (click)="removeTeammember(teammate)" class="option clickable">Remove</small>
               </div>
           </div>
         </div>
