@@ -21,7 +21,7 @@ export class HomeBuildsComponent implements OnInit {
   }
 
   getBuilds() {
-    this.homeService.pCommunityBuilds().subscribe(value => this.builds = value.community_builds.slice(0, 3));
+    this.homeService.communityBuilds().subscribe(value => this.builds = value.community_builds.slice(0, 3));
   }
 
 }
