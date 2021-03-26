@@ -51,11 +51,10 @@
                                      [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
 
-      <div class="teammate-details" *ngIf="contributors.length > 0">
-        <p>teammates</p>
-          <div *ngFor="let contri of contributors;">
-            <app-user-profile-horizontal [user]="contri.user" [aboutMe]="true"
-                                     [socialMediaLinks]="true"></app-user-profile-horizontal>
+      <div class="teammate-details" *ngIf="teammates.length > 0">
+        <p>Teammates</p>
+          <div *ngFor="let teammate of teammates;">
+            <app-user-profile-horizontal [user]="teammate.user" [aboutMe]="true"></app-user-profile-horizontal>
           </div>
       </div>
       <div class="stats">

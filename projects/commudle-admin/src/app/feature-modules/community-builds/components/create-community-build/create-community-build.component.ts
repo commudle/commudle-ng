@@ -6,7 +6,7 @@ import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
+import { IUserRolesUser, EUserRolesUserStatus } from "projects/shared-models/user_roles_user.model";
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 
 @Component({
@@ -15,10 +15,10 @@ import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/
   styleUrls: ['./create-community-build.component.scss']
 })
 export class CreateCommunityBuildComponent implements OnInit {
-
+  eUserRolesUserStatus = EUserRolesUserStatus;
   cBuild: ICommunityBuild;
   tags: string[] = [];
-  contributors: IUserRolesUser[] = [];
+  teammates: IUserRolesUser[] = [];
   linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
@@ -143,9 +143,8 @@ export class CreateCommunityBuildComponent implements OnInit {
       this.uploadedImages.push(img.url);
     }
 
-    this.contributors = this.cBuild.user_roles_users;
-
-    this.contributors.sort((a,b) => a.status.localeCompare(b.status));
+    this.teammates = this.cBuild.user_roles_users;
+    this.teammates.sort((a,b) => a.status.localeCompare(b.status));
   }
 
 
