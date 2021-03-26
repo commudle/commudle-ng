@@ -62,16 +62,16 @@ nb-card-header, div, a {
             }
 
             .home-expert-designation {
-              font-size: $fs-12;
+              font-size: $fs-10;
               font-style: italic;
-              line-height: 14px;
+              line-height: 12px;
               color: $card-text-grey;
             }
 
             .home-expert-member-count {
-              font-size: $fs-12;
+              font-size: $fs-10;
               font-style: italic;
-              line-height: 14px;
+              line-height: 12px;
               color: $neon-blue;
             }
           }
@@ -79,6 +79,7 @@ nb-card-header, div, a {
 
         .home-experts-join {
           padding: $space-4 $space-12;
+          font-size: $fs-12;
           font-family: $primary-font-family;
           font-weight: 400;
           text-transform: capitalize;
@@ -100,6 +101,7 @@ nb-card-header, div, a {
       text-align: center;
 
       a {
+        font-size: $fs-14;
         color: rgba($neon-blue, 0.95);
       }
     }

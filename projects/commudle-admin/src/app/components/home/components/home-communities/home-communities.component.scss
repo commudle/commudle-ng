@@ -63,8 +63,10 @@ nb-card-header, div, a {
             }
 
             .home-community-member-count {
+              margin-top: $space-4;
               font-size: $fs-12;
               font-style: italic;
+              line-height: 14px;
               color: $spanish-gray;
             }
           }
@@ -93,6 +95,7 @@ nb-card-header, div, a {
       text-align: center;
 
       a {
+        font-size: $fs-14;
         color: rgba($neon-blue, 0.95);
       }
     }
