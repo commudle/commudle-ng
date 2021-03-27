@@ -46,6 +46,7 @@
           margin-top: $space-4;
           font-size: $fs-12;
           color: $spanish-gray;
+          font-style: italic;
           line-height: 14px;
         }
       }
@@ -57,6 +58,7 @@
     text-align: center;
 
     a {
+      font-size: $fs-14;
       color: rgba($neon-blue, 0.95);
     }
   }

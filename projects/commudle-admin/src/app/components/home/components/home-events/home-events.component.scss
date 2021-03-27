@@ -21,6 +21,11 @@
       display: flex;
       flex-flow: wrap;
       gap: $space-16;
+      min-height: 524px;
+
+      app-skeleton-text {
+        width: 48%;
+      }
     }
 
     .home-events-controller {

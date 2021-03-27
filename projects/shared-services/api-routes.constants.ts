@@ -209,6 +209,7 @@ export const API_ROUTES = {
   HOME: {
     LABS: 'api/v2/home/labs',
     COMMUNITIES: 'api/v2/home/communities',
+    COMMUNITY_BUILDS: 'api/v2/home/community_builds',
     PUBLIC: {
       UPCOMING_EVENTS: 'api/v2/home/public/upcoming_events',
       PAST_RANDOM_EVENTS: 'api/v2/home/public/past_random_events',

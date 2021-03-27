@@ -5,10 +5,7 @@
   </div>
   <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
     <div class="home-events-image-overlay"></div>
-    <img *ngIf="event.header_image_path" alt="{{event.name}}" src="{{event.header_image_path}}">
-    <div *ngIf="!event.header_image_path">
-      <app-skeleton-text [rows]="1"></app-skeleton-text>
-    </div>
+    <img alt="{{event.name}}" src="{{event.header_image_path || '/assets/images/Home-Events.png'}}">
   </div>
   <div class="home-events-date">
     {{moment(event.start_time).format('MMM D')}}
