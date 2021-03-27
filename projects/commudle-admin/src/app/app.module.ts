@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {
   NbAccordionModule,
+  NbActionsModule,
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
@@ -161,6 +162,7 @@ export function initApp(appInitService: AppInitService) {
     NbDialogModule.forRoot(),
     NbSpinnerModule,
     NbTimepickerModule.forRoot(),
+    NbActionsModule,
 
     // Other external npm modules
     Ng2CompleterModule,
