@@ -51,6 +51,8 @@ $page-padding-bottom: 0.75rem;
 // $h1: 40px;
 // $h1-description: 16px;
 $fs-tag: 18px;
+$fs-text: 16px;
+$fs-list-small: 14px;
 
 
 // card font sizes
@@ -69,11 +71,15 @@ $black-coral: #616476ff;
 $medium-aquamarine: #7be4a5ff;
 $bittersweet: #f27059ff;
 $light-purple: #EEEEFF;
+$light-purple2: #c6cfff;
 $callout-yellow: rgba(255, 211, 56, 0.35);
+$lightgreen: #eefdff;
+$lightgreen2: #dffafe;
 
 // Using https://www.color-name.com/
 $gunmetal: #2F2E41;
 $raisin-black: #231F20;
+$lightgrey: lightgrey;
 
 $gradient-top: linear-gradient(0deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
 $gradient-right: linear-gradient(90deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
