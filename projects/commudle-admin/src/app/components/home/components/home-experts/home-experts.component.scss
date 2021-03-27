@@ -4,7 +4,7 @@ nb-card-header, div, a {
   font-family: $primary-font-family;
 }
 
-.home-communities {
+.home-experts {
   margin: $space-16 0 0;
   border: 0;
   border-radius: $border-10;
@@ -13,16 +13,16 @@ nb-card-header, div, a {
     font-size: $fs-26;
     font-weight: $fw-600;
     color: $gunmetal;
-    padding: $space-32 $space-28 $space-16;
+    padding: $space-28 $space-16 $space-24;
     border-bottom: none;
   }
 
-  .home-communities-list {
+  .home-experts-list {
     padding: 0;
 
     nb-list {
       nb-list-item {
-        padding: $space-16;
+        padding: 0 $space-16 $space-16;
         margin-bottom: $space-8;
         display: flex;
         justify-content: space-between;
@@ -33,21 +33,20 @@ nb-card-header, div, a {
           width: 100%;
         }
 
-        .home-community {
+        .home-expert {
           display: flex;
           align-items: center;
           margin-right: $space-8;
 
-          .home-community-image {
+          .home-expert-image {
             display: flex;
             align-items: center;
-            min-height: 2.5rem;
-            max-height: 2.5rem;
-            min-width: 2.5rem;
-            max-width: 2.5rem;
+            min-height: 2rem;
+            max-height: 2rem;
+            min-width: 2rem;
+            max-width: 2rem;
             overflow: hidden;
             border-radius: 50%;
-            border: 0.5px solid #E9E8E8;
             margin-right: $space-8;
 
             img {
@@ -55,25 +54,32 @@ nb-card-header, div, a {
             }
           }
 
-          .home-community-details {
-            .home-community-name {
+          .home-expert-details {
+            .home-expert-name {
               font-size: $fs-14;
               font-weight: 600;
               color: $gunmetal;
             }
 
-            .home-community-member-count {
-              margin-top: $space-4;
-              font-size: $fs-12;
+            .home-expert-designation {
+              font-size: $fs-10;
               font-style: italic;
-              line-height: 14px;
-              color: $spanish-gray;
+              line-height: 12px;
+              color: $card-text-grey;
+            }
+
+            .home-expert-member-count {
+              font-size: $fs-10;
+              font-style: italic;
+              line-height: 12px;
+              color: $neon-blue;
             }
           }
         }
 
-        .home-communities-join {
+        .home-experts-join {
           padding: $space-4 $space-12;
+          font-size: $fs-12;
           font-family: $primary-font-family;
           font-weight: 400;
           text-transform: capitalize;
@@ -82,7 +88,7 @@ nb-card-header, div, a {
           border: none;
         }
 
-        .home-communities-join.active {
+        .home-experts-join.active {
           color: $neon-blue;
           background-color: white;
           border: 0.5px solid $neon-blue;
@@ -90,8 +96,8 @@ nb-card-header, div, a {
       }
     }
 
-    .home-communities-all {
-      padding: $space-8 $space-28 $space-24;
+    .home-experts-all {
+      padding: $space-4 $space-16 $space-16;
       text-align: center;
 
       a {

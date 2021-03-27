@@ -31,6 +31,12 @@ export class HomeService {
     )
   }
 
+  communityBuilds(): Observable<ICommunityBuilds> {
+    return this.http.get<ICommunityBuilds>(
+      this.apiRoutesService.getRoute(API_ROUTES.HOME.COMMUNITY_BUILDS)
+    )
+  }
+
   pCommunities(): Observable<ICommunities> {
     return this.http.get<ICommunities>(
       this.apiRoutesService.getRoute(API_ROUTES.HOME.PUBLIC.COMMUNITIES)

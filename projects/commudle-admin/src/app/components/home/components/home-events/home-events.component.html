@@ -3,9 +3,12 @@
     Upcoming Events
   </nb-card-header>
   <nb-card-body>
-    <div class="home-events-cards">
+    <div *ngIf="!isLoading" class="home-events-cards">
       <app-home-events-card *ngFor="let event of events | slice:eventsStartIdx:(eventsStartIdx + 4)"
                             [event]="event"></app-home-events-card>
+    </div>
+    <div *ngIf="isLoading" class="home-events-cards">
+      <app-skeleton-text *ngFor="let _ of [].constructor(4)" [rows]="3"></app-skeleton-text>
     </div>
     <div class="home-events-controller">
       <button (click)="updateEventsIdx(-4)" *ngIf="eventsStartIdx !== 0" nbButton size="small">
