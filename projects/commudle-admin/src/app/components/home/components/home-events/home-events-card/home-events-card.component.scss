@@ -24,13 +24,13 @@ div {
     background-color: $neon-blue;
     color: $white;
     padding: $space-4;
-    font-size: $fs-12;
+    font-size: $fs-10;
     font-weight: $fw-500;
-    line-height: 13px;
+    line-height: 12px;
     z-index: 2;
 
     nb-icon {
-      font-size: $fs-12;
+      font-size: $fs-10;
     }
   }
 
@@ -117,7 +117,7 @@ div {
 
         .home-events-community-name {
           margin: 0 $space-16 0 $space-8;
-          font-size: $fs-12;
+          font-size: $fs-10;
           line-height: 12px;
           color: $spanish-gray;
         }
