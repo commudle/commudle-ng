@@ -82,7 +82,7 @@
           <p>Add Teammate</p> 
             <div *ngFor="let email of communityBuildForm.controls.team['controls']; let i = index" >
               <div class="teammate-email d-flex align-items-center" [formGroupName]="i">
-                <input required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
+                <input required fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
                 <nb-icon status="danger" class="clickable" (click)="removeTeammate(i)" icon="close-circle"></nb-icon>
               </div>
               <span *ngIf="emailList.controls[i].get('value').touched && emailList.controls[i].get('value').invalid && emailList.controls[i].get('value').errors.required" class="validation-error-text">

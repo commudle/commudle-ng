@@ -87,7 +87,7 @@ export class CreateCommunityBuildComponent implements OnInit {
   }
 
   addTeammate() {
-    this.emailList.push(this.fb.group({value: ['', Validators.required]}));
+    this.emailList.push(this.fb.group({value: ['', Validators.required, Validators.email]}));
   }
 
   removeTeammate(index) {
