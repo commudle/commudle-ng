@@ -13,7 +13,7 @@ div {
         padding: 0 $space-8;
         font-size: $fs-12;
         color: $neon-blue;
-        background-color: #E9ECFB;
+        background-color: $lavender;
         border-radius: $border-20;
       }
     }
@@ -71,7 +71,7 @@ div {
     .home-build-card-suffix {
       .home-build-card-author {
         border-radius: $border-8;
-        background-color: #E9ECFB;
+        background-color: $lavender;
         padding-left: $space-8;
 
         .home-build-card-author-name {
