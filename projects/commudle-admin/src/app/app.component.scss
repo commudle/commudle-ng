@@ -184,7 +184,7 @@ div, a, p, input, button {
     &::ng-deep {
       nav {
         flex-direction: column;
-        background-image: linear-gradient(266deg, #3DAAFA 14.24%, $neon-blue 98.56%);
+        background-image: linear-gradient(266deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
         overflow: hidden;
         padding: 0 !important;
       }
@@ -216,7 +216,7 @@ div, a, p, input, button {
             a {
               letter-spacing: 0.5px;
               text-decoration: none;
-              color: white;
+              color: $white;
               font-weight: 600;
               font-size: 12px;
             }
@@ -244,14 +244,14 @@ div, a, p, input, button {
           display: flex;
 
           nb-icon {
-            color: white;
+            color: $white;
             font-size: 24px;
             margin: 8px;
           }
         }
 
         .tech-stack {
-          color: #f5f5f5;
+          color: $cultured;
           display: none;
         }
       }
@@ -268,7 +268,7 @@ div, a, p, input, button {
         nav {
           display: flex;
           flex-direction: column;
-          background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
         }
       }
 
@@ -334,7 +334,7 @@ div, a, p, input, button {
 
             p {
               margin: 0;
-              color: white;
+              color: $white;
             }
           }
         }
@@ -343,7 +343,7 @@ div, a, p, input, button {
           visibility: visible;
           width: 160px;
           height: 155px;
-          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
           border-radius: 50%;
           position: absolute;
           left: -40px;
@@ -357,7 +357,7 @@ div, a, p, input, button {
           left: 70px;
           bottom: -70px;
           transform: rotate(45deg);
-          background: linear-gradient(226.61deg, #536eff 14.04%, rgba(114, 193, 255, .71) 73.46%);
+          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, .71) 73.46%);
           border-radius: 100px 100px 100px 100px;
           position: absolute;
         }
@@ -426,7 +426,7 @@ div, a, p, input, button {
 //    {
 //      nav {
 //        flex-direction: column;
-//        background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+//        background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
 //        overflow: hidden;
 //        padding: 0 !important;
 //      }
@@ -501,7 +501,7 @@ div, a, p, input, button {
 //        }
 //
 //        .tech-stack {
-//          color: #f5f5f5;
+//          color: $cultured;
 //          display: none;
 //        }
 //      }
@@ -522,7 +522,7 @@ div, a, p, input, button {
 //        nav {
 //          display: flex;
 //          flex-direction: column;
-//          background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+//          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
 //        }
 //      }
 //
@@ -595,7 +595,7 @@ div, a, p, input, button {
 //          visibility: visible;
 //          width: 160px;
 //          height: 155px;
-//          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+//          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
 //          border-radius: 50%;
 //          position:absolute;
 //          left: -40px;
@@ -610,7 +610,7 @@ div, a, p, input, button {
 //          left: 70px;
 //          bottom: -70px;
 //          transform: rotate(45deg);
-//          background: linear-gradient(226.61deg,#536eff 14.04%,rgba(114,193,255,.71) 73.46%);
+//          background: linear-gradient(226.61deg,$neon-blue 14.04%,rgba(114,193,255,.71) 73.46%);
 //          border-radius: 100px 100px 100px 100px;
 //          position: absolute;
 //        }
