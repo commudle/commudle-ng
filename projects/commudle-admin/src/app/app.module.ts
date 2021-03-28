@@ -78,6 +78,7 @@ import {HomeCommunitiesComponent} from './components/home/components/home-commun
 import {HomeBuildsComponent} from './components/home/components/home-builds/home-builds.component';
 import {HomeBuildsCardComponent} from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
 import {HomeExpertsComponent} from './components/home/components/home-experts/home-experts.component';
+import {HomePromotionsComponent} from './components/home/components/home-promotions/home-promotions.component';
 import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
 
 
@@ -110,7 +111,8 @@ export function initApp(appInitService: AppInitService) {
     HomeCommunitiesComponent,
     HomeBuildsComponent,
     HomeBuildsCardComponent,
-    HomeExpertsComponent
+    HomeExpertsComponent,
+    HomePromotionsComponent
   ],
   imports: [
     AppRoutingModule,
