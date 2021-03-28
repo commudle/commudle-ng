@@ -1,7 +1,7 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
-nb-card-header, div, a {
-  font-family: $primary-font-family;
+nb-card-header, div, a, button {
+  font-family: $primary-font-family !important;
 }
 
 .home-experts {
@@ -34,13 +34,9 @@ nb-card-header, div, a {
         }
 
         .home-expert {
-          display: flex;
-          align-items: center;
           margin-right: $space-8;
 
           .home-expert-image {
-            display: flex;
-            align-items: center;
             min-height: 2rem;
             max-height: 2rem;
             min-width: 2rem;
@@ -80,7 +76,6 @@ nb-card-header, div, a {
         .home-experts-join {
           padding: $space-4 $space-12;
           font-size: $fs-12;
-          font-family: $primary-font-family;
           font-weight: 400;
           text-transform: capitalize;
           color: white;
@@ -98,7 +93,6 @@ nb-card-header, div, a {
 
     .home-experts-all {
       padding: $space-4 $space-16 $space-16;
-      text-align: center;
 
       a {
         font-size: $fs-14;

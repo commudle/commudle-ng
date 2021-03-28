@@ -13,7 +13,7 @@ import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable
 import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
-import {IHomeSearch} from '../../../shared-models/home-search.model';
+import {IHomeSearch} from 'projects/shared-models/home-search.model';
 import {HomeService} from './services/home.service';
 import {Subject, Subscription} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';

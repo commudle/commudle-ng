@@ -10,7 +10,7 @@
     <div *ngIf="isLoading" class="home-events-cards">
       <app-skeleton-text *ngFor="let _ of [].constructor(4)" [rows]="3"></app-skeleton-text>
     </div>
-    <div class="home-events-controller">
+    <div class="home-events-controller d-flex justify-content-space-between">
       <button (click)="updateEventsIdx(-4)" *ngIf="eventsStartIdx !== 0" nbButton size="small">
         <nb-icon icon="arrow-left"></nb-icon>
       </button>
