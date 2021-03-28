@@ -7,6 +7,7 @@ import {ICommunities} from 'projects/shared-models/communities.model';
 import {ILabs} from 'projects/shared-models/labs.model';
 import {ICommunityBuilds} from 'projects/shared-models/community-builds.model';
 import {IEvents} from 'projects/shared-models/events.model';
+import {IHomeSearch} from '../../../../shared-models/home-search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,13 @@ export class HomeService {
     const params = new HttpParams().set('count', count);
     return this.http.get<IEvents>(
       this.apiRoutesService.getRoute(API_ROUTES.HOME.PUBLIC.PAST_RANDOM_EVENTS), {params}
+    );
+  }
+
+  searchEverything(value: string): Observable<IHomeSearch> {
+    const params = new HttpParams().set('q', value);
+    return this.http.get<IHomeSearch>(
+      this.apiRoutesService.getRoute(API_ROUTES.HOME.SEARCH_ALL), {params}
     );
   }
 
