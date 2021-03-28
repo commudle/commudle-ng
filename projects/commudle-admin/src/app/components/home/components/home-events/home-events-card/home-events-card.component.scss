@@ -5,10 +5,9 @@ div {
 }
 
 .home-events-card {
+  position: relative;
   width: 256px;
   border: 0.5px solid $silver-sand;
-  box-sizing: border-box;
-  position: relative;
   transition: all 0.3s ease-in-out;
 
   &:hover {
@@ -90,18 +89,10 @@ div {
     }
 
     .home-events-host {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-top: $space-16;
 
       .home-events-community {
-        display: flex;
-        align-items: center;
-
         .home-events-community-logo {
-          display: flex;
-          align-items: center;
           min-height: 1.75rem;
           max-height: 1.75rem;
           min-width: 1.75rem;
@@ -125,7 +116,6 @@ div {
 
       .home-events-register {
         font-size: $fs-14;
-
         font-weight: $fw-600;
         text-transform: uppercase;
         color: $neon-blue;

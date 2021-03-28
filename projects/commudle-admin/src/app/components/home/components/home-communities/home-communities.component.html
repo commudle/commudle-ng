@@ -11,8 +11,8 @@
     <nb-list *ngIf="communities.length > 0">
       <nb-list-item *ngFor="let community of communities; let i = index" [routerLink]="['/communities', community.slug]"
                     class="clickable">
-        <div class="home-community">
-          <div class="home-community-image">
+        <div class="home-community d-flex align-items-center">
+          <div class="home-community-image d-flex align-items-center">
             <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
           </div>
           <div class="home-community-details">
@@ -30,7 +30,8 @@
         </button>
       </nb-list-item>
     </nb-list>
-    <div *ngIf="communities.length > 0" [routerLink]="['/communities']" class="home-communities-all clickable">
+    <div *ngIf="communities.length > 0" [routerLink]="['/communities']"
+         class="home-communities-all text-center clickable">
       <a>Find more</a>
     </div>
   </nb-card-body>

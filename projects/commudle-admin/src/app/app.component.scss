@@ -23,8 +23,6 @@ div, a, p, input, button {
     }
 
     .home-navbar-logo {
-      display: flex;
-      align-items: center;
       max-width: 60px;
 
       img {
@@ -46,7 +44,6 @@ div, a, p, input, button {
           border: none;
           border-radius: 0;
           background-color: $light-purple;
-          //font-family: $primary-font-family;
 
           &::placeholder {
             color: rgba($gunmetal, 0.7);
@@ -68,8 +65,6 @@ div, a, p, input, button {
         z-index: 2;
 
         .home-navbar-search-results {
-          display: flex;
-          flex-direction: column;
           height: 0;
           overflow: auto;
           background-color: $light-purple;
@@ -78,9 +73,6 @@ div, a, p, input, button {
           .placeholder-text {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-size: 1rem;
             color: rgba($gunmetal, 0.6);
             margin: 0;
@@ -133,8 +125,6 @@ div, a, p, input, button {
     }
 
     .home-navbar-menu {
-      display: flex;
-
       .home-navbar-menu-options {
         nb-action {
           flex-direction: column;
@@ -166,8 +156,6 @@ div, a, p, input, button {
         }
 
         .menu-user-options {
-          display: flex;
-          flex-direction: row;
           gap: $space-8;
 
           button {
@@ -196,7 +184,7 @@ div, a, p, input, button {
     &::ng-deep {
       nav {
         flex-direction: column;
-        background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+        background-image: linear-gradient(266deg, #3DAAFA 14.24%, $neon-blue 98.56%);
         overflow: hidden;
         padding: 0 !important;
       }
@@ -206,9 +194,6 @@ div, a, p, input, button {
       padding: 30px 40px 15px;
 
       .page-links {
-        display: flex;
-        flex-direction: column;
-
         .logo {
           img {
             width: 50px;
@@ -249,9 +234,6 @@ div, a, p, input, button {
 
       .social-links {
         margin-top: 16px;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
 
         hr {
           border-top: 1px solid white;
@@ -349,7 +331,6 @@ div, a, p, input, button {
 
           .tech-stack {
             display: block;
-            text-align: center;
 
             p {
               margin: 0;

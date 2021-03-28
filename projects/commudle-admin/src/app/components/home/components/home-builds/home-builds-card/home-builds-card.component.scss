@@ -6,11 +6,7 @@ div {
 
 .home-build-card {
   .home-build-card-prefix {
-    display: flex;
-    justify-content: space-between;
-
     .home-build-card-tags {
-      display: flex;
       gap: $space-4;
 
       .home-build-card-tag {
@@ -43,10 +39,6 @@ div {
   }
 
   .home-build-card-suffix {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     .home-build-card-interactions {
       font-size: $fs-12;
       color: $gunmetal;
@@ -58,8 +50,6 @@ div {
     }
 
     .home-build-card-author {
-      display: flex;
-      align-items: center;
       height: 16px;
 
       .home-build-card-author-name {
