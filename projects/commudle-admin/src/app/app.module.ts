@@ -80,6 +80,7 @@ import {HomeBuildsCardComponent} from './components/home/components/home-builds/
 import {HomeExpertsComponent} from './components/home/components/home-experts/home-experts.component';
 import {HomePromotionsComponent} from './components/home/components/home-promotions/home-promotions.component';
 import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
+import {PublicCommunityModule} from './feature-modules/public-community/public-community.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -130,6 +131,7 @@ export function initApp(appInitService: AppInitService) {
     UserChatsModule,
     CommunityChannelsModule,
     SkeletonScreensModule,
+    PublicCommunityModule,
 
 
     // external service modules
