@@ -111,16 +111,17 @@ export class CreateCommunityBuildComponent implements OnInit {
   }
 
   sendInvitationMail(userRolesUser) {
-    this.userRolesUsersService.resendInvitation(userRolesUser.id).subscribe(
+    this.communityBuildsService.resendTeammateInvite(this.cBuild.id, userRolesUser.id).subscribe(
       (data) => {
         this.toastLogService.successDialog("Invite sent again!");
       }
     );
   }
 
-  removeTeammember(userRolesUser) {
+  removeTeammember(userRolesUser, index) {
     this.communityBuildsService.removeTeammate(this.cBuild.id, userRolesUser.id).subscribe(
       (data) => {
+        this.teammates.splice(index, 1);
         this.toastLogService.successDialog("Teammate Removed!");
       }
     );
@@ -165,7 +166,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   linkDisplay() {
     this.communityBuildForm.get('link').valueChanges.subscribe(val => {
-      if (val.startsWith('<iframe') && val.endsWith("</iframe>")) {
+      if (val && val.startsWith('<iframe') && val.endsWith("</iframe>")) {
         this.embeddedLink = this.sanitizer.bypassSecurityTrustHtml(val);
       } else {
         this.embeddedLink = null;
@@ -225,7 +226,7 @@ export class CreateCommunityBuildComponent implements OnInit {
     const cBuildFormValue = this.communityBuildForm.value;
 
     Object.keys(cBuildFormValue).forEach(
-      key =>{ 
+      key =>{
         if (cBuildFormValue[key] != null && key!='team') {
           formData.append(`community_build[${key}]`, cBuildFormValue[key]);
         }
