@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
@@ -87,7 +87,7 @@ export class CreateCommunityBuildComponent implements OnInit {
   }
 
   addTeammate() {
-    this.emailList.push(this.fb.group({value: ['', Validators.required, Validators.email]}));
+    this.emailList.push(this.fb.group({value: new FormControl('', [Validators.required, Validators.email])}));
   }
 
   removeTeammate(index) {
