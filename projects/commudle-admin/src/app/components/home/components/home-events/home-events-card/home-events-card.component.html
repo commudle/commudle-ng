@@ -8,15 +8,16 @@
     <img alt="{{event.name}}" src="{{event.header_image_path || '/assets/images/Home-Events.png'}}">
   </div>
   <div class="home-events-date">
-    {{moment(event.start_time).format('MMM D')}}
+    {{moment(event.start_time).format('MMM DD')}}
   </div>
   <div class="home-events-details">
     <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
       {{event.name | truncatetext:35}}
     </div>
-    <div class="home-events-host">
-      <div [routerLink]="['/communities', community.slug]" class="home-events-community clickable">
-        <div class="home-events-community-logo">
+    <div class="home-events-host d-flex justify-content-space-between align-items-center">
+      <div [routerLink]="['/communities', community.slug]"
+           class="home-events-community d-flex align-items-center clickable">
+        <div class="home-events-community-logo d-flex align-items-center">
           <img alt="{{community.name}}" src="{{community.logo_path}}">
         </div>
         <div class="home-events-community-name">{{community.name | truncatetext:35}}</div>

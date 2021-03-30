@@ -10,7 +10,7 @@ nb-card-header, div, a {
   border-radius: $border-10;
 
   nb-card-header {
-    font-size: $fs-26;
+    font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-32 $space-28 $space-16;
@@ -34,20 +34,16 @@ nb-card-header, div, a {
         }
 
         .home-community {
-          display: flex;
-          align-items: center;
           margin-right: $space-8;
 
           .home-community-image {
-            display: flex;
-            align-items: center;
             min-height: 2.5rem;
             max-height: 2.5rem;
             min-width: 2.5rem;
             max-width: 2.5rem;
             overflow: hidden;
             border-radius: 50%;
-            border: 0.5px solid #E9E8E8;
+            border: 0.5px solid $platinum;
             margin-right: $space-8;
 
             img {
@@ -57,14 +53,14 @@ nb-card-header, div, a {
 
           .home-community-details {
             .home-community-name {
-              font-size: $fs-14;
+              font-size: $fs-h5;
               font-weight: 600;
               color: $gunmetal;
             }
 
             .home-community-member-count {
               margin-top: $space-4;
-              font-size: $fs-12;
+              font-size: $fs-h6;
               font-style: italic;
               line-height: 14px;
               color: $spanish-gray;
@@ -92,10 +88,9 @@ nb-card-header, div, a {
 
     .home-communities-all {
       padding: $space-8 $space-28 $space-24;
-      text-align: center;
 
       a {
-        font-size: $fs-14;
+        font-size: $fs-h5;
         color: rgba($neon-blue, 0.95);
       }
     }

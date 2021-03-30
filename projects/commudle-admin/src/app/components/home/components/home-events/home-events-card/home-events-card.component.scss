@@ -5,10 +5,9 @@ div {
 }
 
 .home-events-card {
+  position: relative;
   width: 256px;
   border: 0.5px solid $silver-sand;
-  box-sizing: border-box;
-  position: relative;
   transition: all 0.3s ease-in-out;
 
   &:hover {
@@ -24,13 +23,13 @@ div {
     background-color: $neon-blue;
     color: $white;
     padding: $space-4;
-    font-size: $fs-12;
+    font-size: $fs-h7;
     font-weight: $fw-500;
-    line-height: 13px;
+    line-height: 12px;
     z-index: 2;
 
     nb-icon {
-      font-size: $fs-12;
+      font-size: $fs-h7;
     }
   }
 
@@ -71,7 +70,7 @@ div {
     background-color: $neon-blue;
     color: $white;
     padding: $space-8 $space-12;
-    font-size: $fs-16;
+    font-size: $fs-h4;
     font-weight: $fw-500;
     word-break: break-word;
     text-align: center;
@@ -83,32 +82,24 @@ div {
     .home-events-name {
       max-width: 171px;
       height: 2rem;
-      font-size: $fs-14;
+      font-size: $fs-h5;
       font-weight: $fw-600;
       line-height: 16px;
       color: $gunmetal;
     }
 
     .home-events-host {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-top: $space-16;
 
       .home-events-community {
-        display: flex;
-        align-items: center;
-
         .home-events-community-logo {
-          display: flex;
-          align-items: center;
           min-height: 1.75rem;
           max-height: 1.75rem;
           min-width: 1.75rem;
           max-width: 1.75rem;
           overflow: hidden;
           border-radius: 50%;
-          border: 0.5px solid #E9E8E8;
+          border: 0.5px solid $platinum;
 
           img {
             width: 100%;
@@ -117,15 +108,14 @@ div {
 
         .home-events-community-name {
           margin: 0 $space-16 0 $space-8;
-          font-size: $fs-12;
+          font-size: $fs-h7;
           line-height: 12px;
           color: $spanish-gray;
         }
       }
 
       .home-events-register {
-        font-size: $fs-14;
-
+        font-size: $fs-h5;
         font-weight: $fw-600;
         text-transform: uppercase;
         color: $neon-blue;

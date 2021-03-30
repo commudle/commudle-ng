@@ -1,7 +1,7 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
-nb-card-header, div, a {
-  font-family: $primary-font-family;
+nb-card-header, div, a, button {
+  font-family: $primary-font-family !important;
 }
 
 .home-experts {
@@ -10,7 +10,7 @@ nb-card-header, div, a {
   border-radius: $border-10;
 
   nb-card-header {
-    font-size: $fs-26;
+    font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-28 $space-16 $space-24;
@@ -34,13 +34,9 @@ nb-card-header, div, a {
         }
 
         .home-expert {
-          display: flex;
-          align-items: center;
           margin-right: $space-8;
 
           .home-expert-image {
-            display: flex;
-            align-items: center;
             min-height: 2rem;
             max-height: 2rem;
             min-width: 2rem;
@@ -56,20 +52,20 @@ nb-card-header, div, a {
 
           .home-expert-details {
             .home-expert-name {
-              font-size: $fs-14;
+              font-size: $fs-h5;
               font-weight: 600;
               color: $gunmetal;
             }
 
             .home-expert-designation {
-              font-size: $fs-10;
+              font-size: $fs-h7;
               font-style: italic;
               line-height: 12px;
-              color: $card-text-grey;
+              color: $taupe-gray;
             }
 
             .home-expert-member-count {
-              font-size: $fs-10;
+              font-size: $fs-h7;
               font-style: italic;
               line-height: 12px;
               color: $neon-blue;
@@ -79,8 +75,7 @@ nb-card-header, div, a {
 
         .home-experts-join {
           padding: $space-4 $space-12;
-          font-size: $fs-12;
-          font-family: $primary-font-family;
+          font-size: $fs-h6;
           font-weight: 400;
           text-transform: capitalize;
           color: white;
@@ -98,10 +93,9 @@ nb-card-header, div, a {
 
     .home-experts-all {
       padding: $space-4 $space-16 $space-16;
-      text-align: center;
 
       a {
-        font-size: $fs-14;
+        font-size: $fs-h5;
         color: rgba($neon-blue, 0.95);
       }
     }
