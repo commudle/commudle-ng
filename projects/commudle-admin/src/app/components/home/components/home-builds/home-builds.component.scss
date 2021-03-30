@@ -11,7 +11,7 @@ nb-card-header, a {
   border-radius: $border-10;
 
   nb-card-header {
-    font-size: $fs-26;
+    font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-16 $space-12 $space-20;
@@ -38,10 +38,9 @@ nb-card-header, a {
 
     .home-builds-all {
       padding: $space-12 0 $space-8;
-      text-align: center;
 
       a {
-        font-size: $fs-14;
+        font-size: $fs-h5;
         color: rgba($neon-blue, 0.95);
       }
     }

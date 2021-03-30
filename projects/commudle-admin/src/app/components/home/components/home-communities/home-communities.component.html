@@ -9,10 +9,9 @@
       </nb-list-item>
     </nb-list>
     <nb-list *ngIf="communities.length > 0">
-      <nb-list-item *ngFor="let community of communities; let i = index" [routerLink]="['/communities', community.slug]"
-                    class="clickable">
-        <div class="home-community">
-          <div class="home-community-image">
+      <nb-list-item *ngFor="let community of communities; let i = index" class="clickable">
+        <div [routerLink]="['/communities', community.slug]" class="home-community d-flex align-items-center">
+          <div class="home-community-image d-flex align-items-center">
             <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
           </div>
           <div class="home-community-details">
@@ -24,14 +23,26 @@
             </div>
           </div>
         </div>
-        <button *ngIf="community.id" [ngClass]="communityStatus[i] ? 'active' : ''" class="home-communities-join"
-                nbButton shape="round">
+        <button (click)="onDialogOpen(community)" *ngIf="community.id" [ngClass]="communityStatus[i] ? 'active' : ''"
+                class="home-communities-join" nbButton shape="round">
           {{communityStatus[i] ? 'Joined' : 'Join'}}
         </button>
       </nb-list-item>
     </nb-list>
-    <div *ngIf="communities.length > 0" [routerLink]="['/communities']" class="home-communities-all clickable">
+    <div *ngIf="communities.length > 0" [routerLink]="['/communities']"
+         class="home-communities-all text-center clickable">
       <a>Find more</a>
     </div>
   </nb-card-body>
 </nb-card>
+
+<ng-template #joinCommunityDialog let-data>
+  <nb-card>
+    <nb-card-header>Join Community</nb-card-header>
+    <nb-card-body>Do you want to know about the community before joining?</nb-card-body>
+    <nb-card-footer>
+      <button (click)="onDialogClose(data.community)" ghost nbButton>Learn about the community</button>
+      <app-membership-toggle (click)="onDialogClose()" [community]="data.community"></app-membership-toggle>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
