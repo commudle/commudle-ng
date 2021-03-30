@@ -118,9 +118,10 @@ export class CreateCommunityBuildComponent implements OnInit {
     );
   }
 
-  removeTeammember(userRolesUser) {
+  removeTeammember(userRolesUser, index) {
     this.communityBuildsService.removeTeammate(this.cBuild.id, userRolesUser.id).subscribe(
       (data) => {
+        this.teammates.splice(index, 1);
         this.toastLogService.successDialog("Teammate Removed!");
       }
     );
