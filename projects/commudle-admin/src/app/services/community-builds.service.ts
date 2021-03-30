@@ -79,7 +79,7 @@ export class CommunityBuildsService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.DELETE), {params}
     );
   }
-  
+
 
 
   confirmTeammateInvite(communityBuildId, token): Observable<boolean> {
@@ -87,6 +87,16 @@ export class CommunityBuildsService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CONFIRM_TEAMMATE_INVITE), {
         community_build_id: communityBuildId,
         token
+      }
+    );
+  }
+
+
+  resendTeammateInvite(communityBuildId, userRolesUserId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.RESEND_TEAMMATE_INVITE), {
+        community_build_id: communityBuildId,
+        user_roles_user_id: userRolesUserId
       }
     );
   }
