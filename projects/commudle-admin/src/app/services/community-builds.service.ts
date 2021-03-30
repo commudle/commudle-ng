@@ -79,6 +79,7 @@ export class CommunityBuildsService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.DELETE), {params}
     );
   }
+  
 
 
   confirmTeammateInvite(communityBuildId, token): Observable<boolean> {
@@ -87,6 +88,13 @@ export class CommunityBuildsService {
         community_build_id: communityBuildId,
         token
       }
+    );
+  }
+
+  removeTeammate(communityBuildId, userId) {
+    const params = new HttpParams().set('community_build_id', communityBuildId).set('user_roles_user_id', userId);
+    return this.http.delete<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.REMOVE_TEAMMATE), {params}
     );
   }
 

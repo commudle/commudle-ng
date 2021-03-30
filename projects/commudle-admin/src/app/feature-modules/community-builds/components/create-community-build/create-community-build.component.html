@@ -32,7 +32,7 @@
   <nb-card class="form-card">
     <nb-card-body>
 
-      <form [formGroup]="communityBuildForm">
+      <form [formGroup]="communityBuildForm" (keydown.enter)="$event.preventDefault()">
 
         <div class="field">
           <label fullWidth>
@@ -62,6 +62,39 @@
           <span *ngIf="communityBuildForm.get('name').touched && communityBuildForm.get('name').invalid && communityBuildForm.get('name').errors.required" class="validation-error-text">
             Required Field
           </span>
+        </div>
+
+        <div class="field" *ngIf="teammates.length > 0">
+          Teammates
+          <div *ngFor="let teammate of teammates;">
+              <div *ngIf="teammate.status == eUserRolesUserStatus.INVITED || teammate.status == eUserRolesUserStatus.ACCEPTED" class="d-flex justify-content-space-between align-items-center">
+                <app-user-profile-horizontal [user]="teammate.user" [aboutMe] = "true"></app-user-profile-horizontal>
+                <div class="d-flex flex-column justify-content-space-between"*ngIf="teammate.status == eUserRolesUserStatus.INVITED">
+                  <small (click)="sendInvitationMail(teammate)" class="option clickable">Resend</small>
+                  <small (click)="removeTeammember(teammate)" class="option clickable">Remove</small>
+                </div>
+                <small *ngIf="teammate.status == eUserRolesUserStatus.ACCEPTED" (click)="removeTeammember(teammate)" class="option clickable">Remove</small>
+              </div>
+          </div>
+        </div>
+
+        <div class="field" formArrayName="team">
+          <p>Add Teammate</p> 
+            <div *ngFor="let email of communityBuildForm.controls.team['controls']; let i = index" >
+              <div class="teammate-email d-flex align-items-center" [formGroupName]="i">
+                <input required fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
+                <nb-icon status="danger" class="clickable" (click)="removeTeammate(i)" icon="close-circle"></nb-icon>
+              </div>
+              <span *ngIf="emailList.controls[i].get('value').touched && emailList.controls[i].get('value').invalid && emailList.controls[i].get('value').errors.required" class="validation-error-text">
+                Required Field
+              </span>
+            </div>
+          <button class="add-button" nbButton (click)="addTeammate()">
+            <a type="button" style="text-decoration: none;">
+              <nb-icon icon="plus"></nb-icon>
+              Add Teammate
+            </a>
+          </button>
         </div>
 
         <div class="field">
@@ -134,25 +167,10 @@
           </div>
         </div>
 
-        <!-- <div class="field" *ngIf="teamNeeded">
-          <label fullWidth>
-            <nb-checkbox status="basic" formControlName="need_team">
-              I am looking for people to join this
-            </nb-checkbox>
-          </label>
-        </div> -->
-
         <div class="field">
           <label fullWidth>
             Tags
-            <input
-              type="text"
-              nbInput
-              fullWidth
-              size="large"
-              [(ngModel)]="tags"
-              [ngModelOptions]="{standalone: true}"
-              placeholder="Enter tags separated by comma (a, b, c...)">
+            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true" [tags]="tags"></app-tag>
           </label>
         </div>
 
