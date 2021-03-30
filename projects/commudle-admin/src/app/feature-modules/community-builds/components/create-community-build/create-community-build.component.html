@@ -63,23 +63,21 @@
             Required Field
           </span>
         </div>
-
         <div class="field" *ngIf="teammates.length > 0">
           Teammates
-          <div *ngFor="let teammate of teammates;">
+          <div *ngFor="let teammate of teammates; let i=index;">
               <div *ngIf="teammate.status == eUserRolesUserStatus.INVITED || teammate.status == eUserRolesUserStatus.ACCEPTED" class="d-flex justify-content-space-between align-items-center">
                 <app-user-profile-horizontal [user]="teammate.user" [aboutMe] = "true"></app-user-profile-horizontal>
                 <div class="d-flex flex-column justify-content-space-between"*ngIf="teammate.status == eUserRolesUserStatus.INVITED">
                   <small (click)="sendInvitationMail(teammate)" class="option clickable">Resend</small>
                   <small (click)="removeTeammember(teammate)" class="option clickable">Remove</small>
                 </div>
-                <small *ngIf="teammate.status == eUserRolesUserStatus.ACCEPTED" (click)="removeTeammember(teammate)" class="option clickable">Remove</small>
+                <small *ngIf="teammate.status == eUserRolesUserStatus.ACCEPTED" (click)="removeTeammember(teammate, i)" class="option clickable">Remove</small>
               </div>
           </div>
         </div>
 
         <div class="field" formArrayName="team">
-          <p>Add Teammate</p> 
             <div *ngFor="let email of communityBuildForm.controls.team['controls']; let i = index" >
               <div class="teammate-email d-flex align-items-center" [formGroupName]="i">
                 <input required fullWidth nbInput placeholder="Enter email (we will send an invitation to join)" formControlName='value'>
@@ -89,11 +87,9 @@
                 Required Field
               </span>
             </div>
-          <button class="add-button" nbButton (click)="addTeammate()">
-            <a type="button" style="text-decoration: none;">
-              <nb-icon icon="plus"></nb-icon>
+          <button class="add-button" nbButton status="primary" (click)="addTeammate()">
+            <nb-icon icon="plus"></nb-icon>
               Add Teammate
-            </a>
           </button>
         </div>
 
