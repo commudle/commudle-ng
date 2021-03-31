@@ -1,58 +1,75 @@
-<nb-layout>
-
+<nb-layout class="home-navbar">
   <nb-layout-header fixed>
-    <div class="container">
-      <div class="menu-left-container">
-        <div (click)="toggleSidebar()" class="sidebar-toggle">
-          <fa-icon [icon]="faBars" size="1x"></fa-icon>
-          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
-                    status="danger"></nb-badge>
-        </div>
-        <div [routerLink]="['/']" class="main-logo clickable">
-          <img alt="logo" src="/assets/images/commudle-logo72.png">
-          <p>
-            Commudle
-          </p>
-        </div>
-      </div>
-      <div class="menu-right-container">
-        <a [routerLink]="['/']" class="hide-mobile" ghost nbButton>Home</a>
-        <a [routerLink]="['/about']" class="hide-mobile" ghost nbButton>About</a>
-        <a [routerLink]="['/communities']" class="hide-mobile" ghost nbButton>Communities</a>
-        <a [routerLink]="['/labs']" class="hide-mobile" ghost nbButton>Labs</a>
-        <a [routerLink]="['/builds']" class="hide-mobile" ghost nbButton>Builds</a>
-        <nb-user
-          *ngIf="currentUser"
-          [nbContextMenu]="userContextMenu"
-          name=""
-          picture="{{ currentUser.avatar }}"
-          size="medium"
-        >
-        </nb-user>
-        <button (click)="login()"
-                *ngIf="!currentUser" ghost nbButton status="info">
-          <nb-icon icon="log-in-outline"></nb-icon>
-          Log in / Sign Up
-        </button>
+    <div [routerLink]="['/']" class="home-navbar-logo d-flex align-items-center clickable">
+      <img alt="Commudle" src="/assets/images/commudle-logo72.png">
+    </div>
+    <div (mouseleave)="toggleSearchSuffix(false)" class="home-navbar-search">
+      <nb-form-field (mouseenter)="toggleSearchSuffix(true)" class="home-navbar-search-form">
+        <nb-icon icon="search" nbPrefix></nb-icon>
+        <input (ngModelChange)="searchQueryChanged.next($event)" [ngModel]="searchQuery" nbInput
+               placeholder="Search events, labs, communities, people" type="text">
+      </nb-form-field>
 
+      <div class="home-navbar-search-suffix">
+        <div [ngClass]="{'active': showSearchResults}" class="home-navbar-search-results d-flex flex-column">
+          <div *ngFor="let result of searchResults | keyvalue">
+            <div *ngIf="result.value.length !== 0" class="home-navbar-search-result">
+              <div class="search-result-heading">{{result.key}}</div>
+              <div *ngFor="let value of result.value"
+                   [routerLink]="result.key === 'events' ? ['communities', value['kommunity_slug'], 'events', value['slug']] : [result.key, value['slug'] || value['username']]"
+                   class="search-result-name clickable">
+                {{value.name}}
+              </div>
+            </div>
+          </div>
+          <div *ngIf="showPlaceholder" class="placeholder-text d-flex justify-content-center align-items-center">
+            Quickly search your favorite topics, labs by industry experts or find an event you missed
+          </div>
+        </div>
       </div>
     </div>
+    <div class="home-navbar-menu d-flex">
+      <nb-actions class="home-navbar-menu-options">
+        <nb-action [routerLink]="['/']" class="clickable">
+          <nb-icon icon="home" pack="fas"></nb-icon>
+          <div class="home-navbar-menu-option">Home</div>
+        </nb-action>
+        <nb-action [routerLink]="['/about']" class="clickable">
+          <nb-icon icon="info-circle" pack="fas"></nb-icon>
+          <div class="home-navbar-menu-option">About</div>
+        </nb-action>
+        <nb-action [routerLink]="['/builds']" class="clickable">
+          <nb-icon icon="cog" pack="fas"></nb-icon>
+          <div class="home-navbar-menu-option">Builds</div>
+        </nb-action>
+        <nb-action [routerLink]="['/labs']" class="clickable">
+          <nb-icon icon="flask" pack="fas"></nb-icon>
+          <div class="home-navbar-menu-option">Labs</div>
+        </nb-action>
+        <nb-action [routerLink]="['/communities']" class="clickable">
+          <nb-icon icon="user-friends" pack="fas"></nb-icon>
+          <div class="home-navbar-menu-option">Communities</div>
+        </nb-action>
+      </nb-actions>
 
+      <div class="home-navbar-menu-user">
+        <nb-user *ngIf="currentUser" [nbContextMenu]="userContextMenu" class="menu-user-avatar" onlyPicture
+                 picture="{{currentUser.avatar}}"></nb-user>
+        <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
+          <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
+          <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>
+        </div>
+      </div>
+    </div>
   </nb-layout-header>
 
-  <nb-sidebar [tag]="'mainMenu'" id="commudleSidebar" responsive="true" state="collapsed">
-    <app-sidebar-menu></app-sidebar-menu>
-  </nb-sidebar>
-
-  <nb-layout-column (click)="closeSidebarMobile()">
+  <nb-layout-column>
     <router-outlet></router-outlet>
   </nb-layout-column>
 
-
   <nb-layout-footer *ngIf="footerStatus">
-
     <div class="footer">
-      <div class="page-links">
+      <div class="page-links d-flex flex-column">
         <div [routerLink]="['/']" class="logo">
           <img alt="Logo" class="clickable" src="/assets/images/commudle-logo128.png">
         </div>
@@ -80,11 +97,9 @@
             <a [routerLink]="['/about']">FAQ</a>
           </div>
         </div>
-
       </div>
 
-
-      <div class="social-links">
+      <div class="social-links d-flex flex-column-reverse align-items-center">
         <hr/>
 
         <div class="links">
@@ -102,19 +117,138 @@
           </a>
         </div>
 
-        <div class="tech-stack">
+        <div class="tech-stack text-center">
           <p>Made with Angular, Ruby on Rails, Postgres, Redis and Love</p>
         </div>
       </div>
+
       <div class="ellipse-large"></div>
       <div class="ellipse-small"></div>
     </div>
-
   </nb-layout-footer>
-
 </nb-layout>
 
 <app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>
-
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>
+
+
+<!--<nb-layout>-->
+
+<!--  <nb-layout-header fixed>-->
+<!--    <div class="container">-->
+<!--      <div class="menu-left-container">-->
+<!--        <div (click)="toggleSidebar()" class="sidebar-toggle">-->
+<!--          <fa-icon [icon]="faBars" size="1x"></fa-icon>-->
+<!--          <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"-->
+<!--                    status="danger"></nb-badge>-->
+<!--        </div>-->
+<!--        <div [routerLink]="['/']" class="main-logo clickable">-->
+<!--          <img alt="logo" src="/assets/images/commudle-logo72.png">-->
+<!--          <p>-->
+<!--            Commudle-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="menu-right-container">-->
+<!--        <a [routerLink]="['/']" class="hide-mobile" ghost nbButton>Home</a>-->
+<!--        <a [routerLink]="['/about']" class="hide-mobile" ghost nbButton>About</a>-->
+<!--        <a [routerLink]="['/communities']" class="hide-mobile" ghost nbButton>Communities</a>-->
+<!--        <a [routerLink]="['/labs']" class="hide-mobile" ghost nbButton>Labs</a>-->
+<!--        <a [routerLink]="['/builds']" class="hide-mobile" ghost nbButton>Builds</a>-->
+<!--        <nb-user-->
+<!--          *ngIf="currentUser"-->
+<!--          [nbContextMenu]="userContextMenu"-->
+<!--          name=""-->
+<!--          picture="{{ currentUser.avatar }}"-->
+<!--          size="medium"-->
+<!--        >-->
+<!--        </nb-user>-->
+<!--        <button (click)="login()"-->
+<!--                *ngIf="!currentUser" ghost nbButton status="info">-->
+<!--          <nb-icon icon="log-in-outline"></nb-icon>-->
+<!--          Log in / Sign Up-->
+<!--        </button>-->
+
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </nb-layout-header>-->
+
+<!--  <nb-sidebar [tag]="'mainMenu'" id="commudleSidebar" responsive="true" state="collapsed">-->
+<!--    <app-sidebar-menu></app-sidebar-menu>-->
+<!--  </nb-sidebar>-->
+
+<!--  <nb-layout-column (click)="closeSidebarMobile()">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </nb-layout-column>-->
+
+
+<!--  <nb-layout-footer *ngIf="footerStatus">-->
+
+<!--    <div class="footer">-->
+<!--      <div class="page-links">-->
+<!--        <div [routerLink]="['/']" class="logo">-->
+<!--          <img alt="Logo" class="clickable" src="/assets/images/commudle-logo128.png">-->
+<!--        </div>-->
+
+<!--        <div class="links">-->
+<!--          <div class="one">-->
+<!--            <a [routerLink]="['/']">HOME</a>-->
+<!--            <a [routerLink]="['/about']">ABOUT</a>-->
+<!--            <a [routerLink]="['/features']">FEATURES</a>-->
+<!--          </div>-->
+
+<!--          <div class="two">-->
+<!--            <a [routerLink]="['/communities']">ALL COMMUNITIES</a>-->
+<!--            <a [routerLink]="['/labs']">LABS</a>-->
+<!--            <a [routerLink]="['/builds']">COMMUNITY BUILDS</a>-->
+<!--          </div>-->
+
+<!--          <div class="three">-->
+<!--            <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>-->
+<!--            <a [routerLink]="['/policies/terms-and-conditions']">TERMS & CONDITIONS</a>-->
+<!--          </div>-->
+
+<!--          <div class="four">-->
+<!--            <a [routerLink]="['/about']">FAQ</a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+
+<!--      <div class="social-links">-->
+<!--        <hr/>-->
+
+<!--        <div class="links">-->
+<!--          <a href="https://twitter.com/commudle" target="_blank">-->
+<!--            <nb-icon icon="twitter"></nb-icon>-->
+<!--          </a>-->
+<!--          <a href="https://linkedin.com/company/commudle" target="_blank">-->
+<!--            <nb-icon icon="linkedin"></nb-icon>-->
+<!--          </a>-->
+<!--          <a href="https://facebook.com/commudle" target="_blank">-->
+<!--            <nb-icon icon="facebook"></nb-icon>-->
+<!--          </a>-->
+<!--          <a href="https://github.com/commudle/commudle-ng" target="_blank">-->
+<!--            <nb-icon icon="github"></nb-icon>-->
+<!--          </a>-->
+<!--        </div>-->
+
+<!--        <div class="tech-stack">-->
+<!--          <p>Made with Angular, Ruby on Rails, Postgres, Redis and Love</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="ellipse-large"></div>-->
+<!--      <div class="ellipse-small"></div>-->
+<!--    </div>-->
+
+<!--  </nb-layout-footer>-->
+
+<!--</nb-layout>-->
+
+<!--<app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>-->
+
+<!--<app-user-visit-tracker></app-user-visit-tracker>-->
+<!--<app-sw-update></app-sw-update>-->

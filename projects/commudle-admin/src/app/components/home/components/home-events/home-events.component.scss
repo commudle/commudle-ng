@@ -6,7 +6,7 @@
   margin: 0;
 
   nb-card-header {
-    font-size: $fs-26;
+    font-size: $fs-h2;
     font-family: $primary-font-family;
     font-weight: $fw-600;
     color: $gunmetal;
@@ -21,11 +21,14 @@
       display: flex;
       flex-flow: wrap;
       gap: $space-16;
+      min-height: 524px;
+
+      app-skeleton-text {
+        width: 48%;
+      }
     }
 
     .home-events-controller {
-      display: flex;
-      justify-content: space-between;
       padding-top: $space-16;
 
       button {

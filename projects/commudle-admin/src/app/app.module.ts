@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {
   NbAccordionModule,
+  NbActionsModule,
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
@@ -75,7 +76,10 @@ import {HomeLabsComponent} from './components/home/components/home-labs/home-lab
 import {HomeCommunitiesComponent} from './components/home/components/home-communities/home-communities.component';
 import {HomeBuildsComponent} from './components/home/components/home-builds/home-builds.component';
 import {HomeBuildsCardComponent} from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
+import {HomeExpertsComponent} from './components/home/components/home-experts/home-experts.component';
+import {HomePromotionsComponent} from './components/home/components/home-promotions/home-promotions.component';
 import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
+import {PublicCommunityModule} from './feature-modules/public-community/public-community.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -106,7 +110,9 @@ export function initApp(appInitService: AppInitService) {
     HomeLabsComponent,
     HomeCommunitiesComponent,
     HomeBuildsComponent,
-    HomeBuildsCardComponent
+    HomeBuildsCardComponent,
+    HomeExpertsComponent,
+    HomePromotionsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -124,6 +130,7 @@ export function initApp(appInitService: AppInitService) {
     UserChatsModule,
     CommunityChannelsModule,
     SkeletonScreensModule,
+    PublicCommunityModule,
 
 
     // external service modules
@@ -157,6 +164,7 @@ export function initApp(appInitService: AppInitService) {
     NbDialogModule.forRoot(),
     NbSpinnerModule,
     NbTimepickerModule.forRoot(),
+    NbActionsModule,
 
     // Other external npm modules
     Ng2CompleterModule,

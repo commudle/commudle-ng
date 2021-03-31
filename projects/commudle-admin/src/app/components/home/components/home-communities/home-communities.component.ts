@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ICommunity} from 'projects/shared-models/community.model';
 import {HomeService} from 'projects/commudle-admin/src/app/services/home.service';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
+import {NbDialogRef, NbDialogService} from '@nebular/theme';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-communities',
@@ -18,10 +20,15 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   subscriptions = []
   currentUser: ICurrentUser;
 
+  @ViewChild('joinCommunityDialog') joinCommunityDialog: TemplateRef<any>;
+  joinCommunityRef: NbDialogRef<any>;
+
   constructor(
     private homeService: HomeService,
     private appUsersService: AppUsersService,
-    private authWatchService: LibAuthwatchService
+    private authWatchService: LibAuthwatchService,
+    private nbDialogService: NbDialogService,
+    private router: Router
   ) {
   }
 
@@ -52,6 +59,23 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
           this.communityStatus.push(value.length !== 0);
         });
       });
+    }
+  }
+
+  onDialogOpen(community: ICommunity): void {
+    this.joinCommunityRef = this.nbDialogService.open(this.joinCommunityDialog, {
+      context: {
+        community
+      }
+    });
+  }
+
+  onDialogClose(community?: ICommunity): void {
+    if (community) {
+      this.joinCommunityRef.close();
+      this.router.navigate(['communities', community.slug]);
+    } else {
+      this.joinCommunityRef.close();
     }
   }
 
