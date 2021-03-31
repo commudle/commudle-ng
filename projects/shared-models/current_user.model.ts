@@ -12,7 +12,8 @@ export interface ICurrentUser {
   linkedin: string;
   github: string;
   twitter: string;
-  gender: string;  dribble: string;
+  gender: string;
+  dribbble: string;
   behance: string;
   medium: string;
   gitlab: string;

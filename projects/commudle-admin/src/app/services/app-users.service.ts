@@ -75,12 +75,6 @@ export class AppUsersService {
     );
   }
 
-  // get list of all the badges of a user
-  badges(): Observable<IBadges> {
-    return this.http.get<IBadges>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
-    );
-  }
 
 // admin panel view of list of labs
   myLabs(): Observable<ILabs> {
@@ -109,6 +103,21 @@ export class AppUsersService {
     let params = new HttpParams().set('username', username)
     return this.http.get<ICommunityBuilds>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITY_BUILDS), {params}
+    );
+  }
+
+  // get list of all the badges of a user
+  badges(username): Observable<IBadges> {
+    return this.http.get<IBadges>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
+    );
+  }
+
+
+  // toggle following a user
+  toggleFollow(username): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), { username }
     );
   }
 }

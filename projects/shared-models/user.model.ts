@@ -13,7 +13,7 @@ export interface IUser {
   linkedin: string;
   github: string;
   twitter: string;
-  dribble: string;
+  dribbble: string;
   behance: string;
   medium: string;
   gitlab: string;
