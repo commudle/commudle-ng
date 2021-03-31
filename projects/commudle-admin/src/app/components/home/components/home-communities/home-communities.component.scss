@@ -106,6 +106,35 @@ nb-card-header, div, a {
         flex-direction: row;
 
         nb-list-item {
+          .home-community {
+            flex-direction: column;
+            max-width: 6rem;
+
+            .home-community-image {
+              min-height: 6rem;
+              max-height: 6rem;
+              min-width: 6rem;
+              max-width: 6rem;
+              border-radius: 0;
+              border: none;
+              margin-right: 0;
+            }
+
+            .home-community-details {
+              .home-community-name {
+                margin-top: $space-8;
+                max-width: 6rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              .home-community-member-count {
+                display: none;
+              }
+            }
+          }
+
           app-skeleton-text {
             width: 80vw;
           }
