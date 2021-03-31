@@ -1,4 +1,4 @@
-<div>
+  <div>
   <h4>
     Labs
   </h4>
@@ -6,56 +6,64 @@
   <div>
     <nb-card class="labs">
       <nb-card-body>
-        <div class="lab" *ngFor="let lab of labs">
-          <div class="content">
-            <p>
-              <small>
-                {{ moment(lab.created_at).fromNow() }}
-              </small>
-            </p>
+        <nb-tabset>
+          <nb-tab *ngFor="let pStatus of EPublishStatus | keyvalue" tabTitle="{{pStatus.value}}({{labs[pStatus.value].length}})">
+            <div class="lab" *ngFor="let lab of labs[pStatus.value]">
+              <div class="content">
+                <p>
+                  <small>
+                    {{ lab.createdSince }}
+                  </small>
+                </p>
 
-            <h5>
-              {{ lab.name }}
-              <a [routerLink]="['/labs', lab.slug]">
-                <nb-icon icon="external-link" status="primary"></nb-icon>
-              </a>
-            </h5>
-          </div>
+                <h5>
+                  {{ lab.name }}
+                  <a [routerLink]="['/labs', lab.slug]" target="_blank">
+                    <nb-icon icon="external-link" status="primary"></nb-icon>
+                  </a>
+                </h5>
+                <p>{{lab.user.name}} &lt;{{lab.user.email}}&gt;</p>
+              </div>
 
-          <div class="stats">
-            <div>
-              <app-votes-display
-                [votableType]="'Lab'"
-                [votableId]="lab.id"
-                [icon]="'star'"
-              ></app-votes-display>
+              <div class="stats">
+                <div>
+                  <app-votes-display
+                    [votableType]="'Lab'"
+                    [votableId]="lab.id"
+                    [icon]="'star'"
+                  ></app-votes-display>
+                </div>
+                <div class="tags">
+                  <app-badge *ngFor="let t of lab.tags" [text]="t"></app-badge>
+                </div>
+              </div>
+              <div class="actions">
+                <div class="status-update">
+
+                  <nb-select [selected]="lab.publish_status" (selectedChange)="updatePublishStatus($event, lab.id)" status="primary" size="small">
+                    <nb-option placeholder="Select Status" *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]">
+                      {{ EPublishStatus[ps] }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+                <div>
+                  <button nbButton status="info" size="tiny" outline [routerLink]="['/labs', lab.slug, 'edit']">
+                    Edit
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="tags">
-              <app-badge *ngFor="let t of lab.tags" [text]="t"></app-badge>
-            </div>
-          </div>
-          <div class="actions">
-            <div class="status-update">
-              <nb-select [selected]="lab.publish_status" (selectedChange)="updatePublishStatus($event, lab.id)" status="primary" size="small">
-                <nb-option placeholder="Select Status" *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]">
-                  {{ EPublishStatus[ps] | titlecase }}
-                </nb-option>
-              </nb-select>
-            </div>
-            <div>
-              <button nbButton status="info" size="tiny" outline [routerLink]="['/labs', lab.slug, 'edit']">
-                Edit
-              </button>
-            </div>
-          </div>
-        </div>
+          </nb-tab>
+        </nb-tabset>
+
+
+      </nb-card-body>
+    </nb-card>
+    <nb-card *ngIf="this.loading">
+      <nb-card-body [nbSpinner]="loading">
+
       </nb-card-body>
     </nb-card>
   </div>
 
-  <ng-template #imageTemplate let-data>
-    <div class="image-window">
-      <img src="{{data.imageUrl}}">
-    </div>
-  </ng-template>
 </div>

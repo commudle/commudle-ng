@@ -1,0 +1,83 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+div {
+  font-family: $primary-font-family;
+}
+
+.home-build-card {
+  .home-build-card-prefix {
+    .home-build-card-tags {
+      gap: $space-4;
+
+      .home-build-card-tag {
+        padding: 0 $space-8;
+        font-size: $fs-h6;
+        color: $neon-blue;
+        background-color: $lavender;
+        border-radius: $border-20;
+      }
+    }
+  }
+
+  .home-build-card-content {
+    margin: $space-8 0;
+
+    .home-build-card-name {
+      font-size: $fs-h5;
+      font-weight: 600;
+      line-height: 16px;
+      color: $gunmetal;
+    }
+
+    .home-build-card-description {
+      margin-top: $space-4;
+      font-size: $fs-h7;
+      font-style: italic;
+      line-height: 12px;
+      color: rgba($spanish-gray, 0.7);
+    }
+  }
+
+  .home-build-card-suffix {
+    .home-build-card-interactions {
+      font-size: $fs-h6;
+      color: $gunmetal;
+
+      nb-icon {
+        font-size: $fs-h4;
+        color: $silver-sand;
+      }
+    }
+
+    .home-build-card-author {
+      height: 16px;
+
+      .home-build-card-author-name {
+        display: none;
+        font-size: $fs-h7;
+        line-height: 12px;
+        color: $gunmetal;
+        padding-right: $space-4;
+      }
+
+      img {
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &:hover {
+    .home-build-card-suffix {
+      .home-build-card-author {
+        border-radius: $border-8;
+        background-color: $lavender;
+        padding-left: $space-8;
+
+        .home-build-card-author-name {
+          display: block;
+        }
+      }
+    }
+  }
+}

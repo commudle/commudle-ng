@@ -1,6 +1,8 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
 // page structure
 .page-container {
-  max-width: 1366px;
+  max-width: $max-page-width;
   margin: 0 auto;
 }
 
@@ -8,18 +10,24 @@
   padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
 }
 
-
 // typography
 .text-center {
   text-align: center;
 }
 
+.text-h1-description {
+  font-size: 18px !important;
+  line-height: 26px !important;
+}
+
+.text-highlight-yellow {
+  background-color: rgba($cyber-yellow, 0.35);
+}
 
 // cursor
 .cursor-disabled {
   cursor: not-allowed !important;
 }
-
 
 // flex behaviour
 .d-flex {
@@ -30,19 +38,29 @@
   flex-direction: row;
 }
 
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .flex-column {
   flex-direction: column;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
 }
 
 .justify-content-center {
   justify-content: center;
 }
 
-
 .justify-content-space-around {
   justify-content: space-around;
 }
-
 
 .justify-content-space-between {
   justify-content: space-between;
@@ -52,6 +70,9 @@
   align-items: center;
 }
 
+.align-items-end {
+  align-items: flex-end;
+}
 
 .flex-wrap {
   flex-wrap: wrap;
@@ -65,11 +86,12 @@
   display: none;
 }
 
-
-
-
-
 // element size
 .image-popup {
   max-height: 100vh;
+}
+
+// card styles
+.card-p16 {
+  padding: 16px !important;
 }

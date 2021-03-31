@@ -7,6 +7,7 @@ import { CommunityChannelManagerService } from '../../services/community-channel
 import { NbWindowService } from '@nebular/theme';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-community-channels-dashboard',
@@ -26,6 +27,8 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
+    private title: Title,
+    private meta: Meta
   ) { }
 
   ngOnInit() {
@@ -38,7 +41,8 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
       this.activatedRoute.params.subscribe(
         data => {
           if (!this.selectedCommunity || data.community_id !== this.selectedCommunity.slug) {
-            this.selectedCommunity = this.activatedRoute.snapshot.data.community;;
+            this.selectedCommunity = this.activatedRoute.snapshot.data.community;
+            this.setMeta();
             this.communityChannelManagerService.setCommunity(this.selectedCommunity);
           }
         }
@@ -63,6 +67,24 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
     for (let subscription of this.subscriptions) {
       subscription.unsubscribe();
     }
+  }
+
+
+
+  setMeta() {
+    this.title.setTitle(`${this.selectedCommunity.name} | Channels`)
+    this.meta.updateTag({ name: 'description', content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`});
+
+
+    this.meta.updateTag({ name: 'og:image', content: this.selectedCommunity.logo_path });
+    this.meta.updateTag({ name: 'og:image:secure_url', content: this.selectedCommunity.logo_path });
+    this.meta.updateTag({ name: 'og:title', content: `${this.selectedCommunity.name} | Channels` });
+    this.meta.updateTag({ name: 'og:description', content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`});
+    this.meta.updateTag( { name: 'og:type', content: 'website'});
+
+    this.meta.updateTag({ name: 'twitter:image', content: this.selectedCommunity.logo_path });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.selectedCommunity.name} | Channels` });
+    this.meta.updateTag({ name: 'twitter:description', content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`});
   }
 
 }

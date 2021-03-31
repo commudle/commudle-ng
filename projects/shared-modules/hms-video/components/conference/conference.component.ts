@@ -189,6 +189,8 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     this.hmsClientManagerService.getLocalStream(this.client, this.audioDevice, this.videoDevice, this.mic, this.camera).subscribe(
       data => {
         this.localStream = data;
+        this.toggleVideo(this.camera);
+        this.toggleAudio(this.mic);
         // publish localstream to the room
         this.hmsClientManagerService.publishLocalStream(this.client, this.localStream, this.roomId).subscribe(
           data => {
@@ -210,8 +212,8 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   modifyLocalStream(stream) {
     if (this.client) {
       this.client.applyConstraints({
-        shouldPublishAudio: this.mic,
-        shouldPublishVideo: this.camera,
+        shouldPublishAudio: true,
+        shouldPublishVideo: true,
         advancedMediaConstraints: {
           audio: {
             deviceId: this.audioDevice.deviceId
@@ -317,15 +319,15 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
 
   // CONTROLS
-  toggleVideo() {
-    this.camera = !this.camera;
+  toggleVideo(value: boolean) {
+    this.camera = value;
     this.camera ? this.localStream.unmute('video') : this.localStream.mute('video');
     this.localMediaService.updateCamera(this.camera);
     this.updateCamera();
   }
 
-  toggleAudio() {
-    this.mic = !this.mic;
+  toggleAudio(value: boolean) {
+    this.mic = value;
     this.mic ? this.localStream.unmute('audio') : this.localStream.mute('audio');
     this.localMediaService.updateMic(this.mic);
     this.updateMic();
@@ -457,7 +459,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
           break;
           case this.hmsLiveChannel.ACTIONS.MUTE_PEER: {
             if (this.mic) {
-              this.toggleAudio();
+              this.toggleAudio(false);
             }
           }
           break;
