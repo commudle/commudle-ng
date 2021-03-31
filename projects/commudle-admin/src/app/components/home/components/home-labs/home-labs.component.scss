@@ -62,4 +62,62 @@
       color: rgba($neon-blue, 0.95);
     }
   }
+
+  .home-labs-mobile {
+    display: none;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-labs {
+    nb-card {
+      border-radius: 0;
+
+      nb-card-body {
+        h3:nth-of-type(1), .labs-list, .all-labs-link {
+          display: none;
+        }
+
+        h3 {
+          margin: 0 0 $space-16;
+        }
+
+        .home-labs-mobile {
+          display: flex;
+
+          app-skeleton-text {
+            width: 100%;
+          }
+
+          .home-labs-mobile-image {
+            width: 50%;
+            overflow: hidden;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .home-labs-mobile-details {
+            width: 50%;
+            margin-left: $space-8;
+
+            .home-labs-mobile-name {
+              font-size: $fs-h5;
+              font-weight: $fw-500;
+              line-height: 16px;
+            }
+
+            .home-labs-mobile-author {
+              margin-top: $space-4;
+              font-size: $fs-h6;
+              color: $spanish-gray;
+              font-style: italic;
+              line-height: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
