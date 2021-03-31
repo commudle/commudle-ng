@@ -298,6 +298,7 @@ export const API_ROUTES = {
     LABS: 'api/v2/users/labs',
     COMMUNITY_BUILDS: 'api/v2/users/community_builds',
     BADGES: 'api/v2/users/badges',
+    TOGGLE_FOLLOW: 'api/v2/users/toggle_follow',
     TAGS: 'api/v2/users/tags',
     PROFILE_BANNER_IMAGE: 'api/v2/users/profile_banner_image'
   },
