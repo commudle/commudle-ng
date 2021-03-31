@@ -5,6 +5,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {CBuildTypeDisplay, EBuildType, ICommunityBuild} from 'projects/shared-models/community-build.model';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
+import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
 
 @Component({
   selector: 'app-community-build-details',
@@ -14,12 +15,11 @@ import {IDiscussion} from 'projects/shared-models/discussion.model';
 
 export class CommunityBuildDetailsComponent implements OnInit {
   @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
-
   moment = moment;
   @Input() cBuild: ICommunityBuild;
   @Input() showComments: boolean;
   discussionChat: IDiscussion;
-
+  teammates: IUserRolesUser[] = [];
   EBuildType = EBuildType;
   CBuildTypeDisplay = CBuildTypeDisplay;
   hasIframe = false;
@@ -35,6 +35,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getDiscussionChat();
+    this.teammates = this.cBuild.user_roles_users;
     if (this.cBuild.link.startsWith('<iframe') && this.cBuild.link.endsWith('</iframe>')) {
       this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.link);
     } else {
