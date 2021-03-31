@@ -9,6 +9,7 @@ import { ICommunityBuilds } from 'projects/shared-models/community-builds.model'
 import { ITags } from 'projects/shared-models/tags.model';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
+import { IBadges } from 'projects/shared-models/badges.model';
 
 
 
@@ -71,6 +72,13 @@ export class AppUsersService {
   communities(): Observable<IUserRolesUsers> {
     return this.http.get<IUserRolesUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITIES)
+    );
+  }
+
+  // get list of all the badges of a user
+  badges(): Observable<IBadges> {
+    return this.http.get<IBadges>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
     );
   }
 

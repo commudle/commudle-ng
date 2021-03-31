@@ -1,4 +1,5 @@
 import { IAttachedFile } from "./attached-file.model";
+import { IBadge } from "./badge.model";
 import { ITag } from "./tag.model";
 
 export interface IUser {
@@ -23,5 +24,7 @@ export interface IUser {
   profile_banner_image: IAttachedFile;
   username: string;
   location: string;
-  tags : ITag[];
+  tags: ITag[];
+  is_expert: boolean;
+  badges: IBadge[];
 }
