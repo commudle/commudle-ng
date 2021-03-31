@@ -24,17 +24,31 @@
     }
 
     .event-components {
+      ::ng-deep {
+        > div {
+          nb-card {
+            margin: 0px;
+          }
+        }
+      }
 
       .info {
-        order: 1;
+        order: 2;
+        margin: $space-8 0px;
+        .sponsors {
+          margin: $space-16 0px;
+        }
       }
 
       .highlighted-info {
-        order: 2;
+        order: 1;
+        margin: $space-8 0px;
+
         .timings {
           background-color: white;
           padding: 0.5rem;
           text-align: center;
+          margin: $space-16 0px;
 
           @media screen and (min-width: 640px) {
             text-align: left;
