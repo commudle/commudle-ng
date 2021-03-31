@@ -51,6 +51,12 @@
                                      [socialMediaLinks]="true"></app-user-profile-horizontal>
       </div>
 
+      <div class="teammate-details" *ngIf="teammates.length > 0">
+        <p>Teammates</p>
+          <div *ngFor="let teammate of teammates;">
+            <app-user-profile-horizontal [user]="teammate.user" [aboutMe]="true"></app-user-profile-horizontal>
+          </div>
+      </div>
       <div class="stats">
         <p class="stars">
           <app-votes-display

@@ -1,5 +1,6 @@
 :host {
   height: 100%;
+
   .discussion-chat-component {
     min-height: 100px;
     height: 100%;
@@ -8,6 +9,7 @@
     .messages {
       height: 90%;
       overflow-y: auto;
+
       .message {
         margin-bottom: 1rem;
         border: 1px dotted lightgrey;
@@ -22,6 +24,7 @@
         transform: translate(-50%, -50%);
         width: 80%;
         text-align: center;
+
         h4 {
           color: darkgrey;
         }
@@ -29,12 +32,13 @@
     }
 
     .send-message-form {
-      position: sticky;
-      bottom: 0.5rem;
+      position: relative;
+      bottom: -1.5rem;
       width: 100%;
 
       form {
         display: flex;
+
         button {
           width: 20%;
           max-width: 40px;

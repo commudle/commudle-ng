@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {
   NbAccordionModule,
+  NbActionsModule,
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
@@ -28,11 +29,11 @@ import {
   NbSpinnerModule,
   NbTabsetModule,
   NbThemeModule,
+  NbTimepickerModule,
   NbToastrModule,
   NbTooltipModule,
-  NbWindowModule,
-  NbTimepickerModule,
-  NbUserModule
+  NbUserModule,
+  NbWindowModule
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
@@ -44,7 +45,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {Ng2CompleterModule} from 'ng2-completer';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {HomeComponent} from './components/home/home.component';
 import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
 import {LogoutComponent} from './components/logout/logout.component';
@@ -69,8 +69,17 @@ import {SwUpdateComponent} from './components/sw-update/sw-update.component';
 import {HomeCommunityCardComponent} from './components/home/communities/home-community-card/home-community-card.component';
 import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
-import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
+import {HomeEventsComponent} from './components/home/components/home-events/home-events.component';
+import {HomeEventsCardComponent} from './components/home/components/home-events/home-events-card/home-events-card.component';
+import {HomeLabsComponent} from './components/home/components/home-labs/home-labs.component';
+import {HomeCommunitiesComponent} from './components/home/components/home-communities/home-communities.component';
+import {HomeBuildsComponent} from './components/home/components/home-builds/home-builds.component';
+import {HomeBuildsCardComponent} from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
+import {HomeExpertsComponent} from './components/home/components/home-experts/home-experts.component';
+import {HomePromotionsComponent} from './components/home/components/home-promotions/home-promotions.component';
+import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
+import {PublicCommunityModule} from './feature-modules/public-community/public-community.module';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -96,7 +105,14 @@ export function initApp(appInitService: AppInitService) {
     CommunitiesComponent,
     SwUpdateComponent,
     HomeCommunityCardComponent,
-    EventsComponent,
+    HomeEventsComponent,
+    HomeEventsCardComponent,
+    HomeLabsComponent,
+    HomeCommunitiesComponent,
+    HomeBuildsComponent,
+    HomeBuildsCardComponent,
+    HomeExpertsComponent,
+    HomePromotionsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -112,11 +128,13 @@ export function initApp(appInitService: AppInitService) {
     ReusableComponentsModule,
     SharedPipesModule,
     UserChatsModule,
+    CommunityChannelsModule,
+    SkeletonScreensModule,
+    PublicCommunityModule,
+
 
     // external service modules
     LibErrorHandlerModule,
-    NgxMaterialTimepickerModule,
-
 
     // Nebula modules
     NbThemeModule.forRoot({name: 'default'}),
@@ -146,12 +164,12 @@ export function initApp(appInitService: AppInitService) {
     NbDialogModule.forRoot(),
     NbSpinnerModule,
     NbTimepickerModule.forRoot(),
+    NbActionsModule,
 
     // Other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    CommunityChannelsModule,
   ],
   providers: [
     AppInitService,

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-
+import { IUserRolesUser, EUserRolesUserStatus } from "projects/shared-models/user_roles_user.model";
+import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 
 @Component({
   selector: 'app-create-community-build',
@@ -14,14 +15,15 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   styleUrls: ['./create-community-build.component.scss']
 })
 export class CreateCommunityBuildComponent implements OnInit {
-
+  eUserRolesUserStatus = EUserRolesUserStatus;
   cBuild: ICommunityBuild;
-  tags = '';
+  tags: string[] = [];
+  teammates: IUserRolesUser[] = [];
   linkFieldLabel = 'Any Link?';
   EBuildType = EBuildType;
   EPublishStatus = EPublishStatus;
   redirectTo;
-
+  form: FormGroup;
   embeddedLink;
   uploadedImagesFiles: IAttachedFile[] = [];
   uploadedImages = [];
@@ -33,7 +35,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: ['']
+    link: [''],
+    team: this.fb.array([])
   });
 
 
@@ -45,7 +48,8 @@ export class CreateCommunityBuildComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private communityBuildsService: CommunityBuildsService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private userRolesUsersService: UserRolesUsersService
   ) { }
 
   setMeta() {
@@ -74,11 +78,21 @@ export class CreateCommunityBuildComponent implements OnInit {
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
-
     this.title.setTitle('Share Your Build!');
     this.setMeta();
   }
 
+  get emailList() {
+    return this.communityBuildForm.get('team') as FormArray;
+  }
+
+  addTeammate() {
+    this.emailList.push(this.fb.group({value: new FormControl('', [Validators.required, Validators.email])}));
+  }
+
+  removeTeammate(index) {
+    this.emailList.removeAt(index);
+  }
 
   getCommunityBuild() {
     this.activatedRoute.params.subscribe(data => {
@@ -89,14 +103,32 @@ export class CreateCommunityBuildComponent implements OnInit {
             this.cBuild = data;
             this.title.setTitle(`${this.cBuild.name} | Edit`);
             this.prefillCommunityBuild();
-            this.tags = data.tags.toString();
+            this.tags = data.tags;
           }
         );
       }
     });
   }
 
+  sendInvitationMail(userRolesUser) {
+    this.communityBuildsService.resendTeammateInvite(this.cBuild.id, userRolesUser.id).subscribe(
+      (data) => {
+        this.toastLogService.successDialog("Invite sent again!");
+      }
+    );
+  }
+
+  removeTeammember(userRolesUser, index) {
+    this.communityBuildsService.removeTeammate(this.cBuild.id, userRolesUser.id).subscribe(
+      (data) => {
+        this.teammates.splice(index, 1);
+        this.toastLogService.successDialog("Teammate Removed!");
+      }
+    );
+  }
+
   prefillCommunityBuild() {
+
     this.communityBuildForm.patchValue(this.cBuild);
     this.setBuildType();
 
@@ -111,6 +143,9 @@ export class CreateCommunityBuildComponent implements OnInit {
 
       this.uploadedImages.push(img.url);
     }
+
+    this.teammates = this.cBuild.user_roles_users;
+    this.teammates.sort((a,b) => a.status.localeCompare(b.status));
   }
 
 
@@ -131,7 +166,7 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   linkDisplay() {
     this.communityBuildForm.get('link').valueChanges.subscribe(val => {
-      if (val.startsWith('<iframe') && val.endsWith("</iframe>")) {
+      if (val && val.startsWith('<iframe') && val.endsWith("</iframe>")) {
         this.embeddedLink = this.sanitizer.bypassSecurityTrustHtml(val);
       } else {
         this.embeddedLink = null;
@@ -189,9 +224,13 @@ export class CreateCommunityBuildComponent implements OnInit {
   buildFormData(publishStatus): FormData {
     const formData: any = new FormData();
     const cBuildFormValue = this.communityBuildForm.value;
+
     Object.keys(cBuildFormValue).forEach(
-      key => (!(cBuildFormValue[key] == null) ? formData.append(`community_build[${key}]`, cBuildFormValue[key]) : '')
-      );
+      key =>{
+        if (cBuildFormValue[key] != null && key!='team') {
+          formData.append(`community_build[${key}]`, cBuildFormValue[key]);
+        }
+      });
 
 
     if (this.cBuild && this.cBuild.publish_status === EPublishStatus.published) {
@@ -205,6 +244,10 @@ export class CreateCommunityBuildComponent implements OnInit {
       Object.keys(this.uploadedImagesFiles[i]).forEach(
         key => formData.append(`community_build[images][][${key}]`, this.uploadedImagesFiles[i][key])
         );
+    }
+
+    for(let entries in cBuildFormValue['team']) {
+      formData.append(`community_build[team][][value]`, cBuildFormValue['team'][entries]['value']);
     }
 
     return formData;
@@ -231,8 +274,19 @@ export class CreateCommunityBuildComponent implements OnInit {
   }
 
 
+  onTagAdd(value: string) {
+    if (!this.tags.includes(value)) {
+      this.tags.push(value);
+    }
+  }
+
+  onTagDelete(value: string) {
+    this.tags = this.tags.filter((tag) => tag !== value);
+  }
+
+
   submitTags() {
-    this.communityBuildsService.updateTags(this.cBuild.id, this.tags.split(',')).subscribe(
+    this.communityBuildsService.updateTags(this.cBuild.id, this.tags).subscribe(
       data => {
         this.router.navigate(['/builds/my-builds']);
         this.toastLogService.successDialog('Saved!');

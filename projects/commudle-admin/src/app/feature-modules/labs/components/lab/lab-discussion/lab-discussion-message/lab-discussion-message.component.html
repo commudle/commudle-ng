@@ -1,0 +1,65 @@
+<div>
+  <div class="message">
+    <div>
+      <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
+    </div>
+    <div class="content-controls">
+      <div class="author-details">
+        <p [routerLink]="['/users', message.user.username]" class="author-name clickable">{{message.user.name}}</p>
+        <p class="message-date">{{moment(message.created_at).format("MMM D [']YY")}}</p>
+      </div>
+      <div class="content">{{message.content}}</div>
+      <div class="details-flag">
+        <div (click)="login() && permittedActions.includes(allActions.FLAG) && emitFlag(message.id)" class="clickable">
+          <p [ngClass]="{'error-text': message.flags_count > 0}"
+             nbTooltip="Report this message. (3 reports will delete it)" nbTooltipStatus="warning">
+            <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>
+            <nb-icon icon="flag"></nb-icon>
+          </p>
+        </div>
+        <div
+          (click)="login() && (permittedActions.includes(allActions.DELETE) || (currentUser && message.user.id === currentUser.id)) && emitDelete(message.id)"
+          *ngIf="permittedActions.includes(allActions.DELETE)" class="clickable" nbTooltip="Delete"
+          nbTooltipStatus="warning">
+          <p>
+            <nb-icon icon="close-circle"></nb-icon>
+          </p>
+        </div>
+        <div>
+          <p>
+            <app-votes-display [icon]="'heart'" [size]="'small'" [votableId]="message.id"
+                               [votableType]="'UserMessage'"></app-votes-display>
+          </p>
+        </div>
+        <div (click)="toggleReplyForm()" *ngIf="permittedActions.includes(allActions.ADD) && canReply"
+             class="clickable">
+          <p><small>Reply</small></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="canReply" class="replies-container">
+    <div *ngFor="let rep of message.user_messages" class="reply-message">
+      <app-lab-discussion-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)"
+                                  [allActions]="allActions" [canReply]="false" [currentUser]="currentUser"
+                                  [message]="rep" [permittedActions]="permittedActions"></app-lab-discussion-message>
+    </div>
+
+    <div *ngIf="showReplyForm" class="reply-form">
+      <form (ngSubmit)="emitReply()" *ngIf="canReply" [formGroup]="userMessageReplyForm">
+        <nb-form-field>
+          <nb-icon icon="edit-2" nbPrefix></nb-icon>
+          <textarea #messageInput (input)="handleInputSize()" formControlName="content" fullWidth maxlength="1000"
+                    minlength="1" nbInput placeholder="Reply" rows="1" shape="semi-round"></textarea>
+          <button [disabled]="!userMessageReplyForm.valid" ghost nbButton nbSuffix shape="semi-round" status="primary"
+                  type="submit">
+            Post
+            <nb-icon icon="paper-plane-outline"></nb-icon>
+          </button>
+        </nb-form-field>
+      </form>
+    </div>
+  </div>
+
+</div>

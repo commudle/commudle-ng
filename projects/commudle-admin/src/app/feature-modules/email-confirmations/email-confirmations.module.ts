@@ -5,7 +5,9 @@ import { EmailConfirmationsRoutingModule } from './email-confirmations-routing.m
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { CollaborationCommunityComponent } from './components/collaboration-community/collaboration-community.component';
 import { UserRoleConfirmationComponent } from './components/user-role-confirmation/user-role-confirmation.component';
-import { NbIconModule, NbCardModule } from '@nebular/theme';
+import { NbIconModule, NbCardModule, NbSpinnerModule, NbToggleModule } from '@nebular/theme';
+import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-unsubscribe.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,16 +15,20 @@ import { NbIconModule, NbCardModule } from '@nebular/theme';
     RsvpComponent,
     CollaborationCommunityComponent,
     UserRoleConfirmationComponent,
+    EmailUnsubscribeComponent,
   ],
   imports: [
     CommonModule,
     EmailConfirmationsRoutingModule,
+    FormsModule,
 
 
 
     // Nebular
     NbIconModule,
-    NbCardModule
+    NbCardModule,
+    NbSpinnerModule,
+    NbToggleModule
   ]
 })
 export class EmailConfirmationsModule { }
