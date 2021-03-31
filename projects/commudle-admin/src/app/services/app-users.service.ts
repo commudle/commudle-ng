@@ -114,6 +114,15 @@ export class AppUsersService {
   }
 
 
+  // check if the logged in user is following a user
+  check_followee(username): Observable<boolean> {
+    let params = new HttpParams().set('username', username)
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.CHECK_FOLLOWEE), { params }
+    );
+  }
+
+
   // toggle following a user
   toggleFollow(username): Observable<boolean> {
     return this.http.post<boolean>(

@@ -299,6 +299,7 @@ export const API_ROUTES = {
     COMMUNITY_BUILDS: 'api/v2/users/community_builds',
     BADGES: 'api/v2/users/badges',
     TOGGLE_FOLLOW: 'api/v2/users/toggle_follow',
+    CHECK_FOLLOWEE: 'api/v2/users/check_followee',
     TAGS: 'api/v2/users/tags',
     PROFILE_BANNER_IMAGE: 'api/v2/users/profile_banner_image'
   },
