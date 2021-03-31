@@ -13,7 +13,7 @@ nb-card-header, div, a {
     font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
-    padding: $space-32 $space-28 $space-16;
+    padding: $space-32 $space-16 $space-16;
     border-bottom: none;
   }
 
@@ -92,6 +92,32 @@ nb-card-header, div, a {
       a {
         font-size: $fs-h5;
         color: rgba($neon-blue, 0.95);
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-communities {
+    border-radius: 0;
+
+    .home-communities-list {
+      nb-list {
+        flex-direction: row;
+
+        nb-list-item {
+          app-skeleton-text {
+            width: 80vw;
+          }
+
+          .home-communities-join {
+            display: none;
+          }
+        }
+      }
+
+      .home-communities-all {
+        display: none;
       }
     }
   }
