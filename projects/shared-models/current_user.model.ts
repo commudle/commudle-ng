@@ -9,11 +9,17 @@ export interface ICurrentUser {
   linkedin: string;
   github: string;
   twitter: string;
-  gender: string;
+  gender: string;  dribble: string;
+  behance: string;
+  medium: string;
+  gitlab: string;
+  facebook: string;
+  youtube: string;
   avatar: string;
   user_roles: string[];
   has_community_builds: boolean;
   profile_completed: boolean;
   has_labs: boolean;
   username: string;
+  location: string;
 }

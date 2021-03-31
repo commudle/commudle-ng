@@ -12,9 +12,16 @@ export interface IUser {
   linkedin: string;
   github: string;
   twitter: string;
+  dribble: string;
+  behance: string;
+  medium: string;
+  gitlab: string;
+  facebook: string;
+  youtube: string;
   gender: string;
   avatar: string;
   profile_banner_image: IAttachedFile;
   username: string;
+  location: string;
   tags : ITag[];
 }
