@@ -12,6 +12,7 @@ export class HomeEventsComponent implements OnInit {
   events: IEvent[];
   maxEventsCount = 12;
   eventsStartIdx = 0;
+  isLoading = true;
 
   constructor(
     private homeService: HomeService
@@ -30,11 +31,16 @@ export class HomeEventsComponent implements OnInit {
   }
 
   getRandomPastEvents(count) {
-    this.homeService.pPastRandomEvents(count).subscribe(data => this.events.push(...data.events));
+    this.homeService.pPastRandomEvents(count).subscribe(data => {
+      this.events.push(...data.events);
+      setTimeout(() => this.isLoading = false, 500);
+    });
   }
 
   updateEventsIdx(value: number) {
+    this.isLoading = true;
     this.eventsStartIdx = (this.eventsStartIdx + value) % this.maxEventsCount;
+    setTimeout(() => this.isLoading = false, 500);
   }
 
 }

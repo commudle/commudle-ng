@@ -1,3 +1,4 @@
+
 // page width
 $max-page-width: 1440px;
 $tab-width: 768px;
@@ -7,6 +8,15 @@ $mobile-width: 576px;
 $primary-font-family: "Work Sans";
 
 // Font sizes
+$fs-h7: 10px;
+$fs-h6: 12px;
+$fs-h5: 14px;
+$fs-h4: 16px;
+$fs-h3: 21px;
+$fs-h2: 26px;
+$fs-h1: 28px;
+
+
 $fs-12: 12px;
 $fs-13: 13px;
 $fs-14: 14px;
@@ -71,10 +81,10 @@ $page-padding-bottom: 0.75rem;
 // // body-font-sizes
 // $h1: 40px;
 // $h1-description: 16px;
+
 $fs-tag: 18px;
 $fs-text: 16px;
 $fs-list-small: 14px;
-
 
 // card font sizes
 $fs-card-title: 18px;
@@ -90,13 +100,13 @@ $fw-600: 600;
 $input-title: 20px;
 
 // color palette & gradients
-$neon-blue: #536effff;
-$blue-jeans: #29a5ffff;
-$cyber-yellow: #ffd338ff;
-$white: #ffffffff;
-$black-coral: #616476ff;
-$medium-aquamarine: #7be4a5ff;
-$bittersweet: #f27059ff;
+$neon-blue: #536EFF;
+$blue-jeans: #29A5FF;
+$cyber-yellow: #FFD338;
+$white: #FFFFFF;
+$black-coral: #616476;
+$medium-aquamarine: #7BE4A5;
+$bittersweet: #F27059;
 $light-purple: #EEEEFF;
 $light-purple2: #c6cfff;
 $callout-yellow: rgba(255, 211, 56, 0.35);
@@ -108,17 +118,27 @@ $gunmetal: #2F2E41;
 $raisin-black: #231F20;
 $silver-sand: #C4C4C4;
 $spanish-gray: #979797;
+$azure: #0087F1;
+$cultured: #F5F5F5;
+$brilliant-azure: #3DAAFA;
+$maya-blue: #72C1FF;
+$lavender: #E9ECFB;
+$platinum: #E9E8E8;
+$taupe-gray: #898989;
+$raisin-black: #231F20;
+$silver-sand: #C4C4C4;
+$spanish-gray: #979797;
 $lightgrey: lightgrey;
 
-$gradient-top: linear-gradient(0deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-right: linear-gradient(90deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-bottom: linear-gradient(180deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-left: linear-gradient(270deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-top-right: linear-gradient(45deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-bottom-right: linear-gradient(135deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-top-left: linear-gradient(225deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-bottom-left: linear-gradient(315deg, #536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
-$gradient-radial: radial-gradient(#536effff, #29a5ffff, #ffd338ff, #ffffffff, #616476ff);
+$gradient-top: linear-gradient(0deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-right: linear-gradient(90deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-bottom: linear-gradient(180deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-left: linear-gradient(270deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-top-right: linear-gradient(45deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-bottom-right: linear-gradient(135deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-top-left: linear-gradient(225deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-bottom-left: linear-gradient(315deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
+$gradient-radial: radial-gradient($neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
 
 $card-faded-text: rgba(47, 46, 65, 0.5);
 $card-text-grey: #898989;
