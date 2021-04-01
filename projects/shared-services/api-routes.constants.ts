@@ -298,6 +298,7 @@ export const API_ROUTES = {
     LABS: 'api/v2/users/labs',
     COMMUNITY_BUILDS: 'api/v2/users/community_builds',
     BADGES: 'api/v2/users/badges',
+    SOCIAL_RESOURCES: 'api/v2/users/social_resources',
     TOGGLE_FOLLOW: 'api/v2/users/toggle_follow',
     CHECK_FOLLOWEE: 'api/v2/users/check_followee',
     TAGS: 'api/v2/users/tags',
@@ -355,6 +356,16 @@ export const API_ROUTES = {
       TAGS: 'api/v2/labs/search_tags',
       LABS_BY_TAGS: 'api/v2/labs'
     }
+  },
+
+  LINK_PREVIEWS: {
+    CREATE: 'api/v2/link_previews'
+  },
+
+  SOCIAL_RESOURCES: {
+    CREATE: 'api/v2/social_resources',
+    UPDATE_DISPLAY_ORDER: 'api/v2/social_resources/update_display_order',
+    DESTROY: 'api/v2/social_resources'
   },
 
   USER_EVENT_REGISTRATIONS: {
