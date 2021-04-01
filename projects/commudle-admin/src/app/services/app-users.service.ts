@@ -10,6 +10,7 @@ import { ITags } from 'projects/shared-models/tags.model';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IBadges } from 'projects/shared-models/badges.model';
+import { ISocialResources } from 'projects/shared-models/social_resources.model';
 
 
 
@@ -110,6 +111,13 @@ export class AppUsersService {
   badges(username): Observable<IBadges> {
     return this.http.get<IBadges>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
+    );
+  }
+
+  // get list of all the badges of a user
+  socialResources(username): Observable<ISocialResources> {
+    return this.http.get<ISocialResources>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SOCIAL_RESOURCES)
     );
   }
 
