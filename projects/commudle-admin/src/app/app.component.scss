@@ -5,6 +5,8 @@ div, a, p, input, button {
 }
 
 .home-navbar {
+  width: 100vw;
+
   &::ng-deep {
     .layout {
       .layout-container {
@@ -24,6 +26,7 @@ div, a, p, input, button {
 
     .home-navbar-logo {
       max-width: 60px;
+      min-width: 60px;
 
       img {
         width: 100%;
@@ -39,7 +42,7 @@ div, a, p, input, button {
         max-width: 100%;
 
         input {
-          height: $space-48;
+          height: 3rem;
           max-width: 100%;
           border: none;
           border-radius: 0;
@@ -125,27 +128,27 @@ div, a, p, input, button {
     }
 
     .home-navbar-menu {
-      .home-navbar-menu-options {
-        nb-action {
-          flex-direction: column;
-          justify-content: center;
-          border: none;
-
-          .home-navbar-menu-option {
-            font-weight: 400;
-            line-height: 14px;
-            color: $gunmetal;
-            margin-top: $space-4;
-          }
-
-          &::ng-deep {
-            nb-icon {
-              text-align: center;
-              color: rgba($azure, 0.2);
-            }
-          }
-        }
-      }
+      //.home-navbar-menu-options {
+      //  nb-action {
+      //    flex-direction: column;
+      //    justify-content: center;
+      //    border: none;
+      //
+      //    .home-navbar-menu-option {
+      //      font-weight: 400;
+      //      line-height: 14px;
+      //      color: $gunmetal;
+      //      margin-top: $space-4;
+      //    }
+      //
+      //    &::ng-deep {
+      //      nb-icon {
+      //        text-align: center;
+      //        color: rgba($azure, 0.2);
+      //      }
+      //    }
+      //  }
+      //}
 
       .home-navbar-menu-user {
         margin-left: $space-16;
@@ -174,6 +177,10 @@ div, a, p, input, button {
           .menu-signup {
             color: $white;
             background-color: $neon-blue;
+          }
+
+          .menu-login-signup {
+            display: none;
           }
         }
       }
@@ -360,6 +367,90 @@ div, a, p, input, button {
           background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, .71) 73.46%);
           border-radius: 100px 100px 100px 100px;
           position: absolute;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-navbar {
+    &::ng-deep {
+      .layout {
+        .layout-container {
+          padding-top: 3rem;
+        }
+      }
+    }
+
+    nb-layout-header {
+      &::ng-deep {
+        nav {
+          height: 3rem;
+          padding: $space-8 $space-16;
+        }
+      }
+
+      .home-navbar-logo {
+        max-width: 2rem;
+        min-width: 2rem;
+      }
+
+      .home-navbar-search {
+        margin: 0 $space-8;
+
+        .home-navbar-search-form {
+          input {
+            height: 2rem;
+          }
+
+          &::ng-deep {
+            .nb-form-field-prefix-medium {
+              height: 2rem;
+
+              nb-icon {
+                font-size: $fs-h4;
+              }
+            }
+          }
+        }
+      }
+
+      .home-navbar-menu {
+        .home-navbar-menu-user {
+          margin-left: 0;
+
+          .menu-user-avatar {
+            width: 2rem;
+            height: 2rem;
+
+            &::ng-deep {
+              .user-picture {
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+          }
+
+          .menu-user-options {
+            gap: $space-4;
+
+            button {
+              width: 92px;
+              padding: $space-4 $space-8;
+              font-size: $fs-h6;
+            }
+
+            .menu-login, .menu-signup {
+              display: none;
+            }
+
+            .menu-login-signup {
+              display: block;
+              color: $neon-blue;
+              background-color: $white;
+            }
+          }
         }
       }
     }

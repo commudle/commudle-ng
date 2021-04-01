@@ -29,28 +29,7 @@
       </div>
     </div>
     <div class="home-navbar-menu d-flex">
-      <nb-actions class="home-navbar-menu-options">
-        <nb-action [routerLink]="['/']" class="clickable">
-          <nb-icon icon="home" pack="fas"></nb-icon>
-          <div class="home-navbar-menu-option">Home</div>
-        </nb-action>
-        <nb-action [routerLink]="['/about']" class="clickable">
-          <nb-icon icon="info-circle" pack="fas"></nb-icon>
-          <div class="home-navbar-menu-option">About</div>
-        </nb-action>
-        <nb-action [routerLink]="['/builds']" class="clickable">
-          <nb-icon icon="cog" pack="fas"></nb-icon>
-          <div class="home-navbar-menu-option">Builds</div>
-        </nb-action>
-        <nb-action [routerLink]="['/labs']" class="clickable">
-          <nb-icon icon="flask" pack="fas"></nb-icon>
-          <div class="home-navbar-menu-option">Labs</div>
-        </nb-action>
-        <nb-action [routerLink]="['/communities']" class="clickable">
-          <nb-icon icon="user-friends" pack="fas"></nb-icon>
-          <div class="home-navbar-menu-option">Communities</div>
-        </nb-action>
-      </nb-actions>
+      <app-navbar-menu></app-navbar-menu>
 
       <div class="home-navbar-menu-user">
         <nb-user *ngIf="currentUser" [nbContextMenu]="userContextMenu" class="menu-user-avatar" onlyPicture
@@ -58,6 +37,7 @@
         <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
           <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
           <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>
+          <button (click)="login()" class="menu-login-signup" nbButton size="small">Login/Signup</button>
         </div>
       </div>
     </div>
@@ -128,7 +108,7 @@
   </nb-layout-footer>
 </nb-layout>
 
-<app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>
+<!--<app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>-->
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>
 
