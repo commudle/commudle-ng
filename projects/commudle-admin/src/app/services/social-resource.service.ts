@@ -37,7 +37,7 @@ export class SourceResourceService {
   destroy(socialResourceId): Observable<boolean> {
     let params = new HttpParams().set('social_resource_id', socialResourceId);
     return this.http.delete<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.CREATE), {
+      this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.DESTROY), {
         params
       }
     )
