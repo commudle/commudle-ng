@@ -13,9 +13,17 @@
   }
 
   h3 {
-    margin: $space-4 0 $space-12 $space-12;
     font-size: $fs-h2;
     font-weight: 600;
+  }
+
+  .home-labs-heading {
+    display: block;
+    margin: $space-4 0 $space-12 $space-12;
+  }
+
+  .home-labs-mobile-heading {
+    display: none;
   }
 
   .labs-list {
@@ -74,11 +82,12 @@
       border-radius: 0;
 
       nb-card-body {
-        h3:nth-of-type(1), .labs-list, .all-labs-link {
+        .home-labs-heading, .labs-list, .all-labs-link {
           display: none;
         }
 
-        h3 {
+        .home-labs-mobile-heading {
+          display: block;
           margin: 0 0 $space-16;
         }
 
