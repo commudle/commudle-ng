@@ -1,3 +1,5 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
 .chats-list {
   margin: 0;
 
@@ -24,6 +26,32 @@
       &:hover {
         background-color: rgba(0, 0, 0, 0.08);
       }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .chats-list {
+    .chats-list-header {
+      position: fixed;
+      right: $space-16;
+      bottom: $space-80;
+      background-color: $light-purple;
+      border-radius: 50%;
+      padding: $space-12;
+      z-index: 4;
+
+      p {
+        margin: 0;
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+    .chats-list-body {
+      padding-bottom: $space-64;
     }
   }
 }
