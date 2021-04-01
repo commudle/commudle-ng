@@ -11,6 +11,7 @@ import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IBadges } from 'projects/shared-models/badges.model';
 import { ISocialResources } from 'projects/shared-models/social_resources.model';
+import { ISpeakerResources } from 'projects/shared-models/speaker_resources.model';
 
 
 
@@ -113,6 +114,15 @@ export class AppUsersService {
       this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
     );
   }
+
+  // get list of all the badges of a user
+  speakerResources(username): Observable<ISpeakerResources> {
+    return this.http.get<ISpeakerResources>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SPEAKER_RESOURCES)
+    );
+  }
+
+
 
   // get list of all the badges of a user
   socialResources(username): Observable<ISocialResources> {
