@@ -18,3 +18,9 @@
     }
   }
 }
+
+@media all and (max-width: $tab-width) {
+  .home-promotions {
+    border-radius: 0;
+  }
+}
