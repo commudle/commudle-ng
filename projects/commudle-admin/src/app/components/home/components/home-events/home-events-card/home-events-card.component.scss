@@ -131,6 +131,10 @@ div {
     .home-events-image-overlay {
       height: 88px;
     }
+
+    img {
+      object-position: center !important;
+    }
   }
 
   .home-events-details {

@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="home-navbar-menu d-flex">
-      <app-navbar-menu></app-navbar-menu>
+      <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
 
       <div class="home-navbar-menu-user">
         <nb-user *ngIf="currentUser" [nbContextMenu]="userContextMenu" class="menu-user-avatar" onlyPicture
@@ -41,7 +41,16 @@
         </div>
       </div>
     </div>
+    <div (click)="toggleSidebar()" class="home-sidebar clickable">
+      <fa-icon [icon]="faBars"></fa-icon>
+      <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
+                status="danger"></nb-badge>
+    </div>
   </nb-layout-header>
+
+  <nb-sidebar [tag]="'mainMenu'" id="commudleSidebar" responsive="true" right state="collapsed">
+    <app-sidebar-menu></app-sidebar-menu>
+  </nb-sidebar>
 
   <nb-layout-column>
     <router-outlet></router-outlet>

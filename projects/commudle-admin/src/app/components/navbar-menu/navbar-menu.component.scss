@@ -1,12 +1,10 @@
-@import '../../../assets/styles/variables';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 div {
   font-family: $primary-font-family;
 }
 
 .home-navbar-menu-options {
-  padding-top: $space-8;
-
   nb-action {
     flex-direction: column;
     justify-content: center;
@@ -34,7 +32,7 @@ div {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: $space-20;
+    padding: $space-20 $space-8 !important;
     background-color: $white;
     width: 100vw;
     justify-content: space-around;
