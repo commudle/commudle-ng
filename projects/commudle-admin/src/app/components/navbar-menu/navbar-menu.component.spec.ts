@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NavbarMenuComponent} from './navbar-menu.component';
+import {NavbarMenuComponent} from 'projects/commudle-admin/src/app/components/navbar-menu/navbar-menu.component';
 
 describe('NavbarMenuComponent', () => {
   let component: NavbarMenuComponent;
