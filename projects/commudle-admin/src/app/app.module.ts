@@ -44,7 +44,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {Ng2CompleterModule} from 'ng2-completer';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {HomeComponent} from './components/home/home.component';
 import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
 import {LogoutComponent} from './components/logout/logout.component';
@@ -115,7 +114,6 @@ export function initApp(appInitService: AppInitService) {
 
     // external service modules
     LibErrorHandlerModule,
-    NgxMaterialTimepickerModule,
 
     // Nebula modules
     NbThemeModule.forRoot({name: 'default'}),
