@@ -26,7 +26,7 @@ nb-card-header, a {
         padding: $space-12 0;
         flex-direction: column;
 
-        app-skeleton-text {
+        app-skeleton-text, app-home-builds-card {
           width: 100%;
         }
 
@@ -44,5 +44,11 @@ nb-card-header, a {
         color: rgba($neon-blue, 0.95);
       }
     }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-builds {
+    border-radius: 0;
   }
 }
