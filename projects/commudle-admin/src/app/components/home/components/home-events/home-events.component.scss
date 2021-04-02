@@ -28,6 +28,10 @@
       }
     }
 
+    .home-events-cards-mobile {
+      display: none;
+    }
+
     .home-events-controller {
       padding-top: $space-16;
 
@@ -36,6 +40,33 @@
         color: $white;
         border: none;
         border-radius: $border-5;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-events {
+    border-radius: 0;
+
+    nb-card-body {
+      .home-events-cards {
+        display: none;
+      }
+
+      .home-events-cards-mobile {
+        display: flex;
+        gap: $space-16;
+        overflow-y: auto;
+        min-height: 222px;
+
+        app-skeleton-text {
+          width: 100%;
+        }
+      }
+
+      .home-events-controller {
+        display: none;
       }
     }
   }

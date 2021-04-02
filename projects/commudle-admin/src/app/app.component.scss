@@ -5,25 +5,19 @@ div, a, p, input, button {
 }
 
 .home-navbar {
-  &::ng-deep {
-    .layout {
-      .layout-container {
-        padding-top: 5rem;
-      }
-    }
-  }
+  width: 100vw;
 
   nb-layout-header {
     &::ng-deep {
       nav {
-        height: 5rem;
-        padding: $space-16 $space-32;
+        padding: $space-8 $space-16;
         justify-content: space-between;
       }
     }
 
     .home-navbar-logo {
-      max-width: 60px;
+      max-width: 3rem;
+      min-width: 3rem;
 
       img {
         width: 100%;
@@ -38,8 +32,15 @@ div, a, p, input, button {
       .home-navbar-search-form {
         max-width: 100%;
 
+        &::ng-deep {
+          .nb-form-field-prefix-medium {
+            color: $gunmetal;
+            height: 2rem;
+          }
+        }
+
         input {
-          height: $space-48;
+          height: 2.5rem;
           max-width: 100%;
           border: none;
           border-radius: 0;
@@ -50,12 +51,6 @@ div, a, p, input, button {
             font-family: $primary-font-family;
           }
         }
-
-        &::ng-deep {
-          .nb-form-field-prefix-medium {
-            color: $gunmetal;
-          }
-        }
       }
 
       .home-navbar-search-suffix {
@@ -63,6 +58,7 @@ div, a, p, input, button {
         left: 0;
         right: 0;
         z-index: 2;
+        box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.25);
 
         .home-navbar-search-results {
           height: 0;
@@ -80,15 +76,16 @@ div, a, p, input, button {
           }
 
           .home-navbar-search-result {
-            padding: $space-4 $space-4 $space-8;
+            padding: 0 0 $space-8;
 
             .search-result-heading {
+              padding: $space-8 $space-8 $space-4;
               text-transform: capitalize;
               font-weight: 600;
             }
 
             .search-result-name {
-              padding-left: $space-4;
+              padding: $space-4 $space-16;
               transition: all 0.2s ease-in-out;
 
               &:hover {
@@ -125,28 +122,6 @@ div, a, p, input, button {
     }
 
     .home-navbar-menu {
-      .home-navbar-menu-options {
-        nb-action {
-          flex-direction: column;
-          justify-content: center;
-          border: none;
-
-          .home-navbar-menu-option {
-            font-weight: 400;
-            line-height: 14px;
-            color: $gunmetal;
-            margin-top: $space-4;
-          }
-
-          &::ng-deep {
-            nb-icon {
-              text-align: center;
-              color: rgba($azure, 0.2);
-            }
-          }
-        }
-      }
-
       .home-navbar-menu-user {
         margin-left: $space-16;
 
@@ -175,7 +150,19 @@ div, a, p, input, button {
             color: $white;
             background-color: $neon-blue;
           }
+
+          .menu-login-signup {
+            display: none;
+          }
         }
+      }
+    }
+
+    .home-sidebar {
+      margin-left: $space-16;
+
+      fa-icon {
+        font-size: 1.25rem;
       }
     }
   }
@@ -361,6 +348,71 @@ div, a, p, input, button {
           border-radius: 100px 100px 100px 100px;
           position: absolute;
         }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-navbar {
+    &::ng-deep {
+      .layout {
+        .layout-container {
+          padding-top: 3rem;
+        }
+      }
+    }
+
+    nb-layout-header {
+      .home-navbar-logo {
+        max-width: 2rem;
+        min-width: 2rem;
+      }
+
+      .home-navbar-search {
+        margin: 0 $space-8;
+      }
+
+      .home-navbar-menu {
+        .home-navbar-menu-user {
+          margin-left: 0;
+
+          .menu-user-avatar {
+            width: 2rem;
+            height: 2rem;
+
+            &::ng-deep {
+              .user-picture {
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+          }
+
+          .menu-user-options {
+            gap: $space-4;
+
+            button {
+              width: 92px;
+              padding: $space-4 $space-8;
+              font-size: $fs-h6;
+            }
+
+            .menu-login, .menu-signup {
+              display: none;
+            }
+
+            .menu-login-signup {
+              display: block;
+              color: $neon-blue;
+              background-color: $white;
+            }
+          }
+        }
+      }
+
+      .home-sidebar {
+        margin-left: $space-8;
       }
     }
   }
