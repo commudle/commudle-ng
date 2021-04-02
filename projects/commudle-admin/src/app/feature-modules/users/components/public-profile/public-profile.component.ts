@@ -66,19 +66,19 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
       content: 'noindex'
     });
 
-    this.title.setTitle(`${this.user.name}`)
-    this.meta.updateTag({ name: 'description', content: `${this.user.designation}`});
+    this.title.setTitle(`${this.currentUser.name}`)
+    this.meta.updateTag({ name: 'description', content: `${this.currentUser.designation}`});
 
 
-    this.meta.updateTag({ name: 'og:image', content: this.user.avatar });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: this.user.avatar });
-    this.meta.updateTag({ name: 'og:title', content: `${this.user.name}` });
-    this.meta.updateTag({ name: 'og:description', content: `${this.user.designation}`});
+    this.meta.updateTag({ name: 'og:image', content: this.currentUser.avatar });
+    this.meta.updateTag({ name: 'og:image:secure_url', content: this.currentUser.avatar });
+    this.meta.updateTag({ name: 'og:title', content: `${this.currentUser.name}` });
+    this.meta.updateTag({ name: 'og:description', content: `${this.currentUser.designation}`});
     this.meta.updateTag( { name: 'og:type', content: 'website'});
 
-    this.meta.updateTag({ name: 'twitter:image', content: this.user.avatar });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.user.name}` });
-    this.meta.updateTag({ name: 'twitter:description', content: `${this.user.designation}`});
+    this.meta.updateTag({ name: 'twitter:image', content: this.currentUser.avatar });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.currentUser.name}` });
+    this.meta.updateTag({ name: 'twitter:description', content: `${this.currentUser.designation}`});
   }
 
 }
