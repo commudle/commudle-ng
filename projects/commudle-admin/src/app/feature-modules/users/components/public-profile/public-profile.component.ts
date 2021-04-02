@@ -5,7 +5,8 @@ import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-us
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Meta, Title } from '@angular/platform-browser';
-import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import {Subscription} from 'rxjs';
+import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-public-profile',
@@ -13,10 +14,11 @@ import { FooterService } from 'projects/commudle-admin/src/app/services/footer.s
   styleUrls: ['./public-profile.component.scss']
 })
 export class PublicProfileComponent implements OnInit, OnDestroy {
+
   user: IUser;
   currentUser: ICurrentUser;
-  subscriptions = [];
 
+  subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,17 +27,22 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     private footerService: FooterService,
     private meta: Meta,
     private title: Title
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     // Get user's data
     this.getUserData();
 
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => {
-      this.currentUser = data;
-      this.setMeta();
-    }));
 
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        data => {
+          this.currentUser = data;
+          this.setMeta();
+        }
+      )
+    );
     // Hide Footer
     this.footerService.changeFooterStatus(false);
   }
@@ -51,6 +58,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   getUserData() {
     this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => this.user = data);
   }
+
 
   setMeta() {
     this.meta.updateTag({

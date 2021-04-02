@@ -23,7 +23,8 @@ export class AppUsersService {
   constructor(
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService
-  ) { }
+  ) {
+  }
 
   getProfile(username): Observable<IUser> {
     const params = new HttpParams().set('username', username);
@@ -51,7 +52,7 @@ export class AppUsersService {
   }
 
   checkUsername(username): Observable<boolean> {
-    let params = new HttpParams().set('username', username);
+    const params = new HttpParams().set('username', username);
     return this.http.get<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.CHECK_USERNAME), {params});
   }
@@ -60,12 +61,12 @@ export class AppUsersService {
     return this.http.put<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.SET_USERNAME),
       {username}
-      );
+    );
   }
 
 
   getMyRoles(parentType, parentId): Observable<[]> {
-    let params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
+    const params = new HttpParams().set('parent_type', parentType).set('parent_id', parentId);
     return this.http.get<[]>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_MY_ROLES), {params});
   }
@@ -95,7 +96,7 @@ export class AppUsersService {
 
 // list of labs on public profile
   labs(username): Observable<ILabs> {
-    let params = new HttpParams().set('username', username)
+    const params = new HttpParams().set('username', username);
     return this.http.get<ILabs>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.LABS), {params}
     );
@@ -103,7 +104,7 @@ export class AppUsersService {
 
 // list of community builds on public profile
   communityBuilds(username): Observable<ICommunityBuilds> {
-    let params = new HttpParams().set('username', username)
+    const params = new HttpParams().set('username', username);
     return this.http.get<ICommunityBuilds>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITY_BUILDS), {params}
     );

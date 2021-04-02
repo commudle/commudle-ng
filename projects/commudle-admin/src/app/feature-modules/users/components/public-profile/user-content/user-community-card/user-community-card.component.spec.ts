@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserCommunityCardComponent } from './user-community-card.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import {UserCommunityCardComponent} from './user-community-card.component';
 
 describe('UserCommunityCardComponent', () => {
   let component: UserCommunityCardComponent;
@@ -8,9 +9,10 @@ describe('UserCommunityCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserCommunityCardComponent ]
+
+      declarations: [UserCommunityCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
