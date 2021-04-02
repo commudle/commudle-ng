@@ -1,5 +1,6 @@
 import { IUser } from './user.model';
 import { IAttachedFile } from './attached-file.model';
+import { IUserRolesUser } from './user_roles_user.model';
 
 export interface ICommunityBuild {
   id: number;
@@ -17,7 +18,7 @@ export interface ICommunityBuild {
   chat_messages_count: number;
   images: IAttachedFile[];
   tags: string[];
-
+  user_roles_users: IUserRolesUser[];
 }
 
 

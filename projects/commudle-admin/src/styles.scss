@@ -9,6 +9,8 @@
 @import "~prismjs/themes/prism-okaidia";
 @import '~@ctrl/ngx-emoji-mart/picker';
 
+
+
 @include nb-install() {
   @include nb-theme-global();
 };
@@ -86,10 +88,17 @@ input {
 
 }
 
+.nb-theme-default nb-card {
+  margin: 8px;
+}
 
 .nb-theme-default nb-layout-header nav {
   padding: 0rem 1.25rem;
   height: 3.5rem;
+}
+
+.nb-theme-default [nbInput].size-giant, .nb-theme-default[nbIput].size-tiny, .nb-theme-default [nbInput].size-small, .nb-theme-default [nbInput].size-medium, .nb-theme-default [nbInput] {
+  font-weight: 300;
 }
 
 

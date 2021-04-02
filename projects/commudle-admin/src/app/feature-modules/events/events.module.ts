@@ -37,7 +37,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserDetailsCellComponent } from './components/event-form-responses/user-details-cell/user-details-cell.component';
 import { EventLocationsComponent } from './components/event-locations/event-locations.component';
 import { EventLocationTracksComponent } from './components/event-locations/event-location-tracks/event-location-tracks.component';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EventUpdatesComponent } from './components/event-updates/event-updates.component';
 import { EventStatusComponent } from './components/event-status/event-status.component';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -90,7 +89,6 @@ import { EventSpeakersComponent } from './components/event-speakers/event-speake
     // External
     FontAwesomeModule,
     NgxDatatableModule,
-    NgxMaterialTimepickerModule,
 
 
 

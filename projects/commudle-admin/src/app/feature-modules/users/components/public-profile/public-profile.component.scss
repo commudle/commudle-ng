@@ -19,11 +19,11 @@
     flex: 3;
     width: 75%;
     background-color: white;
+
   }
 
   @media (max-width: $tab-width) {
     flex-direction: column;
-
     .basic-details {
       width: 100%;
     }

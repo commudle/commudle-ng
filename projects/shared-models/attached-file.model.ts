@@ -7,8 +7,12 @@ export interface IAttachedFile {
   type?: string;
   profile_banner?: string;
   medium?: string;
-  small?: string;
-  thumbnail?: string;
+  i24?: string;
+  i32?: string;
+  i48?: string;
+  i64?: string;
+  i96?: string;
+  i350?: string;
 }
 
 

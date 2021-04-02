@@ -80,6 +80,34 @@ export class CommunityBuildsService {
     );
   }
 
+
+
+  confirmTeammateInvite(communityBuildId, token): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CONFIRM_TEAMMATE_INVITE), {
+        community_build_id: communityBuildId,
+        token
+      }
+    );
+  }
+
+
+  resendTeammateInvite(communityBuildId, userRolesUserId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.RESEND_TEAMMATE_INVITE), {
+        community_build_id: communityBuildId,
+        user_roles_user_id: userRolesUserId
+      }
+    );
+  }
+
+  removeTeammate(communityBuildId, userId) {
+    const params = new HttpParams().set('community_build_id', communityBuildId).set('user_roles_user_id', userId);
+    return this.http.delete<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.REMOVE_TEAMMATE), {params}
+    );
+  }
+
   pGetAll(page, count): Observable<ICommunityBuilds> {
     const params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<ICommunityBuilds>(

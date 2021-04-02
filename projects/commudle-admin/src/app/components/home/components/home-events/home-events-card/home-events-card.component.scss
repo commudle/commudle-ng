@@ -1,0 +1,125 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+div {
+  font-family: $primary-font-family;
+}
+
+.home-events-card {
+  position: relative;
+  width: 256px;
+  border: 0.5px solid $silver-sand;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .home-events-attending {
+    position: absolute;
+    height: 20px;
+    top: 8px;
+    right: 0;
+    border-radius: $border-5 0 0 $border-5;
+    background-color: $neon-blue;
+    color: $white;
+    padding: $space-4;
+    font-size: $fs-h7;
+    font-weight: $fw-500;
+    line-height: 12px;
+    z-index: 2;
+
+    nb-icon {
+      font-size: $fs-h7;
+    }
+  }
+
+  .home-events-image {
+    height: 156px;
+    overflow: hidden;
+
+    .home-events-image-overlay {
+      position: absolute;
+      height: 156px;
+      width: 100%;
+      background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+    }
+
+    img {
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      object-position: left top;
+    }
+
+    app-skeleton-text {
+      &::ng-deep {
+        .row {
+          height: 156px;
+        }
+      }
+    }
+  }
+
+  .home-events-date {
+    position: absolute;
+    height: 56px;
+    width: 56px;
+    top: 120px;
+    right: 12px;
+    border-radius: $border-8;
+    background-color: $neon-blue;
+    color: $white;
+    padding: $space-8 $space-12;
+    font-size: $fs-h4;
+    font-weight: $fw-500;
+    word-break: break-word;
+    text-align: center;
+  }
+
+  .home-events-details {
+    margin: $space-12 $space-12 $space-8;
+
+    .home-events-name {
+      max-width: 171px;
+      height: 2rem;
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      line-height: 16px;
+      color: $gunmetal;
+    }
+
+    .home-events-host {
+      margin-top: $space-16;
+
+      .home-events-community {
+        .home-events-community-logo {
+          min-height: 1.75rem;
+          max-height: 1.75rem;
+          min-width: 1.75rem;
+          max-width: 1.75rem;
+          overflow: hidden;
+          border-radius: 50%;
+          border: 0.5px solid $platinum;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .home-events-community-name {
+          margin: 0 $space-16 0 $space-8;
+          font-size: $fs-h7;
+          line-height: 12px;
+          color: $spanish-gray;
+        }
+      }
+
+      .home-events-register {
+        font-size: $fs-h5;
+        font-weight: $fw-600;
+        text-transform: uppercase;
+        color: $neon-blue;
+      }
+    }
+  }
+}

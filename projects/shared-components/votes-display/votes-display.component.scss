@@ -1,17 +1,14 @@
 .votes {
-  >p {
+  > p {
     margin: 0;
+
     .count {
       color: grey;
     }
+
     nb-icon {
       font-size: 1.2rem;
       color: #8080808c;
-
-      &:hover {
-        transform: rotate(360deg);
-        transition: 0.5s ease-in-out;
-      }
     }
 
     nb-icon.star.has-votes {
@@ -28,8 +25,9 @@
   }
 
   &.size-large {
-    >p {
+    > p {
       font-size: 1.8rem;
+
       nb-icon {
         font-size: 1.8rem;
       }

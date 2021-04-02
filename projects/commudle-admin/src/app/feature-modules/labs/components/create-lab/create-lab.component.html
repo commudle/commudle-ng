@@ -1,27 +1,36 @@
 <div class="create-lab page-padding">
 
-  <div>
+  <div class="page-container">
     <nb-card>
       <nb-card-body>
 
-        <div class="page-container">
-          <h2 class="header">
+        <div class="form-container">
+          <h1 class="header">
             <fa-icon [icon]="faFlask" size="1x"></fa-icon>
-            What is the name of your Lab?
-          </h2>
-          <p>
-            A Lab is a place where people can perform something practically, under someone's guidance. So, let's begin with a name of what do you want to teach.
+            Let's begin with a Title!
+          </h1>
+          <p class="text-h1-description">
+            A Lab makes it easy for you to write a tutorial, divide it into steps. And it surely makes it easy for your readers to grasp your content.
             <br>
-            For instance, it could be <i>Create your first HTML Web Page</i> OR <i>Begin with Machine Learning</i>.
+            Example:
+            <span class="text-highlight-yellow">&nbsp; How to make a resume with HTML &nbsp;</span> OR <span class="text-highlight-yellow">&nbsp; How to make a Flutter app! &nbsp;</span>
             <br>
             <br>
-            Let's begin with a name, and you'll be able to change it later!
+            What's your Lab about? You can change the title anytime later.
           </p>
 
           <form class="community-edit-details-form" [formGroup]="labForm" (ngSubmit)="createLab()">
             <div>
 
-              <input type="text" nbInput fullWidth fieldSize="giant" formControlName="name" placeholder="Type a name..">
+              <input
+                nbInput
+                fullWidth
+                fieldSize="giant"
+                status= "primary"
+                formControlName="name"
+                type="text"
+                maxlength="100"
+                placeholder="Type title here (max 100 characters)">
 
               <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
                 Required Field

@@ -1,75 +1,76 @@
-<div class="speaker-session-details" #speakerSessionDetails [ngClass]="{'fullscreen': isFullscreen === true}">
+<div #speakerSessionDetails [ngClass]="{'fullscreen': isFullscreen === true}" class="speaker-session-details">
+  <div *ngIf="!isFullscreen" class="session-details">
+    <nb-card>
+      <nb-card-body>
+        <div>
+          <div class="community">
+            <app-community-badge [community]="community"></app-community-badge>
+          </div>
+          <p>
+            <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
+              {{ event.name }}
+            </a>
+          </p>
+          <div *ngIf="trackSlot" class="track-slot-details">
+            <h4>
+              {{trackSlot.session_title}}
+            </h4>
+          </div>
+        </div>
+
+        <p *ngIf="moment().isBetween(moment(startTime), moment(endTime))" class="live-notification">
+          <span class="live-notification text-success">
+            <nb-icon icon="flash"></nb-icon>
+            Live Now!
+          </span>
+          <small>
+            {{ moment(startTime).format('dddd Do MMM, YYYY h:mm A') }}
+            -
+            {{ moment(endTime).format('h:mm A') }}
+          </small>
+        </p>
+        <div *ngIf="speaker" class="speaker-details">
+          <div>
+            <app-user-profile-horizontal [aboutMe]="true" [size]="'medium'" [socialMediaLinks]="true"
+                                         [user]="speaker"></app-user-profile-horizontal>
+          </div>
+        </div>
+        <p *ngIf="userVisitData" class="visitors">
+          <span *ngIf="userVisitData.visiting_users_count > 0">
+            {{userVisitData.visiting_users_count}} watching now
+          </span>
+        </p>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
   <div class="card-row">
-    <div class="card-session-details" [ngClass]="{'maxWidth': sidebarMinimize}">
-      <div class="session-details" *ngIf="!isFullscreen">
-        <nb-card>
-          <nb-card-body>
-            <div>
-              <div class="community">
-                <app-community-badge [community]="community"></app-community-badge>
-              </div>
-              <p>
-                <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
-                  {{ event.name }}
-                </a>
-              </p>
-              <div class="track-slot-details" *ngIf="trackSlot">
-                <h4>
-                  {{trackSlot.session_title}}
-                </h4>
-              </div>
-            </div>
-
-            <p class="live-notification" *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
-              <span class="live-notification text-success">
-                <nb-icon icon="flash"></nb-icon>
-                Live Now!
-              </span>
-              <small>
-                {{ moment(startTime).format('dddd Do MMM, YYYY h:mm A') }}
-                -
-                {{ moment(endTime).format('h:mm A') }}
-              </small>
-            </p>
-            <div *ngIf="speaker" class="speaker-details">
-              <div>
-                <app-user-profile-horizontal [user]="speaker" [size]="'medium'" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
-              </div>
-            </div>
-            <p class="visitors" *ngIf="userVisitData">
-              <span *ngIf="userVisitData.visiting_users_count > 0">
-                {{userVisitData.visiting_users_count}} watching now
-              </span>
-            </p>
-          </nb-card-body>
-        </nb-card>
-      </div>
-
-
-
-      <div class="video-stream" #videoContainer>
-        <app-auto-attendance [eventId]="this.event.id" *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"></app-auto-attendance>
-        <button class="fullscreen-button" size="tiny" nbButton (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen"> Go Fullscreen </button>
+    <div [ngClass]="{'maxWidth': sidebarMinimize}" class="card-session-details">
+      <div #videoContainer class="video-stream">
+        <app-auto-attendance *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"
+                             [eventId]="this.event.id"></app-auto-attendance>
+        <nb-icon icon="expand" (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen" class="fullscreen-button"
+        nbButton size="tiny"></nb-icon>
 
         <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>
             <nb-card-body>
               <div>
                 <app-video-stream
-                  [started] = "(moment() < moment(startTime) ? false: true)"
                   [currentUser]="currentUser"
-                  [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : (embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id)"
-                  [videoSource]="embeddedVideoStream.source"
                   [fillerText]="(!currentUser ? 'Login to Access' : ((moment() < moment(startTime)) ? ('Starting in ' + moment(startTime).fromNow(true)) : 'Loading Video...'))"
-                  [width]="playerWidth"
                   [height]="playerHeight"
-                  [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
-                  [zoomPassword]="embeddedVideoStream.zoom_password"
-                  [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"
-                  [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
                   [hmsRoomId]="embeddedVideoStream.hms_room_id"
+                  [started]="moment() >= moment(startTime)"
                   [userEmail]="currentUser ? currentUser.email : ''"
                   [userName]="currentUser ? currentUser.name : ''"
+                  [videoCode]="(!currentUser || (moment() < moment(startTime))) ? false : (embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id)"
+                  [videoSource]="embeddedVideoStream.source"
+                  [width]="playerWidth"
+                  [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
+                  [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
+                  [zoomPassword]="embeddedVideoStream.zoom_password"
+                  [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"
                 >
                 </app-video-stream>
               </div>
@@ -79,84 +80,77 @@
       </div>
     </div>
 
-    <div class="card-live-discussion" [ngClass]="{'minWidth': sidebarMinimize}">
+    <div [ngClass]="{'minWidth': sidebarMinimize}" class="card-live-discussion">
       <nb-card>
         <nb-card-body>
-          <button nbButton ghost status="primary" class="minimize-sidebar-button" *ngIf="!sidebarMinimize">
-            <nb-icon
-              icon="download-outline"
-              (click)="toggleSidebar()"
-              [ngStyle]="{'transform': 'rotate(-90deg)'}"
-            ></nb-icon>
-
+          <button *ngIf="!sidebarMinimize" class="minimize-sidebar-button" ghost nbButton status="primary">
+            <nb-icon (click)="toggleSidebar()" [ngStyle]="{'transform': 'rotate(-90deg)'}"
+                     icon="download-outline"></nb-icon>
           </button>
 
-          <nb-tabset
-          fullWidth
-          responsive
-          (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')">
+          <nb-tabset (changeTab)="(currentTab = $event.tabId) && tabUpdate($event.tabId, 'open')" fullWidth responsive>
             <nb-tab
-              tabTitle="People {{ userCount > 0 ? ('('+userCount+')') : '' }}"
-              tabIcon="people-outline"
-              [tabId]="'people'"
               *ngIf="embeddedVideoStream && isBrowser"
+              [tabId]="'people'"
+              tabIcon="people-outline"
+              tabTitle="People {{ userCount > 0 ? ('('+userCount+')') : '' }}"
             >
               <app-users-list
-              [embeddedVideoStream]="embeddedVideoStream"
-              [event]="event"
-              [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"
-              [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes[EUserRoles.EVENT_VOLUNTEER]"
-              (userCount) = "userCount = $event"
+                (userCount)="userCount = $event"
+                [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"
+                [embeddedVideoStream]="embeddedVideoStream"
+                [event]="event"
+                [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes[EUserRoles.EVENT_VOLUNTEER]"
               ></app-users-list>
             </nb-tab>
             <nb-tab
-              tabTitle="Chat"
               *ngIf="chat"
-              tabIcon="message-square-outline"
-              badgeText="{{ chatCount > 0 ? '('+chatCount+')' : '' }}"
-              badgeStatus="success"
               [tabId]="'chat'"
-              >
-              <app-discussion-chat
-              [discussion]="chat" (newMessage)="tabUpdate('chat', 'new')" ></app-discussion-chat>
-            </nb-tab>
-            <nb-tab
-              tabTitle="QnA"
-              *ngIf="discussion"
-              tabIcon="question-mark-circle-outline"
-              badgeText="{{ questionCount > 0 ? '('+questionCount+')' : '' }}"
               badgeStatus="success"
-              [tabId]="'qna'">
-              <app-discussion-qna
-              [discussion]="discussion" (newMessage)="tabUpdate('qna', 'new')"></app-discussion-qna>
+              badgeText="{{ chatCount > 0 ? '('+chatCount+')' : '' }}"
+              tabIcon="message-square-outline"
+              tabTitle="Chat"
+            >
+              <app-discussion-chat
+                (newMessage)="tabUpdate('chat', 'new')" [discussion]="chat"></app-discussion-chat>
             </nb-tab>
             <nb-tab
-              tabTitle="Polls"
+              *ngIf="discussion"
+              [tabId]="'qna'"
+              badgeStatus="success"
+              badgeText="{{ questionCount > 0 ? '('+questionCount+')' : '' }}"
+              tabIcon="question-mark-circle-outline"
+              tabTitle="QnA">
+              <app-discussion-qna (newMessage)="tabUpdate('qna', 'new')" [discussion]="discussion"></app-discussion-qna>
+            </nb-tab>
+            <nb-tab
               *ngIf="pollableId && pollableType"
-              tabIcon="trending-up"
               [tabId]="'poll'"
-              >
+              tabIcon="trending-up"
+              tabTitle="Polls"
+            >
               <div>
-                <app-polls
-                [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
+                <app-polls [pollableId]="pollableId" [pollableType]="pollableType"></app-polls>
               </div>
             </nb-tab>
-           </nb-tabset>
+          </nb-tabset>
 
-           <nb-list (click)="toggleSidebar()" class="clickable" [ngStyle]="{'visibility' : (sidebarMinimize ? 'visible' : 'hidden')}">
-             <nb-list-item>
-               <div>
-                 <p>
-                   <nb-icon icon="people-outline"></nb-icon>
-                  {{ userCount > 0 ? ('('+userCount+')') : '' }}
-                 </p>
-               </div>
-             </nb-list-item>
-             <nb-list-item>
+          <!--          <nb-list (click)="toggleSidebar()" [ngStyle]="{'visibility' : (sidebarMinimize ? 'visible' : 'hidden')}"-->
+          <nb-list (click)="toggleSidebar()" [ngStyle]="{'display' : (sidebarMinimize ? 'block' : 'none')}"
+                   class="clickable">
+            <nb-list-item>
+              <div>
+                <p>
+                  <nb-icon icon="people-outline"></nb-icon>
+                  {{ userCount > 0 ? ('(' + userCount + ')') : '' }}
+                </p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
               <div>
                 <p>
                   <nb-icon icon="message-square-outline"></nb-icon>
-                  {{ chatCount > 0 ? '('+chatCount+')' : ''  }}
+                  {{ chatCount > 0 ? '(' + chatCount + ')' : ''  }}
                 </p>
               </div>
             </nb-list-item>
@@ -164,7 +158,7 @@
               <div>
                 <p>
                   <nb-icon icon="question-mark-circle-outline"></nb-icon>
-                  {{ questionCount > 0 ? '('+questionCount+')' : '' }}
+                  {{ questionCount > 0 ? '(' + questionCount + ')' : '' }}
                 </p>
               </div>
             </nb-list-item>
@@ -175,10 +169,9 @@
                 </p>
               </div>
             </nb-list-item>
-           </nb-list>
+          </nb-list>
         </nb-card-body>
       </nb-card>
     </div>
   </div>
-
 </div>
