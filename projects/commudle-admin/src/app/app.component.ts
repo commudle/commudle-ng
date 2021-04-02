@@ -1,5 +1,5 @@
 import {CookieConsentService} from './services/cookie-consent.service';
-import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, OnDestroy, PLATFORM_ID} from '@angular/core';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
 import {environment} from 'projects/commudle-admin/src/environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
@@ -26,6 +26,7 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 
+
 export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   sideBarNotifications = false;
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
   ];
   cookieAccepted = false;
   footerStatus = true;
+
 
   // Search variables
   searchQuery = '';
@@ -68,6 +70,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     private appCentralNotificationsService: AppCentralNotificationService,
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
+
     private cdr: ChangeDetectorRef,
     private homeService: HomeService
   ) {
