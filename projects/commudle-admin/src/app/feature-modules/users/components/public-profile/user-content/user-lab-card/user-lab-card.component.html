@@ -1,0 +1,10 @@
+<nb-card [routerLink]="['/labs', lab.slug]" class="lab-card-container clickable">
+  <nb-card-header>
+    <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.medium}}">
+  </nb-card-header>
+  <nb-card-body>
+    <p class="name">{{lab.name}}</p>
+    <p class="description">{{getDesc()}}</p>
+    <nb-user [name]="user.name" [picture]="user.avatar" [title]="user.designation"></nb-user>
+  </nb-card-body>
+</nb-card>

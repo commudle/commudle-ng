@@ -1,0 +1,211 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-personal-details {
+  .profile-photo {
+    margin: 3rem auto;
+    text-align: center;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .user-details {
+    color: white;
+    margin-bottom: 1.25rem;
+
+    .name {
+      font-style: italic;
+      font-weight: 600;
+      font-size: 2rem;
+      text-align: center;
+      line-height: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .designation {
+      font-weight: 500;
+      font-size: 1.5rem;
+      text-align: center;
+      line-height: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .about {
+      text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  .edit-profile {
+    text-align: right;
+    margin-bottom: 2rem;
+
+    button {
+      border: none;
+      border-radius: 10px;
+      color: white;
+      background-color: rgba(246, 247, 249, 0.4);
+      font-weight: 400;
+      font-family: 'Work Sans', sans-serif !important;
+      text-transform: none;
+      letter-spacing: 1px;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .user-tags {
+    margin: 3rem 0;
+
+    nb-tag {
+      color: white;
+      background-color: transparent;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Work Sans', sans-serif !important;
+
+      &:last-child {
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        &:active {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+
+  .message-user {
+    text-align: center;
+    padding: 0.5rem 0;
+
+    button {
+      border: none;
+      border-radius: 10px;
+      color: white;
+      background-color: #536EFF;
+      filter: drop-shadow(0px 4px 18px #536EFF);
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
+    }
+  }
+
+  .user-social {
+    text-align: center;
+    margin: 4rem 0;
+
+    a {
+      margin: 0.35rem;
+      background-color: #D8ECFF;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
+    }
+  }
+
+  hr {
+    display: block;
+    border: 0;
+    height: 1.5px;
+    width: 150px;
+    background-color: white;
+  }
+
+  @media (max-width: $tab-width) {
+    .profile-photo {
+      margin: 2rem auto;
+      max-width: 150px;
+      max-height: 150px;
+    }
+
+    .user-details {
+      margin-bottom: 1rem;
+
+      .name {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .designation {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        margin-bottom: 1.75rem;
+      }
+    }
+
+    .edit-profile {
+      margin-bottom: 1.75rem;
+    }
+
+    .user-tags {
+      margin: 3rem 0;
+    }
+
+    .user-social {
+      margin: 2rem 0;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+.tag-dialog {
+  nb-card-body {
+    text-align: center;
+
+    img {
+      height: 168px;
+      margin-top: 1rem;
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.profile-dialog {
+  nb-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nb-card-body {
+    padding: 0;
+  }
+}

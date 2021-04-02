@@ -1,0 +1,12 @@
+<nb-card [routerLink]="['/builds', build.slug]" class="build-card-container clickable">
+  <nb-card-body>
+    <div class="details">
+      <fa-icon [icon]="faCodeBranch"></fa-icon>
+      <p class="name">{{build.name}}</p>
+      <nb-tag-list class="tags">
+        <nb-tag [text]="build.build_type"></nb-tag>
+      </nb-tag-list>
+    </div>
+    <p class="description">{{getDesc()}}</p>
+  </nb-card-body>
+</nb-card>

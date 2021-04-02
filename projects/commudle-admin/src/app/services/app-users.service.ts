@@ -26,7 +26,7 @@ export class AppUsersService {
   ) { }
 
   getProfile(username): Observable<IUser> {
-    let params = new HttpParams().set('username', username);
+    const params = new HttpParams().set('username', username);
     return this.http.get<IUser>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_PROFILE), {params}
     );
@@ -71,9 +71,10 @@ export class AppUsersService {
   }
 
   // get list of communities and role of the user in it
-  communities(): Observable<IUserRolesUsers> {
+  communities(username): Observable<IUserRolesUsers> {
+    const params = new HttpParams().set('username', username);
     return this.http.get<IUserRolesUsers>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITIES)
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITIES), {params}
     );
   }
 

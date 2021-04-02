@@ -1,83 +1,33 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
+
 .public-profile {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   min-height: 100vh;
-
-
-  // @media (min-width: $tab-width) {
-  //   flex-direction: row;
-  //   flex-wrap: nowrap;
-  // }
-
-
-  header {
-   nb-card {
-    nb-card-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      position: relative;
-      .name, .designation, .username {
-        text-align: center;
-      }
-
-      .avatar {
-        margin: 0 auto;
-        width: 138px;
-        height: 138px;
-        text-align: center;
-        img {
-          height: 100%;
-          vertical-align: top;
-        }
-      }
-      .name {
-        margin: 0.5rem 0;
-      }
-
-      .username {
-        margin: 0;
-      }
-
-      .tagline {
-
-      }
-
-      .social-links {
-        width: fit-content;
-        margin: 0 auto;
-        display: flex;
-        a {
-          nb-icon {
-            color: black;
-          }
-        }
-      }
-
-      .edit-profile-button {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-      }
-    }
-   }
+  font-family: 'Work Sans', sans-serif !important;
+  .basic-details {
+    padding: 2rem;
+    flex: 1;
+    width: 25%;
+    background: linear-gradient(188.21deg, #72C1FF 2.43%, #3DAAFA 102.6%);
   }
 
-
-  main {
-    display: flex;
+  .user-content {
+    padding: 2rem;
+    flex: 3;
+    width: 75%;
+    background-color: white;
+  }
+  @media (max-width: $tab-width) {
     flex-direction: column;
-
+    .basic-details {
+      width: 100%;
+    }
+    .user-content {
+      width: 100%;
+      flex: 1;
+    }
   }
-
-  // @media (min-width: 820px) {
-  //   flex-direction: row;
-  //   flex-wrap: wrap;
-  //   .column-left {
-  //     width: 40%;
-  //   }
-  // }
 }

@@ -1,5 +1,6 @@
 import { IUserRole } from './user_role.model';
 import { IUser } from './user.model';
+import { ICommunity } from './community.model';
 
 export interface IUserRolesUser {
   id: number;
@@ -9,6 +10,7 @@ export interface IUserRolesUser {
   parent_id: number;
   parent_type: string;
   status: EUserRolesUserStatus;
+  community?: ICommunity;
 }
 
 
