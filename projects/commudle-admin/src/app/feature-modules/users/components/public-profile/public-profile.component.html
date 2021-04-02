@@ -1,20 +1,14 @@
 <div *ngIf="user" class="public-profile">
 
-
-  <div class="public-profile page-padding" *ngIf="user">
-
-    <div class="basic-details">
-      <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
-    </div>
-
-    <div class="user-content">
-      <app-user-cover-photo (coverImageUpdate)="getUserData()" [currentUser]="currentUser"
-                            [user]="user"></app-user-cover-photo>
-      <app-user-content [user]="user"></app-user-content>
-    </div>
-
+  <div class="basic-details">
+    <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
   </div>
 
+  <div class="user-content">
+    <app-user-cover-photo (coverImageUpdate)="getUserData()" [currentUser]="currentUser"
+                          [user]="user"></app-user-cover-photo>
+    <app-user-content [user]="user"></app-user-content>
+  </div>
 </div>
 
   <!-- this code is for reference from the previous existing code -->
