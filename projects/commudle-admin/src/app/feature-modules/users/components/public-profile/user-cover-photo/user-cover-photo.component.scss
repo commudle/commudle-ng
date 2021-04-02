@@ -1,29 +1,35 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
 .user-cover-photo {
+  height: 187px;
+  background-color: $white;
+  border-radius: $border-10;
+  position: relative;
+  overflow: hidden;
+
   .cover-image {
-    height: 168px;
-    background: #FFFFFF;
-    border: 1px solid #72C1FF;
-    box-sizing: border-box;
-    border-radius: 30px;
-    overflow: hidden;
+    height: inherit;
+    background: $white;
 
     img {
       width: 100%;
-      height: auto;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
     }
   }
 
-  button {
+  .cover-change {
     border: none;
-    border-radius: 10px;
-    position: relative;
-    bottom: 40px;
-    left: 20px;
-    color: #536EFF !important;
-    background-color: rgba(196, 196, 196, 0.6) !important;
+    border-radius: $border-10;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    color: $neon-blue;
+    //background-color: rgba(196, 196, 196, 0.6);
     text-transform: none;
-    font-weight: 400;
-    font-family: 'Work Sans', sans-serif !important;
+    font-weight: $fw-400;
+    font-family: $primary-font-family;
     transition: all .2s ease-in-out;
 
     &:hover {
