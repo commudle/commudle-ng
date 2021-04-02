@@ -13,9 +13,17 @@
   }
 
   h3 {
-    margin: $space-4 0 $space-12 $space-12;
     font-size: $fs-h2;
     font-weight: 600;
+  }
+
+  .home-labs-heading {
+    display: block;
+    margin: $space-4 0 $space-12 $space-12;
+  }
+
+  .home-labs-mobile-heading {
+    display: none;
   }
 
   .labs-list {
@@ -60,6 +68,65 @@
     a {
       font-size: $fs-h5;
       color: rgba($neon-blue, 0.95);
+    }
+  }
+
+  .home-labs-mobile {
+    display: none;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-labs {
+    nb-card {
+      border-radius: 0;
+
+      nb-card-body {
+        .home-labs-heading, .labs-list, .all-labs-link {
+          display: none;
+        }
+
+        .home-labs-mobile-heading {
+          display: block;
+          margin: 0 0 $space-16;
+        }
+
+        .home-labs-mobile {
+          display: flex;
+
+          app-skeleton-text {
+            width: 100%;
+          }
+
+          .home-labs-mobile-image {
+            width: 50%;
+            overflow: hidden;
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .home-labs-mobile-details {
+            width: 50%;
+            margin-left: $space-8;
+
+            .home-labs-mobile-name {
+              font-size: $fs-h5;
+              font-weight: $fw-500;
+              line-height: 16px;
+            }
+
+            .home-labs-mobile-author {
+              margin-top: $space-4;
+              font-size: $fs-h6;
+              color: $spanish-gray;
+              font-style: italic;
+              line-height: 14px;
+            }
+          }
+        }
+      }
     }
   }
 }

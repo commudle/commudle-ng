@@ -50,14 +50,6 @@ div {
       object-fit: cover;
       object-position: left top;
     }
-
-    app-skeleton-text {
-      &::ng-deep {
-        .row {
-          height: 156px;
-        }
-      }
-    }
   }
 
   .home-events-date {
@@ -120,6 +112,40 @@ div {
         text-transform: uppercase;
         color: $neon-blue;
       }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-events-card {
+    width: 185px;
+  }
+
+  .home-events-attending {
+    display: none;
+  }
+
+  .home-events-image {
+    height: 88px;
+
+    .home-events-image-overlay {
+      height: 88px;
+    }
+
+    img {
+      object-position: center !important;
+    }
+  }
+
+  .home-events-details {
+    margin: $space-24 $space-8 $space-8 !important;
+
+    .home-events-name {
+      max-width: 100% !important;
+    }
+
+    .home-events-host {
+      display: none;
     }
   }
 }
