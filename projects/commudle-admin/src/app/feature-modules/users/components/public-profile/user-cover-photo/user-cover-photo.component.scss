@@ -1,0 +1,53 @@
+.user-cover-photo {
+  .cover-image {
+    height: 168px;
+    background: #FFFFFF;
+    border: 1px solid #72C1FF;
+    box-sizing: border-box;
+    border-radius: 30px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  button {
+    border: none;
+    border-radius: 10px;
+    position: relative;
+    bottom: 40px;
+    left: 20px;
+    color: #536EFF !important;
+    background-color: rgba(196, 196, 196, 0.6) !important;
+    text-transform: none;
+    font-weight: 400;
+    font-family: 'Work Sans', sans-serif !important;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+}
+
+.cover-image-dialog {
+  nb-card-body {
+    text-align: center;
+
+    img {
+      height: 168px;
+      margin-top: 1rem;
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+}

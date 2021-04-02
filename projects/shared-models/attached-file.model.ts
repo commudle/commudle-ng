@@ -6,6 +6,7 @@ export interface IAttachedFile {
   name?: string;
   type?: string;
   profile_banner?: string;
+  medium?: string;
   i24?: string;
   i32?: string;
   i48?: string;
