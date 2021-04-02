@@ -1,50 +1,55 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+div, button {
+  font-family: $primary-font-family !important;
+}
+
 .user-personal-details {
+  padding: $space-16;
+  border-radius: $border-10;
+  background: linear-gradient(186.78deg, $brilliant-azure 0.95%, $neon-blue 100.4%);
+
   .profile-photo {
-    margin: 3rem auto;
-    text-align: center;
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 50%;
+    height: 232px;
     overflow: hidden;
+    border-radius: 50%;
 
     img {
       width: 100%;
-      height: auto;
+      height: inherit;
+      object-fit: cover;
+      object-position: center top;
     }
   }
 
   .user-details {
     color: white;
-    margin-bottom: 1.25rem;
+    margin: $space-16 0;
 
     .name {
       font-style: italic;
-      font-weight: 600;
-      font-size: 2rem;
+      font-weight: $fw-600;
+      font-size: $fs-24;
       text-align: center;
-      line-height: 2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: $space-4;
     }
 
     .designation {
-      font-weight: 500;
-      font-size: 1.5rem;
+      font-weight: $fw-500;
+      font-size: $fs-20;
       text-align: center;
-      line-height: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: $space-24;
     }
 
     .about {
       text-align: center;
-      font-size: 1rem;
+      font-size: $fs-h4;
     }
   }
 
   .edit-profile {
     text-align: right;
-    margin-bottom: 2rem;
+    margin-bottom: $space-60;
 
     button {
       border: none;
@@ -52,9 +57,8 @@
       color: white;
       background-color: rgba(246, 247, 249, 0.4);
       font-weight: 400;
-      font-family: 'Work Sans', sans-serif !important;
       text-transform: none;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       transition: all .2s ease-in-out;
 
       &:hover {
@@ -68,12 +72,12 @@
   }
 
   .user-tags {
-    margin: 3rem 0;
+    margin: $space-48 0 $space-40;
 
     nb-tag {
       color: white;
       background-color: transparent;
-      font-size: 1rem;
+      font-size: $fs-h5;
       font-weight: 500;
       font-family: 'Work Sans', sans-serif !important;
 
@@ -94,15 +98,17 @@
 
   .message-user {
     text-align: center;
-    padding: 0.5rem 0;
 
     button {
       border: none;
-      border-radius: 10px;
-      color: white;
-      background-color: #536EFF;
-      filter: drop-shadow(0px 4px 18px #536EFF);
+      border-radius: $border-10;
+      color: $white;
+      background-color: $neon-blue;
+      filter: drop-shadow(0px 4px 18px $neon-blue);
       transition: all .2s ease-in-out;
+      font-size: $fs-20;
+      font-weight: $fw-600;
+      text-transform: capitalize;
 
       &:hover {
         transform: scale(1.05);
@@ -116,7 +122,7 @@
 
   .user-social {
     text-align: center;
-    margin: 4rem 0;
+    margin: $space-220 0 $space-64;
 
     a {
       margin: 0.35rem;
