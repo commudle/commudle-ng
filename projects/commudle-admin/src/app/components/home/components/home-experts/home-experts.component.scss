@@ -101,3 +101,9 @@ nb-card-header, div, a, button {
     }
   }
 }
+
+@media all and (max-width: $tab-width) {
+  .home-experts {
+    border-radius: 0;
+  }
+}
