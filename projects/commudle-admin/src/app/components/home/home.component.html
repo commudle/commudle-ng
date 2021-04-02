@@ -1,20 +1,34 @@
 <div class="home">
-  <div class="page-container d-flex justify-content-center">
+  <div class="page-container">
 
     <!-- each component will be a card inside these three columns, nb-card tag is to be used in the individual components itself -->
     <!-- TODO make a common classname for nb-card to have cicular border edges and add it in the individual components -->
     <!-- reuse the existing components wherever possible from the home folder -->
     <!-- each component card gets its own data, no requests to go from the home.component unless necessary -->
-    <div class="left-column">
-      <app-home-labs></app-home-labs>
-      <app-home-communities></app-home-communities>
+
+    <!--  DESKTOP  -->
+    <div class="home-desktop d-flex justify-content-center">
+      <div class="left-column">
+        <app-home-labs></app-home-labs>
+        <app-home-communities></app-home-communities>
+      </div>
+      <div class="center-column">
+        <app-home-events></app-home-events>
+      </div>
+      <div class="right-column">
+        <app-home-promotions></app-home-promotions>
+        <app-home-experts></app-home-experts>
+        <app-home-builds></app-home-builds>
+      </div>
     </div>
-    <div class="center-column">
+
+    <!--  MOBILE  -->
+    <div class="home-mobile">
       <app-home-events></app-home-events>
-    </div>
-    <div class="right-column">
       <app-home-promotions></app-home-promotions>
       <app-home-experts></app-home-experts>
+      <app-home-labs></app-home-labs>
+      <app-home-communities></app-home-communities>
       <app-home-builds></app-home-builds>
     </div>
   </div>

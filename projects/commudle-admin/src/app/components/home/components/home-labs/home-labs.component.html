@@ -1,7 +1,7 @@
 <div class="home-labs">
   <nb-card>
     <nb-card-body class="card-p16">
-      <h3>Labs</h3>
+      <h3 class="home-labs-heading">Labs</h3>
       <div class="labs-list">
         <ul *ngIf="labs.length === 0">
           <li *ngFor="let _ of [].constructor(4)">
@@ -22,6 +22,22 @@
       <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-link clickable">
         <a>View all</a>
       </p>
+
+      <!--  MOBILE  -->
+      <h3 class="home-labs-mobile-heading">Latest Lab</h3>
+      <div *ngIf="labs.length === 0" class="home-labs-mobile">
+        <app-skeleton-text [rows]="3"></app-skeleton-text>
+      </div>
+      <div *ngIf="labs.length > 0" class="home-labs-mobile">
+        <div class="home-labs-mobile-image">
+          <img *ngIf="labs[0].header_image" alt="{{labs[0].name}}" src="{{labs[0].header_image.i350}}">
+          <img *ngIf="!labs[0].header_image" alt="{{labs[0].name}}" src="/assets/images/Lab-Default.png">
+        </div>
+        <div class="home-labs-mobile-details">
+          <div class="home-labs-mobile-name">{{labs[0].name}}</div>
+          <div class="home-labs-mobile-author">{{labs[0].user.name}}</div>
+        </div>
+      </div>
     </nb-card-body>
   </nb-card>
 </div>
