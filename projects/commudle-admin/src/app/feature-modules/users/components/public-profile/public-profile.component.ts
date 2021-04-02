@@ -39,7 +39,9 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
       this.authWatchService.currentUser$.subscribe(
         data => {
           this.currentUser = data;
-          this.setMeta();
+          if (this.currentUser) {
+            this.setMeta();
+          }
         }
       )
     );
