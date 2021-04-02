@@ -2,7 +2,8 @@
   <div class="cover-image">
     <img alt="Cover image" src="{{user.profile_banner_image.profile_banner}}">
   </div>
-  <button (click)="onCoverImageDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" nbButton size="small">
+  <button (click)="onCoverImageDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="cover-change"
+          nbButton size="small">
     <nb-icon icon="edit"></nb-icon>
     change cover
   </button>
