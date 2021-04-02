@@ -6,6 +6,7 @@ import { CommunityBuildDetailsComponent } from './components/community-build-det
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { CommunityBuildComponent } from './components/community-build/community-build.component';
+import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
     component: MyCommunityBuildsComponent
   },
   {
+    path: 'teammate-invite/:community_build_id/:token',
+    component: TeammateInviteConfirmationComponent
+  },
+  {
     path: ':community_build_id/edit',
     canActivate: [AuthGuard],
     component: CreateCommunityBuildComponent
@@ -32,6 +37,7 @@ const routes: Routes = [
     path: ':community_build_id',
     component: CommunityBuildComponent
   },
+
 ];
 
 @NgModule({

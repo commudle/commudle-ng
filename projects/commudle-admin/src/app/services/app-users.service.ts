@@ -1,14 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
-import {API_ROUTES} from 'projects/shared-services/api-routes.constants';
-import {IUser} from 'projects/shared-models/user.model';
-import {ILabs} from 'projects/shared-models/labs.model';
-import {ICommunityBuilds} from 'projects/shared-models/community-builds.model';
-import {ITags} from 'projects/shared-models/tags.model';
-import {IAttachedFile} from 'projects/shared-models/attached-file.model';
-import {IUserRolesUsers} from 'projects/shared-models/user_roles_users.model';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { IUser } from 'projects/shared-models/user.model';
+import { ILabs } from 'projects/shared-models/labs.model';
+import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
+import { ITags } from 'projects/shared-models/tags.model';
+import { IAttachedFile } from 'projects/shared-models/attached-file.model';
+import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
+import { IBadges } from 'projects/shared-models/badges.model';
+import { ISocialResources } from 'projects/shared-models/social_resources.model';
+import { ISpeakerResources } from 'projects/shared-models/speaker_resources.model';
+
 
 
 @Injectable({
@@ -75,6 +79,7 @@ export class AppUsersService {
     );
   }
 
+
 // admin panel view of list of labs
   myLabs(): Observable<ILabs> {
     return this.http.get<ILabs>(
@@ -102,6 +107,46 @@ export class AppUsersService {
     const params = new HttpParams().set('username', username);
     return this.http.get<ICommunityBuilds>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.COMMUNITY_BUILDS), {params}
+    );
+  }
+
+  // get list of all the badges of a user
+  badges(username): Observable<IBadges> {
+    return this.http.get<IBadges>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
+    );
+  }
+
+  // get list of all the badges of a user
+  speakerResources(username): Observable<ISpeakerResources> {
+    return this.http.get<ISpeakerResources>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SPEAKER_RESOURCES)
+    );
+  }
+
+
+
+  // get list of all the badges of a user
+  socialResources(username): Observable<ISocialResources> {
+    return this.http.get<ISocialResources>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SOCIAL_RESOURCES)
+    );
+  }
+
+
+  // check if the logged in user is following a user
+  check_followee(username): Observable<boolean> {
+    let params = new HttpParams().set('username', username)
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.CHECK_FOLLOWEE), { params }
+    );
+  }
+
+
+  // toggle following a user
+  toggleFollow(username): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), { username }
     );
   }
 }

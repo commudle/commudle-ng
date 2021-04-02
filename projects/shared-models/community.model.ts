@@ -1,8 +1,10 @@
+import { IAttachedFile } from "./attached-file.model";
+
 export interface ICommunity {
   id: number;
   name: string;
   logo_path: string;
-  logo_image: File;
+  logo_image: IAttachedFile;
   about: string;
   slug: string;
   mini_description: string;

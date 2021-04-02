@@ -1,6 +1,6 @@
 import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
-import { Component, Input, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, EventEmitter, Output, Inject, PLATFORM_ID } from '@angular/core';
 import { UserObjectVisitChannel } from 'projects/commudle-admin/src/app/services/websockets/user-object-visit.channel';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,6 +9,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-users-list',
@@ -16,6 +17,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit, OnDestroy {
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   uuid = uuidv4();
   @Input() embeddedVideoStream: IEmbeddedVideoStream
   @Input() event: IEvent;
@@ -28,11 +31,15 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   usersList: IUser[] = [];
 
+  pingInterval;
+
   constructor(
     private userObjectVisitChannel: UserObjectVisitChannel,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: Object,
+
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +56,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
       }
       this.userObjectVisitChannel.subscribe(parentId, parentType, this.uuid);
       this.receiveData();
+      this.clientPings();
 
       this.subscriptions.push(
         this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(
@@ -66,6 +74,10 @@ export class UsersListComponent implements OnInit, OnDestroy {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
+    if (this.pingInterval) {
+      clearInterval(this.pingInterval);
+    }
+
     this.userObjectVisitChannel.unsubscribe(this.embeddedVideoStream.id, 'EmbeddedVideoStream', this.uuid);
     if (this.usersListSubscription) {
       this.usersListSubscription.unsubscribe();
@@ -89,6 +101,23 @@ export class UsersListComponent implements OnInit, OnDestroy {
       this.uuid,
       this.userObjectVisitChannel.ACTIONS.CURRENT_USERS
     )
+  }
+
+  clientPings() {
+    if (this.isBrowser) {
+      if (this.pingInterval) {
+        clearInterval(this.pingInterval);
+      }
+
+
+      this.pingInterval = setInterval(() => {
+        this.userObjectVisitChannel.sendData(this.embeddedVideoStream.id,
+          'EmbeddedVideoStream',
+          this.uuid,
+          this.userObjectVisitChannel.ACTIONS.PING)
+      }, 5000);
+    }
+
   }
 
   receiveData() {
@@ -119,6 +148,12 @@ export class UsersListComponent implements OnInit, OnDestroy {
                       const existingUserIndex = this.usersList.findIndex(k => k.id === data.user_id);
                       if (existingUserIndex !== -1) {
                         this.usersList.splice(existingUserIndex, 1);
+                      }
+                      break;
+                    }
+                    case (this.userObjectVisitChannel.ACTIONS.USER_COUNT): {
+                      if (data.user_count != this.usersList.length) {
+                        this.getCurrentUsersList();
                       }
                       break;
                     }

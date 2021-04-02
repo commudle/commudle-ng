@@ -2,7 +2,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CommunityControlPanelRoutingModule } from './community-control-panel-routing.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbCardModule, NbButtonModule, NbInputModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbSelectModule, NbFormFieldModule, NbDialogModule } from '@nebular/theme';
+import { NbCardModule, NbButtonModule, NbInputModule, NbIconModule, NbTabsetModule, NbRouteTabsetModule, NbSelectModule, NbFormFieldModule, NbDialogModule, NbButtonGroupModule } from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -57,6 +57,7 @@ import { CommunityMembersComponent } from './components/community-members/commun
     NbSelectModule,
     NbFormFieldModule,
     NbDialogModule.forChild(),
+    NbButtonGroupModule
 
   ],
   entryComponents: [

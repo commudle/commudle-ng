@@ -5,6 +5,7 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class FooterService {
+
   private footerStatus: Subject<boolean> = new Subject<boolean>();
   public footerStatus$ = this.footerStatus.asObservable();
 

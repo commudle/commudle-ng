@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: nowrap;
+
   p {
     font-size: 0.8rem;
   }
@@ -16,8 +17,8 @@
     overflow: hidden;
     display: flex;
     align-self: start;
-    margin-right: 5px;
     margin: 3px 5px 0 0;
+
     img {
       width: 100%;
     }
@@ -25,6 +26,7 @@
 
   .content-controls {
     width: 100%;
+
     .author-details {
       p {
         margin: 0;
@@ -32,18 +34,23 @@
       }
     }
 
+    .content {
+      word-break: break-word;
+    }
+
     .details-flag {
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
 
-      >div {
+      > div {
         margin-right: 10px;
 
         p {
           margin: 0;
         }
       }
+
       .reply-button {
         p {
           font-size: 1rem;
@@ -57,35 +64,39 @@
     display: flex;
     align-items: center;
     width: 100px;
+
     nb-icon {
       font-size: 2rem;
     }
+
     p {
       font-size: 1.5rem;
       margin: 0;
     }
   }
-
 }
 
 .replies-container {
   margin: 1rem;
+
   .reply {
     margin-bottom: 5px;
   }
+
   // border-bottom: 1px solid lightgrey;
   // border-left: 1px solid lightgrey;
   // border-right: 1px solid lightgrey;
 
   .reply-form {
     width: 100%;
+
     form {
       display: flex;
       width: 100%;
+
       button {
         width: 30px;
       }
     }
-
   }
 }

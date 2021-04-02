@@ -1,3 +1,5 @@
+@import "projects/commudle-admin/src/assets/styles/variables.scss";
+
 .page-container {
   .event {
     max-width: 1280px;
@@ -19,37 +21,38 @@
 
     .filler {
       padding: 0.5rem;
-      // .community-details {
-      //   // display: flex;
-      //   // align-items: center;
-      //   // .logo {
-      //   //   width: 50px;
-      //   //   img {
-      //   //     width: 100%;
-      //   //   }
-      //   // }
-
-      //   // .name {
-      //   //   margin: 0 1rem;
-      //   // }
-      // }
-
-      .event-details {
-
-      }
     }
 
     .event-components {
+      ::ng-deep {
+        > div {
+          nb-card {
+            margin: 0px;
+          }
+        }
+      }
+
+      .info {
+        order: 2;
+        margin: $space-8 0px;
+        .sponsors {
+          margin: $space-16 0px;
+        }
+      }
+
       .highlighted-info {
+        order: 1;
+        margin: $space-8 0px;
+
         .timings {
           background-color: white;
           padding: 0.5rem;
           text-align: center;
+          margin: $space-16 0px;
 
           @media screen and (min-width: 640px) {
             text-align: left;
-           }
-
+          }
         }
 
         .past-session-link {
@@ -67,6 +70,57 @@
           }
         }
       }
+
+      @media screen and (min-width: 640px) {
+        flex-direction: row;
+
+        ::ng-deep {
+          > div {
+            nb-card {
+              margin: 0px;
+            }
+          }
+        }
+
+        .highlighted-info {
+          flex-grow: 1;
+          order: 2;
+          width: 30%;
+          height: fit-content;
+          position: sticky;
+          top: 5.5rem;
+          margin-left: $space-8;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .info {
+          flex-grow: 3;
+          order: 1;
+          width: 70%;
+          margin-right: $space-8;
+
+          .description {
+            margin-bottom: $space-16;
+          }
+        }
+
+        .full-width-column {
+          width: 100% !important;
+        }
+      }
+
+      .event-chat {
+        nb-card {
+          height: 70vh;
+          ::ng-deep {
+            nb-card-body {
+              overflow: hidden;
+            }
+          }
+        }
+      }
     }
 
     .page-menu {
@@ -76,8 +130,7 @@
       bottom: 0;
       left: 0;
       z-index: 10;
-
-
+      margin: $space-16 0px;
       nb-card {
         margin: 0;
       }
@@ -105,14 +158,11 @@
         }
       }
 
-
-
-      @media screen and (min-width: 800px){
+      @media screen and (min-width: 800px) {
         position: sticky;
         top: 3.5rem;
         box-shadow: none;
         nb-card {
-          margin-bottom: 1rem;
           .menu-items {
             justify-content: flex-start;
             a {
@@ -127,59 +177,7 @@
             }
           }
         }
-
-      }
-    }
-
-
-    .event-components {
-      display: flex;
-      flex-direction: column;
-      .highlighted-info {
-        order: 1;
-      }
-
-      .info {
-        order: 2;
-      }
-
-
-
-
-      @media screen and (min-width: 640px) {
-        flex-direction: row;
-        .highlighted-info {
-          flex-grow: 1;
-          order: 2;
-          width: 30%;
-          height: fit-content;
-          position: sticky;
-          top: 5.5rem;
-        }
-
-        .info {
-          flex-grow: 3;
-          order: 1;
-          width:70%;
-        }
-
-        .full-width-column {
-          width: 100% !important;
-        }
-      }
-
-      .event-chat {
-        nb-card {
-          height: 70vh;
-          ::ng-deep {
-            nb-card-body {
-              overflow: hidden;
-            }
-          }
-
-        }
       }
     }
   }
-
 }
