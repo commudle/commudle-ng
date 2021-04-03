@@ -24,7 +24,6 @@
       }
     }
   }
-
   .communities {
     max-width: $max-page-width;
     padding: 1rem;
@@ -61,5 +60,17 @@
       }
     }
 
+  }
+}
+
+
+@media screen and(max-width : 768px) {
+  .home-communities {
+   .page-header{
+     h1{
+       
+        font-size: 2rem;
+      }
+    }
   }
 }
