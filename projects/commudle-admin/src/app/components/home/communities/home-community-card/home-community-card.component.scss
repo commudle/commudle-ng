@@ -1,4 +1,4 @@
-@import "../../../../../assets/styles/variables.scss";
+@import "/projects/commudle-admin/src/assets/styles/variables.scss";
 
 :host {
   height: 100%;
@@ -56,7 +56,7 @@
   .community {
     nb-card {
       width: 100%;
-      height: $ch-mobile-view;
+      height: 120px;
       nb-card-body {
         display: flex;
         flex-direction: row;
@@ -92,7 +92,7 @@
         }
         p {
           margin: 0;
-          font-size: 12px;
+          font-size: $fs-card-secondary;
         }
       }
     }
