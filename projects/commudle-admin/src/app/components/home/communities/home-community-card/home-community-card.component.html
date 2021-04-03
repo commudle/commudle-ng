@@ -1,12 +1,12 @@
 <div *ngIf="community" class="community clickable" [routerLink]="['/communities', community.slug]">
   <nb-card>
     <nb-card-body>
-      <div class="column left-column">
+      <div>
         <div class="logo">
           <img src="{{community.logo_path}}" alt="{{community.name}} Logo">
         </div>
       </div>
-      <div class="column right-column">
+      <div class="right-column">
         <h3 class="name lh-fw">
           {{community.name | truncatetext:25}}
         </h3>
