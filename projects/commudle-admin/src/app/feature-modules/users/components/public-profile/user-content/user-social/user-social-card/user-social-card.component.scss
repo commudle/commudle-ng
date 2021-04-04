@@ -1,0 +1,44 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-social-card {
+  margin: $space-16 0;
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+
+  nb-card-body {
+    padding: $space-16;
+    width: 100%;
+
+    .user-social-card-image {
+      height: 150px;
+      max-width: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .user-social-card-details {
+      margin-left: $space-16;
+
+      .user-social-card-title {
+        font-weight: $fw-600;
+        font-size: $fs-h4;
+        line-height: 19px;
+        color: $gunmetal;
+      }
+
+      .user-social-card-description {
+        margin-top: $space-12;
+        font-style: italic;
+        font-size: $fs-h6;
+        line-height: 14px;
+        color: $spanish-gray;
+      }
+    }
+  }
+}

@@ -25,9 +25,11 @@ import {UserBuildCardComponent} from './components/public-profile/user-content/u
 import {UserCommunityCardComponent} from './components/public-profile/user-content/user-contributions/user-community-card/user-community-card.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {BasicUserProfileComponent} from './components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserContributionsComponent} from './components/public-profile/user-content/user-contributions/user-contributions.component';
-import {SkeletonScreensModule} from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
+import {UserSocialComponent} from './components/public-profile/user-content/user-social/user-social.component';
+import {UserSocialCardComponent} from './components/public-profile/user-content/user-social/user-social-card/user-social-card.component';
+import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import {SkeletonScreensModule} from 'projects/commudle-admin/src/app/feature-mod
     UserBuildCardComponent,
     UserCommunityCardComponent,
     BasicUserProfileComponent,
-    UserContributionsComponent
+    UserContributionsComponent,
+    UserSocialComponent,
+    UserSocialCardComponent
   ],
   imports: [
     CommonModule,
@@ -49,6 +53,7 @@ import {SkeletonScreensModule} from 'projects/commudle-admin/src/app/feature-mod
     SharedPipesModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
 
     // Nebular
     NbCardModule,
@@ -62,7 +67,7 @@ import {SkeletonScreensModule} from 'projects/commudle-admin/src/app/feature-mod
     NbFormFieldModule,
     NbSpinnerModule,
     NbRadioModule,
-    SkeletonScreensModule
+    SharedComponentsModule
   ],
   exports: [
     BasicUserProfileComponent

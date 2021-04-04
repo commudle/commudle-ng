@@ -1,19 +1,20 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ISocialResource } from 'projects/shared-models/social_resource.model';
-import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
-import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {ISocialResource} from 'projects/shared-models/social_resource.model';
+import {API_ROUTES} from 'projects/shared-services/api-routes.constants';
+import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SourceResourceService {
+export class SocialResourceService {
 
   constructor(
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService
-  ) { }
+  ) {
+  }
 
   // create social resource
   create(socialResourceData, tags): Observable<ISocialResource> {
