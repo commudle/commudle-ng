@@ -12,6 +12,8 @@ import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IBadges } from 'projects/shared-models/badges.model';
 import { ISocialResources } from 'projects/shared-models/social_resources.model';
 import { ISpeakerResources } from 'projects/shared-models/speaker_resources.model';
+import { IPosts } from 'projects/shared-models/posts.model';
+import { IPost } from 'projects/shared-models/post.model';
 
 
 
@@ -147,6 +149,34 @@ export class AppUsersService {
   toggleFollow(username): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), { username }
+    );
+  }
+
+
+  // user's posts
+  posts(username): Observable<IPosts> {
+    let params = new HttpParams().set('username', username)
+
+    return this.http.get<IPosts>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.INDEX), { params }
+    );
+  }
+
+
+  // create a post
+  createPost(postData): Observable<IPost> {
+    return this.http.post<IPost>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), postData
+    );
+  }
+
+
+  // delete a post
+  deletePost(postId): Observable<boolean> {
+    let params = new HttpParams().set('post_id', postId)
+
+    return this.http.delete<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), {params}
     );
   }
 }
