@@ -1,0 +1,129 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+div {
+  font-family: $primary-font-family;
+}
+
+.user-build-card {
+  width: 264px;
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+  padding: $space-24 $space-16;
+
+  .user-build-card-prefix {
+    .user-build-card-tags {
+      gap: $space-4;
+
+      .user-build-card-tag {
+        padding: 0 $space-8;
+        font-size: $fs-h6;
+        color: $neon-blue;
+        background-color: $lavender;
+        border-radius: $border-20;
+      }
+    }
+  }
+
+  .user-build-card-content {
+    margin: $space-8 0;
+
+    .user-build-card-name {
+      font-size: $fs-h5;
+      font-weight: 600;
+      line-height: 16px;
+      color: $gunmetal;
+    }
+
+    .user-build-card-description {
+      margin-top: $space-4;
+      font-size: $fs-h7;
+      font-style: italic;
+      line-height: 12px;
+      color: rgba($spanish-gray, 0.7);
+    }
+  }
+
+  .user-build-card-suffix {
+    .user-build-card-interactions {
+      font-size: $fs-h6;
+      color: $gunmetal;
+
+      nb-icon {
+        font-size: $fs-h4;
+        color: $silver-sand;
+      }
+    }
+
+    .user-build-card-author {
+      height: 16px;
+
+      .user-build-card-author-name {
+        display: none;
+        font-size: $fs-h7;
+        line-height: 12px;
+        color: $gunmetal;
+        padding-right: $space-4;
+      }
+
+      img {
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &:hover {
+    .user-build-card-suffix {
+      .user-build-card-author {
+        border-radius: $border-8;
+        background-color: $lavender;
+        padding-left: $space-8;
+
+        .user-build-card-author-name {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+//.build-card-container {
+//  border: 0.5px solid #5C6972;
+//  border-radius: 10px;
+//
+//  nb-card-body {
+//    padding: 0.75rem 1.25rem;
+//
+//    .details {
+//      display: flex;
+//      align-items: center;
+//
+//      fa-icon {
+//        font-size: 25px;
+//        margin-right: 1rem;
+//        color: #FFD338;
+//      }
+//
+//      .name {
+//        font-size: 18px;
+//        font-weight: 500;
+//        font-family: 'Work Sans', sans-serif !important;
+//        line-height: 21px;
+//        color: #536EFF;
+//      }
+//
+//      .tags {
+//        margin-left: auto;
+//      }
+//    }
+//
+//    .description {
+//      font-size: 14px;
+//      font-family: 'Work Sans', sans-serif !important;
+//      margin: 1rem 0 0.75rem;
+//      height: 4rem;
+//      color: #5C6972;
+//    }
+//  }
+//}
