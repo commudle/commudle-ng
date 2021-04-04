@@ -16,10 +16,11 @@ export class SourceResourceService {
   ) { }
 
   // create social resource
-  create(socialResourceData): Observable<ISocialResource> {
+  create(socialResourceData, tags): Observable<ISocialResource> {
     return this.http.post<ISocialResource>(
       this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.CREATE), {
-        social_resource: socialResourceData
+        social_resource: socialResourceData,
+        tags
       }
     )
   }
