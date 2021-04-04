@@ -1,0 +1,27 @@
+<!--<nb-card *ngIf="community.community" [routerLink]="['/communities', community.community.slug]"-->
+<!--         class="community-card-container clickable">-->
+<!--  <nb-card-body>-->
+<!--    <div class="image">-->
+<!--      <img alt="{{community.community.name}}" src="{{community.community.logo_path}}">-->
+<!--    </div>-->
+<!--    <div class="details">-->
+<!--      <p class="name">{{getCommunityName()}}</p>-->
+<!--      <p class="role">{{community.user_role.name}}</p>-->
+<!--      <p class="count">{{community.community.member_count}} members</p>-->
+<!--    </div>-->
+<!--  </nb-card-body>-->
+<!--</nb-card>-->
+<nb-card [routerLink]="['/communities', community.community.slug]" class="user-communities-card">
+  <nb-card-body class="d-flex flex-row align-items-center">
+    <div class="user-communities-logo d-flex align-items-center">
+      <img alt="{{community.community.name}}" src="{{community.community.logo_path}}">
+    </div>
+    <div class="d-flex flex-column">
+      <div class="user-communities-name">
+        {{community.community.name | truncatetext:10}}
+        <span>({{community.user_role.name}})</span>
+      </div>
+      <div class="user-communities-members">{{community.community.member_count}} Members</div>
+    </div>
+  </nb-card-body>
+</nb-card>

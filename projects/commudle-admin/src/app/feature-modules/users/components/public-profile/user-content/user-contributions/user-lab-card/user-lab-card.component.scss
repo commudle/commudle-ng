@@ -1,0 +1,103 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+div {
+  font-family: $primary-font-family;
+}
+
+.user-labs-card {
+  margin: 0;
+  border: 1px solid $maya-blue;
+  border-radius: $border-5;
+  width: 280px;
+
+  nb-card-header {
+    height: 134px;
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+    border-bottom: 1px solid $maya-blue;
+
+    img {
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  nb-card-body {
+    padding: $space-12 $space-16 $space-16;
+
+    .user-labs-card-name {
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      color: $neon-blue;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .user-labs-card-description {
+      margin-top: $space-4;
+      font-size: $fs-h7;
+      font-weight: $fw-500;
+      line-height: 12px;
+      color: #5C6972;
+    }
+
+    .user-labs-card-interactions {
+      margin-top: $space-24;
+      font-size: $fs-h6;
+      line-height: 14px;
+      color: $gunmetal;
+
+      nb-icon {
+        font-size: $fs-h4;
+        color: $neon-blue;
+      }
+    }
+  }
+}
+
+//.lab-card-container {
+//  width: 300px;
+//  border: 1px solid #72C1FF;
+//  border-radius: 5px;
+//
+//  nb-card-header {
+//    height: 134px;
+//    line-height: 0;
+//    padding: 0;
+//    border-bottom: 1px solid #72C1FF;
+//    overflow: hidden;
+//
+//    img {
+//      width: 100%;
+//      aspect-ratio: 16 / 9;
+//    }
+//  }
+//
+//  nb-card-body {
+//    padding: 0.75rem;
+//
+//    .name {
+//      height: 3rem;
+//      font-weight: 600;
+//      font-family: 'Work Sans', sans-serif !important;
+//      color: #536EFF;
+//      margin: 0;
+//      overflow: hidden;
+//    }
+//
+//    .description {
+//      height: 5rem;
+//      font-size: 14px;
+//      font-weight: 500;
+//      font-family: 'Work Sans', sans-serif !important;
+//      margin: 0 0 2rem;
+//      color: #5C6972;
+//      overflow: hidden;
+//    }
+//  }
+//}

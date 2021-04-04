@@ -1,56 +1,68 @@
 <div class="user-content">
-  <nb-tabset [fullWidth]="window.innerWidth > screenWidthPx.tab">
-
+  <nb-tabset>
     <nb-tab tabTitle="Contributions">
-      <div class="labs">
-        <p class="heading">My Labs ({{labs.length}})</p>
-        <div #labCards class="cards">
-          <app-user-lab-card *ngFor="let lab of labs" [lab]="lab" [user]="user"></app-user-lab-card>
-        </div>
-        <div *ngIf="labNavButtonsHeight > 0 && isScrollable(labCards)" [style.bottom.px]="labNavButtonsHeight"
-             class="navigation">
-          <button (click)="scrollLeft(labCards)" nbButton size="large">
-            <nb-icon icon="arrow-back"></nb-icon>
-          </button>
-          <button (click)="scrollRight(labCards)" nbButton size="large">
-            <nb-icon icon="arrow-forward"></nb-icon>
-          </button>
-        </div>
-      </div>
-
-      <div class="communities">
-        <p class="heading">My Communities ({{communities.length}})</p>
-        <div #communityCards class="cards">
-          <app-user-community-card *ngFor="let community of communities"
-                                   [community]="community"></app-user-community-card>
-        </div>
-        <div *ngIf="communityNavButtonsHeight > 0 && isScrollable(communityCards)"
-             [style.bottom.px]="communityNavButtonsHeight"
-             class="navigation">
-          <button (click)="scrollLeft(communityCards)" nbButton size="large">
-            <nb-icon icon="arrow-back"></nb-icon>
-          </button>
-          <button (click)="scrollRight(communityCards)" nbButton size="large">
-            <nb-icon icon="arrow-forward"></nb-icon>
-          </button>
-        </div>
-      </div>
-
-      <div class="builds">
-        <p class="heading">My Builds ({{builds.length}})</p>
-        <div class="build-cards">
-          <app-user-build-card *ngFor="let build of builds" [build]="build"></app-user-build-card>
-        </div>
-      </div>
+      <app-user-contributions [user]="user"></app-user-contributions>
     </nb-tab>
 
-    <nb-tab tabTitle="Social">
-      <p>List of <strong>orders</strong>.</p>
-    </nb-tab>
+    <nb-tab tabTitle="Social"></nb-tab>
 
-    <nb-tab tabTitle="Highlights">
-      <p>List of <strong>transactions</strong>.</p>
-    </nb-tab>
-
+    <nb-tab tabTitle="Feed"></nb-tab>
   </nb-tabset>
 </div>
+
+<!--<div class="user-content">-->
+<!--  <nb-tabset [fullWidth]="window.innerWidth > screenWidthPx.tab">-->
+
+<!--    <nb-tab tabTitle="Contributions">-->
+<!--      <div class="labs">-->
+<!--        <p class="heading">My Labs ({{labs.length}})</p>-->
+<!--        <div #labCards class="cards">-->
+<!--          <app-user-lab-card *ngFor="let lab of labs" [lab]="lab" [user]="user"></app-user-lab-card>-->
+<!--        </div>-->
+<!--        <div *ngIf="labNavButtonsHeight > 0 && isScrollable(labCards)" [style.bottom.px]="labNavButtonsHeight"-->
+<!--             class="navigation">-->
+<!--          <button (click)="scrollLeft(labCards)" nbButton size="large">-->
+<!--            <nb-icon icon="arrow-back"></nb-icon>-->
+<!--          </button>-->
+<!--          <button (click)="scrollRight(labCards)" nbButton size="large">-->
+<!--            <nb-icon icon="arrow-forward"></nb-icon>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="communities">-->
+<!--        <p class="heading">My Communities ({{communities.length}})</p>-->
+<!--        <div #communityCards class="cards">-->
+<!--          <app-user-community-card *ngFor="let community of communities"-->
+<!--                                   [community]="community"></app-user-community-card>-->
+<!--        </div>-->
+<!--        <div *ngIf="communityNavButtonsHeight > 0 && isScrollable(communityCards)"-->
+<!--             [style.bottom.px]="communityNavButtonsHeight"-->
+<!--             class="navigation">-->
+<!--          <button (click)="scrollLeft(communityCards)" nbButton size="large">-->
+<!--            <nb-icon icon="arrow-back"></nb-icon>-->
+<!--          </button>-->
+<!--          <button (click)="scrollRight(communityCards)" nbButton size="large">-->
+<!--            <nb-icon icon="arrow-forward"></nb-icon>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="builds">-->
+<!--        <p class="heading">My Builds ({{builds.length}})</p>-->
+<!--        <div class="build-cards">-->
+<!--          <app-user-build-card *ngFor="let build of builds" [build]="build"></app-user-build-card>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nb-tab>-->
+
+<!--    <nb-tab tabTitle="Social">-->
+<!--      <p>List of <strong>orders</strong>.</p>-->
+<!--    </nb-tab>-->
+
+<!--    <nb-tab tabTitle="Highlights">-->
+<!--      <p>List of <strong>transactions</strong>.</p>-->
+<!--    </nb-tab>-->
+
+<!--  </nb-tabset>-->
+<!--</div>-->
