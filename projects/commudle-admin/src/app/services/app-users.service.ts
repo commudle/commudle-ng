@@ -109,21 +109,23 @@ export class AppUsersService {
 
   // get list of all the badges of a user
   badges(username): Observable<IBadges> {
+    const params = new HttpParams().set('username', username);
     return this.http.get<IBadges>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES)
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.BADGES), {params}
     );
   }
 
   // get list of all the speaker resources of a user
   speakerResources(username): Observable<ISpeakerResources> {
+    const params = new HttpParams().set('username', username);
     return this.http.get<ISpeakerResources>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.SPEAKER_RESOURCES)
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.SPEAKER_RESOURCES), {params}
     );
   }
 
   // get list of all the social resources of a user
   socialResources(username): Observable<ISocialResources> {
-    const params = new HttpParams().set('username', username)
+    const params = new HttpParams().set('username', username);
     return this.http.get<ISocialResources>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.SOCIAL_RESOURCES), {params}
     );
@@ -131,7 +133,7 @@ export class AppUsersService {
 
   // check if the logged in user is following a user
   check_followee(username): Observable<boolean> {
-    const params = new HttpParams().set('username', username)
+    const params = new HttpParams().set('username', username);
     return this.http.get<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.CHECK_FOLLOWEE), {params}
     );
@@ -139,8 +141,9 @@ export class AppUsersService {
 
   // toggle following a user
   toggleFollow(username): Observable<boolean> {
+    const params = new HttpParams().set('username', username);
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), {username}
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), {params}
     );
   }
 

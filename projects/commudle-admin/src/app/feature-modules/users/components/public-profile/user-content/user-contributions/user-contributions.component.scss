@@ -29,4 +29,11 @@
       gap: $space-32;
     }
   }
+
+  .user-contributions-past-events {
+    .user-contributions-past-events-cards {
+      overflow: auto;
+      gap: $space-32;
+    }
+  }
 }

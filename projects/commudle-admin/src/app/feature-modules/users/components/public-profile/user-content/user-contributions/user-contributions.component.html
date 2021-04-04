@@ -25,4 +25,13 @@
       <app-user-build-card *ngFor="let build of builds" [build]="build"></app-user-build-card>
     </div>
   </div>
+
+  <div *ngIf="pastEvents && pastEvents.length > 0" class="user-contributions-past-events">
+    <div class="user-contributions-heading">
+      Past Events ({{pastEvents.length}})
+    </div>
+    <div class="user-contributions-past-events-cards d-flex">
+      <app-user-past-event-card *ngFor="let pastEvent of pastEvents" [pastEvent]="pastEvent"></app-user-past-event-card>
+    </div>
+  </div>
 </div>

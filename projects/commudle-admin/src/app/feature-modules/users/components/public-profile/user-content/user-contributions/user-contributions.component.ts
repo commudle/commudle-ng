@@ -5,6 +5,7 @@ import {IUser} from 'projects/shared-models/user.model';
 import {ILab} from 'projects/shared-models/lab.model';
 import {ICommunityBuild} from 'projects/shared-models/community-build.model';
 import {IUserRolesUser} from 'projects/shared-models/user_roles_user.model';
+import {ISpeakerResource} from 'projects/shared-models/speaker_resource.model';
 
 @Component({
   selector: 'app-user-contributions',
@@ -18,6 +19,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
   labs: ILab[];
   communities: IUserRolesUser[];
   builds: ICommunityBuild[];
+  pastEvents: ISpeakerResource[];
 
   subscriptions: Subscription[] = [];
 
@@ -44,6 +46,10 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
     // Get the user's builds
     this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
       this.builds = value.community_builds;
+    }));
+    // Get the user's past events
+    this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
+      this.pastEvents = value.speaker_resources;
     }));
   }
 
