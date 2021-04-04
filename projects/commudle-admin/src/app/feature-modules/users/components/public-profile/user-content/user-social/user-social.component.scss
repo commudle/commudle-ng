@@ -1,0 +1,52 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+div {
+  font-family: $primary-font-family;
+}
+
+.user-social {
+  padding-top: $space-40;
+}
+
+.user-social-popup {
+  .user-social-popup-details {
+    .user-social-popup-title {
+    }
+
+    .user-social-popup-description {
+    }
+
+    .user-social-popup-favicon {
+    }
+
+    .user-social-popup-image {
+    }
+
+    .user-social-popup-tags {
+    }
+  }
+}
+
+//.user-social {
+//  .user-social-heading {
+//    margin: $space-40 0 $space-24;
+//    font-size: $fs-24;
+//    font-weight: $fw-600;
+//    line-height: 28px;
+//    color: $neon-blue;
+//  }
+//
+//  .user-social-writings {
+//    .user-social-writings-cards {
+//      overflow: auto;
+//      gap: $space-32;
+//    }
+//  }
+//
+//  .user-social-videos {
+//    .user-social-videos-cards {
+//      overflow: auto;
+//      gap: $space-32;
+//    }
+//  }
+//}

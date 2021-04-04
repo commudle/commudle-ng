@@ -1,0 +1,69 @@
+<div class="user-social">
+  <div class="user-social-add">
+    <button (click)="onOpenDialog()" nbButton size="small" status="primary">
+      <nb-icon icon="plus"></nb-icon>
+      Add
+    </button>
+  </div>
+  <div *ngIf="socialResources && socialResources.length > 0" class="user-social-cards">
+    <app-user-social-card *ngFor="let socialResource of socialResources"
+                          [socialResource]="socialResource"></app-user-social-card>
+  </div>
+  <!--  <div *ngIf="writings && writings.length > 0" class="user-social-writings">-->
+  <!--    <div class="user-social-heading">-->
+  <!--      My Writings ({{writings.length}})-->
+  <!--    </div>-->
+  <!--    <div class="user-social-writings-cards d-flex">-->
+  <!--      <app-user-writing-card *ngFor="let writing of writings" [writing]="writing"></app-user-writing-card>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  <!--  <div *ngIf="videos && videos.length > 0" class="user-social-videos">-->
+  <!--    <div class="user-social-heading">-->
+  <!--      My Videos ({{videos.length}})-->
+  <!--    </div>-->
+  <!--    <div class="user-social-videos-cards d-flex">-->
+  <!--      <app-user-video-card *ngFor="let video of videos" [video]="video"></app-user-video-card>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>
+
+<ng-template #addLinkDialog>
+  <nb-card class="user-social-popup">
+    <nb-card-header class="d-flex justify-content-space-between">
+      <div>Add Link</div>
+      <button (click)="onCloseDialog()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body [nbSpinner]="isLoading">
+      <nb-form-field>
+        <nb-icon icon="link" nbPrefix></nb-icon>
+        <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" nbInput
+               placeholder="Enter the link" type="text">
+      </nb-form-field>
+      <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
+            class="user-social-popup-details d-flex flex-column">
+        <div class="user-social-popup-title">Title</div>
+        <input formControlName="title" nbInput required type="text">
+        <div class="user-social-popup-description">Description</div>
+        <textarea formControlName="description" maxlength="200" nbInput required rows="5" type="text"></textarea>
+        <div class="user-social-popup-favicon">Favicon</div>
+        <input disabled formControlName="favicon" nbInput required type="text">
+        <div class="user-social-popup-image">Image</div>
+        <div formGroupName="image">
+          <input disabled formControlName="url" nbInput required type="text">
+        </div>
+        <div class="user-social-popup-tags">Tags</div>
+        <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
+        <br>
+      </form>
+    </nb-card-body>
+    <nb-card-footer *ngIf="showLinkPreview">
+      <button (click)="addSocialResource()" [disabled]="!socialResourcesForm.valid || tags.length <= 0" nbButton
+              status="success">
+        Submit
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
