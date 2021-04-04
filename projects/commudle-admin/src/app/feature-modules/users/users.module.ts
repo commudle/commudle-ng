@@ -30,6 +30,7 @@ import {UserContributionsComponent} from './components/public-profile/user-conte
 import {UserSocialComponent} from './components/public-profile/user-content/user-social/user-social.component';
 import {UserSocialCardComponent} from './components/public-profile/user-content/user-social/user-social-card/user-social-card.component';
 import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
+import {UserPastEventCardComponent} from './components/public-profile/user-content/user-contributions/user-past-event-card/user-past-event-card.component';
 
 
 @NgModule({
@@ -43,9 +44,10 @@ import {SharedComponentsModule} from 'projects/shared-components/shared-componen
     UserBuildCardComponent,
     UserCommunityCardComponent,
     BasicUserProfileComponent,
+    UserPastEventCardComponent,
     UserContributionsComponent,
     UserSocialComponent,
-    UserSocialCardComponent
+    UserSocialCardComponent,
   ],
   imports: [
     CommonModule,
