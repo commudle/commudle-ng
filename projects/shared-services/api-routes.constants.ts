@@ -303,7 +303,12 @@ export const API_ROUTES = {
     TOGGLE_FOLLOW: 'api/v2/users/toggle_follow',
     CHECK_FOLLOWEE: 'api/v2/users/check_followee',
     TAGS: 'api/v2/users/tags',
-    PROFILE_BANNER_IMAGE: 'api/v2/users/profile_banner_image'
+    PROFILE_BANNER_IMAGE: 'api/v2/users/profile_banner_image',
+    POSTS: {
+      INDEX: 'api/v2/users/posts',
+      CREATE: 'api/v2/users/posts',
+      DESTROY: 'api/v2/users/posts'
+    }
   },
 
   SPEAKER_RESOURCES: {
