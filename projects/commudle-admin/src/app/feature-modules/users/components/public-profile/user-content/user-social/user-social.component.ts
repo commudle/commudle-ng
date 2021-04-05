@@ -4,11 +4,12 @@ import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-user
 import {ISocialResource} from 'projects/shared-models/social_resource.model';
 import {Subject, Subscription} from 'rxjs';
 import {NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {debounceTime} from 'rxjs/operators';
 import {LinkPreviewService} from 'projects/commudle-admin/src/app/services/link-preview.service';
 import {ILinkPreview} from 'projects/shared-models/link-preview.model';
 import {FormBuilder, Validators} from '@angular/forms';
 import {SocialResourceService} from 'projects/commudle-admin/src/app/services/social-resource.service';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
 
 @Component({
   selector: 'app-user-social',
@@ -18,6 +19,7 @@ import {SocialResourceService} from 'projects/commudle-admin/src/app/services/so
 export class UserSocialComponent implements OnInit, OnDestroy {
 
   @Input() user: IUser;
+  @Input() currentUser: ICurrentUser;
 
   subscriptions: Subscription[] = [];
 
@@ -34,6 +36,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     title: ['', Validators.required],
     description: ['', [Validators.required, Validators.maxLength(200)]],
     favicon: ['', Validators.required],
+    link: ['', Validators.required],
     image: this.fb.group({
       url: ['', Validators.required],
     })
@@ -59,8 +62,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
 
     // Subscribe to search
     this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(
-      debounceTime(1000),
-      distinctUntilChanged()
+      debounceTime(1000)
     ).subscribe(value => {
       this.getLinkPreview(value);
     });
@@ -97,7 +99,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     if (url !== '') {
       this.linkPreviewService.getPreview(url).subscribe(value => {
         this.linkPreview = value;
-        this.createForm();
+        this.createForm(url);
         this.isLoading = false;
         this.showLinkPreview = true;
       });
@@ -107,11 +109,12 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     }
   }
 
-  createForm(): void {
+  createForm(url: string): void {
     this.socialResourcesForm.patchValue({
       title: this.linkPreview.title,
       description: this.linkPreview.description,
       favicon: this.linkPreview.favicon,
+      link: url,
       image: {
         url: this.linkPreview.images[0]
       }
@@ -140,6 +143,13 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     } else {
       this.nbToastrService.danger('Error occurred while adding social resource!', 'Failed');
     }
+  }
+
+  deleteSocialResource(socialResourceId: number): void {
+    this.socialResourceService.destroy(socialResourceId).subscribe(value => {
+      this.nbToastrService.success('Social resource successfully removed!', 'Success');
+      this.getSocialResources();
+    });
   }
 
 }

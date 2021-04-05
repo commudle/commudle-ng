@@ -7,7 +7,7 @@
   <div class="user-content">
     <app-user-cover-photo (coverImageUpdate)="getUserData()" [currentUser]="currentUser"
                           [user]="user"></app-user-cover-photo>
-    <app-user-content [user]="user"></app-user-content>
+    <app-user-content [currentUser]="currentUser" [user]="user"></app-user-content>
   </div>
 </div>
 
