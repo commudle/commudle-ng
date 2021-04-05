@@ -43,7 +43,7 @@ div {
       font-size: $fs-h7;
       font-weight: $fw-500;
       line-height: 12px;
-      color: #5C6972;
+      color: $cadet;
     }
 
     .user-labs-card-interactions {
@@ -59,45 +59,3 @@ div {
     }
   }
 }
-
-//.lab-card-container {
-//  width: 300px;
-//  border: 1px solid #72C1FF;
-//  border-radius: 5px;
-//
-//  nb-card-header {
-//    height: 134px;
-//    line-height: 0;
-//    padding: 0;
-//    border-bottom: 1px solid #72C1FF;
-//    overflow: hidden;
-//
-//    img {
-//      width: 100%;
-//      aspect-ratio: 16 / 9;
-//    }
-//  }
-//
-//  nb-card-body {
-//    padding: 0.75rem;
-//
-//    .name {
-//      height: 3rem;
-//      font-weight: 600;
-//      font-family: 'Work Sans', sans-serif !important;
-//      color: #536EFF;
-//      margin: 0;
-//      overflow: hidden;
-//    }
-//
-//    .description {
-//      height: 5rem;
-//      font-size: 14px;
-//      font-weight: 500;
-//      font-family: 'Work Sans', sans-serif !important;
-//      margin: 0 0 2rem;
-//      color: #5C6972;
-//      overflow: hidden;
-//    }
-//  }
-//}

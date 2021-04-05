@@ -8,7 +8,6 @@ import {ILab} from 'projects/shared-models/lab.model';
 })
 export class UserLabCardComponent implements OnInit {
 
-  // @Input() user: IUser;
   @Input() lab: ILab;
 
   constructor() {

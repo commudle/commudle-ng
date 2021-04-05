@@ -16,10 +16,9 @@
             font-size: $fs-24;
             font-weight: $fw-400;
             font-style: italic;
-            font-family: $primary-font-family;
             line-height: 28px;
             text-transform: capitalize;
-            color: #5C6972;
+            color: $cadet;
           }
 
           &.active {

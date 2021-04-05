@@ -10,8 +10,6 @@ export class UserBuildCardComponent implements OnInit {
 
   @Input() build: ICommunityBuild;
 
-  // faCodeBranch = faCodeBranch;
-
   constructor() {
   }
 

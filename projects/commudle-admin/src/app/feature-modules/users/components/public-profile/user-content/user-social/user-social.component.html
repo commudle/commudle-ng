@@ -44,19 +44,16 @@
       </nb-form-field>
       <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
             class="user-social-popup-details d-flex flex-column">
-        <div class="user-social-popup-title">Title</div>
+        <div class="user-social-popup-heading">Favicon</div>
+        <img alt="{{linkPreview.title}}" class="user-social-popup-favicon" src="{{linkPreview.favicon}}">
+        <div class="user-social-popup-heading">Image</div>
+        <img alt="{{linkPreview.title}}" class="user-social-popup-image" src="{{linkPreview.images[0]}}">
+        <div class="user-social-popup-heading">Title</div>
         <input formControlName="title" nbInput required type="text">
-        <div class="user-social-popup-description">Description</div>
+        <div class="user-social-popup-heading">Description</div>
         <textarea formControlName="description" maxlength="200" nbInput required rows="5" type="text"></textarea>
-        <div class="user-social-popup-favicon">Favicon</div>
-        <input disabled formControlName="favicon" nbInput required type="text">
-        <div class="user-social-popup-image">Image</div>
-        <div formGroupName="image">
-          <input disabled formControlName="url" nbInput required type="text">
-        </div>
-        <div class="user-social-popup-tags">Tags</div>
+        <div class="user-social-popup-heading">Tags</div>
         <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
-        <br>
       </form>
     </nb-card-body>
     <nb-card-footer *ngIf="showLinkPreview">
