@@ -1,6 +1,6 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
-div, button {
+div, button, nb-card-header, nb-card-body, nb-card-footer {
   font-family: $primary-font-family !important;
 }
 
@@ -10,7 +10,9 @@ div, button {
   background: linear-gradient(186.78deg, $brilliant-azure 0.95%, $neon-blue 100.4%);
 
   .profile-photo {
+    margin: auto;
     height: 232px;
+    width: 232px;
     overflow: hidden;
     border-radius: 50%;
 
@@ -23,26 +25,23 @@ div, button {
   }
 
   .user-details {
-    color: white;
+    color: $white;
     margin: $space-16 0;
 
     .name {
       font-style: italic;
       font-weight: $fw-600;
       font-size: $fs-24;
-      text-align: center;
       margin-bottom: $space-4;
     }
 
     .designation {
       font-weight: $fw-500;
       font-size: $fs-20;
-      text-align: center;
       margin-bottom: $space-24;
     }
 
     .about {
-      text-align: center;
       font-size: $fs-h4;
     }
   }
@@ -53,10 +52,10 @@ div, button {
 
     button {
       border: none;
-      border-radius: 10px;
-      color: white;
-      background-color: rgba(246, 247, 249, 0.4);
-      font-weight: 400;
+      border-radius: $border-10;
+      color: $white;
+      background-color: rgba($cultured2, 0.4);
+      font-weight: $fw-400;
       text-transform: none;
       letter-spacing: 0.5px;
       transition: all .2s ease-in-out;
@@ -72,14 +71,14 @@ div, button {
   }
 
   .user-tags {
-    margin: $space-48 0 $space-40;
+    margin: $space-60 0 $space-40;
 
     nb-tag {
-      color: white;
+      color: $white;
       background-color: transparent;
       font-size: $fs-h5;
-      font-weight: 500;
-      font-family: 'Work Sans', sans-serif !important;
+      font-weight: $fw-500;
+      font-family: $primary-font-family;
 
       &:last-child {
         cursor: pointer;
@@ -97,9 +96,8 @@ div, button {
   }
 
   .message-user {
-    text-align: center;
-
     button {
+      height: 49px;
       border: none;
       border-radius: $border-10;
       color: $white;
@@ -121,12 +119,11 @@ div, button {
   }
 
   .user-social {
-    text-align: center;
-    margin: $space-220 0 $space-64;
+    margin: $space-48 0 0;
 
     a {
-      margin: 0.35rem;
-      background-color: #D8ECFF;
+      margin: $space-4;
+      background-color: $water;
       transition: all .2s ease-in-out;
 
       &:hover {
@@ -138,79 +135,28 @@ div, button {
       }
     }
   }
-
-  hr {
-    display: block;
-    border: 0;
-    height: 1.5px;
-    width: 150px;
-    background-color: white;
-  }
-
-  @media (max-width: $tab-width) {
-    .profile-photo {
-      margin: 2rem auto;
-      max-width: 150px;
-      max-height: 150px;
-    }
-
-    .user-details {
-      margin-bottom: 1rem;
-
-      .name {
-        font-size: 1.75rem;
-        line-height: 1.75rem;
-        margin-bottom: 1.25rem;
-      }
-
-      .designation {
-        font-size: 1.25rem;
-        line-height: 1.25rem;
-        margin-bottom: 1.75rem;
-      }
-    }
-
-    .edit-profile {
-      margin-bottom: 1.75rem;
-    }
-
-    .user-tags {
-      margin: 3rem 0;
-    }
-
-    .user-social {
-      margin: 2rem 0;
-    }
-
-    hr {
-      display: none;
-    }
-  }
 }
 
 .tag-dialog {
   nb-card-body {
-    text-align: center;
+    .tag-dialog-info {
+      margin-bottom: $space-16;
+    }
 
     img {
       height: 168px;
-      margin-top: 1rem;
+      margin-top: $space-16;
     }
   }
 
   nb-card-footer {
-    display: flex;
-    justify-content: space-between;
+    button {
+      text-transform: capitalize;
+    }
   }
 }
 
 .profile-dialog {
-  nb-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   nb-card-body {
     padding: 0;
   }
