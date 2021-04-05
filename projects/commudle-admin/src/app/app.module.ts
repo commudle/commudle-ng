@@ -80,7 +80,7 @@ import {HomePromotionsComponent} from './components/home/components/home-promoti
 import {NavbarMenuComponent} from './components/navbar-menu/navbar-menu.component';
 import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
 import {PublicCommunityModule} from './feature-modules/public-community/public-community.module';
-
+import {CommonModule} from '@angular/common';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -111,7 +111,7 @@ export function initApp(appInitService: AppInitService) {
     HomeBuildsCardComponent,
     HomeExpertsComponent,
     HomePromotionsComponent,
-    NavbarMenuComponent
+    NavbarMenuComponent,
   ],
   imports: [
     AppRoutingModule,
