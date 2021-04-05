@@ -8,13 +8,16 @@
 
   .page-container {
     .home-desktop {
-      .left-column, .right-column {
-        width: 264px;
+      .left-column {
+        width: 280px;
       }
 
       .center-column {
-        width: 560px;
-        margin: $space-16;
+        width: 578px;
+      }
+
+      .right-column {
+        width: 315px;
       }
     }
   }

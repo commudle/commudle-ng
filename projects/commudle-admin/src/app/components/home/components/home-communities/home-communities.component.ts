@@ -66,7 +66,8 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
     this.joinCommunityRef = this.nbDialogService.open(this.joinCommunityDialog, {
       context: {
         community
-      }
+      },
+      autoFocus: false
     });
   }
 
