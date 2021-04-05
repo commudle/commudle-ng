@@ -70,6 +70,7 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
 import {EventsComponent} from './components/home/events/events.component';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
+import {CommonModule} from '@angular/common';
 
 
 export function initApp(appInitService: AppInitService) {
@@ -111,6 +112,7 @@ export function initApp(appInitService: AppInitService) {
     ReusableComponentsModule,
     SharedPipesModule,
     UserChatsModule,
+    CommonModule,
 
     // external service modules
     LibErrorHandlerModule,
