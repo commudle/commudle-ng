@@ -5,6 +5,7 @@ import {ICommunityBuild} from 'projects/shared-models/community-build.model';
 import {IUserRolesUser} from 'projects/shared-models/user_roles_user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ScreenWidthPx} from 'projects/commudle-admin/src/app/feature-modules/users/constants/user-profile';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -15,6 +16,7 @@ import {Subscription} from 'rxjs';
 export class UserContentComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   @Input() user: IUser;
+  @Input() currentUser: ICurrentUser;
 
   labs: ILab[] = [];
   communities: IUserRolesUser[] = [];

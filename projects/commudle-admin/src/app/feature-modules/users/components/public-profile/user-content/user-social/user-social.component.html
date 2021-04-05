@@ -1,31 +1,15 @@
 <div class="user-social">
-  <div class="user-social-add">
+  <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add">
     <button (click)="onOpenDialog()" nbButton size="small" status="primary">
       <nb-icon icon="plus"></nb-icon>
       Add
     </button>
   </div>
   <div *ngIf="socialResources && socialResources.length > 0" class="user-social-cards">
-    <app-user-social-card *ngFor="let socialResource of socialResources"
-                          [socialResource]="socialResource"></app-user-social-card>
+    <app-user-social-card (deleteResource)="deleteSocialResource($event)" *ngFor="let socialResource of socialResources"
+                          [currentUser]="currentUser" [socialResource]="socialResource"
+                          [user]="user"></app-user-social-card>
   </div>
-  <!--  <div *ngIf="writings && writings.length > 0" class="user-social-writings">-->
-  <!--    <div class="user-social-heading">-->
-  <!--      My Writings ({{writings.length}})-->
-  <!--    </div>-->
-  <!--    <div class="user-social-writings-cards d-flex">-->
-  <!--      <app-user-writing-card *ngFor="let writing of writings" [writing]="writing"></app-user-writing-card>-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <!--  <div *ngIf="videos && videos.length > 0" class="user-social-videos">-->
-  <!--    <div class="user-social-heading">-->
-  <!--      My Videos ({{videos.length}})-->
-  <!--    </div>-->
-  <!--    <div class="user-social-videos-cards d-flex">-->
-  <!--      <app-user-video-card *ngFor="let video of videos" [video]="video"></app-user-video-card>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </div>
 
 <ng-template #addLinkDialog>
@@ -56,8 +40,11 @@
         <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
       </form>
     </nb-card-body>
-    <nb-card-footer *ngIf="showLinkPreview">
-      <button (click)="addSocialResource()" [disabled]="!socialResourcesForm.valid || tags.length <= 0" nbButton
+    <nb-card-footer *ngIf="showLinkPreview" class="d-flex justify-content-space-between">
+      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">
+        Cancel
+      </button>
+      <button (click)="addSocialResource()" [disabled]="!socialResourcesForm.valid || tags.length === 0" nbButton
               status="success">
         Submit
       </button>
