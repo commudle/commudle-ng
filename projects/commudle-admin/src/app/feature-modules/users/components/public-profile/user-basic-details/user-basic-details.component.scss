@@ -1,9 +1,5 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
-div, button, nb-card-header, nb-card-body, nb-card-footer {
-  font-family: $primary-font-family !important;
-}
-
 .user-personal-details {
   padding: $space-16;
   border-radius: $border-10;
@@ -78,7 +74,6 @@ div, button, nb-card-header, nb-card-body, nb-card-footer {
       background-color: transparent;
       font-size: $fs-h5;
       font-weight: $fw-500;
-      font-family: $primary-font-family;
 
       &:last-child {
         cursor: pointer;
@@ -141,11 +136,6 @@ div, button, nb-card-header, nb-card-body, nb-card-footer {
   nb-card-body {
     .tag-dialog-info {
       margin-bottom: $space-16;
-    }
-
-    img {
-      height: 168px;
-      margin-top: $space-16;
     }
   }
 
