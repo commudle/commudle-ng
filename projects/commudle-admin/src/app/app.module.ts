@@ -81,6 +81,8 @@ import {NavbarMenuComponent} from './components/navbar-menu/navbar-menu.componen
 import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
 import {PublicCommunityModule} from './feature-modules/public-community/public-community.module';
 import {CommonModule} from '@angular/common';
+import { HomeHeadBannerComponent } from './components/home/components/home-head-banner/home-head-banner.component';
+import { HomeExternalFeedLinksComponent } from './components/home/components/home-external-feed-links/home-external-feed-links.component';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -112,6 +114,8 @@ export function initApp(appInitService: AppInitService) {
     HomeExpertsComponent,
     HomePromotionsComponent,
     NavbarMenuComponent,
+    HomeHeadBannerComponent,
+    HomeExternalFeedLinksComponent,
   ],
   imports: [
     AppRoutingModule,

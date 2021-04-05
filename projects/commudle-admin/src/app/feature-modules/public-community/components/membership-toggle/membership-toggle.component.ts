@@ -47,7 +47,7 @@ export class MembershipToggleComponent implements OnInit {
   }
 
   openDialog(dialog: TemplateRef<any>) {
-    this.dialogRef = this.dialogService.open(dialog);
+    this.dialogRef = this.dialogService.open(dialog, {autoFocus: false});
     this.selectExit = null;
   }
 

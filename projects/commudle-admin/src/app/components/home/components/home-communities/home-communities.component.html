@@ -1,6 +1,9 @@
-<nb-card class="home-communities">
+<nb-card class="home-communities card-p16">
   <nb-card-header>
     Communities
+    <p class="sub-header">
+      Join multiple tribes of Techies
+    </p>
   </nb-card-header>
   <nb-card-body class="home-communities-list">
     <nb-list *ngIf="communities.length === 0">
@@ -37,12 +40,12 @@
 </nb-card>
 
 <ng-template #joinCommunityDialog let-data>
-  <nb-card>
+  <nb-card class="join-community">
     <nb-card-header>Join Community</nb-card-header>
     <nb-card-body>Do you want to know about the community before joining?</nb-card-body>
     <nb-card-footer>
-      <button (click)="onDialogClose(data.community)" ghost nbButton>Learn about the community</button>
       <app-membership-toggle (click)="onDialogClose()" [community]="data.community"></app-membership-toggle>
+      <button (click)="onDialogClose(data.community)" ghost nbButton status="primary" size="small" focus="false">Know more</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

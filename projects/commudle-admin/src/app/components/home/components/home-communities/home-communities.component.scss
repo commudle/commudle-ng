@@ -1,11 +1,10 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
-nb-card-header, div, a {
+nb-card-header, div, a, p {
   font-family: $primary-font-family;
 }
 
 .home-communities {
-  margin: $space-16 0 0;
   border: 0;
   border-radius: $border-10;
 
@@ -13,8 +12,13 @@ nb-card-header, div, a {
     font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
-    padding: $space-32 $space-16 $space-16;
+    padding: $space-16 $space-16 $space-8;
     border-bottom: none;
+    p.sub-header {
+      font-size: $fs-card-secondary;
+      line-height: calc(1.2 * #{$fs-card-list-title});
+      margin: $space-4 0 0;
+    }
   }
 
   .home-communities-list {
@@ -22,7 +26,7 @@ nb-card-header, div, a {
 
     nb-list {
       nb-list-item {
-        padding: $space-16;
+        padding: $space-16 0;
         margin-bottom: $space-8;
         display: flex;
         justify-content: space-between;
@@ -148,6 +152,15 @@ nb-card-header, div, a {
       .home-communities-all {
         display: none;
       }
+    }
+  }
+}
+
+
+.join-community {
+  nb-card-footer {
+    button {
+      margin-right: $space-4;
     }
   }
 }
