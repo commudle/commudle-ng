@@ -30,6 +30,7 @@ export class BasicUserProfileComponent implements OnInit {
     name: ['', Validators.required],
     about_me: ['', [Validators.required, Validators.maxLength(250)]],
     designation: ['', [Validators.required, Validators.maxLength(100)]],
+    location: [''],
     gender: [''],
     personal_website: [''],
     github: [''],
@@ -40,7 +41,7 @@ export class BasicUserProfileComponent implements OnInit {
     medium: [''],
     gitlab: [''],
     facebook: [''],
-    youtube: [''],
+    youtube: ['']
   });
 
   usernameForm = this.fb.group({
