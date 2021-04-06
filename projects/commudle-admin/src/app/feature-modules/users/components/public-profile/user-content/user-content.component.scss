@@ -54,7 +54,15 @@
         .tabset {
           overflow-x: auto;
           overflow-y: hidden;
+          position: sticky;
+          top: 3.5rem;
+          background-color: white;
+          z-index: 1;
         }
+      }
+
+      nb-tab {
+        padding: $space-16;
       }
     }
   }
