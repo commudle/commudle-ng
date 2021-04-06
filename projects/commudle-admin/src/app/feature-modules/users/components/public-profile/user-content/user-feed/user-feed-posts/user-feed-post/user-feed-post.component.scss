@@ -33,7 +33,18 @@
   }
 
   .user-feed-post-images {
-    gap: $space-8;
+    height: 200px;
+    overflow: auto;
+
+    img {
+      box-sizing: border-box;
+      border: 0.5px solid $platinum;
+      width: 32%;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+      flex: 1;
+    }
   }
 
   .user-feed-post-suffix {
@@ -49,5 +60,17 @@
       }
     }
   }
+}
 
+@media all and (max-width: $tab-width) {
+  .user-feed-post {
+    .user-feed-post-images {
+      height: max-content;
+      flex-direction: column;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
