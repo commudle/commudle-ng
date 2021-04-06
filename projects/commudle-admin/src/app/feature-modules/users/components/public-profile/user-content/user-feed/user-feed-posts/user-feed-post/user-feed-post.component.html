@@ -14,8 +14,8 @@
       <div *ngFor="let tag of post.tags" class="user-feed-post-tag">{{tag.name}}</div>
     </div>
   </div>
-  <div class="user-feed-post-images d-flex">
-    <img *ngFor="let image of post.images" alt="Image" height="250" src="{{image.url}}">
+  <div *ngIf="post.images.length > 0" class="user-feed-post-images d-flex">
+    <img *ngFor="let image of post.images" alt="Image" height="200" src="{{image.url}}">
   </div>
   <div class="user-feed-post-suffix">
     <div class="user-feed-post-votes">

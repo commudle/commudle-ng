@@ -7,3 +7,9 @@
     margin-top: $space-16;
   }
 }
+
+@media all and (max-width: $tab-width) {
+  .user-feed {
+    padding: $space-16;
+  }
+}

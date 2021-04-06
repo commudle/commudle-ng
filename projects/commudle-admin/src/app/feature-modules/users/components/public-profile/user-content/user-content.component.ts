@@ -67,6 +67,7 @@ export class UserContentComponent implements OnInit, OnDestroy, AfterViewChecked
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
+  // TODO: Implement the naviagtion buttons
   // Check if the given element is scrollable
   isScrollable(element: HTMLDivElement) {
     return element.offsetWidth < element.scrollWidth;
