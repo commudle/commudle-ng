@@ -1,0 +1,42 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-feed-post {
+  border: 1px solid $platinum;
+  border-radius: $border-10;
+
+  .user-feed-post-prefix {
+    padding: $space-16;
+
+    .user-feed-post-details {
+      button {
+        font-weight: $fw-400;
+        text-transform: capitalize;
+      }
+    }
+
+    .user-feed-post-content {
+      margin-top: $space-28;
+    }
+
+    .user-feed-post-tags {
+      margin-top: $space-20;
+      gap: $space-4;
+
+      .user-feed-post-tag {
+        padding: 0 $space-8;
+        font-size: $fs-h6;
+        color: $neon-blue;
+        background-color: $lavender;
+        border-radius: $border-20;
+      }
+    }
+  }
+
+  .user-feed-post-images {
+  }
+
+  .user-feed-post-suffix {
+    padding: $space-16;
+  }
+
+}
