@@ -32,9 +32,14 @@
 }
 
 .user-feed-input-images, .user-feed-input-tags {
-  width: 320px;
+  width: 480px;
 
   nb-card-body {
     gap: $space-8;
+
+    .user-feed-input-image {
+      overflow: auto;
+      gap: $space-8;
+    }
   }
 }
