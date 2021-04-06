@@ -8,6 +8,21 @@
     padding: $space-16;
 
     .user-feed-post-details {
+      nb-user {
+        &::ng-deep {
+          .user-name {
+            font-size: $fs-h5;
+            font-weight: $fw-600;
+            color: $gunmetal;
+          }
+
+          .user-title {
+            font-style: italic;
+            color: $spanish-gray;
+          }
+        }
+      }
+
       button {
         font-weight: $fw-400;
         text-transform: capitalize;
@@ -16,6 +31,8 @@
 
     .user-feed-post-content {
       margin-top: $space-28;
+      font-size: $fs-h5;
+      color: $gunmetal;
     }
 
     .user-feed-post-tags {
