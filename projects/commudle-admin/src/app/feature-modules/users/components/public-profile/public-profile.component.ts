@@ -34,14 +34,9 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     // Get user's data
     this.getUserData();
 
-    this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe(data => {
-        this.currentUser = data;
-        if (this.currentUser) {
-          this.setMeta();
-        }
-      })
-    );
+    // Get logged in user
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
+
     // Hide Footer
     this.footerService.changeFooterStatus(false);
   }
@@ -55,7 +50,10 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
   // Get user's data
   getUserData() {
-    this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => this.user = data);
+    this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => {
+      this.user = data;
+      this.setMeta();
+    });
   }
 
   setMeta() {
