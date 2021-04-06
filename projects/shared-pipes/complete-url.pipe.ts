@@ -14,20 +14,24 @@ export class CompleteUrlPipe implements PipeTransform {
           } else {
             return `http://twitter.com/${url}`;
           }
-        case 'linkedin':
-          if (url.includes('linkedin')) {
-            return `http://${url}`;
-          } else {
-            return `http://linkedin.com/${url}`;
-          }
-        case 'github':
-          if (url.includes('github')) {
-            return `http://${url}`;
-          } else {
-            return `http://github.com/${url}`;
-          }
+        // case 'linkedin':
+        //   if (url.includes('linkedin')) {
+        //     return `http://${url}`;
+        //   } else {
+        //     return `http://linkedin.com/${url}`;
+        //   }
+        // case 'github':
+        //   if (url.includes('github')) {
+        //     return `http://${url}`;
+        //   } else {
+        //     return `http://github.com/${url}`;
+        //   }
         default:
-          return url;
+          if (url.includes(urlType)) {
+            return `http://${url}`;
+          } else {
+            return `http://${urlType}.com/${url}`;
+          }
 
       }
 

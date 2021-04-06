@@ -25,7 +25,6 @@
     margin: $space-16 0;
 
     .name {
-      font-style: italic;
       font-weight: $fw-600;
       font-size: $fs-24;
       margin-bottom: $space-4;
@@ -33,7 +32,7 @@
 
     .designation {
       font-weight: $fw-500;
-      font-size: $fs-20;
+      font-size: $fs-18;
       margin-bottom: $space-24;
     }
 
@@ -127,6 +126,10 @@
 
       &:active {
         transform: scale(1);
+      }
+
+      nb-icon[pack="fab"] {
+        font-size: 18px;
       }
     }
   }

@@ -97,9 +97,7 @@ export class UserBasicDetailsComponent implements OnInit {
 
   onEditProfileDialogOpen() {
     this.editProfileDialog = this.dialogService.open(
-      this.editProfile, {
-        closeOnBackdropClick: false
-      }
+      this.editProfile
     );
   }
 }
