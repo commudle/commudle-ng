@@ -42,6 +42,12 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     })
   });
   tags: string[] = [];
+  urlPattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
   @ViewChild('addLinkDialog') addLinkDialog: TemplateRef<any>;
   addLinkDialogRef: NbDialogRef<any>;
@@ -64,7 +70,9 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(
       debounceTime(1000)
     ).subscribe(value => {
-      this.getLinkPreview(value);
+      if (!!this.urlPattern.test(value)) {
+        this.getLinkPreview(value);
+      }
     });
   }
 
@@ -139,6 +147,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
         this.socialResourcesForm.reset();
         this.socialLink = '';
         this.getSocialResources();
+        this.showLinkPreview = false;
       });
     } else {
       this.nbToastrService.danger('Error occurred while adding social resource!', 'Failed');

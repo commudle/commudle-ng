@@ -9,8 +9,8 @@ div {
 }
 
 .user-social-popup {
-  max-width: 320px;
-
+  width: 30vw;
+  min-width: 300px;
   .user-social-popup-details {
     .user-social-popup-heading {
       margin-top: $space-8;
@@ -22,6 +22,11 @@ div {
 
     .user-social-popup-image {
       max-height: 150px;
+      max-width: 300px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
     }
   }
 }
