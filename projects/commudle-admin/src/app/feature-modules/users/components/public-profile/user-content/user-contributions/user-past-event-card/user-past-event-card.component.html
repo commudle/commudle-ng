@@ -1,0 +1,10 @@
+<nb-card class="user-past-event-card">
+  <nb-card-body>
+    <div class="user-past-event-title">{{pastEvent.event.name | truncatetext:30}}</div>
+    <div class="user-past-event-description">{{pastEvent.session_details_links | truncatetext:60}}</div>
+    <div [routerLink]="['/communities', pastEvent.event.kommunity_slug, 'events', pastEvent.event.slug]"
+         class="user-past-event-insights clickable">
+      View Insights
+    </div>
+  </nb-card-body>
+</nb-card>

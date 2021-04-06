@@ -4,7 +4,7 @@
     <img alt="avatar" src="{{user.avatar}}">
   </div>
 
-  <div class="user-details">
+  <div class="user-details text-center">
     <div class="name">{{user.name}}</div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
     <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
@@ -24,13 +24,13 @@
     </nb-tag-list>
   </div>
 
-  <div *ngIf="currentUser && currentUser.id !== user.id" class="message-user">
+  <div *ngIf="currentUser && currentUser.id !== user.id" class="message-user text-center">
     <button (click)="openChatWithUser()" nbButton>Message
       <nb-icon icon="paper-plane-outline"></nb-icon>
     </button>
   </div>
 
-  <div class="user-social">
+  <div class="user-social text-center">
     <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}" nbButton
        shape="round" target="_blank">
       <nb-icon icon="linkedin" status="primary"></nb-icon>
@@ -49,27 +49,25 @@
     </a>
   </div>
 
-  <hr>
-
 </div>
 
 <ng-template #editTags let-ref="dialogRef">
   <nb-card class="tag-dialog">
-    <nb-card-header>
+    <nb-card-header class="text-center">
       Edit Tags
     </nb-card-header>
-    <nb-card-body>
-      <p>
+    <nb-card-body class="text-center">
+      <div class="tag-dialog-info">
         <nb-icon icon="info-outline"></nb-icon>
         You can have a maximum of {{maxTags}} tags
-      </p>
+      </div>
       <nb-tag-list (tagRemove)="onTagRemove($event)">
         <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
         <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput type="text">
       </nb-tag-list>
     </nb-card-body>
-    <nb-card-footer>
-      <button (click)="ref.close()" nbButton status="danger">Cancel</button>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
       <button (click)="onTagDialogSubmit()" nbButton status="success">Save</button>
     </nb-card-footer>
   </nb-card>
@@ -77,9 +75,9 @@
 
 <ng-template #editProfile let-data let-ref="dialogRef">
   <nb-card class="profile-dialog">
-    <nb-card-header>
+    <nb-card-header class="d-flex align-items-center justify-content-space-between">
       Edit Profile Info
-      <button (click)=ref.close() ghost nbButton size="small">
+      <button (click)="ref.close()" ghost nbButton size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>

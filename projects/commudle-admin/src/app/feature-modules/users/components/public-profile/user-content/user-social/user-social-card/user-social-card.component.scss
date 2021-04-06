@@ -1,0 +1,72 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-social-card {
+  margin: $space-16 0;
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+
+  nb-card-body {
+    padding: $space-16;
+    width: 100%;
+
+    .user-social-card-image {
+      text-decoration: none;
+      height: 120px;
+      max-width: 250px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .user-social-card-details {
+      text-decoration: none;
+      margin-left: $space-16;
+      width: 100%;
+
+      .user-social-card-tags {
+        margin-bottom: $space-12;
+        gap: $space-4;
+
+        .user-social-card-tag {
+          padding: 0 $space-8;
+          font-size: $fs-h6;
+          color: $neon-blue;
+          background-color: $lavender;
+          border-radius: $border-20;
+        }
+      }
+
+      .user-social-card-title {
+        font-weight: $fw-600;
+        font-size: $fs-h4;
+        line-height: 19px;
+        color: $gunmetal;
+      }
+
+      .user-social-card-description {
+        margin-top: $space-4;
+        font-style: italic;
+        font-size: $fs-h6;
+        line-height: 14px;
+        color: $spanish-gray;
+      }
+
+      .user-social-card-favicon {
+        margin-top: $space-12;
+        max-width: 20px;
+        border-radius: 50%;
+      }
+    }
+
+    .user-social-card-delete {
+      position: relative;
+      float: right;
+      text-transform: capitalize;
+    }
+  }
+}
