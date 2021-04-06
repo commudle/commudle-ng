@@ -31,11 +31,11 @@ export class UserFeedInputComponent implements OnInit {
 
   ngOnInit(): void {
     // Subscribing to content changes in post
-    this.postData.get('content').valueChanges.pipe(
+    this.getPostData('content').valueChanges.pipe(
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(changes => {
-      this.postData.get('content').setValue(changes);
+      this.getPostData('content').setValue(changes);
     });
   }
 
@@ -84,13 +84,28 @@ export class UserFeedInputComponent implements OnInit {
 
   submitPost() {
     if (this.postData.valid) {
-      this.appUsersService.createPost(this.postData.value).subscribe(value => {
+      const formData = new FormData();
+      const postDataValue = this.postData.value;
+
+      // Add content
+      formData.append('post[content]', postDataValue.content);
+      // Add tags
+      postDataValue.tags.forEach(tag => {
+        formData.append('post[tags][]', tag);
+      });
+      // Add images
+      postDataValue.images.forEach(image => {
+        formData.append('post[images][][file]', image.file);
+      });
+
+      this.appUsersService.createPost(formData).subscribe(value => {
         this.nbToastrService.success('Post created successfully!', 'Success');
         this.createPost.emit();
         // Reset all fields
         this.tags = [];
         this.imagePreviews = [];
         this.postData.reset();
+        this.postData.updateValueAndValidity();
       });
     }
   }

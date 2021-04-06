@@ -161,7 +161,7 @@ export class AppUsersService {
   // create a post
   createPost(postData): Observable<IPost> {
     return this.http.post<IPost>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), {post: postData}
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), postData
     );
   }
 
