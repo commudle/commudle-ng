@@ -54,6 +54,10 @@
   flex-direction: column-reverse;
 }
 
+.justify-content-start {
+  justify-content: flex-start;
+}
+
 .justify-content-end {
   justify-content: flex-end;
 }
@@ -98,4 +102,9 @@
 // card styles
 .card-p16 {
   padding: 16px !important;
+}
+
+.max-full-height-dialog-card {
+  max-height: 95vh;
+  padding-bottom: $space-12;
 }
