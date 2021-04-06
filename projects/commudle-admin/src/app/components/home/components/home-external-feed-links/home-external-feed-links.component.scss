@@ -1,0 +1,13 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.external-feed-links {
+  border-radius: $border-10;
+
+  a {
+    font-family: $primary-font-family;
+    text-decoration: none;
+    nb-icon {
+      font-size: $fs-list-small;
+    }
+  }
+}

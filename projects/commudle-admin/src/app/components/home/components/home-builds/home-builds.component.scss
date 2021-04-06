@@ -1,11 +1,10 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
-nb-card-header, a {
+nb-card-header, a, p {
   font-family: $primary-font-family;
 }
 
 .home-builds {
-  margin: $space-16 0 0;
   padding: $space-16;
   border: 0;
   border-radius: $border-10;
@@ -14,8 +13,13 @@ nb-card-header, a {
     font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
-    padding: $space-16 $space-12 $space-20;
+    padding: $space-16 $space-12 $space-8;
     border-bottom: none;
+    p.sub-header {
+      font-size: $fs-card-secondary;
+      line-height: calc(1.2 * #{$fs-card-list-title});
+      margin: $space-4 0 0;
+    }
   }
 
   nb-card-body {

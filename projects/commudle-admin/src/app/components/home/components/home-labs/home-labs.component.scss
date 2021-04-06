@@ -1,131 +1,139 @@
 @import "projects/commudle-admin/src/assets/styles/variables";
 
-.home-labs {
-  nb-card {
-    margin: $space-16 0 0;
-    border: none;
-    border-radius: $border-10;
-  }
-
-  p, h3, a {
-    font-family: $primary-font-family;
-    margin: 0;
-  }
-
-  h3 {
+nb-card.home-labs {
+  border: none;
+  border-radius: $border-10;
+  padding: $space-16;
+  nb-card-header {
     font-size: $fs-h2;
-    font-weight: 600;
-  }
-
-  .home-labs-heading {
-    display: block;
-    margin: $space-4 0 $space-12 $space-12;
-  }
-
-  .home-labs-mobile-heading {
-    display: none;
-  }
-
-  .labs-list {
-    ul {
-      list-style: none;
-      padding: 0;
-
-      li {
-        padding: $space-12;
-        margin-bottom: $space-8;
-
-        p.name {
-          font-size: $fs-h5;
-          font-weight: $fw-500;
-          line-height: 16px;
-
-          a {
-            text-decoration: none;
-            color: $gunmetal;
-
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
-
-        p.author {
-          margin-top: $space-4;
-          font-size: $fs-h6;
-          color: $spanish-gray;
-          font-style: italic;
-          line-height: 14px;
-        }
-      }
+    font-weight: $fw-600;
+    color: $gunmetal;
+    padding: $space-16 $space-12 $space-4;
+    border-bottom: none;
+    p.sub-header {
+      font-size: $fs-card-secondary;
+      line-height: calc(1.2 * #{$fs-card-list-title});
+      margin: $space-4 0 0;
     }
   }
 
-  .all-labs-link {
-    padding: 0 $space-12;
-    text-align: center;
-
-    a {
-      font-size: $fs-h5;
-      color: rgba($neon-blue, 0.95);
-    }
-  }
-
-  .home-labs-mobile {
-    display: none;
+  nb-card-body {
+    padding: 0;
   }
 }
 
+p, h3, a {
+  font-family: $primary-font-family;
+  margin: 0;
+}
+
+
+.home-labs-mobile-heading, .all-labs-mobile-link {
+  display: none;
+}
+
+.labs-list {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: $space-8 0;
+
+    li {
+      padding: $space-12 0;
+      margin-bottom: $space-8;
+
+      p.name {
+        font-size: $fs-h5;
+        font-weight: $fw-500;
+        line-height: 16px;
+
+        a {
+          text-decoration: none;
+          color: $gunmetal;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      p.author {
+        margin-top: $space-4;
+        font-size: $fs-h6;
+        color: $spanish-gray;
+        font-style: italic;
+        line-height: 14px;
+      }
+    }
+  }
+}
+
+.all-labs-link {
+  padding: 0 $space-12;
+  text-align: center;
+
+  a {
+    font-size: $fs-h5;
+    color: rgba($neon-blue, 0.95);
+  }
+}
+
+.home-labs-mobile {
+  display: none;
+}
+
 @media all and (max-width: $tab-width) {
-  .home-labs {
-    nb-card {
-      border-radius: 0;
+  nb-card.home-labs {
+    border-radius: 0;
 
-      nb-card-body {
-        .home-labs-heading, .labs-list, .all-labs-link {
-          display: none;
+    nb-card-body {
+      .home-labs-heading, .labs-list, .all-labs-link {
+        display: none;
+      }
+
+      .home-labs-mobile-heading {
+        display: block;
+        margin: 0 0 $space-16;
+      }
+
+      .home-labs-mobile {
+        display: flex;
+
+        app-skeleton-text {
+          width: 100%;
         }
 
-        .home-labs-mobile-heading {
-          display: block;
-          margin: 0 0 $space-16;
-        }
+        .home-labs-mobile-image {
+          width: 50%;
+          overflow: hidden;
 
-        .home-labs-mobile {
-          display: flex;
-
-          app-skeleton-text {
+          img {
             width: 100%;
           }
+        }
 
-          .home-labs-mobile-image {
-            width: 50%;
-            overflow: hidden;
+        .home-labs-mobile-details {
+          width: 50%;
+          margin-left: $space-8;
 
-            img {
-              width: 100%;
-            }
+          .home-labs-mobile-name {
+            font-size: $fs-h5;
+            font-weight: $fw-500;
+            line-height: 16px;
           }
 
-          .home-labs-mobile-details {
-            width: 50%;
-            margin-left: $space-8;
-
-            .home-labs-mobile-name {
-              font-size: $fs-h5;
-              font-weight: $fw-500;
-              line-height: 16px;
-            }
-
-            .home-labs-mobile-author {
-              margin-top: $space-4;
-              font-size: $fs-h6;
-              color: $spanish-gray;
-              font-style: italic;
-              line-height: 14px;
-            }
+          .home-labs-mobile-author {
+            margin-top: $space-4;
+            font-size: $fs-h6;
+            color: $spanish-gray;
+            font-style: italic;
+            line-height: 14px;
           }
         }
+      }
+
+      .all-labs-mobile-link {
+        display: block;
       }
     }
   }
