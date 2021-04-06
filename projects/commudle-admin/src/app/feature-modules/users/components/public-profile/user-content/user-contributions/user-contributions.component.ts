@@ -29,10 +29,12 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Get the user's labs
-    this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
-      this.labs = value.labs;
+
+    // Get the user's past events
+    this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
+      this.pastEvents = value.speaker_resources;
     }));
+
     // Get the user's communities
     this.subscriptions.push(this.appUsersService.communities(this.user.username).subscribe(value => {
       this.communities = value.user_roles_users;
@@ -43,14 +45,17 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
         }
       })
     }));
+
+    // Get the user's labs
+    this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
+      this.labs = value.labs;
+    }));
+
     // Get the user's builds
     this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
       this.builds = value.community_builds;
     }));
-    // Get the user's past events
-    this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
-      this.pastEvents = value.speaker_resources;
-    }));
+
   }
 
   ngOnDestroy(): void {

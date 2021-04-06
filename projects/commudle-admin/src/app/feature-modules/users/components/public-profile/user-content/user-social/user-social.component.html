@@ -1,8 +1,8 @@
 <div class="user-social">
   <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add">
-    <button (click)="onOpenDialog()" nbButton size="small" status="primary">
-      <nb-icon icon="plus"></nb-icon>
-      Add
+    <button (click)="onOpenDialog()" nbButton size="small" status="primary" outline fullWidth>
+      <nb-icon icon="plus-circle"></nb-icon>
+      Share your content from anywhere on the web!
     </button>
   </div>
   <div *ngIf="socialResources && socialResources.length > 0" class="user-social-cards">
