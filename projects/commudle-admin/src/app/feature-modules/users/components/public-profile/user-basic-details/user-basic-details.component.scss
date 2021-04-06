@@ -38,6 +38,11 @@
 
     .about {
       font-size: $fs-h4;
+      margin-bottom: $space-20;
+    }
+
+    .location {
+
     }
   }
 
@@ -152,5 +157,11 @@
 .profile-dialog {
   nb-card-body {
     padding: 0;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .user-personal-details {
+    border-radius: 0;
   }
 }

@@ -6,6 +6,7 @@
   border-radius: $border-5;
 
   nb-card-body {
+    flex-direction: row;
     padding: $space-16;
     width: 100%;
 
@@ -67,6 +68,25 @@
       position: relative;
       float: right;
       text-transform: capitalize;
+      font-weight: $fw-400;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .user-social-card {
+
+    nb-card-body {
+      flex-direction: column;
+
+      .user-social-card-image {
+        margin-bottom: $space-16;
+        max-width: 100%;
+      }
+
+      .user-social-card-details {
+        margin-left: 0;
+      }
     }
   }
 }

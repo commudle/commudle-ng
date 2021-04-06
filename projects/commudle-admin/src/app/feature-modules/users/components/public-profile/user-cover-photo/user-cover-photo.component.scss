@@ -57,3 +57,9 @@
     }
   }
 }
+
+@media all and (max-width: $tab-width) {
+  .user-cover-photo {
+    border-radius: 0;
+  }
+}

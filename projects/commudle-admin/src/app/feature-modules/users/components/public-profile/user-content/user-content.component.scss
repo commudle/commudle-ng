@@ -43,99 +43,19 @@
   }
 }
 
-//.user-content {
-//  margin-top: 2rem;
-//
-//  nb-tabset {
-//    overflow: auto;
-//
-//    nb-tab {
-//      padding: 0;
-//
-//      .labs, .communities, .builds {
-//        .heading {
-//          font-size: 1.5rem;
-//          font-weight: 700;
-//          font-family: 'Work Sans', sans-serif !important;
-//          line-height: 1.5rem;
-//          color: #536EFF;
-//        }
-//      }
-//
-//      .labs, .communities {
-//        margin: 2rem 0 4rem;
-//
-//        .cards {
-//          display: flex;
-//          align-items: center;
-//          overflow: hidden;
-//
-//          app-user-lab-card, app-user-community-card {
-//            margin-right: 15px;
-//          }
-//        }
-//
-//        .navigation {
-//          display: flex;
-//          justify-content: space-between;
-//          position: relative;
-//          pointer-events: none;
-//
-//          button {
-//            pointer-events: auto;
-//            margin: 0 0.5rem;
-//            border-radius: 50%;
-//            border: none;
-//            color: white;
-//            background-color: #FFD338;
-//            filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.25));
-//            transition: all .2s ease-in-out;
-//
-//            &:hover {
-//              transform: scale(1.05);
-//            }
-//
-//            &:active {
-//              transform: scale(1);
-//            }
-//
-//            &:focus {
-//              box-shadow: none;
-//            }
-//          }
-//        }
-//      }
-//
-//      .builds {
-//        margin: 2rem 0 4rem;
-//
-//        .build-cards {
-//          display: grid;
-//          grid-gap: 1.875rem;
-//          grid-template-columns: repeat(2, 1fr);
-//        }
-//      }
-//
-//      @media all and (max-width: $tab-width) {
-//        .labs, .communities, .builds {
-//          .heading {
-//            font-size: 1.25rem;
-//            line-height: 1.25rem;
-//          }
-//        }
-//
-//        .labs, .communities {
-//          .cards {
-//            overflow: auto;
-//          }
-//        }
-//
-//        .builds {
-//          .build-cards {
-//            grid-template-columns: repeat(1, 1fr);
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
+@media all and (max-width: $tab-width) {
+  .user-content {
+    padding: $space-8 $space-8 $space-32;
+    margin-bottom: $space-32;
+    border-radius: 0;
+
+    nb-tabset {
+      &::ng-deep {
+        .tabset {
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+      }
+    }
+  }
+}
