@@ -96,8 +96,8 @@ export class UserBasicDetailsComponent implements OnInit {
   }
 
   onEditProfileDialogOpen() {
-    this.editProfileDialog = this.dialogService.open(
-      this.editProfile
-    );
+    this.editProfileDialog = this.dialogService.open(this.editProfile, {
+      hasScroll: true
+    });
   }
 }
