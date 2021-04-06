@@ -8,6 +8,10 @@
     <div class="name">{{user.name}}</div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
     <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
+    <div *ngIf="user.location" class="location">
+      <nb-icon icon="pin"></nb-icon>
+      {{user.location}}
+    </div>
   </div>
 
   <div *ngIf="currentUser && currentUser.id === user.id" class="edit-profile">

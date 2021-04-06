@@ -31,6 +31,10 @@ import {UserSocialComponent} from './components/public-profile/user-content/user
 import {UserSocialCardComponent} from './components/public-profile/user-content/user-social/user-social-card/user-social-card.component';
 import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
 import {UserPastEventCardComponent} from './components/public-profile/user-content/user-contributions/user-past-event-card/user-past-event-card.component';
+import {UserFeedComponent} from './components/public-profile/user-content/user-feed/user-feed.component';
+import {UserFeedInputComponent} from './components/public-profile/user-content/user-feed/user-feed-input/user-feed-input.component';
+import {UserFeedPostsComponent} from './components/public-profile/user-content/user-feed/user-feed-posts/user-feed-posts.component';
+import {UserFeedPostComponent} from './components/public-profile/user-content/user-feed/user-feed-posts/user-feed-post/user-feed-post.component';
 
 
 @NgModule({
@@ -48,6 +52,10 @@ import {UserPastEventCardComponent} from './components/public-profile/user-conte
     UserContributionsComponent,
     UserSocialComponent,
     UserSocialCardComponent,
+    UserFeedComponent,
+    UserFeedInputComponent,
+    UserFeedPostsComponent,
+    UserFeedPostComponent,
   ],
   imports: [
     CommonModule,
