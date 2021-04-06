@@ -69,7 +69,7 @@
       <div>
         <label>
           What's Your Tagline?*
-          <input type="text" nbInput fullWidth formControlName="designation" placeholder="CEO, Commudle">
+          <input type="text" nbInput fullWidth formControlName="designation" placeholder="Blogger, Developer, Designer">
         </label>
         <span
           *ngIf="userProfileForm['controls'].designation.touched && userProfileForm['controls'].designation.invalid && userProfileForm['controls'].designation.errors.required"
@@ -77,11 +77,14 @@
           Required Field
         </span>
       </div>
+    </div>
+
+    <div class="row">
       <div>
         <label>
           About Me*
           <textarea formControlName="about_me" fullWidth nbInput
-                    placeholder="A little bit about your interests!"></textarea>
+                    placeholder="A little bit about your interests! (max 250 characters)" rows="3"></textarea>
         </label>
         <span
           *ngIf="userProfileForm['controls'].about_me.touched && userProfileForm['controls'].about_me.invalid && userProfileForm['controls'].about_me.errors.required"
@@ -92,13 +95,6 @@
     </div>
 
     <div class="row">
-
-      <div>
-        <label>
-          Phone
-          <input type="number" nbInput fullWidth formControlName="phone">
-        </label>
-      </div>
 
       <div class="gender-input">
         <label>
@@ -123,14 +119,14 @@
         <label>
           <nb-icon icon="info"></nb-icon>
           Personal Website
-          <input type="url" nbInput fullWidth formControlName="personal_website">
+          <input type="url" nbInput fullWidth formControlName="personal_website" placeholder="Enter complete url">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="github"></nb-icon>
           Github
-          <input type="url" nbInput fullWidth formControlName="github">
+          <input type="url" nbInput fullWidth formControlName="github" placeholder="Link to your profile">
         </label>
       </div>
     </div>
@@ -140,21 +136,72 @@
         <label>
           <nb-icon icon="linkedin"></nb-icon>
           Linkedin
-          <input type="url" nbInput fullWidth formControlName="linkedin">
+          <input type="url" nbInput fullWidth formControlName="linkedin" placeholder="Link to your profile">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="twitter"></nb-icon>
           Twitter
-          <input type="url" nbInput fullWidth formControlName="twitter">
+          <input type="url" nbInput fullWidth formControlName="twitter" placeholder="Link to your profile">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="youtube" pack="fab"></nb-icon>
+          Youtube
+          <input type="url" nbInput fullWidth formControlName="youtube" placeholder="Link to your channel">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="medium-m" pack="fab"></nb-icon>
+          Medium
+          <input type="url" nbInput fullWidth formControlName="medium" placeholder="Link to your profile / publication">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="dribbble" pack="fab"></nb-icon>
+          Dribbble
+          <input type="url" nbInput fullWidth formControlName="dribbble" placeholder="Link to your work">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="behance" pack="fab"></nb-icon>
+          Behance
+          <input type="url" nbInput fullWidth formControlName="behance" placeholder="Link to your work">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="gitlab" pack="fab"></nb-icon>
+          Gitlab
+          <input type="url" nbInput fullWidth formControlName="gitlab" placeholder="Link to your work">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="facebook" pack="fab"></nb-icon>
+          Facebook
+          <input type="url" nbInput fullWidth formControlName="facebook" placeholder="Link to your profile / page">
         </label>
       </div>
     </div>
 
     <div class="submit-button">
       <button [disabled]="!userProfileForm.valid" type="submit" status="primary" nbButton fullWidth size="medium">
-        Save Profile
+        Save
       </button>
     </div>
   </form>

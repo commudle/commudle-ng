@@ -28,14 +28,19 @@ export class BasicUserProfileComponent implements OnInit {
 
   userProfileForm = this.fb.group({
     name: ['', Validators.required],
-    about_me: ['', Validators.required],
-    designation: ['', Validators.required],
-    phone: [''],
+    about_me: ['', [Validators.required, Validators.maxLength(250)]],
+    designation: ['', [Validators.required, Validators.maxLength(100)]],
     gender: [''],
     personal_website: [''],
     github: [''],
     linkedin: [''],
-    twitter: ['']
+    twitter: [''],
+    dribbble: [''],
+    behance: [''],
+    medium: [''],
+    gitlab: [''],
+    facebook: [''],
+    youtube: [''],
   });
 
   usernameForm = this.fb.group({
