@@ -99,3 +99,8 @@
 .card-p16 {
   padding: 16px !important;
 }
+
+.max-full-height-dialog-card {
+  max-height: 95vh;
+  padding-bottom: $space-12;
+}
