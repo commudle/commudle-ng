@@ -31,10 +31,9 @@ div {
 
     .home-build-card-description {
       margin-top: $space-4;
-      font-size: $fs-h7;
-      font-style: italic;
-      line-height: 12px;
-      color: rgba($spanish-gray, 0.7);
+      font-size: $fs-h6;
+      line-height: normal;
+      color: $spanish-gray;
     }
   }
 
@@ -50,12 +49,13 @@ div {
     }
 
     .home-build-card-author {
-      height: 16px;
+      height: 24px;
+      overflow: hidden;
 
       .home-build-card-author-name {
         display: none;
-        font-size: $fs-h7;
-        line-height: 12px;
+        font-size: $fs-h6;
+        line-height: normal;
         color: $gunmetal;
         padding-right: $space-4;
       }

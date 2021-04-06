@@ -15,8 +15,9 @@ nb-card-header, div, a, p {
     padding: $space-16 $space-16 $space-8;
     border-bottom: none;
     p.sub-header {
-      font-size: $fs-card-secondary;
-      line-height: calc(1.2 * #{$fs-card-list-title});
+      font-size: $fs-card-list-title;
+      color: $spanish-gray;
+      line-height: normal;
       margin: $space-4 0 0;
     }
   }
@@ -57,15 +58,14 @@ nb-card-header, div, a, p {
 
           .home-community-details {
             .home-community-name {
-              font-size: $fs-h5;
+              font-size: $fs-card-list-title;
               font-weight: 600;
               color: $gunmetal;
             }
 
             .home-community-member-count {
               margin-top: $space-4;
-              font-size: $fs-h6;
-              font-style: italic;
+              font-size: $fs-14;
               line-height: 14px;
               color: $spanish-gray;
             }

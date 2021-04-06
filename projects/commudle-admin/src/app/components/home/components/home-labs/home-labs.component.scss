@@ -11,8 +11,9 @@ nb-card.home-labs {
     padding: $space-16 $space-12 $space-4;
     border-bottom: none;
     p.sub-header {
-      font-size: $fs-card-secondary;
-      line-height: calc(1.2 * #{$fs-card-list-title});
+      font-size: $fs-card-list-title;
+      color: $spanish-gray;
+      line-height: normal;
       margin: $space-4 0 0;
     }
   }
@@ -43,9 +44,9 @@ p, h3, a {
       margin-bottom: $space-8;
 
       p.name {
-        font-size: $fs-h5;
+        font-size: $fs-text;
         font-weight: $fw-500;
-        line-height: 16px;
+        line-height: normal;
 
         a {
           text-decoration: none;
@@ -60,9 +61,9 @@ p, h3, a {
       p.author {
         margin-top: $space-4;
         font-size: $fs-h6;
+        font-weight: normal;
         color: $spanish-gray;
-        font-style: italic;
-        line-height: 14px;
+        line-height: normal;
       }
     }
   }
@@ -126,8 +127,7 @@ p, h3, a {
             margin-top: $space-4;
             font-size: $fs-h6;
             color: $spanish-gray;
-            font-style: italic;
-            line-height: 14px;
+            line-height: normal;
           }
         }
       }
