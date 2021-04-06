@@ -18,7 +18,9 @@
     </nb-card-header>
     <nb-card-body class="text-center">
       <label>
-        Max image size: 3 Mb
+        Max file size: 3 Mb
+        <br/>
+        Dimensions: 1000px X 185px
         <input (change)="displayCoverImage($event)" accept="image/*" fullWidth nbInput type="file">
       </label>
       <img *ngIf="coverImage" alt="Cover Image" src="{{coverImage}}">
