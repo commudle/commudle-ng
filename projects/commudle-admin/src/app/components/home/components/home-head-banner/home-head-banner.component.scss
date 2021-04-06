@@ -28,6 +28,7 @@
     a {
       width: 100%;
       margin: $space-2 0;
+      text-decoration: none;
       nb-card {
         transition: all 0.3s ease-in-out;
         border-radius: $border-10;
@@ -41,14 +42,13 @@
           padding: 0;
           div.header {
             padding: $space-12;
-            background: $neon-blue;
             nb-icon, p {
-              color: white;
+              // color: white;
             }
 
             p {
               margin: 0 0 0 $space-8;
-              font-weight: $fw-600;
+              // font-weight: $fw-500;
 
               small {
                 nb-icon {

@@ -16,8 +16,9 @@ nb-card-header, a, p {
     padding: $space-16 $space-12 $space-8;
     border-bottom: none;
     p.sub-header {
-      font-size: $fs-card-secondary;
-      line-height: calc(1.2 * #{$fs-card-list-title});
+      font-size: $fs-card-list-title;
+      color: $spanish-gray;
+      line-height: normal;
       margin: $space-4 0 0;
     }
   }
