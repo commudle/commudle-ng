@@ -5,7 +5,6 @@ export interface ICurrentUser {
   id: number;
   name: string;
   email: string;
-  phone: number;
   about_me: string;
   designation: string;
   personal_website: string;

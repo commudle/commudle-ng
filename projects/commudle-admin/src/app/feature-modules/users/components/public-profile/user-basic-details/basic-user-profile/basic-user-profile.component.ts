@@ -30,7 +30,6 @@ export class BasicUserProfileComponent implements OnInit {
     name: ['', Validators.required],
     about_me: ['', Validators.required],
     designation: ['', Validators.required],
-    phone: [''],
     gender: [''],
     personal_website: [''],
     github: [''],
