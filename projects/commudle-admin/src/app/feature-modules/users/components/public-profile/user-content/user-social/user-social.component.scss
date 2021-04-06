@@ -1,0 +1,27 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+div {
+  font-family: $primary-font-family;
+}
+
+.user-social {
+  padding-top: $space-40;
+}
+
+.user-social-popup {
+  max-width: 320px;
+
+  .user-social-popup-details {
+    .user-social-popup-heading {
+      margin-top: $space-8;
+    }
+
+    .user-social-popup-favicon {
+      max-width: 16px;
+    }
+
+    .user-social-popup-image {
+      max-height: 150px;
+    }
+  }
+}

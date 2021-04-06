@@ -1,0 +1,37 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+div {
+  font-family: $primary-font-family;
+}
+
+.user-past-event-card {
+  width: 264px;
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+  margin: 0;
+
+  nb-card-body {
+    padding: $space-16;
+
+    .user-past-event-title {
+      font-weight: $fw-600;
+      font-size: $fs-h5;
+      color: $gunmetal;
+    }
+
+    .user-past-event-description {
+      margin: $space-4 0 0;
+      font-size: $fs-h6;
+      line-height: 12px;
+      color: $spanish-gray;
+    }
+
+    .user-past-event-insights {
+      margin-top: $space-16;
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      text-transform: uppercase;
+      color: $neon-blue;
+    }
+  }
+}

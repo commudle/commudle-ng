@@ -20,12 +20,17 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {UserContentComponent} from './components/public-profile/user-content/user-content.component';
 import {UserCoverPhotoComponent} from './components/public-profile/user-cover-photo/user-cover-photo.component';
 import {UserBasicDetailsComponent} from './components/public-profile/user-basic-details/user-basic-details.component';
-import {UserLabCardComponent} from './components/public-profile/user-content/user-lab-card/user-lab-card.component';
-import {UserBuildCardComponent} from './components/public-profile/user-content/user-build-card/user-build-card.component';
-import {UserCommunityCardComponent} from './components/public-profile/user-content/user-community-card/user-community-card.component';
+import {UserLabCardComponent} from './components/public-profile/user-content/user-contributions/user-lab-card/user-lab-card.component';
+import {UserBuildCardComponent} from './components/public-profile/user-content/user-contributions/user-build-card/user-build-card.component';
+import {UserCommunityCardComponent} from './components/public-profile/user-content/user-contributions/user-community-card/user-community-card.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {BasicUserProfileComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {BasicUserProfileComponent} from './components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserContributionsComponent} from './components/public-profile/user-content/user-contributions/user-contributions.component';
+import {UserSocialComponent} from './components/public-profile/user-content/user-social/user-social.component';
+import {UserSocialCardComponent} from './components/public-profile/user-content/user-social/user-social-card/user-social-card.component';
+import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
+import {UserPastEventCardComponent} from './components/public-profile/user-content/user-contributions/user-past-event-card/user-past-event-card.component';
 
 
 @NgModule({
@@ -38,7 +43,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     UserLabCardComponent,
     UserBuildCardComponent,
     UserCommunityCardComponent,
-    BasicUserProfileComponent
+    BasicUserProfileComponent,
+    UserPastEventCardComponent,
+    UserContributionsComponent,
+    UserSocialComponent,
+    UserSocialCardComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +55,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     SharedPipesModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
 
     // Nebular
     NbCardModule,
@@ -58,7 +68,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     NbUserModule,
     NbFormFieldModule,
     NbSpinnerModule,
-    NbRadioModule
+    NbRadioModule,
+    SharedComponentsModule
   ],
   exports: [
     BasicUserProfileComponent
