@@ -15,12 +15,9 @@ export class CommunityBuildHListItemComponent implements OnInit {
 
   @Input() communityBuild: ICommunityBuild;
 
-  constructor(
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.buildDescription = this.communityBuild.description.replace(/<[^>]*>/g, '');
-    //console.log(this.communityBuild.description)
-    console.log(this.buildDescription);
   }
 }

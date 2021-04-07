@@ -23,7 +23,7 @@ import { CommunityBuildHListItemComponent } from './components/community-build-h
 import { CommunityBuildComponent } from './components/community-build/community-build.component';
 import { BuildListItemComponent } from './components/my-community-builds/build-list-item/build-list-item.component';
 import { TeammateInviteConfirmationComponent } from './components/teammate-invite-confirmation/teammate-invite-confirmation.component';
-
+import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     YouTubePlayerModule,
     SharedComponentsModule,
     EditorModule,
+    SharedPipesModule,
 
 
 
