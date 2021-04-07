@@ -1,10 +1,21 @@
-<nb-card class="user-past-event-card" [routerLink]="['/communities', pastEvent.event.kommunity_slug, 'events', pastEvent.event.slug]">
+<nb-card [routerLink]="['/communities', pastEvent.event.kommunity_slug, 'events', pastEvent.event.slug]"
+         class="user-past-event-card clickable">
   <nb-card-body>
-    <div class="user-past-event-title">{{pastEvent.title | truncatetext:30}}</div>
-    <div class="user-past-event-description">{{pastEvent.event.name | truncatetext:60}}</div>
-    <div [routerLink]="['/communities', pastEvent.event.kommunity_slug, 'events', pastEvent.event.slug]"
-         class="user-past-event-insights clickable">
-      <!-- View Event -->
-    </div>
+    <nb-actions>
+      <nb-action>
+        <div class="user-past-event-date">{{pastEvent.event.start_time | date: 'MMM d'}}</div>
+        <div class="user-past-event-date">{{pastEvent.event.start_time | date: 'YYYY'}}</div>
+      </nb-action>
+      <nb-action>
+        <div class="user-past-event-title">{{pastEvent.title | truncatetext:19}}</div>
+        <div class="user-past-event-description">{{pastEvent.event.name | truncatetext:25}}</div>
+      </nb-action>
+    </nb-actions>
+    <!--    <div class="user-past-event-title">{{pastEvent.title | truncatetext:30}}</div>-->
+    <!--    <div class="user-past-event-description">{{pastEvent.event.name | truncatetext:60}}</div>-->
+    <!--    <div [routerLink]="['/communities', pastEvent.event.kommunity_slug, 'events', pastEvent.event.slug]"-->
+    <!--         class="user-past-event-insights clickable">-->
+    <!--      &lt;!&ndash; View Event &ndash;&gt;-->
+    <!--    </div>-->
   </nb-card-body>
 </nb-card>
