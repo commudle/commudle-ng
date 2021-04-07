@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService} from '@nebular/theme';
 import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
@@ -14,6 +14,8 @@ export class UserBasicDetailsComponent implements OnInit {
 
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
+
+  @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('editTags') editTags: TemplateRef<any>;
   @ViewChild('editProfile') editProfile: TemplateRef<any>;
@@ -100,4 +102,10 @@ export class UserBasicDetailsComponent implements OnInit {
       hasScroll: true
     });
   }
+
+  onUpdateProfile(ref: NbDialogRef<any>) {
+    this.updateProfile.emit();
+    ref.close();
+  }
+
 }
