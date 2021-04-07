@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {FormBuilder, Validators} from '@angular/forms';
@@ -47,6 +47,8 @@ export class BasicUserProfileComponent implements OnInit {
   usernameForm = this.fb.group({
     username: ['', [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator]]
   });
+
+  @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -98,6 +100,7 @@ export class BasicUserProfileComponent implements OnInit {
     this.usersService.updateUserProfile(formData).subscribe(() => {
       this.authWatchService.updateSignedInUser();
       this.toastLogService.successDialog('Your Profile is now updated!');
+      this.updateProfile.emit();
     });
   }
 
