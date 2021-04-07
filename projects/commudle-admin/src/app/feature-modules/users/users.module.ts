@@ -4,6 +4,7 @@ import {UsersRoutingModule} from './users-routing.module';
 import {UsersComponent} from './components/users.component';
 import {PublicProfileComponent} from './components/public-profile/public-profile.component';
 import {
+  NbActionsModule,
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
@@ -77,7 +78,8 @@ import {UserFeedPostComponent} from './components/public-profile/user-content/us
     NbFormFieldModule,
     NbSpinnerModule,
     NbRadioModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    NbActionsModule
   ],
   exports: [
     BasicUserProfileComponent
