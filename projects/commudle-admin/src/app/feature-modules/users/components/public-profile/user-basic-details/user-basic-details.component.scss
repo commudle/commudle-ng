@@ -42,7 +42,6 @@
     }
 
     .location {
-
     }
   }
 
@@ -78,6 +77,7 @@
       background-color: transparent;
       font-size: $fs-h5;
       font-weight: $fw-500;
+      padding: $space-4 $space-8;
 
       &:last-child {
         cursor: pointer;
