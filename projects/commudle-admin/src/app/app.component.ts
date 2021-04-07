@@ -1,5 +1,5 @@
 import {CookieConsentService} from './services/cookie-consent.service';
-import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, OnDestroy, PLATFORM_ID} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
 import {environment} from 'projects/commudle-admin/src/environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
@@ -70,7 +70,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     private appCentralNotificationsService: AppCentralNotificationService,
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
-
     private cdr: ChangeDetectorRef,
     private homeService: HomeService
   ) {
@@ -87,7 +86,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.authWatchService.currentUser$.subscribe(currentUser => {
       this.currentUser = currentUser;
 
-      if (this.currentUser) {
+      if (this.currentUser && this.userContextMenu.length <= 1) {
         this.userContextMenu.unshift({
           title: `@${currentUser.username}`,
           link: `/users/${currentUser.username}`,
