@@ -1,7 +1,7 @@
 <div class="clickable community-build-list-item">
   <nb-card>
     <nb-card-body>
-      <div class="row">
+      <div class="row flex-row-reverse align-items-center d-flex justify-content-space-between">
         <a class="details-page" [routerLink]="['/builds', communityBuild.slug]"></a>
         <div class="details">
           <div class="build-type">
@@ -18,32 +18,38 @@
           <h3 class="name">
             {{ communityBuild.name }}
           </h3>
-          <p class="text-info show-details">
-            <nb-icon icon="link" status="info"></nb-icon> Show Details
+          <p class="text-info show-details"  >
+            <!-- <nb-icon icon="link" status="info"></nb-icon> Show Details -->
+            {{ buildDescription | truncatetext:100 }};
           </p>
-          <div class="author">
-            <app-user-profile-horizontal [user]="communityBuild.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
-          </div>
+
+          <div class="author-stats justify-content-space-between d-flex align-items-center">
+            <div class="author">
+              <app-user-profile-horizontal [user]="communityBuild.user" [socialMediaLinks]="false" [size]='"small"'></app-user-profile-horizontal>
+            </div>
+
+            <div class="stats d-flex">
+              <p class="stars">
+                <app-votes-display
+                  [votableType]="'CommunityBuild'"
+                  [votableId]="communityBuild.id"
+                  [icon]="'star'"
+                  >
+                </app-votes-display>
+              </p>
+              <p class="comments" [routerLink]="['/builds', communityBuild.slug]">
+                <span *ngIf="communityBuild.chat_messages_count > 0">
+                  {{ communityBuild.chat_messages_count }}
+                </span>
+                <nb-icon icon="message-circle-outline"></nb-icon>
+              </p>
+            </div>
         </div>
-        <div class="image" *ngIf="communityBuild.images.length > 0">
-          <img src="{{ communityBuild.images[0].url }}" alt="{{ communityBuild.name }}">
-        </div>
+
       </div>
-      <div class="stats">
-        <p class="stars">
-          <app-votes-display
-            [votableType]="'CommunityBuild'"
-            [votableId]="communityBuild.id"
-            [icon]="'star'"
-            >
-          </app-votes-display>
-        </p>
-        <p class="comments" [routerLink]="['/builds', communityBuild.slug]">
-          <span *ngIf="communityBuild.chat_messages_count > 0">
-            {{ communityBuild.chat_messages_count }}
-          </span>
-          <nb-icon icon="message-circle-outline"></nb-icon>
-        </p>
+      <div class="image align-items-center d-flex">
+        <img *ngIf="communityBuild.images.length > 0" src="{{ communityBuild.images[0].url }}" alt="{{ communityBuild.name }}">
+      </div>
       </div>
     </nb-card-body>
   </nb-card>
