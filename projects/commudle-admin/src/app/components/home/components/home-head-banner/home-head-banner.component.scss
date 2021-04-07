@@ -4,6 +4,9 @@
   p, a, h1 {
     font-family: $primary-font-family;
   }
+
+  border-radius: $border-10;
+  
   section.header {
     .logo {
       width: 200px;
