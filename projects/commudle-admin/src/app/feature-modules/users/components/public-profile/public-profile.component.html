@@ -1,7 +1,8 @@
 <div *ngIf="user" class="public-profile page-container">
 
   <div class="basic-details">
-    <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
+    <app-user-basic-details (updateProfile)="getUserData()" [currentUser]="currentUser"
+                            [user]="user"></app-user-basic-details>
   </div>
 
   <div class="user-content">
