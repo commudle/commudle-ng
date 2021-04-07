@@ -13,9 +13,9 @@
 </div>
 
 <ng-template #addLinkDialog>
-  <nb-card class="user-social-popup">
+  <nb-card class="user-social-popup max-full-height-dialog-card">
     <nb-card-header class="d-flex justify-content-space-between">
-      <div>Add Link</div>
+      <div>Share your content from the Web</div>
       <button (click)="onCloseDialog()" nbButton size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
@@ -24,19 +24,21 @@
       <nb-form-field>
         <nb-icon icon="link" nbPrefix></nb-icon>
         <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" nbInput
-               placeholder="Enter the link" type="text">
+               placeholder="Paste a link to get preview" type="url">
       </nb-form-field>
       <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
             class="user-social-popup-details d-flex flex-column">
-        <div class="user-social-popup-heading">Favicon</div>
+        <div class="user-social-popup-heading">Source</div>
         <img alt="{{linkPreview.title}}" class="user-social-popup-favicon" src="{{linkPreview.favicon}}">
         <div class="user-social-popup-heading">Image</div>
-        <img alt="{{linkPreview.title}}" class="user-social-popup-image" src="{{linkPreview.images[0]}}">
-        <div class="user-social-popup-heading">Title</div>
-        <input formControlName="title" nbInput required type="text">
-        <div class="user-social-popup-heading">Description</div>
-        <textarea formControlName="description" maxlength="200" nbInput required rows="5" type="text"></textarea>
-        <div class="user-social-popup-heading">Tags</div>
+        <div class="user-social-popup-image">
+          <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}">
+        </div>
+        <div class="user-social-popup-heading">Title*</div>
+        <input formControlName="title" nbInput required type="text" fullWidth>
+        <div class="user-social-popup-heading">Description*</div>
+        <textarea formControlName="description" maxlength="200" nbInput required rows="5" type="text" fullWidth></textarea>
+        <div class="user-social-popup-heading">Tags*</div>
         <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
       </form>
     </nb-card-body>

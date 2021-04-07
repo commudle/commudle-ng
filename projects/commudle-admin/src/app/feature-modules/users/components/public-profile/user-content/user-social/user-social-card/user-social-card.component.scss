@@ -13,14 +13,11 @@
     .user-social-card-image {
       text-decoration: none;
       height: 120px;
-      max-width: 250px;
+      width: 250px;
       overflow: hidden;
 
       img {
         width: 100%;
-        height: inherit;
-        object-fit: cover;
-        object-position: center;
       }
     }
 
@@ -81,7 +78,7 @@
 
       .user-social-card-image {
         margin-bottom: $space-16;
-        max-width: 100%;
+        width: 100%;
       }
 
       .user-social-card-details {
