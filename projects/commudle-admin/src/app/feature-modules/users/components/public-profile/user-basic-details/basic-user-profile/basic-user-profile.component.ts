@@ -28,7 +28,7 @@ export class BasicUserProfileComponent implements OnInit {
 
   userProfileForm = this.fb.group({
     name: ['', Validators.required],
-    about_me: ['', [Validators.required, Validators.maxLength(250)]],
+    about_me: ['', [Validators.required, Validators.maxLength(300)]],
     designation: ['', [Validators.required, Validators.maxLength(100)]],
     location: [''],
     gender: [''],

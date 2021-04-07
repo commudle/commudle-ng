@@ -1,3 +1,4 @@
+import { IAttachedFile } from './attached-file.model';
 import { IEventStatus } from './event_status.model';
 
 export interface IEvent {
@@ -18,4 +19,5 @@ export interface IEvent {
   custom_agenda: boolean;
   editable: boolean;
   kommunity_slug: string;
+  header_image?: IAttachedFile;
 }

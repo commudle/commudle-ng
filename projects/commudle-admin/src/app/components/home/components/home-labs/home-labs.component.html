@@ -19,7 +19,12 @@
               {{ lab.name | truncatetext:45 }}
             </a>
           </p>
-          <p class="author">by {{ lab.user.name }}</p>
+          <div class="author d-flex">
+            <div class="image">
+              <img src="{{lab.user.avatar}}">
+            </div>
+            <p> {{ lab.user.name }}</p>
+          </div>
         </li>
       </ul>
     </div>

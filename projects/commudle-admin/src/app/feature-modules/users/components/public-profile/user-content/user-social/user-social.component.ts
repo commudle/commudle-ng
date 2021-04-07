@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ISocialResource} from 'projects/shared-models/social_resource.model';
@@ -16,7 +16,7 @@ import {ICurrentUser} from 'projects/shared-models/current_user.model';
   templateUrl: './user-social.component.html',
   styleUrls: ['./user-social.component.scss']
 })
-export class UserSocialComponent implements OnInit, OnDestroy {
+export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
@@ -61,8 +61,6 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Get user's social resources
-    this.getSocialResources();
 
     // Subscribe to search
     this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(
@@ -72,6 +70,11 @@ export class UserSocialComponent implements OnInit, OnDestroy {
         this.getLinkPreview(value);
       }
     });
+  }
+
+  ngOnChanges() {
+     // Get user's social resources
+     this.getSocialResources();
   }
 
   ngOnDestroy(): void {
