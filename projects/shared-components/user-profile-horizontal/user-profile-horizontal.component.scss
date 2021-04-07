@@ -1,5 +1,7 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .user {
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -11,6 +13,7 @@
     margin-right: 0.5rem;
     img {
       width: 100%;
+      border-radius: 100%;
     }
 
     &.medium {
@@ -32,6 +35,7 @@
     text-align: left;
     .name {
       margin: 0;
+      font-size: $fs-card-secondary;
       a {
         text-decoration: none;
         color: black;
@@ -50,7 +54,7 @@
 
     .designation {
       margin: 0;
-      font-size: 0.8rem;
+      font-size: $fs-card-secondary;
       word-break: break-all;
 
       &.medium {
