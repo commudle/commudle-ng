@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {IUser} from 'projects/shared-models/user.model';
@@ -12,7 +12,7 @@ import {ISpeakerResource} from 'projects/shared-models/speaker_resource.model';
   templateUrl: './user-contributions.component.html',
   styleUrls: ['./user-contributions.component.scss']
 })
-export class UserContributionsComponent implements OnInit, OnDestroy {
+export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() user: IUser;
 
@@ -30,6 +30,12 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Get the user's past events
+
+  }
+
+
+  ngOnChanges() {
+    this.ngOnDestroy()
     this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
       this.pastEvents = value.speaker_resources;
     }));

@@ -87,9 +87,9 @@
                     placeholder="A little bit about your interests! (max 250 characters)" rows="3"></textarea>
         </label>
         <span
-          *ngIf="userProfileForm['controls'].about_me.touched && userProfileForm['controls'].about_me.invalid && userProfileForm['controls'].about_me.errors.required"
+          *ngIf="(userProfileForm['controls'].about_me.touched || userProfileForm.get('about_me').value) && userProfileForm['controls'].about_me.invalid"
           class="validation-error-text">
-          Required Field
+          Required field. Maximum 300 characters.
         </span>
       </div>
     </div>

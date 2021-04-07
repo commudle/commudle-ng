@@ -58,12 +58,25 @@ p, h3, a {
         }
       }
 
-      p.author {
+      .author {
         margin-top: $space-4;
-        font-size: $fs-h6;
-        font-weight: normal;
-        color: $spanish-gray;
-        line-height: normal;
+        .image {
+          margin-right: $space-8;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+        p {
+          margin-top: $space-4;
+          font-size: $fs-h6;
+          font-weight: normal;
+          color: $spanish-gray;
+          line-height: normal;
+        }
       }
     }
   }

@@ -67,7 +67,7 @@ div {
     }
   }
 
-  &:hover {
+  // &:hover {
     .home-build-card-suffix {
       .home-build-card-author {
         border-radius: $border-8;
@@ -79,5 +79,5 @@ div {
         }
       }
     }
-  }
+  // }
 }
