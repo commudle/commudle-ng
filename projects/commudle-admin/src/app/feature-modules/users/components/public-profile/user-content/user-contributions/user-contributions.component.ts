@@ -29,7 +29,6 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
     // Get the user's past events
     this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
       this.pastEvents = value.speaker_resources;
@@ -55,7 +54,6 @@ export class UserContributionsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
       this.builds = value.community_builds;
     }));
-
   }
 
   ngOnDestroy(): void {
