@@ -23,8 +23,8 @@
     <nb-card-body [nbSpinner]="isLoading">
       <nb-form-field>
         <nb-icon icon="link" nbPrefix></nb-icon>
-        <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" nbInput
-               placeholder="Paste a link to get preview" type="url">
+        <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" nbInput fullWidth
+               placeholder="Paste a link to begin" type="url">
       </nb-form-field>
       <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
             class="user-social-popup-details d-flex flex-column">
