@@ -1,6 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
-
-$spacing: 16px;
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .message {
   display: flex;
@@ -19,7 +17,6 @@ $spacing: 16px;
       .author-name {
         margin: 0;
         font-weight: 600;
-        font-family: $primary-font-family;
         text-transform: capitalize;
 
         &:hover {
@@ -29,14 +26,12 @@ $spacing: 16px;
 
       .message-date {
         margin: 0;
-        font-family: $primary-font-family;
       }
     }
 
     .content {
       white-space: pre-wrap;
       word-break: break-word;
-      font-family: $primary-font-family;
     }
 
     .details-flag {
@@ -46,7 +41,7 @@ $spacing: 16px;
 
       nb-icon {
         font-size: 1rem;
-        color: #8080808c;
+        color: #8080808C;
       }
 
       > div {
@@ -62,10 +57,10 @@ $spacing: 16px;
 }
 
 .replies-container {
-  margin: $spacing 0 $spacing $spacing;
+  margin: $space-16 0 $space-16 $space-16;
 
   .reply-message {
-    margin-bottom: 0.5 * $spacing;
+    margin-bottom: 0.5 * $space-16;
   }
 
   .reply-form {
@@ -76,7 +71,6 @@ $spacing: 16px;
 
         &::placeholder {
           padding-top: 2px;
-          font-family: $primary-font-family;
         }
       }
 
@@ -90,7 +84,6 @@ $spacing: 16px;
 
           button {
             text-transform: capitalize;
-            font-family: $primary-font-family;
           }
         }
       }
