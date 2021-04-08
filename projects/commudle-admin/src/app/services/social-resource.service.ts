@@ -27,21 +27,19 @@ export class SocialResourceService {
   }
 
   // update the display order
-  updateDisplayOrder(socialResourceId): Observable<boolean> {
+  updateDisplayOrder(displayOrderData): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.UPDATE_DISPLAY_ORDER), {
-        social_resource_id: socialResourceId
+        display_orders: displayOrderData
       }
-    )
+    );
   }
 
   // delete a social resource
   destroy(socialResourceId): Observable<boolean> {
-    let params = new HttpParams().set('social_resource_id', socialResourceId);
+    const params = new HttpParams().set('social_resource_id', socialResourceId);
     return this.http.delete<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.DESTROY), {
-        params
-      }
-    )
+      this.apiRoutesService.getRoute(API_ROUTES.SOCIAL_RESOURCES.DESTROY), {params}
+    );
   }
 }
