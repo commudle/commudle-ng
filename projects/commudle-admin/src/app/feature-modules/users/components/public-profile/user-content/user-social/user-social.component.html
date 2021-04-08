@@ -10,7 +10,8 @@
       {{isEditing ? 'Save order' : 'Edit order'}}
     </button>
   </div>
-  <nb-alert [ngClass]="{'active': isEditing}" class="user-social-alert" status="info">
+  <nb-alert *ngIf="currentUser && currentUser.id === user.id" [ngClass]="{'active': isEditing}"
+            class="user-social-alert" status="info">
     You can drag and drop the items!
   </nb-alert>
   <nb-list (cdkDropListDropped)="drop($event)" *ngIf="socialResources && socialResources.length > 0" cdkDropList

@@ -4,12 +4,14 @@ nb-card.home-labs {
   border: none;
   border-radius: $border-10;
   padding: $space-16;
+
   nb-card-header {
     font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
     padding: $space-16 $space-12 $space-4;
     border-bottom: none;
+
     p.sub-header {
       font-size: $fs-card-list-title;
       color: $spanish-gray;
@@ -24,10 +26,8 @@ nb-card.home-labs {
 }
 
 p, h3, a {
-  font-family: $primary-font-family;
   margin: 0;
 }
-
 
 .home-labs-mobile-heading, .all-labs-mobile-link {
   display: none;
