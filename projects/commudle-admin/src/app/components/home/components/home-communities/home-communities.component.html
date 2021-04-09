@@ -12,8 +12,8 @@
       </nb-list-item>
     </nb-list>
     <nb-list *ngIf="communities.length > 0">
-      <nb-list-item *ngFor="let community of communities; let i = index" class="clickable">
-        <div [routerLink]="['/communities', community.slug]" class="home-community d-flex align-items-center">
+      <nb-list-item *ngFor="let community of communities; let i = index">
+        <div [routerLink]="['/communities', community.slug]" class="home-community d-flex align-items-center clickable">
           <div class="home-community-image d-flex align-items-center">
             <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
           </div>
@@ -26,8 +26,8 @@
             </div>
           </div>
         </div>
-        <button (click)="onDialogOpen(community)" *ngIf="community.id" [ngClass]="communityStatus[i] ? 'active' : ''"
-                class="home-communities-join" nbButton shape="round">
+        <button (click)="joinCommunity(community)" *ngIf="community.id" [nbPopover]="joinCommunityPopover"
+                [ngClass]="communityStatus[i] ? 'active' : ''" class="home-communities-join" nbButton shape="round">
           {{communityStatus[i] ? 'Joined' : 'Join'}}
         </button>
       </nb-list-item>
@@ -39,13 +39,13 @@
   </nb-card-body>
 </nb-card>
 
-<ng-template #joinCommunityDialog let-data>
-  <nb-card class="join-community">
-    <nb-card-header>Join Community</nb-card-header>
-    <nb-card-body>Do you want to know about the community before joining?</nb-card-body>
-    <nb-card-footer>
-      <app-membership-toggle (click)="onDialogClose()" [community]="data.community"></app-membership-toggle>
-      <button (click)="onDialogClose(data.community)" ghost nbButton status="primary" size="small" focus="false">Know more</button>
-    </nb-card-footer>
-  </nb-card>
+<ng-template #joinCommunityPopover>
+  <div class="card-p16 d-flex flex-column align-items-center">
+    <p>Do you want to know more about <em>{{selectedCommunity.name}}</em> before joining?</p>
+    <div class="d-flex justify-content-space-between w-100">
+      <button [routerLink]="['communities', selectedCommunity.slug]" ghost nbButton size="small">Know More</button>
+      <app-membership-toggle (joinedCommunity)="changeCommunityStatus($event)"
+                             [community]="selectedCommunity"></app-membership-toggle>
+    </div>
+  </div>
 </ng-template>

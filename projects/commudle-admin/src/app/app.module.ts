@@ -21,6 +21,7 @@ import {
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
+  NbPopoverModule,
   NbRadioModule,
   NbRouteTabsetModule,
   NbSelectModule,
@@ -169,6 +170,7 @@ export function initApp(appInitService: AppInitService) {
     NbSpinnerModule,
     NbTimepickerModule.forRoot(),
     NbActionsModule,
+    NbPopoverModule,
 
     // Other external npm modules
     Ng2CompleterModule,
