@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 $title: #2F2E41;
 $content: #231F20;
@@ -10,7 +10,6 @@ $spacing: 16px;
     font-size: 2.25rem;
     line-height: 2.75rem;
     font-weight: 500;
-    font-family: $primary-font-family;
     text-transform: capitalize;
     color: $title;
     margin: 0 0 1.25 * $spacing;
@@ -32,10 +31,6 @@ $spacing: 16px;
 
       code {
         white-space: pre-wrap;
-      }
-
-      * {
-        font-family: $primary-font-family;
       }
 
       @for $index from 1 through 6 {

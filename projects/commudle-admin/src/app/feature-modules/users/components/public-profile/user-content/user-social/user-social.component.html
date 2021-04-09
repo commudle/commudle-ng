@@ -1,15 +1,27 @@
 <div class="user-social">
-  <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add">
-    <button (click)="onOpenDialog()" nbButton size="small" status="primary" outline fullWidth>
+  <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add d-flex">
+    <button (click)="onOpenDialog()" ghost nbButton status="primary">
       <nb-icon icon="plus-circle"></nb-icon>
       Share your content from anywhere on the web!
     </button>
+    <button (click)="toggleEditView()" *ngIf="socialResources && socialResources.length > 1"
+            [status]="isEditing ? 'success' : 'warning'" ghost nbButton>
+      <nb-icon [icon]="isEditing ? 'checkmark-circle-2' : 'flip-2'"></nb-icon>
+      {{isEditing ? 'Save order' : 'Edit order'}}
+    </button>
   </div>
-  <div *ngIf="socialResources && socialResources.length > 0" class="user-social-cards">
-    <app-user-social-card (deleteResource)="deleteSocialResource($event)" *ngFor="let socialResource of socialResources"
-                          [currentUser]="currentUser" [socialResource]="socialResource"
-                          [user]="user"></app-user-social-card>
-  </div>
+  <nb-alert *ngIf="currentUser && currentUser.id === user.id" [ngClass]="{'active': isEditing}"
+            class="user-social-alert" status="info">
+    You can drag and drop the items!
+  </nb-alert>
+  <nb-list (cdkDropListDropped)="drop($event)" *ngIf="socialResources && socialResources.length > 0" cdkDropList
+           class="user-social-cards">
+    <nb-list-item *ngFor="let socialResource of socialResources" [cdkDragDisabled]="!isEditing"
+                  [ngClass]="{'active': isEditing}" cdkDrag>
+      <app-user-social-card (deleteResource)="deleteSocialResource($event)" [currentUser]="currentUser"
+                            [socialResource]="socialResource" [user]="user"></app-user-social-card>
+    </nb-list-item>
+  </nb-list>
 </div>
 
 <ng-template #addLinkDialog>
@@ -35,9 +47,10 @@
           <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}">
         </div>
         <div class="user-social-popup-heading">Title*</div>
-        <input formControlName="title" nbInput required type="text" fullWidth>
+        <input formControlName="title" fullWidth nbInput required type="text">
         <div class="user-social-popup-heading">Description*</div>
-        <textarea formControlName="description" maxlength="200" nbInput required rows="5" type="text" fullWidth></textarea>
+        <textarea formControlName="description" fullWidth maxlength="200" nbInput required rows="5"
+                  type="text"></textarea>
         <div class="user-social-popup-heading">Tags*</div>
         <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
       </form>
