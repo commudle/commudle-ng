@@ -1,11 +1,8 @@
 .community-build-list-item {
   nb-card {
     margin-bottom: 0.5rem;
-    nb-card-body {
-      &:hover {
-        box-shadow: 1px 1px 5px 5px lightgrey;
-      }
 
+    nb-card-body {
       .row {
         width: 100%;
         display: flex;
@@ -20,12 +17,13 @@
           height: 100%;
         }
 
-        p.show-details{
+        p.show-details {
           margin: 0;
         }
 
         .details {
           width: 70%;
+
           p.created-at {
             margin: 0;
             color: grey;
@@ -42,6 +40,7 @@
           display: flex;
           align-items: center;
           border: 1px solid lightgrey;
+
           img {
             width: 100%;
             overflow: hidden;
@@ -51,7 +50,8 @@
 
       .stats {
         display: flex;
-        >p {
+
+        > p {
           margin: 0 1rem 0 0;
 
           &.comments {
