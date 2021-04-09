@@ -1,6 +1,7 @@
 <nb-card class="user-social-card">
-  <nb-card-body class="d-flex">
-    <a [href]="socialResource.link" class="user-social-card-image clickable d-flex justify-content-center align-items-center" rel="noreferrer" target="_blank">
+  <nb-card-body class="d-flex align-items-center">
+    <a [href]="socialResource.link" class="user-social-card-image d-flex justify-content-center align-items-center"
+       rel="noreferrer" target="_blank">
       <img alt="{{socialResource.title}}" src="{{socialResource.image.url}}">
     </a>
     <a [href]="socialResource.link" class="user-social-card-details" rel="noreferrer" target="_blank">
@@ -8,7 +9,7 @@
         <div *ngFor="let tag of socialResource.tags" class="user-social-card-tag">{{tag.name}}</div>
       </div>
       <div class="user-social-card-title">{{socialResource.title}}</div>
-      <div class="user-social-card-description">{{socialResource.description}}</div>
+      <div class="user-social-card-description">{{socialResource.description | truncatetext: 150}}</div>
       <img alt="{{socialResource.title}}" class="user-social-card-favicon" src="{{socialResource.favicon}}">
     </a>
     <button (click)="onDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="user-social-card-delete"

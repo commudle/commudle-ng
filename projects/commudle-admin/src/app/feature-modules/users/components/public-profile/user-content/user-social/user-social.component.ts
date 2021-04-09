@@ -10,6 +10,7 @@ import {ILinkPreview} from 'projects/shared-models/link-preview.model';
 import {FormBuilder, Validators} from '@angular/forms';
 import {SocialResourceService} from 'projects/commudle-admin/src/app/services/social-resource.service';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-user-social',
@@ -27,6 +28,8 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   isLoading = false;
   showLinkPreview = false;
 
+  isEditing = false;
+
   socialLink = '';
   socialLinkChanged: Subject<string> = new Subject<string>();
   socialLinkChangedSubscription: Subscription;
@@ -39,15 +42,16 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     link: ['', Validators.required],
     image: this.fb.group({
       url: ['', Validators.required],
-    })
+    }),
+    display_order: ['', Validators.required]
   });
   tags: string[] = [];
-  urlPattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  urlPattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
 
   @ViewChild('addLinkDialog') addLinkDialog: TemplateRef<any>;
   addLinkDialogRef: NbDialogRef<any>;
@@ -125,7 +129,8 @@ export class UserSocialComponent implements OnInit, OnDestroy {
       link: url,
       image: {
         url: this.linkPreview.images[0]
-      }
+      },
+      display_order: this.socialResources.length
     });
   }
 
@@ -141,13 +146,19 @@ export class UserSocialComponent implements OnInit, OnDestroy {
 
   addSocialResource(): void {
     if (this.socialResourcesForm.valid && this.tags.length > 0) {
+      console.log(this.socialResourcesForm.value);
       this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(value => {
         this.nbToastrService.success('Social resource successfully added!', 'Success');
+        // Close dialog
         this.addLinkDialogRef.close();
-        this.socialResourcesForm.reset();
-        this.socialLink = '';
-        this.getSocialResources();
         this.showLinkPreview = false;
+        // Reset all fields
+        this.socialResourcesForm.reset();
+        this.socialResourcesForm.updateValueAndValidity();
+        this.socialLink = '';
+        this.tags = [];
+        // Update the social resources
+        this.getSocialResources();
       });
     } else {
       this.nbToastrService.danger('Error occurred while adding social resource!', 'Failed');
@@ -158,6 +169,37 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     this.socialResourceService.destroy(socialResourceId).subscribe(value => {
       this.nbToastrService.success('Social resource successfully removed!', 'Success');
       this.getSocialResources();
+    });
+  }
+
+  toggleEditView() {
+    if (!this.isEditing) {
+      this.isEditing = true;
+    } else {
+      this.isEditing = false;
+      this.updateDisplayOrder();
+    }
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.socialResources, event.previousIndex, event.currentIndex);
+  }
+
+  updateDisplayOrder() {
+    const displayOrder = [];
+    const length = this.socialResources.length;
+    for (const [index, val] of this.socialResources.entries()) {
+      displayOrder.push({
+        id: val.id,
+        display_order: length - index - 1
+      });
+    }
+    this.socialResourceService.updateDisplayOrder(displayOrder).subscribe(value => {
+      if (value) {
+        this.nbToastrService.success('Social resources order updated!', 'Success');
+      } else {
+        this.nbToastrService.danger('Social resources order not updated!', 'Failed');
+      }
     });
   }
 

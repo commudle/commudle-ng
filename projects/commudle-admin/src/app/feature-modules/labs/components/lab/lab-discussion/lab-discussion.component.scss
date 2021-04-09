@@ -1,23 +1,20 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
-
-$spacing: 16px;
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .discussion {
   border: none;
   border-radius: 0;
-  margin: $spacing;
+  margin: $space-16;
 
   nb-card-header {
     font-size: 1.1rem;
     font-weight: 500;
-    font-family: $primary-font-family;
-    color: #2F2E41;
+    color: $gunmetal;
   }
 
   nb-card-body {
     .discussion-chat-component {
       .send-message-form {
-        margin-bottom: 1.5 * $spacing;
+        margin-bottom: 1.5 * $space-16;
 
         nb-form-field {
           textarea {
@@ -26,7 +23,6 @@ $spacing: 16px;
 
             &::placeholder {
               padding-top: 2px;
-              font-family: $primary-font-family;
             }
           }
 
@@ -40,7 +36,6 @@ $spacing: 16px;
 
               button {
                 text-transform: capitalize;
-                font-family: $primary-font-family;
               }
             }
           }

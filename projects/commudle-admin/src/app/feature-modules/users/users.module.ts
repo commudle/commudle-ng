@@ -5,11 +5,13 @@ import {UsersComponent} from './components/users.component';
 import {PublicProfileComponent} from './components/public-profile/public-profile.component';
 import {
   NbActionsModule,
+  NbAlertModule,
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbListModule,
   NbRadioModule,
   NbSpinnerModule,
   NbTabsetModule,
@@ -36,6 +38,7 @@ import {UserFeedComponent} from './components/public-profile/user-content/user-f
 import {UserFeedInputComponent} from './components/public-profile/user-content/user-feed/user-feed-input/user-feed-input.component';
 import {UserFeedPostsComponent} from './components/public-profile/user-content/user-feed/user-feed-posts/user-feed-posts.component';
 import {UserFeedPostComponent} from './components/public-profile/user-content/user-feed/user-feed-posts/user-feed-post/user-feed-post.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -65,6 +68,8 @@ import {UserFeedPostComponent} from './components/public-profile/user-content/us
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedComponentsModule,
+    DragDropModule,
 
     // Nebular
     NbCardModule,
@@ -78,8 +83,9 @@ import {UserFeedPostComponent} from './components/public-profile/user-content/us
     NbFormFieldModule,
     NbSpinnerModule,
     NbRadioModule,
-    SharedComponentsModule,
-    NbActionsModule
+    NbActionsModule,
+    NbListModule,
+    NbAlertModule,
   ],
   exports: [
     BasicUserProfileComponent
