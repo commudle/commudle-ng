@@ -1,8 +1,8 @@
-import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { NbDialogService } from '@nebular/theme';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import {UserRolesUsersService} from 'projects/commudle-admin/src/app/services/user_roles_users.service';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {ICommunity} from 'projects/shared-models/community.model';
+import {NbDialogService} from '@nebular/theme';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-membership-toggle',
@@ -10,40 +10,39 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   styleUrls: ['./membership-toggle.component.scss']
 })
 export class MembershipToggleComponent implements OnInit {
-  @Input() community: ICommunity;
+
   isMember = false;
   dialogRef;
   selectExit;
+
+  @Input() community: ICommunity;
+
+  @Output() joinedCommunity: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
     private dialogService: NbDialogService,
     private toastLogService: LibToastLogService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.checkMembership();
   }
 
-
   checkMembership() {
-    this.userRolesUsersService.pCheckMembership(this.community.slug).subscribe(
-      data => {
-        this.isMember = data;
-      }
-    );
+    this.userRolesUsersService.pCheckMembership(this.community.slug).subscribe(data => this.isMember = data);
   }
 
   toggleMembership() {
-    this.userRolesUsersService.pToggleMembership(this.community.slug).subscribe(
-      data => {
-        this.isMember = data;
-        if (this.isMember) {
-          this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
-        }
-        this.dialogRef.close();
+    this.userRolesUsersService.pToggleMembership(this.community.slug).subscribe(data => {
+      this.isMember = data;
+      if (this.isMember) {
+        this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
       }
-    );
+      this.joinedCommunity.emit(this.isMember);
+      this.dialogRef.close();
+    });
   }
 
   openDialog(dialog: TemplateRef<any>) {
