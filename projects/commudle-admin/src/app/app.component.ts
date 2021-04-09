@@ -174,16 +174,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
   }
 
-  redirectToHome() {
-    this.router.navigate(['/']);
-  }
-
-  closeSidebarMobile() {
-    if (window.innerWidth <= 1000) {
-      this.sidebarService.collapse('mainMenu');
-    }
-  }
-
   toggleSearchSuffix(value: boolean) {
     this.showSearchResults = value;
   }

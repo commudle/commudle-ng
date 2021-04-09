@@ -1,11 +1,7 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .email-unsubscribe {
   height: 75vh;
-
-  div, p {
-    font-family: $primary-font-family;
-  }
 
   h2 {
     font-weight: normal;

@@ -1,15 +1,14 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .features {
-  div, a, p, h3 {
-    font-family: $primary-font-family;
-  }
   width: fit-content;
-  >nb-card {
+
+  > nb-card {
     width: fit-content;
     margin: 0;
+
     .item-container {
-      >div {
+      > div {
         display: flex;
 
         &:not(:first-child):hover {
@@ -34,17 +33,20 @@
           &.feature {
             font-weight: 500;
             font-size: $fs-tag;
+
             &.freeplan {
               background-color: white;
               font-size: $fs-text;
             }
 
             &.paidplan.header {
-              >div {
+              > div {
                 margin-bottom: $space-12;
+
                 h3 {
                   margin-bottom: 0;
                   line-height: 26px;
+
                   small {
                     font-size: $fs-text;
                     font-weight: 600;
