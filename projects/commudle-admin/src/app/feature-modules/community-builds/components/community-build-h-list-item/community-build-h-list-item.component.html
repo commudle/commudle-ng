@@ -1,16 +1,13 @@
 <div class="clickable community-build-list-item">
-  <nb-card>
+  <nb-card class="anim-shadow">
     <nb-card-body>
       <div class="row">
-        <a class="details-page" [routerLink]="['/builds', communityBuild.slug]"></a>
+        <a [routerLink]="['/builds', communityBuild.slug]" class="details-page"></a>
         <div class="details">
           <div class="build-type">
-            <app-badge
-              [text]="communityBuild.build_type | titlecase"
-              [color]="CBuildTypeDisplay[communityBuild.build_type].color"
-              [nbIcon]="CBuildTypeDisplay[communityBuild.build_type].icon"
-              [fontSize]="'small'">
-            </app-badge>
+            <app-badge [color]="CBuildTypeDisplay[communityBuild.build_type].color" [fontSize]="'small'"
+                       [nbIcon]="CBuildTypeDisplay[communityBuild.build_type].icon"
+                       [text]="communityBuild.build_type | titlecase"></app-badge>
           </div>
           <p class="created-at">
             <small>{{ moment(communityBuild.created_at).fromNow() }}</small>
@@ -19,26 +16,24 @@
             {{ communityBuild.name }}
           </h3>
           <p class="text-info show-details">
-            <nb-icon icon="link" status="info"></nb-icon> Show Details
+            <nb-icon icon="link" status="info"></nb-icon>
+            Show Details
           </p>
           <div class="author">
-            <app-user-profile-horizontal [user]="communityBuild.user" [socialMediaLinks]="false"></app-user-profile-horizontal>
+            <app-user-profile-horizontal [socialMediaLinks]="false"
+                                         [user]="communityBuild.user"></app-user-profile-horizontal>
           </div>
         </div>
-        <div class="image" *ngIf="communityBuild.images.length > 0">
-          <img src="{{ communityBuild.images[0].url }}" alt="{{ communityBuild.name }}">
+        <div *ngIf="communityBuild.images.length > 0" class="image">
+          <img alt="{{ communityBuild.name }}" src="{{ communityBuild.images[0].url }}">
         </div>
       </div>
       <div class="stats">
         <p class="stars">
-          <app-votes-display
-            [votableType]="'CommunityBuild'"
-            [votableId]="communityBuild.id"
-            [icon]="'star'"
-            >
-          </app-votes-display>
+          <app-votes-display [icon]="'star'" [votableId]="communityBuild.id"
+                             [votableType]="'CommunityBuild'"></app-votes-display>
         </p>
-        <p class="comments" [routerLink]="['/builds', communityBuild.slug]">
+        <p [routerLink]="['/builds', communityBuild.slug]" class="comments">
           <span *ngIf="communityBuild.chat_messages_count > 0">
             {{ communityBuild.chat_messages_count }}
           </span>
