@@ -1,5 +1,5 @@
 import {UserRolesUsersService} from 'projects/commudle-admin/src/app/services/user_roles_users.service';
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {ICommunity} from 'projects/shared-models/community.model';
 import {NbDialogService} from '@nebular/theme';
 import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
@@ -16,8 +16,6 @@ export class MembershipToggleComponent implements OnInit {
   selectExit;
 
   @Input() community: ICommunity;
-
-  @Output() joinedCommunity: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private userRolesUsersService: UserRolesUsersService,
@@ -40,7 +38,6 @@ export class MembershipToggleComponent implements OnInit {
       if (this.isMember) {
         this.toastLogService.successDialog(`You are now a member of ${this.community.name}!`, 2000);
       }
-      this.joinedCommunity.emit(this.isMember);
       this.dialogRef.close();
     });
   }
