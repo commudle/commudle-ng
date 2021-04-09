@@ -34,7 +34,6 @@
             .lab-title {
               font-size: 2.25rem;
               font-weight: 500;
-              font-family: $primary-font-family;
               line-height: 2.75rem;
               color: $gunmetal;
               text-transform: capitalize;
@@ -63,9 +62,8 @@
                   font-style: italic;
 
                   p {
-                    color: #979797;
+                    color: $spanish-gray;
                     margin: 0 $space-16 0 $space-8;
-                    font-family: $primary-font-family;
                   }
 
                   .name {
@@ -83,7 +81,6 @@
                     nb-tag {
                       font-size: 13px;
                       font-weight: 400;
-                      font-family: $primary-font-family;
                       text-transform: lowercase;
                       color: $gunmetal;
                       background-color: #DAE0FF;
@@ -136,10 +133,6 @@
                   white-space: pre-wrap;
                 }
 
-                * {
-                  font-family: $primary-font-family;
-                }
-
                 @for $index from 1 through 6 {
                   h#{$index} {
                     color: $gunmetal;
@@ -190,7 +183,6 @@
       margin-left: $space-16;
       position: sticky;
       top: 50vh;
-      font-family: $primary-font-family;
 
       app-votes-display {
         direction: rtl;
@@ -198,7 +190,6 @@
         &::ng-deep {
           p {
             font-size: 1.5rem;
-            font-family: $primary-font-family;
 
             span {
               color: $neon-blue;
@@ -246,9 +237,8 @@
     button {
       font-size: 1rem;
       font-weight: 500;
-      font-family: $primary-font-family;
       text-transform: capitalize;
-      color: white;
+      color: $white;
       background-color: $neon-blue;
       border-radius: $border-10;
     }

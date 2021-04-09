@@ -1,9 +1,5 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
-div {
-  font-family: $primary-font-family;
-}
-
 .home-navbar-menu-options {
   nb-action {
     flex-direction: column;
@@ -36,6 +32,7 @@ div {
     background-color: $white;
     width: 100vw;
     justify-content: space-around;
+    box-shadow: 0 4.9px 17.6px rgba(0, 0, 0, 0.05), 0 16.5px 59px rgba(0, 0, 0, 0.08), 0 74px 264px rgba(0, 0, 0, 0.13);
 
     nb-action {
       padding: 0;

@@ -4,10 +4,6 @@
   width: 100%;
   background: $light-purple;
 
-  h1, p, input, textarea, editor, div {
-    font-family: $primary-font-family;
-  }
-
   .page-container {
     padding-bottom: 50px;
 
@@ -23,7 +19,7 @@
           height: 75px;
           border: 1px solid lightgrey;
           border-radius: 10px;
-          background: #f1f1ff;
+          background: #F1F1FF;
           position: relative;
 
           p {
@@ -54,7 +50,7 @@
             font-weight: 300;
 
             fa-icon {
-              color: #4e74ff;
+              color: #4E74FF;
             }
           }
 
