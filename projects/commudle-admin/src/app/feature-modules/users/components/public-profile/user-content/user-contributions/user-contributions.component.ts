@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {IUser} from 'projects/shared-models/user.model';
@@ -34,32 +34,34 @@ export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy 
   }
 
 
-  ngOnChanges() {
-    this.ngOnDestroy()
-    this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
-      this.pastEvents = value.speaker_resources;
-    }));
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.user) {
+      this.ngOnDestroy()
+      this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
+        this.pastEvents = value.speaker_resources;
+      }));
 
-    // Get the user's communities
-    this.subscriptions.push(this.appUsersService.communities(this.user.username).subscribe(value => {
-      this.communities = value.user_roles_users;
-      // TODO: If some community is undefined then remove it, is it required?
-      this.communities.forEach(community => {
-        if (!community.community) {
-          this.communities.splice(this.communities.indexOf(community), 1);
-        }
-      })
-    }));
+      // Get the user's communities
+      this.subscriptions.push(this.appUsersService.communities(this.user.username).subscribe(value => {
+        this.communities = value.user_roles_users;
+        // TODO: If some community is undefined then remove it, is it required?
+        this.communities.forEach(community => {
+          if (!community.community) {
+            this.communities.splice(this.communities.indexOf(community), 1);
+          }
+        })
+      }));
 
-    // Get the user's labs
-    this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
-      this.labs = value.labs;
-    }));
+      // Get the user's labs
+      this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
+        this.labs = value.labs;
+      }));
 
-    // Get the user's builds
-    this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
-      this.builds = value.community_builds;
-    }));
+      // Get the user's builds
+      this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
+        this.builds = value.community_builds;
+      }));
+    }
   }
 
   ngOnDestroy(): void {
