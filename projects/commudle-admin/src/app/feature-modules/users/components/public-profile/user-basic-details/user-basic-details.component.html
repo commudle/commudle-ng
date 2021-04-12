@@ -1,11 +1,12 @@
 <div class="user-personal-details">
 
-  <div *ngIf="user.is_expert" class="profile-photo-burst d-flex justify-content-center align-items-center">
-    <span><nb-icon icon="checkmark"></nb-icon></span>
-  </div>
-
-  <div class="profile-photo">
-    <img alt="avatar" src="{{user.avatar}}">
+  <div class="profile-photo-container">
+    <div *ngIf="user.is_expert" class="profile-photo-burst d-flex justify-content-center align-items-center">
+      <span><nb-icon icon="checkmark"></nb-icon></span>
+    </div>
+    <div class="profile-photo">
+      <img alt="avatar" src="{{user.avatar}}">
+    </div>
   </div>
 
   <div class="user-details text-center">

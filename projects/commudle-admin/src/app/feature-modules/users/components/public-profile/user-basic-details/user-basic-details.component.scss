@@ -1,62 +1,67 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .user-personal-details {
-  position: relative;
   padding: $space-16;
   border-radius: $border-10;
   background: linear-gradient(186.78deg, $brilliant-azure 0.95%, $neon-blue 100.4%);
 
-  .profile-photo-burst {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    right: 32px;
-    top: 32px;
-    color: $white;
-    background-color: $ultra-red;
-    z-index: 5;
-    margin: 0 auto;
-
-    &:before, &:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 30px;
-      width: 30px;
-      background: $ultra-red;
-      z-index: 5;
-    }
-
-    &:before {
-      transform: rotate(30deg);
-    }
-
-    &:after {
-      transform: rotate(60deg);
-    }
-
-    span {
-      z-index: 10;
-
-      nb-icon {
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  .profile-photo {
+  .profile-photo-container {
+    position: relative;
     margin: auto;
     height: 232px;
     width: 232px;
-    overflow: hidden;
-    border-radius: 50%;
 
-    img {
-      width: 100%;
+    .profile-photo-burst {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: $white;
+      background-color: $ultra-red;
+      z-index: 5;
+      margin: 0 auto;
+
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 30px;
+        width: 30px;
+        background: $ultra-red;
+        z-index: 5;
+      }
+
+      &:before {
+        transform: rotate(30deg);
+      }
+
+      &:after {
+        transform: rotate(60deg);
+      }
+
+      span {
+        z-index: 10;
+
+        nb-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .profile-photo {
+      overflow: hidden;
+      border-radius: 50%;
       height: inherit;
-      object-fit: cover;
-      object-position: center top;
+      width: inherit;
+
+      img {
+        width: 100%;
+        height: inherit;
+        object-fit: cover;
+        object-position: center top;
+      }
     }
   }
 
