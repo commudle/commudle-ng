@@ -15,6 +15,7 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
+    SPEAKERS: 'api/v2/communities/speakers',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show'
   },

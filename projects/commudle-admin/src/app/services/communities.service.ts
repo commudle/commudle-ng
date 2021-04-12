@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ICommunity } from 'projects/shared-models/community.model';
+import { IUsers } from 'projects/shared-models/users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,16 @@ export class CommunitiesService {
 
     return this.http.get<ICommunity[]>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH_BY_NAME),
+      {params}
+    );
+  }
+
+  speakers(communityId): Observable<IUsers> {
+    // communityId is the slug here
+    const params = new HttpParams().set('community_id', communityId);
+
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SPEAKERS),
       {params}
     );
   }
