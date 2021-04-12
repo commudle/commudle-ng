@@ -1,4 +1,4 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChange} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {ILab} from 'projects/shared-models/lab.model';
 import {ICommunityBuild} from 'projects/shared-models/community-build.model';
@@ -43,20 +43,23 @@ export class UserContentComponent implements OnInit, OnChanges, OnDestroy, After
 
   }
 
-  ngOnChanges() {
-    this.ngOnDestroy();
-    // Get the user's labs
-    this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
-      this.labs = value.labs;
-    }));
-    // Get the user's communities
-    this.subscriptions.push(this.appUsersService.communities(this.user.username).subscribe(value => {
-      this.communities = value.user_roles_users;
-    }));
-    // Get the user's builds
-    this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
-      this.builds = value.community_builds;
-    }));
+  ngOnChanges(changes: any) {
+    if (changes.user) {
+      this.ngOnDestroy();
+      // Get the user's labs
+      this.subscriptions.push(this.appUsersService.labs(this.user.username).subscribe(value => {
+        this.labs = value.labs;
+      }));
+      // Get the user's communities
+      this.subscriptions.push(this.appUsersService.communities(this.user.username).subscribe(value => {
+        this.communities = value.user_roles_users;
+      }));
+      // Get the user's builds
+      this.subscriptions.push(this.appUsersService.communityBuilds(this.user.username).subscribe(value => {
+        this.builds = value.community_builds;
+      }));
+    }
+
   }
 
   ngAfterViewChecked(): void {
