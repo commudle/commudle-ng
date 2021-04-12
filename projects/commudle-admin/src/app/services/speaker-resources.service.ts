@@ -18,6 +18,14 @@ export class SpeakerResourcesService {
   ) { }
 
 
+  // get the details of a speaker resource
+  getDetails(speakerResourceId): Observable<ISpeakerResource> {
+    const params = new HttpParams().set('speaker_resource_id', speakerResourceId);
+    return this.http.get<ISpeakerResource>(
+      this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.SHOW_BY_TOKEN), {params}
+    );
+  }
+
   getByToken(token, eventId): Observable<ISpeakerResource> {
     const params = new HttpParams().set('token', token).set('event_id', eventId);
     return this.http.get<ISpeakerResource>(

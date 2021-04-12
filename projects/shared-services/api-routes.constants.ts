@@ -299,6 +299,7 @@ export const API_ROUTES = {
   },
 
   SPEAKER_RESOURCES: {
+    SHOW: 'api/v2/speaker_resources',
     SHOW_BY_TOKEN: 'api/v2/speaker_resources/show_by_token',
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
     PUBLIC: {
