@@ -15,6 +15,7 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
+    SPEAKERS: 'api/v2/communities/speakers',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
     PUBLIC_DETAILS: 'api/v2/communities/public_show'
   },
@@ -298,6 +299,7 @@ export const API_ROUTES = {
   },
 
   SPEAKER_RESOURCES: {
+    SHOW: 'api/v2/speaker_resources',
     SHOW_BY_TOKEN: 'api/v2/speaker_resources/show_by_token',
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
     PUBLIC: {
