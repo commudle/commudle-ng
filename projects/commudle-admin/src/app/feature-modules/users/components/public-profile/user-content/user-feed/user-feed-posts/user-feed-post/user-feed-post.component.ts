@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {IPost} from 'projects/shared-models/post.model';
 import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {NbDialogRef, NbDialogService} from '@nebular/theme';
 
 @Component({
   selector: 'app-user-feed-post',
@@ -16,14 +17,21 @@ export class UserFeedPostComponent implements OnInit {
 
   @Output() deletePost: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() {
+  constructor(
+    private nbDialogService: NbDialogService
+  ) {
   }
 
   ngOnInit(): void {
   }
 
-  onDeletePost(): void {
+  onDeletePost(ref: NbDialogRef<any>): void {
     this.deletePost.emit(this.post.id);
+    ref.close();
+  }
+
+  openDialog(ref: TemplateRef<any>) {
+    this.nbDialogService.open(ref);
   }
 
 }
