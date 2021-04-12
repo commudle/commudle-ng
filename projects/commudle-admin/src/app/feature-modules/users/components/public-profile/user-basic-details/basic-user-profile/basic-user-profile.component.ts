@@ -10,6 +10,7 @@ import {
   NoWhitespaceValidator,
   WhiteSpaceNotAllowedValidator
 } from 'projects/shared-helper-modules/custom-validators.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -55,6 +56,7 @@ export class BasicUserProfileComponent implements OnInit {
     private fb: FormBuilder,
     private usersService: AppUsersService,
     private toastLogService: LibToastLogService,
+    private router: Router
   ) {
   }
 
@@ -124,6 +126,7 @@ export class BasicUserProfileComponent implements OnInit {
       if (data) {
         this.toastLogService.successDialog('Updated!');
         this.lastUsername = newUsername;
+        this.router.navigate(['/users', newUsername]);
         // get the user again from the server
         this.authWatchService.checkAlreadySignedIn().subscribe();
       }
