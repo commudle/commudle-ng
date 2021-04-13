@@ -5,7 +5,7 @@
   </div>
   <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
     <div class="home-events-image-overlay"></div>
-    <img alt="{{event.name}}" src="{{event.header_image_path || '/assets/images/Home-Events.png'}}">
+    <img alt="{{event.name}}" src="{{ event.header_image ? event.header_image.i350 : '/assets/images/Home-Events.png'}}">
   </div>
   <div class="home-events-date">
     {{moment(event.start_time).format('MMM DD')}}

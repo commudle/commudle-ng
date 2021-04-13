@@ -119,6 +119,7 @@ const routes: Routes = [
   },
   {path: 'logout', component: LogoutComponent},
   {path: 'error', component: LibErrorHandlerComponent},
+  { path: 'speaker-resources', loadChildren: () => import('./feature-modules/speaker-resources/speaker-resources.module').then(m => m.SpeakerResourcesModule) },
   {path: '**', redirectTo: '/error'},
 ];
 

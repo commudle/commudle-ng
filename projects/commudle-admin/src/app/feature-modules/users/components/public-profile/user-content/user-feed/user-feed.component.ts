@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -10,7 +10,7 @@ import {NbToastrService} from '@nebular/theme';
   templateUrl: './user-feed.component.html',
   styleUrls: ['./user-feed.component.scss']
 })
-export class UserFeedComponent implements OnInit {
+export class UserFeedComponent implements OnInit, OnChanges {
 
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
@@ -24,7 +24,12 @@ export class UserFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPosts();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.user) {
+      this.getPosts();
+    }
   }
 
   getPosts() {

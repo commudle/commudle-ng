@@ -1,6 +1,10 @@
 @import "/projects/commudle-admin/src/assets/styles/variables.scss";
 
 .head-banner {
+  p, a, h1 {
+    font-family: $primary-font-family;
+  }
+
   border: none;
   border-radius: $border-10;
 
