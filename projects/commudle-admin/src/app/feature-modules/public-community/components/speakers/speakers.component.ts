@@ -11,7 +11,7 @@ import { CommunitiesService } from 'projects/commudle-admin/src/app/services/com
 })
 export class SpeakersComponent implements OnInit {
 
-  user: IUser[];
+  speakers: IUser[];
   community: ICommunity;
 
   constructor(
@@ -34,7 +34,7 @@ export class SpeakersComponent implements OnInit {
   getSpeakerDetails(){
     this.communitySpeakerService.speakers(this.community.id).subscribe(
       data => {
-        this.user = data.users;
+        this.speakers = data.users;
       }
     );
   }

@@ -1,24 +1,20 @@
-<div class="speakers-container d-flex flex-wrap justify-content-center ">
-  <nb-card *ngFor="let speaker of user">
-    <a class="clickable" [routerLink]="['/users', speaker.username]">
-
+<div class="speakers-container d-flex flex-wrap justify-content-space-between">
+  <nb-card *ngFor="let speaker of speakers">
       <nb-card-body>
-
-        <div class="user-card">
-          <div class="banner">
-            <img *ngIf="speaker.profile_banner_image.url != undefined" src="{{ speaker.profile_banner_image.url}}">
+        <a class="clickable" [routerLink]="['/users', speaker.username]">
+          <div class="user-card">
+            <div class="banner">
+              <img *ngIf="speaker.profile_banner_image" src="{{ speaker.profile_banner_image.i350}}">
+            </div>
+            <div class="user-image">
+              <img src="{{ speaker.avatar }}" alt="{{ speaker.name}}">
+            </div>
+            <div class="user-details">
+              <p class="user-name">{{ speaker.name}}</p>
+              <p class="designation">{{ speaker.designation}}</p>
+            </div>
           </div>
-          <div class="user-image">
-            <img src="{{ speaker.avatar }}" alt="{{ speaker.name}}">
-          </div>
-          <div class="user-details">
-            <p class="user-name">{{ speaker.name}}</p>
-            <p class="designation">{{ speaker.designation}}</p>
-          </div>
-        </div>
-
-      </nb-card-body>
-    </a>
-
+      </a>
+    </nb-card-body>
   </nb-card>
 </div>
