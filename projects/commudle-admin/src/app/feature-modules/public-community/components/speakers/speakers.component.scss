@@ -1,0 +1,73 @@
+@import "/projects/commudle-admin/src/assets/styles/variables.scss";
+
+.speakers-container {
+  nb-card {
+    background: transparent;
+    border: none;
+    nb-card-body {
+      .user-card {
+        position: relative;
+        width: 200px;
+        height: 280px;
+        background: $white;
+        transition: all 0.5s ease;
+        box-shadow: 0 3px 6px rgba(000, 000, 0, 0.3);
+        border-radius: 5px;
+        overflow: hidden;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(000, 000, 0, 0.5);
+        }
+
+        .banner {
+          position: absolute;
+          width: 200px;
+          height: 80px;
+          background: linear-gradient(#536effff, #29a5ffff);
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .user-image {
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          overflow: hidden;
+          top: 40px;
+          left: 10px;
+          border: $border-5 solid $white;
+          border-radius: $border-10;
+
+          img {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            object-fit: cover;
+          }
+        }
+        .user-details {
+          position: absolute;
+          margin-left: 10px;
+          margin-top: 120px;
+          p {
+            color: $black;
+            font-weight: 700;
+            margin: 0;
+          }
+          .user-name {
+            font-size: $fs-card-title;
+            padding: 10px 0;
+            margin-top: $space-20;
+          }
+          .designation {
+            font-size: $fs-card-secondary;
+          }
+        }
+      }
+    }
+  }
+}

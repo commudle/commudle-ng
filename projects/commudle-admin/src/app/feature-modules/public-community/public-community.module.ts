@@ -24,6 +24,7 @@ import { EventResourcesComponent } from './components/event-resources/event-reso
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { MembershipToggleComponent } from './components/membership-toggle/membership-toggle.component';
 import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
+import { SpeakersComponent } from './components/speakers/speakers.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CommunityChannelsListComponent } from './components/community-channels-
     MembersComponent,
     EventResourcesComponent,
     MembershipToggleComponent,
-    CommunityChannelsListComponent
+    CommunityChannelsListComponent,
+    SpeakersComponent
   ],
   imports: [
     CommonModule,
