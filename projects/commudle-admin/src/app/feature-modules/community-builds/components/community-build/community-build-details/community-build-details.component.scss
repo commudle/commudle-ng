@@ -1,9 +1,10 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .community-build-details {
   width: 100%;
 
   .community-build {
     width: 100%;
-
     nb-card-body {
       padding: 1rem 0;
     }
@@ -124,10 +125,9 @@
 
   .comments {
     border-top: 1px solid lightgrey;
-    padding: 1rem 1.5rem;
+    padding: $space-12 $space-16 $space-32;
     margin: 1rem 0;
-    height: 35vh;
-    min-height: 400px;
+    height: 550px;
 
     > p {
       margin: 0 0 1rem;
