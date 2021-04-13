@@ -72,7 +72,11 @@ export class UserFeedInputComponent implements OnInit {
   detectTags(content: string, removeTags: boolean = false) {
     const contentArray = content?.split(' ');
     const tags = contentArray?.filter(word => word.startsWith('#'));
-    tags?.forEach(tag => (this.postData.get('tags') as FormArray).push(this.fb.control(tag)));
+    tags?.forEach(tag => {
+      if (tag.length > 1) {
+        (this.postData.get('tags') as FormArray).push(this.fb.control(tag));
+      }
+    });
     if (removeTags) {
       return contentArray.filter(word => !tags.includes(word)).join(' ');
     }
@@ -87,7 +91,7 @@ export class UserFeedInputComponent implements OnInit {
       formData.append('post[content]', this.detectTags(postDataValue.content, true));
       // Add tags
       [...new Set(postDataValue.tags)].forEach((tag: string) => {
-        if (tag !== '') {
+        if (tag.length > 1) {
           formData.append('post[tags][]', tag.substring(1));
         }
       });
@@ -100,6 +104,7 @@ export class UserFeedInputComponent implements OnInit {
         // Reset all fields
         this.imagePreviews = [];
         this.postData.reset();
+        (this.postData.get('tags') as FormArray).clear();
         this.postData.updateValueAndValidity();
       });
     }
