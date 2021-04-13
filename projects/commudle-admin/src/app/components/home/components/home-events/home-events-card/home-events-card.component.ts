@@ -29,11 +29,11 @@ export class HomeEventsCardComponent implements OnInit {
   ngOnInit(): void {
     this.getCommunity();
 
-    if (this.event.custom_registration) {
-      this.getInterestedMembers();
-    } else {
-      this.getUserEventRegistrations();
-    }
+    // if (this.event.custom_registration) {
+    //   this.getInterestedMembers();
+    // } else {
+    //   this.getUserEventRegistrations();
+    // }
   }
 
   getCommunity(): void {
