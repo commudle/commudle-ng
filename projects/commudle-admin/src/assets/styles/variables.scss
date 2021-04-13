@@ -3,6 +3,8 @@ $max-page-width: 1440px;
 $tab-width: 768px;
 $mobile-width: 576px;
 
+$primary-font-family: "Work Sans";
+
 // Font sizes
 $fs-h7: 10px;
 $fs-h6: 12px;
@@ -111,6 +113,9 @@ $callout-yellow: rgba(255, 211, 56, 0.35);
 $lightgreen: #EEFDFF;
 $lightgreen2: #DFFAFE;
 $lightestgrey: #F3F3F3;
+$black: black;
+
+$text-low-emphasis: rgba(0, 0, 0, 0.6);
 
 // Using https://www.color-name.com/
 $gunmetal: #2F2E41;
@@ -142,6 +147,3 @@ $gradient-radial: radial-gradient($neon-blue, $blue-jeans, $cyber-yellow, $white
 
 $card-faded-text: rgba(47, 46, 65, 0.5);
 $card-text-grey: #898989;
-
-
-$text-low-emphasis: rgba(0, 0, 0, 0.6);

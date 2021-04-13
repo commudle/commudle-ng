@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService} from '@nebular/theme';
 import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
@@ -10,7 +10,7 @@ import {UserChatsService} from 'projects/commudle-admin/src/app/feature-modules/
   templateUrl: './user-basic-details.component.html',
   styleUrls: ['./user-basic-details.component.scss']
 })
-export class UserBasicDetailsComponent implements OnInit {
+export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
@@ -38,10 +38,15 @@ export class UserBasicDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges() {
     this.getUserTags();
   }
 
   getUserTags() {
+    this.tags = [];
+    
     // Get already available tags of the user
     this.user.tags.forEach(tag => this.tags.push(tag.name));
   }
@@ -55,10 +60,7 @@ export class UserBasicDetailsComponent implements OnInit {
     }
     // Open a dialog to edit the tags
     this.editTagDialog = this.dialogService.open(
-      this.editTags, {
-        closeOnBackdropClick: false,
-        closeOnEsc: false
-      }
+      this.editTags
     );
   }
 

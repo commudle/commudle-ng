@@ -31,8 +31,15 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Get user's data
-    this.getUserData();
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe(
+        data => {
+          // Get user's data
+          this.getUserData();
+        }
+      )
+    )
+
 
     // Get logged in user
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));

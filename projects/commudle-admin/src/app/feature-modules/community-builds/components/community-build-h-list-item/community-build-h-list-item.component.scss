@@ -1,3 +1,5 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .community-build-list-item {
   nb-card {
     margin-bottom: 0.5rem;
@@ -5,8 +7,7 @@
     nb-card-body {
       .row {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
+        height: 140px;
         position: relative;
 
         .details-page {
@@ -22,41 +23,42 @@
         }
 
         .details {
-          width: 70%;
+          width: 100%;
+          margin-left: $space-20;
 
           p.created-at {
             margin: 0;
-            color: grey;
+            color: $spanish-gray;
           }
 
           h3.name {
             margin: 0;
-            font-weight: 300;
+            font-weight: $fw-500;
+            font-size: $fs-card-title;
+            line-height: normal;
           }
         }
 
         .image {
-          width: 20%;
-          display: flex;
-          align-items: center;
-          border: 1px solid lightgrey;
+          border: 1px solid $lightestgrey;
+          background-color: $lightestgrey;
+          width: 120px;
+          height: 100px;
+          overflow: hidden;
 
           img {
             width: 100%;
-            overflow: hidden;
           }
         }
       }
 
       .stats {
-        display: flex;
-
         > p {
           margin: 0 1rem 0 0;
 
           &.comments {
             nb-icon {
-              color: grey;
+              color: $spanish-gray;
             }
           }
         }

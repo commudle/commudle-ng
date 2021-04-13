@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ISocialResource} from 'projects/shared-models/social_resource.model';
@@ -17,7 +17,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
   templateUrl: './user-social.component.html',
   styleUrls: ['./user-social.component.scss']
 })
-export class UserSocialComponent implements OnInit, OnDestroy {
+export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
@@ -46,12 +46,11 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     display_order: ['', Validators.required]
   });
   tags: string[] = [];
-  urlPattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+  urlPattern = new RegExp(
+    '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
+    );
+
+
 
   @ViewChild('addLinkDialog') addLinkDialog: TemplateRef<any>;
   addLinkDialogRef: NbDialogRef<any>;
@@ -67,8 +66,6 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Get user's social resources
-    this.getSocialResources();
 
     // Subscribe to search
     this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(
@@ -78,6 +75,14 @@ export class UserSocialComponent implements OnInit, OnDestroy {
         this.getLinkPreview(value);
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.user) {
+     // Get user's social resources
+     this.getSocialResources();
+    }
+
   }
 
   ngOnDestroy(): void {
@@ -146,7 +151,6 @@ export class UserSocialComponent implements OnInit, OnDestroy {
 
   addSocialResource(): void {
     if (this.socialResourcesForm.valid && this.tags.length > 0) {
-      console.log(this.socialResourcesForm.value);
       this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(value => {
         this.nbToastrService.success('Social resource successfully added!', 'Success');
         // Close dialog
