@@ -53,10 +53,8 @@ import {CookieService} from 'ngx-cookie-service';
 import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
 import {AppInitService} from './services/app-init.service';
 import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {EventCardComponent} from './components/home/event-card/event-card.component';
 import {AppSharedComponentsModule} from './app-shared-components/app-shared-components.module';
 import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {CommunityBuildCardComponent} from './components/home/community-build-card/community-build-card.component';
 import {ReusableComponentsModule} from './feature-modules/reusable-components/reusable-components.module';
 import {AboutComponent} from './components/home/about/about.component';
 import {FeaturesComponent} from './components/home/features/features.component';
@@ -98,8 +96,6 @@ export function initApp(appInitService: AppInitService) {
     LogoutComponent,
     SidebarMenuComponent,
     SpeakerResourceFormComponent,
-    EventCardComponent,
-    CommunityBuildCardComponent,
     AboutComponent,
     FeaturesComponent,
     CommunitiesComponent,
