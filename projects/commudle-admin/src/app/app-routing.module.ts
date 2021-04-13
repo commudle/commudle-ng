@@ -73,6 +73,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/community-builds/community-builds.module').then(m => m.CommunityBuildsModule)
   },
   {
+    path: 'feed',
+    loadChildren: () => import('./feature-modules/external-feed/external-feed.module').then(m => m.ExternalFeedModule)
+  },
+  {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
   },
