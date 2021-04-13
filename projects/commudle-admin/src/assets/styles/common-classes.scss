@@ -8,6 +8,12 @@
 
 .page-padding {
   padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
+
+
+  @media (max-width: $mobile-width) {
+    padding: 0;
+
+  }
 }
 
 // typography
