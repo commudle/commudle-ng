@@ -121,12 +121,17 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
     if (this.autoSaveInterval) {
       clearInterval(this.autoSaveInterval);
     }
   }
 
   setMeta() {
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
     this.meta.updateTag({
       name: 'description',
       content: this.lab.description.replace(/<[^>]*>/g, '')
