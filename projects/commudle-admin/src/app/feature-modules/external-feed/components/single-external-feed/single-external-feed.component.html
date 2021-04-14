@@ -1,0 +1,14 @@
+<div class="community-build page-padding" *ngIf="communityBuild">
+  <div class="page-navigation-actions">
+  </div>
+  <app-community-build-details [cBuild]="communityBuild" [showComments]="true"></app-community-build-details>
+  <div class="page-navigation-actions">
+    <a nbButton ghost size="small" class="padding-0" [routerLink]="['/builds']">
+      <nb-icon icon="arrow-ios-back"></nb-icon> More Builds
+    </a>
+    <a nbButton ghost status="primary" size="small" class="padding-0" [routerLink]="['/builds/create']">
+      <nb-icon icon="plus-circle-outline"></nb-icon> Submit Your Build
+    </a>
+  </div>
+
+</div>
