@@ -1,0 +1,18 @@
+.single-external-feed {
+  width: 100%;
+
+  @media screen and (min-width: 920px) {
+    width: 920px;
+    margin: 0 auto;
+  }
+
+  .page-navigation-actions {
+    a {
+      margin: 0 1rem 5px 0;
+    }
+
+    a.new-build-button {
+      padding: 3px;
+    }
+  }
+}
