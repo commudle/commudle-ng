@@ -11,7 +11,7 @@ import {
 	NbButtonModule,
 	NbIconModule,
 	NbPopoverModule,
-	NbCheckboxModule
+	NbCheckboxModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -29,6 +29,8 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
     SharedComponentsModule,
     EditorModule,
     SharedPipesModule,
+
+    // nebular
     NbCardModule,
     NbSelectModule,
     NbInputModule,

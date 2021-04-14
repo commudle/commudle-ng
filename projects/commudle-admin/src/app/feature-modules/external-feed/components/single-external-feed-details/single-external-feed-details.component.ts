@@ -9,15 +9,15 @@ import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
 
 
 @Component({
-  selector: 'app-single-extrnal-feed-details',
-  templateUrl: './single-extrnal-feed-details.component.html',
-  styleUrls: ['./single-extrnal-feed-details.component.scss']
+  selector: 'app-single-external-feed-details',
+  templateUrl: './single-external-feed-details.component.html',
+  styleUrls: ['./single-external-feed-details.component.scss']
 })
 export class SingleExtrnalFeedDetailsComponent implements OnInit {
 
 	@ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 	moment = moment;
-	@Input() SEFBuild: ISingleExternalFeed;
+	@Input() feedPost: ISingleExternalFeed;
 	@Input() showComments: boolean;
 	discussionChat: IDiscussion;
 	teammates: IUserRolesUser[] = [];
@@ -32,9 +32,8 @@ export class SingleExtrnalFeedDetailsComponent implements OnInit {
 
 	ngOnInit() {
 		this.getDiscussionChat();
-		this.teammates = this.SEFBuild.user_roles_users;
-		if (this.SEFBuild.link.startsWith('<iframe') && this.SEFBuild.link.endsWith('</iframe>')) {
-		  this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.SEFBuild.link);
+		if (this.feedPost.link.startsWith('<iframe') && this.feedPost.link.endsWith('</iframe>')) {
+		  this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedPost.link);
 		} else {
 		  this.embedCode = null;
 		}
@@ -50,15 +49,8 @@ export class SingleExtrnalFeedDetailsComponent implements OnInit {
 		);
 	}
 
-	imageNav(direction) {
-		const lenImages = this.SEFBuild.images.length;
-		const currentIndex = this.SEFBuild.images.indexOf(this.currImage);
-		const nextIndex = (currentIndex + direction + lenImages) % lenImages;
-		this.currImage = this.SEFBuild.images[nextIndex];
-	}
-
 	getDiscussionChat() {
-		this.discussionsService.pGetOrCreateForCommunityBuildChat(this.SEFBuild.id).subscribe(
+		this.discussionsService.pGetOrCreateForCommunityBuildChat(this.feedPost.id).subscribe(
 		  data => this.discussionChat = data
 		);
 	}
