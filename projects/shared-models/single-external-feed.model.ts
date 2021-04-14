@@ -1,6 +1,6 @@
 import { IAttachedFile } from './attached-file.model';
 
-export interface IExternalFeedPost {
+export interface ISingleExternalFeed {
   id: number;
   source: string;
   title: string;
@@ -10,6 +10,6 @@ export interface IExternalFeedPost {
   published_at: Date;
   likes_count: number;
   comments_count: number;
-  images: IAttachedFile[];
+  image_url: string;
   tags: string[];
 }
