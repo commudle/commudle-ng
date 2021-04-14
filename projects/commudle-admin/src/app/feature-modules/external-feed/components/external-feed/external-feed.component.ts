@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExternalFeedService } from 'projects/commudle-admin/src/app/services/external-feed.service';
+import { ExternalFeedService } from 'projects/commudle-admin/src/app/services/external-feeds.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed.model';
 
