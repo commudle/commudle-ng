@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SingleExtrnalFeedComponent } from './components/single-extrnal-feed/single-extrnal-feed.component';
+import { SingleExtrnalFeedComponent } from './components/single-external-feed/single-external-feed.component';
 import { ExternalFeedRoutingModule } from './external-feed-routing.module';
-import { SingleExtrnalFeedDetailsComponent } from './components/single-extrnal-feed-details/single-extrnal-feed-details.component'
+import { SingleExtrnalFeedDetailsComponent } from './components/single-external-feed-details/single-external-feed-details.component'
+import { ExternalFeedComponent } from './components/external-feed/external-feed.component';
 import {
 	NbCardModule,
 	NbSelectModule,
@@ -18,6 +19,7 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
+    ExternalFeedComponent,
     SingleExtrnalFeedDetailsComponent,
     SingleExtrnalFeedComponent,
   ],
@@ -27,10 +29,6 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
     SharedComponentsModule,
     EditorModule,
     SharedPipesModule,
-
-
-
-    // nebular
     NbCardModule,
     NbSelectModule,
     NbInputModule,
