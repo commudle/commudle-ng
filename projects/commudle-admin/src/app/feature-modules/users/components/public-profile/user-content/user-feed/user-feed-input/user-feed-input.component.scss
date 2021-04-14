@@ -6,9 +6,16 @@
   border-radius: $border-10;
 
   nb-form-field {
-    input {
+    align-items: flex-start;
+
+    textarea {
       border: 1px solid $platinum;
       border-radius: $border-10;
+      resize: none;
+
+      &::placeholder {
+        padding-top: $space-2;
+      }
     }
 
     button {
