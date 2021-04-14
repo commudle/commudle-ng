@@ -75,6 +75,13 @@ export class DiscussionsService {
     );
   }
 
+  pGetOrCreateForExternalFeedChal(externalFeedId): Observable<IDiscussion> {
+    const params = new HttpParams().set('external-feed-id', externalFeedId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_EXETRNAL_FEED_CHAT),
+      { params }
+    );
+  }
 
   communityChannelNewAttachmentMessage(formData, parentType, parentId): Observable<boolean> {
     const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);
