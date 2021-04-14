@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ExternalFeedComponent } from './external-feed.component';
 
@@ -6,12 +6,12 @@ describe('ExternalFeedComponent', () => {
   let component: ExternalFeedComponent;
   let fixture: ComponentFixture<ExternalFeedComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [ ExternalFeedComponent ]
     })
     .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ExternalFeedComponent);
