@@ -1,0 +1,163 @@
+.single-external-feed-details {
+  width: 100%;
+
+  .community-build {
+    width: 100%;
+
+    nb-card-body {
+      padding: 1rem 0;
+    }
+
+    .header, .embed, .link, .description, .teammate-details, .author-details, .stats {
+      padding: 0 1.5rem;
+    }
+
+    .header {
+      .date {
+        color: grey;
+      }
+
+      h1 {
+        margin: 0;
+        font-weight: 400;
+      }
+
+      .author {
+        color: grey;
+      }
+    }
+
+    .build-type {
+      margin: 0 0 1rem;
+
+      span {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+        border-radius: 21px;
+        background: #5072ff;
+        color: white;
+      }
+    }
+
+
+    .description {
+      margin: 1rem 0 1rem;
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+
+
+    .images {
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      background: #d3d3d33b;
+
+      .image-stripe {
+        display: flex;
+        flex-wrap: nowrap;
+        width: fit-content;
+
+        .image {
+          width: 280px;
+          height: 280px;
+          border: 1px solid lightgrey;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          margin: 0 0.5rem;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+    }
+
+    .embed {
+      max-width: 100%;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+
+      iframe {
+        width: 100% !important;
+      }
+    }
+
+    .link {
+      margin-bottom: 1rem;
+
+      p {
+        margin: 0;
+
+        a {
+        }
+      }
+    }
+
+    .stats {
+      display: flex;
+
+      > p {
+        margin: 0.5rem 1rem 0 0;
+        display: flex;
+        align-items: center;
+
+        > span {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      app-badge {
+        margin: 5px;
+      }
+    }
+  }
+
+  .comments {
+    border-top: 1px solid lightgrey;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    height: 35vh;
+    min-height: 400px;
+
+    > p {
+      margin: 0 0 1rem;
+      font-size: 1.3rem;
+      font-weight: 300;
+    }
+  }
+}
+
+.image-window {
+  max-width: 100vw;
+  overflow: hidden;
+
+  .controls {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+
+    button {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    nb-icon {
+      vertical-align: top;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+}
