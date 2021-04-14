@@ -19,7 +19,7 @@
               {{ lab.name | truncatetext:45 }}
             </a>
           </p>
-          <div class="author d-flex">
+          <div class="author d-flex" [routerLink]="['/users', lab.user.username]">
             <div class="image">
               <img src="{{lab.user.avatar}}">
             </div>
