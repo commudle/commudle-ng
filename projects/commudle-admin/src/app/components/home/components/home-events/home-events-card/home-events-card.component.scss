@@ -33,6 +33,10 @@
       height: 156px;
       width: 100%;
       background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+
+      &.old {
+        background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
+      }
     }
 
     img {
