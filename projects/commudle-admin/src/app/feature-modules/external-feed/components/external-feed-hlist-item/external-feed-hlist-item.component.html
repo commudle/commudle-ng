@@ -1,0 +1,51 @@
+<div class="clickable external-feed-list-item">
+  <nb-card>
+    <nb-card-body>
+      <div class="row flex-row-reverse align-items-center d-flex justify-content-space-between">
+        <a class="details-page" [routerLink]="['/feed', feedPost.title]"></a>
+        <!-- <a class="details-page"> </a> -->
+        <div class="header">
+          <div class="images" *ngIf="feedPost.image_url.length > 0 ">
+            <div class="image-stripe">
+              <div class="image clickable">
+                <img src="{{ feedPost.image_url }}" alt="{{ feedPost.source }}">
+              </div>
+            </div>
+          </div>
+          <div class="external-feed-post-source-image d-flex align-items-center">
+            <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
+          </div>
+          <p class="source">
+            {{ feedPost.source }}
+            <br>
+            <small>
+              {{ moment(feedPost.created_at).format('Do MMM YYYY') }}
+            </small>
+          </p>
+          <h1>
+            {{ feedPost.title }}
+          </h1>
+          <div class="tags">
+            <app-badge *ngFor="let tag of feedPost.tags" [text]="tag" [color]="'#b7b7b7'"></app-badge>
+          </div>
+        </div>
+        <p class="text-info show-details">
+          <!-- <nb-icon icon="link" status="info"></nb-icon> Show Details -->
+          {{ feedPost.description | truncatetext:100 }};
+        </p>
+        <div class="stats">
+          <p class="stars">
+            <app-votes-display [votableType]="'SingleExternalFeed'" [votableId]="feedPost.id" [icon]="'heart'">
+            </app-votes-display>
+          </p>
+          <p class="comments" [routerLink]="['/feed', feedPost.title]">
+            <span *ngIf="feedPost.comments_count > 0">
+              {{ feedPost.comments_count }}
+            </span>
+            <nb-icon icon="message-circle-outline"></nb-icon>
+          </p>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

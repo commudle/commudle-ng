@@ -1,7 +1,7 @@
-import { IExternalFeedPost } from './external-feed-post.model';
+import { ISingleExternalFeed } from './single-external-feed.model';
 
 export interface IExternalFeed {
-  feed_posts: IExternalFeedPost[];
+  feed_posts: ISingleExternalFeed[];
   page: number;
   count: number;
   total: number;
