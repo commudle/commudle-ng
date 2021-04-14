@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, TemplateRef} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import {NbDialogService, NbToastrService} from '@nebular/theme';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
@@ -11,15 +11,18 @@ import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-user
 })
 export class UserFeedInputComponent implements OnInit {
 
-  tags: string[] = [];
   imagePreviews = [];
   postData = this.fb.group({
     content: ['', [Validators.required, Validators.maxLength(800)]],
     images: this.fb.array([], Validators.maxLength(3)),
     tags: this.fb.array([], [Validators.required, Validators.maxLength(10)]),
   });
+  limitRows = 4;
+  messageLastScrollHeight: number;
 
   @Output() createPost: EventEmitter<any> = new EventEmitter<any>();
+
+  @ViewChild('messageInput') private messageInput: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -31,17 +34,14 @@ export class UserFeedInputComponent implements OnInit {
 
   ngOnInit(): void {
     // Subscribing to content changes in post
-    this.getPostData('content').valueChanges.pipe(
+    this.postData.get('content').valueChanges.pipe(
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe(changes => {
-      this.getPostData('content').setValue(changes);
+      this.postData.get('content').patchValue(changes);
+      this.detectTags(this.postData.get('content').value);
     });
   }
-
-  getPostData(value: string): FormArray {
-    return this.postData.get(value) as FormArray;
-  };
 
   detectFiles(event): void {
     const files = event.target.files;
@@ -56,7 +56,7 @@ export class UserFeedInputComponent implements OnInit {
           } else {
             reader.readAsDataURL(file);
             reader.onload = () => {
-              this.getPostData('images').push(this.fb.group({file}));
+              (this.postData.get('images') as FormArray).push(this.fb.group({file}));
               this.imagePreviews.push(reader.result);
             }
           }
@@ -69,17 +69,17 @@ export class UserFeedInputComponent implements OnInit {
     this.nbDialogService.open(ref);
   }
 
-  onTagAdd(value: string): void {
-    if (!this.tags.includes(value) && value !== '') {
-      this.tags.push(value);
-      this.getPostData('tags').push(this.fb.control(value));
+  detectTags(content: string, removeTags: boolean = false) {
+    const contentArray = content?.split(' ');
+    const tags = contentArray?.filter(word => word.startsWith('#'));
+    tags?.forEach(tag => {
+      if (tag.length > 1) {
+        (this.postData.get('tags') as FormArray).push(this.fb.control(tag));
+      }
+    });
+    if (removeTags) {
+      return contentArray.filter(word => !tags.includes(word)).join(' ');
     }
-  }
-
-  onTagDelete(value: string): void {
-    const idx = this.tags.indexOf(value);
-    this.getPostData('tags').removeAt(idx);
-    this.tags.splice(idx, 1);
   }
 
   submitPost() {
@@ -88,26 +88,40 @@ export class UserFeedInputComponent implements OnInit {
       const postDataValue = this.postData.value;
 
       // Add content
-      formData.append('post[content]', postDataValue.content);
+      formData.append('post[content]', this.detectTags(postDataValue.content, true));
       // Add tags
-      postDataValue.tags.forEach(tag => {
-        formData.append('post[tags][]', tag);
+      [...new Set(postDataValue.tags)].forEach((tag: string) => {
+        if (tag.length > 1) {
+          formData.append('post[tags][]', tag.substring(1));
+        }
       });
       // Add images
-      postDataValue.images.forEach(image => {
-        formData.append('post[images][][file]', image.file);
-      });
+      postDataValue.images.forEach(image => formData.append('post[images][][file]', image.file));
 
       this.appUsersService.createPost(formData).subscribe(value => {
         this.nbToastrService.success('Post created successfully!', 'Success');
         this.createPost.emit();
         // Reset all fields
-        this.tags = [];
         this.imagePreviews = [];
         this.postData.reset();
+        (this.postData.get('tags') as FormArray).clear();
         this.postData.updateValueAndValidity();
       });
     }
+  }
+
+  handleInputSize() {
+    let rows = this.messageInput.nativeElement.getAttribute('rows');
+    this.messageInput.nativeElement.setAttribute('rows', '1');
+
+    if (rows < this.limitRows && this.messageInput.nativeElement.scrollHeight > this.messageLastScrollHeight) {
+      rows++;
+    } else if (rows > 1 && this.messageInput.nativeElement.scrollHeight < this.messageLastScrollHeight) {
+      rows--;
+    }
+
+    this.messageLastScrollHeight = this.messageInput.nativeElement.scrollHeight;
+    this.messageInput.nativeElement.setAttribute('rows', rows);
   }
 
 }

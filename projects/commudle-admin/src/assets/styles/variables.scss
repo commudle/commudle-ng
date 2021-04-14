@@ -112,12 +112,10 @@ $light-purple2: #C6CFFF;
 $callout-yellow: rgba(255, 211, 56, 0.35);
 $lightgreen: #EEFDFF;
 $lightgreen2: #DFFAFE;
-$lightestgrey: #f3f3f3;
+$lightestgrey: #F3F3F3;
+$black: black;
 
-$text-low-emphasis: rgba(0,0,0,0.6);
-
-
-$black : black;
+$text-low-emphasis: rgba(0, 0, 0, 0.6);
 
 // Using https://www.color-name.com/
 $gunmetal: #2F2E41;
@@ -135,6 +133,7 @@ $taupe-gray: #898989;
 $lightgrey: lightgrey;
 $water: #D8ECFF;
 $cadet: #5C6972;
+$ultra-red: #FF6584;
 
 $gradient-top: linear-gradient(0deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
 $gradient-right: linear-gradient(90deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
@@ -148,5 +147,3 @@ $gradient-radial: radial-gradient($neon-blue, $blue-jeans, $cyber-yellow, $white
 
 $card-faded-text: rgba(47, 46, 65, 0.5);
 $card-text-grey: #898989;
-
-
