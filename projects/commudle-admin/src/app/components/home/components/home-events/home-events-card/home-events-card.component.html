@@ -7,7 +7,7 @@
     <div class="home-events-image-overlay"></div>
     <img alt="{{event.name}}" src="{{ event.header_image ? event.header_image.i350 : '/assets/images/Home-Events.png'}}">
   </div>
-  <div class="home-events-date">
+  <div *ngIf="event.start_time" class="home-events-date" [ngClass]="{'old': moment(event.start_time) < moment()}">
     {{moment(event.start_time).format('MMM DD')}}
   </div>
   <div class="home-events-details">

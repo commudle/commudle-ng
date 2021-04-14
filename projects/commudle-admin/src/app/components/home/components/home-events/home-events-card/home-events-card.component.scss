@@ -50,13 +50,19 @@
     top: 120px;
     right: 12px;
     border-radius: $border-8;
-    background-color: $neon-blue;
-    color: $white;
+    border: 1px solid $neon-blue;
+    background-color: $white;
+    color: $neon-blue;
     padding: $space-8 $space-12;
     font-size: $fs-h4;
     font-weight: $fw-500;
     word-break: break-word;
     text-align: center;
+
+    &.old {
+      border-color: $cadet;
+      color: $cadet;
+    }
   }
 
   .home-events-details {
