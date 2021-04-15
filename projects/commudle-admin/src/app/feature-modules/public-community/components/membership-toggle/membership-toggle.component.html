@@ -36,7 +36,7 @@ Become a member
             Your email address
           </li>
           <li>
-            Organizers of the {{community.name}} and Commudle will be sending you communication mails for different events, surveys and more activities in the community
+            Organizers of the {{community.name}} and Commudle admins will be sending you communication mails for different events, surveys, newsletters and more activities in the community
           </li>
           <li>
             Organizers of the {{community.name}} have the right to allow or not allow you into an event organized for {{community.name}}
@@ -47,7 +47,6 @@ Become a member
     <nb-card-footer>
       <button
         nbButton
-        ghost
         status="success"
         (click)="toggleMembership()">
           I agree
@@ -56,8 +55,9 @@ Become a member
         nbButton
         ghost
         status="danger"
+        size="tiny"
         (click)="dialogRef.close()">
-          I don't want to be a member
+          Cancel
       </button>
     </nb-card-footer>
   </nb-card>

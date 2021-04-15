@@ -4,26 +4,24 @@
   width: 100%;
   min-height: 90vh;
   background: $light-purple;
-  h1, p, input, div {
-    font-family: $primary-font-family;
-  }
 
   .form-container {
-
     .header {
       font-weight: 300;
+
       fa-icon {
-        color: #4e74ff;
+        color: #4E74FF;
       }
     }
 
     form {
-
       input {
         font-size: 1.8rem;
+
         &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
           font-size: 1.3rem;
         }
+
         &::-moz-placeholder { /* Firefox 19+ */
           font-size: 1.3rem;
         }
@@ -39,5 +37,4 @@
       margin: 0 auto;
     }
   }
-
 }

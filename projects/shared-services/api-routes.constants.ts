@@ -211,6 +211,10 @@ export const API_ROUTES = {
   DELETE_EVENT_LOCATION_TRACK: 'api/v2/event_location_tracks',
 
   HOME: {
+    LABS: 'api/v2/home/labs',
+    COMMUNITIES: 'api/v2/home/communities',
+    COMMUNITY_BUILDS: 'api/v2/home/community_builds',
+    SEARCH_ALL: 'api/v2/home/search_everything',
     PUBLIC: {
       UPCOMING_EVENTS: 'api/v2/home/public/upcoming_events',
       PAST_RANDOM_EVENTS: 'api/v2/home/public/past_random_events',
@@ -294,8 +298,18 @@ export const API_ROUTES = {
     MY_COMMUNITY_BUILDS: 'api/v2/users/my_community_builds',
     LABS: 'api/v2/users/labs',
     COMMUNITY_BUILDS: 'api/v2/users/community_builds',
+    BADGES: 'api/v2/users/badges',
+    SPEAKER_RESOURCES: 'api/v2/users/speaker_resources',
+    SOCIAL_RESOURCES: 'api/v2/users/social_resources',
+    TOGGLE_FOLLOW: 'api/v2/users/toggle_follow',
+    CHECK_FOLLOWEE: 'api/v2/users/check_followee',
     TAGS: 'api/v2/users/tags',
-    PROFILE_BANNER_IMAGE: 'api/v2/users/profile_banner_image'
+    PROFILE_BANNER_IMAGE: 'api/v2/users/profile_banner_image',
+    POSTS: {
+      INDEX: 'api/v2/users/posts',
+      CREATE: 'api/v2/users/posts',
+      DESTROY: 'api/v2/users/posts'
+    }
   },
 
   SPEAKER_RESOURCES: {
@@ -350,6 +364,16 @@ export const API_ROUTES = {
       TAGS: 'api/v2/labs/search_tags',
       LABS_BY_TAGS: 'api/v2/labs'
     }
+  },
+
+  LINK_PREVIEWS: {
+    CREATE: 'api/v2/link_previews'
+  },
+
+  SOCIAL_RESOURCES: {
+    CREATE: 'api/v2/social_resources',
+    UPDATE_DISPLAY_ORDER: 'api/v2/social_resources/update_display_order',
+    DESTROY: 'api/v2/social_resources'
   },
 
   USER_EVENT_REGISTRATIONS: {

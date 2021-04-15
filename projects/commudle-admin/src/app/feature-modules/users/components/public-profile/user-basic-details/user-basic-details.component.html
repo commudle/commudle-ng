@@ -1,1 +1,121 @@
-<p>user-basic-details works!</p>
+<div class="user-personal-details">
+
+  <div class="profile-photo-container">
+    <div *ngIf="user.is_expert" class="profile-photo-burst d-flex justify-content-center align-items-center">
+      <span><nb-icon icon="checkmark"></nb-icon></span>
+    </div>
+    <div class="profile-photo">
+      <img alt="avatar" src="{{user.avatar}}">
+    </div>
+  </div>
+
+  <div class="user-details text-center">
+    <div class="name">{{user.name}}</div>
+    <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
+    <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
+    <div *ngIf="user.location" class="location">
+      <nb-icon icon="pin"></nb-icon>
+      {{user.location}}
+    </div>
+  </div>
+
+  <div *ngIf="currentUser && currentUser.id === user.id" class="edit-profile">
+    <button (click)="onEditProfileDialogOpen()" nbButton size="small">
+      <nb-icon icon="edit"></nb-icon>
+      edit bio
+    </button>
+  </div>
+
+  <div class="user-tags">
+    <nb-tag-list>
+      <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
+      <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
+    </nb-tag-list>
+  </div>
+
+  <div *ngIf="currentUser && currentUser.id !== user.id" class="message-user text-center">
+    <button (click)="openChatWithUser()" nbButton>Message
+      <nb-icon icon="paper-plane-outline"></nb-icon>
+    </button>
+  </div>
+
+  <div class="user-social text-center">
+    <a *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="globe-outline" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="linkedin" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.twitter" href="{{ user.twitter | completeurl:'twitter' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="twitter" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.github" href="{{ user.github | completeurl:'github' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="github" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.youtube" href="{{ user.youtube | completeurl:'youtube' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="youtube" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.medium" href="{{ user.medium | completeurl:'medium' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="medium" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.dribbble" href="{{ user.dribbble | completeurl:'dribbble' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="dribbble" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.behance" href="{{ user.behance | completeurl:'behance' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="behance" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.gitlab" href="{{ user.gitlab | completeurl:'gitlab' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="gitlab" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a *ngIf="user.facebook" href="{{ user.facebook | completeurl:'facebooj' }}" nbButton shape="round"
+       target="_blank" target="_blank">
+      <nb-icon icon="facebook" pack="fab" status="primary"></nb-icon>
+    </a>
+  </div>
+
+</div>
+
+<ng-template #editTags let-ref="dialogRef">
+  <nb-card class="tag-dialog">
+    <nb-card-header class="text-center">
+      Add tags which define you
+    </nb-card-header>
+    <nb-card-body class="text-center">
+      <div class="tag-dialog-info">
+        <nb-icon icon="info-outline"></nb-icon>
+        Maximum {{maxTags}} tags can be added. Tags reflect your fields of interest.
+      </div>
+      <nb-tag-list (tagRemove)="onTagRemove($event)">
+        <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
+        <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput placeholder="type a tag and press enter" type="text">
+      </nb-tag-list>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
+      <button (click)="onTagDialogSubmit()" nbButton status="success">Save</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #editProfile let-data let-ref="dialogRef">
+  <nb-card class="profile-dialog max-full-height-dialog-card">
+    <nb-card-header class="d-flex align-items-center justify-content-space-between">
+      Update Basic Details
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <app-basic-user-profile (updateProfile)="onUpdateProfile(ref)"></app-basic-user-profile>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

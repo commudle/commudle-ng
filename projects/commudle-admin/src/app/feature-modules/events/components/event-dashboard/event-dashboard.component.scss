@@ -1,24 +1,25 @@
-@import "projects/commudle-admin/src/assets/styles/variables.scss";
-p,
-h1 {
-  font-family: $primary-font-family;
-}
+@import "projects/commudle-admin/src/assets/styles/variables";
 
 .event-page {
   justify-content: center;
+
   .page-header {
     margin-bottom: $space-8;
 
     p {
-      margin: 0px;
+      margin: 0;
     }
+
     nb-card {
-      margin: 0px;
+      margin: 0;
+
       p {
         margin: 5px;
       }
+
       h1 {
         margin: 0;
+
         small {
           font-size: 1rem;
         }
@@ -27,8 +28,10 @@ h1 {
       .links {
         display: flex;
         flex-wrap: wrap;
+
         a {
           margin: 1rem 1rem 5px 0;
+
           nb-icon {
             font-size: 0.5rem;
           }
@@ -36,8 +39,10 @@ h1 {
       }
     }
   }
+
   .event-dashboard {
     margin-top: $space-8;
+
     .side-menu.responsive {
       background-color: $white;
       position: fixed;
@@ -49,6 +54,7 @@ h1 {
 
       nb-card {
         margin-bottom: 0;
+
         nb-card-body {
           padding: 5px;
         }
@@ -87,7 +93,6 @@ h1 {
       }
 
       @media screen and (min-width: 800px) {
-        width: 20%;
         max-width: 100vw;
         position: sticky;
         height: fit-content;
@@ -95,21 +100,26 @@ h1 {
         box-shadow: none;
         margin-right: $space-8;
         width: 25%;
+
         nb-card {
           border: none;
-          margin: 0px;
+          margin: 0;
+
           nb-card-body {
             border: none;
           }
         }
         .menu-items {
           flex-direction: column;
+
           .item {
             text-align: left;
             cursor: pointer;
+
             :hover {
               text-decoration: underline !important;
             }
+
             a {
               height: 100%;
               text-decoration: none;
@@ -127,6 +137,7 @@ h1 {
 
           .item.external-links {
             flex-direction: column;
+
             button {
               margin: 5px 0;
             }
@@ -144,26 +155,30 @@ h1 {
       .item-group {
         margin-bottom: 3.5rem;
         margin-left: $space-8;
+
         > div {
           nb-card {
-            margin-left: 0px;
-            margin-right: 0px;
+            margin-left: 0;
+            margin-right: 0;
           }
+
           > div {
             nb-card {
-              margin-left: 0px;
-              margin-right: 0px;
+              margin-left: 0;
+              margin-right: 0;
             }
           }
         }
+
         .item-group-title {
-          margin: 0px;
+          margin: 0;
           display: flex;
           padding-right: 5px;
           text-transform: uppercase;
           font-size: 1rem;
           color: grey;
         }
+
         .item-group-title:after {
           content: "";
           flex: 1 1;
@@ -174,6 +189,7 @@ h1 {
 
       nb-card {
         margin-bottom: 0.5rem;
+
         nb-card-header {
           font-weight: 300;
           font-size: 1rem;
@@ -181,12 +197,15 @@ h1 {
           color: grey;
         }
       }
+
       .event-details {
         margin-top: 1.5rem;
+
         h3 {
           margin-top: 0;
           margin-bottom: 0.5rem;
         }
+
         .edit-button {
           margin: 1rem 0 0;
         }
@@ -194,17 +213,20 @@ h1 {
 
       .advanced-option-switch {
         margin-bottom: 1rem;
+
         p {
           margin: 0 0.5rem;
         }
       }
-      
+
       .event-timings {
         fa-icon {
           color: grey;
         }
+
         > div {
           display: flex;
+
           p {
             margin: 0 1rem 0.5rem;
           }
@@ -212,13 +234,15 @@ h1 {
       }
 
       .event-description {
-        background-color: #f9f9f9;
+        background-color: #F9F9F9;
         min-height: 200px;
+
         fa-icon {
           margin-top: 1rem;
           margin-right: 0.5rem;
           color: grey;
         }
+
         display: flex;
       }
 
@@ -231,11 +255,14 @@ h1 {
           width: 800px;
           max-width: 100%;
           margin: 0 auto;
+
           input {
             display: none;
           }
+
           .uploaded-header-image {
             overflow: hidden;
+
             img {
               max-width: 100%;
             }
@@ -244,7 +271,8 @@ h1 {
           .uploaded-header-image.filler {
             height: 300px;
             width: 100%;
-            background-color: #c5c5c538;
+            background-color: #C5C5C538;
+
             p {
               margin: 0;
               font-size: 1.5rem;
@@ -261,8 +289,9 @@ h1 {
 
       nb-accordion {
         margin: 0.5rem 0;
+
         nb-accordion-item-body {
-          background: #f4f7ff73;
+          background: #F4F7FF73;
         }
       }
 

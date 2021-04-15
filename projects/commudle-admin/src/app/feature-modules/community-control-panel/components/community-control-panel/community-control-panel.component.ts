@@ -1,7 +1,7 @@
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -12,7 +12,7 @@ import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
   templateUrl: './community-control-panel.component.html',
   styleUrls: ['./community-control-panel.component.scss']
 })
-export class CommunityControlPanelComponent implements OnInit {
+export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   community: ICommunity;
 
   tabs: any[] = [
@@ -44,11 +44,17 @@ export class CommunityControlPanelComponent implements OnInit {
     private titleService: Title,
     private communitiesService: CommunitiesService,
     private activatedRoute: ActivatedRoute,
-    private windowService: NbWindowService
+    private windowService: NbWindowService,
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit() {
     this.setCommunity();
+  }
+
+  ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
   }
 
 
@@ -66,6 +72,10 @@ export class CommunityControlPanelComponent implements OnInit {
 
   setTitle() {
     this.titleService.setTitle(`Admin Dashboard | ${this.community.name}`);
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
   }
 
   sendEmails() {

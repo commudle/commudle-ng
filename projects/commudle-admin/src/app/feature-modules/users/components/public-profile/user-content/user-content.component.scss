@@ -1,0 +1,69 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-content {
+  margin-top: $space-16;
+  padding: $space-8 $space-32 $space-32;
+  border-radius: $border-10;
+  background-color: $white;
+
+  nb-tabset {
+    &::ng-deep {
+      .tabset {
+        border-bottom: 2px solid $silver-sand;
+
+        .tab {
+          flex-grow: 1;
+
+          .tab-link {
+            font-size: $fs-24;
+            font-weight: $fw-400;
+            line-height: 28px;
+            text-transform: capitalize;
+            color: $cadet;
+            justify-content: center;
+          }
+
+          &.active {
+            .tab-link {
+              color: $neon-blue;
+              font-weight: $fw-500;
+              &::before {
+                background-color: $brilliant-azure;
+                border-radius: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    nb-tab {
+      padding: 0;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .user-content {
+    padding: $space-8 $space-8 $space-32;
+    margin-bottom: $space-32;
+    border-radius: 0;
+
+    nb-tabset {
+      &::ng-deep {
+        .tabset {
+          overflow-x: auto;
+          overflow-y: hidden;
+          position: sticky;
+          top: 3.5rem;
+          background-color: white;
+          z-index: 1;
+        }
+      }
+
+      nb-tab {
+        padding: $space-16;
+      }
+    }
+  }
+}

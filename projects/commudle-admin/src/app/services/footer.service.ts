@@ -15,5 +15,4 @@ export class FooterService {
   changeFooterStatus(value: boolean) {
     this.footerStatus.next(value);
   }
-
 }
