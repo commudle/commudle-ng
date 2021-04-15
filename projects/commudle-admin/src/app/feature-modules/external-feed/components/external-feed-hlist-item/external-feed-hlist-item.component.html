@@ -1,51 +1,85 @@
 <div class="clickable external-feed-list-item">
   <nb-card>
     <nb-card-body>
-      <div class="row flex-row-reverse align-items-center d-flex justify-content-space-between">
-        <a class="details-page" [routerLink]="['/feed', feedPost.title]"></a>
-        <!-- <a class="details-page"> </a> -->
-        <div class="header">
-          <div class="images" *ngIf="feedPost.image_url.length > 0 ">
-            <div class="image-stripe">
-              <div class="image clickable">
-                <img src="{{ feedPost.image_url }}" alt="{{ feedPost.source }}">
-              </div>
-            </div>
-          </div>
-          <div class="external-feed-post-source-image d-flex align-items-center">
-            <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
-          </div>
-          <p class="source">
-            {{ feedPost.source }}
-            <br>
-            <small>
-              {{ moment(feedPost.created_at).format('Do MMM YYYY') }}
-            </small>
-          </p>
-          <h1>
-            {{ feedPost.title }}
-          </h1>
-          <div class="tags">
-            <app-badge *ngFor="let tag of feedPost.tags" [text]="tag" [color]="'#b7b7b7'"></app-badge>
-          </div>
+      <div class="image" *ngIf="feedPost.details.image.length > 0 ">
+        <img src="{{ feedPost.details.image }}" height="100%" alt="{{ feedPost.details.source }}">
+      </div>
+      <div class="source-details">
+        <div class="external-feed-post-source-image d-flex align-items-center">
+          <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
         </div>
-        <p class="text-info show-details">
-          <!-- <nb-icon icon="link" status="info"></nb-icon> Show Details -->
-          {{ feedPost.description | truncatetext:100 }};
+        <div class="source-info">
+          <em> {{ feedPost.details.source}} </em> <br>
+          <small> 15 April 2021 </small>
+        </div>
+      </div>
+      <div class="title padding-left: 100rem">
+      <h3 class="name">
+        {{ feedPost.details.title }}
+      </h3>
+    </div>
+      <div class="tags padding-left: 10rem" *ngFor="let tag of feedPost.details.tags">
+        <span class="tag-hash">#</span> {{ tag.name }}
+      </div>
+      <div class="stats d-flex align-items-center">
+                <nb-icon icon="heart"></nb-icon>
+      5&nbsp;
+      <nb-icon icon="message-circle"></nb-icon>
+      5
+        <!-- <p class="stars">
+          <app-votes-display [votableType]="'SingleExternalFeed'" [votableId]="feedPost.id" [icon]="'heart'">
+          </app-votes-display> 5 &nbsp;
         </p>
-        <div class="stats">
-          <p class="stars">
-            <app-votes-display [votableType]="'SingleExternalFeed'" [votableId]="feedPost.id" [icon]="'heart'">
-            </app-votes-display>
-          </p>
-          <p class="comments" [routerLink]="['/feed', feedPost.title]">
-            <span *ngIf="feedPost.comments_count > 0">
-              {{ feedPost.comments_count }}
-            </span>
-            <nb-icon icon="message-circle-outline"></nb-icon>
-          </p>
-        </div>
+        <p class="comments" [routerLink]="['/feed', feedPost.id]">
+          <span>
+            5
+          </span>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </p> -->
       </div>
     </nb-card-body>
   </nb-card>
 </div>
+<!-- 
+      <div class="inner-card">
+      <div class="source-details">
+             <div class="source d-flex">
+        <div class="external-feed-post-source-image d-flex align-items-center">
+          <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
+        </div>
+        <div class="source-details">
+          <p>
+            {{ feedPost.source.name }}
+            <br>
+            <small>
+              {{ feedPost.created_at.substr(0,10) }}
+            </small>
+          </p>
+        </div>
+      </div>
+      </div> -->
+<!-- <div class="row flex-row-reverse align-items-left d-flex justify-content-space-between"> -->
+<!-- <a class="details-page" [routerLink]="['/feed', feedPost.title]"></a> -->
+<!-- <h6>
+        {{ feedPost.title }}
+      </h6> -->
+<!-- </div> -->
+<!-- <div class="row flex-row-reverse align-items-center d-flex justify-content-space-between">
+      <div class="tags" *ngIf="feedPost.tags.length > 0 ">
+        <app-badge *ngFor="let ind_tag of feedPost.tags" [text]="ind_tag.tag" [color]="'#b7b7b7'"></app-badge>
+      </div> -->
+<!-- </div> -->
+<!-- <div class="stats d-flex align-items-center">
+        <p class="stars">
+          <app-votes-display [votableType]="'SingleExternalFeed'" [votableId]="feedPost.id" [icon]="'heart'">
+            {{ feedPost.likes }}
+          </app-votes-display>
+        </p>
+        <p class="comments" [routerLink]="['/feed', feedPost.title]">
+          <span *ngIf="feedPost.comments > 0">
+            {{ feedPost.comments }}
+          </span>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </p>
+      </div>
+    </div> -->

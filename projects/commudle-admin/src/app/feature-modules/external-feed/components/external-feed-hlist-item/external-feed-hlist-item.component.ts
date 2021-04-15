@@ -10,11 +10,12 @@ import * as moment from 'moment';
 export class ExternalFeedHListItemComponent implements OnInit {
   moment = moment;
 
-  @Input() feedPost: ISingleExternalFeed;
+  @Input() feedPost;
 
   constructor() { }
 
   ngOnInit() {
-    
+  	console.log("Reaching Init");
+	console.log(this.feedPost);    
   }
 }

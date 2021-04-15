@@ -1,15 +1,16 @@
-import { IAttachedFile } from './attached-file.model';
-
 export interface ISingleExternalFeed {
   id: number;
+  details: Details;
+}
+
+interface Details {
   source: string;
-  title: string;
-  description: string;
   link: string;
-  created_at: Date;
-  published_at: Date;
-  likes_count: number;
-  comments_count: number;
-  image_url: string;
-  tags: string[];
+  title: string;
+  image: string;
+  tags: Tag[];
+}
+
+interface Tag {
+  name: string;
 }
