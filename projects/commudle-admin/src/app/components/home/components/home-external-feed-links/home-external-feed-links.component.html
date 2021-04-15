@@ -2,71 +2,37 @@
   <nb-card-header>
     Feed
     <p class="sub-header">
-      Stay updated with latest news around the World 
+      Stay updated with latest news around the World
     </p>
   </nb-card-header>
   <nb-card-body class="home-external-feed-links-list">
-
-    <!-- If the length of external feed is zero then showing a empty feild-->    
-    <!-- <nb-list-item *ngFor="let _ of [].constructor(1)">
-      <app-skeleton-text [rows]="2"></app-skeleton-text>
-    </nb-list-item> -->
-
+    <!-- If the length of external feed is zero then showing a empty feild-->
+    <nb-list *ngIf="feeds.length === 0">
+      <nb-list-item *ngFor="let _ of [].constructor(1)">
+        <app-skeleton-text [rows]="2"></app-skeleton-text>
+      </nb-list-item>
+    </nb-list>
     <!-- If the length of external feed is non - zero-->
     <!-- <nb-list *ngIf="feed.length > 0"></nb-list> -->
-
-    <nb-list>
-      <nb-list-item>
-        <div class="home-external-feed-link d-flex align-items-center">
+    <nb-list *ngIf="feeds.length > 0">
+      <nb-list-item *ngFor="let feed of feeds; let i = index" class="clickable">
+        <div [routerLink]="['/feed', feed.id]" class="home-external-feed-link d-flex align-items-center">
           <div class="home-external-feed-link-image d-flex align-items-center">
-            <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
+            <img alt="{{feed.details.source}}" src="{{feed.details.image}}" height="100%" width="100%">
           </div>
-          <div class="home-external-feed-link-details" >
+          <div class="home-external-feed-link-details">
             <div class="home-external-feed-link-title">
-              <a href="https://commudler.gitbook.io/commudle/community-dashboard/communities" target="_blank">
-              Communities on Commudle, literally everything you need! </a>
+              {{feed.details.title}}
             </div>
             <div class="home-external-feed-link-source">
-              Source: Hacker Noon
-            </div> 
-          </div>
-        </div>
-      </nb-list-item>
-      <nb-list-item>
-        <div class="home-external-feed-link d-flex align-items-center">
-          <div class="home-external-feed-link-image d-flex align-items-center">
-            <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
-          </div>
-          <div class="home-external-feed-link-details" >
-            <div class="home-external-feed-link-title">
-              <a href="https://commudler.gitbook.io/commudle/community-dashboard/events/registrations#registration-forms" target="_blank">
-                Do surveys via forms in your community </a>
-            </div>
-            <div class="home-external-feed-link-source">
-              Source: Hacker Noon
-            </div>
-          </div>
-        </div>
-      </nb-list-item>
-      <nb-list-item>
-        <div class="home-external-feed-link d-flex align-items-center">
-          <div class="home-external-feed-link-image d-flex align-items-center">
-            <img alt="Commudle" src="/assets/images/commudle-logo-full.png">
-          </div>
-          <div class="home-external-feed-link-details" >
-            <div class="home-external-feed-link-title">
-              <a href="https://commudler.gitbook.io/commudle/community-dashboard/members" target="_blank">
-                Search your community members </a>
-            </div>
-            <div class="home-external-feed-link-source">
-              Source: Hacker Noon
+              Source: {{feed.details.source}}
             </div>
           </div>
         </div>
       </nb-list-item>
     </nb-list>
-    <div class="home-external-feed-link-all text-center clickable">
+    <div [routerLink]="['/feed']" class="home-external-feed-link-all text-center clickable">
       <a>View More</a>
     </div>
-  </nb-card-body> 
+  </nb-card-body>
 </nb-card>

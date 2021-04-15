@@ -38,6 +38,12 @@ export const API_ROUTES = {
     }
   },
 
+  // Feeds
+  EXTERNAL_FEEDS: {
+    INDEX: 'api/v2/feed_items',
+    SHOW: 'api/v2/feed_items/show',
+  },
+
   COMMUNITY_CHANNELS: {
     USER_CHANNEL_COMMUNITIES: 'api/v2/community_channels/user_channel_communities',
     INDEX: 'api/v2/community_channels',
@@ -330,6 +336,7 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat',
     PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat',
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT: 'api/v2/discussions/public_get_or_create_for_community_channel_chat',
+    PUBLIC_GET_OR_CREATE_FOR_EXETRNAL_FEED_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat',
     COMMUNITY_CHANNEL: {
       NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',
       UPDATED_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/updated_attachment_message'

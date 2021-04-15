@@ -1,0 +1,109 @@
+ @import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+ .single-external-feed-details {
+
+   p,
+   a,
+   div,
+   h3 {
+     font-family: $primary-font-family;
+   }
+
+   nb-card {
+     margin-bottom: 0.5rem;
+
+     nb-card-body {
+       &:hover {
+         box-shadow: 1px 1px 5px 5px $lightgrey;
+       }
+
+       .image {
+         border: 1px solid $lightestgrey;
+         background-color: $lightestgrey;
+         width: 100%;
+         height: 140px;
+         overflow: hidden;
+         margin-bottom: 5px;
+
+         img {
+           width: 100%;
+         }
+       }
+
+       .source-details {
+         align-items: center;
+         display: flex;
+
+         .external-feed-post-source-image {
+           min-height: 2.5rem;
+           max-height: 2.5rem;
+           min-width: 2.5rem;
+           max-width: 2.5rem;
+           overflow: hidden;
+           border-radius: 50%;
+           border: 0.5px solid $platinum;
+           margin-right: $space-8;
+
+           img {
+             width: 100%;
+           }
+         }
+
+         .source-info {
+           align-items: center;
+           font-size: 0.875rem;
+           margin-bottom: 1px;
+         }
+       }
+
+       h3.name {
+            color: black;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.5rem;
+            line-height: normal;
+            }
+
+       .tags {
+         font-size: 0.875rem;
+         line-height: 1.3;
+         padding: 0.25rem;
+         display: inline-block;
+         font-color: '#b7b7b7';
+         margin-bottom: 10px;
+
+         .tag-hash {
+           opacity: 0.4;
+           font-weight: normal;
+         }
+       }
+
+       .stats {
+         >p {
+           margin: 0 1rem 0 0;
+
+           &.comments {
+             nb-icon {
+               color: $spanish-gray;
+             }
+           }
+         }
+       }
+     }
+   }
+
+   .comments {
+    border-top: 1px solid lightgrey;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    height: 35vh;
+    min-height: 400px;
+
+    > p {
+      margin: 0 0 1rem;
+      font-size: 1.3rem;
+      font-weight: 300;
+    }
+  }
+ }
