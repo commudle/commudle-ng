@@ -1,4 +1,4 @@
-<div class="clickable external-feed-list-item">
+<div [routerLink]= "['/feed', feedPost.id]" class="clickable external-feed-list-item">
   <nb-card>
     <nb-card-body>
       <div class="image" *ngIf="feedPost.details.image.length > 0 ">
@@ -24,7 +24,7 @@
       <div class="stats d-flex align-items-center">
                 <nb-icon icon="heart"></nb-icon>
       5&nbsp;
-      <nb-icon icon="message-circle"></nb-icon>
+      <nb-icon icon="message-circle-outline"></nb-icon>
       5
         <!-- <p class="stars">
           <app-votes-display [votableType]="'SingleExternalFeed'" [votableId]="feedPost.id" [icon]="'heart'">
