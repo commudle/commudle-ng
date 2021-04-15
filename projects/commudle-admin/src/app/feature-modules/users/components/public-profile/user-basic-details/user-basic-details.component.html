@@ -26,12 +26,10 @@
     </button>
   </div>
 
-  <div class="user-tags">
-    <nb-tag-list>
-      <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
-      <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
-    </nb-tag-list>
-  </div>
+  <nb-tag-list class="user-tags">
+    <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
+    <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
+  </nb-tag-list>
 
   <div *ngIf="currentUser && currentUser.id !== user.id" class="message-user text-center">
     <button (click)="openChatWithUser()" nbButton>Message

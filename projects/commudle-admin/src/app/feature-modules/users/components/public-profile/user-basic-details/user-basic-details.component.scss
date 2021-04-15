@@ -117,6 +117,12 @@
   .user-tags {
     margin: $space-60 0 $space-40;
 
+    &::ng-deep {
+      .nb-tag-list-tags-wrapper {
+        justify-content: center;
+      }
+    }
+
     nb-tag {
       color: $white;
       background-color: transparent;
