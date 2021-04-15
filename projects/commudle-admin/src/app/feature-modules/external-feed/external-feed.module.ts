@@ -16,12 +16,14 @@ import {
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
+import {ExternalFeedHListItemComponent} from './components/external-feed-hlist-item/external-feed-hlist-item.component';
 
 @NgModule({
   declarations: [
     ExternalFeedComponent,
     SingleExtrnalFeedDetailsComponent,
     SingleExtrnalFeedComponent,
+    ExternalFeedHListItemComponent,
   ],
   imports: [
     CommonModule,

@@ -40,8 +40,8 @@ export const API_ROUTES = {
 
   // Feeds
   EXTERNAL_FEEDS: {
-    INDEX: 'feed/latest-feed',
-    SHOW: 'feed/post',
+    INDEX: 'api/v2/feed_items',
+    SHOW: 'api/v2/feed_items/show',
   },
 
   COMMUNITY_CHANNELS: {
