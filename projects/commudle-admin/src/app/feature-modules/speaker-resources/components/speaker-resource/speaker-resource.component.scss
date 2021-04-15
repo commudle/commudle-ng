@@ -1,0 +1,41 @@
+.wrapper{
+  display: flex;
+  flex-direction: row;
+}
+.left-wrapper{
+  width: 200px;
+  height: 200px;
+
+}
+.right-wrapper{
+  height: 500px;
+  width: 978px;
+
+}
+.left-column{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .speaker{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h5{
+      margin: 0;
+    }
+
+  }
+  .designation {
+      p{
+        margin: 0;
+      text-align: center;
+      }
+  }
+
+  img{
+    width: 100%;
+  }
+}
