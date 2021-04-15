@@ -1,128 +1,99 @@
-.single-externalfeed-details {
-  width: 100%;
+ @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
-  .single-external-feed {
-    width: 100%;
+ .single-external-feed-details {
 
-    nb-card-body {
-      padding: 1rem 0;
-    }
+   p,
+   a,
+   div,
+   h3 {
+     font-family: $primary-font-family;
+   }
 
-    .header, .embed, .link, .description, .teammate-details, .author-details, .stats {
-      padding: 0 1.5rem;
-    }
+   nb-card {
+     margin-bottom: 0.5rem;
 
-    .header {
-      .date {
-        color: grey;
-      }
+     nb-card-body {
+       &:hover {
+         box-shadow: 1px 1px 5px 5px $lightgrey;
+       }
 
-      h1 {
-        margin: 0;
-        font-weight: 400;
-      }
+       .image {
+         border: 1px solid $lightestgrey;
+         background-color: $lightestgrey;
+         width: 100%;
+         height: 140px;
+         overflow: hidden;
+         margin-bottom: 5px;
 
-      .author {
-        color: grey;
-      }
-    }
+         img {
+           width: 100%;
+         }
+       }
 
-    .build-type {
-      margin: 0 0 1rem;
+       .source-details {
+         align-items: center;
+         display: flex;
 
-      span {
-        font-size: 0.8rem;
-        padding: 5px 8px;
-        border-radius: 21px;
-        background: #5072ff;
-        color: white;
-      }
-    }
+         .external-feed-post-source-image {
+           min-height: 2.5rem;
+           max-height: 2.5rem;
+           min-width: 2.5rem;
+           max-width: 2.5rem;
+           overflow: hidden;
+           border-radius: 50%;
+           border: 0.5px solid $platinum;
+           margin-right: $space-8;
 
+           img {
+             width: 100%;
+           }
+         }
 
-    .description {
-      margin: 1rem 0 1rem;
+         .source-info {
+           align-items: center;
+           font-size: 0.875rem;
+           margin-bottom: 1px;
+         }
+       }
 
-      p {
-        font-size: 1.5rem;
-      }
-    }
+       h3.name {
+            color: black;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.5rem;
+            line-height: normal;
+            }
 
+       .tags {
+         font-size: 0.875rem;
+         line-height: 1.3;
+         padding: 0.25rem;
+         display: inline-block;
+         font-color: '#b7b7b7';
+         margin-bottom: 10px;
 
-    .images {
-      overflow-x: auto;
-      margin-bottom: 1.5rem;
-      background: #d3d3d33b;
+         .tag-hash {
+           opacity: 0.4;
+           font-weight: normal;
+         }
+       }
 
-      .image-stripe {
-        display: flex;
-        flex-wrap: nowrap;
-        width: fit-content;
+       .stats {
+         >p {
+           margin: 0 1rem 0 0;
 
-        .image {
-          width: 280px;
-          height: 280px;
-          border: 1px solid lightgrey;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          margin: 0 0.5rem;
+           &.comments {
+             nb-icon {
+               color: $spanish-gray;
+             }
+           }
+         }
+       }
+     }
+   }
 
-          img {
-            width: 100%;
-          }
-        }
-      }
-
-    }
-
-    .embed {
-      max-width: 100%;
-      overflow: auto;
-      display: flex;
-      justify-content: center;
-
-      iframe {
-        width: 100% !important;
-      }
-    }
-
-    .link {
-      margin-bottom: 1rem;
-
-      p {
-        margin: 0;
-
-        a {
-        }
-      }
-    }
-
-    .stats {
-      display: flex;
-
-      > p {
-        margin: 0.5rem 1rem 0 0;
-        display: flex;
-        align-items: center;
-
-        > span {
-          margin-left: 0.5rem;
-        }
-      }
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-
-      app-badge {
-        margin: 5px;
-      }
-    }
-  }
-
-  .comments {
+   .comments {
     border-top: 1px solid lightgrey;
     padding: 1rem 1.5rem;
     margin: 1rem 0;
@@ -135,29 +106,4 @@
       font-weight: 300;
     }
   }
-}
-
-.image-window {
-  max-width: 100vw;
-  overflow: hidden;
-
-  .controls {
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    justify-content: space-between;
-
-    button {
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-    }
-
-    nb-icon {
-      vertical-align: top;
-    }
-  }
-
-  img {
-    width: 100%;
-  }
-}
+ }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SingleExtrnalFeedComponent } from './components/single-external-feed/single-external-feed.component';
+import { SingleExternalFeedComponent } from './components/single-external-feed/single-external-feed.component';
 import { ExternalFeedRoutingModule } from './external-feed-routing.module';
-import { SingleExtrnalFeedDetailsComponent } from './components/single-external-feed-details/single-external-feed-details.component'
+import { SingleExternalFeedDetailsComponent } from './components/single-external-feed-details/single-external-feed-details.component'
 import { ExternalFeedComponent } from './components/external-feed/external-feed.component';
 import {
 	NbCardModule,
@@ -21,8 +21,8 @@ import {ExternalFeedHListItemComponent} from './components/external-feed-hlist-i
 @NgModule({
   declarations: [
     ExternalFeedComponent,
-    SingleExtrnalFeedDetailsComponent,
-    SingleExtrnalFeedComponent,
+    SingleExternalFeedDetailsComponent,
+    SingleExternalFeedComponent,
     ExternalFeedHListItemComponent,
   ],
   imports: [

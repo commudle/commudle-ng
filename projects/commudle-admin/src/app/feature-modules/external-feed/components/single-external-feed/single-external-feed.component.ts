@@ -10,9 +10,9 @@ import { ExternalFeedService } from 'projects/commudle-admin/src/app/services/ex
   styleUrls: ['./single-external-feed.component.scss']
 })
 
-export class SingleExtrnalFeedComponent implements OnInit {
+export class SingleExternalFeedComponent implements OnInit {
 
-  externalFeed: ISingleExternalFeed;
+  feedPost: ISingleExternalFeed;
   constructor(
     private title: Title,
     private meta: Meta,
@@ -21,44 +21,11 @@ export class SingleExtrnalFeedComponent implements OnInit {
 
   ) { }
 
-  // To Edit according to the feed data
-  setMeta() {
-    this.meta.updateTag({
-      name: 'description',
-      content: this.externalFeed.description.replace(/<[^>]*>/g, '')
-    });
-    this.meta.updateTag(
-      {
-        name: 'og:image',
-        content: `${this.externalFeed.image_url.length > 0 ? this.externalFeed.image_url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
-      });
-    this.meta.updateTag(
-      {
-        name: 'og:image:secure_url',
-        content: `${this.externalFeed.image_url.length > 0 ? this.externalFeed.image_url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
-      });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.externalFeed.description.replace(/<[^>]*>/g, '')
-    });
-    this.meta.updateTag({ name: 'og:type', content: 'website'});
-
-    this.meta.updateTag(
-      {
-        name: 'twitter:image',
-        content: `${this.externalFeed.image_url.length > 0 ? this.externalFeed.image_url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
-      });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.externalFeed.description.replace(/<[^>]*>/g, '')
-    });
-  }
-
   ngOnInit() {
 
     this.activatedRoute.params.subscribe(
       data => {
-        this.getExternalFeed(data.external_feed_id);
+        this.getExternalFeed(data.id);
       }
     );
   }
@@ -66,9 +33,7 @@ export class SingleExtrnalFeedComponent implements OnInit {
   getExternalFeed(id) {
     this.ExternalFeedService.pShow(id).subscribe(
       data => {
-        this.externalFeed = data;
-        this.title.setTitle(`${this.externalFeed.title} | By ${this.externalFeed.source}`);
-        this.setMeta();
+        this.feedPost = data;
       }
     );
   }

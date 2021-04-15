@@ -13,7 +13,7 @@ import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
   templateUrl: './single-external-feed-details.component.html',
   styleUrls: ['./single-external-feed-details.component.scss']
 })
-export class SingleExtrnalFeedDetailsComponent implements OnInit {
+export class SingleExternalFeedDetailsComponent implements OnInit {
 
 	@ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 	moment = moment;
@@ -31,22 +31,22 @@ export class SingleExtrnalFeedDetailsComponent implements OnInit {
 		private sanitizer: DomSanitizer) { }
 
 	ngOnInit() {
-		this.getDiscussionChat();
-		if (this.feedPost.link.startsWith('<iframe') && this.feedPost.link.endsWith('</iframe>')) {
-		  this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedPost.link);
-		} else {
-		  this.embedCode = null;
-		}
+		// this.getDiscussionChat();
+		// if (this.feedPost.link.startsWith('<iframe') && this.feedPost.link.endsWith('</iframe>')) {
+		//   this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedPost.link);
+		// } else {
+		//   this.embedCode = null;
+		// }
 	}
 
 	openImage(title, image) {
-		this.currImage = image;
-		this.windowService.open(
-		  this.imageTemplate,
-		  {
-		    title,
-		  },
-		);
+		// this.currImage = image;
+		// this.windowService.open(
+		//   this.imageTemplate,
+		//   {
+		//     title,
+		//   },
+		// );
 	}
 
 	getDiscussionChat() {
