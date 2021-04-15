@@ -27,7 +27,12 @@
       <div>You can add a maximum of 3 images each having a maximum size of 2MB</div>
       <input (change)="detectFiles($event)" accept="image/*" fullWidth multiple nbInput type="file">
       <div class="user-feed-input-image d-flex">
-        <img *ngFor="let image of imagePreviews" alt="Preview" height="150" src="{{image}}">
+        <div *ngFor="let image of imagePreviews; let i=index;" class="image-container">
+          <button (click)="deleteImage(i)" nbButton shape="round" size="tiny">
+            <nb-icon icon="close"></nb-icon>
+          </button>
+          <img alt="Preview" height="150" src="{{image}}">
+        </div>
       </div>
     </nb-card-body>
   </nb-card>
