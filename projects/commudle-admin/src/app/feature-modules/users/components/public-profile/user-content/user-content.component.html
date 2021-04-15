@@ -1,1 +1,15 @@
-<p>user-content works!</p>
+<div class="user-content">
+  <nb-tabset fullWidth>
+    <nb-tab tabTitle="Contributions">
+      <app-user-contributions [user]="user"></app-user-contributions>
+    </nb-tab>
+
+    <nb-tab tabTitle="Social">
+      <app-user-social [currentUser]="currentUser" [user]="user"></app-user-social>
+    </nb-tab>
+
+    <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">
+      <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>
+    </nb-tab>
+  </nb-tabset>
+</div>

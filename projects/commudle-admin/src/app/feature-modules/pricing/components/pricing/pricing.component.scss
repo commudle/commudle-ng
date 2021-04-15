@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .pricing {
   min-height: 100vh;
@@ -6,13 +6,13 @@
   padding-bottom: $space-136;
 
   p, a, h1, div {
-    font-family: $primary-font-family;
     color: $gunmetal;
   }
 
   .page-container {
     .header {
       padding-top: $space-72;
+
       h1 {
         margin: 0;
       }
@@ -26,7 +26,6 @@
     .plans {
       margin-top: $space-36;
     }
-
 
 
     @media (max-width: $tab-width) {

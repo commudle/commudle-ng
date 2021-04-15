@@ -1,0 +1,4 @@
+<div class="user-feed-posts d-flex flex-column">
+  <app-user-feed-post (deletePost)="onDeletePost($event)" *ngFor="let post of posts" [currentUser]="currentUser"
+                      [post]="post" [user]="user"></app-user-feed-post>
+</div>

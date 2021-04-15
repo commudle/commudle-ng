@@ -1,0 +1,40 @@
+<div class="user-contributions">
+  <div *ngIf="pastEvents && pastEvents.length > 0" class="user-contributions-past-events">
+    <div class="header">
+      My Talks at Events ({{pastEvents.length}})
+    </div>
+    <div class="content user-contributions-past-events-cards d-flex">
+      <app-user-past-event-card *ngFor="let pastEvent of pastEvents" [pastEvent]="pastEvent"></app-user-past-event-card>
+    </div>
+  </div>
+
+
+  <div *ngIf="communities && communities.length > 0" class="user-contributions-communities">
+    <div class="header">
+      Communities ({{communities.length}})
+    </div>
+    <div class="content user-contributions-communities-cards d-flex">
+      <app-user-community-card *ngFor="let community of communities" [community]="community"></app-user-community-card>
+    </div>
+  </div>
+
+
+  <div *ngIf="builds && builds.length > 0" class="user-contributions-builds">
+    <div class="header">
+      Builds ({{builds.length}})
+    </div>
+    <div class="content user-contributions-builds-cards d-flex">
+      <app-user-build-card *ngFor="let build of builds" [build]="build"></app-user-build-card>
+    </div>
+  </div>
+
+  <div *ngIf="labs && labs.length > 0" class="user-contributions-labs">
+    <div class="header">
+      Labs ({{labs.length}})
+    </div>
+    <div class="content user-contributions-labs-cards d-flex">
+      <app-user-lab-card *ngFor="let lab of labs" [lab]="lab"></app-user-lab-card>
+    </div>
+  </div>
+
+</div>

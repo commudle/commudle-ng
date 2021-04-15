@@ -1,19 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { PublicCommunityRoutingModule } from './public-community-routing.module';
-import { HomeCommunityComponent } from './components/home-community/home-community.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {PublicCommunityRoutingModule} from './public-community-routing.module';
+import {HomeCommunityComponent} from './components/home-community/home-community.component';
 import {
-  NbCardModule,
-  NbListModule,
-  NbInputModule,
-  NbButtonModule,
-  NbIconModule,
-  NbTooltipModule,
-  NbPopoverModule,
-  NbTabsetModule,
   NbAlertModule,
-  NbBadgeModule, NbSelectModule, NbOptionModule, NbDialogModule
+  NbBadgeModule,
+  NbButtonModule,
+  NbCardModule,
+  NbDialogModule,
+  NbIconModule,
+  NbInputModule,
+  NbListModule,
+  NbOptionModule,
+  NbPopoverModule,
+  NbSelectModule,
+  NbTabsetModule,
+  NbTooltipModule
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -38,6 +40,9 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
     CommunityChannelsListComponent,
     SpeakersComponent
   ],
+  exports: [
+    MembershipToggleComponent
+  ],
   imports: [
     CommonModule,
     PublicCommunityRoutingModule,
@@ -45,10 +50,6 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
     ReactiveFormsModule,
     SharedComponentsModule,
     SharedPipesModule,
-
-
-
-
 
     // Nebular
     NbCardModule,
@@ -66,4 +67,5 @@ import { SpeakersComponent } from './components/speakers/speakers.component';
     NbDialogModule.forChild()
   ]
 })
-export class PublicCommunityModule { }
+export class PublicCommunityModule {
+}

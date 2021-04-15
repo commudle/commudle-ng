@@ -1,5 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
-
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .home-component {
   max-width: 1280px;
@@ -30,6 +29,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+
         .member-count {
           a {
             text-decoration: none;
@@ -40,10 +40,7 @@
         .membership-toggle {
           margin: 0 0.8rem;
         }
-
       }
-
-
 
       .community-social-links {
         display: flex;
@@ -61,7 +58,6 @@
       }
     }
 
-
     @media screen and (min-width: 800px) {
       flex-direction: row;
       justify-content: flex-start;
@@ -72,7 +68,6 @@
       }
 
       .details {
-
         .membership {
           flex-direction: row;
         }
@@ -90,24 +85,21 @@
         }
       }
     }
-
   }
 }
 
-
 .page-menu {
-  position: fixed;
-  background-color: white;
-  width: 100%;
-  bottom: 0;
-  left: 0;
+  //position: fixed;
+  //background-color: white;
+  //width: 100%;
+  //bottom: 0;
+  //left: 0;
   z-index: 10;
+  //box-shadow: 2px -5px 15px -7px lightgrey;
 
   nb-card {
     margin: 0;
   }
-
-  box-shadow: 2px -5px 15px -7px lightgrey;
 
   .menu-items {
     display: flex;
@@ -125,9 +117,10 @@
       // display: flex;
       // flex-direction: column;
       // align-items: center;
-      nb-icon {
-        // color: grey !important;
-      }
+
+      //nb-icon {
+      // color: grey !important;
+      //}
 
       span {
         display: none;
@@ -137,7 +130,6 @@
     }
 
     nb-icon {
-
       font-size: 1.5rem;
     }
 

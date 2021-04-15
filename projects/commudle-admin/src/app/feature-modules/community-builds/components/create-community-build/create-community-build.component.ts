@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { ICommunityBuild, EBuildType, EPublishStatus } from 'projects/shared-models/community-build.model';
 import { DomSanitizer, Title, Meta } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/
   templateUrl: './create-community-build.component.html',
   styleUrls: ['./create-community-build.component.scss']
 })
-export class CreateCommunityBuildComponent implements OnInit {
+export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   eUserRolesUserStatus = EUserRolesUserStatus;
   cBuild: ICommunityBuild;
   tags: string[] = [];
@@ -54,6 +54,10 @@ export class CreateCommunityBuildComponent implements OnInit {
 
   setMeta() {
     this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
+    this.meta.updateTag({
       name: 'description',
       content: `Project, Slides from a Session, an Online Course, share it all with the community!`
     });
@@ -80,6 +84,10 @@ export class CreateCommunityBuildComponent implements OnInit {
     this.linkDisplay();
     this.title.setTitle('Share Your Build!');
     this.setMeta();
+  }
+
+  ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
   }
 
   get emailList() {
