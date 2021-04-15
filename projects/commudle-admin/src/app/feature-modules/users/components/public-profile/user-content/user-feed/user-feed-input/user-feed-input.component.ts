@@ -62,7 +62,14 @@ export class UserFeedInputComponent implements OnInit {
           }
         }
       }
+    } else {
+      this.nbToastrService.warning('Maximum only 3 images are allowed!', 'Warning');
     }
+  }
+
+  deleteImage(idx: number): void {
+    (this.postData.get('images') as FormArray).removeAt(idx);
+    this.imagePreviews.splice(idx, 1);
   }
 
   onDialogOpen(ref: TemplateRef<any>): void {
