@@ -9,7 +9,7 @@ import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed
 })
 export class HomeExternalFeedLinksComponent implements OnInit {
   
-  feeds: ISingleExternalFeed[] = [];
+  IFeedItem: ISingleExternalFeed[] = [];
 
   constructor(
   	private homeService: HomeService) { }
@@ -20,9 +20,7 @@ export class HomeExternalFeedLinksComponent implements OnInit {
 
   getFeed(): void{
     this.homeService.pFeed().subscribe(value=> {
-      console.log(value);
-      this.feeds = value.feed_items.slice(0, 3);
-      console.log(this.feeds);
+      this.IFeedItem = value.feed_items.slice(0, 3);
     });
   }
 }

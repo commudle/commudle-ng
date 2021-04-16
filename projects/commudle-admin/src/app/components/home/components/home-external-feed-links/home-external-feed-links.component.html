@@ -7,15 +7,15 @@
   </nb-card-header>
   <nb-card-body class="home-external-feed-links-list">
     <!-- If the length of external feed is zero then showing a empty feild-->
-    <nb-list *ngIf="feeds.length === 0">
+    <nb-list *ngIf="IFeedItem.length === 0">
       <nb-list-item *ngFor="let _ of [].constructor(1)">
         <app-skeleton-text [rows]="2"></app-skeleton-text>
       </nb-list-item>
     </nb-list>
     <!-- If the length of external feed is non - zero-->
     <!-- <nb-list *ngIf="feed.length > 0"></nb-list> -->
-    <nb-list *ngIf="feeds.length > 0">
-      <nb-list-item *ngFor="let feed of feeds; let i = index" class="clickable">
+    <nb-list *ngIf="IFeedItem.length > 0">
+      <nb-list-item *ngFor="let feed of IFeedItem; let i = index" class="clickable">
         <div [routerLink]="['/feed', feed.id]" class="home-external-feed-link d-flex align-items-center">
           <div class="home-external-feed-link-image d-flex align-items-center">
             <img alt="{{feed.details.source}}" src="{{feed.details.image}}" height="100%" width="100%">
