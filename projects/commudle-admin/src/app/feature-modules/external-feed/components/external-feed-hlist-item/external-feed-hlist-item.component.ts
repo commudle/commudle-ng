@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISingleExternalFeed} from 'projects/shared-models/single-external-feed.model';
+import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed.model';
 import * as moment from 'moment';
 
 @Component({
@@ -10,12 +10,12 @@ import * as moment from 'moment';
 export class ExternalFeedHListItemComponent implements OnInit {
   moment = moment;
 
-  @Input() feedPost;
+  sourceImagePath: string;
+  @Input() feedItem;
 
   constructor() { }
 
   ngOnInit() {
-  	console.log("Reaching Init");
-	console.log(this.feedPost);    
+  	this.sourceImagePath = "/assets/images/".concat(this.feedItem.details.source.concat(".png"));
   }
 }

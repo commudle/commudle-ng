@@ -32,7 +32,7 @@ export class SingleExternalFeedDetailsComponent implements OnInit {
 		private sanitizer: DomSanitizer) { }
 
 	ngOnInit() {
-		this.sourceImagePath = "/assets/images/".concat(this.feedItem.details.source.concat(".png"))
+		this.sourceImagePath = "/assets/images/".concat(this.feedItem.details.source.concat(".png"));
 		// this.getDiscussionChat();
 		// if (this.feedItem.link.startsWith('<iframe') && this.feedItem.link.endsWith('</iframe>')) {
 		//   this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedItem.link);
