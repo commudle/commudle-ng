@@ -17,7 +17,8 @@ export class SingleExternalFeedDetailsComponent implements OnInit {
 
 	@ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 	moment = moment;
-	@Input() feedPost: ISingleExternalFeed;
+	sourceImagePath: string;
+	@Input() feedItem: ISingleExternalFeed;
 	@Input() showComments: boolean;
 	discussionChat: IDiscussion;
 	teammates: IUserRolesUser[] = [];
@@ -31,9 +32,10 @@ export class SingleExternalFeedDetailsComponent implements OnInit {
 		private sanitizer: DomSanitizer) { }
 
 	ngOnInit() {
+		this.sourceImagePath = "/assets/images/".concat(this.feedItem.details.source.concat(".png"))
 		// this.getDiscussionChat();
-		// if (this.feedPost.link.startsWith('<iframe') && this.feedPost.link.endsWith('</iframe>')) {
-		//   this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedPost.link);
+		// if (this.feedItem.link.startsWith('<iframe') && this.feedItem.link.endsWith('</iframe>')) {
+		//   this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedItem.link);
 		// } else {
 		//   this.embedCode = null;
 		// }
@@ -50,7 +52,7 @@ export class SingleExternalFeedDetailsComponent implements OnInit {
 	}
 
 	getDiscussionChat() {
-		this.discussionsService.pGetOrCreateForCommunityBuildChat(this.feedPost.id).subscribe(
+		this.discussionsService.pGetOrCreateForCommunityBuildChat(this.feedItem.id).subscribe(
 		  data => this.discussionChat = data
 		);
 	}

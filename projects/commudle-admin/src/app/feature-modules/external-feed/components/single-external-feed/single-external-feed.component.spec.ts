@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleExtrnalFeedComponent } from './single-external-feed.component';
+import { SingleExternalFeedComponent } from './single-external-feed.component';
 
 describe('SingleExtrnalFeedComponent', () => {
-  let component: SingleExtrnalFeedComponent;
-  let fixture: ComponentFixture<SingleExtrnalFeedComponent>;
+  let component: SingleExternalFeedComponent;
+  let fixture: ComponentFixture<SingleExternalFeedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleExtrnalFeedComponent ]
+      declarations: [ SingleExternalFeedComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SingleExtrnalFeedComponent);
+    fixture = TestBed.createComponent(SingleExternalFeedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,7 +12,7 @@ import { ExternalFeedService } from 'projects/commudle-admin/src/app/services/ex
 
 export class SingleExternalFeedComponent implements OnInit {
 
-  feedPost: ISingleExternalFeed;
+  feedItem: ISingleExternalFeed;
   constructor(
     private title: Title,
     private meta: Meta,
@@ -33,7 +33,7 @@ export class SingleExternalFeedComponent implements OnInit {
   getExternalFeed(id) {
     this.ExternalFeedService.pShow(id).subscribe(
       data => {
-        this.feedPost = data;
+        this.feedItem = data;
       }
     );
   }

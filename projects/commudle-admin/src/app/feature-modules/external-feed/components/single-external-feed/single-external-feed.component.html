@@ -1,10 +1,10 @@
-<div class="single-external-feed page-padding" *ngIf="feedPost">
+<div class="single-external-feed page-padding" *ngIf="feedItem">
   <div class="page-navigation-actions">
     <a nbButton ghost size="small" class="padding-0" [routerLink]="['/feed']">
       <nb-icon icon="arrow-ios-back"></nb-icon> Back
     </a>
   </div>
-  <app-single-external-feed-details [feedPost]="feedPost" [showComments]="true"></app-single-external-feed-details>
+  <app-single-external-feed-details [feedItem]="feedItem" [showComments]="true"></app-single-external-feed-details>
   <div class="page-navigation-actions">
     <a nbButton ghost size="small" class="padding-0" [routerLink]="['/feed']">
       <nb-icon icon="arrow-ios-back"></nb-icon> Back

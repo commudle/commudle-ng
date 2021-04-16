@@ -8,6 +8,7 @@ interface Details {
   link: string;
   title: string;
   image: string;
+  created_at: string;
   tags: Tag[];
 }
 
