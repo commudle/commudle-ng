@@ -12,7 +12,7 @@
   </nb-card>
   <div class="external-feed-list">
     <div *ngFor="let post of externalPosts">
-      <app-external-feed-hlist-item [feedPost]="post"></app-external-feed-hlist-item>
+      <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
     </div>
   </div>
   <div class="load-more-button" *ngIf="canLoadMore && total">
