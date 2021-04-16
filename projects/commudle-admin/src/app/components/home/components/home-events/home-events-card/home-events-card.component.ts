@@ -29,22 +29,22 @@ export class HomeEventsCardComponent implements OnInit {
   ngOnInit(): void {
     this.getCommunity();
 
-    if (this.event.custom_registration) {
-      this.getInterestedMembers();
-    } else {
-      this.getUserEventRegistrations();
-    }
+    // if (this.event.custom_registration) {
+    //   this.getInterestedMembers();
+    // } else {
+    //   this.getUserEventRegistrations();
+    // }
   }
 
   getCommunity(): void {
     this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe(value => this.community = value);
   }
 
-  getInterestedMembers(): void {
-    this.dataFormEntityResponseGroupsService.pEventInterestedUsers(this.event.id).subscribe(value => this.registrations = value.total_count);
-  }
+  // getInterestedMembers(): void {
+  //   this.dataFormEntityResponseGroupsService.pEventInterestedUsers(this.event.id).subscribe(value => this.registrations = value.total_count);
+  // }
 
-  getUserEventRegistrations(): void {
-    this.userEventRegistrationsService.pEventInterestedUsers(this.event.id).subscribe(value => this.registrations = value.total);
-  }
+  // getUserEventRegistrations(): void {
+  //   this.userEventRegistrationsService.pEventInterestedUsers(this.event.id).subscribe(value => this.registrations = value.total);
+  // }
 }

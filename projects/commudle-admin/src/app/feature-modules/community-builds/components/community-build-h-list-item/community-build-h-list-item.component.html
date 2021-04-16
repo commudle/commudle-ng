@@ -1,8 +1,7 @@
 <div class="clickable community-build-list-item">
-  <nb-card class="anim-shadow">
+  <nb-card class="anim-shadow clickable" [routerLink]="['/builds', communityBuild.slug]">
     <nb-card-body>
       <div class="row flex-row-reverse align-items-center d-flex justify-content-space-between">
-        <a [routerLink]="['/builds', communityBuild.slug]" class="details-page"></a>
         <div class="details">
           <div class="build-type">
             <app-badge [color]="CBuildTypeDisplay[communityBuild.build_type].color" [fontSize]="'small'"

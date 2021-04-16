@@ -331,6 +331,8 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_FOR_EVENT_CHAT: 'api/v2/discussions/public_get_or_create_for_event_chat',
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_BUILD_CHAT: 'api/v2/discussions/public_get_or_create_for_community_build_chat',
     PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat',
+    PUBLIC_GET_OR_CREATE_FOR_SPEAKER_RESOURCE_CHAT: 'api/v2/discussions/public_get_or_create_for_speaker_resource_chat',
+    PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT: 'api/v2/discussions/public_get_or_create_for_feed_item_chat',
     PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT: 'api/v2/discussions/public_get_or_create_for_community_channel_chat',
     COMMUNITY_CHANNEL: {
       NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',

@@ -33,6 +33,10 @@
       height: 156px;
       width: 100%;
       background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+
+      &.old {
+        background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
+      }
     }
 
     img {
@@ -50,13 +54,19 @@
     top: 120px;
     right: 12px;
     border-radius: $border-8;
-    background-color: $neon-blue;
-    color: $white;
+    border: 1px solid $neon-blue;
+    background-color: $white;
+    color: $neon-blue;
     padding: $space-8 $space-12;
     font-size: $fs-h4;
     font-weight: $fw-500;
     word-break: break-word;
     text-align: center;
+
+    &.old {
+      border-color: $cadet;
+      color: $cadet;
+    }
   }
 
   .home-events-details {
