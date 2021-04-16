@@ -79,11 +79,7 @@ const routes: Routes = [
   {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
-  },
-  {
-    path: 'single-feed',
-    loadChildren: () => import('./feature-modules/external-feed/external-feed.module').then(m => m.ExternalFeedModule)
-  },
+  },  
   {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
