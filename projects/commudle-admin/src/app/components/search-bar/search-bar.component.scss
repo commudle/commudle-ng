@@ -1,14 +1,11 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .home-navbar-search {
-  width: 40rem;
-  margin: 0 $space-24;
   position: relative;
 
   .search-container {
-    .home-navbar-search-form {
+    .search-form {
       width: 100%;
-      max-width: 100%;
 
       &::ng-deep {
         .nb-form-field-prefix-medium {
@@ -19,7 +16,6 @@
 
       input {
         height: 2.5rem;
-        max-width: 100%;
         border: none;
         border-radius: 0;
         background-color: $light-purple;
@@ -32,6 +28,7 @@
 
     .search-filter {
       position: relative;
+      max-width: 208px;
 
       &::before {
         content: '';
@@ -53,14 +50,14 @@
     }
   }
 
-  .home-navbar-search-suffix {
+  .search-suffix {
     position: absolute;
     left: 0;
     right: 0;
     z-index: 2;
     box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.25);
 
-    .home-navbar-search-results {
+    .search-results {
       height: 0;
       overflow: auto;
       background-color: $light-purple;
@@ -75,7 +72,7 @@
         padding: 0 $space-16;
       }
 
-      .home-navbar-search-result {
+      .search-result-group {
         padding: 0 0 $space-8;
 
         .search-result-heading {
@@ -115,8 +112,25 @@
       }
     }
 
-    .home-navbar-search-results.active {
+    .search-results.active {
       height: 30vh;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-navbar-search {
+    width: 100%;
+
+    .search-container {
+      .search-filter {
+        &::ng-deep {
+          button {
+            max-width: 100px;
+            min-width: 100px;
+          }
+        }
+      }
     }
   }
 }

@@ -1,12 +1,10 @@
 <nb-layout class="home-navbar">
   <nb-layout-header fixed>
-    <div class="d-flex align-items-center">
-      <div [routerLink]="['/']" class="home-navbar-logo d-flex align-items-center clickable">
-        <img alt="Commudle" src="/assets/images/commudle-logo72.png">
-      </div>
-      <app-search-bar></app-search-bar>
+    <div [routerLink]="['/']" class="home-navbar-logo d-flex align-items-center clickable">
+      <img alt="Commudle" src="/assets/images/commudle-logo72.png">
     </div>
-    <div class="d-flex align-items-center">
+    <div class="home-navbar-container d-flex align-items-center">
+      <app-search-bar></app-search-bar>
       <div class="home-navbar-menu d-flex">
         <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
 
@@ -20,11 +18,11 @@
           </div>
         </div>
       </div>
-      <div (click)="toggleSidebar()" class="home-sidebar clickable">
-        <fa-icon [icon]="faBars"></fa-icon>
-        <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
-                  status="danger"></nb-badge>
-      </div>
+    </div>
+    <div (click)="toggleSidebar()" class="home-sidebar clickable">
+      <fa-icon [icon]="faBars"></fa-icon>
+      <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
+                status="danger"></nb-badge>
     </div>
   </nb-layout-header>
 
