@@ -1,0 +1,31 @@
+<div (clickOutside)="toggleSearchSuffix(false, $event)" appClickOutside class="home-navbar-search">
+  <div class="d-flex search-container">
+    <nb-form-field (click)="toggleSearchSuffix(true)" class="home-navbar-search-form">
+      <nb-icon icon="search" nbPrefix></nb-icon>
+      <input (ngModelChange)="searchQueryChanged.next($event)" [ngModel]="searchQuery" nbInput
+             placeholder="Search events, labs, communities, people" type="text">
+    </nb-form-field>
+    <nb-select (selectedChange)="getSelectedFilters($event)" class="search-filter" multiple nbSuffix
+               placeholder="Filters">
+      <nb-option *ngFor="let filter of filterBy" [value]="filter">{{filter | titlecase}}</nb-option>
+    </nb-select>
+  </div>
+
+  <div class="home-navbar-search-suffix">
+    <div [ngClass]="{'active': showSearchResults}" class="home-navbar-search-results d-flex flex-column">
+      <div *ngFor="let result of searchResults | keyvalue">
+        <div *ngIf="result.value.length !== 0" class="home-navbar-search-result">
+          <div class="search-result-heading">{{result.key}}</div>
+          <div *ngFor="let value of result.value"
+               [routerLink]="result.key === 'events' ? ['communities', value['kommunity_slug'], 'events', value['slug']] : [result.key, value['slug'] || value['username']]"
+               class="search-result-name clickable">
+            {{value.name}}
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showPlaceholder" class="placeholder-text d-flex justify-content-center align-items-center">
+        Quickly search your favorite topics, labs by industry experts or find an event you missed
+      </div>
+    </div>
+  </div>
+</div>

@@ -69,8 +69,9 @@ export class HomeService {
     );
   }
 
-  searchEverything(value: string): Observable<IHomeSearch> {
-    const params = new HttpParams().set('q', value);
+  searchEverything(value: string, filters: string[]): Observable<IHomeSearch> {
+    let params = new HttpParams().set('q', value);
+    filters.forEach(filter => params = params.append('filters[]', filter));
     return this.http.get<IHomeSearch>(
       this.apiRoutesService.getRoute(API_ROUTES.HOME.SEARCH_ALL), {params}
     );
