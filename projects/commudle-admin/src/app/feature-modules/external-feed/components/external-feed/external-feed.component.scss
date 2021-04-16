@@ -1,13 +1,14 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
 .external-feed {
     width: 100%;
   
     .header {
       h1 {
-        font-weight: 300;
+        font-weight: $fw-500;
   
         nb-icon {
           font-size: 2.5rem;
-          font-weight: 300;
+          font-weight: $fw-500;
         }
       }
     }

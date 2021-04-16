@@ -19,18 +19,21 @@ export class ExternalFeedComponent implements OnInit {
     private title: Title,
     private meta: Meta
   ) {
-    title.setTitle('Feed Posts');
   }
 
   ngOnInit() {
     this.getFeedPosts();
+    this.setMeta();
   }
 
   getFeedPosts(): void{
     this.externalFeedService.pGetAll().subscribe(value=> {
-      console.log(value);
       this.externalPosts = value.feed_items;
-      console.log(this.externalPosts);
     });
   }
+
+  setMeta(): void{
+    this.title.setTitle('Feed Posts');
+  }
+
 }
