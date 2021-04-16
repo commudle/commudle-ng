@@ -7,16 +7,8 @@
     nb-card-body {
       .row {
         width: 100%;
-        height: 140px;
+        // height: 140px;
         position: relative;
-
-        .details-page {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
 
         p.show-details {
           margin: 0;
