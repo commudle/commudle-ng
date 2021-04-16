@@ -20,45 +20,53 @@
       }
     }
 
-    .home-navbar-menu {
-      .home-navbar-menu-user {
-        margin-left: $space-16;
+    .home-navbar-container {
+      width: 1120px;
 
-        .menu-user-avatar {
-          width: 45px;
-          height: 45px;
-        }
+      app-search-bar {
+        flex: 1;
+      }
 
-        .menu-user-options {
-          gap: $space-8;
+      .home-navbar-menu {
+        .home-navbar-menu-user {
+          margin-left: $space-16;
 
-          button {
-            padding: $space-8 $space-12;
-            text-transform: capitalize;
-            font-size: $fs-h5;
-            font-weight: 400;
-            border: 0.5px solid $neon-blue;
+          .menu-user-avatar {
+            width: 45px;
+            height: 45px;
           }
 
-          .menu-login {
-            color: $neon-blue;
-            background-color: $white;
-          }
+          .menu-user-options {
+            gap: $space-8;
 
-          .menu-signup {
-            color: $white;
-            background-color: $neon-blue;
-          }
+            button {
+              padding: $space-8 $space-12;
+              text-transform: capitalize;
+              font-size: $fs-h5;
+              font-weight: 400;
+              border: 0.5px solid $neon-blue;
+            }
 
-          .menu-login-signup {
-            display: none;
+            .menu-login {
+              color: $neon-blue;
+              background-color: $white;
+            }
+
+            .menu-signup {
+              color: $white;
+              background-color: $neon-blue;
+            }
+
+            .menu-login-signup {
+              display: none;
+            }
           }
         }
       }
     }
 
     .home-sidebar {
-      margin-left: $space-16;
+      margin-left: $space-8;
 
       fa-icon {
         font-size: 1.25rem;
@@ -272,6 +280,10 @@
         min-width: 2rem;
       }
 
+      .home-navbar-container {
+        margin-left: $space-8;
+      }
+
       .home-navbar-search {
         margin: 0 $space-8;
         width: 100%;
@@ -279,11 +291,10 @@
 
       .home-navbar-menu {
         .home-navbar-menu-user {
-          margin-left: 0;
+          margin-left: $space-8 !important;
 
           .menu-user-avatar {
-            width: 2rem;
-            height: 2rem;
+            width: 35px !important;
 
             &::ng-deep {
               .user-picture {
