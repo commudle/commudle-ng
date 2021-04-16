@@ -1,73 +1,53 @@
-.wrapper{
-  display: flex;
-  flex-direction: row;
-}
-.left-wrapper{
+@import "/projects/commudle-admin/src/assets/styles/variables";
+
+.left-wrapper {
   width: 200px;
   height: fit-content;
   min-width: 150px;
-  margin-left:20px;
-
-
+  margin-left: $space-20;
 }
-.right-wrapper{
-  // width: 100%;
-  margin-right: 40px;
-  margin-left: 30px;
-  padding: 0 20px 20px 0;
-
-}
-.left-column{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+.right-wrapper {
+  margin-right: $space-40;
+  margin-left: $space-32;
+  padding: 0 $space-20 $space-20 0;
 }
 
 .right-column {
-  margin-left: 30px;
+  margin-left: $space-32;
 }
-.speaker-image{
+.speaker-image {
   height: 80px;
   width: 80px;
-  margin-top: 10px;
+  margin-top: $space-10;
 }
-img{
+img {
   width: 100%;
 }
 .timestamp {
-
-    font-size: 0.8rem;
-
+  font-size: 0.8rem;
 }
 .speaker-resource-container {
   width: 100%;
 }
 
+.speaker {
+  width: 100%;
+  padding-top: $space-20;
 
-
-  .speaker{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-
-    h5{
-      margin: 0;
-      text-align: center;
-    }
-
+  h5 {
+    margin: 0;
+    text-align: center;
   }
-  .designation {
-      p{
-        margin: 0;
-      text-align: center;
-      padding-bottom: 10px;
-      }
+}
+.designation {
+  p {
+    margin: 0;
+    text-align: center;
+    padding-bottom: $space-10;
   }
+}
 
-  .comments {
-    margin-left: 30px;
-    margin-right: 40px;
-  }
+.comments {
+  margin-left: $space-32;
+  margin-right: $space-40;
+}

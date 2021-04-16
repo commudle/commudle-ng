@@ -3,13 +3,15 @@
       <nb-card-body>
         <a class="clickable" [routerLink]="['/users', speaker.username]">
           <div class="user-card">
-            <div class="banner">
-              <img *ngIf="speaker.profile_banner_image" src="{{ speaker.profile_banner_image.i350}}">
+            <div class="banner-image">
+              <div class="banner">
+                <img *ngIf="speaker.profile_banner_image" src="{{ speaker.profile_banner_image.i350}}">
+              </div>
+              <div class="user-image">
+                <img src="{{ speaker.avatar }}" alt="{{ speaker.name}}">
+              </div>
             </div>
-            <div class="user-image">
-              <img src="{{ speaker.avatar }}" alt="{{ speaker.name}}">
-            </div>
-            <div class="user-details">
+            <div class="user-details d-flex flex-column">
               <p class="user-name">{{ speaker.name}}</p>
               <p class="designation">{{ speaker.designation}}</p>
             </div>

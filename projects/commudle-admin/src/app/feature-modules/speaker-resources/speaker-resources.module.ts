@@ -1,27 +1,38 @@
-import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
-import { NbCardModule,NbLayoutModule } from '@nebular/theme';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NbCardModule, NbLayoutModule, NbUserModule} from '@nebular/theme';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.module';
 import { SpeakerResourceComponent } from './components/speaker-resource/speaker-resource.component';
-import {NbThemeModule , NbInputModule, NbButtonModule,NbTabsetModule,NbActionsModule,NbButtonGroupModule,NbIconModule, NbFormFieldModule,} from "@nebular/theme";
-// import { SpeakerResourceCommentsComponent } from './components/speaker-resource-comments/speaker-resource-comments.component';
+import { NbInputModule, NbButtonModule,NbIconModule, NbFormFieldModule,} from "@nebular/theme";
+import { SpeakerResourceDiscussionComponent } from './components/speaker-resource/speaker-resource-discussion/speaker-resource-discussion.component';
+import { SpeakerResourceDiscussionMessageComponent } from './components/speaker-resource/speaker-resource-discussion/speaker-resource-discussion-message/speaker-resource-discussion-message.component';
 
 
 @NgModule({
   declarations: [
     SpeakerResourceComponent,
-    // SpeakerResourceCommentsComponent,
+    SpeakerResourceDiscussionComponent,
+    SpeakerResourceDiscussionMessageComponent,
+
   ],
   imports: [
     CommonModule,
     SpeakerResourcesRoutingModule,
+    ReactiveFormsModule,
+
+
+
+    // Nebular
     NbCardModule,
     NbLayoutModule,
     NbIconModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    NbUserModule,
+    NbButtonModule,
+    NbInputModule,
+
   ]
 })
 export class SpeakerResourcesModule { }
