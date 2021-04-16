@@ -5,27 +5,56 @@
   <nb-card class="left-wrapper">
       <div class="left-column">
         <div class="speaker-image">
-          <img src="https://static.remove.bg/remove-bg-web/2a274ebbb5879d870a69caae33d94388a88e0e35/assets/start-0e837dcc57769db2306d8d659f53555feb500b3c5d456879b9c843d1872e7baa.jpg" alt="">
+          <img src="{{ speaker.user.avatar }}"alt="">
         </div>
         <div class="speaker">
-          <h5>Harshita</h5>
+          <h5>{{ speaker.user.name }}</h5>
         </div>
         <div class="designation">
-          <p>Student</p>
+          <p>{{ speaker.user.designation}}</p>
         </div>
 
 
       </div>
     </nb-card>
+    <div class="speaker-resource-container">
     <nb-card class="right-wrapper">
       <div class="right-column">
         <div class="content-title">
-          <h1>Analog and Digital</h1>
+          <h1>{{speaker.title }}</h1>
         </div>
         <div class="content-description">
-          <p>Random Text be like..</p>
+
+          <div>
+            <p>
+              At
+
+              <strong>
+                <a [routerLink]="['/communities', speaker.event.kommunity_slug, 'events', speaker.event.slug]">
+                  {{ speaker.event.name }}
+                </a>
+              </strong>
+            </p>
+
+            <p class="timestamp">
+              <nb-icon icon="clock-outline"></nb-icon>
+              {{ moment(speaker.created_at).format('dddd Do MMM, YYYY') }}
+            </p>
+          </div>
+          <div class="content">
+            <div class="session-details" *ngIf="speaker.session_details_links" [innerHTML]="speaker.session_details_links"></div>
+            <div class="embedded-content" *ngIf="speaker.embedded_content" [innerHTML]="speaker.embedded_content"></div>
+          </div>
         </div>
 
+
     </div>
+
+
   </nb-card>
+  <nb-card class="comments">
+    <!-- <app-speaker-resource-comments></app-speaker-resource-comments> -->
+  </nb-card>
+</div>
+
 </div>
