@@ -3,9 +3,9 @@
 .user-contributions {
   .section {
     position: relative;
-
+    margin-bottom: $space-40;
     .header {
-      margin: $space-40 0 $space-24;
+      margin: 0 0 $space-24;
       font-size: $fs-24;
       font-weight: $fw-600;
       line-height: 28px;
