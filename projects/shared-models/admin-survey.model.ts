@@ -1,3 +1,4 @@
+import { ICommunity } from './community.model';
 import { IDataFormEntity } from './data_form_entity.model';
 
 export interface IAdminSurvey {
