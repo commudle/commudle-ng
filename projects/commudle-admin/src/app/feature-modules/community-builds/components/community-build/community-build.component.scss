@@ -1,10 +1,8 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .community-build {
   width: 100%;
-
-  @media screen and (min-width: 920px) {
-    width: 920px;
-    margin: 0 auto;
-  }
+  max-width: $tab-width;
 
   .page-navigation-actions {
     a {

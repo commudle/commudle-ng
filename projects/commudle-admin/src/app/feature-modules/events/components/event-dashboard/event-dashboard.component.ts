@@ -1,11 +1,11 @@
 import { NbSidebarService, NbWindowService } from '@nebular/theme';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { faClock, faEdit, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { IEventStatus } from 'projects/shared-models/event_status.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
@@ -17,7 +17,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   templateUrl: './event-dashboard.component.html',
   styleUrls: ['./event-dashboard.component.scss']
 })
-export class EventDashboardComponent implements OnInit {
+export class EventDashboardComponent implements OnInit, OnDestroy {
   @ViewChild('eventGuideTemplate') eventGuideTemplate: TemplateRef<any>;
 
   moment = moment;
@@ -46,17 +46,30 @@ export class EventDashboardComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
     private sidebarService: NbSidebarService,
-    private windowService: NbWindowService
+    private windowService: NbWindowService,
+    private meta: Meta,
+    private title: Title
   ) {}
 
   ngOnInit() {
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
+
     this.sidebarService.collapse('mainMenu');
     this.activatedRoute.data.subscribe(data => {
       this.event = data.event;
 
+      this.title.setTitle(`Dashboard : ${this.event.name}`);
+
       this.community = data.community;
       this.titleService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
+  }
+
+  ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
   }
 
 

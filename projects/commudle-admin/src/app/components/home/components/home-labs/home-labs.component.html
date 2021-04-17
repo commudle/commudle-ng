@@ -1,0 +1,53 @@
+<nb-card class="home-labs">
+  <nb-card-header class="clickable" [routerLink]="['/labs']">
+    Labs
+    <p class="sub-header">
+      Learn from people like you
+    </p>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="labs-list">
+      <ul *ngIf="labs.length === 0">
+        <li *ngFor="let _ of [].constructor(4)">
+          <app-skeleton-text [rows]="2"></app-skeleton-text>
+        </li>
+      </ul>
+      <ul *ngIf="labs.length > 0">
+        <li *ngFor="let lab of labs" class="clickable">
+          <p class="name">
+            <a [routerLink]="['/labs', lab.slug]">
+              {{ lab.name | truncatetext:45 }}
+            </a>
+          </p>
+          <div class="author d-flex" [routerLink]="['/users', lab.user.username]">
+            <div class="image">
+              <img src="{{lab.user.avatar}}">
+            </div>
+            <p> {{ lab.user.name }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-link clickable">
+      <a>View all</a>
+    </p>
+
+    <!--  MOBILE  -->
+    <div *ngIf="labs.length === 0" class="home-labs-mobile">
+      <app-skeleton-text [rows]="3"></app-skeleton-text>
+    </div>
+    <div *ngIf="labs.length > 0" class="home-labs-mobile">
+      <div class="home-labs-mobile-image">
+        <img *ngIf="labs[0].header_image" alt="{{labs[0].name}}" src="{{labs[0].header_image.i350}}">
+        <img *ngIf="!labs[0].header_image" alt="{{labs[0].name}}" src="/assets/images/Lab-Default.png">
+      </div>
+      <div class="home-labs-mobile-details">
+        <div class="home-labs-mobile-name">{{labs[0].name}}</div>
+        <div class="home-labs-mobile-author">{{labs[0].user.name}}</div>
+      </div>
+    </div>
+    <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-mobile-link clickable text-center">
+      <a>View all</a>
+    </p>
+  </nb-card-body>
+</nb-card>

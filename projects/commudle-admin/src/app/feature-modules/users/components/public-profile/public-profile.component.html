@@ -1,67 +1,13 @@
-
-<!-- <div class="public-profile page-padding" *ngIf="user">
+<div *ngIf="user" class="public-profile page-container">
 
   <div class="basic-details">
-    <app-user-basic-details [user]="user"></app-user-basic-details>
+    <app-user-basic-details (updateProfile)="getUserData()" [currentUser]="currentUser"
+                            [user]="user"></app-user-basic-details>
   </div>
 
   <div class="user-content">
-    <app-user-cover-photo></app-user-cover-photo>
-    <app-user-content></app-user-content>
+    <app-user-cover-photo (coverImageUpdate)="getUserData()" [currentUser]="currentUser"
+                          [user]="user"></app-user-cover-photo>
+    <app-user-content [currentUser]="currentUser" [user]="user"></app-user-content>
   </div>
-
-
-</div> -->
-
-  <!-- this code is for reference from the previous existing code -->
- <div class="public-profile page-padding">
-  <header>
-    <nb-card>
-      <nb-card-body>
-        <div class="avatar">
-          <img *ngIf="user.avatar" src="{{user.avatar}}">
-        </div>
-        <h1 class="name">
-          {{user.name}}
-        </h1>
-        <p class="text-basic username">
-          @{{user.username}}
-        </p>
-        <p *ngIf="user.designation" class="tagline">
-          {{user.designation}}
-        </p>
-        <div class="social-links">
-          <a nbButton ghost target="_blank" *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}">
-            <nb-icon icon="linkedin"></nb-icon>
-          </a>
-          <a nbButton ghost target="_blank" *ngIf="user.twitter" href="{{ user.twitter | completeurl:'twitter' }}">
-            <nb-icon icon="twitter" status="primary"></nb-icon>
-          </a>
-          <a nbButton ghost target="_blank" *ngIf="user.github" href="{{ user.github | completeurl:'github' }}">
-            <nb-icon icon="github" status="primary"></nb-icon>
-          </a>
-          <a nbButton ghost target="_blank" *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}">
-            <nb-icon icon="info" status="primary"></nb-icon>
-          </a>
-
-        </div>
-
-        <a *ngIf="currentUser && currentUser.id === user.id" nbButton [routerLink]="['/my-profile/edit']" size="tiny" status="primary" class="edit-profile-button">
-          <nb-icon icon="edit"></nb-icon>
-          Edit Profile
-        </a>
-      </nb-card-body>
-    </nb-card>
-  </header>
-  <main>
-    <div class="column-left">
-      <nb-card *ngIf="user.about_me">
-        <nb-card-body>
-          {{user.about_me}}
-        </nb-card-body>
-      </nb-card>
-    </div>
-  </main>
-
 </div>
-

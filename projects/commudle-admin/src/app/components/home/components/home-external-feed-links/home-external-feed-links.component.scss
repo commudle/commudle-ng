@@ -1,0 +1,16 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.external-feed-links {
+  border: none;
+  border-radius: $border-10;
+
+  a {
+    text-decoration: none;
+    color: $gunmetal;
+    font-weight: $fw-500;
+
+    nb-icon {
+      font-size: $fs-list-small;
+    }
+  }
+}

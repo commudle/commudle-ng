@@ -1,0 +1,219 @@
+<div *ngIf="currentUser" class="page-padding">
+
+  <div class="username">
+    <form (ngSubmit)="setUsername()" [formGroup]="usernameForm">
+      <div>
+        <label>
+          Choose a username to for your public profile
+          <nb-form-field>
+            <nb-icon icon="at-outline" nbPrefix></nb-icon>
+            <input (change)="checkUsername()" fieldSize="small" formControlName="username" nbInput status="primary"
+                   type="text">
+          </nb-form-field>
+        </label>
+        <p *ngIf="usernameForm.controls.username.errors" class="field-error validation-error-text"
+           icon="alert-circle-outline" status="danger">
+          <small>
+            *Username cannot contain spaces & special characters
+          </small>
+        </p>
+        <p *ngIf="validUsername == false && currentUsername != currentUser.username"
+           class="field-error validation-error-text" icon="alert-circle-outline"
+           status="danger">
+          <small>
+            *Username already taken
+          </small>
+        </p>
+      </div>
+      <div>
+        <button [disabled]="!validUsername || (currentUsername == lastUsername) || checkingUsername"
+                [nbSpinner]="checkingUsername" nbButton size="small" status="success"
+                type="submit">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+  <form [formGroup]="userProfileForm" (ngSubmit)="updateUserDetails()">
+    <div class="row">
+      <div>
+        <label>
+          Profile Picture*
+          <input type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedProfileImage($event)">
+        </label>
+
+        <div>
+          <div class="uploaded-profile" *ngIf="uploadedProfilePicture == null">
+          </div>
+          <div class="uploaded-profile-image" *ngIf="uploadedProfilePicture">
+            <img alt="Profile Picture" src="{{uploadedProfilePicture}}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>
+          Name*
+          <input type="text" nbInput fullWidth formControlName="name">
+        </label>
+        <span
+          *ngIf="userProfileForm['controls'].name.touched && userProfileForm['controls'].name.invalid && userProfileForm['controls'].name.errors.required"
+          class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          What's Your Tagline?*
+          <input type="text" nbInput fullWidth formControlName="designation" placeholder="Blogger, Developer, Designer">
+        </label>
+        <span
+          *ngIf="userProfileForm['controls'].designation.touched && userProfileForm['controls'].designation.invalid && userProfileForm['controls'].designation.errors.required"
+          class="validation-error-text">
+          Required Field
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          About Me*
+          <textarea formControlName="about_me" fullWidth nbInput
+                    placeholder="A little bit about your interests! (max 250 characters)" rows="3"></textarea>
+        </label>
+        <span
+          *ngIf="(userProfileForm['controls'].about_me.touched || userProfileForm.get('about_me').value) && userProfileForm['controls'].about_me.invalid"
+          class="validation-error-text">
+          Required field. Maximum 300 characters.
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="pin"></nb-icon>
+          Location
+          <input formControlName="location" fullWidth nbInput placeholder="Where are you from?" type="text">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="gender-input">
+        <label>
+          Gender
+          <nb-radio-group formControlName="gender" name="gender">
+            <nb-radio value="male">
+              Male
+            </nb-radio>
+            <nb-radio value="female">
+              Female
+            </nb-radio>
+            <nb-radio value="prefer_not_to_answer">
+              Other/Prefer Not To answer
+            </nb-radio>
+          </nb-radio-group>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="info"></nb-icon>
+          Personal Website
+          <input type="url" nbInput fullWidth formControlName="personal_website" placeholder="Enter complete url">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="github"></nb-icon>
+          Github
+          <input type="url" nbInput fullWidth formControlName="github" placeholder="Link to your profile">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="linkedin"></nb-icon>
+          Linkedin
+          <input type="url" nbInput fullWidth formControlName="linkedin" placeholder="Link to your profile">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="twitter"></nb-icon>
+          Twitter
+          <input type="url" nbInput fullWidth formControlName="twitter" placeholder="Link to your profile">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="youtube" pack="fab"></nb-icon>
+          Youtube
+          <input type="url" nbInput fullWidth formControlName="youtube" placeholder="Link to your channel">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="medium-m" pack="fab"></nb-icon>
+          Medium
+          <input type="url" nbInput fullWidth formControlName="medium" placeholder="Link to your profile / publication">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="dribbble" pack="fab"></nb-icon>
+          Dribbble
+          <input type="url" nbInput fullWidth formControlName="dribbble" placeholder="Link to your work">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="behance" pack="fab"></nb-icon>
+          Behance
+          <input type="url" nbInput fullWidth formControlName="behance" placeholder="Link to your work">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>
+          <nb-icon icon="gitlab" pack="fab"></nb-icon>
+          Gitlab
+          <input type="url" nbInput fullWidth formControlName="gitlab" placeholder="Link to your work">
+        </label>
+      </div>
+      <div>
+        <label>
+          <nb-icon icon="facebook" pack="fab"></nb-icon>
+          Facebook
+          <input type="url" nbInput fullWidth formControlName="facebook" placeholder="Link to your profile / page">
+        </label>
+      </div>
+    </div>
+
+    <div class="submit-button">
+      <button [disabled]="!userProfileForm.valid" type="submit" status="primary" nbButton fullWidth size="medium">
+        Save
+      </button>
+    </div>
+  </form>
+
+</div>

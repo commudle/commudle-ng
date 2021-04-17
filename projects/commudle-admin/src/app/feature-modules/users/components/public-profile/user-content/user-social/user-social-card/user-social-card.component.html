@@ -1,0 +1,38 @@
+<nb-card class="user-social-card">
+  <nb-card-body class="d-flex align-items-center">
+    <a [href]="socialResource.link" class="user-social-card-image d-flex justify-content-center align-items-center"
+       rel="noreferrer" target="_blank">
+      <img alt="{{socialResource.title}}" src="{{socialResource.image.url}}">
+    </a>
+    <a [href]="socialResource.link" class="user-social-card-details" rel="noreferrer" target="_blank">
+      <div class="user-social-card-tags d-flex">
+        <div *ngFor="let tag of socialResource.tags" class="user-social-card-tag">{{tag.name}}</div>
+      </div>
+      <div class="user-social-card-title">{{socialResource.title}}</div>
+      <div class="user-social-card-description">{{socialResource.description | truncatetext: 150}}</div>
+      <img alt="{{socialResource.title}}" class="user-social-card-favicon" src="{{socialResource.favicon}}">
+    </a>
+    <button (click)="onDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="user-social-card-delete"
+            ghost nbButton status="danger">
+      Delete
+    </button>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #confirmationDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="d-flex align-items-center justify-content-space-between">
+      Delete Resource
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div>Are you sure you want to delete <em>{{socialResource.title}}</em>?</div>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close()" nbButton status="danger">Cancel</button>
+      <button (click)="onDeleteResource(ref)" ghost nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,27 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.home-promotions {
+  border: none;
+  border-radius: $border-10;
+  overflow: hidden;
+  min-height: 264px;
+  overflow: hidden;
+
+  nb-card-body {
+    padding: 0;
+
+    .home-promotion-image {
+      line-height: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-promotions {
+    border-radius: 0;
+  }
+}

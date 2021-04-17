@@ -1,13 +1,15 @@
-@import "projects/commudle-admin/src/assets/styles/variables.scss";
+@import "projects/commudle-admin/src/assets/styles/variables";
 
 .page-container {
   .event {
     max-width: 1280px;
     margin: 0 auto;
+
     .header {
       .image {
         width: 100%;
         overflow: hidden;
+
         img {
           width: 100%;
         }
@@ -35,6 +37,7 @@
       .info {
         order: 2;
         margin: $space-8 0px;
+
         .sponsors {
           margin: $space-16 0px;
         }
@@ -59,10 +62,13 @@
           background-color: white;
           padding: 0.5rem;
           margin-top: 3px;
+
           p {
             text-align: center;
+
             a {
               text-decoration: none;
+
               nb-icon {
                 font-size: 2rem;
               }
@@ -114,6 +120,7 @@
       .event-chat {
         nb-card {
           height: 70vh;
+
           ::ng-deep {
             nb-card-body {
               overflow: hidden;
@@ -124,18 +131,18 @@
     }
 
     .page-menu {
-      position: fixed;
-      background-color: white;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      z-index: 10;
-      margin: $space-16 0px;
+      //position: fixed;
+      //background-color: white;
+      //width: 100%;
+      //bottom: 0;
+      //left: 0;
+      //z-index: 10;
+      //box-shadow: 2px -5px 15px -7px lightgrey;
+      margin: $space-16 0;
+
       nb-card {
         margin: 0;
       }
-
-      box-shadow: 2px -5px 15px -7px lightgrey;
 
       .menu-items {
         display: flex;
@@ -143,16 +150,19 @@
         overflow-x: auto;
         width: 100%;
         justify-content: space-evenly;
+
         a {
           cursor: pointer;
           margin: 0 0.5rem;
           text-decoration: none;
           color: black;
+
           span {
             display: none;
             font-size: 0.9rem;
           }
         }
+
         nb-icon {
           font-size: 1.2rem;
         }
@@ -162,11 +172,14 @@
         position: sticky;
         top: 3.5rem;
         box-shadow: none;
+
         nb-card {
           .menu-items {
             justify-content: flex-start;
+
             a {
               margin-right: 1.5rem;
+
               span {
                 display: inline;
               }

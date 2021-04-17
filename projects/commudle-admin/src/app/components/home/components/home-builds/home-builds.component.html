@@ -1,0 +1,23 @@
+<nb-card class="home-builds">
+  <nb-card-header class="clickable" [routerLink]="['/builds']">
+    Builds
+    <p class="sub-header">
+      See what others are building or share your own projects
+    </p>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list *ngIf="builds.length === 0" class="home-builds-list">
+      <nb-list-item *ngFor="let _ of [].constructor(3)">
+        <app-skeleton-text [rows]="4"></app-skeleton-text>
+      </nb-list-item>
+    </nb-list>
+    <nb-list *ngIf="builds.length > 0" class="home-builds-list">>
+      <nb-list-item *ngFor="let build of builds">
+        <app-home-builds-card [build]="build"></app-home-builds-card>
+      </nb-list-item>
+    </nb-list>
+    <div *ngIf="builds.length > 0" [routerLink]="['/builds']" class="home-builds-all text-center clickable">
+      <a>View all</a>
+    </div>
+  </nb-card-body>
+</nb-card>

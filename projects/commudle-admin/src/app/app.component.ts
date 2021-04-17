@@ -1,36 +1,40 @@
-import {CookieConsentService} from './services/cookie-consent.service';
 import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {DOCUMENT, isPlatformBrowser} from '@angular/common';
+import {Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
 import {environment} from 'projects/commudle-admin/src/environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {Router} from '@angular/router';
-import {DOCUMENT, isPlatformBrowser} from '@angular/common';
-import {Title} from '@angular/platform-browser';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
 import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
+import {CookieConsentService} from './services/cookie-consent.service';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
-import * as LogRocket from 'logrocket';
+
+// import * as LogRocket from 'logrocket';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 
+
 export class AppComponent implements OnInit, AfterViewChecked {
-  sideBarNotifications = false;
-  sideBarState = 'collapsed';
-  faBars = faBars;
-  currentUser: ICurrentUser;
-  userContextMenu: NbMenuItem[] = [
-    {title: 'Logout', link: '/logout'},
-  ];
-  cookieAccepted = false;
-  footerStatus = true;
+
+    sideBarNotifications = false;
+    sideBarState = 'collapsed';
+    faBars = faBars;
+    currentUser: ICurrentUser;
+    userContextMenu: NbMenuItem[] = [
+        {title: 'Logout', link: '/logout'},
+    ];
+    cookieAccepted = false;
+    footerStatus = true;
+
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -62,7 +66,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.authWatchService.currentUser$.subscribe(currentUser => {
       this.currentUser = currentUser;
 
-      if (this.currentUser) {
+      if (this.currentUser && this.userContextMenu.length <= 1) {
         this.userContextMenu.unshift({
           title: `@${currentUser.username}`,
           link: `/users/${currentUser.username}`,
@@ -82,7 +86,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
       if (this.isBrowser) {
         this.actionCableConnectionSocket.connectToServer();
       }
-
     });
 
     this.router.events.subscribe(event => {
@@ -131,22 +134,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   toggleSidebar() {
-    this.sideBarState = (this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed');
-    this.sidebarService.toggle(false, 'mainMenu');
+      this.sideBarState = this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed';
+      this.sidebarService.toggle(false, 'mainMenu');
   }
 
   login() {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
-  }
-
-  redirectToHome() {
-    this.router.navigate(['/']);
-  }
-
-  closeSidebarMobile() {
-    if (window.innerWidth <= 1000) {
-      this.sidebarService.collapse('mainMenu');
-    }
   }
 
 }

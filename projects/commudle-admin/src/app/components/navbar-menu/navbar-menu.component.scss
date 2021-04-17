@@ -1,0 +1,41 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.home-navbar-menu-options {
+  nb-action {
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+
+    .home-navbar-menu-option {
+      font-weight: 400;
+      line-height: 14px;
+      color: $gunmetal;
+      margin-top: $space-4;
+    }
+
+    &::ng-deep {
+      nb-icon {
+        text-align: center;
+        color: rgba($azure, 0.2);
+      }
+    }
+  }
+}
+
+
+@media all and (max-width: $tab-width) {
+  .home-navbar-menu-options {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: $space-20 $space-8 !important;
+    background-color: $white;
+    width: 100vw;
+    justify-content: space-around;
+    box-shadow: 0 4.9px 17.6px rgba(0, 0, 0, 0.05), 0 16.5px 59px rgba(0, 0, 0, 0.08), 0 74px 264px rgba(0, 0, 0, 0.13);
+
+    nb-action {
+      padding: 0;
+    }
+  }
+}
