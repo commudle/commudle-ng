@@ -38,7 +38,7 @@
   }
 }
 
-.user-feed-input-images, .user-feed-input-tags {
+.user-feed-input-images {
   width: 480px;
 
   nb-card-body {
@@ -47,6 +47,16 @@
     .user-feed-input-image {
       overflow: auto;
       gap: $space-8;
+
+      .image-container {
+        position: relative;
+
+        button {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+        }
+      }
     }
   }
 }
