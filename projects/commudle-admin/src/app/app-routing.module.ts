@@ -1,18 +1,16 @@
-import { CommunityDetailsResolver } from './resolvers/community-details.resolver';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
-import { LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
-import { HomeComponent } from './components/home/home.component';
-import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
-import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { LogoutComponent } from './components/logout/logout.component';
-import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
-import { InitResolver } from './resolvers/init.resolver';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { CommunitiesComponent } from './components/home/communities/communities.component';
-import { FeaturesComponent } from './components/home/features/features.component';
-import { AboutComponent } from './components/home/about/about.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from 'projects/shared-services/lib-authwatch.guard';
+import {LibErrorHandlerComponent} from 'projects/lib-error-handler/src/public-api';
+import {HomeComponent} from './components/home/home.component';
+import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
+import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
+import {LogoutComponent} from './components/logout/logout.component';
+import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
+import {InitResolver} from './resolvers/init.resolver';
+import {CommunitiesComponent} from './components/home/communities/communities.component';
+import {FeaturesComponent} from './components/home/features/features.component';
+import {AboutComponent} from './components/home/about/about.component';
 
 const routes: Routes = [
   {
@@ -54,11 +52,6 @@ const routes: Routes = [
   {
     path: 'fill-form/:data_form_entity_id',
     component: FillDataFormComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'my-profile/edit',
-    component: EditProfileComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -134,11 +127,12 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled',
     relativeLinkResolution: 'legacy'
-})],
+  })],
   exports: [RouterModule],
   providers: [InitResolver]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
 
 
 // NAMED ROUTER OUTLETS

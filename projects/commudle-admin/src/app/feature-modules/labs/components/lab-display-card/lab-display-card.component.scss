@@ -7,7 +7,6 @@
   border-radius: $border-5;
 
   p, div, h4 {
-    font-family: $primary-font-family;
     margin: 0; //to remove default margin
   }
 
@@ -40,7 +39,7 @@
         font-style: italic;
         font-weight: normal;
         font-size: $fs-card-secondary;
-        color: $card-faded-text;
+        color: rgba($gunmetal, 0.5);
       }
     }
 
@@ -61,7 +60,6 @@
         .details {
           .name {
             margin: 0;
-            font-family: $primary-font-family;
             font-size: $fs-card-secondary;
             line-height: $fs-card-secondary;
             font-weight: 600;
@@ -70,7 +68,6 @@
 
           .designation {
             margin: 0;
-            font-family: $primary-font-family;
             font-size: $fs-card-secondary;
             line-height: $fs-card-secondary;
           }

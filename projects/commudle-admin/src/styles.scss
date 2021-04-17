@@ -89,7 +89,7 @@ input {
 }
 
 .nb-theme-default nb-card {
-  margin: 8px;
+  margin: 16px 8px;
 }
 
 .nb-theme-default nb-layout-header nav {
@@ -206,9 +206,7 @@ nb-window.full-screen-height {
   }
 }
 
-.padding-0 {
-  padding: 0 !important;
-}
+
 
 .hide-mobile {
   @media screen and (max-width: 800px){

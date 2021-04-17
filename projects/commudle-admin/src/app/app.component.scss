@@ -1,87 +1,97 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+.home-navbar {
+  width: 100vw;
 
-:host {
   nb-layout-header {
-    .container {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      .menu-left-container {
-        display: flex;
-        align-items: center;
-        .sidebar-toggle {
-          font-size: 1.5rem;
-          cursor: pointer;
-          color: grey;
-          position: relative;
-          fa-icon {
-            vertical-align: sub;
-            &:hover{
-              transform: rotate(25deg);
+    &::ng-deep {
+      nav {
+        padding: $space-8 $space-16;
+        justify-content: space-between;
+      }
+    }
+
+    .home-navbar-logo {
+      max-width: 3rem;
+      min-width: 3rem;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .home-navbar-container {
+      width: 1120px;
+
+      app-search-bar {
+        flex: 1;
+      }
+
+      .home-navbar-menu {
+        .home-navbar-menu-user {
+          margin-left: $space-16;
+
+          .menu-user-avatar {
+            width: 45px;
+            height: 45px;
+          }
+
+          .menu-user-options {
+            gap: $space-8;
+
+            button {
+              padding: $space-8 $space-12;
+              text-transform: capitalize;
+              font-size: $fs-h5;
+              font-weight: 400;
+              border: 0.5px solid $neon-blue;
             }
-          }
 
-        }
+            .menu-login {
+              color: $neon-blue;
+              background-color: $white;
+            }
 
-        .main-logo {
-          display: flex;
-          align-items: center;
-          margin-left: 0.8rem;
+            .menu-signup {
+              color: $white;
+              background-color: $neon-blue;
+            }
 
-          img {
-            width: 35px;
-          }
-          @media screen and (max-width: 640px) {
-            p {
+            .menu-login-signup {
               display: none;
             }
           }
-
-          p{
-            font-size: 1rem;
-            color: #4481ff;
-            margin: 0 0.5rem;
-
-          }
         }
       }
+    }
 
-      .menu-right-container {
-        display: flex;
+    .home-sidebar {
+      margin-left: $space-8;
+
+      fa-icon {
+        font-size: 1.25rem;
       }
     }
   }
 
-  nb-layout-footer
-  {
-    ::ng-deep
-    {
+  nb-layout-footer {
+    &::ng-deep {
       nav {
         flex-direction: column;
-        background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+        background-image: linear-gradient(266deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
         overflow: hidden;
         padding: 0 !important;
       }
     }
 
-
     .footer {
       padding: 30px 40px 15px;
 
-      a, p {
-        font-family: $primary-font-family !important;
-      }
-
       .page-links {
-        display: flex;
-        flex-direction: column;
-
         .logo {
           img {
             width: 50px;
             filter: brightness(5);
-
           }
         }
 
@@ -90,15 +100,18 @@
           flex-direction: row;
           justify-content: space-between;
           flex-wrap: wrap;
-          &>div {
+
+          & > div {
             display: flex;
             flex-direction: column;
             width: 50%;
             margin: 15px 0;
+
             a {
+              letter-spacing: 0.5px;
               text-decoration: none;
-              color: white;
-              font-weight: 900;
+              color: $white;
+              font-weight: 600;
               font-size: 12px;
             }
           }
@@ -113,12 +126,9 @@
         }
       }
 
-
       .social-links {
         margin-top: 16px;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
+
         hr {
           border-top: 1px solid white;
           width: 65px;
@@ -126,15 +136,16 @@
 
         .links {
           display: flex;
+
           nb-icon {
-            color: white;
+            color: $white;
             font-size: 24px;
             margin: 8px;
           }
         }
 
         .tech-stack {
-          color: #f5f5f5;
+          color: $cultured;
           display: none;
         }
       }
@@ -142,20 +153,16 @@
       .ellipse-large, .ellipse-small {
         visibility: hidden;
       }
-
     }
   }
 
-  @media only screen and (min-width: $mobile-width)
-  {
-    nb-layout-footer
-    {
-      ::ng-deep
-      {
+  @media all and (min-width: $mobile-width) {
+    nb-layout-footer {
+      &::ng-deep {
         nav {
           display: flex;
           flex-direction: column;
-          background-image: linear-gradient(265.99deg, #3DAAFA 14.24%, #536EFF 98.56%);
+          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
         }
       }
 
@@ -175,6 +182,7 @@
 
           .logo {
             width: 30%;
+
             img {
               width: 100px;
             }
@@ -183,7 +191,8 @@
           .links {
             width: 70%;
             justify-content: space-around;
-            &>div {
+
+            & > div {
               width: unset;
             }
 
@@ -200,6 +209,7 @@
         .social-links {
           width: 60%;
           flex-direction: column;
+
           hr {
             width: 100%;
           }
@@ -215,37 +225,104 @@
 
           .tech-stack {
             display: block;
-            text-align: center;
+
             p {
               margin: 0;
-              color: white;
+              color: $white;
             }
           }
         }
-
 
         .ellipse-large {
           visibility: visible;
           width: 160px;
           height: 155px;
-          background: linear-gradient(226.61deg, #536EFF 14.04%, rgba(114, 193, 255, 0.71) 73.46%);
+          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
           border-radius: 50%;
-          position:absolute;
+          position: absolute;
           left: -40px;
           bottom: -30px;
         }
 
-        .ellipse-small
-        {
+        .ellipse-small {
           visibility: visible;
           width: 140px;
           height: 135px;
           left: 70px;
           bottom: -70px;
           transform: rotate(45deg);
-          background: linear-gradient(226.61deg,#536eff 14.04%,rgba(114,193,255,.71) 73.46%);
+          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, .71) 73.46%);
           border-radius: 100px 100px 100px 100px;
           position: absolute;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .home-navbar {
+    &::ng-deep {
+      .layout {
+        nav {
+          padding: $space-8 !important;
+        }
+
+        .layout-container {
+          padding-top: 3rem;
+        }
+      }
+    }
+
+    nb-layout-header {
+      .home-navbar-logo {
+        max-width: 2rem;
+        min-width: 2rem;
+      }
+
+      .home-navbar-container {
+        margin-left: $space-8;
+      }
+
+      .home-navbar-search {
+        margin: 0 $space-8;
+        width: 100%;
+      }
+
+      .home-navbar-menu {
+        .home-navbar-menu-user {
+          margin-left: $space-8 !important;
+
+          .menu-user-avatar {
+            width: 35px !important;
+
+            &::ng-deep {
+              .user-picture {
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+          }
+
+          .menu-user-options {
+            gap: $space-4;
+
+            button {
+              width: 92px;
+              padding: $space-4 $space-8;
+              font-size: $fs-h6;
+            }
+
+            .menu-login, .menu-signup {
+              display: none;
+            }
+
+            .menu-login-signup {
+              display: block;
+              color: $neon-blue;
+              background-color: $white;
+            }
+          }
         }
       }
     }

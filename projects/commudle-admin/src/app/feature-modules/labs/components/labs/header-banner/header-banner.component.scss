@@ -14,7 +14,6 @@
         padding: $space-8 0;
         font-size: 1.1rem;
         font-weight: 600;
-        font-family: $primary-font-family;
         color: $gunmetal;
         text-align: center;
         border-bottom: none;
@@ -53,7 +52,6 @@
 
               .event-details {
                 color: $gunmetal;
-                font-family: $primary-font-family;
                 width: 100%;
 
                 .event-name {

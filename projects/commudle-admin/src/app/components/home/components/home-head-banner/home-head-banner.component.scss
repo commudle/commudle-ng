@@ -1,0 +1,68 @@
+@import "/projects/commudle-admin/src/assets/styles/variables.scss";
+
+.head-banner {
+  p, a, h1 {
+    font-family: $primary-font-family;
+  }
+
+  border: none;
+  border-radius: $border-10;
+
+  section.header {
+    .logo {
+      width: 200px;
+      line-height: 15px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    h1 {
+      margin: 0 0 0 49px;
+      font-size: $fs-card-title;
+      line-height: calc(1 * #{$fs-card-title});
+      font-weight: $fw-500;
+    }
+  }
+
+  section.content {
+    margin-top: $space-36;
+
+    a {
+      width: 100%;
+      margin: $space-4 0;
+      text-decoration: none;
+
+      nb-card {
+        border-radius: $border-10;
+        margin: 0;
+
+        nb-card-body {
+          padding: 0;
+
+          div.header {
+            padding: $space-12;
+
+            p {
+              margin: 0 0 0 $space-8;
+
+              small {
+                nb-icon {
+                  font-size: $fs-card-secondary;
+                  font-weight: $fw-400;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  section.footer {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
