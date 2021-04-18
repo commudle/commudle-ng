@@ -1,6 +1,7 @@
 export interface ISingleExternalFeed {
   id: number;
   details: Details;
+  messages_count: number;
 }
 
 interface Details {

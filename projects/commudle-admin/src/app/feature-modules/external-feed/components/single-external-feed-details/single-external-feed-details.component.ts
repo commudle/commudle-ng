@@ -1,12 +1,11 @@
 import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import * as moment from 'moment';
-import {NbWindowService} from '@nebular/theme';
+import {NbWindowService, NbDialogService, NbSidebarService} from '@nebular/theme';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ISingleExternalFeed} from 'projects/shared-models/single-external-feed.model';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
-import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
-
+import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-single-external-feed-details',
@@ -16,45 +15,42 @@ import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
 export class SingleExternalFeedDetailsComponent implements OnInit {
 
 	@ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
+	@ViewChild('dialog') private dialog: any;
 	moment = moment;
 	sourceImagePath: string;
 	@Input() feedItem: ISingleExternalFeed;
-	@Input() showComments: boolean;
 	discussionChat: IDiscussion;
-	teammates: IUserRolesUser[] = [];
 	hasIframe = false;
 	embedCode: any;
 	currImage = null;
+	messagesCount: number;
+	window: Window = window;
 
 	constructor(
 		private windowService: NbWindowService,
 		private discussionsService: DiscussionsService,
+		private dialogService: NbDialogService,
+    	private footerService: FooterService,
 		private sanitizer: DomSanitizer) { }
 
 	ngOnInit() {
 		this.sourceImagePath = "/assets/images/".concat(this.feedItem.details.source.concat(".png"));
-		// this.getDiscussionChat();
-		// if (this.feedItem.link.startsWith('<iframe') && this.feedItem.link.endsWith('</iframe>')) {
-		//   this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.feedItem.link);
-		// } else {
-		//   this.embedCode = null;
-		// }
-	}
-
-	openImage(title, image) {
-		// this.currImage = image;
-		// this.windowService.open(
-		//   this.imageTemplate,
-		//   {
-		//     title,
-		//   },
-		// );
+		this.getDiscussionChat();
 	}
 
 	getDiscussionChat() {
-		this.discussionsService.pGetOrCreateForCommunityBuildChat(this.feedItem.id).subscribe(
-		  data => this.discussionChat = data
-		);
+		this.discussionsService.pGetOrCreateForFeedItemChat(this.feedItem.id).subscribe(data => this.discussionChat = data);
 	}
 
+	getMessagesCount(count: number) {
+		this.messagesCount = count;
+	}
+
+	scrollToTop() {
+		window.scrollTo({top: 0, behavior: 'smooth'});
+	}
+
+	scroll(el: HTMLElement) {
+		el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+	}
 }

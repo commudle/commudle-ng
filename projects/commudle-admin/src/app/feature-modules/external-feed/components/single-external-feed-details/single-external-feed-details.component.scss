@@ -57,13 +57,13 @@
        }
 
        h3.name {
-            color: black;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-size: 1.5rem;
-            line-height: normal;
-            }
+         color: black;
+         margin-top: 15px;
+         margin-bottom: 15px;
+         font-weight: 600;
+         font-size: 1.5rem;
+         line-height: normal;
+       }
 
        .tags {
          font-size: 0.875rem;
@@ -94,16 +94,20 @@
    }
 
    .comments {
-    border-top: 1px solid lightgrey;
-    padding: 1rem 1.5rem;
-    margin: 1rem 0;
-    height: 35vh;
-    min-height: 400px;
+     border-top: 1px solid lightgrey;
+     padding: 1rem 1.5rem;
+     margin: 1rem 0;
+     height: 35vh;
+     min-height: 400px;
 
-    > p {
-      margin: 0 0 1rem;
-      font-size: 1.3rem;
-      font-weight: 300;
-    }
-  }
+     >p {
+       margin: 0 0 1rem;
+       font-size: 1.3rem;
+       font-weight: 300;
+     }
+   }
+
+   .feed-discussion {
+     margin: $space-32 0 $space-64;
+   }
  }

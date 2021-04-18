@@ -1,0 +1,42 @@
+<nb-card class="discussion">
+  <nb-card-header>
+    Discussion
+  </nb-card-header>
+  <nb-card-body>
+    <div class="discussion-chat-component">
+      <div class="send-message-form">
+        <form (ngSubmit)="sendMessage()" *ngIf="currentUser" [formGroup]="chatMessageForm">
+          <nb-form-field>
+            <nb-icon icon="edit-2" nbPrefix></nb-icon>
+            <textarea #messageInput (input)="handleInputSize()" formControlName="content" fullWidth maxlength="1000"
+                      minlength="1" nbInput placeholder="Share Your Thoughts" rows="1" shape="semi-round"></textarea>
+            <button [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)" ghost nbButton
+                    nbSuffix shape="semi-round" status="primary" type="submit">
+              Post
+              <nb-icon icon="paper-plane-outline"></nb-icon>
+            </button>
+          </nb-form-field>
+        </form>
+        <button (click)="login()" *ngIf="!currentUser" fullWidth nbButton status="primary">
+          Post a Message
+        </button>
+      </div>
+      <div #messagesContainer class="messages">
+        <div>
+          <div *ngFor="let um of messages">
+            <app-feed-discussion-message
+              (sendDelete)="delete($event)"
+              (sendFlag)="sendFlag($event)"
+              (sendReply)="sendReply($event, um.id)"
+              [allActions]="allActions"
+              [canReply]="true"
+              [currentUser]="currentUser"
+              [message]="um"
+              [permittedActions]="permittedActions">
+            </app-feed-discussion-message>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
