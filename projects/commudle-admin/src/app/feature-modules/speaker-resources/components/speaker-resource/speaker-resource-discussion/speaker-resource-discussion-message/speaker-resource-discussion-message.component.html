@@ -27,9 +27,9 @@
         </div>
         <div>
           <p>
-            <!-- <app-votes-display [icon]="'heart'" [size]="'small'" [votableId]="message.id"
+            <app-votes-display [icon]="'heart'" [size]="'small'" [votableId]="message.id"
                                [votableType]="'UserMessage'"></app-votes-display>
-          </p> -->
+          </p>
         </div>
         <div (click)="toggleReplyForm()" *ngIf="permittedActions.includes(allActions.ADD) && canReply"
              class="clickable">
