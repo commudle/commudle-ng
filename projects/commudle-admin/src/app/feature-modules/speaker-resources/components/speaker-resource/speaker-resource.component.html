@@ -44,9 +44,18 @@
         </div>
       </div>
     </nb-card>
-    <nb-card class="comments">
-      <app-speaker-resource-discussion *ngIf="discussionChat" [discussion]="discussionChat">
-      </app-speaker-resource-discussion>
-    </nb-card>
+    <div #discussionChatContainer class="speaker-resource-discussion">
+      <nb-card class="comments">
+        <app-speaker-resource-discussion *ngIf="discussionChat" [discussion]="discussionChat">
+        </app-speaker-resource-discussion>
+      </nb-card>
+    </div>
+  </div>
+  <div class="interactions">
+    <app-votes-display [icon]="'heart-outline'" [votableId]="speaker.id"></app-votes-display>
+    <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+      <nb-icon icon="message-circle-outline"></nb-icon>
+      {{messagesCount}}
+    </div>
   </div>
 </div>

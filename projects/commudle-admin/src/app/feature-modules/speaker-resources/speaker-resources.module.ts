@@ -1,3 +1,4 @@
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbCardModule, NbLayoutModule, NbUserModule} from '@nebular/theme';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ import { SpeakerResourceDiscussionMessageComponent } from './components/speaker-
     CommonModule,
     SpeakerResourcesRoutingModule,
     ReactiveFormsModule,
+    SharedComponentsModule,
 
 
 

@@ -40,9 +40,13 @@ export class SpeakerResourceComponent implements OnInit {
   getSpeaker(speaker_id) {
     this.speakerResourcesService.getDetails(speaker_id).subscribe((data) => {
       this.speaker = data;
-      console.log(this.speaker);
     });
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+  }
+
   getMessagesCount(count: number) {
     this.messagesCount = count;
   }
