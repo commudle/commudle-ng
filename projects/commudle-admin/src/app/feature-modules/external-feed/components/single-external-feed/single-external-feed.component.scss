@@ -1,3 +1,5 @@
+ @import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .single-external-feed {
   width: 100%;
 
@@ -15,4 +17,8 @@
       padding: 3px;
     }
   }
+
+  .feed-discussion {
+     margin: $space-32 0 $space-64;
+   }
 }
