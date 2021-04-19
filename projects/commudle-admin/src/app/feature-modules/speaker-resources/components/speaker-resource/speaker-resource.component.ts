@@ -2,25 +2,27 @@ import { DiscussionsService } from "projects/commudle-admin/src/app/services/dis
 import { IDiscussion } from "./../../../../../../../shared-models/discussion.model";
 import { ISpeakerResource } from "projects/shared-models/speaker_resource.model";
 import * as moment from "moment";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { SpeakerResourcesService } from "projects/commudle-admin/src/app/services/speaker-resources.service";
 import { ActivatedRoute } from "@angular/router";
 import { ICommunity } from "projects/shared-models/community.model";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-speaker-resource",
   templateUrl: "./speaker-resource.component.html",
   styleUrls: ["./speaker-resource.component.scss"],
 })
-export class SpeakerResourceComponent implements OnInit {
+export class SpeakerResourceComponent implements OnInit, OnDestroy {
   speaker: ISpeakerResource;
-  speaker_id;
   moment = moment;
   community: ICommunity;
 
   discussion: IDiscussion;
   discussionChat: IDiscussion;
   messagesCount: number;
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,16 +31,22 @@ export class SpeakerResourceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.speaker_id = this.activatedRoute.snapshot.params[
-      "speaker_resource_id"
-    ];
-    this.activatedRoute.parent.data.subscribe((data) => {
-      this.getSpeaker(this.speaker_id);
-      this.getDiscussionChat();
-    });
+
+    this.subscriptions.push(this.activatedRoute.params.subscribe((params) => {
+      let speakerId = params["speaker_resource_id"];
+      this.getSpeaker(speakerId);
+      this.getDiscussionChat(speakerId);
+    }));
   }
-  getSpeaker(speaker_id) {
-    this.speakerResourcesService.getDetails(speaker_id).subscribe((data) => {
+
+  ngOnDestroy() {
+    for (let sub of this.subscriptions) {
+      sub.unsubscribe();
+    }
+  }
+
+  getSpeaker(speakerId) {
+    this.speakerResourcesService.getDetails(speakerId).subscribe((data) => {
       this.speaker = data;
     });
   }
@@ -50,9 +58,9 @@ export class SpeakerResourceComponent implements OnInit {
   getMessagesCount(count: number) {
     this.messagesCount = count;
   }
-  getDiscussionChat() {
+  getDiscussionChat(speakerId) {
     this.discussionService
-      .pGetOrCreateForSpeakerResourceChat(this.speaker_id)
+      .pGetOrCreateForSpeakerResourceChat(speakerId)
       .subscribe((data) => (this.discussionChat = data));
   }
 }
