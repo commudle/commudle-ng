@@ -1,15 +1,21 @@
 <div [routerLink]="['/feed', feedItem.id]" class="single-external-feed-details">
   <nb-card>
     <nb-card-body>
-      <div class="image" *ngIf="feedItem.details.image.length > 0 ">
-        <img src="{{ feedItem.details.image }}" alt="{{ feedItem.details.source }}">
+      <div class="image" *ngIf="feedItem.details.image.length > 0">
+        <img
+          src="{{ feedItem.details.image }}"
+          alt="{{ feedItem.details.source }}"
+        />
       </div>
-      <div class="source-details">
+      <div class="source-details d-flex align-items-center">
         <div class="external-feed-post-source-image d-flex align-items-center">
-          <img alt="{{ feedItem.details.source }}" src="{{ sourceImagePath }}">
+          <img
+            alt="{{ feedItem.details.source }}"
+            src="{{ sourceImagePath }}"
+          />
         </div>
         <div class="source-info">
-          <em> {{ feedItem.details.source}} </em> <br>
+          <em> {{ feedItem.details.source }} </em> <br />
           <small> {{ feedItem.details.created_at.substr(0, 10) }} </small>
         </div>
       </div>
@@ -21,15 +27,28 @@
       <div class="tags" *ngFor="let tag of feedItem.details.tags">
         <span class="tag-hash">#</span> {{ tag.name }}
       </div>
+      <p>
+        Visit the post at:
+        <a href="{{ feedItem.details.link }}">
+          {{ feedItem.details.source }}
+        </a>
+      </p>
       <div class="stats d-flex align-items-center">
         <p class="stars">
-          <app-votes-display [votableType]="'FeedItem'" [votableId]="feedItem.id" [icon]="'heart'">
+          <app-votes-display
+            [votableType]="'FeedItem'"
+            [votableId]="feedItem.id"
+            [icon]="'heart'"
+          >
           </app-votes-display>
         </p>
       </div>
     </nb-card-body>
   </nb-card>
   <div class="feed-discussion">
-    <app-feed-discussion *ngIf="discussionChat" [discussion]="discussionChat"></app-feed-discussion>
+    <app-feed-discussion
+      *ngIf="discussionChat"
+      [discussion]="discussionChat"
+    ></app-feed-discussion>
   </div>
 </div>
