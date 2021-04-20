@@ -20,141 +20,53 @@
       }
     }
 
-    .home-navbar-search {
-      width: 40rem;
-      margin: 0 $space-24;
-      position: relative;
+    .home-navbar-container {
+      width: 1120px;
 
-      .home-navbar-search-form {
-        max-width: 100%;
-
-        &::ng-deep {
-          .nb-form-field-prefix-medium {
-            color: $gunmetal;
-            height: 2rem;
-          }
-        }
-
-        input {
-          height: 2.5rem;
-          max-width: 100%;
-          border: none;
-          border-radius: 0;
-          background-color: $light-purple;
-
-          &::placeholder {
-            color: rgba($gunmetal, 0.7);
-          }
-        }
+      app-search-bar {
+        flex: 1;
       }
 
-      .home-navbar-search-suffix {
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: 2;
-        box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.25);
+      .home-navbar-menu {
+        .home-navbar-menu-user {
+          margin-left: $space-16;
 
-        .home-navbar-search-results {
-          height: 0;
-          overflow: auto;
-          background-color: $light-purple;
-          transition: all 0.3s ease-in-out;
-
-          .placeholder-text {
-            width: 100%;
-            height: 100%;
-            font-size: 1rem;
-            color: rgba($gunmetal, 0.6);
-            margin: 0;
-            padding: 0 $space-16;
+          .menu-user-avatar {
+            width: 45px;
+            height: 45px;
           }
 
-          .home-navbar-search-result {
-            padding: 0 0 $space-8;
+          .menu-user-options {
+            gap: $space-8;
 
-            .search-result-heading {
-              padding: $space-8 $space-8 $space-4;
+            button {
+              padding: $space-8 $space-12;
               text-transform: capitalize;
-              font-weight: 600;
+              font-size: $fs-h5;
+              font-weight: 400;
+              border: 0.5px solid $neon-blue;
             }
 
-            .search-result-name {
-              padding: $space-4 $space-16;
-              transition: all 0.2s ease-in-out;
-
-              &:hover {
-                background-color: darken($light-purple, 3%);
-              }
+            .menu-login {
+              color: $neon-blue;
+              background-color: $white;
             }
-          }
 
-          // Custom scrollbar
-          &::-webkit-scrollbar {
-            width: 12px;
-          }
+            .menu-signup {
+              color: $white;
+              background-color: $neon-blue;
+            }
 
-          &::-webkit-scrollbar-track {
-            background-color: transparent;
-          }
-
-          &::-webkit-scrollbar-thumb {
-            background-color: darken($light-purple, 5%);
-            border-radius: $border-10;
-            border: 3px solid transparent;
-            background-clip: content-box;
-          }
-
-          &::-webkit-scrollbar-thumb:hover {
-            background-color: darken($light-purple, 8%);
-          }
-        }
-
-        .home-navbar-search-results.active {
-          height: 30vh;
-        }
-      }
-    }
-
-    .home-navbar-menu {
-      .home-navbar-menu-user {
-        margin-left: $space-16;
-
-        .menu-user-avatar {
-          width: 45px;
-          height: 45px;
-        }
-
-        .menu-user-options {
-          gap: $space-8;
-
-          button {
-            padding: $space-8 $space-12;
-            text-transform: capitalize;
-            font-size: $fs-h5;
-            font-weight: 400;
-            border: 0.5px solid $neon-blue;
-          }
-
-          .menu-login {
-            color: $neon-blue;
-            background-color: $white;
-          }
-
-          .menu-signup {
-            color: $white;
-            background-color: $neon-blue;
-          }
-
-          .menu-login-signup {
-            display: none;
+            .menu-login-signup {
+              display: none;
+            }
           }
         }
       }
     }
 
     .home-sidebar {
-      margin-left: $space-16;
+      margin-left: $space-8;
 
       fa-icon {
         font-size: 1.25rem;
@@ -368,6 +280,10 @@
         min-width: 2rem;
       }
 
+      .home-navbar-container {
+        margin-left: $space-8;
+      }
+
       .home-navbar-search {
         margin: 0 $space-8;
         width: 100%;
@@ -375,11 +291,10 @@
 
       .home-navbar-menu {
         .home-navbar-menu-user {
-          margin-left: 0;
+          margin-left: $space-8 !important;
 
           .menu-user-avatar {
-            width: 2rem;
-            height: 2rem;
+            width: 35px !important;
 
             &::ng-deep {
               .user-picture {

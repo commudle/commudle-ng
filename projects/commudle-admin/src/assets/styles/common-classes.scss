@@ -115,6 +115,13 @@
   padding-bottom: $space-12;
 }
 
+// padding
+.padding-0 {
+  padding: 0 !important;
+}
+
+
+
 // animations
 .anim-shadow {
   transition: all 0.3s ease-in-out;
