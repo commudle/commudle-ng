@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {FeedDiscussionMessageComponent} from './feed-discussion-message.component';
 
-describe('LabDiscussionMessageComponent', () => {
+describe('FeedDiscussionMessageComponent', () => {
   let component: FeedDiscussionMessageComponent;
   let fixture: ComponentFixture<FeedDiscussionMessageComponent>;
 

@@ -23,20 +23,13 @@
       </div>
       <div class="stats d-flex align-items-center">
         <p class="stars">
-          <app-votes-display [votableType]="'ISingleExternalFeed'" [votableId]="feedItem.id" [icon]="'heart'">
+          <app-votes-display [votableType]="'FeedItem'" [votableId]="feedItem.id" [icon]="'heart'">
           </app-votes-display>
         </p>
-        <!-- <p class="comments" [routerLink]="['/feed', feedItem.id]">
-          <span *ngIf="feedItem.messages_count > 0">
-            {{ feedItem.messages_count }}
-          </span>
-          <nb-icon icon="message-circle-outline"></nb-icon>
-        </p> -->
       </div>
     </nb-card-body>
   </nb-card>
   <div class="feed-discussion">
-    <app-feed-discussion *ngIf="discussionChat" [discussionChat]="discussionChat">
-    </app-feed-discussion>
+    <app-feed-discussion *ngIf="discussionChat" [discussion]="discussionChat"></app-feed-discussion>
   </div>
 </div>

@@ -26,15 +26,12 @@
           <app-votes-display [votableType]="'ISingleExternalFeed'" [votableId]="feedItem.id" [icon]="'heart'">
           </app-votes-display>
         </p>
-        <nb-icon icon="message-circle-outline"></nb-icon>
-        5
-        <!--
         <p class="comments" [routerLink]="['/feed', feedItem.id]">
-          <span>
-            5
+          <span *ngIf="feedItem.messages_count > 0">
+            {{ feedItem.messages_count }}
           </span>
           <nb-icon icon="message-circle-outline"></nb-icon>
-        </p> -->
+        </p>
       </div>
     </nb-card-body>
   </nb-card>

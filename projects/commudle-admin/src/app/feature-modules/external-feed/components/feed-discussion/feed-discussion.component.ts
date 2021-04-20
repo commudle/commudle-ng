@@ -18,7 +18,7 @@ import {DiscussionChatChannel} from 'projects/shared-components/services/websock
 })
 export class FeedDiscussionComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() discussionChat: IDiscussion;
+  @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
   @Output() messagesCount: EventEmitter<number> = new EventEmitter<number>();
 
@@ -30,7 +30,7 @@ export class FeedDiscussionComponent implements OnInit, OnDestroy, OnChanges {
   pageSize = 10;
   currentPageNumber = 1;
   showReplyForm = 0;
-  allActions;FeedDiscussionChatChannel
+  allActions;
   chatMessageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]]
   });
@@ -62,7 +62,7 @@ export class FeedDiscussionComponent implements OnInit, OnDestroy, OnChanges {
       this.pageSize = 10;
       this.currentPageNumber = 1;
       this.discussionChatChannel.unsubscribe();
-      this.discussionChatChannel.subscribe(`${this.discussionChat.id}`);
+      this.discussionChatChannel.subscribe(`${this.discussion.id}`);
       this.allActions = this.discussionChatChannel.ACTIONS;
       // Get all discussion messages
       this.getDiscussionMessages();
@@ -83,7 +83,7 @@ export class FeedDiscussionComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getDiscussionMessages() {
-    this.userMessagesService.pGetDiscussionChatMessages(this.discussionChat.id, this.currentPageNumber, this.pageSize).subscribe(data => {
+    this.userMessagesService.pGetDiscussionChatMessages(this.discussion.id, this.currentPageNumber, this.pageSize).subscribe(data => {
       if (data.user_messages.length === 0) {
         this.messagesCount.emit(this.messages.length);
       } else {
