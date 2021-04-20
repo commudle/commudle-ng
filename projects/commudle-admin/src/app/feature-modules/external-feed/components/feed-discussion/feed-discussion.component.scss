@@ -6,8 +6,8 @@
   margin: $space-16;
 
   nb-card-header {
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 17.6px;
+    font-weight: $fw-500;
     color: $gunmetal;
   }
 
@@ -32,7 +32,7 @@
             }
 
             .nb-form-field-suffix-medium {
-              margin: 0 0 auto -4.35rem;
+              margin: 0 0 auto -69.6px;
 
               button {
                 text-transform: capitalize;

@@ -4,7 +4,7 @@
       <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
     </div>
     <div class="content-controls">
-      <div class="author-details">
+      <div class="author-details d-flex justify-content-space-between">
         <p [routerLink]="['/users', message.user.username]" class="author-name clickable">{{message.user.name}}</p>
         <p class="message-date">{{moment(message.created_at).format("MMM D [']YY")}}</p>
       </div>

@@ -10,13 +10,11 @@
     width: 100%;
 
     .author-details {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.3rem;
+      margin-bottom: 4.8px;
 
       .author-name {
         margin: 0;
-        font-weight: 600;
+        font-weight: $fw-600;
         text-transform: capitalize;
 
         &:hover {
@@ -40,7 +38,7 @@
       align-items: flex-start;
 
       nb-icon {
-        font-size: 1rem;
+        font-size: $fs-16;
         color: #8080808C;
       }
 
@@ -80,7 +78,7 @@
         }
 
         .nb-form-field-suffix-medium {
-          margin: 0 0 auto -4.35rem;
+          margin: 0 0 auto -69.6px;
 
           button {
             text-transform: capitalize;
