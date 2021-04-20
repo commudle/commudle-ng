@@ -76,7 +76,7 @@ export class DiscussionsService {
   }
 
   pGetOrCreateForFeedItemChat(id): Observable<IDiscussion> {
-    const params = new HttpParams().set('id', id);
+    const params = new HttpParams().set('feed_item_id', id);
     return this.http.get<IDiscussion>(
       this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT),
       { params }

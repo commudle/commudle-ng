@@ -39,7 +39,8 @@ export class SingleExternalFeedDetailsComponent implements OnInit {
 	}
 
 	getDiscussionChat() {
-		this.discussionsService.pGetOrCreateForFeedItemChat(this.feedItem.id).subscribe(data => this.discussionChat = data);
+		this.discussionsService.pGetOrCreateForFeedItemChat(this.feedItem.id).subscribe(
+			data => this.discussionChat=data)
 	}
 
 	getMessagesCount(count: number) {
