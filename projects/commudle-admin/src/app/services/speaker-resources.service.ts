@@ -22,7 +22,7 @@ export class SpeakerResourcesService {
   getDetails(speakerResourceId): Observable<ISpeakerResource> {
     const params = new HttpParams().set('speaker_resource_id', speakerResourceId);
     return this.http.get<ISpeakerResource>(
-      this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.SHOW_BY_TOKEN), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.SHOW), {params}
     );
   }
 

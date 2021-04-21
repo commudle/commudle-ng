@@ -1,4 +1,61 @@
 <!-- this will have all the details of the speaker resource + user's mini details card + comments component -->
 <!-- user's mini details card would be a component imported from feature-modules/users -->
 <!-- comments component will be a new component, will be a copy of comments from labs -->
-<div></div>
+<div class="speaker-resources wrapper d-flex flex-row page-padding" *ngIf="speaker">
+  <nb-card class="left-wrapper">
+    <div class="left-column align-items-center flex-column justify-content-center d-flex ">
+      <div class="speaker-image">
+        <img src="{{ speaker.user.avatar }}" alt="">
+      </div>
+      <div class="speaker align-items-center flex-column justify-content-center d-flex">
+        <h5>{{ speaker.user.name }}</h5>
+      </div>
+      <div class="designation">
+        <p>{{ speaker.user.designation}}</p>
+      </div>
+    </div>
+  </nb-card>
+  <div class="speaker-resource-container">
+    <nb-card class="right-wrapper">
+      <div class="right-column">
+        <div class="content-title">
+          <h1>{{speaker.title }}</h1>
+        </div>
+        <div class="content-description">
+          <div>
+            <p>
+              At
+              <strong>
+                <a [routerLink]="['/communities', speaker.event.kommunity_slug, 'events', speaker.event.slug]">
+                  {{ speaker.event.name }}
+                </a>
+              </strong>
+            </p>
+            <p class="timestamp">
+              <nb-icon icon="clock-outline"></nb-icon>
+              {{ moment(speaker.event.start_time).format('dddd Do MMM, YYYY') }}
+            </p>
+          </div>
+          <div class="content">
+            <div class="session-details" *ngIf="speaker.session_details_links"
+              [innerHTML]="speaker.session_details_links"></div>
+            <div class="embedded-content" *ngIf="speaker.embedded_content" [innerHTML]="speaker.embedded_content"></div>
+          </div>
+        </div>
+      </div>
+    </nb-card>
+    <div #discussionChatContainer class="speaker-resource-discussion">
+      <nb-card class="comments">
+        <app-speaker-resource-discussion *ngIf="discussionChat" [discussion]="discussionChat">
+        </app-speaker-resource-discussion>
+      </nb-card>
+    </div>
+  </div>
+  <div class="interactions">
+    <app-votes-display [icon]="'heart-outline'" [votableId]="speaker.id"></app-votes-display>
+    <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+      <nb-icon icon="message-circle-outline"></nb-icon>
+      {{messagesCount}}
+    </div>
+  </div>
+</div>

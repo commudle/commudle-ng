@@ -45,6 +45,7 @@
       .community-social-links {
         display: flex;
         justify-content: space-evenly;
+        margin-top: $space-20;
 
         a {
           text-decoration: none;
@@ -73,6 +74,8 @@
 
         .community-social-links {
           justify-content: flex-start;
+          margin-top: $space-10;
+
 
           a {
             nb-icon {
@@ -91,7 +94,7 @@
   //width: 100%;
   //bottom: 0;
   //left: 0;
-  //z-index: 10;
+  z-index: 10;
   //box-shadow: 2px -5px 15px -7px lightgrey;
 
   nb-card {
@@ -104,6 +107,7 @@
     overflow-x: auto;
     width: 100%;
     justify-content: space-evenly;
+
 
     a {
       cursor: pointer;

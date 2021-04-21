@@ -1,0 +1,96 @@
+@import "/projects/commudle-admin/src/assets/styles/variables";
+.wrapper {
+  .left-wrapper {
+    width: 200px;
+    height: fit-content;
+    min-width: 150px;
+    margin-left: $space-20;
+  }
+  .right-wrapper {
+    margin-right: $space-40;
+    margin-left: $space-32;
+    padding: 0 $space-20 $space-20 0;
+  }
+
+  .right-column {
+    margin-left: $space-32;
+  }
+  .speaker-image {
+    height: 80px;
+    width: 80px;
+    margin-top: $space-10;
+  }
+  img {
+    width: 100%;
+  }
+  .timestamp {
+    font-size: 0.8rem;
+  }
+  .speaker-resource-container {
+    width: 100%;
+  }
+
+  .speaker {
+    width: 100%;
+    padding-top: $space-20;
+
+    h5 {
+      margin: 0;
+      text-align: center;
+    }
+  }
+  .designation {
+    p {
+      margin: 0;
+      text-align: center;
+      padding-bottom: $space-10;
+    }
+  }
+
+  .comments {
+    margin-left: $space-32;
+    margin-right: $space-40;
+  }
+
+  .interactions {
+    display: block;
+    width: max-content;
+    height: fit-content;
+    margin-left: $space-16;
+    position: sticky;
+    top: 50vh;
+
+    app-votes-display {
+      direction: rtl;
+
+      &::ng-deep {
+        p {
+          font-size: 1.5rem;
+
+          span {
+            color: $neon-blue;
+          }
+
+          nb-icon {
+            font-size: 1.5rem;
+
+            &:not(.voted-heart) {
+              color: $neon-blue;
+            }
+          }
+        }
+      }
+    }
+
+    .discussion {
+      margin: $space-24 0 0;
+      font-size: 1.5rem;
+      color: $neon-blue;
+
+      nb-icon {
+        font-size: 1.5rem;
+        color: $neon-blue;
+      }
+    }
+  }
+}
