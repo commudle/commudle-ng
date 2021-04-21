@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div (click)="toggleSidebar()" class="home-sidebar clickable">
+    <div (click)="toggleSidebar()" class="home-sidebar text-right clickable">
       <fa-icon [icon]="faBars"></fa-icon>
       <nb-badge *ngIf="sideBarState == 'collapsed' && sideBarNotifications == true" [position]="'top end'"
                 status="danger"></nb-badge>

@@ -66,7 +66,7 @@
     }
 
     .home-sidebar {
-      margin-left: $space-8;
+      width: 48px;
 
       fa-icon {
         font-size: 1.25rem;
@@ -282,6 +282,43 @@
 
       .home-navbar-container {
         margin-left: $space-8;
+
+        .home-navbar-menu {
+          .home-navbar-menu-user {
+            margin-left: $space-8 !important;
+
+            .menu-user-avatar {
+              width: 35px !important;
+
+              &::ng-deep {
+                .user-picture {
+                  width: 2rem;
+                  height: 2rem;
+                }
+              }
+            }
+
+            .menu-user-options {
+              gap: $space-4;
+
+              button {
+                width: 92px;
+                padding: $space-4 $space-8;
+                font-size: $fs-h6;
+              }
+
+              .menu-login, .menu-signup {
+                display: none;
+              }
+
+              .menu-login-signup {
+                display: block;
+                color: $neon-blue;
+                background-color: $white;
+              }
+            }
+          }
+        }
       }
 
       .home-navbar-search {
@@ -289,41 +326,9 @@
         width: 100%;
       }
 
-      .home-navbar-menu {
-        .home-navbar-menu-user {
-          margin-left: $space-8 !important;
-
-          .menu-user-avatar {
-            width: 35px !important;
-
-            &::ng-deep {
-              .user-picture {
-                width: 2rem;
-                height: 2rem;
-              }
-            }
-          }
-
-          .menu-user-options {
-            gap: $space-4;
-
-            button {
-              width: 92px;
-              padding: $space-4 $space-8;
-              font-size: $fs-h6;
-            }
-
-            .menu-login, .menu-signup {
-              display: none;
-            }
-
-            .menu-login-signup {
-              display: block;
-              color: $neon-blue;
-              background-color: $white;
-            }
-          }
-        }
+      .home-sidebar {
+        width: max-content;
+        margin-left: $space-8;
       }
     }
   }

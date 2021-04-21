@@ -10,7 +10,7 @@
 </ng-template>
 
 <div *ngIf="lab" class="lab page-padding">
-  <div class="body">
+  <div class="body d-flex justify-content-center">
     <nb-icon (click)="toggleDetails()" class="toggle-details" icon="bookmark"></nb-icon>
     <nb-sidebar right tag="right">
       <app-lab-details (scrollToChat)="scroll(discussionChatContainer)" (setStep)="setStep($event)"
@@ -27,12 +27,12 @@
       <app-user-object-visit-pixel [parentId]="lab.id" [parentType]="'Lab'"></app-user-object-visit-pixel>
       <nb-card>
         <nb-card-body>
-          <div *ngIf="selectedLabStep === -1" class="introduction">
+          <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
             <p class="lab-title">
               {{lab.name}}
             </p>
-            <div class="lab-detail">
-              <div class="user-profile">
+            <div class="lab-detail d-flex justify-content-space-between">
+              <div class="user-profile d-flex justify-content-start">
                 <div class="avatar">
                   <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">
                 </div>
@@ -40,7 +40,7 @@
                   <p>
                     created by
                     <span class="name">{{lab.user.name}}</span>&nbsp;
-                    <span>{{lab.created_at | date}}</span>
+                    <span class="date">{{lab.created_at | date}}</span>
                   </p>
                 </div>
               </div>
@@ -58,7 +58,7 @@
           </div>
         </nb-card-body>
         <nb-card-footer>
-          <div class="steps-navigation">
+          <div class="steps-navigation d-flex justify-content-space-between">
             <button (click)="changeStep(-1)" *ngIf="selectedLabStep != -1"
                     [routerLink]="selectedLabStep === 0 ? [] : ['steps', this.lab.lab_steps[selectedLabStep - 1].id]"
                     nbButton>

@@ -26,6 +26,15 @@
       <div *ngIf="showPlaceholder" class="placeholder-text d-flex justify-content-center align-items-center">
         Quickly search your favorite topics, labs by industry experts or find an event you missed
       </div>
+      <div *ngIf="showLoading" class="loading-text d-flex justify-content-center align-items-center">
+        <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
