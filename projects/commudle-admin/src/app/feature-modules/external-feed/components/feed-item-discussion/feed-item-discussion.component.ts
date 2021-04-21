@@ -12,11 +12,11 @@ import {Subscription} from 'rxjs';
 import {DiscussionChatChannel} from 'projects/shared-components/services/websockets/discussion-chat.channel';
 
 @Component({
-  selector: 'app-feed-discussion',
-  templateUrl: './feed-discussion.component.html',
-  styleUrls: ['./feed-discussion.component.scss']
+  selector: 'app-feed-item-discussion',
+  templateUrl: './feed-item-discussion.component.html',
+  styleUrls: ['./feed-item-discussion.component.scss']
 })
-export class FeedDiscussionComponent implements OnInit, OnDestroy, OnChanges {
+export class FeedItemDiscussionComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();

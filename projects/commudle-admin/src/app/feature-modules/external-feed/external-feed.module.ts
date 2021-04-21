@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SingleExternalFeedComponent } from './components/single-external-feed/single-external-feed.component';
+import { FeedItemComponent } from './components/feed-item/feed-item.component';
 import { ExternalFeedRoutingModule } from './external-feed-routing.module';
-import { SingleExternalFeedDetailsComponent } from './components/single-external-feed-details/single-external-feed-details.component'
+import { FeedItemDetailsComponent } from './components/feed-item-details/feed-item-details.component'
 import { ExternalFeedComponent } from './components/external-feed/external-feed.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
@@ -20,17 +20,17 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {ExternalFeedHListItemComponent} from './components/external-feed-hlist-item/external-feed-hlist-item.component';
-import {FeedDiscussionComponent} from './components/feed-discussion/feed-discussion.component';
-import {FeedDiscussionMessageComponent} from './components/feed-discussion/feed-discussion-message/feed-discussion-message.component';
+import {FeedItemDiscussionComponent} from './components/feed-item-discussion/feed-item-discussion.component';
+import {FeedItemDiscussionMessageComponent} from './components/feed-item-discussion/feed-item-discussion-message/feed-item-discussion-message.component';
 
 @NgModule({
   declarations: [
     ExternalFeedComponent,
-    SingleExternalFeedDetailsComponent,
-    SingleExternalFeedComponent,
+    FeedItemDetailsComponent,
+    FeedItemComponent,
     ExternalFeedHListItemComponent,
-    FeedDiscussionMessageComponent,
-    FeedDiscussionComponent,
+    FeedItemDiscussionMessageComponent,
+    FeedItemDiscussionComponent,
   ],
   imports: [
     CommonModule,

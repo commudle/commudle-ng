@@ -41,9 +41,9 @@
   </div>
   <div *ngIf="canReply" class="replies-container">
     <div *ngFor="let rep of message.user_messages" class="reply-message">
-      <app-feed-discussion-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)"
+      <app-feed-item-discussion-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)"
                                   [allActions]="allActions" [canReply]="false" [currentUser]="currentUser"
-                                  [message]="rep" [permittedActions]="permittedActions"></app-feed-discussion-message>
+                                  [message]="rep" [permittedActions]="permittedActions"></app-feed-item-discussion-message>
     </div>
 
     <div *ngIf="showReplyForm" class="reply-form">

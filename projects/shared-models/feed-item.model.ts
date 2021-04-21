@@ -1,4 +1,4 @@
-export interface ISingleExternalFeed {
+export interface IFeedItem {
   id: number;
   details: Details;
   messages_count: number;
@@ -6,6 +6,7 @@ export interface ISingleExternalFeed {
 
 interface Details {
   source: string;
+  source_logo:string;
   link: string;
   title: string;
   image: string;
