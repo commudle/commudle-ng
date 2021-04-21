@@ -38,6 +38,7 @@ $fs-35: 35px;
 $space-2: 2px;
 $space-4: 4px;
 $space-8: 8px;
+$space-10: 10px;
 $space-12: 12px;
 $space-16: 16px;
 $space-20: 20px;
@@ -96,6 +97,7 @@ $fs-card-secondary: 12px;
 $fw-400: 400;
 $fw-500: 500;
 $fw-600: 600;
+$fw-700: 700;
 
 // input font sizes
 $input-title: 20px;
@@ -148,4 +150,11 @@ $gradient-bottom-left: linear-gradient(315deg, $neon-blue, $blue-jeans, $cyber-y
 $gradient-radial: radial-gradient($neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
 
 $card-faded-text: rgba(47, 46, 65, 0.5);
+$low-emphasis-text: rgba(0, 0, 0, 0.6);
 $card-text-grey: #898989;
+
+
+
+// column widths
+$large-column-width: 712px;
+$small-column-width: 268px;
