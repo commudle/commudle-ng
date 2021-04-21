@@ -90,11 +90,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   setMeta() {
+    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag({
       name: 'description',
       content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
-    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag({
       name: 'og:image',
       content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
@@ -103,17 +103,26 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       name: 'og:image:secure_url',
       content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
     });
-    this.meta.updateTag({name: 'og:title', content: `${this.lab.name} | By ${this.lab.user.name}`});
+    this.meta.updateTag({
+      name: 'og:title',
+      content: `${this.lab.name} | By ${this.lab.user.name}`
+    });
     this.meta.updateTag({
       name: 'og:description',
       content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
-    this.meta.updateTag({name: 'og:type', content: 'article'});
+    this.meta.updateTag({
+      name: 'og:type',
+      content: 'article'
+    });
     this.meta.updateTag({
       name: 'twitter:image',
       content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
     });
-    this.meta.updateTag({name: 'twitter:title', content: `${this.lab.name} | By ${this.lab.user.name}`});
+    this.meta.updateTag({
+      name: 'twitter:title',
+      content: `${this.lab.name} | By ${this.lab.user.name}`
+    });
     this.meta.updateTag({
       name: 'twitter:description',
       content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
@@ -185,6 +194,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.selectedLabStep += count;
     this.lastVisitedStepId = null;
     this.highlightCodeSnippets();
+    if (this.selectedLabStep === -1) {
+      this.router.navigate(['/labs', this.lab.slug]);
+    }
   }
 
   getDiscussionChat() {
