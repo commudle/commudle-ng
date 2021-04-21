@@ -7,14 +7,14 @@
         font-weight: $fw-500;
   
         nb-icon {
-          font-size: 2.5rem;
+          font-size: $fs-40;
           font-weight: $fw-500;
         }
       }
     }
   
-    @media (min-width: 1000px) {
-      width: 1000px;
+    @media (min-width: $media-width) {
+      width: $media-width;
       margin: 0 auto;
     }
   
