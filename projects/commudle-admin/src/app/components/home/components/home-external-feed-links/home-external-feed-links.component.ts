@@ -20,7 +20,6 @@ export class HomeExternalFeedLinksComponent implements OnInit {
 
   getFeed(): void{
     this.homeService.pFeed().subscribe(value=> {
-      console.log(value);
       this.IFeedItem = value.feed_items.slice(0, 3);
     });
   }
