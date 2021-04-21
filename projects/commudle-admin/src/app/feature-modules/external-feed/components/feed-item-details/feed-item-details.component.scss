@@ -92,20 +92,6 @@
      }
    }
 
-   .comments {
-     border-top: 1px solid lightgrey;
-     padding: 16px 16px;
-     margin: 16px 0;
-     height: 35vh;
-     min-height: 400px;
-
-     >p {
-       margin: 0 0 16px;
-       font-size: $fs-21;
-       font-weight: $fw-300;
-     }
-   }
-
    .feed-discussion {
      margin: $space-32 0 $space-64;
    }
