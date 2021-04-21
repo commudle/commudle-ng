@@ -1,3 +1,5 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .events {
   a {
     text-decoration: none;
@@ -13,8 +15,8 @@
 
 
       .header-image {
-        width: 60px;
-        height: 60px;
+        width: 250px;
+        height: 80px;
         margin-right: 1rem;
 
         display: flex;
@@ -22,10 +24,18 @@
         overflow: hidden;
         img {
           width: 100%;
+          align-self: flex-start;
         }
 
         nb-icon {
           font-size: 2rem;
+        }
+
+        @media screen and (max-width: $mobile-width) {
+          .header-image {
+            width: 100px;
+          }
+
         }
       }
 
@@ -33,10 +43,10 @@
 
         h5 {
           margin: 0 0 0.5rem;
-          font-weight: 200;
           display: flex;
           align-items: flex-start;
-          line-height: 1.2rem;
+          line-height: 1.5rem;
+          font-weight: $fw-400;
         }
 
         .timings {
