@@ -1,5 +1,4 @@
 <div class="speakers-container d-flex flex-wrap justify-content-space-between">
-  <nb-card *ngFor="let speaker of speakers">
-    <app-speaker-card [speaker]="speaker"> </app-speaker-card>
-  </nb-card>
+  <app-speaker-card  *ngFor="let speaker of speakers" [speaker]="speaker"> </app-speaker-card>
+
 </div>
