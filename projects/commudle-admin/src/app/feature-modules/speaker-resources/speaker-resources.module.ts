@@ -7,8 +7,8 @@ import { CommonModule } from '@angular/common';
 import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.module';
 import { SpeakerResourceComponent } from './components/speaker-resource/speaker-resource.component';
 import { NbInputModule, NbButtonModule,NbIconModule, NbFormFieldModule,} from "@nebular/theme";
-import { SpeakerResourceDiscussionComponent } from './components/speaker-resource/speaker-resource-discussion/speaker-resource-discussion.component';
-import { SpeakerResourceDiscussionMessageComponent } from './components/speaker-resource/speaker-resource-discussion/speaker-resource-discussion-message/speaker-resource-discussion-message.component';
+import { SpeakerResourceDiscussionComponent } from './components/speaker-resource-discussion/speaker-resource-discussion.component';
+import { SpeakerResourceDiscussionMessageComponent } from './components/speaker-resource-discussion/speaker-resource-discussion-message/speaker-resource-discussion-message.component';
 
 
 @NgModule({
