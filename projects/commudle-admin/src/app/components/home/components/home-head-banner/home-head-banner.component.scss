@@ -3,6 +3,7 @@
 .head-banner {
   p, a, h1 {
     font-family: $primary-font-family;
+    color: $gunmetal;
   }
 
   border: none;
@@ -37,6 +38,7 @@
       nb-card {
         border-radius: $border-10;
         margin: 0;
+        color: $gunmetal;
 
         nb-card-body {
           padding: 0;
