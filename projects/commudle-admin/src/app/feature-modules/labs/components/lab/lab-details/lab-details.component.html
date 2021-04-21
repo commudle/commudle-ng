@@ -1,6 +1,8 @@
 <div class="menu">
   <nb-card *ngIf="!hideUser" [routerLink]="['/users', lab.user.username]" class="user clickable">
-    <nb-user [name]="lab.user.name" [picture]="lab.user.avatar" [title]="lab.user.designation"></nb-user>
+    <nb-card-body>
+      <nb-user [name]="lab.user.name" [picture]="lab.user.avatar" [title]="lab.user.designation"></nb-user>
+    </nb-card-body>
   </nb-card>
   <nb-card *ngIf="!hideSteps" class="steps">
     <nb-list>

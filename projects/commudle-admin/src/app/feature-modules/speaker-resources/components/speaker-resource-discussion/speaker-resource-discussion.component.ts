@@ -1,4 +1,4 @@
-import { DiscussionChatChannel } from './../../../../../../../../shared-components/services/websockets/dicussion-chat.channel';
+import { DiscussionChatChannel } from '../../../../../../../shared-components/services/websockets/dicussion-chat.channel';
 import {Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
