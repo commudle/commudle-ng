@@ -4,41 +4,28 @@
   background-color: $white;
   min-height: 100vh;
 
-  .page-container {
-    @media all and (min-width: $max-page-width) {
-      padding: $space-16 $space-136;
-    }
+  .labs-home-container {
+    max-width: 1200px;
+    margin: 0 auto;
 
     @media all and (max-width: $max-page-width) and (min-width: $tab-width) {
       padding: $space-16 $space-32;
     }
 
     .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: $space-28 0 $space-16;
-    }
-
-    @media all and (max-width: $tab-width) {
-      .header {
-        flex-direction: column;
-      }
+      padding: $space-28 $space-32 $space-16 $space-80;
     }
 
     .body {
-      margin: 0 auto;
+      padding: 0 $space-48;
 
       .labs-container {
         min-height: 500px;
 
         .popular-tags {
-          display: flex;
-          flex-wrap: wrap;
-
           .tag {
-            font-size: 1.1rem;
-            font-weight: 400;
+            font-size: $fs-h3;
+            font-weight: $fw-400;
             text-transform: lowercase;
             color: $gunmetal;
           }
@@ -52,7 +39,7 @@
         }
 
         .labs {
-          gap: $space-16;
+          gap: $space-48;
         }
 
         @media all and (max-width: $tab-width) {
@@ -64,6 +51,17 @@
             margin: $space-12 $space-16 $space-32;
           }
         }
+      }
+    }
+
+    @media all and (max-width: $tab-width) {
+      .header {
+        padding: $space-28 0;
+        flex-direction: column;
+      }
+
+      .body {
+        padding: 0 $space-16;
       }
     }
   }

@@ -1,7 +1,13 @@
 <div class="menu">
   <nb-card *ngIf="!hideUser" [routerLink]="['/users', lab.user.username]" class="user clickable">
-    <nb-card-body>
-      <nb-user [name]="lab.user.name" [picture]="lab.user.avatar" [title]="lab.user.designation"></nb-user>
+    <nb-card-body class="d-flex flex-row align-items-center">
+      <div class="user-image">
+        <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">
+      </div>
+      <div class="user-details">
+        <div class="user-name">{{lab.user.name}}</div>
+        <div class="user-title">{{lab.user.designation}}</div>
+      </div>
     </nb-card-body>
   </nb-card>
   <nb-card *ngIf="!hideSteps" class="steps">
@@ -26,7 +32,7 @@
   </nb-card>
   <nb-card *ngIf="similarLabs.length > 0 && !hideRelatedLabs" class="related-labs">
     <nb-card-header>
-      RELATED
+      RELATED POSTS
     </nb-card-header>
     <nb-card-body>
       <div *ngFor="let lab of similarLabs" [routerLink]="['/labs', lab.slug]" class="details clickable">
@@ -35,7 +41,7 @@
       </div>
     </nb-card-body>
   </nb-card>
-  <div *ngIf="!hideInteractions" class="interactions">
+  <div *ngIf="!hideInteractions" class="interactions d-flex flex-row justify-content-space-around">
     <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
     <div (click)="onScrollToChat()" *ngIf="discussionChat" class="message-count clickable">
       <nb-icon icon="message-circle-outline"></nb-icon>
