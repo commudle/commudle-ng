@@ -17,15 +17,17 @@ import {
   NbTabsetModule,
   NbTooltipModule
 } from '@nebular/theme';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {AboutComponent} from './components/about/about.component';
-import {EventsComponent} from './components/events/events.component';
-import {MembersComponent} from './components/members/members.component';
-import {EventResourcesComponent} from './components/event-resources/event-resources.component';
-import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
-import {MembershipToggleComponent} from './components/membership-toggle/membership-toggle.component';
-import {CommunityChannelsListComponent} from './components/community-channels-list/community-channels-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { AboutComponent } from './components/about/about.component';
+import { EventsComponent } from './components/events/events.component';
+import { MembersComponent } from './components/members/members.component';
+import { EventResourcesComponent } from './components/event-resources/event-resources.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { MembershipToggleComponent } from './components/membership-toggle/membership-toggle.component';
+import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
+import { SpeakersComponent } from './components/speakers/speakers.component';
+import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker-card.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import {CommunityChannelsListComponent} from './components/community-channels-li
     MembersComponent,
     EventResourcesComponent,
     MembershipToggleComponent,
-    CommunityChannelsListComponent
+    CommunityChannelsListComponent,
+    SpeakersComponent,
+    SpeakerCardComponent
   ],
   exports: [
     MembershipToggleComponent
