@@ -28,9 +28,6 @@ nb-card-header, div, a, p {
       nb-list-item {
         padding: $space-16 0;
         margin-bottom: $space-8;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         border: none;
 
         app-skeleton-text {
@@ -41,10 +38,10 @@ nb-card-header, div, a, p {
           margin-right: $space-8;
 
           .home-external-feed-link-image {
-            min-height: 2.5rem;
-            max-height: 2.5rem;
-            min-width: 2.5rem;
-            max-width: 2.5rem;
+            min-height: 40px;
+            max-height: 40px;
+            min-width: 40px;
+            max-width: 40px;
             overflow: hidden;
             border-radius: $border-50;
             border: 0.5px solid $platinum;
@@ -58,7 +55,7 @@ nb-card-header, div, a, p {
           .home-external-feed-link-details {
             .home-external-feed-link-title {
               font-size: $fs-card-list-title;
-              font-weight: 600;
+              font-weight: $fw-600;
               color: $gunmetal;
             }
 

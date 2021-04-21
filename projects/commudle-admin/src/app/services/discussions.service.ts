@@ -75,10 +75,10 @@ export class DiscussionsService {
     );
   }
 
-  pGetOrCreateForExternalFeedChal(externalFeedId): Observable<IDiscussion> {
-    const params = new HttpParams().set('external-feed-id', externalFeedId);
+  pGetOrCreateForFeedItemChat(id): Observable<IDiscussion> {
+    const params = new HttpParams().set('feed_item_id', id);
     return this.http.get<IDiscussion>(
-      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_EXETRNAL_FEED_CHAT),
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT),
       { params }
     );
   }

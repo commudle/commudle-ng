@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ExternalFeedService } from 'projects/commudle-admin/src/app/services/external-feeds.service';
+import { FeedItemService } from 'projects/commudle-admin/src/app/services/feed-items.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed.model';
+import { IFeedItem } from 'projects/shared-models/feed-item.model';
 
 @Component({
   selector: 'app-external-feed',
@@ -9,13 +9,13 @@ import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed
   styleUrls: ['./external-feed.component.scss']
 })
 export class ExternalFeedComponent implements OnInit {
-  externalPosts: ISingleExternalFeed[] = [];
+  externalPosts: IFeedItem[] = [];
   total;
   isLoading = false;
   canLoadMore = true;
 
   constructor(
-    private externalFeedService: ExternalFeedService,
+    private feedItemService: FeedItemService,
     private title: Title,
     private meta: Meta
   ) {
@@ -27,7 +27,7 @@ export class ExternalFeedComponent implements OnInit {
   }
 
   getFeedPosts(): void{
-    this.externalFeedService.pGetAll().subscribe(value=> {
+    this.feedItemService.pGetAll().subscribe(value=> {
       this.externalPosts = value.feed_items;
     });
   }

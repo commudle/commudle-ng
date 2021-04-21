@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
-import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed.model';
+import { IFeedItem } from 'projects/shared-models/feed-item.model';
 
 @Component({
   selector: 'app-home-external-feed-links',
@@ -9,7 +9,7 @@ import { ISingleExternalFeed } from 'projects/shared-models/single-external-feed
 })
 export class HomeExternalFeedLinksComponent implements OnInit {
   
-  IFeedItem: ISingleExternalFeed[] = [];
+  IFeedItem: IFeedItem[] = [];
 
   constructor(
   	private homeService: HomeService) { }
@@ -20,6 +20,7 @@ export class HomeExternalFeedLinksComponent implements OnInit {
 
   getFeed(): void{
     this.homeService.pFeed().subscribe(value=> {
+      console.log(value);
       this.IFeedItem = value.feed_items.slice(0, 3);
     });
   }
