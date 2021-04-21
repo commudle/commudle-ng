@@ -7,11 +7,11 @@ import {NoWhitespaceValidator} from 'projects/shared-helper-modules/custom-valid
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
-  selector: 'app-feed-discussion-message',
-  templateUrl: './feed-discussion-message.component.html',
-  styleUrls: ['./feed-discussion-message.component.scss']
+  selector: 'app-feed-item-discussion-message',
+  templateUrl: './feed-item-discussion-message.component.html',
+  styleUrls: ['./feed-item-discussion-message.component.scss']
 })
-export class FeedDiscussionMessageComponent implements OnInit {
+export class FeedItemDiscussionMessageComponent implements OnInit {
 
   @Input() message: IUserMessage;
   @Input() canReply: boolean;

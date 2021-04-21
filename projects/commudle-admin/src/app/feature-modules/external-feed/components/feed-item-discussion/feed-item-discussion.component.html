@@ -24,7 +24,7 @@
       <div #messagesContainer class="messages">
         <div>
           <div *ngFor="let um of messages">
-            <app-feed-discussion-message
+            <app-feed-item-discussion-message
               (sendDelete)="delete($event)"
               (sendFlag)="sendFlag($event)"
               (sendReply)="sendReply($event, um.id)"
@@ -33,7 +33,7 @@
               [currentUser]="currentUser"
               [message]="um"
               [permittedActions]="permittedActions">
-            </app-feed-discussion-message>
+            </app-feed-item-discussion-message>
           </div>
         </div>
       </div>

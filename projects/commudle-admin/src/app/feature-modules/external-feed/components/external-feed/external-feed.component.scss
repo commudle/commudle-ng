@@ -13,8 +13,8 @@
       }
     }
   
-    @media (min-width: 1000px) {
-      width: 1000px;
+    @media (min-width: $media-width) {
+      width: $media-width;
       margin: 0 auto;
     }
   

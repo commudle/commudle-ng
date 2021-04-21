@@ -11,7 +11,7 @@
         <div class="external-feed-post-source-image d-flex align-items-center">
           <img
             alt="{{ feedItem.details.source }}"
-            src="{{ sourceImagePath }}"
+            src="{{ feedItem.details.source_logo }}"
           />
         </div>
         <div class="source-info">
@@ -46,9 +46,9 @@
     </nb-card-body>
   </nb-card>
   <div class="feed-discussion">
-    <app-feed-discussion
+    <app-feed-item-discussion
       *ngIf="discussionChat"
       [discussion]="discussionChat"
-    ></app-feed-discussion>
+    ></app-feed-item-discussion>
   </div>
 </div>

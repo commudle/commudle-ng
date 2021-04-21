@@ -2,23 +2,22 @@ import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {NbWindowService, NbDialogService, NbSidebarService} from '@nebular/theme';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ISingleExternalFeed} from 'projects/shared-models/single-external-feed.model';
+import {IFeedItem} from 'projects/shared-models/feed-item.model';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
 
 @Component({
-  selector: 'app-single-external-feed-details',
-  templateUrl: './single-external-feed-details.component.html',
-  styleUrls: ['./single-external-feed-details.component.scss']
+  selector: 'app-feed-item-details',
+  templateUrl: './feed-item-details.component.html',
+  styleUrls: ['./feed-item-details.component.scss']
 })
-export class SingleExternalFeedDetailsComponent implements OnInit {
+export class FeedItemDetailsComponent implements OnInit {
 
 	@ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 	@ViewChild('dialog') private dialog: any;
 	moment = moment;
-	sourceImagePath: string;
-	@Input() feedItem: ISingleExternalFeed;
+	@Input() feedItem: IFeedItem;
 	discussionChat: IDiscussion;
 	hasIframe = false;
 	embedCode: any;
@@ -34,7 +33,6 @@ export class SingleExternalFeedDetailsComponent implements OnInit {
 		private sanitizer: DomSanitizer) { }
 
 	ngOnInit() {
-		this.sourceImagePath = "/assets/images/".concat(this.feedItem.details.source.concat(".png"));
 		this.getDiscussionChat();
 	}
 
