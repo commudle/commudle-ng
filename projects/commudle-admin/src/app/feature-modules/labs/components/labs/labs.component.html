@@ -1,13 +1,12 @@
 <div class="labs-home">
-  <div class="page-container">
-
+  <div class="labs-home-container">
     <section class="nav">
       <!-- search bar component will contain the filter also -->
       <app-search-bar (updateTags)="onTagsUpdate($event)" [labSearchParams]="searchedTags"></app-search-bar>
       <!-- create lab button -->
     </section>
 
-    <section class="header">
+    <section class="header d-flex align-items-center justify-content-space-between">
       <!-- header text section -->
       <app-header-text [labs]="searchedLabs" [tags]="searchedTags"></app-header-text>
       <!-- header banner or the graphic -->
@@ -18,7 +17,7 @@
       <!-- List of lab cards -->
       <div class="labs-container">
         <!-- display list of popular tags and horizontal rule if the search bar is empty -->
-        <div class="popular-tags">
+        <div class="popular-tags d-flex flex-wrap">
           <!-- popular tags here -->
           <button (click)="onTagAdd(tag.name)" *ngFor="let tag of popularTags" class="tag" ghost nbButton>
             {{tag.name}}
@@ -35,7 +34,5 @@
         </div>
       </div>
     </section>
-
   </div>
-
 </div>
