@@ -42,6 +42,12 @@
           >
           </app-votes-display>
         </p>
+        <p class="comments" [routerLink]="['/feed', feedItem.id]">
+          <span *ngIf="feedItem.messages_count > 0">
+            {{ feedItem.messages_count }}
+          </span>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </p>
       </div>
     </nb-card-body>
   </nb-card>
