@@ -7,6 +7,7 @@ import { SpeakerResourcesService } from "projects/commudle-admin/src/app/service
 import { ActivatedRoute } from "@angular/router";
 import { ICommunity } from "projects/shared-models/community.model";
 import { Subscription } from "rxjs";
+import { Meta, Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-speaker-resource",
@@ -14,7 +15,7 @@ import { Subscription } from "rxjs";
   styleUrls: ["./speaker-resource.component.scss"],
 })
 export class SpeakerResourceComponent implements OnInit, OnDestroy {
-  speaker: ISpeakerResource;
+  speakerResource: ISpeakerResource;
   moment = moment;
   community: ICommunity;
 
@@ -27,14 +28,16 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private speakerResourcesService: SpeakerResourcesService,
-    private discussionService: DiscussionsService
+    private discussionService: DiscussionsService,
+    private title: Title,
+    private meta: Meta
   ) {}
 
   ngOnInit(): void {
 
     this.subscriptions.push(this.activatedRoute.params.subscribe((params) => {
       let speakerId = params["speaker_resource_id"];
-      this.getSpeaker(speakerId);
+      this.getSpeakerResource(speakerId);
       this.getDiscussionChat(speakerId);
     }));
   }
@@ -45,9 +48,10 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
     }
   }
 
-  getSpeaker(speakerId) {
+  getSpeakerResource(speakerId) {
     this.speakerResourcesService.getDetails(speakerId).subscribe((data) => {
-      this.speaker = data;
+      this.speakerResource = data;
+      this.setMeta();
     });
   }
 
@@ -58,9 +62,27 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
   getMessagesCount(count: number) {
     this.messagesCount = count;
   }
+
   getDiscussionChat(speakerId) {
     this.discussionService
       .pGetOrCreateForSpeakerResourceChat(speakerId)
       .subscribe((data) => (this.discussionChat = data));
+  }
+
+
+  setMeta() {
+    this.title.setTitle(`${this.speakerResource.title} by ${this.speakerResource.user.name}`);
+    this.meta.updateTag({ name: 'description', content: `Session by ${this.speakerResource.user.name} at ${this.speakerResource.event.name} on ${this.speakerResource.title}`});
+
+
+    this.meta.updateTag({ name: 'og:image', content: `${this.speakerResource.user.avatar}` });
+    this.meta.updateTag({ name: 'og:image:secure_url', content: `${this.speakerResource.user.avatar}` });
+    this.meta.updateTag({ name: 'og:title', content: `${this.speakerResource.title} by ${this.speakerResource.user.name}` });
+    this.meta.updateTag({ name: 'og:description', content: `Session by ${this.speakerResource.user.name} at ${this.speakerResource.event.name} on ${this.speakerResource.title}`});
+    this.meta.updateTag( { name: 'og:type', content: 'website'});
+
+    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
+    this.meta.updateTag({ name: 'twitter:title', content: `${this.speakerResource.title} by ${this.speakerResource.user.name}` });
+    this.meta.updateTag({ name: 'twitter:description', content: `Session by ${this.speakerResource.user.name} at ${this.speakerResource.event.name} on ${this.speakerResource.title}`});
   }
 }

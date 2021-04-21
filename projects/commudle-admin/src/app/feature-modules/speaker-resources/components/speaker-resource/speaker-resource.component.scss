@@ -1,96 +1,58 @@
 @import "/projects/commudle-admin/src/assets/styles/variables";
-.wrapper {
-  .left-wrapper {
-    width: 200px;
+
+.speaker-resource {
+  .left-column {
     height: fit-content;
-    min-width: 150px;
-    margin-left: $space-20;
-  }
-  .right-wrapper {
-    margin-right: $space-40;
-    margin-left: $space-32;
-    padding: 0 $space-20 $space-20 0;
-  }
 
-  .right-column {
-    margin-left: $space-32;
-  }
-  .speaker-image {
-    height: 80px;
-    width: 80px;
-    margin-top: $space-10;
-  }
-  img {
-    width: 100%;
-  }
-  .timestamp {
-    font-size: 0.8rem;
-  }
-  .speaker-resource-container {
-    width: 100%;
-  }
+    .user-profile {
+      border-radius: $border-10;
+      nb-card-body {
+        padding: $space-16;
+        .avatar {
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          border-radius: 50%;
+          margin-right: $space-4;
 
-  .speaker {
-    width: 100%;
-    padding-top: $space-20;
+          img {
+            width: 100%;
+          }
+        }
 
-    h5 {
-      margin: 0;
-      text-align: center;
-    }
-  }
-  .designation {
-    p {
-      margin: 0;
-      text-align: center;
-      padding-bottom: $space-10;
-    }
-  }
+        h5 {
+          margin: 0;
+          font-weight: $fw-500;
+          font-size: $fs-card-title;
+          line-height: normal;
+        }
 
-  .comments {
-    margin-left: $space-32;
-    margin-right: $space-40;
-  }
-
-  .interactions {
-    display: block;
-    width: max-content;
-    height: fit-content;
-    margin-left: $space-16;
-    position: sticky;
-    top: 50vh;
-
-    app-votes-display {
-      direction: rtl;
-
-      &::ng-deep {
         p {
-          font-size: 1.5rem;
+          margin: 0;
+          color: $text-low-emphasis;
+          font-size: $fs-card-secondary;
+          line-height: normal;
+        }
+      }
+    }
+  }
 
-          span {
-            color: $neon-blue;
-          }
+  .center-column {
 
-          nb-icon {
-            font-size: 1.5rem;
 
-            &:not(.voted-heart) {
-              color: $neon-blue;
-            }
-          }
+    .details {
+      .title {
+        h1 {
+          margin: 0;
+          font-weight: $fw-500;
         }
       }
     }
 
-    .discussion {
-      margin: $space-24 0 0;
-      font-size: 1.5rem;
-      color: $neon-blue;
 
-      nb-icon {
-        font-size: 1.5rem;
-        color: $neon-blue;
-      }
+    .interactions {
+      margin-top: $space-12;
+      gap: $space-12;
     }
   }
 }
