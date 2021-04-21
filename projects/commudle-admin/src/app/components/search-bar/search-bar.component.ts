@@ -24,6 +24,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   };
   showSearchResults = false;
   showPlaceholder = true;
+  showLoading = false;
   // Filters
   filterBy = ['builds', 'communities', 'events', 'labs', 'users'];
   filters: string[] = [];
@@ -36,8 +37,9 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Subscribe to search
     this.searchQueryChangedSubscription = this.searchQueryChanged.pipe(
-      debounceTime(1000)
+      debounceTime(800)
     ).subscribe(value => {
+      this.showLoading = true;
       this.searchQuery = value;
       this.getSearchResults(value);
     });
@@ -66,8 +68,11 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   getSearchResults(query: string) {
     if (query !== '') {
-      this.homeService.searchEverything(query, this.filters).subscribe(value => this.searchResults = value);
       this.showPlaceholder = false;
+      this.homeService.searchEverything(query, this.filters).subscribe(value => {
+        this.showLoading = false;
+        this.searchResults = value;
+      });
     } else {
       this.searchResults = {
         builds: [],
@@ -77,6 +82,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
         users: []
       };
       this.showPlaceholder = true;
+      this.showLoading = false;
     }
   }
 
