@@ -2,7 +2,7 @@
 
 .menu {
   position: sticky;
-  top: 4.5rem;
+  top: 72px;
   height: fit-content;
   width: 264px;
 
@@ -25,10 +25,10 @@
       padding: 0;
 
       .user-image {
-        min-height: 3.5rem;
-        min-width: 3.5rem;
-        max-height: 3.5rem;
-        max-width: 3.5rem;
+        min-height: 56px;
+        min-width: 56px;
+        max-height: 56px;
+        max-width: 56px;
         border-radius: 50%;
         overflow: hidden;
 
