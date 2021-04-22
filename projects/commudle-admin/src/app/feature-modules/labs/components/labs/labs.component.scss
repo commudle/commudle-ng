@@ -7,6 +7,7 @@
   .labs-home-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: $space-32;
 
     @media all and (max-width: $max-page-width) and (min-width: $tab-width) {
       padding: $space-16 $space-32;
