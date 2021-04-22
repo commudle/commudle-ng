@@ -63,6 +63,20 @@
         object-position: center top;
       }
     }
+
+    .profile-photo-edit {
+      position: absolute;
+      right: 32px;
+      bottom: 32px;
+
+      button {
+        width: 36px;
+        height: 36px;
+        border: none;
+        color: $white;
+        background-color: rgba($white, 0.4);
+      }
+    }
   }
 
   .user-details {

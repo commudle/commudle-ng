@@ -7,6 +7,11 @@
     <div class="profile-photo">
       <img alt="avatar" src="{{user.avatar}}">
     </div>
+    <div *ngIf="currentUser && currentUser.id === user.id" class="profile-photo-edit">
+      <button (click)="onEditProfileDialogOpen()" nbButton shape="round">
+        <nb-icon icon="edit"></nb-icon>
+      </button>
+    </div>
   </div>
 
   <div class="user-details text-center">

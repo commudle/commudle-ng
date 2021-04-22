@@ -36,15 +36,10 @@
       }
     }
   }
-}
 
-.user-feed-input-images {
-  width: 480px;
-
-  nb-card-body {
-    gap: $space-8;
-
+  .user-feed-input-images {
     .user-feed-input-image {
+      margin-top: $space-8;
       overflow: auto;
       gap: $space-8;
 
