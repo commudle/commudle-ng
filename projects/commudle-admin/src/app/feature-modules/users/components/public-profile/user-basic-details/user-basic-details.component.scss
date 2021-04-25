@@ -3,20 +3,35 @@
 .user-personal-details {
   padding: $space-16;
   border-radius: $border-10;
-  background: linear-gradient(186.78deg, $brilliant-azure 0.95%, $neon-blue 100.4%);
+  background-color: $white;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 187px;
+    background: linear-gradient(186.78deg, $brilliant-azure 0.95%, $neon-blue 100.4%);
+  }
 
   .profile-photo-container {
     position: relative;
-    margin: auto;
-    height: 232px;
-    width: 232px;
+    height: 160px;
+    width: 160px;
+    margin: $space-70 auto auto;
+    padding: $space-4;
+    background-color: $white;
+    border-radius: 50%;
 
     .profile-photo-burst {
-      width: 30px;
-      height: 30px;
+      width: 24px;
+      height: 24px;
       position: absolute;
+      bottom: 12px;
       right: 20px;
-      top: 20px;
       color: $white;
       background-color: $ultra-red;
       z-index: 5;
@@ -27,8 +42,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        height: 30px;
-        width: 30px;
+        height: 24px;
+        width: 24px;
         background: $ultra-red;
         z-index: 5;
       }
@@ -45,7 +60,7 @@
         z-index: 10;
 
         nb-icon {
-          font-size: 1.5rem;
+          font-size: $fs-24;
         }
       }
     }
@@ -53,8 +68,8 @@
     .profile-photo {
       overflow: hidden;
       border-radius: 50%;
-      height: inherit;
-      width: inherit;
+      height: 152px;
+      width: 152px;
 
       img {
         width: 100%;
@@ -63,130 +78,124 @@
         object-position: center top;
       }
     }
-
-    .profile-photo-edit {
-      position: absolute;
-      right: 32px;
-      bottom: 32px;
-
-      button {
-        width: 36px;
-        height: 36px;
-        border: none;
-        color: $white;
-        background-color: rgba($white, 0.4);
-      }
-    }
   }
 
   .user-details {
-    color: $white;
-    margin: $space-16 0;
+    color: $gunmetal;
+    margin: $space-8 0 $space-16;
+
+    .heading {
+      font-size: $fs-h4;
+      font-weight: $fw-500;
+      margin-bottom: $space-4;
+    }
 
     .name {
       font-weight: $fw-600;
-      font-size: $fs-24;
-      margin-bottom: $space-4;
+      font-size: $fs-20;
+      font-style: italic;
+      margin-bottom: $space-8;
     }
 
     .designation {
       font-weight: $fw-500;
-      font-size: $fs-18;
+      font-size: $fs-h4;
       margin-bottom: $space-24;
     }
 
-    .about {
-      font-size: $fs-h4;
-      margin-bottom: $space-20;
+    .location {
+      color: $cadet;
+      font-size: $fs-h5;
+      font-style: italic;
     }
 
-    .location {
+    .about {
+      color: rgba($gunmetal, 0.85);
+      font-size: $fs-h5;
+      margin-top: $space-16;
     }
   }
 
-  .edit-profile {
-    text-align: right;
-    margin-bottom: $space-60;
+  hr {
+    margin: $space-16 auto;
+    border: 0;
+    height: 1px;
+    background-color: $chinese-silver;
 
+    &:last-child {
+      width: 160px;
+      background-color: $neon-blue;
+    }
+  }
+
+  .user-interactions {
     button {
+      height: 32px;
       border: none;
       border-radius: $border-10;
-      color: $white;
-      background-color: rgba($cultured2, 0.4);
+      color: $neon-blue;
+      background-color: rgba($neon-blue, 0.2);
+      padding: $space-8;
+      font-size: $fs-h6;
       font-weight: $fw-400;
       text-transform: none;
-      letter-spacing: 0.5px;
-      transition: all .2s ease-in-out;
 
-      &:hover {
-        transform: scale(1.05);
-      }
-
-      &:active {
-        transform: scale(1);
+      nb-icon {
+        margin-right: $space-4;
       }
     }
   }
 
   .user-tags {
-    margin: $space-60 0 $space-40;
-
-    &::ng-deep {
-      .nb-tag-list-tags-wrapper {
-        justify-content: center;
-      }
-    }
-
-    nb-tag {
-      color: $white;
-      background-color: transparent;
-      font-size: $fs-h5;
+    .heading {
+      color: $gunmetal;
+      font-size: $fs-h4;
       font-weight: $fw-500;
-      padding: 2px $space-8;
-
-      &:last-child {
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-
-        &:hover {
-          transform: scale(1.05);
-        }
-
-        &:active {
-          transform: scale(1);
-        }
-      }
+      margin-bottom: $space-16;
     }
-  }
 
-  .message-user {
-    button {
-      height: 49px;
-      border: none;
-      border-radius: $border-10;
-      color: $white;
-      background-color: $neon-blue;
-      filter: drop-shadow(0px 4px 18px $neon-blue);
-      transition: all .2s ease-in-out;
-      font-size: $fs-20;
-      font-weight: $fw-600;
-      text-transform: capitalize;
+    nb-tag-list {
 
-      &:hover {
-        transform: scale(1.05);
+      &::ng-deep {
+        .nb-tag-list-tags-wrapper {
+          justify-content: center;
+        }
       }
 
-      &:active {
-        transform: scale(1);
+      nb-tag {
+        border: none;
+        color: $gunmetal;
+        background-color: $azureish-white;
+        font-size: $fs-h5;
+        font-weight: $fw-500;
+        padding: $space-2 $space-8;
+        border-radius: $border-10;
+
+        &:last-child {
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(1);
+          }
+        }
       }
     }
   }
 
   .user-social {
-    margin: $space-48 0 0;
+    gap: $space-16;
+    margin: $space-48 auto 0;
+    max-width: calc(100% - 88px + 32px);
 
     a {
-      margin: $space-4;
+      width: 32px;
+      height: 32px;
+      border: none;
       background-color: $water;
       transition: all .2s ease-in-out;
 
