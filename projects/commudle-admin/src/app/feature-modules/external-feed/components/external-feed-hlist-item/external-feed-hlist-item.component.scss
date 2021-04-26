@@ -1,0 +1,93 @@
+ @import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+ .external-feed-list-item {
+
+   p,
+   a,
+   div,
+   h3 {
+     font-family: $primary-font-family;
+   }
+
+   nb-card {
+     margin-bottom: 8px;
+
+     nb-card-body {
+       &:hover {
+         box-shadow: 1px 1px 5px 5px $lightgrey;
+       }
+
+       .image {
+         border: 1px solid $lightestgrey;
+         background-color: $lightestgrey;
+         width: 100%;
+         height: 140px;
+         overflow: hidden;
+         margin-bottom: 5px;
+         text-align: center;
+
+         img {
+           width: 100%;
+         }
+       }
+
+       .source-details {
+         .external-feed-post-source-image {
+           min-height: 40px;
+           max-height: 40px;
+           min-width: 40px;
+           max-width: 40px;
+           overflow: hidden;
+           border-radius: 50%;
+           border: 0.5px solid $platinum;
+           margin-right: $space-8;
+
+           img {
+             width: 100%;
+           }
+         }
+
+         .source-info {
+           align-items: center;
+           font-size: $fs-h5;
+           margin-bottom: $space-1;
+         }
+       }
+
+       h3.name {
+         color: black;
+         margin-top: $space-15;
+         margin-bottom: $space-15;
+         font-weight: $fw-600;
+         font-size: $fs-24;
+         line-height: normal;
+       }
+
+       .tags {
+         font-size: $fs-h5;
+         line-height: 1.3;
+         padding: 4px;
+         display: inline-block;
+         font-color: '#b7b7b7';
+         margin-bottom: 10px;
+
+         .tag-hash {
+           opacity: 0.4;
+           font-weight: normal;
+         }
+       }
+
+       .stats {
+         >p {
+           margin: 0 16px 0 0;
+
+           &.comments {
+             nb-icon {
+               color: $spanish-gray;
+             }
+           }
+         }
+       }
+     }
+   }
+ }

@@ -1,0 +1,21 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+.external-feed {
+    width: 100%;
+  
+    .header {
+      h1 {
+        font-weight: $fw-500;
+  
+        nb-icon {
+          font-size: $fs-40;
+          font-weight: $fw-500;
+        }
+      }
+    }
+  
+    @media (min-width: $media-width) {
+      width: $media-width;
+      margin: 0 auto;
+    }
+  
+  }
