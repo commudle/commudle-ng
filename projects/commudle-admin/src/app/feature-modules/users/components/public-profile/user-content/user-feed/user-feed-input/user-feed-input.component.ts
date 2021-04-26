@@ -1,6 +1,6 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
-import {NbDialogService, NbToastrService} from '@nebular/theme';
+import {NbToastrService} from '@nebular/theme';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 
@@ -11,6 +11,7 @@ import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-user
 })
 export class UserFeedInputComponent implements OnInit {
 
+  showImageUpload = false;
   imagePreviews = [];
   postData = this.fb.group({
     content: ['', [Validators.required, Validators.maxLength(800)]],
@@ -27,7 +28,6 @@ export class UserFeedInputComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private appUsersService: AppUsersService,
-    private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService
   ) {
   }
@@ -45,7 +45,7 @@ export class UserFeedInputComponent implements OnInit {
 
   detectFiles(event): void {
     const files = event.target.files;
-    if (files && files.length > 0 && files.length <= 3) {
+    if (files && files.length > 0) {
       if (files.length > 3) {
         this.nbToastrService.warning('Maximum only 3 images are allowed!', 'Warning');
       } else {
@@ -56,14 +56,19 @@ export class UserFeedInputComponent implements OnInit {
           } else {
             reader.readAsDataURL(file);
             reader.onload = () => {
-              (this.postData.get('images') as FormArray).push(this.fb.group({file}));
-              this.imagePreviews.push(reader.result);
+              const imagesArray = (this.postData.get('images') as FormArray);
+              if (imagesArray.length < 3) {
+                imagesArray.push(this.fb.group({file}));
+                this.imagePreviews.push(reader.result);
+              } else {
+                this.nbToastrService.warning('You have already uploaded 3 images!', 'Warning');
+              }
             }
           }
         }
       }
     } else {
-      this.nbToastrService.warning('Maximum only 3 images are allowed!', 'Warning');
+      this.nbToastrService.warning('Only images are allowed!', 'Warning');
     }
   }
 
@@ -72,16 +77,14 @@ export class UserFeedInputComponent implements OnInit {
     this.imagePreviews.splice(idx, 1);
   }
 
-  onDialogOpen(ref: TemplateRef<any>): void {
-    this.nbDialogService.open(ref);
-  }
-
   detectTags(content: string, removeTags: boolean = false) {
     const contentArray = content?.split(' ');
     const tags = contentArray?.filter(word => word.startsWith('#'));
+    const tagsArray = (this.postData.get('tags') as FormArray);
+    tagsArray.clear();
     tags?.forEach(tag => {
       if (tag.length > 1) {
-        (this.postData.get('tags') as FormArray).push(this.fb.control(tag));
+        tagsArray.push(this.fb.control(tag));
       }
     });
     if (removeTags) {
