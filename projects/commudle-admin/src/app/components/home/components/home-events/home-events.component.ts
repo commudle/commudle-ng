@@ -33,14 +33,14 @@ export class HomeEventsComponent implements OnInit {
   getRandomPastEvents(count) {
     this.homeService.pPastRandomEvents(count).subscribe(data => {
       this.events.push(...data.events);
-      setTimeout(() => this.isLoading = false, 500);
+      this.isLoading = false;
     });
   }
 
   updateEventsIdx(value: number) {
     this.isLoading = true;
     this.eventsStartIdx = (this.eventsStartIdx + value) % this.maxEventsCount;
-    setTimeout(() => this.isLoading = false, 500);
+    this.isLoading = false;
   }
 
 }
