@@ -33,7 +33,7 @@
               "./node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": [
-              "projects/commudle-admin/src/assets/scripts/jitsi-meet.js",
+              "projects/commudle-admin/src/assets/scripts/jitsi-meet.js"
             ]
           },
           "configurations": {
@@ -191,13 +191,13 @@
           "options": {
             "tsConfig": "projects/lib-authwatch/tsconfig.lib.json",
             "project": "projects/lib-authwatch/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/lib-authwatch/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -231,13 +231,13 @@
           "options": {
             "tsConfig": "projects/api-routes/tsconfig.lib.json",
             "project": "projects/api-routes/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/api-routes/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -271,13 +271,13 @@
           "options": {
             "tsConfig": "projects/lib-error-handler/tsconfig.lib.json",
             "project": "projects/lib-error-handler/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/lib-error-handler/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -311,13 +311,13 @@
           "options": {
             "tsConfig": "projects/lib-api-parser/tsconfig.lib.json",
             "project": "projects/lib-api-parser/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/lib-api-parser/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -339,6 +339,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "commudle-admin"
+    }
+  },
+  "defaultProject": "commudle-admin",
+  "cli": {
+    "analytics": false
+  }
 }
