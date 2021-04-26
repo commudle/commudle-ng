@@ -8,6 +8,7 @@ import {ILabs} from 'projects/shared-models/labs.model';
 import {ICommunityBuilds} from 'projects/shared-models/community-builds.model';
 import {IEvents} from 'projects/shared-models/events.model';
 import {IHomeSearch} from '../../../../shared-models/home-search.model';
+import {IFeedItems} from 'projects/shared-models/feed-items.model';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,11 @@ export class HomeService {
     return this.http.get<IHomeSearch>(
       this.apiRoutesService.getRoute(API_ROUTES.HOME.SEARCH_ALL), {params}
     );
+  }
+
+  pFeed(): Observable<IFeedItems>{
+    return this.http.get<IFeedItems>(
+        this.apiRoutesService.getRoute(API_ROUTES.EXTERNAL_FEEDS.INDEX));
   }
 
 }
