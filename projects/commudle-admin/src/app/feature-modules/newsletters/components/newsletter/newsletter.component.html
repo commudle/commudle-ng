@@ -1,0 +1,16 @@
+<div class="newsletter page-padding">
+  <nb-card>
+    <nb-card-body>
+      <h3>
+        <nb-icon icon="file-text-outline"></nb-icon>
+        Newsletters
+      </h3>
+      <p>Commudle's Newsletters on your way!</p>
+    </nb-card-body>
+  </nb-card>
+  <button  [routerLink]="['/newsletters/create']" nbButton status="primary" class="create-btn">
+    <nb-icon icon="plus-outline"></nb-icon>
+    Create Newsletter
+  </button>
+  <app-newsletter-list></app-newsletter-list>
+</div>

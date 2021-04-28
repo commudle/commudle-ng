@@ -1,0 +1,71 @@
+<nb-card>
+  <nb-card-body>
+
+    <nb-tabset>
+      <nb-tab tabIcon = "done-all-outline"
+              tabTitle="All"
+              badgeText=""
+              badgeStatus="danger">
+        <!-- <p>List of <strong>users</strong>.</p> -->
+        <nb-card class="newsletter-container d-flex">
+          <nb-card-body>
+            <h5>Title of Newsletter</h5>
+            <p>
+              <small>Created at:</small>
+            </p>
+          </nb-card-body>
+
+          <div class="edit-delete-btn d-flex flex-column">
+            
+
+            <input nbInput [nbDatepicker]="datepicker" placeholder="Date">
+            <nb-datepicker #datepicker></nb-datepicker>
+            <input nbInput type="text"  [nbTimepicker]="timepicker" formControlName="start_time_pick">
+                  <nb-timepicker #timepicker></nb-timepicker>
+            <button nbButton outline status="info" size="tiny">Edit</button>
+            <button nbButton outline status="danger" size="tiny">Delete</button>
+          </div>
+         </nb-card>
+
+
+
+
+
+      </nb-tab>
+
+
+
+
+
+      <nb-tab tabIcon = 'clock-outline'
+              tabTitle="Pending"
+              badgeText=""
+              badgePosition="bottom right"
+              badgeStatus="warning">
+              <nb-card>
+                <nb-card-body>
+                  <h5>Title of Newsletter</h5>
+                </nb-card-body>
+
+              </nb-card>
+      </nb-tab>
+
+
+
+
+      <nb-tab tabIcon = "calendar-outline"
+              tabTitle="Scheduled"
+              badgeText=""
+              badgePosition="top right"
+              badgeStatus="success">
+              <nb-card>
+                <nb-card-body>
+                  <h5>Title of Newsletter</h5>
+                </nb-card-body>
+
+              </nb-card>
+      </nb-tab>
+    </nb-tabset>
+
+  </nb-card-body>
+</nb-card>

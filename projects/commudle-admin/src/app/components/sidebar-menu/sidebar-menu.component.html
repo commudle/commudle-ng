@@ -36,6 +36,13 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item>
+      <a [routerLink]="['/newsletters']">
+        <nb-icon icon="file-text-outline"></nb-icon>
+        Newsletters
+      </a>
+    </nb-list-item>
+
   </nb-list>
 
   <div *ngIf="managedCommunities.length > 0 || managedCommunityGroups.length > 0">

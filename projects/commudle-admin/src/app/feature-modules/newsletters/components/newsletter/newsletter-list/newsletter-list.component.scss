@@ -1,0 +1,26 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+nb-tab {
+  nb-card {
+    background-color: #edf1f7;
+    flex-direction: row;
+
+    button {
+      margin: $space-10;
+    }
+  }
+}
+h5 {
+  margin: 0;
+  font-weight: $fw-500;
+}
+
+input {
+  margin: 10px;
+  font-weight: 500;
+  /* border: green; */
+  border-radius: 0.25rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.3125rem 0.625rem;
+}

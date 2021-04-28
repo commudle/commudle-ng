@@ -77,6 +77,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
   },
   {
+    path: 'newsletters',
+    loadChildren: () => import('./feature-modules/newsletters/newsletters.module').then(m => m.NewslettersModule)
+  },
+  {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
   },
