@@ -22,6 +22,7 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {ExternalFeedHListItemComponent} from './components/external-feed-hlist-item/external-feed-hlist-item.component';
 import {FeedItemDiscussionComponent} from './components/feed-item-discussion/feed-item-discussion.component';
 import {FeedItemDiscussionMessageComponent} from './components/feed-item-discussion/feed-item-discussion-message/feed-item-discussion-message.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {FeedItemDiscussionMessageComponent} from './components/feed-item-discuss
     NbCheckboxModule,
     NbFormFieldModule,
     NbUserModule,
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class ExternalFeedModule { }
