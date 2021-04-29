@@ -13,23 +13,29 @@ export class ExternalFeedComponent implements OnInit {
   total;
   isLoading = false;
   canLoadMore = true;
+  tags: Array<string>;
 
   constructor(
     private feedItemService: FeedItemService,
     private title: Title,
-    private meta: Meta
+    private meta: Meta, 
   ) {
   }
 
   ngOnInit() {
     this.getFeedPosts();
     this.setMeta();
+    this.tags = ['Javascript', 'IOS', 'PHP', 'Ruby', 'Rails', 'Android'];
   }
 
   getFeedPosts(): void{
     this.feedItemService.pGetAll().subscribe(value=> {
       this.externalPosts = value.feed_items;
     });
+  }
+
+  tagSelected(event: any) {
+    console.log("Tag selection working")
   }
 
   setMeta(): void{
