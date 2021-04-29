@@ -1,17 +1,18 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-community-create',
   templateUrl: './community-create.component.html',
   styleUrls: ['./community-create.component.scss']
 })
-export class CommunityCreateComponent implements OnInit {
+export class CommunityCreateComponent implements OnInit, OnDestroy {
   communityGroupId;
   communityGroup: ICommunityGroup;
   communityForm = this.fb.group({
@@ -25,15 +26,30 @@ export class CommunityCreateComponent implements OnInit {
     private router: Router,
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private title: Title,
+    private meta: Meta
   ) { }
 
   ngOnInit() {
+    this.setTitle();
     this.activatedRoute.queryParams.subscribe(data => {
       if (data.community_group_id) {
         this.communityGroupId = data.community_group_id;
         this.getCommunityGroup(data.community_group_id);
       }
+    });
+  }
+
+  ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
+  }
+
+  setTitle() {
+    this.title.setTitle(`Create Community`);
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
     });
   }
 

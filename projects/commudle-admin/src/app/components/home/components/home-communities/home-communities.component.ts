@@ -4,8 +4,9 @@ import {HomeService} from 'projects/commudle-admin/src/app/services/home.service
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
+import {UserRolesUsersService} from 'projects/commudle-admin/src/app/services/user_roles_users.service';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
 import {NbDialogRef, NbDialogService} from '@nebular/theme';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-communities',
@@ -17,18 +18,19 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   communities: ICommunity[] = [];
   communityStatus: boolean[] = [];
 
-  subscriptions = []
+  subscriptions = [];
   currentUser: ICurrentUser;
 
   @ViewChild('joinCommunityDialog') joinCommunityDialog: TemplateRef<any>;
-  joinCommunityRef: NbDialogRef<any>;
+  @ViewChild('leaveCommunityDialog') leaveCommunityDialog: TemplateRef<any>;
 
   constructor(
     private homeService: HomeService,
     private appUsersService: AppUsersService,
     private authWatchService: LibAuthwatchService,
-    private nbDialogService: NbDialogService,
-    private router: Router
+    private userRolesUsersService: UserRolesUsersService,
+    private toastLogService: LibToastLogService,
+    private nbDialogService: NbDialogService
   ) {
   }
 
@@ -62,22 +64,25 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDialogOpen(community: ICommunity): void {
-    this.joinCommunityRef = this.nbDialogService.open(this.joinCommunityDialog, {
+  openDialog(community: ICommunity, status: boolean) {
+    this.nbDialogService.open(status ? this.leaveCommunityDialog : this.joinCommunityDialog, {
       context: {
         community
-      },
-      autoFocus: false
+      }
     });
   }
 
-  onDialogClose(community?: ICommunity): void {
-    if (community) {
-      this.joinCommunityRef.close();
-      this.router.navigate(['communities', community.slug]);
-    } else {
-      this.joinCommunityRef.close();
-    }
+  toggleCommunityStatus(community: ICommunity, ref: NbDialogRef<any>) {
+    this.userRolesUsersService.pToggleMembership(community.slug).subscribe(data => {
+      if (data) {
+        this.toastLogService.successDialog(`You are now a member of ${community.name}!`, 2000);
+      }
+      // Change community status
+      const idx = this.communities.findIndex(value => community.id === value.id);
+      this.communityStatus[idx] = data;
+      // Close dialog
+      ref.close();
+    });
   }
 
 }

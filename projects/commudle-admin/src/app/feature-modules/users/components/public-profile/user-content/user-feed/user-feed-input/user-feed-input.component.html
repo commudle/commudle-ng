@@ -1,53 +1,28 @@
 <div class="user-feed-input">
   <nb-form-field [formGroup]="postData">
     <nb-icon icon="edit-2" nbPrefix></nb-icon>
-    <input formControlName="content" fullWidth maxlength="800" nbInput placeholder="Share your thoughts" type="text">
+    <textarea #messageInput (input)="handleInputSize()" formControlName="content" fullWidth maxlength="800" nbInput
+              placeholder="Share your thoughts" rows="1" type="text"></textarea>
     <button (click)="submitPost()" [disabled]="!postData.valid" ghost nbButton nbSuffix status="primary">
       <nb-icon icon="paper-plane"></nb-icon>
     </button>
   </nb-form-field>
   <div class="user-feed-input-suffix">
-    <button (click)="onDialogOpen(imagesDialog)" ghost nbButton>
+    <button (click)="showImageUpload = !showImageUpload" ghost nbButton>
       <nb-icon icon="camera"></nb-icon>
       <span *ngIf="imagePreviews.length > 0">{{imagePreviews.length}}</span>&nbsp;Photos
     </button>
-    <button (click)="onDialogOpen(tagsDialog)" ghost nbButton>
-      <nb-icon icon="hash"></nb-icon>
-      <span *ngIf="tags.length > 0">{{tags.length}}</span>&nbsp;Tags
-    </button>
+  </div>
+  <div *ngIf="showImageUpload" class="user-feed-input-images">
+    <p>You can add a maximum of 3 images each having a maximum size of 2MB</p>
+    <input (change)="detectFiles($event)" accept="image/*" fullWidth multiple nbInput type="file">
+    <div class="user-feed-input-image d-flex">
+      <div *ngFor="let image of imagePreviews; let i=index;" class="image-container">
+        <button (click)="deleteImage(i)" nbButton shape="round" size="tiny">
+          <nb-icon icon="close"></nb-icon>
+        </button>
+        <img alt="Preview" height="150" src="{{image}}">
+      </div>
+    </div>
   </div>
 </div>
-
-<ng-template #imagesDialog let-ref="dialogRef">
-  <nb-card class="user-feed-input-images">
-    <nb-card-header class="d-flex align-items-center justify-content-space-between">
-      Add images
-      <button (click)="ref.close()" ghost nbButton size="small">
-        <nb-icon icon="close"></nb-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body class="d-flex flex-column">
-      <div>You can add a maximum of 3 images each having a maximum size of 2MB</div>
-      <input (change)="detectFiles($event)" accept="image/*" fullWidth multiple nbInput type="file">
-      <div class="user-feed-input-image d-flex">
-        <img *ngFor="let image of imagePreviews" alt="Preview" height="150" src="{{image}}">
-      </div>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
-
-<ng-template #tagsDialog let-ref="dialogRef">
-  <nb-card class="user-feed-input-tags">
-    <nb-card-header class="d-flex align-items-center justify-content-space-between">
-      Add tags
-      <button (click)="ref.close()" ghost nbButton size="small">
-        <nb-icon icon="close"></nb-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body class="d-flex flex-column">
-      <div>You can add a maximum of 10 tags</div>
-      <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true" [tags]="tags"></app-tag>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
-

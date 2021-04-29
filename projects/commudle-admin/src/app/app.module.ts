@@ -53,10 +53,8 @@ import {CookieService} from 'ngx-cookie-service';
 import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
 import {AppInitService} from './services/app-init.service';
 import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {EventCardComponent} from './components/home/event-card/event-card.component';
 import {AppSharedComponentsModule} from './app-shared-components/app-shared-components.module';
 import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {CommunityBuildCardComponent} from './components/home/community-build-card/community-build-card.component';
 import {ReusableComponentsModule} from './feature-modules/reusable-components/reusable-components.module';
 import {AboutComponent} from './components/home/about/about.component';
 import {FeaturesComponent} from './components/home/features/features.component';
@@ -83,6 +81,7 @@ import {PublicCommunityModule} from './feature-modules/public-community/public-c
 import {HomeHeadBannerComponent} from './components/home/components/home-head-banner/home-head-banner.component';
 import {HomeExternalFeedLinksComponent} from './components/home/components/home-external-feed-links/home-external-feed-links.component';
 import {LabsModule} from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
+import {SearchBarComponent} from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -98,8 +97,6 @@ export function initApp(appInitService: AppInitService) {
     LogoutComponent,
     SidebarMenuComponent,
     SpeakerResourceFormComponent,
-    EventCardComponent,
-    CommunityBuildCardComponent,
     AboutComponent,
     FeaturesComponent,
     CommunitiesComponent,
@@ -116,6 +113,7 @@ export function initApp(appInitService: AppInitService) {
     NavbarMenuComponent,
     HomeHeadBannerComponent,
     HomeExternalFeedLinksComponent,
+    SearchBarComponent
   ],
   imports: [
     AppRoutingModule,

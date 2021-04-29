@@ -1,13 +1,13 @@
 <div *ngIf="community && event" class="home-events-card anim-shadow">
-  <div *ngIf="registrations > 0" class="home-events-attending">
+  <!-- <div *ngIf="registrations > 0" class="home-events-attending">
     <nb-icon icon="people"></nb-icon>
     {{registrations}} Registered
-  </div>
+  </div> -->
   <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
-    <div class="home-events-image-overlay"></div>
+    <div class="home-events-image-overlay" [ngClass]="{'old': moment(event.start_time) < moment()}"></div>
     <img alt="{{event.name}}" src="{{ event.header_image ? event.header_image.i350 : '/assets/images/Home-Events.png'}}">
   </div>
-  <div class="home-events-date">
+  <div *ngIf="event.start_time" class="home-events-date" [ngClass]="{'old': moment(event.start_time) < moment()}">
     {{moment(event.start_time).format('MMM DD')}}
   </div>
   <div class="home-events-details">

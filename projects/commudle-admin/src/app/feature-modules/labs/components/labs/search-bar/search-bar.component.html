@@ -1,4 +1,4 @@
-<div class="search-container">
+<div class="search-container d-flex">
   <div (clickOutside)="toggleSearchSuffix(false)" (mouseleave)="toggleSearchSuffix(false)" appClickOutside
        class="lab-search">
     <nb-form-field (mouseenter)="toggleSearchSuffix(true)" class="search-form">
@@ -12,13 +12,13 @@
         <app-tag (tagDelete)="onTagDelete($event)" [editable]="true" [inputDisabled]="true"
                  [tags]="labSearchParams"></app-tag>
       </div>
-      <div [ngClass]="{'active': showTagSearchResults}" class="tag-search-results">
+      <div [ngClass]="{'active': showTagSearchResults}" class="tag-search-results d-flex">
         <ul *ngIf="tagSearchResults.length > 0">
           <li (click)="onTagAdd(result.name, false)" *ngFor="let result of tagSearchResults" class="clickable">
             {{result.name}}
           </li>
         </ul>
-        <p *ngIf="tagSearchResults.length === 0">
+        <p *ngIf="tagSearchResults.length === 0" class="text-center">
           Quickly search your favorite topics, labs by industry experts or find an event you missed
         </p>
       </div>

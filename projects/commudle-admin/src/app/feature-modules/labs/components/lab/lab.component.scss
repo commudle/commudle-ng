@@ -6,9 +6,7 @@
   padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
 
   .body {
-    display: flex;
-    justify-content: center;
-    max-width: $max-page-width;
+    max-width: 1152px;
     margin: 0 auto;
 
     nb-sidebar, .toggle-details {
@@ -28,12 +26,9 @@
           padding: $space-64;
 
           .introduction {
-            display: flex;
-            flex-direction: column;
-
             .lab-title {
-              font-size: 2.25rem;
-              font-weight: 500;
+              font-size: $fs-35;
+              font-weight: $fw-500;
               line-height: 2.75rem;
               color: $gunmetal;
               text-transform: capitalize;
@@ -41,14 +36,9 @@
             }
 
             .lab-detail {
-              display: flex;
-              justify-content: space-between;
               margin-bottom: $space-48;
 
               .user-profile {
-                display: flex;
-                justify-content: flex-start;
-
                 .avatar {
                   img {
                     height: 24px;
@@ -62,6 +52,7 @@
                   font-style: italic;
 
                   p {
+                    font-size: $fs-h5;
                     color: $spanish-gray;
                     margin: 0 $space-16 0 $space-8;
                   }
@@ -70,20 +61,26 @@
                     text-transform: capitalize;
                     color: $neon-blue;
                   }
+
+                  .date {
+                    font-style: normal;
+                  }
                 }
               }
 
               .tags {
-                margin-left: 4rem;
+                margin-left: $space-64;
 
                 &::ng-deep {
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
-                      font-size: 13px;
-                      font-weight: 400;
+                      padding: $space-4 $space-12;
+                      font-size: $fs-h7;
+                      font-weight: $fw-400;
+                      line-height: 12px;
                       text-transform: lowercase;
                       color: $gunmetal;
-                      background-color: #DAE0FF;
+                      background-color: $azureish-white;
                       border: none;
                       border-radius: $border-5;
                     }
@@ -111,10 +108,6 @@
             }
 
             .header-image {
-              max-width: 900px;
-              max-height: 350px;
-              overflow: hidden;
-
               img {
                 width: 100%;
               }
@@ -169,8 +162,8 @@
 
           nb-card-footer {
             position: sticky;
-            bottom: 0;
-            padding: $space-8 0 $space-64;
+            bottom: $space-64;
+            padding: $space-8 0;
           }
         }
       }
@@ -208,20 +201,19 @@
 
       .discussion {
         margin: $space-24 0 0;
-        font-size: 1.5rem;
+        font-size: $fs-24;
         color: $neon-blue;
       }
 
       nb-icon {
-        font-size: 1.5rem;
+        font-size: $fs-24;
         color: $neon-blue;
       }
     }
 
     @media (min-width: $tab-width) {
       .content {
-        min-width: 500px;
-        width: 70%;
+        max-width: 744px;
       }
 
       .interactions {
@@ -231,12 +223,9 @@
   }
 
   .steps-navigation {
-    display: flex;
-    justify-content: space-between;
-
     button {
-      font-size: 1rem;
-      font-weight: 500;
+      font-size: $fs-18;
+      font-weight: $fw-500;
       text-transform: capitalize;
       color: $white;
       background-color: $neon-blue;
@@ -245,7 +234,8 @@
   }
 
   .lab-discussion {
-    margin: $space-32 0 $space-64;
+    margin: $space-32 0 0;
+    padding: 0 0 $space-64;
   }
 }
 

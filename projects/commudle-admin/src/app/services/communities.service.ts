@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ICommunity } from 'projects/shared-models/community.model';
+import { IUsers } from 'projects/shared-models/users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class CommunitiesService {
     // );
   }
 
-
+  // get the details of a community
   getCommunityDetails(communityId): Observable<ICommunity> {
     const params = new HttpParams().set('community_id', communityId);
 
@@ -51,7 +52,7 @@ export class CommunitiesService {
     );
   }
 
-
+  // update community details
   updateCommunity(communityFormData, communityId): Observable<ICommunity> {
 
     const params = new HttpParams().set('community_id', communityId);
@@ -63,7 +64,7 @@ export class CommunitiesService {
     );
   }
 
-
+  // search a community by name
   searchByName(query): Observable<ICommunity[]> {
     const params = new HttpParams().set('query', query);
 
@@ -73,7 +74,19 @@ export class CommunitiesService {
     );
   }
 
+  // get all the speakers
+  speakers(communityId): Observable<IUsers> {
+    // communityId is the slug here
+    const params = new HttpParams().set('community_id', communityId);
 
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SPEAKERS),
+      {params}
+    );
+  }
+
+
+  // TODO deprecate once we have the new API's for list of communities
   // Public api communication
   pGetCommunities(page, count, query): Observable<ICommunities> {
     let params = new HttpParams().set('page', page).set('count', count).set('query', query);

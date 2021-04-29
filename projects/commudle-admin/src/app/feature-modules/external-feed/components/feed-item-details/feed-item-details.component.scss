@@ -13,9 +13,6 @@
      margin-bottom: 8px;
 
      nb-card-body {
-       &:hover {
-         box-shadow: 1px 1px 5px 5px $lightgrey;
-       }
 
        .image {
          border: 1px solid $lightestgrey;
@@ -33,20 +30,20 @@
 
        .source-details {
 
-         .external-feed-post-source-image {
-           min-height: 40px;
-           max-height: 40px;
-           min-width: 40px;
-           max-width: 40px;
-           overflow: hidden;
-           border-radius: 50%;
-           border: 0.5px solid $platinum;
-           margin-right: $space-8;
+        //  .external-feed-post-source-image {
+        //    min-height: 40px;
+        //    max-height: 40px;
+        //    min-width: 40px;
+        //    max-width: 40px;
+        //    overflow: hidden;
+        //    border-radius: 50%;
+        //    border: 0.5px solid $platinum;
+        //    margin-right: $space-8;
 
-           img {
-             width: 100%;
-           }
-         }
+        //    img {
+        //      width: 100%;
+        //    }
+        //  }
 
          .source-info {
            align-items: center;

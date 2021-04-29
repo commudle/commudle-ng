@@ -8,7 +8,7 @@
     font-size: $fs-h2;
     font-weight: $fw-600;
     color: $gunmetal;
-    padding: $space-16 $space-16 $space-8;
+    padding: $space-16 0 $space-8;
     border-bottom: none;
 
     p.sub-header {
@@ -56,13 +56,13 @@
           .home-community-details {
             .home-community-name {
               font-size: $fs-card-list-title;
-              font-weight: 600;
+              font-weight: $fw-600;
               color: $gunmetal;
             }
 
             .home-community-member-count {
               margin-top: $space-4;
-              font-size: $fs-14;
+              font-size: $fs-h5;
               line-height: 14px;
               color: $spanish-gray;
             }
@@ -70,17 +70,18 @@
         }
 
         .home-communities-join {
+          min-width: 70px;
           padding: $space-4 $space-12;
-          font-weight: 400;
+          font-weight: $fw-400;
           text-transform: capitalize;
-          color: white;
+          color: $white;
           background-color: $neon-blue;
           border: none;
         }
 
         .home-communities-join.active {
           color: $neon-blue;
-          background-color: white;
+          background-color: $white;
           border: 0.5px solid $neon-blue;
         }
       }
@@ -152,11 +153,6 @@
   }
 }
 
-
-.join-community {
-  nb-card-footer {
-    button {
-      margin-right: $space-4;
-    }
-  }
+.home-communities-dialog {
+  width: min(100vw, 500px);
 }

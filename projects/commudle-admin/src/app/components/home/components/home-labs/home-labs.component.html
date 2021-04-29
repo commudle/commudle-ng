@@ -1,5 +1,5 @@
 <nb-card class="home-labs">
-  <nb-card-header>
+  <nb-card-header class="clickable" [routerLink]="['/labs']">
     Labs
     <p class="sub-header">
       Learn from people like you
@@ -19,7 +19,7 @@
               {{ lab.name | truncatetext:45 }}
             </a>
           </p>
-          <div class="author d-flex">
+          <div class="author d-flex" [routerLink]="['/users', lab.user.username]">
             <div class="image">
               <img src="{{lab.user.avatar}}">
             </div>

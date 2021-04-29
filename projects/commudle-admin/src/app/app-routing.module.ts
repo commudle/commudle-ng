@@ -85,6 +85,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
   },
   {
+    path: 'speaker-resources',
+    loadChildren: () => import('./feature-modules/speaker-resources/speaker-resources.module').then(m => m.SpeakerResourcesModule)
+  },
+  {
     path: 'policies',
     loadChildren: () => import('./feature-modules/policies/policies.module').then(m => m.PoliciesModule)
   },

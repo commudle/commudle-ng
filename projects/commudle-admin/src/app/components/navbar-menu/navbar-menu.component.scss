@@ -1,7 +1,10 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .home-navbar-menu-options {
+  padding-left: $space-8;
+
   nb-action {
+    padding: 0 $space-16;
     flex-direction: column;
     justify-content: center;
     border: none;
@@ -16,7 +19,7 @@
     &::ng-deep {
       nb-icon {
         text-align: center;
-        color: rgba($azure, 0.2);
+        color: rgba($azure, 0.4);
       }
     }
   }

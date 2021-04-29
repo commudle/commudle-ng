@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -26,8 +26,10 @@ export class UserFeedComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  ngOnChanges() {
-    this.getPosts();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.user) {
+      this.getPosts();
+    }
   }
 
   getPosts() {
