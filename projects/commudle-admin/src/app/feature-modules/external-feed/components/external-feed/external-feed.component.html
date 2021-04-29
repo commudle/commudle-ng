@@ -2,13 +2,18 @@
   <div class="page-container">
     <div class="feed-desktop d-flex justify-content-start">
       <div class="left-column">
-          <nb-card class="header">
-            <nb-card-body>
-                Popular Tags
-            </nb-card-body>
-          </nb-card>
+        <nb-card class="header">
+          <nb-card-body>
+            Popular Tags
+          </nb-card-body>
+        </nb-card>
+        <nb-card class="tag-checkboxes">
+          <div *ngFor="let tag of tags">
+            <nb-checkbox (change)="tagSelected($event)"> <p>#{{tag}}</p> </nb-checkbox>
+          </div>
+        </nb-card>
       </div>
-      <div class = "right-column ">
+      <div class="right-column ">
         <nb-card class="header">
           <nb-card-body>
             <h1>
