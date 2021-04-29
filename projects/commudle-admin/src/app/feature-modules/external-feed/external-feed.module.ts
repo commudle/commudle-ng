@@ -14,7 +14,7 @@ import {
 	NbPopoverModule,
 	NbCheckboxModule,
     NbFormFieldModule,
-    NbUserModule
+    NbUserModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -52,6 +52,7 @@ import { DatePipe } from '@angular/common';
     NbCheckboxModule,
     NbFormFieldModule,
     NbUserModule,
+    NbCheckboxModule,
   ],
   providers: [DatePipe]
 })
