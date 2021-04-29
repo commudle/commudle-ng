@@ -1,21 +1,43 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 .external-feed {
-    width: 100%;
-  
-    .header {
-      h1 {
+    .left-column{
+      width: 300px;
+      // margin-top: 200px;
+      .header {
+        border: .0625rem solid #e4e9f2;
+        border-radius: 1rem;
+        box-shadow: none;
+        height: 60px;  
+        // h4 {
         font-weight: $fw-500;
-  
-        nb-icon {
-          font-size: $fs-40;
-          font-weight: $fw-500;
-        }
+        font-size: 25px;
+        text-align: justify;
+        // }
       }
     }
-  
-    @media (min-width: $media-width) {
-      width: $media-width;
-      margin: 0 auto;
+    .right-column{
+      width: 1000px;
+    
+      .header {
+        h1 {
+          font-weight: $fw-500;
+    
+          nb-icon {
+            font-size: $fs-40;
+            font-weight: $fw-500;
+          }
+        }
+      }
+
+    }  
+}
+
+@media (min-width: $media-width) {
+  .external-feed {
+    .page-container {
+      flex-direction: column;
+    // width: $media-width;
+        margin: 0 auto;
     }
-  
   }
+}

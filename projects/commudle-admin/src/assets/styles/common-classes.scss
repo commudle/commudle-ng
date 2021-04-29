@@ -8,6 +8,12 @@
 
 .page-padding {
   padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
+
+
+  @media (max-width: $mobile-width) {
+    padding: 0;
+
+  }
 }
 
 // typography
@@ -109,6 +115,13 @@
   padding-bottom: $space-12;
 }
 
+// padding
+.padding-0 {
+  padding: 0 !important;
+}
+
+
+
 // animations
 .anim-shadow {
   transition: all 0.3s ease-in-out;
@@ -116,4 +129,15 @@
   &:hover {
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25);
   }
+}
+
+
+
+// columns
+.three-col-large-column {
+  width: $large-column-width;
+}
+
+.small-column {
+  width: $small-column-width;
 }

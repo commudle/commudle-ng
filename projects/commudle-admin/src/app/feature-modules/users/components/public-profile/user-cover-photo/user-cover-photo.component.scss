@@ -13,11 +13,15 @@
     background-image: radial-gradient(at top left, $light-purple2, transparent),
     radial-gradient(at top right, $neon-blue, transparent),
     radial-gradient(at bottom left, $blue-jeans, transparent);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    //background-size: 100% 100%;
+    //background-repeat: no-repeat;
     overflow: hidden;
+
     img {
       width: 100%;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
     }
   }
 

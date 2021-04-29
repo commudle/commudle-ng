@@ -66,6 +66,23 @@ export class DiscussionsService {
     );
   }
 
+  pGetOrCreateForSpeakerResourceChat(speakerResourceId): Observable<IDiscussion> {
+    const params = new HttpParams().set('speaker_resource_id', speakerResourceId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_SPEAKER_RESOURCE_CHAT),
+      { params }
+    );
+  }
+
+
+  pGetOrCreateForFeedItemChat(feedItemId): Observable<IDiscussion> {
+    const params = new HttpParams().set('feed_item_id', feedItemId);
+    return this.http.get<IDiscussion>(
+      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT),
+      { params }
+    );
+  }
+
 
   pGetOrCreateForCommunityChannel(communityChannelId): Observable<IDiscussion> {
     const params = new HttpParams().set('community_channel_id', communityChannelId);
@@ -75,13 +92,6 @@ export class DiscussionsService {
     );
   }
 
-  pGetOrCreateForFeedItemChat(id): Observable<IDiscussion> {
-    const params = new HttpParams().set('feed_item_id', id);
-    return this.http.get<IDiscussion>(
-      this.apiRoutesService.getRoute(API_ROUTES.DISCUSSIONS.PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT),
-      { params }
-    );
-  }
 
   communityChannelNewAttachmentMessage(formData, parentType, parentId): Observable<boolean> {
     const params = new HttpParams().set('parent_id', parentId).set('parent_type', parentType);

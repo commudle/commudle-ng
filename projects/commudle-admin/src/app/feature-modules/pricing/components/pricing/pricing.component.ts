@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
@@ -6,7 +6,7 @@ import { Meta, Title } from '@angular/platform-browser';
   templateUrl: './pricing.component.html',
   styleUrls: ['./pricing.component.scss']
 })
-export class PricingComponent implements OnInit {
+export class PricingComponent implements OnInit, OnDestroy {
 
   constructor(
     private title: Title,
@@ -17,7 +17,16 @@ export class PricingComponent implements OnInit {
     this.setMeta();
   }
 
+  ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
+  }
+
   setMeta() {
+    // TODO Remove noindex
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
     this.title.setTitle('Pricing & Features');
     this.meta.updateTag({
       name: 'description',

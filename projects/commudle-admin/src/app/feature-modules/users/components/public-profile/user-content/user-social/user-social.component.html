@@ -1,4 +1,7 @@
 <div class="user-social">
+  <div class="header" *ngIf="socialResources && socialResources.length > 0">
+    My Content
+  </div>
   <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add d-flex">
     <button (click)="onOpenDialog()" ghost nbButton status="primary">
       <nb-icon icon="plus-circle"></nb-icon>

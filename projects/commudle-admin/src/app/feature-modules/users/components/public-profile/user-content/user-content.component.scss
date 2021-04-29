@@ -1,10 +1,13 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .user-content {
-  margin-top: $space-16;
-  padding: $space-8 $space-32 $space-32;
-  border-radius: $border-10;
-  background-color: $white;
+  // background-color: $white;
+
+  nb-card {
+    border-radius: $border-10;
+    margin-right: 0;
+    margin-left: 0;
+  }
 
   nb-tabset {
     &::ng-deep {
@@ -39,13 +42,14 @@
 
     nb-tab {
       padding: 0;
+      margin-top: $space-24;
     }
   }
 }
 
 @media all and (max-width: $tab-width) {
   .user-content {
-    padding: $space-8 $space-8 $space-32;
+    padding: $space-8 0 $space-32;
     margin-bottom: $space-32;
     border-radius: 0;
 
@@ -53,16 +57,22 @@
       &::ng-deep {
         .tabset {
           overflow-x: auto;
-          overflow-y: hidden;
-          position: sticky;
-          top: 3.5rem;
-          background-color: white;
-          z-index: 1;
+          padding: 5px 0;
+          justify-content: flex-start;
+
+          li {
+            a {
+              padding: 10px 10px;
+              span {
+                white-space: nowrap;
+              }
+            }
+          }
         }
       }
 
       nb-tab {
-        padding: $space-16;
+        padding: 0;
       }
     }
   }

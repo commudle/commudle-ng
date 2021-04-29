@@ -1,58 +1,39 @@
-import {CookieConsentService} from './services/cookie-consent.service';
-import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {DOCUMENT, isPlatformBrowser} from '@angular/common';
+import {Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
 import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
 import {environment} from 'projects/commudle-admin/src/environments/environment';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from '@nebular/theme';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {Router} from '@angular/router';
-import {DOCUMENT, isPlatformBrowser} from '@angular/common';
-import {Title} from '@angular/platform-browser';
 import {ActionCableConnectionSocket} from 'projects/shared-services/action-cable-connection.socket';
 import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
+import {CookieConsentService} from './services/cookie-consent.service';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
-import {IHomeSearch} from 'projects/shared-models/home-search.model';
-import {HomeService} from './services/home.service';
-import {Subject, Subscription} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 // import * as LogRocket from 'logrocket';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 
 
-export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class AppComponent implements OnInit, AfterViewChecked {
 
-  sideBarNotifications = false;
-  sideBarState = 'collapsed';
-  faBars = faBars;
-  currentUser: ICurrentUser;
-  userContextMenu: NbMenuItem[] = [
-    {title: 'Logout', link: '/logout'},
-  ];
-  cookieAccepted = false;
-  footerStatus = true;
-
-
-  // Search variables
-  searchQuery = '';
-  searchQueryChanged: Subject<string> = new Subject<string>();
-  searchQueryChangedSubscription: Subscription;
-  searchResults: IHomeSearch = {
-    builds: [],
-    communities: [],
-    events: [],
-    labs: [],
-    users: []
-  };
-  showSearchResults = false;
-  showPlaceholder = true;
+    sideBarNotifications = false;
+    sideBarState = 'collapsed';
+    faBars = faBars;
+    currentUser: ICurrentUser;
+    userContextMenu: NbMenuItem[] = [
+        {title: 'Logout', link: '/logout'},
+    ];
+    cookieAccepted = false;
+    footerStatus = true;
 
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
@@ -70,8 +51,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     private appCentralNotificationsService: AppCentralNotificationService,
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
-    private cdr: ChangeDetectorRef,
-    private homeService: HomeService
+    private cdr: ChangeDetectorRef
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
@@ -132,18 +112,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     this.checkNotifications();
-
-    // Subscribe to search
-    this.searchQueryChangedSubscription = this.searchQueryChanged.pipe(
-      debounceTime(1000),
-      distinctUntilChanged()
-    ).subscribe(value => {
-      this.getSearchResults(value);
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.searchQueryChangedSubscription.unsubscribe();
   }
 
   ngAfterViewChecked(): void {
@@ -166,32 +134,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   toggleSidebar() {
-    this.sideBarState = (this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed');
-    this.sidebarService.toggle(false, 'mainMenu');
+      this.sideBarState = this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed';
+      this.sidebarService.toggle(false, 'mainMenu');
   }
 
   login() {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
-  }
-
-  toggleSearchSuffix(value: boolean) {
-    this.showSearchResults = value;
-  }
-
-  getSearchResults(query: string) {
-    if (query !== '') {
-      this.homeService.searchEverything(query).subscribe(value => this.searchResults = value);
-      this.showPlaceholder = false;
-    } else {
-      this.searchResults = {
-        builds: [],
-        communities: [],
-        events: [],
-        labs: [],
-        users: []
-      };
-      this.showPlaceholder = true;
-    }
   }
 
 }

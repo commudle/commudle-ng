@@ -6,9 +6,16 @@
   border-radius: $border-10;
 
   nb-form-field {
-    input {
+    align-items: flex-start;
+
+    textarea {
       border: 1px solid $platinum;
       border-radius: $border-10;
+      resize: none;
+
+      &::placeholder {
+        padding-top: $space-2;
+      }
     }
 
     button {
@@ -29,17 +36,22 @@
       }
     }
   }
-}
 
-.user-feed-input-images, .user-feed-input-tags {
-  width: 480px;
-
-  nb-card-body {
-    gap: $space-8;
-
+  .user-feed-input-images {
     .user-feed-input-image {
+      margin-top: $space-8;
       overflow: auto;
       gap: $space-8;
+
+      .image-container {
+        position: relative;
+
+        button {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+        }
+      }
     }
   }
 }

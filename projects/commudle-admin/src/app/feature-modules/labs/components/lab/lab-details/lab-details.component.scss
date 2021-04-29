@@ -2,9 +2,9 @@
 
 .menu {
   position: sticky;
-  top: 4.5rem;
+  top: 72px;
   height: fit-content;
-  width: 250px;
+  width: 264px;
 
   nb-card {
     width: 100%;
@@ -13,30 +13,46 @@
   }
 
   .user {
-    padding: $space-16;
     margin: 0 0 $space-16;
     transition: all 0.3s ease-in-out;
 
-    nb-user {
-      &::ng-deep {
-        .user-picture.image {
-          height: 3.5rem;
-          width: 3.5rem;
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    nb-card-body {
+      padding: 0;
+
+      .user-image {
+        min-height: 56px;
+        min-width: 56px;
+        max-height: 56px;
+        max-width: 56px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: inherit;
+          object-fit: cover;
+          object-position: center;
         }
+      }
+
+      .user-details {
+        margin-left: $space-16;
+        color: $gunmetal;
 
         .user-name {
-          font-size: 1.125rem;
-          line-height: 1.5rem;
+          font-size: $fs-18;
         }
 
         .user-title {
-          font-size: 0.875rem;
+          margin-top: $space-4;
+          font-size: $fs-h5;
+          word-break: break-word;
         }
       }
-    }
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.05);
     }
   }
 
@@ -46,6 +62,12 @@
     nb-list {
       border: none;
       border-radius: $border-10;
+
+      nb-list-item {
+        a {
+          font-size: $fs-h5;
+        }
+      }
     }
 
     nb-list-item:not(:last-child) {
@@ -54,7 +76,7 @@
 
     .active {
       a {
-        color: white;
+        color: $white;
       }
 
       background-color: $neon-blue;
@@ -70,10 +92,10 @@
     margin: $space-16 0 0;
 
     nb-card-header {
-      font-size: 1.1rem;
-      font-weight: 400;
+      font-size: $fs-h4;
+      font-weight: $fw-400;
       color: $neon-blue;
-      padding: $space-16 $space-16 0.5 * $space-16;
+      padding: $space-16;
       border-bottom: none;
     }
 
@@ -81,17 +103,17 @@
       padding: 0;
 
       .details {
-        padding: $space-16;
+        padding: $space-8 $space-16;
         transition: all 0.3s ease-in-out;
 
         .name {
           margin: 0;
-          font-size: 1rem;
+          font-size: $fs-h5;
         }
 
         .type {
           margin: 0;
-          font-size: 0.9rem;
+          font-size: $fs-h6;
           color: $neon-blue;
         }
 
@@ -103,9 +125,6 @@
   }
 
   .interactions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     margin: $space-16;
 
     app-votes-display {
@@ -113,14 +132,14 @@
 
       &::ng-deep {
         p {
-          font-size: 1.5rem;
+          font-size: $fs-24;
 
           span {
             color: $neon-blue;
           }
 
           nb-icon {
-            font-size: 1.5rem;
+            font-size: $fs-24;
 
             &:not(.voted-heart) {
               color: $neon-blue;
@@ -131,12 +150,12 @@
     }
 
     .message-count {
-      font-size: 1.5rem;
+      font-size: $fs-24;
       color: $neon-blue;
     }
 
     nb-icon {
-      font-size: 1.5rem;
+      font-size: $fs-24;
       color: $neon-blue;
     }
   }

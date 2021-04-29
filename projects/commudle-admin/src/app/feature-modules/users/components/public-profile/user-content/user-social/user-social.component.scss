@@ -3,6 +3,15 @@
 .user-social {
   padding-top: $space-40;
 
+  .header {
+    margin-bottom: $space-24;
+    font-size: $fs-24;
+    font-weight: $fw-600;
+    line-height: 28px;
+    color: $neon-blue;
+  }
+
+
   .user-social-add {
     button {
       flex: 1;

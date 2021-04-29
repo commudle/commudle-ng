@@ -57,10 +57,16 @@
               Events
             </span>
           </a>
-          <a [routerLink]="['resources']" routerLinkActive="active">
+          <!-- <a [routerLink]="['resources']" routerLinkActive="active">
             <nb-icon icon="award" status="info"></nb-icon>
             <span>
               Sessions by Experts
+            </span>
+          </a> -->
+          <a [routerLink]="['speakers']" routerLinkActive="active">
+            <nb-icon icon="mic" status="success"></nb-icon>
+            <span>
+              Speakers
             </span>
           </a>
           <a [routerLink]="['members']" routerLinkActive="active">
@@ -75,6 +81,7 @@
               Channels
             </span>
           </a>
+
         </div>
       </nb-card-body>
     </nb-card>

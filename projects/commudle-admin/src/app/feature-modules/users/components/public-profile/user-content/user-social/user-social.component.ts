@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ISocialResource} from 'projects/shared-models/social_resource.model';
@@ -77,9 +77,12 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.user) {
      // Get user's social resources
      this.getSocialResources();
+    }
+
   }
 
   ngOnDestroy(): void {
@@ -148,7 +151,6 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
 
   addSocialResource(): void {
     if (this.socialResourcesForm.valid && this.tags.length > 0) {
-      console.log(this.socialResourcesForm.value);
       this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(value => {
         this.nbToastrService.success('Social resource successfully added!', 'Success');
         // Close dialog

@@ -18,6 +18,8 @@ export interface ILab {
   last_visited_step_id: number;
   votes?: number;
   visits?: number;
+  votes_count?: number;
+  total_visitors?: number;
   createdSince?: string;
 }
 
