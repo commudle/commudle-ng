@@ -1,0 +1,90 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+  .content-controls {
+    width: 100%;
+
+    .author-details {
+      margin-bottom: 4.8px;
+
+      .author-name {
+        margin: 0;
+        font-weight: $fw-600;
+        text-transform: capitalize;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .message-date {
+        margin: 0;
+      }
+    }
+
+    .content {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .details-flag {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      nb-icon {
+        font-size: $fs-16;
+        color: #8080808C;
+      }
+
+      > div {
+        margin-right: 10px;
+
+        p {
+          margin: 5px 0 0;
+          color: #808080;
+        }
+      }
+    }
+  }
+}
+
+.replies-container {
+  margin: $space-16 0 $space-16 $space-16;
+
+  .reply-message {
+    margin-bottom: 0.5 * $space-16;
+  }
+
+  .reply-form {
+    nb-form-field {
+      textarea {
+        resize: none;
+        padding: $space-8 $space-80 $space-8 $space-40;
+
+        &::placeholder {
+          padding-top: 2px;
+        }
+      }
+
+      &::ng-deep {
+        .nb-form-field-prefix-medium {
+          margin-bottom: auto;
+        }
+
+        .nb-form-field-suffix-medium {
+          margin: 0 0 auto -69.6px;
+
+          button {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}
