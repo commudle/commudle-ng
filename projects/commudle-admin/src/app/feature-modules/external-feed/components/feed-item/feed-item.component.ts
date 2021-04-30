@@ -12,7 +12,33 @@ import { FeedItemService } from 'projects/commudle-admin/src/app/services/feed-i
 
 export class FeedItemComponent implements OnInit {
 
-  feedItem: IFeedItem;
+  // feedItem: IFeedItem;
+  // constructor(
+  //   private title: Title,
+  //   private meta: Meta,
+  //   private activatedRoute: ActivatedRoute,
+  //   private feedItemService: FeedItemService
+
+  // ) { }
+
+  // ngOnInit() {
+
+  //   this.activatedRoute.params.subscribe(
+  //     data => {
+  //       this.getExternalFeed(data.id);
+  //     }
+  //   );
+  // }
+
+  // getExternalFeed(id) {
+  //   this.feedItemService.pShow(id).subscribe(
+  //     data => {
+  //       this.feedItem = data;
+  //     }
+  //   );
+  // }
+
+  feedItem ;
   constructor(
     private title: Title,
     private meta: Meta,
@@ -31,9 +57,9 @@ export class FeedItemComponent implements OnInit {
   }
 
   getExternalFeed(id) {
-    this.feedItemService.pShow(id).subscribe(
-      data => {
-        this.feedItem = data;
+    this.feedItemService.pShowv2(id).subscribe(
+      (data: any) => {
+        this.feedItem = data.posts;
       }
     );
   }

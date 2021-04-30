@@ -26,12 +26,15 @@
           </nb-card-body>
         </nb-card>
         <div class="external-feed-list">
-          <div *ngFor="let post of externalPosts">
+          <!-- <div *ngFor="let post of externalPosts">
+            <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
+          </div> -->
+          <div *ngFor="let post of externalPostsV2">
             <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
           </div>
         </div>
         <div class="load-more-button" *ngIf="canLoadMore && total">
-          <button [disabled]="isLoading" (click)="getFeedPosts()" fullWidth nbButton status="primary" size="small" outline>
+          <button [disabled]="isLoading" (click)="getFeedPostsV2()" fullWidth nbButton status="primary" size="small" outline>
             Load More!
           </button>
         </div>
