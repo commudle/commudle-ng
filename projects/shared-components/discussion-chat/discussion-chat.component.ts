@@ -8,7 +8,7 @@ import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-val
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
-import { DiscussionChatChannel } from '../services/websockets/dicussion-chat.channel';
+import { DiscussionChatChannel } from '../services/websockets/discussion-chat.channel';
 
 
 @Component({

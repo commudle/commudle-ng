@@ -26,6 +26,11 @@
       <div *ngIf="showPlaceholder" class="placeholder-text d-flex justify-content-center align-items-center">
         Quickly search your favorite topics, labs by industry experts or find an event you missed
       </div>
+      <div *ngIf="showLoading" class="loading-text d-flex justify-content-center align-items-center">
+        <div class="spinner">
+          <div *ngFor="let _ of [].constructor(5)"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

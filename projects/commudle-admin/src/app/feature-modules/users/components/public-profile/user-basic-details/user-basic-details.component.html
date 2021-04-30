@@ -12,73 +12,88 @@
   <div class="user-details text-center">
     <div class="name">{{user.name}}</div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
-    <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
+  </div>
+
+  <div class="user-interactions text-center">
+    <div *ngIf="currentUser && currentUser.id === user.id">
+      <button (click)="onEditProfileDialogOpen()" class="anim-shadow" nbButton size="small">
+        <nb-icon icon="edit"></nb-icon>
+        edit bio
+      </button>
+    </div>
+    <div *ngIf="currentUser && currentUser.id !== user.id">
+      <button (click)="openChatWithUser()" class="anim-shadow" nbButton size="small">
+        <nb-icon icon="paper-plane"></nb-icon>
+        Message
+      </button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="user-details">
+    <div class="heading">About me</div>
     <div *ngIf="user.location" class="location">
       <nb-icon icon="pin"></nb-icon>
       {{user.location}}
     </div>
+    <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
   </div>
 
-  <div *ngIf="currentUser && currentUser.id === user.id" class="edit-profile">
-    <button (click)="onEditProfileDialogOpen()" nbButton size="small">
-      <nb-icon icon="edit"></nb-icon>
-      edit bio
-    </button>
+  <hr>
+
+  <div class="user-tags">
+    <div class="heading">Skills</div>
+    <nb-tag-list>
+      <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
+      <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
+    </nb-tag-list>
   </div>
 
-  <nb-tag-list class="user-tags">
-    <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
-    <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
-  </nb-tag-list>
-
-  <div *ngIf="currentUser && currentUser.id !== user.id" class="message-user text-center">
-    <button (click)="openChatWithUser()" nbButton>Message
-      <nb-icon icon="paper-plane-outline"></nb-icon>
-    </button>
-  </div>
-
-  <div class="user-social text-center">
+  <div class="user-social text-center d-flex flex-wrap justify-content-center">
     <a *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}" nbButton shape="round"
-       target="_blank" target="_blank">
+       size="small" target="_blank">
       <nb-icon icon="globe-outline" status="primary"></nb-icon>
     </a>
     <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl:'linkedin' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+       size="small" target="_blank">
       <nb-icon icon="linkedin" status="primary"></nb-icon>
     </a>
     <a *ngIf="user.twitter" href="{{ user.twitter | completeurl:'twitter' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+       size="small" target="_blank">
       <nb-icon icon="twitter" status="primary"></nb-icon>
     </a>
-    <a *ngIf="user.github" href="{{ user.github | completeurl:'github' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+    <a *ngIf="user.github" href="{{ user.github | completeurl:'github' }}" nbButton shape="round" size="small"
+       target="_blank">
       <nb-icon icon="github" status="primary"></nb-icon>
     </a>
     <a *ngIf="user.youtube" href="{{ user.youtube | completeurl:'youtube' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+       size="small" target="_blank">
       <nb-icon icon="youtube" pack="fab" status="primary"></nb-icon>
     </a>
-    <a *ngIf="user.medium" href="{{ user.medium | completeurl:'medium' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+    <a *ngIf="user.medium" href="{{ user.medium | completeurl:'medium' }}" nbButton shape="round" size="small"
+       target="_blank">
       <nb-icon icon="medium" pack="fab" status="primary"></nb-icon>
     </a>
     <a *ngIf="user.dribbble" href="{{ user.dribbble | completeurl:'dribbble' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+       size="small" target="_blank">
       <nb-icon icon="dribbble" pack="fab" status="primary"></nb-icon>
     </a>
     <a *ngIf="user.behance" href="{{ user.behance | completeurl:'behance' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+       size="small" target="_blank">
       <nb-icon icon="behance" pack="fab" status="primary"></nb-icon>
     </a>
-    <a *ngIf="user.gitlab" href="{{ user.gitlab | completeurl:'gitlab' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+    <a *ngIf="user.gitlab" href="{{ user.gitlab | completeurl:'gitlab' }}" nbButton shape="round" size="small"
+       target="_blank">
       <nb-icon icon="gitlab" pack="fab" status="primary"></nb-icon>
     </a>
-    <a *ngIf="user.facebook" href="{{ user.facebook | completeurl:'facebooj' }}" nbButton shape="round"
-       target="_blank" target="_blank">
+    <a *ngIf="user.facebook" href="{{ user.facebook | completeurl:'facebook' }}" nbButton shape="round"
+       size="small" target="_blank">
       <nb-icon icon="facebook" pack="fab" status="primary"></nb-icon>
     </a>
   </div>
+
+  <hr>
 
 </div>
 

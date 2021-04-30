@@ -1,12 +1,9 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .public-profile {
-  display: flex;
-  min-height: 100vh;
   gap: $space-16;
-  margin-top: $space-16;
-  margin-bottom: $space-32;
-  justify-content: center;
+  min-height: 100vh;
+  margin: $space-16 auto $space-32;
 
   .basic-details {
     max-width: 264px;

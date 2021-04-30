@@ -1,5 +1,4 @@
-import { DiscussionChatChannel } from '../../../../../../../shared-components/services/websockets/dicussion-chat.channel';
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
@@ -10,6 +9,7 @@ import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service'
 import {UserMessagesService} from 'projects/commudle-admin/src/app/services/user-messages.service';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {Subscription} from 'rxjs';
+import { DiscussionChatChannel } from 'projects/shared-components/services/websockets/discussion-chat.channel';
 
 @Component({
   selector: 'app-speaker-resource-discussion',
