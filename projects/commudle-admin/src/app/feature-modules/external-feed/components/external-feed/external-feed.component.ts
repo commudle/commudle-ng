@@ -10,6 +10,9 @@ import { IFeedItem } from 'projects/shared-models/feed-item.model';
 })
 export class ExternalFeedComponent implements OnInit {
   externalPosts: IFeedItem[] = [];
+  externalPostsV2 = [];
+  page = 1;
+  count = 10;
   total;
   isLoading = false;
   canLoadMore = true;
@@ -26,12 +29,30 @@ export class ExternalFeedComponent implements OnInit {
     this.getFeedPosts();
     this.setMeta();
     this.tags = ['Javascript', 'IOS', 'PHP', 'Ruby', 'Rails', 'Android'];
+    this.getFeedPostsV2();
+
   }
 
   getFeedPosts(): void{
     this.feedItemService.pGetAll().subscribe(value=> {
       this.externalPosts = value.feed_items;
     });
+  }
+
+  getFeedPostsV2(){
+    if (!this.isLoading && (!this.total || this.externalPostsV2.length < this.total)) {
+      this.feedItemService.pGetAllv2(this.page).subscribe((value :any ) =>{
+          this.externalPostsV2 = this.externalPostsV2.concat(value.posts);
+          this.page += 1;
+          this.total = value.total;
+          this.isLoading = false;
+          if (this.externalPostsV2.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        }
+      );
+    }
+
   }
 
   tagSelected(event: any) {

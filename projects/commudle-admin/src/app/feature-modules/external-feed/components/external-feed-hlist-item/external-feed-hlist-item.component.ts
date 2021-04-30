@@ -16,6 +16,7 @@ export class ExternalFeedHListItemComponent implements OnInit {
   constructor(private datePipe: DatePipe) { }
 
   ngOnInit() {
-    this.feedItem.details.created_at = this.datePipe.transform(this.feedItem.details.created_at, 'd MMMM, YYYY');
+    // this.feedItem.details.created_at = this.datePipe.transform(this.feedItem.details.created_at, 'd MMMM, YYYY');
+    this.feedItem.created_at = this.datePipe.transform(this.feedItem.created_at, 'd MMMM, YYYY');
   }
 }

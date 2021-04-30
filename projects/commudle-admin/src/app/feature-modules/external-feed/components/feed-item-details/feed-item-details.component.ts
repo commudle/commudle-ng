@@ -12,7 +12,28 @@ import { DatePipe } from '@angular/common'
 export class FeedItemDetailsComponent implements OnInit {
 
 
-	@Input() feedItem: IFeedItem;
+	// @Input() feedItem: IFeedItem;
+	// discussionChat: IDiscussion;
+
+	// currImage = null;
+	// messagesCount: number;
+
+	// constructor(
+	// 	private discussionsService: DiscussionsService,
+	// 	private datePipe: DatePipe
+    // ) { }
+
+	// ngOnInit() {
+	// 	this.feedItem.details.created_at = this.datePipe.transform(this.feedItem.details.created_at, 'd MMMM, YYYY');
+	// 	this.getDiscussionChat();
+	// }
+
+	// getDiscussionChat() {
+	// 	this.discussionsService.pGetOrCreateForFeedItemChat(this.feedItem.id).subscribe(
+	// 		data => this.discussionChat=data);
+	// }
+
+	@Input() feedItem;
 	discussionChat: IDiscussion;
 
 	currImage = null;
@@ -24,8 +45,8 @@ export class FeedItemDetailsComponent implements OnInit {
     ) { }
 
 	ngOnInit() {
-		this.feedItem.details.created_at = this.datePipe.transform(this.feedItem.details.created_at, 'd MMMM, YYYY');
-		this.getDiscussionChat();
+		this.feedItem.created_at = this.datePipe.transform(this.feedItem.created_at, 'd MMMM, YYYY');
+		// this.getDiscussionChat();
 	}
 
 	getDiscussionChat() {
