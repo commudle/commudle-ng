@@ -8,10 +8,22 @@
           </nb-card-body>
         </nb-card>
         <nb-card class="tag-checkboxes">
+            <div class="tag-checkbox" *ngFor="let tag of tags">
+                    <input type="checkbox"
+                           name="tags"
+                           value="{{tag}}"
+                           [checked]="false"
+                           (change)="updateCheckedTags(tag, $event)"/>
+                    <label for="#{{tag}}"> #{{tag}} </label>
+                    <br>
+                    <br>
+            </div>
+        </nb-card>
+<!--         <nb-card class="tag-checkboxes">
           <div *ngFor="let tag of tags">
             <nb-checkbox (change)="tagSelected($event)"> <p>#{{tag}}</p> </nb-checkbox>
           </div>
-        </nb-card>
+        </nb-card> -->
       </div>
       <div class="right-column ">
         <nb-card class="header">

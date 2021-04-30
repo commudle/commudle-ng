@@ -16,7 +16,9 @@ export class ExternalFeedComponent implements OnInit {
   total;
   isLoading = false;
   canLoadMore = true;
-  tags: Array<string>;
+  tags: Array<string> = [];
+  tagsMap:any = {};
+  tagsChecked = [];
 
   constructor(
     private feedItemService: FeedItemService,
@@ -26,12 +28,43 @@ export class ExternalFeedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getFeedPosts();
     this.setMeta();
-    this.tags = ['Javascript', 'IOS', 'PHP', 'Ruby', 'Rails', 'Android'];
+    this.getPopularTags();
+    this.initTagsMap();
+    // this.getFeedPosts();
     this.getFeedPostsV2();
-
   }
+
+  initTagsMap() {
+    for (var x = 0; x<this.tags.length; x++) {
+        this.tagsMap[this.tags[x]] = false;
+    }
+  }
+  
+  getPopularTags() {
+    this.feedItemService.pGetPopularTags().subscribe((value :any)=> {
+      let popularTags = value.tags;
+      console.log(popularTags);
+      for (let index in popularTags) {
+        let popularTag = popularTags[index]['tag'];
+        this.tags.push(popularTag);
+      }
+    }); 
+  }
+  updateCheckedTags(tag, event) {
+   this.page = 1
+   this.tagsMap[tag] = event.target.checked;
+   this.tagsChecked = [];
+   for(var x in this.tagsMap) {
+        if(this.tagsMap[x]) {
+            this.tagsChecked.push(x);
+        }
+    }
+    this.externalPostsV2 = [];
+    this.canLoadMore = true;
+    this.isLoading = false;
+    this.getFeedPostsV2();
+  } 
 
   getFeedPosts(): void{
     this.feedItemService.pGetAll().subscribe(value=> {
@@ -41,7 +74,8 @@ export class ExternalFeedComponent implements OnInit {
 
   getFeedPostsV2(){
     if (!this.isLoading && (!this.total || this.externalPostsV2.length < this.total)) {
-      this.feedItemService.pGetAllv2(this.page).subscribe((value :any ) =>{
+      if (this.tagsChecked.length == 0) {      
+        this.feedItemService.pGetAllv2(this.page).subscribe((value :any ) =>{
           this.externalPostsV2 = this.externalPostsV2.concat(value.posts);
           this.page += 1;
           this.total = value.total;
@@ -51,12 +85,20 @@ export class ExternalFeedComponent implements OnInit {
           }
         }
       );
+     }
+     else {
+        this.feedItemService.pGetTagBasedFeed(this.tagsChecked, this.page).subscribe((value :any ) =>{
+          this.externalPostsV2 = this.externalPostsV2.concat(value.posts);
+          this.page += 1;
+          this.total = value.total;
+          this.isLoading = false;
+          if (this.externalPostsV2.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        }
+      );
+     }
     }
-
-  }
-
-  tagSelected(event: any) {
-    console.log("Tag selection working")
   }
 
   setMeta(): void{
