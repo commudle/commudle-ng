@@ -11,6 +11,9 @@ import { IFeedItem } from 'projects/shared-models/feed-item.model';
 })
 export class FeedItemService {
 
+  private feed_api = 'http://15.207.110.193/feed/v2/latest-feed/'
+  private post_api = 'http://15.207.110.193/feed/v2/post/'
+
   constructor(
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService
@@ -25,6 +28,16 @@ export class FeedItemService {
     const params = new HttpParams().set('feed_item_id', id);
     return this.http.get<IFeedItem>(
         this.apiRoutesService.getRoute(API_ROUTES.EXTERNAL_FEEDS.SHOW), {params});
+  }
+
+  pGetAllv2(page){
+    const params = new HttpParams().set('page', page);
+    return this.http.get(this.feed_api, {params});
+  }
+
+  pShowv2(id){
+    const params = new HttpParams().set('id', id);
+    return this.http.get(this.post_api, {params});
   }
 
 }
