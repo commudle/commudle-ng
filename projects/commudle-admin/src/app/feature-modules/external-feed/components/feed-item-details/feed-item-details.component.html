@@ -1,4 +1,4 @@
-<div [routerLink]="['/feed', feedItem.id]" class="single-external-feed-details">
+<!--<div [routerLink]="['/feed', feedItem.id]" class="single-external-feed-details">
   <nb-card>
     <nb-card-body>
       <div class="image" *ngIf="feedItem.details.image.length > 0">
@@ -8,12 +8,12 @@
         />
       </div>
       <div class="source-details d-flex align-items-center">
-        <!--<div class="external-feed-post-source-image d-flex align-items-center">
+        <div class="external-feed-post-source-image d-flex align-items-center">
           <img
             alt="{{ feedItem.details.source }}"
             src="{{ feedItem.details.source_logo }}"
           />
-        </div> -->
+        </div>
         <div class="source-info">
           <em> {{ feedItem.details.source }} </em> <br />
           <small> {{ feedItem.details.created_at }} </small>
@@ -45,6 +45,68 @@
         <p class="comments" [routerLink]="['/feed', feedItem.id]">
           <span *ngIf="feedItem.messages_count > 0">
             {{ feedItem.messages_count }}
+          </span>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </p>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <div class="feed-discussion">
+    <app-feed-item-discussion
+      *ngIf="discussionChat"
+      [discussion]="discussionChat"
+    ></app-feed-item-discussion>
+  </div>
+</div> -->
+
+
+<div [routerLink]="['/feed', feedItem.id]" class="single-external-feed-details">
+  <nb-card>
+    <nb-card-body>
+      <div class="image" *ngIf="feedItem.image_url.length > 0">
+        <img
+          src="{{ feedItem.image_url }}"
+          alt="{{ feedItem.source.name }}"
+        />
+      </div>
+      <div class="source-details d-flex align-items-center">
+        <!--<div class="external-feed-post-source-image d-flex align-items-center">
+          <img
+            alt="{{ feedItem.details.source }}"
+            src="{{ feedItem.details.source_logo }}"
+          />
+        </div> -->
+        <div class="source-info">
+          <em> {{ feedItem.source.name }} </em> <br />
+          <small> {{ feedItem.created_at }} </small>
+        </div>
+      </div>
+      <div class="title">
+        <h3 class="name">
+          {{ feedItem.title }}
+        </h3>
+      </div>
+      <div class="tags" *ngFor="let tag of feedItem.tags">
+        <span class="tag-hash">#</span> {{ tag.tag }}
+      </div>
+      <p>
+        Visit the post at:
+        <a href="{{ feedItem.link_link }}">
+          {{ feedItem.source.name }}
+        </a>
+      </p>
+      <div class="stats d-flex align-items-center">
+        <p class="stars">
+          <app-votes-display
+            [votableType]="'FeedItem'"
+            [votableId]="feedItem.id"
+            [icon]="'heart'"
+          >
+          </app-votes-display>
+        </p>
+        <p class="comments" [routerLink]="['/feed', feedItem.id]">
+          <span *ngIf="feedItem.comments > 0">
+            {{ feedItem.comments }}
           </span>
           <nb-icon icon="message-circle-outline"></nb-icon>
         </p>
