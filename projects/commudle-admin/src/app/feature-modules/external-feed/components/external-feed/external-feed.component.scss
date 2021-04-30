@@ -20,7 +20,7 @@
       box-shadow: none;
 
       font-weight: $fs-h7;
-      font-size: $fs-40;
+      font-size: $fs-30;
       text-align: left;
 
       margin-top: $space-4;
@@ -30,8 +30,12 @@
       padding-top: $space-20;
       padding-bottom: $space-20;
 
-      .nb-checkbox {
-        font-size: $fs-30;
+      .tag-checkbox {
+        font-size: $fs-16;
+
+        .label {
+          display: inline-block;
+        }
       }
     }
   }
@@ -40,6 +44,10 @@
     width: $media-width;
 
     .header {
+      border: $border-1;
+      border-radius: $border-16;
+      box-shadow: none;
+      
       h1 {
         font-weight: $fw-500;
 

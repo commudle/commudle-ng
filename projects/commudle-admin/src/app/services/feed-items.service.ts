@@ -13,6 +13,8 @@ export class FeedItemService {
 
   private feed_api = 'http://15.207.110.193/feed/v2/latest-feed/'
   private post_api = 'http://15.207.110.193/feed/v2/post/'
+  private tag_based_feed_api = 'http://15.207.110.193/feed/v2/tag-based-feed/'
+  private popular_tags_api = 'http://15.207.110.193/feed/v2/popular-tags/'
 
   constructor(
     private http: HttpClient,
@@ -33,6 +35,17 @@ export class FeedItemService {
   pGetAllv2(page){
     const params = new HttpParams().set('page', page);
     return this.http.get(this.feed_api, {params});
+  }
+
+  pGetTagBasedFeed(tags, page){
+    let params = new HttpParams();
+    params = params.append('tags', tags.join(','));
+    params = params.append('page', page);
+    return this.http.get(this.tag_based_feed_api, {params});
+  }
+
+  pGetPopularTags() {
+   return this.http.get(this.popular_tags_api); 
   }
 
   pShowv2(id){
