@@ -9,12 +9,10 @@ import { IFeedItem } from 'projects/shared-models/feed-item.model';
   styleUrls: ['./external-feed.component.scss']
 })
 export class ExternalFeedComponent implements OnInit {
-  externalPosts: IFeedItem[] = [];
-  externalPostsV2 = [];
+  // externalPosts: IFeedItem[] = [];
+  externalPosts = [];
   page = 1;
-  count = 10;
   total;
-  isLoading = false;
   canLoadMore = true;
   tags: Array<string> = [];
   tagsMap:any = {};
@@ -23,7 +21,7 @@ export class ExternalFeedComponent implements OnInit {
   constructor(
     private feedItemService: FeedItemService,
     private title: Title,
-    private meta: Meta, 
+    private meta: Meta
   ) {
   }
 
@@ -31,8 +29,7 @@ export class ExternalFeedComponent implements OnInit {
     this.setMeta();
     this.getPopularTags();
     this.initTagsMap();
-    // this.getFeedPosts();
-    this.getFeedPostsV2();
+    this.getFeedPosts();
   }
 
   initTagsMap() {
@@ -44,7 +41,6 @@ export class ExternalFeedComponent implements OnInit {
   getPopularTags() {
     this.feedItemService.pGetPopularTags().subscribe((value :any)=> {
       let popularTags = value.tags;
-      console.log(popularTags);
       for (let index in popularTags) {
         let popularTag = popularTags[index]['tag'];
         this.tags.push(popularTag);
@@ -60,39 +56,36 @@ export class ExternalFeedComponent implements OnInit {
             this.tagsChecked.push(x);
         }
     }
-    this.externalPostsV2 = [];
+    this.externalPosts = [];
     this.canLoadMore = true;
-    this.isLoading = false;
-    this.getFeedPostsV2();
+    this.getFeedPosts();
   } 
 
-  getFeedPosts(): void{
-    this.feedItemService.pGetAll().subscribe(value=> {
-      this.externalPosts = value.feed_items;
-    });
-  }
+  // getFeedPosts(): void{
+  //   this.feedItemService.pGetAll().subscribe(data=> {
+  //     this.externalPosts = data.feed_items;
+  //   });
+  // }
 
-  getFeedPostsV2(){
-    if (!this.isLoading && (!this.total || this.externalPostsV2.length < this.total)) {
+  getFeedPosts(){
+    if (!this.total || this.externalPosts.length < this.total) {
       if (this.tagsChecked.length == 0) {      
-        this.feedItemService.pGetAllv2(this.page).subscribe((value :any ) =>{
-          this.externalPostsV2 = this.externalPostsV2.concat(value.posts);
+        this.feedItemService.pGetAllv2(this.page).subscribe((data :any ) =>{
+          this.externalPosts = this.externalPosts.concat(data.posts);
           this.page += 1;
-          this.total = value.total;
-          this.isLoading = false;
-          if (this.externalPostsV2.length >= this.total) {
+          this.total = data.total;
+          if (this.externalPosts.length >= this.total) {
             this.canLoadMore = false;
           }
         }
       );
      }
      else {
-        this.feedItemService.pGetTagBasedFeed(this.tagsChecked, this.page).subscribe((value :any ) =>{
-          this.externalPostsV2 = this.externalPostsV2.concat(value.posts);
+        this.feedItemService.pGetTagBasedFeed(this.tagsChecked, this.page).subscribe((data :any ) =>{
+          this.externalPosts = this.externalPosts.concat(data.posts);
           this.page += 1;
-          this.total = value.total;
-          this.isLoading = false;
-          if (this.externalPostsV2.length >= this.total) {
+          this.total = data.total;
+          if (this.externalPosts.length >= this.total) {
             this.canLoadMore = false;
           }
         }
