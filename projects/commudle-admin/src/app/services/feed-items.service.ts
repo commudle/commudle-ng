@@ -10,7 +10,7 @@ import { IFeedItem } from "projects/shared-models/feed-item.model";
   providedIn: "root",
 })
 export class FeedItemService {
-  private popular_tags_api = "http://15.207.110.193/feed/v2/popular-tags/";
+  private popular_tags_api = "https://feed.commudle.com/feed/v2/popular-tags/";
 
   constructor(
     private http: HttpClient,
