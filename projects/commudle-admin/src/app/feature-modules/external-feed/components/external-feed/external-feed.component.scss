@@ -1,10 +1,9 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import "/projects/commudle-admin/src/assets/styles/variables";
 
 .external-feed {
   .left-column {
-    // width: $small-column-width;
     margin-top: 10px;
-    width:264px;
+    width: 264px;
 
     .tag-checkboxes {
       border: $border-1;
@@ -40,13 +39,13 @@
   }
 
   .right-column {
-    width: $media-width;
+    width: 700px;
 
     .header {
       border: $border-1;
       border-radius: $border-10;
       box-shadow: none;
-      
+
       h1 {
         font-weight: $fw-500;
 
@@ -61,30 +60,21 @@
       border: $border-1;
       border-radius: $border-10;
       box-shadow: none;
-    }
-
-    .sorting{
-      // nb-icon {
-      //   font-size: $fs-40;
-      //   font-weight: $fw-500;
-      // }
-      button{
+      button {
         margin: 10px;
-        background-color:white;
+        background-color: white;
         font-size: 16px;
         border: none;
         text-align: center;
         width: 500px;
       }
     }
-
   }
 }
 
 @media (min-width: $media-width) {
   .external-feed {
     .page-container {
-      flex-direction: column;
       margin: 0 auto;
     }
   }

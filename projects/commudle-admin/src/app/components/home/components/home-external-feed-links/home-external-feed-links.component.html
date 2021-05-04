@@ -1,48 +1,9 @@
-<!-- <nb-card class="home-external-feed-links card-p16">
-  <nb-card-header>
-    Feed
-    <p class="sub-header">
-      What more is happening around the world.
-    </p>
-  </nb-card-header>
-  <nb-card-body class="home-external-feed-links-list">
-
-    <nb-list *ngIf="IFeedItem.length === 0">
-      <nb-list-item *ngFor="let _ of [].constructor(1)">
-        <app-skeleton-text [rows]="2"></app-skeleton-text>
-      </nb-list-item>
-    </nb-list>
-
-    <nb-list *ngIf="IFeedItem.length > 0">
-      <nb-list-item *ngFor="let feed of IFeedItem; let i = index" class="clickable">
-        <div [routerLink]="['/feed', feed.id]" class="home-external-feed-link d-flex align-items-center justify-content-space-between">
-          <div class="home-external-feed-link-details">
-            <div class="home-external-feed-link-title">
-              {{feed.details.title}}
-            </div>
-            <div class="home-external-feed-link-source">
-              Source: {{feed.details.source}}
-            </div>
-          </div>
-        </div>
-      </nb-list-item>
-    </nb-list>
-    <div [routerLink]="['/feed']" class="home-external-feed-link-all text-center clickable">
-      <a>View More</a>
-    </div>
-  </nb-card-body>
-</nb-card> -->
-
-
 <nb-card class="home-external-feed-links card-p16">
   <nb-card-header>
     Feed
-    <p class="sub-header">
-      What more is happening around the world.
-    </p>
+    <p class="sub-header">What more is happening around the world.</p>
   </nb-card-header>
   <nb-card-body class="home-external-feed-links-list">
-
     <nb-list *ngIf="IFeedItem.length === 0">
       <nb-list-item *ngFor="let _ of [].constructor(1)">
         <app-skeleton-text [rows]="2"></app-skeleton-text>
@@ -50,20 +11,29 @@
     </nb-list>
 
     <nb-list *ngIf="IFeedItem.length > 0">
-      <nb-list-item *ngFor="let feed of IFeedItem; let i = index" class="clickable">
-        <div [routerLink]="['/feed', feed.id]" class="home-external-feed-link d-flex align-items-center justify-content-space-between">
+      <nb-list-item
+        *ngFor="let feed of IFeedItem; let i = index"
+        class="clickable"
+      >
+        <div
+          [routerLink]="['/feed', feed.id]"
+          class="home-external-feed-link d-flex align-items-center justify-content-space-between"
+        >
           <div class="home-external-feed-link-details">
             <div class="home-external-feed-link-title">
-              {{feed.title}}
+              {{ feed.details.title }}
             </div>
             <div class="home-external-feed-link-source">
-              Source: {{feed.source.name}}
+              Source: {{ feed.details.source }}
             </div>
           </div>
         </div>
       </nb-list-item>
     </nb-list>
-    <div [routerLink]="['/feed']" class="home-external-feed-link-all text-center clickable">
+    <div
+      [routerLink]="['/feed']"
+      class="home-external-feed-link-all text-center clickable"
+    >
       <a>View More</a>
     </div>
   </nb-card-body>

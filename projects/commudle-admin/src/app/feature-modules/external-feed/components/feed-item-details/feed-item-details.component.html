@@ -1,54 +1,65 @@
 <div [routerLink]="['/feed', feedItem.id]" class="single-external-feed-details">
   <nb-card>
     <nb-card-body>
-      <div class="image" *ngIf="feedItem.image_url.length > 0">
-        <img src="{{ feedItem.image_url }}" alt="{{ feedItem.source.name }}" />
+      <div class="image" *ngIf="feedItem.details.image.length > 0">
+        <img
+          src="{{ feedItem.details.image }}"
+          alt="{{ feedItem.details.source }}"
+        />
       </div>
       <div class="source-details d-flex align-items-center">
         <div class="source-info">
-          <em> {{ feedItem.source.name }} </em> <br />
-          <small> {{ feedItem.created_at }} </small>
+          <em> {{ feedItem.details.source }} </em> <br />
+          <small> {{ feedItem.details.created_at }} </small>
         </div>
       </div>
       <div class="title">
         <h3 class="name">
-          {{ feedItem.title }}
+          {{ feedItem.details.title }}
         </h3>
       </div>
-      <div class="tags" *ngFor="let tag of feedItem.tags">
-        <span class="tag-hash">#</span> {{ tag.tag }}
+      <div class="tags" *ngFor="let tag of feedItem.details.tags">
+        <span class="tag-hash">#</span> {{ tag.name }}
       </div>
       <p>
         Visit the post at:
-        <a href="{{ feedItem.link_link }}">
-          {{ feedItem.source.name }}
+        <a href="{{ feedItem.details.link }}">
+          {{ feedItem.details.source }}
         </a>
       </p>
       <div class="stats d-flex align-items-center">
         <p class="stars">
-          <app-votes-display [votableType]="'FeedItem'" [votableId]="feedItem.id" [icon]="'heart'">
+          <app-votes-display
+            [votableType]="'FeedItem'"
+            [votableId]="feedItem.id"
+            [icon]="'heart'"
+          >
           </app-votes-display>
         </p>
         <p class="comments" [routerLink]="['/feed', feedItem.id]">
-          <span *ngIf="feedItem.comments > 0">
-            {{ feedItem.comments }}
+          <span *ngIf="feedItem.messages_count > 0">
+            {{ feedItem.messages_count }}
           </span>
           <nb-icon icon="message-circle-outline"></nb-icon>
         </p>
-        <div (click)="sendFlag(feedItem.id)" class="clickable">
-          <p [ngClass]="{'error-text': -1 > 0}" nbTooltip="Report this message. (3 reports will delete it)" nbTooltipStatus="warning">
-            <!-- <span *ngIf="message.flags_count > 0">{{ feedItem.flags_count }}</span> -->
+        <!--<div (click)="sendFlag(feedItem.id)" class="clickable">
+          <p
+            [ngClass]="{ 'error-text': -1 > 0 }"
+            nbTooltip="Report this message. (3 reports will delete it)"
+            nbTooltipStatus="warning"
+          >
+            <span *ngIf="message.flags_count > 0">{{ feedItem.flags_count }}</span>
             <span> 1 </span>
             <nb-icon icon="flag"></nb-icon>
           </p>
-        </div>
+        </div> -->
       </div>
     </nb-card-body>
   </nb-card>
 </div>
-<!--   <div class="feed-discussion">
-    <app-feed-item-discussion
-      *ngIf="discussionChat"
-      [discussion]="discussionChat"
-    ></app-feed-item-discussion>
-  </div> -->
+<div class="feed-discussion">
+  <app-feed-item-discussion
+    *ngIf="discussionChat"
+    [discussion]="discussionChat"
+  ></app-feed-item-discussion>
+</div>
