@@ -79,7 +79,7 @@ const routes: Routes = [
   {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
-  },  
+  },
   {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
@@ -91,6 +91,10 @@ const routes: Routes = [
   {
     path: 'policies',
     loadChildren: () => import('./feature-modules/policies/policies.module').then(m => m.PoliciesModule)
+  },
+  {
+    path: 'newsletters',
+    loadChildren: () => import('./feature-modules/main-newsletters/main-newsletters.module').then(m => m.MainNewslettersModule)
   },
   {
     path: 'admin',
