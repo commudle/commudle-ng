@@ -17,6 +17,7 @@ export class ExternalFeedComponent implements OnInit {
   tags: Array<string> = [];
   tagsMap:any = {};
   tagsChecked = [];
+  sortingCriterion = "latest";
 
   constructor(
     private feedItemService: FeedItemService,
@@ -67,9 +68,26 @@ export class ExternalFeedComponent implements OnInit {
   //   });
   // }
 
+  getLatestPosts() {
+    this.sortingCriterion = "latest";
+    this.page = 1;
+    this.externalPosts = [];
+    this.canLoadMore = true;
+    this.getFeedPosts();
+  }
+
+  getPopularPosts() {
+    this.sortingCriterion = "popular";
+    this.page = 1;
+    this.externalPosts = [];
+    this.canLoadMore = true;
+    this.getFeedPosts();
+
+  }
   getFeedPosts(){
     if (!this.total || this.externalPosts.length < this.total) {
-      if (this.tagsChecked.length == 0) {      
+      if (this.tagsChecked.length == 0) {  
+      if (this.sortingCriterion == "latest") {    
         this.feedItemService.pGetAllv2(this.page).subscribe((data :any ) =>{
           this.externalPosts = this.externalPosts.concat(data.posts);
           this.page += 1;
@@ -79,6 +97,18 @@ export class ExternalFeedComponent implements OnInit {
           }
         }
       );
+      }
+      else {
+        this.feedItemService.pGetPopularFeed(this.page).subscribe((data :any ) =>{
+          this.externalPosts = this.externalPosts.concat(data.posts);
+          this.page += 1;
+          this.total = data.total;
+          if (this.externalPosts.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        }
+      );
+      }
      }
      else {
         this.feedItemService.pGetTagBasedFeed(this.tagsChecked, this.page).subscribe((data :any ) =>{
