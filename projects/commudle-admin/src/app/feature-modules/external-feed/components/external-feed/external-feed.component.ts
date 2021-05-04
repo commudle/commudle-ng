@@ -17,6 +17,7 @@ export class ExternalFeedComponent implements OnInit {
   tags: Array<string> = [];
   tagsMap:any = {};
   tagsChecked = [];
+  sortingCriterion = "published_at";
 
   constructor(
     private feedItemService: FeedItemService,
@@ -61,37 +62,60 @@ export class ExternalFeedComponent implements OnInit {
     this.getFeedPosts();
   } 
 
-  // getFeedPosts(): void{
-  //   this.feedItemService.pGetAll().subscribe(data=> {
-  //     this.externalPosts = data.feed_items;
-  //   });
-  // }
-
-  getFeedPosts(){
+  getFeedPosts(): void{
     if (!this.total || this.externalPosts.length < this.total) {
-      if (this.tagsChecked.length == 0) {      
-        this.feedItemService.pGetAllv2(this.page).subscribe((data :any ) =>{
-          this.externalPosts = this.externalPosts.concat(data.posts);
-          this.page += 1;
-          this.total = data.total;
-          if (this.externalPosts.length >= this.total) {
-            this.canLoadMore = false;
-          }
+      if (this.tagsChecked.length == 0){
+        if (this.sortingCriterion == "published_at"){
+          this.feedItemService.pGetAll(this.page).subscribe(data=> {
+            this.externalPosts = this.externalPosts.concat(data.feed_items);
+            this.page += 1
+            this.total = data.total; 
+            if (this.externalPosts.length >= this.total) {
+              this.canLoadMore = false;
+            }
+          });
         }
-      );
-     }
-     else {
-        this.feedItemService.pGetTagBasedFeed(this.tagsChecked, this.page).subscribe((data :any ) =>{
-          this.externalPosts = this.externalPosts.concat(data.posts);
-          this.page += 1;
-          this.total = data.total;
-          if (this.externalPosts.length >= this.total) {
-            this.canLoadMore = false;
-          }
+        else{
+          this.feedItemService.pGetPopularFeed(this.page).subscribe(data=> {
+            this.externalPosts = this.externalPosts.concat(data.feed_items);
+            this.page += 1
+            this.total = data.total; 
+            if (this.externalPosts.length >= this.total) {
+              this.canLoadMore = false;
+            }
+          });
         }
-      );
-     }
+
+      }
+      else{
+        this.feedItemService.pGetTagBasedFeed(this.tagsChecked, this.page, this.sortingCriterion).subscribe(data=>{
+          this.externalPosts = this.externalPosts.concat(data.feed_items);
+            this.page += 1
+            this.total = data.total; 
+            if (this.externalPosts.length >= this.total) {
+              this.canLoadMore = false;
+            }
+        });
+      }
     }
+    
+  }
+
+  getLatestPosts() {
+    this.sortingCriterion = "published_at";
+    this.page = 1;
+    this.externalPosts = [];
+    this.canLoadMore = true;
+    this.getFeedPosts();
+  }
+
+  getPopularPosts() {
+    this.sortingCriterion = "likes";
+    this.page = 1;
+    this.externalPosts = [];
+    this.canLoadMore = true;
+    this.getFeedPosts();
+
   }
 
   setMeta(): void{
