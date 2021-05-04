@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, Output, OnInit, TemplateRef, ViewChild, EventEmitter} from '@angular/core';
 import {IFeedItem} from 'projects/shared-models/feed-item.model';
 import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
 import {IDiscussion} from 'projects/shared-models/discussion.model';
@@ -34,6 +34,7 @@ export class FeedItemDetailsComponent implements OnInit {
 	// }
 
 	@Input() feedItem;
+	// @Output() sendFlag = new EventEmitter();
 	discussionChat: IDiscussion;
 
 	currImage = null;
@@ -54,6 +55,22 @@ export class FeedItemDetailsComponent implements OnInit {
 			data => this.discussionChat=data);
 	}
 
+	// emitFlag(itemId) {
+	// 	console.log("Emitting flag for ");
+	// 	console.log(itemId);
+ //    	this.sendFlag.emit(itemId);
+ //  	}
 
+
+  	sendFlag(itemId) {
+  		console.log("Emitting flag for ");
+		console.log(itemId);
+    // this.discussionChatChannel.sendData(
+    //   this.discussionChatChannel.ACTIONS.FLAG,
+    //   {
+    //     feed_item_id: itemId
+    //   }
+    // );
+  }
 
 }
