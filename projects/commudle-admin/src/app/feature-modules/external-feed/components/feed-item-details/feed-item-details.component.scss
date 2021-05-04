@@ -11,6 +11,9 @@
 
    nb-card {
      margin-bottom: 8px;
+     border: $border-1;
+     border-radius: $border-10;
+     box-shadow: none;
 
      nb-card-body {
 
@@ -29,21 +32,6 @@
        }
 
        .source-details {
-
-        //  .external-feed-post-source-image {
-        //    min-height: 40px;
-        //    max-height: 40px;
-        //    min-width: 40px;
-        //    max-width: 40px;
-        //    overflow: hidden;
-        //    border-radius: 50%;
-        //    border: 0.5px solid $platinum;
-        //    margin-right: $space-8;
-
-        //    img {
-        //      width: 100%;
-        //    }
-        //  }
 
          .source-info {
            align-items: center;

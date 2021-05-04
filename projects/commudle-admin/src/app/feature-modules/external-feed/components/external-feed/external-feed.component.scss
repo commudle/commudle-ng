@@ -2,21 +2,13 @@
 
 .external-feed {
   .left-column {
-    width: $small-column-width;
-
-    .header {
-      border: $border-1 solid $solitude;
-      border-radius: $border-16;
-      box-shadow: none;
-      height: 60px;
-      font-weight: $fw-500;
-      font-size: $fs-25;
-      text-align: justify;
-    }
+    // width: $small-column-width;
+    margin-top: 10px;
+    width:264px;
 
     .tag-checkboxes {
       border: $border-1;
-      border-radius: $border-16;
+      border-radius: $border-10;
       box-shadow: none;
 
       font-weight: $fs-h7;
@@ -29,6 +21,13 @@
       padding-left: $space-32;
       padding-top: $space-20;
       padding-bottom: $space-20;
+
+      .header {
+        height: 50px;
+        font-weight: $fw-500;
+        font-size: $fs-25;
+        text-align: justify;
+      }
 
       .tag-checkbox {
         font-size: $fs-16;
@@ -45,7 +44,7 @@
 
     .header {
       border: $border-1;
-      border-radius: $border-16;
+      border-radius: $border-10;
       box-shadow: none;
       
       h1 {

@@ -20,8 +20,8 @@ export class HomeExternalFeedLinksComponent implements OnInit {
   // }
 
   // getFeed(): void{
-  //   this.homeService.pFeed().subscribe(value=> {
-  //     this.IFeedItem = value.feed_items.slice(0, 3);
+  //   this.homeService.pFeed().subscribe(data=> {
+  //     this.IFeedItem = data.feed_items.slice(0, 3);
   //   });
   // }
 
@@ -36,8 +36,8 @@ export class HomeExternalFeedLinksComponent implements OnInit {
   }
 
   getFeed(): void{
-    this.feedItemService.pGetAllv2(this.page).subscribe((value :any ) => {
-      this.IFeedItem = value.posts.slice(0, 3);
+    this.feedItemService.pGetAllv2(this.page).subscribe((data :any ) => {
+      this.IFeedItem = data.posts.slice(0, 3);
     });
   }
 }
