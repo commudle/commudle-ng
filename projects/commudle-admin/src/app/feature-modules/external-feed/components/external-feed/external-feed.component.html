@@ -33,11 +33,13 @@
         
         <nb-card>
         <div class="sorting d-flex justify-content-center">
-          <button>
+          <button
+          (click)="getLatestPosts()">
             <nb-icon icon="sun" status="warning"></nb-icon>
             Latest
           </button>
-          <button>
+          <button
+          (click)="getPopularPosts()">
             <nb-icon icon="flash" status="warning"></nb-icon>
             Hot
           </button>
