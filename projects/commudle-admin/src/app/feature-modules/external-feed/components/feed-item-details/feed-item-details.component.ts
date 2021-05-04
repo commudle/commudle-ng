@@ -21,7 +21,6 @@ export class FeedItemDetailsComponent implements OnInit {
   @Input() feedItem: IFeedItem;
   discussionChat: IDiscussion;
 
-  currImage = null;
   messagesCount: number;
 
   constructor(
