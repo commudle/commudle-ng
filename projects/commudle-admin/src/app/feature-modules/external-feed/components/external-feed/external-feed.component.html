@@ -2,51 +2,51 @@
   <div class="page-container">
     <div class="feed-desktop d-flex justify-content-start">
       <div class="left-column">
-        <nb-card class="header">
-          <nb-card-body>
-            Popular Tags
-          </nb-card-body>
-        </nb-card>
         <nb-card class="tag-checkboxes">
-            <div class="tag-checkbox" *ngFor="let tag of tags">
-                    <input type="checkbox"
-                           name="tags"
-                           value="{{tag}}"
-                           [checked]="false"
-                           (change)="updateCheckedTags(tag, $event)"/>
-                    <label for="#{{tag}}"> #{{tag}} </label>
-                    <br>
-                    <br>
-            </div>
-        </nb-card>
-<!--         <nb-card class="tag-checkboxes">
-          <div *ngFor="let tag of tags">
-            <nb-checkbox (change)="tagSelected($event)"> <p>#{{tag}}</p> </nb-checkbox>
+          <div class="header">
+          Popular Tags
           </div>
-        </nb-card> -->
+          <div class="tag-checkbox" *ngFor="let tag of tags">
+            <input
+              type="checkbox"
+              name="tags"
+              value="{{ tag }}"
+              [checked]="false"
+              (change)="updateCheckedTags(tag, $event)"
+            />
+            <label for="#{{ tag }}"> #{{ tag }} </label>
+            <br />
+            <br />
+          </div>
+        </nb-card>
       </div>
-      <div class="right-column ">
+      <div class="right-column">
         <nb-card class="header">
           <nb-card-body>
             <h1>
               <nb-icon icon="cast-outline" status="warning"></nb-icon>
               Feed
             </h1>
-            <p>
-              Some links from around the world!
-            </p>
+            <p>Some links from around the world!</p>
           </nb-card-body>
         </nb-card>
         <div class="external-feed-list">
-          <!-- <div *ngFor="let post of externalPosts">
-            <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
-          </div> -->
-          <div *ngFor="let post of externalPostsV2">
-            <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
+          <div *ngFor="let post of externalPosts">
+            <app-external-feed-hlist-item
+              [feedItem]="post"
+            ></app-external-feed-hlist-item>
           </div>
         </div>
         <div class="load-more-button" *ngIf="canLoadMore && total">
-          <button [disabled]="isLoading" (click)="getFeedPostsV2()" fullWidth nbButton status="primary" size="small" outline>
+          <button
+            
+            (click)="getFeedPosts()"
+            fullWidth
+            nbButton
+            status="primary"
+            size="small"
+            outline
+          >
             Load More!
           </button>
         </div>
