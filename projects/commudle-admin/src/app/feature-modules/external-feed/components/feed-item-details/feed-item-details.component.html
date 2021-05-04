@@ -42,17 +42,17 @@
           </span>
           <nb-icon icon="message-circle-outline"></nb-icon>
         </p>
-        <!--<div (click)="sendFlag(feedItem.id)" class="clickable">
+        <div (click)="login() && sendFlag(feedItem.id)" class="clickable">
           <p
-            [ngClass]="{ 'error-text': -1 > 0 }"
+            [ngClass]="{ 'error-text': 2 > 0 }"
             nbTooltip="Report this message. (3 reports will delete it)"
             nbTooltipStatus="warning"
           >
-            <span *ngIf="message.flags_count > 0">{{ feedItem.flags_count }}</span>
+            <!-- <span *ngIf="message.flags_count > 0">{{ feedItem.flags_count }}</span> -->
             <span> 1 </span>
             <nb-icon icon="flag"></nb-icon>
           </p>
-        </div> -->
+        </div> 
       </div>
     </nb-card-body>
   </nb-card>

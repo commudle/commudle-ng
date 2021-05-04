@@ -50,6 +50,7 @@ export class ExternalFeedComponent implements OnInit {
       }
     }); 
   }
+
   updateCheckedTags(tag, event) {
    this.page = 1
    this.tagsMap[tag] = event.target.checked;

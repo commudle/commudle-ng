@@ -11,6 +11,9 @@ import { IFeedItem } from "projects/shared-models/feed-item.model";
 import { DiscussionsService } from "projects/commudle-admin/src/app/services/discussions.service";
 import { IDiscussion } from "projects/shared-models/discussion.model";
 import { DatePipe } from "@angular/common";
+import {DiscussionChatChannel} from 'projects/shared-components/services/websockets/discussion-chat.channel';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: "app-feed-item-details",
@@ -22,10 +25,13 @@ export class FeedItemDetailsComponent implements OnInit {
   discussionChat: IDiscussion;
 
   messagesCount: number;
+  currentUser: ICurrentUser;
 
   constructor(
     private discussionsService: DiscussionsService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private discussionChatChannel: DiscussionChatChannel,
+    private authWatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit() {
@@ -42,23 +48,20 @@ export class FeedItemDetailsComponent implements OnInit {
       .subscribe((data) => (this.discussionChat = data));
   }
 
-  // 	// @Output() sendFlag = new EventEmitter();
-  // 	}
+  login() {
+    if (!this.currentUser) {
+      this.authWatchService.logInUser();
+    }
+    return true;
+  }
 
-  // 	// emitFlag(itemId) {
-  // 	// 	console.log("Emitting flag for ");
-  // 	// 	console.log(itemId);
-  //  //    	this.sendFlag.emit(itemId);
-  //  //  	}
-
-  //   	sendFlag(itemId) {
-  //   		console.log("Emitting flag for ");
-  // 		console.log(itemId);
-  //     // this.discussionChatChannel.sendData(
-  //     //   this.discussionChatChannel.ACTIONS.FLAG,
-  //     //   {
-  //     //     feed_item_id: itemId
-  //     //   }
-  //     // );
-  //   }
+  sendFlag(feedItemId) {
+    this.discussionChatChannel.sendData(
+      this.discussionChatChannel.ACTIONS.FLAG,
+      {
+        feed_item_id: feedItemId
+      }
+    );
+    console.log("sent");
+  }
 }
