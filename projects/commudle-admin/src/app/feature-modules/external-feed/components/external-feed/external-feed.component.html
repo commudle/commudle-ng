@@ -30,12 +30,21 @@
             <p>Some links from around the world!</p>
           </nb-card-body>
         </nb-card>
+        
         <nb-card>
+        <div class="sorting d-flex justify-content-center">
           <button>
-            
+            <nb-icon icon="sun" status="warning"></nb-icon>
+            Latest
+          </button>
+          <button>
+            <nb-icon icon="flash" status="warning"></nb-icon>
+            Hot
           </button>
           <hr>
+        </div>
         </nb-card>
+        
         <div class="external-feed-list">
           <div *ngFor="let post of externalPosts">
             <app-external-feed-hlist-item
