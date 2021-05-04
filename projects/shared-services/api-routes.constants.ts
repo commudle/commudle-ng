@@ -43,6 +43,9 @@ export const API_ROUTES = {
   EXTERNAL_FEEDS: {
     INDEX: 'api/v2/feed_items',
     SHOW: 'api/v2/feed_items/show',
+    POPULAR_TAGS: 'api/v2/feed_items/popular_tags',
+    TAGS_POST: 'api/v2/feed_items/tag_feed',
+    POPULAR_POST: 'api/v2/feed_items/popular'
   },
 
   COMMUNITY_CHANNELS: {
