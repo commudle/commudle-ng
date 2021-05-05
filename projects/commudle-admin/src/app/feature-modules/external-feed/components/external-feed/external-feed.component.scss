@@ -60,13 +60,22 @@
       border: $border-1;
       border-radius: $border-10;
       box-shadow: none;
+
       button {
         margin: 10px;
         background-color: white;
         font-size: 16px;
         border: none;
         text-align: center;
-        width: 500px;
+        width: 100px;
+      }
+
+      .white {
+        background-color: white;
+      }
+
+      .light-purple {
+        background-color: $light-purple;
       }
     }
   }

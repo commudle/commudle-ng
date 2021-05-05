@@ -18,6 +18,8 @@ export class ExternalFeedComponent implements OnInit {
   tagsMap:any = {};
   tagsChecked = [];
   sortingCriterion = "published_at";
+  toggleLatestButton = false;
+  togglePopularButton = false;
 
   constructor(
     private feedItemService: FeedItemService,
@@ -48,6 +50,7 @@ export class ExternalFeedComponent implements OnInit {
       }
     }); 
   }
+
   updateCheckedTags(tag, event) {
    this.page = 1
    this.tagsMap[tag] = event.target.checked;
@@ -102,6 +105,10 @@ export class ExternalFeedComponent implements OnInit {
   }
 
   getLatestPosts() {
+    this.toggleLatestButton = true;
+    if (this.togglePopularButton) {
+      this.togglePopularButton = false;
+    }
     this.sortingCriterion = "published_at";
     this.page = 1;
     this.externalPosts = [];
@@ -110,6 +117,10 @@ export class ExternalFeedComponent implements OnInit {
   }
 
   getPopularPosts() {
+    this.togglePopularButton = true;
+    if (this.toggleLatestButton) {
+      this.toggleLatestButton = false;
+    }
     this.sortingCriterion = "likes";
     this.page = 1;
     this.externalPosts = [];
