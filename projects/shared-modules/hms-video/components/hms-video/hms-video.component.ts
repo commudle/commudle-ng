@@ -38,7 +38,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
     private hmsLiveChannel: HmsLiveChannel,
     private hmsClientManagerService: HmsClientManagerService,
     private authWatchService: LibAuthwatchService
-  ) { 
+  ) {
   }
 
   ngOnInit(): void {
@@ -66,7 +66,10 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.channelSubscription.unsubscribe();
+    if (this.channelSubscription) {
+      this.channelSubscription.unsubscribe();
+    }
+    
     for (let subs of this.subscriptions) {
       subs.unsubscribe();
     }
