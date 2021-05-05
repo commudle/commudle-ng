@@ -24,10 +24,4 @@ export class SFlagsService {
       this.apiRoutesService.getRoute(API_ROUTES.FLAGS.PUBLIC.COUNT), {params});
   }
 
-//   pGetVoters(votableType, votableId, page, count): Observable<IUsers> {
-//     const params = new HttpParams().set('votable_type', votableType).set('votable_id', votableId).set('page', page).set('count', count);
-//     return this.http.get<IUsers>(
-//       this.apiRoutesService.getRoute(API_ROUTES.VOTES.PUBLIC.VOTERS), {params});
-//   }
-
 }

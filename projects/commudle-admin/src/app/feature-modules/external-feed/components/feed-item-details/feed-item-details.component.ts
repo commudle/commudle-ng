@@ -48,20 +48,4 @@ export class FeedItemDetailsComponent implements OnInit {
       .subscribe((data) => (this.discussionChat = data));
   }
 
-  // login() {
-  //   if (!this.currentUser) {
-  //     this.authWatchService.logInUser();
-  //   }
-  //   return true;
-  // }
-
-  // sendFlag(feedItemId) {
-  //   this.discussionChatChannel.sendData(
-  //     this.discussionChatChannel.ACTIONS.FLAG,
-  //     {
-  //       feed_item_id: feedItemId
-  //     }
-  //   );
-  //   console.log("sent");
-  // }
 }
