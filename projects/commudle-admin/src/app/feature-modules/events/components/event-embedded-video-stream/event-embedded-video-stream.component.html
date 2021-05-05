@@ -4,7 +4,7 @@
         <div>
           <nb-select placeholder="Source*" fullWidth formControlName="source" status="primary" size="small" (selectedChange)="updateValidators()">
 
-            <nb-option *ngIf="[1, 74, 116, 118, 119, 121].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
+            <nb-option *ngIf="[1, 74, 116, 118, 119, 121, 124].includes(community.id)" [value]="EEmbeddedVideoStreamSources.COMMUDLE">
               <div>
                 Commudle Stage
                   <br/>
@@ -13,6 +13,9 @@
                   </small>
                   <br/>
               </div>
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
+              ZOOM (embedded into browser)
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
               External Link (to platforms like Google Meet)
