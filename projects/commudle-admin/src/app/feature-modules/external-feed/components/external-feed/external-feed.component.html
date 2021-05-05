@@ -4,14 +4,7 @@
       <nb-card class="tag-checkboxes">
         <div class="header">Popular Tags</div>
         <div class="tag-checkbox" *ngFor="let tag of tags">
-          <input
-            type="checkbox"
-            name="tags"
-            value="{{ tag }}"
-            id="#{{ tag }}"
-            [checked]="false"
-            (change)="updateCheckedTags(tag, $event)"
-          />
+          <input type="checkbox" name="tags" value="{{ tag }}" id="#{{ tag }}" [checked]="false" (change)="updateCheckedTags(tag, $event)" />
           <label for="#{{ tag }}"> #{{ tag }} </label>
           <br />
           <br />
@@ -28,36 +21,26 @@
           <p>Some links from around the world!</p>
         </nb-card-body>
       </nb-card>
-
       <nb-card>
         <div class="sorting d-flex justify-content-center">
-          <button (click)="getLatestPosts()">
+          <button (click)="getLatestPosts()" [ngClass]="{'white' : !toggleLatestButton, 'light-purple': toggleLatestButton}">
             <nb-icon icon="sun" status="warning"></nb-icon>
             Latest
           </button>
-          <button (click)="getPopularPosts()">
+          <button (click)="getPopularPosts()" [ngClass]="{'white' : !togglePopularButton, 'light-purple': togglePopularButton}">
             <nb-icon icon="flash" status="warning"></nb-icon>
             Hot
           </button>
+          <hr>
         </div>
       </nb-card>
-
       <div class="external-feed-list">
         <div *ngFor="let post of externalPosts">
-          <app-external-feed-hlist-item
-            [feedItem]="post"
-          ></app-external-feed-hlist-item>
+          <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
         </div>
       </div>
       <div class="load-more-button" *ngIf="canLoadMore && total">
-        <button
-          (click)="getFeedPosts()"
-          fullWidth
-          nbButton
-          status="primary"
-          size="small"
-          outline
-        >
+        <button (click)="getFeedPosts()" fullWidth nbButton status="primary" size="small" outline>
           Load More!
         </button>
       </div>

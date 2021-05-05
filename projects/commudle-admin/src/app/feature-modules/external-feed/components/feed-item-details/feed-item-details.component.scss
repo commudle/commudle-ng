@@ -64,9 +64,16 @@
        }
 
        .stats {
+        .clickable {
+
+           nb-icon {
+             color: $spanish-gray;
+           }
+        }
          >p {
+
            margin: 0 16px 0 0;
-           color:  #8080808C;
+
            &.comments {
              nb-icon {
                color: $spanish-gray;
