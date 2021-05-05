@@ -7,6 +7,7 @@ export interface  IDataFormEntityResponseGroup {
   id: number;
   registration_status: IRegistrationStatus;
   user: IUser;
+  created_at?: Date;
   entry_pass: IEventEntryPass;
   data_form_entity_response_values: IDataFormEntityResponseValue[];
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { IUser } from 'projects/shared-models/user.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user-details-cell',
@@ -9,6 +10,7 @@ import { IUser } from 'projects/shared-models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserDetailsCellComponent implements OnInit, OnChanges {
+  moment = moment;
 
   @Input() userResponse: IDataFormEntityResponseGroup;
   @Input() eventDataFormEntityGroupId;
