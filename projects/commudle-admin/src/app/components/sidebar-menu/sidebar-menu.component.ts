@@ -21,6 +21,7 @@ export class SidebarMenuComponent implements OnInit {
   managedCommunityGroups: ICommunityGroup[] = [];
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
   isSystemAdmin = false;
+  EUserRoles = EUserRoles;
 
   constructor(
     private authWatchService: LibAuthwatchService,

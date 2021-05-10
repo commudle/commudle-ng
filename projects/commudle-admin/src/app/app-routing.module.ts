@@ -94,7 +94,7 @@ const routes: Routes = [
   },
   {
     path: 'newsletters',
-    loadChildren: () => import('./feature-modules/main-newsletters/main-newsletters.module').then(m => m.MainNewslettersModule)
+    loadChildren: () => import('./feature-modules/main-newsletters/main-newsletters.module').then(m => m.MainNewslettersModule),
   },
   {
     path: 'admin',
