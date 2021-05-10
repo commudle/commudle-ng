@@ -1,5 +1,9 @@
 <div>
+
   <div class="user-details-container">
+    <p class="timeago" title="{{moment(userResponse.created_at).format('dddd Do MMM, YYYY h:mm A')}}">
+      {{ moment(userResponse.created_at).fromNow() }}
+    </p>
     <h6>{{ user.name }}</h6>
     <div class="user-avatar">
       <img src="{{ user.avatar }}" alt="{{ user.name }}">
