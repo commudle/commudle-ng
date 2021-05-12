@@ -5,9 +5,7 @@
                             [user]="user"></app-user-basic-details>
   </div>
 
-  <div class="user-content">
-    <app-user-cover-photo (coverImageUpdate)="getUserData()" [currentUser]="currentUser"
-                          [user]="user"></app-user-cover-photo>
-    <app-user-content [currentUser]="currentUser" [user]="user"></app-user-content>
+  <div class="extra-details">
+    <router-outlet></router-outlet>
   </div>
 </div>

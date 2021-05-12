@@ -1,0 +1,33 @@
+<div *ngIf="user" class="user-cover-photo">
+  <div class="cover-image">
+    <img *ngIf="user.profile_banner_image" alt="Cover image" src="{{user.profile_banner_image.profile_banner}}">
+  </div>
+  <button (click)="onCoverImageDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="cover-change"
+          nbButton size="small">
+    <nb-icon icon="edit"></nb-icon>
+    change cover
+  </button>
+</div>
+
+<ng-template #editCoverImage let-ref="dialogRef">
+  <nb-card class="cover-image-dialog">
+    <nb-card-header class="text-center">
+      <nb-icon icon="image-outline"></nb-icon>
+      Edit Cover Image
+    </nb-card-header>
+    <nb-card-body class="text-center">
+      <label>
+        Max file size: 3 Mb
+        <br/>
+        Dimensions: 1000px X 185px
+        <input (change)="displayCoverImage($event)" accept="image/*" fullWidth nbInput type="file">
+      </label>
+      <img *ngIf="coverImage" alt="Cover Image" src="{{coverImage}}">
+      <img *ngIf="!coverImage" alt="Cover Image" src="{{user.profile_banner_image.profile_banner}}">
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
+      <button (click)="onCoverImageDialogSubmit()" nbButton status="success">Save</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

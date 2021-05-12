@@ -12,19 +12,29 @@
   <div class="user-details text-center">
     <div class="name">{{user.name}}</div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
+    <div class="network">
+      <a *ngIf="user.is_expert" routerLink="followers">0 Followers</a>&nbsp;
+      <a routerLink="following">0 Following</a>
+    </div>
   </div>
 
   <div class="user-interactions text-center">
     <div *ngIf="currentUser && currentUser.id === user.id">
       <button (click)="onEditProfileDialogOpen()" class="anim-shadow" nbButton size="small">
         <nb-icon icon="edit"></nb-icon>
-        edit bio
+        Edit bio
       </button>
     </div>
     <div *ngIf="currentUser && currentUser.id !== user.id">
       <button (click)="openChatWithUser()" class="anim-shadow" nbButton size="small">
         <nb-icon icon="paper-plane"></nb-icon>
         Message
+      </button>
+    </div>
+    <div *ngIf="user.is_expert">
+      <button class="anim-shadow" nbButton size="small">
+        <nb-icon icon="plus"></nb-icon>
+        Follow
       </button>
     </div>
   </div>

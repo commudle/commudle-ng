@@ -1,0 +1,57 @@
+@import '../../../../../../../../../assets/styles/variables';
+
+.user-labs-card {
+  margin: 0;
+  border: 1px solid $maya-blue;
+  border-radius: $border-5;
+  width: 280px;
+
+  nb-card-header {
+    height: 134px;
+    padding: 0;
+    line-height: 0;
+    overflow: hidden;
+    border-bottom: 1px solid $maya-blue;
+
+    img {
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  nb-card-body {
+    padding: $space-12 $space-16 $space-16;
+
+    .user-labs-card-name {
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      color: $neon-blue;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .user-labs-card-description {
+      margin-top: $space-4;
+      font-size: $fs-h7;
+      font-weight: $fw-500;
+      line-height: 12px;
+      color: $cadet;
+    }
+
+    .user-labs-card-interactions {
+      margin-top: $space-24;
+      font-size: $fs-h6;
+      line-height: 14px;
+      color: $gunmetal;
+
+      nb-icon {
+        font-size: $fs-h4;
+        color: $neon-blue;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../../../../../../../../assets/styles/variables';
+
+.user-feed-input {
+  padding: $space-20 $space-24;
+  border: 1px solid $platinum;
+  border-radius: $border-10;
+
+  nb-form-field {
+    align-items: flex-start;
+
+    textarea {
+      border: 1px solid $platinum;
+      border-radius: $border-10;
+      resize: none;
+
+      &::placeholder {
+        padding-top: $space-2;
+      }
+    }
+
+    button {
+      border-radius: $border-10;
+    }
+  }
+
+  .user-feed-input-suffix {
+    margin-top: $space-8;
+
+    button {
+      text-transform: capitalize;
+      color: $cadet;
+      font-weight: $fw-400;
+
+      nb-icon {
+        color: rgba($brilliant-azure, 0.5);
+      }
+    }
+  }
+
+  .user-feed-input-images {
+    .user-feed-input-image {
+      margin-top: $space-8;
+      overflow: auto;
+      gap: $space-8;
+
+      .image-container {
+        position: relative;
+
+        button {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+        }
+      }
+    }
+  }
+}
