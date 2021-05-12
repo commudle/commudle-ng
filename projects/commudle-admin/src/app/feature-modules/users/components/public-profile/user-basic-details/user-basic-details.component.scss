@@ -100,7 +100,21 @@
     .designation {
       font-weight: $fw-500;
       font-size: $fs-h4;
-      margin-bottom: $space-24;
+      margin-bottom: $space-8;
+    }
+
+    .network {
+      a {
+        color: $cadet;
+        font-size: $fs-h5;
+        font-style: italic;
+        text-decoration: none;
+        margin-bottom: $space-24;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .location {
@@ -129,6 +143,9 @@
   }
 
   .user-interactions {
+    display: flex;
+    justify-content: space-evenly;
+
     button {
       height: 32px;
       border: none;

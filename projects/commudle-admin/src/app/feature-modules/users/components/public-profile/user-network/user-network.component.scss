@@ -1,0 +1,22 @@
+@import "projects/commudle-admin/src/assets/styles/variables";
+
+.user-network-container {
+  margin: 0;
+  border: none;
+  border-radius: $border-10;
+
+  nb-card-header {
+    padding: 0;
+    border-bottom: none;
+
+    button {
+      border-radius: $border-10;
+      text-transform: inherit;
+      font-weight: $fw-500;
+    }
+  }
+
+  nb-card-body {
+    padding: 0;
+  }
+}
