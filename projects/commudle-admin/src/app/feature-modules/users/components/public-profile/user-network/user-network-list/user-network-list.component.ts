@@ -1,22 +1,45 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {IUser} from 'projects/shared-models/user.model';
+import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user-network-list',
   templateUrl: './user-network-list.component.html',
   styleUrls: ['./user-network-list.component.scss']
 })
-export class UserNetworkListComponent implements OnInit {
+export class UserNetworkListComponent implements OnInit, OnDestroy {
 
-  network: any[];
+  user: IUser;
+  network: IUser[] = [];
+
+  subscriptions: Subscription[] = [];
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private appUsersService: AppUsersService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.checkNetworkType();
+    this.subscriptions.push(this.activatedRoute.params.subscribe(data => {
+      // Get user's data
+      this.getUserData();
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  // Get user's data
+  getUserData() {
+    this.subscriptions.push(this.appUsersService.getProfile(this.router.url.split('/')[2]).subscribe(data => {
+      this.user = data;
+      this.checkNetworkType();
+    }));
   }
 
   checkNetworkType(): void {
@@ -26,11 +49,11 @@ export class UserNetworkListComponent implements OnInit {
   }
 
   getFollowers(): void {
-    console.log('get followers');
+    this.subscriptions.push(this.appUsersService.getFollowers(this.user.username).subscribe(value => this.network = value));
   }
 
   getFollowing(): void {
-    console.log('get following');
+    this.subscriptions.push(this.appUsersService.getFollowees(this.user.username).subscribe(value => this.network = value));
   }
 
 }

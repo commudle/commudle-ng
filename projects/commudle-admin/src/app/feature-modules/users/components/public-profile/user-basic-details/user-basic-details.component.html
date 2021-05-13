@@ -13,8 +13,8 @@
     <div class="name">{{user.name}}</div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
     <div class="network">
-      <a *ngIf="user.is_expert" routerLink="followers">{{user.followers_count || 0}} Followers&nbsp;</a>
-      <a routerLink="following">{{user.followees_count || 0}} Following</a>
+      <a *ngIf="user.is_expert" routerLink="followers">{{user.followers_count || 0}} Followers</a>
+      <a routerLink="following"> {{user.followees_count || 0}} Following </a>
     </div>
   </div>
 
