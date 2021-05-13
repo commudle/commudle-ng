@@ -13,12 +13,12 @@
     <div class="name">{{user.name}}</div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
     <div class="network">
-      <a *ngIf="user.is_expert" routerLink="followers">0 Followers</a>&nbsp;
-      <a routerLink="following">0 Following</a>
+      <a *ngIf="user.is_expert" routerLink="followers">{{user.followers_count || 0}} Followers&nbsp;</a>
+      <a routerLink="following">{{user.followees_count || 0}} Following</a>
     </div>
   </div>
 
-  <div class="user-interactions text-center">
+  <div class="user-interactions d-flex justify-content-center">
     <div *ngIf="currentUser && currentUser.id === user.id">
       <button (click)="onEditProfileDialogOpen()" class="anim-shadow" nbButton size="small">
         <nb-icon icon="edit"></nb-icon>
@@ -31,12 +31,7 @@
         Message
       </button>
     </div>
-    <div *ngIf="user.is_expert">
-      <button class="anim-shadow" nbButton size="small">
-        <nb-icon icon="plus"></nb-icon>
-        Follow
-      </button>
-    </div>
+    <app-user-follow (userFollowed)="updateProfile.emit()" [currentUser]="currentUser" [user]="user"></app-user-follow>
   </div>
 
   <hr>

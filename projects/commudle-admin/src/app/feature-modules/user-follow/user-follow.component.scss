@@ -1,0 +1,33 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-follow-container {
+  .follow-btn {
+    border: none;
+    border-radius: $border-10;
+    padding: $space-8;
+    height: 32px;
+    font-size: $fs-h6;
+    font-weight: $fw-400;
+    text-transform: none;
+    color: $neon-blue;
+    background-color: rgba($neon-blue, 0.2);
+
+    &:hover {
+      background-color: rgba($neon-blue, 0.2);
+    }
+
+    nb-icon {
+      margin-right: $space-4;
+    }
+
+    &.active {
+      border: 1px solid rgba($neon-blue, 0.2);
+      background-color: $white;
+    }
+  }
+}
+
+.user-follow-dialog {
+  width: min(100vw, 500px);
+}
+

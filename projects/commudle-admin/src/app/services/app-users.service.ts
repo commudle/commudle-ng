@@ -143,9 +143,8 @@ export class AppUsersService {
 
   // toggle following a user
   toggleFollow(username): Observable<boolean> {
-    const params = new HttpParams().set('username', username);
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), {username}
     );
   }
 
