@@ -1,4 +1,4 @@
-@import '../../../../../../../../assets/styles/variables';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .user-social {
   padding-top: $space-40;
@@ -10,7 +10,6 @@
     line-height: 28px;
     color: $neon-blue;
   }
-
 
   .user-social-add {
     button {
@@ -43,6 +42,10 @@
 
       &.active {
         cursor: move;
+      }
+
+      app-user-social-card {
+        width: 100%;
       }
     }
   }
