@@ -34,9 +34,9 @@
     <app-user-follow (userFollowed)="updateProfile.emit()" [currentUser]="currentUser" [user]="user"></app-user-follow>
   </div>
 
-  <hr>
+  <hr *ngIf="user.location || user.about_me">
 
-  <div class="user-details">
+  <div *ngIf="user.location || user.about_me" class="user-details">
     <div class="heading">About me</div>
     <div *ngIf="user.location" class="location">
       <nb-icon icon="pin"></nb-icon>
@@ -45,9 +45,9 @@
     <div *ngIf="user.about_me" class="about">{{user.about_me}}</div>
   </div>
 
-  <hr>
+  <hr *ngIf="tags.length > 0">
 
-  <div class="user-tags">
+  <div *ngIf="tags.length > 0" class="user-tags">
     <div class="heading">Skills</div>
     <nb-tag-list>
       <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
