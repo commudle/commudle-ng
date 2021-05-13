@@ -18,5 +18,14 @@
 
   nb-card-body {
     padding: 0;
+    overflow: hidden;
+
+    nb-route-tabset {
+      &::ng-deep {
+        .route-tab.responsive .tab-text {
+          display: block;
+        }
+      }
+    }
   }
 }
