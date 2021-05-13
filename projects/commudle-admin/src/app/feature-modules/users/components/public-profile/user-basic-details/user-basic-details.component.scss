@@ -143,9 +143,6 @@
   }
 
   .user-interactions {
-    display: flex;
-    justify-content: space-evenly;
-
     button {
       height: 32px;
       border: none;
@@ -156,6 +153,7 @@
       font-size: $fs-h6;
       font-weight: $fw-400;
       text-transform: none;
+      margin: 0 $space-8;
 
       nb-icon {
         margin-right: $space-4;

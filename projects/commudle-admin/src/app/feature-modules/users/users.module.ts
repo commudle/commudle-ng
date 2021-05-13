@@ -42,6 +42,7 @@ import {UserFeedPostComponent} from './components/public-profile/user-extra-deta
 import {UserExtraDetailsComponent} from './components/public-profile/user-extra-details/user-extra-details.component';
 import {UserNetworkComponent} from './components/public-profile/user-network/user-network.component';
 import {UserNetworkListComponent} from './components/public-profile/user-network/user-network-list/user-network-list.component';
+import {UserFollowComponent} from 'projects/commudle-admin/src/app/feature-modules/user-follow/user-follow.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {UserNetworkListComponent} from './components/public-profile/user-network
     UserFeedPostComponent,
     UserNetworkComponent,
     UserNetworkListComponent,
+    UserFollowComponent
   ],
   imports: [
     CommonModule,
