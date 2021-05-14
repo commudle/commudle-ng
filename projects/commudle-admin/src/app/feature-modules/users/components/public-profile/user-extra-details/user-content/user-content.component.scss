@@ -8,6 +8,10 @@
     border-radius: $border-10;
     margin-right: 0;
     margin-left: 0;
+
+    nb-card-body {
+      padding: $space-32;
+    }
   }
 
   nb-tabset {

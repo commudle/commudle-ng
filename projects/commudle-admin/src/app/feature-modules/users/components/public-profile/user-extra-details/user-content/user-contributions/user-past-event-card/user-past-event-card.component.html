@@ -1,5 +1,4 @@
-<nb-card [routerLink]="['/speaker-resources', pastEvent.id]"
-         class="user-past-event-card clickable">
+<nb-card [routerLink]="['/speaker-resources', pastEvent.id]" class="user-past-event-card clickable">
   <nb-card-body>
     <nb-actions>
       <nb-action>
@@ -7,7 +6,7 @@
         <div class="user-past-event-date">{{pastEvent.event.start_time | date: 'YYYY'}}</div>
       </nb-action>
       <nb-action>
-        <div class="user-past-event-title">{{pastEvent.title | truncatetext:19}}</div>
+        <div class="user-past-event-title">{{pastEvent.title | truncatetext:18}}</div>
         <div class="user-past-event-description">{{pastEvent.event.name | truncatetext:21}}</div>
       </nb-action>
     </nb-actions>

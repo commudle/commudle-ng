@@ -51,7 +51,8 @@
     <div class="heading">Skills</div>
     <nb-tag-list>
       <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
-      <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"></nb-tag>
+      <nb-tag (click)="onTagDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" [text]="'+'"
+              class="tags-add"></nb-tag>
     </nb-tag-list>
   </div>
 

@@ -170,13 +170,6 @@
     }
 
     nb-tag-list {
-
-      &::ng-deep {
-        .nb-tag-list-tags-wrapper {
-          justify-content: center;
-        }
-      }
-
       nb-tag {
         border: none;
         color: $gunmetal;
@@ -186,7 +179,7 @@
         padding: $space-2 $space-8;
         border-radius: $border-10;
 
-        &:last-child {
+        .tags-add {
           cursor: pointer;
           transition: all 0.2s ease-in-out;
 
@@ -223,7 +216,7 @@
       }
 
       nb-icon[pack="fab"] {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
   }
