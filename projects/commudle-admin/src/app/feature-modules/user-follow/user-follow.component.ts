@@ -4,6 +4,7 @@ import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-user
 import {Subscription} from 'rxjs';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {NbDialogRef, NbDialogService} from '@nebular/theme';
+import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-user-follow',
@@ -12,23 +13,31 @@ import {NbDialogRef, NbDialogService} from '@nebular/theme';
 })
 export class UserFollowComponent implements OnInit, OnDestroy {
 
-  @Input() user: IUser;
-  @Input() currentUser: ICurrentUser;
+  @Input() username: string;
 
   @Output() userFollowed: EventEmitter<any> = new EventEmitter<any>();
 
+  user: IUser;
+  currentUser: ICurrentUser;
   isFollowing = false;
 
   subscriptions: Subscription[] = [];
 
   constructor(
     private appUsersService: AppUsersService,
+    private authWatchService: LibAuthwatchService,
     private nbDialogService: NbDialogService
   ) {
   }
 
   ngOnInit(): void {
     this.checkFollowing();
+
+    // Get user's data
+    this.subscriptions.push(this.appUsersService.getProfile(this.username).subscribe(data => this.user = data));
+
+    // Get logged in user
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
   }
 
   ngOnDestroy(): void {
@@ -37,12 +46,12 @@ export class UserFollowComponent implements OnInit, OnDestroy {
 
   checkFollowing() {
     if (this.currentUser) {
-      this.subscriptions.push(this.appUsersService.check_followee(this.user.username).subscribe(value => this.isFollowing = value));
+      this.subscriptions.push(this.appUsersService.check_followee(this.username).subscribe(value => this.isFollowing = value));
     }
   }
 
   toggleFollow(ref: NbDialogRef<any>) {
-    this.subscriptions.push(this.appUsersService.toggleFollow(this.user.username).subscribe(value => {
+    this.subscriptions.push(this.appUsersService.toggleFollow(this.username).subscribe(value => {
       this.checkFollowing();
       ref.close();
       this.userFollowed.emit();

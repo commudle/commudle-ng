@@ -31,7 +31,7 @@
         Message
       </button>
     </div>
-    <app-user-follow (userFollowed)="updateProfile.emit()" [currentUser]="currentUser" [user]="user"></app-user-follow>
+    <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
   </div>
 
   <hr *ngIf="user.location || user.about_me">
