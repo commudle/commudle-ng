@@ -1,9 +1,12 @@
-@import '../../../../../../../../assets/styles/variables';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .user-contributions {
   .section {
     position: relative;
-    margin-bottom: $space-40;
+
+    &:not(&:last-child) {
+      margin-bottom: $space-40;
+    }
 
     &:hover {
       .navigation.active {
@@ -26,7 +29,6 @@
       display: flex;
       overflow: hidden;
       gap: $space-32;
-      padding-bottom: $space-16;
     }
 
     .navigation {
