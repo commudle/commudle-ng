@@ -9,8 +9,7 @@ import { IFeedItem } from 'projects/shared-models/feed-item.model';
   styleUrls: ['./external-feed.component.scss']
 })
 export class ExternalFeedComponent implements OnInit {
-  // externalPosts: IFeedItem[] = [];
-  externalPosts = [];
+  externalPosts: IFeedItem[] = [];
   page = 1;
   total;
   canLoadMore = true;
@@ -52,18 +51,19 @@ export class ExternalFeedComponent implements OnInit {
   }
 
   updateCheckedTags(tag, event) {
-   this.page = 1
-   this.tagsMap[tag] = event.target.checked;
-   this.tagsChecked = [];
-   for(var x in this.tagsMap) {
-        if(this.tagsMap[x]) {
-            this.tagsChecked.push(x);
-        }
+    this.page = 1
+    if(event.target.checked == true) {
+      this.tagsChecked.push(tag);
+    }
+    else {
+      this.tagsChecked = this.tagsChecked.filter(function(checkedTag){ 
+          return checkedTag != tag; 
+      });  
     }
     this.externalPosts = [];
     this.canLoadMore = true;
     this.getFeedPosts();
-  } 
+    } 
 
   getFeedPosts(): void{
     if (!this.total || this.externalPosts.length < this.total) {
