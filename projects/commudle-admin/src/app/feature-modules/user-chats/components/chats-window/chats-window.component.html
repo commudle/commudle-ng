@@ -8,7 +8,8 @@
         </button>
       </div>
     </nb-card-header>
-    <nb-card-body [style.height.vh]="chatsWindowHeight">
+    <nb-card-body [style.height.vh]="chatsWindowHeight" [style.maxHeight.vh]="chatsWindowHeight"
+                  [style.minHeight.vh]="chatsWindowHeight">
       <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
     </nb-card-body>
   </nb-card>
