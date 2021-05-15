@@ -50,9 +50,9 @@
           <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}">
         </div>
         <div class="user-social-popup-heading">Title*</div>
-        <input formControlName="title" fullWidth nbInput required type="text">
+        <input formControlName="title" fullWidth nbInput type="text">
         <div class="user-social-popup-heading">Description*</div>
-        <textarea formControlName="description" fullWidth maxlength="200" nbInput required rows="5"
+        <textarea formControlName="description" fullWidth nbInput rows="5"
                   type="text"></textarea>
         <div class="user-social-popup-heading">Tags*</div>
         <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>

@@ -37,7 +37,7 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
   linkPreview: ILinkPreview;
   socialResourcesForm = this.fb.group({
     title: ['', Validators.required],
-    description: ['', [Validators.required, Validators.maxLength(200)]],
+    description: ['', [Validators.required, Validators.maxLength(1000)]],
     favicon: ['', Validators.required],
     link: ['', Validators.required],
     image: this.fb.group({
