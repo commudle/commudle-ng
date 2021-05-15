@@ -88,7 +88,7 @@
           height: 40vh;
 
           nb-card-body {
-            padding: 0 0.5rem;
+            padding: 0 $space-8;
           }
         }
       }
@@ -104,7 +104,7 @@
 
           nb-card-body {
             width: 100%;
-            padding: 0.5rem 0.5rem;
+            padding: $space-8;
 
             .minimize-sidebar-button {
               display: none;
@@ -112,7 +112,7 @@
 
             nb-tabset {
               height: 100%;
-              margin-top: 32px;
+              margin-top: $space-32;
 
               nb-tab {
                 padding: 0;
@@ -144,7 +144,7 @@
             height: 100%;
 
             nb-card-body {
-              padding: 0 0.5rem;
+              padding: 0 $space-8;
             }
           }
         }
@@ -185,11 +185,11 @@
                 background: white;
 
                 nb-list-item {
-                  padding: 5px 0;
+                  padding: $space-5 0;
                   justify-content: center;
 
                   p {
-                    color: grey;
+                    color: $grey;
                     font-weight: 600;
                     margin: 0;
                   }
@@ -225,12 +225,12 @@
                 ul.tabset {
                   width: 100%;
                   overflow-x: auto;
-                  padding: 5px 0;
+                  padding: $space-5 0;
                   justify-content: flex-start;
 
                   li {
                     a {
-                      padding: 5px 10px;
+                      padding: $space-5 $space-10;
                     }
                   }
                 }
@@ -256,9 +256,9 @@
 
         .visit-user {
           width: 200px;
-          margin: 0.5rem;
-          border: 1px solid lightgrey;
-          border-radius: 5px;
+          margin: $space-8;
+          border: 1px solid $lightgrey;
+          border-radius: $border-5;
         }
       }
 
@@ -286,12 +286,12 @@ nb-tabset {
     ul.tabset {
       width: 100%;
       overflow-x: auto;
-      padding: 5px 0;
+      padding: $space-5 0;
       justify-content: flex-start;
 
       li {
         a {
-          padding: 10px 10px;
+          padding: $space-10;
 
           span {
             white-space: nowrap;
