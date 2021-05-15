@@ -112,6 +112,7 @@
 
             nb-tabset {
               height: 100%;
+              margin-top: 32px;
 
               nb-tab {
                 padding: 0;
@@ -291,6 +292,7 @@ nb-tabset {
       li {
         a {
           padding: 10px 10px;
+
           span {
             white-space: nowrap;
           }
