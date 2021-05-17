@@ -318,7 +318,9 @@ export const API_ROUTES = {
       INDEX: 'api/v2/users/posts',
       CREATE: 'api/v2/users/posts',
       DESTROY: 'api/v2/users/posts'
-    }
+    },
+    FOLLOWERS: 'api/v2/users/followers',
+    FOLLOWEES: 'api/v2/users/followees'
   },
 
   SPEAKER_RESOURCES: {

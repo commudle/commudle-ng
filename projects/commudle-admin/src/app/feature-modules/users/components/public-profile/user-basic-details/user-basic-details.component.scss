@@ -100,7 +100,21 @@
     .designation {
       font-weight: $fw-500;
       font-size: $fs-h4;
-      margin-bottom: $space-24;
+      margin-bottom: $space-8;
+    }
+
+    .network {
+      a {
+        color: $cadet;
+        font-size: $fs-h5;
+        font-style: italic;
+        text-decoration: none;
+        margin-bottom: $space-24;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .location {
@@ -139,6 +153,7 @@
       font-size: $fs-h6;
       font-weight: $fw-400;
       text-transform: none;
+      margin: 0 $space-8;
 
       nb-icon {
         margin-right: $space-4;
@@ -155,13 +170,6 @@
     }
 
     nb-tag-list {
-
-      &::ng-deep {
-        .nb-tag-list-tags-wrapper {
-          justify-content: center;
-        }
-      }
-
       nb-tag {
         border: none;
         color: $gunmetal;
@@ -171,7 +179,7 @@
         padding: $space-2 $space-8;
         border-radius: $border-10;
 
-        &:last-child {
+        .tags-add {
           cursor: pointer;
           transition: all 0.2s ease-in-out;
 
@@ -208,7 +216,7 @@
       }
 
       nb-icon[pack="fab"] {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
   }
