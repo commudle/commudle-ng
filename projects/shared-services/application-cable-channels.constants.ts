@@ -12,5 +12,6 @@ export const APPLICATION_CABLE_CHANNELS = {
   USER_OBJECT_VISIT: 'ApplicationCable::V2::Channels::UserObjectVisitChannel',
   USER_PERSONAL_DISCUSSION_CHAT_NOTIFICATIONS: 'ApplicationCable::V2::Channels::UserPersonalDiscussionChatNotificationsChannel',
   USER_VISITS: 'ApplicationCable::V2::Channels::UserVisitsChannel',
-  VOTE_CHANNEL: 'ApplicationCable::V2::Channels::VoteChannel'
+  VOTE_CHANNEL: 'ApplicationCable::V2::Channels::VoteChannel',
+  FLAG_CHANNEL: 'ApplicationCable::V2::Channels::FlagChannel'
 };

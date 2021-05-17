@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IFeedItem } from 'projects/shared-models/feed-item.model';
 import * as moment from 'moment';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-external-feed-hlist-item',
@@ -12,8 +13,9 @@ export class ExternalFeedHListItemComponent implements OnInit {
 
   @Input() feedItem;
 
-  constructor() { }
+  constructor(private datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.feedItem.details.created_at = this.datePipe.transform(this.feedItem.details.created_at, 'd MMMM, YYYY');
   }
 }

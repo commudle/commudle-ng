@@ -1,23 +1,49 @@
 <div class="external-feed page-padding">
-  <nb-card class="header">
-    <nb-card-body>
-      <h1>
-        <nb-icon icon="cast-outline" status="warning"></nb-icon>
-        Feed
-      </h1>
-      <p>
-        Some links from around the world!
-      </p>
-    </nb-card-body>
-  </nb-card>
-  <div class="external-feed-list">
-    <div *ngFor="let post of externalPosts">
-      <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
+  <div class="page-container d-flex justify-content-center">
+    <div class="left-column">
+      <nb-card class="tag-checkboxes">
+        <div class="header">Popular Tags</div>
+        <div class="tag-checkbox" *ngFor="let tag of tags">
+          <input type="checkbox" name="tags" value="{{ tag }}" id="#{{ tag }}" [checked]="false" (change)="updateCheckedTags(tag, $event)" />
+          <label for="#{{ tag }}"> #{{ tag }} </label>
+          <br />
+          <br />
+        </div>
+      </nb-card>
     </div>
-  </div>
-  <div class="load-more-button" *ngIf="canLoadMore && total">
-    <button [disabled]="isLoading" (click)="getFeedPosts()" fullWidth nbButton status="primary" size="small" outline>
-      Load More!
-    </button>
+    <div class="right-column">
+      <nb-card class="header">
+        <nb-card-body>
+          <h1>
+            <nb-icon icon="cast-outline" status="warning"></nb-icon>
+            Feed
+          </h1>
+          <p>Some links from around the world!</p>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <div class="sorting d-flex justify-content-center">
+          <button (click)="getLatestPosts()" [ngClass]="{'white' : !toggleLatestButton, 'light-purple': toggleLatestButton}">
+            <nb-icon icon="sun" status="warning"></nb-icon>
+            Latest
+          </button>
+          <button (click)="getPopularPosts()" [ngClass]="{'white' : !togglePopularButton, 'light-purple': togglePopularButton}">
+            <nb-icon icon="flash" status="warning"></nb-icon>
+            Hot
+          </button>
+          <hr>
+        </div>
+      </nb-card>
+      <div class="external-feed-list">
+        <div *ngFor="let post of externalPosts">
+          <app-external-feed-hlist-item [feedItem]="post"></app-external-feed-hlist-item>
+        </div>
+      </div>
+      <div class="load-more-button" *ngIf="canLoadMore && total">
+        <button (click)="getFeedPosts()" fullWidth nbButton status="primary" size="small" outline>
+          Load More!
+        </button>
+      </div>
+    </div>
   </div>
 </div>
