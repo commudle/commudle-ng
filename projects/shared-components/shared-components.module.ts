@@ -52,6 +52,7 @@ import {UserProfileMiniComponent} from './user-profile-mini/user-profile-mini.co
 import {UserLiveStatusComponent} from './user-live-status/user-live-status.component';
 import {HmsVideoModule} from 'projects/shared-modules/hms-video/hms-video.module';
 import {TagComponent} from './tag/tag.component';
+import {FlagsDisplayComponent} from './flags-display/flags-display.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import {TagComponent} from './tag/tag.component';
     CookieConsentComponent,
     UserProfileMiniComponent,
     UserLiveStatusComponent,
-    TagComponent
+    TagComponent,
+    FlagsDisplayComponent
   ],
   imports: [
     CommonModule,
@@ -134,7 +136,8 @@ import {TagComponent} from './tag/tag.component';
     CookieConsentComponent,
     UserProfileMiniComponent,
     UserLiveStatusComponent,
-    TagComponent
+    TagComponent,
+    FlagsDisplayComponent
   ]
 })
 export class SharedComponentsModule {

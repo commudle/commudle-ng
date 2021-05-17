@@ -1,0 +1,16 @@
+<div class="clickable flags size-{{size}}">
+  <p>
+    <span
+      *ngIf="totalFlags > 0"
+      class="count">
+      {{ totalFlags }}
+    </span>
+    <span (click)="toggleFlag()">
+      <nb-icon
+        [ngClass]="{'flagged': myFlag, 'unflag': !myFlag, 'has-flags': totalFlags > 0}"
+        class="hear"
+        icon="flag">
+      </nb-icon>
+    </span>
+  </p>
+</div>
