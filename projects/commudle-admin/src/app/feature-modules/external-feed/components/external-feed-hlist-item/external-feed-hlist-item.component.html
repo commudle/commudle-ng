@@ -1,16 +1,19 @@
-<div [routerLink]="['/feed', feedItem.id]" class="clickable external-feed-list-item">
+<div
+  [routerLink]="['/feed', feedItem.id]"
+  class="clickable external-feed-list-item"
+>
   <nb-card>
     <nb-card-body>
-      <div class="image" *ngIf="feedItem.details.image.length > 0 ">
-        <img src="{{ feedItem.details.image }}" alt="{{ feedItem.details.source }}">
+      <div class="image" *ngIf="feedItem.details.image.length > 0">
+        <img
+          src="{{ feedItem.details.image }}"
+          alt="{{ feedItem.details.source }}"
+        />
       </div>
       <div class="source-details align-items-center d-flex">
-        <div class="external-feed-post-source-image d-flex align-items-center">
-          <img alt="{{ feedItem.details.source }}" src="{{ feedItem.details.source_logo }}">
-        </div>
         <div class="source-info">
-          <em> {{ feedItem.details.source}} </em> <br>
-          <small> {{ feedItem.details.created_at.substr(0, 10) }} </small>
+          <em> {{ feedItem.details.source }} </em> <br />
+          <small> {{ feedItem.details.created_at }} </small>
         </div>
       </div>
       <div class="title">
@@ -23,7 +26,11 @@
       </div>
       <div class="stats d-flex align-items-center">
         <p class="stars">
-          <app-votes-display [votableType]="'FeedItem'" [votableId]="feedItem.id" [icon]="'heart'">
+          <app-votes-display
+            [votableType]="'FeedItem'"
+            [votableId]="feedItem.id"
+            [icon]="'heart'"
+          >
           </app-votes-display>
         </p>
         <p class="comments" [routerLink]="['/feed', feedItem.id]">
