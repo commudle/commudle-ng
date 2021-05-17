@@ -5,6 +5,12 @@
     position: relative;
     margin-bottom: $space-40;
 
+    &:hover {
+      .navigation.active {
+        visibility: visible;
+      }
+    }
+
     .header {
       width: max-content;
       margin: 0 0 $space-24;
@@ -24,6 +30,7 @@
     }
 
     .navigation {
+      visibility: hidden;
       pointer-events: none;
       display: flex;
       justify-content: space-between;

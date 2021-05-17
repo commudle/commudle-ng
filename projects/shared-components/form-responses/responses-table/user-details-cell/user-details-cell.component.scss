@@ -1,4 +1,10 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
 .user-details-container{
+  .timeago {
+    margin: 0;
+    color: $low-emphasis-text;
+  }
   h6{
     margin: 0;
   }
