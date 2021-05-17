@@ -143,9 +143,8 @@ export class AppUsersService {
 
   // toggle following a user
   toggleFollow(username): Observable<boolean> {
-    const params = new HttpParams().set('username', username);
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.TOGGLE_FOLLOW), {username}
     );
   }
 
@@ -157,14 +156,12 @@ export class AppUsersService {
     );
   }
 
-
   // create a post
   createPost(postData): Observable<IPost> {
     return this.http.post<IPost>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), postData
     );
   }
-
 
   // delete a post
   deletePost(postId): Observable<boolean> {
@@ -173,4 +170,19 @@ export class AppUsersService {
       this.apiRoutesService.getRoute(API_ROUTES.USERS.POSTS.CREATE), {params}
     );
   }
+
+  getFollowers(username: string): Observable<IUser[]> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<IUser[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWERS), {params}
+    );
+  }
+
+  getFollowees(username: string): Observable<IUser[]> {
+    const params = new HttpParams().set('username', username);
+    return this.http.get<IUser[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.FOLLOWEES), {params}
+    );
+  }
+
 }
