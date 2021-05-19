@@ -1,16 +1,17 @@
 <div class="user-personal-details">
 
   <div class="profile-photo-container">
-    <div *ngIf="user.is_expert" class="profile-photo-burst d-flex justify-content-center align-items-center">
-      <span><nb-icon icon="checkmark"></nb-icon></span>
-    </div>
     <div class="profile-photo">
       <img alt="avatar" src="{{user.avatar}}">
     </div>
   </div>
 
   <div class="user-details text-center">
-    <div class="name">{{user.name}}</div>
+    <div class="name">
+      {{user.name}}
+      <img *ngIf="user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
+      <!--      <span *ngIf="user.is_expert" class="expert-icon"> <nb-icon icon="checkmark"></nb-icon></span>-->
+    </div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
     <div class="network">
       <a *ngIf="user.is_expert" routerLink="followers">{{user.followers_count || 0}} Followers</a>

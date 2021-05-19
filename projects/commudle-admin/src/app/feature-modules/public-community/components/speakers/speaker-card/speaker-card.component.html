@@ -1,18 +1,21 @@
 <nb-card class="clickable">
   <nb-card-body>
-    <a class="clickable" [routerLink]="['/users', speaker.username]">
+    <a [routerLink]="['/users', speaker.username]" class="clickable">
       <div class="user-card">
         <div class="banner-image">
           <div class="banner">
-            <img *ngIf="speaker.profile_banner_image" src="{{ speaker.profile_banner_image.i350}}">
+            <img *ngIf="speaker.profile_banner_image" src="{{speaker.profile_banner_image.i350}}">
           </div>
           <div class="user-image">
-            <img src="{{ speaker.avatar }}" alt="{{ speaker.name}}">
+            <img alt="{{speaker.name}}" src="{{speaker.avatar}}">
           </div>
         </div>
         <div class="user-details d-flex flex-column">
-          <p class="user-name">{{ speaker.name}}</p>
-          <p class="designation">{{ speaker.designation | truncatetext: 60}}</p>
+          <p class="user-name d-flex align-items-center">
+            {{speaker.name | truncatetext:14}}
+            <img alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
+          </p>
+          <p class="designation">{{speaker.designation | truncatetext: 60}}</p>
         </div>
       </div>
     </a>
