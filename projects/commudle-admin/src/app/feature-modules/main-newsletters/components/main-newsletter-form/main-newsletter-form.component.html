@@ -1,1 +1,49 @@
-<p>main-newsletter-form works!</p>
+<div class="main-newsletter-form page-padding">
+  <div class="d-flex justify-content-space-around">
+
+    <nb-card class="editor">
+      <nb-card-header>
+
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="form" class="lab-form">
+          <div class="form-field">
+            <input formControlName="title" fullWidth nbInput placeholder="Title for Web Page"
+                    type="text">
+            <span
+              *ngIf="form['controls'].title.touched && form['controls'].title.invalid && form['controls'].title.errors.required"
+              class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div class="form-field">
+            <input formControlName="email_subject" fullWidth nbInput placeholder="Email subject"
+                    type="text">
+            <span
+              *ngIf="form['controls'].email_subject.touched && form['controls'].email_subject.invalid && form['controls'].email_subject.errors.required"
+              class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div class="form-field">
+            <editor
+              [init]="tinyMCE"
+              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+              formControlName="content">
+            </editor>
+          </div>
+          <div class="form-field actions">
+            <button nbButton>Save Draft</button>
+            <button nbButton>Publish</button>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card class="preview">
+      <nb-card-body>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

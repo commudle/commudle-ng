@@ -93,10 +93,6 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/policies/policies.module').then(m => m.PoliciesModule)
   },
   {
-    path: 'newsletters',
-    loadChildren: () => import('./feature-modules/main-newsletters/main-newsletters.module').then(m => m.MainNewslettersModule),
-  },
-  {
     path: 'admin',
     children: [
       // {
@@ -106,6 +102,10 @@ const routes: Routes = [
       //     expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
       //   },
       // },
+      {
+        path: 'newsletters',
+        loadChildren: () => import('./feature-modules/main-newsletters/main-newsletters.module').then(m => m.MainNewslettersModule),
+      },
       {
         path: 'communities',
         canActivate: [AuthGuard],

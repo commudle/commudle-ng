@@ -20,13 +20,13 @@ const routes: Routes = [
         component: MainNewsletterFormComponent
       },
       {
-        path: 'edit',
-        component: MainNewsletterFormComponent
-      },
-      {
         path: ':main_newsletter_id',
         component: MainNewsletterComponent
-      }
+      },
+      {
+        path: ':main_newsletted_id/edit',
+        component: MainNewsletterFormComponent
+      },
     ]
   }
 ];

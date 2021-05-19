@@ -1,0 +1,38 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.main-newsletter-form {
+  .editor {
+    width: 700px;
+
+    .form-field {
+      margin-bottom: $space-16;
+
+      &.actions {
+        button {
+          margin-right: $space-8;
+        }
+      }
+    }
+  }
+  .preview {
+    width: 700px;
+  }
+}
+
+
+
+// tinymce style
+editor {
+  ::ng-deep {
+    div.tox.tox-tinymce {
+      border: none;
+
+      // this holds true only for fixed menubar
+      div.tox-editor-container {
+        div.tox-editor-header {
+          top: 56px !important;
+        }
+      }
+    }
+  }
+}
