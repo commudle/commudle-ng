@@ -2,7 +2,7 @@
 
 .main-newsletter-form {
   .editor {
-    width: 700px;
+    min-width: 700px;
 
     .form-field {
       margin-bottom: $space-16;
@@ -30,7 +30,7 @@ editor {
       // this holds true only for fixed menubar
       div.tox-editor-container {
         div.tox-editor-header {
-          top: 56px !important;
+          top: $top-nav-height !important;
         }
       }
     }

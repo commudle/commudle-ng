@@ -24,7 +24,7 @@ const routes: Routes = [
         component: MainNewsletterComponent
       },
       {
-        path: ':main_newsletted_id/edit',
+        path: ':main_newsletter_id/edit',
         component: MainNewsletterFormComponent
       },
     ]

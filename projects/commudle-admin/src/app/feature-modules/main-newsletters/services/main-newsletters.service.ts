@@ -84,7 +84,8 @@ export class MainNewslettersService {
 
 
   // admin index
-  adminIndex(): Observable<IMainNewsletters>{
+  adminIndex(page, count): Observable<IMainNewsletters>{
+    let params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<IMainNewsletters>(
         this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.ADMIN.INDEX),
         );

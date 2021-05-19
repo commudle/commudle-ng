@@ -1,1 +1,10 @@
-<p>main-newsletter-list-item works!</p>
+<div class="newsletter" >
+  <p>
+    {{this.newsletter.title}}
+  </p>
+  <div>
+    <div>
+      <a nbButton ghost [routerLink]="['/admin', 'newsletters', this.newsletter.id, 'edit']">Edit</a>
+    </div>
+  </div>
+</div>

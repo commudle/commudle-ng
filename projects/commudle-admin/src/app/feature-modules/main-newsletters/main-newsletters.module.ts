@@ -1,4 +1,4 @@
-import { NbActionsModule, NbInputModule } from '@nebular/theme';
+import { NbActionsModule, NbInputModule, NbListModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbIconModule } from '@nebular/theme';
 import { NbButtonModule } from '@nebular/theme';
@@ -27,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbIconModule,
     EditorModule,
     NbInputModule,
-    NbActionsModule
+    NbActionsModule,
+    NbListModule
   ]
 })
 export class MainNewslettersModule { }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main-newsletter-list-item',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-newsletter-list-item.component.scss']
 })
 export class MainNewsletterListItemComponent implements OnInit {
-
+  @Input() newsletter: IMainNewsletter;
   constructor() { }
 
   ngOnInit(): void {

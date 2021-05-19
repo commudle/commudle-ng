@@ -10,7 +10,11 @@
 
     <nb-card>
       <nb-card-body>
-
+        <nb-list>
+          <nb-list-item *ngFor="let nl of newsletters">
+            <app-main-newsletter-list-item [newsletter]="nl"></app-main-newsletter-list-item>
+          </nb-list-item>
+        </nb-list>
       </nb-card-body>
     </nb-card>
   </div>
