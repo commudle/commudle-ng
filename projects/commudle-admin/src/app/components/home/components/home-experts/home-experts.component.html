@@ -19,20 +19,18 @@
               {{expert.name | truncatetext:10}}
             </div>
             <div class="home-expert-designation">
-              {{expert.designation | truncatetext:10}}
+              {{expert.designation | truncatetext:15}}
             </div>
             <div class="home-expert-member-count">
-              {{expert.followers.toString() + ' followers'}}
+              {{expert.followers_count.toString() + ' followers'}}
             </div>
           </div>
         </div>
-        <button [ngClass]="expert.following ? 'active' : ''" class="home-experts-join" nbButton>
-          {{expert.following ? 'Following' : 'Follow'}}
-        </button>
+        <app-user-follow [username]="expert.username"></app-user-follow>
       </nb-list-item>
     </nb-list>
-    <div *ngIf="experts.length > 0" class="home-experts-all text-center clickable">
-      <a>Meet all</a>
-    </div>
+    <!--    <div *ngIf="experts.length > 0" class="home-experts-all text-center clickable">-->
+    <!--      <a>Meet all</a>-->
+    <!--    </div>-->
   </nb-card-body>
 </nb-card>
