@@ -4,8 +4,9 @@
     <img src="{{ user.avatar }}" alt="{{ user.name }}">
   </div>
   <div class="profile-info">
-    <p class="name {{ size }}">
+    <p class="name {{ size }} d-flex">
       <strong>{{ user.name }}</strong>
+      <img *ngIf="user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
     </p>
     <p *ngIf="designation" class="designation {{ size }}">
       {{ user.designation | slice:0:50 }}
