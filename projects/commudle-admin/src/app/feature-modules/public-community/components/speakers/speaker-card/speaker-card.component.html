@@ -13,7 +13,7 @@
         <div class="user-details d-flex flex-column">
           <p class="user-name d-flex align-items-center">
             {{speaker.name | truncatetext:14}}
-            <img alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
+            <img *ngIf="speaker.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
           </p>
           <p class="designation">{{speaker.designation | truncatetext: 60}}</p>
         </div>

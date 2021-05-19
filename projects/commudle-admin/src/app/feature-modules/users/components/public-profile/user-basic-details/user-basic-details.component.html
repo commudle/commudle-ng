@@ -10,7 +10,6 @@
     <div class="name">
       {{user.name}}
       <img *ngIf="user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
-      <!--      <span *ngIf="user.is_expert" class="expert-icon"> <nb-icon icon="checkmark"></nb-icon></span>-->
     </div>
     <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
     <div class="network">
