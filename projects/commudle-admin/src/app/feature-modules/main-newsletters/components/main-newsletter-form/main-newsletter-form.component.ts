@@ -3,6 +3,8 @@ import { MainNewslettersService } from './../../services/main-newsletters.servic
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-newsletter-form',
@@ -12,12 +14,13 @@ import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 export class MainNewsletterFormComponent implements OnInit, OnDestroy {
 
   newsLetter: IMainNewsletter;
-
+  isLoading = false;
 
   imagesList = [];
   tinyMCE = {
     placeholder: 'Start typing here...*',
     min_height: 500,
+    width: '700',
     menubar: false,
     convert_urls: false,
     skin: 'outside',
@@ -26,12 +29,13 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy {
     plugins: [
       'emoticons advlist lists autolink link charmap preview anchor',
       'visualblocks code charmap image codesample',
-      'insertdatetime table paste code help wordcount autoresize media'
+      'insertdatetime table paste code help wordcount autoresize media table',
     ],
     toolbar:
-      'formatselect | fontsizeselect | bold italic backcolor | codesample emoticons| \
+      'formatselect | fontsizeselect | bold italic forecolor backcolor | codesample emoticons| \
       link | alignleft aligncenter alignright alignjustify | \
       bullist numlist outdent indent | image media | code | removeformat',
+    table_toolbar: 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
     codesample_languages: [
       {text: 'HTML/XML', value: 'markup'},
       {text: 'CSS', value: 'css'},
@@ -68,16 +72,57 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy {
     private title: Title,
     private meta: Meta,
     private mainNewsLettersService: MainNewslettersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastLogService: LibToastLogService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(
+      data => {
+        if (data.main_newsletter_id) {
+          this.mainNewsLettersService.show(data.main_newsletter_id).subscribe(
+            data => {
+              this.newsLetter = data;
+              this.form.patchValue({
+                title: this.newsLetter.title,
+                email_subject: this.newsLetter.email_subject,
+                content: this.newsLetter.content
+              })
+            }
+          )
 
+        }
+      }
+    )
     this.setMeta();
   }
 
   ngOnDestroy(): void {
     this.meta.removeTag("name='robots'");
+  }
+
+
+  // create or update basis existence of newsletter
+  submitForm() {
+    let formData = this.form.value;
+    this.isLoading = true;
+    if (this.newsLetter) {
+      this.mainNewsLettersService.update(formData, this.newsLetter.id).subscribe(
+        data => {
+          this.isLoading = false;
+          this.toastLogService.successDialog('Saved', 2000);
+        }
+      )
+    } else {
+      this.mainNewsLettersService.create(formData).subscribe(
+        data => {
+          this.isLoading = false;
+          console.log(data);
+          this.toastLogService.successDialog('Saved', 2000);
+        }
+      )
+    }
   }
 
 

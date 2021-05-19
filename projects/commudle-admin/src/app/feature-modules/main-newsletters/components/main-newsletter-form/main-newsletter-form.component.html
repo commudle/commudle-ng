@@ -3,15 +3,15 @@
 
     <nb-card class="editor">
       <nb-card-header>
-
+        New Newsletter
       </nb-card-header>
       <nb-card-body>
-        <form [formGroup]="form" class="lab-form">
+        <form [formGroup]="form" class="lab-form" (ngSubmit)="submitForm()">
           <div class="form-field">
             <input formControlName="title" fullWidth nbInput placeholder="Title for Web Page"
                     type="text">
             <span
-              *ngIf="form['controls'].title.touched && form['controls'].title.invalid && form['controls'].title.errors.required"
+              *ngIf=" form['controls'].title.invalid && form['controls'].title.errors.required"
               class="validation-error-text">
               Required Field
             </span>
@@ -20,7 +20,7 @@
             <input formControlName="email_subject" fullWidth nbInput placeholder="Email subject"
                     type="text">
             <span
-              *ngIf="form['controls'].email_subject.touched && form['controls'].email_subject.invalid && form['controls'].email_subject.errors.required"
+              *ngIf="form['controls'].email_subject.invalid && form['controls'].email_subject.errors.required"
               class="validation-error-text">
               Required Field
             </span>
@@ -33,14 +33,23 @@
             </editor>
           </div>
           <div class="form-field actions">
-            <button nbButton>Save Draft</button>
-            <button nbButton>Publish</button>
+            <button nbButton [disabled]="!form.valid || isLoading">Save</button>
           </div>
         </form>
+
+        <p>
+          <a nbButton ghost size="small" class="padding-0" [routerLink]="['/admin', 'newsletters']">
+            <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+              Back to list of newsletters
+          </a>
+        </p>
       </nb-card-body>
     </nb-card>
 
     <nb-card class="preview">
+      <nb-card-header>
+        Preview
+      </nb-card-header>
       <nb-card-body>
 
       </nb-card-body>
