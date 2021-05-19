@@ -47,6 +47,7 @@ p, h3, a {
         font-size: $fs-text;
         font-weight: $fw-500;
         line-height: normal;
+        margin-bottom: $space-4;
 
         a {
           text-decoration: none;
@@ -55,27 +56,6 @@ p, h3, a {
           &:hover {
             text-decoration: underline;
           }
-        }
-      }
-
-      .author {
-        margin-top: $space-4;
-        .image {
-          margin-right: $space-8;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          overflow: hidden;
-          img {
-            width: 100%;
-          }
-        }
-        p {
-          margin-top: $space-4;
-          font-size: $fs-h6;
-          font-weight: normal;
-          color: $spanish-gray;
-          line-height: normal;
         }
       }
     }
