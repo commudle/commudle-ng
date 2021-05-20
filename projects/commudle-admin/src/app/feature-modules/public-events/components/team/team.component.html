@@ -6,8 +6,8 @@
     </nb-card-header>
     <nb-card-body>
       <div class="volunteers">
-        <app-user-profile-card-large *ngFor="let user of volunteers" [user]="user"></app-user-profile-card-large>
-        <!--        <app-user-profile-horizontal *ngFor="let user of volunteers" [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>-->
+        <app-user-profile-card-large *ngFor="let user of volunteers" [maxDesignationLength]="45"
+                                     [user]="user"></app-user-profile-card-large>
       </div>
     </nb-card-body>
   </nb-card>

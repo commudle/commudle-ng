@@ -11,7 +11,7 @@
 
       <div *ngIf="organizers.length > 0" class="organizers">
         <div *ngFor="let user of organizers" class="user">
-          <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+          <app-user-profile-card-large [maxDesignationLength]="20" [user]="user"></app-user-profile-card-large>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <p class="text-basic">Event Organizers</p>
         <div class="event-organizers">
           <div *ngFor="let user of eventOrganizers" class="user">
-            <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+            <app-user-profile-card-large [maxDesignationLength]="20" [user]="user"></app-user-profile-card-large>
           </div>
         </div>
       </div>

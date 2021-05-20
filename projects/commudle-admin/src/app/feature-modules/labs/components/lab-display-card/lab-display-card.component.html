@@ -11,17 +11,7 @@
     </div>
 
     <div class="author-stats d-flex justify-content-space-between">
-      <!--      <div class="author d-flex align-items-end">-->
-      <!--        <div class="image">-->
-      <!--          <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">-->
-      <!--        </div>-->
-      <!--        <div class="details">-->
-      <!--          <p class="name">{{lab.user.name}}</p>-->
-      <!--          <p *ngIf="lab.user.designation" class="designation">{{lab.user.designation | truncatetext:18}}-->
-      <!--          <p *ngIf="!lab.user.designation" class="designation">&#45;&#45;</p>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <app-user-profile-card-medium [user]="lab.user"></app-user-profile-card-medium>
+      <app-user-profile-card-medium [maxDesignationLength]="30" [user]="lab.user"></app-user-profile-card-medium>
       <div class="stats d-flex">
         <div class="views d-flex align-items-center">
           <p>{{lab.visits}}</p>
