@@ -1,0 +1,30 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-badges {
+  margin: $space-16 0;
+  border: none;
+  border-radius: $border-10;
+
+  nb-card-body {
+    padding: $space-32;
+
+    .badge-list {
+      gap: $space-16;
+
+      .badge {
+        img {
+          max-width: 32px;
+        }
+
+        .name {
+          margin-left: $space-12;
+          font-style: italic;
+          font-weight: $fw-500;
+          font-size: $fs-h6;
+          line-height: 16px;
+          color: $gunmetal;
+        }
+      }
+    }
+  }
+}
