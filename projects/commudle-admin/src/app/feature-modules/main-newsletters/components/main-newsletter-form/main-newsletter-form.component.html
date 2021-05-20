@@ -4,6 +4,9 @@
     <nb-card class="editor">
       <nb-card-header>
         New Newsletter
+        <span *ngIf="!form.pristine">
+          (There are unsaved changes)
+        </span>
       </nb-card-header>
       <nb-card-body>
         <form [formGroup]="form" class="lab-form" (ngSubmit)="submitForm()">
@@ -49,6 +52,10 @@
     <nb-card class="preview">
       <nb-card-header>
         Preview
+        <a *ngIf="newsLetter" nbButton ghost class="padding-0" [routerLink]="['/newsletters', newsLetter.id]" target="_blank">
+          <nb-icon icon="external-link"></nb-icon>
+          Web preview
+        </a>
       </nb-card-header>
       <nb-card-body>
         <div [innerHTML]="form.value.content"></div>
