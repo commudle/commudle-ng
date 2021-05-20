@@ -1,4 +1,4 @@
-@import "projects/commudle-admin/src/assets/styles/variables";
+@import 'projects/commudle-admin/src/assets/styles/variables';
 
 .home-builds {
   padding: $space-16;
@@ -46,11 +46,5 @@
         color: rgba($neon-blue, 0.95);
       }
     }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .home-builds {
-    border-radius: 0;
   }
 }

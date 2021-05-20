@@ -44,36 +44,6 @@
     }
 
     .author-stats {
-      .author {
-        .image {
-          width: 34px;
-          height: 34px;
-          margin-right: 6px;
-          border-radius: 50%;
-          overflow: hidden;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        .details {
-          .name {
-            margin: 0;
-            font-size: $fs-card-secondary;
-            line-height: $fs-card-secondary;
-            font-weight: $fw-600;
-            color: $neon-blue;
-          }
-
-          .designation {
-            margin: 0;
-            font-size: $fs-card-secondary;
-            line-height: $fs-card-secondary;
-          }
-        }
-      }
-
       .stats {
         gap: $space-4;
 

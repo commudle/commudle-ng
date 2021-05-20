@@ -2,15 +2,16 @@
   <nb-card>
     <nb-card-header>
       <h6>
-        <nb-icon icon="award" status="info"></nb-icon> Speakers
+        <nb-icon icon="award" status="info"></nb-icon>
+        Speakers
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <div class="speaker" *ngFor="let speaker of speakers">
-        <app-user-profile-horizontal [user]="speaker.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+      <div *ngFor="let speaker of speakers" class="speaker">
+        <app-user-profile-card-large [maxDesignationLength]="45" [user]="speaker.user"></app-user-profile-card-large>
       </div>
-      <div class="speaker" *ngFor="let speaker of simpleAgendaSpeakers">
-        <app-user-profile-horizontal [user]="speaker.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+      <div *ngFor="let speaker of simpleAgendaSpeakers" class="speaker">
+        <app-user-profile-card-large [maxDesignationLength]="45" [user]="speaker.user"></app-user-profile-card-large>
       </div>
     </nb-card-body>
   </nb-card>

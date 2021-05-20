@@ -43,6 +43,10 @@ import {UserExtraDetailsComponent} from './components/public-profile/user-extra-
 import {UserNetworkComponent} from './components/public-profile/user-network/user-network.component';
 import {UserNetworkListComponent} from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import {UserFollowComponent} from 'projects/commudle-admin/src/app/feature-modules/user-follow/user-follow.component';
+import {UserProfileCardLargeComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/profile-cards/user-profile-card-large/user-profile-card-large.component';
+import {UserProfileCardMediumComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/profile-cards/user-profile-card-medium/user-profile-card-medium.component';
+import {UserProfileCardSmallComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/profile-cards/user-profile-card-small/user-profile-card-small.component';
+import {UserBadgesComponent} from './components/public-profile/user-extra-details/user-badges/user-badges.component';
 
 
 @NgModule({
@@ -66,7 +70,11 @@ import {UserFollowComponent} from 'projects/commudle-admin/src/app/feature-modul
     UserFeedPostComponent,
     UserNetworkComponent,
     UserNetworkListComponent,
-    UserFollowComponent
+    UserFollowComponent,
+    UserProfileCardLargeComponent,
+    UserProfileCardMediumComponent,
+    UserProfileCardSmallComponent,
+    UserBadgesComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +104,11 @@ import {UserFollowComponent} from 'projects/commudle-admin/src/app/feature-modul
     NbRouteTabsetModule,
   ],
   exports: [
-    BasicUserProfileComponent
+    BasicUserProfileComponent,
+    UserProfileCardLargeComponent,
+    UserProfileCardMediumComponent,
+    UserProfileCardSmallComponent,
+    UserFollowComponent
   ]
 })
 export class UsersModule {
