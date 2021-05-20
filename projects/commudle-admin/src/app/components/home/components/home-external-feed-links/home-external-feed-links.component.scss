@@ -1,10 +1,7 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
-nb-card-header, div, a, p {
-  font-family: $primary-font-family;
-}
-
 .home-external-feed-links {
+  border: none;
   border-radius: $border-10;
 
   nb-card-header {
@@ -13,6 +10,7 @@ nb-card-header, div, a, p {
     color: $gunmetal;
     padding: $space-16 $space-16 $space-8;
     border-bottom: none;
+
     p.sub-header {
       font-size: $fs-card-list-title;
       color: $spanish-gray;

@@ -1,36 +1,30 @@
 <div class="community-build-details">
 
-  <nb-card class="community-build" *ngIf="cBuild">
+  <nb-card *ngIf="cBuild" class="community-build">
     <nb-card-body>
       <div class="header">
         <div class="build-type">
-          <app-badge
-            [text]="cBuild.build_type | titlecase"
-            [color]="CBuildTypeDisplay[cBuild.build_type].color"
-            [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
-          >
-          </app-badge>
+          <app-badge [color]="CBuildTypeDisplay[cBuild.build_type].color"
+                     [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
+                     [text]="cBuild.build_type | titlecase"></app-badge>
         </div>
-        <h1>
-          {{ cBuild.name }}
-        </h1>
+        <h1>{{ cBuild.name }}</h1>
         <div class="tags">
-          <app-badge *ngFor="let tag of cBuild.tags" [text]="tag" [color]="'#b7b7b7'"></app-badge>
+          <app-badge *ngFor="let tag of cBuild.tags" [color]="'#b7b7b7'" [text]="tag"></app-badge>
         </div>
         <p class="author">
-          {{ cBuild.user.name }} <span *ngIf="cBuild.user.designation">, {{ cBuild.user.designation }}</span>
+          {{ cBuild.user.name }}
+          <img *ngIf="cBuild.user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
+          <span *ngIf="cBuild.user.designation"> , {{ cBuild.user.designation }}</span>
           <br>
-          <small>
-            {{ moment(cBuild.created_at).format('Do MMM YYYY') }}
-          </small>
+          <small>{{ moment(cBuild.created_at).format('Do MMM YYYY') }}</small>
         </p>
       </div>
-      <div *ngIf="embedCode" class="embed" [innerHTML]="embedCode">
-      </div>
+      <div *ngIf="embedCode" [innerHTML]="embedCode" class="embed"></div>
       <div *ngIf="cBuild.link && !embedCode" class="link">
         <p>
           Visit the {{cBuild.build_type}}:
-          <a target="_blank" href="{{ cBuild.link }}">
+          <a href="{{ cBuild.link }}" target="_blank">
             {{ cBuild.link }}
             <nb-icon icon="external-link"></nb-icon>
           </a>
@@ -39,40 +33,32 @@
       <div class="description">
         <div [innerHTML]="cBuild.description"></div>
       </div>
-      <div class="images" *ngIf="cBuild.images.length > 0">
+      <div *ngIf="cBuild.images.length > 0" class="images">
         <div class="image-stripe">
-          <div class="image clickable" *ngFor="let image of cBuild.images" (click)="openImage(cBuild.name, image)">
-            <img src="{{ image.url }}" alt="{{ cBuild.name }}">
+          <div (click)="openImage(cBuild.name, image)" *ngFor="let image of cBuild.images" class="image clickable">
+            <img alt="{{ cBuild.name }}" src="{{ image.url }}">
           </div>
         </div>
       </div>
       <div class="author-details">
-        <app-user-profile-horizontal [user]="cBuild.user" [aboutMe]="true"
-                                     [socialMediaLinks]="true"></app-user-profile-horizontal>
+        <app-user-profile-card-large [user]="cBuild.user"></app-user-profile-card-large>
       </div>
 
-      <div class="teammate-details" *ngIf="teammates.length > 0">
+      <div *ngIf="teammates.length > 0" class="teammate-details">
         <p>Teammates</p>
-          <div *ngFor="let teammate of teammates;">
-            <app-user-profile-horizontal [user]="teammate.user" [aboutMe]="true"></app-user-profile-horizontal>
-          </div>
+        <div *ngFor="let teammate of teammates;">
+          <app-user-profile-card-large [user]="teammate.user"></app-user-profile-card-large>
+        </div>
       </div>
       <div class="stats">
         <p class="stars">
-          <app-votes-display
-            [votableType]="'CommunityBuild'"
-            [votableId]="cBuild.id"
-            [icon]="'star'"
-            [size]="'large'"
-          >
-          </app-votes-display>
-          <span>
-            Give a star to encourage!
-          </span>
+          <app-votes-display [icon]="'star'" [size]="'large'" [votableId]="cBuild.id"
+                             [votableType]="'CommunityBuild'"></app-votes-display>
+          <span> Give a star to encourage! </span>
         </p>
       </div>
 
-      <div class="comments" *ngIf="discussionChat">
+      <div *ngIf="discussionChat" class="comments">
         <p>Discussion</p>
         <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
       </div>
@@ -83,13 +69,13 @@
 
 <ng-template #imageTemplate>
   <div class="image-window">
-    <img src="{{ this.currImage.url }}" alt="Image">
+    <img alt="Image" src="{{ this.currImage.url }}">
     <div class="controls">
-      <button nbButton size="small" shape="round" (click)="imageNav(-1)">
+      <button (click)="imageNav(-1)" nbButton shape="round" size="small">
         <nb-icon icon="arrow-ios-back-outline"></nb-icon>
         <span>Previous</span>
       </button>
-      <button nbButton size="small" shape="round" (click)="imageNav(1)">
+      <button (click)="imageNav(1)" nbButton shape="round" size="small">
         <span>Next</span>
         <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
       </button>

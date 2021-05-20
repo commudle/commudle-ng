@@ -26,45 +26,6 @@
     background-color: $white;
     border-radius: 50%;
 
-    .profile-photo-burst {
-      width: 24px;
-      height: 24px;
-      position: absolute;
-      bottom: 12px;
-      right: 20px;
-      color: $white;
-      background-color: $ultra-red;
-      z-index: 5;
-      margin: 0 auto;
-
-      &:before, &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 24px;
-        width: 24px;
-        background: $ultra-red;
-        z-index: 5;
-      }
-
-      &:before {
-        transform: rotate(30deg);
-      }
-
-      &:after {
-        transform: rotate(60deg);
-      }
-
-      span {
-        z-index: 10;
-
-        nb-icon {
-          font-size: $fs-24;
-        }
-      }
-    }
-
     .profile-photo {
       overflow: hidden;
       border-radius: 50%;
@@ -94,7 +55,21 @@
       font-weight: $fw-600;
       font-size: $fs-20;
       font-style: italic;
+      margin-bottom: $space-4;
+
+      .expert-icon {
+        vertical-align: middle;
+        margin-left: $space-4;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .username {
+      font-size: $fs-h5;
+      line-height: 16px;
       margin-bottom: $space-8;
+      color: rgba($gunmetal, 0.85);
     }
 
     .designation {

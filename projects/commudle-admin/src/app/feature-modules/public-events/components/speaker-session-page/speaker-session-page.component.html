@@ -31,8 +31,7 @@
         </p>
         <div *ngIf="speaker" class="speaker-details">
           <div>
-            <app-user-profile-horizontal [aboutMe]="true" [size]="'medium'" [socialMediaLinks]="true"
-                                         [user]="speaker"></app-user-profile-horizontal>
+            <app-user-profile-card-large [user]="speaker"></app-user-profile-card-large>
           </div>
         </div>
         <p *ngIf="userVisitData" class="visitors">
@@ -49,8 +48,8 @@
       <div #videoContainer class="video-stream">
         <app-auto-attendance *ngIf="this.event && moment().isBetween(moment(event.start_time), moment(event.end_time))"
                              [eventId]="this.event.id"></app-auto-attendance>
-        <nb-icon icon="expand" (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen" class="fullscreen-button"
-        nbButton size="tiny"></nb-icon>
+        <nb-icon (click)="toggleFullScreen(speakerSessionDetails)" *ngIf="!isFullscreen" class="fullscreen-button"
+                 icon="expand" nbButton size="tiny"></nb-icon>
 
         <div *ngIf="isBrowser && embeddedVideoStream" class="{{ embeddedVideoStream.source }}">
           <nb-card>

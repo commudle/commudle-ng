@@ -14,6 +14,7 @@ import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.servic
 export class UserFollowComponent implements OnInit, OnDestroy {
 
   @Input() username: string;
+  @Input() showIcon = true;
 
   @Output() userFollowed: EventEmitter<any> = new EventEmitter<any>();
 
@@ -31,13 +32,14 @@ export class UserFollowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.checkFollowing();
-
     // Get user's data
     this.subscriptions.push(this.appUsersService.getProfile(this.username).subscribe(data => this.user = data));
 
     // Get logged in user
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => {
+      this.currentUser = data;
+      this.checkFollowing();
+    }));
   }
 
   ngOnDestroy(): void {
@@ -50,16 +52,22 @@ export class UserFollowComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleFollow(ref: NbDialogRef<any>) {
+  toggleFollow(ref?: NbDialogRef<any>) {
     this.subscriptions.push(this.appUsersService.toggleFollow(this.username).subscribe(value => {
       this.checkFollowing();
-      ref.close();
+      if (ref) {
+        ref.close();
+      }
       this.userFollowed.emit();
     }));
   }
 
   openDialog(ref: TemplateRef<any>) {
-    this.nbDialogService.open(ref);
+    if (this.isFollowing) {
+      this.toggleFollow();
+    } else {
+      this.nbDialogService.open(ref);
+    }
   }
 
 }

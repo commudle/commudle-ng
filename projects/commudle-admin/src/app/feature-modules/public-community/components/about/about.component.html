@@ -9,20 +9,20 @@
     <nb-card-body>
       <p class="text-basic">Organizers</p>
 
-      <div class="organizers" *ngIf="organizers.length > 0">
+      <div *ngIf="organizers.length > 0" class="organizers">
         <div *ngFor="let user of organizers" class="user">
-          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+          <app-user-profile-card-large [maxDesignationLength]="20" [user]="user"></app-user-profile-card-large>
         </div>
       </div>
 
-     <div *ngIf="eventOrganizers.length > 0" >
-      <p class="text-basic">Event Organizers</p>
-      <div class="event-organizers">
-        <div *ngFor="let user of eventOrganizers" class="user">
-          <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true" [aboutMe]="true"></app-user-profile-horizontal>
+      <div *ngIf="eventOrganizers.length > 0">
+        <p class="text-basic">Event Organizers</p>
+        <div class="event-organizers">
+          <div *ngFor="let user of eventOrganizers" class="user">
+            <app-user-profile-card-large [maxDesignationLength]="20" [user]="user"></app-user-profile-card-large>
+          </div>
         </div>
       </div>
-     </div>
     </nb-card-body>
   </nb-card>
 </div>

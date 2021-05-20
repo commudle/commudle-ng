@@ -39,7 +39,9 @@
                 <div class="details">
                   <p>
                     created by
-                    <span class="name">{{lab.user.name}}</span>&nbsp;
+                    <span class="name">{{lab.user.name}}</span>
+                    <img *ngIf="lab.user.is_expert" alt="Expert Tick" class="expert-icon"
+                         src="/assets/images/Expert-Tick.svg">&nbsp;
                     <span class="date">{{lab.created_at | date}}</span>
                   </p>
                 </div>

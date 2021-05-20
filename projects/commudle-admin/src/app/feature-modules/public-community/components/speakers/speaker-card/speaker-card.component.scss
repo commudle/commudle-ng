@@ -1,5 +1,4 @@
-@import "/projects/commudle-admin/src/assets/styles/variables.scss";
-
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 nb-card {
   width: 200px;
@@ -24,16 +23,20 @@ nb-card {
 
     .user-card {
       overflow: hidden;
+
       .banner {
         width: 200px;
         height: 62px;
         background: $lightestgrey;
+
         img {
           width: 100%;
         }
       }
+
       .banner-image {
         display: grid;
+
         div {
           grid-row-start: 1;
           grid-column-start: 1;
@@ -54,17 +57,28 @@ nb-card {
           width: 100%;
         }
       }
+
       .user-details {
         margin-left: $space-10;
         margin-top: $space-10;
+
         p {
           color: $black;
           margin: 0;
         }
+
         .user-name {
           font-size: $fs-card-title;
           font-weight: $fw-500;
+
+          .expert-icon {
+            vertical-align: middle;
+            margin-left: $space-4;
+            width: 14px;
+            height: 14px;
+          }
         }
+
         .designation {
           color: $low-emphasis-text;
           font-size: $fs-card-secondary;
