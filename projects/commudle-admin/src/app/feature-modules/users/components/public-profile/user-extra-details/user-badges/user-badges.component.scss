@@ -11,19 +11,8 @@
     .badge-list {
       gap: $space-16;
 
-      .badge {
-        img {
-          max-width: 32px;
-        }
-
-        .name {
-          margin-left: $space-12;
-          font-style: italic;
-          font-weight: $fw-500;
-          font-size: $fs-h6;
-          line-height: 16px;
-          color: $gunmetal;
-        }
+      img {
+        max-width: 100px;
       }
     }
   }

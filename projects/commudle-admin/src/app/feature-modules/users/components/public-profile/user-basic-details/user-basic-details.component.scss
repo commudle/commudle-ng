@@ -55,7 +55,7 @@
       font-weight: $fw-600;
       font-size: $fs-20;
       font-style: italic;
-      margin-bottom: $space-8;
+      margin-bottom: $space-4;
 
       .expert-icon {
         vertical-align: middle;
@@ -63,6 +63,13 @@
         width: 24px;
         height: 24px;
       }
+    }
+
+    .username {
+      font-size: $fs-h5;
+      line-height: 16px;
+      margin-bottom: $space-8;
+      color: rgba($gunmetal, 0.85);
     }
 
     .designation {

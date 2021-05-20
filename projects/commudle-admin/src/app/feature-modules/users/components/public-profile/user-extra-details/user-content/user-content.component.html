@@ -10,9 +10,9 @@
           <app-user-social [currentUser]="currentUser" [user]="user"></app-user-social>
         </nb-tab>
 
-        <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">
-          <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>
-        </nb-tab>
+        <!--        <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">-->
+        <!--          <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
+        <!--        </nb-tab>-->
       </nb-tabset>
     </nb-card-body>
   </nb-card>
@@ -32,11 +32,11 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card>
-      <nb-card-body>
-        <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>
-      </nb-card-body>
-    </nb-card>
+    <!--    <nb-card>-->
+    <!--      <nb-card-body>-->
+    <!--        <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
+    <!--      </nb-card-body>-->
+    <!--    </nb-card>-->
 
   </div>
 </div>

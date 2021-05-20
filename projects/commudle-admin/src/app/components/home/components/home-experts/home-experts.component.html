@@ -1,6 +1,6 @@
 <nb-card class="home-experts">
   <nb-card-header>
-    Our Experts
+    Experts
   </nb-card-header>
   <nb-card-body class="home-experts-list">
     <nb-list *ngIf="experts.length === 0">
@@ -16,17 +16,18 @@
           </div>
           <div class="home-expert-details">
             <div class="home-expert-name">
-              {{expert.name | truncatetext:10}}
+              {{expert.name | truncatetext:14}}
             </div>
             <div class="home-expert-designation">
-              {{expert.designation | truncatetext:15}}
+              {{expert.designation | truncatetext:18}}
             </div>
             <div class="home-expert-member-count">
               {{expert.followers_count.toString() + ' followers'}}
             </div>
           </div>
         </a>
-        <app-user-follow [username]="expert.username"></app-user-follow>
+        <app-user-follow (userFollowed)="getExperts()" [showIcon]="false"
+                         [username]="expert.username"></app-user-follow>
       </nb-list-item>
     </nb-list>
     <!--    <div *ngIf="experts.length > 0" class="home-experts-all text-center clickable">-->
