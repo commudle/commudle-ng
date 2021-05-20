@@ -134,6 +134,12 @@
           &:hover {
             background-color: darken($light-purple, 3%);
           }
+
+          .expert-icon {
+            margin-left: $space-4;
+            width: 12px;
+            height: 12px;
+          }
         }
       }
 

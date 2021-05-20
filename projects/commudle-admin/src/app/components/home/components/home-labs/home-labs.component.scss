@@ -1,4 +1,4 @@
-@import "projects/commudle-admin/src/assets/styles/variables";
+@import 'projects/commudle-admin/src/assets/styles/variables';
 
 nb-card.home-labs {
   border: none;
@@ -78,8 +78,6 @@ p, h3, a {
 
 @media all and (max-width: $tab-width) {
   nb-card.home-labs {
-    border-radius: 0;
-
     nb-card-body {
       .home-labs-heading, .labs-list, .all-labs-link {
         display: none;
