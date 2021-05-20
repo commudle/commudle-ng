@@ -15,6 +15,7 @@ export class UserExtraDetailsComponent implements OnInit, OnDestroy {
 
   user: IUser;
   currentUser: ICurrentUser;
+  showBadges = true;
 
   subscriptions: Subscription[] = [];
 
@@ -42,6 +43,10 @@ export class UserExtraDetailsComponent implements OnInit, OnDestroy {
   // Get user's data
   getUserData() {
     this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => this.user = data);
+  }
+
+  toggleBadges(event: boolean) {
+    this.showBadges = event;
   }
 
 }

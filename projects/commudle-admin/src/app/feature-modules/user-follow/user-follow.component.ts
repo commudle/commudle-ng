@@ -14,6 +14,7 @@ import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.servic
 export class UserFollowComponent implements OnInit, OnDestroy {
 
   @Input() username: string;
+  @Input() showIcon = true;
 
   @Output() userFollowed: EventEmitter<any> = new EventEmitter<any>();
 
