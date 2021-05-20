@@ -1,22 +1,26 @@
+import { Location } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MainNewslettersService } from './../../services/main-newsletters.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-newsletter-form',
   templateUrl: './main-newsletter-form.component.html',
   styleUrls: ['./main-newsletter-form.component.scss']
 })
-export class MainNewsletterFormComponent implements OnInit, OnDestroy {
+export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterViewInit {
 
   newsLetter: IMainNewsletter;
   isLoading = false;
+  pendingChanges = true;
 
   imagesList = [];
+  subscriptions = [];
+  currentRoute;
   tinyMCE = {
     placeholder: 'Start typing here...*',
     min_height: 500,
@@ -55,10 +59,13 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy {
     branding: false,
     images_upload_handler: this.uploadTextImage.bind(this),
     toolbar_location: 'top',
-    toolbar_sticky: true
+    toolbar_sticky: true,
+    setup: (editor) => {
+      editor.on('init', (e) => {
+        this.form.markAsPristine();
+      });
+    }
   }
-
-
 
 
   form = this.fb.group({
@@ -74,32 +81,52 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy {
     private mainNewsLettersService: MainNewslettersService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(
-      data => {
-        if (data.main_newsletter_id) {
-          this.mainNewsLettersService.show(data.main_newsletter_id).subscribe(
-            data => {
-              this.newsLetter = data;
-              this.form.patchValue({
-                title: this.newsLetter.title,
-                email_subject: this.newsLetter.email_subject,
-                content: this.newsLetter.content
-              })
-            }
-          )
+    this.currentRoute = this.router.url;
 
-        }
-      }
-    )
     this.setMeta();
+
+    this.router.events.subscribe(val => {
+      if (this.location.path() !== this.currentRoute) {
+       this.checkUnsavedChanges();
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe(
+        data => {
+          if (data.main_newsletter_id) {
+            this.mainNewsLettersService.show(data.main_newsletter_id).subscribe(
+              data => {
+                this.newsLetter = data;
+                this.form.patchValue({
+                  title: this.newsLetter.title,
+                  email_subject: this.newsLetter.email_subject,
+                  content: this.newsLetter.content
+                });
+                this.form.markAsPristine();
+              }
+            )
+
+          }
+        }
+      )
+    );
   }
 
   ngOnDestroy(): void {
     this.meta.removeTag("name='robots'");
+
+    for (let sub of this.subscriptions) {
+      sub.unsubscribe();
+    }
   }
 
 
@@ -118,7 +145,6 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy {
       this.mainNewsLettersService.create(formData).subscribe(
         data => {
           this.isLoading = false;
-          console.log(data);
           this.toastLogService.successDialog('Saved', 2000);
         }
       )
@@ -136,6 +162,14 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy {
         success(data);
       }
     });
+  }
+
+
+  // check if the user is leaving without saving
+  checkUnsavedChanges() {
+    if (!this.form.pristine) {
+      window.alert('There might be some unsaved changes. Are you sure you want to leave?');
+    }
   }
 
   setMeta() {
