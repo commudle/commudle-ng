@@ -1,6 +1,7 @@
 <div class="menu">
   <div *ngIf="!hideUser" class="user">
-    <app-user-profile-card-large [user]="lab.user"></app-user-profile-card-large>
+    <app-user-profile-card-large [maxDesignationLength]="18" [maxNameLength]="14"
+                                 [user]="lab.user"></app-user-profile-card-large>
   </div>
   <nb-card *ngIf="!hideSteps" class="steps">
     <nb-list>

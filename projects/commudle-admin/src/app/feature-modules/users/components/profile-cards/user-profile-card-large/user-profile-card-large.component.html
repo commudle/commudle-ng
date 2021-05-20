@@ -5,11 +5,11 @@
     </div>
     <div class="details">
       <div class="name d-flex align-items-center">
-        {{user.name | truncatetext:12}}
+        {{user.name | truncatetext:maxNameLength}}
         <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg">
       </div>
       <div class="username">@{{user.username}}</div>
-      <div class="designation">{{(user.designation || '--') | truncatetext: 18}}</div>
+      <div class="designation">{{(user.designation || '--') | truncatetext: maxDesignationLength}}</div>
     </div>
   </div>
 </a>

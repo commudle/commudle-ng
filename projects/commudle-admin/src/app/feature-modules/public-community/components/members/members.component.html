@@ -8,8 +8,8 @@
     </div>
     <div class="users">
       <div *ngFor="let member of members" class="user">
-        <app-user-profile-card-large [user]="member"></app-user-profile-card-large>
-        <!--          <app-user-profile-horizontal [user]="member" [socialMediaLinks]="true"></app-user-profile-horizontal>-->
+        <app-user-profile-card-large [maxDesignationLength]="28" [maxNameLength]="18"
+                                     [user]="member"></app-user-profile-card-large>
       </div>
     </div>
 
