@@ -5,10 +5,9 @@ nb-card-body {
   @media screen and (min-width: 800px) {
     flex-direction: row;
     flex-wrap: wrap;
-
   }
 
-  .speaker{
+  .speaker {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;

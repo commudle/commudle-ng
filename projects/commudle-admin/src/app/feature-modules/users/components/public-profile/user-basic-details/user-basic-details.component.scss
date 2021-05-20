@@ -26,45 +26,6 @@
     background-color: $white;
     border-radius: 50%;
 
-    .profile-photo-burst {
-      width: 24px;
-      height: 24px;
-      position: absolute;
-      bottom: 12px;
-      right: 20px;
-      color: $white;
-      background-color: $ultra-red;
-      z-index: 5;
-      margin: 0 auto;
-
-      &:before, &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 24px;
-        width: 24px;
-        background: $ultra-red;
-        z-index: 5;
-      }
-
-      &:before {
-        transform: rotate(30deg);
-      }
-
-      &:after {
-        transform: rotate(60deg);
-      }
-
-      span {
-        z-index: 10;
-
-        nb-icon {
-          font-size: $fs-24;
-        }
-      }
-    }
-
     .profile-photo {
       overflow: hidden;
       border-radius: 50%;
@@ -94,13 +55,41 @@
       font-weight: $fw-600;
       font-size: $fs-20;
       font-style: italic;
+      margin-bottom: $space-4;
+
+      .expert-icon {
+        vertical-align: middle;
+        margin-left: $space-4;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .username {
+      font-size: $fs-h5;
+      line-height: 16px;
       margin-bottom: $space-8;
+      color: rgba($gunmetal, 0.85);
     }
 
     .designation {
       font-weight: $fw-500;
       font-size: $fs-h4;
-      margin-bottom: $space-24;
+      margin-bottom: $space-8;
+    }
+
+    .network {
+      a {
+        color: $cadet;
+        font-size: $fs-h5;
+        font-style: italic;
+        text-decoration: none;
+        margin-bottom: $space-24;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .location {
@@ -139,6 +128,7 @@
       font-size: $fs-h6;
       font-weight: $fw-400;
       text-transform: none;
+      margin: 0 $space-8;
 
       nb-icon {
         margin-right: $space-4;
@@ -155,13 +145,6 @@
     }
 
     nb-tag-list {
-
-      &::ng-deep {
-        .nb-tag-list-tags-wrapper {
-          justify-content: center;
-        }
-      }
-
       nb-tag {
         border: none;
         color: $gunmetal;
@@ -171,7 +154,7 @@
         padding: $space-2 $space-8;
         border-radius: $border-10;
 
-        &:last-child {
+        .tags-add {
           cursor: pointer;
           transition: all 0.2s ease-in-out;
 
@@ -208,7 +191,7 @@
       }
 
       nb-icon[pack="fab"] {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
   }

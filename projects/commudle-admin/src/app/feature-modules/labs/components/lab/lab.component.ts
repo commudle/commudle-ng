@@ -145,7 +145,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.labsService.getSimilarLabs(this.lab.id).subscribe(value => {
         this.similarLabs = [];
         value.labs.forEach(similarLab => {
-          if (similarLab.publish_status === 'published' && similarLab.id !== this.lab.id) {
+          if (similarLab.publish_status === 'published' && similarLab.id !== this.lab.id && this.similarLabs.length < 4) {
             this.similarLabs.push(similarLab);
           }
         });

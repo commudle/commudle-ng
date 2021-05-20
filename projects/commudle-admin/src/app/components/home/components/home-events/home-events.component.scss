@@ -1,4 +1,4 @@
-@import "projects/commudle-admin/src/assets/styles/variables";
+@import 'projects/commudle-admin/src/assets/styles/variables';
 
 .home-events {
   border: none;
@@ -45,8 +45,6 @@
 
 @media all and (max-width: $tab-width) {
   .home-events {
-    border-radius: 0;
-
     nb-card-body {
       .home-events-cards {
         display: none;
