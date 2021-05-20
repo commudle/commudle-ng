@@ -40,7 +40,8 @@ export class MainNewslettersService {
     return this.http.put<IMainNewsletter>(
         this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.UPDATE),
         {
-          main_newsletter: mainNewsletterData
+          main_newsletter: mainNewsletterData,
+          main_newsletter_id: mainNewsletterId
         }
         );
   }
