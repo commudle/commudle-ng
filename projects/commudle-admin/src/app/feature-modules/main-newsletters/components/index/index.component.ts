@@ -11,6 +11,7 @@ export class IndexComponent implements OnInit {
   page = 1;
   count = 10;
   newsletters: IMainNewsletter[];
+  isLoading = true;
 
   constructor(
     private mainNewsLettersService: MainNewslettersService
@@ -22,10 +23,12 @@ export class IndexComponent implements OnInit {
 
 
   getNewsLetters() {
+    this.isLoading = true;
     this.mainNewsLettersService.adminIndex(this.page, this.count).subscribe(
       data => {
         this.newsletters = data.main_newsletters;
         this.page+=1;
+        this.isLoading = false;
       }
     )
   }

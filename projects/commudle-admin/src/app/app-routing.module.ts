@@ -11,6 +11,7 @@ import {InitResolver} from './resolvers/init.resolver';
 import {CommunitiesComponent} from './components/home/communities/communities.component';
 import {FeaturesComponent} from './components/home/features/features.component';
 import {AboutComponent} from './components/home/about/about.component';
+import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'policies',
     loadChildren: () => import('./feature-modules/policies/policies.module').then(m => m.PoliciesModule)
+  },
+  {
+    path: 'newsletters/:main_newsletter_id',
+    component: MainNewsletterComponent
   },
   {
     path: 'admin',

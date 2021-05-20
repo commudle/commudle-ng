@@ -1,4 +1,4 @@
-import { NbActionsModule, NbInputModule, NbListModule } from '@nebular/theme';
+import { NbActionsModule, NbInputModule, NbListModule, NbSpinnerModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbIconModule } from '@nebular/theme';
 import { NbButtonModule } from '@nebular/theme';
@@ -14,7 +14,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [IndexComponent, MainNewsletterComponent, MainNewsletterListItemComponent, MainNewsletterFormComponent],
+  declarations: [
+    IndexComponent,
+    MainNewsletterComponent,
+    MainNewsletterListItemComponent,
+    MainNewsletterFormComponent
+  ],
+  exports: [
+    MainNewsletterComponent
+  ],
   imports: [
     CommonModule,
     MainNewslettersRoutingModule,
@@ -28,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditorModule,
     NbInputModule,
     NbActionsModule,
-    NbListModule
+    NbListModule,
+    NbSpinnerModule
   ]
 })
 export class MainNewslettersModule { }
