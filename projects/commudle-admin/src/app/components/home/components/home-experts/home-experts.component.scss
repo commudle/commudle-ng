@@ -1,4 +1,9 @@
-@import "projects/commudle-admin/src/assets/styles/variables";
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
 
 .home-experts {
   border: 0;
@@ -67,22 +72,6 @@
             }
           }
         }
-
-        .home-experts-join {
-          padding: $space-4 $space-12;
-          font-size: $fs-h6;
-          font-weight: 400;
-          text-transform: capitalize;
-          color: white;
-          background-color: $neon-blue;
-          border: none;
-        }
-
-        .home-experts-join.active {
-          color: $neon-blue;
-          background-color: white;
-          border: 0.5px solid $neon-blue;
-        }
       }
     }
 
@@ -94,11 +83,5 @@
         color: rgba($neon-blue, 0.95);
       }
     }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .home-experts {
-    border-radius: 0;
   }
 }

@@ -7,8 +7,9 @@ import {ICommunities} from 'projects/shared-models/communities.model';
 import {ILabs} from 'projects/shared-models/labs.model';
 import {ICommunityBuilds} from 'projects/shared-models/community-builds.model';
 import {IEvents} from 'projects/shared-models/events.model';
-import {IHomeSearch} from '../../../../shared-models/home-search.model';
+import {IHomeSearch} from 'projects/shared-models/home-search.model';
 import {IFeedItems} from 'projects/shared-models/feed-items.model';
+import {IUser} from 'projects/shared-models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +31,19 @@ export class HomeService {
   communities(): Observable<ICommunities> {
     return this.http.get<ICommunities>(
       this.apiRoutesService.getRoute(API_ROUTES.HOME.COMMUNITIES)
-    )
+    );
   }
 
   communityBuilds(): Observable<ICommunityBuilds> {
     return this.http.get<ICommunityBuilds>(
       this.apiRoutesService.getRoute(API_ROUTES.HOME.COMMUNITY_BUILDS)
-    )
+    );
+  }
+
+  experts(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.HOME.EXPERTS)
+    );
   }
 
   pCommunities(): Observable<ICommunities> {
@@ -78,9 +85,10 @@ export class HomeService {
     );
   }
 
-  pFeed(): Observable<IFeedItems>{
+  pFeed(): Observable<IFeedItems> {
     return this.http.get<IFeedItems>(
-        this.apiRoutesService.getRoute(API_ROUTES.EXTERNAL_FEEDS.INDEX));
+      this.apiRoutesService.getRoute(API_ROUTES.EXTERNAL_FEEDS.INDEX)
+    );
   }
 
 }

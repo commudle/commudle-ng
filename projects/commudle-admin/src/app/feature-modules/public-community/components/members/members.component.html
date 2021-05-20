@@ -1,21 +1,20 @@
-<div>
-  <nb-card>
-    <nb-card-body>
-      <div class="total">
-        <h3 class="text-basic">
-          <nb-icon icon="people-outline" status="info"></nb-icon>
-          {{ community.member_count }}
-        </h3>
+<nb-card>
+  <nb-card-body>
+    <div class="total">
+      <h3 class="text-basic">
+        <nb-icon icon="people-outline" status="info"></nb-icon>
+        {{ community.member_count }}
+      </h3>
+    </div>
+    <div class="users">
+      <div *ngFor="let member of members" class="user">
+        <app-user-profile-card-large [maxDesignationLength]="28" [maxNameLength]="18"
+                                     [user]="member"></app-user-profile-card-large>
       </div>
-      <div class="users">
-        <div class="user" *ngFor="let member of members">
-          <app-user-profile-horizontal [user]="member" [socialMediaLinks]="true"></app-user-profile-horizontal>
-        </div>
-      </div>
+    </div>
 
-      <div class="load-more" *ngIf="canLoadMore">
-        <button nbButton outline status="info" (click)="getMembers()" size="small">Load More...</button>
-      </div>
-    </nb-card-body>
-  </nb-card>
-</div>
+    <div *ngIf="canLoadMore" class="load-more">
+      <button (click)="getMembers()" nbButton outline size="small" status="info">Load More...</button>
+    </div>
+  </nb-card-body>
+</nb-card>
