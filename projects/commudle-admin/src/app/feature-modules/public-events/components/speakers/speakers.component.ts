@@ -25,7 +25,7 @@ export class SpeakersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.event.custom_agenda) {
+    if (this.event.custom_agenda || this.event.custom_registration) {
       this.getCustomAgendaSpeakers();
     } else {
       this.getSimpleAgendaSpeakers();
