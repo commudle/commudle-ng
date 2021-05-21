@@ -1,0 +1,45 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-profile-medium {
+  background-color: $white;
+
+  .avatar {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .details {
+    margin-left: $space-6;
+    color: $black;
+
+    .name {
+      font-size: $fs-h6;
+      line-height: 14px;
+      font-weight: $fw-700;
+      color: $neon-blue;
+
+      img {
+        margin-left: $space-4;
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    .designation {
+      font-size: $fs-h7;
+      line-height: 12px;
+      font-weight: $fw-600;
+    }
+  }
+}

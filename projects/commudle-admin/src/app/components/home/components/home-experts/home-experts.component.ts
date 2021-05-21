@@ -1,40 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {IUser} from 'projects/shared-models/user.model';
+import {HomeService} from 'projects/commudle-admin/src/app/services/home.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home-experts',
   templateUrl: './home-experts.component.html',
   styleUrls: ['./home-experts.component.scss']
 })
-export class HomeExpertsComponent implements OnInit {
+export class HomeExpertsComponent implements OnInit, OnDestroy {
 
-  experts = [
-    {
-      name: 'John Doe',
-      avatar: 'https://www.w3schools.com/howto/img_avatar.png',
-      designation: 'Commudle',
-      followers: 220,
-      following: false,
-    },
-    {
-      name: 'John Doe',
-      avatar: 'https://www.w3schools.com/howto/img_avatar.png',
-      designation: 'Commudle',
-      followers: 24,
-      following: true,
-    },
-    {
-      name: 'John Doe',
-      avatar: 'https://www.w3schools.com/howto/img_avatar.png',
-      designation: 'Commudle',
-      followers: 1000,
-      following: false,
-    },
-  ];
+  experts: IUser[] = [];
 
-  constructor() {
+  subscription: Subscription;
+
+  constructor(
+    private homeService: HomeService
+  ) {
   }
 
   ngOnInit(): void {
+    this.getExperts();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  getExperts() {
+    this.subscription = this.homeService.experts().subscribe(value => this.experts = value);
   }
 
 }
