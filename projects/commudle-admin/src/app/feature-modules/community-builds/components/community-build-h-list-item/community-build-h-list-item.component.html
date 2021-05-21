@@ -1,5 +1,5 @@
 <div class="clickable community-build-list-item">
-  <nb-card class="anim-shadow clickable" [routerLink]="['/builds', communityBuild.slug]">
+  <nb-card [routerLink]="['/builds', communityBuild.slug]" class="anim-shadow clickable">
     <nb-card-body>
       <div class="row flex-row-reverse d-flex justify-content-space-between">
         <div class="details">
@@ -9,34 +9,26 @@
                        [text]="communityBuild.build_type | titlecase"></app-badge>
           </div>
           <p class="created-at">
-            <small>{{ moment(communityBuild.created_at).fromNow() }}</small>
+            <small>{{moment(communityBuild.created_at).fromNow()}}</small>
           </p>
           <h3 class="name">
-            {{ communityBuild.name }}
+            {{communityBuild.name}}
           </h3>
           <p class="text-info show-details">
             <!-- <nb-icon icon="link" status="info"></nb-icon> Show Details -->
-            {{ buildDescription | truncatetext:100 }};
+            {{buildDescription | truncatetext:100}};
           </p>
 
           <div class="author-stats justify-content-space-between d-flex align-items-center">
-            <div class="author">
-              <app-user-profile-horizontal [size]='"small"' [socialMediaLinks]="false"
-                                           [user]="communityBuild.user"></app-user-profile-horizontal>
-            </div>
-
+            <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
             <div class="stats d-flex">
               <p class="stars">
-                <app-votes-display
-                  [icon]="'star'"
-                  [votableId]="communityBuild.id"
-                  [votableType]="'CommunityBuild'"
-                >
-                </app-votes-display>
+                <app-votes-display [icon]="'star'" [votableId]="communityBuild.id"
+                                   [votableType]="'CommunityBuild'"></app-votes-display>
               </p>
               <p [routerLink]="['/builds', communityBuild.slug]" class="comments">
                 <span *ngIf="communityBuild.chat_messages_count > 0">
-                  {{ communityBuild.chat_messages_count }}
+                  {{communityBuild.chat_messages_count}}
                 </span>
                 <nb-icon icon="message-circle-outline"></nb-icon>
               </p>
@@ -45,8 +37,8 @@
 
         </div>
         <div class="image align-items-center d-flex">
-          <img *ngIf="communityBuild.images.length > 0" alt="{{ communityBuild.name }}"
-               src="{{ communityBuild.images[0].url }}">
+          <img *ngIf="communityBuild.images.length > 0" alt="{{communityBuild.name}}"
+               src="{{communityBuild.images[0].url}}">
         </div>
       </div>
     </nb-card-body>

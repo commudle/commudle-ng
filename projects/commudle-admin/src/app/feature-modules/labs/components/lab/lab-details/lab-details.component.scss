@@ -13,51 +13,13 @@
   }
 
   .user {
-    margin: 0 0 $space-16;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.05);
-    }
-
-    nb-card-body {
-      padding: 0;
-
-      .user-image {
-        min-height: 56px;
-        min-width: 56px;
-        max-height: 56px;
-        max-width: 56px;
-        border-radius: 50%;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: inherit;
-          object-fit: cover;
-          object-position: center;
-        }
-      }
-
-      .user-details {
-        margin-left: $space-16;
-        color: $gunmetal;
-
-        .user-name {
-          font-size: $fs-18;
-        }
-
-        .user-title {
-          margin-top: $space-4;
-          font-size: $fs-h5;
-          word-break: break-word;
-        }
-      }
-    }
+    padding: $space-16;
+    border-radius: $border-10;
+    background-color: $white;
   }
 
   .steps {
-    margin: 0;
+    margin: $space-16 0 0;
 
     nb-list {
       border: none;

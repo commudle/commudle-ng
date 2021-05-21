@@ -37,6 +37,7 @@ import {HeaderTextComponent} from './components/labs/header-text/header-text.com
 import {ClickOutsideDirective} from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
 import {LabDetailsComponent} from './components/lab/lab-details/lab-details.component';
 import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
+import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
     NbDialogModule.forChild(),
     NbUserModule,
     NbSidebarModule.forRoot(),
-    NbContextMenuModule
+    NbContextMenuModule,
+    UsersModule
   ],
   exports: [
     LabDisplayCardComponent,

@@ -16,10 +16,12 @@
       <div *ngFor="let result of searchResults | keyvalue">
         <div *ngIf="result.value.length !== 0" class="search-result-group">
           <div class="search-result-heading">{{result.key}}</div>
-          <div *ngFor="let value of result.value"
+          <div (click)="toggleSearchSuffix(false)" *ngFor="let value of result.value"
                [routerLink]="result.key === 'events' ? ['communities', value['kommunity_slug'], 'events', value['slug']] : [result.key, value['slug'] || value['username']]"
                class="search-result-name clickable">
             {{value.name}}
+            <img *ngIf="result.key === 'users' && value['is_expert']" alt="Expert Tick" class="expert-icon"
+                 src="/assets/images/Expert-Tick.svg">
           </div>
         </div>
       </div>

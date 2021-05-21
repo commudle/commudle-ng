@@ -1,13 +1,9 @@
 <nb-list class="users-list">
   <nb-list-item *ngFor="let user of usersList">
-    <app-user-profile-horizontal [user]="user" [socialMediaLinks]="true" [showLiveStatus]="true"></app-user-profile-horizontal>
-    <button
-      class="invite-to-stage"
-      nbButton ghost
-      status="info"
-      size="tiny"
-      (click)="inviteToStage(user.id)"
-      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && activeEvent"
-      > Invite to Stage </button>
+    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+    <button (click)="inviteToStage(user.id)" *ngIf="embeddedVideoStream.hms_room_id && isAdmin && activeEvent"
+            class="invite-to-stage" ghost nbButton size="tiny" status="info">
+      Invite to Stage
+    </button>
   </nb-list-item>
 </nb-list>

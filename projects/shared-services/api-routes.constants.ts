@@ -43,6 +43,9 @@ export const API_ROUTES = {
   EXTERNAL_FEEDS: {
     INDEX: 'api/v2/feed_items',
     SHOW: 'api/v2/feed_items/show',
+    POPULAR_TAGS: 'api/v2/feed_items/popular_tags',
+    TAGS_POST: 'api/v2/feed_items/tag_feed',
+    POPULAR_POST: 'api/v2/feed_items/popular'
   },
 
   COMMUNITY_CHANNELS: {
@@ -220,6 +223,7 @@ export const API_ROUTES = {
     LABS: 'api/v2/home/labs',
     COMMUNITIES: 'api/v2/home/communities',
     COMMUNITY_BUILDS: 'api/v2/home/community_builds',
+    EXPERTS: 'api/v2/home/experts',
     SEARCH_ALL: 'api/v2/home/search_everything',
     PUBLIC: {
       UPCOMING_EVENTS: 'api/v2/home/public/upcoming_events',
@@ -315,7 +319,9 @@ export const API_ROUTES = {
       INDEX: 'api/v2/users/posts',
       CREATE: 'api/v2/users/posts',
       DESTROY: 'api/v2/users/posts'
-    }
+    },
+    FOLLOWERS: 'api/v2/users/followers',
+    FOLLOWEES: 'api/v2/users/followees'
   },
 
   SPEAKER_RESOURCES: {
@@ -415,6 +421,12 @@ export const API_ROUTES = {
     PUBLIC: {
       COUNT: 'api/v2/votes/public/count',
       VOTERS: 'api/v2/votes/public/voters'
+    }
+  },
+
+  FLAGS: {
+    PUBLIC: {
+      COUNT: 'api/v2/flags/public/count',
     }
   },
 

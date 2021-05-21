@@ -1,15 +1,8 @@
 <div class="menu">
-  <nb-card *ngIf="!hideUser" [routerLink]="['/users', lab.user.username]" class="user clickable">
-    <nb-card-body class="d-flex flex-row align-items-center">
-      <div class="user-image">
-        <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">
-      </div>
-      <div class="user-details">
-        <div class="user-name">{{lab.user.name}}</div>
-        <div class="user-title">{{lab.user.designation}}</div>
-      </div>
-    </nb-card-body>
-  </nb-card>
+  <div *ngIf="!hideUser" class="user">
+    <app-user-profile-card-large [maxDesignationLength]="18" [maxNameLength]="14"
+                                 [user]="lab.user"></app-user-profile-card-large>
+  </div>
   <nb-card *ngIf="!hideSteps" class="steps">
     <nb-list>
       <nb-list-item (click)="onSetStep(-1)" [ngClass]="{'active': selectedLabStep === -1}"

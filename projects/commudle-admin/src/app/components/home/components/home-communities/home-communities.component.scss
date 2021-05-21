@@ -1,4 +1,4 @@
-@import "projects/commudle-admin/src/assets/styles/variables";
+@import 'projects/commudle-admin/src/assets/styles/variables';
 
 .home-communities {
   border: 0;
@@ -100,8 +100,6 @@
 
 @media all and (max-width: $tab-width) {
   .home-communities {
-    border-radius: 0;
-
     .home-communities-list {
       nb-list {
         flex-direction: row;
