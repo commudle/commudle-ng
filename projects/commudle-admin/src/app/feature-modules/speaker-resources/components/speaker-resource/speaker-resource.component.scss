@@ -1,58 +1,70 @@
-@import "/projects/commudle-admin/src/assets/styles/variables";
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
-.speaker-resource {
+.speaker-resources {
   .left-column {
-    height: fit-content;
+    width: 280px;
 
     .user-profile {
+      border: none;
       border-radius: $border-10;
+
       nb-card-body {
         padding: $space-16;
-        .avatar {
-          width: 50px;
-          height: 50px;
-          overflow: hidden;
-          border-radius: 50%;
-          margin-right: $space-4;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        h5 {
-          margin: 0;
-          font-weight: $fw-500;
-          font-size: $fs-card-title;
-          line-height: normal;
-        }
-
-        p {
-          margin: 0;
-          color: $text-low-emphasis;
-          font-size: $fs-card-secondary;
-          line-height: normal;
-        }
       }
     }
   }
 
   .center-column {
-
+    width: min(856px, 100vw);
 
     .details {
-      .title {
-        h1 {
-          margin: 0;
+      border: none;
+      border-radius: $border-10;
+
+      nb-card-body {
+        .title {
+          font-size: $fs-h1;
           font-weight: $fw-500;
+        }
+
+        .event {
+          margin-top: $space-24;
+        }
+
+        .date {
+          margin-top: $space-12;
+        }
+
+        .content {
+          margin-top: $space-16;
+          word-break: break-word;
+
+          .embedded-content {
+            margin-top: $space-8;
+          }
+        }
+
+        .interactions {
+          margin-top: $space-16;
+
+          .discussion {
+            margin-left: $space-8;
+          }
         }
       }
     }
+  }
+}
 
+@media all and (max-width: $tab-width) {
+  .speaker-resources {
+    align-items: center;
+    flex-direction: column;
 
-    .interactions {
-      margin-top: $space-12;
-      gap: $space-12;
+    .left-column {
+      .user-profile {
+        margin-bottom: 0;
+      }
     }
   }
 }

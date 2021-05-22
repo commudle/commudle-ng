@@ -8,8 +8,8 @@
         {{user.name | truncatetext:maxNameLength}}
         <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg">
       </div>
-      <div class="username">@{{user.username}}</div>
-      <div class="designation">{{(user.designation || '--') | truncatetext: maxDesignationLength}}</div>
+      <div class="username">@{{user.username | truncatetext:maxUserNameLength}}</div>
+      <div class="designation">{{(user.designation || '--') | truncatetext:maxDesignationLength}}</div>
     </div>
   </div>
 </a>
