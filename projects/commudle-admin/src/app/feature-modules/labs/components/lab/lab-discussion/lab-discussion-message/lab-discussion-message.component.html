@@ -5,8 +5,17 @@
     </div>
     <div class="content-controls">
       <div class="author-details">
-        <p [routerLink]="['/users', message.user.username]" class="author-name clickable">{{message.user.name}}</p>
-        <p class="message-date">{{moment(message.created_at).format("MMM D [']YY")}}</p>
+        <div class="d-flex justify-content-space-between">
+          <div class="d-flex align-items-center">
+            <span class="name">{{message.user.name}}</span>
+            <span class="username">@{{message.user.username}}</span>
+            <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"
+                 src="/assets/images/Expert-Tick.svg">
+          </div>
+          <div class="date">
+            {{moment(message.created_at).format("MMM D [']YY")}}
+          </div>
+        </div>
       </div>
       <div class="content">{{message.content}}</div>
       <div class="details-flag">

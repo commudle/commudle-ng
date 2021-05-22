@@ -10,28 +10,40 @@
     width: 100%;
 
     .author-details {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.3rem;
-
-      .author-name {
-        margin: 0;
-        font-weight: 600;
-        text-transform: capitalize;
-
-        &:hover {
-          text-decoration: underline;
-        }
+      .name {
+        font-weight: $fw-600;
+        font-size: $fs-h5;
+        line-height: 16px;
+        color: $gunmetal;
       }
 
-      .message-date {
-        margin: 0;
+      .username {
+        margin-left: $space-8;
+        font-size: $fs-h6;
+        line-height: 14px;
+        color: rgba($gunmetal, 0.85);
+      }
+
+      .expert-icon {
+        margin-left: $space-8;
+        width: 16px;
+        height: 16px;
+      }
+
+      .date {
+        font-size: $fs-h5;
+        line-height: 16px;
+        color: $spanish-gray;
       }
     }
 
     .content {
+      margin-top: $space-4;
       white-space: pre-wrap;
       word-break: break-word;
+      font-size: $fs-h5;
+      line-height: 16px;
+      color: $raisin-black;
     }
 
     .details-flag {
