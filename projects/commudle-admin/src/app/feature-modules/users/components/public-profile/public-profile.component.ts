@@ -50,6 +50,8 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
     // Show Footer
     this.footerService.changeFooterStatus(true);
+    this.meta.removeTag("name='robots'");
+
   }
 
   // Get user's data
@@ -61,7 +63,9 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.meta.updateTag({name: 'robots', content: 'noindex'});
+    if (!this.user.is_expert) {
+      this.meta.updateTag({name: 'robots', content: 'noindex'});
+    }
 
     this.title.setTitle(`${this.user.name}`)
     this.meta.updateTag({name: 'description', content: `${this.user.designation}`});
