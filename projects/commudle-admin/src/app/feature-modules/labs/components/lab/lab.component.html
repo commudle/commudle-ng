@@ -36,9 +36,9 @@
                 <div class="avatar">
                   <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">
                 </div>
-                <div class="details">
-                  <p>
-                    created by
+                <div class="details d-flex align-items-center">
+                  <p class="d-flex align-items-center">
+                    created by&nbsp;
                     <span class="name">{{lab.user.name}}</span>
                     <img *ngIf="lab.user.is_expert" alt="Expert Tick" class="expert-icon"
                          src="/assets/images/Expert-Tick.svg">&nbsp;
