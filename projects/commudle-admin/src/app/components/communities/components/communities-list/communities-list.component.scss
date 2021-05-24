@@ -1,0 +1,39 @@
+@import '../../../../../assets/styles/variables';
+
+.communities-list {
+  margin-top: 0;
+  border: none;
+  border-radius: $border-10;
+
+  nb-card-body {
+    padding: $space-32;
+
+    .prefix {
+      margin-bottom: $space-16;
+
+      .controls {
+        button {
+          width: 40px;
+          height: 28px;
+          background: rgba($neon-blue, 0.3);
+
+          &:nth-of-type(1) {
+            margin-right: $space-8;
+          }
+
+          &.left-btn {
+            border-radius: $border-8 0 0 $border-8;
+          }
+
+          &.right-btn {
+            border-radius: 0 $border-8 $border-8 0;
+          }
+        }
+      }
+    }
+
+    .all-communities {
+      gap: $space-16;
+    }
+  }
+}

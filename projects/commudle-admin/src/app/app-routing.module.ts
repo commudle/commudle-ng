@@ -8,7 +8,7 @@ import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
 import {LogoutComponent} from './components/logout/logout.component';
 import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
 import {InitResolver} from './resolvers/init.resolver';
-import {CommunitiesComponent} from './components/home/communities/communities.component';
+import {CommunitiesComponent} from './components/communities/communities.component';
 import {FeaturesComponent} from './components/home/features/features.component';
 import {AboutComponent} from './components/home/about/about.component';
 
@@ -79,7 +79,7 @@ const routes: Routes = [
   {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
-  },  
+  },
   {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
