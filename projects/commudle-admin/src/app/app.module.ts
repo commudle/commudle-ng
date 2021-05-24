@@ -58,11 +58,10 @@ import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-high
 import {ReusableComponentsModule} from './feature-modules/reusable-components/reusable-components.module';
 import {AboutComponent} from './components/home/about/about.component';
 import {FeaturesComponent} from './components/home/features/features.component';
-import {CommunitiesComponent} from './components/home/communities/communities.component';
+import {CommunitiesComponent} from './components/communities/communities.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {SwUpdateComponent} from './components/sw-update/sw-update.component';
-import {HomeCommunityCardComponent} from './components/home/communities/home-community-card/home-community-card.component';
 import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
 import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
 import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
@@ -82,6 +81,10 @@ import {HomeHeadBannerComponent} from './components/home/components/home-head-ba
 import {HomeExternalFeedLinksComponent} from './components/home/components/home-external-feed-links/home-external-feed-links.component';
 import {LabsModule} from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
 import {SearchBarComponent} from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
+import {CommunitiesAboutComponent} from 'projects/commudle-admin/src/app/components/communities/components/communities-about/communities-about.component';
+import {CommunitiesPromotionsComponent} from 'projects/commudle-admin/src/app/components/communities/components/communities-promotions/communities-promotions.component';
+import {CommunitiesListComponent} from 'projects/commudle-admin/src/app/components/communities/components/communities-list/communities-list.component';
+import {CommunitiesListCardComponent} from 'projects/commudle-admin/src/app/components/communities/components/communities-list/communities-list-card/communities-list-card.component';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -92,6 +95,10 @@ export function initApp(appInitService: AppInitService) {
     AppComponent,
     OrganizerCommunitiesListComponent,
     CommunityComponent,
+    CommunitiesAboutComponent,
+    CommunitiesPromotionsComponent,
+    CommunitiesListComponent,
+    CommunitiesListCardComponent,
     HomeComponent,
     FillDataFormComponent,
     LogoutComponent,
@@ -101,7 +108,6 @@ export function initApp(appInitService: AppInitService) {
     FeaturesComponent,
     CommunitiesComponent,
     SwUpdateComponent,
-    HomeCommunityCardComponent,
     HomeEventsComponent,
     HomeEventsCardComponent,
     HomeLabsComponent,

@@ -1,0 +1,81 @@
+@import '../../../../../../assets/styles/variables';
+
+.community-list-card {
+  position: relative;
+  width: 248px;
+  height: 296px;
+  border: 0.5px solid $silver-sand;
+  border-radius: $border-8;
+  padding: $space-16;
+
+  .prefix {
+    .image {
+      min-width: 48px;
+      width: 48px;
+      height: 48px;
+      border: 0.5px solid $silver-sand;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: inherit;
+        object-fit: contain;
+      }
+    }
+
+    .details {
+      margin-left: $space-8;
+
+      .name {
+        font-weight: $fw-600;
+        font-size: $fs-h5;
+        line-height: 16px;
+        color: $gunmetal;
+      }
+
+      .member-count {
+        font-style: italic;
+        font-size: $fs-h6;
+        line-height: 14px;
+        color: #777777;
+      }
+    }
+  }
+
+  .tags {
+
+  }
+
+  .about {
+    margin-top: $space-16;
+    font-size: $fs-h6;
+    line-height: 14px;
+    color: rgba($gunmetal, 0.85);
+  }
+
+  .suffix {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+
+    .members {
+
+    }
+
+    .join-community {
+      button {
+        padding: $space-8;
+        height: 32px;
+        background: $white;
+        border: 1px solid $silver-sand;
+        border-radius: $border-4;
+        font-weight: normal;
+        font-size: $fs-h5;
+        line-height: 16px;
+        color: $neon-blue;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
