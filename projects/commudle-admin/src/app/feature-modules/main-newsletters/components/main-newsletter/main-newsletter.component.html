@@ -1,1 +1,12 @@
-<p>main-newsletter works!</p>
+<div class="main-newsletter">
+  <div class="page-padding d-flex justify-content-center" [nbSpinner]="!mainNewsletter">
+    <nb-card *ngIf="mainNewsletter">
+      <nb-card-body>
+        <p *ngIf="mainNewsletter.published_at">
+          Published on: {{mainNewsletter.published_at.toLocaleDateString()}}
+        </p>
+        <div [innerHTML]="sanitizedContent" *ngIf="mainNewsletter"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

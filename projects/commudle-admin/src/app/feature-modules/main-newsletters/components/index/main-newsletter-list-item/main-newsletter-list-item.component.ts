@@ -1,5 +1,7 @@
-import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
+import { EMainNewsletterStatuses, IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { MainNewslettersService } from '../../../services/main-newsletters.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-main-newsletter-list-item',
@@ -8,9 +10,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MainNewsletterListItemComponent implements OnInit {
   @Input() newsletter: IMainNewsletter;
-  constructor() { }
+  EMainNewsletterStatuses = EMainNewsletterStatuses;
+
+  constructor(
+    private mainNewsLettersService: MainNewslettersService,
+    private libToastLogService: LibToastLogService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+
+  updateStatus(value) {
+    this.mainNewsLettersService.updateStatus(this.newsletter.id, value).subscribe(
+      data => {
+        this.newsletter.status = value;
+        this.libToastLogService.successDialog('Updated!');
+      }
+    )
   }
 
 }

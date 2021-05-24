@@ -1,10 +1,28 @@
 <div class="newsletter" >
   <p>
     {{this.newsletter.title}}
+    <a
+      nbButton ghost size="small" target="_blank"
+      [routerLink]="['/newsletters', this.newsletter.id]">
+      <nb-icon icon="external-link"></nb-icon>
+      Preview
+    </a>
   </p>
   <div>
-    <div>
-      <a nbButton ghost [routerLink]="['/admin', 'newsletters', this.newsletter.id, 'edit']">Edit</a>
+    <div class="actions">
+      <a
+        nbButton
+        outline size="small"
+        [routerLink]="['/admin', 'newsletters', this.newsletter.id, 'edit']"
+        >
+        Edit
+      </a>
+
+      <nb-select [selected]="this.newsletter.status" [size]="'small'" (selectedChange)="updateStatus($event)">
+        <nb-option
+          *ngFor="let status of EMainNewsletterStatuses | keyvalue"
+          [value]="status.value"> {{status.key}} </nb-option>
+      </nb-select>
     </div>
   </div>
 </div>

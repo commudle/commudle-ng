@@ -1,3 +1,4 @@
+import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
@@ -17,7 +18,8 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        component: MainNewsletterFormComponent
+        component: MainNewsletterFormComponent,
+        canDeactivate: [CheckRedirectGuard]
       },
       {
         path: ':main_newsletter_id',
@@ -25,7 +27,8 @@ const routes: Routes = [
       },
       {
         path: ':main_newsletter_id/edit',
-        component: MainNewsletterFormComponent
+        component: MainNewsletterFormComponent,
+        canDeactivate: [CheckRedirectGuard]
       },
     ]
   }
