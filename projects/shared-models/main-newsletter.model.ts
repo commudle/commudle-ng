@@ -7,12 +7,21 @@ export interface IMainNewsletter {
   slug: string;
   content: string;
   email_subject: string;
-  create_at: Date;
-  status: EMainNewsletterStatuses
+  created_at: Date;
+  published_at: Date;
+  status: EMainNewsletterStatuses,
+  scheduled_for: Date;
+  sent_at: Date;
+  recipient_type: EMainNewsletterRecipientTypes;
 }
 
 
 export enum EMainNewsletterStatuses {
-  DRAFT = 'Draft',
-  PUBLISHED = 'Published'
+  DRAFT = 'draft',
+  FINALIZED = 'finalized',
+  PUBLISHED = 'published'
+}
+
+export enum EMainNewsletterRecipientTypes {
+  
 }

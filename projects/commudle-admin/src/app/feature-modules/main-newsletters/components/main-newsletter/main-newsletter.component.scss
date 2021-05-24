@@ -1,0 +1,9 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.main-newsletter {
+  background-color: $white;
+
+  nb-card {
+    width: $max-newsletter-width;
+  }
+}

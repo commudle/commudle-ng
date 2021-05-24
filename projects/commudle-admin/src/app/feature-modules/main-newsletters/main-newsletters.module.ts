@@ -1,4 +1,4 @@
-import { NbActionsModule, NbInputModule, NbListModule, NbSpinnerModule } from '@nebular/theme';
+import { NbActionsModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbIconModule } from '@nebular/theme';
 import { NbButtonModule } from '@nebular/theme';
@@ -11,6 +11,7 @@ import { MainNewsletterComponent } from './components/main-newsletter/main-newsl
 import { MainNewsletterListItemComponent } from './components/index/main-newsletter-list-item/main-newsletter-list-item.component';
 import { MainNewsletterFormComponent } from './components/main-newsletter-form/main-newsletter-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guard';
 
 
 @NgModule({
@@ -37,7 +38,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbInputModule,
     NbActionsModule,
     NbListModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NbSelectModule
+  ],
+  providers: [
+    CheckRedirectGuard
   ]
 })
 export class MainNewslettersModule { }

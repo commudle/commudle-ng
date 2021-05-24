@@ -2,21 +2,24 @@ import { Location } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MainNewslettersService } from './../../services/main-newsletters.service';
 import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CanComponentDeactivate } from 'projects/shared-services/check-redirect.guard';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-newsletter-form',
   templateUrl: './main-newsletter-form.component.html',
   styleUrls: ['./main-newsletter-form.component.scss']
 })
-export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterViewInit {
+export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterViewInit, CanComponentDeactivate {
 
   newsLetter: IMainNewsletter;
   isLoading = false;
-  pendingChanges = true;
+  unsavedChanges = true;
+  previewContent;
 
   imagesList = [];
   subscriptions = [];
@@ -33,12 +36,12 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     plugins: [
       'emoticons advlist lists autolink link charmap preview anchor',
       'visualblocks code charmap image codesample',
-      'insertdatetime table paste code help wordcount autoresize media table',
+      'insertdatetime table paste code help wordcount autoresize table',
     ],
     toolbar:
-      'formatselect | fontsizeselect | bold italic forecolor backcolor | codesample emoticons| \
+      'formatselect | fontsizeselect | bold italic forecolor backcolor | image emoticons| \
       link | alignleft aligncenter alignright alignjustify | \
-      bullist numlist outdent indent | image media | code | removeformat',
+      bullist numlist outdent indent | codesample | code | removeformat',
     table_toolbar: 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
     codesample_languages: [
       {text: 'HTML/XML', value: 'markup'},
@@ -53,10 +56,21 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
       {text: 'C#', value: 'csharp'},
       {text: 'C++', value: 'cpp'}
     ],
+    style_formats: [
+      {title: 'Image Left', selector: 'img', styles: {
+        'float' : 'left',
+        'margin': '0 10px 0 10px'
+      }},
+      {title: 'Image Right', selector: 'img', styles: {
+        'float' : 'right',
+        'margin': '0 10px 0 10px'
+      }}
+    ],
     default_link_target: '_blank',
     image_list: this.imagesList,
     image_advtab: true,
     branding: false,
+    image_caption: true,
     images_upload_handler: this.uploadTextImage.bind(this),
     toolbar_location: 'top',
     toolbar_sticky: true,
@@ -83,19 +97,14 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     private toastLogService: LibToastLogService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private santizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
 
     this.setMeta();
-
-    this.router.events.subscribe(val => {
-      if (this.location.path() !== this.currentRoute) {
-       this.checkUnsavedChanges();
-      }
-    });
   }
 
   ngAfterViewInit(): void {
@@ -117,6 +126,16 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
 
           }
         }
+      ),
+      this.form.valueChanges.subscribe(
+        data => {
+          this.unsavedChanges = true;
+        }
+      ),
+      this.form.get('content').valueChanges.subscribe(
+        data => {
+          this.previewContent = this.santizer.bypassSecurityTrustHtml(data);
+        }
       )
     );
   }
@@ -130,6 +149,21 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   }
 
 
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.form.pristine && this.unsavedChanges) {
+      return window.confirm('There might be some unsaved changes. Are you sure you want to leave?');
+    } else {
+      return true;
+    }
+  }
+
+  markFormPristine() {
+    this.form.markAsPristine();
+    this.unsavedChanges = false;
+  }
+
+
+
   // create or update basis existence of newsletter
   submitForm() {
     let formData = this.form.value;
@@ -139,6 +173,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
         data => {
           this.isLoading = false;
           this.toastLogService.successDialog('Saved', 2000);
+          this.markFormPristine();
         }
       )
     } else {
@@ -146,6 +181,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
         data => {
           this.isLoading = false;
           this.toastLogService.successDialog('Saved', 2000);
+          this.markFormPristine();
         }
       )
     }
@@ -164,13 +200,6 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     });
   }
 
-
-  // check if the user is leaving without saving
-  checkUnsavedChanges() {
-    if (!this.form.pristine) {
-      window.alert('There might be some unsaved changes. Are you sure you want to leave?');
-    }
-  }
 
   setMeta() {
     this.title.setTitle(`Create Newsletter`);
