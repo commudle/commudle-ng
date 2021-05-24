@@ -9,7 +9,7 @@ import { FeedItemService } from "projects/commudle-admin/src/app/services/feed-i
   styleUrls: ["./home-external-feed-links.component.scss"],
 })
 export class HomeExternalFeedLinksComponent implements OnInit {
-  IFeedItem: IFeedItem[] = [];
+  feedItems: IFeedItem[] = [];
 
   constructor(private homeService: HomeService) {}
 
@@ -19,7 +19,7 @@ export class HomeExternalFeedLinksComponent implements OnInit {
 
   getFeed(): void {
     this.homeService.pFeed().subscribe((data) => {
-      this.IFeedItem = data.feed_items.slice(0, 3);
+      this.feedItems = data.feed_items.slice(0, 3);
     });
   }
 }
