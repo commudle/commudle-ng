@@ -1,72 +1,44 @@
-<!-- this will have all the details of the speaker resource + user's mini details card + comments component -->
-<!-- user's mini details card would be a component imported from feature-modules/users -->
-<!-- comments component will be a new component, will be a copy of comments from labs -->
-<div class="speaker-resource page-padding">
-  <div class="d-flex flex-row flex-wrap justify-content-center" *ngIf="speakerResource">
-    <div class="left-column small-column">
-      <nb-card class="user-profile clickable" [routerLink]="['/users', speakerResource.user.username]">
-        <nb-card-body>
-          <div class="d-flex flex-wrap">
-            <div class="avatar">
-              <img src="{{ speakerResource.user.avatar }}" alt="">
-            </div>
-            <div>
-              <h5>{{ speakerResource.user.name }}</h5>
-              <p>{{ speakerResource.user.designation }}</p>
-            </div>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-
-    <div class="center-column large-column">
-      <div class="details">
-        <nb-card>
-         <nb-card-body>
-            <div class="title">
-              <h1>{{speakerResource.title }}</h1>
-            </div>
-            <div class="description">
-              <div>
-                <p>
-                  At
-                  <strong>
-                    <a [routerLink]="['/communities', speakerResource.event.kommunity_slug, 'events', speakerResource.event.slug]">
-                      {{ speakerResource.event.name }}
-                    </a>
-                  </strong>
-                </p>
-                <p class="timestamp">
-                  <nb-icon icon="clock-outline"></nb-icon>
-                  {{ moment(speakerResource.event.start_time).format('dddd Do MMM, YYYY') }}
-                </p>
-              </div>
-              <div class="content">
-                <div class="session-details" *ngIf="speakerResource.session_details_links"
-                  [innerHTML]="speakerResource.session_details_links"></div>
-                <div class="embedded-content" *ngIf="speakerResource.embedded_content" [innerHTML]="speakerResource.embedded_content"></div>
-              </div>
-            </div>
-            <div class="interactions d-flex">
-              <app-votes-display [icon]="'heart-outline'" [votableId]="speakerResource.id" [votableType]="'SpeakerResource'"></app-votes-display>
-              <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
-                <nb-icon icon="message-circle-outline"></nb-icon>
-                {{messagesCount}}
-              </div>
-            </div>
-         </nb-card-body>
-        </nb-card>
-        <div #discussionChatContainer class="speaker-resource-discussion">
-          <nb-card class="comments">
-            <app-speaker-resource-discussion *ngIf="discussionChat" [discussion]="discussionChat">
-            </app-speaker-resource-discussion>
-          </nb-card>
+<div *ngIf="speakerResource" class="speaker-resources d-flex justify-content-center">
+  <div class="left-column">
+    <nb-card class="user-profile">
+      <nb-card-body>
+        <app-user-profile-card-large [maxDesignationLength]="18" [maxNameLength]="14"
+                                     [user]="speakerResource.user"></app-user-profile-card-large>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="center-column">
+    <nb-card class="details">
+      <nb-card-body>
+        <div class="title">{{speakerResource.title}}</div>
+        <div class="event">
+          At
+          <a
+            [routerLink]="['/communities', speakerResource.event.kommunity_slug, 'events', speakerResource.event.slug]">
+            {{speakerResource.event.name}}
+          </a>
         </div>
-      </div>
-
+        <div class="date">
+          <nb-icon icon="clock-outline"></nb-icon>
+          {{moment(speakerResource.event.start_time).format('dddd Do MMM, YYYY')}}
+        </div>
+        <div class="content">
+          <div *ngIf="speakerResource.session_details_links" [innerHTML]="speakerResource.session_details_links"></div>
+          <div *ngIf="speakerResource.embedded_content" [innerHTML]="iframe" class="embedded-content"></div>
+        </div>
+        <div class="interactions d-flex">
+          <app-votes-display [icon]="'heart-outline'" [votableId]="speakerResource.id"
+                             [votableType]="'SpeakerResource'"></app-votes-display>
+          <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+            <nb-icon icon="message-circle-outline"></nb-icon>
+            {{messagesCount}}
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <div #discussionChatContainer>
+      <app-speaker-resource-discussion *ngIf="discussionChat"
+                                       [discussion]="discussionChat"></app-speaker-resource-discussion>
     </div>
-
-    <div class="right-column small-column"></div>
-
   </div>
 </div>
