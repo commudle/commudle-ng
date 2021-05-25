@@ -247,6 +247,9 @@ export const API_ROUTES = {
     DELETE: 'api/v2/main_newsletters',
     UPDATE_STATUS: 'api/v2/main_newsletters/update_status',
     ATTACH_TEXT_IMAGE: 'api/v2/main_newsletters/attach_text_image',
+    SET_SCHEDULE: 'api/v2/main_newsletters/set_schedule',
+    RESET_SCHEDULE: 'api/v2/main_newsletters/reset_schedule',
+    SEND_TEST_EMAIL: 'api/v2/main_newsletters/send_test_email',
     ADMIN: {
       INDEX: 'api/v2/main_newsletters/admin'
     }

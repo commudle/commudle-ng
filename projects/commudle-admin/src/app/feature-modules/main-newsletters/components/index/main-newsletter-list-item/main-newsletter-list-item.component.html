@@ -9,20 +9,38 @@
     </a>
   </p>
   <div>
-    <div class="actions">
+    <div class="actions d-flex">
       <a
         nbButton
         outline size="small"
         [routerLink]="['/admin', 'newsletters', this.newsletter.id, 'edit']"
+        [disabled]="newsletter.scheduled_for || newsletter.sent_at"
         >
         Edit
       </a>
 
-      <nb-select [selected]="this.newsletter.status" [size]="'small'" (selectedChange)="updateStatus($event)">
+      <nb-select [selected]="this.newsletter.status" [size]="'small'" (selectedChange)="updateStatus($event)" [disabled]="newsletter.scheduled_for || newsletter.sent_at">
         <nb-option
           *ngFor="let status of EMainNewsletterStatuses | keyvalue"
           [value]="status.value"> {{status.key}} </nb-option>
       </nb-select>
+
+      <button
+        nbButton outline size="small"
+        *ngIf="newsletter.status === EMainNewsletterStatuses.PUBLISHED && (!showScheduler && !newsletter.scheduled_for && !newsletter.sent_at)"
+        (click)="showScheduler = true"
+        >
+        Set Schedule
+      </button>
+
+      <button nbButton outline size="small" (click)="sendTestEmail()">
+        Send Test Email
+      </button>
+
+      <div *ngIf="newsletter.status === EMainNewsletterStatuses.PUBLISHED && (showScheduler || newsletter.scheduled_for)" class="d-flex align-items-center">
+        <app-main-newsletter-scheduler [newsletter]="newsletter" (updatedNewsLetter)="updateSchedule($event)"></app-main-newsletter-scheduler>
+      </div>
+
     </div>
   </div>
 </div>

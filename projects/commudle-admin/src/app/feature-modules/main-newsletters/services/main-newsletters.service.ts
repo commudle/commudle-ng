@@ -59,6 +59,43 @@ export class MainNewslettersService {
   }
 
 
+
+  // schedule the emails
+  setSchedule(mainNewsletterId, schedule): Observable<boolean>{
+    return this.http.put<boolean>(
+        this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.SET_SCHEDULE),
+        {
+          main_newsletter_id: mainNewsletterId,
+          schedule
+        }
+        );
+  }
+
+  // reset the email schedule
+  resetSchedule(mainNewsletterId): Observable<boolean>{
+    return this.http.put<boolean>(
+        this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.RESET_SCHEDULE),
+        {
+          main_newsletter_id: mainNewsletterId,
+        }
+        );
+  }
+
+
+
+  // send test email
+  sendTestEmail(mainNewsletterId, emails): Observable<boolean>{
+    return this.http.post<boolean>(
+        this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.SEND_TEST_EMAIL),
+        {
+          main_newsletter_id: mainNewsletterId,
+          emails
+        }
+        );
+  }
+
+
+
   // delete a newsletter
   delete(mainNewsletterId): Observable<boolean>{
     let params = new HttpParams().set('main_newsletter_id', mainNewsletterId)

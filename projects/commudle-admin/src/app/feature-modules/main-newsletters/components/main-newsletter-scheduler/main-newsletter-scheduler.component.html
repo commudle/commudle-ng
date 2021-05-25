@@ -1,0 +1,22 @@
+<div class="main-newsletter-scheduler">
+  <div *ngIf="!newsletter.scheduled_for">
+    <form [formGroup]="form" (ngSubmit)="setSchedule()">
+      <input nbInput fieldSize="small" type="datetime-local" formControlName="schedule">
+      <button nbButton size="small" type="submit">
+        Save
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="newsletter.scheduled_for && !newsletter.sent_at" class="schedule">
+    Scheduled for {{moment(newsletter.scheduled_for).format('dddd Do MMM, YYYY h:mm A')}} [{{moment(newsletter.scheduled_for).fromNow() | titlecase}}]
+
+    <button nbButton ghost (click)="confirmReset() && resetSchedule()">
+      Reset
+    </button>
+  </div>
+
+  <div *ngIf="newsletter.scheduled_for && newsletter.sent_at" class="schedule">
+    Sent at {{moment(newsletter.sent_at).format('dddd Do MMM, YYYY h:mm A')}} [{{moment(newsletter.sent_at).fromNow() | titlecase}}]
+  </div>
+</div>
