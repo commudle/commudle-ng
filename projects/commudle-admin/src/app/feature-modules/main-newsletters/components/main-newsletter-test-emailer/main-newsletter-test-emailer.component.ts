@@ -31,9 +31,12 @@ export class MainNewsletterTestEmailerComponent implements OnInit {
 
   sendEmail() {
     if (this.form.valid) {
-      this.mainNewsletterService.sendTestEmail(this.newsletter.id, this.form.value.emails.replaceAll(' ', '').split(',')).subscribe(
+      this.mainNewsletterService.sendTestEmail(
+        this.newsletter.id, this.form.value.emails.replaceAll(' ', '').split(',').filter(x => x)
+        ).subscribe(
         data => {
           this.dialogRef.close();
+          this.toastLogService.successDialog('Emails Sent');
         }
       )
 

@@ -19,9 +19,11 @@ export interface IMainNewsletter {
 export enum EMainNewsletterStatuses {
   DRAFT = 'draft',
   FINALIZED = 'finalized',
-  PUBLISHED = 'published'
+  PUBLISHED = 'published',
+  ADMIN_COMMUNICATION = 'admin_communication'
 }
 
 export enum EMainNewsletterRecipientTypes {
-  
+  ALL_USERS = 'all_users',
+  COMMUNITY_ORGANIZERS = 'community_organizers'
 }

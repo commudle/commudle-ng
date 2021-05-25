@@ -9,6 +9,9 @@
     </a>
   </p>
   <div>
+    <app-main-newsletter-email-stats [mainNewsletterId]="newsletter.id"></app-main-newsletter-email-stats>
+  </div>
+  <div>
     <div class="actions d-flex">
       <a
         nbButton
@@ -18,23 +21,28 @@
         >
         Edit
       </a>
-
-      <nb-select [selected]="this.newsletter.status" [size]="'small'" (selectedChange)="updateStatus($event)" [disabled]="newsletter.scheduled_for || newsletter.sent_at">
+      <nb-select
+        [selected]="this.newsletter.status" [size]="'small'"
+        (selectedChange)="updateStatus($event)"
+        [disabled]="newsletter.scheduled_for !== null"
+        [nbTooltip]="(newsletter.scheduled_for === null) ? 'Admin Communication will not be visible publicly' : 'Status cannot be changed when schedule is set'"
+        >
         <nb-option
           *ngFor="let status of EMainNewsletterStatuses | keyvalue"
           [value]="status.value"> {{status.key}} </nb-option>
       </nb-select>
+
+      <button nbButton outline size="small" (click)="sendTestEmail()">
+        Send Test Email
+      </button>
 
       <button
         nbButton outline size="small"
         *ngIf="newsletter.status === EMainNewsletterStatuses.PUBLISHED && (!showScheduler && !newsletter.scheduled_for && !newsletter.sent_at)"
         (click)="showScheduler = true"
         >
+        <nb-icon icon="clock-outline"></nb-icon>
         Set Schedule
-      </button>
-
-      <button nbButton outline size="small" (click)="sendTestEmail()">
-        Send Test Email
       </button>
 
       <div *ngIf="newsletter.status === EMainNewsletterStatuses.PUBLISHED && (showScheduler || newsletter.scheduled_for)" class="d-flex align-items-center">

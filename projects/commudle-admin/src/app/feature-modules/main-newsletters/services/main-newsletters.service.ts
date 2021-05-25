@@ -1,3 +1,4 @@
+import { IEmailStatsOverview } from './../../../../../../shared-models/email-stats-overview.model';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -61,12 +62,13 @@ export class MainNewslettersService {
 
 
   // schedule the emails
-  setSchedule(mainNewsletterId, schedule): Observable<boolean>{
+  setSchedule(mainNewsletterId, schedule, recipientType): Observable<boolean>{
     return this.http.put<boolean>(
         this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.SET_SCHEDULE),
         {
           main_newsletter_id: mainNewsletterId,
-          schedule
+          schedule,
+          recipient_type: recipientType
         }
         );
   }
@@ -125,7 +127,16 @@ export class MainNewslettersService {
   adminIndex(page, count): Observable<IMainNewsletters>{
     let params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<IMainNewsletters>(
-        this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.ADMIN.INDEX),
+        this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.ADMIN.INDEX), {params}
+        );
+  }
+
+
+  // email stats
+  emailStats(mainNewsletterId): Observable<IEmailStatsOverview>{
+    let params = new HttpParams().set('main_newsletter_id', mainNewsletterId);
+    return this.http.get<IEmailStatsOverview>(
+        this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.EMAIL_STATS), {params}
         );
   }
 

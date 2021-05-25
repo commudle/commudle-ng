@@ -1,15 +1,24 @@
 <div class="main-newsletter-scheduler">
   <div *ngIf="!newsletter.scheduled_for">
-    <form [formGroup]="form" (ngSubmit)="setSchedule()">
+    <form [formGroup]="form" (ngSubmit)="setSchedule()" class="d-flex align-items-center">
       <input nbInput fieldSize="small" type="datetime-local" formControlName="schedule">
-      <button nbButton size="small" type="submit">
+      <nb-select formControlName="recipient_type" size="small" placeholder="Select Recipients">
+        <nb-option
+          *ngFor="let recipientType of EMainNewsletterRecipientTypes | keyvalue"
+          [value]="recipientType.value"> {{recipientType.key}} </nb-option>
+      </nb-select>
+
+      <button nbButton size="small" type="submit" [disabled]="!form.valid">
         Save
       </button>
     </form>
   </div>
 
   <div *ngIf="newsletter.scheduled_for && !newsletter.sent_at" class="schedule">
-    Scheduled for {{moment(newsletter.scheduled_for).format('dddd Do MMM, YYYY h:mm A')}} [{{moment(newsletter.scheduled_for).fromNow() | titlecase}}]
+
+    Scheduled for <strong>{{newsletter.recipient_type}}</strong>
+    at <nb-icon icon="clock-outline"></nb-icon>
+    {{moment(newsletter.scheduled_for).format('dddd Do MMM, YYYY h:mm A')}} [{{moment(newsletter.scheduled_for).fromNow() | titlecase}}]
 
     <button nbButton ghost (click)="confirmReset() && resetSchedule()">
       Reset

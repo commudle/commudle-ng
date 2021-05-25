@@ -26,11 +26,15 @@ export function NoSpecialCharactersValidator(control: FormControl) {
 
 
 export function CommaSeparatedEmailsValidator (control: FormControl) {
-  const val = control.value.split(',');
-  if ( !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(val)) {
-    return { symbols: true };
+  const val = control.value.replaceAll(' ', '').split(',').filter(x => x);
+  let validity = true;
+  for (let email of val) {
+    if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))) {
+      validity = false;
+      break;
+    }
   }
-  return null;
+  return validity ? null : { comma_separated_emails: false };
 }
 
 
