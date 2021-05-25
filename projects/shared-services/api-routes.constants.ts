@@ -250,6 +250,7 @@ export const API_ROUTES = {
     SET_SCHEDULE: 'api/v2/main_newsletters/set_schedule',
     RESET_SCHEDULE: 'api/v2/main_newsletters/reset_schedule',
     SEND_TEST_EMAIL: 'api/v2/main_newsletters/send_test_email',
+    EMAIL_STATS: 'api/v2/main_newsletters/email_stats',
     ADMIN: {
       INDEX: 'api/v2/main_newsletters/admin'
     }

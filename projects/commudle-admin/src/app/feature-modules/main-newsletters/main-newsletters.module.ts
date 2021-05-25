@@ -1,4 +1,4 @@
-import { NbActionsModule, NbDialogModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule, NbTagModule } from '@nebular/theme';
+import { NbActionsModule, NbDialogModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule, NbTagModule, NbTooltipModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbIconModule } from '@nebular/theme';
 import { NbButtonModule } from '@nebular/theme';
@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guard';
 import { MainNewsletterSchedulerComponent } from './components/main-newsletter-scheduler/main-newsletter-scheduler.component';
 import { MainNewsletterTestEmailerComponent } from './components/main-newsletter-test-emailer/main-newsletter-test-emailer.component';
+import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-email-stats/main-newsletter-email-stats.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MainNewsletterTestEmailerComponent } from './components/main-newsletter
     MainNewsletterListItemComponent,
     MainNewsletterFormComponent,
     MainNewsletterSchedulerComponent,
-    MainNewsletterTestEmailerComponent
+    MainNewsletterTestEmailerComponent,
+    MainNewsletterEmailStatsComponent
   ],
   exports: [
     MainNewsletterComponent
@@ -45,7 +47,8 @@ import { MainNewsletterTestEmailerComponent } from './components/main-newsletter
     NbSpinnerModule,
     NbSelectModule,
     NbDialogModule.forChild(),
-    NbTagModule
+    NbTagModule,
+    NbTooltipModule
   ],
   providers: [
     CheckRedirectGuard

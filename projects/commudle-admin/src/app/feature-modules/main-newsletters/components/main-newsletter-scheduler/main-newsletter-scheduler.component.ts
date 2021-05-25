@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
+import { EMainNewsletterRecipientTypes, IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 import { MainNewslettersService } from '../../services/main-newsletters.service';
 import * as moment from 'moment';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -12,12 +12,15 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 })
 export class MainNewsletterSchedulerComponent implements OnInit, OnChanges {
   moment = moment;
+
+  EMainNewsletterRecipientTypes = EMainNewsletterRecipientTypes;
   @Input() newsletter: IMainNewsletter;
 
   @Output() updatedNewsLetter = new EventEmitter();
 
 
   form = this.fb.group({
+    recipient_type: ['', Validators.required],
     schedule: ['', Validators.required]
   });
 
@@ -36,10 +39,11 @@ export class MainNewsletterSchedulerComponent implements OnInit, OnChanges {
 
   setSchedule() {
     const schedule = new Date(this.form.value.schedule)
-    this.mainNewslettersService.setSchedule(this.newsletter.id, schedule).subscribe(
+    this.mainNewslettersService.setSchedule(this.newsletter.id, schedule, this.form.value.recipient_type).subscribe(
       data => {
         if (data) {
           this.newsletter.scheduled_for = schedule;
+          this.newsletter.recipient_type = this.form.value.recipient_type
           this.updatedNewsLetter.emit(this.newsletter);
           this.toastService.successDialog('Saved');
         }
