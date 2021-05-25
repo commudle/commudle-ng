@@ -1,0 +1,20 @@
+<div class="main-newsletter-test-emailer">
+  <nb-card>
+    <nb-card-header>
+      Send Test Email for {{newsletter.title}}
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="form" (ngSubmit)="this.sendEmail()">
+        <div>
+          <input nbInput fullWidth placeholder="Enter multiple comma separated emails" formControlName="emails">
+          <span *ngIf="form['controls'].emails.touched && form['controls'].emails.invalid && form['controls'].emails.errors.required" class="validation-error-text">
+            Required Field
+          </span>
+        </div>
+        <div>
+          <button nbButton outline status="primary" [disabled]="!form.valid">Send</button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

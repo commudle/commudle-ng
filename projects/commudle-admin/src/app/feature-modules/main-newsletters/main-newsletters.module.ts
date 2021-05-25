@@ -1,4 +1,4 @@
-import { NbActionsModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { NbActionsModule, NbDialogModule, NbInputModule, NbListModule, NbSelectModule, NbSpinnerModule, NbTagModule } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { NbIconModule } from '@nebular/theme';
 import { NbButtonModule } from '@nebular/theme';
@@ -12,6 +12,8 @@ import { MainNewsletterListItemComponent } from './components/index/main-newslet
 import { MainNewsletterFormComponent } from './components/main-newsletter-form/main-newsletter-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guard';
+import { MainNewsletterSchedulerComponent } from './components/main-newsletter-scheduler/main-newsletter-scheduler.component';
+import { MainNewsletterTestEmailerComponent } from './components/main-newsletter-test-emailer/main-newsletter-test-emailer.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guar
     IndexComponent,
     MainNewsletterComponent,
     MainNewsletterListItemComponent,
-    MainNewsletterFormComponent
+    MainNewsletterFormComponent,
+    MainNewsletterSchedulerComponent,
+    MainNewsletterTestEmailerComponent
   ],
   exports: [
     MainNewsletterComponent
@@ -39,7 +43,9 @@ import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guar
     NbActionsModule,
     NbListModule,
     NbSpinnerModule,
-    NbSelectModule
+    NbSelectModule,
+    NbDialogModule.forChild(),
+    NbTagModule
   ],
   providers: [
     CheckRedirectGuard
