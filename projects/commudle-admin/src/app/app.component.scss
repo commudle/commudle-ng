@@ -32,9 +32,13 @@
           margin-left: $space-16;
 
           .menu-user-avatar {
-            width: 45px;
-            height: 45px;
-          }
+              max-width: 40px;
+              max-height: 40px;
+              img{
+                  width: 100%;
+                  border-radius: 50%;
+                }
+            }
 
           .menu-user-options {
             gap: $space-8;
