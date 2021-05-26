@@ -25,6 +25,19 @@ export function NoSpecialCharactersValidator(control: FormControl) {
 }
 
 
+export function CommaSeparatedEmailsValidator (control: FormControl) {
+  const val = control.value.replaceAll(' ', '').split(',').filter(x => x);
+  let validity = true;
+  for (let email of val) {
+    if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))) {
+      validity = false;
+      break;
+    }
+  }
+  return validity ? null : { comma_separated_emails: false };
+}
+
+
 // export function MultipleEmailsValidator(control: FormControl) {
 //   if ( /^(?=.{1,254}$)(?=.{1,64}@)[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+(\.[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]+)*@[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)*$/.test(control.value)) {
 //     return { multipleEmails: true };
