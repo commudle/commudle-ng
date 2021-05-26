@@ -4,7 +4,7 @@
     <p class="sub-header">What more is happening around the world.</p>
   </nb-card-header>
   <nb-card-body class="home-external-feed-links-list">
-    <nb-list>
+    <nb-list *ngIf="feedItems.length === 0">
       <nb-list-item *ngFor="let _ of [].constructor(1)">
         <app-skeleton-text [rows]="2"></app-skeleton-text>
       </nb-list-item>

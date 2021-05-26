@@ -11,6 +11,7 @@ import {InitResolver} from './resolvers/init.resolver';
 import {CommunitiesComponent} from './components/home/communities/communities.component';
 import {FeaturesComponent} from './components/home/features/features.component';
 import {AboutComponent} from './components/home/about/about.component';
+import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
 
 const routes: Routes = [
   {
@@ -79,7 +80,7 @@ const routes: Routes = [
   {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
-  },  
+  },
   {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
@@ -93,6 +94,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature-modules/policies/policies.module').then(m => m.PoliciesModule)
   },
   {
+    path: 'newsletters/:main_newsletter_id',
+    component: MainNewsletterComponent
+  },
+  {
     path: 'admin',
     children: [
       // {
@@ -102,6 +107,10 @@ const routes: Routes = [
       //     expectedRoles: [EUserRoles.ORGANIZER, EUserRoles.SYSTEM_ADMINISTRATOR]
       //   },
       // },
+      {
+        path: 'newsletters',
+        loadChildren: () => import('./feature-modules/main-newsletters/main-newsletters.module').then(m => m.MainNewslettersModule),
+      },
       {
         path: 'communities',
         canActivate: [AuthGuard],

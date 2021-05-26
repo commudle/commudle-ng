@@ -82,6 +82,7 @@ import {HomeHeadBannerComponent} from './components/home/components/home-head-ba
 import {HomeExternalFeedLinksComponent} from './components/home/components/home-external-feed-links/home-external-feed-links.component';
 import {LabsModule} from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
 import {SearchBarComponent} from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
+import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -133,7 +134,7 @@ export function initApp(appInitService: AppInitService) {
     CommunityChannelsModule,
     SkeletonScreensModule,
     PublicCommunityModule,
-
+    MainNewslettersModule,
 
     // external service modules
     LibErrorHandlerModule,
