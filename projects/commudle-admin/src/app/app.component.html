@@ -9,9 +9,8 @@
         <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
 
         <div class="home-navbar-menu-user">
-          <div class="menu-user-avatar">
-            <img *ngIf="currentUser" [nbContextMenu]="userContextMenu" 
-                  src="{{currentUser.avatar}}">
+          <div *ngIf="currentUser" class="menu-user-avatar">
+            <img [nbContextMenu]="userContextMenu" src="{{currentUser.avatar}}">
           </div>
           <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
             <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
