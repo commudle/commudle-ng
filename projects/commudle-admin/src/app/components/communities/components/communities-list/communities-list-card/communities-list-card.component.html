@@ -10,8 +10,12 @@
   </div>
   <div class="tags"></div>
   <div class="about">{{community.mini_description | truncatetext: 140}}</div>
-  <div class="suffix">
-    <div class="members"></div>
+  <div class="suffix d-flex align-items-center">
+    <div class="members">
+      <span *ngFor="let member of members" class="avatar">
+        <img alt="{{member.name}}" src="{{member.avatar}}">
+      </span>
+    </div>
     <div class="join-community">
       <button nbButton>
         <nb-icon icon="plus"></nb-icon>

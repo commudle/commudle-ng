@@ -1,4 +1,4 @@
-@import '../../../../../../assets/styles/variables';
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .community-list-card {
   position: relative;
@@ -60,7 +60,28 @@
     right: 16px;
 
     .members {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      width: 32px;
+      height: 20px;
+      margin-right: $space-36;
 
+      .avatar {
+        position: relative;
+        border: 1px solid $white;
+        border-radius: $border-50;
+        overflow: hidden;
+        width: 20px;
+
+        &:not(:last-child) {
+          margin-left: -$space-30;
+        }
+
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
     }
 
     .join-community {
