@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
-import { CommunityChannelsService } from './community-channels.service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {ICommunity} from 'projects/shared-models/community.model';
+import {ICommunityChannel} from 'projects/shared-models/community-channel.model';
+import {CommunityChannelsService} from './community-channels.service';
 import * as _ from 'lodash';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { AppUsersService } from '../../../services/app-users.service';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
+import {AppUsersService} from '../../../services/app-users.service';
+import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 export interface IGroupedCommunityChannels {
@@ -178,7 +177,7 @@ export class CommunityChannelManagerService {
           }
         );
         this.communityChannels.next(groupedChannels);
-        this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels']);
+        this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels', 'app']);
       }
     )
   }
