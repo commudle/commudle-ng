@@ -17,7 +17,10 @@
       input {
         height: 2.5rem;
         border: none;
-        border-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
         background-color: $light-purple;
 
         &::placeholder {
@@ -43,7 +46,10 @@
         button {
           height: 100%;
           border: none;
-          border-radius: 0;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
           background-color: $light-purple;
           min-width: 150px;
         }
@@ -57,12 +63,16 @@
     right: 0;
     z-index: 2;
     box-shadow: 0 7px 9px 0 rgba(100, 100, 111, 0.2);
-
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
     .search-results {
       height: 0;
       overflow: auto;
       background-color: $light-purple;
       transition: all 0.3s ease-in-out;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
 
       .placeholder-text {
         width: 100%;

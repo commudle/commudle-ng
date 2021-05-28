@@ -2,7 +2,7 @@
   <div class="d-flex search-container">
     <nb-form-field (click)="toggleSearchSuffix(true)" class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
-      <input (ngModelChange)="searchQueryChanged.next($event)" [ngModel]="searchQuery" fullWidth nbInput
+      <input id="search-input" (ngModelChange)="searchQueryChanged.next($event)" [ngModel]="searchQuery" fullWidth nbInput
              placeholder="Search events, labs, communities, people" type="text">
     </nb-form-field>
     <nb-select (selectedChange)="getSelectedFilters($event)" class="search-filter" multiple nbSuffix
