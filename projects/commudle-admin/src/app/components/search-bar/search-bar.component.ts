@@ -64,28 +64,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     }
 
     this.showSearchResults = value;
-    this.borderChange(this.showSearchResults);
-  }
-
-  @ViewChild('searchContainer') private searchContainer: ElementRef<HTMLElement>;
-
-  borderChange(showSearchResults) {
-    const searchInput = document.getElementById("search-input");
-    const selectButton = this.searchContainer.nativeElement.querySelector("button");
-
-    if (showSearchResults) {
-      searchInput.style.borderBottomLeftRadius = "0";
-      selectButton.style.borderBottomRightRadius = "0";
-    } 
-    else {
-      setTimeout(() => {
-        searchInput.style.borderBottomLeftRadius = "8px";
-      }, 300);
-
-      setTimeout(() => {
-        selectButton.style.borderBottomRightRadius = "8px";
-      }, 150);
-    } 
   }
 
   getSearchResults(query: string) {
