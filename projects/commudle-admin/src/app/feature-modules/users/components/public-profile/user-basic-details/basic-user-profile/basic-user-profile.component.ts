@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {FormBuilder, Validators} from '@angular/forms';
@@ -11,6 +11,8 @@ import {
   WhiteSpaceNotAllowedValidator
 } from 'projects/shared-helper-modules/custom-validators.validator';
 import { Router } from '@angular/router';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
+
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -51,12 +53,15 @@ export class BasicUserProfileComponent implements OnInit {
 
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
+  @ViewChild('confimChangeUsername') confirmChangeUsername: TemplateRef<any>
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private fb: FormBuilder,
     private usersService: AppUsersService,
     private toastLogService: LibToastLogService,
-    private router: Router
+    private router: Router,
+    private dialogService: NbDialogService
   ) {
   }
 
@@ -126,11 +131,20 @@ export class BasicUserProfileComponent implements OnInit {
       if (data) {
         this.toastLogService.successDialog('Updated!');
         this.lastUsername = newUsername;
-        this.router.navigate(['/users', newUsername]);
+        this.router.navigate(['/users', newUsername]).then(() => location.reload());
         // get the user again from the server
         this.authWatchService.checkAlreadySignedIn().subscribe();
       }
     });
   }
 
+  confirmSubmissionDialogueOpen() {
+    //open the dialogue to confirm username submission
+    this.dialogService.open(
+      this.confirmChangeUsername, {
+        closeOnBackdropClick: false,
+        closeOnEsc: false
+      }
+    )
+  }
 }
