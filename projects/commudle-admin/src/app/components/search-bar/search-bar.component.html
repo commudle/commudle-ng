@@ -1,5 +1,5 @@
 <div (clickOutside)="toggleSearchSuffix(false, $event)" appClickOutside class="home-navbar-search">
-  <div class="d-flex search-container" #searchContainer>
+  <div class="d-flex search-container">
     <nb-form-field [ngClass]="{'search-form-expanded': showSearchResults}" (click)="toggleSearchSuffix(true)" class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
       <input (ngModelChange)="searchQueryChanged.next($event)" [ngModel]="searchQuery" fullWidth nbInput
