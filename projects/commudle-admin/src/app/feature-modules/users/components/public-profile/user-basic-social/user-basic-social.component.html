@@ -1,0 +1,45 @@
+<nb-card class="user-basic-social">
+  <nb-card-body class="user-social d-flex flex-wrap justify-content-center">
+    <a [ngClass]="{'disabled': isDisabled(user.personal_website)}"
+       href="{{(user.personal_website || '') | completeurl}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="globe-outline" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.linkedin)}" href="{{(user.linkedin || '') | completeurl:'linkedin'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="linkedin" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.twitter)}" href="{{(user.twitter || '') | completeurl:'twitter'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="twitter" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.github)}" href="{{(user.github || '') | completeurl:'github'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="github" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.youtube)}" href="{{(user.youtube || '') | completeurl:'youtube'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="youtube" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.medium)}" href="{{(user.medium || '') | completeurl:'medium'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="medium" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.dribbble)}" href="{{(user.dribbble || '') | completeurl:'dribbble'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="dribbble" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.behance)}" href="{{(user.behance || '') | completeurl:'behance'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="behance" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.gitlab)}" href="{{(user.gitlab || '') | completeurl:'gitlab'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="gitlab" pack="fab" status="primary"></nb-icon>
+    </a>
+    <a [ngClass]="{'disabled': isDisabled(user.facebook)}" href="{{(user.facebook || '') | completeurl:'facebook'}}"
+       nbButton shape="round" size="small" target="_blank">
+      <nb-icon icon="facebook" pack="fab" status="primary"></nb-icon>
+    </a>
+  </nb-card-body>
+</nb-card>

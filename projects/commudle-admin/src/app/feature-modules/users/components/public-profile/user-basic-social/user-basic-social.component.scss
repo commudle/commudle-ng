@@ -1,0 +1,39 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-basic-social {
+  margin: $space-16 0 0;
+  border: none;
+  border-radius: $border-10;
+
+  .user-social {
+    padding: $space-32 $space-44 $space-40;
+    gap: $space-16;
+
+    a {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background-color: $water;
+
+      nb-icon[pack="fab"] {
+        font-size: 16px;
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+        background-color: $platinum;
+
+        nb-icon {
+          color: $spanish-gray;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .user-basic-social {
+    border-radius: 0;
+  }
+}
