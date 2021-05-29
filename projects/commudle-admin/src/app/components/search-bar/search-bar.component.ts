@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, Subscription} from 'rxjs';
 import {IHomeSearch} from 'projects/shared-models/home-search.model';
 import {debounceTime} from 'rxjs/operators';

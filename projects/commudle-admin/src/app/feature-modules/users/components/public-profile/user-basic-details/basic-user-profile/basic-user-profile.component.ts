@@ -11,7 +11,7 @@ import {
   WhiteSpaceNotAllowedValidator
 } from 'projects/shared-helper-modules/custom-validators.validator';
 import { Router } from '@angular/router';
-import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import {NbDialogService} from '@nebular/theme';
 
 
 @Component({
@@ -129,7 +129,7 @@ export class BasicUserProfileComponent implements OnInit {
     const newUsername = this.usernameForm.get('username').value;
     this.usersService.setUsername(newUsername).subscribe(data => {
       if (data) {
-        this.toastLogService.successDialog('Updated!');
+        // this.toastLogService.successDialog('Updated!');
         this.lastUsername = newUsername;
         this.router.navigate(['/users', newUsername]).then(() => location.reload());
         // get the user again from the server
