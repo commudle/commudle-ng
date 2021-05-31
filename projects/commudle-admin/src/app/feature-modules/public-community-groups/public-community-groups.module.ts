@@ -7,10 +7,16 @@ import { CommunityGroupHomeComponent } from './components/community-group-home/c
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { CommunityGroupCommunitiesComponent } from './components/community-group-communities/community-group-communities.component';
 import { CommunityGroupTeamComponent } from './components/community-group-team/community-group-team.component';
+import { CommunityGroupAboutComponent } from './components/community-group-about/community-group-about.component';
 
 
 @NgModule({
-  declarations: [CommunityGroupHomeComponent, CommunityGroupCommunitiesComponent, CommunityGroupTeamComponent],
+  declarations: [
+    CommunityGroupHomeComponent,
+    CommunityGroupCommunitiesComponent,
+    CommunityGroupTeamComponent,
+    CommunityGroupAboutComponent
+  ],
   imports: [
     CommonModule,
     PublicCommunityGroupsRoutingModule,

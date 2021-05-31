@@ -16,10 +16,10 @@
           </div>
           <button nbButton size="small" status="primary" [routerLink]="['/admin/orgs', communityGroup.slug, 'edit']">Edit</button>
         </nb-tab>
-        <nb-tab tabTitle="Chapters">
+        <nb-tab tabTitle="Communities">
           <a nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}">
             <nb-icon icon="plus"></nb-icon>
-            Add New Chapter
+            New Community
           </a>
           <div class="chapters">
             <div class="community-chapter" *ngFor="let community of communities">
