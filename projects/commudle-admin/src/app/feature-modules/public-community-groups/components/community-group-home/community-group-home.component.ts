@@ -14,13 +14,12 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private communityGroupsService: CommunityGroupsService
   ) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.activatedRoute.params.subscribe(
+    this.subscriptions.push(this.activatedRoute.data.subscribe(
       data => {
-        this.getCommunityGroup(data.community_group_id);
+        this.communityGroup = data.community_group
       }
     ));
   }
@@ -31,12 +30,5 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCommunityGroup(communityGroupId) {
-    this.communityGroupsService.pShow(communityGroupId).subscribe(
-      data => {
-        this.communityGroup = data;
-      }
-    );
-  }
 
 }
