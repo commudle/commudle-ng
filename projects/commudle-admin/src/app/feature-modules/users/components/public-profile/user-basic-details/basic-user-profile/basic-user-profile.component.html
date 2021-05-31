@@ -1,7 +1,7 @@
 <div *ngIf="currentUser" class="page-padding">
 
   <div class="username">
-    <form (ngSubmit)="setUsername()" [formGroup]="usernameForm">
+    <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
       <div>
         <label>
           Choose a username to for your public profile
@@ -34,6 +34,25 @@
       </div>
     </form>
   </div>
+
+  <ng-template #confimChangeUsername let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header class="text-center">
+        Confirmation
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          <nb-icon icon="info"></nb-icon>
+          Changing your username will cause the website to reload, are you sure you want to proceed?
+        </p>
+      </nb-card-body>
+      <nb-card-footer class="d-flex justify-content-space-between">
+        <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
+        <button (click)="setUsername()" nbButton status="success">Save</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+
   <form [formGroup]="userProfileForm" (ngSubmit)="updateUserDetails()">
     <div class="row">
       <div>
