@@ -339,3 +339,13 @@
     }
   }
 }
+
+:host::ng-deep {
+  .cdk-overlay-container {
+    nb-card-header {
+      button {
+        display: none;
+      }
+    }
+  }
+}
