@@ -8,15 +8,13 @@
         Delete
       </button>
     </div>
-    <div class="user-feed-post-content">
-      {{post.content}}
-    </div>
+    <div class="user-feed-post-content">{{post.content}}</div>
     <div class="user-feed-post-tags d-flex">
       <div *ngFor="let tag of post.tags" class="user-feed-post-tag">{{tag.name}}</div>
     </div>
   </div>
   <div *ngIf="post.images.length > 0" class="user-feed-post-images d-flex">
-    <img *ngFor="let image of post.images" alt="Image" height="200" src="{{image.url}}">
+    <img *ngFor="let image of post.images" alt="Image" height="200" src="{{image.url}}" title="Image">
   </div>
   <div class="user-feed-post-suffix">
     <div class="user-feed-post-votes">
