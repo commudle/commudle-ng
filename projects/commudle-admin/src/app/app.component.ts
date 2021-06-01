@@ -101,10 +101,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
     });
 
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
-      this.windowService.open(CookieConsentComponent, {
-        title: 'Let\'s Share Cookies!',
-        initialState: NbWindowState.MAXIMIZED
-      });
+      setTimeout(() => {
+        this.windowService.open(CookieConsentComponent, {
+          title: 'Let\'s Share Cookies!',
+          initialState: NbWindowState.MAXIMIZED
+        });
+      }, 3000);
     }
 
     if (this.cookieConsentService.isCookieConsentAccepted()) {
