@@ -1,7 +1,6 @@
 <div class="lab-display-card">
   <div [routerLink]="[lab.slug]" class="header-image clickable">
-    <img *ngIf="!lab.header_image" alt="{{lab.name}}" src="/assets/images/Lab-Default.png">
-    <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.i350}}">
+    <img alt="{{lab.name}}" src="{{lab.header_image?.i350 || '/assets/images/Lab-Default.png'}}" title="{{lab.name}}">
   </div>
   <div class="content d-flex flex-column justify-content-space-between">
     <!--padding-->

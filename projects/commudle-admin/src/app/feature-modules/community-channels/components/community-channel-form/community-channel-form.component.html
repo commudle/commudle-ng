@@ -1,25 +1,18 @@
 <div>
-
-  <form class="community-channel-form" [formGroup]="communityChannelForm" (ngSubmit)="submitForm()">
+  <form (ngSubmit)="submitForm()" [formGroup]="communityChannelForm" class="community-channel-form">
     <div class="logo field">
-      <div class="uploaded-logo" *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)">
-        <img src="{{uploadedLogoImage || existingChannel.logo.url}}" alt="Profile Picture">
+      <div *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)" class="uploaded-logo">
+        <img alt="Profile Picture" src="{{uploadedLogoImage || existingChannel.logo.url}}" title="Profile Picture">
       </div>
       <div class="delete-logo-button">
-        <button
-          nbButton
-          ghost
-          size="tiny"
-          status="danger"
-          *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)"
-          type="button"
-          (click)="removeLogo()">
+        <button (click)="removeLogo()" *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)" ghost
+                nbButton size="tiny" status="danger" type="button">
           <nb-icon icon="close-circle"></nb-icon>
           Remove Logo
         </button>
       </div>
 
-      <label class="clickable" [ngClass]="{'hidden': uploadedLogoImage || (existingChannel && existingChannel.logo) }">
+      <label [ngClass]="{'hidden': uploadedLogoImage || (existingChannel && existingChannel.logo) }" class="clickable">
         <span>
           <span>
             <nb-icon icon="image-outline"></nb-icon>
@@ -30,26 +23,27 @@
             <small>(200x200)</small>
           </span>
         </span>
-        <input formControlName="logo" type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+        <input (change)="displaySelectedLogo($event)" accept="image/*" formControlName="logo" fullWidth nbInput
+               type="file">
       </label>
     </div>
 
     <div class="field">
       <label fullWidth>
         Name*
-        <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="name">
+        <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text">
       </label>
     </div>
 
     <div class="field">
       <label fullWidth>
         Description*
-        <textarea type="text" fieldSize="small" nbInput fullWidth formControlName="description"></textarea>
+        <textarea fieldSize="small" formControlName="description" fullWidth nbInput type="text"></textarea>
       </label>
     </div>
 
     <div class="field">
-      <nb-checkbox status="basic" formControlName="is_private">
+      <nb-checkbox formControlName="is_private" status="basic">
         Private
       </nb-checkbox>
     </div>
@@ -57,13 +51,12 @@
     <div class="field">
       <label fullWidth>
         Group Name (optional)
-        <input type="text" fieldSize="tiny" nbInput fullWidth formControlName="group_name">
+        <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text">
       </label>
     </div>
 
-    <button nbButton outline size="small" [disabled]="!communityChannelForm.valid" status="success" type="submit">
+    <button [disabled]="!communityChannelForm.valid" nbButton outline size="small" status="success" type="submit">
       Save
     </button>
   </form>
-
 </div>

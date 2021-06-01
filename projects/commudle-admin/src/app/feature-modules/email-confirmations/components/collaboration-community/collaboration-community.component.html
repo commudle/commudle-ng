@@ -2,18 +2,16 @@
   <div *ngIf="eventCollaboration">
     <nb-card>
       <nb-card-body>
-
-        <div class="status" *ngIf="eventCollaboration.approved">
+        <div *ngIf="eventCollaboration.approved" class="status">
           <div class="collaboration-status">
             <div class="collaboration-community-logo">
-              <img src="{{ eventCollaboration.community.logo_path }}" alt="{{ eventCollaboration.community.name }}">
+              <img alt="{{ eventCollaboration.community.name }}" src="{{ eventCollaboration.community.logo_path }}"
+                   title="{{ eventCollaboration.community.name }}">
             </div>
             <p>
               Welcome Aboard!
               <br>
-              <span>
-                Thank You for approving the collaboration request.
-              </span>
+              <span>Thank You for approving the collaboration request.</span>
             </p>
           </div>
         </div>
@@ -28,12 +26,10 @@
           </div>
           <div class="community">
             <div class="logo">
-              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
             </div>
             <p>
-              <a [routerLink]="['/communities', community.slug]">
-                {{ community.name }}
-              </a>
+              <a [routerLink]="['/communities', community.slug]">{{ community.name }}</a>
             </p>
           </div>
         </div>

@@ -1,13 +1,15 @@
 <div *ngIf="collaborationCommunities.length > 0">
   <nb-card>
     <nb-card-header>
-      <nb-icon icon="people"></nb-icon> Our Co-Hosts
+      <nb-icon icon="people"></nb-icon>
+      Our Co-Hosts
     </nb-card-header>
     <nb-card-body>
-      <div class="community" *ngFor="let cc of collaborationCommunities">
+      <div *ngFor="let cc of collaborationCommunities" class="community">
         <a [routerLink]="['/communities', cc.community.slug]">
           <div class="logo">
-            <img src="{{ cc.community.logo_path }}" alt="{{ cc.community.name }} Logo">
+            <img alt="{{ cc.community.name }} Logo" src="{{ cc.community.logo_path }}"
+                 title="{{ cc.community.name }} Logo">
           </div>
           <p>{{ cc.community.name }}</p>
         </a>
