@@ -2,7 +2,8 @@
 
 .public-profile {
   gap: $space-16;
-  margin: $space-16 auto $space-80;
+  padding: $space-16 0 $space-80;
+  background-color: $light-purple;
 
   .basic-details {
     max-width: 264px;

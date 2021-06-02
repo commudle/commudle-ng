@@ -7,25 +7,53 @@
 
   .user-social {
     padding: $space-32 $space-44 $space-40;
-    gap: $space-16;
+    gap: $space-24;
 
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: initial;
+      text-decoration: none;
+      padding: $space-4;
       width: 32px;
       height: 32px;
-      border: none;
+      border-radius: $border-16;
       background-color: $water;
 
-      nb-icon[pack="fab"] {
-        font-size: 16px;
-      }
+      nb-icon {
+        color: $neon-blue;
 
-      &.disabled {
-        cursor: not-allowed;
-        pointer-events: none;
-        background-color: $platinum;
+        &[pack='fab'] {
+          width: 22px;
+          font-size: $fs-20;
+          text-align: center;
+        }
+      }
+    }
+
+    &.compressed {
+      gap: $space-16
+    }
+
+    &.expanded {
+      justify-content: normal;
+      padding: $space-32 $space-16;
+
+      a {
+        width: 100%;
 
         nb-icon {
-          color: $spanish-gray;
+          margin-right: $space-6;
+        }
+
+        span {
+          width: calc(calc(264px - 32px) - 54px);
+          margin-right: $space-12;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: $neon-blue;
         }
       }
     }
