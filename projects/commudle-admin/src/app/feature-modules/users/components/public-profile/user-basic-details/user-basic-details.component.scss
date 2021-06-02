@@ -23,10 +23,11 @@
     left: 0;
     width: 100%;
     height: 184px;
-    background-color: $brilliant-azure;
+    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);;
   }
 
   .profile-photo-container {
+    display: table;
     position: relative;
     height: 160px;
     width: 160px;
@@ -70,10 +71,8 @@
 
     .name {
       font-weight: $fw-600;
-      font-style: italic;
       font-size: $fs-20;
       line-height: 23px;
-      margin-bottom: $space-4;
 
       .expert-icon {
         position: absolute;
@@ -87,23 +86,25 @@
       font-size: $fs-h5;
       line-height: 16px;
       color: rgba($gunmetal, 0.85);
+      margin-bottom: $space-12;
     }
 
     .designation {
       font-weight: $fw-500;
       font-size: $fs-h4;
       line-height: 19px;
-      margin-bottom: $space-8;
+      margin-bottom: $space-4;
       word-break: break-all;
     }
 
     .network {
+      margin-bottom: $space-48;
+
       a {
         color: $cadet;
         font-size: $fs-h5;
         font-style: italic;
         text-decoration: none;
-        margin-bottom: $space-24;
 
         &:hover {
           text-decoration: underline;
@@ -134,7 +135,7 @@
   }
 
   .user-interactions {
-    margin: $space-16 0 $space-20;
+    margin: $space-16 0;
 
     button {
       height: 32px;
