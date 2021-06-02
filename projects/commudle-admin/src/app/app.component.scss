@@ -32,8 +32,14 @@
           margin-left: $space-16;
 
           .menu-user-avatar {
-            width: 45px;
-            height: 45px;
+            max-width: 2.5rem;
+            max-height: 2.5rem;
+            overflow: hidden;
+            border-radius: $border-50;
+
+            img {
+              width: 100%;
+            }
           }
 
           .menu-user-options {
