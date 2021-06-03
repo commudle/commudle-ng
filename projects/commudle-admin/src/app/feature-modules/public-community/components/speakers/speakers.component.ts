@@ -12,6 +12,7 @@ import { Subscription } from "rxjs";
 })
 export class SpeakersComponent implements OnInit, OnDestroy {
   speakers: IUser[];
+  speakersLength: number;
   community: ICommunity;
 
   subscriptions: Subscription[] = [];
@@ -43,6 +44,7 @@ export class SpeakersComponent implements OnInit, OnDestroy {
       .speakers(this.community.id)
       .subscribe((data) => {
         this.speakers = data.users;
+        this.speakersLength = this.speakers.length;
       });
   }
 }
