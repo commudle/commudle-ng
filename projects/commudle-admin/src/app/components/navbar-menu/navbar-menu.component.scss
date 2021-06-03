@@ -2,29 +2,39 @@
 
 .home-navbar-menu-options {
   padding-left: $space-8;
-
-  nb-action {
+  text-align: center;
+  
+  a { 
     padding: 0 $space-16;
-    flex-direction: column;
     justify-content: center;
     border: none;
-
-    .home-navbar-menu-option {
-      font-weight: 400;
-      line-height: 14px;
-      color: $gunmetal;
-      margin-top: $space-4;
-    }
-
+    text-decoration: none;
+    color: $gunmetal;
+      
     &::ng-deep {
       nb-icon {
         text-align: center;
         color: rgba($azure, 0.4);
       }
     }
+
+    .home-navbar-menu-option {
+      font-size: 0.75rem;
+      font-weight: 400;
+      line-height: 14px;
+      margin-top: $space-4;
+    }
+  }
+
+  .active {
+    border-bottom: 3px solid rgba($azure, 0.8);
+    &::ng-deep {
+      nb-icon {
+        color: rgba($azure, 0.8);
+      }
+    }
   }
 }
-
 
 @media all and (max-width: $tab-width) {
   .home-navbar-menu-options {
