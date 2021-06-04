@@ -14,7 +14,8 @@
         </div>
         <p class="author">
           {{ cBuild.user.name }}
-          <img *ngIf="cBuild.user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
+          <img *ngIf="cBuild.user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
+               title="Expert Tick">
           <span *ngIf="cBuild.user.designation"> , {{ cBuild.user.designation }}</span>
           <br>
           <small>{{ moment(cBuild.created_at).format('Do MMM YYYY') }}</small>
@@ -36,7 +37,7 @@
       <div *ngIf="cBuild.images.length > 0" class="images">
         <div class="image-stripe">
           <div (click)="openImage(cBuild.name, image)" *ngFor="let image of cBuild.images" class="image clickable">
-            <img alt="{{ cBuild.name }}" src="{{ image.url }}">
+            <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{cBuild.name}}">
           </div>
         </div>
       </div>
@@ -69,7 +70,7 @@
 
 <ng-template #imageTemplate>
   <div class="image-window">
-    <img alt="Image" src="{{ this.currImage.url }}">
+    <img alt="Image" src="{{ this.currImage.url }}" title="Image">
     <div class="controls">
       <button (click)="imageNav(-1)" nbButton shape="round" size="small">
         <nb-icon icon="arrow-ios-back-outline"></nb-icon>

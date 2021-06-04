@@ -1,27 +1,32 @@
-<div class="community-group" *ngIf="communityGroup">
+
+<div class="community-group page-container" *ngIf="communityGroup">
   <div class="logo">
-    <img src="{{communityGroup.logo.url}}" alt="{{communityGroup.name}}">
+    <img alt="{{communityGroup.name}}" src="{{communityGroup.logo.url}}" title="{{communityGroup.name}}">
   </div>
+
   <h1 class="name">
     {{ communityGroup.name }}
   </h1>
-  <div class="description lh-fw" [innerHTML]="communityGroup.description"></div>
-
   <div class="responsive page-menu">
     <nb-card>
       <nb-card-body>
         <div class="menu-items">
           <a [routerLink]="['/orgs', communityGroup.slug]">
             <nb-icon icon="globe-2-outline" status="info"></nb-icon>
+
             <span>
-              Chapters
+              Communities
+            </span>
+          </a>
+          <a [routerLink]="['/orgs', communityGroup.slug, 'about']">
+            <nb-icon icon="info" status="info"></nb-icon>
+            <span>
+              About
             </span>
           </a>
           <a [routerLink]="['/orgs', communityGroup.slug, 'team']" routerLinkActive="active">
             <nb-icon icon="people-outline" status="primary"></nb-icon>
-            <span>
-              Team
-            </span>
+            <span>Team</span>
           </a>
         </div>
       </nb-card-body>
@@ -31,5 +36,4 @@
   <div>
     <router-outlet></router-outlet>
   </div>
-
 </div>
