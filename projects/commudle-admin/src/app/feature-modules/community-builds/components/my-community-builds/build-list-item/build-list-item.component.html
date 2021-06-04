@@ -2,7 +2,7 @@
   <div class="content">
     <h5>
       {{ cb.name }}
-      <a target="_blank" class="external-link" [routerLink]="['/builds', cb.slug]">
+      <a [routerLink]="['/builds', cb.slug]" class="external-link" target="_blank">
         <small>{{cb.publish_status}}</small>
         <small *ngIf="[EPublishStatus.draft, EPublishStatus.submitted].includes(cb.publish_status)">Preview</small>
         <nb-icon icon="external-link"></nb-icon>
@@ -13,7 +13,7 @@
         {{ moment(cb.created_at).fromNow() }}
       </small>
     </p>
-    <div class="stats" *ngIf="stats">
+    <div *ngIf="stats" class="stats">
       <p>
         {{stats.total_visitors}}
         <small>Total Visits</small>
@@ -34,10 +34,7 @@
   </div>
   <div class="status">
     <p>
-      <app-badge
-      [text]="cb.publish_status | titlecase"
-      [color]="EPublishStatusColors[cb.publish_status]">
-    </app-badge>
+      <app-badge [color]="EPublishStatusColors[cb.publish_status]" [text]="cb.publish_status | titlecase"></app-badge>
     </p>
   </div>
   <div class="build-type">
@@ -47,11 +44,7 @@
   </div>
   <div class="stats">
     <div>
-      <app-votes-display
-        [votableType]="'CommunityBuild'"
-        [votableId]="cb.id"
-        [icon]="'star'"
-      ></app-votes-display>
+      <app-votes-display [icon]="'star'" [votableId]="cb.id" [votableType]="'CommunityBuild'"></app-votes-display>
     </div>
     <div class="tags">
       <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
@@ -59,29 +52,29 @@
   </div>
   <div class="actions">
     <div>
-      <button nbButton status="info" outline fullWidth size="tiny" [routerLink]="['/builds', cb.slug, 'edit']">
+      <button [routerLink]="['/builds', cb.slug, 'edit']" fullWidth nbButton outline size="tiny" status="info">
         <nb-icon icon="edit"></nb-icon>
         Edit
       </button>
     </div>
     <div>
-      <button nbButton status="danger" outline fullWidth size="tiny" (click)="openDeleteConfirmation(cb)">
+      <button (click)="openDeleteConfirmation(cb)" fullWidth nbButton outline size="tiny" status="danger">
         <nb-icon icon="close-circle"></nb-icon>
         Delete
       </button>
     </div>
   </div>
 </div>
+
 <ng-template #imageTemplate let-data>
   <div class="image-window">
-    <img src="{{data.imageUrl}}">
+    <img alt="Image" src="{{data.imageUrl}}" title="Image">
   </div>
 </ng-template>
 
 <ng-template #confirmDeleteTemplate let-data>
-
   <div>
-    <button nbButton size="small" status="basic" (click)="destroyBuild(data.cb.id)">Yes</button>
-    <button nbButton size="small" status="danger" (click)="windowRef.close()">No</button>
+    <button (click)="destroyBuild(data.cb.id)" nbButton size="small" status="basic">Yes</button>
+    <button (click)="windowRef.close()" nbButton size="small" status="danger">No</button>
   </div>
 </ng-template>
