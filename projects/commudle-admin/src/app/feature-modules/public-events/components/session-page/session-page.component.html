@@ -1,0 +1,10 @@
+<div class="session-page-container">
+  <div class="session-page">
+    <app-session-page-details [community]="community" [event]="event" [speaker]="speaker"
+                              [trackSlot]="trackSlot"></app-session-page-details>
+
+    <app-session-page-video *ngIf="embeddedVideoStream" [currentUser]="currentUser"
+                            [embeddedVideoStream]="embeddedVideoStream"
+                            [startTime]="startTime"></app-session-page-video>
+  </div>
+</div>

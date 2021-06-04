@@ -1,0 +1,10 @@
+<nb-card class="session-page-details">
+  <nb-card-body>
+    <div class="community">
+      <app-community-badge [community]="community"></app-community-badge>
+    </div>
+    <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="event">{{event.name}}</a>
+    <h4 *ngIf="trackSlot">{{trackSlot.session_title}}</h4>
+    <app-user-profile-card-large *ngIf="speaker" [user]="speaker"></app-user-profile-card-large>
+  </nb-card-body>
+</nb-card>
