@@ -23,6 +23,9 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   editTagDialog: NbDialogRef<any>;
   editProfileDialog: NbDialogRef<any>;
 
+  // About
+  showFullAbout = false;
+
   // The updated tags
   tagsDialog: string[] = [];
   // The original tags
@@ -59,9 +62,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
       this.tagsDialog.push('Commudle');
     }
     // Open a dialog to edit the tags
-    this.editTagDialog = this.dialogService.open(
-      this.editTags
-    );
+    this.editTagDialog = this.dialogService.open(this.editTags);
   }
 
   // Function to submit the tag form
@@ -100,9 +101,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   }
 
   onEditProfileDialogOpen() {
-    this.editProfileDialog = this.dialogService.open(this.editProfile, {
-      hasScroll: true
-    });
+    this.editProfileDialog = this.dialogService.open(this.editProfile, {hasScroll: true});
   }
 
   onUpdateProfile(ref: NbDialogRef<any>) {
