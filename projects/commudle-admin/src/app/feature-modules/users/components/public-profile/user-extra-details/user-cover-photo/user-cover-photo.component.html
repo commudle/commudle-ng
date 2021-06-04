@@ -1,6 +1,7 @@
 <div *ngIf="user" class="user-cover-photo">
   <div class="cover-image">
-    <img *ngIf="user.profile_banner_image" alt="Cover image" src="{{user.profile_banner_image.profile_banner}}">
+    <img *ngIf="user.profile_banner_image" alt="Cover image" src="{{user.profile_banner_image.profile_banner}}"
+         title="Cover image">
   </div>
   <button (click)="onCoverImageDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="cover-change"
           nbButton size="small">
@@ -22,8 +23,7 @@
         Dimensions: 1000px X 185px
         <input (change)="displayCoverImage($event)" accept="image/*" fullWidth nbInput type="file">
       </label>
-      <img *ngIf="coverImage" alt="Cover Image" src="{{coverImage}}">
-      <img *ngIf="!coverImage" alt="Cover Image" src="{{user.profile_banner_image.profile_banner}}">
+      <img alt="Cover Image" src="{{coverImage || user.profile_banner_image.profile_banner}}" title="Cover Image">
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>

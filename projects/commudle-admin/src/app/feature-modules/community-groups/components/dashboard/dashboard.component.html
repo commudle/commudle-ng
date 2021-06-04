@@ -2,7 +2,7 @@
   <nb-card *ngIf="communityGroup">
     <nb-card-header>
       <div class="logo">
-        <img src="{{ communityGroup.logo.url }}">
+        <img alt="{{communityGroup.name}}" src="{{ communityGroup.logo.url }}" title="{{communityGroup.name}}">
       </div>
       <h1>
         {{communityGroup.name}}
@@ -12,28 +12,30 @@
     <nb-card-body>
       <nb-tabset>
         <nb-tab tabTitle="About">
-          <div class="about-community-group" [innerHTML]="communityGroup.description">
-          </div>
-          <button nbButton size="small" status="primary" [routerLink]="['/admin/orgs', communityGroup.slug, 'edit']">Edit</button>
+          <div [innerHTML]="communityGroup.description" class="about-community-group"></div>
+          <button [routerLink]="['/admin/orgs', communityGroup.slug, 'edit']" nbButton size="small" status="primary">
+            Edit
+          </button>
         </nb-tab>
         <nb-tab tabTitle="Chapters">
-          <a nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}">
+          <a [queryParams]="{community_group_id: communityGroup.slug}" [routerLink]="['/admin/communities/new']"
+             nbButton status="primary">
             <nb-icon icon="plus"></nb-icon>
             Add New Chapter
           </a>
           <div class="chapters">
-            <div class="community-chapter" *ngFor="let community of communities">
+            <div *ngFor="let community of communities" class="community-chapter">
               <h3 class="lh-fw">{{community.name | slice:0:30}}</h3>
               <p>
                 <nb-icon icon="people-outline"></nb-icon>
                 {{community.member_count}}
               </p>
               <div class="links">
-                <a target="_blank" [routerLink]="['/communities', community.slug]">
+                <a [routerLink]="['/communities', community.slug]" target="_blank">
                   Public Page
                   <nb-icon icon="external-link"></nb-icon>
                 </a>
-                <a target="_blank" [routerLink]="['/admin/communities', community.slug]">
+                <a [routerLink]="['/admin/communities', community.slug]" target="_blank">
                   Admin Panel
                   <nb-icon icon="external-link"></nb-icon>
                 </a>
@@ -43,33 +45,32 @@
         </nb-tab>
         <nb-tab tabTitle="Admin Team">
           <div class="team-invitation-form">
-            <form [formGroup]="userRolesUserForm" (ngSubmit)="inviteCommunityAdmin()">
-              <p>
-                Add a Teammate
-              </p>
-              <input nbInput fieldSize="small" formControlName="email" placeholder="Enter Email">
-              <button [disabled]="!userRolesUserForm.valid" type="submit" nbButton size="small" status="primary" outline>Send Invitation</button>
+            <form (ngSubmit)="inviteCommunityAdmin()" [formGroup]="userRolesUserForm">
+              <p> Add a Teammate </p>
+              <input fieldSize="small" formControlName="email" nbInput placeholder="Enter Email">
+              <button [disabled]="!userRolesUserForm.valid" nbButton outline size="small" status="primary"
+                      type="submit">Send Invitation
+              </button>
             </form>
           </div>
           <div class="team">
-            <div class="member" *ngFor="let admin of team; let i=index">
+            <div *ngFor="let admin of team; let i=index" class="member">
               <div>
-                <app-user-profile-horizontal [user]="admin.user" [socialMediaLinks]="true" [aboutMe]="true"></app-user-profile-horizontal>
+                <app-user-profile-horizontal [aboutMe]="true" [socialMediaLinks]="true"
+                                             [user]="admin.user"></app-user-profile-horizontal>
               </div>
               <div>
-                <a class="clickable" *ngIf="admin.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(admin)">
+                <a (click)="resendInvitationMail(admin)" *ngIf="admin.status == EUserRolesUserStatus.INVITED"
+                   class="clickable">
                   Resend Invite
                 </a>
                 <br>
-                <a class="clickable" (click)="remove(i)">
-                  Remove
-                </a>
+                <a (click)="remove(i)" class="clickable"> Remove </a>
               </div>
             </div>
           </div>
         </nb-tab>
-       </nb-tabset>
+      </nb-tabset>
     </nb-card-body>
   </nb-card>
-
 </div>
