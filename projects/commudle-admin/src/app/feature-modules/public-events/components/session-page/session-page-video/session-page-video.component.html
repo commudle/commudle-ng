@@ -1,0 +1,30 @@
+<nb-card [ngClass]="{'fullscreen': isFullScreen}" class="session-page-video">
+  <nb-card-body>
+    <button (click)="toggleFullScreen()" *ngIf="currentUser" class="fullscreen-btn" nbButton shape="round">
+      <nb-icon [icon]="isFullScreen ? 'collapse' : 'expand'"></nb-icon>
+    </button>
+    <app-video-stream [currentUser]="currentUser"
+                      [fillerText]="!currentUser ? 'Login to Access' : (moment() < moment(startTime) ? 'Starting in ' + moment(startTime).fromNow(true) : 'Loading Video...')"
+                      [hmsRoomId]="embeddedVideoStream.hms_room_id" [started]="moment() >= moment(startTime)"
+                      [userEmail]="currentUser?.email || ''" [userName]="currentUser?.name || ''"
+                      [videoCode]="!currentUser || (moment() < moment(startTime)) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
+                      [videoSource]="embeddedVideoStream.source" [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
+                      [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
+                      [zoomPassword]="embeddedVideoStream.zoom_password"
+                      [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"></app-video-stream>
+    <div *ngIf="currentUser" class="user-interactions">
+      <button nbButton shape="round">
+        <nb-icon icon="people"></nb-icon>
+      </button>
+      <button nbButton shape="round">
+        <nb-icon icon="message-circle"></nb-icon>
+      </button>
+      <button nbButton shape="round">
+        <nb-icon icon="question-mark-circle"></nb-icon>
+      </button>
+      <button nbButton shape="round">
+        <nb-icon icon="bar-chart"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
 import {PublicEventsRoutingModule} from './public-events-routing.module';
 import {HomeEventComponent} from './components/home-event/home-event.component';
 import {SpeakerSessionPageComponent} from './components/speaker-session-page/speaker-session-page.component';
@@ -35,6 +34,9 @@ import {AutoAttendanceComponent} from './components/auto-attendance/auto-attenda
 import {SponsorsComponent} from './components/sponsors/sponsors.component';
 import {UsersListComponent} from './components/speaker-session-page/users-list/users-list.component';
 import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
+import {SessionPageComponent} from './components/session-page/session-page.component';
+import {SessionPageDetailsComponent} from './components/session-page/session-page-details/session-page-details.component';
+import {SessionPageVideoComponent} from './components/session-page/session-page-video/session-page-video.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users
     AutoAttendanceComponent,
     SponsorsComponent,
     UsersListComponent,
+    SessionPageComponent,
+    SessionPageDetailsComponent,
+    SessionPageVideoComponent,
   ],
   imports: [
     CommonModule,
@@ -78,4 +83,5 @@ import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users
     UsersModule
   ]
 })
-export class PublicEventsModule { }
+export class PublicEventsModule {
+}

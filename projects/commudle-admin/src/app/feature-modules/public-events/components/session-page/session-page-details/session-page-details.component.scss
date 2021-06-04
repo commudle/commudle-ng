@@ -1,0 +1,16 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.session-page-details {
+  margin-top: 0;
+  margin-bottom: $space-16;
+  border: none;
+  border-radius: $border-10;
+
+  nb-card-body {
+    padding: $space-16;
+
+    .community {
+      width: max-content;
+    }
+  }
+}

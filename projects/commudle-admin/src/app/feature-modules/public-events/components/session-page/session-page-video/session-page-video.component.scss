@@ -1,0 +1,60 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.session-page-video {
+  margin-top: 0;
+  margin-bottom: $space-136;
+  border: none;
+  border-radius: $border-10;
+  overflow: hidden;
+  height: 630px; // 16:9 aspect ratio
+
+  nb-card-body {
+    padding: 0;
+
+    .fullscreen-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: none;
+      z-index: 1;
+      color: $white;
+      background-color: transparent;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: rgba($spanish-gray, 0.4);
+      }
+    }
+
+    .user-interactions {
+      position: absolute;
+      right: 4px;
+      bottom: 10px;
+
+      button {
+        margin: 0 $space-4;
+        border: none;
+        z-index: 1;
+        color: $white;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: rgba($spanish-gray, 0.4);
+        }
+      }
+    }
+  }
+
+  &.fullscreen {
+    position: fixed;
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: $black;
+    z-index: 1050;
+  }
+}
