@@ -17,11 +17,11 @@
             Edit
           </button>
         </nb-tab>
-        <nb-tab tabTitle="Chapters">
-          <a [queryParams]="{community_group_id: communityGroup.slug}" [routerLink]="['/admin/communities/new']"
-             nbButton status="primary">
+
+        <nb-tab tabTitle="Communities">
+          <a nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}">
             <nb-icon icon="plus"></nb-icon>
-            Add New Chapter
+            New Community
           </a>
           <div class="chapters">
             <div *ngFor="let community of communities" class="community-chapter">

@@ -1,7 +1,8 @@
 <div *ngIf="user" class="user-cover-photo">
   <div class="cover-image">
-    <img *ngIf="user.profile_banner_image" alt="Cover image" src="{{user.profile_banner_image.profile_banner}}"
-         title="Cover image">
+
+    <img alt="Cover image"
+         src="{{user.profile_banner_image?.profile_banner || '/assets/images/User-Profile-Cover-Default.png'}}">
   </div>
   <button (click)="onCoverImageDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="cover-change"
           nbButton size="small">
