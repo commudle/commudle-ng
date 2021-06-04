@@ -1,9 +1,7 @@
 <nb-card class="home-communities card-p16">
-  <nb-card-header class="clickable" [routerLink]="['/communities']">
+  <nb-card-header [routerLink]="['/communities']" class="clickable">
     Communities
-    <p class="sub-header">
-      Join multiple tribes of Techies
-    </p>
+    <p class="sub-header">Join multiple tribes of Techies</p>
   </nb-card-header>
   <nb-card-body class="home-communities-list">
     <nb-list *ngIf="communities.length === 0">
@@ -15,15 +13,11 @@
       <nb-list-item *ngFor="let community of communities; let i = index">
         <div [routerLink]="['/communities', community.slug]" class="home-community d-flex align-items-center clickable">
           <div class="home-community-image d-flex align-items-center">
-            <img alt="{{community.name}}" src="{{community.logo_image.i64}}">
+            <img alt="{{community.name}}" src="{{community.logo_image.i64}}" title="{{community.name}}">
           </div>
           <div class="home-community-details">
-            <div class="home-community-name">
-              {{community.name | truncatetext:20}}
-            </div>
-            <div class="home-community-member-count">
-              {{community.member_count.toString() + ' Members'}}
-            </div>
+            <div class="home-community-name">{{community.name | truncatetext:20}}</div>
+            <div class="home-community-member-count">{{community.member_count.toString() + ' Members'}}</div>
           </div>
         </div>
         <button (click)="openDialog(community, communityStatus[i])" *ngIf="community.id"
