@@ -5,16 +5,15 @@
     </nb-card-header>
     <nb-card-body>
       <div class="users">
-        <div class="user" *ngFor="let user of users" nbTooltip="{{ user.name }}">
+        <div *ngFor="let user of users" class="user" nbTooltip="{{ user.name }}">
           <div class="profile-picture">
-            <img src="{{ user.avatar }}" alt="{{ user.name }}">
+            <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}">
           </div>
         </div>
         <p>
           <span *ngIf="totalCount - users.length > 0">... + {{ totalCount - users.length }} More</span>
         </p>
       </div>
-
     </nb-card-body>
   </nb-card>
 </div>
