@@ -1,22 +1,11 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
-//nb-card {
-//  margin: 0;
-//  border: none;
-//  border-radius: $border-10;
-//}
-
 .session-page-container {
-  background-color: $light-purple;
   min-height: calc(100vh - 56px);
 
   .session-page {
     margin: 0 auto;
     padding-top: $space-16;
     max-width: 1136px;
-
-    //.video-stream {
-    //  margin-bottom: $space-136;
-    //}
   }
 }

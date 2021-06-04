@@ -2,11 +2,10 @@
 
 .session-page-video {
   margin-top: 0;
-  margin-bottom: $space-136;
   border: none;
   border-radius: $border-10;
   overflow: hidden;
-  height: 630px; // 16:9 aspect ratio
+  aspect-ratio: 16/9;
 
   nb-card-body {
     padding: 0;
@@ -56,5 +55,11 @@
     left: 0;
     background-color: $black;
     z-index: 1050;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .session-page-video {
+    aspect-ratio: 4/3;
   }
 }
