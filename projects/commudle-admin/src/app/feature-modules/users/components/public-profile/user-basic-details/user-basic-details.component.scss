@@ -1,5 +1,9 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+}
+
 .user-personal-details {
   padding: $space-16;
   border-radius: $border-10;
@@ -94,13 +98,14 @@
       font-size: $fs-h4;
       line-height: 19px;
       margin-bottom: $space-4;
-      word-break: break-all;
+      word-break: break-word;
     }
 
     .network {
       margin-bottom: $space-48;
 
       a {
+        margin: 0 $space-4;
         color: $cadet;
         font-size: $fs-h5;
         font-style: italic;
