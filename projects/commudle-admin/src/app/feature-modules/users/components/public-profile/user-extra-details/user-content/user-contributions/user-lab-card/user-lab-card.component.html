@@ -3,8 +3,8 @@
     <img alt="{{lab.name}}" src="{{lab.header_image ? lab.header_image.medium : '/assets/images/Lab-Default.png'}}">
   </nb-card-header>
   <nb-card-body>
-    <div class="user-labs-card-name">{{lab.name}}</div>
-    <div class="user-labs-card-description">{{getDescription()}}</div>
+    <p class="user-labs-card-name">{{lab.name}}</p>
+    <p class="user-labs-card-description">{{getDescription()}}</p>
     <div class="user-labs-card-interactions">
       {{lab.total_visitors}}
       <nb-icon icon="eye"></nb-icon>

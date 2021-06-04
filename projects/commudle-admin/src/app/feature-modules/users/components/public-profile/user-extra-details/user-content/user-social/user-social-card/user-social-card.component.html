@@ -8,8 +8,8 @@
       <div class="user-social-card-tags d-flex">
         <div *ngFor="let tag of socialResource.tags" class="user-social-card-tag">{{tag.name}}</div>
       </div>
-      <div class="user-social-card-title">{{socialResource.title}}</div>
-      <div class="user-social-card-description">{{socialResource.description | truncatetext: 150}}</div>
+      <p class="user-social-card-title">{{socialResource.title}}</p>
+      <p class="user-social-card-description">{{socialResource.description | truncatetext: 150}}</p>
       <img alt="{{socialResource.title}}" class="user-social-card-favicon" src="{{socialResource.favicon}}">
     </a>
     <button (click)="onDialogOpen()" *ngIf="currentUser && currentUser.id === user.id" class="user-social-card-delete"
@@ -28,7 +28,7 @@
       </button>
     </nb-card-header>
     <nb-card-body>
-      <div>Are you sure you want to delete <em>{{socialResource.title}}</em>?</div>
+      <p>Are you sure you want to delete <em>{{socialResource.title}}</em>?</p>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" nbButton status="danger">Cancel</button>

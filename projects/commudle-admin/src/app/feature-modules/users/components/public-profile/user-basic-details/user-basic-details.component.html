@@ -11,11 +11,11 @@
       {{user.name}}
       <img *ngIf="user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
     </div>
-    <div class="username">@{{user.username}}</div>
-    <div *ngIf="user.designation" class="designation">{{user.designation}}</div>
+    <p class="username">@{{user.username}}</p>
+    <p *ngIf="user.designation" class="designation">{{user.designation}}</p>
     <div class="network">
       <a *ngIf="user.is_expert" routerLink="followers">{{user.followers_count || 0}} Followers</a>
-      <a routerLink="following"> {{user.followees_count || 0}} Following </a>
+      <a routerLink="following">{{user.followees_count || 0}} Following</a>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
   <hr *ngIf="user.location || user.about_me">
 
   <div *ngIf="user.location || user.about_me" class="user-details">
-    <div class="heading">About me</div>
+    <p class="heading">About me</p>
     <div *ngIf="user.location" class="location">
       <nb-icon icon="pin"></nb-icon>
       {{user.location}}

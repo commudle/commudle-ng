@@ -5,8 +5,8 @@
     </div>
   </div>
   <div class="user-build-card-content">
-    <div class="user-build-card-name">{{build.name | truncatetext:35}}</div>
-    <div class="user-build-card-description">{{getDescription()}}</div>
+    <p class="user-build-card-name">{{build.name | truncatetext:35}}</p>
+    <p class="user-build-card-description">{{getDescription()}}</p>
   </div>
   <div class="user-build-card-suffix d-flex justify-content-space-between align-items-center">
     <div class="user-build-card-interactions">
@@ -16,7 +16,7 @@
       {{build.chat_messages_count}}
     </div>
     <div class="user-build-card-author d-flex align-items-center">
-      <div class="user-build-card-author-name">{{build.user.name}}</div>
+      <p class="user-build-card-author-name">{{build.user.name}}</p>
       <img alt="{{build.user.name}}" src="{{build.user.avatar}}">
     </div>
   </div>
