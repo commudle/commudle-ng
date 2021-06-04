@@ -1,21 +1,20 @@
 <div class="community-channel-list">
-  <div class="community" *ngIf="selectedCommunity">
+  <div *ngIf="selectedCommunity" class="community">
     <app-community-badge [community]="selectedCommunity"></app-community-badge>
   </div>
   <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
-    <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]">
+    <a [routerLink]="[{outlets: {'p': ['new-channel']}}]" ghost nbButton size="tiny">
       <nb-icon icon="plus"></nb-icon>
       New Channel
     </a>
   </p>
 
-  <div class="channel-group" *ngFor="let chGroup of groupedChannels | keyvalue">
+  <div *ngFor="let chGroup of groupedChannels | keyvalue" class="channel-group">
     <div class="group-name">
+      <p>{{(chGroup.key | uppercase) || 'GENERAL'}}</p>
       <p>
-        {{(chGroup.key | uppercase) || 'GENERAL'}}
-      </p>
-      <p>
-        <a nbButton ghost size="tiny" [routerLink]="[{outlets: {'p': ['new-channel']}}]" [queryParams]="{group_name: chGroup.key}">
+        <a [queryParams]="{group_name: chGroup.key}" [routerLink]="[{outlets: {'p': ['new-channel']}}]" ghost nbButton
+           size="tiny">
           <nb-icon icon="plus"></nb-icon>
         </a>
       </p>
@@ -23,30 +22,31 @@
     <div class="channels">
       <ul>
         <li *ngFor="let channel of chGroup.value">
-          <div class="details" [routerLink]="[channel.id]">
-            <div class="logo" *ngIf="channel.logo">
-              <img src="{{channel.logo.url}}">
+          <div [routerLink]="[channel.id]" class="details">
+            <div *ngIf="channel.logo" class="logo">
+              <img alt="{{channel.name}}" src="{{channel.logo.url}}" title="{{channel.name}}">
             </div>
             <p class="name">
               <a [routerLink]="[channel.id]" routerLinkActive="selected-channel">
-                <span class="private" *ngIf="channel.is_private">
-                  <nb-icon icon="lock" alt="Private Channel"></nb-icon>
+                <span *ngIf="channel.is_private" class="private">
+                  <nb-icon alt="Private Channel" icon="lock"></nb-icon>
                 </span>
                 {{channel.name}}
               </a>
               <app-badge
                 *ngIf="channelNotifications.includes(channel.id) && (!selectedChannel || selectedChannel.id !== channel.id)"
-                [dotMode]="true"
-                [color]="'red'"
-                [position]="'top right'">
-              </app-badge>
+                [color]="'red'" [dotMode]="true" [position]="'top right'"></app-badge>
             </p>
           </div>
-          <p class="settings" *ngIf="currentUser">
-            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]" *ngIf="(!channel.is_private && (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ) || (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))">
+          <p *ngIf="currentUser" class="settings">
+            <a
+              *ngIf="(!channel.is_private && (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ) || (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))"
+              [routerLink]="[{outlets: {'p': ['settings', channel.id, 'invite']}}]">
               <nb-icon icon="person-add"></nb-icon>
             </a>
-            <a [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]" *ngIf="channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)">
+            <a
+              *ngIf="channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)"
+              [routerLink]="[{outlets: {'p': ['settings', channel.id, 'edit']}}]">
               <nb-icon icon="settings"></nb-icon>
             </a>
           </p>

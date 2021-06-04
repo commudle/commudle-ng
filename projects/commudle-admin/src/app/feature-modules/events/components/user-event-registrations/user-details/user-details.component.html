@@ -2,7 +2,7 @@
   <div class="user-details-container">
     <h6>{{ user.name }}</h6>
     <div class="user-avatar">
-      <img src="{{ user.avatar }}" alt="{{ user.name }}">
+      <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}">
     </div>
     <p class="contact-details">
       <small>{{ user.email }}</small>
@@ -24,47 +24,37 @@
   </div>
   <div class="registration-status-details">
     <div class="registration-status-list">
-      <div *ngFor="let rs of registrationStatuses" (click)="event.editable && updateRegistrationStatus(rs.id)">
-        <p *ngIf="rs.name != 'shortlisted'" [ngClass]="{'selected-status': (rs.id == userResponse.registration_status.id), 'disabled': !event.editable}" >{{ rs.name }}</p>
+      <div (click)="event.editable && updateRegistrationStatus(rs.id)" *ngFor="let rs of registrationStatuses">
+        <p *ngIf="rs.name != 'shortlisted'"
+           [ngClass]="{'selected-status': rs.id == userResponse.registration_status.id, 'disabled': !event.editable}">{{ rs.name }}</p>
       </div>
     </div>
-    <div *ngIf="(userResponse.registration_status.name == 'confirmed') && (userResponse.entry_pass != null)">
-      <p class="entry-pass-code">
-        Entry Pass: {{ userResponse.entry_pass.unique_code }}
-      </p>
+    <div *ngIf="userResponse.registration_status.name == 'confirmed' && userResponse.entry_pass != null">
+      <p class="entry-pass-code">Entry Pass: {{ userResponse.entry_pass.unique_code }}</p>
     </div>
-    <div class="action-buttons" *ngIf="event.editable">
-      <div *ngIf="(userResponse.registration_status.name == 'confirmed')">
-        <button  nbButton size="tiny" *ngIf="(userResponse.entry_pass == null)" (click)="generateEntryPass()">
+    <div *ngIf="event.editable" class="action-buttons">
+      <div *ngIf="userResponse.registration_status.name == 'confirmed'">
+        <button (click)="generateEntryPass()" *ngIf="userResponse.entry_pass == null" nbButton size="tiny">
           Generate Entry Pass
         </button>
-        <div class="confirmed-status-actions" *ngIf="(userResponse.entry_pass != null)">
-
-          <button nbButton size="tiny" (click)="openEntryPassEmailWindow()">
+        <div *ngIf="(userResponse.entry_pass != null)" class="confirmed-status-actions">
+          <button (click)="openEntryPassEmailWindow()" nbButton size="tiny">
             Send Entry Pass Email
           </button>
           <div>
-            <button
-              nbButton size="tiny"
-              status="link"
-              [ngClass]="{'active-uninvited': (userResponse.entry_pass.uninvited == true)}"
-              (click)="toggleUninvited()">
+            <button (click)="toggleUninvited()"
+                    [ngClass]="{'active-uninvited': userResponse.entry_pass.uninvited == true}" nbButton size="tiny"
+                    status="link">
               Uninvited
             </button>
-            <button
-              nbButton
-              size="tiny"
-              status="link"
-              [ngClass]="{'active-attendance': (userResponse.entry_pass.attendance == true)}"
-              (click)="toggleAttendance()">
+            <button (click)="toggleAttendance()"
+                    [ngClass]="{'active-attendance': userResponse.entry_pass.attendance == true}" nbButton size="tiny"
+                    status="link">
               Attendance
             </button>
           </div>
-
         </div>
       </div>
-
     </div>
-
   </div>
 </div>

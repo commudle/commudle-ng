@@ -1,14 +1,13 @@
 <nb-card [routerLink]="['/labs', lab.slug]" class="user-labs-card clickable">
   <nb-card-header>
-    <img alt="{{lab.name}}" src="{{lab.header_image ? lab.header_image.medium : '/assets/images/Lab-Default.png'}}">
+    <img alt="{{lab.name}}" src="{{lab.header_image?.medium || '/assets/images/Lab-Default.png'}}" title="{{lab.name}}">
   </nb-card-header>
   <nb-card-body>
     <div class="user-labs-card-name">{{lab.name}}</div>
     <div class="user-labs-card-description">{{getDescription()}}</div>
     <div class="user-labs-card-interactions">
       {{lab.total_visitors}}
-      <nb-icon icon="eye"></nb-icon>
-      &nbsp;
+      <nb-icon icon="eye"></nb-icon>&nbsp;
       {{lab.votes_count}}
       <nb-icon icon="heart"></nb-icon>
     </div>
