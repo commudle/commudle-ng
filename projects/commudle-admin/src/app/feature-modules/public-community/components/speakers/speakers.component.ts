@@ -11,10 +11,8 @@ import { Subscription } from "rxjs";
   styleUrls: ["./speakers.component.scss"],
 })
 export class SpeakersComponent implements OnInit, OnDestroy {
-  speakers: IUser[];
-  speakersLength: number;
+  speakers: IUser[] = [];
   community: ICommunity;
-
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -44,7 +42,6 @@ export class SpeakersComponent implements OnInit, OnDestroy {
       .speakers(this.community.id)
       .subscribe((data) => {
         this.speakers = data.users;
-        this.speakersLength = this.speakers.length;
       });
   }
 }
