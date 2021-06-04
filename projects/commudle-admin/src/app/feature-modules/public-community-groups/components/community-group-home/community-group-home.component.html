@@ -1,7 +1,9 @@
+
 <div class="community-group page-container" *ngIf="communityGroup">
   <div class="logo">
-    <img src="{{communityGroup.logo.url}}" alt="{{communityGroup.name}}">
+    <img alt="{{communityGroup.name}}" src="{{communityGroup.logo.url}}" title="{{communityGroup.name}}">
   </div>
+
   <h1 class="name">
     {{ communityGroup.name }}
   </h1>
@@ -11,6 +13,7 @@
         <div class="menu-items">
           <a [routerLink]="['/orgs', communityGroup.slug]">
             <nb-icon icon="globe-2-outline" status="info"></nb-icon>
+
             <span>
               Communities
             </span>
@@ -23,9 +26,7 @@
           </a>
           <a [routerLink]="['/orgs', communityGroup.slug, 'team']" routerLinkActive="active">
             <nb-icon icon="people-outline" status="primary"></nb-icon>
-            <span>
-              Team
-            </span>
+            <span>Team</span>
           </a>
         </div>
       </nb-card-body>
@@ -35,5 +36,4 @@
   <div>
     <router-outlet></router-outlet>
   </div>
-
 </div>
