@@ -1,18 +1,14 @@
 <div>
   <div class="section main">
     <div class="logo">
-      <img src="/assets/images/commudle-logo128.png" alt="Commudle">
+      <img alt="Commudle" src="/assets/images/commudle-logo128.png" title="Commudle">
     </div>
     <div class="revamp-text">
-      <h3 *ngIf="entityName">
-        {{ entityName }}
-      </h3>
-      <p>
-        Coming alive soon!
-      </p>
+      <h3 *ngIf="entityName">{{ entityName }}</h3>
+      <p> Coming alive soon! </p>
     </div>
 
-    <button nbButton status="danger" [routerLink]="['/']">
+    <button [routerLink]="['/']" nbButton status="danger">
       <nb-icon icon="home-outline"></nb-icon>
       Go To Home
     </button>
