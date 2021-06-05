@@ -1,6 +1,7 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
 .community-group {
+  min-height: 100vh;
   padding: 0 0.5rem;
   div.logo {
     max-width: 200px;
