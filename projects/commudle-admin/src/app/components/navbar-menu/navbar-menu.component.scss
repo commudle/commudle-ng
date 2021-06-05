@@ -5,32 +5,39 @@
   text-align: center;
   
   a { 
-    padding: 0 $space-16;
-    justify-content: center;
+    text-align: center;
+    padding: 0 $space-16 $space-8 $space-16;
     border: none;
     text-decoration: none;
     color: $gunmetal;
-      
-    &::ng-deep {
-      nb-icon {
-        text-align: center;
-        color: rgba($azure, 0.4);
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: auto;
+      &::ng-deep {
+        nb-icon {
+          margin: 0;
+          width: 100%;
+          color: rgba($azure, 0.4);
+        }
       }
     }
 
     .home-navbar-menu-option {
-      font-size: 0.75rem;
-      font-weight: 400;
+      font-size: $fs-12;
+      font-weight: $fw-400;
       line-height: 14px;
-      margin-top: $space-4;
     }
   }
 
   .active {
     border-bottom: 3px solid rgba($azure, 0.8);
-    &::ng-deep {
-      nb-icon {
-        color: rgba($azure, 0.8);
+    .icon {
+      &::ng-deep {
+        nb-icon {
+          color: rgba($azure, 0.8);
+        }
       }
     }
   }
@@ -50,5 +57,11 @@
     nb-action {
       padding: 0;
     }
+  }
+}
+
+@media all and (max-width: $mobile-width) {
+  .home-navbar-menu-options {
+    padding: $space-20 $space-8 0 $space-8 !important;
   }
 }
