@@ -5,10 +5,22 @@
   border: none;
   border-radius: $border-10;
   overflow: hidden;
-  aspect-ratio: 16/9;
+  position: relative;
 
-  nb-card-body {
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: (9 / 16) * 100%;
+  }
+
+  > nb-card-body {
     padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     .fullscreen-btn {
       position: absolute;
@@ -31,6 +43,7 @@
       bottom: 10px;
 
       button {
+        position: relative;
         margin: 0 $space-4;
         border: none;
         z-index: 1;
@@ -41,7 +54,25 @@
         &:hover {
           background-color: rgba($spanish-gray, 0.4);
         }
+
+        nb-icon {
+          margin: 0;
+        }
       }
+    }
+
+    .session-page-window {
+      display: none;
+      position: absolute;
+      width: 300px;
+      right: 0;
+      top: 40px;
+      bottom: 44px;
+      //padding: $space-8;
+      margin: $space-16;
+      background-color: $white;
+      border-radius: $border-10;
+      overflow: hidden;
     }
   }
 
@@ -60,6 +91,8 @@
 
 @media all and (max-width: $tab-width) {
   .session-page-video {
-    aspect-ratio: 4/3;
+    &:before {
+      padding-top: (3 / 4) * 100%;
+    }
   }
 }

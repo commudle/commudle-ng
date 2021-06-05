@@ -1,30 +1,30 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
-import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
-import {DOCUMENT, isPlatformBrowser, Location} from '@angular/common';
-import {ITrackSlot} from 'projects/shared-models/track-slot.model';
-import {IUser} from 'projects/shared-models/user.model';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {IEvent} from 'projects/shared-models/event.model';
-import {IDataFormEntityResponseGroup} from 'projects/shared-models/data_form_entity_response_group.model';
-import {IDiscussion} from 'projects/shared-models/discussion.model';
-import {ISpeakerResource} from 'projects/shared-models/speaker_resource.model';
-import {IEmbeddedVideoStream} from 'projects/shared-models/embedded_video_stream.model';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {ActivatedRoute} from '@angular/router';
-import {TrackSlotsService} from 'projects/commudle-admin/src/app/services/track_slots.service';
-import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
-import {EmbeddedVideoStreamsService} from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
-import {Meta, Title} from '@angular/platform-browser';
-import {UserObjectVisitsService} from 'projects/shared-components/services/user-object-visits.service';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {NbSidebarService} from '@nebular/theme';
-import {CookieService} from 'ngx-cookie-service';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {UserVisitsService} from 'projects/shared-services/user-visits.service';
-import {environment} from 'projects/commudle-admin/src/environments/environment';
-import {EEventStatuses} from 'projects/shared-models/enums/event_statuses.enum';
+import { DOCUMENT, isPlatformBrowser, Location } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { NbSidebarService } from '@nebular/theme';
 import * as moment from 'moment';
-import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
+import { CookieService } from 'ngx-cookie-service';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
+import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import { TrackSlotsService } from 'projects/commudle-admin/src/app/services/track_slots.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { UserObjectVisitsService } from 'projects/shared-components/services/user-object-visits.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
+import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { IEvent } from 'projects/shared-models/event.model';
+import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
+import { ITrackSlot } from 'projects/shared-models/track-slot.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { UserVisitsService } from 'projects/shared-services/user-visits.service';
 
 @Component({
   selector: 'app-session-page',
@@ -270,36 +270,36 @@ export class SessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  tabUpdate(tab, type) {
-    switch (type) {
-      case 'new': {
-        switch (tab) {
-          case 'chat':
-            if (this.currentTab !== 'chat') {
-              this.chatCount += 1;
-            }
-            break;
-          case 'qna':
-            if (this.currentTab !== 'qna') {
-              this.questionCount += 1;
-            }
-            break;
-        }
-        break;
-      }
-      case 'open': {
-        switch (tab) {
-          case 'chat':
-            this.chatCount = 0;
-            break;
-          case 'qna':
-            this.questionCount = 0;
-            break;
-        }
-        break;
-      }
-    }
-  }
+  // tabUpdate(tab, type) {
+  //   switch (type) {
+  //     case 'new': {
+  //       switch (tab) {
+  //         case 'chat':
+  //           if (this.currentTab !== 'chat') {
+  //             this.chatCount += 1;
+  //           }
+  //           break;
+  //         case 'qna':
+  //           if (this.currentTab !== 'qna') {
+  //             this.questionCount += 1;
+  //           }
+  //           break;
+  //       }
+  //       break;
+  //     }
+  //     case 'open': {
+  //       switch (tab) {
+  //         case 'chat':
+  //           this.chatCount = 0;
+  //           break;
+  //         case 'qna':
+  //           this.questionCount = 0;
+  //           break;
+  //       }
+  //       break;
+  //     }
+  //   }
+  // }
 
   markUserObjectVisit(objectType, objectId) {
     if (this.isBrowser) {
@@ -313,15 +313,15 @@ export class SessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  toggleFullScreen(element) {
-    if (!this.isFullscreen && !this.document.fullscreenElement) {
-      if (this.document.body.requestFullscreen) {
-        this.document.body.requestFullscreen().then(r => this.isFullscreen = true);
-      }
-    } else if (this.document.fullscreenElement) {
-      this.document.exitFullscreen().then(r => this.isFullscreen = false);
-    }
-  }
+  // toggleFullScreen(element) {
+  //   if (!this.isFullscreen && !this.document.fullscreenElement) {
+  //     if (this.document.body.requestFullscreen) {
+  //       this.document.body.requestFullscreen().then(r => this.isFullscreen = true);
+  //     }
+  //   } else if (this.document.fullscreenElement) {
+  //     this.document.exitFullscreen().then(r => this.isFullscreen = false);
+  //   }
+  // }
 
   toggleSidebar() {
     this.sidebarMinimize = !this.sidebarMinimize;
