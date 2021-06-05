@@ -21,7 +21,6 @@ export class CommunityGroupAboutComponent implements OnInit {
   ngOnInit() {
     this.subscriptions.push(this.activatedRoute.parent.data.subscribe(
       data => {
-        console.log(data);
         this.communityGroup = data.community_group;
         this.description = this.sanitizer.bypassSecurityTrustHtml(this.communityGroup.description);
 

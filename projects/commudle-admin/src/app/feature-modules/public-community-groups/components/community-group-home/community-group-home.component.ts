@@ -22,7 +22,8 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
     this.footerService.changeFooterStatus(false);
     this.subscriptions.push(this.activatedRoute.data.subscribe(
       data => {
-        this.communityGroup = data.community_group
+        this.communityGroup = data.community_group;
+        console.log(this.communityGroup);
       }
     ));
   }

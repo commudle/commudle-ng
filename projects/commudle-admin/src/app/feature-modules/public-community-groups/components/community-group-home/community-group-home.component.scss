@@ -4,8 +4,9 @@
   min-height: 100vh;
   padding: 0 0.5rem;
   div.logo {
-    max-width: 200px;
-    img: {
+    width: 200px;
+    min-height: 150px;
+    img {
       width: 100%;
     }
   }
