@@ -38,7 +38,7 @@
   }
 
   @media screen and (min-width: 800px){
-    gap: 3.5%;
+    gap: $space-16 3.5%;
     .community {
       width: 300px;
     }

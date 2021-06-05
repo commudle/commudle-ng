@@ -11,4 +11,6 @@ export interface ICommunityGroup {
   website: string;
   linkedin: string;
   logo: IAttachedFile;
+  mini_description: string;
+  community_count_limit?: number;
 }
