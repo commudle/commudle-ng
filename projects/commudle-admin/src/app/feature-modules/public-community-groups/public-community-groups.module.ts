@@ -8,6 +8,7 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { CommunityGroupCommunitiesComponent } from './components/community-group-communities/community-group-communities.component';
 import { CommunityGroupTeamComponent } from './components/community-group-team/community-group-team.component';
 import { CommunityGroupAboutComponent } from './components/community-group-about/community-group-about.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CommunityGroupAboutComponent } from './components/community-group-about
     CommonModule,
     PublicCommunityGroupsRoutingModule,
     SharedComponentsModule,
+    SharedPipesModule,
 
     // Nebular
     NbCardModule,

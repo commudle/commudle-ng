@@ -11,7 +11,22 @@
     }
   }
 
-  h1.name {
-    margin-top: 0;
+  .basic-details {
+    .content {
+      margin-left: $space-16;
+      h1.name {
+        margin-bottom: 0;
+      }
+
+      .tagline {
+        margin-top: 0;
+      }
+
+      .social-links {
+        a {
+          margin: $space-8;
+        }
+      }
+    }
   }
 }
