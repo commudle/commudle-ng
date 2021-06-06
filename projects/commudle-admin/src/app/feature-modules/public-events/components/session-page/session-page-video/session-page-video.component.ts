@@ -21,6 +21,7 @@ export class SessionPageVideoComponent implements OnInit {
   @Input() startTime: Date;
   @Input() endTime: Date;
   @Input() chat: IDiscussion;
+  @Input() qna: IDiscussion;
 
   moment = moment;
   EUserRoles = EUserRoles;

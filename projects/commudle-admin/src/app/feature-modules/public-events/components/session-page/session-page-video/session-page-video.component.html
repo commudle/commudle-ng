@@ -41,7 +41,7 @@
       <app-session-page-chat (newMessage)="newMessage = true" [chat]="chat"></app-session-page-chat>
     </div>
     <div #window class="session-page-window">
-      <app-session-page-qna></app-session-page-qna>
+      <app-session-page-qna (newQna)="newQna = true" [qna]="qna"></app-session-page-qna>
     </div>
     <div #window class="session-page-window">
       <app-session-page-poll></app-session-page-poll>
