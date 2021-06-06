@@ -47,8 +47,8 @@ export class SessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
   chat: IDiscussion;
   currentTab;
 
-  pollableType;
-  pollableId;
+  pollableId: number;
+  pollableType: string;
 
   speakerResource: ISpeakerResource;
   embeddedVideoStream: IEmbeddedVideoStream;
@@ -142,7 +142,7 @@ export class SessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!this.document.fullscreenElement) {
         this.isFullscreen = false;
       }
-    }
+    };
 
     this.resolveData();
     this.subscriptions.push(
@@ -223,12 +223,12 @@ export class SessionPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (this.speaker) {
         this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
-        this.meta.updateTag({name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}`});
-        this.meta.updateTag({name: 'twitter:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}`});
+        this.meta.updateTag({ name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
+        this.meta.updateTag({ name: 'twitter:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
       } else {
         this.title.setTitle(`${this.trackSlot.session_title}`);
-        this.meta.updateTag({name: 'og:title', content: `${this.trackSlot.session_title}`});
-        this.meta.updateTag({name: 'twitter:title', content: `${this.trackSlot.session_title}`});
+        this.meta.updateTag({ name: 'og:title', content: `${this.trackSlot.session_title}` });
+        this.meta.updateTag({ name: 'twitter:title', content: `${this.trackSlot.session_title}` });
       }
     });
   }

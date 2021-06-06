@@ -44,7 +44,7 @@
       <app-session-page-qna (newQna)="newQna = true" [qna]="qna"></app-session-page-qna>
     </div>
     <div #window class="session-page-window">
-      <app-session-page-poll></app-session-page-poll>
+      <app-session-page-poll [pollableId]="pollableId" [pollableType]="pollableType"></app-session-page-poll>
     </div>
   </nb-card-body>
 </nb-card>
