@@ -14,19 +14,19 @@
                       [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"></app-video-stream>
     <div *ngIf="currentUser" class="user-interactions">
       <button (click)="toggleWindow(0)" nbButton shape="round">
-        <nb-badge status="info" text="{{userCount}}"></nb-badge>
+        <nb-badge class="notification" status="info" text="{{userCount}}"></nb-badge>
         <nb-icon icon="people"></nb-icon>
       </button>
       <button (click)="toggleWindow(1)" nbButton shape="round">
-        <nb-badge [dotMode]="true" status="info"></nb-badge>
+        <nb-badge [dotMode]="true" [ngClass]="{'notification': newMessage}" status="info"></nb-badge>
         <nb-icon icon="message-circle"></nb-icon>
       </button>
       <button (click)="toggleWindow(2)" nbButton shape="round">
-        <nb-badge [dotMode]="true" status="info"></nb-badge>
+        <nb-badge [dotMode]="true" [ngClass]="{'notification': newQna}" status="info"></nb-badge>
         <nb-icon icon="question-mark-circle"></nb-icon>
       </button>
       <button (click)="toggleWindow(3)" nbButton shape="round">
-        <nb-badge [dotMode]="true" status="info"></nb-badge>
+        <nb-badge [dotMode]="true" [ngClass]="{'notification': newPoll}" status="info"></nb-badge>
         <nb-icon icon="bar-chart"></nb-icon>
       </button>
     </div>
@@ -38,7 +38,7 @@
       ></app-session-page-viewers>
     </div>
     <div #window class="session-page-window">
-      <app-session-page-chat></app-session-page-chat>
+      <app-session-page-chat (newMessage)="newMessage = true" [chat]="chat"></app-session-page-chat>
     </div>
     <div #window class="session-page-window">
       <app-session-page-qna></app-session-page-qna>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
 
 @Component({
   selector: 'app-session-page-chat',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SessionPageChatComponent implements OnInit {
 
+  @Input() chat: IDiscussion;
+  @Output() newMessage: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  newMessageNotification(): void {
+    this.newMessage.emit();
   }
 
 }

@@ -1,6 +1,6 @@
 <div class="session-page-container">
   <div class="session-page">
-    <app-session-page-video *ngIf="embeddedVideoStream" [currentUser]="currentUser"
+    <app-session-page-video *ngIf="embeddedVideoStream" [chat]="chat" [currentUser]="currentUser"
                             [embeddedVideoStream]="embeddedVideoStream" [endTime]="endTime" [event]="event"
                             [startTime]="startTime" [userRoles]="userRoles"></app-session-page-video>
     <app-session-page-details [community]="community" [event]="event" [speaker]="speaker"
