@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import moment from 'moment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IEvent } from 'projects/shared-models/event.model';
@@ -19,6 +20,7 @@ export class SessionPageVideoComponent implements OnInit {
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
   @Input() startTime: Date;
   @Input() endTime: Date;
+  @Input() chat: IDiscussion;
 
   moment = moment;
   EUserRoles = EUserRoles;
@@ -27,6 +29,9 @@ export class SessionPageVideoComponent implements OnInit {
 
   // For live notifications
   userCount = 0;
+  newMessage = false;
+  newQna = false;
+  newPoll = false;
 
   @ViewChildren('window') windows: QueryList<ElementRef>;
 
@@ -51,6 +56,17 @@ export class SessionPageVideoComponent implements OnInit {
     this.windows.forEach((item, index) => {
       item.nativeElement.style.display = windowNum === index ? item.nativeElement.style.display === 'block' ? 'none' : 'block' : 'none';
     });
+    switch (windowNum) {
+      case 1:
+        this.newMessage = false;
+        break;
+      case 2:
+        this.newQna = false;
+        break;
+      case 3:
+        this.newPoll = false;
+        break;
+    }
   }
 
 }
