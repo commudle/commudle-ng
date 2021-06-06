@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-session-page-poll',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./session-page-poll.component.scss']
 })
 export class SessionPagePollComponent implements OnInit {
+
+  @Input() pollableId: number;
+  @Input() pollableType: string;
 
   constructor() {
   }
