@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {IEvent} from 'projects/shared-models/event.model';
-import {ITrackSlot} from 'projects/shared-models/track-slot.model';
-import {IUser} from 'projects/shared-models/user.model';
+import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IEvent } from 'projects/shared-models/event.model';
+import { ITrackSlot } from 'projects/shared-models/track-slot.model';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
   selector: 'app-session-page-details',
@@ -15,6 +16,11 @@ export class SessionPageDetailsComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() trackSlot: ITrackSlot;
   @Input() speaker: IUser;
+  @Input() userVisitData;
+  @Input() startTime: Date;
+  @Input() endTime: Date;
+
+  moment = moment;
 
   constructor() {
   }

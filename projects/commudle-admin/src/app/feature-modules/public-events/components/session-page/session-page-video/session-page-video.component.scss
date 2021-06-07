@@ -44,13 +44,17 @@
 
       button {
         position: relative;
+        border: none;
+        height: 44px;
+        width: 44px;
         margin: 0 $space-4;
         padding: $space-12;
-        border: none;
-        z-index: 1;
+        font-size: $fs-20;
+        font-weight: $fw-400;
         color: $white;
         background-color: transparent;
         transition: all 0.2s ease-in-out;
+        z-index: 1;
 
         &:hover {
           background-color: rgba($spanish-gray, 0.4);
