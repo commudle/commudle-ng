@@ -35,7 +35,11 @@
         </span>
       </a>
     </nb-list-item>
-
+    <nb-list-item *ngIf="currentUser && currentUser.user_roles.includes(EUserRoles.NEWSLETTER)">
+      <a [routerLink]="['/admin/newsletters']">
+        Newsletters
+      </a>
+    </nb-list-item>
   </nb-list>
 
   <div *ngIf="managedCommunities.length > 0 || managedCommunityGroups.length > 0">

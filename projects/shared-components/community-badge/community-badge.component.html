@@ -1,7 +1,7 @@
 <div class="community-badge {{background}}">
   <a [routerLink]="['/communities', community.slug]">
     <div class="logo">
-      <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+      <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
     </div>
     <div class="name">
       <p>{{ community.name }}</p>

@@ -1,0 +1,30 @@
+<div class="newsletters-index page-padding">
+  <div class="page-container">
+    <nb-card>
+      <nb-card-body>
+        <a nbButton status="primary" [routerLink]="['new']">
+          <nb-icon icon="plus"></nb-icon>
+          Create Newsletter
+        </a>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-body [nbSpinner]="isLoading">
+        <p>
+          <strong>
+            If the newsletter is 'Published', everyone who receives an email (not the test email), will have an option to unsubscribe from future newsletters
+          </strong>
+        </p>
+        <nb-list>
+          <nb-list-item *ngFor="let nl of newsletters">
+            <app-main-newsletter-list-item [newsletter]="nl"></app-main-newsletter-list-item>
+          </nb-list-item>
+        </nb-list>
+        <p *ngIf="!isLoading && this.newsletters.length === 0">
+          No newsletters found
+        </p>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
