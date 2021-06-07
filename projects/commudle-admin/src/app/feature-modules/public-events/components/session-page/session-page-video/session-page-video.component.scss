@@ -6,6 +6,8 @@
   border-radius: $border-10;
   overflow: hidden;
   position: relative;
+  height: 630px;
+  background-color: $black;
 
   &:before {
     display: block;
@@ -37,6 +39,28 @@
       }
     }
 
+    .video-stream {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: (9 / 16) * 100%;
+      }
+
+      > app-video-stream {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
     .user-interactions {
       position: absolute;
       right: 4px;
@@ -54,7 +78,6 @@
         color: $white;
         background-color: transparent;
         transition: all 0.2s ease-in-out;
-        z-index: 1;
 
         &:hover {
           background-color: rgba($spanish-gray, 0.4);
@@ -98,13 +121,5 @@
     left: 0;
     background-color: $black;
     z-index: 1050;
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .session-page-video {
-    &:before {
-      padding-top: (3 / 4) * 100%;
-    }
   }
 }
