@@ -18,6 +18,7 @@ import {
 } from '@nebular/theme';
 import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
@@ -73,6 +74,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     FormsModule,
     ReactiveFormsModule,
     SharedComponentsModule,
+    SharedPipesModule,
     UsersModule,
 
     // Nebular

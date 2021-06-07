@@ -1,6 +1,7 @@
 <nb-card [ngClass]="{'fullscreen': isFullScreen}" class="session-page-video">
   <nb-card-body>
-    <button (click)="toggleFullScreen()" *ngIf="currentUser" class="fullscreen-btn" nbButton shape="round">
+    <button (click)="toggleFullScreen()" *ngIf="currentUser && embeddedVideoStream.source === 'commudle'"
+            class="fullscreen-btn" nbButton shape="round">
       <nb-icon [icon]="isFullScreen ? 'collapse' : 'expand'"></nb-icon>
     </button>
     <app-video-stream [currentUser]="currentUser"
@@ -12,20 +13,20 @@
                       [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
                       [zoomPassword]="embeddedVideoStream.zoom_password"
                       [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"></app-video-stream>
-    <div *ngIf="currentUser" class="user-interactions">
-      <button (click)="toggleWindow(0)" nbButton shape="round">
+    <div *ngIf="currentUser && embeddedVideoStream.source === 'commudle'" class="user-interactions">
+      <button (click)="toggleWindow(0)" nbButton nbTooltip="Viewers" shape="round">
         <nb-badge class="notification" status="info" text="{{userCount}}"></nb-badge>
-        <nb-icon icon="people"></nb-icon>
+        <nb-icon icon="people-outline"></nb-icon>
       </button>
-      <button (click)="toggleWindow(1)" nbButton shape="round">
+      <button (click)="toggleWindow(1)" nbButton nbTooltip="Messages" shape="round">
         <nb-badge [dotMode]="true" [ngClass]="{'notification': newMessage}" status="info"></nb-badge>
-        <nb-icon icon="message-circle"></nb-icon>
+        <nb-icon icon="message-circle-outline"></nb-icon>
       </button>
-      <button (click)="toggleWindow(2)" nbButton shape="round">
+      <button (click)="toggleWindow(2)" nbButton nbTooltip="QnA" shape="round">
         <nb-badge [dotMode]="true" [ngClass]="{'notification': newQna}" status="info"></nb-badge>
-        <nb-icon icon="question-mark-circle"></nb-icon>
+        Q
       </button>
-      <button (click)="toggleWindow(3)" nbButton shape="round">
+      <button (click)="toggleWindow(3)" nbButton nbTooltip="Polls" shape="round">
         <nb-badge [dotMode]="true" [ngClass]="{'notification': newPoll}" status="info"></nb-badge>
         <nb-icon icon="bar-chart"></nb-icon>
       </button>
