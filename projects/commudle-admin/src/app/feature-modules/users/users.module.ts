@@ -47,6 +47,7 @@ import {UserProfileCardLargeComponent} from 'projects/commudle-admin/src/app/fea
 import {UserProfileCardMediumComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/profile-cards/user-profile-card-medium/user-profile-card-medium.component';
 import {UserProfileCardSmallComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/profile-cards/user-profile-card-small/user-profile-card-small.component';
 import {UserBadgesComponent} from './components/public-profile/user-extra-details/user-badges/user-badges.component';
+import {UserBasicSocialComponent} from './components/public-profile/user-basic-social/user-basic-social.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {UserBadgesComponent} from './components/public-profile/user-extra-detail
     UserProfileCardLargeComponent,
     UserProfileCardMediumComponent,
     UserProfileCardSmallComponent,
-    UserBadgesComponent
+    UserBadgesComponent,
+    UserBasicSocialComponent
   ],
   imports: [
     CommonModule,

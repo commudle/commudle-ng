@@ -1,9 +1,7 @@
 <nb-card class="home-labs">
-  <nb-card-header class="clickable" [routerLink]="['/labs']">
+  <nb-card-header [routerLink]="['/labs']" class="clickable">
     Labs
-    <p class="sub-header">
-      Learn from people like you
-    </p>
+    <p class="sub-header">Learn from people like you</p>
   </nb-card-header>
   <nb-card-body>
     <div class="labs-list">
@@ -15,9 +13,7 @@
       <ul *ngIf="labs.length > 0">
         <li *ngFor="let lab of labs" class="clickable">
           <p class="name">
-            <a [routerLink]="['/labs', lab.slug]">
-              {{ lab.name | truncatetext:45 }}
-            </a>
+            <a [routerLink]="['/labs', lab.slug]">{{ lab.name | truncatetext:45 }}</a>
           </p>
           <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
         </li>
@@ -33,8 +29,8 @@
     </div>
     <div *ngIf="labs.length > 0" class="home-labs-mobile">
       <div class="home-labs-mobile-image">
-        <img *ngIf="labs[0].header_image" alt="{{labs[0].name}}" src="{{labs[0].header_image.i350}}">
-        <img *ngIf="!labs[0].header_image" alt="{{labs[0].name}}" src="/assets/images/Lab-Default.png">
+        <img alt="{{labs[0].name}}" src="{{labs[0].header_image?.i350 || '/assets/images/Lab-Default.png'}}"
+             title="{{labs[0].name}}">
       </div>
       <div class="home-labs-mobile-details">
         <div class="home-labs-mobile-name">{{labs[0].name}}</div>

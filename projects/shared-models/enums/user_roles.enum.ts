@@ -7,5 +7,5 @@ export enum EUserRoles {
   SYSTEM_ADMINISTRATOR = "system_administrator",
   COMMUNITY_CHANNEL_ADMIN = "community_channel_admin",
   COMMUNITY_CHANNEL_MEMBER = "community_channel_member",
-
+  NEWSLETTER = "newsletter"
 }
