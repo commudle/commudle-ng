@@ -5,7 +5,7 @@
         {{this.communities.length}} Communities
       </h3>
 
-      <div class="chapters">
+      <div class="chapters d-flex flex-wrap">
         <div class="community" *ngFor="let community of communities" [routerLink]="['/communities', community.slug]">
           <div class="logo d-flex">
             <img src="{{community.logo_path}}">
