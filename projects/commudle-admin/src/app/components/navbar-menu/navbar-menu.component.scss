@@ -1,6 +1,7 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .home-navbar-menu-options {
+  padding-top: $space-8;
   padding-left: $space-8;
   text-align: center;
   
@@ -32,11 +33,11 @@
   }
 
   .active {
-    border-bottom: 3px solid rgba($azure, 0.8);
+    border-bottom: 3px solid rgba($azure, 0.9);
     .icon {
       &::ng-deep {
         nb-icon {
-          color: rgba($azure, 0.8);
+          color: rgba($azure, 0.9);
         }
       }
     }
@@ -48,7 +49,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: $space-20 $space-8 !important;
+    padding: $space-20 $space-8 0 $space-8 !important;
     background-color: $white;
     width: 100vw;
     justify-content: space-around;
