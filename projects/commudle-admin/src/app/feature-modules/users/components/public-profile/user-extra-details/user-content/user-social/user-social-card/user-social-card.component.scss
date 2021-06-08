@@ -33,6 +33,7 @@ p {
       .user-social-card-tags {
         margin-bottom: $space-12;
         gap: $space-4;
+        flex-wrap: wrap;
 
         .user-social-card-tag {
           padding: 0 $space-8;
