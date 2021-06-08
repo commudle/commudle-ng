@@ -3,6 +3,7 @@
 .session-page-poll {
   height: 100%;
   overflow: auto;
+  padding: 0 $space-8;
 
   // Custom scrollbar
   &::-webkit-scrollbar {
