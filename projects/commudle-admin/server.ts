@@ -63,6 +63,11 @@ export function app() {
   }));
 
 
+  server.get('/health-check', (req, res) => {
+    res.status(200).send({ health: 'good' });
+  });
+
+
   server.get('/admin/**', (req, res) => {
     res.sendFile(join(distFolder, 'index.html'));
   });
