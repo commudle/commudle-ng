@@ -1,5 +1,4 @@
 <div *ngIf="currentUser" class="page-padding">
-
   <div class="username">
     <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
       <div>
@@ -18,8 +17,7 @@
           </small>
         </p>
         <p *ngIf="validUsername == false && currentUsername != currentUser.username"
-           class="field-error validation-error-text" icon="alert-circle-outline"
-           status="danger">
+           class="field-error validation-error-text" icon="alert-circle-outline" status="danger">
           <small>
             *Username already taken
           </small>
@@ -27,13 +25,13 @@
       </div>
       <div>
         <button [disabled]="!validUsername || (currentUsername == lastUsername) || checkingUsername"
-                [nbSpinner]="checkingUsername" nbButton size="small" status="success"
-                type="submit">
+                [nbSpinner]="checkingUsername" nbButton size="small" status="success" type="submit">
           Save
         </button>
       </div>
     </form>
   </div>
+
 
   <ng-template #confimChangeUsername let-ref="dialogRef">
     <nb-card>
@@ -43,12 +41,12 @@
       <nb-card-body>
         <p>
           <nb-icon icon="info"></nb-icon>
-          Changing your username will cause the website to reload, are you sure you want to proceed?
+          Are you sure you want to change your username?
         </p>
       </nb-card-body>
-      <nb-card-footer class="d-flex justify-content-space-between">
-        <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
-        <button (click)="setUsername()" nbButton status="success">Save</button>
+      <nb-card-footer class="d-flex justify-content-start">
+        <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+        <button (click)="setUsername()" nbButton status="success">Yes</button>
       </nb-card-footer>
     </nb-card>
   </ng-template>
@@ -58,14 +56,13 @@
       <div>
         <label>
           Profile Picture*
-          <input type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedProfileImage($event)">
+          <input (change)="displaySelectedProfileImage($event)" accept="image/*" fullWidth nbInput type="file">
         </label>
 
         <div>
-          <div class="uploaded-profile" *ngIf="uploadedProfilePicture == null">
-          </div>
-          <div class="uploaded-profile-image" *ngIf="uploadedProfilePicture">
-            <img alt="Profile Picture" src="{{uploadedProfilePicture}}">
+          <div *ngIf="uploadedProfilePicture == null" class="uploaded-profile"></div>
+          <div *ngIf="uploadedProfilePicture" class="uploaded-profile-image">
+            <img alt="Profile Picture" src="{{uploadedProfilePicture}}" title="Profile Picture">
           </div>
         </div>
       </div>
@@ -74,7 +71,7 @@
       <div>
         <label>
           Name*
-          <input type="text" nbInput fullWidth formControlName="name">
+          <input formControlName="name" fullWidth nbInput type="text">
         </label>
         <span
           *ngIf="userProfileForm['controls'].name.touched && userProfileForm['controls'].name.invalid && userProfileForm['controls'].name.errors.required"
@@ -88,7 +85,7 @@
       <div>
         <label>
           What's Your Tagline?*
-          <input type="text" nbInput fullWidth formControlName="designation" placeholder="Blogger, Developer, Designer">
+          <input formControlName="designation" fullWidth nbInput placeholder="Blogger, Developer, Designer" type="text">
         </label>
         <span
           *ngIf="userProfileForm['controls'].designation.touched && userProfileForm['controls'].designation.invalid && userProfileForm['controls'].designation.errors.required"
@@ -124,20 +121,13 @@
     </div>
 
     <div class="row">
-
       <div class="gender-input">
         <label>
           Gender
           <nb-radio-group formControlName="gender" name="gender">
-            <nb-radio value="male">
-              Male
-            </nb-radio>
-            <nb-radio value="female">
-              Female
-            </nb-radio>
-            <nb-radio value="prefer_not_to_answer">
-              Other/Prefer Not To answer
-            </nb-radio>
+            <nb-radio value="male">Male</nb-radio>
+            <nb-radio value="female">Female</nb-radio>
+            <nb-radio value="prefer_not_to_answer">Other/Prefer Not To answer</nb-radio>
           </nb-radio-group>
         </label>
       </div>
@@ -148,14 +138,14 @@
         <label>
           <nb-icon icon="info"></nb-icon>
           Personal Website
-          <input type="url" nbInput fullWidth formControlName="personal_website" placeholder="Enter complete url">
+          <input formControlName="personal_website" fullWidth nbInput placeholder="Enter complete url" type="url">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="github"></nb-icon>
           Github
-          <input type="url" nbInput fullWidth formControlName="github" placeholder="Link to your profile">
+          <input formControlName="github" fullWidth nbInput placeholder="Link to your profile" type="url">
         </label>
       </div>
     </div>
@@ -165,14 +155,14 @@
         <label>
           <nb-icon icon="linkedin"></nb-icon>
           Linkedin
-          <input type="url" nbInput fullWidth formControlName="linkedin" placeholder="Link to your profile">
+          <input formControlName="linkedin" fullWidth nbInput placeholder="Link to your profile" type="url">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="twitter"></nb-icon>
           Twitter
-          <input type="url" nbInput fullWidth formControlName="twitter" placeholder="Link to your profile">
+          <input formControlName="twitter" fullWidth nbInput placeholder="Link to your profile" type="url">
         </label>
       </div>
     </div>
@@ -182,14 +172,14 @@
         <label>
           <nb-icon icon="youtube" pack="fab"></nb-icon>
           Youtube
-          <input type="url" nbInput fullWidth formControlName="youtube" placeholder="Link to your channel">
+          <input formControlName="youtube" fullWidth nbInput placeholder="Link to your channel" type="url">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="medium-m" pack="fab"></nb-icon>
           Medium
-          <input type="url" nbInput fullWidth formControlName="medium" placeholder="Link to your profile / publication">
+          <input formControlName="medium" fullWidth nbInput placeholder="Link to your profile / publication" type="url">
         </label>
       </div>
     </div>
@@ -199,14 +189,14 @@
         <label>
           <nb-icon icon="dribbble" pack="fab"></nb-icon>
           Dribbble
-          <input type="url" nbInput fullWidth formControlName="dribbble" placeholder="Link to your work">
+          <input formControlName="dribbble" fullWidth nbInput placeholder="Link to your work" type="url">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="behance" pack="fab"></nb-icon>
           Behance
-          <input type="url" nbInput fullWidth formControlName="behance" placeholder="Link to your work">
+          <input formControlName="behance" fullWidth nbInput placeholder="Link to your work" type="url">
         </label>
       </div>
     </div>
@@ -216,23 +206,22 @@
         <label>
           <nb-icon icon="gitlab" pack="fab"></nb-icon>
           Gitlab
-          <input type="url" nbInput fullWidth formControlName="gitlab" placeholder="Link to your work">
+          <input formControlName="gitlab" fullWidth nbInput placeholder="Link to your work" type="url">
         </label>
       </div>
       <div>
         <label>
           <nb-icon icon="facebook" pack="fab"></nb-icon>
           Facebook
-          <input type="url" nbInput fullWidth formControlName="facebook" placeholder="Link to your profile / page">
+          <input formControlName="facebook" fullWidth nbInput placeholder="Link to your profile / page" type="url">
         </label>
       </div>
     </div>
 
     <div class="submit-button">
-      <button [disabled]="!userProfileForm.valid" type="submit" status="primary" nbButton fullWidth size="medium">
+      <button [disabled]="!userProfileForm.valid" fullWidth nbButton size="medium" status="primary" type="submit">
         Save
       </button>
     </div>
   </form>
-
 </div>

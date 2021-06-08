@@ -137,12 +137,13 @@ nb-window.full-screen-height {
 
 // responsive page menu
 .page-menu.responsive {
-  position: fixed;
+
   background-color: white;
   width: 100%;
-  bottom: 0;
   left: 0;
   z-index: 10;
+  position: sticky;
+  top: 3.5rem;
 
 
   nb-card {
@@ -187,8 +188,6 @@ nb-window.full-screen-height {
     }
   }
   @media screen and (min-width: 800px){
-    position: sticky;
-    top: 3.5rem;
     box-shadow: none;
     nb-card {
       margin-bottom: 1rem;

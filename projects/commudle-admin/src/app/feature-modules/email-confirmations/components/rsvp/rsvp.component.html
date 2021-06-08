@@ -1,9 +1,8 @@
 <div class="page-padding">
   <div *ngIf="community">
-
     <nb-card>
       <nb-card-body>
-        <div class="status" *ngIf="dferg.registration_status.name === ERegistrationStatuses.CONFIRMED">
+        <div *ngIf="dferg.registration_status.name === ERegistrationStatuses.CONFIRMED" class="status">
           <div class="registration-status">
             <nb-icon icon="person-done-outline" status="success"></nb-icon>
             <p>Congratulations! Your seat is confirmed. We will send you an Entry Pass soon!</p>
@@ -11,7 +10,7 @@
           <div></div>
         </div>
 
-        <div class="status" *ngIf="dferg.registration_status.name === ERegistrationStatuses.CANCELLED">
+        <div *ngIf="dferg.registration_status.name === ERegistrationStatuses.CANCELLED" class="status">
           <div class="registration-status">
             <nb-icon icon="person-delete-outline" status="danger"></nb-icon>
             <p>Thanks for letting us know. We'll see you at another event!</p>
@@ -28,19 +27,14 @@
           </div>
           <div class="community">
             <div class="logo">
-              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
             </div>
             <p>
-              <a [routerLink]="['/communities', community.slug]">
-                {{ community.name }}
-              </a>
+              <a [routerLink]="['/communities', community.slug]">{{ community.name }}</a>
             </p>
           </div>
         </div>
       </nb-card-body>
     </nb-card>
-
   </div>
-
-
 </div>

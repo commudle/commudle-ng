@@ -9,6 +9,7 @@ import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,7 +38,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private communityGroupsService: CommunityGroupsService,
     private userRolesUsersService: UserRolesUsersService,
     private fb: FormBuilder,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -46,6 +49,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.communityGroupsService.show(data.community_group_id).subscribe(
           data => {
             this.communityGroup = data;
+            this.setMeta();
             this.userRolesUserForm.patchValue({
               parent_id: this.communityGroup.slug
             });
@@ -63,6 +67,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
+    this.meta.removeTag("name='robots'");
+
   }
 
 
@@ -110,6 +116,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  setMeta() {
+    this.title.setTitle(`Dashboard | ${this.communityGroup.name}`);
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
+  }
+
 
 
 }
