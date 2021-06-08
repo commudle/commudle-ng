@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.communityGroup} | Dashboard`);
+    this.title.setTitle(`Dashboard | ${this.communityGroup.name}`);
     this.meta.updateTag({
       name: 'robots',
       content: 'noindex'
