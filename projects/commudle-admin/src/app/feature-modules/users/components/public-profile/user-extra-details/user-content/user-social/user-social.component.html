@@ -6,7 +6,7 @@
       Share your content from anywhere on the web!
     </button>
     <button (click)="toggleEditView()" *ngIf="socialResources && socialResources.length > 1"
-            [status]="isEditing ? 'success' : 'warning'" ghost nbButton>
+            ghost nbButton status="{{isEditing ? 'success' : 'warning'}}">
       <nb-icon [icon]="isEditing ? 'checkmark-circle-2' : 'flip-2'"></nb-icon>
       {{isEditing ? 'Save order' : 'Edit order'}}
     </button>
@@ -42,10 +42,11 @@
       <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
             class="user-social-popup-details d-flex flex-column">
         <p class="user-social-popup-heading">Source</p>
-        <img alt="{{linkPreview.title}}" class="user-social-popup-favicon" src="{{linkPreview.favicon}}">
+        <img alt="{{linkPreview.title}}" class="user-social-popup-favicon" src="{{linkPreview.favicon}}"
+             title="{{linkPreview.title}}">
         <p class="user-social-popup-heading">Image</p>
         <div class="user-social-popup-image">
-          <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}">
+          <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}" title="{{linkPreview.title}}">
         </div>
         <p class="user-social-popup-heading">Title*</p>
         <input formControlName="title" fullWidth nbInput type="text">

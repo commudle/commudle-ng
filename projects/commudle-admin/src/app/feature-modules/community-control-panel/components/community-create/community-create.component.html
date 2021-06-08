@@ -5,40 +5,34 @@
     </nb-card-body>
     <nb-card-body *ngIf="communityGroup" class="community-group">
       <div class="logo">
-        <img src="{{communityGroup.logo.url}}" alt="{{communityGroup.name}}">
+        <img alt="{{communityGroup.name}}" src="{{communityGroup.logo.url}}" title="{{communityGroup.name}}">
       </div>
-      <p>
-        {{communityGroup.name}}
-      </p>
-      <h1 class="lh-fw">Add A New Chapter</h1>
+      <p>{{communityGroup.name}}</p>
+      <h1 class="lh-fw">Add A New Community</h1>
     </nb-card-body>
   </nb-card>
   <nb-card class="form-container">
     <nb-card-body>
-      <form [formGroup]="communityForm" (ngSubmit)="createCommunity()">
-
+      <form (ngSubmit)="createCommunity()" [formGroup]="communityForm">
         <div>
           <label fullWidth>
             Name*
-            <input type="text" nbInput fullWidth formControlName="name">
+            <input formControlName="name" fullWidth nbInput type="text">
           </label>
         </div>
         <div>
           <label>
             Email*
-            <input type="text" nbInput fullWidth formControlName="contact_email">
+            <input formControlName="contact_email" fullWidth nbInput type="text">
           </label>
         </div>
 
-
         <div>
-          <button [disabled]="!communityForm.valid" type="submit" nbButton status="primary" fullWidth>
+          <button [disabled]="!communityForm.valid" fullWidth nbButton status="primary" type="submit">
             Save
           </button>
         </div>
-
       </form>
     </nb-card-body>
   </nb-card>
-
 </div>

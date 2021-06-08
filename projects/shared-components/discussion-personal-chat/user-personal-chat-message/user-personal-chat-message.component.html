@@ -1,7 +1,7 @@
 <div>
   <div class="message">
     <div class="author-image">
-      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}">
+      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}">
     </div>
     <div class="content-controls">
       <div class="author-details">
@@ -10,11 +10,9 @@
             <span class="name">{{message.user.name}}</span>
             <span class="username">@{{message.user.username}}</span>
             <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"
-                 src="/assets/images/Expert-Tick.svg">
+                 src="/assets/images/Expert-Tick.svg" title="Expert Tick">
           </div>
-          <div class="date">
-            {{moment(message.created_at).format("MMM D [']YY")}}
-          </div>
+          <div class="date">{{moment(message.created_at).format("MMM D [']YY")}}</div>
         </div>
       </div>
       <div class="content">{{ message.content }}</div>
@@ -26,11 +24,9 @@
             <nb-icon icon="flag-outline"></nb-icon>
           </p>
         </div>
-        <div
-          (click)="login() && (currentUser && message.user.id === currentUser.id) && emitDelete(message.id)"
-          *ngIf="currentUser && message.user.id === currentUser.id"
-          class="clickable"
-          nbTooltip="Delete" nbTooltipStatus="warning">
+        <div (click)="login() && (currentUser && message.user.id === currentUser.id) && emitDelete(message.id)"
+             *ngIf="currentUser && message.user.id === currentUser.id" class="clickable" nbTooltip="Delete"
+             nbTooltipStatus="warning">
           <p>
             <nb-icon icon="close-circle-outline"></nb-icon>
           </p>
@@ -57,28 +53,15 @@
   </div>
   <div *ngIf="canReply" class="replies-container">
     <div *ngFor="let rep of message.user_messages" class="reply-message">
-      <app-user-personal-chat-message
-        (sendDelete)="emitDelete($event)"
-        (sendFlag)="emitFlag($event)"
-        (sendVote)="emitVote($event)"
-        [allActions]="allActions"
-        [canReply]="false"
-        [currentUser]="currentUser"
-        [message]="rep"
-        [permittedActions]="permittedActions"
-      ></app-user-personal-chat-message>
+      <app-user-personal-chat-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)"
+                                      (sendVote)="emitVote($event)" [allActions]="allActions" [canReply]="false"
+                                      [currentUser]="currentUser" [message]="rep"
+                                      [permittedActions]="permittedActions"></app-user-personal-chat-message>
     </div>
-
     <div *ngIf="showReplyForm" class="reply-form">
       <form (ngSubmit)="emitReply()" *ngIf="canReply" [formGroup]="userMessageReplyForm">
-        <input
-          fieldSize="tiny"
-          formControlName="content"
-          fullWidth
-          nbInput
-          placeholder="Reply (max 200 characters)"
-          type="text"
-        >
+        <input fieldSize="tiny" formControlName="content" fullWidth nbInput placeholder="Reply (max 200 characters)"
+               type="text">
         <button [disabled]="!userMessageReplyForm.valid" fullWidth nbButton size="tiny" status="info" type="submit">
           <nb-icon icon="corner-down-left-outline"></nb-icon>
         </button>

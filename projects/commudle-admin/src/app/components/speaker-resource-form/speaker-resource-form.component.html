@@ -1,25 +1,24 @@
-<div class="speaker-resource-form page-padding" *ngIf="this.speakerResource">
+<div *ngIf="this.speakerResource" class="speaker-resource-form page-padding">
   <nb-card>
     <nb-card-body>
-      <div class="details" *ngIf="this.community">
+      <div *ngIf="this.community" class="details">
         <div class="community">
           <div class="logo">
-            <img src="{{community.logo_path}}" alt="{{ community.name }}">
+            <img alt="{{ community.name }}" src="{{community.logo_path}}" title="{{ community.name }}">
           </div>
           <div>
             <p>{{ community.name }}</p>
           </div>
         </div>
         <div class="event">
-          <h5>
-            {{speakerResource.event.name}}
-          </h5>
+          <h5>{{speakerResource.event.name}}</h5>
         </div>
         <div>
           <p>
             Hi
             <strong>{{ speakerResource.user.name }}</strong>,
-            we think that the content shared by you is something that people will benefit from even after the event. Please fill this short form!
+            we think that the content shared by you is something that people will benefit from even after the event.
+            Please fill this short form!
           </p>
           <p>
             Also, please do update your profile on <a [routerLink]="['/my-profile/edit']">THIS LINK</a>
@@ -32,51 +31,53 @@
   <nb-card>
     <nb-card-body>
       <div class="form">
-        <form [formGroup]="speakerResourceForm" (ngSubmit)="submitForm()">
+        <form (ngSubmit)="submitForm()" [formGroup]="speakerResourceForm">
           <div>
             <label>
               Title*
-              <input type="text" nbInput fullWidth formControlName="title">
+              <input formControlName="title" fullWidth nbInput type="text">
             </label>
-            <span *ngIf="speakerResourceForm['controls'].title.touched && speakerResourceForm['controls'].title.invalid && speakerResourceForm['controls'].title.errors.required" class="validation-error-text">
+            <span
+              *ngIf="speakerResourceForm['controls'].title.touched && speakerResourceForm['controls'].title.invalid && speakerResourceForm['controls'].title.errors.required"
+              class="validation-error-text">
               Required Field
             </span>
           </div>
           <div>
             <label>
               Do you have a Google Slides Presentation?
-              <span class="open-window-link" (click)="openGoogleSlidesEmbedStepsWindow()">
+              <span (click)="openGoogleSlidesEmbedStepsWindow()" class="open-window-link">
                 Steps to embed Google Slides
               </span>
               <br>
               <small>These will be shared after the event with everyone!</small>
-              <input type="text" nbInput fullWidth formControlName="embedded_content" placeholder="Paste the embed code here">
+              <input formControlName="embedded_content" fullWidth nbInput placeholder="Paste the embed code here"
+                     type="text">
             </label>
           </div>
-          <div class="embedded-slides" *ngIf="embedGoogleSlidesCode" [innerHTML]="embedGoogleSlidesCode">
-          </div>
+          <div *ngIf="embedGoogleSlidesCode" [innerHTML]="embedGoogleSlidesCode" class="embedded-slides"></div>
           <div>
             <label>
               Session Details*
-              <textarea type="text" nbInput fullWidth formControlName="session_details_links" placeholder="My session is about..."></textarea>
+              <textarea formControlName="session_details_links" fullWidth nbInput placeholder="My session is about..."
+                        type="text"></textarea>
             </label>
-            <span *ngIf="speakerResourceForm['controls'].session_details_links.touched && speakerResourceForm['controls'].session_details_links.invalid && speakerResourceForm['controls'].session_details_links.errors.required" class="validation-error-text">
+            <span
+              *ngIf="speakerResourceForm['controls'].session_details_links.touched && speakerResourceForm['controls'].session_details_links.invalid && speakerResourceForm['controls'].session_details_links.errors.required"
+              class="validation-error-text">
               Required Field
             </span>
           </div>
 
           <div>
-            <button [disabled]="!speakerResourceForm.valid" type="submit" nbButton fullWidth status="info">
+            <button [disabled]="!speakerResourceForm.valid" fullWidth nbButton status="info" type="submit">
               Save
             </button>
           </div>
         </form>
       </div>
-
     </nb-card-body>
   </nb-card>
-
-
 
   <!-- Templates for embedding steps -->
   <ng-template #googleSlidesEmbed>
@@ -88,7 +89,8 @@
         <li>
           Choose a publishing option:
           <strong>
-            Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the slides <strong>(Default)</strong>.
+            Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the slides
+            <strong>(Default)</strong>.
           </strong>
         </li>
         <li>
@@ -99,8 +101,11 @@
           <small>
             <code>
               <div>
-                <div>&lt;iframe src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"&gt;&lt;/iframe&gt;</div>
+                <div>&lt;iframe src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000"
+                  frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true"
+                  webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
                 </div>
+              </div>
             </code>
           </small>
         </li>
@@ -116,6 +121,4 @@
       </p>
     </div>
   </ng-template>
-
-
 </div>
