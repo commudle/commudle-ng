@@ -2,12 +2,12 @@
   <nb-card-body>
     <nb-actions>
       <nb-action>
-        <div class="user-past-event-date">{{pastEvent.event.start_time | date: 'MMM d'}}</div>
-        <div class="user-past-event-date">{{pastEvent.event.start_time | date: 'YYYY'}}</div>
+        <p class="user-past-event-date">{{pastEvent.event.start_time | date: 'MMM d'}}</p>
+        <p class="user-past-event-date">{{pastEvent.event.start_time | date: 'YYYY'}}</p>
       </nb-action>
       <nb-action>
-        <div class="user-past-event-title">{{pastEvent.title | truncatetext:18}}</div>
-        <div class="user-past-event-description">{{pastEvent.event.name | truncatetext:21}}</div>
+        <p class="user-past-event-title">{{pastEvent.title | truncatetext:18}}</p>
+        <p class="user-past-event-description">{{pastEvent.event.name | truncatetext:21}}</p>
       </nb-action>
     </nb-actions>
   </nb-card-body>
