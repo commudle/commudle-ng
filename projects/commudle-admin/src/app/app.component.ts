@@ -128,7 +128,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   checkHTTPS() {
     if (this.isBrowser) {
       if (environment.production && location.protocol !== 'https:') {
-        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+        // location.replace(`https:${location.href.substring(location.protocol.length)}`);
       }
     }
   }
