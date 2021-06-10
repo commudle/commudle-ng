@@ -91,6 +91,11 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     );
   }
 
+  // TODO: Remove the below function after 1 month (Added on 10-06-2021)
+  // autocompleteDisplay(value) {
+  //   return value.name;
+  // }
+
   checkTyping() {
     this.input.nativeElement.value === "" ? this.typing = false : this.typing = true;
   }
