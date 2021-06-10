@@ -100,7 +100,6 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   clientPings() {
     if (this.isBrowser) {
       if (this.pingInterval) {
-        console.log('Pinged');
         clearInterval(this.pingInterval);
       }
 
