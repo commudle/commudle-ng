@@ -30,13 +30,20 @@
       type="text"
       [value]="selectedCommunity"
       (input)="onChange()"
+      (keyup)="checkTyping()"
       placeholder="Enter Name..."
       [nbAutocomplete]="auto" />
 
-      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)" [handleDisplayFn]="autocompleteDisplay">
+      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
 
         <nb-option *ngFor="let option of communities" [value]="option">
+          <div class="logo">
+            <img src="{{option.logo_path}}">
+          </div>
           {{ option.name }}
+        </nb-option>
+        <nb-option disabled *ngIf="communities.length===0 && typing">
+          No Results
         </nb-option>
 
       </nb-autocomplete>

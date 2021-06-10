@@ -32,3 +32,20 @@
     }
   }
 }
+
+::ng-deep .cdk-overlay-container {
+  nb-option-list {
+    .option-list {
+      nb-option {
+        .logo {
+          max-width:25px;
+          max-height:25px;
+          margin-right: 5px;
+          img {
+            width:100%;
+          }
+        }
+      }
+    }
+  }
+}

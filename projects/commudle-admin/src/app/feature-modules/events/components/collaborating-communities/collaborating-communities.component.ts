@@ -21,7 +21,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
 
   communities: ICommunity[];
   selectedCommunity = '';
-
+  typing: boolean = false;
 
   collaborationCommunities: IEventCollaborationCommunity[] = [];
 
@@ -40,6 +40,8 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   onSelectionChange($event) {
     this.createCollaboration($event.id);
     this.selectedCommunity = '';
+    this.input.nativeElement.value = '';
+    this.communities=[];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -89,8 +91,8 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     );
   }
 
-  autocompleteDisplay(value) {
-    return value.name;
+  checkTyping() {
+    this.input.nativeElement.value === "" ? this.typing = false : this.typing = true;
   }
 
 }
