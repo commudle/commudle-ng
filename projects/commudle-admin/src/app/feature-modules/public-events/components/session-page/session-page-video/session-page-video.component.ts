@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
-import moment from 'moment';
+import * as moment from 'moment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';

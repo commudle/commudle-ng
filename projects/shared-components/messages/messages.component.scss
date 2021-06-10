@@ -1,0 +1,14 @@
+//@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.messages-container {
+  height: 100%;
+
+  app-messages-list {
+    height: 100%;
+  }
+
+  .send-message {
+    position: sticky;
+    bottom: 0;
+  }
+}
