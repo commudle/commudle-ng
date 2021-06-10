@@ -35,8 +35,8 @@
                     </strong>
                   </p>
                   <div>
-                    <p class="question-responses">
-                      {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                    <p class="question-responses" [innerHTML]="getQuestionResponse(row.data_form_entity_response_values, question.id) | textToLinks">
+                      <!-- {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }} -->
                     </p>
                   </div>
                 </div>
@@ -123,11 +123,11 @@
 
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               <div style="height: 100px;" class="row-cell question mobile-hidden">
-                <p class="question-responses" *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100" nbTooltip="{{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}">
-                  {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                <p class="question-responses" *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length > 100" nbTooltip="{{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}" [innerHTML]="getQuestionResponse(row.data_form_entity_response_values, question.id) | textToLinks">
+                  <!-- {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }} -->
                 </p>
-                <p class="question-responses" *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length <= 100">
-                  {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }}
+                <p class="question-responses" *ngIf="getQuestionResponse(row.data_form_entity_response_values, question.id).length <= 100" [innerHTML]="getQuestionResponse(row.data_form_entity_response_values, question.id) | textToLinks">
+                  <!-- {{ getQuestionResponse(row.data_form_entity_response_values, question.id) }} -->
                 </p>
               </div>
             </ng-template>
