@@ -19,22 +19,22 @@
       </div>
     </div>
     <div *ngIf="event.editable">
-      <label for="nb-input">
+      <label>
         <p>
           <nb-icon icon="info-circle" pack="fas"></nb-icon>
           Type 3 or more characters to get the results
         </p>
-      </label>
 
-      <input #autoInput
-      nbInput
-      id="nb-input"
-      type="text"
-      [value]="selectedCommunity"
-      (input)="onChange()"
-      (keyup)="checkTyping()"
-      placeholder="Enter Name..."
-      [nbAutocomplete]="auto" />
+        <input #autoInput
+        nbInput
+        id="nb-input"
+        type="text"
+        [value]="selectedCommunity"
+        (input)="onChange()"
+        (keyup)="checkTyping()"
+        placeholder="Enter Name..."
+        [nbAutocomplete]="auto" />
+      </label>
 
       <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
 
