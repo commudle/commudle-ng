@@ -97,7 +97,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   // }
 
   checkTyping() {
-    this.input.nativeElement.value === "" ? this.typing = false : this.typing = true;
+    this.typing = this.input.nativeElement.value.length > 2 ;
   }
 
 }
