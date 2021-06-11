@@ -17,7 +17,7 @@
             <img *ngIf="speaker.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
                  title="Expert Tick">
           </p>
-          <p class="designation">{{speaker.designation | truncatetext: 60}}</p>
+          <p *ngIf="speaker.designation" class="designation">{{speaker.designation | truncatetext: 60}}</p>
         </div>
       </div>
     </a>
