@@ -36,11 +36,11 @@
 
       <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
 
-        <nb-option *ngFor="let option of communities" [value]="option">
+        <nb-option *ngFor="let community of communities" [value]="community">
           <div class="logo">
-            <img src="{{option.logo_path}}">
+            <img src="{{community.logo_path}}" alt="{{ community.name }}" title="{{ community.name }}">
           </div>
-          {{ option.name }}
+          {{ community.name }}
         </nb-option>
         <nb-option disabled *ngIf="communities.length===0 && typing">
           No Results

@@ -21,7 +21,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
 
   communities: ICommunity[];
   selectedCommunity = '';
-  typing: boolean = false;
+  typing = false;
 
   collaborationCommunities: IEventCollaborationCommunity[] = [];
 
