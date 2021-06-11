@@ -84,6 +84,20 @@ nb-card {
           font-size: $fs-card-secondary;
           font-weight: $fw-500;
         }
+
+        .user-card-tags {
+          margin: $space-5 $space-5 $space-10 0;
+          gap: $space-2;
+          flex-wrap: wrap;
+
+          .user-card-tag {
+            padding: 0 $space-8;
+            font-size: $fs-card-secondary;
+            color: $neon-blue;
+            background-color: $lavender;
+            border-radius: $border-20;
+          }
+        }
       }
     }
   }
