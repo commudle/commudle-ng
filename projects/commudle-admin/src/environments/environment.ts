@@ -14,12 +14,12 @@ export const environment = {
   session_cookie_name: 'cmdle_sess',
 
 
-  app_url: 'https://commudle.com',
+  app_url: 'https://www.commudle.com',
   base_url: 'https://json.commudle.com',
   action_cable_url: 'https://json.commudle.com/live',
   anycable_url: 'wss://ws.commudle.com/cable',
   auth_cookie_name: 'commudle_user_auth',
-  zoom_call_server_url: 'https://zoom.commudle.com',
+  zoom_call_server_url: 'https://zoom.commudle.com'
 };
 
 /*
