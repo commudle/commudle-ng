@@ -80,6 +80,11 @@ export const API_ROUTES = {
     }
   },
 
+  DATA_FORM_ENTITY_RESPONSES: {
+    EXISTING_RESPONSES: 'api/v2/data_form_entity_responses/existing_response',
+    SUBMIT_FORM_RESPONSE: 'api/v2/data_form_entity_responses/submit_form_response'
+  },
+
   // data_forms
   COMMUNITY_DATA_FORMS: 'api/v2/data_forms/community_data_forms',
   GET_DATA_FORM: 'api/v2/data_forms',
@@ -234,6 +239,23 @@ export const API_ROUTES = {
     }
   },
 
+
+  MAIN_NEWSLETTERS: {
+    CREATE: 'api/v2/main_newsletters',
+    SHOW: 'api/v2/main_newsletters',
+    UPDATE: 'api/v2/main_newsletters',
+    DELETE: 'api/v2/main_newsletters',
+    UPDATE_STATUS: 'api/v2/main_newsletters/update_status',
+    ATTACH_TEXT_IMAGE: 'api/v2/main_newsletters/attach_text_image',
+    SET_SCHEDULE: 'api/v2/main_newsletters/set_schedule',
+    RESET_SCHEDULE: 'api/v2/main_newsletters/reset_schedule',
+    SEND_TEST_EMAIL: 'api/v2/main_newsletters/send_test_email',
+    EMAIL_STATS: 'api/v2/main_newsletters/email_stats',
+    ADMIN: {
+      INDEX: 'api/v2/main_newsletters/admin'
+    }
+  },
+
   POLLS: {
     PUBLIC: {
       SHOW: 'api/v2/polls/public',
@@ -292,10 +314,7 @@ export const API_ROUTES = {
   },
 
 
-  DATA_FORM_ENTITY_RESPONSES: {
-    EXISTING_RESPONSES: 'api/v2/data_form_entity_responses/existing_response',
-    SUBMIT_FORM_RESPONSE: 'api/v2/data_form_entity_responses/submit_form_response'
-  },
+
 
   USERS: {
     GET_PROFILE: 'api/v2/users',

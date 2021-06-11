@@ -1,25 +1,19 @@
 <div>
   <div class="collaboration-communities">
-    <div class="community" *ngFor="let col of collaborationCommunities;  let i = index;">
+    <div *ngFor="let col of collaborationCommunities;  let i = index;" class="community">
       <div class="logo">
         <a [routerLink]="['/communities', col.community.slug]">
-          <img src="{{ col.community.logo_path }}" alt="{{ col.community.name }}">
+          <img alt="{{ col.community.name }}" src="{{ col.community.logo_path }}" title="{{ col.community.name }}">
         </a>
       </div>
       <div class="details">
-        <p>
-          {{col.community.name | slice:0:10}}
-        </p>
-        <div class="actions" *ngIf="event.editable">
-          <a *ngIf="!col.approved" (click)="resendConfirmationEmail(col.id)" class="clickable">
-            <small>
-              Resend Request
-            </small>
+        <p> {{col.community.name | slice:0:10}} </p>
+        <div *ngIf="event.editable" class="actions">
+          <a (click)="resendConfirmationEmail(col.id)" *ngIf="!col.approved" class="clickable">
+            <small> Resend Request </small>
           </a>
           <a (click)="removeCollaboration(col.id, i)" class="clickable">
-            <small>
-              Remove
-            </small>
+            <small> Remove </small>
           </a>
         </div>
       </div>
@@ -57,5 +51,4 @@
       </nb-autocomplete>
     </div>
   </div>
-
 </div>

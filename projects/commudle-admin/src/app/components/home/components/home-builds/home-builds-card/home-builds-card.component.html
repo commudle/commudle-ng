@@ -16,9 +16,9 @@
       <nb-icon icon="message-circle"></nb-icon>
       {{build.chat_messages_count}}
     </div>
-    <div class="home-build-card-author d-flex align-items-center" [routerLink]="['/users', build.user.username]">
+    <div [routerLink]="['/users', build.user.username]" class="home-build-card-author d-flex align-items-center">
       <div class="home-build-card-author-name">{{build.user.name}}</div>
-      <img alt="{{build.user.name}}" src="{{build.user.avatar}}">
+      <img alt="{{build.user.name}}" src="{{build.user.avatar}}" title="{{build.user.name}}">
     </div>
   </div>
 </div>

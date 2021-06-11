@@ -82,6 +82,7 @@ import {HomeHeadBannerComponent} from './components/home/components/home-head-ba
 import {HomeExternalFeedLinksComponent} from './components/home/components/home-external-feed-links/home-external-feed-links.component';
 import {LabsModule} from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
 import {SearchBarComponent} from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
+import {MainNewslettersModule} from './feature-modules/main-newsletters/main-newsletters.module';
 
 export function initApp(appInitService: AppInitService) {
   return () => appInitService.initializeApp();
@@ -130,10 +131,11 @@ export function initApp(appInitService: AppInitService) {
     SharedPipesModule,
     UserChatsModule,
     UsersModule,
+    LabsModule,
     CommunityChannelsModule,
     SkeletonScreensModule,
     PublicCommunityModule,
-
+    MainNewslettersModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -171,9 +173,7 @@ export function initApp(appInitService: AppInitService) {
     // Other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    CommunityChannelsModule,
-    LabsModule
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     AppInitService,
