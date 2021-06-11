@@ -25,8 +25,16 @@
       </div>
     </div>
     <div *ngIf="event.editable">
+      <label for="nb-input">
+        <p>
+          <nb-icon icon="info-circle" pack="fas"></nb-icon>
+          Type 3 or more characters to get the results
+        </p>
+      </label>
+
       <input #autoInput
       nbInput
+      id="nb-input"
       type="text"
       [value]="selectedCommunity"
       (input)="onChange()"
