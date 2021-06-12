@@ -179,6 +179,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     } else {
       this.mainNewsLettersService.create(formData).subscribe(
         data => {
+          this.newsLetter = data;
           this.isLoading = false;
           this.toastLogService.successDialog('Saved', 2000);
           this.markFormPristine();
