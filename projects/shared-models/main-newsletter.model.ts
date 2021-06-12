@@ -7,6 +7,7 @@ export interface IMainNewsletter {
   slug: string;
   content: string;
   email_subject: string;
+  sender?: string;
   created_at: Date;
   published_at: Date;
   status: EMainNewsletterStatuses,
