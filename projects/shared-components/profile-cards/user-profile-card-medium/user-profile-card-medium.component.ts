@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IUser} from 'projects/shared-models/user.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
   selector: 'app-user-profile-card-medium',
