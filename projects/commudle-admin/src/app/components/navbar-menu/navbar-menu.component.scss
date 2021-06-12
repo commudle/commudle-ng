@@ -4,10 +4,10 @@
   padding-top: $space-8;
   padding-left: $space-8;
   text-align: center;
-  
-  a { 
+
+  a {
     text-align: center;
-    padding: 0 $space-16 $space-8 $space-16;
+    padding: 0 $space-16 $space-6 $space-16;
     border: none;
     text-decoration: none;
     color: $gunmetal;
@@ -16,6 +16,7 @@
       width: 1.5rem;
       height: 1.5rem;
       margin: auto;
+
       &::ng-deep {
         nb-icon {
           margin: 0;
@@ -34,6 +35,7 @@
 
   .active {
     border-bottom: 3px solid rgba($azure, 0.9);
+
     .icon {
       &::ng-deep {
         nb-icon {

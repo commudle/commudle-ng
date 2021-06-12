@@ -9,12 +9,12 @@ p {
   margin: 0;
 }
 
-.user-profile-medium {
+.user-profile-large {
   background-color: $white;
 
   .avatar {
-    width: 37px;
-    height: 37px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     overflow: hidden;
 
@@ -24,26 +24,30 @@ p {
   }
 
   .details {
-    margin-left: $space-6;
+    margin-left: $space-16;
     color: $black;
 
     .name {
-      font-size: $fs-h6;
-      line-height: 14px;
-      font-weight: $fw-700;
-      color: $neon-blue;
+      font-size: $fs-18;
+      line-height: 21px;
 
       img {
         margin-left: $space-4;
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
       }
     }
 
+    .username {
+      font-size: $fs-h6;
+      line-height: 14px;
+      color: rgba($gunmetal, 0.85);
+    }
+
     .designation {
-      font-size: $fs-h7;
-      line-height: 12px;
-      font-weight: $fw-600;
+      margin-top: $space-4;
+      font-size: $fs-h5;
+      line-height: 16px;
     }
   }
 }

@@ -1,4 +1,3 @@
-import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
@@ -11,16 +10,19 @@ export class CookieConsentService {
   private acceptConsentValue = 'true';
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private cookieService: CookieService
-  ) { }
+  ) {
+  }
 
   acceptCookieConsent() {
-    isPlatformBrowser(this.platformId) ? this.cookieService.set(this.cookieConsentKey, 'true', 30, environment.base_url) : false;
+    if (isPlatformBrowser(this.platformId)) {
+      this.cookieService.set(this.cookieConsentKey, this.acceptConsentValue, 60, '/');
+    }
   }
 
   isCookieConsentAccepted(): boolean {
-    const consentValue = (isPlatformBrowser(this.platformId) ? this.cookieService.get(this.cookieConsentKey) : false);
+    const consentValue = isPlatformBrowser(this.platformId) ? this.cookieService.get(this.cookieConsentKey) : 'false';
     return consentValue === this.acceptConsentValue;
   }
 }
