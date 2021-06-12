@@ -60,6 +60,10 @@
                     margin: 0 $space-16 0 $space-8;
                   }
 
+                  a, a:hover, a:focus, a:active {
+                    text-decoration: none;
+                  }
+
                   .name {
                     text-transform: capitalize;
                     color: $neon-blue;
