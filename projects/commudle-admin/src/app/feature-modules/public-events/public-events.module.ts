@@ -16,7 +16,6 @@ import {
   NbTooltipModule,
   NbUserModule
 } from '@nebular/theme';
-import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AgendaComponent } from './components/agenda/agenda.component';
@@ -75,7 +74,6 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     ReactiveFormsModule,
     SharedComponentsModule,
     SharedPipesModule,
-    UsersModule,
 
     // Nebular
     NbCardModule,

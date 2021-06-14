@@ -48,6 +48,9 @@ import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-fo
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
 import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.component';
 import { PollsComponent } from './polls/polls.component';
+import { UserProfileCardLargeComponent } from './profile-cards/user-profile-card-large/user-profile-card-large.component';
+import { UserProfileCardMediumComponent } from './profile-cards/user-profile-card-medium/user-profile-card-medium.component';
+import { UserProfileCardSmallComponent } from './profile-cards/user-profile-card-small/user-profile-card-small.component';
 import { TagComponent } from './tag/tag.component';
 import { UserLiveStatusComponent } from './user-live-status/user-live-status.component';
 import { UserObjectVisitPixelComponent } from './user-object-visit-pixel/user-object-visit-pixel.component';
@@ -92,6 +95,9 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     UserLiveStatusComponent,
     TagComponent,
     FlagsDisplayComponent,
+    UserProfileCardLargeComponent,
+    UserProfileCardMediumComponent,
+    UserProfileCardSmallComponent,
     MessagesComponent,
     MessagesListComponent,
     MessageComponent
@@ -149,6 +155,9 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     UserLiveStatusComponent,
     TagComponent,
     FlagsDisplayComponent,
+    UserProfileCardLargeComponent,
+    UserProfileCardMediumComponent,
+    UserProfileCardSmallComponent,
     MessagesComponent
   ]
 })
