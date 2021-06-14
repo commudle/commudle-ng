@@ -44,6 +44,7 @@ export class SessionPageVideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.embeddedVideoStream.source);
   }
 
   toggleFullScreen(): void {

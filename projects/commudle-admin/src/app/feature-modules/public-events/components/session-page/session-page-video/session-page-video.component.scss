@@ -5,24 +5,26 @@
   border: none;
   border-radius: $border-10;
   overflow: hidden;
-  position: relative;
-  height: 630px;
-  background-color: $black;
+  height: calc(100vh - 56px - 16px - 16px);
 
-  &:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: (9 / 16) * 100%;
+  &.internal-link {
+    background-color: $black;
   }
 
-  > nb-card-body {
+  &.external-link {
+    height: 150px;
+
+    nb-card-body {
+      .video-stream {
+        position: initial;
+        height: initial;
+      }
+    }
+  }
+
+  nb-card-body {
     padding: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    height: inherit;
 
     .fullscreen-btn {
       position: absolute;
@@ -42,29 +44,14 @@
     .video-stream {
       position: relative;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      &:before {
-        display: block;
-        content: "";
-        width: 100%;
-        padding-top: (9 / 16) * 100%;
-      }
-
-      > app-video-stream {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
+      transform: translateY(-50%);
+      height: min(calc(100vh - 56px - 16px - 16px), calc(100vw * 9 / 16));
     }
 
     .user-interactions {
       position: absolute;
       right: 4px;
-      bottom: 10px;
+      bottom: 4px;
 
       button {
         position: relative;
@@ -119,7 +106,12 @@
     width: 100vw;
     top: 0;
     left: 0;
-    background-color: $black;
     z-index: 1050;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .session-page-video {
+    height: calc(100vh - 56px - 16px - 16px - 44px);
   }
 }
