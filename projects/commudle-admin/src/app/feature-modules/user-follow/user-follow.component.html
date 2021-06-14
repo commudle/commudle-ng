@@ -1,4 +1,4 @@
-<div *ngIf="user && user.is_expert" class="user-follow">
+<div *ngIf="currentUser?.id !== user?.id" class="user-follow">
   <button (click)="openDialog(userFollowDialog)" [ngClass]="{'active': isFollowing}" class="follow-btn anim-shadow"
           nbButton size="small">
     <nb-icon *ngIf="showIcon" [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
