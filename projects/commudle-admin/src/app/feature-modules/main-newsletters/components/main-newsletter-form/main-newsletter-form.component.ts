@@ -85,6 +85,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   form = this.fb.group({
     title: ['', Validators.required],
     email_subject: ['', Validators.required],
+    sender: [''],
     content: ['', Validators.required]
   })
 
@@ -118,6 +119,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
                 this.form.patchValue({
                   title: this.newsLetter.title,
                   email_subject: this.newsLetter.email_subject,
+                  sender: this.newsLetter.sender,
                   content: this.newsLetter.content
                 });
                 this.form.markAsPristine();
@@ -179,6 +181,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
     } else {
       this.mainNewsLettersService.create(formData).subscribe(
         data => {
+          this.newsLetter = data;
           this.isLoading = false;
           this.toastLogService.successDialog('Saved', 2000);
           this.markFormPristine();
