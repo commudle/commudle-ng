@@ -1,21 +1,26 @@
-<nb-card [ngClass]="{'fullscreen': isFullScreen}" class="session-page-video">
+<nb-card
+  [ngClass]="{'fullscreen': isFullScreen, 'internal-link': ['commudle', 'youtube'].includes(embeddedVideoStream.source), 'external-link': ['external_link', 'jitsi'].includes(embeddedVideoStream.source)}"
+  class="session-page-video">
   <nb-card-body>
-    <button (click)="toggleFullScreen()" *ngIf="currentUser && embeddedVideoStream.source === 'commudle'"
-            class="fullscreen-btn" nbButton shape="round">
+    <button (click)="toggleFullScreen()"
+            *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source)" class="fullscreen-btn"
+            nbButton shape="round">
       <nb-icon [icon]="isFullScreen ? 'collapse' : 'expand'"></nb-icon>
     </button>
-    <div class="video-stream">
+    <div #videoStream class="video-stream">
       <app-video-stream [currentUser]="currentUser"
                         [fillerText]="!currentUser ? 'Login to Access' : (moment() < moment(startTime) ? 'Starting in ' + moment(startTime).fromNow(true) : 'Loading Video...')"
-                        [hmsRoomId]="embeddedVideoStream.hms_room_id" [started]="moment() >= moment(startTime)"
-                        [userEmail]="currentUser?.email || ''" [userName]="currentUser?.name || ''"
+                        [height]="videoStream.clientHeight" [hmsRoomId]="embeddedVideoStream.hms_room_id"
+                        [started]="moment() >= moment(startTime)" [userEmail]="currentUser?.email || ''"
+                        [userName]="currentUser?.name || ''"
                         [videoCode]="!currentUser || (moment() < moment(startTime)) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
-                        [videoSource]="embeddedVideoStream.source" [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
+                        [videoSource]="embeddedVideoStream.source" [width]="videoStream.clientWidth"
+                        [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
                         [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
                         [zoomPassword]="embeddedVideoStream.zoom_password"
                         [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"></app-video-stream>
     </div>
-    <div *ngIf="currentUser && embeddedVideoStream.source === 'commudle'" class="user-interactions">
+    <div *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source)" class="user-interactions">
       <button (click)="toggleWindow(0)" nbButton nbTooltip="Viewers" shape="round">
         <nb-badge class="notification" status="info" text="{{userCount}}"></nb-badge>
         <nb-icon icon="people-outline"></nb-icon>

@@ -4,8 +4,8 @@
   padding-top: $space-8;
   padding-left: $space-8;
   text-align: center;
-  
-  a { 
+
+  a {
     text-align: center;
     padding: 0 $space-16 $space-8 $space-16;
     border: none;
@@ -16,6 +16,7 @@
       width: 1.5rem;
       height: 1.5rem;
       margin: auto;
+
       &::ng-deep {
         nb-icon {
           margin: 0;
@@ -34,6 +35,7 @@
 
   .active {
     border-bottom: 3px solid rgba($azure, 0.9);
+
     .icon {
       &::ng-deep {
         nb-icon {
@@ -49,7 +51,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: $space-20 $space-8 0 $space-8 !important;
+    padding: $space-12 $space-8 0 $space-8 !important;
     background-color: $white;
     width: 100vw;
     justify-content: space-around;
@@ -58,11 +60,5 @@
     nb-action {
       padding: 0;
     }
-  }
-}
-
-@media all and (max-width: $mobile-width) {
-  .home-navbar-menu-options {
-    padding: $space-20 $space-8 0 $space-8 !important;
   }
 }
