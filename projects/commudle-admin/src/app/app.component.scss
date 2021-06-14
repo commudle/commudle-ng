@@ -340,7 +340,7 @@
   }
 }
 
-:host::ng-deep {
+::ng-deep {
   .cdk-overlay-container {
     .cookie-consent {
       nb-card-header {
