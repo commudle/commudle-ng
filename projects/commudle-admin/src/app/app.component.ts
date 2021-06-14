@@ -104,7 +104,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
       setTimeout(() => {
         this.windowService.open(CookieConsentComponent, {
           title: 'Let\'s Share Cookies!',
-          initialState: NbWindowState.MAXIMIZED
+          initialState: NbWindowState.MAXIMIZED,
+          windowClass: 'cookie-consent'
         });
       }, 3000);
     }

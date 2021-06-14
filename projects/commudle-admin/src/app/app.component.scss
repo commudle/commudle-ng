@@ -342,9 +342,11 @@
 
 :host::ng-deep {
   .cdk-overlay-container {
-    nb-card-header {
-      button {
-        display: none;
+    .cookie-consent {
+      nb-card-header {
+        button {
+          display: none;
+        }
       }
     }
   }
