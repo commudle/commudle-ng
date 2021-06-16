@@ -64,6 +64,10 @@ const routes: Routes = [
     component: SpeakerResourceFormComponent
   },
   {
+    path: 'forms',
+    loadChildren: () => import('./feature-modules/data-forms/data-forms.module').then(m => m.DataFormsModule)
+  },
+  {
     path: 'sys-admin',
     loadChildren: () => import('./feature-modules/sys-admin/sys-admin.module').then(m => m.SysAdminModule),
     canActivate: [AuthGuard]
@@ -79,7 +83,7 @@ const routes: Routes = [
   {
     path: 'labs',
     loadChildren: () => import('./feature-modules/labs/labs.module').then(m => m.LabsModule)
-  },  
+  },
   {
     path: 'pricing',
     loadChildren: () => import('./feature-modules/pricing/pricing.module').then(m => m.PricingModule)
