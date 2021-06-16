@@ -23,4 +23,8 @@
   &::-webkit-scrollbar-thumb:hover {
     background-color: darken($light-purple, 8%);
   }
+
+  .messages-list {
+    padding-right: $space-8;
+  }
 }

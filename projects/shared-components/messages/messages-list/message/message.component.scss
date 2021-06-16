@@ -8,11 +8,14 @@ p {
 }
 
 .message-container {
-  padding: $space-8;
+  padding: $space-8 0 $space-8 $space-8;
 
   .prefix {
+    width: 100%;
+
     .avatar {
       max-width: 32px;
+      min-width: 32px;
       max-height: 32px;
       overflow: hidden;
       border-radius: $border-50;
@@ -23,75 +26,69 @@ p {
       }
     }
 
-    .user {
+    .user-container {
+      width: 100%;
       margin-left: $space-8;
 
-      .name {
-        font-weight: $fw-500;
+      .user {
+        .name {
+          text-decoration: none;
+          color: inherit;
+          font-weight: $fw-600;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .expert-icon {
+          margin-left: $space-4;
+          width: 12px;
+          height: 12px;
+        }
       }
 
-      .expert-icon {
-        margin-left: $space-4;
-        width: 12px;
-        height: 12px;
-      }
-
-      .username {
-        margin-top: $space-4;
-        font-size: $fs-h6;
-        line-height: 14px;
-        color: $spanish-gray;
+      .content {
+        margin: $space-4 0;
       }
     }
-  }
-
-  .content {
-    margin: $space-8 0;
   }
 
   .suffix {
-    .time {
-      font-size: $fs-h6;
-      color: $spanish-gray;
-      align-self: center;
-    }
+    margin-left: $space-32;
 
-    nb-actions {
-      margin-left: $space-12;
+    app-votes-display {
+      &::ng-deep {
+        .votes {
+          p {
+            height: 18px;
+            font-size: $fs-h6;
 
-      app-votes-display {
-        &::ng-deep {
-          .votes {
-            p {
-              height: 18px;
-              font-size: $fs-h6;
+            .count {
+              color: $spanish-gray;
+            }
 
-              .count {
-                color: $spanish-gray;
-              }
-
-              nb-icon {
-                font-size: $fs-13;
-              }
+            nb-icon {
+              font-size: $fs-13;
             }
           }
         }
       }
+    }
 
-      nb-action {
-        border: none;
-        padding: 0 $space-8;
+    nb-action {
+      border: none;
+      padding: 0 $space-8;
 
-        p {
-          margin-top: $space-1;
-          font-size: $fs-h6;
-          line-height: 14px;
-          color: $spanish-gray;
-        }
+      p {
+        margin-top: $space-1;
+        font-size: $fs-h6;
+        line-height: 14px;
+        color: $spanish-gray;
+      }
 
-        nb-icon {
-          font-size: $fs-13;
-        }
+      nb-icon {
+        font-size: $fs-13;
       }
     }
   }

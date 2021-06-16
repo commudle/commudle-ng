@@ -25,6 +25,7 @@
 
   nb-list-item {
     position: relative;
+    padding: $space-8;
     transition: all 0.2s ease-in;
 
     .invite-to-stage {
