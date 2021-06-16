@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'projects/shared-models/data_form.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,13 +8,13 @@ import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-edit-data-form',
   templateUrl: './edit-data-form.component.html',
   styleUrls: ['./edit-data-form.component.scss']
 })
-export class EditDataFormComponent implements OnInit {
+export class EditDataFormComponent implements OnInit, OnDestroy {
   faTrashAlt = faTrashAlt;
   faPlus = faPlus;
   dataForm: IDataForm;
@@ -99,10 +99,15 @@ export class EditDataFormComponent implements OnInit {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private meta: Meta
   ) { }
 
   ngOnInit() {
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'noindex'
+    });
     // get the question types
     this.activatedRoute.data.subscribe((data) => {
       this.questionTypes = data.questionTypes.question_types;
@@ -131,6 +136,11 @@ export class EditDataFormComponent implements OnInit {
     });
 
 
+  }
+
+
+  ngOnDestroy() {
+    this.meta.removeTag("name='robots'");
   }
 
   fillExistingDataForm() {
@@ -192,7 +202,7 @@ export class EditDataFormComponent implements OnInit {
   cloneCommunityDataForm() {
     this.dataFormsService.cloneCommunityForm(this.dataForm.id).subscribe(
       data => {
-        this.router.navigate(['/admin/forms', data.id, 'edit']);
+        this.router.navigate(['/forms', data.id, 'edit']);
         this.toastLogService.successDialog('Form Cloned!');
       }
     );
