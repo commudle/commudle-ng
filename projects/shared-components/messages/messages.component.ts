@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionChatChannel } from 'projects/shared-components/services/websockets/discussion-chat.channel';
@@ -30,10 +30,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
   count = 20;
   isLoadingMessages = true;
   showMessagesLoader = true;
+  showEmojiPicker = false;
 
   messageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
   });
+
+  @ViewChild('messageInput') messageInput: ElementRef<HTMLInputElement>;
 
   subscriptions: Subscription[] = [];
 
@@ -122,12 +125,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(): void {
-    const messageContent = this.messageForm.value;
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.ADD, { user_message: messageContent }
-    );
-    this.messageForm.reset();
-    this.messageForm.updateValueAndValidity();
+    if (this.messageForm.valid) {
+      const messageContent = this.messageForm.value;
+      this.discussionChatChannel.sendData(
+        this.discussionChatChannel.ACTIONS.ADD, { user_message: messageContent }
+      );
+      this.messageForm.reset();
+      this.messageForm.updateValueAndValidity();
+    }
   }
 
   sendReply(value): void {
@@ -148,6 +153,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.discussionChatChannel.sendData(
       this.discussionChatChannel.ACTIONS.DELETE, { user_message_id: messageId }
     );
+  }
+
+  addEmoji(event): void {
+    this.messageForm.patchValue({
+      content: (this.messageForm.get('content').value || '').concat(`${event.emoji.native}`)
+    });
+    this.messageInput.nativeElement.focus();
   }
 
 }

@@ -37,8 +37,13 @@
                  *ngFor="let reply of message.user_messages" [allActions]="allActions" [canReply]="false"
                  [currentUser]="currentUser" [message]="reply" [permittedActions]="permittedActions"></app-message>
     <div *ngIf="showReplyForm" class="reply-form">
+      <emoji-mart (emojiSelect)="addEmoji($event)" [ngClass]="{'active': showEmojiPicker}" [style]="{width: '100%'}"
+                  set="twitter" title="Select an emoji"></emoji-mart>
       <form (submit)="emitReply()" [formGroup]="replyForm">
         <nb-form-field>
+          <button (click)="showEmojiPicker = !showEmojiPicker" ghost nbButton nbPrefix size="tiny" type="button">
+            <nb-icon icon="grin" pack="far"></nb-icon>
+          </button>
           <input fieldSize="tiny" formControlName="content" fullWidth maxlength="200" minlength="1" nbInput
                  placeholder="Reply" type="text">
           <button [disabled]="!replyForm.valid" ghost nbButton nbSuffix size="tiny">

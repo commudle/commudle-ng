@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
@@ -24,9 +24,13 @@ export class MessageComponent implements OnInit {
   moment = moment;
 
   showReplyForm = false;
+  showEmojiPicker = false;
+
   replyForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
   });
+
+  @ViewChild('messageInput') messageInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private fb: FormBuilder
@@ -37,10 +41,12 @@ export class MessageComponent implements OnInit {
   }
 
   emitReply(): void {
-    this.sendReply.emit(this.replyForm.value);
-    this.replyForm.reset();
-    this.replyForm.updateValueAndValidity();
-    this.showReplyForm = false;
+    if (this.replyForm.valid) {
+      this.sendReply.emit(this.replyForm.value);
+      this.replyForm.reset();
+      this.replyForm.updateValueAndValidity();
+      this.showReplyForm = false;
+    }
   }
 
   emitFlag(messageId: number): void {
@@ -49,6 +55,13 @@ export class MessageComponent implements OnInit {
 
   emitDelete(messageId: number): void {
     this.sendDelete.emit(messageId);
+  }
+
+  addEmoji(event): void {
+    this.replyForm.patchValue({
+      content: (this.replyForm.get('content').value || '').concat(`${event.emoji.native}`)
+    });
+    this.messageInput.nativeElement.focus();
   }
 
 }

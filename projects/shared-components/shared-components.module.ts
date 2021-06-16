@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -111,6 +112,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     SharedPipesModule,
     NgxDatatableModule,
     HmsVideoModule,
+    PickerModule,
 
     // Nebular
     NbButtonModule,
