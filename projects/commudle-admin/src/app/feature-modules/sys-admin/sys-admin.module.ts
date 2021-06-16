@@ -8,6 +8,7 @@ import { NbCardModule, NbWindowModule, NbIconModule, NbButtonModule, NbListModul
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { LabsComponent } from './components/labs/labs.component';
+import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { LabsComponent } from './components/labs/labs.component';
     AdminSurveysComponent,
     CommunityBuildsComponent,
     LabsComponent,
+    CommunityControlsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,8 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+
+.actions {
+  a, button, nb-select {
+    margin: $space-8;
+  }
+}

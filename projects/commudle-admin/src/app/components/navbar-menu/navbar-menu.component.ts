@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 
 @Component({
   selector: 'app-navbar-menu',

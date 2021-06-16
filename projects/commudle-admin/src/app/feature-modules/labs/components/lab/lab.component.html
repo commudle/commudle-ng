@@ -4,7 +4,7 @@
       <nb-icon (click)="ref.close()" icon="close"></nb-icon>
     </nb-card-header>
     <nb-card-body>
-      <img [src]="src" alt="" class="image">
+      <img [src]="src" alt="Image" class="Image">
     </nb-card-body>
   </nb-card>
 </ng-template>
@@ -28,20 +28,20 @@
       <nb-card>
         <nb-card-body>
           <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
-            <p class="lab-title">
-              {{lab.name}}
-            </p>
+            <p class="lab-title">{{lab.name}}</p>
             <div class="lab-detail d-flex justify-content-space-between">
-              <div class="user-profile d-flex justify-content-start">
+              <div class="user-profile d-flex justify-content-start align-items-center">
                 <div class="avatar">
-                  <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}">
+                  <a [routerLink]="['/users', lab.user.username]" target="_blank">
+                    <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}" title="{{lab.user.name}}">
+                  </a>
                 </div>
-                <div class="details">
-                  <p>
-                    created by
-                    <span class="name">{{lab.user.name}}</span>
+                <div class="details d-flex align-items-center">
+                  <p class="d-flex align-items-center">
+                    created by&nbsp;
+                    <a [routerLink]="['/users', lab.user.username]" target="_blank" class="name">{{lab.user.name}}</a>
                     <img *ngIf="lab.user.is_expert" alt="Expert Tick" class="expert-icon"
-                         src="/assets/images/Expert-Tick.svg">&nbsp;
+                         src="/assets/images/Expert-Tick.svg" title="Expert Tick">&nbsp;
                     <span class="date">{{lab.created_at | date}}</span>
                   </p>
                 </div>
@@ -51,7 +51,7 @@
               </div>
             </div>
             <div *ngIf="lab.header_image" class="header-image">
-              <img alt="{{ lab.name }}" src="{{ lab.header_image.url }}">
+              <img alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}">
             </div>
             <div #introCon [innerHTML]="labDescription" class="intro-content"></div>
           </div>

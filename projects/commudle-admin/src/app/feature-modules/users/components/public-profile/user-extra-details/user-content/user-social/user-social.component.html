@@ -1,14 +1,12 @@
 <div class="user-social">
-  <div class="header" *ngIf="socialResources && socialResources.length > 0">
-    My Content
-  </div>
+  <p *ngIf="socialResources && socialResources.length > 0" class="header">My Content</p>
   <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add d-flex">
     <button (click)="onOpenDialog()" ghost nbButton status="primary">
       <nb-icon icon="plus-circle"></nb-icon>
       Share your content from anywhere on the web!
     </button>
     <button (click)="toggleEditView()" *ngIf="socialResources && socialResources.length > 1"
-            [status]="isEditing ? 'success' : 'warning'" ghost nbButton>
+            ghost nbButton status="{{isEditing ? 'success' : 'warning'}}">
       <nb-icon [icon]="isEditing ? 'checkmark-circle-2' : 'flip-2'"></nb-icon>
       {{isEditing ? 'Save order' : 'Edit order'}}
     </button>
@@ -30,7 +28,7 @@
 <ng-template #addLinkDialog>
   <nb-card class="user-social-popup max-full-height-dialog-card">
     <nb-card-header class="d-flex justify-content-space-between">
-      <div>Share your content from the Web</div>
+      <p>Share your content from the Web</p>
       <button (click)="onCloseDialog()" nbButton size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
@@ -38,23 +36,24 @@
     <nb-card-body [nbSpinner]="isLoading">
       <nb-form-field>
         <nb-icon icon="link" nbPrefix></nb-icon>
-        <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" nbInput fullWidth
+        <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" fullWidth nbInput
                placeholder="Paste a link to begin" type="url">
       </nb-form-field>
       <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
             class="user-social-popup-details d-flex flex-column">
-        <div class="user-social-popup-heading">Source</div>
-        <img alt="{{linkPreview.title}}" class="user-social-popup-favicon" src="{{linkPreview.favicon}}">
-        <div class="user-social-popup-heading">Image</div>
+        <p class="user-social-popup-heading">Source</p>
+        <img alt="{{linkPreview.title}}" class="user-social-popup-favicon" src="{{linkPreview.favicon}}"
+             title="{{linkPreview.title}}">
+        <p class="user-social-popup-heading">Image</p>
         <div class="user-social-popup-image">
-          <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}">
+          <img alt="{{linkPreview.title}}" src="{{linkPreview.images[0]}}" title="{{linkPreview.title}}">
         </div>
-        <div class="user-social-popup-heading">Title*</div>
+        <p class="user-social-popup-heading">Title*</p>
         <input formControlName="title" fullWidth nbInput type="text">
-        <div class="user-social-popup-heading">Description*</div>
+        <p class="user-social-popup-heading">Description*</p>
         <textarea formControlName="description" fullWidth nbInput rows="5"
                   type="text"></textarea>
-        <div class="user-social-popup-heading">Tags*</div>
+        <p class="user-social-popup-heading">Tags*</p>
         <app-tag (tagAdd)="addTag($event)" (tagDelete)="removeTag($event)" [editable]="true" [tags]="tags"></app-tag>
       </form>
     </nb-card-body>

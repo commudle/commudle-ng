@@ -1,12 +1,14 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
 .chat-window {
-  margin-left: 5px;
+  margin-left: $space-5;
 
   nb-card {
     height: 100%;
     margin: 0;
 
     nb-card-header {
-      padding: 0.25rem 0.375rem;
+      padding: $space-4 $space-6;
 
       .window-options {
         display: flex;
@@ -18,5 +20,11 @@
       transition: all 0.2s ease-in-out;
       padding: 0;
     }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .chat-window {
+    margin-bottom: $space-56;
   }
 }

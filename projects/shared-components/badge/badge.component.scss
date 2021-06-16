@@ -38,3 +38,16 @@ div {
   top: 0;
   right: 0;
 }
+
+:host.top.left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+:host.right.center {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}

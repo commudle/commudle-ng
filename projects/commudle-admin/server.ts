@@ -3,6 +3,7 @@ import 'zone.js/dist/zone-node';
 const domino = require('domino');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 const template = fs.readFileSync(path.join(__dirname, '../../dist', 'commudle-admin', 'index.html')).toString();
 const win = domino.createWindow(template);
 class MediaStream{};
@@ -47,6 +48,10 @@ export function app() {
   const distFolder = join(process.cwd(), 'dist/commudle-admin');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
+
+  // cors configuration for 301 redirects
+  server.use(cors());
+
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
@@ -61,6 +66,11 @@ export function app() {
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
+
+
+  server.get('/health-check', (req, res) => {
+    res.status(200).send({ health: 'good' });
+  });
 
 
   server.get('/admin/**', (req, res) => {
