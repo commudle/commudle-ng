@@ -2,29 +2,31 @@
 
 .messages-list-container {
   height: calc(100% - 40px);
-  overflow: auto;
-
-  // Custom scrollbar
-  &::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: darken($light-purple, 5%);
-    border-radius: $border-10;
-    border: 3px solid transparent;
-    background-clip: content-box;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: darken($light-purple, 8%);
-  }
+  overflow: hidden;
 
   .messages-list {
     padding-right: $space-8;
+    height: calc(100% - 32px);
+    overflow: auto;
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: darken($light-purple, 5%);
+      border-radius: $border-10;
+      border: 3px solid transparent;
+      background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: darken($light-purple, 8%);
+    }
   }
 }

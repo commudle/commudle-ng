@@ -1,4 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import * as moment from 'moment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -8,7 +19,7 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
   templateUrl: './messages-list.component.html',
   styleUrls: ['./messages-list.component.scss']
 })
-export class MessagesListComponent implements OnInit {
+export class MessagesListComponent implements OnInit, AfterViewInit {
 
   @Input() messages: IUserMessage[] = [];
   @Input() currentUser: ICurrentUser;
@@ -21,11 +32,21 @@ export class MessagesListComponent implements OnInit {
   @Output() sendDelete: EventEmitter<number> = new EventEmitter<number>();
 
   moment = moment;
+  messageContainer: any;
+  isNearBottom: boolean;
+
+  @ViewChild('messagesList') messagesList: ElementRef<HTMLDivElement>;
+  @ViewChildren('message') messageElements: QueryList<any>;
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.messageContainer = this.messagesList.nativeElement;
+    this.messageElements.changes.subscribe(() => this.onMessageElementsChanged());
   }
 
   emitReply(messageId: number, content): void {
@@ -38,6 +59,30 @@ export class MessagesListComponent implements OnInit {
 
   emitDelete(messageId: number): void {
     this.sendDelete.emit(messageId);
+  }
+
+  onMessageElementsChanged(): void {
+    if (this.isNearBottom) {
+      this.scrollToBottom();
+    }
+  }
+
+  scrollToBottom(): void {
+    this.messageContainer.scroll({
+      top: this.messageContainer.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+
+  onScroll(): void {
+    this.isNearBottom = this.isUserNearBottom();
+  }
+
+  isUserNearBottom(): boolean {
+    const threshold = 150;
+    const position = this.messageContainer.scrollTop + this.messageContainer.offsetHeight;
+    const height = this.messageContainer.scrollHeight;
+    return position > height - threshold;
   }
 
 }
