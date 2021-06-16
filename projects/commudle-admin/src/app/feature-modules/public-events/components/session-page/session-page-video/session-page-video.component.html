@@ -7,13 +7,13 @@
             nbButton shape="round">
       <nb-icon [icon]="isFullScreen ? 'collapse' : 'expand'"></nb-icon>
     </button>
-    <div #videoStream class="video-stream">
+    <div #videoStream [ngClass]="{'compressed': compressVideoStream}" class="video-stream">
       <app-video-stream [currentUser]="currentUser"
                         [fillerText]="!currentUser ? 'Login to Access' : (moment() < moment(startTime) ? 'Starting in ' + moment(startTime).fromNow(true) : 'Loading Video...')"
                         [height]="videoStream.clientHeight" [hmsRoomId]="embeddedVideoStream.hms_room_id"
                         [started]="moment() >= moment(startTime)" [userEmail]="currentUser?.email || ''"
                         [userName]="currentUser?.name || ''"
-                        [videoCode]="!currentUser || (moment() < moment(startTime)) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
+                        [videoCode]="!currentUser || moment() < moment(startTime) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
                         [videoSource]="embeddedVideoStream.source" [width]="videoStream.clientWidth"
                         [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
                         [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
@@ -21,37 +21,46 @@
                         [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"></app-video-stream>
     </div>
     <div *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source)" class="user-interactions">
-      <button (click)="toggleWindow(0)" nbButton nbTooltip="Viewers" shape="round">
+      <button (click)="toggleWindow(0)" nbButton nbTooltip="Info" shape="round">
+        <nb-icon icon="info-outline"></nb-icon>
+      </button>
+      <button (click)="toggleWindow(1)" nbButton nbTooltip="Viewers" shape="round">
         <nb-badge class="notification" status="info" text="{{userCount}}"></nb-badge>
         <nb-icon icon="people-outline"></nb-icon>
       </button>
-      <button (click)="toggleWindow(1)" nbButton nbTooltip="Messages" shape="round">
+      <button (click)="toggleWindow(2)" nbButton nbTooltip="Messages" shape="round">
         <nb-badge [dotMode]="true" [ngClass]="{'notification': newMessage}" status="info"></nb-badge>
         <nb-icon icon="message-circle-outline"></nb-icon>
       </button>
-      <button (click)="toggleWindow(2)" nbButton nbTooltip="QnA" shape="round">
+      <button (click)="toggleWindow(3)" nbButton nbTooltip="QnA" shape="round">
         <nb-badge [dotMode]="true" [ngClass]="{'notification': newQna}" status="info"></nb-badge>
         Q
       </button>
-      <button (click)="toggleWindow(3)" nbButton nbTooltip="Polls" shape="round">
+      <button (click)="toggleWindow(4)" nbButton nbTooltip="Polls" shape="round">
         <nb-badge [dotMode]="true" [ngClass]="{'notification': newPoll}" status="info"></nb-badge>
         <nb-icon icon="bar-chart"></nb-icon>
       </button>
     </div>
-    <div #window class="session-page-window">
+    <div #interactionWindow class="session-page-window">
+      <app-session-page-details [community]="community" [endTime]="endTime" [event]="event" [speaker]="speaker"
+                                [startTime]="startTime" [trackSlot]="trackSlot"
+                                [userVisitData]="userVisitData"></app-session-page-details>
+    </div>
+    <div #interactionWindow class="session-page-window">
       <app-session-page-viewers (userCount)="userCount = $event"
                                 [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"
                                 [embeddedVideoStream]="embeddedVideoStream" [event]="event"
                                 [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes(EUserRoles.EVENT_VOLUNTEER)"
       ></app-session-page-viewers>
     </div>
-    <div #window class="session-page-window">
-      <app-session-page-chat (newMessage)="newMessage = true" [chat]="chat"></app-session-page-chat>
+    <div #interactionWindow class="session-page-window">
+      <app-session-page-chat (newMessage)="newMessage = getStatusOfInteractionWindow(2)"
+                             [chat]="chat"></app-session-page-chat>
     </div>
-    <div #window class="session-page-window">
-      <app-session-page-qna (newQna)="newQna = true" [qna]="qna"></app-session-page-qna>
+    <div #interactionWindow class="session-page-window">
+      <app-session-page-qna (newQna)="newQna = getStatusOfInteractionWindow(3)" [qna]="qna"></app-session-page-qna>
     </div>
-    <div #window class="session-page-window">
+    <div #interactionWindow class="session-page-window">
       <app-session-page-poll [pollableId]="pollableId" [pollableType]="pollableType"></app-session-page-poll>
     </div>
   </nb-card-body>

@@ -46,6 +46,14 @@
       top: 50%;
       transform: translateY(-50%);
       height: min(calc(100vh - 56px - 16px - 16px), calc(100vw * 9 / 16));
+      width: 100%;
+      transition: width 0.7s ease-in-out;
+
+      @media all and (min-width: $tab-width) {
+        &.compressed {
+          width: calc(100% - 300px - 32px);
+        }
+      }
     }
 
     .user-interactions {
@@ -95,6 +103,10 @@
       background-color: $white;
       border-radius: $border-4;
       overflow: hidden;
+
+      &.open {
+        display: block;
+      }
     }
   }
 
