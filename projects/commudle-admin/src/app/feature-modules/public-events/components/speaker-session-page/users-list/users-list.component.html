@@ -1,6 +1,6 @@
 <nb-list class="users-list">
   <nb-list-item *ngFor="let user of usersList">
-    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+    <app-user-profile-mini [designation]="true" [showLiveStatus]="true" [user]="user"></app-user-profile-mini>
     <button (click)="inviteToStage(user.id)" *ngIf="embeddedVideoStream.hms_room_id && isAdmin && activeEvent"
             class="invite-to-stage" ghost nbButton size="tiny" status="info">
       Invite to Stage

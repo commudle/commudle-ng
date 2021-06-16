@@ -1,9 +1,7 @@
 <div *ngIf="network.length > 0" class="user-network-list-container">
   <nb-list>
     <nb-list-item *ngFor="let user of network">
-      <a [routerLink]="['/', 'users', user.username]">
-        <nb-user [name]="user.name" [picture]="user.avatar" [title]="user.designation"></nb-user>
-      </a>
+      <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
     </nb-list-item>
   </nb-list>
 </div>

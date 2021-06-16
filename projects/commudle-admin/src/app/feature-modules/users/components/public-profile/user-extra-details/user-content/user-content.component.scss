@@ -1,44 +1,50 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .user-content {
-  // background-color: $white;
-
   nb-card {
     border: none;
     border-radius: $border-10;
-    margin-right: 0;
-    margin-left: 0;
+    margin: $space-16 0 0;
 
     nb-card-body {
-      padding: $space-32;
+      padding: 0;
+
+      //TODO: Remove after 7th July 2021
+      //&.section-b {
+      //  padding: $space-32;
+      //}
     }
   }
 
   nb-tabset {
+    padding-top: $space-8;
+
     &::ng-deep {
       .tabset {
-        border-bottom: 2px solid $silver-sand;
+        border-bottom: 1px solid $silver-sand;
 
         .tab {
-          flex-grow: 1;
-
           .tab-link {
-            font-size: $fs-24;
+            font-style: italic;
+            font-size: $fs-h4;
+            line-height: 19px;
             font-weight: $fw-400;
-            line-height: 28px;
+            color: rgba($gunmetal, 0.6);
             text-transform: capitalize;
-            color: $cadet;
-            justify-content: center;
+            padding-bottom: $space-8;
           }
 
           &.active {
             .tab-link {
-              color: $neon-blue;
+              color: $jacarta;
+              font-style: normal;
               font-weight: $fw-500;
 
               &::before {
-                background-color: $brilliant-azure;
+                height: 2px;
+                bottom: -1px;
                 border-radius: 0;
+                background-color: $brilliant-azure;
               }
             }
           }
@@ -47,40 +53,17 @@
     }
 
     nb-tab {
-      padding: 0;
-      margin-top: $space-24;
+      padding: $space-32;
     }
   }
 }
 
 @media all and (max-width: $tab-width) {
   .user-content {
-    padding: $space-8 0 $space-32;
     margin-bottom: $space-32;
-    border-radius: 0;
 
-    nb-tabset {
-      &::ng-deep {
-        .tabset {
-          overflow-x: auto;
-          padding: 5px 0;
-          justify-content: flex-start;
-
-          li {
-            a {
-              padding: 10px 10px;
-
-              span {
-                white-space: nowrap;
-              }
-            }
-          }
-        }
-      }
-
-      nb-tab {
-        padding: 0;
-      }
+    nb-card {
+      border-radius: 0;
     }
   }
 }

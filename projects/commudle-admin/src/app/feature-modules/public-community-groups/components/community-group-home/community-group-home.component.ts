@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
+import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-community-group-home',
@@ -14,29 +15,28 @@ export class CommunityGroupHomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private communityGroupsService: CommunityGroupsService
+    private footerService: FooterService,
   ) { }
 
   ngOnInit() {
-    this.subscriptions.push(this.activatedRoute.params.subscribe(
+    this.footerService.changeFooterStatus(false);
+    this.subscriptions.push(this.activatedRoute.data.subscribe(
       data => {
-        this.getCommunityGroup(data.community_group_id);
+        this.communityGroup = data.community_group;
       }
     ));
   }
 
   ngOnDestroy() {
+    this.footerService.changeFooterStatus(true);
+
     for (let sub of this.subscriptions) {
       sub.unsubscribe();
     }
   }
 
-  getCommunityGroup(communityGroupId) {
-    this.communityGroupsService.pShow(communityGroupId).subscribe(
-      data => {
-        this.communityGroup = data;
-      }
-    );
-  }
+
+
+
 
 }

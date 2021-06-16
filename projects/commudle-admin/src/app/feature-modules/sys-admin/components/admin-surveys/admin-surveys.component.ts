@@ -3,6 +3,7 @@ import { AdminSurveysService } from '../../services/admin-surveys.service';
 import { IAdminSurvey } from 'projects/shared-models/admin-survey.model';
 import { NbWindowService } from '@nebular/theme';
 import { FormResponsesComponent } from 'projects/shared-components/form-responses/form-responses.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-surveys',
@@ -14,10 +15,12 @@ export class AdminSurveysComponent implements OnInit {
 
   constructor(
     private adminSurveysService: AdminSurveysService,
-    private windowService: NbWindowService
+    private windowService: NbWindowService,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Admin: Surveys');
     this.getSurveys();
   }
 

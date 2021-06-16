@@ -1,24 +1,34 @@
-<div>
+<div class="page-padding">
   <h4>
     Admin Surveys
   </h4>
 
   <div>
-    <nb-card class="survey" *ngFor="let survey of adminSurveys" (click)="openResponses(survey)">
+    <nb-card class="survey" *ngFor="let survey of adminSurveys">
       <nb-card-body>
         <h5 class="name">
           {{ survey.name }}
+          <small>
+            <a [routerLink]="['/fill-form', survey.data_form_entity.id]" target="_blank">
+              <nb-icon icon="external-link"></nb-icon>
+              Link to fill
+            </a>
+          </small>
         </h5>
         <div class="details">
+          <a nbButton [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']">
+            <nb-icon icon="edit"></nb-icon>
+            Edit
+          </a>
           <p class="status">
             Status: {{ survey.status }}
           </p>
           <p class="multiple-responses">
             Multiple Responses {{ survey.multi_response }}
           </p>
-          <p class="total-responses">
+          <a class="clickable total-responses" (click)="openResponses(survey)">
             Responses: {{ survey.total_responses }}
-          </p>
+          </a>
         </div>
       </nb-card-body>
     </nb-card>

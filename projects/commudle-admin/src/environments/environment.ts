@@ -20,6 +20,7 @@ export const environment = {
   // anycable_url: 'wss://ws.commudle.com/cable',
   // auth_cookie_name: 'commudle_user_auth',
   // zoom_call_server_url: 'https://zoom.commudle.com'
+
 };
 
 /*

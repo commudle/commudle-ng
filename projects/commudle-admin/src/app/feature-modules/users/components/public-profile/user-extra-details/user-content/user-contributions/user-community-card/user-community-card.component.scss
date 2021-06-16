@@ -1,5 +1,9 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+}
+
 .user-communities-card {
   width: 264px;
   border: 1px solid $platinum;

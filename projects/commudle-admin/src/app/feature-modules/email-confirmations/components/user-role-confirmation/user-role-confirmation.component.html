@@ -2,8 +2,7 @@
   <div *ngIf="userRolesUser">
     <nb-card>
       <nb-card-body>
-
-        <div class="status" *ngIf="userRolesUser.active">
+        <div *ngIf="userRolesUser.active" class="status">
           <div class="role-status">
             <nb-icon icon="person-add" status="success"></nb-icon>
             <p>
@@ -13,37 +12,33 @@
         </div>
 
         <div class="details">
-          <div class="event" *ngIf="event">
+          <div *ngIf="event" class="event">
             <p>
               <a [routerLink]="['/communities', community.slug, 'events', event.slug]">
                 Go To <strong>{{ event.name }}</strong>
               </a>
             </p>
           </div>
-          <div class="community" *ngIf="community">
+          <div *ngIf="community" class="community">
             <div class="logo">
-              <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
             </div>
-            <p *ngIf="[EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name)">
-              <a [routerLink]="['/admin/communities', community.slug]">
-                {{ community.name }} (Admin Panel)
-              </a>
+            <p
+              *ngIf="[EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name)">
+              <a [routerLink]="['/admin/communities', community.slug]">{{ community.name }} (Admin Panel)</a>
             </p>
-            <p *ngIf="!([EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name))">
-              <a [routerLink]="['/communities', community.slug]">
-                {{ community.name }}
-              </a>
+            <p
+              *ngIf="![EUserRoles.ORGANIZER.valueOf(), EUserRoles.EVENT_ORGANIZER.valueOf()].includes(userRolesUser.user_role.name)">
+              <a [routerLink]="['/communities', community.slug]">{{ community.name }}</a>
             </p>
           </div>
 
-          <div class="community" *ngIf="communityGroup">
+          <div *ngIf="communityGroup" class="community">
             <div class="logo">
-              <img src="{{ communityGroup.logo }}" alt="{{ communityGroup.name }}">
+              <img alt="{{ communityGroup.name }}" src="{{ communityGroup.logo }}" title="{{ communityGroup.name }}">
             </div>
             <p>
-              <a [routerLink]="['/admin/orgs', communityGroup.slug]">
-                {{ communityGroup.name }}
-              </a>
+              <a [routerLink]="['/admin/orgs', communityGroup.slug]">{{ communityGroup.name }}</a>
             </p>
           </div>
         </div>
