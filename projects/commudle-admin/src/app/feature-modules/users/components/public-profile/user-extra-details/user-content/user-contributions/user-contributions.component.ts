@@ -33,7 +33,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.activatedRoute.params.subscribe(data => {
+    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => {
       this.getUserData();
     }));
   }
