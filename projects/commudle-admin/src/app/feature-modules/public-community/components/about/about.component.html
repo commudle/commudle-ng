@@ -1,30 +1,54 @@
-<div class="about-community">
+<div *ngIf="community" class="community-about">
   <nb-card class="about">
     <nb-card-body>
-      <div [innerHTML]="community.about"></div>
+      <p class="heading">Who we are</p>
+      <p [innerHTML]="community.about | safeHtml" class="content"></p>
     </nb-card-body>
   </nb-card>
 
-  <nb-card class="team">
+  <nb-card class="organizers">
     <nb-card-body>
-      <p class="text-basic">Organizers</p>
-
-      <div *ngIf="organizers.length > 0" class="organizers">
-        <div *ngFor="let user of organizers" class="user">
-          <app-user-profile-card-large [maxDesignationLength]="20" [maxNameLength]="13" [maxUserNameLength]="22"
-                                       [user]="user"></app-user-profile-card-large>
-        </div>
-      </div>
-
-      <div *ngIf="eventOrganizers.length > 0">
-        <p class="text-basic">Event Organizers</p>
-        <div class="event-organizers">
-          <div *ngFor="let user of eventOrganizers" class="user">
-            <app-user-profile-card-large [maxDesignationLength]="20" [maxNameLength]="13" [maxUserNameLength]="22"
-                                         [user]="user"></app-user-profile-card-large>
+      <p class="heading">Meet our Organizers</p>
+      <div class="organizer-container d-flex flex-wrap">
+        <ng-container *ngFor="let organizer of organizers">
+          <div *ngIf="organizer.name" class="organizer">
+            <app-user-profile-card-large [maxDesignationLength]="18" [maxNameLength]="12" [maxUserNameLength]="18"
+                                         [user]="organizer"></app-user-profile-card-large>
           </div>
-        </div>
+        </ng-container>
       </div>
     </nb-card-body>
   </nb-card>
 </div>
+
+
+<!--<div class="about-community">-->
+<!--  <nb-card class="about">-->
+<!--    <nb-card-body>-->
+<!--      <div [innerHTML]="community.about"></div>-->
+<!--    </nb-card-body>-->
+<!--  </nb-card>-->
+
+<!--  <nb-card class="team">-->
+<!--    <nb-card-body>-->
+<!--      <p class="text-basic">Organizers</p>-->
+
+<!--      <div *ngIf="organizers.length > 0" class="organizers">-->
+<!--        <div *ngFor="let user of organizers" class="user">-->
+<!--          <app-user-profile-card-large [maxDesignationLength]="20" [maxNameLength]="13" [maxUserNameLength]="22"-->
+<!--                                       [user]="user"></app-user-profile-card-large>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div *ngIf="eventOrganizers.length > 0">-->
+<!--        <p class="text-basic">Event Organizers</p>-->
+<!--        <div class="event-organizers">-->
+<!--          <div *ngFor="let user of eventOrganizers" class="user">-->
+<!--            <app-user-profile-card-large [maxDesignationLength]="20" [maxNameLength]="13" [maxUserNameLength]="22"-->
+<!--                                         [user]="user"></app-user-profile-card-large>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nb-card-body>-->
+<!--  </nb-card>-->
+<!--</div>-->
