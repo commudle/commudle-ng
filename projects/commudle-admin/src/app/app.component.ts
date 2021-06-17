@@ -13,13 +13,15 @@ import {AppCentralNotificationService} from 'projects/commudle-admin/src/app/ser
 import {CookieConsentComponent} from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import {CookieConsentService} from './services/cookie-consent.service';
 import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
+import { TruncateTextPipe } from "projects/shared-pipes/truncate-text.pipe";
 
 // import * as LogRocket from 'logrocket';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    providers: [TruncateTextPipe]
 })
 
 
@@ -51,7 +53,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private appCentralNotificationsService: AppCentralNotificationService,
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private truncate: TruncateTextPipe
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
@@ -68,7 +71,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
       if (this.currentUser && this.userContextMenu.length <= 1) {
         this.userContextMenu.unshift({
-          title: `@${currentUser.username}`,
+          title: `@${this.truncate.transform(currentUser.username, 10)}`,
           link: `/users/${currentUser.username}`,
           badge: {
             text: 'Profile',
