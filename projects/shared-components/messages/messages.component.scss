@@ -2,7 +2,7 @@
   height: 100%;
 
   app-messages-list {
-    height: 100%;
+    height: calc(100% - 40px);
   }
 
   .send-message {
