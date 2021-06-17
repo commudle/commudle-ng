@@ -57,7 +57,7 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (['commudle', 'youtube'].includes(this.embeddedVideoStream.source)) {
-      this.toggleWindow(0);
+      this.toggleInteractionWindow(0);
       this.cdr.detectChanges();
     }
   }
@@ -71,7 +71,7 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
     this.isFullScreen = !this.isFullScreen;
   }
 
-  toggleWindow(windowNum: number): void {
+  toggleInteractionWindow(windowNum: number): void {
     this.interactionWindows.forEach((item, index) => {
       item.nativeElement.style.display = windowNum === index ? item.nativeElement.style.display === 'block' ? 'none' : 'block' : 'none';
     });
@@ -89,7 +89,7 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getStatusOfInteractionWindow(windowNum: number): boolean {
+  getInteractionWindowStatus(windowNum: number): boolean {
     return this.interactionWindows.toArray()[windowNum].nativeElement.style.display === 'none';
   }
 

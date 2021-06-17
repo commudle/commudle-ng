@@ -46,7 +46,7 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.messageContainer = this.messagesList.nativeElement;
-    this.messageElements.changes.subscribe(() => this.onMessageElementsChanged());
+    this.messageElements.changes.subscribe(value => this.onMessageElementsChanged(value));
   }
 
   emitReply(messageId: number, content): void {
@@ -61,8 +61,8 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
     this.sendDelete.emit(messageId);
   }
 
-  onMessageElementsChanged(): void {
-    if (this.isNearBottom) {
+  onMessageElementsChanged(value): void {
+    if (this.isNearBottom || this.currentUser?.id === value.last.message.user.id) {
       this.scrollToBottom();
     }
   }

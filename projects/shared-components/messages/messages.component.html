@@ -1,4 +1,4 @@
-<div class="messages-container d-flex flex-column">
+<div *ngIf="currentUser" class="messages-container d-flex flex-column">
   <app-messages-list (getPreviousMessages)="getDiscussionMessages()" (sendDelete)="sendDelete($event)"
                      (sendFlag)="sendFlag($event)" (sendReply)="sendReply($event)" [allActions]="allActions"
                      [currentUser]="currentUser" [messages]="messages" [permittedActions]="permittedActions"

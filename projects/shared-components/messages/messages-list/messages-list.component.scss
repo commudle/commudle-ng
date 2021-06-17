@@ -1,13 +1,17 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .messages-list-container {
-  height: calc(100% - 40px);
+  height: calc(100% - 48px);
   overflow: hidden;
 
   .messages-list {
+    height: 100%;
     padding-right: $space-8;
-    height: calc(100% - 32px);
     overflow: auto;
+
+    &.compressed {
+      height: calc(100% - 32px);
+    }
 
     // Custom scrollbar
     &::-webkit-scrollbar {
@@ -28,5 +32,11 @@
     &::-webkit-scrollbar-thumb:hover {
       background-color: darken($light-purple, 8%);
     }
+  }
+
+  .new-message-btn {
+    position: absolute;
+    right: 16px;
+    bottom: 52px;
   }
 }

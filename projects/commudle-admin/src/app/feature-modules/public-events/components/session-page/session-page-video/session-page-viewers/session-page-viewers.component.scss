@@ -28,6 +28,14 @@
     padding: $space-8;
     transition: all 0.2s ease-in;
 
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
     .invite-to-stage {
       position: absolute;
       opacity: 0;
