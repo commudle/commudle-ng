@@ -1,3 +1,4 @@
+import { EDataFormParentTypes } from './../../../../../../../shared-models/data_form.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,6 +14,8 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
 
   parentType;
   parentId;
+
+  EDataFormParentTypes = EDataFormParentTypes;
 
 
   // define the form
@@ -47,7 +50,16 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
   saveDataForm(data) {
     this.dataFormsService.createDataForm(data, this.parentId, this.parentType).subscribe((dataForm => {
       this.toastLogService.successDialog('New Form Created!');
-      this.router.navigate(['/admin/communities', this.parentId, 'forms']);
+
+      switch(this.parentType) {
+        case EDataFormParentTypes.community: {
+          this.router.navigate(['/admin/communities', this.parentId, 'forms']);
+          break;
+        }
+        case EDataFormParentTypes.adminSurvey: {
+          this.router.navigate(['/sys-admin/admin-surveys']);
+        }
+      }
     }));
   }
 

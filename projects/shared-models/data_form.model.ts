@@ -13,3 +13,10 @@ export interface IDataForm {
   parent_id: string;
   questions: IQuestion[];
 }
+
+
+
+export enum EDataFormParentTypes {
+  community = 'Kommunity',
+  adminSurvey = 'AdminSurvey'
+}

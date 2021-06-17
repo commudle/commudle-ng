@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
-import { IDataForm } from 'projects/shared-models/data_form.model';
+import { EDataFormParentTypes, IDataForm } from 'projects/shared-models/data_form.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormArray, FormGroup, Form } from '@angular/forms';
 import { IQuestion } from 'projects/shared-models/question.model';
@@ -194,7 +194,16 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       this.dataForm = dataForm;
       this.fillExistingDataForm();
       this.toastLogService.successDialog('Updated!');
-      this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
+
+      switch(this.dataForm.parent_type) {
+        case EDataFormParentTypes.community: {
+          this.router.navigate(['/admin/communities', this.dataForm.parent_id, 'forms']);
+          break;
+        }
+        case EDataFormParentTypes.adminSurvey: {
+          this.router.navigate(['/sys-admin/admin-surveys']);
+        }
+      }
 
     }));
   }

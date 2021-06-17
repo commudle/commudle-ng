@@ -5,7 +5,9 @@ export const API_ROUTES = {
 
   // admin_surveys
   ADMIN_SURVEYS: {
-    INDEX: 'api/v2/admin_surveys'
+    INDEX: 'api/v2/admin_surveys',
+    TOGGLE_MULTI_RESPONSE: 'api/v2/admin_surveys/toggle_multi_response',
+    UPDATE_STATUS: 'api/v2/admin_surveys/update_status'
   },
 
   // communities
