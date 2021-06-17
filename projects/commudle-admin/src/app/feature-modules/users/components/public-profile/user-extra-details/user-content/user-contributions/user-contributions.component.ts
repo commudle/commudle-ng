@@ -1,11 +1,11 @@
-import {AfterViewChecked, Component, Input, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ILab} from 'projects/shared-models/lab.model';
 import {ICommunityBuild} from 'projects/shared-models/community-build.model';
 import {IUserRolesUser} from 'projects/shared-models/user_roles_user.model';
 import {ISpeakerResource} from 'projects/shared-models/speaker_resource.model';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
@@ -29,7 +29,6 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
   constructor(
     private appUsersService: AppUsersService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
   ) {
   }
 
@@ -53,7 +52,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
 
   // Get user's data
   getUserData() {
-    this.appUsersService.getProfile(this.router.url.split('/')[2]).subscribe(data => {
+    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe(data => {
       this.user = data;
       // Get the user's past events
       this.subscriptions.push(this.appUsersService.speakerResources(this.user.username).subscribe(value => {
