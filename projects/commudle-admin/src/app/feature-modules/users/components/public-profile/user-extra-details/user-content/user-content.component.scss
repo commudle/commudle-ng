@@ -9,9 +9,10 @@
     nb-card-body {
       padding: 0;
 
-      &.section-b {
-        padding: $space-32;
-      }
+      //TODO: Remove after 7th July 2021
+      //&.section-b {
+      //  padding: $space-32;
+      //}
     }
   }
 

@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {UserProfileCardMediumComponent} from './user-profile-card-medium.component';
+import { UserProfileCardMediumComponent } from 'projects/shared-components/profile-cards/user-profile-card-medium/user-profile-card-medium.component';
 
 describe('UserProfileCardMediumComponent', () => {
   let component: UserProfileCardMediumComponent;
