@@ -38,14 +38,14 @@
 
       <button
         nbButton outline size="small"
-        *ngIf="newsletter.status === EMainNewsletterStatuses.PUBLISHED && (!showScheduler && !newsletter.scheduled_for && !newsletter.sent_at)"
+        *ngIf="[EMainNewsletterStatuses.PUBLISHED, EMainNewsletterStatuses.ADMIN_COMMUNICATION].includes(newsletter.status) && (!showScheduler && !newsletter.scheduled_for && !newsletter.sent_at)"
         (click)="showScheduler = true"
         >
         <nb-icon icon="clock-outline"></nb-icon>
         Set Schedule
       </button>
 
-      <div *ngIf="newsletter.status === EMainNewsletterStatuses.PUBLISHED && (showScheduler || newsletter.scheduled_for)" class="d-flex align-items-center">
+      <div *ngIf="[EMainNewsletterStatuses.PUBLISHED, EMainNewsletterStatuses.ADMIN_COMMUNICATION].includes(newsletter.status) && (showScheduler || newsletter.scheduled_for)" class="d-flex align-items-center">
         <app-main-newsletter-scheduler [newsletter]="newsletter" (updatedNewsLetter)="updateSchedule($event)"></app-main-newsletter-scheduler>
       </div>
 

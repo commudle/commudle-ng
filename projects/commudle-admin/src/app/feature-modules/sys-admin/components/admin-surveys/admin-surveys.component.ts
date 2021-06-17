@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminSurveysService } from '../../services/admin-surveys.service';
-import { IAdminSurvey } from 'projects/shared-models/admin-survey.model';
+import { EAdminSurveyStatus, IAdminSurvey } from 'projects/shared-models/admin-survey.model';
 import { NbWindowService } from '@nebular/theme';
 import { FormResponsesComponent } from 'projects/shared-components/form-responses/form-responses.component';
 import { Title } from '@angular/platform-browser';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-admin-surveys',
@@ -12,10 +13,12 @@ import { Title } from '@angular/platform-browser';
 })
 export class AdminSurveysComponent implements OnInit {
   adminSurveys: IAdminSurvey[];
+  EAdminSurveyStatus = EAdminSurveyStatus
 
   constructor(
     private adminSurveysService: AdminSurveysService,
     private windowService: NbWindowService,
+    private toastLogService: LibToastLogService,
     private title: Title
   ) { }
 
@@ -46,5 +49,26 @@ export class AdminSurveysComponent implements OnInit {
       }
     );
   }
+
+  updateStatus(status, index) {
+    status = status ? EAdminSurveyStatus.open : EAdminSurveyStatus.closed
+    this.adminSurveysService.updateStatus(status, this.adminSurveys[index].id).subscribe(
+      data => {
+        this.adminSurveys[index].status = status
+        this.toastLogService.successDialog('Updated', 2000);
+      }
+    )
+  }
+
+
+  toggleMultiResponse(index) {
+    this.adminSurveysService.toggleMultiResponse(this.adminSurveys[index].id).subscribe(
+      data => {
+        this.adminSurveys[index].multi_response = data
+        this.toastLogService.successDialog('Updated', 2000);
+      }
+    )
+  }
+
 
 }
