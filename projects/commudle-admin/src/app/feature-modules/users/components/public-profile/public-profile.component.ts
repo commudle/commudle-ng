@@ -61,17 +61,23 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
       this.meta.updateTag({ name: 'robots', content: 'noindex' });
     }
 
-    this.title.setTitle(`${this.user.name}`);
+    let titleText = this.user.name;
+
+    if (this.user.designation) {
+      titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
+    }
+
+    this.title.setTitle(titleText);
     this.meta.updateTag({ name: 'description', content: `${this.user.designation}` });
 
     this.meta.updateTag({ name: 'og:image', content: this.user.avatar });
     this.meta.updateTag({ name: 'og:image:secure_url', content: this.user.avatar });
-    this.meta.updateTag({ name: 'og:title', content: `${this.user.name}` });
+    this.meta.updateTag({ name: 'og:title', content: titleText });
     this.meta.updateTag({ name: 'og:description', content: `${this.user.designation}` });
     this.meta.updateTag({ name: 'og:type', content: 'website' });
 
     this.meta.updateTag({ name: 'twitter:image', content: this.user.avatar });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.user.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: titleText });
     this.meta.updateTag({ name: 'twitter:description', content: `${this.user.designation}` });
   }
 
