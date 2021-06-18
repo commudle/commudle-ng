@@ -48,10 +48,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle('Commudle');
+    this.title.setTitle('Commudle - Find & Connect With Developers');
+
     this.meta.updateTag({
       name: 'description',
-      content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
+      content: 'Learn from developer experts around you & grow with developer communities. Login to begin!'
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -62,11 +63,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: 'Commudle, Growing With Developer Communities'
+      content: 'Commudle - Find & Connect With Developers'
     });
     this.meta.updateTag({
       name: 'og:description',
-      content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
+      content: 'Learn from developer experts around you & grow with developer communities. Login to begin!'
     });
     this.meta.updateTag({
       name: 'og:type',
@@ -78,11 +79,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Commudle, Growing With Developer Communities'
+      content: 'Commudle - Find & Connect With Developers'
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: 'Organize online events, share what you are building and connect with experts in Tech and Design. Login to begin!'
+      content: 'Learn from developer experts around you & grow with developer communities. Login to begin!'
     });
   }
 
