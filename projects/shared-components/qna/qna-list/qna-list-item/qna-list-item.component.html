@@ -15,9 +15,10 @@
     </div>
   </div>
   <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
-    <nb-action>
-      <app-votes-display [votableId]="message.id" icon="heart-outline" size="small"
-                         votableType="UserMessage"></app-votes-display>
+    <nb-action *ngIf="permittedActions.includes(allActions.VOTE) && canVote && message.parent_type != 'UserMessage'">
+      <p *ngIf="message.votes_count > 0">{{message.votes_count}}&nbsp;</p>
+      <nb-icon (click)="emitVote(message.id)" class="clickable" icon="arrow-upward"
+               nbTooltip="Upvote this message"></nb-icon>
     </nb-action>
     <nb-action *ngIf="permittedActions.includes(allActions.ADD) && canReply">
       <nb-icon (click)="showReplyForm = !showReplyForm" class="clickable" icon="undo-outline"
@@ -34,9 +35,10 @@
     </nb-action>
   </nb-actions>
   <div *ngIf="canReply" class="replies">
-    <app-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)"
-                 *ngFor="let reply of message.user_messages" [allActions]="allActions" [canReply]="false"
-                 [currentUser]="currentUser" [message]="reply" [permittedActions]="permittedActions"></app-message>
+    <app-qna-list-item (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)" (sendVote)="emitVote($event)"
+                       *ngFor="let reply of message.user_messages" [allActions]="allActions" [canReply]="false"
+                       [canVote]="false" [currentUser]="currentUser" [message]="reply"
+                       [permittedActions]="permittedActions"></app-qna-list-item>
     <div *ngIf="showReplyForm" class="reply-form">
       <emoji-mart (emojiSelect)="addEmoji($event)" [ngClass]="{'active': showEmojiPicker}" [style]="{width: '100%'}"
                   set="twitter" title="Select an emoji"></emoji-mart>
