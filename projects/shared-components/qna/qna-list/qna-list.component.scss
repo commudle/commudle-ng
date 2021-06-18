@@ -1,10 +1,10 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
-.messages-list-container {
+.qna-list-container {
   height: calc(100% - 40px);
   overflow: hidden;
 
-  .messages-list {
+  .qna-list {
     height: 100%;
     padding-right: $space-8;
     overflow: auto;
@@ -34,7 +34,7 @@
     }
   }
 
-  .new-message-btn {
+  .new-qna-btn {
     position: absolute;
     right: 16px;
     bottom: 52px;

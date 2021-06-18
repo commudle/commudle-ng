@@ -1,7 +1,7 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .session-page-viewers {
-  height: 100%;
+  height: calc(100% - 48px);
 
   // Custom scrollbar
   &::-webkit-scrollbar {

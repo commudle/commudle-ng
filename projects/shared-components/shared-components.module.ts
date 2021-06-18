@@ -52,6 +52,9 @@ import { PollsComponent } from './polls/polls.component';
 import { UserProfileCardLargeComponent } from './profile-cards/user-profile-card-large/user-profile-card-large.component';
 import { UserProfileCardMediumComponent } from './profile-cards/user-profile-card-medium/user-profile-card-medium.component';
 import { UserProfileCardSmallComponent } from './profile-cards/user-profile-card-small/user-profile-card-small.component';
+import { QnaListItemComponent } from './qna/qna-list/qna-list-item/qna-list-item.component';
+import { QnaListComponent } from './qna/qna-list/qna-list.component';
+import { QnaComponent } from './qna/qna.component';
 import { TagComponent } from './tag/tag.component';
 import { UserLiveStatusComponent } from './user-live-status/user-live-status.component';
 import { UserObjectVisitPixelComponent } from './user-object-visit-pixel/user-object-visit-pixel.component';
@@ -101,7 +104,10 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     UserProfileCardSmallComponent,
     MessagesComponent,
     MessagesListComponent,
-    MessageComponent
+    MessageComponent,
+    QnaComponent,
+    QnaListComponent,
+    QnaListItemComponent
   ],
   imports: [
     CommonModule,
@@ -160,7 +166,8 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     UserProfileCardLargeComponent,
     UserProfileCardMediumComponent,
     UserProfileCardSmallComponent,
-    MessagesComponent
+    MessagesComponent,
+    QnaComponent
   ]
 })
 export class SharedComponentsModule {
