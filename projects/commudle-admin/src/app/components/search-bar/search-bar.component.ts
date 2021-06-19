@@ -56,7 +56,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   toggleSearchSuffix(value: boolean, event?: Event) {
     if (event) {
-      var path = (event as any).path || (event.composedPath && event.composedPath());
+      const path = (event as any).path || (event.composedPath && event.composedPath());
       const clickingInSelect = path.some((e: HTMLElement) => {
         return e.classList && e.classList.contains('cdk-overlay-pane');
       });
