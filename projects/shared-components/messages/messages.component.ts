@@ -1,4 +1,15 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterContentChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { DiscussionChatChannel } from 'projects/shared-components/services/websockets/discussion-chat.channel';
@@ -15,10 +26,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
-export class MessagesComponent implements OnInit, OnDestroy {
+export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   @Input() discussion: IDiscussion;
-  @Output() newMessage = new EventEmitter();
+  @Output() newMessage: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
 
@@ -45,7 +56,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
     private discussionChatChannel: DiscussionChatChannel,
     private libToastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
@@ -60,6 +72,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.discussionChatChannel.unsubscribe();
     this.subscriptions.forEach(value => value.unsubscribe());
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetectorRef.detectChanges();
   }
 
   receiveData(): void {
