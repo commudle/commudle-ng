@@ -1,7 +1,19 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterContentChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import * as _ from 'lodash';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
-import { DiscussionChatChannel } from 'projects/shared-components/services/websockets/discussion-chat.channel';
+import { DiscussionQnAChannel } from 'projects/shared-components/services/websockets/discussion-qna.channel';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
@@ -15,10 +27,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './qna.component.html',
   styleUrls: ['./qna.component.scss']
 })
-export class QnaComponent implements OnInit, OnDestroy {
+export class QnaComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   @Input() discussion: IDiscussion;
-  @Output() newMessage = new EventEmitter();
+  @Output() newMessage: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
 
@@ -42,42 +54,47 @@ export class QnaComponent implements OnInit, OnDestroy {
 
   constructor(
     private libAuthwatchService: LibAuthwatchService,
-    private discussionChatChannel: DiscussionChatChannel,
+    private discussionQnaChannel: DiscussionQnAChannel,
     private libToastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
     this.subscriptions.push(this.libAuthwatchService.currentUser$.subscribe(value => this.currentUser = value));
-    this.discussionChatChannel.subscribe(`${this.discussion.id}`);
-    this.allActions = this.discussionChatChannel.ACTIONS;
+    this.discussionQnaChannel.subscribe(`${this.discussion.id}`);
+    this.allActions = this.discussionQnaChannel.ACTIONS;
     this.receiveData();
     this.getDiscussionMessages();
   }
 
   ngOnDestroy(): void {
-    this.discussionChatChannel.unsubscribe();
+    this.discussionQnaChannel.unsubscribe();
     this.subscriptions.forEach(value => value.unsubscribe());
   }
 
+  ngAfterContentChecked(): void {
+    this.changeDetectorRef.detectChanges();
+  }
+
   receiveData(): void {
-    this.subscriptions.push(this.discussionChatChannel.channelData$.subscribe(value => {
+    this.subscriptions.push(this.discussionQnaChannel.channelData$.subscribe(value => {
       if (value) {
         switch (value.action) {
-          case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS:
+          case this.discussionQnaChannel.ACTIONS.SET_PERMISSIONS:
             this.permittedActions = value.permitted_actions;
             break;
-          case this.discussionChatChannel.ACTIONS.ADD:
+          case this.discussionQnaChannel.ACTIONS.ADD:
             this.messages.push(value.user_message);
             this.newMessage.emit();
             break;
-          case this.discussionChatChannel.ACTIONS.REPLY:
+          case this.discussionQnaChannel.ACTIONS.REPLY:
             this.messages[this.findMessageIndex(value.parent_id)].user_messages.push(value.user_message);
             this.newMessage.emit();
             break;
-          case this.discussionChatChannel.ACTIONS.DELETE:
+          case this.discussionQnaChannel.ACTIONS.DELETE:
             if (value.parent_type === 'Discussion') {
               this.messages.splice(this.findMessageIndex(value.user_message_id), 1);
             } else {
@@ -85,7 +102,7 @@ export class QnaComponent implements OnInit, OnDestroy {
               this.messages[qi].user_messages.splice(this.findReplyIndex(qi, value.user_message_id), 1);
             }
             break;
-          case this.discussionChatChannel.ACTIONS.FLAG:
+          case this.discussionQnaChannel.ACTIONS.FLAG:
             if (value.parent_type === 'Discussion') {
               this.messages[this.findMessageIndex(value.user_message_id)].flags_count += value.flag;
             } else {
@@ -93,7 +110,7 @@ export class QnaComponent implements OnInit, OnDestroy {
               this.messages[qi].user_messages[this.findReplyIndex(qi, value.user_message_id)].flags_count += value.flag;
             }
             break;
-          case this.discussionChatChannel.ACTIONS.VOTE:
+          case this.discussionQnaChannel.ACTIONS.VOTE:
             if (value.parent_type === 'Discussion') {
               this.messages[this.findMessageIndex(value.user_message_id)].votes_count += value.vote;
             } else {
@@ -101,7 +118,7 @@ export class QnaComponent implements OnInit, OnDestroy {
               this.messages[qi].user_messages[this.findReplyIndex(qi, value.user_message_id)].votes_count += value.vote;
             }
             break;
-          case this.discussionChatChannel.ACTIONS.ERROR:
+          case this.discussionQnaChannel.ACTIONS.ERROR:
             this.libToastLogService.warningDialog(value.message, 2000);
             break;
         }
@@ -135,8 +152,8 @@ export class QnaComponent implements OnInit, OnDestroy {
   sendMessage(): void {
     if (this.messageForm.valid) {
       const messageContent = this.messageForm.value;
-      this.discussionChatChannel.sendData(
-        this.discussionChatChannel.ACTIONS.ADD, { user_message: messageContent }
+      this.discussionQnaChannel.sendData(
+        this.discussionQnaChannel.ACTIONS.ADD, { user_message: messageContent }
       );
       this.messageForm.reset();
       this.messageForm.updateValueAndValidity();
@@ -146,26 +163,26 @@ export class QnaComponent implements OnInit, OnDestroy {
   sendReply(value): void {
     const messageId = value[0];
     const replyContent = value[1];
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.REPLY, { user_message_id: messageId, reply_message: replyContent }
+    this.discussionQnaChannel.sendData(
+      this.discussionQnaChannel.ACTIONS.REPLY, { user_message_id: messageId, reply_message: replyContent }
     );
   }
 
   sendVote(messageId: number): void {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.VOTE, { user_message_id: messageId }
+    this.discussionQnaChannel.sendData(
+      this.discussionQnaChannel.ACTIONS.VOTE, { user_message_id: messageId }
     );
   }
 
   sendFlag(messageId: number): void {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.FLAG, { user_message_id: messageId }
+    this.discussionQnaChannel.sendData(
+      this.discussionQnaChannel.ACTIONS.FLAG, { user_message_id: messageId }
     );
   }
 
   sendDelete(messageId: number): void {
-    this.discussionChatChannel.sendData(
-      this.discussionChatChannel.ACTIONS.DELETE, { user_message_id: messageId }
+    this.discussionQnaChannel.sendData(
+      this.discussionQnaChannel.ACTIONS.DELETE, { user_message_id: messageId }
     );
   }
 
@@ -174,6 +191,20 @@ export class QnaComponent implements OnInit, OnDestroy {
       content: (this.messageForm.get('content').value || '').concat(`${event.emoji.native}`)
     });
     this.messageInput.nativeElement.focus();
+  }
+
+  sortMessages(value: string): void {
+    switch (value) {
+      case 'newest':
+        this.messages = _.sortBy(this.messages, ['created_at'], ['asc']);
+        break;
+      case 'oldest':
+        this.messages = _.sortBy(this.messages, ['created_at']).reverse();
+        break;
+      case 'votes':
+        this.messages = _.sortBy(this.messages, ['votes_count']).reverse();
+        break;
+    }
   }
 
 }
