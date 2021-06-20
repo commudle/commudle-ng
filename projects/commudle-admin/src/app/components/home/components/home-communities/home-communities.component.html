@@ -13,7 +13,7 @@
       <nb-list-item *ngFor="let community of communities; let i = index">
         <div [routerLink]="['/communities', community.slug]" class="home-community d-flex align-items-center clickable">
           <div class="home-community-image d-flex align-items-center">
-            <img alt="{{community.name}}" src="{{community.logo_image.i64}}" title="{{community.name}}">
+            <img alt="{{community.name}}" src="{{community.logo_image?.i64}}" title="{{community.name}}">
           </div>
           <div class="home-community-details">
             <div class="home-community-name">{{community.name | truncatetext:20}}</div>

@@ -30,14 +30,16 @@
           <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
             <p class="lab-title">{{lab.name}}</p>
             <div class="lab-detail d-flex justify-content-space-between">
-              <div class="user-profile d-flex justify-content-start">
+              <div class="user-profile d-flex justify-content-start align-items-center">
                 <div class="avatar">
-                  <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}" title="{{lab.user.name}}">
+                  <a [routerLink]="['/users', lab.user.username]" target="_blank">
+                    <img alt="{{lab.user.name}}" src="{{lab.user.avatar}}" title="{{lab.user.name}}">
+                  </a>
                 </div>
                 <div class="details d-flex align-items-center">
                   <p class="d-flex align-items-center">
                     created by&nbsp;
-                    <span class="name">{{lab.user.name}}</span>
+                    <a [routerLink]="['/users', lab.user.username]" target="_blank" class="name">{{lab.user.name}}</a>
                     <img *ngIf="lab.user.is_expert" alt="Expert Tick" class="expert-icon"
                          src="/assets/images/Expert-Tick.svg" title="Expert Tick">&nbsp;
                     <span class="date">{{lab.created_at | date}}</span>

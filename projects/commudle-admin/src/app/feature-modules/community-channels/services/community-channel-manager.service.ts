@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {ICommunityChannel} from 'projects/shared-models/community-channel.model';
-import {CommunityChannelsService} from './community-channels.service';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
-import {AppUsersService} from '../../../services/app-users.service';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { BehaviorSubject } from 'rxjs';
+import { CommunityChannelsService } from './community-channels.service';
 
 
 export interface IGroupedCommunityChannels {
@@ -49,9 +49,9 @@ export class CommunityChannelManagerService {
     private communityChannelsService: CommunityChannelsService,
     private toastLogService: LibToastLogService,
     private usersService: AppUsersService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+    private router: Router
+  ) {
+  }
 
   setCurrentUser(user: ICurrentUser) {
     this.currentUser = user;
@@ -74,11 +74,11 @@ export class CommunityChannelManagerService {
 
 
   findChannel(channelId): ICommunityChannel {
-    let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+    const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
     let chn = null;
     Object.entries(groupedChannels).forEach(
       ([key, values]) => {
-        let ch = values.find(k => k.id == channelId);
+        const ch = values.find(k => k.id == channelId);
         if (ch && chn == null) {
           chn = ch;
         }
@@ -104,7 +104,7 @@ export class CommunityChannelManagerService {
 
   getAllChannelRoles(channels) {
     if (this.currentUser) {
-      let roles = this.allChannelRoles.value;
+      const roles = this.allChannelRoles.value;
       for (const [i, ch] of channels.entries()) {
         this.usersService.getMyRoles('CommunityChannel', ch.id).subscribe(
           data => {
@@ -114,19 +114,19 @@ export class CommunityChannelManagerService {
               this.allChannelRoles.next(roles);
             }
           }
-        )
+        );
       }
     }
   }
 
   getChannelRoles(channel) {
-    let roles = this.allChannelRoles.value;
+    const roles = this.allChannelRoles.value;
     this.usersService.getMyRoles('CommunityChannel', channel.id).subscribe(
       data => {
         roles[`${channel.id}`] = data;
         this.allChannelRoles.next(roles);
       }
-    )
+    );
   }
 
   createChannel(channelData) {
@@ -136,8 +136,8 @@ export class CommunityChannelManagerService {
         this.selectedChannel.next(data);
 
         // add this channel to the group in the list of channels
-        let allChannels = this.communityChannels.value;
-        allChannels[data.group_name] ? (allChannels[data.group_name].push(data)) : (allChannels[data.group_name] = [data])
+        const allChannels = this.communityChannels.value;
+        allChannels[data.group_name] ? (allChannels[data.group_name].push(data)) : (allChannels[data.group_name] = [data]);
         this.communityChannels.next(allChannels);
         this.getChannelRoles(data);
         this.toastLogService.successDialog(`${data.name} Created! You are added as an admin`);
@@ -148,11 +148,11 @@ export class CommunityChannelManagerService {
 
   findAndUpdateChannel(channel) {
     // get all the channels
-    let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+    const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
 
     Object.entries(groupedChannels).forEach(
       ([key, values], i) => {
-        let ch = values.findIndex(k => k.id == channel.id);
+        const ch = values.findIndex(k => k.id == channel.id);
         if (ch != -1) {
           groupedChannels[key][ch] = channel;
         }
@@ -165,21 +165,21 @@ export class CommunityChannelManagerService {
   deleteChannel(channelId) {
     this.communityChannelsService.delete(channelId).subscribe(
       data => {
-            // get all the channels
-        let groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
+        // get all the channels
+        const groupedChannels: IGroupedCommunityChannels = this.communityChannels.value;
         this.toastLogService.successDialog('Channel was deleted');
         Object.entries(groupedChannels).forEach(
           ([key, values], i) => {
-            let ch = values.findIndex(k => k.id == channelId);
+            const ch = values.findIndex(k => k.id == channelId);
             if (ch != -1) {
               groupedChannels[key].splice(ch, 1);
             }
           }
         );
         this.communityChannels.next(groupedChannels);
-        this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels', 'app']);
+        this.router.navigate(['/communities', this.selectedCommunity.value.slug, 'channels']);
       }
-    )
+    );
   }
 
   setCommunityListview(value: boolean) {
