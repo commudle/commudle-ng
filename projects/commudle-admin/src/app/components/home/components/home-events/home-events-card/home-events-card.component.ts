@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IEvent} from 'projects/shared-models/event.model';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {CommunitiesService} from 'projects/commudle-admin/src/app/services/communities.service';
-import moment from 'moment';
-import {UserEventRegistrationsService} from 'projects/commudle-admin/src/app/services/user-event-registrations.service';
-import {DataFormEntityResponseGroupsService} from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
+import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
+import { UserEventRegistrationsService } from 'projects/commudle-admin/src/app/services/user-event-registrations.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IEvent } from 'projects/shared-models/event.model';
 
 @Component({
   selector: 'app-home-events-card',

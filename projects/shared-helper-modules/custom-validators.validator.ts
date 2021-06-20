@@ -25,6 +25,14 @@ export function NoSpecialCharactersValidator(control: FormControl) {
 }
 
 
+export function URLValidator(control: FormControl) {
+  if ( !/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/.test(control.value)) {
+    return { symbols: true };
+  }
+  return null;
+}
+
+
 export function CommaSeparatedEmailsValidator (control: FormControl) {
   const val = control.value.replaceAll(' ', '').split(',').filter(x => x);
   let validity = true;

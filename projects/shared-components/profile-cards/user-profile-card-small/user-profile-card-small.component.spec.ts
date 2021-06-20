@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {UserProfileCardSmallComponent} from 'projects/commudle-admin/src/app/feature-modules/users/components/profile-cards/user-profile-card-small/user-profile-card-small.component';
+import { UserProfileCardSmallComponent } from 'projects/shared-components/profile-cards/user-profile-card-small/user-profile-card-small.component';
 
 describe('UserProfileCardSmallComponent', () => {
   let component: UserProfileCardSmallComponent;

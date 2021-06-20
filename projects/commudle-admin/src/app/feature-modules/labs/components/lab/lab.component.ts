@@ -155,7 +155,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.routeSubscriptions.push(
           this.activatedRoute.firstChild.params.subscribe(value => {
             if (value.step_id) {
-              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === value.step_id);
+              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === parseInt(value.step_id));
               this.setStep(this.selectedLabStep);
             }
           })
