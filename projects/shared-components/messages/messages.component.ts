@@ -38,7 +38,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
 
   messages: IUserMessage[] = [];
   page = 1;
-  count = 20;
+  count = 10;
   isLoadingMessages = true;
   showMessagesLoader = true;
   showEmojiPicker = false;
