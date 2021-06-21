@@ -4,6 +4,8 @@ import {PublicProfileComponent} from './components/public-profile/public-profile
 import {UserExtraDetailsComponent} from './components/public-profile/user-extra-details/user-extra-details.component';
 import {UserNetworkComponent} from './components/public-profile/user-network/user-network.component';
 import {UserNetworkListComponent} from './components/public-profile/user-network/user-network-list/user-network-list.component';
+import { UserContributionsComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component';
+import { UserSocialComponent } from './components/public-profile/user-extra-details/user-content/user-social/user-social.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,22 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: UserExtraDetailsComponent
+        component: UserExtraDetailsComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'contributions',
+            pathMatch: 'full',
+          },
+          {
+            path:'contributions',
+            component: UserContributionsComponent
+          },
+          {
+            path: 'social',
+            component: UserSocialComponent
+          }
+        ]
       },
       {
         path: '',
