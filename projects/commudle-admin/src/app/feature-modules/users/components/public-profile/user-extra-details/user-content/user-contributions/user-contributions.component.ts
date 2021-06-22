@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-contributions.component.html',
   styleUrls: ['./user-contributions.component.scss']
 })
-export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy, AfterViewChecked {
+export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   user: IUser;
 
@@ -34,15 +34,7 @@ export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy,
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => {
-      this.getUserData();
-    }));
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.user) {
-      this.getUserData();
-    }
+    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => this.getUserData(data.username)));
   }
 
   ngOnDestroy(): void {
@@ -57,14 +49,14 @@ export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy,
     });
   }
 
-  getUserData(): void {
-    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe(data => {
+  getUserData(username: string): void {
+    this.subscriptions.push(this.appUsersService.getProfile(username).subscribe(data => {
       this.user = data;
       this.getPastEvents();
       this.getCommunities();
       this.getLabs();
       this.getBuilds();
-    });
+    }));
   }
 
   // Get the user's past events
