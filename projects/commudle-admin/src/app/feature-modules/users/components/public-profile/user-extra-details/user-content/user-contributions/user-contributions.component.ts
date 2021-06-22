@@ -1,4 +1,5 @@
-import { AfterViewChecked, Component, Input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ILab } from 'projects/shared-models/lab.model';
@@ -14,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy, AfterViewChecked {
 
-  @Input() user: IUser;
+  user: IUser;
 
   labs: ILab[] = [];
   communities: IUserRolesUser[] = [];
@@ -27,19 +28,20 @@ export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy,
   @ViewChildren('navigation') navigations: QueryList<any>;
 
   constructor(
-    private appUsersService: AppUsersService
+    private appUsersService: AppUsersService,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => {
+      this.getUserData();
+    }));
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.user) {
-      this.getPastEvents();
-      this.getCommunities();
-      this.getLabs();
-      this.getBuilds();
+      this.getUserData();
     }
   }
 
@@ -52,6 +54,16 @@ export class UserContributionsComponent implements OnInit, OnChanges, OnDestroy,
       if (!this.isScrollable(section.nativeElement)) {
         this.navigations.toArray()[idx].nativeElement.classList.remove('active');
       }
+    });
+  }
+
+  getUserData(): void {
+    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe(data => {
+      this.user = data;
+      this.getPastEvents();
+      this.getCommunities();
+      this.getLabs();
+      this.getBuilds();
     });
   }
 
