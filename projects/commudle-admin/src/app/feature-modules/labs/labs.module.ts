@@ -20,6 +20,7 @@ import {
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ClickOutsideDirective } from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { MentionsModule } from 'projects/shared-modules/mentions/mentions.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 import { CreateLabComponent } from './components/create-lab/create-lab.component';
@@ -68,7 +69,7 @@ import { LabsRoutingModule } from './labs-routing.module';
     ReusableComponentsModule,
     YouTubePlayerModule,
     SharedPipesModule,
-    NbSpinnerModule,
+    MentionsModule,
 
     // Nebular
     NbCardModule,
@@ -81,7 +82,8 @@ import { LabsRoutingModule } from './labs-routing.module';
     NbDialogModule.forChild(),
     NbUserModule,
     NbSidebarModule.forRoot(),
-    NbContextMenuModule
+    NbContextMenuModule,
+    NbSpinnerModule
   ],
   exports: [
     LabDisplayCardComponent,

@@ -8,7 +8,8 @@
         <form (ngSubmit)="sendMessage()" *ngIf="currentUser" [formGroup]="chatMessageForm">
           <nb-form-field>
             <nb-icon icon="edit-2" nbPrefix></nb-icon>
-            <textarea #messageInput (input)="handleInputSize()" formControlName="content" fullWidth maxlength="1000"
+            <textarea #messageInput (input)="handleInputSize()" [appMentions]="['halo', 'welcome', 'another']"
+                      formControlName="content" fullWidth maxlength="1000"
                       minlength="1" nbInput placeholder="Share Your Thoughts" rows="1" shape="semi-round"></textarea>
             <button [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)" ghost nbButton
                     nbSuffix shape="semi-round" status="primary" type="submit">

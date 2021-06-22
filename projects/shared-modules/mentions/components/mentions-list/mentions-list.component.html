@@ -1,0 +1,13 @@
+<ng-template #defaultItemTemplate let-item="item">
+  {{item[labelKey]}}
+</ng-template>
+<ul #list [class.mention-dropdown]="!styleOff && dropUp" [class.mention-menu]="!styleOff"
+    [hidden]="hidden" class="dropdown-menu scrollable-menu">
+  <li *ngFor="let item of items; let i = index" [class.active]="activeIndex == i"
+      [class.mention-active]="!styleOff && activeIndex == i">
+    <a (mousedown)="activeIndex = i; itemClick.emit(); $event.preventDefault()" [class.mention-item]="!styleOff"
+       class="dropdown-item">
+      <ng-template [ngTemplateOutletContext]="{'item': item}" [ngTemplateOutlet]="itemTemplate"></ng-template>
+    </a>
+  </li>
+</ul>
