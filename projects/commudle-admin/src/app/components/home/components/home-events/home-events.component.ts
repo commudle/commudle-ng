@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {HomeService} from 'projects/commudle-admin/src/app/services/home.service';
-import {IEvent} from 'projects/shared-models/event.model';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
+import { IEvent } from 'projects/shared-models/event.model';
 
 @Component({
   selector: 'app-home-events',
@@ -14,13 +15,18 @@ export class HomeEventsComponent implements OnInit {
   eventsStartIdx = 0;
   isLoading = true;
 
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 
   ngOnInit(): void {
-    this.getUpcomingEvents();
+    if (this.isBrowser) {
+      this.getUpcomingEvents();
+    }
   }
 
   getUpcomingEvents() {
