@@ -41,12 +41,12 @@
       <nb-card-body>
         <p>
           <nb-icon icon="info"></nb-icon>
-          Changing your username will cause the website to reload, are you sure you want to proceed?
+          Are you sure you want to change your username?
         </p>
       </nb-card-body>
-      <nb-card-footer class="d-flex justify-content-space-between">
-        <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
-        <button (click)="setUsername()" nbButton status="success">Save</button>
+      <nb-card-footer class="d-flex justify-content-start">
+        <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+        <button (click)="setUsername()" nbButton status="success">Yes</button>
       </nb-card-footer>
     </nb-card>
   </ng-template>

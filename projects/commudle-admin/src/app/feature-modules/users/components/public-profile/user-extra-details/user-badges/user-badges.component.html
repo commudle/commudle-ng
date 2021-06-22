@@ -1,7 +1,8 @@
 <nb-card class="user-badges">
   <nb-card-body>
-    <div *ngFor="let badge of badges" class="badge-list d-flex">
-      <img alt="{{badge.name}}" nbTooltip="{{badge.name}}" src="{{badge.image.url}}" title="{{badge.name}}">
+    <div class="badge-list d-flex flex-wrap">
+      <img *ngFor="let badge of badges" alt="{{badge.name}}" nbTooltip="{{badge.name}}" src="{{badge.image.url}}"
+           title="{{badge.name}}">
     </div>
   </nb-card-body>
 </nb-card>

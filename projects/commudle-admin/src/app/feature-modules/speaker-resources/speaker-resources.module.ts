@@ -1,20 +1,19 @@
-import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {ReactiveFormsModule} from '@angular/forms';
-import {NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbUserModule} from '@nebular/theme';
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {SpeakerResourcesRoutingModule} from './speaker-resources-routing.module';
-import {SpeakerResourceComponent} from './components/speaker-resource/speaker-resource.component';
-import {SpeakerResourceDiscussionComponent} from './components/speaker-resource-discussion/speaker-resource-discussion.component';
-import {SpeakerResourceDiscussionMessageComponent} from './components/speaker-resource-discussion/speaker-resource-discussion-message/speaker-resource-discussion-message.component';
-import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbUserModule } from '@nebular/theme';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SpeakerResourceDiscussionMessageComponent } from './components/speaker-resource-discussion/speaker-resource-discussion-message/speaker-resource-discussion-message.component';
+import { SpeakerResourceDiscussionComponent } from './components/speaker-resource-discussion/speaker-resource-discussion.component';
+import { SpeakerResourceComponent } from './components/speaker-resource/speaker-resource.component';
+import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.module';
 
 
 @NgModule({
   declarations: [
     SpeakerResourceComponent,
     SpeakerResourceDiscussionComponent,
-    SpeakerResourceDiscussionMessageComponent,
+    SpeakerResourceDiscussionMessageComponent
 
   ],
   imports: [
@@ -22,7 +21,6 @@ import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users
     SpeakerResourcesRoutingModule,
     ReactiveFormsModule,
     SharedComponentsModule,
-    UsersModule,
 
     // Nebular
     NbCardModule,
@@ -31,7 +29,7 @@ import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users
     NbFormFieldModule,
     NbUserModule,
     NbButtonModule,
-    NbInputModule,
+    NbInputModule
   ]
 })
 export class SpeakerResourcesModule {

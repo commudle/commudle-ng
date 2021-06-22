@@ -20,7 +20,13 @@ export class CommunityGroupFormComponent implements OnInit {
   communityGroupForm = this.fb.group({
     name: ['', Validators.required],
     logo: [''],
-    description: ['', Validators.required]
+    mini_description: ['', [Validators.required, Validators.maxLength(160)]],
+    description: ['', Validators.required],
+    website: [''],
+    facebook: [''],
+    twitter: [''],
+    github: [''],
+    linkedin: ['']
   });
 
   constructor(
@@ -44,7 +50,13 @@ export class CommunityGroupFormComponent implements OnInit {
       this.communityGroup = data;
       this.communityGroupForm.patchValue({
         name: this.communityGroup.name,
-        description: this.communityGroup.description
+        description: this.communityGroup.description,
+        mini_description: this.communityGroup.mini_description,
+        website: this.communityGroup.website,
+        facebook: this.communityGroup.facebook,
+        twitter: this.communityGroup.twitter,
+        github: this.communityGroup.github,
+        linkedin: this.communityGroup.linkedin
       });
     });
   }

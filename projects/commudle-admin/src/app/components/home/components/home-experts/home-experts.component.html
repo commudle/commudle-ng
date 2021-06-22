@@ -15,15 +15,12 @@
             <img alt="{{expert.name}}" src="{{expert.avatar}}" title="{{expert.name}}">
           </div>
           <div class="home-expert-details">
-            <div class="home-expert-name">
-              {{expert.name | truncatetext:14}}
+            <div class="home-expert-name d-flex align-items-center">
+              {{expert.name | truncatetext:10}}
+              <img *ngIf="expert.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg">
             </div>
-            <div class="home-expert-designation">
-              {{expert.designation | truncatetext:18}}
-            </div>
-            <div class="home-expert-member-count">
-              {{expert.followers_count.toString() + ' followers'}}
-            </div>
+            <p class="home-expert-designation">{{expert.designation | truncatetext:18}}</p>
+            <p class="home-expert-member-count">{{expert.followers_count.toString() + ' followers'}}</p>
           </div>
         </a>
         <app-user-follow (userFollowed)="getExperts()" [showIcon]="false"

@@ -34,7 +34,6 @@
                   Remove Logo
                 </button>
               </div>
-
               <label
                 [ngClass]="{'hidden': uploadedLogoImage || (communityGroup && communityGroup.logo && communityGroup.logo.url)}"
                 class="clickable">
@@ -47,9 +46,51 @@
                   </span>
                 </span>
                 <input (change)="displaySelectedLogo($event)" accept="image/*" formControlName="logo" fullWidth nbInput
-                       type="file">
+                        type="file">
               </label>
             </div>
+
+            <div>
+              <label fullWidth>
+                Tagline (describe in max 160 characters)*
+                <textarea rows="2" formControlName="mini_description" fullWidth nbInput></textarea>
+              </label>
+            </div>
+
+            <div>
+              <label fullWidth>
+                Website
+                <input rows="2" formControlName="website" fullWidth nbInput type="url">
+              </label>
+            </div>
+
+            <div>
+              <label fullWidth>
+                Facebook
+                <input rows="2" formControlName="facebook" fullWidth nbInput type="url">
+              </label>
+            </div>
+            <div>
+              <label fullWidth>
+                Twitter
+                <input rows="2" formControlName="twitter" fullWidth nbInput type="url">
+              </label>
+            </div>
+            <div>
+              <label fullWidth>
+                Github
+                <input rows="2" formControlName="github" fullWidth nbInput type="url">
+              </label>
+            </div>
+            <div>
+              <label fullWidth>
+                Linkedin
+                <input rows="2" formControlName="linkedin" fullWidth nbInput type="url">
+              </label>
+            </div>
+
+
+
 
             <label>
               About*

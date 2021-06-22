@@ -1,3 +1,5 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
 .actions {
   a {
     text-decoration: none;
@@ -29,6 +31,29 @@
 
     .details {
       text-align: center;
+    }
+  }
+  
+  nb-icon {
+    font-size: 1rem;
+  }
+}
+
+::ng-deep {
+  nb-option-list {
+    .option-list {
+      nb-option {
+        .logo {
+          max-width: 30px;
+          max-height: 30px;
+          margin: $space-5 $space-5 0 0;
+          border-radius: $border-50;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }

@@ -13,7 +13,7 @@
   </div>
   <div class="home-events-details">
     <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
-      {{event.name | truncatetext:35}}
+      {{event.name | truncatetext:32}}
     </div>
     <div class="home-events-host d-flex justify-content-space-between align-items-center">
       <div [routerLink]="['/communities', community.slug]"
