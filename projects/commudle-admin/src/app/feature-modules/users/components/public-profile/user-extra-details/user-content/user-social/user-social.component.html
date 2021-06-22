@@ -1,29 +1,32 @@
-<div class="user-social">
-  <p *ngIf="socialResources && socialResources.length > 0" class="header">My Content</p>
-  <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add d-flex">
-    <button (click)="onOpenDialog()" ghost nbButton status="primary">
-      <nb-icon icon="plus-circle"></nb-icon>
-      Share your content from anywhere on the web!
-    </button>
-    <button (click)="toggleEditView()" *ngIf="socialResources && socialResources.length > 1"
-            ghost nbButton status="{{isEditing ? 'success' : 'warning'}}">
-      <nb-icon [icon]="isEditing ? 'checkmark-circle-2' : 'flip-2'"></nb-icon>
-      {{isEditing ? 'Save order' : 'Edit order'}}
-    </button>
+<div *ngIf="user">
+  <div class="user-social">
+    <p *ngIf="socialResources && socialResources.length > 0" class="header">My Content</p>
+    <div *ngIf="currentUser && currentUser.id === user.id" class="user-social-add d-flex">
+      <button (click)="onOpenDialog()" ghost nbButton status="primary">
+        <nb-icon icon="plus-circle"></nb-icon>
+        Share your content from anywhere on the web!
+      </button>
+      <button (click)="toggleEditView()" *ngIf="socialResources && socialResources.length > 1"
+              ghost nbButton status="{{isEditing ? 'success' : 'warning'}}">
+        <nb-icon [icon]="isEditing ? 'checkmark-circle-2' : 'flip-2'"></nb-icon>
+        {{isEditing ? 'Save order' : 'Edit order'}}
+      </button>
+    </div>
+    <nb-alert *ngIf="currentUser && currentUser.id === user.id" [ngClass]="{'active': isEditing}"
+              class="user-social-alert" status="info">
+      You can drag and drop the items!
+    </nb-alert>
+    <nb-list (cdkDropListDropped)="drop($event)" *ngIf="socialResources && socialResources.length > 0" cdkDropList
+            class="user-social-cards">
+      <nb-list-item *ngFor="let socialResource of socialResources" [cdkDragDisabled]="!isEditing"
+                    [ngClass]="{'active': isEditing}" cdkDrag>
+        <app-user-social-card (deleteResource)="deleteSocialResource($event)" [currentUser]="currentUser"
+                              [socialResource]="socialResource" [user]="user"></app-user-social-card>
+      </nb-list-item>
+    </nb-list>
   </div>
-  <nb-alert *ngIf="currentUser && currentUser.id === user.id" [ngClass]="{'active': isEditing}"
-            class="user-social-alert" status="info">
-    You can drag and drop the items!
-  </nb-alert>
-  <nb-list (cdkDropListDropped)="drop($event)" *ngIf="socialResources && socialResources.length > 0" cdkDropList
-           class="user-social-cards">
-    <nb-list-item *ngFor="let socialResource of socialResources" [cdkDragDisabled]="!isEditing"
-                  [ngClass]="{'active': isEditing}" cdkDrag>
-      <app-user-social-card (deleteResource)="deleteSocialResource($event)" [currentUser]="currentUser"
-                            [socialResource]="socialResource" [user]="user"></app-user-social-card>
-    </nb-list-item>
-  </nb-list>
 </div>
+
 
 <ng-template #addLinkDialog>
   <nb-card class="user-social-popup max-full-height-dialog-card">
