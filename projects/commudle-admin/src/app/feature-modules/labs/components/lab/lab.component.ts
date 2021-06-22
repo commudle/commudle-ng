@@ -1,24 +1,25 @@
-import {AfterViewChecked, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
-import {ILab} from 'projects/shared-models/lab.model';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
-import {DomSanitizer, Meta, Title} from '@angular/platform-browser';
-import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
-import {IDiscussion} from 'projects/shared-models/discussion.model';
-import {DOCUMENT} from '@angular/common';
-import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {NbDialogService, NbSidebarService} from '@nebular/theme';
-import {Subscription} from 'rxjs';
-import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AfterViewChecked, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NbDialogService, NbSidebarService } from '@nebular/theme';
+import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { ILab } from 'projects/shared-models/lab.model';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lab',
   templateUrl: './lab.component.html',
-  styleUrls: ['./lab.component.scss'],
+  styleUrls: ['./lab.component.scss']
 })
 export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   public src;
+
   routeSubscriptions: Subscription[] = [];
   labDescription;
   triggerDialogB = false;
@@ -33,7 +34,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
 
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(DOCUMENT) private doc: Document,
     private activatedRoute: ActivatedRoute,
     private meta: Meta,
     private title: Title,
@@ -41,7 +46,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private sanitizer: DomSanitizer,
     private router: Router,
     private discussionsService: DiscussionsService,
-    @Inject(DOCUMENT) private doc: Document,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private dialogService: NbDialogService,
     private footerService: FooterService,
@@ -50,30 +54,32 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.routeSubscriptions.push(
-      this.activatedRoute.params.subscribe(data => {
-        this.getLab(data.lab_id);
-        this.setStep(-1);
-      })
-    );
-
-    // Listen for url changes
-    this.router.events.subscribe((event: NavigationStart) => {
-      if (event.navigationTrigger === 'popstate') {
-        // Get step id from url
-        const stepId = parseInt(event.url.split('/').pop(), 10);
-        if (isNaN(stepId)) {
-          // Navigation between a step and overview
+    if (this.isBrowser) {
+      this.routeSubscriptions.push(
+        this.activatedRoute.params.subscribe(data => {
+          this.getLab(data.lab_id);
           this.setStep(-1);
-        } else {
-          // Navigation between steps
-          this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === stepId);
-        }
-      }
-    });
+        })
+      );
 
-    // Hide Footer
-    this.footerService.changeFooterStatus(false);
+      // Listen for url changes
+      this.router.events.subscribe((event: NavigationStart) => {
+        if (event.navigationTrigger === 'popstate') {
+          // Get step id from url
+          const stepId = parseInt(event.url.split('/').pop(), 10);
+          if (isNaN(stepId)) {
+            // Navigation between a step and overview
+            this.setStep(-1);
+          } else {
+            // Navigation between steps
+            this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === stepId);
+          }
+        }
+      });
+
+      // Hide Footer
+      this.footerService.changeFooterStatus(false);
+    }
   }
 
   ngOnDestroy(): void {
@@ -130,7 +136,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   scrollToTop() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getLab(labId) {
@@ -155,7 +161,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.routeSubscriptions.push(
           this.activatedRoute.firstChild.params.subscribe(value => {
             if (value.step_id) {
-              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === parseInt(value.step_id));
+              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === parseInt(value.step_id, 10));
               this.setStep(this.selectedLabStep);
             }
           })
@@ -165,21 +171,23 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    if (!this.triggerDialogB) {
-      if (this.iContent) {
-        const imagesList = this.iContent.nativeElement.querySelectorAll('img');
-        for (const img of imagesList) {
-          const g0 = img;
-          g0.classList.add('clickable');
-          g0.addEventListener('click', () => {
-            this.src = g0.src;
-            this.dialogService.open(this.dialog);
-          }, false);
+    if (this.isBrowser) {
+      if (!this.triggerDialogB) {
+        if (this.iContent) {
+          const imagesList = this.iContent.nativeElement.querySelectorAll('img');
+          for (const img of imagesList) {
+            const g0 = img;
+            g0.classList.add('clickable');
+            g0.addEventListener('click', () => {
+              this.src = g0.src;
+              this.dialogService.open(this.dialog);
+            }, false);
+          }
+          this.triggerDialogB = true;
         }
-        this.triggerDialogB = true;
       }
+      this.highlightCodeSnippets();
     }
-    this.highlightCodeSnippets();
   }
 
   setStep(index) {
@@ -204,7 +212,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   scroll(el: HTMLElement) {
-    el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+    el.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
   }
 
   getMessagesCount(count: number) {
@@ -214,4 +222,5 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   toggleDetails() {
     this.nbSidebarService.toggle(false, 'right');
   }
+
 }
