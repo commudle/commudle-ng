@@ -1,5 +1,9 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+}
+
 .user-personal-details {
   padding: $space-16;
   border-radius: $border-10;
@@ -49,6 +53,7 @@
       border-radius: 50%;
       height: 100%;
       width: 100%;
+      max-height: 188px;
 
       img {
         width: 100%;
@@ -87,6 +92,9 @@
       line-height: 16px;
       color: rgba($gunmetal, 0.85);
       margin-bottom: $space-12;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .designation {
@@ -94,13 +102,14 @@
       font-size: $fs-h4;
       line-height: 19px;
       margin-bottom: $space-4;
-      word-break: break-all;
+      word-break: break-word;
     }
 
     .network {
       margin-bottom: $space-48;
 
       a {
+        margin: 0 $space-4;
         color: $cadet;
         font-size: $fs-h5;
         font-style: italic;

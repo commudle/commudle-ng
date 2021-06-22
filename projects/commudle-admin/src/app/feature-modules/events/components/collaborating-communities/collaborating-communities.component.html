@@ -19,10 +19,34 @@
       </div>
     </div>
     <div *ngIf="event.editable">
-      <input #autoInput (input)="onChange()" [nbAutocomplete]="auto" [value]="selectedCommunity" nbInput
-             placeholder="Enter Name..." type="text"/>
-      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)" [handleDisplayFn]="autocompleteDisplay">
-        <nb-option *ngFor="let option of communities" [value]="option"> {{ option.name }} </nb-option>
+      <label>
+        <p>
+          <nb-icon icon="info-circle" pack="fas"></nb-icon>
+          Type 3 or more characters to get the results
+        </p>
+
+        <input #autoInput
+        nbInput
+        type="text"
+        [value]="selectedCommunity"
+        (input)="onChange()"
+        (keyup)="checkTyping()"
+        placeholder="Enter Name..."
+        [nbAutocomplete]="auto" />
+      </label>
+
+      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+        <nb-option *ngFor="let community of communities" [value]="community">
+          <div class="logo">
+            <img src="{{community.logo_path}}" alt="{{ community.name }}" title="{{ community.name }}">
+          </div>
+          {{ community.name }}
+        </nb-option>
+        <nb-option disabled *ngIf="communities.length===0 && typing">
+          No Results
+        </nb-option>
+
       </nb-autocomplete>
     </div>
   </div>

@@ -1,8 +1,12 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import '../../../commudle-admin/src/assets/styles/variables';
 
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
+}
+
+p {
+  margin: 0;
 }
 
 .user-profile-medium {
@@ -31,8 +35,8 @@ a, a:hover, a:focus, a:active {
 
       img {
         margin-left: $space-4;
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
       }
     }
 

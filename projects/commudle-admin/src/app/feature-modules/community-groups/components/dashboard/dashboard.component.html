@@ -8,6 +8,10 @@
         {{communityGroup.name}}
         <small>Dashboard</small>
       </h1>
+      <a nbButton status="primary" size="tiny" [routerLink]="['/orgs', communityGroup.slug]" target="_blank">
+        <nb-icon icon="external-link"></nb-icon>
+        Public Page
+      </a>
     </nb-card-header>
     <nb-card-body>
       <nb-tabset>
@@ -19,10 +23,10 @@
         </nb-tab>
 
         <nb-tab tabTitle="Communities">
-          <a nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}">
+          <button nbButton status="primary" [routerLink]="['/admin/communities/new']" [queryParams]="{community_group_id: communityGroup.slug}" target="_blank" [disabled]="communityGroup.community_count_limit <= communities.length">
             <nb-icon icon="plus"></nb-icon>
             New Community
-          </a>
+          </button>
           <div class="chapters">
             <div *ngFor="let community of communities" class="community-chapter">
               <h3 class="lh-fw">{{community.name | slice:0:30}}</h3>

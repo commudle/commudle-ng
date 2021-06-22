@@ -26,4 +26,23 @@ export class AdminSurveysService {
     );
   }
 
+
+  updateStatus(status, adminSurveyId): Observable<boolean> {
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.ADMIN_SURVEYS.UPDATE_STATUS), {
+        admin_survey_id: adminSurveyId,
+        status
+      }
+    );
+  }
+
+
+  toggleMultiResponse(adminSurveyId): Observable<boolean> {
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.ADMIN_SURVEYS.TOGGLE_MULTI_RESPONSE), {
+        admin_survey_id: adminSurveyId,
+      }
+    );
+  }
+
 }

@@ -21,7 +21,7 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
 
   communities: ICommunity[];
   selectedCommunity = '';
-
+  typing = false;
 
   collaborationCommunities: IEventCollaborationCommunity[] = [];
 
@@ -40,6 +40,8 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   onSelectionChange($event) {
     this.createCollaboration($event.id);
     this.selectedCommunity = '';
+    this.input.nativeElement.value = '';
+    this.communities=[];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -89,8 +91,13 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     );
   }
 
-  autocompleteDisplay(value) {
-    return value.name;
+  // TODO: Remove the below function after 1 month (Added on 10-06-2021)
+  // autocompleteDisplay(value) {
+  //   return value.name;
+  // }
+
+  checkTyping() {
+    this.typing = this.input.nativeElement.value.length > 2 ;
   }
 
 }
