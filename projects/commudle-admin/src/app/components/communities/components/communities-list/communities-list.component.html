@@ -1,7 +1,7 @@
 <nb-card class="communities-list">
   <nb-card-body>
     <div class="prefix d-flex justify-content-space-between align-items-center">
-      <div class="heading">Communities List</div>
+      <div class="heading">Popular Communities</div>
       <div class="controls">
         <button (click)="changePage(-1)" class="left-btn" nbButton>
           <nb-icon icon="arrow-ios-back"></nb-icon>
@@ -11,7 +11,22 @@
         </button>
       </div>
     </div>
-    <div class="all-communities d-flex flex-wrap">
+    <div class="search d-flex flex-wrap align-items-center">
+      <div class="search-tags d-flex flex-wrap">
+        <div class="search-tag">Web-dev</div>
+        <div class="search-tag">Machine Learning</div>
+        <div class="search-tag">Design</div>
+        <div class="search-tag">Java</div>
+        <div class="search-tag">Analytics</div>
+      </div>
+      <div class="search-bar">
+        <nb-form-field>
+          <nb-icon icon="search" nbPrefix></nb-icon>
+          <input nbInput type="text">
+        </nb-form-field>
+      </div>
+    </div>
+    <div class="communities-list d-flex flex-wrap">
       <app-communities-list-card *ngFor="let community of communities"
                                  [community]="community"></app-communities-list-card>
     </div>
