@@ -8,7 +8,9 @@
       <div class="member-count">{{community.member_count}} Members</div>
     </div>
   </div>
-  <div class="tags"></div>
+  <div class="tags">
+    <div *ngFor="let tag of community.tags" class="tag">{{tag.name}}</div>
+  </div>
   <div class="about">{{community.mini_description | truncatetext: 140}}</div>
   <div class="suffix d-flex align-items-center">
     <div class="members">

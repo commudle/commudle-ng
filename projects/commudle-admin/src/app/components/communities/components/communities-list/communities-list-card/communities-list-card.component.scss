@@ -44,7 +44,19 @@
   }
 
   .tags {
+    margin-top: $space-16;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-8;
 
+    .tag {
+      padding: $space-4 $space-10;
+      border-radius: $border-5;
+      background-color: $azureish-white;
+      font-size: $fs-h7;
+      line-height: 12px;
+      color: $gunmetal;
+    }
   }
 
   .about {

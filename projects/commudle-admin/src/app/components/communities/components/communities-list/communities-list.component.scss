@@ -11,11 +11,22 @@
     .prefix {
       margin-bottom: $space-16;
 
+      .heading {
+        font-weight: $fw-600;
+        font-size: $fs-26;
+        line-height: 30px;
+        color: $gunmetal;
+      }
+
       .controls {
         button {
           width: 40px;
           height: 28px;
           background: rgba($neon-blue, 0.3);
+
+          nb-icon {
+            color: $neon-blue;
+          }
 
           &:nth-of-type(1) {
             margin-right: $space-8;
@@ -32,7 +43,55 @@
       }
     }
 
-    .all-communities {
+    .search {
+      margin: $space-44 0 $space-24;
+      gap: $space-32;
+
+      .search-tags {
+        gap: $space-20;
+
+        .search-tag {
+          padding: $space-8 $space-6;
+          font-size: $fs-h5;
+          line-height: 16px;
+          color: rgba($gunmetal, 0.85);
+
+          &.active {
+            border-bottom: 2px solid $gunmetal;
+          }
+        }
+      }
+
+      .search-bar {
+        nb-form-field {
+          &::ng-deep {
+            .nb-form-field-prefix-medium {
+              margin-right: -$space-32;
+              height: 24px;
+              width: 32px;
+            }
+          }
+
+          nb-icon {
+            height: 16px;
+            width: 16px;
+            color: rgba($gunmetal, 0.85);
+          }
+
+          input {
+            height: 24px;
+            width: 140px;
+            border: none;
+            border-radius: $space-4;
+            padding-left: $space-32;
+            font-size: $fs-h6;
+            background: #EDF1F7;
+          }
+        }
+      }
+    }
+
+    .communities-list {
       gap: $space-16;
     }
   }
