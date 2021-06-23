@@ -46,13 +46,14 @@
     <nb-card>
       <nb-card-body>
         <div class="menu-items">
-          <a [routerLink]="['/communities', community.slug]">
+          <a [routerLink]="['/communities', community.slug]" routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">
             <nb-icon icon="info" status="basic"></nb-icon>
-            <span>About</span>
+            <span class="title">About</span>
           </a>
           <a [routerLink]="['events']" routerLinkActive="active">
             <nb-icon icon="calendar" status="info"></nb-icon>
-            <span>Events</span>
+            <span class="title">Events</span>
           </a>
           <!-- <a [routerLink]="['resources']" routerLinkActive="active">
             <nb-icon icon="award" status="info"></nb-icon>
@@ -60,15 +61,15 @@
           </a> -->
           <a [routerLink]="['speakers']" routerLinkActive="active">
             <nb-icon icon="mic" status="success"></nb-icon>
-            <span>Speakers</span>
+            <span class="title">Speakers</span>
           </a>
           <a [routerLink]="['members']" routerLinkActive="active">
             <nb-icon icon="people" status="success"></nb-icon>
-            <span>Members</span>
+            <span class="title">Members</span>
           </a>
           <a [routerLink]="['/communities', this.community.slug, 'channels']" routerLinkActive="active">
             <nb-icon icon="hash" status="success"></nb-icon>
-            <span>Channels</span>
+            <span class="title">Channels</span>
           </a>
         </div>
       </nb-card-body>
