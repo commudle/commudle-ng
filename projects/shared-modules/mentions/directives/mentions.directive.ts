@@ -6,6 +6,7 @@ import {
   HostListener,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
   TemplateRef,
@@ -14,6 +15,7 @@ import {
 import { MentionsListComponent } from 'projects/shared-modules/mentions/components/mentions-list/mentions-list.component';
 import { MentionsConfig } from 'projects/shared-modules/mentions/config/mentions-config';
 import { getCaretPosition, getValue, insertValue, setCaretPosition } from 'projects/shared-modules/mentions/functions/mentions-utils';
+import { MentionsService } from 'projects/shared-modules/mentions/services/mentions.service';
 
 const KEY_BACKSPACE = 8;
 const KEY_TAB = 9;
@@ -30,7 +32,7 @@ const KEY_BUFFERED = 229;
 @Directive({
   selector: '[appMentions]'
 })
-export class MentionsDirective implements OnChanges {
+export class MentionsDirective implements OnInit, OnChanges {
 
   // the provided configuration object
   @Input() MentionsConfig: MentionsConfig = { items: [] };
@@ -50,7 +52,7 @@ export class MentionsDirective implements OnChanges {
   private DEFAULT_CONFIG: MentionsConfig = {
     items: [],
     triggerChar: '@',
-    labelKey: 'label',
+    labelKey: 'username',
     maxItems: -1,
     allowSpace: false,
     returnTrigger: false,
@@ -74,15 +76,21 @@ export class MentionsDirective implements OnChanges {
   constructor(
     private _element: ElementRef,
     private _componentResolver: ComponentFactoryResolver,
-    private _viewContainerRef: ViewContainerRef
+    private _viewContainerRef: ViewContainerRef,
+    private mentionsService: MentionsService
   ) {
   }
 
-  @Input('appMentions') set mention(items: any[]) {
-    this.mentionItems = items;
+  // @Input('appMentions') set mention(items: any[]) {
+  //   this.mentionItems = items;
+  // }
+
+  ngOnInit(): void {
+    this.mentionItems = [];
+    this.updateConfig();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     // console.log('config change', changes);
     if (changes.mention || changes.MentionsConfig) {
       this.updateConfig();
@@ -279,25 +287,46 @@ export class MentionsDirective implements OnChanges {
   }
 
   updateSearchList() {
-    let matches: any[] = [];
-    if (this.activeConfig && this.activeConfig.items) {
-      let objects = this.activeConfig.items;
-      // disabling the search relies on the async operation to do the filtering
-      if (!this.activeConfig.disableSearch && this.searchString && this.activeConfig.labelKey) {
-        if (this.activeConfig.mentionFilter) {
-          objects = this.activeConfig.mentionFilter(this.searchString, objects);
+    this.mentionsService.getUsers('').subscribe(value => {
+      let matches: any[] = [];
+      if (this.activeConfig && this.activeConfig.items) {
+        let objects = value;
+        // disabling the search relies on the async operation to do the filtering
+        if (!this.activeConfig.disableSearch && this.searchString && this.activeConfig.labelKey) {
+          if (this.activeConfig.mentionFilter) {
+            objects = this.activeConfig.mentionFilter(this.searchString, objects);
+          }
+        }
+        matches = objects;
+        if (this.activeConfig.maxItems > 0) {
+          matches = matches.slice(0, this.activeConfig.maxItems);
         }
       }
-      matches = objects;
-      if (this.activeConfig.maxItems > 0) {
-        matches = matches.slice(0, this.activeConfig.maxItems);
+      // update the search list
+      if (this.searchList) {
+        this.searchList.items = matches;
+        this.searchList.hidden = matches.length == 0;
       }
-    }
-    // update the search list
-    if (this.searchList) {
-      this.searchList.items = matches;
-      this.searchList.hidden = matches.length == 0;
-    }
+    });
+    // let matches: any[] = [];
+    // if (this.activeConfig && this.activeConfig.items) {
+    //   let objects = this.activeConfig.items;
+    //   // disabling the search relies on the async operation to do the filtering
+    //   if (!this.activeConfig.disableSearch && this.searchString && this.activeConfig.labelKey) {
+    //     if (this.activeConfig.mentionFilter) {
+    //       objects = this.activeConfig.mentionFilter(this.searchString, objects);
+    //     }
+    //   }
+    //   matches = objects;
+    //   if (this.activeConfig.maxItems > 0) {
+    //     matches = matches.slice(0, this.activeConfig.maxItems);
+    //   }
+    // }
+    // // update the search list
+    // if (this.searchList) {
+    //   this.searchList.items = matches;
+    //   this.searchList.hidden = matches.length == 0;
+    // }
   }
 
   showSearchList(nativeElement: HTMLInputElement) {
