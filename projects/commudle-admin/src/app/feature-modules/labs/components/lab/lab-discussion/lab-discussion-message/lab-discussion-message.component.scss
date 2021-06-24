@@ -10,6 +10,10 @@
     width: 100%;
 
     .author-details {
+      a, a:hover, a:focus, a:active {
+          text-decoration: none;
+        }
+
       .name {
         font-weight: $fw-600;
         font-size: $fs-h5;
