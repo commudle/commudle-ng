@@ -24,9 +24,11 @@
   }
 
   nb-list-item {
-    position: relative;
     padding: $space-8;
-    transition: all 0.2s ease-in;
+
+    app-user-profile-mini {
+      width: 100%;
+    }
 
     &:first-child {
       border-top: none;
@@ -34,24 +36,6 @@
 
     &:last-child {
       border-bottom: none;
-    }
-
-    .invite-to-stage {
-      position: absolute;
-      opacity: 0;
-      left: 76px;
-      background-color: $white;
-      transition: all 0.2s ease-in;
-    }
-
-    &:hover {
-      &.admin {
-        box-shadow: inset 0 0 300px 300px rgba($black, 0.15);
-      }
-
-      .invite-to-stage {
-        opacity: 1;
-      }
     }
   }
 }
