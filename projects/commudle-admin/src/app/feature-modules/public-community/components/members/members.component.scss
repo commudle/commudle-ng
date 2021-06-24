@@ -1,20 +1,60 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  margin: 0;
+  nb-card-body {
+    padding: 0 $space-40;
+  }
+}
+
+.header-text {
+  color: #2f2e41;
+  max-width: fit-content;
+  margin: $space-40 0 0 $space-16;
+  font-size: $fs-26;
+  font-weight: $fw-600;
+  line-height: 1.9rem;
+}
+
 .users {
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
+  margin-top: $space-24;
 
-  .user {
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    margin: 1rem;
-  }
-
-  @media screen and (min-width: 800px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  .user-container {
+    border-right: 1px solid #C4C4C4;
+    padding: 0 $space-8;
+    margin-bottom: $space-32;
 
     .user {
-      width: 25%;
+      border-radius: $border-10;
+      padding: $space-16 0;
+    }
+
+    ::ng-deep {
+      .avatar {
+        min-width: 3.5rem;
+        min-height: 3.5rem;
+      }
+    }
+  }
+  .user-container:nth-child(3n+0) {
+    border: none;
+  }
+
+  @media screen and (min-width: $tab-width) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .user {
+      width: 264px;
+    }
+  }
+
+  @media screen and (max-width: $mobile-width) {
+    .user-container {
+      border: none;
     }
   }
 }
