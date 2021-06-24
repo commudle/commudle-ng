@@ -1,12 +1,13 @@
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {HomeService} from 'projects/commudle-admin/src/app/services/home.service';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {UserRolesUsersService} from 'projects/commudle-admin/src/app/services/user_roles_users.service';
-import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
-import {NbDialogRef, NbDialogService} from '@nebular/theme';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, TemplateRef, ViewChild } from '@angular/core';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
+import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-home-communities',
@@ -24,20 +25,25 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   @ViewChild('joinCommunityDialog') joinCommunityDialog: TemplateRef<any>;
   @ViewChild('leaveCommunityDialog') leaveCommunityDialog: TemplateRef<any>;
 
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   constructor(
     private homeService: HomeService,
     private appUsersService: AppUsersService,
     private authWatchService: LibAuthwatchService,
     private userRolesUsersService: UserRolesUsersService,
     private toastLogService: LibToastLogService,
-    private nbDialogService: NbDialogService
+    private nbDialogService: NbDialogService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 
   ngOnInit(): void {
-    this.getCommunities();
+    if (this.isBrowser) {
+      this.getCommunities();
 
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
+      this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
+    }
   }
 
   ngOnDestroy(): void {

@@ -9,6 +9,7 @@ import { FooterService } from 'projects/commudle-admin/src/app/services/footer.s
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { CookieConsentComponent } from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { TruncateTextPipe } from 'projects/shared-pipes/truncate-text.pipe';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -19,7 +20,8 @@ import { CookieConsentService } from './services/cookie-consent.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [TruncateTextPipe]
 })
 export class AppComponent implements OnInit, AfterViewChecked {
 
@@ -49,12 +51,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private appCentralNotificationsService: AppCentralNotificationService,
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private truncate: TruncateTextPipe
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
-    this.titleService.setTitle('Commudle | Developer Communities, Together');
 
     this.iconLibraries.registerFontPack('far', { iconClassPrefix: 'fa', packClass: 'far' });
     this.iconLibraries.registerFontPack('fas', { iconClassPrefix: 'fa', packClass: 'fas' });
@@ -67,7 +69,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
       if (this.currentUser && this.userContextMenu.length <= 1) {
         this.userContextMenu.unshift({
-          title: `@${currentUser.username}`,
+          title: `@${this.truncate.transform(currentUser.username, 10)}`,
           link: `/users/${currentUser.username}`,
           badge: {
             text: 'Profile',
@@ -100,10 +102,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
     });
 
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
-      this.windowService.open(CookieConsentComponent, {
-        title: 'Let\'s Share Cookies!',
-        initialState: NbWindowState.MAXIMIZED
-      });
+      setTimeout(() => {
+        this.windowService.open(CookieConsentComponent, {
+          title: 'Let\'s Share Cookies!',
+          initialState: NbWindowState.MAXIMIZED,
+          windowClass: 'cookie-consent'
+        });
+      }, 3000);
     }
 
     if (this.cookieConsentService.isCookieConsentAccepted()) {
