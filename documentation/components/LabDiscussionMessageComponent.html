@@ -1,0 +1,1360 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>commudle-ng documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">commudle-ng documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>LabDiscussionMessageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-lab-discussion-message</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./lab-discussion-message.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./lab-discussion-message.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#limitRows">limitRows</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#messageInput">messageInput</a>
+                            </li>
+                            <li>
+                                <a href="#messageLastScrollHeight">messageLastScrollHeight</a>
+                            </li>
+                            <li>
+                                <a href="#moment">moment</a>
+                            </li>
+                            <li>
+                                <a href="#showReplyForm">showReplyForm</a>
+                            </li>
+                            <li>
+                                <a href="#userMessageReplyForm">userMessageReplyForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#emitDelete">emitDelete</a>
+                            </li>
+                            <li>
+                                <a href="#emitFlag">emitFlag</a>
+                            </li>
+                            <li>
+                                <a href="#emitReply">emitReply</a>
+                            </li>
+                            <li>
+                                <a href="#handleInputSize">handleInputSize</a>
+                            </li>
+                            <li>
+                                <a href="#login">login</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleReplyForm">toggleReplyForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allActions">allActions</a>
+                            </li>
+                            <li>
+                                <a href="#canReply">canReply</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser">currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#message">message</a>
+                            </li>
+                            <li>
+                                <a href="#permittedActions">permittedActions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#sendDelete">sendDelete</a>
+                            </li>
+                            <li>
+                                <a href="#sendFlag">sendFlag</a>
+                            </li>
+                            <li>
+                                <a href="#sendReply">sendReply</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authWatchService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LibAuthwatchService.html" target="_self" >LibAuthwatchService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allActions"></a>
+                        <b>allActions</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:19</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="canReply"></a>
+                        <b>canReply</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:17</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentUser"></a>
+                        <b>currentUser</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:20</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="message"></a>
+                        <b>message</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IUserMessage.html" target="_self" >IUserMessage</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:16</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="permittedActions"></a>
+                        <b>permittedActions</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:18</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sendDelete"></a>
+                        <b>sendDelete</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:23</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sendFlag"></a>
+                        <b>sendFlag</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:22</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sendReply"></a>
+                        <b>sendReply</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:21</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitDelete"></a>
+                    <span class="name">
+                        <b>
+                            emitDelete
+                        </b>
+                        <a href="#emitDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emitDelete(userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitFlag"></a>
+                    <span class="name">
+                        <b>
+                            emitFlag
+                        </b>
+                        <a href="#emitFlag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emitFlag(userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitReply"></a>
+                    <span class="name">
+                        <b>
+                            emitReply
+                        </b>
+                        <a href="#emitReply"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emitReply()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleInputSize"></a>
+                    <span class="name">
+                        <b>
+                            handleInputSize
+                        </b>
+                        <a href="#handleInputSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleInputSize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login"></a>
+                    <span class="name">
+                        <b>
+                            login
+                        </b>
+                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>login()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:44</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleReplyForm"></a>
+                    <span class="name">
+                        <b>
+                            toggleReplyForm
+                        </b>
+                        <a href="#toggleReplyForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleReplyForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="limitRows"></a>
+                        <span class="name">
+                            <b>
+                            limitRows</b>
+                            <a href="#limitRows"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>3</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="messageInput"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            messageInput</b>
+                            <a href="#messageInput"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;messageInput&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="messageLastScrollHeight"></a>
+                        <span class="name">
+                            <b>
+                            messageLastScrollHeight</b>
+                            <a href="#messageLastScrollHeight"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="moment"></a>
+                        <span class="name">
+                            <b>
+                            moment</b>
+                            <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>moment</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showReplyForm"></a>
+                        <span class="name">
+                            <b>
+                            showReplyForm</b>
+                            <a href="#showReplyForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userMessageReplyForm"></a>
+                        <span class="name">
+                            <b>
+                            userMessageReplyForm</b>
+                            <a href="#userMessageReplyForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.fb.group({
+    content: [&#x27;&#x27;, [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]]
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from &#x27;@angular/core&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import {IUserMessage} from &#x27;projects/shared-models/user_message.model&#x27;;
+import {ICurrentUser} from &#x27;projects/shared-models/current_user.model&#x27;;
+import {FormBuilder, Validators} from &#x27;@angular/forms&#x27;;
+import {NoWhitespaceValidator} from &#x27;projects/shared-helper-modules/custom-validators.validator&#x27;;
+import {LibAuthwatchService} from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
+
+@Component({
+  selector: &#x27;app-lab-discussion-message&#x27;,
+  templateUrl: &#x27;./lab-discussion-message.component.html&#x27;,
+  styleUrls: [&#x27;./lab-discussion-message.component.scss&#x27;]
+})
+export class LabDiscussionMessageComponent implements OnInit {
+
+  @Input() message: IUserMessage;
+  @Input() canReply: boolean;
+  @Input() permittedActions;
+  @Input() allActions;
+  @Input() currentUser: ICurrentUser;
+  @Output() sendReply &#x3D; new EventEmitter();
+  @Output() sendFlag &#x3D; new EventEmitter();
+  @Output() sendDelete &#x3D; new EventEmitter();
+
+  moment &#x3D; moment;
+  showReplyForm &#x3D; false;
+  userMessageReplyForm &#x3D; this.fb.group({
+    content: [&#x27;&#x27;, [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]]
+  });
+  limitRows &#x3D; 3;
+  messageLastScrollHeight: number;
+
+  @ViewChild(&#x27;messageInput&#x27;) private messageInput: ElementRef;
+
+  constructor(
+    private authWatchService: LibAuthwatchService,
+    private fb: FormBuilder
+  ) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  login() {
+    if (!this.currentUser) {
+      this.authWatchService.logInUser();
+    }
+    return true;
+  }
+
+  emitFlag(userMessageId) {
+    this.sendFlag.emit(userMessageId);
+  }
+
+  emitDelete(userMessageId) {
+    this.sendDelete.emit(userMessageId);
+  }
+
+  emitReply() {
+    this.sendReply.emit(this.userMessageReplyForm.value);
+    this.userMessageReplyForm.reset();
+  }
+
+  toggleReplyForm() {
+    this.showReplyForm &#x3D; !this.showReplyForm;
+  }
+
+  handleInputSize() {
+    let rows &#x3D; this.messageInput.nativeElement.getAttribute(&#x27;rows&#x27;);
+    this.messageInput.nativeElement.setAttribute(&#x27;rows&#x27;, &#x27;1&#x27;);
+
+    if (rows &lt; this.limitRows &amp;&amp; this.messageInput.nativeElement.scrollHeight &gt; this.messageLastScrollHeight) {
+      rows++;
+    } else if (rows &gt; 1 &amp;&amp; this.messageInput.nativeElement.scrollHeight &lt; this.messageLastScrollHeight) {
+      rows--;
+    }
+
+    this.messageLastScrollHeight &#x3D; this.messageInput.nativeElement.scrollHeight;
+    this.messageInput.nativeElement.setAttribute(&#x27;rows&#x27;, rows);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+  &lt;div class&#x3D;&quot;message&quot;&gt;
+    &lt;div&gt;
+      &lt;a [routerLink]&#x3D;&quot;[&#x27;/users&#x27;, message.user.username]&quot; target&#x3D;&quot;_blank&quot;&gt;
+        &lt;nb-user [picture]&#x3D;&quot;message.user.avatar&quot; onlyPicture&#x3D;&quot;true&quot;&gt;&lt;/nb-user&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;content-controls&quot;&gt;
+      &lt;div class&#x3D;&quot;author-details&quot;&gt;
+        &lt;div class&#x3D;&quot;d-flex justify-content-space-between&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center&quot;&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;/users&#x27;, message.user.username]&quot; target&#x3D;&quot;_blank&quot;&gt;
+              &lt;span class&#x3D;&quot;name&quot;&gt;{{message.user.name}}&lt;/span&gt;
+              &lt;span class&#x3D;&quot;username&quot;&gt;@{{message.user.username}}&lt;/span&gt;
+              &lt;img *ngIf&#x3D;&quot;message.user.is_expert&quot; alt&#x3D;&quot;Expert Tick&quot; class&#x3D;&quot;expert-icon&quot;
+                  src&#x3D;&quot;/assets/images/Expert-Tick.svg&quot; title&#x3D;&quot;Expert Tick&quot;&gt;
+            &lt;/a&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;date&quot;&gt;{{moment(message.created_at).format(&quot;MMM D [&#x27;]YY&quot;)}}&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;content&quot;&gt;{{message.content}}&lt;/div&gt;
+      &lt;div class&#x3D;&quot;details-flag&quot;&gt;
+        &lt;div (click)&#x3D;&quot;login() &amp;&amp; permittedActions.includes(allActions.FLAG) &amp;&amp; emitFlag(message.id)&quot; class&#x3D;&quot;clickable&quot;&gt;
+          &lt;p [ngClass]&#x3D;&quot;{&#x27;error-text&#x27;: message.flags_count &gt; 0}&quot;
+             nbTooltip&#x3D;&quot;Report this message. (3 reports will delete it)&quot; nbTooltipStatus&#x3D;&quot;warning&quot;&gt;
+            &lt;span *ngIf&#x3D;&quot;message.flags_count &gt; 0&quot;&gt;{{ message.flags_count }}&lt;/span&gt;
+            &lt;nb-icon icon&#x3D;&quot;flag&quot;&gt;&lt;/nb-icon&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div
+          (click)&#x3D;&quot;login() &amp;&amp; (permittedActions.includes(allActions.DELETE) || (currentUser &amp;&amp; message.user.id &#x3D;&#x3D;&#x3D; currentUser.id)) &amp;&amp; emitDelete(message.id)&quot;
+          *ngIf&#x3D;&quot;permittedActions.includes(allActions.DELETE)&quot; class&#x3D;&quot;clickable&quot; nbTooltip&#x3D;&quot;Delete&quot;
+          nbTooltipStatus&#x3D;&quot;warning&quot;&gt;
+          &lt;p&gt;
+            &lt;nb-icon icon&#x3D;&quot;close-circle&quot;&gt;&lt;/nb-icon&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;p&gt;
+            &lt;app-votes-display [icon]&#x3D;&quot;&#x27;heart&#x27;&quot; [size]&#x3D;&quot;&#x27;small&#x27;&quot; [votableId]&#x3D;&quot;message.id&quot;
+                               [votableType]&#x3D;&quot;&#x27;UserMessage&#x27;&quot;&gt;&lt;/app-votes-display&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div (click)&#x3D;&quot;toggleReplyForm()&quot; *ngIf&#x3D;&quot;permittedActions.includes(allActions.ADD) &amp;&amp; canReply&quot;
+             class&#x3D;&quot;clickable&quot;&gt;
+          &lt;p&gt;&lt;small&gt;Reply&lt;/small&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;canReply&quot; class&#x3D;&quot;replies-container&quot;&gt;
+    &lt;div *ngFor&#x3D;&quot;let rep of message.user_messages&quot; class&#x3D;&quot;reply-message&quot;&gt;
+      &lt;app-lab-discussion-message (sendDelete)&#x3D;&quot;emitDelete($event)&quot; (sendFlag)&#x3D;&quot;emitFlag($event)&quot;
+                                  [allActions]&#x3D;&quot;allActions&quot; [canReply]&#x3D;&quot;false&quot; [currentUser]&#x3D;&quot;currentUser&quot;
+                                  [message]&#x3D;&quot;rep&quot; [permittedActions]&#x3D;&quot;permittedActions&quot;&gt;&lt;/app-lab-discussion-message&gt;
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;showReplyForm&quot; class&#x3D;&quot;reply-form&quot;&gt;
+      &lt;form (ngSubmit)&#x3D;&quot;emitReply()&quot; *ngIf&#x3D;&quot;canReply&quot; [formGroup]&#x3D;&quot;userMessageReplyForm&quot;&gt;
+        &lt;nb-form-field&gt;
+          &lt;nb-icon icon&#x3D;&quot;edit-2&quot; nbPrefix&gt;&lt;/nb-icon&gt;
+          &lt;textarea #messageInput (input)&#x3D;&quot;handleInputSize()&quot; formControlName&#x3D;&quot;content&quot; fullWidth maxlength&#x3D;&quot;1000&quot;
+                    minlength&#x3D;&quot;1&quot; nbInput placeholder&#x3D;&quot;Reply&quot; rows&#x3D;&quot;1&quot; shape&#x3D;&quot;semi-round&quot;&gt;&lt;/textarea&gt;
+          &lt;button [disabled]&#x3D;&quot;!userMessageReplyForm.valid&quot; ghost nbButton nbSuffix shape&#x3D;&quot;semi-round&quot; status&#x3D;&quot;primary&quot;
+                  type&#x3D;&quot;submit&quot;&gt;
+            Post
+            &lt;nb-icon icon&#x3D;&quot;paper-plane-outline&quot;&gt;&lt;/nb-icon&gt;
+          &lt;/button&gt;
+        &lt;/nb-form-field&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./lab-discussion-message.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;/projects/commudle-admin/src/assets/styles/variables&#x27;;
+
+.message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+  .content-controls {
+    width: 100%;
+
+    .author-details {
+      a, a:hover, a:focus, a:active {
+          text-decoration: none;
+        }
+
+      .name {
+        font-weight: $fw-600;
+        font-size: $fs-h5;
+        line-height: 16px;
+        color: $gunmetal;
+      }
+
+      .username {
+        margin-left: $space-8;
+        font-size: $fs-h6;
+        line-height: 14px;
+        color: rgba($gunmetal, 0.85);
+      }
+
+      .expert-icon {
+        margin-left: $space-8;
+        width: 16px;
+        height: 16px;
+      }
+
+      .date {
+        font-size: $fs-h5;
+        line-height: 16px;
+        color: $spanish-gray;
+      }
+    }
+
+    .content {
+      margin-top: $space-4;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: $fs-h5;
+      line-height: 16px;
+      color: $raisin-black;
+    }
+
+    .details-flag {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      nb-icon {
+        font-size: 1rem;
+        color: #8080808C;
+      }
+
+      &gt; div {
+        margin-right: 10px;
+
+        p {
+          margin: 5px 0 0;
+          color: #808080;
+        }
+      }
+    }
+  }
+}
+
+.replies-container {
+  margin: $space-16 0 $space-16 $space-16;
+
+  .reply-message {
+    margin-bottom: 0.5 * $space-16;
+  }
+
+  .reply-form {
+    nb-form-field {
+      textarea {
+        resize: none;
+        padding: $space-8 $space-80 $space-8 $space-40;
+
+        &amp;::placeholder {
+          padding-top: 2px;
+        }
+      }
+
+      &amp;::ng-deep {
+        .nb-form-field-prefix-medium {
+          margin-bottom: auto;
+        }
+
+        .nb-form-field-suffix-medium {
+          margin: 0 0 auto -4.35rem;
+
+          button {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div>  <div class="message">    <div>      <a [routerLink]="[\'/users\', message.user.username]" target="_blank">        <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>      </a>    </div>    <div class="content-controls">      <div class="author-details">        <div class="d-flex justify-content-space-between">          <div class="d-flex align-items-center">            <a [routerLink]="[\'/users\', message.user.username]" target="_blank">              <span class="name">{{message.user.name}}</span>              <span class="username">@{{message.user.username}}</span>              <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"                  src="/assets/images/Expert-Tick.svg" title="Expert Tick">            </a>          </div>          <div class="date">{{moment(message.created_at).format("MMM D [\']YY")}}</div>        </div>      </div>      <div class="content">{{message.content}}</div>      <div class="details-flag">        <div (click)="login() && permittedActions.includes(allActions.FLAG) && emitFlag(message.id)" class="clickable">          <p [ngClass]="{\'error-text\': message.flags_count > 0}"             nbTooltip="Report this message. (3 reports will delete it)" nbTooltipStatus="warning">            <span *ngIf="message.flags_count > 0">{{ message.flags_count }}</span>            <nb-icon icon="flag"></nb-icon>          </p>        </div>        <div          (click)="login() && (permittedActions.includes(allActions.DELETE) || (currentUser && message.user.id === currentUser.id)) && emitDelete(message.id)"          *ngIf="permittedActions.includes(allActions.DELETE)" class="clickable" nbTooltip="Delete"          nbTooltipStatus="warning">          <p>            <nb-icon icon="close-circle"></nb-icon>          </p>        </div>        <div>          <p>            <app-votes-display [icon]="\'heart\'" [size]="\'small\'" [votableId]="message.id"                               [votableType]="\'UserMessage\'"></app-votes-display>          </p>        </div>        <div (click)="toggleReplyForm()" *ngIf="permittedActions.includes(allActions.ADD) && canReply"             class="clickable">          <p><small>Reply</small></p>        </div>      </div>    </div>  </div>  <div *ngIf="canReply" class="replies-container">    <div *ngFor="let rep of message.user_messages" class="reply-message">      <app-lab-discussion-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)"                                  [allActions]="allActions" [canReply]="false" [currentUser]="currentUser"                                  [message]="rep" [permittedActions]="permittedActions"></app-lab-discussion-message>    </div>    <div *ngIf="showReplyForm" class="reply-form">      <form (ngSubmit)="emitReply()" *ngIf="canReply" [formGroup]="userMessageReplyForm">        <nb-form-field>          <nb-icon icon="edit-2" nbPrefix></nb-icon>          <textarea #messageInput (input)="handleInputSize()" formControlName="content" fullWidth maxlength="1000"                    minlength="1" nbInput placeholder="Reply" rows="1" shape="semi-round"></textarea>          <button [disabled]="!userMessageReplyForm.valid" ghost nbButton nbSuffix shape="semi-round" status="primary"                  type="submit">            Post            <nb-icon icon="paper-plane-outline"></nb-icon>          </button>        </nb-form-field>      </form>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityCardComponent', 'selector': 'app-home-community-card'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'}];
+    var ACTUAL_COMPONENT = {'name': 'LabDiscussionMessageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LabDiscussionMessageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

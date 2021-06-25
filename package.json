@@ -12,7 +12,8 @@
     "dev:ssr": "ng run commudle-admin:serve-ssr",
     "serve:ssr": "node dist/commudle-admin-server/main.js",
     "build:ssr": "ng build --prod && ng run commudle-admin:server:production",
-    "prerender": "ng run commudle-admin:prerender"
+    "prerender": "ng run commudle-admin:prerender",
+    "compodoc:serve": "compodoc -p tsconfig.json -s"
   },
   "private": true,
   "dependencies": {
@@ -77,6 +78,7 @@
     "@angular/cli": "~11.0.1",
     "@angular/compiler-cli": "~11.0.1",
     "@angular/language-service": "~11.0.1",
+    "@compodoc/compodoc": "^1.1.11",
     "@nguniversal/builders": "^9.1.0",
     "@schematics/angular": "~8.3.23",
     "@types/express": "^4.17.0",
