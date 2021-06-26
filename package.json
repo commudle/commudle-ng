@@ -13,7 +13,8 @@
     "serve:ssr": "node dist/commudle-admin-server/main.js",
     "build:ssr": "ng build --prod && ng run commudle-admin:server:production",
     "prerender": "ng run commudle-admin:prerender",
-    "compodoc:serve": "compodoc -p tsconfig.json -s"
+    "compodoc:serve": "compodoc -p tsconfig.json -s",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -78,6 +79,8 @@
     "@angular/cli": "~11.0.1",
     "@angular/compiler-cli": "~11.0.1",
     "@angular/language-service": "~11.0.1",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@compodoc/compodoc": "^1.1.11",
     "@nguniversal/builders": "^9.1.0",
     "@schematics/angular": "~8.3.23",
@@ -95,6 +98,7 @@
     "eslint-plugin-jsdoc": "30.7.6",
     "eslint-plugin-prefer-arrow": "1.2.2",
     "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.1.1",
@@ -102,6 +106,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "lint-staged": "^11.0.0",
     "ng-packagr": "^11.0.2",
     "parse5": "^6.0.1",
     "prettier": "^2.3.1",
