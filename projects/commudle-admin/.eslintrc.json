@@ -1,18 +1,14 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": [
-          "./tsconfig.app.json",
-          "./tsconfig.spec.json",
-          "./e2e/tsconfig.json"
+          "projects/commudle-admin/tsconfig.app.json",
+          "projects/commudle-admin/tsconfig.spec.json",
+          "projects/commudle-admin/e2e/tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -39,17 +35,12 @@
             "accessibility": "explicit"
           }
         ],
-        "arrow-parens": [
-          "off",
-          "always"
-        ],
+        "arrow-parens": ["off", "always"],
         "import/order": "off"
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]
