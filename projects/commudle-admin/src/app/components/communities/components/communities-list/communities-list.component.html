@@ -13,21 +13,21 @@
     </div>
     <div class="search d-flex flex-wrap align-items-center">
       <div class="search-tags d-flex flex-wrap">
-        <div class="search-tag">Web-dev</div>
-        <div class="search-tag">Machine Learning</div>
-        <div class="search-tag">Design</div>
-        <div class="search-tag">Java</div>
-        <div class="search-tag">Analytics</div>
+        <div (click)="changeSelectedTag(tag)" *ngFor="let tag of searchTags" [ngClass]="{'active': selectedTag === tag}"
+             class="clickable search-tag">
+          {{tag}}
+        </div>
       </div>
       <div class="search-bar">
         <nb-form-field>
           <nb-icon icon="search" nbPrefix></nb-icon>
-          <input nbInput type="text">
+          <input [formControl]="searchField" nbInput type="text">
+          <nb-icon icon="info" nbSuffix nbTooltip="Enter at least 3 characters to start searching"></nb-icon>
         </nb-form-field>
       </div>
     </div>
     <div class="communities-list d-flex flex-wrap">
-      <app-communities-list-card *ngFor="let community of communities"
+      <app-communities-list-card *ngFor="let community of searchedCommunities"
                                  [community]="community"></app-communities-list-card>
     </div>
   </nb-card-body>

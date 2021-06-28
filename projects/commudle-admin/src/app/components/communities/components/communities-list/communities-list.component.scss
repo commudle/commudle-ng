@@ -55,6 +55,7 @@
           font-size: $fs-h5;
           line-height: 16px;
           color: rgba($gunmetal, 0.85);
+          border-bottom: 2px solid $white;
 
           &.active {
             border-bottom: 2px solid $gunmetal;
@@ -67,6 +68,12 @@
           &::ng-deep {
             .nb-form-field-prefix-medium {
               margin-right: -$space-32;
+              height: 24px;
+              width: 32px;
+            }
+
+            .nb-form-field-suffix-medium {
+              margin-left: -$space-32;
               height: 24px;
               width: 32px;
             }
@@ -83,7 +90,7 @@
             width: 140px;
             border: none;
             border-radius: $space-4;
-            padding-left: $space-32;
+            padding: $space-8 $space-32;
             font-size: $fs-h6;
             background: #EDF1F7;
           }
