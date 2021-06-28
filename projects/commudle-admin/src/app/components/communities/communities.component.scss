@@ -1,6 +1,13 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 .communities {
+  width: max-content;
+  margin: 0 auto;
+
+  .about {
+    width: 1118px;
+  }
+
   .left-column {
     width: 280px;
   }
@@ -8,12 +15,28 @@
   .center-column {
     width: 856px;
 
-    app-communities-about {
-      width: 576px;
+    //app-communities-about {
+    //  width: 576px;
+    //}
+    //
+    //app-communities-promotions {
+    //  width: 280px;
+    //}
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities {
+    .about {
+      width: 100vw;
     }
 
-    app-communities-promotions {
-      width: 280px;
+    .left-column {
+      width: 100vw;
+    }
+
+    .center-column {
+      width: 100vw;
     }
   }
 }

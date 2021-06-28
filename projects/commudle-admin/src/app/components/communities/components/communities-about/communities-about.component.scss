@@ -1,10 +1,73 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+  color: $gunmetal;
+}
+
 .communities-about {
   border: none;
   border-radius: $border-10;
 
   nb-card-body {
-    padding: $space-16;
+    padding: $space-40 0 $space-24 $space-60;
+
+    .content {
+      .prefix {
+        font-size: $fs-18;
+        line-height: 21px;
+      }
+
+      .body {
+        margin-top: $space-24;
+
+        .title {
+          font-size: $fs-h2;
+          line-height: 30px;
+
+          span {
+            font-weight: $fw-600;
+            color: $neon-blue;
+          }
+        }
+
+        .subtitle {
+          margin-top: $space-4;
+          font-size: $fs-h5;
+          line-height: 16px;
+        }
+      }
+
+      .suffix {
+        margin-top: $space-68;
+        font-size: $fs-h5;
+        line-height: 16px;
+
+        a {
+          color: $neon-blue;
+        }
+      }
+    }
+
+    .image {
+      width: 296px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-about {
+    nb-card-body {
+      padding: $space-16;
+      flex-direction: column-reverse;
+
+      .image {
+        margin-bottom: $space-24;
+      }
+    }
   }
 }
