@@ -1,48 +1,73 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
+nb-card {
+  margin: 0;
+  nb-card-body {
+    padding: 0;
+  }
+}
 .events {
+  background-color: white;
+  padding: 124px 0;
+  margin: auto;
+  border-radius: $border-10;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   a {
     text-decoration: none;
   }
+  nb-card {
+    border: 1px solid #C4C4C4;
+    margin: 0;
+  }
   .event {
+    width: 768px;
     &:hover {
       box-shadow: 0px 2px 5px 1px lightgrey;
     }
-    margin-bottom: 0.5rem;
+    margin-bottom: $space-32;
     nb-card-body {
+      padding: 0;
       display: flex;
       flex-wrap: nowrap;
 
 
       .header-image {
-        width: 250px;
-        height: 80px;
+        width: 220px;
+        height: 128px;
         margin-right: 1rem;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
 
         display: flex;
         align-items: center;
         overflow: hidden;
         img {
           width: 100%;
-          align-self: flex-start;
+          height: 100%;
+          object-fit: cover;
+          object-position: left;
+          align-self: center;
         }
 
         nb-icon {
           font-size: 2rem;
         }
 
-        @media screen and (max-width: $mobile-width) {
-          .header-image {
-            width: 100px;
-          }
+        // @media screen and (max-width: $mobile-width) {
+        //   .header-image {
+        //     width: 100px;
+        //   }
 
-        }
+        // }
       }
 
       .details {
 
         h5 {
-          margin: 0 0 0.5rem;
+          margin: 1.5rem 0 0.5rem;
           display: flex;
           align-items: flex-start;
           line-height: 1.5rem;
@@ -121,5 +146,22 @@
       }
     }
 
+  }
+  @media all and (max-width: $mobile-width) {
+    padding: $space-20;
+    padding-top: $space-40;
+    .event {
+      width: unset;
+      nb-card-body {
+        flex-direction: column;
+        .details {
+          padding: $space-10;
+        }
+        .header-image {
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
   }
 }
