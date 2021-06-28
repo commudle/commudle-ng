@@ -1,7 +1,7 @@
 <div *ngIf="community" class="community-list-card">
   <div class="prefix d-flex">
     <div class="image">
-      <img alt="{{community.name}}" src="{{community.logo_path}}">
+      <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}">
     </div>
     <div class="details">
       <div class="name">{{community.name | truncatetext:30}}</div>
@@ -11,11 +11,11 @@
   <div class="tags">
     <div *ngFor="let tag of community.tags" class="tag">{{tag.name}}</div>
   </div>
-  <div class="about">{{community.mini_description | truncatetext: 140}}</div>
+  <div *ngIf="community.mini_description" class="about">{{community.mini_description | truncatetext: 140}}</div>
   <div class="suffix d-flex align-items-center">
     <div class="members">
       <span *ngFor="let member of members" class="avatar">
-        <img alt="{{member.name}}" src="{{member.avatar}}">
+        <img alt="{{member.name}}" src="{{member.avatar}}" title="{{member.name}}">
       </span>
     </div>
     <div class="join-community">

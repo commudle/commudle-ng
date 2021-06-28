@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {ICommunities} from 'projects/shared-models/communities.model';
-import {Observable} from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {ApiRoutesService} from 'projects/shared-services/api-routes.service';
-import {API_ROUTES} from 'projects/shared-services/api-routes.constants';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {IUsers} from 'projects/shared-models/users.model';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ICommunities } from 'projects/shared-models/communities.model';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IUsers } from 'projects/shared-models/users.model';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +66,14 @@ export class CommunitiesService {
     const params = new HttpParams().set('query', query);
     return this.http.get<ICommunity[]>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH_BY_NAME), {params}
+    );
+  }
+
+  // search a community by name
+  searchByTag(query: string): Observable<ICommunity[]> {
+    const params = new HttpParams().set('query', query);
+    return this.http.get<ICommunity[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH_BY_TAG), {params}
     );
   }
 
