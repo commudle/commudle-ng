@@ -1,20 +1,22 @@
 <div>
   <div class="message">
     <div class="author-image">
-      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}">
+      <a [routerLink]="['/users', message.user.username]" target="_blank">
+        <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}">
+      </a>
     </div>
     <div class="content-controls">
       <div class="author-details">
         <div class="d-flex justify-content-space-between">
           <div class="d-flex align-items-center">
-            <span class="name">{{message.user.name}}</span>
-            <span class="username">@{{message.user.username}}</span>
-            <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"
-                 src="/assets/images/Expert-Tick.svg">
+            <a [routerLink]="['/users', message.user.username]" target="_blank">
+              <span class="name">{{message.user.name}}</span>
+              <span class="username">@{{message.user.username}}</span>
+              <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"
+                  src="/assets/images/Expert-Tick.svg" title="Expert Tick">
+            </a>
           </div>
-          <div class="date">
-            {{moment(message.created_at).format("MMM D [']YY")}}
-          </div>
+          <div class="date">{{moment(message.created_at).format("MMM D [']YY")}}</div>
         </div>
       </div>
       <div class="content">{{ message.content }}</div>
@@ -55,21 +57,14 @@
         </div>
       </div>
     </div>
-
   </div>
+
   <div *ngIf="canReply" class="replies-container">
     <div *ngFor="let rep of message.user_messages" class="reply-message">
-      <app-user-message
-        (sendDelete)="emitDelete($event)"
-        (sendFlag)="emitFlag($event)"
-        [allActions]="allActions"
-        [canReply]="false"
-        [currentUser]="currentUser"
-        [message]="rep"
-        [permittedActions]="permittedActions"
-      ></app-user-message>
+      <app-user-message (sendDelete)="emitDelete($event)" (sendFlag)="emitFlag($event)" [allActions]="allActions"
+                        [canReply]="false" [currentUser]="currentUser" [message]="rep"
+                        [permittedActions]="permittedActions"></app-user-message>
     </div>
-
     <div *ngIf="showReplyForm" class="reply-form">
       <form (ngSubmit)="emitReply()" *ngIf="canReply" [formGroup]="userMessageReplyForm">
         <input fieldSize="tiny" formControlName="content" fullWidth nbInput placeholder="Reply (max 200 characters)"

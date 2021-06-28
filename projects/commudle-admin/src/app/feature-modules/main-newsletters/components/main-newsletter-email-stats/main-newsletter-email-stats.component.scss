@@ -1,0 +1,10 @@
+@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+
+.email-stats {
+  >div {
+    padding: $space-4;
+    text-align: center;
+    border: 1px solid $lightgrey;
+    border-collapse: collapse;
+  }
+}

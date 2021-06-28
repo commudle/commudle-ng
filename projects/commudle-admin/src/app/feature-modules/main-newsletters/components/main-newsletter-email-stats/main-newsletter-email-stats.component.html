@@ -1,0 +1,22 @@
+<div class="email-stats d-flex" *ngIf="emailStats">
+  <div>
+    {{emailStats.total}}
+    <br>
+    <small>Total Sent</small>
+  </div>
+  <div>
+    {{emailStats.delivered}}
+    <br>
+    <small>Delivered</small>
+  </div>
+  <div [nbTooltip]="'Total Opens: ' + emailStats.total_opens">
+    {{emailStats.opened}}
+    <br>
+    <small>Opened</small>
+  </div>
+  <div [nbTooltip]="'Total Clicks: ' + emailStats.total_clicks ">
+    {{emailStats.clicked}}
+    <br>
+    <small>Clicked</small>
+  </div>
+</div>

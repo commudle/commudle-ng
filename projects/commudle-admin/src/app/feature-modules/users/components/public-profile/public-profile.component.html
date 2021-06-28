@@ -3,6 +3,7 @@
   <div class="basic-details">
     <app-user-basic-details (updateProfile)="getUserData()" [currentUser]="currentUser"
                             [user]="user"></app-user-basic-details>
+    <app-user-basic-social [user]="user"></app-user-basic-social>
   </div>
 
   <div class="extra-details">

@@ -1,5 +1,9 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+}
+
 .user-personal-details {
   padding: $space-16;
   border-radius: $border-10;
@@ -7,30 +11,49 @@
   position: relative;
   overflow: hidden;
 
+  &.normal {
+    overflow: initial;
+    margin-top: $space-110;
+
+    &:before {
+      content: none;
+    }
+  }
+
   &:before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 187px;
-    background: linear-gradient(186.78deg, $brilliant-azure 0.95%, $neon-blue 100.4%);
+    height: 184px;
+    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);;
   }
 
   .profile-photo-container {
+    display: table;
     position: relative;
     height: 160px;
     width: 160px;
-    margin: $space-70 auto auto;
+    margin: $space-70 auto $space-8;
     padding: $space-4;
     background-color: $white;
     border-radius: 50%;
 
+    &.normal {
+      width: 188px;
+      height: 188px;
+      margin: -$space-130 auto $space-20;
+      border: 1.5px solid $mercury;
+      padding: 0;
+    }
+
     .profile-photo {
       overflow: hidden;
       border-radius: 50%;
-      height: 152px;
-      width: 152px;
+      height: 100%;
+      width: 100%;
+      max-height: 188px;
 
       img {
         width: 100%;
@@ -43,48 +66,54 @@
 
   .user-details {
     color: $gunmetal;
-    margin: $space-8 0 $space-16;
 
     .heading {
       font-size: $fs-h4;
+      line-height: 19px;
       font-weight: $fw-500;
-      margin-bottom: $space-4;
+      margin: $space-16 0 $space-4;
     }
 
     .name {
       font-weight: $fw-600;
       font-size: $fs-20;
-      font-style: italic;
-      margin-bottom: $space-4;
+      line-height: 23px;
 
       .expert-icon {
-        vertical-align: middle;
-        margin-left: $space-4;
-        width: 24px;
-        height: 24px;
+        position: absolute;
+        margin: $space-2 0 0 $space-8;
+        width: 18px;
+        height: 18px;
       }
     }
 
     .username {
       font-size: $fs-h5;
       line-height: 16px;
-      margin-bottom: $space-8;
       color: rgba($gunmetal, 0.85);
+      margin-bottom: $space-12;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .designation {
       font-weight: $fw-500;
       font-size: $fs-h4;
-      margin-bottom: $space-8;
+      line-height: 19px;
+      margin-bottom: $space-4;
+      word-break: break-word;
     }
 
     .network {
+      margin-bottom: $space-48;
+
       a {
+        margin: 0 $space-4;
         color: $cadet;
         font-size: $fs-h5;
         font-style: italic;
         text-decoration: none;
-        margin-bottom: $space-24;
 
         &:hover {
           text-decoration: underline;
@@ -95,29 +124,28 @@
     .location {
       color: $cadet;
       font-size: $fs-h5;
+      line-height: 16px;
       font-style: italic;
     }
 
     .about {
-      color: rgba($gunmetal, 0.85);
+      margin: $space-16 0;
       font-size: $fs-h5;
-      margin-top: $space-16;
+      line-height: 16px;
+      color: rgba($gunmetal, 0.85);
     }
   }
 
   hr {
-    margin: $space-16 auto;
+    margin: $space-12 auto;
     border: 0;
     height: 1px;
     background-color: $chinese-silver;
-
-    &:last-child {
-      width: 160px;
-      background-color: $neon-blue;
-    }
   }
 
   .user-interactions {
+    margin: $space-16 0;
+
     button {
       height: 32px;
       border: none;
@@ -141,7 +169,7 @@
       color: $gunmetal;
       font-size: $fs-h4;
       font-weight: $fw-500;
-      margin-bottom: $space-16;
+      margin: $space-16 0;
     }
 
     nb-tag-list {
@@ -154,44 +182,9 @@
         padding: $space-2 $space-8;
         border-radius: $border-10;
 
-        .tags-add {
+        &.tags-add {
           cursor: pointer;
-          transition: all 0.2s ease-in-out;
-
-          &:hover {
-            transform: scale(1.05);
-          }
-
-          &:active {
-            transform: scale(1);
-          }
         }
-      }
-    }
-  }
-
-  .user-social {
-    gap: $space-16;
-    margin: $space-48 auto 0;
-    max-width: calc(100% - 88px + 32px);
-
-    a {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background-color: $water;
-      transition: all .2s ease-in-out;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-
-      &:active {
-        transform: scale(1);
-      }
-
-      nb-icon[pack="fab"] {
-        font-size: 16px;
       }
     }
   }

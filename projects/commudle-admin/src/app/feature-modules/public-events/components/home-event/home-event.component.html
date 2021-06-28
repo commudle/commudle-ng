@@ -1,23 +1,17 @@
-<!-- <div>
-  <app-work-in-progress [entityName]="'Event Page'"></app-work-in-progress>
-</div> -->
-
 <div class="page-container page-padding">
-  <div class="event" *ngIf="event && community">
+  <div *ngIf="event && community" class="event">
     <div class="header">
       <div class="community-details">
-        <app-community-badge [community]="community" [background]="'bg-white'"></app-community-badge>
+        <app-community-badge [background]="'bg-white'" [community]="community"></app-community-badge>
       </div>
       <!-- this will either be an image or just a plain background with the name of the event -->
-      <div class="filler" *ngIf="!event.header_image_path">
+      <div *ngIf="!event.header_image_path" class="filler">
         <div class="event-details">
-          <h1 class="name">
-            {{ event.name }}
-          </h1>
+          <h1 class="name">{{ event.name }}</h1>
         </div>
       </div>
-      <div class="image" *ngIf="event.header_image_path">
-        <img src="{{ event.header_image_path }}" alt="{{ event.name }}">
+      <div *ngIf="event.header_image_path" class="image">
+        <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}">
       </div>
     </div>
 
@@ -27,51 +21,35 @@
           <div class="menu-items">
             <a (click)="scroll(description)">
               <nb-icon icon="info-outline"></nb-icon>
-              <span>
-                Details
-              </span>
+              <span>Details</span>
             </a>
             <a (click)="scroll(updates)" *ngIf="hasUpdates">
               <nb-icon icon="star-outline" status="warning"></nb-icon>
-              <span>
-                Updates
-              </span>
+              <span>Updates</span>
             </a>
             <a (click)="scroll(agenda)" *ngIf="hasAgenda">
               <nb-icon icon="pin-outline" status="primary"></nb-icon>
-              <span>
-                Schedule
-              </span>
+              <span>Schedule</span>
             </a>
             <a (click)="scroll(speakers)" *ngIf="hasSpeakers">
               <nb-icon icon="award" status="info"></nb-icon>
-              <span>
-                Speakers
-              </span>
+              <span>Speakers</span>
             </a>
-            <a  (click)="scroll(eventChat)" *ngIf="discussionChat">
+            <a (click)="scroll(eventChat)" *ngIf="discussionChat">
               <nb-icon icon="message-square-outline"></nb-icon>
-              <span>
-                Comments
-              </span>
+              <span>Comments</span>
             </a>
-            <a  (click)="scroll(sponsors)" *ngIf="hasSponsors">
+            <a (click)="scroll(sponsors)" *ngIf="hasSponsors">
               <nb-icon icon="briefcase-outline"></nb-icon>
-              <span>
-                Sponsors
-              </span>
+              <span>Sponsors</span>
             </a>
-            <a  (click)="scroll(collaborationCommunities)" *ngIf="hasCollaborationCommunities">
+            <a (click)="scroll(collaborationCommunities)" *ngIf="hasCollaborationCommunities">
               <nb-icon icon="people" status="basic"></nb-icon>
-              <span>
-                Collaborations
-              </span>
+              <span>Collaborations</span>
             </a>
-            <a  (click)="scroll(volunteers)" *ngIf="hasVolunteers">
-              <nb-icon  icon="people-outline" status="basic"></nb-icon>
-              <span>
-                Volunteers
-              </span>
+            <a (click)="scroll(volunteers)" *ngIf="hasVolunteers">
+              <nb-icon icon="people-outline" status="basic"></nb-icon>
+              <span>Volunteers</span>
             </a>
           </div>
         </nb-card-body>
@@ -79,11 +57,13 @@
     </div>
 
     <div class="event-components d-flex flex-column">
-      <div class="highlighted-info" [ngClass]="{'hidden': !(hasOpenForms || hasInterestedMembers || event.start_time)}">
+      <div [ngClass]="{'hidden': !(hasOpenForms || hasInterestedMembers || event.start_time)}" class="highlighted-info">
         <!-- links to forms + event slides + people who went -->
         <!-- this will show the link to the forms if the event is live -->
         <!-- else this will just show the links to event slides -->
-        <app-highlighted-links *ngIf="event.editable || (event.event_status.name == EEventStatuses.OPEN)" [event]="event" [community]="community" (hasOpenForms)="hasOpenForms = $event"></app-highlighted-links>
+        <app-highlighted-links (hasOpenForms)="hasOpenForms = $event"
+                               *ngIf="event.editable || event.event_status.name == EEventStatuses.OPEN"
+                               [community]="community" [event]="event"></app-highlighted-links>
         <div *ngIf="event.start_time && event.end_time" class="timings">
           <p>
             <nb-icon icon="clock-outline"></nb-icon>
@@ -110,66 +90,65 @@
             </small>
           </p>
         </div>
-        <div class="past-session-link" *ngIf="(moment() >= moment(event.end_time)) && !event.custom_agenda">
+        <div *ngIf="(moment() >= moment(event.end_time)) && !event.custom_agenda" class="past-session-link">
           <p class="title text-info">
-            <a
-            [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
-            >
-
-              <small><nb-icon icon="monitor-outline"></nb-icon></small>
+            <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']">
+              <small>
+                <nb-icon icon="monitor-outline"></nb-icon>
+              </small>
               <br>
               Click here to view event session
-
             </a>
           </p>
         </div>
         <div class="attendees">
-          <app-attending-members [event]="event" [community]="community" (hasInterestedMembers)="hasInterestedMembers = $event"></app-attending-members>
+          <app-attending-members (hasInterestedMembers)="hasInterestedMembers = $event" [community]="community"
+                                 [event]="event"></app-attending-members>
         </div>
       </div>
-      <div class="info" [ngClass]="{'full-width-column': hasOpenForms || hasInterestedMembers}">
+      <div [ngClass]="{'full-width-column': hasOpenForms || hasInterestedMembers}" class="info">
         <div class="live-sessions">
-          <app-live-sessions [event]="event" [community]="community"></app-live-sessions>
+          <app-live-sessions [community]="community" [event]="event"></app-live-sessions>
         </div>
-        <div class="updates" #updates>
+        <div #updates class="updates">
           <!-- the priority of this depends on the status
             of the event, it should be at the top if the event is yet to go live  -->
-          <app-event-updates [event]="event" [community]="community" (hasUpdates)="hasUpdates = $event"></app-event-updates>
+          <app-event-updates (hasUpdates)="hasUpdates = $event" [community]="community"
+                             [event]="event"></app-event-updates>
         </div>
-        <div class="description" #description>
-          <app-event-description [event]="event" [community]="community"></app-event-description>
+        <div #description class="description">
+          <app-event-description [community]="community" [event]="event"></app-event-description>
         </div>
-        <div class="agenda" #agenda>
-          <app-agenda [event]="event" [community]="community" (hasAgenda)="hasAgenda = $event"></app-agenda>
+        <div #agenda class="agenda">
+          <app-agenda (hasAgenda)="hasAgenda = $event" [community]="community" [event]="event"></app-agenda>
         </div>
-        <div class="all-speakers" #speakers>
-          <app-speakers [event]="event" [community]="community" (hasSpeakers)="hasSpeakers = $event"></app-speakers>
+        <div #speakers class="all-speakers">
+          <app-speakers (hasSpeakers)="hasSpeakers = $event" [community]="community" [event]="event"></app-speakers>
         </div>
-        <div class="sponsors" #sponsors>
-          <app-sponsors [event]="event" (hasSponsors)="hasSponsors = $event"></app-sponsors>
+        <div #sponsors class="sponsors">
+          <app-sponsors (hasSponsors)="hasSponsors = $event" [event]="event"></app-sponsors>
         </div>
-        <div class="partner-communities" #collaborationCommunities>
-          <app-collaboration-communities [event]="event" [community]="community" (hasCollaborationCommunities)="hasCollaborationCommunities = $event"></app-collaboration-communities>
+        <div #collaborationCommunities class="partner-communities">
+          <app-collaboration-communities (hasCollaborationCommunities)="hasCollaborationCommunities = $event"
+                                         [community]="community" [event]="event"></app-collaboration-communities>
         </div>
-        <div class="event-chat" #eventChat>
+        <div #eventChat class="event-chat">
           <!-- this is a unique case where we are giving a card as a wrapper because the chat component should be able to fit on any surface -->
           <nb-card *ngIf="discussionChat">
             <nb-card-header>
-              <nb-icon icon="message-square-outline"></nb-icon> Comments
+              <nb-icon icon="message-square-outline"></nb-icon>
+              Comments
             </nb-card-header>
             <nb-card-body>
               <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
             </nb-card-body>
           </nb-card>
         </div>
-        <div class="volunteers" #volunteers>
-          <app-team [event]="event" [community]="community" (hasVolunteers)="hasVolunteers = $event"></app-team>
+        <div #volunteers class="volunteers">
+          <app-team (hasVolunteers)="hasVolunteers = $event" [community]="community" [event]="event"></app-team>
         </div>
         <div class="tags"></div>
       </div>
     </div>
-
   </div>
 </div>
-
-

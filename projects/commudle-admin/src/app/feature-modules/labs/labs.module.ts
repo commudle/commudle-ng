@@ -1,10 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {LabsRoutingModule} from './labs-routing.module';
-import {LabsComponent} from './components/labs/labs.component';
-import {CreateLabComponent} from './components/create-lab/create-lab.component';
-import {EditLabComponent} from './components/edit-lab/edit-lab.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NbButtonModule,
   NbCardModule,
@@ -19,25 +17,26 @@ import {
   NbTooltipModule,
   NbUserModule
 } from '@nebular/theme';
-import {EditorModule} from '@tinymce/tinymce-angular';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {MyLabsComponent} from './components/my-labs/my-labs.component';
-import {LabComponent} from './components/lab/lab.component';
-import {LabStepComponent} from './components/lab/lab-step/lab-step.component';
-import {LabListItemComponent} from './components/my-labs/lab-list-item/lab-list-item.component';
-import {ReusableComponentsModule} from '../reusable-components/reusable-components.module';
-import {LabDiscussionComponent} from './components/lab/lab-discussion/lab-discussion.component';
-import {LabDiscussionMessageComponent} from './components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component';
-import {YouTubePlayerModule} from '@angular/youtube-player';
-import {SearchBarComponent} from './components/labs/search-bar/search-bar.component';
-import {LabDisplayCardComponent} from './components/lab-display-card/lab-display-card.component';
-import {HeaderBannerComponent} from './components/labs/header-banner/header-banner.component';
-import {HeaderTextComponent} from './components/labs/header-text/header-text.component';
-import {ClickOutsideDirective} from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
-import {LabDetailsComponent} from './components/lab/lab-details/lab-details.component';
-import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
-import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { ClickOutsideDirective } from 'projects/commudle-admin/src/app/feature-modules/labs/components/labs/search-bar/click-outside.directive';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
+import { CreateLabComponent } from './components/create-lab/create-lab.component';
+import { EditLabComponent } from './components/edit-lab/edit-lab.component';
+import { LabDisplayCardComponent } from './components/lab-display-card/lab-display-card.component';
+import { LabDetailsComponent } from './components/lab/lab-details/lab-details.component';
+import { LabDiscussionMessageComponent } from './components/lab/lab-discussion/lab-discussion-message/lab-discussion-message.component';
+import { LabDiscussionComponent } from './components/lab/lab-discussion/lab-discussion.component';
+import { LabStepComponent } from './components/lab/lab-step/lab-step.component';
+import { LabComponent } from './components/lab/lab.component';
+import { HeaderBannerComponent } from './components/labs/header-banner/header-banner.component';
+import { HeaderTextComponent } from './components/labs/header-text/header-text.component';
+import { LabsComponent } from './components/labs/labs.component';
+import { SearchBarComponent } from './components/labs/search-bar/search-bar.component';
+import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
+import { MyLabsComponent } from './components/my-labs/my-labs.component';
+import { LabsRoutingModule } from './labs-routing.module';
 
 
 @NgModule({
@@ -82,8 +81,7 @@ import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users
     NbDialogModule.forChild(),
     NbUserModule,
     NbSidebarModule.forRoot(),
-    NbContextMenuModule,
-    UsersModule
+    NbContextMenuModule
   ],
   exports: [
     LabDisplayCardComponent,
