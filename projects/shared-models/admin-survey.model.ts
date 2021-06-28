@@ -9,3 +9,9 @@ export interface IAdminSurvey {
   total_responses: number;
   data_form_entity: IDataFormEntity;
 }
+
+
+export enum EAdminSurveyStatus {
+  open = 'open',
+  closed = 'closed'
+}

@@ -35,10 +35,10 @@
             max-width: 2.5rem;
             max-height: 2.5rem;
             overflow: hidden;
+            border-radius: $border-50;
 
             img {
               width: 100%;
-              border-radius: $border-50;
             }
           }
 
@@ -335,6 +335,18 @@
       .home-sidebar {
         width: max-content;
         margin-left: $space-8;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-container {
+    .cookie-consent {
+      nb-card-header {
+        button {
+          display: none;
+        }
       }
     }
   }

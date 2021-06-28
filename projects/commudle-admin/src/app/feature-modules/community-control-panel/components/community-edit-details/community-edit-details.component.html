@@ -1,12 +1,11 @@
 <div>
-
-  <form class="community-edit-details-form" [formGroup]="communityForm" (ngSubmit)="updateCommunityDetails()">
+  <form (ngSubmit)="updateCommunityDetails()" [formGroup]="communityForm" class="community-edit-details-form">
     <div formGroupName="community">
-      <div role="group" >
+      <div role="group">
         <div>
           <label fullWidth>
             Name*
-            <input type="text" nbInput fullWidth formControlName="name">
+            <input formControlName="name" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
@@ -14,26 +13,24 @@
         <div>
           <label>
             Logo*
-            <input type="file" accept="image/*" nbInput fullWidth (change)="displaySelectedLogo($event)">
+            <input (change)="displaySelectedLogo($event)" accept="image/*" fullWidth nbInput type="file">
           </label>
         </div>
       </div>
 
       <div>
-        <div class="uploaded-logo" *ngIf="uploadedLogo == null">
+        <div *ngIf="uploadedLogo == null" class="uploaded-logo">
         </div>
-        <div class="uploaded-logo-image" *ngIf="uploadedLogo">
-          <img alt="uploaded-logo" src="{{uploadedLogo}}">
+        <div *ngIf="uploadedLogo" class="uploaded-logo-image">
+          <img alt="Uploaded Logo" src="{{uploadedLogo}}" title="Uploaded Logo">
         </div>
       </div>
-
-
 
       <div role="group">
         <div>
           <label>
             Email*
-            <input type="text" nbInput fullWidth formControlName="contact_email">
+            <input formControlName="contact_email" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
@@ -42,18 +39,16 @@
         <div>
           <label>
             Website
-            <input type="text" nbInput fullWidth formControlName="website">
+            <input formControlName="website" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
 
-      <div role='group' class="about">
-          <label>
-            About*
-            <editor
-              formControlName="about"
-              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-             [init]="{
+      <div class="about" role='group'>
+        <label>
+          About*
+          <editor
+            [init]="{
               height: 300,
               menubar: false,
               convert_urls: false,
@@ -66,37 +61,36 @@
                 'undo redo | formatselect | bold italic backcolor | \
                 alignleft aligncenter alignright alignjustify | \
                 bullist numlist outdent indent | removeformat | help'
-            }">
-
-            </editor>
-          </label>
+            }"
+            apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+            formControlName="about">
+          </editor>
+        </label>
       </div>
 
       <div role="group">
-       <div>
-        <label>
-          Mini Description*
-          <input type="text" nbInput fullWidth formControlName="mini_description">
-
-        </label>
-       </div>
+        <div>
+          <label>
+            Mini Description*
+            <input formControlName="mini_description" fullWidth nbInput type="text">
+          </label>
+        </div>
       </div>
 
       <div role="group">
         <div>
           <label>
             Facebook
-            <input type="text" nbInput fullWidth formControlName="facebook">
+            <input formControlName="facebook" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
-
 
       <div role="group">
         <div>
           <label>
             Twitter
-            <input type="text" nbInput fullWidth formControlName="twitter">
+            <input formControlName="twitter" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
@@ -105,7 +99,7 @@
         <div>
           <label>
             Github
-            <input type="text" nbInput fullWidth formControlName="github">
+            <input formControlName="github" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
@@ -114,19 +108,16 @@
         <div>
           <label>
             Linkedin
-            <input type="text" nbInput fullWidth formControlName="linkedin">
+            <input formControlName="linkedin" fullWidth nbInput type="text">
           </label>
         </div>
-
       </div>
-
     </div>
 
     <div>
-      <button [disabled]="!communityForm.valid" type="submit" nbButton status="primary">
+      <button [disabled]="!communityForm.valid" nbButton status="primary" type="submit">
         Save
       </button>
     </div>
-
   </form>
 </div>

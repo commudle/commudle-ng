@@ -7,13 +7,15 @@
   align-items: flex-start;
 
   .profile-picture{
-    width: 50px;
-    min-height: 50px;
+    max-width: 40px;
+    max-height: 40px;
+    min-width: 40px;
     overflow: hidden;
     margin-right: 0.5rem;
+    border-radius: 50%;
+    display: flex;
     img {
       width: 100%;
-      border-radius: 100%;
     }
 
     &.medium {

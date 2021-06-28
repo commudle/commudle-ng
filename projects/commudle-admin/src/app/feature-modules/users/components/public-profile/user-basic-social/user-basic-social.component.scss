@@ -1,0 +1,66 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.user-basic-social {
+  margin: $space-16 0 0;
+  border: none;
+
+  .user-social {
+    padding: $space-32 $space-44 $space-40;
+    gap: $space-24;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: initial;
+      text-decoration: none;
+      padding: $space-4;
+      width: 32px;
+      height: 32px;
+      border-radius: $border-16;
+      background-color: $water;
+
+      nb-icon {
+        color: $neon-blue;
+
+        &[pack='fab'] {
+          width: 22px;
+          font-size: $fs-20;
+          text-align: center;
+        }
+      }
+    }
+
+    &.compressed {
+      gap: $space-16
+    }
+
+    &.expanded {
+      justify-content: normal;
+      padding: $space-32 $space-16;
+
+      a {
+        width: 100%;
+
+        nb-icon {
+          margin-right: $space-6;
+        }
+
+        span {
+          width: calc(calc(264px - 32px) - 54px);
+          margin-right: $space-12;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: $neon-blue;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .user-basic-social {
+    border-radius: 0;
+  }
+}

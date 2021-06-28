@@ -1,20 +1,19 @@
-<div class="sponsors" *ngIf="sponsors.length > 0">
+<div *ngIf="sponsors.length > 0" class="sponsors">
   <nb-card>
     <nb-card-header>
       <h6>
-        <nb-icon icon="briefcase-outline" ></nb-icon> Sponsors
+        <nb-icon icon="briefcase-outline"></nb-icon>
+        Sponsors
       </h6>
     </nb-card-header>
     <nb-card-body>
       <nb-list>
-        <nb-list-item class="sponsor" *ngFor="let sp of sponsors">
+        <nb-list-item *ngFor="let sp of sponsors" class="sponsor">
           <a href="{{sp.sponsor.link}}" target="_blank">
             <div class="logo">
-              <img src="{{sp.sponsor.logo.url}}" alt="{{sp.sponsor.name}}">
+              <img alt="{{sp.sponsor.name}}" src="{{sp.sponsor.logo.url}}" title="{{sp.sponsor.name}}">
             </div>
-            <p class="name">
-              {{sp.sponsor.name}}
-            </p>
+            <p class="name">{{sp.sponsor.name}}</p>
           </a>
         </nb-list-item>
       </nb-list>

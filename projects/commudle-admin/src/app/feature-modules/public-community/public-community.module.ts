@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {PublicCommunityRoutingModule} from './public-community-routing.module';
-import {HomeCommunityComponent} from './components/home-community/home-community.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbAlertModule,
   NbBadgeModule,
@@ -17,18 +16,18 @@ import {
   NbTabsetModule,
   NbTooltipModule
 } from '@nebular/theme';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {AboutComponent} from './components/about/about.component';
-import {EventsComponent} from './components/events/events.component';
-import {MembersComponent} from './components/members/members.component';
-import {EventResourcesComponent} from './components/event-resources/event-resources.component';
-import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
-import {MembershipToggleComponent} from './components/membership-toggle/membership-toggle.component';
-import {CommunityChannelsListComponent} from './components/community-channels-list/community-channels-list.component';
-import {SpeakersComponent} from './components/speakers/speakers.component';
-import {SpeakerCardComponent} from './components/speakers/speaker-card/speaker-card.component';
-import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { AboutComponent } from './components/about/about.component';
+import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
+import { EventResourcesComponent } from './components/event-resources/event-resources.component';
+import { EventsComponent } from './components/events/events.component';
+import { HomeCommunityComponent } from './components/home-community/home-community.component';
+import { MembersComponent } from './components/members/members.component';
+import { MembershipToggleComponent } from './components/membership-toggle/membership-toggle.component';
+import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker-card.component';
+import { SpeakersComponent } from './components/speakers/speakers.component';
+import { PublicCommunityRoutingModule } from './public-community-routing.module';
 
 
 @NgModule({
@@ -67,8 +66,7 @@ import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users
     NbBadgeModule,
     NbSelectModule,
     NbOptionModule,
-    NbDialogModule.forChild(),
-    UsersModule
+    NbDialogModule.forChild()
   ]
 })
 export class PublicCommunityModule {
