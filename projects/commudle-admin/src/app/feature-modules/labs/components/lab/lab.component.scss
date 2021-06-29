@@ -19,7 +19,6 @@
       nb-card {
         min-height: 80vh;
         border: none;
-        border-radius: $border-10;
         margin: 0 $space-16 $space-16;
 
         nb-card-body {
@@ -59,6 +58,10 @@
                     font-size: $fs-h5;
                     color: $spanish-gray;
                     margin: 0 $space-16 0 $space-8;
+                  }
+
+                  a, a:hover, a:focus, a:active {
+                    text-decoration: none;
                   }
 
                   .name {

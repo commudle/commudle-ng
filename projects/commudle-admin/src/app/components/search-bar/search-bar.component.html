@@ -1,11 +1,11 @@
 <div (clickOutside)="toggleSearchSuffix(false, $event)" appClickOutside class="home-navbar-search">
   <div class="d-flex search-container">
-    <nb-form-field (click)="toggleSearchSuffix(true)" class="search-form">
+    <nb-form-field [ngClass]="{'search-form-expanded': showSearchResults}" (click)="toggleSearchSuffix(true)" class="search-form">
       <nb-icon icon="search" nbPrefix></nb-icon>
       <input (ngModelChange)="searchQueryChanged.next($event)" [ngModel]="searchQuery" fullWidth nbInput
              placeholder="Search events, labs, communities, people" type="text">
     </nb-form-field>
-    <nb-select (selectedChange)="getSelectedFilters($event)" class="search-filter" multiple nbSuffix
+    <nb-select [ngClass]="{'search-filter-expanded': showSearchResults}" (selectedChange)="getSelectedFilters($event)" class="search-filter" multiple nbSuffix
                placeholder="Filters">
       <nb-option *ngFor="let filter of filterBy" [value]="filter">{{filter | titlecase}}</nb-option>
     </nb-select>
@@ -21,7 +21,7 @@
                class="search-result-name clickable">
             {{value.name}}
             <img *ngIf="result.key === 'users' && value['is_expert']" alt="Expert Tick" class="expert-icon"
-                 src="/assets/images/Expert-Tick.svg">
+                 src="/assets/images/Expert-Tick.svg" title="Expert Tick">
           </div>
         </div>
       </div>

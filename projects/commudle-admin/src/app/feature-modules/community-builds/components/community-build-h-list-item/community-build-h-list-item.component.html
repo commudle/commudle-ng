@@ -11,14 +11,11 @@
           <p class="created-at">
             <small>{{moment(communityBuild.created_at).fromNow()}}</small>
           </p>
-          <h3 class="name">
-            {{communityBuild.name}}
-          </h3>
+          <h3 class="name">{{communityBuild.name}}</h3>
           <p class="text-info show-details">
             <!-- <nb-icon icon="link" status="info"></nb-icon> Show Details -->
             {{buildDescription | truncatetext:100}};
           </p>
-
           <div class="author-stats justify-content-space-between d-flex align-items-center">
             <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
             <div class="stats d-flex">
@@ -34,11 +31,10 @@
               </p>
             </div>
           </div>
-
         </div>
         <div class="image align-items-center d-flex">
           <img *ngIf="communityBuild.images.length > 0" alt="{{communityBuild.name}}"
-               src="{{communityBuild.images[0].url}}">
+               src="{{communityBuild.images[0].url}}" title="{{communityBuild.name}}">
         </div>
       </div>
     </nb-card-body>

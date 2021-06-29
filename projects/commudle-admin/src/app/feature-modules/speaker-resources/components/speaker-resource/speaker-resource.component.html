@@ -24,7 +24,7 @@
         </div>
         <div class="content">
           <div *ngIf="speakerResource.session_details_links" [innerHTML]="speakerResource.session_details_links"></div>
-          <div *ngIf="speakerResource.embedded_content" [innerHTML]="getSlideIframe()" class="embedded-content"></div>
+          <div *ngIf="speakerResource.embedded_content" [innerHTML]="iframe" class="embedded-content"></div>
         </div>
         <div class="interactions d-flex">
           <app-votes-display [icon]="'heart-outline'" [votableId]="speakerResource.id"

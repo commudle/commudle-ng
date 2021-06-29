@@ -1,40 +1,33 @@
 <div class="page-padding">
-
   <nb-card>
     <nb-card-body>
       <div *ngIf="community">
         <div class="basic-details">
           <div>
-            <img src="{{ community.logo_path }}" alt="{{ community.name }}">
+            <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
           </div>
           <h4>{{ community.name }}</h4>
         </div>
 
         <p>
-          <nb-icon icon="people-outline"></nb-icon> {{ community.member_count }} Members
-          &nbsp;
-          &nbsp;
-
-          <button nbButton size="small" status="primary"
-                  (click)="sendEmails()">
-                  <nb-icon icon="email-outline"></nb-icon>
-                  Send Emails
+          <nb-icon icon="people-outline"></nb-icon>
+          {{ community.member_count }} Members&nbsp;&nbsp;
+          <button (click)="sendEmails()" nbButton size="small"
+                  status="primary">
+            <nb-icon icon="email-outline"></nb-icon>
+            Send Emails
           </button>
-          &nbsp;
-          &nbsp;
-          <a nbButton size="small" status="primary" target="_blank" [routerLink]="['/communities', community.slug]">
+          &nbsp;&nbsp;
+          <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
             Public Page
             <nb-icon icon="external-link"></nb-icon>
           </a>
-
-          &nbsp;
-          &nbsp;
-          <a nbButton size="small" status="success" [routerLink]="['stats']">
+          &nbsp;&nbsp;
+          <a [routerLink]="['stats']" nbButton size="small" status="success">
             <nb-icon icon="trending-up-outline"></nb-icon>
-            Stats <sup>Beta</sup>
-            &nbsp; <nb-icon icon="external-link"></nb-icon>
+            Stats <sup>Beta</sup>&nbsp;
+            <nb-icon icon="external-link"></nb-icon>
           </a>
-
         </p>
       </div>
       <div>
@@ -55,8 +48,6 @@
           </nb-tab> -->
         </nb-route-tabset>
       </div>
-
     </nb-card-body>
   </nb-card>
 </div>
-

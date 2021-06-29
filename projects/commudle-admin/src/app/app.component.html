@@ -1,16 +1,17 @@
 <nb-layout class="home-navbar">
   <nb-layout-header fixed>
     <div [routerLink]="['/']" class="home-navbar-logo d-flex align-items-center clickable">
-      <img alt="Commudle" src="/assets/images/commudle-logo72.png">
+      <img alt="Commudle" src="/assets/images/commudle-logo72.png" title="Commudle">
     </div>
     <div class="home-navbar-container d-flex align-items-center">
       <app-search-bar></app-search-bar>
-      <div class="home-navbar-menu d-flex">
+      <div class="home-navbar-menu d-flex align-items-center">
         <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
 
         <div class="home-navbar-menu-user">
-          <nb-user *ngIf="currentUser" [nbContextMenu]="userContextMenu" class="menu-user-avatar" onlyPicture
-                   picture="{{currentUser.avatar}}"></nb-user>
+          <div *ngIf="currentUser" class="menu-user-avatar">
+            <img [nbContextMenu]="userContextMenu" alt="{{currentUser.name}}" src="{{currentUser.avatar}}">
+          </div>
           <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
             <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
             <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>
@@ -38,7 +39,7 @@
     <div class="footer">
       <div class="page-links d-flex flex-column">
         <div [routerLink]="['/']" class="logo">
-          <img alt="Logo" class="clickable" src="/assets/images/commudle-logo128.png">
+          <img alt="Commudle" class="clickable" src="/assets/images/commudle-logo128.png" title="Commudle">
         </div>
 
         <div class="links">

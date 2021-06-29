@@ -48,6 +48,7 @@
     "actioncable": "^5.2.4-2",
     "angular-mentions": "^1.2.0",
     "chart.js": "^2.9.3",
+    "cors": "^2.8.5",
     "eva-icons": "^1.1.2",
     "express": "^4.15.2",
     "lodash": "^4.17.15",

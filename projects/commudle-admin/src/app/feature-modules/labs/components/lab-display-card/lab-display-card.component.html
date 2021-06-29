@@ -1,7 +1,6 @@
 <div class="lab-display-card">
   <div [routerLink]="[lab.slug]" class="header-image clickable">
-    <img *ngIf="!lab.header_image" alt="{{lab.name}}" src="/assets/images/Lab-Default.png">
-    <img *ngIf="lab.header_image" alt="{{lab.name}}" src="{{lab.header_image.i350}}">
+    <img alt="{{lab.name}}" src="{{lab.header_image?.i350 || '/assets/images/Lab-Default.png'}}" title="{{lab.name}}">
   </div>
   <div class="content d-flex flex-column justify-content-space-between">
     <!--padding-->
@@ -11,7 +10,7 @@
     </div>
 
     <div class="author-stats d-flex justify-content-space-between">
-      <app-user-profile-card-medium [maxDesignationLength]="30" [user]="lab.user"></app-user-profile-card-medium>
+      <app-user-profile-card-medium [maxNameLength]="20" [maxDesignationLength]="30" [user]="lab.user"></app-user-profile-card-medium>
       <div class="stats d-flex">
         <div class="views d-flex align-items-center">
           <p>{{lab.visits}}</p>

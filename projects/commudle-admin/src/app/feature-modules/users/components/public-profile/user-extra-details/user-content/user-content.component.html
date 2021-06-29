@@ -1,42 +1,35 @@
 <div *ngIf="user" class="user-content">
-  <nb-card *ngIf="user.id % 2 !== 0">
+  <nb-card>
     <nb-card-body>
-      <nb-tabset fullWidth>
-        <nb-tab tabTitle="Contributions">
-          <app-user-contributions [user]="user"></app-user-contributions>
-        </nb-tab>
+      <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
 
-        <nb-tab tabTitle="Social">
-          <app-user-social [currentUser]="currentUser" [user]="user"></app-user-social>
-        </nb-tab>
-
-        <!--        <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">-->
-        <!--          <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
-        <!--        </nb-tab>-->
-      </nb-tabset>
+          <!--        <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">-->
+          <!--          <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
+          <!--        </nb-tab>-->
     </nb-card-body>
   </nb-card>
 
+  <!-- TODO: Remove after 7th July 2021 -->
   <!-- for A/B testing -->
-  <div *ngIf="user.id % 2 === 0">
+  <!--  <div *ngIf="user.id % 2 === 0">-->
 
-    <nb-card>
-      <nb-card-body>
-        <app-user-contributions [user]="user"></app-user-contributions>
-      </nb-card-body>
-    </nb-card>
+  <!--    <nb-card>-->
+  <!--      <nb-card-body class="section-b">-->
+  <!--        <app-user-contributions [user]="user"></app-user-contributions>-->
+  <!--      </nb-card-body>-->
+  <!--    </nb-card>-->
 
-    <nb-card>
-      <nb-card-body>
-        <app-user-social [currentUser]="currentUser" [user]="user"></app-user-social>
-      </nb-card-body>
-    </nb-card>
+  <!--    <nb-card>-->
+  <!--      <nb-card-body class="section-b">-->
+  <!--        <app-user-social [currentUser]="currentUser" [user]="user"></app-user-social>-->
+  <!--      </nb-card-body>-->
+  <!--    </nb-card>-->
 
-    <!--    <nb-card>-->
-    <!--      <nb-card-body>-->
-    <!--        <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
-    <!--      </nb-card-body>-->
-    <!--    </nb-card>-->
+  <!--    <nb-card>-->
+  <!--      <nb-card-body>-->
+  <!--        <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
+  <!--      </nb-card-body>-->
+  <!--    </nb-card>-->
 
-  </div>
+  <!-- </div> -->
 </div>

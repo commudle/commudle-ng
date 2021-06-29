@@ -4,21 +4,25 @@
       <div class="user-card">
         <div class="banner-image">
           <div class="banner">
-            <img *ngIf="speaker.profile_banner_image" src="{{speaker.profile_banner_image.i350}}">
+            <img *ngIf="speaker.profile_banner_image" alt="{{speaker.name}} Profile Banner"
+                 src="{{speaker.profile_banner_image.i350}}" title="{{speaker.name}} Profile Banner">
           </div>
           <div class="user-image">
-            <img alt="{{speaker.name}}" src="{{speaker.avatar}}">
+            <img alt="{{speaker.name}}" src="{{speaker.avatar}}" title="{{speaker.name}}">
           </div>
         </div>
         <div class="user-details d-flex flex-column">
           <p class="user-name d-flex align-items-center">
             {{speaker.name | truncatetext:14}}
-            <img *ngIf="speaker.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg">
+            <img *ngIf="speaker.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
+                 title="Expert Tick">
           </p>
-          <p class="designation">{{speaker.designation | truncatetext: 60}}</p>
+          <p *ngIf="speaker.designation" class="designation">{{speaker.designation | truncatetext: 60}}</p>
+          <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex">
+            <div *ngFor="let tag of speaker.tags" class="user-card-tag">{{tag.name}}</div>
+          </div>
         </div>
       </div>
     </a>
   </nb-card-body>
 </nb-card>
-

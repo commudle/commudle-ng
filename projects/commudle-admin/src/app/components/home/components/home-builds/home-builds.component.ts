@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ICommunityBuild} from 'projects/shared-models/community-build.model';
-import {HomeService} from 'projects/commudle-admin/src/app/services/home.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { HomeService } from 'projects/commudle-admin/src/app/services/home.service';
+import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 
 @Component({
   selector: 'app-home-builds',
@@ -11,13 +12,18 @@ export class HomeBuildsComponent implements OnInit {
 
   builds: ICommunityBuild[] = [];
 
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
   }
 
   ngOnInit(): void {
-    this.getBuilds();
+    if (this.isBrowser) {
+      this.getBuilds();
+    }
   }
 
   getBuilds() {

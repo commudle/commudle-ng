@@ -1,0 +1,71 @@
+<div class="main-newsletter-form page-padding">
+  <div class="d-flex justify-content-space-around">
+
+    <nb-card class="editor">
+      <nb-card-header>
+        New Newsletter
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="form" class="lab-form" (ngSubmit)="submitForm()">
+          <div class="form-field">
+            <input formControlName="title" fullWidth nbInput placeholder="Title for Web Page"
+                    type="text">
+            <span
+              *ngIf=" form['controls'].title.invalid && form['controls'].title.errors.required"
+              class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div class="form-field">
+            <input formControlName="email_subject" fullWidth nbInput placeholder="Email subject"
+                    type="text">
+            <span
+              *ngIf="form['controls'].email_subject.invalid && form['controls'].email_subject.errors.required"
+              class="validation-error-text">
+              Required Field
+            </span>
+          </div>
+          <div class="form-field">
+            <input formControlName="sender" fullWidth nbInput placeholder="Sender Name (optional)"
+                    type="text">
+          </div>
+          <div class="form-field">
+            <editor
+              [init]="tinyMCE"
+              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+              formControlName="content">
+            </editor>
+          </div>
+          <div class="form-field actions">
+            <button nbButton [disabled]="!form.valid || isLoading">Save</button>
+          </div>
+        </form>
+
+        <p>
+          <a nbButton ghost size="small" class="padding-0" [routerLink]="['/admin', 'newsletters']">
+            <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+              Back to list of newsletters
+          </a>
+        </p>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card class="preview">
+      <nb-card-header>
+        Preview
+        <a *ngIf="newsLetter" nbButton size="tiny" status="info" info [routerLink]="['/newsletters', newsLetter.id]" target="_blank">
+          Web preview
+          <nb-icon icon="external-link"></nb-icon>
+        </a>
+        <p class="margin-0">
+          <small *ngIf="!form.pristine">
+            (There are unsaved changes)
+          </small>
+        </p>
+      </nb-card-header>
+      <nb-card-body>
+        <div [innerHTML]="previewContent"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

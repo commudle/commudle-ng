@@ -12,6 +12,17 @@ export class UserContentComponent implements OnInit {
   @Input() user: IUser;
   @Input() currentUser: ICurrentUser;
 
+  tabs = [
+    {
+      title: 'Contributions',
+      route: ['contributions'],
+    },
+    {
+      title: 'Social',
+      route: ['social'],
+    }
+  ];
+
   constructor() {
   }
 

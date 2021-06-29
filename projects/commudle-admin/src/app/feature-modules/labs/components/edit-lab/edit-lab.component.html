@@ -1,5 +1,4 @@
 <div class="create-lab page-padding">
-
   <div *ngIf="lab" class="page-container d-flex flex-column">
     <div class="left-col">
       <nb-card>
@@ -25,16 +24,15 @@
         <nb-card-body>
           <div class="container">
             <p class="text-center">
-              <span class="text-highlight-yellow">
-                Changes will be auto saved every 10 seconds
-              </span>
+              <span class="text-highlight-yellow">Changes will be auto saved every 10 seconds</span>
             </p>
 
             <form [formGroup]="headerImageForm" class='lab-header-image'>
               <div class="header-image">
                 <div>
                   <div *ngIf="uploadedHeaderImage || lab.header_image" class="uploaded-header-image">
-                    <img alt="lab header image" src="{{uploadedHeaderImage || lab.header_image.url}}">
+                    <img alt="lab header image" src="{{uploadedHeaderImage || lab.header_image.url}}"
+                         title="Lab header image">
                   </div>
                   <button (click)="deleteEventHeader()" *ngIf="uploadedHeaderImage || lab.header_image"
                           class="delete-header-image-button" nbButton outline size="tiny" status="danger">
@@ -121,7 +119,6 @@
             <br/>
             Add New Section
           </div>
-
         </nb-card-body>
       </nb-card>
 
@@ -167,13 +164,12 @@
       </div>
     </div>
     <div class="right-col">
-      <a target="_blank" [routerLink]="['/labs', lab.slug]" ghost nbButton>
+      <a [routerLink]="['/labs', lab.slug]" ghost nbButton target="_blank">
         Preview
         <nb-icon icon="external-link"></nb-icon>
       </a>
     </div>
   </div>
-
 </div>
 
 <ng-template #submitDialog>
