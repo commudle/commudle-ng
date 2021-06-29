@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IUser} from 'projects/shared-models/user.model';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
   selector: 'app-user-content',
@@ -27,6 +27,12 @@ export class UserContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.user.is_expert) {
+      this.tabs.push({
+        title: 'Feed',
+        route: ['feed'],
+      });
+    }
   }
 
 }
