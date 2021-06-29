@@ -2,7 +2,6 @@
 
 .home-events {
   border: none;
-  border-radius: $border-10;
 
   nb-card-header {
     font-size: $fs-h2;
@@ -53,7 +52,6 @@
       .home-events-cards-mobile {
         display: flex;
         gap: $space-16;
-        overflow-y: auto;
         min-height: 222px;
 
         app-skeleton-text {

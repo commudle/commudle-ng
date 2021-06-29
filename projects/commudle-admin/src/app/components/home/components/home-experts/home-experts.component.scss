@@ -1,5 +1,9 @@
 @import 'projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+}
+
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
@@ -7,7 +11,6 @@ a, a:hover, a:focus, a:active {
 
 .home-experts {
   border: 0;
-  border-radius: $border-10;
 
   nb-card-header {
     font-size: $fs-h2;
@@ -53,8 +56,15 @@ a, a:hover, a:focus, a:active {
           .home-expert-details {
             .home-expert-name {
               font-size: $fs-h5;
-              font-weight: 600;
+              line-height: 16px;
+              font-weight: $fw-600;
               color: $gunmetal;
+
+              img {
+                margin-left: $space-4;
+                width: 14px;
+                height: 14px;
+              }
             }
 
             .home-expert-designation {

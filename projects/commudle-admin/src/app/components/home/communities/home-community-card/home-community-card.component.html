@@ -1,0 +1,24 @@
+<div *ngIf="community" [routerLink]="['/communities', community.slug]" class="community clickable">
+  <nb-card>
+    <nb-card-body>
+      <div>
+        <div class="logo">
+          <img alt="{{community.name}} Logo" src="{{community.logo_path}}" title="{{community.name}} Logo">
+        </div>
+      </div>
+      <div class="right-column">
+        <h3 class="name lh-fw">{{community.name | truncatetext:25}}</h3>
+        <p class="mini-description">{{community.mini_description | truncatetext:40}}</p>
+        <div class="stats">
+          <p>{{community.member_count}} Members</p>
+          <p>{{community.event_count}} Events</p>
+          <p>
+            <a [routerLink]="['/communities', community.slug]">
+              <nb-icon icon="arrow-right-outline" status="primary"></nb-icon>
+            </a>
+          </p>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

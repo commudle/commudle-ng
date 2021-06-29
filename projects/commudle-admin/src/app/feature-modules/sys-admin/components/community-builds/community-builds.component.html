@@ -1,48 +1,36 @@
 <div class="page-padding">
-  <h4>
-    Community Builds
-  </h4>
+  <h4> Community Builds </h4>
 
   <div>
     <nb-card class="community-builds">
       <nb-card-body>
-        <div class="community-build" *ngFor="let cb of cBuilds">
+        <div *ngFor="let cb of cBuilds" class="community-build">
           <div class="content">
             <p>
-              <small>
-                {{ moment(cb.created_at).fromNow() }}
-              </small>
+              <small>{{ moment(cb.created_at).fromNow() }</small>
             </p>
-            <p>
-              ({{ cb.build_type | titlecase }})
-            </p>
-            <h5>
-              {{ cb.name }}
-            </h5>
+            <p>({{ cb.build_type | titlecase }})</p>
+            <h5>{{ cb.name }}</h5>
             <p *ngIf="cb.link">
-              <a target="_blank" href="{{ cb.link }}">
+              <a href="{{ cb.link }}" target="_blank">
                 {{ cb.link }}
                 <nb-icon icon="external-link"></nb-icon>
               </a>
-
             </p>
-            <div class="description" [innerHTML]="cb.description"></div>
+            <div [innerHTML]="cb.description" class="description"></div>
             <div class="images">
-              <div class="image clickable" *ngFor="let image of cb.images" (click)="openImage(cb.name, image.url)">
-                <img src="{{ image.url }}" alt="{{cb.name}}">
+              <div (click)="openImage(cb.name, image.url)" *ngFor="let image of cb.images" class="image clickable">
+                <img alt="{{cb.name}}" src="{{image.url}}" title="{{cb.name}}">
               </div>
             </div>
           </div>
           <div class="creator">
-            <app-user-profile-horizontal [user]="cb.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+            <app-user-profile-horizontal [socialMediaLinks]="true" [user]="cb.user"></app-user-profile-horizontal>
           </div>
           <div class="stats">
             <div>
-              <app-votes-display
-                [votableType]="'CommunityBuild'"
-                [votableId]="cb.id"
-                [icon]="'star'"
-              ></app-votes-display>
+              <app-votes-display [icon]="'star'" [votableId]="cb.id"
+                                 [votableType]="'CommunityBuild'"></app-votes-display>
             </div>
             <div class="tags">
               <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
@@ -50,14 +38,15 @@
           </div>
           <div class="actions">
             <div class="status-update">
-              <nb-select [selected]="cb.publish_status" (selectedChange)="updatePublishStatus($event, cb.id)" status="primary" size="small">
-                <nb-option placeholder="Select Status" *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]">
+              <nb-select (selectedChange)="updatePublishStatus($event, cb.id)" [selected]="cb.publish_status"
+                         size="small" status="primary">
+                <nb-option *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]" placeholder="Select Status">
                   {{ EPublishStatus[ps] | titlecase }}
                 </nb-option>
               </nb-select>
             </div>
             <div>
-              <button nbButton status="info" size="tiny" outline [routerLink]="['/builds', cb.slug, 'edit']">
+              <button [routerLink]="['/builds', cb.slug, 'edit']" nbButton outline size="tiny" status="info">
                 Edit
               </button>
             </div>
@@ -69,7 +58,7 @@
 
   <ng-template #imageTemplate let-data>
     <div class="image-window">
-      <img src="{{data.imageUrl}}">
+      <img alt="Image" src="{{data.imageUrl}}" title="Image">
     </div>
   </ng-template>
 </div>

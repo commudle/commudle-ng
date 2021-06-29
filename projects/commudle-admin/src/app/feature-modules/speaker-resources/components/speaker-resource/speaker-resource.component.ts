@@ -25,6 +25,7 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
   messagesCount: number;
 
   subscriptions: Subscription[] = [];
+  iframe;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,6 +52,9 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
   getSpeakerResource(speakerId) {
     this.subscriptions.push(this.speakerResourcesService.getDetails(speakerId).subscribe(data => {
       this.speakerResource = data;
+      if (this.speakerResource.embedded_content) {
+        this.iframe = this.domSanitizer.bypassSecurityTrustHtml(this.speakerResource.embedded_content);
+      }
       this.setMeta();
     }));
   }
@@ -65,9 +69,6 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
     }));
   }
 
-  getSlideIframe() {
-    return this.domSanitizer.bypassSecurityTrustHtml(this.speakerResource?.embedded_content);
-  }
 
   setMeta() {
     this.title.setTitle(`${this.speakerResource.title} by ${this.speakerResource.user.name}`);
