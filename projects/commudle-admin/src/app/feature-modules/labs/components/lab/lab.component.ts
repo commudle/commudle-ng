@@ -1,5 +1,14 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild
+} from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NbDialogService, NbSidebarService } from '@nebular/theme';
@@ -53,6 +62,8 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   ) {
   }
 
+  // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
+  // defined on the server side, we need isBrowser
   ngOnInit() {
     if (this.isBrowser) {
       this.routeSubscriptions.push(
@@ -76,15 +87,36 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
           }
         }
       });
+    }
 
-      // Hide Footer
-      this.footerService.changeFooterStatus(false);
+    // Hide Footer
+    this.footerService.changeFooterStatus(false);
+  }
+
+  // ngAfterViewChecked() would be invoked once the DOM tree gets any change, so since we are building the HTML on the
+  // server side, the DOM changes and hence the ngAfterViewChecked() will be called and that's why we need isBrowser
+  ngAfterViewChecked() {
+    if (this.isBrowser) {
+      if (!this.triggerDialogB) {
+        if (this.iContent) {
+          const imagesList = this.iContent.nativeElement.querySelectorAll('img');
+          for (const img of imagesList) {
+            const g0 = img;
+            g0.classList.add('clickable');
+            g0.addEventListener('click', () => {
+              this.src = g0.src;
+              this.dialogService.open(this.dialog);
+            }, false);
+          }
+          this.triggerDialogB = true;
+        }
+      }
+      this.highlightCodeSnippets();
     }
   }
 
+  // Called once, before the instance is destroyed.
   ngOnDestroy(): void {
-    // Called once, before the instance is destroyed.
-    // Add 'implements OnDestroy' to the class.
     this.routeSubscriptions.forEach(subscription => subscription.unsubscribe());
 
     // Show Footer
@@ -96,22 +128,22 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
+    this.title.setTitle(`${ this.lab.name } | By ${ this.lab.user.name }`);
     this.meta.updateTag({
       name: 'description',
       content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
     this.meta.updateTag({
       name: 'og:image',
-      content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
     });
     this.meta.updateTag({
       name: 'og:image:secure_url',
-      content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`
+      content: `${ this.lab.name } | By ${ this.lab.user.name }`
     });
     this.meta.updateTag({
       name: 'og:description',
@@ -123,11 +155,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`
+      content: `${ this.lab.name } | By ${ this.lab.user.name }`
     });
     this.meta.updateTag({
       name: 'twitter:description',
@@ -168,26 +200,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         );
       }
     });
-  }
-
-  ngAfterViewChecked() {
-    if (this.isBrowser) {
-      if (!this.triggerDialogB) {
-        if (this.iContent) {
-          const imagesList = this.iContent.nativeElement.querySelectorAll('img');
-          for (const img of imagesList) {
-            const g0 = img;
-            g0.classList.add('clickable');
-            g0.addEventListener('click', () => {
-              this.src = g0.src;
-              this.dialogService.open(this.dialog);
-            }, false);
-          }
-          this.triggerDialogB = true;
-        }
-      }
-      this.highlightCodeSnippets();
-    }
   }
 
   setStep(index) {
