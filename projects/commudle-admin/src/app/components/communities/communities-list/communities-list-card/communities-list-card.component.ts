@@ -1,8 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {IUser} from 'projects/shared-models/user.model';
-import {UserRolesUsersService} from 'projects/commudle-admin/src/app/services/user_roles_users.service';
-import {Subscription} from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-communities-list-card',
@@ -35,7 +35,7 @@ export class CommunitiesListCardComponent implements OnInit, OnDestroy {
   getMembers(): void {
     this.subscription = this.userRolesUsersService.pGetCommunityMembers(this.community.id, this.page, this.count).subscribe(value => {
       this.members = value.users;
-    })
+    });
   }
 
 }

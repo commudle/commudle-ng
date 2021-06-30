@@ -316,8 +316,9 @@ export const API_ROUTES = {
     PUBLIC_INDEX: 'api/v2/event_updates/public_index'
   },
 
-
-
+  POSTS: {
+    PUBLIC_SHOW: 'api/v2/posts'
+  },
 
   USERS: {
     GET_PROFILE: 'api/v2/users',

@@ -1,0 +1,12 @@
+<nb-card class="communities-posts">
+  <nb-card-body>
+    <p class="heading">What our Experts are saying today...</p>
+    <nb-list class="posts-list">
+      <nb-list-item *ngFor="let post of posts" [routerLink]="['/users', post.user.username, 'feed']"
+                    class="flex-column clickable">
+        <p>{{post.content}}</p>
+        <app-user-profile-card-small [user]="post.user"></app-user-profile-card-small>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

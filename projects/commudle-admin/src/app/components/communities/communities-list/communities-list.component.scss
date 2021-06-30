@@ -3,10 +3,9 @@
 .communities-list {
   margin-top: 0;
   border: none;
-  border-radius: $border-10;
 
   nb-card-body {
-    padding: $space-32;
+    padding: $space-24 $space-32;
 
     .prefix {
       margin-bottom: $space-16;

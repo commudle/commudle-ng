@@ -1,5 +1,5 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {CommunitiesListCardComponent} from './communities-list-card.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommunitiesListCardComponent } from './communities-list-card.component';
 
 describe('CommunitiesListCardComponent', () => {
   let component: CommunitiesListCardComponent;

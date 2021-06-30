@@ -1,5 +1,5 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {CommunitiesListComponent} from './communities-list.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommunitiesListComponent } from './communities-list.component';
 
 describe('CommunitiesListComponent', () => {
   let component: CommunitiesListComponent;
