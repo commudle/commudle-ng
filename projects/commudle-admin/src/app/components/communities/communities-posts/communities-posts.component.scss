@@ -1,0 +1,29 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+  color: $gunmetal;
+}
+
+.communities-posts {
+  margin-top: 0;
+  border: none;
+
+  nb-card-body {
+    padding: 0;
+
+    .heading {
+      padding: $space-24 $space-16 $space-12;
+      font-weight: $fw-600;
+      font-size: $fs-h2;
+      line-height: 30px;
+    }
+
+    .posts-list {
+      nb-list-item {
+        align-items: start;
+        gap: $space-8;
+      }
+    }
+  }
+}
