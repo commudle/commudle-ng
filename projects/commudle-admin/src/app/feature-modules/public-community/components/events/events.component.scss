@@ -21,6 +21,7 @@ nb-card {
   nb-card {
     border: 1px solid #C4C4C4;
     margin: 0;
+    overflow: hidden;
   }
   .event {
     width: 768px;
@@ -30,19 +31,20 @@ nb-card {
     margin-bottom: $space-32;
     nb-card-body {
       padding: 0;
+      padding-right: $space-24;
       display: flex;
       flex-wrap: nowrap;
 
 
       .header-image {
         width: 220px;
+        min-width: 220px;
         height: 128px;
-        margin-right: 1rem;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+        margin-right: $space-24;
 
         display: flex;
         align-items: center;
+        justify-content: center;
         overflow: hidden;
         img {
           width: 100%;
@@ -67,30 +69,43 @@ nb-card {
       .details {
 
         h5 {
-          margin: 1.5rem 0 0.5rem;
+          color: $gunmetal;
+          margin: $space-24 0 $space-8 0;
           display: flex;
           align-items: flex-start;
-          line-height: 1.5rem;
-          font-weight: $fw-400;
+          line-height: 21px;
+          font-size: $fs-18;
+          font-weight: $fw-600;
+          nb-icon {
+            min-width: 1em;
+          }
         }
 
         .timings {
           p {
-            margin-bottom: 0;
+            margin: 0;
+            color: $gunmetal;
+            font-size: $fs-14;
+            line-height: 16px;
           }
-        }
 
-        .collaboration {
-          font-size: 0.9rem;
         }
 
         .past-timings {
           p {
-            font-size: 0.8rem;
-            margin-bottom: 0;
+            margin: 0;
+            color: $gunmetal;
+            font-size: $fs-14;
+            line-height: 16px;
             nb-icon {
-              font-size: 0.8rem;
+              font-size: $fs-14;
+              line-height: 16px;
             }
+          }
+        }
+        .event-name {
+          .collaboration {
+            font-size: 0.9rem;
           }
         }
       }
@@ -101,6 +116,7 @@ nb-card {
     margin: 0 0 1rem;
 
     nb-card-body {
+      padding: $space-16 $space-24;
       flex-direction: column;
       align-items: center;
 
@@ -148,8 +164,7 @@ nb-card {
 
   }
   @media all and (max-width: $mobile-width) {
-    padding: $space-20;
-    padding-top: $space-40;
+    padding: $space-40 $space-20 $space-20 $space-20;
     .event {
       width: unset;
       nb-card-body {

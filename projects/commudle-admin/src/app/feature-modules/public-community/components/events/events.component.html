@@ -19,8 +19,10 @@
                 <h5>
                   <nb-icon *ngIf="moment(event.end_time) < moment()" icon="checkmark-circle-2" nbTooltip="Completed"
                           status="success"></nb-icon>
-                  <span class="event-name">{{ event.name }}</span>
-                  <span *ngIf="event.kommunity_id != community.id" class="collaboration">(Collaboration)</span>
+                  <span class="event-name">
+                    {{ event.name }}
+                    <span *ngIf="event.kommunity_id != community.id" class="collaboration">(Collaboration)</span>
+                  </span>
                 </h5>
                 <div>
                   <div *ngIf="event.start_time && event.end_time"
