@@ -1,11 +1,11 @@
-<div *ngIf="community" class="home-component">
-  <div class="page-header">
-    <div class="logo">
+<div *ngIf="community" class="home-component d-flex flex-column align-items-center">
+  <div class="page-header d-flex flex-column">
+    <div class="logo d-flex align-items-center">
       <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
     </div>
     <div class="details">
       <h1>{{ community.name }}</h1>
-      <div class="membership">
+      <div class="membership d-flex flex-column">
         <p class="member-count">
           <a [routerLink]="['members']">
             <nb-icon icon="people" status="basic"></nb-icon>
@@ -16,7 +16,7 @@
           <div class="membership-toggle">
             <app-membership-toggle [community]="community"></app-membership-toggle>
           </div>
-          <div class="community-social-links">
+          <div class="community-social-links d-flex align-items-center">
             <a *ngIf="community.facebook" href="{{ community.facebook | completeurl:'facebook' }}" rel="noreferrer"
               target="_blank">
               <nb-icon icon="facebook" status="info"></nb-icon>
@@ -34,7 +34,7 @@
               <nb-icon icon="github" status="info"></nb-icon>
             </a>
             <a *ngIf="community.website" href="{{ community.website | completeurl }}" rel="noreferrer" target="_blank">
-              <nb-icon icon="info" status="info"></nb-icon>
+              <nb-icon icon="globe" status="info"></nb-icon>
             </a>
           </div>
         </div>
@@ -42,10 +42,10 @@
     </div>
   </div>
   <div class="any update"></div>
-  <div class="page-menu">
+  <div class="page-menu d-flex flex-column">
     <nb-card>
       <nb-card-body>
-        <div class="menu-items">
+        <div class="menu-items d-flex flex-nowrap">
           <a [routerLink]="['/communities', community.slug]" routerLinkActive="active"
              [routerLinkActiveOptions]="{ exact: true }">
             <nb-icon icon="info" status="basic"></nb-icon>

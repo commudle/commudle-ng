@@ -2,22 +2,15 @@
 
 .home-component {
   max-width: 976px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: 0 auto;
 
   .page-header {
-    // max-width: 976px;
     margin: $space-32 0 $space-64 0;
-    display: flex;
     align-self: flex-start;
-    flex-direction: column;
     text-align: center;
 
     .logo {
-      display: flex;
-      align-items: center;
+      width: 208px;
       max-width: 208px;
       max-height: 208px;
       overflow: hidden;
@@ -31,46 +24,45 @@
       h1 {
         font-weight: $fw-600;
         margin: $space-28 0 $space-8 0;
-        line-height: 2.4rem;
+        line-height: 38px;
         font-size: $fs-32;
+        color: $gunmetal;
       }
 
       .membership {
-        display: flex;
-        align-items: start;
-        flex-direction: column;
         .membership-toggle {
           ::ng-deep {
             button {
               padding: $space-8;
               font-weight: $fw-400;
-              background-color: #536EFF;
-              color: white;
+              font-size: $fs-14;
+              background-color: $neon-blue;
+              color: $white;
+              text-transform: none;
             }
             .select-button {
-              padding: 4px;
+              padding: $space-4;
               background-color:initial;
               color: initial;
+            }
+            nb-select {
+              max-width: $space-152;
             }
           }
         }
 
         .member-count {
-          margin: 0;
-          margin-bottom: $space-78;
+          margin: 0 0 $space-78 0;
           a {
             text-decoration: none;
-            color: black;
+            color: $gunmetal;
           }
         }
       }
 
       .community-social-links {
-        display: flex;
-        align-items: center;
-
         nb-icon {
-          color: #536EFF;
+          color: $neon-blue;
         }
 
         a {
@@ -90,7 +82,7 @@
       text-align: left;
 
       .logo {
-        margin-right: 5.5rem;
+        margin-right: $space-88;
       }
 
       .details {
@@ -104,9 +96,9 @@
 
 
           a {
-            margin-left: 24px;
+            margin-left: $space-24;
             nb-icon {
-              font-size: 1.5rem;
+              font-size: $fs-24;
             }
           }
         }
@@ -142,29 +134,27 @@
     margin: 0;
     padding: 0;
     nb-card-body {
-      padding: $space-20;
-      padding-bottom: 0;
+      padding: $space-20 $space-20 0 $space-20;
     }
   }
 
   .menu-items {
-    display: flex;
-    flex-wrap: nowrap;
-    // width: 976px;
-
-
     a {
       margin: 0;
       padding: 0 $space-20 $space-16 $space-20;
+      nb-icon {
+        color: rgba(47, 46, 65, 0.5);
+      }
       .title {
         margin-left: $space-8;
         align-self: center;
       }
-      display: flex;
+
       font-size: $fs-14;
+      line-height: 16px;
       cursor: pointer;
       text-decoration: none;
-      color: black;
+      color: $gunmetal;
       // display: flex;
       // flex-direction: column;
       // align-items: center;
@@ -181,27 +171,31 @@
     }
 
     nb-icon {
-      font-size: 1.5rem;
+      font-size: $fs-24;
     }
 
     .active {
-      border-bottom: 3px solid #29A5FF;
+      border-bottom: 3px solid $blue-jeans;
+      nb-icon {
+        color: $blue-jeans;
+      }
+      .title {
+        color: $blue-jeans;
+      }
     }
   }
 
   @media screen and (min-width: $tab-width) {
     position: sticky;
-    top: 3.5rem;
+    top: $space-56;
     box-shadow: none;
     nb-card {
-      margin-bottom: 1rem;
+      margin-bottom: $space-16;
 
       .menu-items {
         justify-content: flex-start;
 
         a {
-          // margin-right: 1.5rem;
-
           span {
             display: inline;
           }
