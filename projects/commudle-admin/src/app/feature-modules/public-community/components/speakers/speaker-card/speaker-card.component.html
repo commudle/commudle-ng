@@ -1,7 +1,7 @@
 <nb-card class="clickable">
   <nb-card-body>
     <a [routerLink]="['/users', speaker.username]" class="clickable">
-      <div class="user-card">
+      <div class="user-card d-flex flex-column justify-content-space-around">
         <div class="banner-image">
           <div class="banner">
             <img *ngIf="speaker.profile_banner_image" alt="{{speaker.name}} Profile Banner"

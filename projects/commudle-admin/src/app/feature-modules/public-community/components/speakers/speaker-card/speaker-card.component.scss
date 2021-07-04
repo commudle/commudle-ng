@@ -6,27 +6,21 @@ nb-card {
   margin: $space-24;
   transition: all 0.5s ease;
   overflow: hidden;
-  border: 1px solid #C4C4C4;
+  border: 1px solid $silver-sand;
 
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(000, 000, 0, 0.5);
+     box-shadow: 0 5px 15px $azureish-white;
   }
 
   nb-card-body {
     padding: 0;
-    border-radius: $border-5;
-    box-shadow: 0 3px 6px rgba(000, 000, 0, 0.3);
 
     a {
       text-decoration: none;
     }
 
     .user-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
       overflow: hidden;
 
       .banner {
@@ -52,8 +46,8 @@ nb-card {
       }
 
       .user-image {
-        width: 80px;
-        height: 80px;
+        width: 86px;
+        height: 86px;
         overflow: hidden;
         border: $border-3 solid $white;
         border-radius: $border-50;
@@ -71,17 +65,20 @@ nb-card {
       .user-details {
         justify-content: space-between;
         height: 169px;
-        margin: $space-15 0 $space-16 $space-16;
+        margin: $space-9 0 $space-16 $space-16;
+        padding-top: $space-7;
 
         .text-details {
           p {
-            color: $black;
+            color: $gunmetal;
             margin: 0;
           }
 
           .user-name {
             font-size: $fs-card-title;
-            font-weight: $fw-500;
+            font-weight: $fw-600;
+            line-height: 21px;
+            margin-bottom: $space-8;
 
             .expert-icon {
               vertical-align: middle;
@@ -92,9 +89,10 @@ nb-card {
           }
 
           .designation {
-            color: $low-emphasis-text;
-            font-size: $fs-card-secondary;
-            font-weight: $fw-500;
+            color: $gunmetal;
+            font-size: $fs-14;
+            font-weight: $fw-400;
+            line-height: 16px;
           }
         }
 
