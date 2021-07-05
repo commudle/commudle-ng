@@ -15,7 +15,7 @@ export class MembersComponent implements OnInit {
   members: IUser[] = [];
 
   nextPage = 1;
-  count = 50;
+  count = 48;
   maxPages = 1;
   canLoadMore = true;
 

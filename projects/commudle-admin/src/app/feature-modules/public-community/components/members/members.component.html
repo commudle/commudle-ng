@@ -3,7 +3,7 @@
     <div class="header-text">
       Be one of us!
     </div>
-    <div class="users">
+    <div class="users d-flex flex-column justify-content-center">
       <div *ngFor="let member of members" class="user-container">
         <div class="user">
           <app-user-profile-card-large [maxDesignationLength]="15" [maxNameLength]="15" [maxUserNameLength]="25"
