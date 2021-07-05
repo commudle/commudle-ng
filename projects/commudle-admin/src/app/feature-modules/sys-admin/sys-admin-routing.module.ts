@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { SysAdminComponent } from './sys-admin.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AdminPageAdsFormComponent } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
+import { AdminPageAdsListComponent } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
+import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
 import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
-import { LabsComponent } from './components/labs/labs.component';
 import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
+import { LabsComponent } from './components/labs/labs.component';
+import { SysAdminComponent } from './sys-admin.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,25 @@ const routes: Routes = [
       {
         path: '',
         component: CommunityControlsComponent
+      },
+      {
+        path: 'admin-page-ads',
+        component: AdminPageAdsComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'view',
+            pathMatch: 'full'
+          },
+          {
+            path: 'view',
+            component: AdminPageAdsListComponent
+          },
+          {
+            path: 'form',
+            component: AdminPageAdsFormComponent
+          }
+        ]
       },
       {
         path: 'admin-surveys',
@@ -30,11 +51,11 @@ const routes: Routes = [
       }
     ]
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SysAdminRoutingModule { }
+export class SysAdminRoutingModule {
+}
