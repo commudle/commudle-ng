@@ -1,14 +1,26 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbIconModule,
+  NbListModule,
+  NbSelectModule,
+  NbSpinnerModule,
+  NbTabsetModule,
+  NbToggleModule,
+  NbWindowModule
+} from '@nebular/theme';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
+import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
+import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
+import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
+import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
+import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
+import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminRoutingModule } from './sys-admin-routing.module';
 import { SysAdminComponent } from './sys-admin.component';
-import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
-import { NbCardModule, NbWindowModule, NbIconModule, NbButtonModule, NbListModule, NbSelectModule, NbSpinnerModule, NbTabsetModule, NbToggleModule } from '@nebular/theme';
-import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
-import { LabsComponent } from './components/labs/labs.component';
-import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
 
 
 @NgModule({
@@ -18,13 +30,14 @@ import { CommunityControlsComponent } from './components/community-controls/comm
     CommunityBuildsComponent,
     LabsComponent,
     CommunityControlsComponent,
+    AdminPageAdsComponent,
+    AdminPageAdsListComponent,
+    AdminPageAdsFormComponent,
   ],
   imports: [
     CommonModule,
     SysAdminRoutingModule,
     SharedComponentsModule,
-    NbSpinnerModule,
-
 
     // Nebular
     NbCardModule,
@@ -34,7 +47,9 @@ import { CommunityControlsComponent } from './components/community-controls/comm
     NbListModule,
     NbSelectModule,
     NbTabsetModule,
-    NbToggleModule
+    NbToggleModule,
+    NbSpinnerModule
   ]
 })
-export class SysAdminModule { }
+export class SysAdminModule {
+}
