@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from 'projects/shared-services/lib-authwatch.guard';
-import {LibErrorHandlerComponent} from 'projects/lib-error-handler/src/public-api';
+import {Error404PageComponent, LibErrorHandlerComponent} from 'projects/lib-error-handler/src/public-api';
 import {HomeComponent} from './components/home/home.component';
 import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
 import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
@@ -140,7 +140,8 @@ const routes: Routes = [
   },
   {path: 'logout', component: LogoutComponent},
   {path: 'error', component: LibErrorHandlerComponent},
-  {path: '**', redirectTo: '/error'},
+  {path: '404', component: Error404PageComponent},
+  {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({
