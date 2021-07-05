@@ -1,0 +1,32 @@
+<div class="error-page-container d-flex justify-content-center">
+  <nb-card class="d-flex align-items-center">
+    <div class="animation-container">
+      <img src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcWNWIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f0111f34be8851dba07ca43f8ec5bdcee98d455b/404.gif" alt="">
+    </div>
+
+    <h1 class="title">The page you are looking for was not found</h1>
+    
+    <div class="links">
+      <a [routerLink]="['/']"> 
+        <button nbButton type="button" class="home-button">
+          Home Page
+        </button>
+      </a>
+      <a [routerLink]="['/labs']">
+        <button nbButton type="button" class="home-button">
+          Labs
+        </button>
+      </a>
+      <a [routerLink]="['/communities']">
+        <button nbButton type="button" class="home-button">
+          Communities
+        </button>
+      </a>
+      <a [routerLink]="['/builds']">
+        <button nbButton type="button" class="home-button">
+          Builds
+        </button>
+      </a>
+    </div>
+  </nb-card>
+</div>
