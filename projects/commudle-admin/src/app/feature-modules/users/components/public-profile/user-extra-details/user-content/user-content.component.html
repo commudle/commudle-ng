@@ -1,19 +1,11 @@
 <div *ngIf="user" class="user-content">
   <nb-card>
     <nb-card-body>
-      <nb-tabset>
-        <nb-tab tabTitle="Contributions">
-          <app-user-contributions [user]="user"></app-user-contributions>
-        </nb-tab>
+      <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
 
-        <nb-tab tabTitle="Social">
-          <app-user-social [currentUser]="currentUser" [user]="user"></app-user-social>
-        </nb-tab>
-
-        <!--        <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">-->
-        <!--          <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
-        <!--        </nb-tab>-->
-      </nb-tabset>
+          <!--        <nb-tab *ngIf="user && user.is_expert" tabTitle="Feed">-->
+          <!--          <app-user-feed [currentUser]="currentUser" [user]="user"></app-user-feed>-->
+          <!--        </nb-tab>-->
     </nb-card-body>
   </nb-card>
 

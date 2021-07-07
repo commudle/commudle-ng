@@ -1,13 +1,14 @@
-import {DomSanitizer} from '@angular/platform-browser';
-import {AfterViewChecked, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ILabStep} from 'projects/shared-models/lab-step.model';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
-import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {ActivatedRoute} from '@angular/router';
-import {NbDialogService} from '@nebular/theme';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {Subscription} from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewChecked, Component, ElementRef, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { NbDialogService } from '@nebular/theme';
+import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { ILabStep } from 'projects/shared-models/lab-step.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -30,7 +31,10 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('content') private content: ElementRef;
   @ViewChild('dialog') private dialog: any;
 
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
     private authWatchService: LibAuthwatchService,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
@@ -70,18 +74,20 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    if (!this.triggerDialogB) {
-      if (this.content) {
-        const imagesList = this.content.nativeElement.querySelectorAll('img');
-        for (const img of imagesList) {
-          const g0 = img;
-          g0.classList.add('clickable');
-          g0.addEventListener('click', () => {
-            this.src = g0.src;
-            this.dialogService.open(this.dialog)
-          }, false);
+    if (this.isBrowser) {
+      if (!this.triggerDialogB) {
+        if (this.content) {
+          const imagesList = this.content.nativeElement.querySelectorAll('img');
+          for (const img of imagesList) {
+            const g0 = img;
+            g0.classList.add('clickable');
+            g0.addEventListener('click', () => {
+              this.src = g0.src;
+              this.dialogService.open(this.dialog);
+            }, false);
+          }
+          this.triggerDialogB = true;
         }
-        this.triggerDialogB = true;
       }
     }
   }

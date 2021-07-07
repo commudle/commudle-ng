@@ -126,7 +126,7 @@
           <a
             *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
             target="_blank"
-            [routerLink]="['/admin/forms', eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value, 'edit']">
+            [routerLink]="['/forms', eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value, 'edit']">
             <nb-icon class="clickable" nbTooltip="View Form" icon="eye" status="info"></nb-icon>
           </a>
         </div>
