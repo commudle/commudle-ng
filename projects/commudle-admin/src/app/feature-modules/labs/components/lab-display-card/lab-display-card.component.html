@@ -10,7 +10,7 @@
     </div>
 
     <div class="author-stats d-flex justify-content-space-between">
-      <app-user-profile-card-medium [maxDesignationLength]="30" [user]="lab.user"></app-user-profile-card-medium>
+      <app-user-profile-card-medium [maxNameLength]="20" [maxDesignationLength]="30" [user]="lab.user"></app-user-profile-card-medium>
       <div class="stats d-flex">
         <div class="views d-flex align-items-center">
           <p>{{lab.visits}}</p>

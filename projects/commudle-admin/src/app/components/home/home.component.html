@@ -1,7 +1,7 @@
 <div class="home">
   <div class="page-container">
     <!--  DESKTOP  -->
-    <div class="home-desktop d-flex justify-content-center">
+    <div *ngIf="getWindowWidth() > 768" class="home-desktop d-flex justify-content-center">
       <div class="left-column">
         <app-home-labs></app-home-labs>
         <app-home-communities></app-home-communities>
@@ -19,7 +19,7 @@
     </div>
 
     <!--  MOBILE  -->
-    <div class="home-mobile">
+    <div *ngIf="getWindowWidth() <= 768" class="home-mobile">
       <app-home-head-banner></app-home-head-banner>
       <app-home-events></app-home-events>
       <app-home-promotions></app-home-promotions>

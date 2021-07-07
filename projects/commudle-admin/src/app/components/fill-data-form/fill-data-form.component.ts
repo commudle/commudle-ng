@@ -193,7 +193,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     if (this.redirectRoute) {
       this.router.navigate(this.redirectRoute);
     } else {
-      this.dialogRef = this.dialogService.open(this.formConfirmationDialog);
+      this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {closeOnBackdropClick: false});
     }
   }
 

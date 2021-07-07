@@ -339,3 +339,15 @@
     }
   }
 }
+
+::ng-deep {
+  .cdk-overlay-container {
+    .cookie-consent {
+      nb-card-header {
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+}
