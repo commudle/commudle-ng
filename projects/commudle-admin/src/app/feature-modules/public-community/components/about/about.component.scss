@@ -11,7 +11,6 @@ p {
   nb-card {
     margin: $space-16 0 0;
     border: none;
-    border-radius: $border-10;
 
     nb-card-body {
       padding: $space-40 $space-32;
@@ -42,56 +41,59 @@ p {
 
   .organizers {
     nb-card-body {
+      padding: $space-40;
+
       .organizer-container {
         gap: $space-24 $space-52;
 
         .organizer {
           width: 264px;
+          position: relative;
           padding: $space-16;
+        }
+
+        .organizer + .organizer {
+          &:before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: -26px;
+            height: 80px;
+            border-left: 1px solid $gunmetal;
+          }
+
+          &:nth-of-type(3n+1) {
+            &:before {
+              border-left: none;
+            }
+          }
         }
       }
     }
   }
 }
 
-//.about-community {
-//  display: flex;
-//  flex-direction: column;
-//
-//  .team {
-//    p {
-//      font-weight: bold;
-//    }
-//
-//    .user {
-//      margin: 1rem 0;
-//    }
-//
-//    .organizers, .event-organizers {
-//      display: flex;
-//      flex-direction: column;
-//    }
-//  }
-//
-//
-//  @media screen and (min-width: 800px) {
-//
-//    .about {
-//
-//    }
-//
-//    .team {
-//
-//      .organizers, .event-organizers {
-//        flex-direction: row;
-//        flex-wrap: wrap;
-//        justify-content: center;
-//
-//        .user {
-//          width: 20%;
-//          margin: 1rem;
-//        }
-//      }
-//    }
-//  }
-//}
+@media all and (max-width: $tab-width) {
+  .community-about {
+    .about {
+      nb-card-body {
+        padding: $space-16;
+      }
+    }
+
+    .organizers {
+      nb-card-body {
+        padding: $space-16;
+
+        .organizer-container {
+          .organizer + .organizer {
+            &:before {
+              border-left: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
