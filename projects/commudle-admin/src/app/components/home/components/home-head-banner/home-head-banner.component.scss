@@ -2,7 +2,6 @@
 
 .head-banner {
   border: none;
-  border-radius: $border-10;
 
   p, a, h1 {
     color: $gunmetal;
@@ -35,7 +34,6 @@
       text-decoration: none;
 
       nb-card {
-        border-radius: $border-10;
         margin: 0;
         color: $gunmetal;
 

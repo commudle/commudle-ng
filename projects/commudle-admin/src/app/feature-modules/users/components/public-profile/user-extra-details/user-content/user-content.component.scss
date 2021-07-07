@@ -3,7 +3,6 @@
 .user-content {
   nb-card {
     border: none;
-    border-radius: $border-10;
     margin: $space-16 0 0;
 
     nb-card-body {
@@ -16,14 +15,14 @@
     }
   }
 
-  nb-tabset {
-    padding-top: $space-8;
+  nb-route-tabset {
 
     &::ng-deep {
-      .tabset {
+      .route-tabset {
+        padding-top: $space-8;
         border-bottom: 1px solid $silver-sand;
 
-        .tab {
+        .route-tab {
           .tab-link {
             font-style: italic;
             font-size: $fs-h4;
@@ -50,10 +49,9 @@
           }
         }
       }
-    }
-
-    nb-tab {
-      padding: $space-32;
+      .user-contributions, .user-social {
+        padding: $space-32;
+      }
     }
   }
 }
