@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
   NbIconModule,
+  NbInputModule,
   NbListModule,
   NbSelectModule,
   NbSpinnerModule,
@@ -38,6 +40,7 @@ import { SysAdminComponent } from './sys-admin.component';
     CommonModule,
     SysAdminRoutingModule,
     SharedComponentsModule,
+    ReactiveFormsModule,
 
     // Nebular
     NbCardModule,
@@ -48,7 +51,8 @@ import { SysAdminComponent } from './sys-admin.component';
     NbSelectModule,
     NbTabsetModule,
     NbToggleModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NbInputModule
   ]
 })
 export class SysAdminModule {
