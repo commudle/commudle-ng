@@ -22,6 +22,7 @@
 
     .session-host {
       gap: $space-16;
+      margin-bottom: $space-16;
 
       .community {
         color: inherit;
@@ -32,7 +33,7 @@
           height: 28px;
           width: 28px;
           overflow: hidden;
-          border-radius: 50%;
+          border-radius: $border-50;
           border: 0.5px solid $platinum;
 
           img {
