@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminPageAdsFormComponent } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
-import { AdminPageAdsListComponent } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
+import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
+import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
 import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
 import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
@@ -24,11 +24,6 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'view',
-            pathMatch: 'full'
-          },
-          {
-            path: 'view',
             component: AdminPageAdsListComponent
           },
           {
