@@ -51,7 +51,7 @@
 
       @media all and (min-width: $tab-width) {
         &.compressed {
-          width: calc(100% - 300px - 32px);
+          width: calc(100% - 300px - 36px);
         }
       }
     }

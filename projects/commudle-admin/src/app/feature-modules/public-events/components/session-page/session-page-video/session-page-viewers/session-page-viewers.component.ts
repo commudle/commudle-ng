@@ -44,26 +44,28 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.channelName = `${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`;
-    if (this.event.event_status.name === EEventStatuses.COMPLETED) {
-      this.getPastUsersList();
-    } else {
-      let parentType = 'EmbeddedVideoStream';
-      let parentId = this.embeddedVideoStream.id;
+    if (this.isBrowser) {
+      this.channelName = `${ this.embeddedVideoStream.id }_EmbeddedVideoStream_${ this.uuid }`;
+      if (this.event.event_status.name === EEventStatuses.COMPLETED) {
+        this.getPastUsersList();
+      } else {
+        let parentType = 'EmbeddedVideoStream';
+        let parentId = this.embeddedVideoStream.id;
 
-      if (this.activatedRoute.snapshot.queryParams.track_slot_id) {
-        parentType = 'TrackSlot';
-        parentId = this.activatedRoute.snapshot.queryParams.track_slot_id;
-      }
-      this.userObjectVisitChannel.subscribe(parentId, parentType, this.uuid);
-      this.receiveData();
-      this.clientPings();
-
-      this.subscriptions.push(this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(data => {
-        if (data) {
-          this.getCurrentUsersList();
+        if (this.activatedRoute.snapshot.queryParams.track_slot_id) {
+          parentType = 'TrackSlot';
+          parentId = this.activatedRoute.snapshot.queryParams.track_slot_id;
         }
-      }));
+        this.userObjectVisitChannel.subscribe(parentId, parentType, this.uuid);
+        this.receiveData();
+        this.clientPings();
+
+        this.subscriptions.push(this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(data => {
+          if (data) {
+            this.getCurrentUsersList();
+          }
+        }));
+      }
     }
   }
 
