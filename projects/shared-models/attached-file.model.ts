@@ -4,6 +4,7 @@ export interface IAttachedFile {
   url?: string;
   file: File;
   name?: string;
+  filename?: string;
   type?: string;
   profile_banner?: string;
   medium?: string;
