@@ -19,11 +19,11 @@ const routes = [
           {
             path: '',
             redirectTo: 'contributions',
-            pathMatch: 'full',
+            pathMatch: 'full'
           },
           {
             path: 'contributions',
-            component: UserContributionsComponent,
+            component: UserContributionsComponent
           },
           {
             path: 'social',
