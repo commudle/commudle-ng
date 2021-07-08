@@ -6,13 +6,13 @@
 
   .page-header {
     margin: $space-32 0 $space-64 0;
-    align-self: flex-start;
-    text-align: center;
+    flex-direction: row;
+    justify-content: flex-start;
 
     .logo {
+      margin-right: $space-88;
       width: 208px;
-      max-width: 208px;
-      max-height: 208px;
+      height: 208px;
       overflow: hidden;
 
       img {
@@ -30,27 +30,6 @@
       }
 
       .membership {
-        .membership-toggle {
-          ::ng-deep {
-            button {
-              padding: $space-8;
-              font-weight: $fw-400;
-              font-size: $fs-14;
-              background-color: $neon-blue;
-              color: $white;
-              text-transform: none;
-            }
-            .select-button {
-              padding: $space-4;
-              background-color:initial;
-              color: initial;
-            }
-            nb-select {
-              max-width: $space-152;
-            }
-          }
-        }
-
         .member-count {
           margin: 0 0 $space-78 0;
           a {
@@ -58,47 +37,58 @@
             color: $gunmetal;
           }
         }
-      }
+        .social-links-container {
+          width: 680px;
+          .membership-toggle {
+            ::ng-deep {
+              button {
+                padding: $space-8;
+                font-weight: $fw-400;
+                font-size: $fs-14;
+                background-color: $neon-blue;
+                color: $white;
+                text-transform: none;
+              }
+              nb-select {
+                button {
+                  padding: $space-4;
+                  background-color:initial;
+                  color: initial;
+                }
+              }
+            }
+          }
+          .community-social-links {
+            gap: $space-24;
+            nb-icon {
+              color: $neon-blue;
+            }
 
-      .community-social-links {
-        nb-icon {
-          color: $neon-blue;
-        }
-
-        a {
-          text-decoration: none;
-          // margin: 0 0.5rem;
-        }
-
-        a:nth-of-type(1) {
-          margin-left: 0;
+            a {
+              text-decoration: none;
+            }
+          }
         }
       }
     }
 
-    @media screen and (min-width: $tab-width) {
-      flex-direction: row;
-      justify-content: flex-start;
-      text-align: left;
-
-      .logo {
-        margin-right: $space-88;
-      }
-
+    @media screen and (max-width: $tab-width) {
+      align-self: flex-start; 
       .details {
         .membership {
           flex-direction: column;
-        }
-
-        .community-social-links {
-          justify-content: flex-start;
-          margin-left: 312px;
-
-
-          a {
-            margin-left: $space-24;
-            nb-icon {
-              font-size: $fs-24;
+          .social-links-container {
+            width: fit-content;
+            gap: $space-24;
+            flex-direction: column;
+            justify-content: space-between;
+            .community-social-links {
+              justify-content: space-between;
+              a {
+                nb-icon {
+                  font-size: $fs-24;
+                }
+              }
             }
           }
         }
@@ -108,13 +98,23 @@
   @media all and (max-width: $mobile-width) {
     margin: auto 0;
     .page-header {
+      flex-direction: column;
       align-self: center;
       .logo {
         margin: 0 auto;
       }
       .details {
+        text-align: center;
         .membership {
           align-items: center;
+          .social-links-container {
+            width: fit-content;
+            gap: $space-24;
+            flex-direction: column;
+            .community-social-links {
+              justify-content: space-between;
+            }
+          }
         }
       }
     }
@@ -131,6 +131,7 @@
   //box-shadow: 2px -5px 15px -7px lightgrey;
 
   nb-card {
+    border: none;
     margin: 0;
     padding: 0;
     nb-card-body {
@@ -140,8 +141,9 @@
 
   .menu-items {
     a {
+      height: fit-content;
       margin: 0;
-      padding: 0 $space-20 $space-16 $space-20;
+      padding: 0 $space-24 $space-17 $space-24;
       nb-icon {
         color: rgba(47, 46, 65, 0.5);
       }
@@ -193,8 +195,6 @@
       margin-bottom: $space-16;
 
       .menu-items {
-        justify-content: flex-start;
-
         a {
           span {
             display: inline;

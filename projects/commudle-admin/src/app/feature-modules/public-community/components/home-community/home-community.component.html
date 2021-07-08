@@ -12,10 +12,11 @@
             {{ community.member_count }} Members
           </a>
         </p>
-        <div class="d-flex">
+        <div class="social-links-container d-flex justify-content-space-between">
           <div class="membership-toggle">
             <app-membership-toggle [community]="community"></app-membership-toggle>
           </div>
+          
           <div class="community-social-links d-flex align-items-center">
             <a *ngIf="community.facebook" href="{{ community.facebook | completeurl:'facebook' }}" rel="noreferrer"
               target="_blank">
@@ -45,13 +46,13 @@
   <div class="page-menu d-flex flex-column">
     <nb-card>
       <nb-card-body>
-        <div class="menu-items d-flex flex-nowrap">
-          <a [routerLink]="['/communities', community.slug]" routerLinkActive="active"
+        <div class="menu-items d-flex">
+          <a class="d-flex" [routerLink]="['/communities', community.slug]" routerLinkActive="active"
              [routerLinkActiveOptions]="{ exact: true }">
             <nb-icon icon="info" status="basic"></nb-icon>
             <span class="title">About</span>
           </a>
-          <a [routerLink]="['events']" routerLinkActive="active">
+          <a class="d-flex" [routerLink]="['events']" routerLinkActive="active">
             <nb-icon icon="calendar" status="info"></nb-icon>
             <span class="title">Events</span>
           </a>
@@ -59,15 +60,15 @@
             <nb-icon icon="award" status="info"></nb-icon>
             <span>Sessions by Experts</span>
           </a> -->
-          <a [routerLink]="['speakers']" routerLinkActive="active">
+          <a class="d-flex" [routerLink]="['speakers']" routerLinkActive="active">
             <nb-icon icon="mic" status="success"></nb-icon>
             <span class="title">Speakers</span>
           </a>
-          <a [routerLink]="['members']" routerLinkActive="active">
+          <a class="d-flex" [routerLink]="['members']" routerLinkActive="active">
             <nb-icon icon="people" status="success"></nb-icon>
             <span class="title">Members</span>
           </a>
-          <a [routerLink]="['/communities', this.community.slug, 'channels']" routerLinkActive="active">
+          <a class="d-flex" [routerLink]="['/communities', this.community.slug, 'channels']" routerLinkActive="active">
             <nb-icon icon="hash" status="success"></nb-icon>
             <span class="title">Channels</span>
           </a>
