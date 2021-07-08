@@ -1,0 +1,23 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.admin-page-ads-list {
+  .ad-list-container {
+    ::ng-deep {
+      nb-list-item {
+        border-top: none;
+      }
+    }
+    .title {
+      font-size: $fs-20;
+      font-weight: $fw-600;
+    }
+    .controls {
+      button {
+        margin-left: $space-10;
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
