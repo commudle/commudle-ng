@@ -1,76 +1,71 @@
-import { EventStatsComponent } from './components/event-stats/event-stats.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CreateEventComponent } from './components/create-event/create-event.component';
-import { EditEventComponent } from './components/edit-event/edit-event.component';
-import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
-import { VolunteersComponent } from './components/volunteers/volunteers.component';
-import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
+import { RouterModule, Routes } from '@angular/router';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
+import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
+import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
+import { EventStatsComponent } from './components/event-stats/event-stats.component';
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
+import { VolunteersComponent } from './components/volunteers/volunteers.component';
 
-const routes: Routes = [
+const routes = [
   {
     path: '',
     resolve: {
-      community: CommunityDetailsResolver
+      community: CommunityDetailsResolver,
     },
     children: [
       {
         path: 'new',
-        component: CreateEventComponent
+        component: CreateEventComponent,
       },
       {
         path: ':event_id',
         runGuardsAndResolvers: 'always',
         resolve: {
-          event: EventDetailsResolver
+          event: EventDetailsResolver,
         },
         children: [
           {
             path: '',
-            component: EventDashboardComponent
+            component: EventDashboardComponent,
           },
           {
             path: 'edit',
-            component: EditEventComponent
+            component: EditEventComponent,
           },
           {
             path: 'collaborating-communities',
-            component: CollaboratingCommunitiesComponent
+            component: CollaboratingCommunitiesComponent,
           },
           {
             path: 'volunteers',
-            component: VolunteersComponent
+            component: VolunteersComponent,
           },
           {
             path: 'form-responses',
-            component: EventFormResponsesComponent
+            component: EventFormResponsesComponent,
           },
           {
             path: 'stats',
-            component: EventStatsComponent
+            component: EventStatsComponent,
           },
           {
             path: ':event_simple_registration_id/user-event-registrations',
-            component: UserEventRegistrationsComponent
-          }
-
-        ]
-      }
-
-    ]
-  }
+            component: UserEventRegistrationsComponent,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes as Routes)],
   exports: [RouterModule],
-  providers: [
-    CommunityDetailsResolver,
-    EventDetailsResolver
-  ]
+  providers: [CommunityDetailsResolver, EventDetailsResolver],
 })
-export class EventsRoutingModule { }
+export class EventsRoutingModule {}
