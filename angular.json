@@ -102,15 +102,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/commudle-admin/tsconfig.app.json",
-              "projects/commudle-admin/tsconfig.spec.json",
-              "projects/commudle-admin/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/commudle-admin/**/*.ts",
+              "projects/commudle-admin/**/*.html"
             ]
           }
         },
@@ -204,14 +200,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/lib-authwatch/tsconfig.lib.json",
-              "projects/lib-authwatch/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/lib-authwatch/**/*.ts",
+              "projects/lib-authwatch/**/*.html"
             ]
           }
         }
@@ -244,14 +237,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/api-routes/tsconfig.lib.json",
-              "projects/api-routes/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/api-routes/**/*.ts",
+              "projects/api-routes/**/*.html"
             ]
           }
         }
@@ -284,14 +274,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/lib-error-handler/tsconfig.lib.json",
-              "projects/lib-error-handler/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/lib-error-handler/**/*.ts",
+              "projects/lib-error-handler/**/*.html"
             ]
           }
         }

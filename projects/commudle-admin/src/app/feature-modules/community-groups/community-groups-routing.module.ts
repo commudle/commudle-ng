@@ -1,17 +1,16 @@
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { CommunityGroupFormComponent } from './components/community-group-form/community-group-form.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-
-const routes: Routes = [
+const routes = [
   {
     path: '',
     canActivate: [AuthGuard],
     data: {
-      expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR]
+      expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
     },
     children: [
       {
@@ -19,7 +18,7 @@ const routes: Routes = [
         component: CommunityGroupFormComponent,
         canActivate: [AuthGuard],
         data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR]
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
         },
       },
       {
@@ -31,16 +30,15 @@ const routes: Routes = [
         component: CommunityGroupFormComponent,
         canActivate: [AuthGuard],
         data: {
-          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR]
-        }
-      }
-    ]
+          expectedRoles: [EUserRoles.COMMUNITY_ADMIN, EUserRoles.SYSTEM_ADMINISTRATOR],
+        },
+      },
+    ],
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CommunityGroupsRoutingModule { }
+export class CommunityGroupsRoutingModule {}
