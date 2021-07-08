@@ -27,7 +27,7 @@ const routes = [
             component: AdminPageAdsListComponent
           },
           {
-            path: 'form',
+            path: 'form/:ad_id',
             component: AdminPageAdsFormComponent
           }
         ]
