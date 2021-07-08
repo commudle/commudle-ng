@@ -18,6 +18,9 @@
                  title="Expert Tick">
           </p>
           <p *ngIf="speaker.designation" class="designation">{{speaker.designation | truncatetext: 60}}</p>
+          <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex">
+            <div *ngFor="let tag of speaker.tags" class="user-card-tag">{{tag.name}}</div>
+          </div>
         </div>
       </div>
     </a>
