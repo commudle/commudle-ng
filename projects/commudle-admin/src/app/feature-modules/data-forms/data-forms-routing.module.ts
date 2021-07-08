@@ -1,32 +1,31 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { EditDataFormComponent } from './components/edit-data-form/edit-data-form.component';
-import { CreateDataFormComponent } from './components/create-data-form/create-data-form.component';
+import { RouterModule } from '@angular/router';
 import { QuestionTypesResolver } from 'projects/shared-resolvers/question-types.resolver';
+import { CreateDataFormComponent } from './components/create-data-form/create-data-form.component';
+import { EditDataFormComponent } from './components/edit-data-form/edit-data-form.component';
 
-const routes: Routes = [
+const routes = [
   {
     path: '',
     resolve: {
-      questionTypes: QuestionTypesResolver
+      questionTypes: QuestionTypesResolver,
     },
     children: [
       {
         path: 'new',
-        component: CreateDataFormComponent
+        component: CreateDataFormComponent,
       },
       {
         path: ':id/edit',
-        component: EditDataFormComponent
+        component: EditDataFormComponent,
       },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [QuestionTypesResolver]
+  providers: [QuestionTypesResolver],
 })
-export class DataFormsRoutingModule { }
+export class DataFormsRoutingModule {}

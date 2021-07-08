@@ -1,0 +1,10 @@
+{
+  "projects/commudle-admin/src/**/*.{ts,scss}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "projects/lib-error-handler/src/**/*.{ts,scss}": [
+    "eslint --fix",
+    "prettier --write"
+  ]
+}
