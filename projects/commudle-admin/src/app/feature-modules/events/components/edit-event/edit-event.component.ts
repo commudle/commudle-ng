@@ -41,6 +41,7 @@ export class EditEventComponent implements OnInit {
   endTime;
 
   uneditable = false;
+  hasDate = false;
 
   eventForm = this.fb.group({
     event: this.fb.group({
@@ -81,14 +82,15 @@ export class EditEventComponent implements OnInit {
       let eventInstance = this.eventForm.get('event').value;
 
       if (this.event.start_time){
-        let sTime = moment(this.event.start_time).toDate();
-        let eTime = moment(this.event.end_time).toDate();
-
+        let sDate = moment(this.event.start_time).toDate();
+        let eDate = moment(this.event.end_time).toDate();
+        let stime = sDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
+        let etime = eDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
         this.eventForm.get('event').patchValue({
-          start_date: sTime,
-          end_date: eTime,
-          start_time_pick: sTime, //patching start and end time saved to the form
-          end_time_pick: eTime
+          start_date: sDate,
+          end_date: eDate,
+          start_time_pick: stime, //patching start and end time saved to the form
+          end_time_pick: etime
         });
       }
     });
@@ -97,6 +99,23 @@ export class EditEventComponent implements OnInit {
 
     this.allTimeZones = momentTimezone.tz.names();
     this.userTimeZone =  momentTimezone.tz.guess();
+
+    let form = this.eventForm.get('event');
+
+    form.get('start_date').valueChanges.subscribe((data)=>{ 
+      form.get('start_date').clearValidators();
+      if(form.get('start_date').value) {
+        form.get('start_time_pick').setValidators([Validators.required]);
+        form.get('end_time_pick').setValidators([Validators.required]);
+        this.hasDate=true;
+      }else {
+        form.get('start_time_pick').clearValidators();
+        form.get('end_time_pick').clearValidators();
+        this.hasDate=false;
+      }
+      form.get('start_time_pick').updateValueAndValidity();
+      form.get('end_time_pick').updateValueAndValidity();
+    })
   }
 
 
@@ -130,8 +149,8 @@ export class EditEventComponent implements OnInit {
 
 
     let startTimePick = this.eventForm.get('event').get('start_time_pick').value;
-    this.startHour = startTimePick.getHours();
-    this.startMinute = startTimePick.getMinutes();
+    this.startHour = Number.parseInt(startTimePick.split(":")[0]);
+    this.startMinute = Number.parseInt(startTimePick.split(":")[1]);
 
 
     if (
@@ -157,11 +176,10 @@ export class EditEventComponent implements OnInit {
 
   setEndDateTime() {
 
-    this.endDate = this.eventForm.get('event').get('end_date').value;
+    this.endDate = this.eventForm.get('event').get('start_date').value;
     let endTimePick = this.eventForm.get('event').get('end_time_pick').value;
-    this.endHour = endTimePick.getHours();
-    this.endMinute = endTimePick.getMinutes();
-
+    this.endHour = Number.parseInt(endTimePick.split(":")[0]);
+    this.endMinute = Number.parseInt(endTimePick.split(":")[1]);
 
 
     if (
