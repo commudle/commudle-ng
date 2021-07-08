@@ -7,44 +7,33 @@ nb-card {
   }
 }
 .events {
-  background-color: white;
-  padding: 124px 0;
+  background-color: $white;
+  padding: $space-124 0;
   margin: auto;
   border-radius: $border-10;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: $space-32;
   a {
     text-decoration: none;
   }
   nb-card {
-    border: 1px solid #C4C4C4;
+    border: 1px solid $silver-sand;
     margin: 0;
     overflow: hidden;
   }
   .event {
     width: 768px;
     &:hover {
-      box-shadow: 0px 2px 5px 1px lightgrey;
+      box-shadow: 0px 2px 5px 1px $lightgrey;
     }
-    margin-bottom: $space-32;
     nb-card-body {
       padding: 0;
       padding-right: $space-24;
-      display: flex;
-      flex-wrap: nowrap;
-
 
       .header-image {
         width: 220px;
         min-width: 220px;
         height: 128px;
         margin-right: $space-24;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
         overflow: hidden;
         img {
           width: 100%;
@@ -55,15 +44,8 @@ nb-card {
         }
 
         nb-icon {
-          font-size: 2rem;
+          font-size: $fs-32;
         }
-
-        // @media screen and (max-width: $mobile-width) {
-        //   .header-image {
-        //     width: 100px;
-        //   }
-
-        // }
       }
 
       .details {
@@ -77,7 +59,7 @@ nb-card {
           font-size: $fs-18;
           font-weight: $fw-600;
           nb-icon {
-            min-width: 1em;
+            min-width: 16px;
           }
         }
 
@@ -105,7 +87,7 @@ nb-card {
         }
         .event-name {
           .collaboration {
-            font-size: 0.9rem;
+            font-size: $fs-14;
           }
         }
       }
@@ -166,7 +148,7 @@ nb-card {
   @media all and (max-width: $mobile-width) {
     padding: $space-40 $space-20 $space-20 $space-20;
     .event {
-      width: unset;
+      width: 318px;
       nb-card-body {
         flex-direction: column;
         .details {
