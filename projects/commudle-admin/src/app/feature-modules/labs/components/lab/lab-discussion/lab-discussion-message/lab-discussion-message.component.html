@@ -1,16 +1,20 @@
 <div>
   <div class="message">
     <div>
-      <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
+      <a [routerLink]="['/users', message.user.username]" target="_blank">
+        <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
+      </a>
     </div>
     <div class="content-controls">
       <div class="author-details">
         <div class="d-flex justify-content-space-between">
           <div class="d-flex align-items-center">
-            <span class="name">{{message.user.name}}</span>
-            <span class="username">@{{message.user.username}}</span>
-            <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"
-                 src="/assets/images/Expert-Tick.svg" title="Expert Tick">
+            <a [routerLink]="['/users', message.user.username]" target="_blank">
+              <span class="name">{{message.user.name}}</span>
+              <span class="username">@{{message.user.username}}</span>
+              <img *ngIf="message.user.is_expert" alt="Expert Tick" class="expert-icon"
+                  src="/assets/images/Expert-Tick.svg" title="Expert Tick">
+            </a>
           </div>
           <div class="date">{{moment(message.created_at).format("MMM D [']YY")}}</div>
         </div>
