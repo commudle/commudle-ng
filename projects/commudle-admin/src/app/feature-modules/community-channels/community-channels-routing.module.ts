@@ -13,12 +13,18 @@ import { ChannelMembersComponent } from './components/channel-members/channel-me
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
+import { EmailJoinComponent } from './components/email-join/email-join.component';
 
 
 const routes: Routes = [
   {
     path: 'join/:token',
     component: JoinByTokenComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'email-join/:token',
+    component: EmailJoinComponent,
     canActivate: [AuthGuard]
   },
   {

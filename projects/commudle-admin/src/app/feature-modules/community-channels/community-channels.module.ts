@@ -35,6 +35,7 @@ import { MentionModule } from 'angular-mentions';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
+import { EmailJoinComponent } from './components/email-join/email-join.component';
 
 
 
@@ -55,7 +56,8 @@ import { ArchiveChannelComponent } from './components/channel-settings/archive-c
     ChannelMembersComponent,
     MemberComponent,
     NewCommunityChannelComponent,
-    ArchiveChannelComponent
+    ArchiveChannelComponent,
+    EmailJoinComponent
   ],
   imports: [
     CommonModule,
