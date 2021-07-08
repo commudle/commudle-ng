@@ -21,7 +21,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [TruncateTextPipe],
+  providers: [TruncateTextPipe]
 })
 export class AppComponent implements OnInit, AfterViewChecked {
   sideBarNotifications = false;
@@ -55,6 +55,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
 
+    this.iconLibraries.registerFontPack('far', { iconClassPrefix: 'fa', packClass: 'far' });
     this.iconLibraries.registerFontPack('fas', { iconClassPrefix: 'fa', packClass: 'fas' });
     this.iconLibraries.registerFontPack('fab', { iconClassPrefix: 'fa', packClass: 'fab' });
   }
@@ -69,8 +70,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
           link: `/users/${currentUser.username}`,
           badge: {
             text: 'Profile',
-            status: 'basic',
-          },
+            status: 'basic'
+          }
         });
 
         // LogRocket.init('g90s8l/commudle');
