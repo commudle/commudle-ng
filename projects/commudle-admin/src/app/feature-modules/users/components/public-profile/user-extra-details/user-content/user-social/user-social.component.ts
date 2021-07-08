@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {IUser} from 'projects/shared-models/user.model';
 import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
 import {ISocialResource} from 'projects/shared-models/social_resource.model';
@@ -11,17 +11,18 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {SocialResourceService} from 'projects/commudle-admin/src/app/services/social-resource.service';
 import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-social',
   templateUrl: './user-social.component.html',
   styleUrls: ['./user-social.component.scss']
 })
-export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
+export class UserSocialComponent implements OnInit, OnDestroy {
 
-  @Input() user: IUser;
-  @Input() currentUser: ICurrentUser;
-
+  user: IUser;
+  currentUser: ICurrentUser;
   subscriptions: Subscription[] = [];
 
   socialResources: ISocialResource[];
@@ -61,12 +62,20 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
     private fb: FormBuilder,
     private appUsersService: AppUsersService,
     private linkPreviewService: LinkPreviewService,
-    private socialResourceService: SocialResourceService
+    private socialResourceService: SocialResourceService,
+    private authWatchService: LibAuthwatchService,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
 
+    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => {
+      // Get user's data
+      this.getUserData();
+    }));
+    // Get logged in user
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
     // Subscribe to search
     this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(
       debounceTime(1000)
@@ -77,17 +86,18 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.user) {
-     // Get user's social resources
-     this.getSocialResources();
-    }
-
-  }
-
   ngOnDestroy(): void {
     this.subscriptions.forEach(value => value.unsubscribe());
     this.socialLinkChangedSubscription.unsubscribe();
+  }
+
+  // Get user's data
+  getUserData() {
+    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe(data => {
+      this.user = data;
+      // Get user's social resources
+      this.getSocialResources();
+    });
   }
 
   getSocialResources(): void {

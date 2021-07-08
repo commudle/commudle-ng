@@ -1,24 +1,34 @@
-import {AfterViewChecked, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {LabsService} from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
-import {ILab} from 'projects/shared-models/lab.model';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
-import {DomSanitizer, Meta, Title} from '@angular/platform-browser';
-import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
-import {IDiscussion} from 'projects/shared-models/discussion.model';
-import {DOCUMENT} from '@angular/common';
-import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {NbDialogService, NbSidebarService} from '@nebular/theme';
-import {Subscription} from 'rxjs';
-import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild
+} from '@angular/core';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NbDialogService, NbSidebarService } from '@nebular/theme';
+import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { ILab } from 'projects/shared-models/lab.model';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lab',
   templateUrl: './lab.component.html',
-  styleUrls: ['./lab.component.scss'],
+  styleUrls: ['./lab.component.scss']
 })
 export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   public src;
+
   routeSubscriptions: Subscription[] = [];
   labDescription;
   triggerDialogB = false;
@@ -33,7 +43,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
 
+  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+
   constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(DOCUMENT) private doc: Document,
     private activatedRoute: ActivatedRoute,
     private meta: Meta,
     private title: Title,
@@ -41,7 +55,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private sanitizer: DomSanitizer,
     private router: Router,
     private discussionsService: DiscussionsService,
-    @Inject(DOCUMENT) private doc: Document,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private dialogService: NbDialogService,
     private footerService: FooterService,
@@ -49,36 +62,61 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   ) {
   }
 
+  // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
+  // defined on the server side, we need isBrowser
   ngOnInit() {
-    this.routeSubscriptions.push(
-      this.activatedRoute.params.subscribe(data => {
-        this.getLab(data.lab_id);
-        this.setStep(-1);
-      })
-    );
-
-    // Listen for url changes
-    this.router.events.subscribe((event: NavigationStart) => {
-      if (event.navigationTrigger === 'popstate') {
-        // Get step id from url
-        const stepId = parseInt(event.url.split('/').pop(), 10);
-        if (isNaN(stepId)) {
-          // Navigation between a step and overview
+    if (this.isBrowser) {
+      this.routeSubscriptions.push(
+        this.activatedRoute.params.subscribe(data => {
+          this.getLab(data.lab_id);
           this.setStep(-1);
-        } else {
-          // Navigation between steps
-          this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === stepId);
+        })
+      );
+
+      // Listen for url changes
+      this.router.events.subscribe((event: NavigationStart) => {
+        if (event.navigationTrigger === 'popstate') {
+          // Get step id from url
+          const stepId = parseInt(event.url.split('/').pop(), 10);
+          if (isNaN(stepId)) {
+            // Navigation between a step and overview
+            this.setStep(-1);
+          } else {
+            // Navigation between steps
+            this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === stepId);
+          }
         }
-      }
-    });
+      });
+    }
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
   }
 
+  // ngAfterViewChecked() would be invoked once the DOM tree gets any change, so since we are building the HTML on the
+  // server side, the DOM changes and hence the ngAfterViewChecked() will be called and that's why we need isBrowser
+  ngAfterViewChecked() {
+    if (this.isBrowser) {
+      if (!this.triggerDialogB) {
+        if (this.iContent) {
+          const imagesList = this.iContent.nativeElement.querySelectorAll('img');
+          for (const img of imagesList) {
+            const g0 = img;
+            g0.classList.add('clickable');
+            g0.addEventListener('click', () => {
+              this.src = g0.src;
+              this.dialogService.open(this.dialog);
+            }, false);
+          }
+          this.triggerDialogB = true;
+        }
+      }
+      this.highlightCodeSnippets();
+    }
+  }
+
+  // Called once, before the instance is destroyed.
   ngOnDestroy(): void {
-    // Called once, before the instance is destroyed.
-    // Add 'implements OnDestroy' to the class.
     this.routeSubscriptions.forEach(subscription => subscription.unsubscribe());
 
     // Show Footer
@@ -90,22 +128,22 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
+    this.title.setTitle(`${ this.lab.name } | By ${ this.lab.user.name }`);
     this.meta.updateTag({
       name: 'description',
       content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
     });
     this.meta.updateTag({
       name: 'og:image',
-      content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
     });
     this.meta.updateTag({
       name: 'og:image:secure_url',
-      content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`
+      content: `${ this.lab.name } | By ${ this.lab.user.name }`
     });
     this.meta.updateTag({
       name: 'og:description',
@@ -117,11 +155,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
+      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`
+      content: `${ this.lab.name } | By ${ this.lab.user.name }`
     });
     this.meta.updateTag({
       name: 'twitter:description',
@@ -130,7 +168,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   scrollToTop() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getLab(labId) {
@@ -155,31 +193,13 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.routeSubscriptions.push(
           this.activatedRoute.firstChild.params.subscribe(value => {
             if (value.step_id) {
-              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === parseInt(value.step_id));
+              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === parseInt(value.step_id, 10));
               this.setStep(this.selectedLabStep);
             }
           })
         );
       }
     });
-  }
-
-  ngAfterViewChecked() {
-    if (!this.triggerDialogB) {
-      if (this.iContent) {
-        const imagesList = this.iContent.nativeElement.querySelectorAll('img');
-        for (const img of imagesList) {
-          const g0 = img;
-          g0.classList.add('clickable');
-          g0.addEventListener('click', () => {
-            this.src = g0.src;
-            this.dialogService.open(this.dialog);
-          }, false);
-        }
-        this.triggerDialogB = true;
-      }
-    }
-    this.highlightCodeSnippets();
   }
 
   setStep(index) {
@@ -204,7 +224,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   scroll(el: HTMLElement) {
-    el.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+    el.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
   }
 
   getMessagesCount(count: number) {
@@ -214,4 +234,5 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   toggleDetails() {
     this.nbSidebarService.toggle(false, 'right');
   }
+
 }

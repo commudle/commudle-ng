@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  app_url: 'https://commudle.com',
+  app_url: 'https://www.commudle.com',
   base_url: 'https://json.commudle.com',
   action_cable_url: 'https://json.commudle.com/live',
   anycable_url: 'wss://ws.commudle.com/cable',
