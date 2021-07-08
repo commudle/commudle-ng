@@ -1,40 +1,38 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { SysAdminComponent } from './sys-admin.component';
+import { RouterModule } from '@angular/router';
 import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
-import { LabsComponent } from './components/labs/labs.component';
 import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
+import { LabsComponent } from './components/labs/labs.component';
+import { SysAdminComponent } from './sys-admin.component';
 
-const routes: Routes = [
+const routes = [
   {
     path: '',
     component: SysAdminComponent,
     children: [
       {
         path: '',
-        component: CommunityControlsComponent
+        component: CommunityControlsComponent,
       },
       {
         path: 'admin-surveys',
-        component: AdminSurveysComponent
+        component: AdminSurveysComponent,
       },
       {
         path: 'community-builds',
-        component: CommunityBuildsComponent
+        component: CommunityBuildsComponent,
       },
       {
         path: 'labs',
-        component: LabsComponent
-      }
-    ]
+        component: LabsComponent,
+      },
+    ],
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SysAdminRoutingModule { }
+export class SysAdminRoutingModule {}

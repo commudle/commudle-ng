@@ -6,18 +6,17 @@ import {SpeakerSessionPageComponent} from './components/speaker-session-page/spe
 import {CommunityDetailsResolver} from 'projects/commudle-admin/src/app/resolvers/community-details.resolver';
 import {PublicEventDetailsResolver} from 'projects/commudle-admin/src/app/resolvers/public-event-details.resolver';
 
-
-const routes: Routes = [
+const routes = [
   {
     path: '',
     resolve: {
       community: CommunityDetailsResolver,
-      event: PublicEventDetailsResolver
+      event: PublicEventDetailsResolver,
     },
     children: [
       {
         path: '',
-        component: HomeEventComponent
+        component: HomeEventComponent,
       },
       {
         path: 'session',
@@ -33,7 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PublicEventsRoutingModule {
-}
+export class PublicEventsRoutingModule {}

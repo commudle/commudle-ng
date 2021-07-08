@@ -1,0 +1,2421 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>commudle-ng documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">commudle-ng documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>DiscussionCommunityChannelComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-discussion-community-channel</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./discussion-community-channel.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./discussion-community-channel.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allActions">allActions</a>
+                            </li>
+                            <li>
+                                <a href="#allMessagesLoaded">allMessagesLoaded</a>
+                            </li>
+                            <li>
+                                <a href="#blocked">blocked</a>
+                            </li>
+                            <li>
+                                <a href="#channelRoles">channelRoles</a>
+                            </li>
+                            <li>
+                                <a href="#chatMessageForm">chatMessageForm</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser">currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#EUserRoles">EUserRoles</a>
+                            </li>
+                            <li>
+                                <a href="#loadingMessages">loadingMessages</a>
+                            </li>
+                            <li>
+                                <a href="#messages">messages</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#messagesContainer">messagesContainer</a>
+                            </li>
+                            <li>
+                                <a href="#moment">moment</a>
+                            </li>
+                            <li>
+                                <a href="#nextPage">nextPage</a>
+                            </li>
+                            <li>
+                                <a href="#pageSize">pageSize</a>
+                            </li>
+                            <li>
+                                <a href="#permittedActions">permittedActions</a>
+                            </li>
+                            <li>
+                                <a href="#showReplyForm">showReplyForm</a>
+                            </li>
+                            <li>
+                                <a href="#subscriptions">subscriptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#blockChat">blockChat</a>
+                            </li>
+                            <li>
+                                <a href="#delete">delete</a>
+                            </li>
+                            <li>
+                                <a href="#findMessageIndex">findMessageIndex</a>
+                            </li>
+                            <li>
+                                <a href="#findReplyIndex">findReplyIndex</a>
+                            </li>
+                            <li>
+                                <a href="#getDiscussionMessages">getDiscussionMessages</a>
+                            </li>
+                            <li>
+                                <a href="#loadPreviousMessages">loadPreviousMessages</a>
+                            </li>
+                            <li>
+                                <a href="#login">login</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#receiveData">receiveData</a>
+                            </li>
+                            <li>
+                                <a href="#scrollToBottom">scrollToBottom</a>
+                            </li>
+                            <li>
+                                <a href="#sendAttachmentMessage">sendAttachmentMessage</a>
+                            </li>
+                            <li>
+                                <a href="#sendAttachmentReply">sendAttachmentReply</a>
+                            </li>
+                            <li>
+                                <a href="#sendMessage">sendMessage</a>
+                            </li>
+                            <li>
+                                <a href="#sendReply">sendReply</a>
+                            </li>
+                            <li>
+                                <a href="#sendVote">sendVote</a>
+                            </li>
+                            <li>
+                                <a href="#toggleReplyForm">toggleReplyForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#discussion">discussion</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#newMessage">newMessage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, toastLogService: <a href="../injectables/LibToastLogService.html">LibToastLogService</a>, userMessagesService: <a href="../injectables/UserMessagesService.html">UserMessagesService</a>, communityChannelChannel: <a href="../injectables/CommunityChannelChannel.html">CommunityChannelChannel</a>, authWatchService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>, discussionsService: <a href="../injectables/DiscussionsService.html">DiscussionsService</a>, communityChannelManagerService: <a href="../injectables/CommunityChannelManagerService.html">CommunityChannelManagerService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LibToastLogService.html" target="_self" >LibToastLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userMessagesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserMessagesService.html" target="_self" >UserMessagesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>communityChannelChannel</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommunityChannelChannel.html" target="_self" >CommunityChannelChannel</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authWatchService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LibAuthwatchService.html" target="_self" >LibAuthwatchService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>discussionsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DiscussionsService.html" target="_self" >DiscussionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>communityChannelManagerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CommunityChannelManagerService.html" target="_self" >CommunityChannelManagerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="discussion"></a>
+                        <b>discussion</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IDiscussion.html" target="_self" >IDiscussion</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:25</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="newMessage"></a>
+                        <b>newMessage</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:26</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="blockChat"></a>
+                    <span class="name">
+                        <b>
+                            blockChat
+                        </b>
+                        <a href="#blockChat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>blockChat()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="delete"></a>
+                    <span class="name">
+                        <b>
+                            delete
+                        </b>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>delete(userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:196</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findMessageIndex"></a>
+                    <span class="name">
+                        <b>
+                            findMessageIndex
+                        </b>
+                        <a href="#findMessageIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findMessageIndex(userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="304"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:304</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findReplyIndex"></a>
+                    <span class="name">
+                        <b>
+                            findReplyIndex
+                        </b>
+                        <a href="#findReplyIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findReplyIndex(questionIndex, replyId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="308"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:308</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>questionIndex</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>replyId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDiscussionMessages"></a>
+                    <span class="name">
+                        <b>
+                            getDiscussionMessages
+                        </b>
+                        <a href="#getDiscussionMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDiscussionMessages()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadPreviousMessages"></a>
+                    <span class="name">
+                        <b>
+                            loadPreviousMessages
+                        </b>
+                        <a href="#loadPreviousMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadPreviousMessages()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login"></a>
+                    <span class="name">
+                        <b>
+                            login
+                        </b>
+                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>login()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:122</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <b>
+                            ngOnChanges
+                        </b>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="receiveData"></a>
+                    <span class="name">
+                        <b>
+                            receiveData
+                        </b>
+                        <a href="#receiveData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>receiveData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:229</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollToBottom"></a>
+                    <span class="name">
+                        <b>
+                            scrollToBottom
+                        </b>
+                        <a href="#scrollToBottom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollToBottom()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendAttachmentMessage"></a>
+                    <span class="name">
+                        <b>
+                            sendAttachmentMessage
+                        </b>
+                        <a href="#sendAttachmentMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sendAttachmentMessage(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:165</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendAttachmentReply"></a>
+                    <span class="name">
+                        <b>
+                            sendAttachmentReply
+                        </b>
+                        <a href="#sendAttachmentReply"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sendAttachmentReply(replyContent, userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>replyContent</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendMessage"></a>
+                    <span class="name">
+                        <b>
+                            sendMessage
+                        </b>
+                        <a href="#sendMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sendMessage(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendReply"></a>
+                    <span class="name">
+                        <b>
+                            sendReply
+                        </b>
+                        <a href="#sendReply"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sendReply(replyContent, userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="205"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:205</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>replyContent</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sendVote"></a>
+                    <span class="name">
+                        <b>
+                            sendVote
+                        </b>
+                        <a href="#sendVote"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sendVote(userMessageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:186</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userMessageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleReplyForm"></a>
+                    <span class="name">
+                        <b>
+                            toggleReplyForm
+                        </b>
+                        <a href="#toggleReplyForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleReplyForm(messageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>messageId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allActions"></a>
+                        <span class="name">
+                            <b>
+                            allActions</b>
+                            <a href="#allActions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allMessagesLoaded"></a>
+                        <span class="name">
+                            <b>
+                            allMessagesLoaded</b>
+                            <a href="#allMessagesLoaded"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="blocked"></a>
+                        <span class="name">
+                            <b>
+                            blocked</b>
+                            <a href="#blocked"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="channelRoles"></a>
+                        <span class="name">
+                            <b>
+                            channelRoles</b>
+                            <a href="#channelRoles"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="chatMessageForm"></a>
+                        <span class="name">
+                            <b>
+                            chatMessageForm</b>
+                            <a href="#chatMessageForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.fb.group({
+    content: [&#x27;&#x27;, [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentUser"></a>
+                        <span class="name">
+                            <b>
+                            currentUser</b>
+                            <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="EUserRoles"></a>
+                        <span class="name">
+                            <b>
+                            EUserRoles</b>
+                            <a href="#EUserRoles"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>EUserRoles</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadingMessages"></a>
+                        <span class="name">
+                            <b>
+                            loadingMessages</b>
+                            <a href="#loadingMessages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="messages"></a>
+                        <span class="name">
+                            <b>
+                            messages</b>
+                            <a href="#messages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>IUserMessage[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="messagesContainer"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            messagesContainer</b>
+                            <a href="#messagesContainer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;messagesContainer&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="moment"></a>
+                        <span class="name">
+                            <b>
+                            moment</b>
+                            <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>moment</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nextPage"></a>
+                        <span class="name">
+                            <b>
+                            nextPage</b>
+                            <a href="#nextPage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>1</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageSize"></a>
+                        <span class="name">
+                            <b>
+                            pageSize</b>
+                            <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>10</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="permittedActions"></a>
+                        <span class="name">
+                            <b>
+                            permittedActions</b>
+                            <a href="#permittedActions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showReplyForm"></a>
+                        <span class="name">
+                            <b>
+                            showReplyForm</b>
+                            <a href="#showReplyForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="subscriptions"></a>
+                        <span class="name">
+                            <b>
+                            subscriptions</b>
+                            <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/discussion-community-channel.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EUserRoles } from &#x27;projects/shared-models/enums/user_roles.enum&#x27;;
+import { IUser } from &#x27;projects/shared-models/user.model&#x27;;
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges} from &#x27;@angular/core&#x27;;
+import { IDiscussion } from &#x27;projects/shared-models/discussion.model&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { IUserMessage } from &#x27;projects/shared-models/user_message.model&#x27;;
+import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
+import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { NoWhitespaceValidator } from &#x27;projects/shared-helper-modules/custom-validators.validator&#x27;;
+import { LibToastLogService } from &#x27;projects/shared-services/lib-toastlog.service&#x27;;
+import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
+import { UserMessagesService } from &#x27;projects/commudle-admin/src/app/services/user-messages.service&#x27;;
+import { CommunityChannelChannel } from &#x27;../../services/websockets/community-channel.channel&#x27;;
+import { DiscussionsService } from &#x27;projects/commudle-admin/src/app/services/discussions.service&#x27;;
+import { CommunityChannelManagerService } from &#x27;../../services/community-channel-manager.service&#x27;;
+
+
+@Component({
+  selector: &#x27;app-discussion-community-channel&#x27;,
+  templateUrl: &#x27;./discussion-community-channel.component.html&#x27;,
+  styleUrls: [&#x27;./discussion-community-channel.component.scss&#x27;]
+})
+export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, OnDestroy {
+  @ViewChild(&#x27;messagesContainer&#x27;) private messagesContainer: ElementRef;
+  @Input() discussion: IDiscussion;
+  @Output() newMessage &#x3D; new EventEmitter();
+
+
+  moment &#x3D; moment;
+
+  currentUser: ICurrentUser;
+  subscriptions &#x3D; [];
+  messages: IUserMessage[] &#x3D; [];
+  permittedActions &#x3D; [];
+  blocked &#x3D; true;
+  pageSize &#x3D; 10;
+  nextPage &#x3D; 1;
+  allMessagesLoaded &#x3D; false;
+  loadingMessages &#x3D; false;
+  showReplyForm &#x3D; 0;
+  allActions;
+  channelRoles &#x3D; {};
+  EUserRoles &#x3D; EUserRoles;
+
+  chatMessageForm &#x3D; this.fb.group({
+    content: [&#x27;&#x27;, [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
+  });
+
+
+  constructor(
+    private fb: FormBuilder,
+    private toastLogService: LibToastLogService,
+    private userMessagesService: UserMessagesService,
+    private communityChannelChannel: CommunityChannelChannel,
+    private authWatchService: LibAuthwatchService,
+    private discussionsService: DiscussionsService,
+    private communityChannelManagerService: CommunityChannelManagerService,
+  ) { }
+
+  ngOnInit() {
+  }
+
+  ngOnChanges() {
+    this.communityChannelChannel.unsubscribe();
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+    this.allMessagesLoaded &#x3D; false;
+    this.messages &#x3D; [];
+    this.pageSize &#x3D; 10;
+    this.nextPage &#x3D; 1;
+    this.blocked &#x3D; false;
+    this.showReplyForm &#x3D; 0;
+
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
+      user &#x3D;&gt; {
+        this.currentUser &#x3D; user;
+      }
+    ));
+
+    this.communityChannelManagerService.allChannelRoles$.subscribe(
+      data &#x3D;&gt; {
+        this.channelRoles &#x3D; data;
+      }
+    )
+
+    this.communityChannelChannel.subscribe(&#x60;${this.discussion.id}&#x60;);
+
+    this.receiveData();
+    this.allActions &#x3D; this.communityChannelChannel.ACTIONS;
+    this.getDiscussionMessages();
+
+  }
+
+
+  ngOnDestroy() {
+    this.communityChannelChannel.unsubscribe();
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
+    }
+  }
+
+
+  scrollToBottom() {
+    // TODO find a fix to this settimeout for scrolling to bottom on every new message loaded
+    setTimeout(() &#x3D;&gt; {
+      try {
+        this.messagesContainer.nativeElement.scrollTop &#x3D; this.messagesContainer.nativeElement.scrollHeight + 300;
+      } catch (err) {
+        console.log(err);
+      }
+    }, 100);
+
+  }
+
+  loadPreviousMessages() {
+    if (this.messagesContainer.nativeElement.scrollTop &lt;&#x3D; 300) {
+      this.getDiscussionMessages();
+    }
+  }
+
+  login() {
+    if (!this.currentUser) {
+      this.authWatchService.logInUser();
+    }
+    return true;
+  }
+
+  getDiscussionMessages() {
+    if (!this.allMessagesLoaded &amp;&amp; !this.loadingMessages) {
+      this.loadingMessages &#x3D; true;
+      this.userMessagesService.pGetCommunityChannelDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
+        data &#x3D;&gt; {
+          if (data.user_messages.length !&#x3D;&#x3D; this.pageSize) {
+            this.allMessagesLoaded &#x3D; true;
+          }
+          this.messages.unshift(...data.user_messages.reverse());
+          this.loadingMessages &#x3D; false;
+          if (this.nextPage &#x3D;&#x3D;&#x3D; 1) {
+            this.scrollToBottom();
+          }
+
+          this.nextPage +&#x3D; 1;
+
+        }
+      );
+    }
+  }
+
+
+  toggleReplyForm(messageId) {
+    this.showReplyForm &#x3D;&#x3D;&#x3D; messageId ? (this.showReplyForm &#x3D; 0) : (this.showReplyForm &#x3D; messageId);
+  }
+
+  sendMessage(data) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.ADD,
+      {
+        user_message: data
+      }
+    );
+    this.chatMessageForm.reset();
+  }
+
+  sendAttachmentMessage(data) {
+    this.discussionsService.communityChannelNewAttachmentMessage(data, &#x27;Discussion&#x27;, this.discussion.id).subscribe();
+  }
+
+
+
+  // sendUpdatedMessage(data) {
+  //   this.communityChannelChannel.sendData(
+  //     this.communityChannelChannel.ACTIONS.UPDATE,
+  //     {
+  //       user_message: data
+  //     }
+  //   );
+  //   this.chatMessageForm.reset();
+  // }
+
+  // sendUpdatedAttachmentMessage(data) {
+  //   this.discussionsService.communityChannelUpdatedAttachmentMessage(data,).subscribe();
+  // }
+
+
+  sendVote(userMessageId) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.VOTE,
+      {
+        user_message_id: userMessageId
+      }
+    );
+  }
+
+
+  delete(userMessageId) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.DELETE,
+      {
+        user_message_id: userMessageId
+      }
+    );
+  }
+
+  sendReply(replyContent, userMessageId) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.REPLY,
+      {
+        user_message_id: userMessageId,
+        reply_message: replyContent
+      }
+    );
+  }
+
+  sendAttachmentReply(replyContent, userMessageId) {
+    this.discussionsService.communityChannelNewAttachmentMessage(replyContent, &#x27;UserMessage&#x27;, userMessageId).subscribe();
+
+  }
+
+  // TODO CHANNEL convert this to remove member
+  blockChat() {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.TOGGLE_BLOCK,
+      {}
+    );
+  }
+
+
+  receiveData() {
+    this.subscriptions.push(
+      this.communityChannelChannel.channelData$.subscribe(
+        (data) &#x3D;&gt; {
+          if (data) {
+            switch (data.action) {
+              case(this.communityChannelChannel.ACTIONS.SET_PERMISSIONS): {
+                this.permittedActions &#x3D; data.permitted_actions;
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.ADD): {
+                this.messages.push(data.user_message);
+                this.scrollToBottom();
+                this.newMessage.emit();
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.REPLY): {
+                this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+                this.newMessage.emit();
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.UPDATE): {
+                // if (data.parent_type &#x3D;&#x3D;&#x3D; &#x27;UserMessage&#x27;) {
+                //   let parentMessage &#x3D; this.findMessageIndex(data.parent_id);
+                //   let childMessage &#x3D; this.findReplyIndex(parentMessage, data.id);
+                //   this.messages[parentMessage].user_messages[childMessage] &#x3D; data;
+                // } else {
+                //   this.messages[this.findMessageIndex(data.parent_id)] &#x3D; data;
+                // }
+                // this.newMessage.emit();
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.DELETE): {
+                if (data.parent_type &#x3D;&#x3D;&#x3D; &#x27;Discussion&#x27;) {
+                  this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
+                } else {
+                  const qi &#x3D; this.findMessageIndex(data.parent_id);
+                  if (this.messages[qi]) {
+                    this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+                  }
+                }
+
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.FLAG): {
+                if (data.parent_type &#x3D;&#x3D;&#x3D; &#x27;Discussion&#x27;) {
+                  this.messages[this.findMessageIndex(data.user_message_id)].flags_count +&#x3D; data.flag;
+                } else {
+                  const qi &#x3D; this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count +&#x3D; data.flag;
+                }
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.VOTE): {
+                if (data.parent_type &#x3D;&#x3D;&#x3D; &#x27;Discussion&#x27;) {
+                  this.messages[this.findMessageIndex(data.user_message_id)].votes_count +&#x3D; data.vote;
+                } else {
+                  const qi &#x3D; this.findMessageIndex(data.parent_id);
+                  this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count +&#x3D; data.vote;
+                }
+                break;
+              }
+              case(this.communityChannelChannel.ACTIONS.ERROR): {
+                this.toastLogService.warningDialog(data.message, 2000);
+                break;
+              }
+            }
+          }
+
+        }
+      )
+    );
+  }
+
+
+  findMessageIndex(userMessageId) {
+    return this.messages.findIndex(q &#x3D;&gt; (q.id &#x3D;&#x3D;&#x3D; userMessageId));
+  }
+
+  findReplyIndex(questionIndex, replyId) {
+    return this.messages[questionIndex].user_messages.findIndex(q &#x3D;&gt; (q.id &#x3D;&#x3D;&#x3D; replyId));
+  }
+
+
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;discussion-chat-component&quot;&gt;
+  &lt;div #messagesContainer class&#x3D;&quot;messages&quot;  (scroll)&#x3D;&quot;loadPreviousMessages()&quot;&gt;
+    &lt;div&gt;
+      &lt;div class&#x3D;&quot;message&quot; *ngFor&#x3D;&quot;let um of messages&quot;&gt;
+        &lt;app-community-channel-message
+          [message]&#x3D;&quot;um&quot;
+          [canReply]&#x3D;&quot;true &amp;&amp; !blocked&quot;
+          [permittedActions]&#x3D;&quot;permittedActions&quot;
+          [allActions]&#x3D;&quot;allActions&quot;
+          (sendReply)&#x3D;&quot;sendReply($event, um.id)&quot;
+          (sendAttachmentReply)&#x3D;&quot;sendAttachmentReply($event, um.id)&quot;
+          (sendVote)&#x3D;&quot;sendVote($event)&quot;
+          (sendDelete)&#x3D;&quot;delete($event)&quot;
+          &gt;&lt;/app-community-channel-message&gt;
+      &lt;/div&gt;
+      &lt;div *ngIf&#x3D;&quot;messages.length &#x3D;&#x3D;&#x3D; 0&quot; class&#x3D;&quot;filler-message&quot;&gt;
+        &lt;h4&gt;
+          Begin with a Welcome Message!
+        &lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;send-message-form&quot;&gt;
+    &lt;app-send-message-form
+      *ngIf&#x3D;&quot;channelRoles[discussion.parent_id] &amp;&amp; (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))&quot;
+      (sendMessage)&#x3D;&quot;sendMessage($event)&quot;
+      (sendAttachmentMessage)&#x3D;&quot;sendAttachmentMessage($event)&quot;
+    &gt;&lt;/app-send-message-form&gt;
+
+    &lt;button *ngIf&#x3D;&quot;!currentUser&quot; nbButton fullWidth status&#x3D;&quot;primary&quot; class&#x3D;&quot;login-button&quot; (click)&#x3D;&quot;login()&quot;&gt;
+      Post a Message
+    &lt;/button&gt;
+ &lt;/div&gt;
+
+&lt;/div&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./discussion-community-channel.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  height: 100%;
+  .discussion-chat-component {
+    min-height: 100px;
+    height: 100%;
+    position: relative;
+    .messages {
+      height: 90%;
+      overflow-y: auto;
+      .message {
+        margin-bottom: 1rem;
+        border: 1px dotted lightgrey;
+        border-radius: 5px;
+        padding: 5px;
+      }
+
+      .filler-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        text-align: center;
+        h4 {
+          color: darkgrey;
+        }
+      }
+    }
+
+    .send-message-form {
+      position: sticky;
+      bottom: 0.5rem;
+      width: 100%;
+
+      form {
+        display: flex;
+        button {
+          width: 20%;
+          max-width: 40px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="discussion-chat-component">  <div #messagesContainer class="messages"  (scroll)="loadPreviousMessages()">    <div>      <div class="message" *ngFor="let um of messages">        <app-community-channel-message          [message]="um"          [canReply]="true && !blocked"          [permittedActions]="permittedActions"          [allActions]="allActions"          (sendReply)="sendReply($event, um.id)"          (sendAttachmentReply)="sendAttachmentReply($event, um.id)"          (sendVote)="sendVote($event)"          (sendDelete)="delete($event)"          ></app-community-channel-message>      </div>      <div *ngIf="messages.length === 0" class="filler-message">        <h4>          Begin with a Welcome Message!        </h4>      </div>    </div>  </div>  <div class="send-message-form">    <app-send-message-form      *ngIf="channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))"      (sendMessage)="sendMessage($event)"      (sendAttachmentMessage)="sendAttachmentMessage($event)"    ></app-send-message-form>    <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">      Post a Message    </button> </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityCardComponent', 'selector': 'app-home-community-card'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'}];
+    var ACTUAL_COMPONENT = {'name': 'DiscussionCommunityChannelComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DiscussionCommunityChannelComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -24,14 +24,11 @@ import { CookieConsentService } from './services/cookie-consent.service';
   providers: [TruncateTextPipe]
 })
 export class AppComponent implements OnInit, AfterViewChecked {
-
   sideBarNotifications = false;
   sideBarState = 'collapsed';
   faBars = faBars;
   currentUser: ICurrentUser;
-  userContextMenu: NbMenuItem[] = [
-    { title: 'Logout', link: '/logout' }
-  ];
+  userContextMenu: NbMenuItem[] = [{ title: 'Logout', link: '/logout' }];
   cookieAccepted = false;
   footerStatus = true;
 
@@ -39,7 +36,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(PLATFORM_ID) private platformId: Record<string, unknown>,
     private apiRoutes: ApiRoutesService,
     private authWatchService: LibAuthwatchService,
     private actionCableConnectionSocket: ActionCableConnectionSocket,
@@ -52,7 +49,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
     private cdr: ChangeDetectorRef,
-    private truncate: TruncateTextPipe
+    private truncate: TruncateTextPipe,
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
@@ -63,8 +60,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.iconLibraries.registerFontPack('fab', { iconClassPrefix: 'fa', packClass: 'fab' });
   }
 
-  ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(currentUser => {
+  ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
 
       if (this.currentUser && this.userContextMenu.length <= 1) {
@@ -89,7 +86,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
       }
     });
 
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe(() => {
       if (this.isBrowser) {
         setTimeout(() => {
           if (window.innerWidth <= 1000 && document.getElementById('commudleSidebar').classList.contains('expanded')) {
@@ -104,9 +101,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       setTimeout(() => {
         this.windowService.open(CookieConsentComponent, {
-          title: 'Let\'s Share Cookies!',
+          title: "Let's Share Cookies!",
           initialState: NbWindowState.MAXIMIZED,
-          windowClass: 'cookie-consent'
+          windowClass: 'cookie-consent',
         });
       }, 3000);
     }
@@ -119,17 +116,17 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    this.footerService.footerStatus$.subscribe(value => this.footerStatus = value);
+    this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
     this.cdr.detectChanges();
   }
 
-  checkNotifications() {
-    this.sidebarService.onCollapse().subscribe(data => this.sideBarState = 'collapsed');
+  checkNotifications(): void {
+    this.sidebarService.onCollapse().subscribe(() => (this.sideBarState = 'collapsed'));
 
-    this.appCentralNotificationsService.sidebarNotifications$.subscribe(data => this.sideBarNotifications = data);
+    this.appCentralNotificationsService.sidebarNotifications$.subscribe((data) => (this.sideBarNotifications = data));
   }
 
-  checkHTTPS() {
+  checkHTTPS(): void {
     if (this.isBrowser) {
       if (environment.production && location.protocol !== 'https:') {
         // location.replace(`https:${location.href.substring(location.protocol.length)}`);
@@ -137,13 +134,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  toggleSidebar() {
+  toggleSidebar(): void {
     this.sideBarState = this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed';
     this.sidebarService.toggle(false, 'mainMenu');
   }
 
-  login() {
+  login(): void {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
   }
-
 }
