@@ -5,6 +5,8 @@
   nb-card {
     width: 1120px;
     padding: $space-32;
+    text-align: center;
+    word-wrap: break-word;
 
     .animation-container {
       width: 500px;
@@ -32,6 +34,20 @@
           width: 100%;
           margin-bottom: $space-16;
         }
+      }
+    }
+
+    @media all and (max-width: $mobile-width) {
+      padding: 0;
+      width: 360px;
+      .animation-container {
+        width: 360px;
+        img {
+          bottom: 0;
+        }
+      }
+      .links {
+        width: 360px;
       }
     }
   }
