@@ -1,10 +1,10 @@
 <nb-card>
   <nb-card-body>
-    <div *ngIf="events.length > 0" class="events">
+    <div *ngIf="events.length > 0" class="events d-flex flex-row flex-wrap justify-content-center">
       <div *ngFor="let event of events">
         <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" class="clickable">
           <nb-card [ngClass]="{'upcoming' : moment(event.end_time) > moment() && event.header_image_path}" class="event">
-            <nb-card-body>
+            <nb-card-body class="d-flex">
               <div class="header-image">
                 <span>
                   <app-badge *ngIf="moment(event.start_time) > moment()" [color]="'#50d338'" [text]="'New'"></app-badge>
