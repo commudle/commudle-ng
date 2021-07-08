@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
 import { UserContributionsComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component';
 import { UserSocialComponent } from './components/public-profile/user-extra-details/user-content/user-social/user-social.component';
@@ -7,7 +7,7 @@ import { UserExtraDetailsComponent } from './components/public-profile/user-extr
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 
-const routes: Routes = [
+const routes = [
   {
     path: ':username',
     component: PublicProfileComponent,
@@ -27,9 +27,9 @@ const routes: Routes = [
           },
           {
             path: 'social',
-            component: UserSocialComponent
-          }
-        ]
+            component: UserSocialComponent,
+          },
+        ],
       },
       {
         path: '',
@@ -37,21 +37,20 @@ const routes: Routes = [
         children: [
           {
             path: 'followers',
-            component: UserNetworkListComponent
+            component: UserNetworkListComponent,
           },
           {
             path: 'following',
-            component: UserNetworkListComponent
-          }
-        ]
-      }
-    ]
-  }
+            component: UserNetworkListComponent,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UsersRoutingModule {
-}
+export class UsersRoutingModule {}

@@ -1,0 +1,2248 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>commudle-ng documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">commudle-ng documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>EmailerComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-emailer</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./emailer.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./emailer.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#community">community</a>
+                            </li>
+                            <li>
+                                <a href="#EemailTypes">EemailTypes</a>
+                            </li>
+                            <li>
+                                <a href="#eMailForm">eMailForm</a>
+                            </li>
+                            <li>
+                                <a href="#event">event</a>
+                            </li>
+                            <li>
+                                <a href="#eventDataFormEntityGroupId">eventDataFormEntityGroupId</a>
+                            </li>
+                            <li>
+                                <a href="#eventDataFormEntityGroups">eventDataFormEntityGroups</a>
+                            </li>
+                            <li>
+                                <a href="#events">events</a>
+                            </li>
+                            <li>
+                                <a href="#eventSimpleRegistration">eventSimpleRegistration</a>
+                            </li>
+                            <li>
+                                <a href="#isEventSpecificEmail">isEventSpecificEmail</a>
+                            </li>
+                            <li>
+                                <a href="#mailType">mailType</a>
+                            </li>
+                            <li>
+                                <a href="#prefillCompleted">prefillCompleted</a>
+                            </li>
+                            <li>
+                                <a href="#recipientEmail">recipientEmail</a>
+                            </li>
+                            <li>
+                                <a href="#registrationSelectionType">registrationSelectionType</a>
+                            </li>
+                            <li>
+                                <a href="#selectedEmailType">selectedEmailType</a>
+                            </li>
+                            <li>
+                                <a href="#selectedEvent">selectedEvent</a>
+                            </li>
+                            <li>
+                                <a href="#selectedEventDataFormEntityGroup">selectedEventDataFormEntityGroup</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFormRegistrationType">selectedFormRegistrationType</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#close">close</a>
+                            </li>
+                            <li>
+                                <a href="#getEventDataFormEntityGroups">getEventDataFormEntityGroups</a>
+                            </li>
+                            <li>
+                                <a href="#getEventSimpleRegistration">getEventSimpleRegistration</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#prefillForm">prefillForm</a>
+                            </li>
+                            <li>
+                                <a href="#setEmailSubject">setEmailSubject</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm">submitForm</a>
+                            </li>
+                            <li>
+                                <a href="#toggleEmailBodyValidation">toggleEmailBodyValidation</a>
+                            </li>
+                            <li>
+                                <a href="#toggleEventDataFormEntityGroupType">toggleEventDataFormEntityGroupType</a>
+                            </li>
+                            <li>
+                                <a href="#toggleEventSpecificEmail">toggleEventSpecificEmail</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, eventsService: <a href="../injectables/EventsService.html">EventsService</a>, eventDataFormEntityGroupsService: <a href="../injectables/EventDataFormEntityGroupsService.html">EventDataFormEntityGroupsService</a>, eventSimpleRegistrationsService: <a href="../injectables/EventSimpleRegistrationsService.html">EventSimpleRegistrationsService</a>, emailsService: <a href="../injectables/EmailsService.html">EmailsService</a>, toastLogService: <a href="../injectables/LibToastLogService.html">LibToastLogService</a>, windowRef: NbWindowRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:194</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EventsService.html" target="_self" >EventsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventDataFormEntityGroupsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EventDataFormEntityGroupsService.html" target="_self" >EventDataFormEntityGroupsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventSimpleRegistrationsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EventSimpleRegistrationsService.html" target="_self" >EventSimpleRegistrationsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>emailsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EmailsService.html" target="_self" >EmailsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LibToastLogService.html" target="_self" >LibToastLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>windowRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>NbWindowRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="close"></a>
+                    <span class="name">
+                        <b>
+                            close
+                        </b>
+                        <a href="#close"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>close()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:256</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEventDataFormEntityGroups"></a>
+                    <span class="name">
+                        <b>
+                            getEventDataFormEntityGroups
+                        </b>
+                        <a href="#getEventDataFormEntityGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEventDataFormEntityGroups(eventId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="224"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:224</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEventSimpleRegistration"></a>
+                    <span class="name">
+                        <b>
+                            getEventSimpleRegistration
+                        </b>
+                        <a href="#getEventSimpleRegistration"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEventSimpleRegistration(eventId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:236</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:206</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prefillForm"></a>
+                    <span class="name">
+                        <b>
+                            prefillForm
+                        </b>
+                        <a href="#prefillForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prefillForm(fieldToFill)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="343"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:343</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fieldToFill</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setEmailSubject"></a>
+                    <span class="name">
+                        <b>
+                            setEmailSubject
+                        </b>
+                        <a href="#setEmailSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setEmailSubject(emailType)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:316</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>emailType</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <b>
+                            submitForm
+                        </b>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitForm()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="405"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:405</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleEmailBodyValidation"></a>
+                    <span class="name">
+                        <b>
+                            toggleEmailBodyValidation
+                        </b>
+                        <a href="#toggleEmailBodyValidation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleEmailBodyValidation($event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="304"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:304</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleEventDataFormEntityGroupType"></a>
+                    <span class="name">
+                        <b>
+                            toggleEventDataFormEntityGroupType
+                        </b>
+                        <a href="#toggleEventDataFormEntityGroupType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleEventDataFormEntityGroupType($event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="288"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:288</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleEventSpecificEmail"></a>
+                    <span class="name">
+                        <b>
+                            toggleEventSpecificEmail
+                        </b>
+                        <a href="#toggleEventSpecificEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleEventSpecificEmail($event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:260</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="community"></a>
+                        <span class="name">
+                            <b>
+                            community</b>
+                            <a href="#community"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/ICommunity.html" target="_self" >ICommunity</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="EemailTypes"></a>
+                        <span class="name">
+                            <b>
+                            EemailTypes</b>
+                            <a href="#EemailTypes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>EemailTypes</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:22</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eMailForm"></a>
+                        <span class="name">
+                            <b>
+                            eMailForm</b>
+                            <a href="#eMailForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.fb.group({
+    members: [&#x27;&#x27;, Validators.required],
+    event_id: [&#x27;&#x27;],
+    event_data_form_entity_group_id: [&#x27;&#x27;],
+    event_simple_registration_id: [&#x27;&#x27;],
+    registration_selection_type: [&#x27;&#x27;],
+    resend: [false],
+    recipient_email: [&#x27;&#x27;],
+    subject: [&#x27;&#x27;, Validators.required],
+    body: [&#x27;&#x27;]
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="event"></a>
+                        <span class="name">
+                            <b>
+                            event</b>
+                            <a href="#event"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/IEvent.html" target="_self" >IEvent</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventDataFormEntityGroupId"></a>
+                        <span class="name">
+                            <b>
+                            eventDataFormEntityGroupId</b>
+                            <a href="#eventDataFormEntityGroupId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventDataFormEntityGroups"></a>
+                        <span class="name">
+                            <b>
+                            eventDataFormEntityGroups</b>
+                            <a href="#eventDataFormEntityGroups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>IEventDataFormEntityGroup[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="events"></a>
+                        <span class="name">
+                            <b>
+                            events</b>
+                            <a href="#events"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/IEvent.html" target="_self" >IEvent[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="eventSimpleRegistration"></a>
+                        <span class="name">
+                            <b>
+                            eventSimpleRegistration</b>
+                            <a href="#eventSimpleRegistration"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/IEventSimpleRegistration.html" target="_self" >IEventSimpleRegistration</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isEventSpecificEmail"></a>
+                        <span class="name">
+                            <b>
+                            isEventSpecificEmail</b>
+                            <a href="#isEventSpecificEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mailType"></a>
+                        <span class="name">
+                            <b>
+                            mailType</b>
+                            <a href="#mailType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="prefillCompleted"></a>
+                        <span class="name">
+                            <b>
+                            prefillCompleted</b>
+                            <a href="#prefillCompleted"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="recipientEmail"></a>
+                        <span class="name">
+                            <b>
+                            recipientEmail</b>
+                            <a href="#recipientEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="registrationSelectionType"></a>
+                        <span class="name">
+                            <b>
+                            registrationSelectionType</b>
+                            <a href="#registrationSelectionType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    one_click_registration: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Form Link To All Members (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: &#x27;All Who Registered&#x27;
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: &#x27;Entry Pass (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.REGISTERED,
+        display: &#x27;Status: Registered&#x27;
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: &#x27;Status: Waiting&#x27;
+      },
+      {
+        value: EemailTypes.SHORTLISTED,
+        display: &#x27;Status: Shortlisted&#x27;
+      },
+      {
+        value: EemailTypes.CONFIRMED,
+        display: &#x27;Status: Confirmed&#x27;
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: &#x27;Status: Canceled&#x27;
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: &#x27;All Who Attended&#x27;
+      },
+      {
+        value: EemailTypes.NO_SHOW,
+        display: &#x27;Invited But No Show&#x27;
+      }
+    ],
+    attendee: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Form Link To All Members (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: &#x27;All Who Filled the Form&#x27;
+      },
+      {
+        value: EemailTypes.REGISTERED,
+        display: &#x27;Status: Registered&#x27;
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: &#x27;Status: Waiting&#x27;
+      },
+      {
+        value: EemailTypes.RSVP,
+        display: &#x27;RSVP (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: &#x27;Entry Pass (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: &#x27;Status: Canceled&#x27;
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: &#x27;All Who Attended&#x27;
+      },
+      {
+        value: EemailTypes.UNINVITED,
+        display: &#x27;Uninvited Attendees&#x27;
+      },
+      {
+        value: EemailTypes.NO_SHOW,
+        display: &#x27;Invited But No Show&#x27;
+      }
+    ],
+    speaker: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Form Link To All Members (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.RSVP,
+        display: &#x27;RSVP (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: &#x27;Entry Pass (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: &#x27;Status: Canceled&#x27;
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: &#x27;All Who Attended&#x27;
+      }
+    ],
+    feedback: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Link To Attendees (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: &#x27;All Who Filled the Form&#x27;
+      },
+      // {
+      //   value: EemailTypes.NOT_FILLED,
+      //   display: &#x27;Did Not Fill&#x27;
+      // },
+    ],
+    communication: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Link To Those Who Filled Any Form For Selected Event ((Pre-formatted email)&#x27;,
+        preformatted_email: true
+      }
+    ]
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedEmailType"></a>
+                        <span class="name">
+                            <b>
+                            selectedEmailType</b>
+                            <a href="#selectedEmailType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedEvent"></a>
+                        <span class="name">
+                            <b>
+                            selectedEvent</b>
+                            <a href="#selectedEvent"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/IEvent.html" target="_self" >IEvent</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedEventDataFormEntityGroup"></a>
+                        <span class="name">
+                            <b>
+                            selectedEventDataFormEntityGroup</b>
+                            <a href="#selectedEventDataFormEntityGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/IEventDataFormEntityGroup.html" target="_self" >IEventDataFormEntityGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedFormRegistrationType"></a>
+                        <span class="name">
+                            <b>
+                            selectedFormRegistrationType</b>
+                            <a href="#selectedFormRegistrationType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { ICommunity } from &#x27;projects/shared-models/community.model&#x27;;
+import { IEvent } from &#x27;projects/shared-models/event.model&#x27;;
+import { IEventDataFormEntityGroup } from &#x27;projects/shared-models/event_data_form_enity_group.model&#x27;;
+import { EventsService } from &#x27;../../services/events.service&#x27;;
+import { NbWindowRef } from &#x27;@nebular/theme&#x27;;
+import { EventDataFormEntityGroupsService } from &#x27;../../services/event-data-form-entity-groups.service&#x27;;
+import { EemailTypes } from &#x27;../../../../../shared-models/enums/email_types.enum&#x27;;
+import { EmailsService } from &#x27;../../services/emails.service&#x27;;
+import { LibToastLogService } from &#x27;projects/shared-services/lib-toastlog.service&#x27;;
+import { EventSimpleRegistrationsService } from &#x27;../../services/event-simple-registrations.service&#x27;;
+import { IEventSimpleRegistration } from &#x27;projects/shared-models/event_simple_registration.model&#x27;;
+
+@Component({
+  selector: &#x27;app-emailer&#x27;,
+  templateUrl: &#x27;./emailer.component.html&#x27;,
+  styleUrls: [&#x27;./emailer.component.scss&#x27;]
+})
+export class EmailerComponent implements OnInit {
+
+  EemailTypes &#x3D; EemailTypes;
+
+  // external properties received via windowRef
+  community: ICommunity;
+  event: IEvent;
+  eventDataFormEntityGroupId: number;
+  mailType: string;
+  recipientEmail: string;
+
+  prefillCompleted &#x3D; false;
+
+
+  selectedEvent: IEvent;
+  selectedEventDataFormEntityGroup: IEventDataFormEntityGroup;
+  eventSimpleRegistration: IEventSimpleRegistration;
+  isEventSpecificEmail &#x3D; false;
+  selectedFormRegistrationType &#x3D; [];
+  selectedEmailType;
+
+  events: IEvent[];
+  eventDataFormEntityGroups: IEventDataFormEntityGroup[] &#x3D; [];
+
+  eMailForm &#x3D; this.fb.group({
+    members: [&#x27;&#x27;, Validators.required],
+    event_id: [&#x27;&#x27;],
+    event_data_form_entity_group_id: [&#x27;&#x27;],
+    event_simple_registration_id: [&#x27;&#x27;],
+    registration_selection_type: [&#x27;&#x27;],
+    resend: [false],
+    recipient_email: [&#x27;&#x27;],
+    subject: [&#x27;&#x27;, Validators.required],
+    body: [&#x27;&#x27;]
+  });
+
+
+  registrationSelectionType &#x3D; {
+    one_click_registration: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Form Link To All Members (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: &#x27;All Who Registered&#x27;
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: &#x27;Entry Pass (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.REGISTERED,
+        display: &#x27;Status: Registered&#x27;
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: &#x27;Status: Waiting&#x27;
+      },
+      {
+        value: EemailTypes.SHORTLISTED,
+        display: &#x27;Status: Shortlisted&#x27;
+      },
+      {
+        value: EemailTypes.CONFIRMED,
+        display: &#x27;Status: Confirmed&#x27;
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: &#x27;Status: Canceled&#x27;
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: &#x27;All Who Attended&#x27;
+      },
+      {
+        value: EemailTypes.NO_SHOW,
+        display: &#x27;Invited But No Show&#x27;
+      }
+    ],
+    attendee: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Form Link To All Members (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: &#x27;All Who Filled the Form&#x27;
+      },
+      {
+        value: EemailTypes.REGISTERED,
+        display: &#x27;Status: Registered&#x27;
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: &#x27;Status: Waiting&#x27;
+      },
+      {
+        value: EemailTypes.RSVP,
+        display: &#x27;RSVP (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: &#x27;Entry Pass (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: &#x27;Status: Canceled&#x27;
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: &#x27;All Who Attended&#x27;
+      },
+      {
+        value: EemailTypes.UNINVITED,
+        display: &#x27;Uninvited Attendees&#x27;
+      },
+      {
+        value: EemailTypes.NO_SHOW,
+        display: &#x27;Invited But No Show&#x27;
+      }
+    ],
+    speaker: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Form Link To All Members (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.RSVP,
+        display: &#x27;RSVP (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ENTRY_PASS,
+        display: &#x27;Entry Pass (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.CANCELED,
+        display: &#x27;Status: Canceled&#x27;
+      },
+      {
+        value: EemailTypes.ATTENDED,
+        display: &#x27;All Who Attended&#x27;
+      }
+    ],
+    feedback: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Link To Attendees (Pre-formatted email)&#x27;,
+        preformatted_email: true
+      },
+      {
+        value: EemailTypes.ALL,
+        display: &#x27;All Who Filled the Form&#x27;
+      },
+      // {
+      //   value: EemailTypes.NOT_FILLED,
+      //   display: &#x27;Did Not Fill&#x27;
+      // },
+    ],
+    communication: [
+      {
+        value: EemailTypes.SEND_LINK,
+        display: &#x27;Send Link To Those Who Filled Any Form For Selected Event ((Pre-formatted email)&#x27;,
+        preformatted_email: true
+      }
+    ]
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private eventsService: EventsService,
+    private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
+    private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
+    private emailsService: EmailsService,
+    private toastLogService: LibToastLogService,
+    protected windowRef: NbWindowRef
+  ) { }
+
+  ngOnInit() {
+
+    this.eventsService.communityEventsForEmail(this.community.id).subscribe(data &#x3D;&gt; {
+      this.events &#x3D; data.events;
+
+      if (this.event) {
+        this.prefillForm(&#x27;event_id&#x27;);
+      } else {
+        this.prefillForm(&#x27;general_all&#x27;);
+      }
+
+      if (this.recipientEmail) {
+        this.prefillForm(&#x27;recipient_email&#x27;);
+      }
+    });
+
+  }
+
+  getEventDataFormEntityGroups(eventId) {
+    this.eventDataFormEntityGroups &#x3D; [];
+    this.selectedFormRegistrationType &#x3D; [];
+    this.eMailForm.controls.registration_selection_type.reset();
+
+
+    this.eventDataFormEntityGroupsService.getEventDataFormEntityGroups(eventId).subscribe(data &#x3D;&gt; {
+      this.eventDataFormEntityGroups &#x3D; data.event_data_form_entity_groups;
+      this.prefillForm(&#x27;event_data_form_entity_group_id&#x27;);
+    });
+  }
+
+  getEventSimpleRegistration(eventId) {
+    this.eventDataFormEntityGroups &#x3D; [];
+    this.selectedFormRegistrationType &#x3D; [];
+    this.eMailForm.controls.registration_selection_type.reset();
+
+    this.eventSimpleRegistrationsService.pGet(eventId).subscribe(data &#x3D;&gt; {
+      this.eventSimpleRegistration &#x3D; data;
+      this.prefillForm(&#x27;event_simple_registration&#x27;);
+      this.selectedFormRegistrationType &#x3D; this.registrationSelectionType.one_click_registration;
+      if (this.mailType &amp;&amp; !this.prefillCompleted) {
+        this.eMailForm.patchValue({
+          registration_selection_type: this.mailType
+        });
+        this.toggleEmailBodyValidation(this.mailType);
+        this.prefillCompleted &#x3D; true;
+      }
+
+    });
+  }
+
+  close() {
+    this.windowRef.close();
+  }
+
+  toggleEventSpecificEmail($event) {
+
+    // if not, then reset the form below the event select
+    switch ($event) {
+      case EemailTypes.GENERAL_ALL:
+        this.selectedEmailType &#x3D; EemailTypes.GENERAL_ALL;
+        this.isEventSpecificEmail &#x3D; false;
+
+        this.eMailForm.get(&#x27;body&#x27;).setValidators(Validators.required);
+        this.eMailForm.get(&#x27;body&#x27;).updateValueAndValidity();
+        this.eventDataFormEntityGroups &#x3D; [];
+        this.selectedEvent &#x3D; undefined;
+        this.selectedEventDataFormEntityGroup &#x3D; undefined;
+        break;
+      case &#x27;event&#x27;:
+        this.isEventSpecificEmail &#x3D; true;
+        this.eMailForm.get(&#x27;body&#x27;).clearValidators();
+        this.eMailForm.get(&#x27;body&#x27;).updateValueAndValidity();
+
+        break;
+      default:
+        this.isEventSpecificEmail &#x3D; false;
+        break;
+    }
+
+  }
+
+
+  toggleEventDataFormEntityGroupType($event) {
+    this.selectedFormRegistrationType &#x3D; [];
+    this.selectedEventDataFormEntityGroup &#x3D; this.eventDataFormEntityGroups.find(k &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; $event);
+    this.eventDataFormEntityGroupId &#x3D; this.selectedEventDataFormEntityGroup.id;
+    this.selectedFormRegistrationType &#x3D; this.registrationSelectionType[this.selectedEventDataFormEntityGroup.registration_type.name];
+
+    if (this.mailType &amp;&amp; !this.prefillCompleted) {
+      this.eMailForm.patchValue({
+        registration_selection_type: this.mailType
+      });
+      this.toggleEmailBodyValidation(this.mailType);
+      this.prefillCompleted &#x3D; true;
+    }
+  }
+
+
+  toggleEmailBodyValidation($event) {
+    this.selectedEmailType &#x3D; $event;
+    if (!([EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes($event))) {
+      this.eMailForm.controls[&#x27;body&#x27;].setValidators([Validators.required]);
+    } else {
+      this.eMailForm.controls[&#x27;body&#x27;].clearValidators();
+
+    }
+    this.setEmailSubject($event);
+  }
+
+
+  setEmailSubject(emailType) {
+    let subjectLine &#x3D; &#x27;&#x27;;
+    switch (emailType) {
+      case EemailTypes.ENTRY_PASS:
+        subjectLine &#x3D; &#x60;ENTRY PASS :: [${this.community.name}] :: ${this.event.name}&#x60;;
+        break;
+      case EemailTypes.SEND_LINK:
+        if (this.selectedEventDataFormEntityGroup) {
+          subjectLine &#x3D; &#x60;${this.selectedEventDataFormEntityGroup.name}  :: [${this.community.name}] :: ${this.event.name}&#x60;;
+        } else {
+          subjectLine &#x3D; &#x60;${this.event.name}  :: [${this.community.name}]&#x60;;
+        }
+        break;
+      case EemailTypes.RSVP:
+        subjectLine &#x3D; &#x60;RSVP :: [${this.community.name}] :: ${this.event.name}&#x60;;
+        break;
+      default:
+        subjectLine &#x3D; &#x27;&#x27;;
+        break;
+    }
+    this.eMailForm.patchValue({
+      subject: subjectLine
+    });
+  }
+
+
+
+  prefillForm(fieldToFill) {
+
+    if (!this.prefillCompleted) {
+      switch (fieldToFill) {
+        case EemailTypes.GENERAL_ALL:
+          this.eMailForm.patchValue({
+            members: EemailTypes.GENERAL_ALL,
+          });
+          this.toggleEventSpecificEmail(EemailTypes.GENERAL_ALL);
+          break;
+
+        case &#x27;event_id&#x27;:
+          if (this.event) {
+            this.isEventSpecificEmail &#x3D; true;
+
+            this.eMailForm.patchValue({
+              members: &#x27;event&#x27;,
+              event_id: this.event.id
+            });
+
+            if (this.event.custom_registration) {
+              this.getEventDataFormEntityGroups(this.event.id);
+            } else {
+              this.getEventSimpleRegistration(this.event.id);
+            }
+          }
+
+          break;
+
+        case &#x27;event_data_form_entity_group_id&#x27;:
+          if (this.eventDataFormEntityGroupId &amp;&amp; !this.prefillCompleted) {
+            this.selectedEventDataFormEntityGroup &#x3D; this.eventDataFormEntityGroups.find(k &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; this.eventDataFormEntityGroupId);
+            this.eventSimpleRegistration &#x3D; null;
+            this.eMailForm.patchValue({
+              event_data_form_entity_group_id: this.eventDataFormEntityGroupId
+            });
+            this.toggleEventDataFormEntityGroupType(this.selectedEventDataFormEntityGroup.id);
+          }
+          break;
+
+        case &#x27;event_simple_registration&#x27;:
+          if (this.eventSimpleRegistration &amp;&amp; !this.prefillCompleted) {
+            this.selectedEventDataFormEntityGroup &#x3D; null;
+            this.eMailForm.patchValue({
+              event_simple_registration_id: this.eventSimpleRegistration.id
+            });
+
+          }
+          break;
+        case &#x27;recipient_email&#x27;:
+          if (this.recipientEmail) {
+            this.eMailForm.patchValue({
+              recipient_email: this.recipientEmail
+            });
+          }
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  submitForm() {
+    this.emailsService.sendEmail(this.eMailForm.value, this.community.id).subscribe(data &#x3D;&gt; {
+      this.close();
+      this.toastLogService.successDialog(&#x27;Emails are being delivered!&#x27;);
+    });
+  }
+
+
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;emailer-component&quot;&gt;
+
+  &lt;form [formGroup]&#x3D;&quot;eMailForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot;&gt;
+    &lt;div class&#x3D;&quot;fieldset&quot;&gt;
+      &lt;p&gt;{{ community.name }}&lt;/p&gt;
+      &lt;nb-radio-group
+        name&#x3D;&quot;members&quot;
+        formControlName&#x3D;&quot;members&quot;
+        (valueChange)&#x3D;&quot;toggleEventSpecificEmail($event)&quot;&gt;
+        &lt;nb-radio value&#x3D;&quot;{{ EemailTypes.GENERAL_ALL }}&quot;&gt;
+          General Email (to All or a Specific Member)
+        &lt;/nb-radio&gt;
+        &lt;nb-radio value&#x3D;&quot;event&quot;&gt;
+          Event Specific Emails
+        &lt;/nb-radio&gt;
+      &lt;/nb-radio-group&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;fieldset&quot; *ngIf&#x3D;&quot;isEventSpecificEmail&quot;&gt;
+      &lt;nb-select placeholder&#x3D;&quot;Select Event&quot; formControlName&#x3D;&quot;event_id&quot; (selectedChange)&#x3D;&quot;getEventDataFormEntityGroups($event)&quot; filled status&#x3D;&quot;primary&quot;&gt;
+        &lt;nb-option *ngFor&#x3D;&quot;let event of events&quot; [value]&#x3D;&quot;event.id&quot;&gt;
+          {{ event.name }}
+        &lt;/nb-option&gt;
+      &lt;/nb-select&gt;
+
+      &lt;div class&#x3D;&quot;fieldset&quot; class&#x3D;&quot;form-mail-type-selection&quot;&gt;
+        &lt;div class&#x3D;&quot;fieldset&quot; *ngIf&#x3D;&quot;eventDataFormEntityGroups.length &gt; 0&quot;&gt;
+          &lt;p&gt;Source?&lt;/p&gt;
+          &lt;nb-radio-group
+            name&#x3D;&quot;event_data_form_entity_group_id&quot;
+            formControlName&#x3D;&quot;event_data_form_entity_group_id&quot;
+            (valueChange)&#x3D;&quot;toggleEventDataFormEntityGroupType($event)&quot;&gt;
+            &lt;nb-radio *ngFor&#x3D;&quot;let edfeg of eventDataFormEntityGroups&quot; [value]&#x3D;&quot;edfeg.id&quot;&gt;
+              {{ edfeg.name }}
+            &lt;/nb-radio&gt;
+          &lt;/nb-radio-group&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;fieldset&quot; *ngIf&#x3D;&quot;eventSimpleRegistration&quot;&gt;
+          &lt;p&gt;
+            Single Click Registration
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;fieldset&quot; *ngIf&#x3D;&quot;selectedEventDataFormEntityGroup || eventSimpleRegistration&quot;&gt;
+          &lt;p&gt;Let&#x27;s Be Specific!&lt;/p&gt;
+            &lt;nb-radio-group
+              *ngIf&#x3D;&quot;selectedEventDataFormEntityGroup&quot;
+              name&#x3D;&quot;registration_selection_type&quot;
+              formControlName&#x3D;&quot;registration_selection_type&quot;
+              (valueChange)&#x3D;&quot;toggleEmailBodyValidation($event)&quot;&gt;
+              &lt;nb-radio *ngFor&#x3D;&quot;let reg of selectedFormRegistrationType&quot; [value]&#x3D;&quot;reg.value&quot;&gt;
+                {{ reg.display }}
+              &lt;/nb-radio&gt;
+            &lt;/nb-radio-group&gt;
+
+            &lt;nb-radio-group
+              *ngIf&#x3D;&quot;eventSimpleRegistration&quot;
+              name&#x3D;&quot;registration_selection_type&quot;
+              formControlName&#x3D;&quot;registration_selection_type&quot;
+              (valueChange)&#x3D;&quot;toggleEmailBodyValidation($event)&quot;&gt;
+              &lt;nb-radio *ngFor&#x3D;&quot;let reg of selectedFormRegistrationType&quot; [value]&#x3D;&quot;reg.value&quot;&gt;
+                {{ reg.display }}
+              &lt;/nb-radio&gt;
+            &lt;/nb-radio-group&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;fieldset&quot; *ngIf&#x3D;&quot;[EemailTypes.GENERAL_ALL, EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes(selectedEmailType) &#x3D;&#x3D; true&quot;&gt;
+      &lt;div&gt;
+        &lt;label&gt;
+          To
+          &lt;input type&#x3D;&quot;text&quot; nbInput fullWidth formControlName&#x3D;&quot;recipient_email&quot; placeholder&#x3D;&quot;Enter 1 email addresses or leave blank for all matching members&quot;&gt;
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;nb-checkbox status&#x3D;&quot;basic&quot; formControlName&#x3D;&quot;resend&quot;&gt;
+          Resend (if already sent)
+        &lt;/nb-checkbox&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;fieldset&quot;&gt;
+      &lt;label&gt;
+        Subject*
+        &lt;input type&#x3D;&quot;text&quot; nbInput fullWidth formControlName&#x3D;&quot;subject&quot;&gt;
+      &lt;/label&gt;
+      &lt;span *ngIf&#x3D;&quot;eMailForm[&#x27;controls&#x27;].subject.touched &amp;&amp; eMailForm[&#x27;controls&#x27;].subject.invalid &amp;&amp; eMailForm[&#x27;controls&#x27;].subject.errors.required&quot; class&#x3D;&quot;validation-error-text&quot;&gt;
+        Required Field
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;fieldset&quot;&gt;
+      &lt;label&gt;
+        Message From Organizers
+      &lt;/label&gt;
+      &lt;span *ngIf&#x3D;&quot;eMailForm[&#x27;controls&#x27;].body.touched &amp;&amp; eMailForm[&#x27;controls&#x27;].body.invalid &amp;&amp; eMailForm[&#x27;controls&#x27;].body.errors.required&quot; class&#x3D;&quot;validation-error-text&quot;&gt;
+        Required Field
+      &lt;/span&gt;
+        &lt;editor
+          formControlName&#x3D;&quot;body&quot;
+          apiKey&#x3D;&quot;e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs&quot;
+          [init]&#x3D;&quot;{
+          height: 200,
+          menubar: false,
+          convert_urls: false,
+          plugins: [
+            &#x27;advlist autolink lists link image charmap print preview anchor&#x27;,
+            &#x27;searchreplace visualblocks code fullscreen&#x27;,
+            &#x27;insertdatetime media table paste code help wordcount&#x27;
+          ],
+          toolbar:
+            &#x27;undo redo | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help&#x27;
+        }&quot;&gt;
+
+        &lt;/editor&gt;
+    &lt;/div&gt;
+
+
+    &lt;div class&#x3D;&quot;submit-button&quot;&gt;
+      &lt;button [disabled]&#x3D;&quot;!eMailForm.valid&quot; fullWidth nbButton status&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot;&gt;
+        Send Mail
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./emailer.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.emailer-component {
+  height: 65vh;
+  overflow-y: scroll;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.submit-button {
+  // position: fixed;
+  // bottom: 10px;
+  // width: 100%;
+}
+
+.fieldset {
+  margin: 1rem 0;
+}
+
+
+.form-mail-type-selection {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  &gt;.fieldset{
+    margin-right: 1.5rem;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="emailer-component">  <form [formGroup]="eMailForm" (ngSubmit)="submitForm()">    <div class="fieldset">      <p>{{ community.name }}</p>      <nb-radio-group        name="members"        formControlName="members"        (valueChange)="toggleEventSpecificEmail($event)">        <nb-radio value="{{ EemailTypes.GENERAL_ALL }}">          General Email (to All or a Specific Member)        </nb-radio>        <nb-radio value="event">          Event Specific Emails        </nb-radio>      </nb-radio-group>    </div>    <div class="fieldset" *ngIf="isEventSpecificEmail">      <nb-select placeholder="Select Event" formControlName="event_id" (selectedChange)="getEventDataFormEntityGroups($event)" filled status="primary">        <nb-option *ngFor="let event of events" [value]="event.id">          {{ event.name }}        </nb-option>      </nb-select>      <div class="fieldset" class="form-mail-type-selection">        <div class="fieldset" *ngIf="eventDataFormEntityGroups.length > 0">          <p>Source?</p>          <nb-radio-group            name="event_data_form_entity_group_id"            formControlName="event_data_form_entity_group_id"            (valueChange)="toggleEventDataFormEntityGroupType($event)">            <nb-radio *ngFor="let edfeg of eventDataFormEntityGroups" [value]="edfeg.id">              {{ edfeg.name }}            </nb-radio>          </nb-radio-group>        </div>        <div class="fieldset" *ngIf="eventSimpleRegistration">          <p>            Single Click Registration          </p>        </div>        <div class="fieldset" *ngIf="selectedEventDataFormEntityGroup || eventSimpleRegistration">          <p>Let\'s Be Specific!</p>            <nb-radio-group              *ngIf="selectedEventDataFormEntityGroup"              name="registration_selection_type"              formControlName="registration_selection_type"              (valueChange)="toggleEmailBodyValidation($event)">              <nb-radio *ngFor="let reg of selectedFormRegistrationType" [value]="reg.value">                {{ reg.display }}              </nb-radio>            </nb-radio-group>            <nb-radio-group              *ngIf="eventSimpleRegistration"              name="registration_selection_type"              formControlName="registration_selection_type"              (valueChange)="toggleEmailBodyValidation($event)">              <nb-radio *ngFor="let reg of selectedFormRegistrationType" [value]="reg.value">                {{ reg.display }}              </nb-radio>            </nb-radio-group>        </div>      </div>    </div>    <div class="fieldset" *ngIf="[EemailTypes.GENERAL_ALL, EemailTypes.ENTRY_PASS, EemailTypes.SEND_LINK, EemailTypes.RSVP].includes(selectedEmailType) == true">      <div>        <label>          To          <input type="text" nbInput fullWidth formControlName="recipient_email" placeholder="Enter 1 email addresses or leave blank for all matching members">        </label>      </div>      <div>        <nb-checkbox status="basic" formControlName="resend">          Resend (if already sent)        </nb-checkbox>      </div>    </div>    <div class="fieldset">      <label>        Subject*        <input type="text" nbInput fullWidth formControlName="subject">      </label>      <span *ngIf="eMailForm[\'controls\'].subject.touched && eMailForm[\'controls\'].subject.invalid && eMailForm[\'controls\'].subject.errors.required" class="validation-error-text">        Required Field      </span>    </div>    <div class="fieldset">      <label>        Message From Organizers      </label>      <span *ngIf="eMailForm[\'controls\'].body.touched && eMailForm[\'controls\'].body.invalid && eMailForm[\'controls\'].body.errors.required" class="validation-error-text">        Required Field      </span>        <editor          formControlName="body"          apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"          [init]="{          height: 200,          menubar: false,          convert_urls: false,          plugins: [            \'advlist autolink lists link image charmap print preview anchor\',            \'searchreplace visualblocks code fullscreen\',            \'insertdatetime media table paste code help wordcount\'          ],          toolbar:            \'undo redo | formatselect | bold italic backcolor | \            alignleft aligncenter alignright alignjustify | \            bullist numlist outdent indent | removeformat | help\'        }">        </editor>    </div>    <div class="submit-button">      <button [disabled]="!eMailForm.valid" fullWidth nbButton status="primary" type="submit">        Send Mail      </button>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityCardComponent', 'selector': 'app-home-community-card'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'}];
+    var ACTUAL_COMPONENT = {'name': 'EmailerComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmailerComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
