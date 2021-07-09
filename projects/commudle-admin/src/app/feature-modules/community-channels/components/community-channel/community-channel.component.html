@@ -4,7 +4,9 @@
       <div *ngIf="selectedChannel">
         <p [nbTooltip]="selectedChannel.description" [nbTooltipPlacement]="'bottom'">
           <nb-icon icon="info-outline"></nb-icon>
-          <span [innerHTML]="selectedChannel.description | truncatetext: 200 | textToLinks"></span>
+          <span appHighlightLinks>
+            {{selectedChannel.description | truncatetext: 200}}
+          </span>
         </p>
       </div>
 
