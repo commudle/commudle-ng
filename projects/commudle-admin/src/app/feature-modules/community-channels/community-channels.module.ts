@@ -35,6 +35,7 @@ import { MentionModule } from 'angular-mentions';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 
 
@@ -66,6 +67,7 @@ import { ArchiveChannelComponent } from './components/channel-settings/archive-c
     PickerModule,
     MentionModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // nebular
     NbInputModule,
