@@ -24,13 +24,13 @@ const routes = [
         children: [
           {
             path: '',
-            component: AdminPageAdsListComponent
+            component: AdminPageAdsListComponent,
           },
           {
-            path: 'form/:ad_id',
-            component: AdminPageAdsFormComponent
-          }
-        ]
+            path: 'form',
+            component: AdminPageAdsFormComponent,
+          },
+        ],
       },
       {
         path: 'admin-surveys',

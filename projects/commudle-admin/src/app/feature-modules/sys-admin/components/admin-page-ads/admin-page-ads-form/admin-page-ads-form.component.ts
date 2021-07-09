@@ -5,49 +5,57 @@ import { SysAdminPageAdsService } from 'projects/commudle-admin/src/app/feature-
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { IPageAd } from 'projects/shared-models/page-ad.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-page-ads-form',
   templateUrl: './admin-page-ads-form.component.html',
-  styleUrls: ['./admin-page-ads-form.component.scss']
+  styleUrls: ['./admin-page-ads-form.component.scss'],
 })
 export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
-
   pageAd: IPageAd;
-  linkRegex = /^(?:https?|ftp|file):\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4])|(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*\.[a-z\u00a1-\uffff]{2,}\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
+  linkRegex =
+    /^(?:https?|ftp|file):\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4])|(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*\.[a-z\u00a1-\uffff]{2,}\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
   iframeRegex = /^<iframe[^>]*(?:\/>|>.*?<\/iframe>)/g;
-  pageAdForm: FormGroup = this.fb.group({
-    title: ['', Validators.required],
-    content: ['', Validators.required],
-    link: ['', [Validators.required, Validators.pattern(this.linkRegex)]],
-    external_link: [true, Validators.required],
-    is_default: [false, Validators.required],
-    slot: ['', Validators.required],
-    iframe: ['', Validators.pattern(this.iframeRegex)],
-    start_at: [''],
-    end_at: ['']
-  }, { validators: this.checkDates });
+  pageAdForm: FormGroup = this.fb.group(
+    {
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      link: ['', [Validators.required, Validators.pattern(this.linkRegex)]],
+      external_link: [true, Validators.required],
+      is_default: [false, Validators.required],
+      slot: ['', Validators.required],
+      iframe: ['', Validators.pattern(this.iframeRegex)],
+      start_at: [''],
+      end_at: [''],
+    },
+    { validators: this.checkDates },
+  );
   uploadedFiles: IAttachedFile[] = [];
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private libToastLogService: LibToastLogService,
-    private sysAdminPageAdsService: SysAdminPageAdsService
-  ) {
-  }
+    private sysAdminPageAdsService: SysAdminPageAdsService,
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.getPageAd(+params.pageAdId || 0);
-    });
+    this.subscriptions.push(
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.getPageAd(+params.pageAdId || 0);
+      }),
+    );
   }
 
   ngOnDestroy(): void {
+    this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  checkDates(group: FormGroup) {
+  checkDates(group: FormGroup): null | { notValid: true } {
     if (group.controls.start_at.value > group.controls.end_at.value) {
       return { notValid: true };
     }
@@ -56,10 +64,12 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
 
   getPageAd(pageAdId: number): void {
     if (pageAdId > 0) {
-      this.sysAdminPageAdsService.getAdById(pageAdId).subscribe(value => {
-        this.pageAd = value;
-        this.prefillPageAd();
-      });
+      this.subscriptions.push(
+        this.sysAdminPageAdsService.getAdById(pageAdId).subscribe((value) => {
+          this.pageAd = value;
+          this.prefillPageAd();
+        }),
+      );
     }
   }
 
@@ -77,12 +87,12 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     // Patch dates
     if (this.pageAd.start_at) {
       this.pageAdForm.patchValue({
-        start_at: new Date(this.pageAd.start_at).toISOString().slice(0, -1)
+        start_at: new Date(this.pageAd.start_at).toISOString().slice(0, -1),
       });
     }
     if (this.pageAd.end_at) {
       this.pageAdForm.patchValue({
-        end_at: new Date(this.pageAd.end_at).toISOString().slice(0, -1)
+        end_at: new Date(this.pageAd.end_at).toISOString().slice(0, -1),
       });
     }
 
@@ -93,15 +103,19 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
         file: null,
         url: file.url,
         name: file.filename,
-        type: null
+        type: null,
       });
     }
   }
 
-  addFiles(event): void {
-    const inputFiles = [...event.target.files];
+  addFiles(event: Event): void {
+    let fileList: FileList = (event.target as HTMLInputElement).files;
+    const inputFiles: File[] = [];
+    for (let i = 0; i < fileList.length; i++) {
+      inputFiles.push(fileList.item(i));
+    }
     // Check if total file size is less than 2MB
-    if (inputFiles?.map(file => file.size).reduce((a, b) => a + b, 0) > 2425190) {
+    if (inputFiles?.map((file) => file.size).reduce((a: number, b: number) => a + b, 0) > 2425190) {
       this.libToastLogService.warningDialog('Files should be less than 2MB', 3000);
     } else {
       if (inputFiles?.length > 0) {
@@ -111,7 +125,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
             file,
             url: null,
             name: null,
-            type: null
+            type: null,
           };
           this.uploadedFiles.push(iAttachedFile);
         }
@@ -121,8 +135,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
 
   deleteFile(index: number): void {
     if (this.uploadedFiles[index].id) {
-      // @ts-ignore
-      this.uploadedFiles[index].delete = true;
+      this.uploadedFiles[index]['delete'] = true;
     } else {
       this.uploadedFiles.splice(index, 1);
     }
@@ -137,38 +150,47 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   }
 
   createPageAd(): void {
-    this.sysAdminPageAdsService.createAd(this.buildFormData()).subscribe(() => {
-      this.router.navigate(['/sys-admin', 'admin-page-ads']).then(() => {
-        this.libToastLogService.successDialog('Created ad successfully!');
-      });
-    });
+    this.subscriptions.push(
+      this.sysAdminPageAdsService.createAd(this.buildFormData()).subscribe(() => {
+        this.router.navigate(['/sys-admin', 'admin-page-ads']).then(
+          () => {
+            this.libToastLogService.successDialog('Created ad successfully!');
+          },
+          () => {},
+        );
+      }),
+    );
   }
 
   updatePageAd(): void {
-    this.sysAdminPageAdsService.updateAd(this.buildFormData(), this.pageAd.id).subscribe(() => {
-      this.router.navigate(['/sys-admin', 'admin-page-ads']).then(() => {
-        this.libToastLogService.successDialog('Updated ad successfully!');
-      });
-    });
+    this.subscriptions.push(
+      this.sysAdminPageAdsService.updateAd(this.buildFormData(), this.pageAd.id).subscribe(() => {
+        this.router.navigate(['/sys-admin', 'admin-page-ads']).then(
+          () => {
+            this.libToastLogService.successDialog('Updated ad successfully!');
+          },
+          () => {},
+        );
+      }),
+    );
   }
 
   buildFormData(): FormData {
     const formData: FormData = new FormData();
     const pageAdFormValue = this.pageAdForm.value;
 
-    Object.keys(pageAdFormValue).forEach(value => {
+    Object.keys(pageAdFormValue).forEach((value) => {
       if (pageAdFormValue[value] != null) {
-        formData.append(`page_ad[${ value }]`, pageAdFormValue[value]);
+        formData.append(`page_ad[${value}]`, pageAdFormValue[value]);
       }
     });
 
-    this.uploadedFiles.forEach(item => {
-      Object.keys(item).forEach(value => {
-        formData.append(`page_ad[attachments][][${ value }]`, item[value]);
+    this.uploadedFiles.forEach((item) => {
+      Object.keys(item).forEach((value) => {
+        formData.append(`page_ad[attachments][][${value}]`, item[value]);
       });
     });
 
     return formData;
   }
-
 }
