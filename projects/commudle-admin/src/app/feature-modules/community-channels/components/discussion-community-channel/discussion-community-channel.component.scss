@@ -9,9 +9,11 @@
       overflow-y: auto;
       .message {
         margin-bottom: 1rem;
-        border: 1px dotted lightgrey;
-        border-radius: 5px;
-        padding: 5px;
+        padding: 25px 25px 10px 25px;
+      }
+
+      .message:hover {
+        background-color: rgba(0, 0, 0, 0.1);;
       }
 
       .filler-message {
