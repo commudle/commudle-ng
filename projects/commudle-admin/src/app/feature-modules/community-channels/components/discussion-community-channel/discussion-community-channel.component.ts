@@ -57,6 +57,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private communityChannelManagerService: CommunityChannelManagerService,
     private communityChannelsService: CommunityChannelsService,
     private nbDialogService: NbDialogService
+
   ) { }
 
   ngOnInit() {
@@ -128,8 +129,17 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     return true;
   }
 
-  joinChannel() {
+  openJoinChannelDialog() {
     this.nbDialogService.open(this.joinChannelDialog);
+  }
+
+  joinChannel() {
+    this.communityChannelService.joinChannel(this.discussion.parent_id).subscribe((data) => {
+      if(data) {
+        this.toastLogService.successDialog("Welcome to the channel!");
+        location.reload();
+      }
+    });
   }
 
   getDiscussionMessages() {
