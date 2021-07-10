@@ -36,6 +36,7 @@ import { MentionModule } from 'angular-mentions';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 
 @NgModule({
@@ -67,6 +68,7 @@ import { EmailJoinComponent } from './components/email-join/email-join.component
     PickerModule,
     MentionModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // nebular
     NbInputModule,
