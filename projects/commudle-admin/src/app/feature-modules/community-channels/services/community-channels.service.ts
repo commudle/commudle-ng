@@ -49,8 +49,7 @@ export class CommunityChannelsService {
   index(communityId): Observable<ICommunityChannels> {
     const params = new HttpParams().set('community_id', communityId);
     return this.http.get<ICommunityChannels>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX),
-      params,
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX), {params}
     );
   }
 
@@ -77,12 +76,14 @@ export class CommunityChannelsService {
   }
 
   joinChannel(communityChannelId: number, token?: string): Observable<boolean> {
-    let params = {};
+    const params = {} as any;
     params.community_channel_id = communityChannelId;
     if (token) {
       params.token = token;
     }
-    return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params);
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params
+    );
   }
 
   joinByToken(token): Observable<boolean> {

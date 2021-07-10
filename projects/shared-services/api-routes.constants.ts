@@ -52,9 +52,9 @@ export const API_ROUTES = {
 
   COMMUNITY_CHANNELS: {
     USER_CHANNEL_COMMUNITIES: 'api/v2/community_channels/user_channel_communities',
-    SHOW: 'api/v2/community_channels',
     INDEX: 'api/v2/community_channels',
     CREATE: 'api/v2/community_channels',
+    SHOW: 'api/v2/community_channels/show',
     UPDATE: 'api/v2/community_channels',
     DELETE: 'api/v2/community_channels',
     JOIN_TOKEN: 'api/v2/community_channels/join_token',

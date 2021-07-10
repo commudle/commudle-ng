@@ -3,6 +3,7 @@ import { ICommunityChannel } from 'projects/shared-models/community-channel.mode
 import { Component, OnInit } from '@angular/core';
 import { CommunityChannelsService } from '../../services/community-channels.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-email-join',
@@ -20,13 +21,13 @@ export class EmailJoinComponent implements OnInit {
     private communityChannelsService: CommunityChannelsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private libToasLogService: LibToastLogService
   ) {}
 
   ngOnInit(): void {
+    this.channelId = this.activatedRoute.snapshot.queryParams.ch;
+    this.joinToken = this.activatedRoute.snapshot.params.token;
     this.getChannelInfo();
-    const qParams = this.activatedRoute.snapshot.queryParams;
-    this.channelId = qParams.community_channel_id;
-    this.joinToken = qParams.ch;
   }
 
   // get channel details
@@ -42,13 +43,15 @@ export class EmailJoinComponent implements OnInit {
     this.loading = true;
     this.communityChannelsService.joinChannel(this.channelId, this.joinToken).subscribe((data) => {
       if (data) {
-        this.router.navigate([
+        this.libToasLogService.successDialog('Taking you to the channel!', 2500);
+        void this.router.navigate([
           '/communities',
           this.activatedRoute.snapshot.params.community_id,
           'channels',
           this.channelId,
         ]);
       }
+      this.loading = false;
     });
   }
 
