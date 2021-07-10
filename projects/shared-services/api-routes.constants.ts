@@ -52,6 +52,7 @@ export const API_ROUTES = {
 
   COMMUNITY_CHANNELS: {
     USER_CHANNEL_COMMUNITIES: 'api/v2/community_channels/user_channel_communities',
+    SHOW: 'api/v2/community_channels',
     INDEX: 'api/v2/community_channels',
     CREATE: 'api/v2/community_channels',
     UPDATE: 'api/v2/community_channels',
@@ -60,6 +61,7 @@ export const API_ROUTES = {
     RESET_JOIN_TOKEN: 'api/v2/community_channels/reset_join_token',
     TAGGABLE_USERS: 'api/v2/community_channels/taggable_users',
     DELETE_LOGO: 'api/v2/community_channels/delete_logo',
+    JOIN_CHANNEL: 'api/v2/community_channels/join_channel',
     MEMBERS: {
       INDEX: 'api/v2/community_channels/members',
       INVITE: 'api/v2/community_channels/members/invite',
