@@ -1,6 +1,6 @@
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUser } from 'projects/shared-models/user.model';
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges, TemplateRef} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -13,6 +13,7 @@ import { UserMessagesService } from 'projects/commudle-admin/src/app/services/us
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
+import { NbDialogService } from '@nebular/theme';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { CommunityChannelManagerService } from '../../services/community-channel
 })
 export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
+  @ViewChild('confirmJoinDialog') joinChannelDialog: TemplateRef<any>;
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
 
@@ -55,6 +57,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private authWatchService: LibAuthwatchService,
     private discussionsService: DiscussionsService,
     private communityChannelManagerService: CommunityChannelManagerService,
+    private nbDialogService: NbDialogService
   ) { }
 
   ngOnInit() {
@@ -124,6 +127,10 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       this.authWatchService.logInUser();
     }
     return true;
+  }
+
+  joinChannel() {
+    this.nbDialogService.open(this.joinChannelDialog);
   }
 
   getDiscussionMessages() {
