@@ -46,6 +46,8 @@
 
     .resources {
       max-width: 100vw;
+      position: relative;
+      bottom: 65px;
     }
 
     @media screen and (max-width: 1089px) {
