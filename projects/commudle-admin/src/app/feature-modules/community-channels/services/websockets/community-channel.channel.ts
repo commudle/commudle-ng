@@ -19,7 +19,8 @@ export class CommunityChannelChannel {
     FLAG: 'flag',
     DELETE: 'delete',
     TOGGLE_BLOCK: 'toggle_block',
-    ERROR: 'error'
+    ERROR: 'error',
+    CHANGE_PERMISSION: 'change_permission',
   };
 
   actionCable = actionCable;
