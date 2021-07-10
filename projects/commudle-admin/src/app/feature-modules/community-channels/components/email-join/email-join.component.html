@@ -1,1 +1,13 @@
-<p>email-join works!</p>
+<div class="join-by-token">
+  <div [nbSpinner]="loading">
+    <nb-card>
+      <nb-card-header> Confirmation </nb-card-header>
+      <nb-card-body>
+        <div>SOME DISCLAIMERS</div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton primary (click)="joinChannel()">Click here to confirm</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

@@ -11,10 +11,7 @@ import { CommunityChannelComponent } from './components/community-channel/commun
 import { CommunityChannelsDashboardComponent } from './components/community-channels-dashboard/community-channels-dashboard.component';
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
-import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
-import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { EmailJoinComponent } from './components/email-join/email-join.component';
-
 
 const routes = [
   {
@@ -25,7 +22,7 @@ const routes = [
   {
     path: 'email-join/:token',
     component: EmailJoinComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'app',
