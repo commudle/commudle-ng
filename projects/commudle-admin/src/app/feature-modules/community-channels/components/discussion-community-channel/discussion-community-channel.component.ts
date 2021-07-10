@@ -14,6 +14,7 @@ import { CommunityChannelChannel } from '../../services/websockets/community-cha
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { NbDialogService } from '@nebular/theme';
+import { CommunityChannelsService } from '../../services/community-channels.service';
 
 
 @Component({
@@ -57,7 +58,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private authWatchService: LibAuthwatchService,
     private discussionsService: DiscussionsService,
     private communityChannelManagerService: CommunityChannelManagerService,
-    private nbDialogService: NbDialogService
+    private nbDialogService: NbDialogService,
+    private communityChannelService: CommunityChannelsService
   ) { }
 
   ngOnInit() {
@@ -129,8 +131,17 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     return true;
   }
 
-  joinChannel() {
+  openJoinChannelDialog() {
     this.nbDialogService.open(this.joinChannelDialog);
+  }
+
+  joinChannel() {
+    this.communityChannelService.joinChannel(this.discussion.parent_id).subscribe((data) => {
+      if(data) {
+        this.toastLogService.successDialog("Welcome to the channel!");
+        location.reload();
+      }
+    });
   }
 
   getDiscussionMessages() {
