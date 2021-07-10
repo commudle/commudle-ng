@@ -10,6 +10,7 @@ import { ICommunityChannels } from 'projects/shared-models/community-channels.mo
 import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IUsers } from 'projects/shared-models/users.model';
 import { ICommunities } from 'projects/shared-models/communities.model';
+import { IUserMessages } from 'projects/shared-models/user_messages.model';
 
 @Injectable({
   providedIn: 'root'
@@ -146,6 +147,14 @@ export class CommunityChannelsService {
     return this.http.delete<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE_LOGO),
       {params}
+    );
+  }
+
+
+  getDiscussionMessages(communityChannelId, page, count): Observable<IUserMessages> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId).set('page', page).set('count', count);
+    return this.http.get<IUserMessages>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES), {params}
     );
   }
 }

@@ -1,5 +1,4 @@
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { IUser } from 'projects/shared-models/user.model';
 import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges, TemplateRef} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
@@ -9,11 +8,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { NbDialogService } from '@nebular/theme';
+import { CommunityChannelsService } from '../../services/community-channels.service';
 
 
 @Component({
@@ -52,11 +51,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   constructor(
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
-    private userMessagesService: UserMessagesService,
     private communityChannelChannel: CommunityChannelChannel,
     private authWatchService: LibAuthwatchService,
     private discussionsService: DiscussionsService,
     private communityChannelManagerService: CommunityChannelManagerService,
+    private communityChannelsService: CommunityChannelsService,
     private nbDialogService: NbDialogService
   ) { }
 
@@ -136,7 +135,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   getDiscussionMessages() {
     if (!this.allMessagesLoaded && !this.loadingMessages) {
       this.loadingMessages = true;
-      this.userMessagesService.pGetCommunityChannelDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
+      this.communityChannelsService.getDiscussionMessages(this.discussion.parent_id, this.nextPage, this.pageSize).subscribe(
         data => {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
