@@ -32,7 +32,7 @@
     </button> -->
 
     <button *ngIf="!currentUser || !(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)))"
-      nbButton fullWidth status="primary" class="join-button" (click)="joinChannel()" >
+      nbButton fullWidth status="primary" class="join-button" (click)="openJoinChannelDialog()" >
       Join the channel
     </button>
   </div>
@@ -47,7 +47,7 @@
         
       </nb-card-body>
       <nb-card-footer class="d-flex justify-content-space-between">
-        <button nbButton status="success">Yes</button>
+        <button nbButton (click)="joinChannel()" status="success">Yes</button>
         <button (click)="ref.close()" ghost nbButton status="danger">No
         </button>
       </nb-card-footer>
