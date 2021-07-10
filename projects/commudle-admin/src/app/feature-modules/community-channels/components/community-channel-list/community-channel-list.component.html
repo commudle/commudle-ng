@@ -28,8 +28,11 @@
             </div>
             <p class="name">
               <a [routerLink]="[channel.id]" routerLinkActive="selected-channel">
-                <span *ngIf="channel.is_private" class="private">
-                  <nb-icon alt="Private Channel" icon="lock"></nb-icon>
+                <span *ngIf="channel.is_private" class="icon">
+                  <nb-icon title="Private Channel" alt="Private Channel" icon="lock"></nb-icon>
+                </span>
+                <span *ngIf="channel.is_readonly" class="icon">
+                  <nb-icon title="Read-only Channel" alt="Readonly Channel" icon="eye"></nb-icon>
                 </span>
                 {{channel.name}}
               </a>
