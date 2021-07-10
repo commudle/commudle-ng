@@ -310,6 +310,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
                 this.toastLogService.warningDialog(data.message, 2000);
                 break;
               }
+              case(this.communityChannelChannel.ACTIONS.CHANGE_PERMISSION): {
+                if (this.currentUser && Number(data.user_id) === this.currentUser.id) {
+                  location.reload;
+                }
+              }
             }
           }
 
