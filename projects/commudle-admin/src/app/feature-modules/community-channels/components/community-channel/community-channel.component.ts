@@ -25,31 +25,26 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
     private activatedRoute: ActivatedRoute,
-    private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel
-  ) { }
+    private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
+  ) {}
 
   ngOnInit() {
-
     this.subscriptions.push(
-      this.communityChannelManagerService.communityChannels$.subscribe(
-        data => {
-          if (data && !this.initialized) {
-            this.initialize();
-            this.initialized = true;
-          } else if (this.initialized && this.selectedChannel) {
-            this.communityChannelManagerService.setChannel(this.communityChannelManagerService.findChannel(this.selectedChannel.id));
-            this.getDiscussion(this.selectedChannel.id);
-          }
+      this.communityChannelManagerService.communityChannels$.subscribe((data) => {
+        if (data && !this.initialized) {
+          this.initialize();
+          this.initialized = true;
+        } else if (this.initialized && this.selectedChannel) {
+          this.communityChannelManagerService.setChannel(
+            this.communityChannelManagerService.findChannel(this.selectedChannel.id),
+          );
+          this.getDiscussion(this.selectedChannel.id);
         }
-      ),
-      this.communityChannelManagerService.selectedChannel$.subscribe(
-        data => this.selectedChannel = data
-      ),
-      this.communityChannelNotificationsChannel.hasNotifications$.subscribe(
-        data => {
-          this.hasNotifications = data;
-        }
-      )
+      }),
+      this.communityChannelManagerService.selectedChannel$.subscribe((data) => (this.selectedChannel = data)),
+      this.communityChannelNotificationsChannel.hasNotifications$.subscribe((data) => {
+        this.hasNotifications = data;
+      }),
     );
   }
 
@@ -59,36 +54,30 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     }
   }
 
-
   initialize() {
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe(
-        data => {
-          const selectedCh = this.communityChannelManagerService.findChannel(data.community_channel_id);
-          if (selectedCh) {
-            this.notFound = false;
-            this.communityChannelManagerService.setChannel(selectedCh);
-            this.getDiscussion(selectedCh.id);
-          } else {
-            this.notFound = true;
-          }
+      this.activatedRoute.params.subscribe((data) => {
+        const selectedCh = this.communityChannelManagerService.findChannel(data.community_channel_id);
+        if (selectedCh) {
+          this.notFound = false;
+          this.communityChannelManagerService.setChannel(selectedCh);
+          this.getDiscussion(selectedCh.id);
+        } else {
+          this.notFound = true;
         }
-      )
+      }),
     );
   }
 
   getDiscussion(channelId) {
-    this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe(
-      data => {
-        this.discussion = data;
-        this.communityChannelManagerService.setCommunityListview(false);
-      }
-    );
+    this.discussionsService.pGetOrCreateForCommunityChannel(channelId).subscribe((data) => {
+      this.discussion = data;
+      this.communityChannelManagerService.setCommunityListview(false);
+    });
   }
 
   toggleCommunityListDisplay() {
     this.communityChannelManagerService.setCommunityListview(!this.displayCommunityList);
     this.displayCommunityList = !this.displayCommunityList;
   }
-
 }
