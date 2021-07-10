@@ -89,25 +89,31 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   // toggle role
   toggleAdmin(index) {
     // send request to toggle
-    this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
-      this.allUsers[index] = data;
-    });
+    if(window.confirm("Are you sure you want to proceed with this action?")){
+      this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
+        this.allUsers[index] = data;
+      });
+    }
   }
 
   leaveChannel(index) {
     // TODO CHANNEL ask for a confirmation in a dialog
-    this.communityChannelsService.exitChannel(this.channel.id).subscribe(data => {
-      this.allUsers.splice(index, 1);
-      this.toastLogService.successDialog('You have exited this channel');
-    });
+    if(window.confirm("Are you sure you want to exit the channel?")) {
+      this.communityChannelsService.exitChannel(this.channel.id).subscribe(data => {
+        this.allUsers.splice(index, 1);
+        this.toastLogService.successDialog('You have exited this channel');
+      });
+    }
   }
 
   removeFromChannel(index) {
     // TODO CHANNEL ask for a confirmation in a dialog
-    this.communityChannelsService.removeMembership(this.allUsers[index].id).subscribe(data => {
-      this.allUsers.splice(index, 1);
-      this.toastLogService.successDialog('Removed');
-    })
+    if(window.confirm("Do you want to remove this person from channel?")){
+      this.communityChannelsService.removeMembership(this.allUsers[index].id).subscribe(data => {
+        this.allUsers.splice(index, 1);
+        this.toastLogService.successDialog('Removed');
+      })
+    }
   }
 
 
