@@ -19,7 +19,8 @@ import {
   NbContextMenuModule,
   NbTooltipModule,
   NbBadgeModule,
-  NbSpinnerModule} from '@nebular/theme';
+  NbSpinnerModule,
+  NbPopoverModule} from '@nebular/theme';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -38,6 +39,7 @@ import { NewCommunityChannelComponent } from './components/new-community-channel
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { EmailJoinComponent } from './components/email-join/email-join.component';
+import { LinkyModule } from 'ngx-linky';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { EmailJoinComponent } from './components/email-join/email-join.component
     MentionModule,
     SharedPipesModule,
     SharedDirectivesModule,
+    LinkyModule,
 
     // nebular
     NbInputModule,
@@ -84,6 +87,7 @@ import { EmailJoinComponent } from './components/email-join/email-join.component
     NbTooltipModule,
     NbBadgeModule,
     NbSpinnerModule,
+    NbPopoverModule,
   ],
   exports: [
     CommunityChannelsDashboardComponent
