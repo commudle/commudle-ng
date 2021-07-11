@@ -22,18 +22,20 @@
   </div>
   <div class="send-message-form">
     <app-send-message-form
-      *ngIf="channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))"
+      *ngIf="(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))) && (this.permittedActions.includes(allActions.ADD))"
       (sendMessage)="sendMessage($event)"
       (sendAttachmentMessage)="sendAttachmentMessage($event)"
     ></app-send-message-form>
 
-    <!-- <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
-      Post a Message
-    </button> -->
 
-    <button *ngIf="!currentUser || !(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)))"
-      nbButton fullWidth status="primary" class="join-button" (click)="openJoinChannelDialog()" >
-      Join the channel
+    <button
+      *ngIf="!currentUser || !(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)))"
+      nbButton fullWidth status="primary"
+      class="join-button"
+      (click)="openJoinChannelDialog()"
+      [ngSwitch]="communityChannel.is_readonly">
+      <span *ngSwitchCase="true">Join this readonly channel to receive updates</span>
+      <span *ngSwitchCase="false">Join this channel</span>
     </button>
   </div>
 
@@ -44,7 +46,7 @@
       </nb-card-header>
       <nb-card-body>
         <p>Welcome to this channel!</p>
-        
+
       </nb-card-body>
       <nb-card-footer class="d-flex justify-content-space-between">
         <button nbButton (click)="joinChannel()" status="success">Yes</button>
