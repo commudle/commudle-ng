@@ -44,7 +44,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
           this.getDiscussion(this.selectedChannel.id);
         }
       }),
-      this.communityChannelManagerService.selectedChannel$.subscribe((data) => (this.selectedChannel = data)),
+      this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
+        this.selectedChannel = data;
+      }),
       this.communityChannelNotificationsChannel.hasNotifications$.subscribe((data) => {
         this.hasNotifications = data;
       }),
