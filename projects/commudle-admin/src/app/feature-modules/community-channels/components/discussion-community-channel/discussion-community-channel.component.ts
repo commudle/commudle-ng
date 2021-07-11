@@ -13,6 +13,7 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
 import { NbDialogService } from '@nebular/theme';
 import { CommunityChannelsService } from '../../services/community-channels.service';
+import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   allActions;
   channelRoles = {};
   EUserRoles = EUserRoles;
+  communityChannel: ICommunityChannel;
 
   chatMessageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
@@ -75,17 +77,24 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.blocked = false;
     this.showReplyForm = 0;
 
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
-      user => {
-        this.currentUser = user;
-      }
-    ));
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        user => {
+          this.currentUser = user;
+        }
+      ),
+      this.communityChannelManagerService.allChannelRoles$.subscribe(
+        data => {
+          this.channelRoles = data;
+        }
+      ),
+      this.communityChannelManagerService.selectedChannel$.subscribe(
+        data => {
+          this.communityChannel = data;
+        }
+      )
+    );
 
-    this.communityChannelManagerService.allChannelRoles$.subscribe(
-      data => {
-        this.channelRoles = data;
-      }
-    )
 
     this.communityChannelChannel.subscribe(`${this.discussion.id}`);
 
@@ -320,7 +329,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               }
               case(this.communityChannelChannel.ACTIONS.CHANGE_PERMISSION): {
                 if (this.currentUser && Number(data.user_id) === this.currentUser.id) {
-                  location.reload;
+                  window.location.reload();
                 }
               }
             }

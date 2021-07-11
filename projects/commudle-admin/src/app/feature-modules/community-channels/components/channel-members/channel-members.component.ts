@@ -99,7 +99,10 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     if(window.confirm(alertMessage)) {
       this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
         this.allUsers[index] = data;
-      }); 
+        if (this.currentUser.username === username) {
+          window.location.reload();
+        }
+      });
     }
   }
 
@@ -109,7 +112,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
       this.communityChannelsService.exitChannel(this.channel.id).subscribe(data => {
         this.allUsers.splice(index, 1);
         this.toastLogService.successDialog('You have exited this channel');
-        location.reload();
+        window.location.reload();
       });
     }
   }
