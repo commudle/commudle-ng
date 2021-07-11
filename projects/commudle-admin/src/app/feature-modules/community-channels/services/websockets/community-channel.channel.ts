@@ -21,6 +21,7 @@ export class CommunityChannelChannel {
     TOGGLE_BLOCK: 'toggle_block',
     ERROR: 'error',
     CHANGE_PERMISSION: 'change_permission',
+    READ_MESSAGE: 'read_message',
   };
 
   actionCable = actionCable;

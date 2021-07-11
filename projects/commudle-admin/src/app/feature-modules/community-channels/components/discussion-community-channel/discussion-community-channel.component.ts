@@ -134,7 +134,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   joinChannel() {
-    this.communityChannelService.joinChannel(this.discussion.parent_id).subscribe((data) => {
+    this.communityChannelsService.joinChannel(this.discussion.parent_id).subscribe((data) => {
       if(data) {
         this.toastLogService.successDialog("Welcome to the channel!");
         location.reload();
@@ -239,6 +239,16 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       this.communityChannelChannel.ACTIONS.TOGGLE_BLOCK,
       {}
     );
+  }
+
+
+  markMessageRead(userMessageId) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.READ_MESSAGE,
+      {
+        user_message_id: userMessageId
+      }
+    )
   }
 
 
