@@ -40,17 +40,28 @@
   </div>
 
   <ng-template #confirmJoinDialog let-ref="dialogRef">
-    <nb-card>
+    <nb-card class="disclaimer">
       <nb-card-header class="d-flex align-items-center justify-content-space-between">
-        Confirmation
+        💡 Disclaimer
       </nb-card-header>
       <nb-card-body>
-        <p>Welcome to this channel!</p>
+        <p>Once you join this channel</p>
+        <ul>
+          <li>
+            Your profile will be shared with the admins of this channel and the community to which it belongs
+          </li>
+          <li>
+            If you are not a member of the parent community of the channel, you will be added to it automatically. The admins of this channel and it's community will be able to send you emails and notifications about this channel and it's community
+          </li>
+          <li>
+            You will receive emails if someone replies on your thread of messages in this channel.
+          </li>
+        </ul>
 
       </nb-card-body>
       <nb-card-footer class="d-flex justify-content-space-between">
-        <button nbButton (click)="joinChannel()" status="success">Yes</button>
-        <button (click)="ref.close()" ghost nbButton status="danger">No
+        <button nbButton (click)="joinChannel()" status="success">Confirm</button>
+        <button (click)="ref.close()" ghost nbButton status="warning">May Be Later
         </button>
       </nb-card-footer>
     </nb-card>
