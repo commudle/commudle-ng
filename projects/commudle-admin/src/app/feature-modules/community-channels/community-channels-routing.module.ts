@@ -11,11 +11,17 @@ import { CommunityChannelComponent } from './components/community-channel/commun
 import { CommunityChannelsDashboardComponent } from './components/community-channels-dashboard/community-channels-dashboard.component';
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
+import { EmailJoinComponent } from './components/email-join/email-join.component';
 
 const routes = [
   {
     path: 'join/:token',
     component: JoinByTokenComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'email-join/:token',
+    component: EmailJoinComponent,
     canActivate: [AuthGuard],
   },
   {

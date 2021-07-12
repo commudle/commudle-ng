@@ -1,6 +1,5 @@
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
-import { IUser } from 'projects/shared-models/user.model';
-import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef, Output, EventEmitter, OnChanges, TemplateRef} from '@angular/core';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import * as moment from 'moment';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -9,10 +8,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
 import { CommunityChannelChannel } from '../../services/websockets/community-channel.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
+import { NbDialogService } from '@nebular/theme';
+import { CommunityChannelsService } from '../../services/community-channels.service';
+import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { CommunityChannelManagerService } from '../../services/community-channel
 })
 export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
+  @ViewChild('confirmJoinDialog') joinChannelDialog: TemplateRef<any>;
   @Input() discussion: IDiscussion;
   @Output() newMessage = new EventEmitter();
 
@@ -41,6 +43,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   allActions;
   channelRoles = {};
   EUserRoles = EUserRoles;
+  communityChannel: ICommunityChannel;
 
   chatMessageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
@@ -50,11 +53,13 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   constructor(
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
-    private userMessagesService: UserMessagesService,
     private communityChannelChannel: CommunityChannelChannel,
     private authWatchService: LibAuthwatchService,
     private discussionsService: DiscussionsService,
     private communityChannelManagerService: CommunityChannelManagerService,
+    private communityChannelsService: CommunityChannelsService,
+    private nbDialogService: NbDialogService
+
   ) { }
 
   ngOnInit() {
@@ -72,17 +77,24 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.blocked = false;
     this.showReplyForm = 0;
 
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(
-      user => {
-        this.currentUser = user;
-      }
-    ));
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe(
+        user => {
+          this.currentUser = user;
+        }
+      ),
+      this.communityChannelManagerService.allChannelRoles$.subscribe(
+        data => {
+          this.channelRoles = data;
+        }
+      ),
+      this.communityChannelManagerService.selectedChannel$.subscribe(
+        data => {
+          this.communityChannel = data;
+        }
+      )
+    );
 
-    this.communityChannelManagerService.allChannelRoles$.subscribe(
-      data => {
-        this.channelRoles = data;
-      }
-    )
 
     this.communityChannelChannel.subscribe(`${this.discussion.id}`);
 
@@ -126,10 +138,23 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     return true;
   }
 
+  openJoinChannelDialog() {
+    this.nbDialogService.open(this.joinChannelDialog);
+  }
+
+  joinChannel() {
+    this.communityChannelsService.joinChannel(this.discussion.parent_id).subscribe((data) => {
+      if(data) {
+        this.toastLogService.successDialog("Welcome to the channel!");
+        location.reload();
+      }
+    });
+  }
+
   getDiscussionMessages() {
     if (!this.allMessagesLoaded && !this.loadingMessages) {
       this.loadingMessages = true;
-      this.userMessagesService.pGetCommunityChannelDiscussionMessages(this.discussion.id, this.nextPage, this.pageSize).subscribe(
+      this.communityChannelsService.getDiscussionMessages(this.discussion.parent_id, this.nextPage, this.pageSize).subscribe(
         data => {
           if (data.user_messages.length !== this.pageSize) {
             this.allMessagesLoaded = true;
@@ -226,6 +251,16 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
 
+  markMessageRead(userMessageId) {
+    this.communityChannelChannel.sendData(
+      this.communityChannelChannel.ACTIONS.READ_MESSAGE,
+      {
+        user_message_id: userMessageId
+      }
+    )
+  }
+
+
   receiveData() {
     this.subscriptions.push(
       this.communityChannelChannel.channelData$.subscribe(
@@ -291,6 +326,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               case(this.communityChannelChannel.ACTIONS.ERROR): {
                 this.toastLogService.warningDialog(data.message, 2000);
                 break;
+              }
+              case(this.communityChannelChannel.ACTIONS.CHANGE_PERMISSION): {
+                if (this.currentUser && Number(data.user_id) === this.currentUser.id) {
+                  window.location.reload();
+                }
               }
             }
           }
