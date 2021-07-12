@@ -54,7 +54,6 @@ export class CommunityChannelChannel {
         app_token: this.authWatchService.getAppToken()
       }, {
         received: (data) => {
-          console.log(data);
           this.channelData.next(data);
         }
       });

@@ -36,6 +36,8 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    // console.log(this.currentUserIsAdmin)
+
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe(
         data => {
@@ -89,9 +91,11 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   // toggle role
   toggleAdmin(index) {
     // send request to toggle
-    let username = this.allUsers[index].user.name;
+    const username = this.allUsers[index].user.name;
     let alertMessage;
+    let isAdmin = false;
     if(this.allUsers[index].user_role.name === "community_channel_admin") {
+      isAdmin = true;
       alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channel.name}?`;
     } else {
       alertMessage = `Are you sure you want to add ${username} as admin of ${this.channel.name}?`;
@@ -99,7 +103,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     if(window.confirm(alertMessage)) {
       this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
         this.allUsers[index] = data;
-        if (this.currentUser.username === username) {
+        if(isAdmin) {
           window.location.reload();
         }
       });
