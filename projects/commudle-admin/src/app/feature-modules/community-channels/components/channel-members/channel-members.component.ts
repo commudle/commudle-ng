@@ -36,8 +36,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // console.log(this.currentUserIsAdmin)
-
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe(
         data => {
