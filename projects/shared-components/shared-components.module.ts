@@ -21,9 +21,10 @@ import {
   NbSelectModule,
   NbTagModule,
   NbTooltipModule,
-  NbWindowModule
+  NbWindowModule,
 } from '@nebular/theme';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { LinkyModule } from 'ngx-linky';
 import { MessageComponent } from 'projects/shared-components/messages/messages-list/message/message.component';
 import { MessagesListComponent } from 'projects/shared-components/messages/messages-list/messages-list.component';
 import { MessagesComponent } from 'projects/shared-components/messages/messages.component';
@@ -107,7 +108,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     MessageComponent,
     QnaComponent,
     QnaListComponent,
-    QnaListItemComponent
+    QnaListItemComponent,
   ],
   imports: [
     CommonModule,
@@ -119,7 +120,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     NgxDatatableModule,
     HmsVideoModule,
     PickerModule,
-    SharedDirectivesModule,
+    LinkyModule,
 
     // Nebular
     NbButtonModule,
@@ -138,7 +139,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     NbAlertModule,
     NbTagModule,
     NbActionsModule,
-    NbFormFieldModule
+    NbFormFieldModule,
   ],
   exports: [
     WorkInProgressComponent,
@@ -168,8 +169,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     UserProfileCardMediumComponent,
     UserProfileCardSmallComponent,
     MessagesComponent,
-    QnaComponent
-  ]
+    QnaComponent,
+  ],
 })
-export class SharedComponentsModule {
-}
+export class SharedComponentsModule {}
