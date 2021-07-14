@@ -1,13 +1,11 @@
 <button
-  *ngIf="!isMember"
   nbButton
-  outline
+  *ngIf="!isMember"
   size="small"
-  status="info"
   (click)="openDialog(addMemberDialog)"
 >
 <nb-icon icon="plus"></nb-icon>
-Become a member
+Join Community
 </button>
 
 <nb-select
