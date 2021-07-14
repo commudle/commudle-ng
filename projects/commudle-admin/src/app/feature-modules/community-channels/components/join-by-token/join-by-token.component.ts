@@ -1,3 +1,4 @@
+// TODO to be deprecated, move this to a popup which appears on the channel page itself
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelsService } from '../../services/community-channels.service';

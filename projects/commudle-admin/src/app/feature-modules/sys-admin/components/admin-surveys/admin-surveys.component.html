@@ -1,11 +1,7 @@
 <div class="page-padding">
-  <h4>
-    Admin Surveys
-  </h4>
+  <h4>Admin Surveys</h4>
   <div>
-    <a nbButton status="primary"
-      [routerLink]="['/forms/new']"
-      [queryParams]="{parent_type: 'AdminSurvey' }">
+    <a nbButton status="primary" [routerLink]="['/forms/new']" [queryParams]="{parent_type: 'AdminSurvey' }">
       <nb-icon icon="plus"></nb-icon>
       New Survey Form
     </a>
@@ -24,8 +20,7 @@
           </small>
         </h5>
         <div class="details">
-          <a nbButton
-            [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']">
+          <a nbButton [routerLink]="['/forms', survey.data_form_entity.data_form_id, 'edit']">
             <nb-icon icon="edit"></nb-icon>
             Edit
           </a>
@@ -34,13 +29,14 @@
               labelPosition="end"
               [checked]="survey.status == EAdminSurveyStatus.open ? true : false"
               (checkedChange)="updateStatus($event, i)"
-              >Open</nb-toggle>
+            >
+              Open
+            </nb-toggle>
           </div>
           <div class="multiple-responses">
-            <nb-toggle labelPosition="end"
-            [checked]="survey.multi_response"
-            (checkedChange)="toggleMultiResponse(i)"
-            >Multiple Responses</nb-toggle>
+            <nb-toggle labelPosition="end" [checked]="survey.multi_response" (checkedChange)="toggleMultiResponse(i)">
+              Multiple Responses
+            </nb-toggle>
           </div>
           <a class="clickable total-responses" (click)="openResponses(survey)">
             Responses: {{ survey.total_responses }}

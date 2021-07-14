@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { FeedItemComponent } from './components/feed-item/feed-item.component';
+import { RouterModule } from '@angular/router';
 import { ExternalFeedComponent } from './components/external-feed/external-feed.component';
+import { FeedItemComponent } from './components/feed-item/feed-item.component';
 
-
-const routes: Routes = [
+const routes = [
   {
-      path: '',
-      component: ExternalFeedComponent,
+    path: '',
+    component: ExternalFeedComponent,
   },
   {
     path: ':id',
     component: FeedItemComponent,
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ExternalFeedRoutingModule { }
+export class ExternalFeedRoutingModule {}

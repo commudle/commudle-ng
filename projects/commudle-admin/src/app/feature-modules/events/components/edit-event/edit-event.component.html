@@ -42,25 +42,26 @@
               </div>
               <br>
 
+              <label [ngClass]="{'required': hasDate}">
+                Starts At
+              </label>
               <div>
                 <div>
-                  <input nbInput type="text"  [nbTimepicker]="timepicker" formControlName="start_time_pick">
-                  <nb-timepicker #timepicker></nb-timepicker>
+                  <input nbInput type="time" formControlName="start_time_pick">
                 </div>
               </div>
             </div>
 
 
             <div class="event-date-details">
-              <label>
+              <label [ngClass]="{'required': hasDate}">
                 Ends At
                 </label>
               <div>
 
                 <div>
                   <div>
-                    <input nbInput type="text"  [nbTimepicker]="timepicker1" formControlName="end_time_pick">
-                    <nb-timepicker #timepicker1></nb-timepicker>
+                    <input nbInput type="time" formControlName="end_time_pick">
                   </div>
                 </div>
 
