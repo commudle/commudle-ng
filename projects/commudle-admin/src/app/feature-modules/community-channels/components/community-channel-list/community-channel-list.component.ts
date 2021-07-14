@@ -94,18 +94,18 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
   setMeta() {
     this.title.setTitle(`${this.selectedChannel.name} | ${this.selectedCommunity.name}`)
-    this.meta.updateTag({ name: 'description', content: `${this.selectedChannel.description}`});
+    this.meta.updateTag({ name: 'description', content: `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`});
 
 
     this.meta.updateTag({ name: 'og:image', content: this.selectedCommunity.logo_path });
     this.meta.updateTag({ name: 'og:image:secure_url', content: this.selectedCommunity.logo_path });
     this.meta.updateTag({ name: 'og:title', content: `${this.selectedChannel.name} | ${this.selectedCommunity.name}` });
-    this.meta.updateTag({ name: 'og:description', content: `${this.selectedChannel.description}`});
+    this.meta.updateTag({ name: 'og:description', content: `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`});
     this.meta.updateTag( { name: 'og:type', content: 'website'});
 
     this.meta.updateTag({ name: 'twitter:image', content: this.selectedCommunity.logo_path });
     this.meta.updateTag({ name: 'twitter:title', content: `${this.selectedChannel.name} | ${this.selectedCommunity.name}` });
-    this.meta.updateTag({ name: 'twitter:description', content: `${this.selectedChannel.description}`});
+    this.meta.updateTag({ name: 'twitter:description', content: `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`});
   }
 
 

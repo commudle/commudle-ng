@@ -1,12 +1,12 @@
-import {IUser} from 'projects/shared-models/user.model';
-import {ActivatedRoute} from '@angular/router';
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {Meta, Title} from '@angular/platform-browser';
-import {Subscription} from 'rxjs';
-import {FooterService} from 'projects/commudle-admin/src/app/services/footer.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-public-profile',
@@ -31,12 +31,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.activatedRoute.params.subscribe(data => {
-        // Get user's data
-        this.getUserData();
-      })
-    );
+    this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUserData()));
 
     // Get logged in user
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
@@ -50,22 +45,22 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
     // Show Footer
     this.footerService.changeFooterStatus(true);
-    this.meta.removeTag("name='robots'");
-
+    this.meta.removeTag('name=\'robots\'');
   }
 
   // Get user's data
   getUserData() {
-    this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => {
+    this.subscriptions.push(this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => {
       this.user = data;
       this.setMeta();
-    });
+    }));
   }
 
   setMeta() {
     if (!this.user.is_expert) {
-      this.meta.updateTag({name: 'robots', content: 'noindex'});
+      this.meta.updateTag({ name: 'robots', content: 'noindex' });
     }
+
     let titleText = this.user.name;
 
     if (this.user.designation) {
@@ -73,17 +68,17 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     }
 
     this.title.setTitle(titleText);
-    this.meta.updateTag({name: 'description', content: `${this.user.designation}`});
+    this.meta.updateTag({ name: 'description', content: `${this.user.designation}` });
 
-    this.meta.updateTag({name: 'og:image', content: this.user.avatar});
-    this.meta.updateTag({name: 'og:image:secure_url', content: this.user.avatar});
-    this.meta.updateTag({name: 'og:title', content: titleText});
-    this.meta.updateTag({name: 'og:description', content: `${this.user.designation}`});
-    this.meta.updateTag({name: 'og:type', content: 'website'});
+    this.meta.updateTag({ name: 'og:image', content: this.user.avatar });
+    this.meta.updateTag({ name: 'og:image:secure_url', content: this.user.avatar });
+    this.meta.updateTag({ name: 'og:title', content: titleText });
+    this.meta.updateTag({ name: 'og:description', content: `${this.user.designation}` });
+    this.meta.updateTag({ name: 'og:type', content: 'website' });
 
-    this.meta.updateTag({name: 'twitter:image', content: this.user.avatar});
-    this.meta.updateTag({name: 'twitter:title', content: titleText});
-    this.meta.updateTag({name: 'twitter:description', content: `${this.user.designation}`});
+    this.meta.updateTag({ name: 'twitter:image', content: this.user.avatar });
+    this.meta.updateTag({ name: 'twitter:title', content: titleText });
+    this.meta.updateTag({ name: 'twitter:description', content: `${this.user.designation}` });
   }
 
 }

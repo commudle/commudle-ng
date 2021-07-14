@@ -19,7 +19,7 @@
           <div class="date">{{moment(message.created_at).format("MMM D [']YY")}}</div>
         </div>
       </div>
-      <div class="content">{{ message.content }}</div>
+      <div appHighlightLinks class="content">{{ message.content }}</div>
       <div class="details-flag">
         <div (click)="login() && permittedActions.includes(allActions.FLAG) && emitFlag(message.id)" class="clickable">
           <p [ngClass]="{'error-text': message.flags_count > 0}"
