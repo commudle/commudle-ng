@@ -1,15 +1,20 @@
-<div class="communities">
-  <div class="about">
-    <app-communities-about></app-communities-about>
-  </div>
-
-  <div class="d-flex">
-    <div class="left-column">
-      <app-communities-posts></app-communities-posts>
+<div class="communities-container d-flex">
+  <div class="communities">
+    <div class="about">
+      <app-communities-about></app-communities-about>
+      <app-communities-featured></app-communities-featured>
     </div>
 
-    <div class="center-column">
-      <app-communities-list></app-communities-list>
+    <div class="content d-flex">
+      <div class="left-column">
+        <app-communities-posts></app-communities-posts>
+      </div>
+
+      <div class="center-column">
+        <app-communities-list></app-communities-list>
+      </div>
     </div>
   </div>
+  <!-- TODO: Implement Ads Page -->
+  <div class="ads"></div>
 </div>
