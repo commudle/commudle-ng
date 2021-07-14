@@ -1,15 +1,14 @@
-<nb-card>
+<nb-card class="community-members">
   <nb-card-body>
-    <div class="total">
-      <h3 class="text-basic">
-        <nb-icon icon="people-outline" status="info"></nb-icon>
-        {{ community.member_count }}
-      </h3>
-    </div>
-    <div class="users">
+    <p class="header-text">Be one of us!</p>
+    <div class="users d-flex flex-wrap">
       <div *ngFor="let member of members" class="user">
-        <app-user-profile-card-large [maxDesignationLength]="28" [maxNameLength]="18" [maxUserNameLength]="25"
-                                     [user]="member"></app-user-profile-card-large>
+        <app-user-profile-card-large
+          [maxDesignationLength]="18"
+          [maxNameLength]="13"
+          [maxUserNameLength]="25"
+          [user]="member"
+        ></app-user-profile-card-large>
       </div>
     </div>
 

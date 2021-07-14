@@ -106,8 +106,13 @@
     }
   }
 
+  .router-outlet {
+    width: 100%;
+  }
+
   @media all and (max-width: $mobile-width) {
     margin: auto 0;
+
     .page-header {
       flex-direction: column;
       align-self: center;
@@ -194,13 +199,7 @@
   }
 
   @media screen and (min-width: $tab-width) {
-    //position: sticky;
-    //top: $space-56;
-    //box-shadow: none;
-
     nb-card {
-      //margin-bottom: $space-16;
-
       .menu-items {
         a {
           span {
