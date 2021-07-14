@@ -1,3 +1,4 @@
+@import '/projects/commudle-admin/src/assets/styles/text-styles';
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
 p {
@@ -5,46 +6,50 @@ p {
   color: $gunmetal;
 }
 
+a {
+  color: initial;
+  text-decoration: none;
+}
+
 .communities-about {
-  width: 100%;
   border: none;
 
   nb-card-body {
-    padding: $space-40 0 $space-24 $space-60;
+    padding: $space-40 0 $space-40 $space-64;
 
     .content {
-      .prefix {
+      .header {
+        font-weight: $fw-600;
+        font-size: $fs-40;
+        line-height: 47px;
+      }
+
+      .subheader {
         font-size: $fs-18;
         line-height: 21px;
       }
 
-      .body {
-        margin-top: $space-24;
+      .navigation {
+        margin-top: $space-72;
+        gap: $space-16;
 
-        .title {
-          font-size: $fs-h2;
-          line-height: 30px;
-
-          span {
-            font-weight: $fw-600;
-            color: $neon-blue;
-          }
-        }
-
-        .subtitle {
-          margin-top: $space-4;
+        button {
           font-size: $fs-h5;
           line-height: 16px;
+          font-weight: normal;
+          text-transform: capitalize;
+          padding: $space-8;
+          border: 1px solid $gunmetal;
         }
-      }
 
-      .suffix {
-        margin-top: $space-68;
-        font-size: $fs-h5;
-        line-height: 16px;
+        .create {
+          color: $white;
+          background-color: $gunmetal;
+        }
 
-        a {
-          color: $neon-blue;
+        .explore {
+          color: $gunmetal;
+          background-color: $white;
         }
       }
     }

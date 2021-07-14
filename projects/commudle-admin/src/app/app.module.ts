@@ -34,7 +34,7 @@ import {
   NbToastrModule,
   NbTooltipModule,
   NbUserModule,
-  NbWindowModule
+  NbWindowModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2CompleterModule } from 'ng2-completer';
@@ -55,6 +55,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { AppComponent } from './app.component';
 import { CommunitiesAboutComponent } from './components/communities/communities-about/communities-about.component';
+import { CommunitiesFeaturedComponent } from './components/communities/communities-featured/communities-featured.component';
 import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
 import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
 import { CommunitiesPromotionsComponent } from './components/communities/communities-promotions/communities-promotions.component';
@@ -88,7 +89,7 @@ import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skelet
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { AppInitService } from './services/app-init.service';
 
-export function initApp(appInitService: AppInitService) {
+export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
 }
 
@@ -102,6 +103,7 @@ export function initApp(appInitService: AppInitService) {
     CommunitiesListComponent,
     CommunitiesListCardComponent,
     CommunitiesPostsComponent,
+    CommunitiesFeaturedComponent,
     HomeComponent,
     FillDataFormComponent,
     LogoutComponent,
@@ -122,7 +124,7 @@ export function initApp(appInitService: AppInitService) {
     NavbarMenuComponent,
     HomeHeadBannerComponent,
     HomeExternalFeedLinksComponent,
-    SearchBarComponent
+    SearchBarComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -181,7 +183,7 @@ export function initApp(appInitService: AppInitService) {
     // Other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     AppInitService,
@@ -191,23 +193,23 @@ export function initApp(appInitService: AppInitService) {
     PrismJsHighlightCodeService,
     {
       provide: APP_INITIALIZER,
-      useFactory: initApp, deps: [AppInitService],
-      multi: true
+      useFactory: initApp,
+      deps: [AppInitService],
+      multi: true,
     },
     {
       // TODO move the interceptors to a common barrel file if needed
       // https://angular.io/guide/http#provide-the-interceptor
       provide: HTTP_INTERCEPTORS,
       useClass: AuthTokenInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiParserResponseInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

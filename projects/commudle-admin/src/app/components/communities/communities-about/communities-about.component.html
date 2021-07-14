@@ -1,22 +1,23 @@
 <nb-card class="communities-about">
   <nb-card-body class="d-flex justify-content-space-between">
     <div class="content">
-      <p class="prefix">
-        For you to build along with your developer friends & learn from our
-        <br>
+      <p class="header">Build Your Community or Join One!</p>
+      <p class="subheader">
+        For you to build along with your developer friends & learn from our <br />
         Experts
       </p>
-      <div class="body">
-        <p class="title">We bring you <span>Communities</span></p>
-        <p class="sub-title">Let’s grow together!</p>
+      <div class="navigation d-flex">
+        <a [routerLink]="['/fill-form', 465]" target="_blank">
+          <button class="create" nbButton size="small">
+            <nb-icon icon="plus"></nb-icon>
+            Create Community For Free
+          </button>
+        </a>
+        <button (click)="scrollToCommunitiesList()" class="explore" nbButton size="small">Explore</button>
       </div>
-      <p class="suffix">
-        Want to create your own community?
-        <a [routerLink]="['/fill-form', 465]" target="_blank">Click here</a>
-      </p>
     </div>
     <div class="image">
-      <img alt="Communities Home" src="/assets/images/Communities-Home.png" title="Communities Home">
+      <img alt="Communities Home" src="/assets/images/Communities-Home.png" title="Communities Home" />
     </div>
   </nb-card-body>
 </nb-card>

@@ -9,10 +9,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-communities-list',
   templateUrl: './communities-list.component.html',
-  styleUrls: ['./communities-list.component.scss']
+  styleUrls: ['./communities-list.component.scss'],
 })
 export class CommunitiesListComponent implements OnInit, OnDestroy {
-
   page = 1;
   count = 6;
   total = 0;
@@ -21,52 +20,43 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   // For search
-  searchTags: string[] = [
-    'Web Dev',
-    'Machine Learning',
-    'Design',
-    'Java',
-    'Analytics'
-  ];
+  searchTags: string[] = [];
   selectedTag = '';
   searchedCommunities: ICommunity[] = [];
   searchField: FormControl = new FormControl();
 
-  constructor(
-    private title: Title,
-    private meta: Meta,
-    private communitiesService: CommunitiesService
-  ) {
+  constructor(private title: Title, private meta: Meta, private communitiesService: CommunitiesService) {
+    // do nothing
   }
 
   ngOnInit(): void {
     this.setMeta();
     this.getCommunities();
+    this.getSearchTags();
 
     // Search bar
-    this.searchField.valueChanges.pipe(
-      debounceTime(800),
-      distinctUntilChanged(),
-    ).subscribe(value => this.getSearchResults(value));
+    this.searchField.valueChanges
+      .pipe(debounceTime(800), distinctUntilChanged())
+      .subscribe((value) => this.getSearchResults(value));
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(value => value.unsubscribe());
+    this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  setMeta() {
+  setMeta(): void {
     this.title.setTitle('All Communities');
     this.meta.updateTag({ name: 'description', content: 'Over 90 Communities and 20,000 Users are using Commudle.' });
 
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
     this.meta.updateTag({
       name: 'og:image:secure_url',
-      content: 'https://commudle.com/assets/images/commudle-logo192.png'
+      content: 'https://commudle.com/assets/images/commudle-logo192.png',
     });
     this.meta.updateTag({ name: 'og:title', content: 'All Communities' });
     this.meta.updateTag({
       name: 'og:description',
-      content: 'Over 90 Communities and 20,000 Users are using Commudle.'
+      content: 'Over 90 Communities and 20,000 Users are using Commudle.',
     });
     this.meta.updateTag({ name: 'og:type', content: 'website' });
 
@@ -74,43 +64,56 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'twitter:title', content: 'All Communities' });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: 'Over 90 Communities and 20,000 Users are using Commudle.'
+      content: 'Over 90 Communities and 20,000 Users are using Commudle.',
     });
   }
 
-  getCommunities() {
-    this.subscriptions.push(this.communitiesService.pGetCommunities(this.page, this.count, '').subscribe(value => {
-      this.communities = value.communities;
-      this.total = +value.total;
-      this.searchedCommunities = this.communities;
-    }));
+  getCommunities(): void {
+    this.subscriptions.push(
+      this.communitiesService.pGetCommunities(this.page, this.count, '').subscribe((value) => {
+        this.communities = value.communities;
+        this.total = +value.total;
+        this.searchedCommunities = this.communities;
+      }),
+    );
   }
 
-  changePage(value: number) {
+  getSearchTags(): void {
+    this.subscriptions.push(
+      this.communitiesService.getPopularTags().subscribe((value) => {
+        this.searchTags = value;
+      }),
+    );
+  }
+
+  changePage(value: number): void {
     this.page = (this.page + value) % Math.ceil(this.total / this.count);
     this.getCommunities();
   }
 
-  changeSelectedTag(query: string) {
+  changeSelectedTag(query: string): void {
     this.selectedTag = query === this.selectedTag ? '' : query;
     if (this.selectedTag !== '') {
-      this.subscriptions.push(this.communitiesService.searchByTag(this.selectedTag).subscribe(value => {
-        this.searchedCommunities = value;
-      }));
+      this.subscriptions.push(
+        this.communitiesService.searchByTag(this.selectedTag).subscribe((value) => {
+          this.searchedCommunities = value;
+        }),
+      );
     } else {
       this.searchedCommunities = this.communities;
     }
   }
 
-  getSearchResults(query: string) {
+  getSearchResults(query: string): void {
     if (query === '' || query.length < 3) {
       this.searchedCommunities = this.communities;
     } else {
-      this.subscriptions.push(this.communitiesService.searchByName(query).subscribe(value => {
-        this.searchedCommunities = value;
-      }));
+      this.subscriptions.push(
+        this.communitiesService.searchByName(query).subscribe((value) => {
+          this.searchedCommunities = value;
+        }),
+      );
     }
     this.selectedTag = '';
   }
-
 }
