@@ -1,42 +1,60 @@
-<div *ngIf="community" class="home-component">
-  <div class="page-header">
-    <div class="logo">
-      <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
+<div *ngIf="community" class="home-component d-flex flex-column align-items-center">
+  <div class="page-header d-flex flex-column">
+    <div class="logo d-flex align-items-center">
+      <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}" />
     </div>
     <div class="details">
-      <h1>{{ community.name }}</h1>
-      <div class="membership">
+      <h1>{{community.name}}</h1>
+      <div class="membership d-flex flex-column">
         <p class="member-count">
           <a [routerLink]="['members']">
             <nb-icon icon="people" status="basic"></nb-icon>
-            {{ community.member_count }} Members
+            {{community.member_count}} Members
           </a>
         </p>
-        <div class="membership-toggle">
-          <app-membership-toggle [community]="community"></app-membership-toggle>
-        </div>
-      </div>
+        <div class="social-links-container d-flex justify-content-space-between">
+          <div class="membership-toggle">
+            <app-membership-toggle [community]="community"></app-membership-toggle>
+          </div>
 
-      <div class="community-social-links">
-        <a *ngIf="community.facebook" href="{{ community.facebook | completeurl:'facebook' }}" rel="noreferrer"
-           target="_blank">
-          <nb-icon icon="facebook" status="info"></nb-icon>
-        </a>
-        <a *ngIf="community.linkedin" href="{{ community.linkedin | completeurl:'linkedin' }}" rel="noreferrer"
-           target="_blank">
-          <nb-icon icon="linkedin" status="info"></nb-icon>
-        </a>
-        <a *ngIf="community.twitter" href="{{ community.twitter | completeurl:'twitter' }}" rel="noreferrer"
-           target="_blank">
-          <nb-icon icon="twitter" status="info"></nb-icon>
-        </a>
-        <a *ngIf="community.github" href="{{ community.github | completeurl:'github' }}" rel="noreferrer"
-           target="_blank">
-          <nb-icon icon="github" status="info"></nb-icon>
-        </a>
-        <a *ngIf="community.website" href="{{ community.website | completeurl }}" rel="noreferrer" target="_blank">
-          <nb-icon icon="info" status="info"></nb-icon>
-        </a>
+          <div class="community-social-links d-flex align-items-center">
+            <a
+              *ngIf="community.facebook"
+              href="{{community.facebook | completeurl:'facebook'}}"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <nb-icon icon="facebook" status="info"></nb-icon>
+            </a>
+            <a
+              *ngIf="community.linkedin"
+              href="{{community.linkedin | completeurl:'linkedin'}}"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <nb-icon icon="linkedin" status="info"></nb-icon>
+            </a>
+            <a
+              *ngIf="community.twitter"
+              href="{{community.twitter | completeurl:'twitter'}}"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <nb-icon icon="twitter" status="info"></nb-icon>
+            </a>
+            <a
+              *ngIf="community.github"
+              href="{{community.github | completeurl:'github'}}"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <nb-icon icon="github" status="info"></nb-icon>
+            </a>
+            <a *ngIf="community.website" href="{{community.website | completeurl}}" rel="noreferrer" target="_blank">
+              <nb-icon icon="globe" status="info"></nb-icon>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -44,30 +62,35 @@
   <div class="page-menu">
     <nb-card>
       <nb-card-body>
-        <div class="menu-items">
-          <a [routerLink]="['/communities', community.slug]">
+        <div class="menu-items d-flex">
+          <a
+            [routerLinkActiveOptions]="{ exact: true }"
+            [routerLink]="['/communities', community.slug]"
+            class="d-flex"
+            routerLinkActive="active"
+          >
             <nb-icon icon="info" status="basic"></nb-icon>
-            <span>About</span>
+            <span class="title">About</span>
           </a>
-          <a [routerLink]="['events']" routerLinkActive="active">
+          <a [routerLink]="['events']" class="d-flex" routerLinkActive="active">
             <nb-icon icon="calendar" status="info"></nb-icon>
-            <span>Events</span>
+            <span class="title">Events</span>
           </a>
           <!-- <a [routerLink]="['resources']" routerLinkActive="active">
             <nb-icon icon="award" status="info"></nb-icon>
             <span>Sessions by Experts</span>
           </a> -->
-          <a [routerLink]="['speakers']" routerLinkActive="active">
+          <a [routerLink]="['speakers']" class="d-flex" routerLinkActive="active">
             <nb-icon icon="mic" status="success"></nb-icon>
-            <span>Speakers</span>
+            <span class="title">Speakers</span>
           </a>
-          <a [routerLink]="['members']" routerLinkActive="active">
+          <a [routerLink]="['members']" class="d-flex" routerLinkActive="active">
             <nb-icon icon="people" status="success"></nb-icon>
-            <span>Members</span>
+            <span class="title">Members</span>
           </a>
-          <a [routerLink]="['/communities', this.community.slug, 'channels']" routerLinkActive="active">
+          <a [routerLink]="['/communities', this.community.slug, 'channels']" class="d-flex" routerLinkActive="active">
             <nb-icon icon="hash" status="success"></nb-icon>
-            <span>Channels</span>
+            <span class="title">Channels</span>
           </a>
         </div>
       </nb-card-body>
