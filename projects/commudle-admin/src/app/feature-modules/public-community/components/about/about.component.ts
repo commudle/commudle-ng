@@ -1,30 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ICommunity } from 'projects/shared-models/community.model';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
+import { ICommunity } from 'projects/shared-models/community.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUser } from 'projects/shared-models/user.model';
-import { ActivatedRoute } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+
   community: ICommunity;
-
   EUserRoles = EUserRoles;
-
   organizers: IUser[] = [];
-  eventOrganizers: IUser[] = [];
-
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private meta: Meta,
     private title: Title
-  ) { }
+  ) {
+  }
 
   setMeta() {
     this.title.setTitle(`${this.community.name}`);
@@ -36,26 +35,16 @@ export class AboutComponent implements OnInit {
     this.activatedRoute.data.subscribe(data => {
       this.community = data.community;
       this.setMeta();
+      this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
     });
-
-    this.getOrganizers(EUserRoles.ORGANIZER);
-    this.getEventOrganizers(EUserRoles.EVENT_VOLUNTEER);
   }
 
-  getOrganizers(roleName) {
-    this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, roleName).subscribe(
-      data => {
-        this.organizers = data.users;
-      }
-    );
-  }
-
-  getEventOrganizers(roleName) {
-    this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, roleName).subscribe(
-      data => {
-        this.eventOrganizers = data.users;
-      }
-    );
+  getOrganizers(roles: EUserRoles[]) {
+    roles.forEach(role => {
+      this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, role).subscribe(data => {
+        this.organizers = this.organizers.concat(data.users);
+      });
+    });
   }
 
 }

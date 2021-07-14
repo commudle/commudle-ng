@@ -32,13 +32,16 @@
       .membership {
         .member-count {
           margin: 0 0 $space-78 0;
+
           a {
             text-decoration: none;
             color: $gunmetal;
           }
         }
+
         .social-links-container {
           width: 680px;
+
           .membership-toggle {
             ::ng-deep {
               button {
@@ -49,17 +52,20 @@
                 color: $white;
                 text-transform: none;
               }
+
               nb-select {
                 button {
                   padding: $space-4;
-                  background-color:initial;
+                  background-color: initial;
                   color: initial;
                 }
               }
             }
           }
+
           .community-social-links {
             gap: $space-24;
+
             nb-icon {
               color: $neon-blue;
             }
@@ -73,17 +79,20 @@
     }
 
     @media screen and (max-width: $tab-width) {
-      align-self: flex-start; 
+      align-self: flex-start;
       .details {
         .membership {
           flex-direction: column;
+
           .social-links-container {
             width: fit-content;
             gap: $space-24;
             flex-direction: column;
             justify-content: space-between;
+
             .community-social-links {
               justify-content: space-between;
+
               a {
                 nb-icon {
                   font-size: $fs-24;
@@ -95,22 +104,28 @@
       }
     }
   }
+
   @media all and (max-width: $mobile-width) {
     margin: auto 0;
     .page-header {
       flex-direction: column;
       align-self: center;
+
       .logo {
         margin: 0 auto;
       }
+
       .details {
         text-align: center;
+
         .membership {
           align-items: center;
+
           .social-links-container {
             width: fit-content;
             gap: $space-24;
             flex-direction: column;
+
             .community-social-links {
               justify-content: space-between;
             }
@@ -122,20 +137,19 @@
 }
 
 .page-menu {
-  //position: fixed;
-  //background-color: white;
   width: 100%;
-  //bottom: 0;
-  //left: 0;
-  z-index: 10;
-  //box-shadow: 2px -5px 15px -7px lightgrey;
 
   nb-card {
     border: none;
     margin: 0;
-    padding: 0;
+
     nb-card-body {
       padding: $space-20 $space-20 0 $space-20;
+
+      @media all and (max-width: $tab-width) {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 
@@ -144,31 +158,23 @@
       height: fit-content;
       margin: 0;
       padding: 0 $space-24 $space-17 $space-24;
-      nb-icon {
-        color: rgba(47, 46, 65, 0.5);
-      }
-      .title {
-        margin-left: $space-8;
-        align-self: center;
-      }
-
       font-size: $fs-14;
       line-height: 16px;
       cursor: pointer;
       text-decoration: none;
       color: $gunmetal;
-      // display: flex;
-      // flex-direction: column;
-      // align-items: center;
 
-      //nb-icon {
-      // color: grey !important;
-      //}
+      nb-icon {
+        color: rgba(47, 46, 65, 0.5);
+      }
+
+      .title {
+        margin-left: $space-8;
+        align-self: center;
+      }
 
       span {
         display: none;
-        // font-size: 10px;
-        // text-align: center;
       }
     }
 
@@ -178,9 +184,8 @@
 
     .active {
       border-bottom: 3px solid $blue-jeans;
-      nb-icon {
-        color: $blue-jeans;
-      }
+
+      nb-icon,
       .title {
         color: $blue-jeans;
       }
@@ -191,6 +196,7 @@
     position: sticky;
     top: $space-56;
     box-shadow: none;
+
     nb-card {
       margin-bottom: $space-16;
 
