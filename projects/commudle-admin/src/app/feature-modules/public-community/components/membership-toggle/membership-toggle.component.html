@@ -1,23 +1,17 @@
-<button
-  nbButton
-  *ngIf="!isMember"
-  size="small"
-  (click)="openDialog(addMemberDialog)"
->
-<nb-icon icon="plus"></nb-icon>
-Join Community
+<button (click)="openDialog(addMemberDialog)" *ngIf="!isMember" nbButton size="small">
+  <nb-icon icon="plus"></nb-icon>
+  Join Community
 </button>
 
 <nb-select
+  (selectedChange)="openDialog(removeMemberDialog)"
   *ngIf="isMember"
   [(ngModel)]="selectExit"
+  placeholder="You're a Member!"
   size="small"
   status="success"
-  placeholder="You're a Member!"
-  (selectedChange)="openDialog(removeMemberDialog)"
 >
-  <nb-option value="false">Exit {{community.name}}</nb-option>
-
+  <nb-option [value]="'false'">Exit {{community.name}}</nb-option>
 </nb-select>
 
 <ng-template #addMemberDialog let-data>
@@ -25,69 +19,42 @@ Join Community
     <nb-card-header>Confirmation</nb-card-header>
     <nb-card-body>
       <div>
+        <p>We are excited to have you join our Community!</p>
         <p>
-          We are excited to have you join our Community!
+          As a part of <strong>{{community.name}}</strong>, the following information will be shared between you and the
+          organizers:
         </p>
-        <p>As a part of <strong>{{community.name}}</strong>, the following information will be shared between you and the organizers:</p>
         <ul>
+          <li>Your email address</li>
           <li>
-            Your email address
+            {{community.name}} and platform admins are permitted to send you communication mails for different events,
+            surveys, newsletters and community initiatives
           </li>
           <li>
-            {{community.name}} and platform admins are permitted to send you communication mails for different events, surveys, newsletters and community initiatives
-          </li>
-          <li>
-            Organizers of {{community.name}} have the right to permit or revoke your membership of the community at any point of time
+            Organizers of {{community.name}} have the right to permit or revoke your membership of the community at any
+            point of time
           </li>
         </ul>
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button
-        nbButton
-        status="success"
-        (click)="toggleMembership()">
-          I agree
-      </button>
-      <button
-        nbButton
-        ghost
-        status="danger"
-        size="tiny"
-        (click)="dialogRef.close()">
-          Cancel
-      </button>
+      <button (click)="toggleMembership()" nbButton status="success">I agree</button>
+      <button (click)="dialogRef.close()" ghost nbButton size="tiny" status="danger">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
 
-
-
-<ng-template #removeMemberDialog let-data>
+<ng-template #removeMemberDialog>
   <nb-card class="confirmation-dialog">
     <nb-card-header>Confirmation</nb-card-header>
     <nb-card-body>
       <div>
-        <p>
-          Are you sure you want to leave {{community.name}}?
-        </p>
+        <p>Are you sure you want to leave {{community.name}}?</p>
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button
-        nbButton
-        ghost
-        status="link"
-        (click)="toggleMembership()">
-          Yes, I will leave
-      </button>
-      <button
-        nbButton
-        ghost
-        status="link"
-        (click)="dialogRef.close()">
-          No, I'm staying
-      </button>
+      <button (click)="toggleMembership()" ghost nbButton status="link">Yes, I will leave</button>
+      <button (click)="dialogRef.close()" ghost nbButton status="link">No, I'm staying</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
