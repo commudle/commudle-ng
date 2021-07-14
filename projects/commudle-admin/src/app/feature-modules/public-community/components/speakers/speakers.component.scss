@@ -1,0 +1,12 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.speakers-container {
+  nb-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: none;
+    margin: $space-32 0 $space-16;
+    padding: $space-56 $space-20;
+  }
+}

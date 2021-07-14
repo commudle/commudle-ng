@@ -7,7 +7,7 @@ $top-nav-height: 56px;
 $max-newsletter-width: 700px;
 $min-page-height: 100vh;
 
-$primary-font-family: "Work Sans";
+$primary-font-family: 'Work Sans';
 
 // Font sizes
 $fs-h7: 10px;
@@ -17,7 +17,6 @@ $fs-h4: 16px;
 $fs-h3: 21px;
 $fs-h2: 26px;
 $fs-h1: 28px;
-
 
 $fs-12: 12px;
 $fs-13: 13px;
@@ -47,7 +46,9 @@ $space-2: 2px;
 $space-4: 4px;
 $space-5: 5px;
 $space-6: 6px;
+$space-7: 7px;
 $space-8: 8px;
+$space-9: 9px;
 $space-10: 10px;
 $space-12: 12px;
 $space-15: 15px;
@@ -83,6 +84,7 @@ $space-220: 220px;
 
 // Border Radius
 $border-1: 1px;
+$border-3: 3px;
 $border-4: 4px;
 $border-5: 5px;
 $border-8: 8px;
@@ -180,7 +182,6 @@ $gradient-radial: radial-gradient($neon-blue, $blue-jeans, $cyber-yellow, $white
 $card-faded-text: rgba(47, 46, 65, 0.5);
 $low-emphasis-text: rgba(0, 0, 0, 0.6);
 $card-text-grey: #898989;
-
 
 // column widths
 $large-column-width: 712px;

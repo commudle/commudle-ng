@@ -80,6 +80,7 @@
 
     @media screen and (max-width: $tab-width) {
       align-self: flex-start;
+
       .details {
         .membership {
           flex-direction: column;
@@ -193,12 +194,12 @@
   }
 
   @media screen and (min-width: $tab-width) {
-    position: sticky;
-    top: $space-56;
-    box-shadow: none;
+    //position: sticky;
+    //top: $space-56;
+    //box-shadow: none;
 
     nb-card {
-      margin-bottom: $space-16;
+      //margin-bottom: $space-16;
 
       .menu-items {
         a {
