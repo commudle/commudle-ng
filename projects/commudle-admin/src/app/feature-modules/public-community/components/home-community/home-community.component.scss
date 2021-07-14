@@ -5,14 +5,14 @@
   margin: 0 auto;
 
   .page-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 1rem;
+    margin: $space-32 0 $space-64 0;
+    flex-direction: row;
+    justify-content: flex-start;
 
     .logo {
-      width: 200px;
+      margin-right: $space-88;
+      width: 208px;
+      height: 208px;
       overflow: hidden;
 
       img {
@@ -22,64 +22,112 @@
 
     .details {
       h1 {
-        margin-top: 0;
+        font-weight: $fw-600;
+        margin: $space-28 0 $space-8 0;
+        line-height: 38px;
+        font-size: $fs-32;
+        color: $gunmetal;
       }
 
       .membership {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-
         .member-count {
+          margin: 0 0 $space-78 0;
+
           a {
             text-decoration: none;
-            color: black;
+            color: $gunmetal;
           }
         }
 
-        .membership-toggle {
-          margin: 0 0.8rem;
-        }
-      }
+        .social-links-container {
+          width: 680px;
 
-      .community-social-links {
-        display: flex;
-        justify-content: space-evenly;
-        margin-top: $space-20;
+          .membership-toggle {
+            ::ng-deep {
+              button {
+                padding: $space-8;
+                font-weight: $fw-400;
+                font-size: $fs-14;
+                background-color: $neon-blue;
+                color: $white;
+                text-transform: none;
+              }
 
-        a {
-          text-decoration: none;
-          margin: 0 0.5rem;
-        }
+              nb-select {
+                button {
+                  padding: $space-4;
+                  background-color: initial;
+                  color: initial;
+                }
+              }
+            }
+          }
 
-        a:nth-of-type(1) {
-          margin-left: 0;
+          .community-social-links {
+            gap: $space-24;
+
+            nb-icon {
+              color: $neon-blue;
+            }
+
+            a {
+              text-decoration: none;
+            }
+          }
         }
       }
     }
 
-    @media screen and (min-width: 800px) {
-      flex-direction: row;
-      justify-content: flex-start;
-      text-align: left;
+    @media screen and (max-width: $tab-width) {
+      align-self: flex-start;
+      .details {
+        .membership {
+          flex-direction: column;
+
+          .social-links-container {
+            width: fit-content;
+            gap: $space-24;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .community-social-links {
+              justify-content: space-between;
+
+              a {
+                nb-icon {
+                  font-size: $fs-24;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    margin: auto 0;
+    .page-header {
+      flex-direction: column;
+      align-self: center;
 
       .logo {
-        margin-right: 1.5rem;
+        margin: 0 auto;
       }
 
       .details {
+        text-align: center;
+
         .membership {
-          flex-direction: row;
-        }
+          align-items: center;
 
-        .community-social-links {
-          justify-content: flex-start;
-          margin-top: $space-10;
+          .social-links-container {
+            width: fit-content;
+            gap: $space-24;
+            flex-direction: column;
 
-
-          a {
-            nb-icon {
-              font-size: 1.5rem;
+            .community-social-links {
+              justify-content: space-between;
             }
           }
         }
@@ -89,68 +137,71 @@
 }
 
 .page-menu {
-  //position: fixed;
-  //background-color: white;
-  //width: 100%;
-  //bottom: 0;
-  //left: 0;
-  z-index: 10;
-  //box-shadow: 2px -5px 15px -7px lightgrey;
+  width: 100%;
 
   nb-card {
+    border: none;
     margin: 0;
+
+    nb-card-body {
+      padding: $space-20 $space-20 0 $space-20;
+
+      @media all and (max-width: $tab-width) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
   }
 
   .menu-items {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    justify-content: space-evenly;
-
-
     a {
+      height: fit-content;
+      margin: 0;
+      padding: 0 $space-24 $space-17 $space-24;
+      font-size: $fs-14;
+      line-height: 16px;
       cursor: pointer;
-      margin: 0 0.5rem;
       text-decoration: none;
-      color: black;
-      // display: flex;
-      // flex-direction: column;
-      // align-items: center;
+      color: $gunmetal;
 
-      //nb-icon {
-      // color: grey !important;
-      //}
+      nb-icon {
+        color: rgba(47, 46, 65, 0.5);
+      }
+
+      .title {
+        margin-left: $space-8;
+        align-self: center;
+      }
 
       span {
         display: none;
-        // font-size: 10px;
-        // text-align: center;
       }
     }
 
     nb-icon {
-      font-size: 1.5rem;
+      font-size: $fs-24;
     }
 
     .active {
-      border-bottom: 3px solid #232b45;
+      border-bottom: 3px solid $blue-jeans;
+
+      nb-icon,
+      .title {
+        color: $blue-jeans;
+      }
     }
   }
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: $tab-width) {
     position: sticky;
-    top: 3.5rem;
+    top: $space-56;
     box-shadow: none;
+
     nb-card {
-      margin-bottom: 1rem;
+      margin-bottom: $space-16;
 
       .menu-items {
-        justify-content: flex-start;
-
         a {
-          margin-right: 1.5rem;
-
           span {
             display: inline;
           }
