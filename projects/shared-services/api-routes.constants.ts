@@ -274,6 +274,17 @@ export const API_ROUTES = {
     },
   },
 
+  PAGE_ADS: {
+    INDEX: 'api/v2/page_ads',
+    SHOW: 'api/v2/page_ads/show',
+    CREATE: 'api/v2/page_ads',
+    UPDATE: 'api/v2/page_ads',
+    DELETE: 'api/v2/page_ads',
+    PUBLIC: {
+      SHOW: 'api/v2/page_ads/public/show'
+    }
+  },
+
   POLLS: {
     PUBLIC: {
       SHOW: 'api/v2/polls/public',
@@ -328,7 +339,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_updates',
     CREATE: 'api/v2/event_updates',
     DELETE: 'api/v2/event_updates',
-    PUBLIC_INDEX: 'api/v2/event_updates/public_index',
+    PUBLIC_INDEX: 'api/v2/event_updates/public_index'
   },
 
   POSTS: {
