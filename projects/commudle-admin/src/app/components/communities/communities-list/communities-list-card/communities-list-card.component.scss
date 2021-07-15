@@ -1,5 +1,10 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .community-list-card {
   position: relative;
   width: 248px;
@@ -97,17 +102,23 @@
     }
 
     .join-community {
-      button {
-        padding: $space-8;
-        height: 32px;
-        background: $white;
-        border: 1px solid $silver-sand;
-        border-radius: $border-4;
-        font-weight: normal;
-        font-size: $fs-h5;
-        line-height: 16px;
-        color: $neon-blue;
-        text-transform: capitalize;
+      app-membership-toggle {
+        &::ng-deep {
+          button {
+            padding: $space-8;
+            height: 32px;
+            width: 152px;
+            min-width: 152px;
+            background: $white;
+            border: 1px solid $silver-sand;
+            border-radius: $border-4;
+            font-weight: normal;
+            font-size: $fs-h5;
+            line-height: 16px;
+            color: $neon-blue;
+            text-transform: capitalize;
+          }
+        }
       }
     }
   }
