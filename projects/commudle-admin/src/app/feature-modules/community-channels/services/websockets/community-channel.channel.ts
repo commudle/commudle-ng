@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import * as actionCable from 'actioncable';
 import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
@@ -19,7 +19,9 @@ export class CommunityChannelChannel {
     FLAG: 'flag',
     DELETE: 'delete',
     TOGGLE_BLOCK: 'toggle_block',
-    ERROR: 'error'
+    ERROR: 'error',
+    CHANGE_PERMISSION: 'change_permission',
+    READ_MESSAGE: 'read_message',
   };
 
   actionCable = actionCable;
