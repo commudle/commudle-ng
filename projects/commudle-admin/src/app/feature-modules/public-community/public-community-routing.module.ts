@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
+import { CommunityDetailsResolver } from 'projects/commudle-admin/src/app/resolvers/community-details.resolver';
 import { AboutComponent } from './components/about/about.component';
 import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
-import { EventResourcesComponent } from './components/event-resources/event-resources.component';
 import { EventsComponent } from './components/events/events.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { MembersComponent } from './components/members/members.component';
@@ -25,10 +24,10 @@ const routes = [
         path: 'events',
         component: EventsComponent,
       },
-      {
-        path: 'resources',
-        component: EventResourcesComponent,
-      },
+      // {
+      //   path: 'resources',
+      //   component: EventResourcesComponent,
+      // },
       {
         path: 'members',
         component: MembersComponent,

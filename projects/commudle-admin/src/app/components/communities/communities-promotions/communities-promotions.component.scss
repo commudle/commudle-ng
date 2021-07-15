@@ -1,0 +1,10 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.communities-promotions {
+  border: none;
+  border-radius: $border-10;
+
+  nb-card-body {
+    padding: $space-16;
+  }
+}

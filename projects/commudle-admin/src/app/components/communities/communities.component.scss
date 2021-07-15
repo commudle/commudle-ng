@@ -1,0 +1,50 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.communities-container {
+  width: max-content;
+  margin: 0 auto;
+
+  .communities {
+    .about {
+      width: 1136px;
+    }
+
+    .content {
+      .left-column {
+        width: 280px;
+      }
+
+      .center-column {
+        width: 856px;
+      }
+    }
+  }
+
+  .ads {
+    width: 162px;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-container {
+    flex-direction: column;
+
+    .communities {
+      .about {
+        width: 100vw;
+      }
+
+      .content {
+        flex-direction: column;
+
+        .left-column {
+          width: 100vw;
+        }
+
+        .center-column {
+          width: 100vw;
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@
           </label>
         </div>
       </div>
+
       <div role="group">
         <div>
           <label>
@@ -31,6 +32,15 @@
           <label>
             Email*
             <input formControlName="contact_email" fullWidth nbInput type="text">
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label>
+            Location*
+            <input formControlName="location" fullWidth nbInput type="text">
           </label>
         </div>
       </div>
@@ -109,6 +119,16 @@
           <label>
             Linkedin
             <input formControlName="linkedin" fullWidth nbInput type="text">
+          </label>
+        </div>
+      </div>
+
+      <div role="group">
+        <div>
+          <label fullWidth>
+            Tags
+            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"
+                     [tags]="tags"></app-tag>
           </label>
         </div>
       </div>
