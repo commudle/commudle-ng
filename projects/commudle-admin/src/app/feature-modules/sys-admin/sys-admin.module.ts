@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbAutocompleteModule,
   NbButtonModule,
@@ -11,11 +11,15 @@ import {
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
+  NbTagModule,
   NbToggleModule,
   NbWindowModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { AdminFeaturedCommunitiesComponent } from './components/admin-featured-communities/admin-featured-communities.component';
+import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
+import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
+import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
 import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
@@ -31,12 +35,16 @@ import { SysAdminComponent } from './sys-admin.component';
     LabsComponent,
     CommunityControlsComponent,
     AdminFeaturedCommunitiesComponent,
+    AdminPageAdsComponent,
+    AdminPageAdsListComponent,
+    AdminPageAdsFormComponent,
   ],
   imports: [
     CommonModule,
     SysAdminRoutingModule,
     SharedComponentsModule,
-    NbSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     // Nebular
     NbCardModule,
@@ -49,7 +57,9 @@ import { SysAdminComponent } from './sys-admin.component';
     NbToggleModule,
     NbInputModule,
     NbAutocompleteModule,
-    FormsModule,
+    NbSpinnerModule,
+    NbInputModule,
+    NbTagModule,
   ],
 })
 export class SysAdminModule {}
