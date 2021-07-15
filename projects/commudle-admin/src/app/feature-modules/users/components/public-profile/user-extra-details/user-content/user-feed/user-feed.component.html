@@ -1,8 +1,8 @@
-<div class="user-feed">
-  <div *ngIf="currentUser && currentUser.id === user.id" class="user-feed-input-container">
+<div *ngIf="user?.is_expert" class="user-feed">
+  <div *ngIf="currentUser?.id === user?.id" class="user-feed-input-container">
     <app-user-feed-input (createPost)="getPosts()"></app-user-feed-input>
   </div>
-  <div class="user-feed-posts-container">
+  <div *ngIf="posts?.length > 0" class="user-feed-posts-container">
     <app-user-feed-posts (deletePost)="deletePost($event)" [currentUser]="currentUser" [posts]="posts"
                          [user]="user"></app-user-feed-posts>
   </div>
