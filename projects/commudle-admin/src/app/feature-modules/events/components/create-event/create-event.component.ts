@@ -36,6 +36,7 @@ export class CreateEventComponent implements OnInit {
 
   startTime;
   endTime;
+  hasDate
 
   eventForm = this.fb.group({
     event: this.fb.group({
@@ -68,6 +69,23 @@ export class CreateEventComponent implements OnInit {
       this.community = data.community;
       this.titleService.setTitle(`New Event | ${this.community.name}`);
     });
+
+    let form = this.eventForm.get('event');
+
+    form.get('start_date').valueChanges.subscribe((data)=>{ 
+      form.get('start_date').clearValidators();
+      if(form.get('start_date').value) {
+        form.get('start_time_pick').setValidators([Validators.required]);
+        form.get('end_time_pick').setValidators([Validators.required]);
+        this.hasDate=true;
+      }else {
+        form.get('start_time_pick').clearValidators();
+        form.get('end_time_pick').clearValidators();
+        this.hasDate=false;
+      }
+      form.get('start_time_pick').updateValueAndValidity();
+      form.get('end_time_pick').updateValueAndValidity();
+    })
   }
 
 
@@ -102,6 +120,8 @@ export class CreateEventComponent implements OnInit {
   setStartDateTime() {
     this.startDate = this.eventForm.get('event').get('start_date').value;
     let startTimePick = this.eventForm.get('event').get('start_time_pick').value;
+    this.startHour = Number.parseInt(startTimePick.split(":")[0]);
+    this.startMinute = Number.parseInt(startTimePick.split(":")[1]);
 
     if (
       this.startDate !== ""
@@ -113,8 +133,8 @@ export class CreateEventComponent implements OnInit {
           years: this.startDate.getFullYear(),
           months: this.startDate.getMonth(),
           date: this.startDate.getDate(),
-          hours: startTimePick.getHours(),
-          minutes: startTimePick.getMinutes()
+          hours: this.startHour,
+          minutes: this.startMinute
         }).toDate();
         return true;
     }
@@ -126,6 +146,8 @@ export class CreateEventComponent implements OnInit {
 
     this.endDate = this.eventForm.get('event').get('start_date').value;
     let endTimePick = this.eventForm.get('event').get('end_time_pick').value;
+    this.endHour = Number.parseInt(endTimePick.split(":")[0]);
+    this.endMinute = Number.parseInt(endTimePick.split(":")[1]);
     if (
       this.endDate !== ""
       && this.endHour !== ""
@@ -135,8 +157,8 @@ export class CreateEventComponent implements OnInit {
           years: this.endDate.getFullYear(),
           months: this.endDate.getMonth(),
           date: this.endDate.getDate(),
-          hours: endTimePick.getHours(),
-          minutes: endTimePick.getMinutes()
+          hours: this.endHour,
+          minutes: this.endMinute
         }).toDate();
         (this.endTime);
         return true;

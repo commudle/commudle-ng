@@ -37,6 +37,7 @@ import { SearchBarComponent } from './components/labs/search-bar/search-bar.comp
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
 import { LabsRoutingModule } from './labs-routing.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module'
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { LabsRoutingModule } from './labs-routing.module';
     NbDialogModule.forChild(),
     NbUserModule,
     NbSidebarModule.forRoot(),
-    NbContextMenuModule
+    NbContextMenuModule,
+    SharedDirectivesModule
   ],
   exports: [
     LabDisplayCardComponent,

@@ -1,0 +1,104 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+@import '/projects/commudle-admin/src/assets/styles/text-styles';
+
+p {
+  margin: 0;
+  color: $gunmetal;
+}
+
+.communities-featured {
+  position: relative;
+  border: none;
+  margin-bottom: $space-32;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 366px;
+    height: 100%;
+    background: linear-gradient(59.68deg, #dae0ff 6.11%, rgba(241, 243, 255, 0.05) 71.61%);
+    animation: shimmer 8s linear infinite;
+    transform: skew(45deg);
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: calc(-366px * 1.707);
+    }
+    100% {
+      left: calc(100% + 336px * 0.707);
+    }
+  }
+
+  nb-card-body {
+    padding: $space-32 $space-20 $space-24;
+
+    .heading {
+      @include card-header-text;
+      margin: 0 0 $space-44 $space-8;
+    }
+
+    .featured-communities-list {
+      gap: $space-16;
+
+      .featured-community-card {
+        position: relative;
+        width: 257px;
+        border: 1px solid $silver-sand;
+        border-radius: $border-8;
+        overflow: hidden;
+        background-color: $white;
+        flex: 0 0 auto;
+
+        .actions {
+          position: absolute;
+          top: $space-12;
+          right: $space-12;
+          gap: $space-8;
+
+          button {
+            background-color: $azureish-white;
+
+            nb-icon {
+              color: $neon-blue;
+            }
+          }
+        }
+
+        .image {
+          height: 156px;
+          width: 100%;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .content {
+          padding: $space-16;
+
+          .name {
+            @include card-title-text;
+          }
+
+          .reason {
+            @include card-content-text;
+            margin-top: $space-8;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-featured {
+    nb-card-body {
+      .featured-communities-list {
+        overflow-x: scroll;
+      }
+    }
+  }
+}

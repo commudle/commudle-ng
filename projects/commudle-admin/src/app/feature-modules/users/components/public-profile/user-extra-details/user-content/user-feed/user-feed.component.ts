@@ -1,47 +1,71 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {IUser} from 'projects/shared-models/user.model';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {IPost} from 'projects/shared-models/post.model';
-import {NbToastrService} from '@nebular/theme';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IPost } from 'projects/shared-models/post.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-feed',
   templateUrl: './user-feed.component.html',
   styleUrls: ['./user-feed.component.scss']
 })
-export class UserFeedComponent implements OnInit, OnChanges {
+export class UserFeedComponent implements OnInit, OnDestroy {
 
-  @Input() user: IUser;
-  @Input() currentUser: ICurrentUser;
+  user: IUser;
+  currentUser: ICurrentUser;
 
   posts: IPost[];
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private appUsersService: AppUsersService,
-    private nbToastrService: NbToastrService
+    private nbToastrService: NbToastrService,
+    private activatedRoute: ActivatedRoute,
+    private authWatchService: LibAuthwatchService
   ) {
   }
 
   ngOnInit(): void {
+    // Get user's data
+    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => {
+      this.getUserData(data.username);
+    }));
+
+    // Get logged in user
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => {
+      this.currentUser = data;
+    }));
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.user) {
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(value => value.unsubscribe());
+  }
+
+  // Get user's data
+  getUserData(username: string) {
+    this.subscriptions.push(this.appUsersService.getProfile(username).subscribe(data => {
+      this.user = data;
       this.getPosts();
-    }
+    }));
   }
 
   getPosts() {
     // Get the user's posts
-    this.appUsersService.posts(this.user.username).subscribe(value => this.posts = value.posts);
+    this.subscriptions.push(this.appUsersService.posts(this.user.username).subscribe(value => {
+      this.posts = value.posts;
+    }));
   }
 
   deletePost(postId: number) {
-    this.appUsersService.deletePost(postId).subscribe(value => {
+    this.subscriptions.push(this.appUsersService.deletePost(postId).subscribe(value => {
       this.nbToastrService.success('Post has been deleted successfully!', 'Success');
       this.getPosts();
-    })
+    }));
   }
 
 }

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  NbAutocompleteModule,
   NbButtonModule,
   NbCardModule,
   NbIconModule,
@@ -11,9 +12,10 @@ import {
   NbSpinnerModule,
   NbTabsetModule,
   NbToggleModule,
-  NbWindowModule
+  NbWindowModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { AdminFeaturedCommunitiesComponent } from './components/admin-featured-communities/admin-featured-communities.component';
 import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
 import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
 import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
@@ -24,7 +26,6 @@ import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminRoutingModule } from './sys-admin-routing.module';
 import { SysAdminComponent } from './sys-admin.component';
 
-
 @NgModule({
   declarations: [
     SysAdminComponent,
@@ -32,6 +33,7 @@ import { SysAdminComponent } from './sys-admin.component';
     CommunityBuildsComponent,
     LabsComponent,
     CommunityControlsComponent,
+    AdminFeaturedCommunitiesComponent,
     AdminPageAdsComponent,
     AdminPageAdsListComponent,
     AdminPageAdsFormComponent,
@@ -40,6 +42,7 @@ import { SysAdminComponent } from './sys-admin.component';
     CommonModule,
     SysAdminRoutingModule,
     SharedComponentsModule,
+    FormsModule,
     ReactiveFormsModule,
 
     // Nebular
@@ -51,9 +54,9 @@ import { SysAdminComponent } from './sys-admin.component';
     NbSelectModule,
     NbTabsetModule,
     NbToggleModule,
+    NbInputModule,
+    NbAutocompleteModule,
     NbSpinnerModule,
-    NbInputModule
-  ]
+  ],
 })
-export class SysAdminModule {
-}
+export class SysAdminModule {}

@@ -7,7 +7,7 @@ export const API_ROUTES = {
   ADMIN_SURVEYS: {
     INDEX: 'api/v2/admin_surveys',
     TOGGLE_MULTI_RESPONSE: 'api/v2/admin_surveys/toggle_multi_response',
-    UPDATE_STATUS: 'api/v2/admin_surveys/update_status'
+    UPDATE_STATUS: 'api/v2/admin_surveys/update_status',
   },
 
   // communities
@@ -17,9 +17,11 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
+    SEARCH_BY_TAG: 'api/v2/communities/search_by_tag',
     SPEAKERS: 'api/v2/communities/speakers',
+    POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
-    PUBLIC_DETAILS: 'api/v2/communities/public_show'
+    PUBLIC_DETAILS: 'api/v2/communities/public_show',
   },
 
   // community_builds
@@ -38,7 +40,7 @@ export const API_ROUTES = {
       INDEX: 'api/v2/community_builds/public',
       SHOW: 'api/v2/community_builds/public/show',
       TOGGLE_VOTE: 'api/v2/community_builds/public/toggle_vote',
-    }
+    },
   },
 
   // Feeds
@@ -47,27 +49,30 @@ export const API_ROUTES = {
     SHOW: 'api/v2/feed_items/show',
     POPULAR_TAGS: 'api/v2/feed_items/popular_tags',
     TAGS_POST: 'api/v2/feed_items/tag_feed',
-    POPULAR_POST: 'api/v2/feed_items/popular'
+    POPULAR_POST: 'api/v2/feed_items/popular',
   },
 
   COMMUNITY_CHANNELS: {
     USER_CHANNEL_COMMUNITIES: 'api/v2/community_channels/user_channel_communities',
     INDEX: 'api/v2/community_channels',
     CREATE: 'api/v2/community_channels',
+    SHOW: 'api/v2/community_channels/show',
     UPDATE: 'api/v2/community_channels',
     DELETE: 'api/v2/community_channels',
     JOIN_TOKEN: 'api/v2/community_channels/join_token',
     RESET_JOIN_TOKEN: 'api/v2/community_channels/reset_join_token',
     TAGGABLE_USERS: 'api/v2/community_channels/taggable_users',
     DELETE_LOGO: 'api/v2/community_channels/delete_logo',
+    JOIN_CHANNEL: 'api/v2/community_channels/join_channel',
+    DISCUSSION_MESSAGES: 'api/v2/community_channels/discussion_messages',
     MEMBERS: {
       INDEX: 'api/v2/community_channels/members',
       INVITE: 'api/v2/community_channels/members/invite',
       JOIN_BY_TOKEN: 'api/v2/community_channels/members/join_by_token',
       TOGGLE_ADMIN: 'api/v2/community_channels/members/toggle_admin',
       REMOVE: 'api/v2/community_channels/members/remove',
-      EXIT_CHANNEL: 'api/v2/community_channels/members/exit_channel'
-    }
+      EXIT_CHANNEL: 'api/v2/community_channels/members/exit_channel',
+    },
   },
 
   COMMUNITY_GROUPS: {
@@ -79,12 +84,12 @@ export const API_ROUTES = {
     PUBLIC: {
       SHOW: 'api/v2/community_groups/public',
       COMMUNITIES: 'api/v2/community_groups/public/communities',
-    }
+    },
   },
 
   DATA_FORM_ENTITY_RESPONSES: {
     EXISTING_RESPONSES: 'api/v2/data_form_entity_responses/existing_response',
-    SUBMIT_FORM_RESPONSE: 'api/v2/data_form_entity_responses/submit_form_response'
+    SUBMIT_FORM_RESPONSE: 'api/v2/data_form_entity_responses/submit_form_response',
   },
 
   // data_forms
@@ -100,7 +105,7 @@ export const API_ROUTES = {
   // email unsubscribe groups
   EMAIL_UNSUBSCRIBE_GROUPS: {
     SHOW: 'api/v2/email_unsubscribe_groups/show',
-    TOGGLE_USER_SUBSCRIPTION: 'api/v2/email_unsubscribe_groups/toggle_my_subscription'
+    TOGGLE_USER_SUBSCRIPTION: 'api/v2/email_unsubscribe_groups/toggle_my_subscription',
   },
 
   // embedded_video_streams
@@ -108,8 +113,8 @@ export const API_ROUTES = {
     GET: 'api/v2/embedded_video_streams',
     CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
     PUBLIC: {
-      GET: 'api/v2/embedded_video_streams/public'
-    }
+      GET: 'api/v2/embedded_video_streams/public',
+    },
   },
 
   // events
@@ -130,8 +135,9 @@ export const API_ROUTES = {
       VOLUNTEERS: 'api/v2/events/public/volunteers',
       INDEX_BY_COMMUNITY: 'api/v2/events/public/index_by_community',
       UPCOMING: 'api/v2/events/public/upcoming',
-      RANDOM_PAST: 'api/v2/events/public/past_random'
-    }
+      RANDOM_PAST: 'api/v2/events/public/past_random',
+      POLLS: 'api/v2/events/public/polls',
+    },
   },
 
   // event_data_form_entity_groups
@@ -144,18 +150,18 @@ export const API_ROUTES = {
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
 
-    PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms'
+    PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
   // event_simple_registrations
-  EVENT_SIMPLE_REGISTATIONS: {
+  EVENT_SIMPLE_REGISTRATIONS: {
     FIND_OR_CREATE: 'api/v2/event_simple_registrations/find_or_create',
     TOGGLE_STATUS: 'api/v2/event_simple_registrations/toggle_status',
     EMAIL_CSV: 'api/v2/event_simple_registrations/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_simple_registrations/change_bulk_registration_status',
     PUBLIC: {
       SHOW: 'api/v2/event_simple_registrations/public_show',
-    }
+    },
   },
 
   EVENT_SPONSORS: {
@@ -165,8 +171,19 @@ export const API_ROUTES = {
     ADD_EXISTING_SPONSOR: 'api/v2/event_sponsors/add_existing_sponsor',
     DESTROY: 'api/v2/event_sponsors',
     PUBLIC: {
-      INDEX: 'api/v2/event_sponsors/public'
-    }
+      INDEX: 'api/v2/event_sponsors/public',
+    },
+  },
+
+  FEATURED_COMMUNITIES: {
+    INDEX: 'api/v2/featured_communities',
+    SHOW: 'api/v2/featured_communities/show',
+    CREATE: 'api/v2/featured_communities',
+    UPDATE: 'api/v2/featured_communities',
+    DELETE: 'api/v2/featured_communities',
+    PUBLIC: {
+      SHOW: 'api/v2/featured_communities/public/show',
+    },
   },
 
   // registration_types
@@ -191,7 +208,7 @@ export const API_ROUTES = {
     UPDATE_RSVP: 'api/v2/data_form_entity_response_groups/update_rsvp',
     DATA_FORM_ENTITY_RESPONSES: 'api/v2/data_form_entity_response_groups/data_form_entity_responses',
     PUBLIC_GET_EVENT_SPEAKERS: 'api/v2/data_form_entity_response_groups/public_event_speakers',
-    PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users'
+    PUBLIC_EVENT_INTERESTED_USERS: 'api/v2/data_form_entity_response_groups/public_event_interested_users',
   },
 
   // event_entry_passes
@@ -200,7 +217,7 @@ export const API_ROUTES = {
     CREATE_USER_EVENT_REGISTRATION_ENTRY_PASS: 'api/v2/event_entry_passes/user_event_registration_entry_pass',
     TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
     TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
-    AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance'
+    AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance',
   },
 
   // locations
@@ -208,7 +225,7 @@ export const API_ROUTES = {
 
   // hms_clients
   HMS_CLIENT: {
-    CLIENT_TOKEN: 'api/v2/hms_clients/client_token'
+    CLIENT_TOKEN: 'api/v2/hms_clients/client_token',
   },
 
   // event_locations
@@ -218,7 +235,7 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/event_locations',
     DELETE: 'api/v2/event_locations',
 
-    PUBLIC_INDEX: 'api/v2/event_locations/public_index'
+    PUBLIC_INDEX: 'api/v2/event_locations/public_index',
   },
 
   // event_location_track
@@ -238,9 +255,8 @@ export const API_ROUTES = {
       LABS: 'api/v2/home/public/labs',
       COMMUNITY_BUILDS: 'api/v2/home/public/community_builds',
       COMMUNITIES: 'api/v2/home/public/communities',
-    }
+    },
   },
-
 
   MAIN_NEWSLETTERS: {
     CREATE: 'api/v2/main_newsletters',
@@ -254,8 +270,8 @@ export const API_ROUTES = {
     SEND_TEST_EMAIL: 'api/v2/main_newsletters/send_test_email',
     EMAIL_STATS: 'api/v2/main_newsletters/email_stats',
     ADMIN: {
-      INDEX: 'api/v2/main_newsletters/admin'
-    }
+      INDEX: 'api/v2/main_newsletters/admin',
+    },
   },
 
   PAGE_ADS: {
@@ -272,8 +288,8 @@ export const API_ROUTES = {
   POLLS: {
     PUBLIC: {
       SHOW: 'api/v2/polls/public',
-      QUESTION_RESPONSE: 'api/v2/polls/public/question_responses'
-    }
+      QUESTION_RESPONSE: 'api/v2/polls/public/question_responses',
+    },
   },
 
   TRACK_SLOTS: {
@@ -283,8 +299,9 @@ export const API_ROUTES = {
     PUBLIC: {
       GET: 'api/v2/track_slots/public_show',
       TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote',
-      LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions'
-    }
+      LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions',
+      POLLS: 'api/v2/track_slots/public/polls',
+    },
   },
 
   // communication_mailers
@@ -305,7 +322,7 @@ export const API_ROUTES = {
     PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
     PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/public_get_admin_community_group_users',
     PUBLIC_CHECK_MEMBERSHIP: 'api/v2/user_roles_users/public_check_membership',
-    PUBLIC_TOGGLE_MEMBERSHIP: 'api/v2/user_roles_users/public_toggle_membership'
+    PUBLIC_TOGGLE_MEMBERSHIP: 'api/v2/user_roles_users/public_toggle_membership',
   },
 
   // event_collaboration_communities
@@ -315,17 +332,19 @@ export const API_ROUTES = {
     DELETE: 'api/v2/event_collaboration_communities',
     RESEND_INVITATION: 'api/v2/event_collaboration_communities/resend_invitation',
     CONFIRM: 'api/v2/event_collaboration_communities/confirm',
-    PUBLIC_INDEX: 'api/v2/event_collaboration_communities/public_index'
+    PUBLIC_INDEX: 'api/v2/event_collaboration_communities/public_index',
   },
-
 
   EVENT_UPDATES: {
     INDEX: 'api/v2/event_updates',
     CREATE: 'api/v2/event_updates',
     DELETE: 'api/v2/event_updates',
-    PUBLIC_INDEX: 'api/v2/event_updates/public_index'
+    PUBLIC_INDEX: 'api/v2/event_updates/public_index',
   },
 
+  POSTS: {
+    PUBLIC_SHOW: 'api/v2/posts',
+  },
 
   USERS: {
     GET_PROFILE: 'api/v2/users',
@@ -348,10 +367,10 @@ export const API_ROUTES = {
     POSTS: {
       INDEX: 'api/v2/users/posts',
       CREATE: 'api/v2/users/posts',
-      DESTROY: 'api/v2/users/posts'
+      DESTROY: 'api/v2/users/posts',
     },
     FOLLOWERS: 'api/v2/users/followers',
-    FOLLOWEES: 'api/v2/users/followees'
+    FOLLOWEES: 'api/v2/users/followees',
   },
 
   SPEAKER_RESOURCES: {
@@ -359,8 +378,8 @@ export const API_ROUTES = {
     SHOW_BY_TOKEN: 'api/v2/speaker_resources/show_by_token',
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
     PUBLIC: {
-      COMMUNITY_RESOURCES: 'api/v2/speaker_resources/public_community_sessions'
-    }
+      COMMUNITY_RESOURCES: 'api/v2/speaker_resources/public_community_sessions',
+    },
   },
 
   DISCUSSIONS: {
@@ -375,11 +394,12 @@ export const API_ROUTES = {
     PUBLIC_GET_OR_CREATE_FOR_LAB_CHAT: 'api/v2/discussions/public_get_or_create_for_lab_chat',
     PUBLIC_GET_OR_CREATE_FOR_SPEAKER_RESOURCE_CHAT: 'api/v2/discussions/public_get_or_create_for_speaker_resource_chat',
     PUBLIC_GET_OR_CREATE_FOR_FEED_ITEM_CHAT: 'api/v2/discussions/public_get_or_create_for_feed_item_chat',
-    PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT: 'api/v2/discussions/public_get_or_create_for_community_channel_chat',
+    PUBLIC_GET_OR_CREATE_FOR_COMMUNITY_CHANNEL_CHAT:
+      'api/v2/discussions/public_get_or_create_for_community_channel_chat',
     COMMUNITY_CHANNEL: {
       NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',
-      UPDATED_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/updated_attachment_message'
-    }
+      UPDATED_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/updated_attachment_message',
+    },
   },
 
   LABS: {
@@ -398,26 +418,26 @@ export const API_ROUTES = {
       SHOW: 'api/v2/labs/public/show',
       TAGS: 'api/v2/labs/public/tags',
       INDEX: 'api/v2/labs/public',
-      GET_STEPS: 'api/v2/labs/public/steps'
+      GET_STEPS: 'api/v2/labs/public/steps',
     },
     ADMIN: {
       INDEX: 'api/v2/labs/admin',
-      UPDATE_PUBLISH_STATUS: 'api/v2/labs/admin/update_publish_status'
+      UPDATE_PUBLISH_STATUS: 'api/v2/labs/admin/update_publish_status',
     },
     SEARCH: {
       TAGS: 'api/v2/labs/search_tags',
-      LABS_BY_TAGS: 'api/v2/labs'
-    }
+      LABS_BY_TAGS: 'api/v2/labs',
+    },
   },
 
   LINK_PREVIEWS: {
-    CREATE: 'api/v2/link_previews'
+    CREATE: 'api/v2/link_previews',
   },
 
   SOCIAL_RESOURCES: {
     CREATE: 'api/v2/social_resources',
     UPDATE_DISPLAY_ORDER: 'api/v2/social_resources/update_display_order',
-    DESTROY: 'api/v2/social_resources'
+    DESTROY: 'api/v2/social_resources',
   },
 
   USER_EVENT_REGISTRATIONS: {
@@ -432,14 +452,14 @@ export const API_ROUTES = {
       TOGGLE: 'api/v2/user_event_registrations/public_toggle',
       INTERESTED_MEMBERS: 'api/v2/user_event_registrations/public_event_interested_users',
       SPEAKERS: 'api/v2/user_event_registrations/public_speakers',
-    }
+    },
   },
 
   USER_MESSAGES: {
     PERSONAL_CHAT_DISCUSSION_MESSAGES: 'api/v2/user_messages/personal_chat_discussion_messages',
     PUBLIC_TRACK_SLOT_DISCUSSION_MESSAGES: 'api/v2/user_messages/track_slot_discussion_messages',
     PUBLIC_DISCUSSION_CHAT_MESSAGES: 'api/v2/user_messages/public_discussion_chat_messages',
-    PUBLIC_COMMUNITY_CHANNEL_DISCUSSION_MESSAGES: 'api/v2/user_messages/public_community_channel_discussion_messages'
+    PUBLIC_COMMUNITY_CHANNEL_DISCUSSION_MESSAGES: 'api/v2/user_messages/public_community_channel_discussion_messages',
   },
 
   USER_OBJECT_VISITS: {
@@ -450,19 +470,19 @@ export const API_ROUTES = {
   VOTES: {
     PUBLIC: {
       COUNT: 'api/v2/votes/public/count',
-      VOTERS: 'api/v2/votes/public/voters'
-    }
+      VOTERS: 'api/v2/votes/public/voters',
+    },
   },
 
   FLAGS: {
     PUBLIC: {
       COUNT: 'api/v2/flags/public/count',
-    }
+    },
   },
 
   EXTERNAL: {
     GITHUB_API: 'https://api.github.com/repos/commudle/commudle-ng',
-    GITHUB_REPO: 'https://github.com/commudle/commudle-ng'
+    GITHUB_REPO: 'https://github.com/commudle/commudle-ng',
   },
 
   STATS: {
@@ -472,7 +492,7 @@ export const API_ROUTES = {
       SIMPLE_EVENT_REGISTRATION: 'api/v2/stats/events/simple_event_registration',
       ATTENDEES: 'api/v2/stats/events/attendees',
       DISCUSSIONS: 'api/v2/stats/events/discussions',
-      POLLS: 'api/v2/stats/events/polls'
+      POLLS: 'api/v2/stats/events/polls',
     },
     COMMUNITIES: {
       MEMBERS_DISTRIBUTION: 'api/v2/stats/communities/members_distribution',
@@ -490,6 +510,6 @@ export const API_ROUTES = {
 
   TAGS: {
     INDEX: 'api/v2/tags',
-    UPDATE: 'api/v2/tags'
-  }
+    UPDATE: 'api/v2/tags',
+  },
 };

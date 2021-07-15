@@ -1,10 +1,20 @@
+<ng-template #channelDescription>
+  <nb-card>
+    <nb-card-header>{{selectedChannel.name}}</nb-card-header>
+    <nb-card-body>
+      <div class="complete-description" [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true}"></div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
 <div class="community-channel">
   <header>
     <div class="channel-details">
       <div *ngIf="selectedChannel">
-        <p [nbTooltip]="selectedChannel.description" [nbTooltipPlacement]="'bottom'">
-          <nb-icon icon="info-outline"></nb-icon>
-          <span [innerHTML]="selectedChannel.description | truncatetext: 200 | textToLinks"></span>
+        <p>
+          <nb-icon icon="info-outline" [nbPopover]="channelDescription" [nbPopoverTrigger]="'hover'"></nb-icon>
+          <span [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true} | truncatetext:100">
+          </span>
         </p>
       </div>
 
@@ -34,3 +44,4 @@
     </p>
   </main>
 </div>
+

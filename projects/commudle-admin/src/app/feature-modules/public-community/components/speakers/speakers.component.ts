@@ -1,24 +1,30 @@
-import { ActivatedRoute } from "@angular/router";
-import { ICommunity } from "./../../../../../../../shared-models/community.model";
-import { IUser } from "./../../../../../../../shared-models/user.model";
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { CommunitiesService } from "projects/commudle-admin/src/app/services/communities.service";
-import { Subscription } from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-speakers",
-  templateUrl: "./speakers.component.html",
-  styleUrls: ["./speakers.component.scss"],
+  selector: 'app-speakers',
+  templateUrl: './speakers.component.html',
+  styleUrls: ['./speakers.component.scss'],
 })
 export class SpeakersComponent implements OnInit, OnDestroy {
   speakers: IUser[] = [];
   community: ICommunity;
+
   subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private communitySpeakerService: CommunitiesService
-  ) {}
+    private communitySpeakerService: CommunitiesService,
+    private title: Title,
+    private meta: Meta,
+  ) {
+    // do nothing
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -26,22 +32,27 @@ export class SpeakersComponent implements OnInit, OnDestroy {
         this.community = data.community;
         if (this.community) {
           this.getSpeakerDetails();
+          this.setMeta();
         }
-      })
+      }),
     );
   }
 
   ngOnDestroy(): void {
-    for (let sub of this.subscriptions) {
-      sub.unsubscribe();
-    }
+    this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  getSpeakerDetails() {
-    this.communitySpeakerService
-      .speakers(this.community.id)
-      .subscribe((data) => {
+  setMeta(): void {
+    this.title.setTitle(`Speakers | ${this.community.name}`);
+    this.meta.updateTag({ name: 'og:title', content: `Speakers | ${this.community.name}` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Speakers | ${this.community.name}` });
+  }
+
+  getSpeakerDetails(): void {
+    this.subscriptions.push(
+      this.communitySpeakerService.speakers(this.community.id).subscribe((data) => {
         this.speakers = data.users;
-      });
+      }),
+    );
   }
 }

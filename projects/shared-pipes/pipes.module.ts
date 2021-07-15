@@ -1,9 +1,9 @@
-import { TruncateTextPipe } from './truncate-text.pipe';
 import { NgModule } from '@angular/core';
 import { CompleteUrlPipe } from './complete-url.pipe';
-import { TextToLinksPipe } from './text-to-links.pipe';
 import { NumkeysPipe } from './numkeys.pipe';
-
+import { SafeHtmlPipe } from './safe-html.pipe';
+import { TextToLinksPipe } from './text-to-links.pipe';
+import { TruncateTextPipe } from './truncate-text.pipe';
 
 
 @NgModule({
@@ -11,17 +11,17 @@ import { NumkeysPipe } from './numkeys.pipe';
     CompleteUrlPipe,
     TruncateTextPipe,
     TextToLinksPipe,
-    NumkeysPipe
-
+    NumkeysPipe,
+    SafeHtmlPipe
   ],
-  imports: [
-  ],
+  imports: [],
   exports: [
     CompleteUrlPipe,
     TruncateTextPipe,
     TextToLinksPipe,
-    NumkeysPipe
-
+    NumkeysPipe,
+    SafeHtmlPipe
   ]
 })
-export class SharedPipesModule { }
+export class SharedPipesModule {
+}

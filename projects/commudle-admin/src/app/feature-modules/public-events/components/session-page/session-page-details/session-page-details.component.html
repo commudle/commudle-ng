@@ -1,0 +1,37 @@
+<nb-card class="session-page-details">
+  <nb-card-body>
+    <div *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
+      <div class="text-success">
+        <nb-icon icon="flash"></nb-icon>
+        Live Now!
+      </div>
+    </div>
+    <h5 class="event-name">
+      <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="event">{{event.name}}</a>
+      <span *ngIf="trackSlot"> | {{trackSlot.session_title}}</span>
+    </h5>
+    <div *ngIf="moment().isBetween(moment(startTime), moment(endTime))">
+      <p>
+        <small>
+          {{ moment(startTime).format('dddd Do MMM, YYYY h:mm A') }}
+          -
+          {{ moment(endTime).format('h:mm A') }}
+        </small>
+      </p>
+    </div>
+    <div class="session-host d-flex align-items-center">
+      <div *ngIf="speaker">
+        <app-user-profile-card-small [user]="speaker"></app-user-profile-card-small>
+      </div>
+      <a [routerLink]="['/communities', community.slug]" class="community d-flex align-items-center">
+        <div class="community-logo d-flex align-items-center">
+          <img alt="{{community.name}}" src="{{community.logo_path}}">
+        </div>
+        <div class="community-name">{{community.name | truncatetext:35}}</div>
+      </a>
+    </div>
+    <p (click)="openViewers.emit()" *ngIf="userVisitData?.visiting_users_count > 0" class="clickable">
+      {{userVisitData.visiting_users_count}} watching now!
+    </p>
+  </nb-card-body>
+</nb-card>
