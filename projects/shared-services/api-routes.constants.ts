@@ -339,7 +339,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_updates',
     CREATE: 'api/v2/event_updates',
     DELETE: 'api/v2/event_updates',
-    PUBLIC_INDEX: 'api/v2/event_updates/public_index',
+    PUBLIC_INDEX: 'api/v2/event_updates/public_index'
   },
 
   POSTS: {

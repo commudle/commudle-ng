@@ -11,6 +11,7 @@ import {
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
+  NbTagModule,
   NbToggleModule,
   NbWindowModule,
 } from '@nebular/theme';
@@ -57,6 +58,8 @@ import { SysAdminComponent } from './sys-admin.component';
     NbInputModule,
     NbAutocompleteModule,
     NbSpinnerModule,
+    NbInputModule,
+    NbTagModule,
   ],
 })
 export class SysAdminModule {}

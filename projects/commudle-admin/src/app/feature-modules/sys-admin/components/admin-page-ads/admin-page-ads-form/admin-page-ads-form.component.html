@@ -9,15 +9,15 @@
     <form (submit)="submitForm()" [formGroup]="pageAdForm" class="form-fields d-flex flex-column">
       <label>
         Title*
-        <input formControlName="title" fullWidth nbInput type="text">
+        <input formControlName="title" fullWidth nbInput type="text" />
       </label>
       <label>
         Content*
-        <input formControlName="content" fullWidth nbInput type="text">
+        <input formControlName="content" fullWidth nbInput type="text" />
       </label>
       <label>
         Link*
-        <input formControlName="link" fullWidth nbInput type="text">
+        <input formControlName="link" fullWidth nbInput type="text" />
       </label>
       <nb-toggle formControlName="external_link" labelPosition="left">External Link</nb-toggle>
       <nb-toggle formControlName="is_default" labelPosition="left">Is Default</nb-toggle>
@@ -31,19 +31,19 @@
       </label>
       <label>
         Iframe
-        <input formControlName="iframe" fullWidth nbInput type="text">
+        <input formControlName="iframe" fullWidth nbInput type="text" />
       </label>
       <label>
         Starts at
-        <input formControlName="start_at" fullWidth nbInput type="datetime-local">
+        <input formControlName="start_at" fullWidth nbInput type="datetime-local" />
       </label>
       <label>
         Ends at
-        <input formControlName="end_at" fullWidth nbInput type="datetime-local">
+        <input formControlName="end_at" fullWidth nbInput type="datetime-local" />
       </label>
       <label>
         Files
-        <input (change)="addFiles($event)" fullWidth multiple nbInput type="file">
+        <input (change)="addFiles($event)" fullWidth multiple nbInput type="file" />
       </label>
       <nb-list class="files-list">
         <nb-list-item *ngFor="let file of uploadedFiles; let i=index" class="justify-content-space-between flex-wrap">

@@ -28,7 +28,7 @@ const routes = [
             component: AdminPageAdsListComponent,
           },
           {
-            path: 'form/:ad_id',
+            path: 'form',
             component: AdminPageAdsFormComponent,
           },
         ],
@@ -57,4 +57,5 @@ const routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SysAdminRoutingModule {}
+export class SysAdminRoutingModule {
+}
