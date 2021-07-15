@@ -1,0 +1,20 @@
+.qna-container {
+  height: 100%;
+
+  .sort-messages {
+    text-align: right;
+  }
+
+  .send-message {
+    position: sticky;
+    bottom: 0;
+
+    emoji-mart {
+      display: none;
+
+      &.active {
+        display: initial;
+      }
+    }
+  }
+}

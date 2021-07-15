@@ -10,8 +10,9 @@ import {
   NbSelectModule,
   NbSpinnerModule,
   NbTabsetModule,
+  NbTagModule,
   NbToggleModule,
-  NbWindowModule
+  NbWindowModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
@@ -23,7 +24,6 @@ import { CommunityControlsComponent } from './components/community-controls/comm
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminRoutingModule } from './sys-admin-routing.module';
 import { SysAdminComponent } from './sys-admin.component';
-
 
 @NgModule({
   declarations: [
@@ -52,8 +52,8 @@ import { SysAdminComponent } from './sys-admin.component';
     NbTabsetModule,
     NbToggleModule,
     NbSpinnerModule,
-    NbInputModule
-  ]
+    NbInputModule,
+    NbTagModule,
+  ],
 })
-export class SysAdminModule {
-}
+export class SysAdminModule {}
