@@ -7,7 +7,7 @@ $top-nav-height: 56px;
 $max-newsletter-width: 700px;
 $min-page-height: 100vh;
 
-$primary-font-family: "Work Sans";
+$primary-font-family: 'Work Sans';
 
 // Font sizes
 $fs-h7: 10px;
@@ -17,7 +17,6 @@ $fs-h4: 16px;
 $fs-h3: 21px;
 $fs-h2: 26px;
 $fs-h1: 28px;
-
 
 $fs-12: 12px;
 $fs-13: 13px;
@@ -37,6 +36,7 @@ $fs-26: 26px;
 $fs-27: 27px;
 $fs-28: 28px;
 $fs-30: 30px;
+$fs-32: 32px;
 $fs-35: 35px;
 $fs-40: 40px;
 
@@ -46,14 +46,20 @@ $space-2: 2px;
 $space-4: 4px;
 $space-5: 5px;
 $space-6: 6px;
+$space-7: 7px;
 $space-8: 8px;
+$space-9: 9px;
 $space-10: 10px;
 $space-12: 12px;
 $space-15: 15px;
 $space-16: 16px;
+$space-17: 17px;
 $space-20: 20px;
 $space-24: 24px;
+$space-25: 25px;
+$space-26: 26px;
 $space-28: 28px;
+$space-30: 30px;
 $space-32: 32px;
 $space-36: 36px;
 $space-40: 40px;
@@ -67,12 +73,14 @@ $space-68: 68px;
 $space-70: 70px;
 $space-72: 72px;
 $space-76: 76px;
+$space-78: 78px;
 $space-80: 80px;
 $space-84: 84px;
 $space-88: 88px;
 $space-92: 92px;
 $space-96: 96px;
 $space-110: 110px;
+$space-124: 124px;
 $space-128: 128px;
 $space-130: 130px;
 $space-136: 136px;
@@ -80,6 +88,7 @@ $space-220: 220px;
 
 // Border Radius
 $border-1: 1px;
+$border-3: 3px;
 $border-4: 4px;
 $border-5: 5px;
 $border-8: 8px;
@@ -163,6 +172,7 @@ $grey: grey;
 $button-blue: #2196F3;
 $jacarta: #3F3D56;
 $mercury: #E7E7E7;
+$sonic-silver: #777777;
 
 $gradient-top: linear-gradient(0deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
 $gradient-right: linear-gradient(90deg, $neon-blue, $blue-jeans, $cyber-yellow, $white, $black-coral);
@@ -177,7 +187,6 @@ $gradient-radial: radial-gradient($neon-blue, $blue-jeans, $cyber-yellow, $white
 $card-faded-text: rgba(47, 46, 65, 0.5);
 $low-emphasis-text: rgba(0, 0, 0, 0.6);
 $card-text-grey: #898989;
-
 
 // column widths
 $large-column-width: 712px;

@@ -12,6 +12,7 @@
         <app-home-external-feed-links></app-home-external-feed-links>
       </div>
       <div class="right-column">
+        <!--        <app-page-ads [adHeight]="264" slot="slot_1"></app-page-ads>-->
         <app-home-promotions></app-home-promotions>
         <app-home-experts></app-home-experts>
         <app-home-builds></app-home-builds>
@@ -21,6 +22,8 @@
     <!--  MOBILE  -->
     <div *ngIf="getWindowWidth() <= 768" class="home-mobile">
       <app-home-head-banner></app-home-head-banner>
+      <app-home-events></app-home-events>
+      <!--      <app-page-ads [adHeight]="264" slot="slot_1"></app-page-ads>-->
       <app-home-promotions></app-home-promotions>
       <app-home-events></app-home-events>
       <app-home-experts></app-home-experts>

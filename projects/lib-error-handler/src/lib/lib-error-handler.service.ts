@@ -30,7 +30,7 @@ export class LibErrorHandlerService {
         this.router.navigate(['/error']);
         break;
       case 404:
-        this.router.navigate(['/error']);
+        this.router.navigate(['/404']);
         break;
       default:
         // show a toastr

@@ -1,4 +1,5 @@
 <nb-tag-list (tagRemove)="onTagRemove($event)">
   <nb-tag *ngFor="let tag of getTags()" [removable]="editable" [text]="tag"></nb-tag>
-  <input (tagAdd)="onTagAdd($event)" *ngIf="editable" [disabled]="inputDisabled" fullWidth nbTagInput type="text" placeholder="Type something and press enter to keep adding">
+  <input (tagAdd)="onTagAdd($event)" *ngIf="editable" [disabled]="inputDisabled" fullWidth nbTagInput
+         placeholder="Type something and press enter to keep adding" type="text">
 </nb-tag-list>

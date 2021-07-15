@@ -1,10 +1,11 @@
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {ApiParserResponseInterceptor} from 'projects/shared-services/api-parser-response.interceptor';
-import {AuthTokenInterceptor} from 'projects/shared-services/lib-authwatch-token.interceptor';
-import {BrowserModule, Title} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -33,58 +34,63 @@ import {
   NbToastrModule,
   NbTooltipModule,
   NbUserModule,
-  NbWindowModule
+  NbWindowModule,
 } from '@nebular/theme';
-import {NbEvaIconsModule} from '@nebular/eva-icons';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
-import {LibErrorHandlerModule} from 'projects/lib-error-handler/src/public-api';
-import {CommunityComponent} from './components/organizer-communities-list/community/community.component';
-import {OrganizerCommunitiesListComponent} from './components/organizer-communities-list/organizer-communities-list.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {EditorModule} from '@tinymce/tinymce-angular';
-import {Ng2SmartTableModule} from 'ng2-smart-table';
-import {Ng2CompleterModule} from 'ng2-completer';
-import {HomeComponent} from './components/home/home.component';
-import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
-import {LogoutComponent} from './components/logout/logout.component';
-import {SidebarMenuComponent} from './components/sidebar-menu/sidebar-menu.component';
-import {CookieService} from 'ngx-cookie-service';
-import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
-import {AppInitService} from './services/app-init.service';
-import {SharedComponentsModule} from 'projects/shared-components/shared-components.module';
-import {AppSharedComponentsModule} from './app-shared-components/app-shared-components.module';
-import {PrismJsHighlightCodeService} from 'projects/shared-services/prismjs-highlight-code.service';
-import {ReusableComponentsModule} from './feature-modules/reusable-components/reusable-components.module';
-import {AboutComponent} from './components/home/about/about.component';
-import {FeaturesComponent} from './components/home/features/features.component';
-import {CommunitiesComponent} from './components/home/communities/communities.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
-import {SwUpdateComponent} from './components/sw-update/sw-update.component';
-import {HomeCommunityCardComponent} from './components/home/communities/home-community-card/home-community-card.component';
-import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
-import {CommunityChannelsModule} from './feature-modules/community-channels/community-channels.module';
-import {UserChatsModule} from './feature-modules/user-chats/user-chats.module';
-import {UsersModule} from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
-import {HomeEventsComponent} from './components/home/components/home-events/home-events.component';
-import {HomeEventsCardComponent} from './components/home/components/home-events/home-events-card/home-events-card.component';
-import {HomeLabsComponent} from './components/home/components/home-labs/home-labs.component';
-import {HomeCommunitiesComponent} from './components/home/components/home-communities/home-communities.component';
-import {HomeBuildsComponent} from './components/home/components/home-builds/home-builds.component';
-import {HomeBuildsCardComponent} from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
-import {HomeExpertsComponent} from './components/home/components/home-experts/home-experts.component';
-import {HomePromotionsComponent} from './components/home/components/home-promotions/home-promotions.component';
-import {NavbarMenuComponent} from './components/navbar-menu/navbar-menu.component';
-import {SkeletonScreensModule} from './feature-modules/skeleton-screens/skeleton-screens.module';
-import {PublicCommunityModule} from './feature-modules/public-community/public-community.module';
-import {HomeHeadBannerComponent} from './components/home/components/home-head-banner/home-head-banner.component';
-import {HomeExternalFeedLinksComponent} from './components/home/components/home-external-feed-links/home-external-feed-links.component';
-import {LabsModule} from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
-import {SearchBarComponent} from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
-import {MainNewslettersModule} from './feature-modules/main-newsletters/main-newsletters.module';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { Ng2CompleterModule } from 'ng2-completer';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CookieService } from 'ngx-cookie-service';
+import { CommunitiesPostsComponent } from 'projects/commudle-admin/src/app/components/communities/communities-posts/communities-posts.component';
+import { SearchBarComponent } from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
+import { LabsModule } from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
+import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
+import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
+import { AuthTokenInterceptor } from 'projects/shared-services/lib-authwatch-token.interceptor';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
+import { AppComponent } from './app.component';
+import { CommunitiesAboutComponent } from './components/communities/communities-about/communities-about.component';
+import { CommunitiesFeaturedComponent } from './components/communities/communities-featured/communities-featured.component';
+import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
+import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
+import { CommunitiesPromotionsComponent } from './components/communities/communities-promotions/communities-promotions.component';
+import { CommunitiesComponent } from './components/communities/communities.component';
+import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
+import { AboutComponent } from './components/home/about/about.component';
+import { HomeBuildsCardComponent } from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
+import { HomeBuildsComponent } from './components/home/components/home-builds/home-builds.component';
+import { HomeCommunitiesComponent } from './components/home/components/home-communities/home-communities.component';
+import { HomeEventsCardComponent } from './components/home/components/home-events/home-events-card/home-events-card.component';
+import { HomeEventsComponent } from './components/home/components/home-events/home-events.component';
+import { HomeExpertsComponent } from './components/home/components/home-experts/home-experts.component';
+import { HomeExternalFeedLinksComponent } from './components/home/components/home-external-feed-links/home-external-feed-links.component';
+import { HomeHeadBannerComponent } from './components/home/components/home-head-banner/home-head-banner.component';
+import { HomeLabsComponent } from './components/home/components/home-labs/home-labs.component';
+import { HomePromotionsComponent } from './components/home/components/home-promotions/home-promotions.component';
+import { FeaturesComponent } from './components/home/features/features.component';
+import { HomeComponent } from './components/home/home.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
+import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
+import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
+import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
+import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
+import { SwUpdateComponent } from './components/sw-update/sw-update.component';
+import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
+import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
+import { PublicCommunityModule } from './feature-modules/public-community/public-community.module';
+import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
+import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
+import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
+import { AppInitService } from './services/app-init.service';
 
-export function initApp(appInitService: AppInitService) {
+export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
 }
 
@@ -93,6 +99,12 @@ export function initApp(appInitService: AppInitService) {
     AppComponent,
     OrganizerCommunitiesListComponent,
     CommunityComponent,
+    CommunitiesAboutComponent,
+    CommunitiesPromotionsComponent,
+    CommunitiesListComponent,
+    CommunitiesListCardComponent,
+    CommunitiesPostsComponent,
+    CommunitiesFeaturedComponent,
     HomeComponent,
     FillDataFormComponent,
     LogoutComponent,
@@ -102,7 +114,6 @@ export function initApp(appInitService: AppInitService) {
     FeaturesComponent,
     CommunitiesComponent,
     SwUpdateComponent,
-    HomeCommunityCardComponent,
     HomeEventsComponent,
     HomeEventsCardComponent,
     HomeLabsComponent,
@@ -114,11 +125,11 @@ export function initApp(appInitService: AppInitService) {
     NavbarMenuComponent,
     HomeHeadBannerComponent,
     HomeExternalFeedLinksComponent,
-    SearchBarComponent
+    SearchBarComponent,
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -141,7 +152,7 @@ export function initApp(appInitService: AppInitService) {
     LibErrorHandlerModule,
 
     // Nebula modules
-    NbThemeModule.forRoot({name: 'default'}),
+    NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbSidebarModule,
@@ -173,7 +184,8 @@ export function initApp(appInitService: AppInitService) {
     // Other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    PageAdsModule,
   ],
   providers: [
     AppInitService,
@@ -183,23 +195,24 @@ export function initApp(appInitService: AppInitService) {
     PrismJsHighlightCodeService,
     {
       provide: APP_INITIALIZER,
-      useFactory: initApp, deps: [AppInitService],
-      multi: true
+      useFactory: initApp,
+      deps: [AppInitService],
+      multi: true,
     },
     {
       // TODO move the interceptors to a common barrel file if needed
       // https://angular.io/guide/http#provide-the-interceptor
       provide: HTTP_INTERCEPTORS,
       useClass: AuthTokenInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiParserResponseInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

@@ -1,0 +1,59 @@
+<nb-card class="admin-page-ads-form">
+  <nb-card-header class="d-flex justify-content-space-between align-items-center">
+    Page Ads
+    <button [routerLink]="['/sys-admin', 'admin-page-ads']" ghost nbButton shape="round" size="small">
+      Show All Ads
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="submitForm()" [formGroup]="pageAdForm" class="form-fields d-flex flex-column">
+      <label>
+        Title*
+        <input formControlName="title" fullWidth nbInput type="text" />
+      </label>
+      <label>
+        Content*
+        <input formControlName="content" fullWidth nbInput type="text" />
+      </label>
+      <label>
+        Link*
+        <input formControlName="link" fullWidth nbInput type="text" />
+      </label>
+      <nb-toggle formControlName="external_link" labelPosition="left">External Link</nb-toggle>
+      <nb-toggle formControlName="is_default" labelPosition="left">Is Default</nb-toggle>
+      <label>
+        Slot*
+        <nb-select formControlName="slot" fullWidth placeholder="Select an ad slot">
+          <nb-option [value]="'slot_1'">Slot 1 (Homepage)</nb-option>
+          <nb-option [value]="'slot_2'">Slot 2 (Community Landing Page)</nb-option>
+          <nb-option [value]="'slot_3'">Slot 3 (Community Landing Page)</nb-option>
+        </nb-select>
+      </label>
+      <label>
+        Iframe
+        <input formControlName="iframe" fullWidth nbInput type="text" />
+      </label>
+      <label>
+        Starts at
+        <input formControlName="start_at" fullWidth nbInput type="datetime-local" />
+      </label>
+      <label>
+        Ends at
+        <input formControlName="end_at" fullWidth nbInput type="datetime-local" />
+      </label>
+      <label>
+        Files
+        <input (change)="addFiles($event)" fullWidth multiple nbInput type="file" />
+      </label>
+      <nb-list class="files-list">
+        <nb-list-item *ngFor="let file of uploadedFiles; let i=index" class="justify-content-space-between flex-wrap">
+          <p>{{file.file?.name || file.name}}</p>
+          <button (click)="deleteFile(i)" ghost nbButton size="tiny" status="danger">Delete</button>
+        </nb-list-item>
+      </nb-list>
+      <button [disabled]="!pageAdForm.valid" fullWidth ghost nbButton status="primary" type="submit">
+        {{pageAd ? 'Update Ad' : 'Create Ad'}}
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>

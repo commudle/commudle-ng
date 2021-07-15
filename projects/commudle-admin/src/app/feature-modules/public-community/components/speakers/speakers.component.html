@@ -1,6 +1,7 @@
-<div [ngClass]="speakers.length > 4 ? 'justify-content-space-between' : 'justify-content-start'"
-     class="speakers-container d-flex flex-wrap">
-  <ng-container *ngFor="let speaker of speakers">
-    <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
-  </ng-container>
+<div class="speakers-container">
+  <nb-card class="speakers">
+    <ng-container *ngFor="let speaker of speakers">
+      <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
+    </ng-container>
+  </nb-card>
 </div>

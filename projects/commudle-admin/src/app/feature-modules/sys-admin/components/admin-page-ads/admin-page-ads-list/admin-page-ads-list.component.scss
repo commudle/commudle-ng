@@ -1,0 +1,48 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.admin-page-ads-list {
+  nb-card-body {
+    padding: 0;
+
+    .ad-list-container {
+      nb-list {
+        nb-list-item {
+          &:first-of-type {
+            border-top: none;
+          }
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+
+          .ad-details {
+            width: 100%;
+
+            .title {
+              font-size: $fs-20;
+              font-weight: $fw-600;
+            }
+          }
+
+          .controls {
+            gap: $space-16;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .admin-page-ads-list {
+    nb-card-body {
+      .ad-list-container {
+        nb-list {
+          nb-list-item {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}
