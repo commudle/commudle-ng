@@ -20,7 +20,6 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AboutComponent } from './components/about/about.component';
 import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
-import { EventResourcesComponent } from './components/event-resources/event-resources.component';
 import { EventsComponent } from './components/events/events.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { MembersComponent } from './components/members/members.component';
@@ -36,7 +35,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     AboutComponent,
     EventsComponent,
     MembersComponent,
-    EventResourcesComponent,
+    // EventResourcesComponent,
     MembershipToggleComponent,
     CommunityChannelsListComponent,
     SpeakersComponent,
