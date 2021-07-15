@@ -1,71 +1,106 @@
 @import '/projects/commudle-admin/src/assets/styles/variables.scss';
 
+nb-card {
+  border: none;
+  margin: $space-32 0 $space-16;
+
+  nb-card-body {
+    padding: 0;
+  }
+}
+
 .events {
+  background-color: $white;
+  padding: $space-124 0;
+  border-radius: $border-10;
+  gap: $space-32;
+
   a {
     text-decoration: none;
   }
-  .event {
-    &:hover {
-      box-shadow: 0px 2px 5px 1px lightgrey;
-    }
-    margin-bottom: 0.5rem;
-    nb-card-body {
-      display: flex;
-      flex-wrap: nowrap;
 
+  nb-card {
+    border: 1px solid $silver-sand;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .event {
+    width: 768px;
+
+    &:hover {
+      box-shadow: 0 2px 5px 1px $lightgrey;
+    }
+
+    nb-card-body {
+      padding: 0 $space-24 0 0;
 
       .header-image {
-        width: 250px;
-        height: 80px;
-        margin-right: 1rem;
-
-        display: flex;
-        align-items: center;
+        margin-right: $space-24;
+        width: 220px;
+        min-width: 220px;
+        height: 128px;
         overflow: hidden;
+
         img {
           width: 100%;
-          align-self: flex-start;
+          height: 100%;
+          object-fit: cover;
+          object-position: top left;
         }
 
         nb-icon {
-          font-size: 2rem;
-        }
-
-        @media screen and (max-width: $mobile-width) {
-          .header-image {
-            width: 100px;
-          }
-
+          font-size: $fs-32;
         }
       }
 
       .details {
-
         h5 {
-          margin: 0 0 0.5rem;
+          color: $gunmetal;
+          margin: $space-24 0 $space-8 0;
           display: flex;
           align-items: flex-start;
-          line-height: 1.5rem;
-          font-weight: $fw-400;
+          line-height: 21px;
+          font-size: $fs-18;
+          font-weight: $fw-600;
+
+          nb-icon {
+            min-width: 16px;
+          }
         }
 
         .timings {
           p {
-            margin-bottom: 0;
+            margin: 0;
+            color: $gunmetal;
+            font-size: $fs-14;
+            line-height: 16px;
           }
-        }
-
-        .collaboration {
-          font-size: 0.9rem;
         }
 
         .past-timings {
           p {
-            font-size: 0.8rem;
-            margin-bottom: 0;
+            margin: 0;
+            color: $gunmetal;
+            font-size: $fs-14;
+            line-height: 16px;
+
             nb-icon {
-              font-size: 0.8rem;
+              font-size: $fs-14;
+              line-height: 16px;
+
+              &.time {
+                margin-right: $space-8;
+              }
             }
+          }
+        }
+
+        .event-name {
+          margin-left: $space-8;
+
+          .collaboration {
+            font-size: $fs-14;
           }
         }
       }
@@ -76,6 +111,7 @@
     margin: 0 0 1rem;
 
     nb-card-body {
+      padding: $space-16 $space-24;
       flex-direction: column;
       align-items: center;
 
@@ -88,6 +124,7 @@
         flex-direction: column;
         align-items: center;
         overflow: hidden;
+
         img {
           width: 100%;
         }
@@ -110,9 +147,11 @@
 
         .timings {
           text-align: center;
+
           p {
             color: grey;
             font-size: 1.2rem;
+
             nb-icon {
               font-size: 1.2rem;
             }
@@ -120,6 +159,25 @@
         }
       }
     }
+  }
 
+  @media all and (max-width: $mobile-width) {
+    padding: $space-40 $space-20 $space-20 $space-20;
+    .event {
+      width: 318px;
+
+      nb-card-body {
+        flex-direction: column;
+
+        .details {
+          padding: $space-10;
+        }
+
+        .header-image {
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
   }
 }
