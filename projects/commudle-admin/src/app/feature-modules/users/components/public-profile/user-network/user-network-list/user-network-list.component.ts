@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {IUser} from 'projects/shared-models/user.model';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { IUser } from 'projects/shared-models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-network-list',
@@ -24,10 +24,7 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.activatedRoute.params.subscribe(data => {
-      // Get user's data
-      this.getUserData();
-    }));
+    this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUserData()));
   }
 
   ngOnDestroy() {
@@ -36,16 +33,14 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
 
   // Get user's data
   getUserData() {
-    this.subscriptions.push(this.appUsersService.getProfile(this.router.url.split('/')[2]).subscribe(data => {
+    this.subscriptions.push(this.appUsersService.getProfile(this.activatedRoute.parent.snapshot.params.username).subscribe(data => {
       this.user = data;
       this.checkNetworkType();
     }));
   }
 
   checkNetworkType(): void {
-    // @ts-ignore
-    const type = this.activatedRoute.url._value[0].path;
-    type === 'followers' ? this.getFollowers() : this.getFollowing();
+    this.activatedRoute.snapshot.routeConfig.path === 'followers' ? this.getFollowers() : this.getFollowing();
   }
 
   getFollowers(): void {

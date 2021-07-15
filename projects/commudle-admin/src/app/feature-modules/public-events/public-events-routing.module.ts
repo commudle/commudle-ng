@@ -1,26 +1,29 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
-import { HomeEventComponent } from './components/home-event/home-event.component';
-import { SpeakerSessionPageComponent } from './components/speaker-session-page/speaker-session-page.component';
-import { EventDetailsResolver } from '../../resolvers/event-details.resolver';
-import { PublicEventDetailsResolver } from '../../resolvers/public-event-details.resolver';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeEventComponent} from './components/home-event/home-event.component';
+import {SessionPageComponent} from './components/session-page/session-page.component';
+import {SpeakerSessionPageComponent} from './components/speaker-session-page/speaker-session-page.component';
+import {CommunityDetailsResolver} from 'projects/commudle-admin/src/app/resolvers/community-details.resolver';
+import {PublicEventDetailsResolver} from 'projects/commudle-admin/src/app/resolvers/public-event-details.resolver';
 
-
-const routes: Routes = [
+const routes = [
   {
     path: '',
     resolve: {
       community: CommunityDetailsResolver,
-      event: PublicEventDetailsResolver
+      event: PublicEventDetailsResolver,
     },
     children: [
       {
         path: '',
-        component: HomeEventComponent
+        component: HomeEventComponent,
       },
       {
         path: 'session',
+        component: SessionPageComponent
+      },
+      {
+        path: 'session-old',
         component: SpeakerSessionPageComponent
       }
     ]
@@ -29,6 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PublicEventsRoutingModule { }
+export class PublicEventsRoutingModule {}
