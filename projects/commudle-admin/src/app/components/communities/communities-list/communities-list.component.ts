@@ -12,18 +12,19 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./communities-list.component.scss'],
 })
 export class CommunitiesListComponent implements OnInit, OnDestroy {
-  page = 1;
-  count = 6;
-  total = 0;
   communities: ICommunity[] = [];
-
-  subscriptions: Subscription[] = [];
+  searchTags: string[] = [];
 
   // For search
-  searchTags: string[] = [];
-  selectedTag = '';
-  searchedCommunities: ICommunity[] = [];
+  query = '';
+  tag = '';
+  page = 1;
+  count = 6;
+  total = -1;
+
   searchField: FormControl = new FormControl();
+
+  subscriptions: Subscription[] = [];
 
   constructor(private title: Title, private meta: Meta, private communitiesService: CommunitiesService) {
     // do nothing
@@ -31,13 +32,14 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setMeta();
-    this.getCommunities();
     this.getSearchTags();
+    this.getSearchResults();
 
-    // Search bar
-    this.searchField.valueChanges
-      .pipe(debounceTime(800), distinctUntilChanged())
-      .subscribe((value) => this.getSearchResults(value));
+    // Listening for inputs
+    this.searchField.valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe((value) => {
+      this.query = value;
+      this.getSearchResults();
+    });
   }
 
   ngOnDestroy(): void {
@@ -68,14 +70,20 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     });
   }
 
-  getCommunities(): void {
-    this.subscriptions.push(
-      this.communitiesService.pGetCommunities(this.page, this.count, '').subscribe((value) => {
-        this.communities = value.communities;
-        this.total = +value.total;
-        this.searchedCommunities = this.communities;
-      }),
-    );
+  changePage(value: number): void {
+    this.page += value;
+    if (this.page > Math.ceil(this.total / this.count)) {
+      this.page = 1;
+    }
+    if (this.page < 1) {
+      this.page = Math.ceil(this.total / this.count);
+    }
+    this.getSearchResults();
+  }
+
+  changeTag(value: string): void {
+    this.tag = value === this.tag ? '' : value;
+    this.getSearchResults();
   }
 
   getSearchTags(): void {
@@ -86,34 +94,14 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     );
   }
 
-  changePage(value: number): void {
-    this.page = (this.page + value) % Math.ceil(this.total / this.count);
-    this.getCommunities();
-  }
-
-  changeSelectedTag(query: string): void {
-    this.selectedTag = query === this.selectedTag ? '' : query;
-    if (this.selectedTag !== '') {
-      this.subscriptions.push(
-        this.communitiesService.searchByTag(this.selectedTag).subscribe((value) => {
-          this.searchedCommunities = value;
-        }),
-      );
-    } else {
-      this.searchedCommunities = this.communities;
-    }
-  }
-
-  getSearchResults(query: string): void {
-    if (query === '' || query.length < 3) {
-      this.searchedCommunities = this.communities;
-    } else {
-      this.subscriptions.push(
-        this.communitiesService.searchByName(query).subscribe((value) => {
-          this.searchedCommunities = value;
-        }),
-      );
-    }
-    this.selectedTag = '';
+  getSearchResults(): void {
+    this.subscriptions.push(
+      this.communitiesService.search(this.query, this.tag, this.page, this.count).subscribe((value) => {
+        this.communities = value.communities;
+        this.page = value.page;
+        this.count = value.count;
+        this.total = value.total;
+      }),
+    );
   }
 }

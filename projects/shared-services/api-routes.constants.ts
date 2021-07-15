@@ -17,7 +17,7 @@ export const API_ROUTES = {
     DETAILS: 'api/v2/communities',
     UPDATE: 'api/v2/communities/update',
     SEARCH_BY_NAME: 'api/v2/communities/search_by_name',
-    SEARCH_BY_TAG: 'api/v2/communities/search_by_tag',
+    SEARCH: 'api/v2/communities/search',
     SPEAKERS: 'api/v2/communities/speakers',
     POPULAR_TAGS: 'api/v2/communities/popular_tags',
     PUBLIC_INDEX: 'api/v2/communities/public_index',
