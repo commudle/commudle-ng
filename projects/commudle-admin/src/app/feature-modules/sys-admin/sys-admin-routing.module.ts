@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { AdminFeaturedCommunitiesComponent } from './components/admin-featured-communities/admin-featured-communities.component';
 import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
 import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
 import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
@@ -9,14 +10,14 @@ import { CommunityControlsComponent } from './components/community-controls/comm
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminComponent } from './sys-admin.component';
 
-const routes: Routes = [
+const routes = [
   {
     path: '',
     component: SysAdminComponent,
     children: [
       {
         path: '',
-        component: CommunityControlsComponent
+        component: CommunityControlsComponent,
       },
       {
         path: 'admin-page-ads',
@@ -24,33 +25,36 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: AdminPageAdsListComponent
+            component: AdminPageAdsListComponent,
           },
           {
             path: 'form/:ad_id',
-            component: AdminPageAdsFormComponent
-          }
-        ]
+            component: AdminPageAdsFormComponent,
+          },
+        ],
       },
       {
         path: 'admin-surveys',
-        component: AdminSurveysComponent
+        component: AdminSurveysComponent,
+      },
+      {
+        path: 'featured-communities',
+        component: AdminFeaturedCommunitiesComponent,
       },
       {
         path: 'community-builds',
-        component: CommunityBuildsComponent
+        component: CommunityBuildsComponent,
       },
       {
         path: 'labs',
-        component: LabsComponent
-      }
-    ]
+        component: LabsComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SysAdminRoutingModule {
-}
+export class SysAdminRoutingModule {}

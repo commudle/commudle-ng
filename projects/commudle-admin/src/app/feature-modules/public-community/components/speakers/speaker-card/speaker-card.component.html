@@ -1,24 +1,35 @@
 <nb-card class="clickable">
   <nb-card-body>
     <a [routerLink]="['/users', speaker.username]" class="clickable">
-      <div class="user-card">
+      <div class="user-card d-flex flex-column justify-content-space-around">
         <div class="banner-image">
           <div class="banner">
-            <img *ngIf="speaker.profile_banner_image" alt="{{speaker.name}} Profile Banner"
-                 src="{{speaker.profile_banner_image.i350}}" title="{{speaker.name}} Profile Banner">
+            <img
+              *ngIf="speaker.profile_banner_image"
+              alt="{{speaker.name}} Profile Banner"
+              src="{{speaker.profile_banner_image.i350}}"
+              title="{{speaker.name}} Profile Banner"
+            />
           </div>
           <div class="user-image">
-            <img alt="{{speaker.name}}" src="{{speaker.avatar}}" title="{{speaker.name}}">
+            <img alt="{{speaker.name}}" src="{{speaker.avatar}}" title="{{speaker.name}}" />
           </div>
         </div>
-        <div class="user-details d-flex flex-column">
-          <p class="user-name d-flex align-items-center">
-            {{speaker.name | truncatetext:14}}
-            <img *ngIf="speaker.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
-                 title="Expert Tick">
-          </p>
-          <p *ngIf="speaker.designation" class="designation">{{speaker.designation | truncatetext: 60}}</p>
-          <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex">
+        <div class="user-details d-flex flex-column justify-content-space-between">
+          <div class="text-details">
+            <p class="user-name d-flex align-items-center">
+              {{speaker.name | truncatetext:14}}
+              <img
+                *ngIf="speaker.is_expert"
+                alt="Expert Tick"
+                class="expert-icon"
+                src="/assets/images/Expert-Tick.svg"
+                title="Expert Tick"
+              />
+            </p>
+            <p *ngIf="speaker.designation" class="designation">{{speaker.designation | truncatetext: 60}}</p>
+          </div>
+          <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex flex-wrap">
             <div *ngFor="let tag of speaker.tags" class="user-card-tag">{{tag.name}}</div>
           </div>
         </div>

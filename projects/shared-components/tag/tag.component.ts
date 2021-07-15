@@ -1,12 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {NbTagComponent, NbTagInputAddEvent} from '@nebular/theme';
+import {fromEvent, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-tag',
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']
 })
-export class TagComponent implements OnInit {
+export class TagComponent implements OnInit, OnDestroy {
 
   @Input() tags: string[];
   @Input() editable: boolean;
@@ -15,10 +16,18 @@ export class TagComponent implements OnInit {
   @Output() tagAdd: EventEmitter<string> = new EventEmitter<string>();
   @Output() tagDelete: EventEmitter<string> = new EventEmitter<string>();
 
+  subscription: Subscription;
+
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   getTags() {
@@ -29,6 +38,14 @@ export class TagComponent implements OnInit {
     this.tagAdd.emit(value);
     // Reset the input
     input.nativeElement.value = '';
+
+    this.subscription = fromEvent(input.nativeElement.parentNode, 'keypress', {capture: true})
+      .subscribe((e: any) => {
+        if (e.target === input.nativeElement && e.key === 'Enter') {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      });
   }
 
   onTagRemove(tagToRemove: NbTagComponent): void {

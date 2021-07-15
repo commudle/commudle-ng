@@ -5,8 +5,7 @@
   </div> -->
   <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
     <div [ngClass]="{'old': moment(event.start_time) < moment()}" class="home-events-image-overlay"></div>
-    <img alt="{{event.name}}" src="{{event.header_image?.i350 || '/assets/images/Home-Events.png'}}"
-         title="{{event.name}}">
+    <img alt="{{event.name}}" src="{{event.header_image?.i350 || community.logo_path}}" title="{{event.name}}" />
   </div>
   <div *ngIf="event.start_time" [ngClass]="{'old': moment(event.start_time) < moment()}" class="home-events-date">
     {{moment(event.start_time).format('MMM DD')}}
@@ -16,15 +15,20 @@
       {{event.name | truncatetext:32}}
     </div>
     <div class="home-events-host d-flex justify-content-space-between align-items-center">
-      <div [routerLink]="['/communities', community.slug]"
-           class="home-events-community d-flex align-items-center clickable">
+      <div
+        [routerLink]="['/communities', community.slug]"
+        class="home-events-community d-flex align-items-center clickable"
+      >
         <div class="home-events-community-logo d-flex align-items-center">
-          <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}">
+          <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}" />
         </div>
-        <div class="home-events-community-name">{{community.name | truncatetext:35}}</div>
+        <div class="home-events-community-name">{{community.name | truncatetext:30}}</div>
       </div>
-      <div *ngIf="event.start_time && moment(event.start_time) > moment()"
-           [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-register clickable">
+      <div
+        *ngIf="event.start_time && moment(event.start_time) > moment()"
+        [routerLink]="['/communities', community.slug, 'events', event.slug]"
+        class="home-events-register clickable"
+      >
         Register
       </div>
     </div>
