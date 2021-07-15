@@ -49,6 +49,7 @@ import { AppSharedComponentsModule } from '../../app-shared-components/app-share
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { EventSpeakersComponent } from './components/event-speakers/event-speakers.component';
+import {SharedDirectivesModule} from 'projects/shared-directives/shared-directives.module'
 
 
 @NgModule({
@@ -113,7 +114,8 @@ import { EventSpeakersComponent } from './components/event-speakers/event-speake
     NbAccordionModule,
     NbTooltipModule,
     NbTabsetModule,
-    NbTimepickerModule
+    NbTimepickerModule,
+    SharedDirectivesModule
   ]
 })
 export class EventsModule { }

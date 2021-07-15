@@ -10,6 +10,7 @@ export interface ICommunityChannel {
   group_name: string;
   join_token: string;
   is_private: boolean;
+  is_readonly: boolean;
   logo: IAttachedFile;
   my_roles: any[];
 }

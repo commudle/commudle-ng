@@ -29,7 +29,8 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
     name: ['', Validators.required],
     description: ['', Validators.required],
     group_name: [''],
-    is_private: [false, Validators.required]
+    is_private: [false, Validators.required],
+    is_readonly: [false, Validators.required]
   });
 
   constructor(
@@ -51,14 +52,14 @@ export class CommunityChannelFormComponent implements OnInit, OnDestroy {
         name: this.existingChannel.name,
         description: this.existingChannel.description,
         group_name: this.existingChannel.group_name,
-        is_private: this.existingChannel.is_private
+        is_private: this.existingChannel.is_private,
+        is_readonly: this.existingChannel.is_readonly
       })
     }
 
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
 
   submitForm() {
