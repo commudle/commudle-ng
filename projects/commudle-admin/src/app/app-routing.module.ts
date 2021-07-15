@@ -172,7 +172,8 @@ const routes = [
   exports: [RouterModule],
   providers: [InitResolver],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
 
 // NAMED ROUTER OUTLETS
 // p = popup

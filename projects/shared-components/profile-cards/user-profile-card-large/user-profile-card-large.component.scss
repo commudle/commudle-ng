@@ -13,8 +13,9 @@ p {
   background-color: $white;
 
   .avatar {
-    width: 56px;
-    height: 56px;
+    max-width: 56px;
+    max-height: 56px;
+    min-width: 56px;
     border-radius: 50%;
     overflow: hidden;
 
@@ -25,11 +26,11 @@ p {
 
   .details {
     margin-left: $space-16;
-    color: $black;
 
     .name {
       font-size: $fs-18;
       line-height: 21px;
+      color: $black;
 
       img {
         margin-left: $space-4;
@@ -48,6 +49,7 @@ p {
       margin-top: $space-4;
       font-size: $fs-h5;
       line-height: 16px;
+      color: $black;
     }
   }
 }

@@ -1,0 +1,81 @@
+@import '/projects/commudle-admin/src/assets/styles/text-styles';
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+  color: $gunmetal;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+.communities-about {
+  border: none;
+
+  nb-card-body {
+    padding: $space-40 0 $space-40 $space-64;
+
+    .content {
+      .header {
+        font-weight: $fw-600;
+        font-size: $fs-40;
+        line-height: 47px;
+      }
+
+      .subheader {
+        font-size: $fs-18;
+        line-height: 21px;
+      }
+
+      .navigation {
+        margin-top: $space-72;
+        gap: $space-16;
+
+        button {
+          font-size: $fs-h5;
+          line-height: 16px;
+          font-weight: normal;
+          text-transform: capitalize;
+          padding: $space-8;
+          border: 1px solid $gunmetal;
+        }
+
+        .create {
+          color: $white;
+          background-color: $gunmetal;
+        }
+
+        .explore {
+          color: $gunmetal;
+          background-color: $white;
+        }
+      }
+    }
+
+    .image {
+      margin-top: -$space-16;
+      width: 296px;
+      height: 212px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-about {
+    nb-card-body {
+      padding: $space-16;
+      flex-direction: column-reverse;
+
+      .image {
+        margin-top: 0;
+        margin-bottom: $space-24;
+      }
+    }
+  }
+}
