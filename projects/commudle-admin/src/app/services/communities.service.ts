@@ -59,12 +59,13 @@ export class CommunitiesService {
     });
   }
 
-  // search a community by name
-  searchByTag(query: string): Observable<ICommunity[]> {
-    const params = new HttpParams().set('query', query);
-    return this.http.get<ICommunity[]>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH_BY_TAG), {
-      params,
-    });
+  search(query: string, tag: string, page: number, count: number): Observable<ICommunities> {
+    const params = new HttpParams()
+      .set('query', query)
+      .set('tag', tag)
+      .set('page', String(page))
+      .set('count', String(count));
+    return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.SEARCH), { params });
   }
 
   getPopularTags(): Observable<string[]> {

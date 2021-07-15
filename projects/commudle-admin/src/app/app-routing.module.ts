@@ -1,15 +1,15 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from 'projects/shared-services/lib-authwatch.guard';
-import {Error404PageComponent, LibErrorHandlerComponent} from 'projects/lib-error-handler/src/public-api';
-import {HomeComponent} from './components/home/home.component';
-import {FillDataFormComponent} from './components/fill-data-form/fill-data-form.component';
-import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
-import {LogoutComponent} from './components/logout/logout.component';
-import {SpeakerResourceFormComponent} from './components/speaker-resource-form/speaker-resource-form.component';
-import {CommunitiesComponent} from './components/home/communities/communities.component';
-import {FeaturesComponent} from './components/home/features/features.component';
-import {AboutComponent} from './components/home/about/about.component';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Error404PageComponent, LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
+import { CommunitiesComponent } from './components/communities/communities.component';
+import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
+import { AboutComponent } from './components/home/about/about.component';
+import { FeaturesComponent } from './components/home/features/features.component';
+import { HomeComponent } from './components/home/home.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
 import { InitResolver } from './resolvers/init.resolver';
 
@@ -155,11 +155,10 @@ const routes = [
     ],
   },
 
-  {path: 'logout', component: LogoutComponent},
-  {path: 'error', component: LibErrorHandlerComponent},
-  {path: '404', component: Error404PageComponent},
-  {path: '**', redirectTo: '/404'},
-
+  { path: 'logout', component: LogoutComponent },
+  { path: 'error', component: LibErrorHandlerComponent },
+  { path: '404', component: Error404PageComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
@@ -172,8 +171,7 @@ const routes = [
   exports: [RouterModule],
   providers: [InitResolver],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
 
 // NAMED ROUTER OUTLETS
 // p = popup

@@ -14,25 +14,24 @@
     <div class="search d-flex flex-wrap align-items-center">
       <div class="search-tags d-flex flex-wrap">
         <div
-          (click)="changeSelectedTag(tag)"
-          *ngFor="let tag of searchTags"
-          [ngClass]="{'active': selectedTag === tag}"
+          (click)="changeTag(searchTag)"
+          *ngFor="let searchTag of searchTags"
+          [ngClass]="{'active': tag === searchTag}"
           class="clickable search-tag"
         >
-          {{tag}}
+          {{searchTag}}
         </div>
       </div>
       <div class="search-bar">
         <nb-form-field>
           <nb-icon icon="search" nbPrefix></nb-icon>
           <input [formControl]="searchField" nbInput type="text" />
-          <nb-icon icon="info" nbSuffix nbTooltip="Enter at least 3 characters to start searching"></nb-icon>
         </nb-form-field>
       </div>
     </div>
     <div class="communities-list-cards d-flex flex-wrap">
       <app-communities-list-card
-        *ngFor="let community of searchedCommunities"
+        *ngFor="let community of communities"
         [community]="community"
       ></app-communities-list-card>
     </div>
