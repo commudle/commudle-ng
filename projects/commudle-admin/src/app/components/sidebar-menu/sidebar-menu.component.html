@@ -17,28 +17,20 @@
     <nb-list-item>
       <a [routerLink]="['/labs/my-labs']">
         <fa-icon [icon]="faFlask"></fa-icon>
-        &nbsp;
-        My Labs
+        &nbsp; My Labs
       </a>
     </nb-list-item>
 
     <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
-        <nb-user
-          size="tiny"
-          name="My Profile"
-          picture="{{ currentUser.avatar }}"
-        >
-        </nb-user>
-        <span class="incomplete-badge" *ngIf="!currentUser.profile_completed">
-          <app-badge [text]="'Incomplete'" [color]="'red'" [fontSize]="'small'"></app-badge>
+        <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>
+        <span *ngIf="!currentUser.profile_completed" class="incomplete-badge">
+          <app-badge [color]="'red'" [fontSize]="'small'" [text]="'Incomplete'"></app-badge>
         </span>
       </a>
     </nb-list-item>
     <nb-list-item *ngIf="currentUser && currentUser.user_roles.includes(EUserRoles.NEWSLETTER)">
-      <a [routerLink]="['/admin/newsletters']">
-        Newsletters
-      </a>
+      <a [routerLink]="['/admin/newsletters']"> Newsletters </a>
     </nb-list-item>
   </nb-list>
 
@@ -48,25 +40,22 @@
         <nb-accordion-item-header>Organizer Menu</nb-accordion-item-header>
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
-
-          <a [routerLink]="['/admin', 'orgs', cGroup.slug]" (click)="closeSidebar()">
-            <nb-user size="tiny"
-                     name="{{cGroup.name}}"
-                     picture="{{ cGroup.logo.url }}">
-            </nb-user>
+          <a (click)="closeSidebar()" [routerLink]="['/admin', 'orgs', cGroup.slug]">
+            <nb-user name="{{cGroup.name}}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
             <span class="org-badge">
-              <app-badge [text]="'Organization'" [color]="'#001fff'" [fontSize]="'small'" [position]="'center right'"></app-badge>
+              <app-badge
+                [color]="'#001FFF'"
+                [fontSize]="'small'"
+                [position]="'center right'"
+                [text]="'Organization'"
+              ></app-badge>
             </span>
           </a>
         </nb-accordion-item-body>
 
         <nb-accordion-item-body *ngFor="let community of managedCommunities">
-
-          <a [routerLink]="['/admin', 'communities', community.slug]" (click)="closeSidebar()">
-            <nb-user size="tiny"
-                     name="{{community.name}}"
-                     picture="{{ community.logo_path }}">
-            </nb-user>
+          <a (click)="closeSidebar()" [routerLink]="['/admin', 'communities', community.slug]">
+            <nb-user name="{{community.name}}" picture="{{ community.logo_path }}" size="tiny"></nb-user>
           </a>
         </nb-accordion-item-body>
       </nb-accordion-item>
@@ -78,29 +67,26 @@
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>System Admin</nb-accordion-item-header>
         <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin']">
-            Admin Home
-          </a>
+          <a [routerLink]="['/sys-admin']"> Admin Home </a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin', 'admin-surveys']">
-            Admin Surveys
-          </a>
+          <a [routerLink]="['/sys-admin', 'admin-surveys']"> Admin Surveys </a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin', 'community-builds']">
-            Community Builds
-          </a>
+          <a [routerLink]="['/sys-admin', 'community-builds']"> Community Builds </a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin', 'labs']">
-            Labs
-          </a>
+          <a [routerLink]="['/sys-admin', 'labs']"> Labs </a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body>
+          <a [routerLink]="['/sys-admin', 'admin-page-ads']"> Page Ads </a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body>
+          <a [routerLink]="['/sys-admin', 'featured-communities']"> Featured Communities </a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
   </div>
-
 
   <!-- <div>Common Menu []</div>
   <div>User Menu
