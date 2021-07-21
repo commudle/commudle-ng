@@ -46,10 +46,10 @@
 
     .search {
       margin: $space-44 0 $space-24;
-      gap: $space-32;
+      gap: $space-8 $space-32;
 
       .search-tags {
-        gap: $space-20;
+        gap: $space-8 $space-20;
 
         .search-tag {
           padding: $space-8 $space-6;
@@ -93,7 +93,7 @@
             border-radius: $space-4;
             padding: $space-8 $space-32;
             font-size: $fs-h6;
-            background: #EDF1F7;
+            background: #edf1f7;
           }
         }
       }
@@ -101,6 +101,17 @@
 
     .communities-list-cards {
       gap: $space-16;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-list {
+    nb-card-body {
+      .communities-list-cards {
+        flex-wrap: nowrap;
+        overflow: scroll;
+      }
     }
   }
 }
