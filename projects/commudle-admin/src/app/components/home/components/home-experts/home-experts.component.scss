@@ -4,7 +4,10 @@ p {
   margin: 0;
 }
 
-a, a:hover, a:focus, a:active {
+a,
+a:hover,
+a:focus,
+a:active {
   text-decoration: none;
   color: inherit;
 }
@@ -37,28 +40,37 @@ a, a:hover, a:focus, a:active {
         }
 
         .home-expert {
+          width: 100%;
           margin-right: $space-8;
 
           .home-expert-image {
-            min-height: 2rem;
-            max-height: 2rem;
-            min-width: 2rem;
-            max-width: 2rem;
+            height: 32px;
+            width: 32px;
+            min-width: 32px;
             overflow: hidden;
             border-radius: 50%;
             margin-right: $space-8;
 
             img {
               width: 100%;
+              height: 100%;
+              object-fit: cover;
             }
           }
 
           .home-expert-details {
+            width: 110px;
+
             .home-expert-name {
-              font-size: $fs-h5;
-              line-height: 16px;
-              font-weight: $fw-600;
-              color: $gunmetal;
+              .name {
+                font-size: $fs-h5;
+                line-height: 16px;
+                font-weight: $fw-600;
+                color: $gunmetal;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
 
               img {
                 margin-left: $space-4;
@@ -72,6 +84,9 @@ a, a:hover, a:focus, a:active {
               font-style: italic;
               line-height: 12px;
               color: $taupe-gray;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
 
             .home-expert-member-count {
