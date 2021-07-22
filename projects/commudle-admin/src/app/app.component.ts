@@ -14,6 +14,7 @@ import { ActionCableConnectionSocket } from 'projects/shared-services/action-cab
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { CookieConsentService } from './services/cookie-consent.service';
+import { TabTitleNotificationsService } from './services/tab-title-notifications.service';
 
 // import * as LogRocket from 'logrocket';
 
@@ -50,7 +51,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private footerService: FooterService,
     private cdr: ChangeDetectorRef,
     private truncate: TruncateTextPipe,
-  ) {
+    private tabTitleService: TabTitleNotificationsService
+   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
