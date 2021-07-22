@@ -16,7 +16,11 @@
           title="Expert Tick"
         />
       </div>
-      <p [nbTooltip]="moment(message.created_at).fromNow()" appHighlightLinks class="content">{{message.content}}</p>
+      <p
+        [innerHTML]="message.content | linky:{sanitizeHtml:true}"
+        [nbTooltip]="moment(message.created_at).fromNow()"
+        class="content"
+      ></p>
     </div>
     <div
       *ngIf="permittedActions.includes(allActions.VOTE) && message.user.id !== currentUser?.id && canVote && message.parent_type != 'UserMessage'"

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
+import { Error404PageComponent, LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
+import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { AboutComponent } from './components/home/about/about.component';
-import { CommunitiesComponent } from './components/home/communities/communities.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -154,9 +154,11 @@ const routes = [
       },
     ],
   },
+
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },
-  { path: '**', redirectTo: '/error' },
+  { path: '404', component: Error404PageComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({

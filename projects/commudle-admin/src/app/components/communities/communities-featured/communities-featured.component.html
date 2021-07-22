@@ -1,0 +1,32 @@
+<nb-card class="communities-featured">
+  <nb-card-body>
+    <p class="heading">Featured Communities</p>
+    <div class="featured-communities-list d-flex">
+      <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
+        <div class="actions d-flex">
+          <a [routerLink]="['/communities', featuredCommunity.kommunity.slug, 'members']">
+            <button nbButton shape="round" size="small">
+              <nb-icon icon="people"></nb-icon>
+            </button>
+          </a>
+          <a>
+            <button nbButton shape="round" size="small" (click)="copyTextToClipboard(featuredCommunity)">
+              <nb-icon icon="share"></nb-icon>
+            </button>
+          </a>
+        </div>
+        <div class="clickable image" [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
+          <img
+            alt="{{featuredCommunity.kommunity.name}}"
+            src="{{featuredCommunity.kommunity.logo_image?.url}}"
+            title="{{featuredCommunity.kommunity.name}}"
+          />
+        </div>
+        <div class="clickable content" [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
+          <p class="name">{{featuredCommunity.kommunity.name}}</p>
+          <p class="reason">{{featuredCommunity.reason}}</p>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

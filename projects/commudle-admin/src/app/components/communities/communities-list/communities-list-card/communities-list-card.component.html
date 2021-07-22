@@ -1,0 +1,25 @@
+<div *ngIf="community" class="community-list-card">
+  <a [routerLink]="['/communities', community.slug]" class="prefix d-flex">
+    <div class="image">
+      <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}" />
+    </div>
+    <div class="details">
+      <div class="name">{{community.name | truncatetext:30}}</div>
+      <div class="member-count">{{community.member_count}} Members</div>
+    </div>
+  </a>
+  <a [routerLink]="['/communities', community.slug]" class="tags">
+    <div *ngFor="let tag of community.tags" class="tag">{{tag.name}}</div>
+  </a>
+  <div *ngIf="community.mini_description" class="about">{{community.mini_description | truncatetext: 140}}</div>
+  <div class="suffix d-flex align-items-center">
+    <a [routerLink]="['/communities', community.slug, 'members']" class="members">
+      <span *ngFor="let member of members" class="avatar">
+        <img alt="{{member.name}}" src="{{member.avatar}}" title="{{member.name}}" />
+      </span>
+    </a>
+    <div class="join-community">
+      <app-membership-toggle [community]="community"></app-membership-toggle>
+    </div>
+  </div>
+</div>

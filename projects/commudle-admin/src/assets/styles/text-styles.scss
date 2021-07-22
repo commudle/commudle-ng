@@ -1,0 +1,27 @@
+@import 'variables';
+
+@mixin card-header-text {
+  font-size: $fs-h2;
+  line-height: 30px;
+  font-weight: $fw-600;
+  color: $gunmetal;
+}
+
+@mixin card-content-text {
+  font-size: $fs-h5;
+  line-height: 16px;
+  font-weight: normal;
+  color: $gunmetal;
+}
+
+@mixin card-title-text {
+  @include card-content-text;
+  font-weight: $fw-600;
+}
+
+@mixin card-info-text {
+  font-size: $fs-h6;
+  line-height: 14px;
+  font-weight: normal;
+  color: $gunmetal;
+}

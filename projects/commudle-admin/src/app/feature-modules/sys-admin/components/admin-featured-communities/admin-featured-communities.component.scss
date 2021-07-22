@@ -1,0 +1,62 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.admin-featured-communities {
+  max-width: 1120px;
+  margin: $space-16 auto;
+
+  nb-card-body {
+    padding: 0;
+
+    .featured-communities-container {
+      nb-list-item {
+        &:first-of-type {
+          border-top: none;
+        }
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        .actions {
+          gap: $space-16;
+        }
+      }
+    }
+  }
+}
+
+.create-featured-community-dialog {
+  nb-card-body {
+    input {
+      margin: $space-12 0;
+    }
+
+    nb-autocomplete {
+      nb-option {
+        .logo {
+          margin-right: $space-8;
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          border-radius: $border-50;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .admin-featured-communities {
+    nb-card-body {
+      .featured-communities-container {
+        nb-list-item {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

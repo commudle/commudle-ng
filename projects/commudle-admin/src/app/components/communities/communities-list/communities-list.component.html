@@ -1,0 +1,39 @@
+<nb-card class="communities-list" id="communities-list">
+  <nb-card-body>
+    <div class="prefix d-flex justify-content-space-between align-items-center">
+      <div class="heading">Popular Communities</div>
+      <div class="controls">
+        <button (click)="changePage(-1)" class="left-btn" nbButton>
+          <nb-icon icon="arrow-ios-back"></nb-icon>
+        </button>
+        <button (click)="changePage(1)" class="right-btn" nbButton>
+          <nb-icon icon="arrow-ios-forward"></nb-icon>
+        </button>
+      </div>
+    </div>
+    <div class="search d-flex flex-wrap align-items-center">
+      <div class="search-tags d-flex flex-wrap">
+        <div
+          (click)="changeTag(searchTag)"
+          *ngFor="let searchTag of searchTags"
+          [ngClass]="{'active': tag === searchTag}"
+          class="clickable search-tag"
+        >
+          {{searchTag}}
+        </div>
+      </div>
+      <div class="search-bar">
+        <nb-form-field>
+          <nb-icon icon="search" nbPrefix></nb-icon>
+          <input [formControl]="searchField" nbInput type="text" />
+        </nb-form-field>
+      </div>
+    </div>
+    <div class="communities-list-cards d-flex flex-wrap">
+      <app-communities-list-card
+        *ngFor="let community of communities"
+        [community]="community"
+      ></app-communities-list-card>
+    </div>
+  </nb-card-body>
+</nb-card>
