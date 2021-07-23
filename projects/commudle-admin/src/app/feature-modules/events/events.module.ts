@@ -40,6 +40,7 @@ import { EventFormResponsesComponent } from './components/event-form-responses/e
 import { UserDetailsCellComponent } from './components/event-form-responses/user-details-cell/user-details-cell.component';
 import { EventLocationTracksComponent } from './components/event-locations/event-location-tracks/event-location-tracks.component';
 import { EventLocationsComponent } from './components/event-locations/event-locations.component';
+import { EventRecordingsComponent } from './components/event-recordings/event-recordings.component';
 import { EventSimpleRegistrationComponent } from './components/event-simple-registration/event-simple-registration.component';
 import { EventSpeakersComponent } from './components/event-speakers/event-speakers.component';
 import { EventStatsComponent } from './components/event-stats/event-stats.component';
@@ -73,6 +74,7 @@ import { EventsRoutingModule } from './events-routing.module';
     EventEmbeddedVideoStreamComponent,
     SponsorsComponent,
     EventSpeakersComponent,
+    EventRecordingsComponent,
   ],
   imports: [
     CommonModule,
@@ -113,5 +115,4 @@ import { EventsRoutingModule } from './events-routing.module';
     NbTimepickerModule,
   ],
 })
-export class EventsModule {
-}
+export class EventsModule {}

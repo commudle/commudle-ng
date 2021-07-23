@@ -1,0 +1,14 @@
+<nb-card class="event-recordings" *ngIf="recordings.length > 0">
+  <nb-card-header>Event Recordings</nb-card-header>
+  <nb-card-body>
+    <p>
+      <nb-icon icon="info"></nb-icon>
+      The download links will expire after 7 days from the date of creation
+    </p>
+    <nb-list>
+      <nb-list-item *ngFor="let recording of recordings">
+        <a [href]="recording.generated_url" target="_blank">{{event.name}} - {{recording.room_name}}</a>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

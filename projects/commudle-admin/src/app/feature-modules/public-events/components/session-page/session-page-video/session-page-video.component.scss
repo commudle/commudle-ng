@@ -26,18 +26,32 @@
     padding: 0;
     height: inherit;
 
-    .fullscreen-btn {
+    .session-page-info {
+      gap: $space-12;
       position: absolute;
       top: 8px;
       right: 8px;
-      border: none;
       z-index: 1;
-      color: $white;
-      background-color: transparent;
-      transition: all 0.2s ease-in-out;
 
-      &:hover {
-        background-color: rgba($spanish-gray, 0.4);
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .recording-info {
+        animation: blink 2s step-start 0s infinite;
+      }
+
+      .fullscreen-btn {
+        border: none;
+        color: $white;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: rgba($spanish-gray, 0.4);
+        }
       }
     }
 
