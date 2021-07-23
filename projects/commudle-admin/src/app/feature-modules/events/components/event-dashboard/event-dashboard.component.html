@@ -15,8 +15,12 @@
         <p>Welcome to the dashboard, here you can customize your event!</p>
         <div class="links">
           <a
-            [routerLink]="['/communities', community.slug, 'events', event.slug]" nbButton size="small" status="info"
-            target="_blank">
+            [routerLink]="['/communities', community.slug, 'events', event.slug]"
+            nbButton
+            size="small"
+            status="info"
+            target="_blank"
+          >
             Public Event Page
             <nb-icon icon="external-link d-flex"></nb-icon>
           </a>
@@ -44,20 +48,40 @@
                     <div class="row">
                       <div>
                         <div>
-                          <div *ngIf="uploadedHeaderImage || event.header_image_path"
-                               class="uploaded-header-image d-flex justify-content-center align-items-center">
-                            <img alt="Profile Picture" src="{{uploadedHeaderImage || event.header_image_path}}"
-                                 title="Profile Picture">
+                          <div
+                            *ngIf="uploadedHeaderImage || event.header_image_path"
+                            class="uploaded-header-image d-flex justify-content-center align-items-center"
+                          >
+                            <img
+                              alt="Profile Picture"
+                              src="{{uploadedHeaderImage || event.header_image_path}}"
+                              title="Profile Picture"
+                            />
                           </div>
-                          <button (click)="deleteEventHeader()"
-                                  *ngIf="event.editable && (uploadedHeaderImage || event.header_image_path)"
-                                  class="delete-header-image-button" nbButton outline size="tiny" status="danger">
+                          <button
+                            (click)="deleteEventHeader()"
+                            *ngIf="event.editable && (uploadedHeaderImage || event.header_image_path)"
+                            class="delete-header-image-button"
+                            nbButton
+                            outline
+                            size="tiny"
+                            status="danger"
+                          >
                             Delete
                           </button>
                         </div>
                         <label class="clickable">
-                          <div *ngIf="!(uploadedHeaderImage || event.header_image_path) && event.editable"
-                               class="uploaded-header-image filler d-flex flex-column align-items-center justify-content-center">
+                          <div
+                            *ngIf="!(uploadedHeaderImage || event.header_image_path) && event.editable"
+                            class="
+                              uploaded-header-image
+                              filler
+                              d-flex
+                              flex-column
+                              align-items-center
+                              justify-content-center
+                            "
+                          >
                             <p>
                               Click To Add Header Image
                               <small>(optional)</small>
@@ -66,8 +90,15 @@
                               <small> (1000 x 350) </small>
                             </p>
                           </div>
-                          <input (change)="displaySelectedHeaderImage($event)" *ngIf="event.editable" accept="image/*"
-                                 formControlName="header_image" fullWidth nbInput type="file"/>
+                          <input
+                            (change)="displaySelectedHeaderImage($event)"
+                            *ngIf="event.editable"
+                            accept="image/*"
+                            formControlName="header_image"
+                            fullWidth
+                            nbInput
+                            type="file"
+                          />
                         </label>
                       </div>
                     </div>
@@ -80,8 +111,7 @@
                       <div *ngIf="event.start_time">
                         <fa-icon [icon]="faClock"></fa-icon>
                         <p>
-                          {{moment(event.start_time).format("dddd Do MMM, YYYY h:mm A")}}
-                          to
+                          {{moment(event.start_time).format("dddd Do MMM, YYYY h:mm A")}} to
                           {{moment(event.end_time).format("dddd Do MMM, YYYY h:mm A")}}
                           {{moment(event.end_time).format("z")}}
                         </p>
@@ -95,9 +125,15 @@
                     </div>
                   </div>
                   <div>
-                    <a *ngIf="event.editable"
-                       [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']"
-                       class="padding-0 edit-button" ghost nbButton size="small" status="primary">
+                    <a
+                      *ngIf="event.editable"
+                      [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']"
+                      class="padding-0 edit-button"
+                      ghost
+                      nbButton
+                      size="small"
+                      status="primary"
+                    >
                       <fa-icon [icon]="faEdit"></fa-icon>
                       &nbsp; Edit Basic Details
                     </a>
@@ -127,14 +163,23 @@
             <nb-card-body>
               <div *ngIf="event.editable" class="advanced-option-switch d-flex align-items-center">
                 <p>One Click Registration</p>
-                <nb-toggle (checkedChange)="updateRegistrationType($event)" [checked]="event.custom_registration"
-                           status="primary"></nb-toggle>
+                <nb-toggle
+                  (checkedChange)="updateRegistrationType($event)"
+                  [checked]="event.custom_registration"
+                  status="primary"
+                ></nb-toggle>
                 <p>Registration Forms</p>
               </div>
-              <app-form-groups *ngIf="event.custom_registration" [community]="community"
-                               [event]="event"></app-form-groups>
-              <app-event-simple-registration *ngIf="!event.custom_registration" [community]="community"
-                                             [event]="event"></app-event-simple-registration>
+              <app-form-groups
+                *ngIf="event.custom_registration"
+                [community]="community"
+                [event]="event"
+              ></app-form-groups>
+              <app-event-simple-registration
+                *ngIf="!event.custom_registration"
+                [community]="community"
+                [event]="event"
+              ></app-event-simple-registration>
             </nb-card-body>
           </nb-card>
         </div>
@@ -146,22 +191,30 @@
               <div *ngIf="event.editable" class="advanced-option-switch d-flex align-items-center">
                 <p>
                   Simple Hosting
-                  <br/>
+                  <br />
                   (online only)
                 </p>
-                <nb-toggle (checkedChange)="updateAgendaType($event)" [checked]="event.custom_agenda"
-                           [disabled]="!event.custom_registration || !event.start_time" status="primary">
+                <nb-toggle
+                  (checkedChange)="updateAgendaType($event)"
+                  [checked]="event.custom_agenda"
+                  [disabled]="!event.custom_registration || !event.start_time"
+                  status="primary"
+                >
                 </nb-toggle>
                 <p>
                   Custom Schedule
-                  <br/>
+                  <br />
                   (online/offline with Multiple Tracks)
                 </p>
               </div>
               <div *ngIf="!event.start_time">
                 <nb-alert accent="info">
-                  <a [routerLink]="['/admin/communities',community.slug,'event-dashboard',event.slug,'edit']" ghost
-                     nbButton status="info">
+                  <a
+                    [routerLink]="['/admin/communities',community.slug,'event-dashboard',event.slug,'edit']"
+                    ghost
+                    nbButton
+                    status="info"
+                  >
                     Click Here to Enable the schedule options by adding date and time to this event.
                   </a>
                 </nb-alert>
@@ -176,12 +229,20 @@
                 <p *ngIf="event.custom_registration">
                   <small>*Speakers can be selected by using Speaker Form in the registrations section above!</small>
                 </p>
-                <app-event-locations *ngIf="event.custom_agenda" [community]="community"
-                                     [event]="event"></app-event-locations>
-                <app-event-speakers *ngIf="!event.custom_agenda && !event.custom_registration"
-                                    [event]="event"></app-event-speakers>
-                <app-event-embedded-video-stream *ngIf="!event.custom_agenda" [community]="community"
-                                                 [event]="event"></app-event-embedded-video-stream>
+                <app-event-locations
+                  *ngIf="event.custom_agenda"
+                  [community]="community"
+                  [event]="event"
+                ></app-event-locations>
+                <app-event-speakers
+                  *ngIf="!event.custom_agenda && !event.custom_registration"
+                  [event]="event"
+                ></app-event-speakers>
+                <app-event-embedded-video-stream
+                  *ngIf="!event.custom_agenda"
+                  [community]="community"
+                  [event]="event"
+                ></app-event-embedded-video-stream>
               </div>
             </nb-card-body>
           </nb-card>
@@ -194,9 +255,7 @@
         <div #eventCommunityCollaborations>
           <nb-accordion>
             <nb-accordion-item>
-              <nb-accordion-item-header>
-                Collaborating Communities
-              </nb-accordion-item-header>
+              <nb-accordion-item-header> Collaborating Communities</nb-accordion-item-header>
               <nb-accordion-item-body>
                 <app-collaborating-communities [community]="community" [event]="event"></app-collaborating-communities>
               </nb-accordion-item-body>
@@ -213,9 +272,7 @@
 
           <nb-accordion>
             <nb-accordion-item>
-              <nb-accordion-item-header>
-                Sponsors & Partners
-              </nb-accordion-item-header>
+              <nb-accordion-item-header> Sponsors & Partners</nb-accordion-item-header>
               <nb-accordion-item-body>
                 <app-sponsors [event]="event"></app-sponsors>
               </nb-accordion-item-body>
@@ -223,6 +280,8 @@
           </nb-accordion>
         </div>
       </div>
+
+      <app-event-recordings [event]="event"></app-event-recordings>
 
       <div #communityEmails class="community-emails">
         <app-community-emails-list [communityId]="event.kommunity_id"></app-community-emails-list>
@@ -233,35 +292,47 @@
       <nb-card>
         <nb-card-body>
           <div class="menu-items d-flex flex-row">
-            <div (click)="scroll(eventInfo)" class="item" nbTooltip="Status, Header Image, Basic Details"
-                 nbTooltipPlacement="end">
+            <div
+              (click)="scroll(eventInfo)"
+              class="item"
+              nbTooltip="Status, Header Image, Basic Details"
+              nbTooltipPlacement="end"
+            >
               <a class="d-flex">
                 <nb-icon icon="info-outline"></nb-icon>
                 <span>
                   Event Info
-                  <br/>
+                  <br />
                   <small>Status - Basic Details</small>
                 </span>
               </a>
             </div>
-            <div (click)="scroll(eventManager)" class="item" nbTooltip="Registrations, Agenda, Updates"
-                 nbTooltipPlacement="end">
+            <div
+              (click)="scroll(eventManager)"
+              class="item"
+              nbTooltip="Registrations, Agenda, Updates"
+              nbTooltipPlacement="end"
+            >
               <a>
                 <nb-icon icon="calendar-outline"></nb-icon>
                 <span>
                   Event Manager
-                  <br/>
+                  <br />
                   <small>Registrations - Agenda - Updates</small>
                 </span>
               </a>
             </div>
-            <div (click)="scroll(eventCollaborations)" class="item" nbTooltip="Collaboration, Volunteers"
-                 nbTooltipPlacement="end">
+            <div
+              (click)="scroll(eventCollaborations)"
+              class="item"
+              nbTooltip="Collaboration, Volunteers"
+              nbTooltipPlacement="end"
+            >
               <a>
                 <nb-icon icon="people-outline"></nb-icon>
                 <span>
                   Extended Team
-                  <br/>
+                  <br />
                   <small>Collaborations - Volunteers - Sponsors</small>
                 </span>
               </a>
@@ -291,14 +362,10 @@
         <nb-accordion-item-body>
           <ul>
             <li>
-              <p>
-                <strong>Draft</strong>: Only the organizers and people who have the link can see the event
-              </p>
+              <p><strong>Draft</strong>: Only the organizers and people who have the link can see the event</p>
             </li>
             <li>
-              <p>
-                <strong>Open</strong>: The event is visible on the community page
-              </p>
+              <p><strong>Open</strong>: The event is visible on the community page</p>
             </li>
             <li>
               <p>
@@ -311,9 +378,7 @@
               </p>
             </li>
           </ul>
-          <p>
-            * <small>Event can be edited upto 5 days after completion</small>
-          </p>
+          <p>* <small>Event can be edited upto 5 days after completion</small></p>
         </nb-accordion-item-body>
       </nb-accordion-item>
       <nb-accordion-item>
@@ -325,10 +390,8 @@
                 <strong>One Click Registration</strong>
               </p>
               <p>
-                <small>
-                  Members can register for the event in a single click
-                </small>
-                <br/>
+                <small> Members can register for the event in a single click </small>
+                <br />
                 <small>
                   You can view their registrations from the 'View Registrations' link and send them unique entry passes
                 </small>
@@ -336,9 +399,7 @@
             </li>
             <li>
               <p>
-                <strong>
-                  Registration Forms [Higher attendance percentage!]
-                </strong>
+                <strong> Registration Forms [Higher attendance percentage!] </strong>
               </p>
               <p>
                 <small>
@@ -353,13 +414,9 @@
                 <li>
                   <p><strong>STEP 1</strong>: Roll out forms</p>
                   <p>
-                    <small>
-                      Form Type: <strong>Attendee</strong> For people who will be attending the event
-                    </small>
-                    <br>
-                    <small>
-                      Form Type: <strong>Speaker</strong> Use this for call for papers
-                    </small>
+                    <small> Form Type: <strong>Attendee</strong> For people who will be attending the event </small>
+                    <br />
+                    <small> Form Type: <strong>Speaker</strong> Use this for call for papers </small>
                   </p>
                 </li>
                 <li>
@@ -370,7 +427,7 @@
                       <strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to
                       'Confirmed'
                     </small>
-                    <br>
+                    <br />
                     <small>
                       <strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to
                       'Confirmed', the email also contains a link to add the slides they will be using for sharing with
@@ -402,7 +459,7 @@
             <li>
               <p>
                 <strong>Simple Hosting (online only)</strong>
-                <br>
+                <br />
                 Choose between
                 <strong>Youtube Streaming</strong>, and <strong>any other Embed</strong>. [ZOOM integration coming
                 soon!]
@@ -411,7 +468,7 @@
             <li>
               <p>
                 <strong>Multiple Locations / Tracks / Sessions</strong>
-                <br>
+                <br />
                 This option is when you have a more organized event
               </p>
               <ul>
@@ -440,9 +497,7 @@
         </nb-accordion-item-body>
       </nb-accordion-item>
       <nb-accordion-item>
-        <nb-accordion-item-header>
-          Collaborating Communities
-        </nb-accordion-item-header>
+        <nb-accordion-item-header> Collaborating Communities</nb-accordion-item-header>
         <nb-accordion-item-body>
           <p>Just search from all the communities on Commudle and create collaborations!</p>
         </nb-accordion-item-body>
