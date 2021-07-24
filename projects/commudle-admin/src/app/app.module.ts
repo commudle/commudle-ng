@@ -46,6 +46,7 @@ import { LabsModule } from 'projects/commudle-admin/src/app/feature-modules/labs
 import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
@@ -139,6 +140,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     AppSharedComponentsModule,
     SharedComponentsModule,
     ReusableComponentsModule,
+    SharedDirectivesModule,
     SharedPipesModule,
     UserChatsModule,
     UsersModule,
