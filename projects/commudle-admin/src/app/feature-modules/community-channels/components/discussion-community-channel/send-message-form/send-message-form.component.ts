@@ -188,6 +188,18 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.showEmojiForm = !this.showEmojiForm;
   }
 
+  clickOutsideClose(event: Event) {
+    if(event) {
+      const path = (event as any).path || (event.composedPath && event.composedPath());
+      const clickingInEmojiTab = path.some((e: HTMLElement) => {
+        return e.classList && e.classList.contains('emoji-mart-emoji');
+      });
+
+      if(clickingInEmojiTab) return;
+    }
+    this.showEmojiForm = false;
+  }
+
   selectEmoji(event) {
     let currentValue = this.sendUserMessageForm.get('content').value || '';
     this.sendUserMessageForm.patchValue({

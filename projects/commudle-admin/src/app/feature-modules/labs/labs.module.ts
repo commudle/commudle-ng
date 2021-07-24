@@ -33,7 +33,6 @@ import { LabComponent } from './components/lab/lab.component';
 import { HeaderBannerComponent } from './components/labs/header-banner/header-banner.component';
 import { HeaderTextComponent } from './components/labs/header-text/header-text.component';
 import { LabsComponent } from './components/labs/labs.component';
-import { ClickOutsideDirective } from './components/labs/search-bar/click-outside.directive';
 import { SearchBarComponent } from './components/labs/search-bar/search-bar.component';
 import { LabListItemComponent } from './components/my-labs/lab-list-item/lab-list-item.component';
 import { MyLabsComponent } from './components/my-labs/my-labs.component';
@@ -55,7 +54,6 @@ import { LabsRoutingModule } from './labs-routing.module';
     HeaderBannerComponent,
     HeaderTextComponent,
     LabDetailsComponent,
-    ClickOutsideDirective,
   ],
   imports: [
     CommonModule,
@@ -84,6 +82,6 @@ import { LabsRoutingModule } from './labs-routing.module';
     NbSidebarModule.forRoot(),
     NbContextMenuModule,
   ],
-  exports: [LabDisplayCardComponent, ClickOutsideDirective],
+  exports: [LabDisplayCardComponent],
 })
 export class LabsModule {}

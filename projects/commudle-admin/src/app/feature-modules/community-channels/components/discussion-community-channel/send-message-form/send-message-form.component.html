@@ -29,7 +29,7 @@
           <nb-icon icon="attach"></nb-icon>
           <input #fileInput (change)="addFiles($event)" class="hidden" fullWidth multiple nbInput type="file">
         </label>
-        <a (click)="toggleEmojiForm()" class="emoji-button" ghost nbButton> 😃 </a>
+        <a (clickOutside)="clickOutsideClose($event)" appClickOutside (click)="toggleEmojiForm()" class="emoji-button" ghost nbButton> 😃 </a>
         <emoji-mart (emojiSelect)="selectEmoji($event)" *ngIf="showEmojiForm" [ngClass]="{'edit': editableMessage}"
                     class="emoji-mart" set="twitter" title="Select an emoji!"></emoji-mart>
       </div>
