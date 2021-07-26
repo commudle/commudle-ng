@@ -109,7 +109,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   }
 
   addFiles(event: Event): void {
-    let fileList: FileList = (event.target as HTMLInputElement).files;
+    const fileList: FileList = (event.target as HTMLInputElement).files;
     const inputFiles: File[] = [];
     for (let i = 0; i < fileList.length; i++) {
       inputFiles.push(fileList.item(i));
@@ -152,7 +152,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   createPageAd(): void {
     this.subscriptions.push(
       this.sysAdminPageAdsService.createAd(this.buildFormData()).subscribe(() => {
-        this.router.navigate(['/sys-admin', 'admin-page-ads']).then(
+        this.router.navigate(['/sys-admin', 'page-ads']).then(
           () => {
             this.libToastLogService.successDialog('Created ad successfully!');
           },
@@ -165,7 +165,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   updatePageAd(): void {
     this.subscriptions.push(
       this.sysAdminPageAdsService.updateAd(this.buildFormData(), this.pageAd.id).subscribe(() => {
-        this.router.navigate(['/sys-admin', 'admin-page-ads']).then(
+        this.router.navigate(['/sys-admin', 'page-ads']).then(
           () => {
             this.libToastLogService.successDialog('Updated ad successfully!');
           },

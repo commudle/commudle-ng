@@ -16,17 +16,18 @@ export class PageAdsComponent implements OnInit {
 
   pageAd: IPageAd;
 
-  constructor(private pageAdsService: PageAdsService) {}
+  constructor(private pageAdsService: PageAdsService) {
+  }
 
   ngOnInit(): void {
     this.getAd();
   }
 
-  getAd(defaultAd: boolean = false): void {
+  getAd(defaultAd: boolean = false, forceStop: boolean = true): void {
     this.pageAdsService.getActiveAd(this.slot, defaultAd).subscribe((value) => {
       this.pageAd = value;
-      if (value == null) {
-        this.getAd(true);
+      if (value == null && forceStop) {
+        this.getAd(true, false);
       }
     });
   }
