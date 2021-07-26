@@ -20,6 +20,8 @@ p {
   border: none;
   overflow: hidden;
   background-color: transparent;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 
   a {
     text-decoration: none;
@@ -106,6 +108,9 @@ p {
     //}
 
     .image {
+      border-radius: $border-10;
+      overflow: hidden;
+
       img {
         width: 100%;
       }

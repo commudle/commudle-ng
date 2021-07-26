@@ -20,7 +20,7 @@ const routes = [
         component: CommunityControlsComponent,
       },
       {
-        path: 'admin-page-ads',
+        path: 'page-ads',
         component: AdminPageAdsComponent,
         children: [
           {
@@ -57,5 +57,4 @@ const routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SysAdminRoutingModule {
-}
+export class SysAdminRoutingModule {}

@@ -1,18 +1,18 @@
-import {CommunityGroupsService} from 'projects/commudle-admin/src/app/services/community-groups.service';
-import {Component, OnInit} from '@angular/core';
-import {NbSidebarService} from '@nebular/theme';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
-import {ICommunity} from 'projects/shared-models/community.model';
-import {CommunitiesService} from '../../services/communities.service';
-import {faFlask} from '@fortawesome/free-solid-svg-icons';
-import {ICommunityGroup} from 'projects/shared-models/community-group.model';
+import { Component, OnInit } from '@angular/core';
+import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { NbSidebarService } from '@nebular/theme';
+import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
+import { ICommunityGroup } from 'projects/shared-models/community-group.model';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { CommunitiesService } from '../../services/communities.service';
 
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
-  styleUrls: ['./sidebar-menu.component.scss']
+  styleUrls: ['./sidebar-menu.component.scss'],
 })
 export class SidebarMenuComponent implements OnInit {
   faFlask = faFlask;
@@ -22,26 +22,27 @@ export class SidebarMenuComponent implements OnInit {
   communityOrganizerRoles = [EUserRoles.ORGANIZER, EUserRoles.EVENT_ORGANIZER].map(String);
   isSystemAdmin = false;
   EUserRoles = EUserRoles;
+  isPageAdsAdmin = false;
+  isFeaturedCommunitiesAdmin = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
-    private sidebarService: NbSidebarService
-  ) {
-  }
+    private sidebarService: NbSidebarService,
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getCurrentUser();
   }
 
-  getCurrentUser() {
-    this.authWatchService.currentUser$.subscribe(currentUser => {
+  getCurrentUser(): void {
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
       if (currentUser) {
         // check if current user is having a specific role and add corresponding items
         const matchingOrganizerRoles = currentUser.user_roles.filter(
-          (value) => -1 !== this.communityOrganizerRoles.indexOf(value)
+          (value) => -1 !== this.communityOrganizerRoles.indexOf(value),
         );
 
         if (matchingOrganizerRoles.length > 0) {
@@ -52,6 +53,14 @@ export class SidebarMenuComponent implements OnInit {
           this.isSystemAdmin = true;
         }
 
+        if (currentUser.user_roles.includes(EUserRoles.PAGE_ADS)) {
+          this.isPageAdsAdmin = true;
+        }
+
+        if (currentUser.user_roles.includes(EUserRoles.FEATURED_COMMUNITIES)) {
+          this.isFeaturedCommunitiesAdmin = true;
+        }
+
         if (currentUser.user_roles.includes(EUserRoles.COMMUNITY_ADMIN)) {
           this.getManagingCommunityGroups();
         }
@@ -59,27 +68,24 @@ export class SidebarMenuComponent implements OnInit {
     });
   }
 
-  getManagingCommunities(userRoles) {
+  getManagingCommunities(userRoles: string[]): void {
     this.managedCommunities = [];
     for (const role of userRoles) {
-      this.communitiesService.getRoleCommunities(role).subscribe(data => {
+      this.communitiesService.getRoleCommunities(role).subscribe((data) => {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];
       });
     }
   }
 
-  getManagingCommunityGroups() {
-    this.communityGroupsService.getManagingCommunityGroups().subscribe(
-      data => {
-        this.managedCommunityGroups = data.community_groups;
-      }
-    );
+  getManagingCommunityGroups(): void {
+    this.communityGroupsService.getManagingCommunityGroups().subscribe((data) => {
+      this.managedCommunityGroups = data.community_groups;
+    });
   }
 
-  closeSidebar() {
+  closeSidebar(): void {
     if (window.screen.width <= 1000) {
       this.sidebarService.collapse();
     }
   }
-
 }
