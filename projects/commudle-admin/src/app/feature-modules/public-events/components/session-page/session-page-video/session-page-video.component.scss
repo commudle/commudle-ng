@@ -33,14 +33,41 @@
       right: 8px;
       z-index: 1;
 
-      @keyframes blink {
-        50% {
+      .ring-container {
+        position: relative;
+
+        .circle {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: $ultra-red;
+        }
+
+        .ring {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          border: 3px solid $ultra-red;
+          position: absolute;
+          left: -5px;
+          top: -5px;
+          animation: pulsate 1s ease-out infinite;
           opacity: 0;
         }
-      }
 
-      .recording-info {
-        animation: blink 2s step-start 0s infinite;
+        @-webkit-keyframes pulsate {
+          0% {
+            transform: scale(0.1, 0.1);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1.2, 1.2);
+            opacity: 0;
+          }
+        }
       }
 
       .fullscreen-btn {

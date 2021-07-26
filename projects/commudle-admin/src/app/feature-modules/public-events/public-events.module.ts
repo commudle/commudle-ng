@@ -90,7 +90,6 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbActionsModule,
     NbUserModule,
     NbToggleModule,
-    NbTagModule,
   ],
 })
 export class PublicEventsModule {}
