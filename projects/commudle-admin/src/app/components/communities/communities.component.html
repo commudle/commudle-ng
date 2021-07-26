@@ -1,22 +1,49 @@
-<div class="communities-container d-flex">
-  <div class="communities">
-    <div class="about">
-      <app-communities-about></app-communities-about>
-      <app-communities-featured></app-communities-featured>
+<div class="communities-container">
+  <!-- DESKTOP -->
+  <div *ngIf="windowWidth > 768" class="d-flex">
+    <div class="communities">
+      <div class="about">
+        <app-communities-about></app-communities-about>
+        <app-communities-featured></app-communities-featured>
+      </div>
+
+      <div class="content d-flex">
+        <div class="left-column">
+          <app-communities-posts></app-communities-posts>
+        </div>
+
+        <div class="center-column">
+          <app-communities-list></app-communities-list>
+        </div>
+      </div>
     </div>
-
-    <div class="content d-flex">
-      <div class="left-column">
-        <app-communities-posts></app-communities-posts>
-      </div>
-
-      <div class="center-column">
-        <app-communities-list></app-communities-list>
-      </div>
+    <div class="ads">
+      <app-page-ads [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_2"></app-page-ads>
+      <app-page-ads [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_3"></app-page-ads>
     </div>
   </div>
-  <div class="ads">
-    <app-page-ads [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_2"></app-page-ads>
-    <app-page-ads [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_3"></app-page-ads>
+
+  <!-- MOBILE -->
+  <div *ngIf="windowWidth <= 768" class="communities-mobile">
+    <app-communities-about></app-communities-about>
+    <div class="d-flex justify-content-center">
+      <app-page-ads
+        [adHeight]="162"
+        [adWidth]="162"
+        [showContent]="true"
+        [showTitle]="true"
+        slot="slot_2"
+      ></app-page-ads>
+      <app-page-ads
+        [adHeight]="162"
+        [adWidth]="162"
+        [showContent]="true"
+        [showTitle]="true"
+        slot="slot_3"
+      ></app-page-ads>
+    </div>
+    <app-communities-featured></app-communities-featured>
+    <app-communities-posts></app-communities-posts>
+    <app-communities-list></app-communities-list>
   </div>
 </div>

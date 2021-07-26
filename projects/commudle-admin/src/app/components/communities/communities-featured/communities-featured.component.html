@@ -1,6 +1,6 @@
 <nb-card class="communities-featured">
   <nb-card-body>
-    <p class="heading">Featured communities</p>
+    <p class="heading">Featured Communities</p>
     <div class="featured-communities-list d-flex">
       <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
         <div class="actions d-flex">
@@ -15,16 +15,16 @@
             </button>
           </a>
         </div>
-        <div class="image">
+        <div class="clickable image" [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
           <img
             alt="{{featuredCommunity.kommunity.name}}"
             src="{{featuredCommunity.kommunity.logo_image?.url}}"
             title="{{featuredCommunity.kommunity.name}}"
           />
         </div>
-        <div class="content">
-          <div class="name">{{featuredCommunity.kommunity.name}}</div>
-          <div class="reason">{{featuredCommunity.reason}}</div>
+        <div class="clickable content" [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
+          <p class="name">{{featuredCommunity.kommunity.name}}</p>
+          <p class="reason">{{featuredCommunity.reason}}</p>
         </div>
       </div>
     </div>

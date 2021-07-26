@@ -34,7 +34,7 @@ nb-card {
     }
 
     nb-card-body {
-      padding: 0 $space-24 0 0;
+      //padding: 0 $space-24 0 0;
 
       .header-image {
         margin-right: $space-24;
@@ -117,19 +117,14 @@ nb-card {
     margin: 0 0 1rem;
 
     nb-card-body {
-      padding: $space-16 $space-24;
+      padding: 0 0 $space-24;
       flex-direction: column;
       align-items: center;
 
       .header-image {
-        width: 500px;
-        max-width: 90vw;
-        height: auto !important;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0 0 $space-24;
 
         img {
           width: 100%;
@@ -144,8 +139,8 @@ nb-card {
         h5 {
           margin: 0 0 0.5rem;
           font-weight: 400;
-          font-size: 2.5rem;
-          line-height: 2.5rem !important;
+          font-size: 2rem;
+          line-height: 2rem !important;
           flex-direction: column;
           align-items: center;
           text-align: center;

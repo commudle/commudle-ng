@@ -49,6 +49,7 @@ export class AdminPageAdsListComponent implements OnInit {
       this.sysAdminPageAdsService.deleteAd(this.currentAdId).subscribe((data) => {
         if (data) {
           this.toastLogService.successDialog('Successfully deleted ad!');
+          this.getAds();
         }
       });
     }
