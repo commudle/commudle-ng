@@ -4,13 +4,10 @@
 >
   <nb-card-body>
     <div class="session-page-info d-flex align-items-center">
-      <nb-tag
-        *ngIf="embeddedVideoStream.is_recorded"
-        class="recording-info"
-        size="tiny"
-        status="danger"
-        text="Session is being recorded"
-      ></nb-tag>
+      <div class="ring-container">
+        <div class="ring"></div>
+        <div class="circle"></div>
+      </div>
       <button
         (click)="toggleFullScreen()"
         *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source)"
