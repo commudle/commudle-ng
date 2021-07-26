@@ -23,28 +23,12 @@
   .ads {
     width: 178px;
   }
-}
 
-@media all and (max-width: $tab-width) {
-  .communities-container {
-    flex-direction: column;
+  .communities-mobile {
+    width: 100vw;
 
-    .communities {
-      .about {
-        width: 100vw;
-      }
-
-      .content {
-        flex-direction: column;
-
-        .left-column {
-          width: 100vw;
-        }
-
-        .center-column {
-          width: 100vw;
-        }
-      }
+    .ads {
+      gap: $space-32;
     }
   }
 }
