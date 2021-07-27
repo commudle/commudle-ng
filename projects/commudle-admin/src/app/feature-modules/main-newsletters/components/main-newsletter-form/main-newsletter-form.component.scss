@@ -2,7 +2,7 @@
 
 .main-newsletter-form {
   .editor {
-    min-width: 700px;
+    width: 700px;
 
     .form-field {
       margin-bottom: $space-16;
@@ -15,8 +15,7 @@
     }
   }
   .preview {
-    min-width: 700px;
-    max-width: 732px;
+    width: 650px;
     min-height: 350px;
     height: fit-content;
   }
