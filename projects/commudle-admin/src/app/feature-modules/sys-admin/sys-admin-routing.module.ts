@@ -20,7 +20,7 @@ const routes = [
         component: CommunityControlsComponent,
       },
       {
-        path: 'admin-page-ads',
+        path: 'pa',
         component: AdminPageAdsComponent,
         children: [
           {
