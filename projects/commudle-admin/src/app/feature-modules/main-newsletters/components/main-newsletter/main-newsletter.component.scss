@@ -5,5 +5,22 @@
 
   nb-card {
     width: $max-newsletter-width;
+    max-width: 100vw;
+
+    nb-card-body {
+      padding: $space-8;
+    }
+
+    @media all and (max-width: $tab-width) {
+      .content {
+        ::ng-deep {
+          img {
+            max-width: 100%;
+            height: auto !important;
+          }
+        }
+      }
+
+    }
   }
 }
