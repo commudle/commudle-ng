@@ -275,13 +275,13 @@ export const API_ROUTES = {
   },
 
   PAGE_ADS: {
-    INDEX: 'api/v2/page_ads',
-    SHOW: 'api/v2/page_ads/show',
-    CREATE: 'api/v2/page_ads',
-    UPDATE: 'api/v2/page_ads',
-    DELETE: 'api/v2/page_ads',
+    INDEX: 'api/v2/pa',
+    SHOW: 'api/v2/pa/show',
+    CREATE: 'api/v2/pa',
+    UPDATE: 'api/v2/pa',
+    DELETE: 'api/v2/pa',
     PUBLIC: {
-      SHOW: 'api/v2/page_ads/public/show'
+      SHOW: 'api/v2/pa/public/show'
     }
   },
 
