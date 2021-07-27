@@ -27,7 +27,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   tinyMCE = {
     placeholder: 'Start typing here...*',
     min_height: 500,
-    width: '700',
+    width: '650',
     menubar: false,
     convert_urls: false,
     skin: 'outside',
@@ -39,8 +39,8 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
       'insertdatetime table paste code help wordcount autoresize table',
     ],
     toolbar:
-      'formatselect | fontsizeselect | bold italic forecolor backcolor | image emoticons| \
-      link | alignleft aligncenter alignright alignjustify | \
+      'formatselect | fontsizeselect | bold italic forecolor backcolor | image emoticons | \
+      link | alignleft aligncenter alignright alignjustify | table | \
       bullist numlist outdent indent | codesample | code | removeformat',
     table_toolbar: 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
     codesample_languages: [
