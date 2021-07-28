@@ -5,7 +5,7 @@ import { IPageAd } from 'projects/shared-models/page-ad.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
-  selector: 'app-admin-page-ads-list',
+  selector: 'app-admin-pa-slots-list',
   templateUrl: './admin-page-ads-list.component.html',
   styleUrls: ['./admin-page-ads-list.component.scss'],
 })
