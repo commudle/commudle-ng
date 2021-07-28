@@ -1,7 +1,7 @@
 <nb-card class="admin-page-ads-form">
   <nb-card-header class="d-flex justify-content-space-between align-items-center">
     Page Ads
-    <button [routerLink]="['/sys-admin', 'page-ads']" ghost nbButton shape="round" size="small">Show All Ads</button>
+    <button [routerLink]="['/sys-admin', 'pa']" ghost nbButton shape="round" size="small">Show All Ads</button>
   </nb-card-header>
   <nb-card-body>
     <form (submit)="submitForm()" [formGroup]="pageAdForm" class="form-fields d-flex flex-column">
