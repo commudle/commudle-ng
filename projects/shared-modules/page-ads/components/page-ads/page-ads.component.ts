@@ -3,7 +3,7 @@ import { IPageAd } from 'projects/shared-models/page-ad.model';
 import { PageAdsService } from 'projects/shared-modules/page-ads/services/page-ads.service';
 
 @Component({
-  selector: 'app-page-ads',
+  selector: 'app-pa-slots',
   templateUrl: './page-ads.component.html',
   styleUrls: ['./page-ads.component.scss'],
 })
@@ -16,8 +16,7 @@ export class PageAdsComponent implements OnInit {
 
   pageAd: IPageAd;
 
-  constructor(private pageAdsService: PageAdsService) {
-  }
+  constructor(private pageAdsService: PageAdsService) {}
 
   ngOnInit(): void {
     this.getAd();

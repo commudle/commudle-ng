@@ -18,8 +18,8 @@
       </div>
     </div>
     <div class="ads">
-      <app-page-ads [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_2"></app-page-ads>
-      <app-page-ads [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_3"></app-page-ads>
+      <app-pa-slots [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
+      <app-pa-slots [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_3"></app-pa-slots>
     </div>
   </div>
 
@@ -27,20 +27,20 @@
   <div *ngIf="windowWidth <= 768" class="communities-mobile">
     <app-communities-about></app-communities-about>
     <div class="d-flex justify-content-center">
-      <app-page-ads
+      <app-pa-slots
         [adHeight]="162"
         [adWidth]="162"
         [showContent]="true"
         [showTitle]="true"
         slot="slot_2"
-      ></app-page-ads>
-      <app-page-ads
+      ></app-pa-slots>
+      <app-pa-slots
         [adHeight]="162"
         [adWidth]="162"
         [showContent]="true"
         [showTitle]="true"
         slot="slot_3"
-      ></app-page-ads>
+      ></app-pa-slots>
     </div>
     <app-communities-featured></app-communities-featured>
     <app-communities-posts></app-communities-posts>
