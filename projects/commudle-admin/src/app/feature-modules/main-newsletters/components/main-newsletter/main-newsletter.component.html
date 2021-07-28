@@ -5,7 +5,7 @@
         <p *ngIf="mainNewsletter.published_at">
           Published on: {{mainNewsletter.published_at.toLocaleDateString()}}
         </p>
-        <div [innerHTML]="sanitizedContent" *ngIf="mainNewsletter"></div>
+        <div class="content" [innerHTML]="sanitizedContent" *ngIf="mainNewsletter"></div>
       </nb-card-body>
     </nb-card>
   </div>
