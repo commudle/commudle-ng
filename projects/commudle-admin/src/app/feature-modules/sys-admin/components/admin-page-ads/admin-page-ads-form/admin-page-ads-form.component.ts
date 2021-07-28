@@ -152,7 +152,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   createPageAd(): void {
     this.subscriptions.push(
       this.sysAdminPageAdsService.createAd(this.buildFormData()).subscribe(() => {
-        this.router.navigate(['/sys-admin', 'page-ads']).then(
+        this.router.navigate(['/sys-admin', 'pa']).then(
           () => {
             this.libToastLogService.successDialog('Created ad successfully!');
           },
@@ -165,7 +165,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   updatePageAd(): void {
     this.subscriptions.push(
       this.sysAdminPageAdsService.updateAd(this.buildFormData(), this.pageAd.id).subscribe(() => {
-        this.router.navigate(['/sys-admin', 'page-ads']).then(
+        this.router.navigate(['/sys-admin', 'pa']).then(
           () => {
             this.libToastLogService.successDialog('Updated ad successfully!');
           },
