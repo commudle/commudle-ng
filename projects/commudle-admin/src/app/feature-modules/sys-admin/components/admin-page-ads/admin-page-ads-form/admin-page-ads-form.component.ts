@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { SysAdminPageAdsService } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-page-ads.service';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { IPageAd } from 'projects/shared-models/page-ad.model';
@@ -8,7 +9,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-admin-page-ads-form',
+  selector: 'app-admin-pa-slots-form',
   templateUrl: './admin-page-ads-form.component.html',
   styleUrls: ['./admin-page-ads-form.component.scss'],
 })
@@ -87,12 +88,12 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     // Patch dates
     if (this.pageAd.start_at) {
       this.pageAdForm.patchValue({
-        start_at: new Date(this.pageAd.start_at).toISOString().slice(0, -1),
+        start_at: moment.parseZone(this.pageAd.start_at).local().format().slice(0, -6),
       });
     }
     if (this.pageAd.end_at) {
       this.pageAdForm.patchValue({
-        end_at: new Date(this.pageAd.end_at).toISOString().slice(0, -1),
+        end_at: moment.parseZone(this.pageAd.end_at).local().format().slice(0, -6),
       });
     }
 
@@ -109,7 +110,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   }
 
   addFiles(event: Event): void {
-    let fileList: FileList = (event.target as HTMLInputElement).files;
+    const fileList: FileList = (event.target as HTMLInputElement).files;
     const inputFiles: File[] = [];
     for (let i = 0; i < fileList.length; i++) {
       inputFiles.push(fileList.item(i));
@@ -152,7 +153,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   createPageAd(): void {
     this.subscriptions.push(
       this.sysAdminPageAdsService.createAd(this.buildFormData()).subscribe(() => {
-        this.router.navigate(['/sys-admin', 'admin-page-ads']).then(
+        this.router.navigate(['/sys-admin', 'pa']).then(
           () => {
             this.libToastLogService.successDialog('Created ad successfully!');
           },
@@ -165,7 +166,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   updatePageAd(): void {
     this.subscriptions.push(
       this.sysAdminPageAdsService.updateAd(this.buildFormData(), this.pageAd.id).subscribe(() => {
-        this.router.navigate(['/sys-admin', 'admin-page-ads']).then(
+        this.router.navigate(['/sys-admin', 'pa']).then(
           () => {
             this.libToastLogService.successDialog('Updated ad successfully!');
           },
@@ -181,7 +182,12 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
 
     Object.keys(pageAdFormValue).forEach((value) => {
       if (pageAdFormValue[value] != null) {
-        formData.append(`page_ad[${value}]`, pageAdFormValue[value]);
+        if (['start_at', 'end_at'].includes(value)) {
+          const time = pageAdFormValue[value] + this.getTimeZone();
+          formData.append(`page_ad[${value}]`, moment.parseZone(time).utc().format());
+        } else {
+          formData.append(`page_ad[${value}]`, pageAdFormValue[value]);
+        }
       }
     });
 
@@ -192,5 +198,11 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     });
 
     return formData;
+  }
+
+  getTimeZone(): string {
+    const offset = new Date().getTimezoneOffset();
+    const off = Math.abs(offset);
+    return (offset < 0 ? '+' : '-') + ('00' + Math.floor(off / 60)).slice(-2) + ':' + ('00' + (off % 60)).slice(-2);
   }
 }

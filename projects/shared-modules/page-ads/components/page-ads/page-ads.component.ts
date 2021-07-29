@@ -3,7 +3,7 @@ import { IPageAd } from 'projects/shared-models/page-ad.model';
 import { PageAdsService } from 'projects/shared-modules/page-ads/services/page-ads.service';
 
 @Component({
-  selector: 'app-page-ads',
+  selector: 'app-pa-slots',
   templateUrl: './page-ads.component.html',
   styleUrls: ['./page-ads.component.scss'],
 })
@@ -22,11 +22,11 @@ export class PageAdsComponent implements OnInit {
     this.getAd();
   }
 
-  getAd(defaultAd: boolean = false): void {
+  getAd(defaultAd: boolean = false, forceStop: boolean = true): void {
     this.pageAdsService.getActiveAd(this.slot, defaultAd).subscribe((value) => {
       this.pageAd = value;
-      if (value == null) {
-        this.getAd(true);
+      if (value == null && forceStop) {
+        this.getAd(true, false);
       }
     });
   }

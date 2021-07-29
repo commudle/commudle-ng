@@ -1,0 +1,11 @@
+.event-recordings {
+  nb-card-body {
+    nb-list {
+      nb-list-item {
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

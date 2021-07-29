@@ -12,9 +12,10 @@ import {
   NbListModule,
   NbPopoverModule,
   NbTabsetModule,
+  NbTagModule,
   NbToggleModule,
   NbTooltipModule,
-  NbUserModule
+  NbUserModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
@@ -65,7 +66,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SessionPageChatComponent,
     SessionPageQnaComponent,
     SessionPagePollComponent,
-    SessionPageViewersComponent
+    SessionPageViewersComponent,
   ],
   imports: [
     CommonModule,
@@ -88,8 +89,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbAlertModule,
     NbActionsModule,
     NbUserModule,
-    NbToggleModule
-  ]
+    NbToggleModule,
+  ],
 })
-export class PublicEventsModule {
-}
+export class PublicEventsModule {}

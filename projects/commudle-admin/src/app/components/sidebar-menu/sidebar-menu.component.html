@@ -78,11 +78,19 @@
         <nb-accordion-item-body>
           <a [routerLink]="['/sys-admin', 'labs']"> Labs </a>
         </nb-accordion-item-body>
-        <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin', 'admin-page-ads']"> Page Ads </a>
+      </nb-accordion-item>
+    </nb-accordion>
+  </div>
+
+  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin">
+    <nb-accordion class="sidebar-common-menu">
+      <nb-accordion-item [expanded]="true">
+        <nb-accordion-item-header>Common Menu</nb-accordion-item-header>
+        <nb-accordion-item-body *ngIf="isFeaturedCommunitiesAdmin">
+          <a [routerLink]="['/sys-admin', 'featured-communities']">Featured Communities</a>
         </nb-accordion-item-body>
-        <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin', 'featured-communities']"> Featured Communities </a>
+        <nb-accordion-item-body *ngIf="isPageAdsAdmin">
+          <a [routerLink]="['/sys-admin', 'pa']">Page Ads</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
