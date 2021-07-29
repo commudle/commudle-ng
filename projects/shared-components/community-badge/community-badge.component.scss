@@ -1,8 +1,11 @@
 .community-badge {
-
   padding: 6px 12px 6px 6px;
   cursor: pointer;
   overflow-x: hidden;
+  width: max-content;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 99em;
+  margin: 5px;
 
   &:hover {
     background: rgba(0, 0, 0, 0.1);
@@ -15,6 +18,7 @@
     width: max-content;
     align-items: center;
   }
+
   .logo {
     width: 30px;
     height: 30px;
@@ -24,15 +28,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
       width: 100%;
     }
-    box-shadow: 0px 1px 14px rgba(0, 0, 0, 0.2);
-  }
 
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 99em;
-  margin: 5px;
+    box-shadow: 0 1px 14px rgba(0, 0, 0, 0.2);
+  }
 
   .name {
     p {
@@ -42,6 +44,6 @@
   }
 }
 
-.community-badge.bg-white{
+.community-badge.bg-white {
   background: white;
 }

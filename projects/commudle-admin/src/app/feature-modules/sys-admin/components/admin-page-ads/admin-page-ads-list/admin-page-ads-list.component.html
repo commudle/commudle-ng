@@ -1,7 +1,7 @@
 <nb-card class="admin-page-ads-list">
   <nb-card-header class="d-flex justify-content-space-between align-items-center">
     Page Ads
-    <button [routerLink]="['/sys-admin', 'admin-page-ads', 'form']" ghost nbButton shape="round" size="small">
+    <button [routerLink]="['/sys-admin', 'pa', 'form']" ghost nbButton shape="round" size="small">
       <nb-icon icon="plus"></nb-icon>
       Create New Ad
     </button>
@@ -32,7 +32,7 @@
           <div class="controls d-flex">
             <button
               [queryParams]="{pageAdId: ad.id}"
-              [routerLink]="['/sys-admin', 'admin-page-ads', 'form']"
+              [routerLink]="['/sys-admin', 'pa', 'form']"
               nbButton
               outline
               size="tiny"
