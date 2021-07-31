@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 import { MainNewslettersService } from '../../services/main-newsletters.service';
@@ -17,7 +17,9 @@ export class MainNewsletterComponent implements OnInit, OnDestroy {
   constructor(
     private mainNewslettersService: MainNewslettersService,
     private sanitizer: DomSanitizer,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private meta: Meta,
+    private title: Title
   ) { }
 
   ngOnInit(): void {
@@ -42,9 +44,36 @@ export class MainNewsletterComponent implements OnInit, OnDestroy {
     this.mainNewslettersService.show(id).subscribe(
       data => {
         this.mainNewsletter = data;
-        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(data.content);
+        let newsletterContent = data.content.replace(/utm_medium=email/g, 'utm_medium=webapp');
+        newsletterContent = newsletterContent.replace(/utm_source=email/g, 'utm_medium=webapp');
+        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(newsletterContent);
+        this.setMeta();
       }
     )
+  }
+
+  setMeta(): void {
+    this.title.setTitle('Commudle IDE | Newsletter for Developers by Developers');
+    this.meta.updateTag({ name: 'description', content: `${this.mainNewsletter.email_subject}` });
+
+    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
+    this.meta.updateTag({
+      name: 'og:image:secure_url',
+      content: 'https://commudle.com/assets/images/commudle-logo192.png',
+    });
+    this.meta.updateTag({ name: 'og:title', content: `Commudle IDE | Newsletter for Developers by Developers` });
+    this.meta.updateTag({
+      name: 'og:description',
+      content: `${this.mainNewsletter.email_subject}`,
+    });
+    this.meta.updateTag({ name: 'og:type', content: 'website' });
+
+    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
+    this.meta.updateTag({ name: 'twitter:title', content: `Commudle IDE | Newsletter for Developers by Developers` });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: `${this.mainNewsletter.email_subject}`,
+    });
   }
 
 }
