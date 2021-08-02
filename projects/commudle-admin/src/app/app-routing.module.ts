@@ -1,3 +1,4 @@
+import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Error404PageComponent, LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
@@ -33,6 +34,11 @@ const routes = [
   {
     path: 'communities',
     component: CommunitiesComponent,
+  },
+  {
+    path: 'my-profile',
+    canActivate: [AuthGuard, RedirectToMyProfileGuard],
+    pathMatch: 'full', children: []
   },
   {
     path: 'communities/:community_id',
@@ -169,7 +175,7 @@ const routes = [
     }),
   ],
   exports: [RouterModule],
-  providers: [InitResolver],
+  providers: [InitResolver, RedirectToMyProfileGuard],
 })
 export class AppRoutingModule {}
 
