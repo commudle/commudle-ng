@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
 import { UserContributionsComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component';
 import { UserFeedComponent } from './components/public-profile/user-extra-details/user-content/user-feed/user-feed.component';
@@ -19,8 +20,7 @@ const routes = [
         children: [
           {
             path: '',
-            redirectTo: 'contributions',
-            pathMatch: 'full'
+            component: UserContributionsComponent
           },
           {
             path: 'contributions',

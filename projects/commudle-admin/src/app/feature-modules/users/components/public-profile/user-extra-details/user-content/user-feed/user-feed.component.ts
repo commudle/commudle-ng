@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -26,7 +27,9 @@ export class UserFeedComponent implements OnInit, OnDestroy {
     private appUsersService: AppUsersService,
     private nbToastrService: NbToastrService,
     private activatedRoute: ActivatedRoute,
-    private authWatchService: LibAuthwatchService
+    private authWatchService: LibAuthwatchService,
+    private meta: Meta,
+    private title: Title
   ) {
   }
 
@@ -50,6 +53,7 @@ export class UserFeedComponent implements OnInit, OnDestroy {
   getUserData(username: string) {
     this.subscriptions.push(this.appUsersService.getProfile(username).subscribe(data => {
       this.user = data;
+      this.setMeta();
       this.getPosts();
     }));
   }
@@ -66,6 +70,14 @@ export class UserFeedComponent implements OnInit, OnDestroy {
       this.nbToastrService.success('Post has been deleted successfully!', 'Success');
       this.getPosts();
     }));
+  }
+
+
+  setMeta(): void {
+    const titleText = `Updates from @${this.user.username}`;
+    this.title.setTitle(titleText);
+    this.meta.updateTag({ name: 'og:title', content: titleText });
+    this.meta.updateTag({ name: 'twitter:title', content: titleText });
   }
 
 }

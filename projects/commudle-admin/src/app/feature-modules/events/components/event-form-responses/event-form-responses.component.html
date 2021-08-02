@@ -165,7 +165,7 @@
 </div>
 
 <ng-template #confirmStatusChange let-data>
-  <p>This will change the status of all entries and <strong>cannot be undone</strong>.</p>
+  <p>This will change the status of all {{totalEntries}} entries and <strong>cannot be undone</strong>.</p>
   <p>
     <nb-checkbox [(ngModel)]="bulkStatusChangeForCanceled">Change status of 'Canceled' responses also</nb-checkbox>
   </p>
