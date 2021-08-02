@@ -103,8 +103,7 @@ import { UsersRoutingModule } from './users-routing.module';
   exports: [
     BasicUserProfileComponent,
     UserFollowComponent
-  ],
-  providers: [RedirectToMyProfileGuard]
+  ]
 })
 export class UsersModule {
 }
