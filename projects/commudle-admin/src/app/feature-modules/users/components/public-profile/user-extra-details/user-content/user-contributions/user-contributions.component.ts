@@ -1,4 +1,5 @@
 import { AfterViewChecked, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
@@ -29,7 +30,9 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
 
   constructor(
     private appUsersService: AppUsersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private title: Title,
+    private meta: Meta
   ) {
   }
 
@@ -52,6 +55,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
   getUserData(username: string): void {
     this.subscriptions.push(this.appUsersService.getProfile(username).subscribe(data => {
       this.user = data;
+      this.setMeta();
       this.getPastEvents();
       this.getCommunities();
       this.getLabs();
@@ -105,6 +109,14 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
       left: (element.scrollLeft + direction * 294),
       behavior: 'smooth'
     });
+  }
+
+
+  setMeta(): void {
+    let titleText = this.user.name;
+    if (this.user.designation) {
+      titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
+    }
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { IUser } from 'projects/shared-models/user.model';
@@ -16,10 +17,13 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  followerText = '';
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private appUsersService: AppUsersService,
-    private router: Router
+    private meta: Meta,
+    private title: Title
   ) {
   }
 
@@ -40,7 +44,14 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
   }
 
   checkNetworkType(): void {
-    this.activatedRoute.snapshot.routeConfig.path === 'followers' ? this.getFollowers() : this.getFollowing();
+    if (this.activatedRoute.snapshot.routeConfig.path === 'followers') {
+      this.followerText = 'following';
+      this.getFollowers();
+    } else {
+      this.followerText = 'followed by';
+      this.getFollowing();
+    }
+    this.setMeta();
   }
 
   getFollowers(): void {
@@ -49,6 +60,13 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
 
   getFollowing(): void {
     this.subscriptions.push(this.appUsersService.getFollowees(this.user.username).subscribe(value => this.network = value));
+  }
+
+  setMeta(): void {
+    const titleText = `People ${this.followerText} @${this.user.username} / Commudle`;
+    this.title.setTitle(titleText);
+    this.meta.updateTag({ name: 'og:title', content: titleText });
+    this.meta.updateTag({ name: 'twitter:title', content: titleText });
   }
 
 }
