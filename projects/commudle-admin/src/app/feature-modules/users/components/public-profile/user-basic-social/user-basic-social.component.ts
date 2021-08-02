@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import {IUser} from 'projects/shared-models/user.model';
 import {CompleteUrlPipe} from 'projects/shared-pipes/complete-url.pipe';
 
@@ -16,14 +17,13 @@ export class UserBasicSocialComponent implements OnInit {
   expanded = false;
 
   constructor(
-    private completeUrlPipe: CompleteUrlPipe
+    private completeUrlPipe: CompleteUrlPipe,
   ) {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
-  isValid(value: string) {
+  isValid(value: string): boolean {
     if (value && value !== '') {
       if (!this.socialLinks.includes(value)) {
         this.socialLinks.push(value);
@@ -37,5 +37,4 @@ export class UserBasicSocialComponent implements OnInit {
     const transformedUrl = new URL(this.completeUrlPipe.transform(url, urlType))
     return (transformedUrl.host.replace(/^www./, '') + transformedUrl.pathname);
   }
-
 }
