@@ -219,12 +219,15 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
 
 
   delete(userMessageId) {
-    this.communityChannelChannel.sendData(
-      this.communityChannelChannel.ACTIONS.DELETE,
-      {
-        user_message_id: userMessageId
-      }
-    );
+    if(window.confirm(`Are you sure you want to delete this message and all the replies? This CANNOT BE UNDONE.`)) {
+      this.communityChannelChannel.sendData(
+        this.communityChannelChannel.ACTIONS.DELETE,
+        {
+          user_message_id: userMessageId
+        }
+      );
+    }
+
   }
 
   sendReply(replyContent, userMessageId) {

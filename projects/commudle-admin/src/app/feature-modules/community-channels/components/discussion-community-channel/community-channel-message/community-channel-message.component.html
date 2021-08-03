@@ -58,7 +58,7 @@
     <div *ngFor="let rep of message.user_messages" class="reply-message">
       <app-community-channel-message (sendDelete)="emitDelete($event)" (sendVote)="emitVote($event)"
                                      [allActions]="allActions" [canReply]="false" [message]="rep"
-                                     [permittedActions]="permittedActions"></app-community-channel-message>
+                                     [permittedActions]="permittedActions" [roles]="roles"></app-community-channel-message>
     </div>
 
     <div *ngIf="showReplyForm" class="reply-form">
