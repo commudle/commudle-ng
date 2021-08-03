@@ -8,6 +8,7 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { NbDialogService, NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { SendMessageFormComponent } from '../send-message-form/send-message-form.component';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -15,10 +16,12 @@ import { SendMessageFormComponent } from '../send-message-form/send-message-form
   styleUrls: ['./community-channel-message.component.scss']
 })
 export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
+  EUserRoles = EUserRoles;
   @ViewChild('editMessageTemplate', {static: true}) editMessageTemplate: TemplateRef<any>;
 
   @Input() message: IUserMessage;
   @Input() canReply: boolean;
+  @Input() roles = [];
   @Input() permittedActions;
   @Input() allActions;
   @Input() currentUser: ICurrentUser;
@@ -32,6 +35,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
 
   canEdit = false;
   editMode = false;
+  canDelete = false;
 
   subscriptions = [];
 
@@ -52,15 +56,22 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
     this.authWatchService.currentUser$.subscribe(
       data => {
         this.currentUser = data;
-        if (this.currentUser && this.currentUser.username === this.message.user.username) {
-          this.canEdit = true;
-          // this.contextMenuItems.push({
-          //   title: 'Edit'
-          // });
-          this.contextMenuItems.push({
-            title: 'Delete'
-          });
+        if (this.currentUser) {
+          if ((this.currentUser.username === this.message.user.username)) {
+            this.canEdit = true;
+            // this.contextMenuItems.push({
+            //   title: 'Edit'
+            // });
+          }
+          this.canDelete = this.roles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN);
+          if (this.canDelete || (this.currentUser.username === this.message.user.username)) {
+            this.contextMenuItems.push({
+              title: 'Delete'
+            });
+          }
         }
+
+
       }
     )
 
