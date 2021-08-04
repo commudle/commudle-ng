@@ -35,6 +35,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   editMode = false;
   isAdmin = false;
   canDelete = false;
+  canSendMessageByEmail = false;
 
   subscriptions = [];
 
@@ -80,7 +81,8 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               });
             }
 
-            if (this.isAdmin) {
+            if (this.isAdmin && !this.canSendMessageByEmail) {
+              this.canSendMessageByEmail = true;
               this.contextMenuItems.push({
                 title: 'Email to all members'
               });
