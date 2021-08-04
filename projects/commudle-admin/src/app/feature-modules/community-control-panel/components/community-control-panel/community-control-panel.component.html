@@ -23,6 +23,11 @@
             <nb-icon icon="external-link"></nb-icon>
           </a>
           &nbsp;&nbsp;
+          <a [routerLink]="['/communities', community.slug, 'channels']" nbButton size="small" status="primary" target="_blank">
+            Channels
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+          &nbsp;&nbsp;
           <a [routerLink]="['stats']" nbButton size="small" status="success">
             <nb-icon icon="trending-up-outline"></nb-icon>
             Stats <sup>Beta</sup>&nbsp;
