@@ -157,4 +157,15 @@ export class CommunityChannelsService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES), {params}
     );
   }
+
+
+  sendMessageByEmail(userMessageId, communityChannelId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.SEND_MESSAGE_BY_EMAIL_TO_ALL_MEMBERS),
+      {
+        community_channel_id: communityChannelId,
+        user_message_id: userMessageId
+      },
+    );
+  }
 }
