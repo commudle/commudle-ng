@@ -173,6 +173,20 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
 
+  sendMessageByEmail(userMessageId) {
+    if(window.confirm(`Are you sure you want to send this to all members on their email?`)) {
+      this.communityChannelsService.sendMessageByEmail(userMessageId, this.discussion.parent_id).subscribe(
+        data => {
+          if (data) {
+            this.toastLogService.successDialog('Emails are being delivered', 1500);
+          }
+        }
+      )
+    }
+
+  }
+
+
   toggleReplyForm(messageId) {
     this.showReplyForm === messageId ? (this.showReplyForm = 0) : (this.showReplyForm = messageId);
   }
@@ -262,6 +276,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       }
     )
   }
+
 
 
   receiveData() {
