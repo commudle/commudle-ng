@@ -7,10 +7,12 @@
           [canReply]="true && !blocked"
           [permittedActions]="permittedActions"
           [allActions]="allActions"
+          [roles]="channelRoles[discussion.parent_id]"
           (sendReply)="sendReply($event, um.id)"
           (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
           (sendVote)="sendVote($event)"
           (sendDelete)="delete($event)"
+          (sendMessageByEmail)="sendMessageByEmail($event)"
           ></app-community-channel-message>
       </div>
       <div *ngIf="messages.length === 0" class="filler-message">
