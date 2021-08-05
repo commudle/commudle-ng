@@ -159,7 +159,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               break;
             }
             case 'Delete': {
-              this.login() && this.emitDelete(this.message.id)
+              (this.login() && this.emitDelete(this.message.id));
               break;
             }
             case 'Email to all members': {
