@@ -31,6 +31,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   showLinkPreview = false;
 
   isEditing = false;
+  invalidUrl = false;
 
   socialLink = '';
   socialLinkChanged: Subject<string> = new Subject<string>();
@@ -84,7 +85,10 @@ export class UserSocialComponent implements OnInit, OnDestroy {
       debounceTime(1000)
     ).subscribe(value => {
       if (!!this.urlPattern.test(value)) {
-        this.getLinkPreview(value);
+        this.invalidUrl = false;
+        this.getLinkPreview(value.replace(/\s/g, ''));
+      } else {
+        this.invalidUrl = true;
       }
     });
   }
