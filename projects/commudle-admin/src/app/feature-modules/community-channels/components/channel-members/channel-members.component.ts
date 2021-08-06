@@ -101,7 +101,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
     if(window.confirm(alertMessage)) {
       this.communityChannelsService.toggleAdmin(this.allUsers[index].id).subscribe(data => {
         this.allUsers[index] = data;
-        if(isAdmin) {
+        if(isAdmin && this.allUsers[index].id === this.currentUser.id) {
           window.location.reload();
         }
       });

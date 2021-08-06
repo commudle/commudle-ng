@@ -72,18 +72,18 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
 
 
   setMeta() {
-    this.title.setTitle(`${this.selectedCommunity.name} | Channels`)
+    this.title.setTitle(`Channels - ${this.selectedCommunity.name}`)
     this.meta.updateTag({ name: 'description', content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`});
 
 
     this.meta.updateTag({ name: 'og:image', content: this.selectedCommunity.logo_path });
     this.meta.updateTag({ name: 'og:image:secure_url', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'og:title', content: `${this.selectedCommunity.name} | Channels` });
+    this.meta.updateTag({ name: 'og:title', content: `Channels - ${this.selectedCommunity.name}` });
     this.meta.updateTag({ name: 'og:description', content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`});
     this.meta.updateTag( { name: 'og:type', content: 'website'});
 
     this.meta.updateTag({ name: 'twitter:image', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.selectedCommunity.name} | Channels` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Channels - ${this.selectedCommunity.name}` });
     this.meta.updateTag({ name: 'twitter:description', content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`});
   }
 
