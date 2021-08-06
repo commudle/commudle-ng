@@ -13,6 +13,7 @@ import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ActivatedRoute } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-social',
@@ -30,6 +31,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   showLinkPreview = false;
 
   isEditing = false;
+  invalidUrl = false;
 
   socialLink = '';
   socialLinkChanged: Subject<string> = new Subject<string>();
@@ -65,6 +67,8 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     private socialResourceService: SocialResourceService,
     private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
+    private title: Title,
+    private meta: Meta
   ) {
   }
 
@@ -81,7 +85,10 @@ export class UserSocialComponent implements OnInit, OnDestroy {
       debounceTime(1000)
     ).subscribe(value => {
       if (!!this.urlPattern.test(value)) {
-        this.getLinkPreview(value);
+        this.invalidUrl = false;
+        this.getLinkPreview(value.replace(/\s/g, ''));
+      } else {
+        this.invalidUrl = true;
       }
     });
   }
@@ -95,6 +102,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   getUserData() {
     this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe(data => {
       this.user = data;
+      this.setMeta();
       // Get user's social resources
       this.getSocialResources();
     });
@@ -216,5 +224,14 @@ export class UserSocialComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  setMeta(): void {
+    const titleText = `More links by @${this.user.username}`;
+    this.title.setTitle(titleText);
+    this.meta.updateTag({ name: 'og:title', content: titleText });
+    this.meta.updateTag({ name: 'twitter:title', content: titleText });
+  }
+
+
 
 }

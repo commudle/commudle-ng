@@ -42,6 +42,13 @@
         <input (ngModelChange)="socialLinkChanged.next($event)" [ngModel]="socialLink" fullWidth nbInput
                placeholder="Paste a link to begin" type="url">
       </nb-form-field>
+      <p>
+        <small
+          *ngIf="invalidUrl"
+          class="validation-error-text">
+          Please enter a valid url
+        </small>
+      </p>
       <form *ngIf="showLinkPreview" [formGroup]="socialResourcesForm"
             class="user-social-popup-details d-flex flex-column">
         <p class="user-social-popup-heading">Source</p>
