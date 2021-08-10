@@ -15,7 +15,7 @@
         [ngClass]="{'screen': screenShareTrack}"
         class="user-video"
       >
-        <div *ngIf="!peer.isLocal && peer.role?.name === EHmsRoles.HOST" class="admin-video-controls d-flex">
+        <div *ngIf="!peer.isLocal" class="admin-video-controls d-flex">
           <button
             (click)="peer.audioTrack?.getVolume() === 0 ? onAudioUnmute(peer) : onAudioMute(peer)"
             ghost
@@ -26,7 +26,15 @@
           >
             <nb-icon [icon]="peer.audioTrack?.getVolume() === 0 ? 'mic-off' : 'mic'"></nb-icon>
           </button>
-          <button ghost nbButton nbTooltip="Remove from stage" shape="round" size="small">
+          <button
+            (click)="removeFromStage.emit(peer)"
+            *ngIf="peer.role?.name === EHmsRoles.HOST"
+            ghost
+            nbButton
+            nbTooltip="Remove from stage"
+            shape="round"
+            size="small"
+          >
             <nb-icon icon="minus-circle"></nb-icon>
           </button>
         </div>

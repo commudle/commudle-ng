@@ -1,5 +1,9 @@
 <div class="conference-container">
-  <app-conference-user-videos [peers]="peers" [tracks]="tracks"></app-conference-user-videos>
+  <app-conference-user-videos
+    (removeFromStage)="removeFromStage($event)"
+    [peers]="peers"
+    [tracks]="tracks"
+  ></app-conference-user-videos>
   <div
     *ngIf="localPeer?.role?.name === EHmsRoles.HOST || localPeer?.role?.name === EHmsRoles.GUEST"
     class="d-flex controls"
