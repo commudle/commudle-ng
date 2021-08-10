@@ -1,0 +1,56 @@
+<nb-card *ngIf="currentUser" class="local-preview">
+  <nb-card-header>Local Preview</nb-card-header>
+  <nb-card-body *ngIf="audioDevices.length == 0 || videoDevices.length == 0">
+    <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
+    <button (click)="getMediaPermission()" fullWidth nbButton size="small" status="info">Get Permission</button>
+  </nb-card-body>
+  <nb-card-body *ngIf="audioDevices.length > 0 && videoDevices.length > 0">
+    <div #previewDiv class="preview">
+      <video
+        [autoplay]="true"
+        [muted]="true"
+        [srcObject]="localVideoTrack?.stream?.nativeStream"
+        [width]="previewDiv.clientWidth"
+      ></video>
+      <div class="controls">
+        <button
+          (click)="isAudioMuted ? onAudioUnmute(): onAudioMute()"
+          ghost
+          nbButton
+          outline
+          shape="round"
+          size="small"
+        >
+          <nb-icon [icon]="isAudioMuted ? 'mic-off':'mic'"></nb-icon>
+        </button>
+        <button
+          (click)="isVideoMuted ? onVideoUnmute(): onVideoMute()"
+          ghost
+          nbButton
+          outline
+          shape="round"
+          size="small"
+        >
+          <nb-icon [icon]="isVideoMuted ? 'video-off':'video'"></nb-icon>
+        </button>
+      </div>
+    </div>
+    <nb-select
+      (selectedChange)="changeAudioDevice($event)"
+      [selected]="selectedAudioDevice.deviceId"
+      fullWidth
+      size="small"
+    >
+      <nb-option *ngFor="let device of audioDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
+    </nb-select>
+    <nb-select
+      (selectedChange)="changeVideoDevice($event)"
+      [selected]="selectedVideoDevice.deviceId"
+      fullWidth
+      size="small"
+    >
+      <nb-option *ngFor="let device of videoDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
+    </nb-select>
+    <button (click)="joinRoom()" fullWidth nbButton size="small" status="primary">Join Room</button>
+  </nb-card-body>
+</nb-card>
