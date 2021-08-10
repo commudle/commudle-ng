@@ -1,6 +1,6 @@
 import { HMSTrack } from '@100mslive/hms-video';
 import { HMSPeer } from '@100mslive/hms-video/dist/sdk/models/peer';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
 
 @Component({
@@ -11,6 +11,8 @@ import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hm
 export class ConferenceUserVideosComponent implements OnInit, OnChanges {
   @Input() tracks: HMSTrack[];
   @Input() peers: HMSPeer[];
+
+  @Output() removeFromStage: EventEmitter<HMSPeer> = new EventEmitter<HMSPeer>();
 
   EHmsRoles = EHmsRoles;
 

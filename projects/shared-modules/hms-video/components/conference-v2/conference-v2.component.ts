@@ -47,9 +47,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   hms = new HMSSdk();
   // Listeners for hms
   listener: HMSUpdateListener = {
-    onDeviceChange(_deviceMap: HMSDeviceManager): void {},
-    onError(_error: HMSException): void {},
-    onJoin: function (room: HMSRoom): void {
+    onDeviceChange(_deviceMap: HMSDeviceManager): void {
+    },
+    onError(_error: HMSException): void {
+    },
+    onJoin: function(room: HMSRoom): void {
       console.info('joined session');
       // Get peers in the room
       this.peers = room.peers;
@@ -59,7 +61,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       this.receiveChannelData();
       console.log(this.hms.getRoles(), this.peers);
     }.bind(this),
-    onMessageReceived: function (message: HMSMessage): void {
+    onMessageReceived: function(message: HMSMessage): void {
       const peer: HMSPeer = this.peers.find((value: HMSPeer) => {
         return value.peerId === message.message;
       });
@@ -67,7 +69,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         this.hms.changeRole(peer, EHmsRoles.GUEST);
       }
     }.bind(this),
-    onPeerUpdate: function (type: HMSPeerUpdate, peer: HMSPeer | null): void {
+    onPeerUpdate: function(type: HMSPeerUpdate, peer: HMSPeer | null): void {
       switch (type) {
         case HMSPeerUpdate.PEER_JOINED:
           this.peers = [...this.peers, peer];
@@ -88,7 +90,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     onReconnecting(_error: HMSException): void {
       console.log('reconnecting');
     },
-    onRoleChangeRequest: function (request: HMSRoleChangeRequest): void {
+    onRoleChangeRequest: function(request: HMSRoleChangeRequest): void {
       if (this.localPeer.role?.name === EHmsRoles.HOST) {
         this.hms.acceptRoleChange(request);
       }
@@ -100,7 +102,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     onRoomUpdate(_type: HMSRoomUpdate, _room: HMSRoom): void {
       console.log('room update');
     },
-    onTrackUpdate: function (type: HMSTrackUpdate, track: HMSTrack, _peer: HMSPeer): void {
+    onTrackUpdate: function(type: HMSTrackUpdate, track: HMSTrack, _peer: HMSPeer): void {
       switch (type) {
         case HMSTrackUpdate.TRACK_ADDED:
           this.tracks = [...this.tracks, track];
@@ -126,7 +128,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     private hmsLiveV2Channel: HmsLiveV2Channel,
     private hmsVideoStateService: HmsVideoStateService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     // Get status of audio and video
@@ -272,6 +275,13 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     }
     // Change status
     this.isOnStage = false;
+  }
+
+  removeFromStage(peer: HMSPeer): void {
+    if (this.localPeer.role?.name === EHmsRoles.HOST) {
+      // @ts-ignore
+      this.hms.changeRole(peer, EHmsRoles.VIEWER);
+    }
   }
 
   changeState(): void {
