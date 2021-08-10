@@ -1,0 +1,40 @@
+<div class="conference-container">
+  <app-conference-user-videos [peers]="peers" [tracks]="tracks"></app-conference-user-videos>
+  <div
+    *ngIf="localPeer?.role?.name === EHmsRoles.HOST || localPeer?.role?.name === EHmsRoles.GUEST"
+    class="d-flex controls"
+  >
+    <!-- Recording -->
+    <button (click)="isRecording ? onStopRecording() : onStartRecording()" ghost nbButton shape="round">
+      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'"></nb-icon>
+    </button>
+    <!-- Streaming -->
+    <button (click)="isStreaming ? onStopStreaming() : onStartStreaming()" ghost nbButton shape="round">
+      <nb-icon [icon]="isStreaming ? 'stop-circle' : 'play-circle'"></nb-icon>
+    </button>
+    <!-- Microphone -->
+    <button (click)="isAudioMuted ? onAudioUnmute() : onAudioMute()" ghost nbButton shape="round">
+      <nb-icon [icon]="isAudioMuted ? 'mic-off' : 'mic'"></nb-icon>
+    </button>
+    <!-- Camera -->
+    <button (click)="isVideoMuted ? onVideoUnmute() : onVideoMute()" ghost nbButton shape="round">
+      <nb-icon [icon]="isVideoMuted ? 'video-off' : 'video'"></nb-icon>
+    </button>
+    <!-- Screen share -->
+    <button (click)="isScreenSharing ? onStopScreenShare() : onStartScreenShare()" ghost nbButton shape="round">
+      <nb-icon [status]="isScreenSharing ? 'success' : ''" icon="cast"></nb-icon>
+    </button>
+    <!-- Settings -->
+    <button (click)="changeState()" ghost nbButton shape="round">
+      <nb-icon icon="settings"></nb-icon>
+    </button>
+    <!-- End session -->
+    <button (click)="endSession()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
+      End session
+    </button>
+    <!-- Join/Leave Stage -->
+    <button (click)="isOnStage ? onLeaveStage() : onJoinStage()" *ngIf="isOnStage" ghost nbButton shape="round">
+      {{isOnStage ? 'Leave stage' : 'Join stage'}}
+    </button>
+  </div>
+</div>
