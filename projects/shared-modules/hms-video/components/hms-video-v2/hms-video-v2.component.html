@@ -1,0 +1,30 @@
+<div class="hms-video">
+  <div [ngSwitch]="hmsState" class="state-container">
+    <!-- Select the role -->
+    <app-select-role-v2
+      (selectedRole)="selectedRole = $event"
+      *ngSwitchCase="EHmsStates.INIT"
+      [serverClient]="serverClient"
+    ></app-select-role-v2>
+    <!-- Preview the video and audio -->
+    <app-local-preview-v2
+      *ngSwitchCase="EHmsStates.PREVIEW"
+      [currentUser]="currentUser"
+      [serverClient]="serverClient"
+    ></app-local-preview-v2>
+    <!-- Join the room -->
+    <app-conference-v2
+      *ngSwitchCase="EHmsStates.ROOM"
+      [currentUser]="currentUser"
+      [roomId]="roomId"
+      [selectedRole]="selectedRole"
+      [serverClient]="serverClient"
+      [streamable_id]="streamable_id"
+      [streamable_type]="streamable_type"
+    ></app-conference-v2>
+    <!-- Session ended -->
+    <div *ngSwitchCase="EHmsStates.ENDED" class="session-ended">
+      <nb-alert accent="info">This session has completed!</nb-alert>
+    </div>
+  </div>
+</div>
