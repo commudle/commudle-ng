@@ -1,0 +1,13 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+.select-role {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  nb-card-body {
+    button {
+      margin: $space-8 0;
+    }
+  }
+}
