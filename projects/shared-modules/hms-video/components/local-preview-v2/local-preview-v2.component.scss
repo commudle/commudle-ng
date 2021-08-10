@@ -1,0 +1,31 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+.local-preview {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 320px;
+
+  nb-card-body {
+    * {
+      margin: $space-8 0;
+    }
+
+    .preview {
+      position: relative;
+
+      .controls {
+        position: absolute;
+        bottom: $space-8;
+        left: 50%;
+        transform: translateX(-50%);
+
+        button {
+          margin: 0 $space-4;
+          height: 32px;
+          width: 32px;
+        }
+      }
+    }
+  }
+}
