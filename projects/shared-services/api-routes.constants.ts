@@ -113,6 +113,14 @@ export const API_ROUTES = {
   EMBEDDED_VIDEO_STREAMS: {
     GET: 'api/v2/embedded_video_streams',
     CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
+    RECORDING: {
+      START: 'api/v2/embedded_video_streams/start_recording',
+      STOP: 'api/v2/embedded_video_streams/stop_recording',
+    },
+    STREAMING: {
+      START: 'api/v2/embedded_video_streams/start_streaming',
+      STOP: 'api/v2/embedded_video_streams/stop_streaming',
+    },
     PUBLIC: {
       GET: 'api/v2/embedded_video_streams/public',
     },
@@ -228,6 +236,7 @@ export const API_ROUTES = {
   // hms_clients
   HMS_CLIENT: {
     CLIENT_TOKEN: 'api/v2/hms_clients/client_token',
+    CLIENT_TOKEN_V2: 'api/v2/hms_clients/client_token/v2',
   },
 
   // event_locations
@@ -283,8 +292,8 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/pa',
     DELETE: 'api/v2/pa',
     PUBLIC: {
-      SHOW: 'api/v2/pa/public/show'
-    }
+      SHOW: 'api/v2/pa/public/show',
+    },
   },
 
   POLLS: {
@@ -341,7 +350,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/event_updates',
     CREATE: 'api/v2/event_updates',
     DELETE: 'api/v2/event_updates',
-    PUBLIC_INDEX: 'api/v2/event_updates/public_index'
+    PUBLIC_INDEX: 'api/v2/event_updates/public_index',
   },
 
   POSTS: {
