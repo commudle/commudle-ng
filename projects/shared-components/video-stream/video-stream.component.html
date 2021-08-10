@@ -2,24 +2,32 @@
   <div *ngIf="isBrowser" class="video-player">
     <p *ngIf="!started || !currentUser" class="filler">
       <nb-icon icon="video"></nb-icon>
-      <br/>
+      <br />
       <span> {{ fillerText }} </span>
     </p>
 
     <div *ngIf="currentUser && started" class="youtube-player">
-      <app-hms-video *ngIf="(videoSource == EEmbeddedVideoStreamSources.COMMUDLE) && hmsRoomId"
-                     [roomId]="hmsRoomId"></app-hms-video>
+      <app-hms-video-v2
+        *ngIf="videoSource == EEmbeddedVideoStreamSources.COMMUDLE && hmsRoomId"
+        [roomId]="hmsRoomId"
+        [streamable_id]="streamable_id"
+        [streamable_type]="streamable_type"
+      ></app-hms-video-v2>
 
-      <youtube-player *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE" [height]="height || 360"
-                      [width]="width || 640" videoId="{{ playerUrl }}"></youtube-player>
+      <youtube-player
+        *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
+        [height]="height || 360"
+        [width]="width || 640"
+        videoId="{{ playerUrl }}"
+      ></youtube-player>
 
       <div *ngIf="videoSource == EEmbeddedVideoStreamSources.EXTERNAL_LINK" class="external-link">
         <p *ngIf="playerUrl !== ''">
           <a class="text-info" href="{{playerUrl}}" target="_blank">
             <nb-icon class="video-outline" icon="video-outline"></nb-icon>
-            <br>
+            <br />
             <span>Click Here To Access</span>
-            <br>
+            <br />
             <small>
               <nb-icon icon="external-link"></nb-icon>
               {{ playerUrl }}
@@ -28,12 +36,16 @@
         </p>
       </div>
 
-      <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.ZOOM) && zoomSignature">
-        <iframe [height]="height || 360" [src]="this.playerUrl" [width]="width || 640" allow="camera; microphone"
-                frameborder="0"></iframe>
+      <div *ngIf="videoSource == EEmbeddedVideoStreamSources.ZOOM && zoomSignature">
+        <iframe
+          [height]="height || 360"
+          [src]="this.playerUrl"
+          [width]="width || 640"
+          allow="camera; microphone"
+        ></iframe>
       </div>
 
-      <div *ngIf="(videoSource == EEmbeddedVideoStreamSources.OTHER)">
+      <div *ngIf="videoSource == EEmbeddedVideoStreamSources.OTHER">
         <div [innerHTML]="playerUrl"></div>
       </div>
     </div>

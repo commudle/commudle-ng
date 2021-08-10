@@ -25,6 +25,8 @@
         [height]="videoStream.clientHeight"
         [hmsRoomId]="embeddedVideoStream.hms_room_id"
         [started]="moment() >= moment(startTime)"
+        [streamable_id]="embeddedVideoStream.streamable_id"
+        [streamable_type]="embeddedVideoStream.streamable_type"
         [userEmail]="currentUser?.email || ''"
         [userName]="currentUser?.name || ''"
         [videoCode]="!currentUser || moment() < moment(startTime) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
