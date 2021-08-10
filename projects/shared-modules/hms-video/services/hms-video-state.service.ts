@@ -5,25 +5,22 @@ export enum EHmsStates {
   INIT = 'select_role',
   PREVIEW = 'preview',
   ROOM = 'room',
-  ENDED = 'ended'
+  ENDED = 'ended',
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HmsVideoStateService {
-
   states = EHmsStates;
 
   private hmsState: BehaviorSubject<EHmsStates> = new BehaviorSubject(null);
   public hmsState$ = this.hmsState.asObservable();
 
-
-  constructor() { }
+  constructor() {}
 
   // set the state to display the desired component
-  setState(stage: any) {
+  setState(stage: EHmsStates) {
     this.hmsState.next(stage);
   }
 }
