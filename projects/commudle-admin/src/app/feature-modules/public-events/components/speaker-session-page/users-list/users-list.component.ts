@@ -95,12 +95,12 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   getCurrentUsersList() {
-    this.userObjectVisitChannel.sendData(
-      this.embeddedVideoStream.id,
-      'EmbeddedVideoStream',
-      this.uuid,
-      this.userObjectVisitChannel.ACTIONS.CURRENT_USERS
-    )
+    // this.userObjectVisitChannel.sendData(
+    //   this.embeddedVideoStream.id,
+    //   'EmbeddedVideoStream',
+    //   this.uuid,
+    //   this.userObjectVisitChannel.ACTIONS.CURRENT_USERS
+    // )
   }
 
   clientPings() {
@@ -133,10 +133,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
                       // nothing needs to be done here
                       break;
                     }
-                    case (this.userObjectVisitChannel.ACTIONS.CURRENT_USERS): {
-                      this.usersList = data.users;
-                      break;
-                    }
                     case (this.userObjectVisitChannel.ACTIONS.USER_ADD): {
                       const existingUserIndex = this.usersList.findIndex(k => k.id === data.user.id);
                       if (existingUserIndex === -1 && this.usersList.length > 0) {
@@ -148,12 +144,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
                       const existingUserIndex = this.usersList.findIndex(k => k.id === data.user_id);
                       if (existingUserIndex !== -1) {
                         this.usersList.splice(existingUserIndex, 1);
-                      }
-                      break;
-                    }
-                    case (this.userObjectVisitChannel.ACTIONS.USER_COUNT): {
-                      if (data.user_count != this.usersList.length) {
-                        this.getCurrentUsersList();
                       }
                       break;
                     }
