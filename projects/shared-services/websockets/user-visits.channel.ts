@@ -93,7 +93,7 @@ export class UserVisitsChannel {
       if (this.isBrowser) {
         this.pingInterval = setInterval(() => {
           this.sendData(this.ACTIONS.PING, {})
-        }, 5000);
+        }, 30000);
       }
     }
 
