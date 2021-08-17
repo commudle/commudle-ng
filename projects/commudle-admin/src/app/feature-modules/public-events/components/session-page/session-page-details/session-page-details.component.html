@@ -30,8 +30,5 @@
         <div class="community-name">{{community.name | truncatetext:35}}</div>
       </a>
     </div>
-    <p (click)="openViewers.emit()" *ngIf="userVisitData?.visiting_users_count > 0" class="clickable">
-      {{userVisitData.visiting_users_count}} watching now!
-    </p>
   </nb-card-body>
 </nb-card>
