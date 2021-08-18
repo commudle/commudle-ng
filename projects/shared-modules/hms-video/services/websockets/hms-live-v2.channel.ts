@@ -11,13 +11,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class HmsLiveV2Channel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
-    // UPDATE_STATUS: 'update_status',
-    // EXISTING_USER: 'existing_user',
-    // UPDATE_CAMERA: 'update_camera',
-    // UPDATE_MIC: 'update_mic',
-    // UPDATE_USER: 'update_user',
-    INVITE_TO_STAGE: 'invite_to_stage',
-    // MUTE_PEER: 'mute_peer',
     REMOVE_FROM_STAGE: 'remove_from_stage',
     END_STREAM: 'end_stream',
   };
@@ -55,6 +48,7 @@ export class HmsLiveV2Channel {
 
       this.subscriptions[`${hmsClientUid}`] = this.cableConnection.subscriptions.create(
         {
+          // TODO: Change this
           channel: APPLICATION_CABLE_CHANNELS.HMS_LIVE_CHANNEL,
           hms_room_id: hmsRoomId,
           hms_client_uid: hmsClientUid,

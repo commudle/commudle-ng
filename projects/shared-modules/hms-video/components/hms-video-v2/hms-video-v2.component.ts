@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './hms-video-v2.component.html',
   styleUrls: ['./hms-video-v2.component.scss'],
 })
-export class HmsVideoV2Component implements OnInit, OnDestroy {
+export class HmsVideoV2Component implements OnInit, OnDestroy, OnChanges {
   @Input() roomId: string;
   @Input() streamable_id: number;
   @Input() streamable_type: string;
@@ -37,15 +37,6 @@ export class HmsVideoV2Component implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Get current user
-    this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe((value: ICurrentUser) => {
-        this.currentUser = value;
-        // Get client token
-        this.getClient();
-      }),
-    );
-
     // Set the initial hms state
     // TODO: set this as per the user's role [webinar, or conference]
     // this.hmsVideoStateService.setState(EHmsStates.INIT);
@@ -58,9 +49,22 @@ export class HmsVideoV2Component implements OnInit, OnDestroy {
     );
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.roomId) {
+      // Get current user
+      this.subscriptions.push(
+        this.authWatchService.currentUser$.subscribe((value: ICurrentUser) => {
+          this.currentUser = value;
+          // Get client token
+          this.getClient();
+        }),
+      );
+    }
+  }
+
   ngOnDestroy(): void {
     // Unsubscribe all subscriptions
-    this.channelSubscription.unsubscribe();
+    this.channelSubscription?.unsubscribe();
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 

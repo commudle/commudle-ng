@@ -113,6 +113,7 @@ export const API_ROUTES = {
   EMBEDDED_VIDEO_STREAMS: {
     GET: 'api/v2/embedded_video_streams',
     CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
+    V2_CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/v2_create_update_for_event',
     RECORDING: {
       START: 'api/v2/embedded_video_streams/start_recording',
       STOP: 'api/v2/embedded_video_streams/stop_recording',
