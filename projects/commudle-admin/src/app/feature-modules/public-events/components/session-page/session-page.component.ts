@@ -73,7 +73,6 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     private location: Location,
     private cookieService: CookieService,
     private usersService: AppUsersService,
-    private userVisitsService: UserVisitsService,
     @Inject(PLATFORM_ID) private platformId: object,
     private footerService: FooterService
   ) {
@@ -126,7 +125,6 @@ export class SessionPageComponent implements OnInit, OnDestroy {
       this.getMyRoles();
     }));
 
-    this.subscriptions.push(this.userVisitsService.visitors$.subscribe(data => this.userVisitData = data));
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);

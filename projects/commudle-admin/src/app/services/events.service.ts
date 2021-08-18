@@ -84,6 +84,14 @@ export class EventsService {
     );
   }
 
+  embeddedVideoStreamVisitors(eventId, embeddedVideoStreamId): Observable<IUsers> {
+    const params = new HttpParams().set('event_id', eventId).set('embedded_video_stream_id', embeddedVideoStreamId);
+    return this.http.get<IUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.EMBEDDED_VIDEO_STREAM_VISITORS),
+      { params },
+    );
+  }
+
   inviteGuestToWebinarStage(userId, hmsRoomId): Observable<any> {
     return this.http.post<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.INVITE_GUEST_TO_WEBINAR_STAGE), {
       user_id: userId,
