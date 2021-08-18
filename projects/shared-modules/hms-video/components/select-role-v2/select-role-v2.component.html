@@ -1,27 +1,15 @@
 <nb-card *ngIf="serverClient" class="select-role">
   <nb-card-header>Choose Role</nb-card-header>
   <nb-card-body class="d-flex flex-column">
-    <!-- Attending the session -->
     <button
       (click)="selectRole(EHmsRoles.VIEWER)"
-      *ngIf="serverClient.role === EHmsRoles.VIEWER || serverClient.role === EHmsRoles.HOST_VIEWER"
+      *ngIf="serverClient.role === EHmsRoles.VIEWER"
       nbButton
       size="small"
       status="primary"
     >
       Join Session as a Viewer
     </button>
-    <!-- Invited to stage -->
-    <button
-      (click)="selectRole(EHmsRoles.GUEST)"
-      *ngIf="serverClient.role === EHmsRoles.GUEST"
-      nbButton
-      size="small"
-      status="primary"
-    >
-      Join Stage as a Guest
-    </button>
-    <!-- Host of the meeting -->
     <button
       (click)="selectRole(EHmsRoles.HOST_VIEWER)"
       *ngIf="serverClient.role === EHmsRoles.HOST_VIEWER"
@@ -29,7 +17,16 @@
       size="small"
       status="primary"
     >
-      Join Stage as a Host
+      Join Session as a Viewer
+    </button>
+    <button
+      (click)="selectRole(EHmsRoles.HOST)"
+      *ngIf="serverClient.role === EHmsRoles.HOST_VIEWER"
+      nbButton
+      size="small"
+      status="primary"
+    >
+      Join Session as a Host
     </button>
   </nb-card-body>
 </nb-card>

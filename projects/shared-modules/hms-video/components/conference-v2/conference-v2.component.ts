@@ -124,7 +124,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   joinRoom = (status: boolean) => {
     if (status) {
       // If user joined as host
-      if (this.serverClient.role === EHmsRoles.HOST) {
+      if (this.selectedRole === EHmsRoles.HOST) {
         const localPeer: HMSPeer = hmsStore.getState(selectLocalPeer);
         hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
       }
@@ -228,9 +228,9 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     const localPeer: HMSPeer = hmsStore.getState(selectLocalPeer);
     switch (localPeer.roleName) {
       case EHmsRoles.HOST:
-        hmsActions.changeRole(localPeer.id, EHmsRoles.MEMBER, true);
+        hmsActions.changeRole(localPeer.id, EHmsRoles.VIEWER, true);
         break;
-      case EHmsRoles.MEMBER:
+      case EHmsRoles.VIEWER:
         if (this.serverClient.role === EHmsRoles.HOST) {
           hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
         }
