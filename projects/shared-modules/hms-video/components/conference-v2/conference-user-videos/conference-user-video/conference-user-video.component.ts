@@ -10,6 +10,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   Input,
   OnChanges,
   OnDestroy,
@@ -103,5 +104,11 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
 
   removeFromStage(): void {
     hmsActions.changeRole(this.peer.id, EHmsRoles.MEMBER, true);
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    hmsActions.leave();
+    delete $event['returnValue'];
   }
 }

@@ -123,7 +123,12 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   joinRoom = (status: boolean) => {
     if (status) {
-      //  Subscribe to remote screen share
+      // If user joined as host
+      if (this.serverClient.role === EHmsRoles.HOST) {
+        const localPeer: HMSPeer = hmsStore.getState(selectLocalPeer);
+        hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
+      }
+      // Subscribe to remote screen share
       hmsStore.subscribe((value: boolean) => (this.isScreenSharing = value), selectIsSomeoneScreenSharing);
       // Subscribe to local screen share
       hmsStore.subscribe((value: boolean) => (this.isLocalScreenSharing = value), selectIsLocalScreenShared);

@@ -4,7 +4,7 @@
     <!-- Attending the session -->
     <button
       (click)="selectRole(EHmsRoles.VIEWER)"
-      *ngIf="serverClient.role === EHmsRoles.VIEWER || serverClient.role === EHmsRoles.HOST"
+      *ngIf="serverClient.role === EHmsRoles.VIEWER || serverClient.role === EHmsRoles.HOST_VIEWER"
       nbButton
       size="small"
       status="primary"
@@ -23,8 +23,8 @@
     </button>
     <!-- Host of the meeting -->
     <button
-      (click)="selectRole(EHmsRoles.HOST)"
-      *ngIf="serverClient.role === EHmsRoles.HOST"
+      (click)="selectRole(EHmsRoles.HOST_VIEWER)"
+      *ngIf="serverClient.role === EHmsRoles.HOST_VIEWER"
       nbButton
       size="small"
       status="primary"
