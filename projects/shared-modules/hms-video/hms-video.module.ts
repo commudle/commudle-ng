@@ -1,28 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { HmsVideoComponent } from './components/hms-video/hms-video.component';
-import { LocalPreviewComponent } from './components/local-preview/local-preview.component';
-import { ConferenceComponent } from './components/conference/conference.component';
-import { SettingsComponent } from './components/conference/settings/settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  NbAlertModule,
   NbButtonModule,
+  NbCardModule,
   NbCheckboxModule,
+  NbDialogModule,
+  NbIconModule,
   NbInputModule,
   NbSelectModule,
-  NbIconModule,
-  NbCardModule,
   NbSpinnerModule,
   NbTooltipModule,
-  NbDialogModule,
-  NbAlertModule
 } from '@nebular/theme';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserVideoComponent } from './components/conference/user-video/user-video.component';
-import { SelectRoleComponent } from './components/select-role/select-role.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-import { IsBrowserService } from 'projects/shared-services/is-browser.service';
+import { ConferenceSettingsComponent } from './components/conference-v2/conference-settings/conference-settings.component';
+import { ConferenceUserVideoComponent } from './components/conference-v2/conference-user-videos/conference-user-video/conference-user-video.component';
+import { ConferenceUserVideosComponent } from './components/conference-v2/conference-user-videos/conference-user-videos.component';
+import { ConferenceV2Component } from './components/conference-v2/conference-v2.component';
+import { ConferenceComponent } from './components/conference/conference.component';
+import { SettingsComponent } from './components/conference/settings/settings.component';
+import { UserVideoComponent } from './components/conference/user-video/user-video.component';
+import { HmsBeamComponent } from './components/hms-beam/hms-beam.component';
+import { HmsVideoV2Component } from './components/hms-video-v2/hms-video-v2.component';
+import { HmsVideoComponent } from './components/hms-video/hms-video.component';
+import { LocalPreviewV2Component } from './components/local-preview-v2/local-preview-v2.component';
+import { LocalPreviewComponent } from './components/local-preview/local-preview.component';
+import { SelectRoleV2Component } from './components/select-role-v2/select-role-v2.component';
+import { SelectRoleComponent } from './components/select-role/select-role.component';
 import { HmsClientManagerService } from './services/hms-client-manager.service';
-
 
 @NgModule({
   declarations: [
@@ -31,7 +37,15 @@ import { HmsClientManagerService } from './services/hms-client-manager.service';
     ConferenceComponent,
     SettingsComponent,
     UserVideoComponent,
-    SelectRoleComponent
+    SelectRoleComponent,
+    ConferenceV2Component,
+    HmsVideoV2Component,
+    SelectRoleV2Component,
+    LocalPreviewV2Component,
+    ConferenceUserVideosComponent,
+    ConferenceSettingsComponent,
+    HmsBeamComponent,
+    ConferenceUserVideoComponent,
   ],
   imports: [
     CommonModule,
@@ -49,20 +63,17 @@ import { HmsClientManagerService } from './services/hms-client-manager.service';
     NbSpinnerModule,
     NbTooltipModule,
     NbDialogModule.forChild(),
-    NbAlertModule
-
-
+    NbAlertModule,
   ],
-  exports: [
-    HmsVideoComponent
-  ],
-
+  exports: [HmsVideoComponent, HmsVideoV2Component],
+  // TODO: Should this be removed?
   providers: [
     [
       {
-        provide: 'HmsClientManagerService', useClass: HmsClientManagerService
-      }
-    ]
-  ]
+        provide: 'HmsClientManagerService',
+        useClass: HmsClientManagerService,
+      },
+    ],
+  ],
 })
-export class HmsVideoModule { }
+export class HmsVideoModule {}

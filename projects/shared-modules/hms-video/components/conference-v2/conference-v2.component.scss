@@ -1,0 +1,97 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+.conference-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  //.user-streams {
+  //  height: calc(100% - 56px);
+  //  position: relative;
+  //  width: 100%;
+  //
+  //  .user-videos {
+  //    height: 100%;
+  //    width: 100%;
+  //  }
+  //
+  //  &.screen-share {
+  //    .user-screen-share {
+  //      height: 70%;
+  //      width: 100%;
+  //
+  //      video {
+  //        height: 100%;
+  //        object-fit: contain;
+  //        width: 100%;
+  //      }
+  //    }
+  //
+  //    .user-videos {
+  //      height: 30%;
+  //      flex-wrap: nowrap;
+  //
+  //      .user-video {
+  //        height: 100%;
+  //        width: max-content;
+  //      }
+  //    }
+  //  }
+  //
+  //  &.one {
+  //    .user-video {
+  //      height: 100%;
+  //      width: 100%;
+  //    }
+  //  }
+  //
+  //  &.two {
+  //    .user-video {
+  //      height: 100%;
+  //      width: 50%;
+  //    }
+  //  }
+  //
+  //  &.three {
+  //    .user-video {
+  //      height: 50%;
+  //      width: 50%;
+  //    }
+  //  }
+  //
+  //  &.four {
+  //    .user-video {
+  //      height: 50%;
+  //      width: 33%;
+  //    }
+  //  }
+  //
+  //  &.five {
+  //    .user-video {
+  //      height: 33%;
+  //      width: 33%;
+  //    }
+  //  }
+  //
+  //  &.default {
+  //    overflow-y: scroll;
+  //
+  //    .user-video {
+  //      height: 33%;
+  //      width: 33%;
+  //    }
+  //  }
+  //}
+
+  .controls {
+    bottom: $space-8;
+    gap: $space-8;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    button {
+      height: 40px;
+    }
+  }
+}

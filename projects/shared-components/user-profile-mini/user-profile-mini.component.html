@@ -1,13 +1,18 @@
 <div class="user {{size}}">
   <app-user-live-status *ngIf="showLiveStatus" [userId]="user.id"></app-user-live-status>
   <div class="profile-picture {{ size }}">
-    <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}">
+    <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
   </div>
   <div class="profile-info">
     <p class="name {{ size }} d-flex">
-      <a [routerLink]="['/users', user.username]"><strong>{{ user.name }}</strong></a>
-      <img *ngIf="user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
-           title="Expert Tick">
+      <a [routerLink]="['/users', user.username]" target="_blank"><strong>{{ user.name }}</strong></a>
+      <img
+        *ngIf="user.is_expert"
+        alt="Expert Tick"
+        class="expert-icon"
+        src="/assets/images/Expert-Tick.svg"
+        title="Expert Tick"
+      />
     </p>
     <p *ngIf="designation" class="designation {{ size }}">
       {{ user.designation | slice:0:50 }}
