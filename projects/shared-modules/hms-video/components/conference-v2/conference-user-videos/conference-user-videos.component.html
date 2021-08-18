@@ -1,0 +1,106 @@
+<div
+  [ngClass]="{
+      'screen-share': peerScreenShare,
+      'one': peers.length === 1,
+      'two': peers.length === 2,
+      'three': [3, 4].includes(peers.length),
+      'four': [5, 6].includes(peers.length),
+      'five': [7, 8, 9].includes(peers.length),
+      'default': peers.length > 9
+    }"
+  class="user-streams"
+>
+<!--  <div class="user-screen-share d-flex justify-content-center">-->
+<!--    <app-conference-user-video [peer]="peerScreenShare" [screenShare]="true"></app-conference-user-video>-->
+<!--  </div>-->
+  <div class="user-videos d-flex justify-content-center flex-wrap">
+    <ng-container *ngFor="let peer of peers">
+      <div *ngIf="peer.videoTrack" class="user-video">
+        <app-conference-user-video [peer]="peer" [screenShare]="false"></app-conference-user-video>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!--<div class="user-videos-container">-->
+<!--  <div class="user-screen-share"></div>-->
+<!--  <div class="user-videos">-->
+<!--    <ng-container *ngFor="let peer of peers">-->
+<!--      <div class="user-video">-->
+<!--        <div class="video-stream">-->
+<!--          <video [autoplay]="true" [id]="peer.id" [muted]="peer.isLocal" playsinline></video>-->
+<!--        </div>-->
+<!--        <div class="user">-->
+<!--&lt;!&ndash;          <nb-icon&ndash;&gt;-->
+<!--&lt;!&ndash;            [icon]="peer.audioTrack?.enabled ? 'mic' : 'mic-off'"&ndash;&gt;-->
+<!--&lt;!&ndash;            [status]="peer.audioTrack?.enabled ? '' : 'danger'"&ndash;&gt;-->
+<!--&lt;!&ndash;          ></nb-icon>&ndash;&gt;-->
+<!--          &nbsp;{{peer.name}}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ng-container>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="user-videos-container">-->
+<!--  <div #screenShareDiv *ngIf="screenShareTrack" class="user-screen-share">-->
+<!--    &lt;!&ndash; TODO: Support audio in screen share &ndash;&gt;-->
+<!--    <video-->
+<!--      [autoplay]="true"-->
+<!--      [height]="screenShareDiv.clientHeight"-->
+<!--      [muted]="true"-->
+<!--      [srcObject]="screenShareTrack.stream.nativeStream"-->
+<!--    ></video>-->
+<!--  </div>-->
+<!--  <div class="user-videos">-->
+<!--    <ng-container *ngFor="let peer of peers">-->
+<!--      <div-->
+<!--        *ngIf="peer.role?.name === EHmsRoles.HOST || peer.role?.name === EHmsRoles.GUEST"-->
+<!--        [ngClass]="{'screen': screenShareTrack}"-->
+<!--        class="user-video"-->
+<!--      >-->
+<!--        <div *ngIf="!peer.isLocal" class="admin-video-controls d-flex">-->
+<!--          <button-->
+<!--            (click)="peer.audioTrack?.getVolume() === 0 ? onAudioUnmute(peer) : onAudioMute(peer)"-->
+<!--            ghost-->
+<!--            nbButton-->
+<!--            nbTooltip="Mute this person"-->
+<!--            shape="round"-->
+<!--            size="small"-->
+<!--          >-->
+<!--            <nb-icon [icon]="peer.audioTrack?.getVolume() === 0 ? 'mic-off' : 'mic'"></nb-icon>-->
+<!--          </button>-->
+<!--          <button-->
+<!--            (click)="removeFromStage.emit(peer)"-->
+<!--            *ngIf="peer.role?.name === EHmsRoles.HOST"-->
+<!--            ghost-->
+<!--            nbButton-->
+<!--            nbTooltip="Remove from stage"-->
+<!--            shape="round"-->
+<!--            size="small"-->
+<!--          >-->
+<!--            <nb-icon icon="minus-circle"></nb-icon>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="video-stream">-->
+<!--          &lt;!&ndash; If the video is enabled, show it &ndash;&gt;-->
+<!--          <video-->
+<!--            *ngIf="peer.videoTrack?.enabled"-->
+<!--            [autoplay]="true"-->
+<!--            [muted]="peer.isLocal"-->
+<!--            [srcObject]="peer.videoTrack?.stream.nativeStream"-->
+<!--          ></video>-->
+<!--          &lt;!&ndash; TODO: If the video is disabled, show profile pic &ndash;&gt;-->
+<!--          <div *ngIf="!peer.videoTrack?.enabled"></div>-->
+<!--        </div>-->
+<!--        <div class="user">-->
+<!--          <nb-icon-->
+<!--            [icon]="peer.audioTrack?.enabled ? 'mic' : 'mic-off'"-->
+<!--            [status]="peer.audioTrack?.enabled ? '' : 'danger'"-->
+<!--          ></nb-icon>-->
+<!--          &nbsp;{{peer.name}}-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </ng-container>-->
+<!--  </div>-->
+<!--</div>-->

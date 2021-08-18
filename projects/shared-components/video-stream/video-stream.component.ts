@@ -1,5 +1,14 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, Input, OnChanges, OnInit, PLATFORM_ID, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  Input,
+  OnChanges,
+  OnInit,
+  PLATFORM_ID,
+  SimpleChanges,
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -8,10 +17,9 @@ import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedd
 @Component({
   selector: 'app-video-stream',
   templateUrl: './video-stream.component.html',
-  styleUrls: ['./video-stream.component.scss']
+  styleUrls: ['./video-stream.component.scss'],
 })
 export class VideoStreamComponent implements OnInit, OnChanges {
-
   @Input() started: boolean;
   @Input() currentUser: ICurrentUser;
   @Input() videoSource: string;
@@ -28,6 +36,8 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   @Input() zoomHostSignature: string;
   // hms specific attributes
   @Input() hmsRoomId: string;
+  @Input() streamable_id: number;
+  @Input() streamable_type: string;
 
   isBrowser: boolean = isPlatformBrowser(this.platformId);
   api;
@@ -38,9 +48,8 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   constructor(
     private sanitizer: DomSanitizer,
     private changeDetectorRef: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: object
-  ) {
-  }
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {}
 
   ngOnInit() {
     this.setPreview();
@@ -68,7 +77,8 @@ export class VideoStreamComponent implements OnInit, OnChanges {
         case EEmbeddedVideoStreamSources.EXTERNAL_LINK:
           this.playerUrl = this.videoCode;
           break;
-        default: // for other embeds
+        default:
+          // for other embeds
           this.playerUrl = this.sanitizer.bypassSecurityTrustHtml(this.videoCode);
           break;
       }
@@ -80,11 +90,12 @@ export class VideoStreamComponent implements OnInit, OnChanges {
   youtubeParser() {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const val = this.videoCode.match(regExp);
-    this.playerUrl = (val && val[7].length === 11) ? val[7] : '';
+    this.playerUrl = val && val[7].length === 11 ? val[7] : '';
   }
 
   createZoomUrl() {
-    return encodeURI(`${environment.zoom_call_server_url}?email=${this.userEmail}&meeting_number=${this.videoCode}&name=${this.userName}&signature=${this.zoomSignature}&host_email=${this.zoomHostEmail}&host_signature=${this.zoomHostSignature}&password=${this.zoomPassword}`);
+    return encodeURI(
+      `${environment.zoom_call_server_url}?email=${this.userEmail}&meeting_number=${this.videoCode}&name=${this.userName}&signature=${this.zoomSignature}&host_email=${this.zoomHostEmail}&host_signature=${this.zoomHostSignature}&password=${this.zoomPassword}`,
+    );
   }
-
 }

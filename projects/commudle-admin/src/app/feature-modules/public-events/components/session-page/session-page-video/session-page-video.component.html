@@ -19,22 +19,16 @@
       </button>
     </div>
     <div #videoStream [ngClass]="{'compressed': compressVideoStream}" class="video-stream">
-      <app-video-stream
+      <app-video-stream-v2
         [currentUser]="currentUser"
+        [embeddedVideoStream]="embeddedVideoStream"
         [fillerText]="!currentUser ? 'Login to Access' : (moment() < moment(startTime) ? 'Starting in ' + moment(startTime).fromNow(true) : 'Loading Video...')"
         [height]="videoStream.clientHeight"
-        [hmsRoomId]="embeddedVideoStream.hms_room_id"
         [started]="moment() >= moment(startTime)"
-        [userEmail]="currentUser?.email || ''"
-        [userName]="currentUser?.name || ''"
         [videoCode]="!currentUser || moment() < moment(startTime) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
         [videoSource]="embeddedVideoStream.source"
         [width]="videoStream.clientWidth"
-        [zoomHostEmail]="embeddedVideoStream.zoom_host_email"
-        [zoomHostSignature]="embeddedVideoStream.zoom_host_signature"
-        [zoomPassword]="embeddedVideoStream.zoom_password"
-        [zoomSignature]="embeddedVideoStream.zoom_attendee_signature"
-      ></app-video-stream>
+      ></app-video-stream-v2>
     </div>
     <div
       *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source) && interactionWindows"

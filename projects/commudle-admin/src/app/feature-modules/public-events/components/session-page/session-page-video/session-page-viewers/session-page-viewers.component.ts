@@ -8,6 +8,7 @@ import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stre
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { HmsStageService } from 'projects/shared-modules/hms-video/services/hms-stage.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
@@ -16,10 +17,9 @@ import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-session-page-viewers',
   templateUrl: './session-page-viewers.component.html',
-  styleUrls: ['./session-page-viewers.component.scss']
+  styleUrls: ['./session-page-viewers.component.scss'],
 })
 export class SessionPageViewersComponent implements OnInit, OnDestroy {
-
   uuid = uuidv4();
 
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
@@ -43,7 +43,8 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private activatedRoute: ActivatedRoute,
     private authWatchService: LibAuthwatchService,
-    @Inject(PLATFORM_ID) private platformId: object
+    @Inject(PLATFORM_ID) private platformId: object,
+    private hmsStageService: HmsStageService,
   ) {
   }
 
@@ -74,14 +75,14 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
             if (currentUser) {
               this.currentUser = currentUser;
             }
-          })
+          }),
         );
       }
     }
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(value => value.unsubscribe());
+    this.subscriptions.forEach((value) => value.unsubscribe());
 
     if (this.pingInterval) {
       clearInterval(this.pingInterval);
@@ -94,10 +95,12 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   getPastUsersList() {
-    this.eventsService.embeddedVideoStreamPastVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe(data => {
-      this.usersList = data.users;
-      this.userCount.emit(this.usersList.length);
-    });
+    this.eventsService
+      .embeddedVideoStreamPastVisitors(this.event.slug, this.embeddedVideoStream.id)
+      .subscribe((data) => {
+        this.usersList = data.users;
+        this.userCount.emit(this.usersList.length);
+      });
   }
 
   getCurrentUsersList() {
@@ -114,7 +117,8 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
       }
 
       this.pingInterval = setInterval(() => {
-        this.userObjectVisitChannel.sendData(this.embeddedVideoStream.id,
+        this.userObjectVisitChannel.sendData(
+          this.embeddedVideoStream.id,
           'EmbeddedVideoStream',
           this.uuid,
           this.userObjectVisitChannel.ACTIONS.PING);
@@ -156,9 +160,11 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   inviteToStage(userId) {
-    this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe(data => {
+    this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe((data) => {
       this.toastLogService.successDialog('Invited, they will now see a popup', 2000);
     });
-  }
 
+    this.hmsStageService.inviteToStage(userId);
+    this.toastLogService.successDialog('Invited, they will now see a popup');
+  }
 }
