@@ -1,26 +1,5 @@
 <div class="conference-container">
   <app-conference-user-videos></app-conference-user-videos>
-<!--  <div-->
-<!--    [ngClass]="{-->
-<!--      'screen-share': screenSharePeer,-->
-<!--      'one': peers.length === 1,-->
-<!--      'two': peers.length === 2,-->
-<!--      'three': [3, 4].includes(peers.length),-->
-<!--      'four': [5, 6].includes(peers.length),-->
-<!--      'five': [7, 8, 9].includes(peers.length),-->
-<!--      'default': peers.length > 9-->
-<!--    }"-->
-<!--    class="user-streams"-->
-<!--  >-->
-<!--    <div #screenShareContainer class="user-screen-share d-flex justify-content-center"></div>-->
-<!--    <div class="user-videos d-flex justify-content-center flex-wrap">-->
-<!--      <ng-container *ngFor="let peer of peers">-->
-<!--        <div *ngIf="peer.videoTrack" class="user-video">-->
-<!--          <app-conference-user-video [peer]="peer"></app-conference-user-video>-->
-<!--        </div>-->
-<!--      </ng-container>-->
-<!--    </div>-->
-<!--  </div>-->
   <div class="d-flex controls">
     <!-- Recording -->
     <button (click)="toggleRecording()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
@@ -31,12 +10,12 @@
       <nb-icon [status]="isStreaming ? 'success' : ''" icon="radio"></nb-icon>
     </button>
     <!-- Microphone -->
-    <button (click)="toggleAudio()" [appearance]="isAudioEnabled ? 'ghost' : 'filled'" nbButton shape="round">
-      <nb-icon icon="mic"></nb-icon>
+    <button (click)="toggleAudio()" ghost nbButton shape="round">
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
     </button>
     <!-- Camera -->
-    <button (click)="toggleVideo()" [appearance]="isVideoEnabled ? 'ghost' : 'filled'" nbButton shape="round">
-      <nb-icon icon="video"></nb-icon>
+    <button (click)="toggleVideo()" ghost nbButton shape="round">
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
     </button>
     <!-- Screen share -->
     <button
@@ -46,7 +25,7 @@
       nbButton
       shape="round"
     >
-      <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="cast"></nb-icon>
+      <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="monitor"></nb-icon>
     </button>
     <!-- Settings -->
     <button (click)="openSettings()" ghost nbButton shape="round">
@@ -54,6 +33,10 @@
     </button>
     <!-- Join/Leave Stage -->
     <!--    <button (click)="toggleStage()" ghost nbButton shape="round">{{isOnStage ? 'Leave stage' : 'Join stage'}}</button>-->
+    <!-- Leave session -->
+    <button (click)="leaveSession()" ghost nbButton shape="round">
+      <nb-icon icon="log-out"></nb-icon>
+    </button>
     <!-- End session -->
     <button (click)="endSession()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
       End session

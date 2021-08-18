@@ -1,3 +1,4 @@
+import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -20,9 +21,9 @@ import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { UserVisitsService } from 'projects/shared-services/user-visits.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-session-page',
@@ -238,11 +239,10 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-  // if (!this.form.pristine && this.unsavedChanges) {
-  //   return window.confirm('There might be some unsaved changes. Are you sure you want to leave?');
-  // } else {
-  //   return true;
-  // }
-  // }
+  canDeactivate(): boolean {
+    if (hmsStore.getState(selectIsConnectedToRoom)) {
+      hmsActions.leave();
+    }
+    return true;
+  }
 }
