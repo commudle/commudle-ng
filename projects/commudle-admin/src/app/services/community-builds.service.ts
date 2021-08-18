@@ -20,9 +20,17 @@ export class CommunityBuildsService {
   ) { }
 
 
-  getAll(): Observable<ICommunityBuilds> {
+  getAll(page?, count?): Observable<ICommunityBuilds> {
+    let params = new HttpParams();
+    if (page) {
+      params = params.append('page', page);
+    }
+
+    if (count) {
+      params = params.append('count', count);
+    }
     return this.http.get<ICommunityBuilds>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.INDEX)
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.INDEX), {params}
     );
   }
 

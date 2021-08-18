@@ -12,6 +12,7 @@ export interface ICommunityBuild {
   publish_status: EPublishStatus;
   link: string;
   created_at: Date;
+  updated_at: Date;
   published_at: Date;
   votes_count: number;
   flags_count: number;
