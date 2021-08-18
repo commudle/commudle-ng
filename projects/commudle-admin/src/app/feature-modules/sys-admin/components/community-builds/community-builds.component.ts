@@ -14,9 +14,12 @@ export class CommunityBuildsComponent implements OnInit {
   @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 
   moment = moment;
-  cBuilds: ICommunityBuild[];
+  cBuilds: ICommunityBuild[] = [];
   EPublishStatus = EPublishStatus;
   publishStatuses = Object.keys(EPublishStatus);
+  total = 0;
+  page = 1;
+  isLoading = false;
 
   constructor(
     private toastLogService: LibToastLogService,
@@ -30,9 +33,13 @@ export class CommunityBuildsComponent implements OnInit {
 
 
   getAllBuilds() {
-    this.communityBuildsService.getAll().subscribe(
+    this.isLoading = true;
+    this.communityBuildsService.getAll(this.page).subscribe(
       data => {
-        this.cBuilds = data.community_builds;
+        this.cBuilds = this.cBuilds.concat(data.community_builds);
+        this.total = data.total;
+        this.page += 1;
+        this.isLoading = false;
       }
     );
   }
