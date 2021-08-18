@@ -139,6 +139,7 @@ export const API_ROUTES = {
     UPDATE_HEADER_IMAGE: 'api/v2/events/update_header_image',
     DELETE_HEADER_IMAGE: 'api/v2/events/delete_header_image',
     EMBEDDED_VIDEO_STREAM_PAST_VISITORS: 'api/v2/events/embedded_video_stream_past_visitors',
+    EMBEDDED_VIDEO_STREAM_VISITORS: 'api/v2/events/embedded_video_stream_visitors',
     INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
     RECORDINGS: 'api/v2/events/recordings',
     PUBLIC: {
