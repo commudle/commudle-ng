@@ -3,11 +3,13 @@ import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLAT
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { UserObjectVisitChannel } from 'projects/commudle-admin/src/app/services/websockets/user-object-visit.channel';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { HmsStageService } from 'projects/shared-modules/hms-video/services/hms-stage.service';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
@@ -30,6 +32,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   usersListSubscription: Subscription;
   usersList: IUser[] = [];
+  currentUser: ICurrentUser;
   pingInterval;
 
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
@@ -39,13 +42,15 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private activatedRoute: ActivatedRoute,
+    private authWatchService: LibAuthwatchService,
     @Inject(PLATFORM_ID) private platformId: object,
     private hmsStageService: HmsStageService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.channelName = `${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`;
+      this.channelName = `${ this.embeddedVideoStream.id }_EmbeddedVideoStream_${ this.uuid }`;
       if (this.event.event_status.name === EEventStatuses.COMPLETED) {
         this.getPastUsersList();
       } else {
@@ -61,9 +66,14 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
         this.clientPings();
 
         this.subscriptions.push(
-          this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe((data) => {
+          this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(data => {
             if (data) {
               this.getCurrentUsersList();
+            }
+          }),
+          this.authWatchService.currentUser$.subscribe((currentUser) => {
+            if (currentUser) {
+              this.currentUser = currentUser;
             }
           }),
         );
@@ -94,12 +104,10 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   getCurrentUsersList() {
-    this.userObjectVisitChannel.sendData(
-      this.embeddedVideoStream.id,
-      'EmbeddedVideoStream',
-      this.uuid,
-      this.userObjectVisitChannel.ACTIONS.CURRENT_USERS,
-    );
+    this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe(data => {
+      this.usersList = data.users;
+      this.userCount.emit(this.usersList.length);
+    });
   }
 
   clientPings() {
@@ -113,61 +121,48 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
           this.embeddedVideoStream.id,
           'EmbeddedVideoStream',
           this.uuid,
-          this.userObjectVisitChannel.ACTIONS.PING,
-        );
-      }, 5000);
+          this.userObjectVisitChannel.ACTIONS.PING);
+      }, 30000);
     }
   }
 
   receiveData() {
-    this.subscriptions.push(
-      this.userObjectVisitChannel.channelsList$.subscribe((value) => {
-        if (value.has(this.channelName) && !this.usersListSubscription) {
-          this.usersListSubscription = this.userObjectVisitChannel.channelData$[this.channelName].subscribe((data) => {
-            if (data) {
-              switch (data.action) {
-                case this.userObjectVisitChannel.ACTIONS.SET_PERMISSIONS: {
-                  // nothing needs to be done here
-                  break;
-                }
-                case this.userObjectVisitChannel.ACTIONS.CURRENT_USERS: {
-                  this.usersList = data.users;
-                  break;
-                }
-                case this.userObjectVisitChannel.ACTIONS.USER_ADD: {
-                  const existingUserIndex = this.usersList.findIndex((k) => k.id === data.user.id);
-                  if (existingUserIndex === -1 && this.usersList.length > 0) {
-                    this.usersList.push(data.user);
-                  }
-                  break;
-                }
-                case this.userObjectVisitChannel.ACTIONS.USER_REMOVE: {
-                  const existingUserIndex = this.usersList.findIndex((k) => k.id === data.user_id);
-                  if (existingUserIndex !== -1) {
-                    this.usersList.splice(existingUserIndex, 1);
-                  }
-                  break;
-                }
-                case this.userObjectVisitChannel.ACTIONS.USER_COUNT: {
-                  if (data.user_count !== this.usersList.length) {
-                    this.getCurrentUsersList();
-                  }
-                  break;
-                }
+    this.subscriptions.push(this.userObjectVisitChannel.channelsList$.subscribe(value => {
+      if (value.has(this.channelName) && !this.usersListSubscription) {
+        this.usersListSubscription = this.userObjectVisitChannel.channelData$[this.channelName].subscribe(data => {
+          if (data) {
+            switch (data.action) {
+              case (this.userObjectVisitChannel.ACTIONS.SET_PERMISSIONS): {
+                // nothing needs to be done here
+                break;
               }
-              this.userCount.emit(this.usersList.length);
+              case (this.userObjectVisitChannel.ACTIONS.USER_ADD): {
+                const existingUserIndex = this.usersList.findIndex(k => k.id === data.user.id);
+                if (existingUserIndex === -1 && this.usersList.length > 0) {
+                  this.usersList.push(data.user);
+                }
+                break;
+              }
+              case (this.userObjectVisitChannel.ACTIONS.USER_REMOVE): {
+                const existingUserIndex = this.usersList.findIndex(k => k.id === data.user_id);
+                if (existingUserIndex !== -1 && (this.currentUser && data.user_id !== this.currentUser.id)) {
+                  this.usersList.splice(existingUserIndex, 1);
+                }
+                break;
+              }
             }
-          });
-          this.subscriptions.push(this.usersListSubscription);
-        }
-      }),
-    );
+            this.userCount.emit(this.usersList.length);
+          }
+        });
+        this.subscriptions.push(this.usersListSubscription);
+      }
+    }));
   }
 
   inviteToStage(userId) {
-    // this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe((data) => {
-    //   this.toastLogService.successDialog('Invited, they will now see a popup', 2000);
-    // });
+    this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe((data) => {
+      this.toastLogService.successDialog('Invited, they will now see a popup', 2000);
+    });
 
     this.hmsStageService.inviteToStage(userId);
     this.toastLogService.successDialog('Invited, they will now see a popup');

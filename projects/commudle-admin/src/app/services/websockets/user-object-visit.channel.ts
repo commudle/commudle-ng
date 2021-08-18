@@ -12,10 +12,8 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 export class UserObjectVisitChannel {
   ACTIONS = {
     SET_PERMISSIONS: 'set_permissions',
-    CURRENT_USERS: 'current_users',
     USER_ADD: 'user_add',
     USER_REMOVE: 'user_remove',
-    USER_COUNT: 'user_count',
     PING: 'ping'
   }
 

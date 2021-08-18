@@ -117,6 +117,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
     if (this.user.designation) {
       titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
     }
+    this.title.setTitle(titleText);
   }
 
 }
