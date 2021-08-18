@@ -1,26 +1,41 @@
 import {
-  HMSConfig,
-  HMSException,
-  HMSMessage,
-  HMSPeerUpdate,
-  HMSRoleChangeRequest,
-  HMSRoom,
-  HMSRoomUpdate,
-  HMSSdk,
+  HMSPeer,
   HMSTrack,
-  HMSTrackUpdate,
-} from '@100mslive/hms-video';
-import { HMSDeviceManager } from '@100mslive/hms-video/dist/interfaces/HMSDeviceManager';
-import HMSUpdateListener from '@100mslive/hms-video/dist/interfaces/update-listener';
-import { HMSLocalPeer, HMSPeer } from '@100mslive/hms-video/dist/sdk/models/peer';
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+  selectIsConnectedToRoom,
+  selectIsLocalAudioEnabled,
+  selectIsLocalScreenShared,
+  selectIsLocalVideoEnabled,
+  selectIsSomeoneScreenSharing,
+  selectLocalMediaSettings,
+  selectLocalPeer,
+  selectPeers,
+  selectPeerScreenSharing,
+  selectRoleChangeRequest,
+  selectScreenShareByPeerID,
+} from '@100mslive/hms-video-store';
+import { HMSRoleChangeRequest } from '@100mslive/hms-video-store/src/core/selectors/derivedSelectors';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { ConferenceSettingsComponent } from 'projects/shared-modules/hms-video/components/conference-v2/conference-settings/conference-settings.component';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
+import { HmsStageService } from 'projects/shared-modules/hms-video/services/hms-stage.service';
 import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
-import { LocalMediaService } from 'projects/shared-modules/hms-video/services/local-media.service';
 import { HmsLiveV2Channel } from 'projects/shared-modules/hms-video/services/websockets/hms-live-v2.channel';
+import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -40,273 +55,250 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   // Remote peers and tracks
   peers: HMSPeer[] = [];
-  tracks: HMSTrack[] = [];
-  // Local peer
-  localPeer: HMSLocalPeer;
-  // Defining hms sdk
-  hms = new HMSSdk();
-  // Listeners for hms
-  listener: HMSUpdateListener = {
-    onDeviceChange(_deviceMap: HMSDeviceManager): void {
-    },
-    onError(_error: HMSException): void {
-    },
-    onJoin: function(room: HMSRoom): void {
-      console.info('joined session');
-      // Get peers in the room
-      this.peers = room.peers;
-      // Set local peer
-      this.localPeer = room.localPeer;
-      // Connect to channel
-      this.receiveChannelData();
-      console.log(this.hms.getRoles(), this.peers);
-    }.bind(this),
-    onMessageReceived: function(message: HMSMessage): void {
-      const peer: HMSPeer = this.peers.find((value: HMSPeer) => {
-        return value.peerId === message.message;
-      });
-      if (this.localPeer.role?.name === EHmsRoles.HOST) {
-        this.hms.changeRole(peer, EHmsRoles.GUEST);
-      }
-    }.bind(this),
-    onPeerUpdate: function(type: HMSPeerUpdate, peer: HMSPeer | null): void {
-      switch (type) {
-        case HMSPeerUpdate.PEER_JOINED:
-          this.peers = [...this.peers, peer];
-          break;
-        case HMSPeerUpdate.PEER_LEFT:
-          this.peers = this.peers.filter((value: HMSPeer) => value.peerId !== peer.peerId);
-          break;
-        case HMSPeerUpdate.ROLE_UPDATED:
-          console.log('role updated');
-          this.peers = this.hms.getPeers();
-          this.localPeer = this.hms.getLocalPeer();
-          break;
-      }
-    }.bind(this),
-    onReconnected(): void {
-      console.log('reconnected');
-    },
-    onReconnecting(_error: HMSException): void {
-      console.log('reconnecting');
-    },
-    onRoleChangeRequest: function(request: HMSRoleChangeRequest): void {
-      if (this.localPeer.role?.name === EHmsRoles.HOST) {
-        this.hms.acceptRoleChange(request);
-      }
-      console.log('role change request', request);
-    }.bind(this),
-    onRoleUpdate(_newRole: string): void {
-      console.log('role update');
-    },
-    onRoomUpdate(_type: HMSRoomUpdate, _room: HMSRoom): void {
-      console.log('room update');
-    },
-    onTrackUpdate: function(type: HMSTrackUpdate, track: HMSTrack, _peer: HMSPeer): void {
-      switch (type) {
-        case HMSTrackUpdate.TRACK_ADDED:
-          this.tracks = [...this.tracks, track];
-          break;
-        case HMSTrackUpdate.TRACK_REMOVED:
-          this.tracks = this.tracks.filter((value: HMSTrack) => value.trackId !== track.trackId);
-          break;
-      }
-    }.bind(this),
-  };
-  // HMS Status variables
-  isScreenSharing = false;
-  isAudioMuted = false;
-  isVideoMuted = false;
-  isRecording = false;
-  isStreaming = false;
-  isOnStage = false;
+  screenSharePeer: HMSPeer;
+
+  // HMS status variables
+  isAudioEnabled: boolean = hmsStore.getState(selectIsLocalAudioEnabled);
+  isVideoEnabled: boolean = hmsStore.getState(selectIsLocalVideoEnabled);
+  isScreenSharing: boolean;
+  isLocalScreenSharing: boolean;
+
+  isRecording: boolean;
+  isStreaming: boolean;
+
+  @ViewChild('screenShareContainer', { static: false }) screenShareContainer: ElementRef<HTMLDivElement>;
+  // @ViewChild('videoContainer', { static: false }) videoContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('roleChangeRequestDialog') roleChangeRequestDialog: TemplateRef<any>;
 
   subscriptions: Subscription[] = [];
 
   constructor(
-    private localMediaService: LocalMediaService,
-    private hmsLiveV2Channel: HmsLiveV2Channel,
     private hmsVideoStateService: HmsVideoStateService,
+    private toastLogService: LibToastLogService,
+    private hmsStageService: HmsStageService,
+    private nbDialogService: NbDialogService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
-  ) {
-  }
+    private hmsLiveV2Channel: HmsLiveV2Channel,
+  ) {}
 
   ngOnInit(): void {
-    // Get status of audio and video
-    this.isAudioMuted = this.localMediaService.isAudioMuted;
-    this.isVideoMuted = this.localMediaService.isVideoMuted;
+    // Subscribe to join room
+    hmsStore.subscribe(this.joinRoom, selectIsConnectedToRoom);
+    // Subscribe to invite to stage
+    this.hmsStageService.stageStatus$.subscribe((userId: number) => this.inviteToStage(userId));
+    // TODO: Get beam status
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.serverClient && this.serverClient && this.currentUser) {
-      this.hms.join(this.getJoinConfig(this.serverClient.token, this.currentUser.name), this.listener);
+      this.joinSession();
     }
   }
 
   ngOnDestroy(): void {
-    // Leave the meet
-    this.hms.leave().then(() => console.info('left session'));
-    // Unsubscribe all subscriptions
-    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    hmsActions.leave().then(() => console.info('[HMS] Left session'));
+
+    this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
   }
 
-  getJoinConfig(authToken: string, userName: string): HMSConfig {
-    const audioInputDeviceId: string = this.localMediaService.selectedAudioInputDevice?.deviceId || '';
-    const videoDeviceId: string = this.localMediaService.selectedVideoInputDevice?.deviceId || '';
-    return {
-      authToken: authToken,
-      userName: userName,
+  joinSession(): void {
+    hmsActions.join({
+      authToken: this.serverClient.token,
+      userName: this.currentUser.username,
+      metaData: JSON.stringify({
+        id: this.currentUser.id,
+        name: this.currentUser.name,
+        username: this.currentUser.username,
+        avatar: this.currentUser.avatar,
+      }),
       // @ts-ignore
       settings: {
-        audioInputDeviceId: audioInputDeviceId,
-        videoDeviceId: videoDeviceId,
-        isAudioMuted: this.isAudioMuted,
-        isVideoMuted: this.isVideoMuted,
+        audioInputDeviceId: hmsStore.getState(selectLocalMediaSettings).audioInputDeviceId,
+        videoDeviceId: hmsStore.getState(selectLocalMediaSettings).videoInputDeviceId,
+        isAudioMuted: !this.isAudioEnabled,
+        isVideoMuted: !this.isVideoEnabled,
       },
-    };
-  }
-
-  onStartScreenShare(): void {
-    this.hms
-      .startScreenShare(() => {
-        this.isScreenSharing = false;
-        console.info('stopped screen share');
-      })
-      .then(() => {
-        this.isScreenSharing = true;
-        console.info('started screen share');
-      });
-  }
-
-  onStopScreenShare(): void {
-    this.hms.stopScreenShare().then(() => {
-      this.isScreenSharing = false;
-      console.info('stopped screen share');
     });
   }
 
-  onAudioMute(): void {
-    // Disable the audio
-    this.localPeer.audioTrack.setEnabled(false).then(() => console.info('audio turned off'));
-    // Change status
-    this.isAudioMuted = true;
+  joinRoom = (status: boolean) => {
+    if (status) {
+      //  Subscribe to remote screen share
+      hmsStore.subscribe((value: boolean) => (this.isScreenSharing = value), selectIsSomeoneScreenSharing);
+      // Subscribe to local screen share
+      hmsStore.subscribe((value: boolean) => (this.isLocalScreenSharing = value), selectIsLocalScreenShared);
+      // Subscribe to role changes
+      hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
+      // Subscribe to list of peers
+      hmsStore.subscribe((peers: HMSPeer[]) => (this.peers = peers), selectPeers);
+      // Subscribe to screen share peer
+      hmsStore.subscribe((peer: HMSPeer) => {
+        this.screenSharePeer = peer;
+        this.renderScreenShare();
+      }, selectPeerScreenSharing);
+      // Subscribe to own channel
+      this.receiveChannelData();
+    }
+  };
+
+  renderVideo = (videoTrack: string) => {
+    const videoElement: HTMLVideoElement = document.createElement('video');
+    videoElement.autoplay = true;
+    videoElement.muted = this.screenSharePeer.isLocal;
+
+    hmsActions.attachVideo(videoTrack, videoElement).then(() => console.info('[HMS] Attached video track'));
+
+    return videoElement;
+  };
+
+  toggleAudio(): void {
+    const enabled: boolean = hmsStore.getState(selectIsLocalAudioEnabled);
+    hmsActions.setLocalAudioEnabled(!enabled).then(() => {
+      this.isAudioEnabled = !enabled;
+      console.info('[HMS] Toggled audio');
+    });
   }
 
-  onAudioUnmute(): void {
-    // Enable the audio
-    this.localPeer.audioTrack.setEnabled(true).then(() => console.info('audio turned on'));
-    // Change status
-    this.isAudioMuted = false;
+  toggleVideo(): void {
+    const enabled: boolean = hmsStore.getState(selectIsLocalVideoEnabled);
+    hmsActions.setLocalVideoEnabled(!enabled).then(() => {
+      this.isVideoEnabled = !enabled;
+      console.info('[HMS] Toggled video');
+    });
   }
 
-  onVideoMute(): void {
-    // Disable the video
-    this.localPeer.videoTrack.setEnabled(false).then(() => console.info('video turned off'));
-    // Change status
-    this.isVideoMuted = true;
+  toggleScreenShare(): void {
+    if (this.isScreenSharing) {
+      if (this.isLocalScreenSharing) {
+        hmsActions.setScreenShareEnabled(false).then(() => console.info('[HMS] Screen share stopped'));
+      } else {
+        this.toastLogService.warningDialog('Another screen share in progress');
+      }
+    } else {
+      hmsActions.setScreenShareEnabled(true).then(() => console.info('[HMS] Screen share started'));
+    }
   }
 
-  onVideoUnmute(): void {
-    // Enable the video
-    this.localPeer.videoTrack.setEnabled(true).then(() => console.info('video turned on'));
-    // Change status
-    this.isVideoMuted = false;
+  renderScreenShare(): void {
+    if (this.screenSharePeer) {
+      const screenShareVideoTrack: HMSTrack = hmsStore.getState(selectScreenShareByPeerID(this.screenSharePeer.id));
+
+      this.screenShareContainer.nativeElement.innerHTML = '';
+      this.screenShareContainer.nativeElement.append(this.renderVideo(screenShareVideoTrack.id));
+    }
   }
 
-  onStartRecording(): void {
-    this.embeddedVideoStreamsService
-      .startRecording(this.streamable_id, this.streamable_type, location.href)
-      .subscribe((value: boolean) => {
-        if (value)
-          // Change status
-          this.isRecording = true;
-      });
+  inviteToStage(userId: number): void {
+    if (userId) {
+      const peers: HMSPeer[] = hmsStore.getState(selectPeers);
+      const peer: HMSPeer = peers.find((value: HMSPeer) => value.customerUserId === String(userId));
+
+      hmsActions.changeRole(peer?.id, EHmsRoles.GUEST);
+    }
   }
 
-  onStopRecording(): void {
-    this.embeddedVideoStreamsService
-      .stopRecording(this.streamable_id, this.streamable_type)
-      .subscribe((value: boolean) => {
+  handleRoleChangeRequest = (request: HMSRoleChangeRequest) => {
+    if (!request) {
+      return;
+    }
+
+    const roleChangeRequestDialog: NbDialogRef<any> = this.nbDialogService.open(this.roleChangeRequestDialog, {
+      context: {
+        name: request.requestedBy.name,
+      },
+      closeOnBackdropClick: false,
+      closeOnEsc: false,
+    });
+    roleChangeRequestDialog.onClose.subscribe((accept: boolean) => {
+      if (accept) {
+        hmsActions.acceptChangeRole(request);
+        this.openSettings();
+      } else {
+        hmsActions.rejectChangeRole(request);
+      }
+    });
+  };
+
+  toggleStage(): void {
+    const localPeer: HMSPeer = hmsStore.getState(selectLocalPeer);
+    switch (localPeer.roleName) {
+      case EHmsRoles.HOST:
+        hmsActions.changeRole(localPeer.id, EHmsRoles.MEMBER, true);
+        break;
+      case EHmsRoles.MEMBER:
+        if (this.serverClient.role === EHmsRoles.HOST) {
+          hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
+        }
+        break;
+      // TODO
+      case EHmsRoles.GUEST:
+        break;
+    }
+  }
+
+  openSettings(): void {
+    this.nbDialogService.open(ConferenceSettingsComponent);
+  }
+
+  toggleRecording(): void {
+    if (this.serverClient.role !== EHmsRoles.HOST) {
+      return;
+    }
+
+    if (this.isRecording) {
+      this.embeddedVideoStreamsService.stopRecording(this.streamable_id, this.streamable_type).subscribe((value) => {
         if (value) {
-          // Change status
           this.isRecording = false;
         }
       });
-  }
-
-  onStartStreaming(): void {
-    this.embeddedVideoStreamsService
-      .startStreaming(this.streamable_id, this.streamable_type, location.href)
-      .subscribe((value: boolean) => {
-        if (value)
-          // Change status
-          this.isStreaming = true;
-      });
-  }
-
-  onStopStreaming(): void {
-    this.embeddedVideoStreamsService
-      .stopStreaming(this.streamable_id, this.streamable_type)
-      .subscribe((value: boolean) => {
-        if (value) {
-          // Change status
-          this.isStreaming = false;
-        }
-      });
-  }
-
-  onJoinStage(): void {
-    if (this.localPeer.role?.name === EHmsRoles.HOST) {
-      // @ts-ignore
-      this.hms.changeRole(this.localPeer, EHmsRoles.HOST);
-    }
-    // Change status
-    this.isOnStage = true;
-  }
-
-  onLeaveStage(): void {
-    if (this.localPeer.role?.name === EHmsRoles.HOST) {
-      // @ts-ignore
-      this.hms.changeRole(this.localPeer, EHmsRoles.HOST);
-    } else if (this.localPeer.role?.name === EHmsRoles.GUEST) {
-      // TODO 1: Error in using HMSMessageType enum
-      // TODO 2: Find a better way to do the below
-      this.hms.sendMessage('chat', this.localPeer.peerId);
-    }
-    // Change status
-    this.isOnStage = false;
-  }
-
-  removeFromStage(peer: HMSPeer): void {
-    if (this.localPeer.role?.name === EHmsRoles.HOST) {
-      // @ts-ignore
-      this.hms.changeRole(peer, EHmsRoles.VIEWER);
+    } else {
+      // TODO: Meeting url
+      this.embeddedVideoStreamsService
+        .startRecording(this.streamable_id, this.streamable_type, '')
+        .subscribe((value) => {
+          if (value) {
+            this.isRecording = true;
+          }
+        });
     }
   }
 
-  changeState(): void {
-    this.hmsVideoStateService.setState(EHmsStates.PREVIEW);
+  toggleStreaming(): void {
+    if (this.serverClient.role !== EHmsRoles.HOST) {
+      return;
+    }
+
+    if (this.isStreaming) {
+      this.embeddedVideoStreamsService
+        .stopStreaming(this.streamable_id, this.streamable_type)
+        .subscribe((value: boolean) => {
+          if (value) {
+            this.isStreaming = false;
+          }
+        });
+    } else {
+      // TODO: Meeting url
+      this.embeddedVideoStreamsService
+        .startStreaming(this.streamable_id, this.streamable_type, '')
+        .subscribe((value: boolean) => {
+          if (value) {
+            this.isStreaming = true;
+          }
+        });
+    }
   }
 
   endSession(): void {
-    // If client is a host
-    if (this.localPeer.role?.name === EHmsRoles.HOST) {
+    if (this.serverClient.role === EHmsRoles.HOST) {
       this.hmsLiveV2Channel.sendData(this.hmsLiveV2Channel.ACTIONS.END_STREAM, this.currentUser.id, {});
     }
   }
 
   receiveChannelData(): void {
     this.subscriptions.push(
-      this.hmsLiveV2Channel.channelData$[this.currentUser.id].subscribe((value) => {
+      this.hmsLiveV2Channel.channelData$[this.currentUser.id].subscribe((value: any) => {
         switch (value.action) {
-          case this.hmsLiveV2Channel.ACTIONS.INVITE_TO_STAGE:
-            // TODO 1: Error in using HMSMessageType enum
-            // TODO 2: Find a better way to do the below
-            this.hms.sendMessage('chat', this.localPeer.peerId);
-            this.isOnStage = true;
-            break;
           case this.hmsLiveV2Channel.ACTIONS.END_STREAM:
-            // Set state of room
             this.hmsVideoStateService.setState(EHmsStates.ENDED);
             break;
         }

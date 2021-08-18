@@ -1,44 +1,80 @@
 <div class="conference-container">
-  <app-conference-user-videos
-    (removeFromStage)="removeFromStage($event)"
-    [peers]="peers"
-    [tracks]="tracks"
-  ></app-conference-user-videos>
-  <div
-    *ngIf="localPeer?.role?.name === EHmsRoles.HOST || localPeer?.role?.name === EHmsRoles.GUEST"
-    class="d-flex controls"
-  >
+  <app-conference-user-videos></app-conference-user-videos>
+<!--  <div-->
+<!--    [ngClass]="{-->
+<!--      'screen-share': screenSharePeer,-->
+<!--      'one': peers.length === 1,-->
+<!--      'two': peers.length === 2,-->
+<!--      'three': [3, 4].includes(peers.length),-->
+<!--      'four': [5, 6].includes(peers.length),-->
+<!--      'five': [7, 8, 9].includes(peers.length),-->
+<!--      'default': peers.length > 9-->
+<!--    }"-->
+<!--    class="user-streams"-->
+<!--  >-->
+<!--    <div #screenShareContainer class="user-screen-share d-flex justify-content-center"></div>-->
+<!--    <div class="user-videos d-flex justify-content-center flex-wrap">-->
+<!--      <ng-container *ngFor="let peer of peers">-->
+<!--        <div *ngIf="peer.videoTrack" class="user-video">-->
+<!--          <app-conference-user-video [peer]="peer"></app-conference-user-video>-->
+<!--        </div>-->
+<!--      </ng-container>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="d-flex controls">
     <!-- Recording -->
-    <button (click)="isRecording ? onStopRecording() : onStartRecording()" ghost nbButton shape="round">
+    <button (click)="toggleRecording()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
       <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'"></nb-icon>
     </button>
     <!-- Streaming -->
-    <button (click)="isStreaming ? onStopStreaming() : onStartStreaming()" ghost nbButton shape="round">
-      <nb-icon [icon]="isStreaming ? 'stop-circle' : 'play-circle'"></nb-icon>
+    <button (click)="toggleStreaming()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
+      <nb-icon [status]="isStreaming ? 'success' : ''" icon="radio"></nb-icon>
     </button>
     <!-- Microphone -->
-    <button (click)="isAudioMuted ? onAudioUnmute() : onAudioMute()" ghost nbButton shape="round">
-      <nb-icon [icon]="isAudioMuted ? 'mic-off' : 'mic'"></nb-icon>
+    <button (click)="toggleAudio()" [appearance]="isAudioEnabled ? 'ghost' : 'filled'" nbButton shape="round">
+      <nb-icon icon="mic"></nb-icon>
     </button>
     <!-- Camera -->
-    <button (click)="isVideoMuted ? onVideoUnmute() : onVideoMute()" ghost nbButton shape="round">
-      <nb-icon [icon]="isVideoMuted ? 'video-off' : 'video'"></nb-icon>
+    <button (click)="toggleVideo()" [appearance]="isVideoEnabled ? 'ghost' : 'filled'" nbButton shape="round">
+      <nb-icon icon="video"></nb-icon>
     </button>
     <!-- Screen share -->
-    <button (click)="isScreenSharing ? onStopScreenShare() : onStartScreenShare()" ghost nbButton shape="round">
-      <nb-icon [status]="isScreenSharing ? 'success' : ''" icon="cast"></nb-icon>
+    <button
+      (click)="toggleScreenShare()"
+      [disabled]="isScreenSharing && !isLocalScreenSharing"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="cast"></nb-icon>
     </button>
     <!-- Settings -->
-    <button (click)="changeState()" ghost nbButton shape="round">
+    <button (click)="openSettings()" ghost nbButton shape="round">
       <nb-icon icon="settings"></nb-icon>
     </button>
+    <!-- Join/Leave Stage -->
+    <!--    <button (click)="toggleStage()" ghost nbButton shape="round">{{isOnStage ? 'Leave stage' : 'Join stage'}}</button>-->
     <!-- End session -->
     <button (click)="endSession()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
       End session
     </button>
-    <!-- Join/Leave Stage -->
-    <button (click)="isOnStage ? onLeaveStage() : onJoinStage()" *ngIf="isOnStage" ghost nbButton shape="round">
-      {{isOnStage ? 'Leave stage' : 'Join stage'}}
-    </button>
   </div>
 </div>
+
+<ng-template #roleChangeRequestDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="d-flex justify-content-space-between align-items-center">
+      Invitation to Join Stage
+      <button (click)="ref.close(false)" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>Hi, {{currentUser.name}}! <strong>{{data.name}}</strong> is inviting you to the stage.</p>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close(false)" nbButton size="small" status="danger">Reject</button>
+      <button (click)="ref.close(true)" nbButton size="small" status="success">Accept</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

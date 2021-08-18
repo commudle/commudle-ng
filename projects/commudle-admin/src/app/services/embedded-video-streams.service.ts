@@ -27,6 +27,15 @@ export class EmbeddedVideoStreamsService {
     );
   }
 
+  createOrUpdateV2(embeddedVideoStreamData): Observable<IEmbeddedVideoStream> {
+    return this.http.post<IEmbeddedVideoStream>(
+      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.V2_CREATE_UPDATE_FOR_EVENT),
+      {
+        embedded_video_stream: embeddedVideoStreamData,
+      },
+    );
+  }
+
   pGet(streamableType: string, streamableId: number): Observable<IEmbeddedVideoStream> {
     const params = new HttpParams().set('streamable_id', String(streamableId)).set('streamable_type', streamableType);
     return this.http.get<IEmbeddedVideoStream>(

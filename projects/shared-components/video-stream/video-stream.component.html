@@ -7,12 +7,10 @@
     </p>
 
     <div *ngIf="currentUser && started" class="youtube-player">
-      <app-hms-video-v2
+      <app-hms-video
         *ngIf="videoSource == EEmbeddedVideoStreamSources.COMMUDLE && hmsRoomId"
         [roomId]="hmsRoomId"
-        [streamable_id]="streamable_id"
-        [streamable_type]="streamable_type"
-      ></app-hms-video-v2>
+      ></app-hms-video>
 
       <youtube-player
         *ngIf="videoSource == EEmbeddedVideoStreamSources.YOUTUBE"
