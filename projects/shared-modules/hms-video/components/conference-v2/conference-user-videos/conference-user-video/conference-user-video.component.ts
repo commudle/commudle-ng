@@ -103,7 +103,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   removeFromStage(): void {
-    hmsActions.changeRole(this.peer.id, EHmsRoles.MEMBER, true);
+    hmsActions.changeRole(this.peer.id, EHmsRoles.VIEWER, true);
   }
 
   @HostListener('window:beforeunload', ['$event'])
