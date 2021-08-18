@@ -30,7 +30,6 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
   @Input() community: ICommunity;
   @Input() trackSlot: ITrackSlot;
   @Input() speaker: IUser;
-  @Input() userVisitData;
 
   moment = moment;
   EUserRoles = EUserRoles;

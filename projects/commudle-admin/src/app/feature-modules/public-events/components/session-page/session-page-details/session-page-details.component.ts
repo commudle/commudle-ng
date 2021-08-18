@@ -16,7 +16,6 @@ export class SessionPageDetailsComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() trackSlot: ITrackSlot;
   @Input() speaker: IUser;
-  @Input() userVisitData;
   @Input() startTime: Date;
   @Input() endTime: Date;
 
