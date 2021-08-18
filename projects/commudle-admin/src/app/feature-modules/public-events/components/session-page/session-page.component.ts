@@ -22,15 +22,14 @@ import { ITrackSlot } from 'projects/shared-models/track-slot.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { UserVisitsService } from 'projects/shared-services/user-visits.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-session-page',
   templateUrl: './session-page.component.html',
-  styleUrls: ['./session-page.component.scss']
+  styleUrls: ['./session-page.component.scss'],
 })
 export class SessionPageComponent implements OnInit, OnDestroy {
-
   isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   trackSlot: ITrackSlot;
@@ -74,64 +73,64 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     private cookieService: CookieService,
     private usersService: AppUsersService,
     @Inject(PLATFORM_ID) private platformId: object,
-    private footerService: FooterService
-  ) {
-  }
+    private footerService: FooterService,
+  ) {}
 
   setMeta() {
     this.meta.updateTag({
       name: 'description',
-      content: `${this.event.description.replace(/<[^>]*>/g, '')}`
+      content: `${this.event.description.replace(/<[^>]*>/g, '')}`,
     });
     this.meta.updateTag({
       name: 'og:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
     });
     this.meta.updateTag({
       name: 'og:image:secure_url',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: `${this.event.name} | Live`
+      content: `${this.event.name} | Live`,
     });
     this.meta.updateTag({
       name: 'og:description',
-      content: `${this.event.description.replace(/<[^>]*>/g, '')}`
+      content: `${this.event.description.replace(/<[^>]*>/g, '')}`,
     });
     this.meta.updateTag({
       name: 'og:type',
-      content: 'website'
+      content: 'website',
     });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: `${this.event.name} | Live`
+      content: `${this.event.name} | Live`,
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: `${this.event.description.replace(/<[^>]*>/g, '')}`
+      content: `${this.event.description.replace(/<[^>]*>/g, '')}`,
     });
   }
 
   ngOnInit() {
     this.resolveData();
 
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => {
-      this.currentUser = data;
-      this.getMyRoles();
-    }));
-
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+        this.getMyRoles();
+      }),
+    );
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(value => value.unsubscribe());
+    this.subscriptions.forEach((value) => value.unsubscribe());
 
     // Show Footer
     this.footerService.changeFooterStatus(true);
@@ -139,13 +138,13 @@ export class SessionPageComponent implements OnInit, OnDestroy {
 
   getMyRoles() {
     if (this.currentUser && this.community) {
-      this.usersService.getMyRoles('Kommunity', this.community.id).subscribe(data => this.userRoles = data);
+      this.usersService.getMyRoles('Kommunity', this.community.id).subscribe((data) => (this.userRoles = data));
     }
   }
 
   resolveData() {
     this.subscriptions.push(
-      this.activatedRoute.data.subscribe(data => {
+      this.activatedRoute.data.subscribe((data) => {
         this.community = data.community;
         this.getMyRoles();
         this.event = data.event;
@@ -153,7 +152,7 @@ export class SessionPageComponent implements OnInit, OnDestroy {
         this.startTime = this.event.start_time;
         this.endTime = this.event.end_time;
         if (this.event.custom_agenda) {
-          this.activatedRoute.queryParams.subscribe(params => {
+          this.activatedRoute.queryParams.subscribe((params) => {
             this.getTrackSlot(params.track_slot_id);
             this.pollableId = params.track_slot_id;
             this.pollableType = 'TrackSlot';
@@ -166,12 +165,12 @@ export class SessionPageComponent implements OnInit, OnDestroy {
           this.pollableId = this.event.id;
           this.pollableType = 'Event';
         }
-      })
+      }),
     );
   }
 
   getTrackSlot(trackSlotId) {
-    this.trackSlotsService.pGetTrackSlot(trackSlotId).subscribe(data => {
+    this.trackSlotsService.pGetTrackSlot(trackSlotId).subscribe((data) => {
       this.trackSlot = data;
       this.getDiscussionQnA();
       this.getDiscussionChat();
@@ -186,7 +185,10 @@ export class SessionPageComponent implements OnInit, OnDestroy {
       if (this.speaker) {
         this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
         this.meta.updateTag({ name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
-        this.meta.updateTag({ name: 'twitter:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
+        this.meta.updateTag({
+          name: 'twitter:title',
+          content: `${this.speaker.name} | ${this.trackSlot.session_title}`,
+        });
       } else {
         this.title.setTitle(`${this.trackSlot.session_title}`);
         this.meta.updateTag({ name: 'og:title', content: `${this.trackSlot.session_title}` });
@@ -197,22 +199,24 @@ export class SessionPageComponent implements OnInit, OnDestroy {
 
   getDiscussionQnA() {
     if (this.trackSlot) {
-      this.discussionsService.pGetOrCreateQnAForTrackSlot(this.trackSlot.id).subscribe(data => this.discussion = data);
+      this.discussionsService
+        .pGetOrCreateQnAForTrackSlot(this.trackSlot.id)
+        .subscribe((data) => (this.discussion = data));
     } else {
-      this.discussionsService.pGetOrCreateQnAForEvent(this.event.id).subscribe(data => this.discussion = data);
+      this.discussionsService.pGetOrCreateQnAForEvent(this.event.id).subscribe((data) => (this.discussion = data));
     }
   }
 
   getDiscussionChat() {
     if (this.trackSlot) {
-      this.discussionsService.pGetOrCreateChatForTrackSlot(this.trackSlot.id).subscribe(data => this.chat = data);
+      this.discussionsService.pGetOrCreateChatForTrackSlot(this.trackSlot.id).subscribe((data) => (this.chat = data));
     } else {
-      this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe(data => this.chat = data);
+      this.discussionsService.pGetOrCreateForEventChat(this.event.id).subscribe((data) => (this.chat = data));
     }
   }
 
   getEventEmbeddedVideoStream() {
-    this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe(data => {
+    this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe((data) => {
       if (data) {
         this.embeddedVideoStream = data;
         this.markUserObjectVisit('EmbeddedVideoStream', this.embeddedVideoStream.id);
@@ -222,14 +226,23 @@ export class SessionPageComponent implements OnInit, OnDestroy {
 
   markUserObjectVisit(objectType, objectId) {
     if (this.isBrowser) {
-      this.userObjectVisitsService.create({
-        url: this.location.path(),
-        session_token: this.cookieService.get(environment.session_cookie_name),
-        parent_type: objectType,
-        parent_id: objectId,
-        app_token: this.authWatchService.getAppToken()
-      }).subscribe();
+      this.userObjectVisitsService
+        .create({
+          url: this.location.path(),
+          session_token: this.cookieService.get(environment.session_cookie_name),
+          parent_type: objectType,
+          parent_id: objectId,
+          app_token: this.authWatchService.getAppToken(),
+        })
+        .subscribe();
     }
   }
 
+  // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+  // if (!this.form.pristine && this.unsavedChanges) {
+  //   return window.confirm('There might be some unsaved changes. Are you sure you want to leave?');
+  // } else {
+  //   return true;
+  // }
+  // }
 }
