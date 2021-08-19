@@ -10,7 +10,7 @@
     >
       Join Session as a Viewer
     </button>
-    <button
+    <!-- <button
       (click)="selectRole(EHmsRoles.HOST_VIEWER)"
       *ngIf="serverClient.role === EHmsRoles.HOST_VIEWER"
       nbButton
@@ -18,10 +18,10 @@
       status="primary"
     >
       Join Session as a Viewer
-    </button>
+    </button> -->
     <button
       (click)="selectRole(EHmsRoles.HOST)"
-      *ngIf="serverClient.role === EHmsRoles.HOST_VIEWER"
+      *ngIf="serverClient.role === EHmsRoles.HOST"
       nbButton
       size="small"
       status="primary"
