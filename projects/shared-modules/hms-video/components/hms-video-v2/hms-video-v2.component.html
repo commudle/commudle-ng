@@ -27,9 +27,9 @@
       [streamable_id]="streamable_id"
       [streamable_type]="streamable_type"
     ></app-conference-v2>
+    <!-- Left session -->
+    <nb-alert *ngSwitchCase="EHmsStates.LEFT" accent="info">You have left the session!</nb-alert>
     <!-- Session end -->
-    <div *ngSwitchCase="EHmsStates.ENDED" class="session-ended">
-      <nb-alert accent="info">This session has completed!</nb-alert>
-    </div>
+    <nb-alert *ngSwitchCase="EHmsStates.ENDED" accent="info">This session has completed!</nb-alert>
   </div>
 </div>

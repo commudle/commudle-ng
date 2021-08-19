@@ -1,26 +1,35 @@
 <div class="user-video-container">
-  <div *ngIf="!peer.isLocal" class="video-controls d-flex">
+  <div
+    *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER"
+    class="video-controls d-flex"
+  >
     <button
-      (click)="mutePeer()"
+      (click)="mutePeerAudio()"
       [disabled]="!isAudioEnabled"
       ghost
       nbButton
-      nbTooltip="Mute this person"
+      nbTooltip="Mute this person's audio"
       shape="round"
       size="small"
     >
       <nb-icon icon="mic"></nb-icon>
     </button>
     <button
-      (click)="removeFromStage()"
-      *ngIf="peer.roleName === EHmsRoles.HOST"
+      (click)="mutePeerVideo()"
+      [disabled]="!isVideoEnabled"
       ghost
       nbButton
-      nbTooltip="Remove from stage"
+      nbTooltip="Mute this person's video"
       shape="round"
       size="small"
     >
+      <nb-icon icon="video"></nb-icon>
+    </button>
+    <button (click)="changeRole()" ghost nbButton nbTooltip="Remove from stage" shape="round" size="small">
       <nb-icon icon="minus-circle"></nb-icon>
+    </button>
+    <button (click)="removeFromSession()" ghost nbButton nbTooltip="Remove from session" shape="round" size="small">
+      <nb-icon icon="log-out"></nb-icon>
     </button>
   </div>
   <video #videoElement [autoplay]="true" [muted]="peer.isLocal" playsinline></video>

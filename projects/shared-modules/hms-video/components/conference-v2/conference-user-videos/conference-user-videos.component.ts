@@ -14,50 +14,17 @@ export class ConferenceUserVideosComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // All Peers
     hmsStore.subscribe(this.selectPeers, selectPeers);
-    // Screen share peer
     hmsStore.subscribe(this.selectPeerScreenSharing, selectPeerScreenSharing);
   }
 
   selectPeers = (peers: HMSPeer[]) => {
+    // Peers with video
+    // this.peers = peers.filter((peer: HMSPeer) => peer.videoTrack);
     this.peers = peers;
   };
 
   selectPeerScreenSharing = (peer: HMSPeer) => {
     this.peerScreenShare = peer;
   };
-
-  // @Input() tracks: HMSTrack[];
-  // @Input() peers: HMSPeer[];
-  //
-  // @Output() removeFromStage: EventEmitter<HMSPeer> = new EventEmitter<HMSPeer>();
-  //
-  // EHmsRoles = EHmsRoles;
-  //
-  // screenShareTrack: HMSTrack;
-  //
-  // constructor() {}
-  //
-  // ngOnInit(): void {}
-  //
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes.tracks) {
-  //     // Get screen share track
-  //     // TODO: Support multiple screen share tracks
-  //     this.screenShareTrack = this.tracks.find((value: HMSTrack) => {
-  //       return value.type === 'video' && value.source === 'screen';
-  //     });
-  //   }
-  // }
-  //
-  // onAudioMute(peer: HMSPeer): void {
-  //   // Set volume
-  //   peer.audioTrack?.setVolume(0);
-  // }
-  //
-  // onAudioUnmute(peer: HMSPeer): void {
-  //   // Set volume
-  //   peer.audioTrack?.setVolume(100);
-  // }
 }
