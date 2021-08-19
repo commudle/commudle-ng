@@ -1,12 +1,13 @@
 <nb-card *ngIf="serverClient && currentUser" class="local-preview">
   <nb-card-header>Local Preview</nb-card-header>
-  <!--  <nb-card-body *ngIf="devices.audioInput.length == 0 || devices.videoInput.length == 0" [nbSpinner]="isDevicesLoading">-->
-  <!--    <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>-->
-  <!--    <button (click)="getMediaPermission()" fullWidth nbButton size="small" status="info">Get Permission</button>-->
-  <!--  </nb-card-body>-->
-  <nb-card-body>
-    <div #previewDiv class="preview">
-      <div #videoContainer [style.width]="previewDiv.clientWidth" class="video-container"></div>
+   <nb-card-body *ngIf="devices.audioInput.length == 0 || devices.videoInput.length == 0">
+     <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
+   </nb-card-body>
+  <nb-card-body [ngClass]="{'hidden': (devices.audioInput.length == 0 || devices.videoInput.length == 0)}">
+    <div class="preview">
+      <div class="video-container">
+        <video #previewVideo></video>
+      </div>
       <div class="controls">
         <button
           (click)="toggleAudio()"
