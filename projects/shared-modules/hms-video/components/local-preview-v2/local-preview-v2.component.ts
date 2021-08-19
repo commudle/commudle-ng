@@ -1,4 +1,3 @@
-import { HMSLogLevel } from '@100mslive/hms-video';
 import {
   DeviceMap,
   HMSPeer,
@@ -40,7 +39,7 @@ export class LocalPreviewV2Component implements OnInit, OnChanges, OnDestroy, Af
   isAudioEnabled = true;
   isVideoEnabled = true;
 
-  @ViewChild('videoContainer', { static: false }) videoContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef;
 
   constructor(private hmsVideoStateService: HmsVideoStateService) {}
 
@@ -65,16 +64,17 @@ export class LocalPreviewV2Component implements OnInit, OnChanges, OnDestroy, Af
   }
 
   getMediaDevices = (devices: HMSDeviceManager) => {
-    if (devices.audioInput.length > 0 || devices.videoInput.length > 0) {
+    if (devices.audioInput.length > 0 && devices.videoInput.length > 0) {
       this.devices = devices;
+      console.log(this.previewVideo);
     }
   };
 
   renderVideo = (peer: HMSPeer) => {
-    const videoElement: HTMLVideoElement = document.createElement('video');
+    console.log(this.previewVideo)
+    const videoElement = this.previewVideo.nativeElement;
     videoElement.autoplay = true;
     videoElement.muted = true;
-    videoElement.width = this.videoContainer.nativeElement.clientWidth;
 
     hmsActions.attachVideo(peer.videoTrack, videoElement);
 
@@ -83,8 +83,7 @@ export class LocalPreviewV2Component implements OnInit, OnChanges, OnDestroy, Af
 
   renderPeers = (peer: HMSPeer) => {
     if (peer) {
-      this.videoContainer.nativeElement.innerHTML = '';
-      this.videoContainer.nativeElement.appendChild(this.renderVideo(peer));
+      this.renderVideo(peer);
     }
   };
 
