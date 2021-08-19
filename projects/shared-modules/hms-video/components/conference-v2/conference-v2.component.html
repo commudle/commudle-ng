@@ -2,25 +2,52 @@
   <app-conference-user-videos></app-conference-user-videos>
   <div class="d-flex controls">
     <!-- Recording -->
-    <button (click)="toggleRecording()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
+    <button
+      (click)="toggleRecording()"
+      *ngIf="serverClient.role === EHmsRoles.HOST"
+      [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"
+      ghost
+      nbButton
+      shape="round"
+    >
       <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'"></nb-icon>
     </button>
     <!-- Streaming -->
-    <button (click)="toggleStreaming()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
+    <button
+      (click)="toggleStreaming()"
+      *ngIf="serverClient.role === EHmsRoles.HOST"
+      [nbTooltip]="isStreaming ? 'Stop Streaming' : 'Start Streaming'"
+      ghost
+      nbButton
+      shape="round"
+    >
       <nb-icon [status]="isStreaming ? 'success' : ''" icon="radio"></nb-icon>
     </button>
     <!-- Microphone -->
-    <button (click)="toggleAudio()" ghost nbButton shape="round">
+    <button
+      (click)="toggleAudio()"
+      [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+      ghost
+      nbButton
+      shape="round"
+    >
       <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
     </button>
     <!-- Camera -->
-    <button (click)="toggleVideo()" ghost nbButton shape="round">
+    <button
+      (click)="toggleVideo()"
+      [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+      ghost
+      nbButton
+      shape="round"
+    >
       <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
     </button>
     <!-- Screen share -->
     <button
       (click)="toggleScreenShare()"
       [disabled]="isScreenSharing && !isLocalScreenSharing"
+      [nbTooltip]="isLocalScreenSharing ? 'Stop Screen Share' : 'Start Screen Share'"
       ghost
       nbButton
       shape="round"
@@ -28,24 +55,30 @@
       <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="monitor"></nb-icon>
     </button>
     <!-- Settings -->
-    <button (click)="openSettings()" ghost nbButton shape="round">
+    <button (click)="openSettings()" ghost nbButton nbTooltip="Open Settings" shape="round">
       <nb-icon icon="settings"></nb-icon>
     </button>
     <!-- Join/Leave Stage -->
     <!--    <button (click)="toggleStage()" ghost nbButton shape="round">{{isOnStage ? 'Leave stage' : 'Join stage'}}</button>-->
     <!-- Leave session -->
-    <button (click)="leaveSession()" ghost nbButton shape="round">
+    <button (click)="leaveSession()" ghost nbButton nbTooltip="Leave session" shape="round">
       <nb-icon icon="log-out"></nb-icon>
     </button>
     <!-- End session -->
-    <button (click)="endSession()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
+    <button
+      (click)="endSession()"
+      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
       End session
     </button>
   </div>
 </div>
 
 <ng-template #roleChangeRequestDialog let-data let-ref="dialogRef">
-  <nb-card>
+  <nb-card class="role-change-request-dialog">
     <nb-card-header class="d-flex justify-content-space-between align-items-center">
       Invitation to Join Stage
       <button (click)="ref.close(false)" ghost nbButton shape="round" size="small">

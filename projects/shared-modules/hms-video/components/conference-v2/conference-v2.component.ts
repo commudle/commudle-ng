@@ -165,9 +165,16 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   inviteToStage(userId: number): void {
     if (userId) {
       const peers: HMSPeer[] = hmsStore.getState(selectPeers);
-      const peer: HMSPeer = peers.find((value: HMSPeer) => value.customerUserId === String(userId));
+      const peer: HMSPeer = peers.find((value: HMSPeer) => {
+        const metaData = JSON.parse(value.customerDescription);
+        return metaData.id === userId;
+      });
 
-      hmsActions.changeRole(peer?.id, EHmsRoles.GUEST);
+      if (peer) {
+        hmsActions.changeRole(peer.id, EHmsRoles.GUEST);
+      } else {
+        this.toastLogService.warningDialog('Selected peer is not in the session');
+      }
     }
   }
 
@@ -262,7 +269,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   leaveSession(): void {
-    hmsActions.leave();
+    hmsActions.leave().then(() => this.hmsVideoStateService.setState(EHmsStates.LEFT));
   }
 
   endSession(): void {
