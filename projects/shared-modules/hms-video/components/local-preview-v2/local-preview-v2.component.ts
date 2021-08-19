@@ -1,9 +1,11 @@
+import { getLocalStream } from '@100mslive/hms-video';
 import {
   DeviceMap,
   HMSPeer,
   selectDevices,
   selectIsLocalAudioEnabled,
   selectIsLocalVideoEnabled,
+  selectLocalMediaSettings,
   selectLocalPeer,
 } from '@100mslive/hms-video-store';
 import { HMSDeviceManager } from '@100mslive/hms-video/dist/interfaces/HMSDeviceManager';
@@ -13,7 +15,6 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   SimpleChanges,
   ViewChild,
@@ -28,7 +29,7 @@ import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/h
   templateUrl: './local-preview-v2.component.html',
   styleUrls: ['./local-preview-v2.component.scss'],
 })
-export class LocalPreviewV2Component implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+export class LocalPreviewV2Component implements OnInit, OnChanges, AfterViewInit {
   @Input() serverClient: IHmsClient;
   @Input() currentUser: ICurrentUser;
 
@@ -39,51 +40,45 @@ export class LocalPreviewV2Component implements OnInit, OnChanges, OnDestroy, Af
   isAudioEnabled = true;
   isVideoEnabled = true;
 
-  @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef;
+  @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef<HTMLVideoElement>;
 
   constructor(private hmsVideoStateService: HmsVideoStateService) {}
 
   ngOnInit(): void {
     hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
     hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+
+    hmsStore.subscribe(this.getMediaDevices, selectDevices);
   }
 
   ngAfterViewInit(): void {
-    hmsStore.subscribe(this.getMediaDevices, selectDevices);
-    hmsStore.subscribe(this.renderPeers, selectLocalPeer);
+    hmsStore.subscribe(this.renderPeer, selectLocalPeer);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.serverClient && this.serverClient && this.currentUser) {
+    if (this.serverClient && this.currentUser) {
       this.startPreview();
     }
-  }
-
-  ngOnDestroy(): void {
-    // hmsActions.leave();
   }
 
   getMediaDevices = (devices: HMSDeviceManager) => {
     if (devices.audioInput.length > 0 && devices.videoInput.length > 0) {
       this.devices = devices;
-      console.log(this.previewVideo);
     }
   };
 
-  renderVideo = (peer: HMSPeer) => {
-    console.log(this.previewVideo)
-    const videoElement = this.previewVideo.nativeElement;
-    videoElement.autoplay = true;
-    videoElement.muted = true;
-
-    hmsActions.attachVideo(peer.videoTrack, videoElement);
-
-    return videoElement;
-  };
-
-  renderPeers = (peer: HMSPeer) => {
+  renderPeer = (peer: HMSPeer) => {
     if (peer) {
-      this.renderVideo(peer);
+      getLocalStream({
+        audio: {
+          deviceId: hmsStore.getState(selectLocalMediaSettings).audioInputDeviceId,
+        },
+        video: {
+          deviceId: hmsStore.getState(selectLocalMediaSettings).videoInputDeviceId,
+        },
+      }).then((value: MediaStream) => {
+        this.previewVideo.nativeElement.srcObject = value;
+      });
     }
   };
 
