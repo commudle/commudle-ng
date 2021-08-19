@@ -10,7 +10,7 @@ This is a community management platform for Tech Communities across the world. T
 - Install Node.js and npm (at least version 13 of Node.js and at least version 6 of npm)
 - Install [@angular/cli](https://cli.angular.io/)
 - Clone the project.
-- Run `npm install`.
+- Run `npm ci`.
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 - The development server directly interacts with the production APIs.
 

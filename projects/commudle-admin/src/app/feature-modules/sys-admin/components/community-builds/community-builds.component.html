@@ -7,25 +7,27 @@
         <div *ngFor="let cb of cBuilds" class="community-build">
           <div class="content">
             <p>
-              <small>{{ moment(cb.created_at).fromNow() }</small>
+              <small>Created: {{ moment(cb.created_at).fromNow() }}</small>
             </p>
-            <p>({{ cb.build_type | titlecase }})</p>
-            <h5>{{ cb.name }}</h5>
-            <p *ngIf="cb.link">
-              <a href="{{ cb.link }}" target="_blank">
-                {{ cb.link }}
-                <nb-icon icon="external-link"></nb-icon>
+            <p>
+              <small>Updated: {{ moment(cb.updated_at).fromNow() }}</small>
+            </p>
+            <p *ngIf="cb.published_at">
+              <small>Published: {{ moment(cb.published_at).fromNow() }}</small>
+            </p>
+            <h5>
+              {{ cb.name }}
+              <a target="_blank" [routerLink]="['/builds', cb.slug]">
+              <nb-icon icon="external-link"></nb-icon>
               </a>
-            </p>
-            <div [innerHTML]="cb.description" class="description"></div>
-            <div class="images">
-              <div (click)="openImage(cb.name, image.url)" *ngFor="let image of cb.images" class="image clickable">
-                <img alt="{{cb.name}}" src="{{image.url}}" title="{{cb.name}}">
-              </div>
-            </div>
+            </h5>
+
           </div>
           <div class="creator">
             <app-user-profile-horizontal [socialMediaLinks]="true" [user]="cb.user"></app-user-profile-horizontal>
+            <p>
+              {{cb.user.email}}
+            </p>
           </div>
           <div class="stats">
             <div>
@@ -54,6 +56,9 @@
         </div>
       </nb-card-body>
     </nb-card>
+    <button [disabled]="isLoading" *ngIf="cBuilds.length < total && cBuilds.length > 0" nbButton fullWidth status="primary" size="small" (click)="getAllBuilds()">
+      Load More
+    </button>
   </div>
 
   <ng-template #imageTemplate let-data>
