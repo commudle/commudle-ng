@@ -1,31 +1,31 @@
-<nb-card *ngIf="serverClient && currentUser" class="local-preview">
+<nb-card class="local-preview">
   <nb-card-header>Local Preview</nb-card-header>
-   <nb-card-body *ngIf="devices.audioInput.length == 0 || devices.videoInput.length == 0">
-     <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
-   </nb-card-body>
-  <nb-card-body [ngClass]="{'hidden': (devices.audioInput.length == 0 || devices.videoInput.length == 0)}">
+  <nb-card-body *ngIf="devices.audioInput.length == 0 || devices.videoInput.length == 0">
+    <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
+  </nb-card-body>
+  <nb-card-body [ngClass]="{'hidden': devices.audioInput.length == 0 || devices.videoInput.length == 0}">
     <div class="preview">
       <div class="video-container">
-        <video #previewVideo></video>
+        <video #previewVideo autoplay muted playsinline></video>
       </div>
       <div class="controls">
         <button
           (click)="toggleAudio()"
-          [appearance]="isAudioEnabled ? 'ghost' : 'filled'"
+          [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+          ghost
           nbButton
           shape="round"
-          size="small"
         >
-          <nb-icon icon="mic"></nb-icon>
+          <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
         </button>
         <button
           (click)="toggleVideo()"
-          [appearance]="isVideoEnabled ? 'ghost' : 'filled'"
+          [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+          ghost
           nbButton
           shape="round"
-          size="small"
         >
-          <nb-icon icon="video"></nb-icon>
+          <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
         </button>
       </div>
     </div>
