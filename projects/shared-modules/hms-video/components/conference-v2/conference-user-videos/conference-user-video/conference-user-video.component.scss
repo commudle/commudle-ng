@@ -33,8 +33,16 @@
   }
 
   .user-name {
-    bottom: $space-4;
-    left: $space-4;
+    background-color: rgba($black, 0.3);
+    bottom: 0;
+    color: $white;
+    font-size: $fs-h5;
+    left: 0;
+    padding: $space-4;
     position: absolute;
+
+    nb-icon {
+      font-size: $fs-h5;
+    }
   }
 }
