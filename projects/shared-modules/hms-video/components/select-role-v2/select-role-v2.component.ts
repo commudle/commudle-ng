@@ -22,7 +22,6 @@ export class SelectRoleV2Component implements OnInit {
   selectRole(role: EHmsRoles): void {
     // Send the role to the parent component
     this.selectedRole.emit(role);
-
     // Update the state of hms video
     switch (role) {
       case EHmsRoles.VIEWER:
