@@ -164,16 +164,23 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   inviteToStage(userId: number): void {
     if (userId) {
-      const peers: HMSPeer[] = hmsStore.getState(selectPeers);
-      const peer: HMSPeer = peers.find((value: HMSPeer) => {
+      let name = '';
+      const peers: HMSPeer[] = hmsStore.getState(selectPeers).filter((value: HMSPeer) => {
         const metaData = JSON.parse(value.customerDescription);
+        name = metaData.name;
         return metaData.id === userId;
       });
 
-      if (peer) {
-        hmsActions.changeRole(peer.id, EHmsRoles.GUEST);
+      if (peers.length > 0) {
+        if (peers[0].roleName === EHmsRoles.HOST || peers[0].roleName === EHmsRoles.GUEST) {
+          this.toastLogService.warningDialog(`${name} is already in the session`)
+        } else {
+          peers.forEach((peer: HMSPeer) => {
+            hmsActions.changeRole(peer.id, EHmsRoles.GUEST);
+          });
+        }
       } else {
-        this.toastLogService.warningDialog('Selected peer is not in the session');
+        this.toastLogService.warningDialog(`${name} is not in the session`);
       }
     }
   }

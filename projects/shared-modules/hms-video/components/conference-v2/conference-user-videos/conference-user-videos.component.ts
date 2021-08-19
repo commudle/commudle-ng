@@ -20,7 +20,8 @@ export class ConferenceUserVideosComponent implements OnInit {
 
   selectPeers = (peers: HMSPeer[]) => {
     // Peers with video
-    this.peers = peers.filter((peer: HMSPeer) => peer.videoTrack);
+    // this.peers = peers.filter((peer: HMSPeer) => peer.videoTrack);
+    this.peers = peers;
   };
 
   selectPeerScreenSharing = (peer: HMSPeer) => {

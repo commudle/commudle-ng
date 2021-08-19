@@ -26,6 +26,7 @@
     <!-- Microphone -->
     <button
       (click)="toggleAudio()"
+      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
       [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
       ghost
       nbButton
@@ -36,6 +37,7 @@
     <!-- Camera -->
     <button
       (click)="toggleVideo()"
+      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
       [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
       ghost
       nbButton
@@ -46,6 +48,7 @@
     <!-- Screen share -->
     <button
       (click)="toggleScreenShare()"
+      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
       [disabled]="isScreenSharing && !isLocalScreenSharing"
       [nbTooltip]="isLocalScreenSharing ? 'Stop Screen Share' : 'Start Screen Share'"
       ghost
@@ -55,7 +58,14 @@
       <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="monitor"></nb-icon>
     </button>
     <!-- Settings -->
-    <button (click)="openSettings()" ghost nbButton nbTooltip="Open Settings" shape="round">
+    <button
+      (click)="openSettings()"
+      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
+      ghost
+      nbButton
+      nbTooltip="Open Settings"
+      shape="round"
+    >
       <nb-icon icon="settings"></nb-icon>
     </button>
     <!-- Join/Leave Stage -->
@@ -65,13 +75,7 @@
       <nb-icon icon="log-out"></nb-icon>
     </button>
     <!-- End session -->
-    <button
-      (click)="endSession()"
-      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.HOST_VIEWER"
-      ghost
-      nbButton
-      shape="round"
-    >
+    <button (click)="endSession()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
       End session
     </button>
   </div>
