@@ -1,49 +1,49 @@
 <nb-card class="local-preview">
   <nb-card-header>Local Preview</nb-card-header>
-  <nb-card-body *ngIf="devices.audioInput.length == 0 || devices.videoInput.length == 0">
+  <nb-card-body *ngIf="audioDevices.length == 0 || videoDevices.length == 0">
     <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
   </nb-card-body>
-  <nb-card-body [ngClass]="{'hidden': devices.audioInput.length == 0 || devices.videoInput.length == 0}">
+  <nb-card-body [ngClass]="{'hidden': audioDevices.length == 0 || videoDevices.length == 0}">
     <div class="preview">
       <div class="video-container">
-        <video #previewVideo autoplay muted playsinline></video>
+        <video #previewVideo autoplay [muted]="true" playsinline></video>
       </div>
       <div class="controls">
         <button
           (click)="toggleAudio()"
-          [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+          [nbTooltip]="mic ? 'Mute Audio' : 'Unmute Audio'"
           ghost
           nbButton
           shape="round"
         >
-          <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+          <nb-icon [icon]="mic ? 'mic' : 'mic-off'"></nb-icon>
         </button>
         <button
           (click)="toggleVideo()"
-          [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+          [nbTooltip]="camera ? 'Mute Video' : 'Unmute Video'"
           ghost
           nbButton
           shape="round"
         >
-          <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+          <nb-icon [icon]="camera ? 'video' : 'video-off'"></nb-icon>
         </button>
       </div>
     </div>
     <nb-select
       (selectedChange)="setAudioDevice($event)"
-      [selected]="devices.audioInput[0]?.deviceId"
+      [selected]="selectedAudioDeviceId"
       fullWidth
       size="small"
     >
-      <nb-option *ngFor="let device of devices.audioInput" [value]="device.deviceId"> {{device.label}} </nb-option>
+      <nb-option *ngFor="let device of audioDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
     </nb-select>
     <nb-select
       (selectedChange)="setVideoDevice($event)"
-      [selected]="devices.videoInput[0]?.deviceId"
+      [selected]="selectedVideoDeviceId"
       fullWidth
       size="small"
     >
-      <nb-option *ngFor="let device of devices.videoInput" [value]="device.deviceId"> {{device.label}} </nb-option>
+      <nb-option *ngFor="let device of videoDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
     </nb-select>
     <button (click)="joinRoom()" fullWidth nbButton size="small" status="primary">Join Room</button>
   </nb-card-body>
