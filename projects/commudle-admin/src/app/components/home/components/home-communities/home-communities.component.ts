@@ -17,7 +17,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class HomeCommunitiesComponent implements OnInit, OnDestroy {
 
   communities: ICommunity[] = [];
-  communityStatus: boolean[] = [];
+  communityStatus: Map<Number,boolean>;
 
   subscriptions = [];
   currentUser: ICurrentUser;
@@ -39,6 +39,7 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     if (this.isBrowser) {
       this.getCommunities();
 
@@ -52,25 +53,28 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
 
   getCommunities(): void {
     this.homeService.communities().subscribe(value => {
+      console.log(value)
       this.communities = value.communities;
-
       this.getCommunityUserStatus();
     });
+    
   }
 
   getCommunityUserStatus(): void {
     if (this.currentUser) {
-      this.communityStatus = [];
+      this.communityStatus = new Map<Number,boolean>();
       this.communities.forEach(community => {
         this.appUsersService.getMyRoles('Kommunity', community.id).subscribe(value => {
           // Checking whether the current user has any role in the community
-          this.communityStatus.push(value.length !== 0);
+          this.communityStatus.set( community.id ,value.length !== 0);
         });
       });
+      console.log(this.communityStatus)
     }
   }
 
   openDialog(community: ICommunity, status: boolean) {
+    
     this.nbDialogService.open(status ? this.leaveCommunityDialog : this.joinCommunityDialog, {
       context: {
         community
@@ -79,13 +83,16 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   }
 
   toggleCommunityStatus(community: ICommunity, ref: NbDialogRef<any>) {
+    console.log(community)
     this.userRolesUsersService.pToggleMembership(community.slug).subscribe(data => {
+      console.log(data)
       if (data) {
         this.toastLogService.successDialog(`You are now a member of ${community.name}!`, 2000);
       }
       // Change community status
-      const idx = this.communities.findIndex(value => community.id === value.id);
-      this.communityStatus[idx] = data;
+      this.communityStatus.set(community.id, data);
+      // const idx = this.communities.findIndex(value => community.id === value.id);
+      // this.communityStatus[idx] = data;
       // Close dialog
       ref.close();
     });
