@@ -53,11 +53,9 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
 
   getCommunities(): void {
     this.homeService.communities().subscribe(value => {
-      console.log(value)
       this.communities = value.communities;
       this.getCommunityUserStatus();
-    });
-    
+    });  
   }
 
   getCommunityUserStatus(): void {
@@ -69,7 +67,6 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
           this.communityStatus.set( community.id ,value.length !== 0);
         });
       });
-      console.log(this.communityStatus)
     }
   }
 
@@ -83,16 +80,12 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   }
 
   toggleCommunityStatus(community: ICommunity, ref: NbDialogRef<any>) {
-    console.log(community)
     this.userRolesUsersService.pToggleMembership(community.slug).subscribe(data => {
-      console.log(data)
       if (data) {
         this.toastLogService.successDialog(`You are now a member of ${community.name}!`, 2000);
       }
       // Change community status
       this.communityStatus.set(community.id, data);
-      // const idx = this.communities.findIndex(value => community.id === value.id);
-      // this.communityStatus[idx] = data;
       // Close dialog
       ref.close();
     });
