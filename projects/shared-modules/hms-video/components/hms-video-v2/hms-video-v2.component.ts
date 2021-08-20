@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsApiService } from 'projects/shared-modules/hms-video/services/hms-api.service';
@@ -14,9 +15,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./hms-video-v2.component.scss'],
 })
 export class HmsVideoV2Component implements OnInit, OnDestroy, OnChanges {
-  @Input() roomId: string;
-  @Input() streamable_id: number;
-  @Input() streamable_type: string;
+  @Input() embeddedVideoStream: IEmbeddedVideoStream;
 
   currentUser: ICurrentUser;
 
@@ -50,7 +49,7 @@ export class HmsVideoV2Component implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.roomId) {
+    if (this.embeddedVideoStream.hms_room_id) {
       // Get current user
       this.subscriptions.push(
         this.authWatchService.currentUser$.subscribe((value: ICurrentUser) => {
@@ -70,7 +69,7 @@ export class HmsVideoV2Component implements OnInit, OnDestroy, OnChanges {
 
   getClient(): void {
     this.subscriptions.push(
-      this.hmsApiService.getClientTokenV2(this.roomId).subscribe((value: IHmsClient) => {
+      this.hmsApiService.getClientTokenV2(this.embeddedVideoStream.hms_room_id).subscribe((value: IHmsClient) => {
         this.serverClient = value;
         this.connectToChannel();
       }),
@@ -80,7 +79,7 @@ export class HmsVideoV2Component implements OnInit, OnDestroy, OnChanges {
   connectToChannel(): void {
     // Subscribe to channel
     this.channelSubscription = this.hmsLiveV2Channel.subscribe(
-      this.roomId,
+      this.embeddedVideoStream.hms_room_id,
       this.currentUser.id,
       this.serverClient.token,
       this.currentUser.name,

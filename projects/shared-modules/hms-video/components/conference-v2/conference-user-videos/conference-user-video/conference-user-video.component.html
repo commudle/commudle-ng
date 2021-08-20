@@ -1,6 +1,6 @@
 <div class="user-video-container">
   <div
-    *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER"
+    *ngIf="!peer.isLocal && localPeer?.roleName === EHmsRoles.HOST"
     class="video-controls d-flex"
   >
     <button

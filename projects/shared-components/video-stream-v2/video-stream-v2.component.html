@@ -8,9 +8,7 @@
   <div *ngIf="currentUser && started" [ngSwitch]="videoSource" class="video-player">
     <app-hms-video-v2
       *ngSwitchCase="EEmbeddedVideoStreamSources.COMMUDLE"
-      [roomId]="embeddedVideoStream.hms_room_id"
-      [streamable_id]="embeddedVideoStream.streamable_id"
-      [streamable_type]="embeddedVideoStream.streamable_type"
+      [embeddedVideoStream]="embeddedVideoStream"
     ></app-hms-video-v2>
 
     <youtube-player

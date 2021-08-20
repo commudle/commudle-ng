@@ -85,8 +85,14 @@
       </div>
       <div *ngIf="embeddedVideoStreamForm.get('source').value === EEmbeddedVideoStreamSources.COMMUDLE">
         <label>
-          Enter the streaming url
-          <input formControlName="rtmp_url" fullWidth nbInput placeholder="Enter the streaming link" type="url" />
+          Enter the streaming url (rtmp://a.rtmp.youtube.com/live2/&lt;stream_key&gt;)
+          <input
+            formControlName="rtmp_url"
+            fullWidth
+            nbInput
+            placeholder="rtmp://a.rtmp.youtube.com/live2/<stream_key>"
+            type="url"
+          />
         </label>
       </div>
       <div class="save-button-bottom">
