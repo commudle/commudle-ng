@@ -116,7 +116,12 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   removeFromSession(): void {
-    hmsActions.removePeer(this.peer.id, 'Good bye');
+    if (this.peer.roleName === EHmsRoles.HOST) {
+      const metaData = JSON.parse(this.peer.customerDescription);
+      this.toastLogService.warningDialog(`Cannot remove ${metaData.name} from session`);
+    } else {
+      hmsActions.removePeer(this.peer.id, 'Good bye');
+    }
   }
 
   @HostListener('window:beforeunload', ['$event'])
