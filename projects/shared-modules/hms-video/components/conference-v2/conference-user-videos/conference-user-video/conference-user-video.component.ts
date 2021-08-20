@@ -22,6 +22,7 @@ import {
 } from '@angular/core';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-conference-user-video',
@@ -47,7 +48,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
 
   @ViewChild('videoElement') videoElement: ElementRef<HTMLVideoElement>;
 
-  constructor() {}
+  constructor(private toastLogService: LibToastLogService) {}
 
   ngOnInit(): void {
     hmsStore.subscribe((peer: HMSPeer) => (this.localPeer = peer), selectLocalPeer);
@@ -58,7 +59,6 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('PEER', this.peer);
     if (this.peer?.customerDescription) {
       this.metaData = JSON.parse(this.peer.customerDescription);
     }
@@ -69,21 +69,20 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
     // if (!(this.screenShare && track.source === 'screen')) {
     //   track = hmsStore.getState(selectCameraStreamByPeerID(this.peer.id));
     // }
-    console.log('local track', track);
-    this.renderPeer(track);
+    // this.renderPeer(track);
+    this.attachVideo();
 
     hmsStore.subscribe((value: boolean) => (this.isAudioEnabled = value), selectIsPeerAudioEnabled(this.peer.id));
     hmsStore.subscribe((value: boolean) => (this.isVideoEnabled = value), selectIsPeerVideoEnabled(this.peer.id));
   }
 
-  renderPeer(track: HMSTrack): void {
-    console.log(track.enabled)
-    if (track.enabled) {
-      this.attachVideo();
-    } else {
-      this.detachVideo();
-    }
-  }
+  // renderPeer(track: HMSTrack): void {
+  //   if (track.enabled) {
+  //     this.attachVideo();
+  //   } else {
+  //     this.detachVideo();
+  //   }
+  // }
 
   attachVideo(): void {
     hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
@@ -108,7 +107,8 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   changeRole(): void {
     switch (this.peer.roleName) {
       case EHmsRoles.HOST:
-        hmsActions.changeRole(this.peer.id, EHmsRoles.HOST_VIEWER, true);
+        const metaData = JSON.parse(this.peer.customerDescription);
+        this.toastLogService.warningDialog(`Cannot remove ${metaData.name} from stage`);
         break;
       case EHmsRoles.GUEST:
         hmsActions.changeRole(this.peer.id, EHmsRoles.VIEWER, true);
@@ -116,7 +116,12 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   removeFromSession(): void {
-    hmsActions.removePeer(this.peer.id, '');
+    if (this.peer.roleName === EHmsRoles.HOST) {
+      const metaData = JSON.parse(this.peer.customerDescription);
+      this.toastLogService.warningDialog(`Cannot remove ${metaData.name} from session`);
+    } else {
+      hmsActions.removePeer(this.peer.id, 'Good bye');
+    }
   }
 
   @HostListener('window:beforeunload', ['$event'])

@@ -10,9 +10,9 @@
     }"
   class="user-streams"
 >
-<!--  <div class="user-screen-share d-flex justify-content-center">-->
-<!--    <app-conference-user-video [peer]="peerScreenShare" [screenShare]="true"></app-conference-user-video>-->
-<!--  </div>-->
+  <div *ngIf="peerScreenShare" class="user-screen-share d-flex justify-content-center">
+    <app-conference-user-video [peer]="peerScreenShare" [screenShare]="true"></app-conference-user-video>
+  </div>
   <div class="user-videos d-flex justify-content-center flex-wrap">
     <ng-container *ngFor="let peer of peers">
       <div class="user-video">
