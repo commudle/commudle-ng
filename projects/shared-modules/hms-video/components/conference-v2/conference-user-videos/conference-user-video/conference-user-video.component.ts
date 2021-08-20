@@ -84,51 +84,37 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   attachVideo(): void {
-    hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement).then(() => {
-      console.info(`[HMS] Attached video for ${this.peer.name}`);
-    });
+    hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
   }
 
   detachVideo(): void {
-    hmsActions.detachVideo(this.peer.videoTrack, this.videoElement.nativeElement).then(() => {
-      console.info(`[HMS] Detached video for ${this.peer.name}`);
-    });
+    hmsActions.detachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
   }
 
   mutePeerAudio(): void {
     const audioTrack: HMSTrack = hmsStore.getState(selectAudioTrackByPeerID(this.peer.id));
 
-    hmsActions.setRemoteTrackEnabled(audioTrack.id, false).then(() => {
-      console.info(`[HMS] Muted audio for ${this.peer.name}`);
-    });
+    hmsActions.setRemoteTrackEnabled(audioTrack.id, false);
   }
 
   mutePeerVideo(): void {
     const videoTrack: HMSTrack = hmsStore.getState(selectCameraStreamByPeerID(this.peer.id));
 
-    hmsActions.setRemoteTrackEnabled(videoTrack.id, false).then(() => {
-      console.info(`[HMS] Muted video for ${this.peer.name}`);
-    });
+    hmsActions.setRemoteTrackEnabled(videoTrack.id, false);
   }
 
   changeRole(): void {
     switch (this.peer.roleName) {
       case EHmsRoles.HOST:
-        hmsActions.changeRole(this.peer.id, EHmsRoles.HOST_VIEWER, true).then(() => {
-          console.info(`[HMS] Role changed to host viewer for ${this.peer.name}`);
-        });
+        hmsActions.changeRole(this.peer.id, EHmsRoles.HOST_VIEWER, true);
         break;
       case EHmsRoles.GUEST:
-        hmsActions.changeRole(this.peer.id, EHmsRoles.VIEWER, true).then(() => {
-          console.info(`[HMS] Role changed to viewer for ${this.peer.name}`);
-        });
+        hmsActions.changeRole(this.peer.id, EHmsRoles.VIEWER, true);
     }
   }
 
   removeFromSession(): void {
-    hmsActions.removePeer(this.peer.id, '').then(() => {
-      console.info(`[HMS] Removed ${this.peer.name} from session`);
-    });
+    hmsActions.removePeer(this.peer.id, '');
   }
 
   @HostListener('window:beforeunload', ['$event'])
