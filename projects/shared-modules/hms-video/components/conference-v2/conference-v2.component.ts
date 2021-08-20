@@ -102,8 +102,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       })
     );
 
-    // Subscribe to join room
-    hmsStore.subscribe(this.joinRoom, selectIsConnectedToRoom);
+    // Subscribe to join room listeners
+    hmsStore.subscribe(this.subscribeToListeners, selectIsConnectedToRoom);
     // Subscribe to invite to stage
     this.hmsStageService.stageStatus$.subscribe((userId: number) => this.inviteToStage(userId));
   }
@@ -146,7 +146,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  joinRoom = (status: boolean) => {
+  subscribeToListeners = (status: boolean) => {
     if (status) {
       // Subscribe to remote screen share
       hmsStore.subscribe((value: boolean) => (this.isScreenSharing = value), selectIsSomeoneScreenSharing);
