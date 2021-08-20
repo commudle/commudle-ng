@@ -17,6 +17,21 @@
 
       .right-column {
         width: 280px;
+
+        .wrapper {
+          position: relative;
+          height: 0;
+          padding-top: calc(264 / 264 * 100%);
+        }
+        
+        .wrapper__img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          max-width: 100%;
+          height: auto; 
+        }
+
       }
     }
   }
