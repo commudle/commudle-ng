@@ -35,7 +35,9 @@ import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-vi
 import { HmsLiveV2Channel } from 'projects/shared-modules/hms-video/services/websockets/hms-live-v2.channel';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { combineLatest } from 'rxjs';
 import { Subscription } from 'rxjs';
+import { LocalMediaV2Service } from '../../services/localmedia-v2.service';
 
 @Component({
   selector: 'app-conference-v2',
@@ -54,14 +56,17 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   peers: HMSPeer[] = [];
   screenSharePeer: HMSPeer;
 
-  // HMS status variables
-  isAudioEnabled: boolean = hmsStore.getState(selectIsLocalAudioEnabled);
-  isVideoEnabled: boolean = hmsStore.getState(selectIsLocalVideoEnabled);
+
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
 
   isRecording: boolean;
   isStreaming: boolean;
+
+  selectedAudioDeviceId;
+  selectedVideoDeviceId;
+  camera;
+  mic;
 
   @ViewChild('screenShareContainer', { static: false }) screenShareContainer: ElementRef<HTMLDivElement>;
   @ViewChild('roleChangeRequestDialog') roleChangeRequestDialog: TemplateRef<any>;
@@ -75,9 +80,28 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     private nbDialogService: NbDialogService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private hmsLiveV2Channel: HmsLiveV2Channel,
+    private localMediaService: LocalMediaV2Service
   ) {}
 
   ngOnInit(): void {
+
+    this.subscriptions.push(
+      this.localMediaService.selectedAudioDevice$.subscribe((value: string) => {
+        this.selectedAudioDeviceId = value;
+        hmsActions.setAudioSettings({deviceId: this.selectedAudioDeviceId});
+      }),
+      this.localMediaService.selectedVideoDevice$.subscribe((value: string) => {
+        this.selectedVideoDeviceId = value;
+        hmsActions.setVideoSettings({deviceId: this.selectedVideoDeviceId});
+      }),
+      this.localMediaService.mic$.subscribe((value: boolean) => {
+        hmsActions.setLocalAudioEnabled(value);
+      }),
+      this.localMediaService.camera$.subscribe((value: boolean) => {
+        hmsActions.setLocalVideoEnabled(value);
+      })
+    );
+
     // Subscribe to join room
     hmsStore.subscribe(this.joinRoom, selectIsConnectedToRoom);
     // Subscribe to invite to stage
@@ -102,6 +126,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   joinSession(): void {
+    console.log(this.selectedAudioDeviceId, this.selectedVideoDeviceId, this.mic, this.camera)
     hmsActions.join({
       authToken: this.serverClient.token,
       userName: this.currentUser.username,
@@ -113,10 +138,10 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       }),
       // @ts-ignore
       settings: {
-        audioInputDeviceId: hmsStore.getState(selectLocalMediaSettings).audioInputDeviceId,
-        videoDeviceId: hmsStore.getState(selectLocalMediaSettings).videoInputDeviceId,
-        isAudioMuted: !this.isAudioEnabled,
-        isVideoMuted: !this.isVideoEnabled,
+        audioInputDeviceId: this.selectedAudioDeviceId,
+        videoDeviceId: this.selectedVideoDeviceId,
+        isAudioMuted: !this.mic,
+        isVideoMuted: !this.camera,
       },
     });
   }
@@ -139,13 +164,12 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   };
 
   toggleAudio(): void {
-    const enabled: boolean = hmsStore.getState(selectIsLocalAudioEnabled);
-    hmsActions.setLocalAudioEnabled(!enabled).then(() => (this.isAudioEnabled = !enabled));
+    this.localMediaService.updateMic(!this.mic);
+
   }
 
   toggleVideo(): void {
-    const enabled: boolean = hmsStore.getState(selectIsLocalVideoEnabled);
-    hmsActions.setLocalVideoEnabled(!enabled).then(() => (this.isVideoEnabled = !enabled));
+    this.localMediaService.updateCamera(!this.camera);
   }
 
   toggleScreenShare(): void {
