@@ -1,14 +1,10 @@
 import {
   HMSPeer,
   selectIsConnectedToRoom,
-  selectIsLocalAudioEnabled,
   selectIsLocalScreenShared,
-  selectIsLocalVideoEnabled,
   selectIsSomeoneScreenSharing,
-  selectLocalMediaSettings,
   selectLocalPeer,
   selectPeers,
-  selectPeerScreenSharing,
   selectRoleChangeRequest,
 } from '@100mslive/hms-video-store';
 import { HMSRoleChangeRequest } from '@100mslive/hms-video-store/src/core/selectors/derivedSelectors';
@@ -35,7 +31,6 @@ import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-vi
 import { HmsLiveV2Channel } from 'projects/shared-modules/hms-video/services/websockets/hms-live-v2.channel';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { combineLatest } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { LocalMediaV2Service } from '../../services/localmedia-v2.service';
 
@@ -54,8 +49,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   // All peers and tracks
   peers: HMSPeer[] = [];
-  screenSharePeer: HMSPeer;
-
+  localPeer: HMSPeer;
 
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
@@ -80,11 +74,10 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     private nbDialogService: NbDialogService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
     private hmsLiveV2Channel: HmsLiveV2Channel,
-    private localMediaService: LocalMediaV2Service
+    private localMediaService: LocalMediaV2Service,
   ) {}
 
   ngOnInit(): void {
-
     // Subscribe to join room
     hmsStore.subscribe(this.subscribeToListeners, selectIsConnectedToRoom);
     // Subscribe to invite to stage
@@ -112,11 +105,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.localMediaService.selectedAudioDevice$.subscribe((value: string) => {
         this.selectedAudioDeviceId = value;
-        hmsActions.setAudioSettings({deviceId: this.selectedAudioDeviceId});
+        hmsActions.setAudioSettings({ deviceId: this.selectedAudioDeviceId });
       }),
       this.localMediaService.selectedVideoDevice$.subscribe((value: string) => {
         this.selectedVideoDeviceId = value;
-        hmsActions.setVideoSettings({deviceId: this.selectedVideoDeviceId});
+        hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
       }),
       this.localMediaService.mic$.subscribe((value: boolean) => {
         this.mic = value;
@@ -125,12 +118,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       this.localMediaService.camera$.subscribe((value: boolean) => {
         this.camera = value;
         hmsActions.setLocalVideoEnabled(value);
-      })
+      }),
     );
   }
 
   joinSession(): void {
-    console.log(this.selectedAudioDeviceId, this.selectedVideoDeviceId, this.mic, this.camera)
     hmsActions.join({
       authToken: this.serverClient.token,
       userName: this.currentUser.username,
@@ -160,8 +152,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
       // Subscribe to list of peers
       hmsStore.subscribe((peers: HMSPeer[]) => (this.peers = peers), selectPeers);
-      // Subscribe to screen share peer
-      hmsStore.subscribe((peer: HMSPeer) => (this.screenSharePeer = peer), selectPeerScreenSharing);
+      // Subscribe to local peer
+      hmsStore.subscribe((peer: HMSPeer) => (this.localPeer = peer), selectLocalPeer);
       // Subscribe to own channel
       this.receiveChannelData();
 
@@ -171,7 +163,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   toggleAudio(): void {
     this.localMediaService.updateMic(!this.mic);
-
   }
 
   toggleVideo(): void {
@@ -219,9 +210,10 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
+    const requestedByPeer: HMSPeer = request.requestedBy;
     const roleChangeRequestDialog: NbDialogRef<any> = this.nbDialogService.open(this.roleChangeRequestDialog, {
       context: {
-        name: request.requestedBy.name,
+        name: JSON.parse(requestedByPeer.customerDescription).name,
       },
       closeOnBackdropClick: false,
       closeOnEsc: false,

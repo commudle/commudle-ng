@@ -4,7 +4,7 @@
     <!-- Recording -->
     <button
       (click)="toggleRecording()"
-      *ngIf="serverClient.role === EHmsRoles.HOST"
+      *ngIf="localPeer?.roleName === EHmsRoles.HOST"
       [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"
       ghost
       nbButton
@@ -15,7 +15,7 @@
     <!-- Streaming -->
     <button
       (click)="toggleStreaming()"
-      *ngIf="serverClient.role === EHmsRoles.HOST"
+      *ngIf="localPeer?.roleName === EHmsRoles.HOST"
       [nbTooltip]="isStreaming ? 'Stop Streaming' : 'Start Streaming'"
       ghost
       nbButton
@@ -26,7 +26,7 @@
     <!-- Microphone -->
     <button
       (click)="toggleAudio()"
-      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
+      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
       [nbTooltip]="mic ? 'Mute Audio' : 'Unmute Audio'"
       ghost
       nbButton
@@ -37,7 +37,7 @@
     <!-- Camera -->
     <button
       (click)="toggleVideo()"
-      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
+      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
       [nbTooltip]="camera ? 'Mute Video' : 'Unmute Video'"
       ghost
       nbButton
@@ -48,7 +48,7 @@
     <!-- Screen share -->
     <button
       (click)="toggleScreenShare()"
-      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
+      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
       [disabled]="isScreenSharing && !isLocalScreenSharing"
       [nbTooltip]="isLocalScreenSharing ? 'Stop Screen Share' : 'Start Screen Share'"
       ghost
@@ -60,7 +60,7 @@
     <!-- Settings -->
     <button
       (click)="openSettings()"
-      *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
+      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
       ghost
       nbButton
       nbTooltip="Open Settings"
@@ -75,7 +75,7 @@
       <nb-icon icon="log-out"></nb-icon>
     </button>
     <!-- End session -->
-    <button (click)="endSession()" *ngIf="serverClient.role === EHmsRoles.HOST" ghost nbButton shape="round">
+    <button (click)="endSession()" *ngIf="localPeer?.roleName === EHmsRoles.HOST" ghost nbButton shape="round">
       End session
     </button>
   </div>
