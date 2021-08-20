@@ -85,23 +85,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
 
-    this.subscriptions.push(
-      this.localMediaService.selectedAudioDevice$.subscribe((value: string) => {
-        this.selectedAudioDeviceId = value;
-        hmsActions.setAudioSettings({deviceId: this.selectedAudioDeviceId});
-      }),
-      this.localMediaService.selectedVideoDevice$.subscribe((value: string) => {
-        this.selectedVideoDeviceId = value;
-        hmsActions.setVideoSettings({deviceId: this.selectedVideoDeviceId});
-      }),
-      this.localMediaService.mic$.subscribe((value: boolean) => {
-        hmsActions.setLocalAudioEnabled(value);
-      }),
-      this.localMediaService.camera$.subscribe((value: boolean) => {
-        hmsActions.setLocalVideoEnabled(value);
-      })
-    );
-
     // Subscribe to join room
     hmsStore.subscribe(this.joinRoom, selectIsConnectedToRoom);
     // Subscribe to invite to stage
@@ -123,6 +106,27 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     this.leaveSession();
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
+  }
+
+  getDeviceStatuses() {
+    this.subscriptions.push(
+      this.localMediaService.selectedAudioDevice$.subscribe((value: string) => {
+        this.selectedAudioDeviceId = value;
+        hmsActions.setAudioSettings({deviceId: this.selectedAudioDeviceId});
+      }),
+      this.localMediaService.selectedVideoDevice$.subscribe((value: string) => {
+        this.selectedVideoDeviceId = value;
+        hmsActions.setVideoSettings({deviceId: this.selectedVideoDeviceId});
+      }),
+      this.localMediaService.mic$.subscribe((value: boolean) => {
+        this.mic = value;
+        hmsActions.setLocalAudioEnabled(value);
+      }),
+      this.localMediaService.camera$.subscribe((value: boolean) => {
+        this.camera = value;
+        hmsActions.setLocalVideoEnabled(value);
+      })
+    );
   }
 
   joinSession(): void {
