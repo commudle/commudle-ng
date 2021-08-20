@@ -21,11 +21,9 @@
     <app-conference-v2
       *ngSwitchCase="EHmsStates.ROOM"
       [currentUser]="currentUser"
-      [roomId]="roomId"
+      [embeddedVideoStream]="embeddedVideoStream"
       [selectedRole]="selectedRole"
       [serverClient]="serverClient"
-      [streamable_id]="streamable_id"
-      [streamable_type]="streamable_type"
     ></app-conference-v2>
     <!-- Left session -->
     <nb-alert *ngSwitchCase="EHmsStates.LEFT" accent="info">You have left the session!</nb-alert>

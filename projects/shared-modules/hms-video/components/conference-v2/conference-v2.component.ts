@@ -26,6 +26,7 @@ import {
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { EmbeddedVideoStreamsService } from 'projects/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { ConferenceSettingsComponent } from 'projects/shared-modules/hms-video/components/conference-v2/conference-settings/conference-settings.component';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
@@ -45,14 +46,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   @Input() serverClient: IHmsClient;
   @Input() currentUser: ICurrentUser;
   @Input() selectedRole: EHmsRoles;
-  // For beam
-  @Input() roomId: string;
-  @Input() streamable_id: number;
-  @Input() streamable_type: string;
+  @Input() embeddedVideoStream: IEmbeddedVideoStream;
 
   EHmsRoles = EHmsRoles;
 
-  // Remote peers and tracks
+  // All peers and tracks
   peers: HMSPeer[] = [];
   screenSharePeer: HMSPeer;
 
@@ -90,6 +88,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     if (changes.serverClient && this.serverClient && this.currentUser) {
       this.joinSession();
     }
+
+    if (this.embeddedVideoStream) {
+      this.isRecording = this.embeddedVideoStream.is_recording;
+      this.isStreaming = this.embeddedVideoStream.is_streaming;
+    }
   }
 
   ngOnDestroy(): void {
@@ -120,11 +123,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   joinRoom = (status: boolean) => {
     if (status) {
-      // If user joined as host
-      if (this.selectedRole === EHmsRoles.HOST) {
-        const localPeer: HMSPeer = hmsStore.getState(selectLocalPeer);
-        hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
-      }
       // Subscribe to remote screen share
       hmsStore.subscribe((value: boolean) => (this.isScreenSharing = value), selectIsSomeoneScreenSharing);
       // Subscribe to local screen share
@@ -173,11 +171,12 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
       if (peers.length > 0) {
         if (peers[0].roleName === EHmsRoles.HOST || peers[0].roleName === EHmsRoles.GUEST) {
-          this.toastLogService.warningDialog(`${name} is already in the session`)
+          this.toastLogService.warningDialog(`${name} is already in the session`);
         } else {
           peers.forEach((peer: HMSPeer) => {
             hmsActions.changeRole(peer.id, EHmsRoles.GUEST);
           });
+          this.toastLogService.successDialog('Invited, they will now see a popup!');
         }
       } else {
         this.toastLogService.warningDialog(`${name} is not in the session`);
@@ -233,15 +232,17 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     }
 
     if (this.isRecording) {
-      this.embeddedVideoStreamsService.stopRecording(this.streamable_id, this.streamable_type).subscribe((value) => {
-        if (value) {
-          this.isRecording = false;
-        }
-      });
-    } else {
-      // TODO: Meeting url
       this.embeddedVideoStreamsService
-        .startRecording(this.streamable_id, this.streamable_type, '')
+        .stopRecording(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type)
+        .subscribe((value) => {
+          if (value) {
+            this.isRecording = false;
+          }
+        });
+    } else {
+      const meetingUrl = location.href.slice(0, -8);
+      this.embeddedVideoStreamsService
+        .startRecording(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, meetingUrl)
         .subscribe((value) => {
           if (value) {
             this.isRecording = true;
@@ -257,16 +258,16 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
     if (this.isStreaming) {
       this.embeddedVideoStreamsService
-        .stopStreaming(this.streamable_id, this.streamable_type)
+        .stopStreaming(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type)
         .subscribe((value: boolean) => {
           if (value) {
             this.isStreaming = false;
           }
         });
     } else {
-      // TODO: Meeting url
+      const meetingUrl = location.href.slice(0, -8);
       this.embeddedVideoStreamsService
-        .startStreaming(this.streamable_id, this.streamable_type, '')
+        .startStreaming(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, meetingUrl)
         .subscribe((value: boolean) => {
           if (value) {
             this.isStreaming = true;
@@ -289,6 +290,18 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.hmsLiveV2Channel.channelData$[this.currentUser.id].subscribe((value: any) => {
         switch (value.action) {
+          case this.hmsLiveV2Channel.ACTIONS.RECORDING_STARTED:
+            this.isRecording = true;
+            break;
+          case this.hmsLiveV2Channel.ACTIONS.RECORDING_STOPPED:
+            this.isRecording = false;
+            break;
+          case this.hmsLiveV2Channel.ACTIONS.STREAMING_STARTED:
+            this.isStreaming = true;
+            break;
+          case this.hmsLiveV2Channel.ACTIONS.STREAMING_STOPPED:
+            this.isStreaming = false;
+            break;
           case this.hmsLiveV2Channel.ACTIONS.END_STREAM:
             this.hmsVideoStateService.setState(EHmsStates.ENDED);
             break;
