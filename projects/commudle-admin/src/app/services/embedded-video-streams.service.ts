@@ -45,36 +45,32 @@ export class EmbeddedVideoStreamsService {
   }
 
   startRecording(streamableId: number, streamableType: string, meetingUrl: string): Observable<boolean> {
-    const params = new HttpParams()
-      .set('streamable_id', String(streamableId))
-      .set('streamable_type', streamableType)
-      .set('meeting_url', meetingUrl);
-    return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.RECORDING.START), {
-      params,
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.RECORDING.START), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
+      meeting_url: meetingUrl,
     });
   }
 
   stopRecording(streamableId: number, streamableType: string): Observable<boolean> {
-    const params = new HttpParams().set('streamable_id', String(streamableId)).set('streamable_type', streamableType);
-    return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.RECORDING.STOP), {
-      params,
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.RECORDING.STOP), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
     });
   }
 
   startStreaming(streamableId: number, streamableType: string, meetingUrl: string): Observable<boolean> {
-    const params = new HttpParams()
-      .set('streamable_id', String(streamableId))
-      .set('streamable_type', streamableType)
-      .set('meeting_url', meetingUrl);
-    return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.STREAMING.START), {
-      params,
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.STREAMING.START), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
+      meeting_url: meetingUrl,
     });
   }
 
   stopStreaming(streamableId: number, streamableType: string): Observable<boolean> {
-    const params = new HttpParams().set('streamable_id', String(streamableId)).set('streamable_type', streamableType);
-    return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.STREAMING.STOP), {
-      params,
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.STREAMING.STOP), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
     });
   }
 }
