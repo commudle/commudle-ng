@@ -45,12 +45,11 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     @Inject(PLATFORM_ID) private platformId: object,
     private hmsStageService: HmsStageService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.channelName = `${ this.embeddedVideoStream.id }_EmbeddedVideoStream_${ this.uuid }`;
+      this.channelName = `${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`;
       if (this.event.event_status.name === EEventStatuses.COMPLETED) {
         this.getPastUsersList();
       } else {
@@ -66,7 +65,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
         this.clientPings();
 
         this.subscriptions.push(
-          this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe(data => {
+          this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe((data) => {
             if (data) {
               this.getCurrentUsersList();
             }
@@ -104,7 +103,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   getCurrentUsersList() {
-    this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe(data => {
+    this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
       this.usersList = data.users;
       this.userCount.emit(this.usersList.length);
     });
@@ -121,50 +120,52 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
           this.embeddedVideoStream.id,
           'EmbeddedVideoStream',
           this.uuid,
-          this.userObjectVisitChannel.ACTIONS.PING);
+          this.userObjectVisitChannel.ACTIONS.PING,
+        );
       }, 30000);
     }
   }
 
   receiveData() {
-    this.subscriptions.push(this.userObjectVisitChannel.channelsList$.subscribe(value => {
-      if (value.has(this.channelName) && !this.usersListSubscription) {
-        this.usersListSubscription = this.userObjectVisitChannel.channelData$[this.channelName].subscribe(data => {
-          if (data) {
-            switch (data.action) {
-              case (this.userObjectVisitChannel.ACTIONS.SET_PERMISSIONS): {
-                // nothing needs to be done here
-                break;
-              }
-              case (this.userObjectVisitChannel.ACTIONS.USER_ADD): {
-                const existingUserIndex = this.usersList.findIndex(k => k.id === data.user.id);
-                if (existingUserIndex === -1 && this.usersList.length > 0) {
-                  this.usersList.push(data.user);
+    this.subscriptions.push(
+      this.userObjectVisitChannel.channelsList$.subscribe((value) => {
+        if (value.has(this.channelName) && !this.usersListSubscription) {
+          this.usersListSubscription = this.userObjectVisitChannel.channelData$[this.channelName].subscribe((data) => {
+            if (data) {
+              switch (data.action) {
+                case this.userObjectVisitChannel.ACTIONS.SET_PERMISSIONS: {
+                  // nothing needs to be done here
+                  break;
                 }
-                break;
-              }
-              case (this.userObjectVisitChannel.ACTIONS.USER_REMOVE): {
-                const existingUserIndex = this.usersList.findIndex(k => k.id === data.user_id);
-                if (existingUserIndex !== -1 && (this.currentUser && data.user_id !== this.currentUser.id)) {
-                  this.usersList.splice(existingUserIndex, 1);
+                case this.userObjectVisitChannel.ACTIONS.USER_ADD: {
+                  const existingUserIndex = this.usersList.findIndex((k) => k.id === data.user.id);
+                  if (existingUserIndex === -1 && this.usersList.length > 0) {
+                    this.usersList.push(data.user);
+                  }
+                  break;
                 }
-                break;
+                case this.userObjectVisitChannel.ACTIONS.USER_REMOVE: {
+                  const existingUserIndex = this.usersList.findIndex((k) => k.id === data.user_id);
+                  if (existingUserIndex !== -1 && this.currentUser && data.user_id !== this.currentUser.id) {
+                    this.usersList.splice(existingUserIndex, 1);
+                  }
+                  break;
+                }
               }
+              this.userCount.emit(this.usersList.length);
             }
-            this.userCount.emit(this.usersList.length);
-          }
-        });
-        this.subscriptions.push(this.usersListSubscription);
-      }
-    }));
+          });
+          this.subscriptions.push(this.usersListSubscription);
+        }
+      }),
+    );
   }
 
   inviteToStage(userId) {
-    this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe((data) => {
-      this.toastLogService.successDialog('Invited, they will now see a popup', 2000);
-    });
+    // this.eventsService.inviteGuestToWebinarStage(userId, this.embeddedVideoStream.hms_room_id).subscribe((data) => {
+    //   this.toastLogService.successDialog('Invited, they will now see a popup', 2000);
+    // });
 
     this.hmsStageService.inviteToStage(userId);
-    this.toastLogService.successDialog('Invited, they will now see a popup');
   }
 }
