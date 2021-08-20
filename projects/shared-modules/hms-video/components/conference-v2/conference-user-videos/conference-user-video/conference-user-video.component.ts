@@ -65,6 +65,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
 
   ngAfterViewInit() {
     hmsStore.subscribe((value: boolean) => (this.isAudioEnabled = value), selectIsPeerAudioEnabled(this.peer.id));
+    // INFO: As discussed with Easwar and Akash from 100ms
     hmsStore.subscribe((value: boolean) => {
       this.renderPeer(value);
       this.isVideoEnabled = value;
