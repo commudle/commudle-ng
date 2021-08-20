@@ -1,47 +1,182 @@
-import { DeviceMap, selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
-import { HMSDeviceManager } from '@100mslive/hms-video/dist/interfaces/HMSDeviceManager';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { getLocalStream } from '@100mslive/hms-video';
+import { EventEmitter, Output } from '@angular/core';
+import { Input } from '@angular/core';
+import { OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { LocalMediaV2Service } from 'projects/shared-modules/hms-video/services/localmedia-v2.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-conference-settings',
   templateUrl: './conference-settings.component.html',
   styleUrls: ['./conference-settings.component.scss'],
 })
-export class ConferenceSettingsComponent implements OnInit, AfterViewInit {
-  // Available devices
-  devices: DeviceMap = hmsStore.getState(selectDevices);
+export class ConferenceSettingsComponent implements OnInit, OnDestroy {
+  @ViewChild('previewVideo', {static: false}) previewVideo: ElementRef;
+  @Input() onStage: boolean;
+  @Input() invitation: boolean;
+  @Output() closeSettings = new EventEmitter();
+  @Output() joinStage = new EventEmitter();
+  subscriptions = [];
 
-  selectedDevice = hmsStore.getState(selectLocalMediaSettings);
+  audioDevices: Array<any> = [];
+  videoDevices: Array<any> = [];
 
-  constructor(protected dialogRef: NbDialogRef<any>) {}
+  selectedVideoDeviceId: MediaDeviceInfo;
+  selectedAudioDeviceId: any;
 
-  ngOnInit(): void {}
+  localMediaStream: any;
 
-  ngAfterViewInit() {
-    hmsStore.subscribe(this.getMediaDevices, selectDevices);
+  camera = true;
+  mic = true;
+
+  constructor(
+    protected dialogRef: NbDialogRef<any>,
+    private localMediaService: LocalMediaV2Service,
+    private toastLogService: LibToastLogService
+    ) {}
+
+  ngOnInit(): void {
+    this.getMediaDevices();
+
+    const deviceListener =  combineLatest([
+      this.localMediaService.selectedAudioDevice$,
+      this.localMediaService.selectedVideoDevice$,
+      this.localMediaService.mic$,
+      this.localMediaService.camera$
+    ]);
+
+
+    this.subscriptions.push(
+      deviceListener.subscribe(data => {
+        this.selectedAudioDeviceId = data[0];
+        this.selectedVideoDeviceId = data[1];
+        this.mic = data[2];
+        this.camera = data[3];
+
+        if (this.selectedAudioDeviceId && this.selectedVideoDeviceId) {
+          this.renderVideo();
+        }
+      })
+    );
   }
 
-  getMediaDevices = (devices: HMSDeviceManager) => {
-    if (devices.audioInput.length > 0 || devices.videoInput.length > 0) {
-      this.devices = devices;
+  ngOnDestroy() {
+    this.stopStream();
+
+    for (const subs of this.subscriptions) {
+      subs.unsubscribe();
     }
+  }
+
+
+  getMediaPermission() {
+    this.localMediaService.getMediaPermission().subscribe(
+      data => {
+        for (const track of data.getTracks()) {
+          track.stop();
+        }
+        this.getMediaDevices();
+      },
+      error => {
+        this.toastLogService.warningDialog('Browser denied permission', 3000);
+      }
+    )
+  }
+
+
+
+  getMediaDevices() {
+    this.localMediaService.getDevices().subscribe(
+      devices => {
+        console.log(devices);
+
+        devices = devices.filter(dev => dev.deviceId !== '');
+        const audio: MediaDeviceInfo[] = [];
+        const video: MediaDeviceInfo[] = [];
+
+        for (const dev of devices) {
+          // skipping audiooutput devices
+          switch (dev.kind) {
+            case 'audioinput':
+              audio.push(dev);
+              break;
+            case 'videoinput':
+              video.push(dev);
+              break;
+          }
+        }
+
+        this.audioDevices = audio;
+        this.videoDevices = video;
+
+        if (!this.selectedAudioDeviceId) {
+          this.setAudioDevice(this.audioDevices[0].deviceId);
+        } else {
+          // set from id because the pre selected device ids aren't matching
+          this.setAudioDevice(this.audioDevices.find(k => String(k.deviceId) === String(this.selectedAudioDeviceId)).deviceId);
+        }
+
+        if (!this.selectedVideoDeviceId) {
+          this.setVideoDevice(this.videoDevices[0].deviceId);
+        } else {
+          this.setVideoDevice(this.videoDevices.find(k => String(k.deviceId) === String(this.selectedVideoDeviceId)).deviceId);
+        }
+
+      }
+    )
   };
 
+
+  renderVideo() {
+    if (this.mic || this.camera) {
+      const constraints = <any>{};
+      constraints.audio = (this.mic ? ({deviceId: {exact: this.selectedAudioDeviceId}}) : false);
+      constraints.video = (this.camera ? ({deviceId: {exact: this.selectedVideoDeviceId}}) : false);
+
+      getLocalStream(constraints).then((value: MediaStream) => {
+        this.localMediaStream = value;
+        const video = this.previewVideo.nativeElement;
+        video.srcObject = value;
+      });
+    }
+  }
+
   setAudioDevice(deviceId: string): void {
-    hmsActions.setAudioSettings({
-      deviceId: deviceId,
-    });
+    this.localMediaService.updateAudioDevice(deviceId);
   }
 
   setVideoDevice(deviceId: string): void {
-    hmsActions.setVideoSettings({
-      deviceId: deviceId,
-    });
+    this.localMediaService.updateVideoDevice(deviceId);
   }
 
-  closeDialog(): void {
+  toggleMic() {
+    this.localMediaService.updateMic(!this.mic);
+  }
+
+  toggleCamera() {
+    this.localMediaService.updateCamera(!this.camera);
+  }
+
+  stopStream() {
+    if (this.localMediaStream) {
+      const tracks = this.localMediaStream.getTracks();
+
+      for (const track of tracks) {
+        track.stop();
+      }
+    }
+  }
+
+
+
+  close(): void {
     this.dialogRef.close();
+  }
+
+  emitJoinStage() {
+    this.joinStage.emit(true);
   }
 }
