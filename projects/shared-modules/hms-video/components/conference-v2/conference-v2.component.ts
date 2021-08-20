@@ -86,7 +86,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   ngOnInit(): void {
 
     // Subscribe to join room
-    hmsStore.subscribe(this.joinRoom, selectIsConnectedToRoom);
+    hmsStore.subscribe(this.subscribeToListeners, selectIsConnectedToRoom);
     // Subscribe to invite to stage
     this.hmsStageService.stageStatus$.subscribe((userId: number) => this.inviteToStage(userId));
   }
@@ -142,15 +142,15 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       }),
       // @ts-ignore
       settings: {
-        audioInputDeviceId: this.selectedAudioDeviceId,
-        videoDeviceId: this.selectedVideoDeviceId,
+        audioInputDeviceId: 'default',
+        videoDeviceId: 'default',
         isAudioMuted: !this.mic,
         isVideoMuted: !this.camera,
       },
     });
   }
 
-  joinRoom = (status: boolean) => {
+  subscribeToListeners = (status: boolean) => {
     if (status) {
       // Subscribe to remote screen share
       hmsStore.subscribe((value: boolean) => (this.isScreenSharing = value), selectIsSomeoneScreenSharing);
@@ -164,6 +164,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       hmsStore.subscribe((peer: HMSPeer) => (this.screenSharePeer = peer), selectPeerScreenSharing);
       // Subscribe to own channel
       this.receiveChannelData();
+
+      this.getDeviceStatuses();
     }
   };
 

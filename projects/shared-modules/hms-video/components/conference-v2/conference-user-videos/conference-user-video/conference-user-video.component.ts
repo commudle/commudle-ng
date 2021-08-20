@@ -58,6 +58,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('PEER', this.peer);
     if (this.peer?.customerDescription) {
       this.metaData = JSON.parse(this.peer.customerDescription);
     }
@@ -65,10 +66,10 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
 
   ngAfterViewInit() {
     let track: HMSTrack = hmsStore.getState(selectVideoTrackByPeerID(this.peer.id));
-    if (!(this.screenShare && track.source === 'screen')) {
-      track = hmsStore.getState(selectCameraStreamByPeerID(this.peer.id));
-    }
-
+    // if (!(this.screenShare && track.source === 'screen')) {
+    //   track = hmsStore.getState(selectCameraStreamByPeerID(this.peer.id));
+    // }
+    console.log('local track', track);
     this.renderPeer(track);
 
     hmsStore.subscribe((value: boolean) => (this.isAudioEnabled = value), selectIsPeerAudioEnabled(this.peer.id));
@@ -76,6 +77,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   renderPeer(track: HMSTrack): void {
+    console.log(track.enabled)
     if (track.enabled) {
       this.attachVideo();
     } else {

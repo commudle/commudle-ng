@@ -1,28 +1,12 @@
-import { LocalMediaV2Service } from './../../services/localmedia-v2.service';
 import { getLocalStream } from '@100mslive/hms-video';
-import {
-  DeviceMap,
-  HMSPeer,
-  selectDevices,
-  selectLocalMediaSettings,
-} from '@100mslive/hms-video-store';
-import { HMSDeviceManager } from '@100mslive/hms-video/dist/interfaces/HMSDeviceManager';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { DeviceMap, selectDevices } from '@100mslive/hms-video-store';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
-import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { combineLatest } from 'rxjs';
-import { OnDestroy } from '@angular/core';
+import { LocalMediaV2Service } from './../../services/localmedia-v2.service';
 
 @Component({
   selector: 'app-local-preview-v2',
@@ -51,22 +35,19 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
 
   @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef<HTMLVideoElement>;
 
-  constructor(
-    private hmsVideoStateService: HmsVideoStateService,
-    private localMediaService: LocalMediaV2Service
-    ) {}
+  constructor(private hmsVideoStateService: HmsVideoStateService, private localMediaService: LocalMediaV2Service) {}
 
   ngOnInit(): void {
     this.getMediaDevices();
-    const deviceListener =  combineLatest([
+    const deviceListener = combineLatest([
       this.localMediaService.selectedAudioDevice$,
       this.localMediaService.selectedVideoDevice$,
       this.localMediaService.mic$,
-      this.localMediaService.camera$
+      this.localMediaService.camera$,
     ]);
 
     this.subscriptions.push(
-      deviceListener.subscribe(data => {
+      deviceListener.subscribe((data) => {
         this.selectedAudioDeviceId = data[0];
         this.selectedVideoDeviceId = data[1];
         this.mic = data[2];
@@ -75,7 +56,7 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
         if (this.selectedAudioDeviceId && this.selectedVideoDeviceId) {
           this.renderVideo();
         }
-      })
+      }),
     );
   }
 
@@ -96,43 +77,37 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
     }
   }
 
-
   getMediaDevices() {
+    this.localMediaService.getDevices().subscribe((devices) => {
+      devices = devices.filter((dev) => dev.deviceId !== '');
+      const audio: MediaDeviceInfo[] = [];
+      const video: MediaDeviceInfo[] = [];
 
-    this.localMediaService.getDevices().subscribe(
-      devices => {
-        console.log(devices);
-
-        devices = devices.filter(dev => dev.deviceId !== '');
-        const audio: MediaDeviceInfo[] = [];
-        const video: MediaDeviceInfo[] = [];
-
-        for (const dev of devices) {
-          // skipping audiooutput devices
-          switch (dev.kind) {
-            case 'audioinput':
-              audio.push(dev);
-              break;
-            case 'videoinput':
-              video.push(dev);
-              break;
-          }
+      for (const dev of devices) {
+        // skipping audiooutput devices
+        switch (dev.kind) {
+          case 'audioinput':
+            audio.push(dev);
+            break;
+          case 'videoinput':
+            video.push(dev);
+            break;
         }
-
-        this.audioDevices = audio;
-        this.videoDevices = video;
-
-        this.setAudioDevice(this.audioDevices[0].deviceId);
-        this.setVideoDevice(this.videoDevices[0].deviceId);
       }
-    )
-  };
+
+      this.audioDevices = audio;
+      this.videoDevices = video;
+
+      this.setAudioDevice(this.audioDevices[0].deviceId);
+      this.setVideoDevice(this.videoDevices[0].deviceId);
+    });
+  }
 
   renderVideo() {
     if (this.mic || this.camera) {
       const constraints = <any>{};
-      constraints.audio = (this.mic ? ({deviceId: {exact: this.selectedAudioDeviceId}}) : false);
-      constraints.video = (this.camera ? ({deviceId: {exact: this.selectedVideoDeviceId}}) : false);
+      constraints.audio = this.mic ? { deviceId: { exact: this.selectedAudioDeviceId } } : false;
+      constraints.video = this.camera ? { deviceId: { exact: this.selectedVideoDeviceId } } : false;
 
       getLocalStream(constraints).then((value: MediaStream) => {
         this.localMediaStream = value;
@@ -140,7 +115,7 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
         video.srcObject = value;
       });
     }
-  };
+  }
 
   setAudioDevice(deviceId: string): void {
     this.localMediaService.updateAudioDevice(deviceId);
@@ -149,7 +124,6 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
   setVideoDevice(deviceId: string): void {
     this.localMediaService.updateVideoDevice(deviceId);
   }
-
 
   toggleAudio(): void {
     this.localMediaService.updateMic(!this.mic);
