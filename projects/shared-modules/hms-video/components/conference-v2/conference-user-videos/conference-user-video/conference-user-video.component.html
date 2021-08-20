@@ -1,8 +1,5 @@
 <div class="user-video-container">
-  <div
-    *ngIf="!peer.isLocal && localPeer?.roleName === EHmsRoles.HOST"
-    class="video-controls d-flex"
-  >
+  <div *ngIf="!peer?.isLocal && localPeer?.roleName === EHmsRoles.HOST" class="video-controls d-flex">
     <button
       (click)="mutePeerAudio()"
       [disabled]="!isAudioEnabled"
@@ -12,7 +9,7 @@
       shape="round"
       size="small"
     >
-      <nb-icon icon="mic"></nb-icon>
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
     </button>
     <button
       (click)="mutePeerVideo()"
@@ -23,7 +20,7 @@
       shape="round"
       size="small"
     >
-      <nb-icon icon="video"></nb-icon>
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
     </button>
     <button (click)="changeRole()" ghost nbButton nbTooltip="Remove from stage" shape="round" size="small">
       <nb-icon icon="minus-circle"></nb-icon>
@@ -32,9 +29,9 @@
       <nb-icon icon="log-out"></nb-icon>
     </button>
   </div>
-  <video #videoElement [autoplay]="true" [muted]="peer.isLocal" playsinline></video>
+  <video #videoElement [autoplay]="true" [muted]="peer?.isLocal" playsinline></video>
   <div *ngIf="metaData" class="user-name">
-    <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'" [status]="isAudioEnabled ? '' : 'danger'"></nb-icon>
+    <nb-icon [icon]="isAudioEnabled ? '' : 'mic-off'" [status]="isAudioEnabled ? '' : 'danger'"></nb-icon>
     {{metaData.name}}
   </div>
 </div>
