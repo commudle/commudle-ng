@@ -2,6 +2,11 @@
   <nb-card-header>Local Preview</nb-card-header>
   <nb-card-body *ngIf="audioDevices.length == 0 || videoDevices.length == 0">
     <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
+    <div>
+      <button nbButton fullWidth status="info" (click)="getMediaPermission()">
+        Get Permission
+      </button>
+    </div>
   </nb-card-body>
   <nb-card-body [ngClass]="{'hidden': audioDevices.length == 0 || videoDevices.length == 0}">
     <div class="preview">

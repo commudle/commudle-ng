@@ -5,6 +5,7 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
 import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { combineLatest } from 'rxjs';
 import { LocalMediaV2Service } from './../../services/localmedia-v2.service';
 
@@ -35,7 +36,11 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
 
   @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef<HTMLVideoElement>;
 
-  constructor(private hmsVideoStateService: HmsVideoStateService, private localMediaService: LocalMediaV2Service) {}
+  constructor(
+    private hmsVideoStateService: HmsVideoStateService,
+    private localMediaService: LocalMediaV2Service,
+    private toastLogService: LibToastLogService
+    ) {}
 
   ngOnInit(): void {
     this.getMediaDevices();
@@ -135,5 +140,20 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
 
   joinRoom(): void {
     this.hmsVideoStateService.setState(EHmsStates.ROOM);
+  }
+
+
+  getMediaPermission() {
+    this.localMediaService.getMediaPermission().subscribe(
+      data => {
+        for (const track of data.getTracks()) {
+          track.stop();
+        }
+        this.getMediaDevices();
+      },
+      error => {
+        this.toastLogService.warningDialog('Browser denied permission', 3000);
+      }
+    )
   }
 }
