@@ -1,26 +1,74 @@
-<nb-card class="conference-settings">
-  <nb-card-header>
-    Settings
-    <button (click)="closeDialog()" ghost nbButton shape="round" size="small">
-      <nb-icon icon="close"></nb-icon>
-    </button>
-  </nb-card-header>
-  <nb-card-body>
-    <nb-select
-      (selectedChange)="setAudioDevice($event)"
-      [selected]="selectedDevice.audioInputDeviceId || devices.audioInput[0]?.deviceId"
-      fullWidth
-      size="small"
-    >
-      <nb-option *ngFor="let device of devices.audioInput" [value]="device.deviceId"> {{device.label}} </nb-option>
-    </nb-select>
-    <nb-select
-      (selectedChange)="setVideoDevice($event)"
-      [selected]="selectedDevice.videoInputDeviceId || devices.videoInput[0]?.deviceId"
-      fullWidth
-      size="small"
-    >
-      <nb-option *ngFor="let device of devices.videoInput" [value]="device.deviceId"> {{device.label}} </nb-option>
-    </nb-select>
-  </nb-card-body>
-</nb-card>
+<div class="settings">
+  <nb-card *ngIf="audioDevices.length == 0 && videoDevices.length == 0">
+    <nb-card-body>
+      <nb-alert accent="info">
+        <p *ngIf="invitation" class="text-center">
+          You are being invited to the Stage!
+        </p>
+        Please allow access to mic and camera devices to continue!
+      </nb-alert>
+      <div>
+        <button nbButton fullWidth status="info" (click)="getMediaPermission()">
+          Get Permission
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <nb-card *ngIf="audioDevices.length > 0 && videoDevices.length > 0">
+    <nb-card-body>
+      <p *ngIf="invitation" class="text-center">
+        You are being invited to the Stage!
+      </p>
+      <div class="local-video">
+        <video #previewVideo autoplay [muted]="true" playsinline></video>
+        <div class="controls">
+          <button nbButton ghost (click)="toggleCamera()">
+            <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
+          </button>
+          <button nbButton ghost (click)="toggleMic()">
+            <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
+          </button>
+        </div>
+      </div>
+      <div class="sources d-flex flex-column mt-4">
+        <!-- video source -->
+        <label>
+          Audio Device
+          <nb-select
+            (selectedChange)="setAudioDevice($event)"
+            [selected]="selectedAudioDeviceId"
+            fullWidth
+            size="small"
+          >
+            <nb-option *ngFor="let device of audioDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
+          </nb-select>
+        </label>
+
+        <!-- mic source -->
+        <label>
+          Video Device
+          <nb-select
+            (selectedChange)="setVideoDevice($event)"
+            [selected]="selectedVideoDeviceId"
+            fullWidth
+            size="small"
+          >
+            <nb-option *ngFor="let device of videoDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
+          </nb-select>
+        </label>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-around">
+      <button *ngIf="!onStage" nbButton status="success" size="tiny" (click)="emitJoinStage()">
+        <nb-icon icon="cast"></nb-icon>
+        Join Stage
+      </button>
+      <button nbButton status="info" size="tiny" (click)="close()">
+        Close
+      </button>
+
+    </nb-card-footer>
+  </nb-card>
+
+</div>
