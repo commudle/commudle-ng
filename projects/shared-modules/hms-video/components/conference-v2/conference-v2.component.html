@@ -27,23 +27,23 @@
     <button
       (click)="toggleAudio()"
       *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
-      [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+      [nbTooltip]="mic ? 'Mute Audio' : 'Unmute Audio'"
       ghost
       nbButton
       shape="round"
     >
-      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+      <nb-icon [icon]="mic ? 'mic' : 'mic-off'"></nb-icon>
     </button>
     <!-- Camera -->
     <button
       (click)="toggleVideo()"
       *ngIf="serverClient.role === EHmsRoles.HOST || serverClient.role === EHmsRoles.GUEST"
-      [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+      [nbTooltip]="camera ? 'Mute Video' : 'Unmute Video'"
       ghost
       nbButton
       shape="round"
     >
-      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+      <nb-icon [icon]="camera ? 'video' : 'video-off'"></nb-icon>
     </button>
     <!-- Screen share -->
     <button
