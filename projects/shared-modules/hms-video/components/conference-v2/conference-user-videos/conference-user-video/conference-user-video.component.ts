@@ -6,7 +6,6 @@ import {
   selectIsPeerAudioEnabled,
   selectIsPeerVideoEnabled,
   selectLocalPeer,
-  selectVideoTrackByPeerID,
 } from '@100mslive/hms-video-store';
 import {
   AfterViewInit,
@@ -65,24 +64,20 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   ngAfterViewInit() {
-    let track: HMSTrack = hmsStore.getState(selectVideoTrackByPeerID(this.peer.id));
-    // if (!(this.screenShare && track.source === 'screen')) {
-    //   track = hmsStore.getState(selectCameraStreamByPeerID(this.peer.id));
-    // }
-    // this.renderPeer(track);
-    this.attachVideo();
-
     hmsStore.subscribe((value: boolean) => (this.isAudioEnabled = value), selectIsPeerAudioEnabled(this.peer.id));
-    hmsStore.subscribe((value: boolean) => (this.isVideoEnabled = value), selectIsPeerVideoEnabled(this.peer.id));
+    hmsStore.subscribe((value: boolean) => {
+      this.renderPeer(value);
+      this.isVideoEnabled = value;
+    }, selectIsPeerVideoEnabled(this.peer.id));
   }
 
-  // renderPeer(track: HMSTrack): void {
-  //   if (track.enabled) {
-  //     this.attachVideo();
-  //   } else {
-  //     this.detachVideo();
-  //   }
-  // }
+  renderPeer = (value: boolean) => {
+    if (value) {
+      this.attachVideo();
+    } else {
+      this.detachVideo();
+    }
+  };
 
   attachVideo(): void {
     hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
