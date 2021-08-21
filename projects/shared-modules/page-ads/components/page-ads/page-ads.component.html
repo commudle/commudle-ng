@@ -12,7 +12,7 @@
     <!--      </ol>-->
     <!--    </section>-->
     <div *ngIf="pageAd.files.length > 0" [style.height.px]="adHeight" class="image">
-      <img alt="{{pageAd.files[0].filename}}" src="{{pageAd.files[0].url}}" title="{{pageAd.files[0].filename}}" />
+      <img alt="{{pageAd.files[0].filename}}" src="{{pageAd.files[0].url}}" title="{{pageAd.title}}" />
     </div>
     <div *ngIf="showTitle || showContent" class="info">
       <p *ngIf="showTitle" class="title">{{pageAd.title}}</p>
