@@ -40,6 +40,7 @@ export class AboutComponent implements OnInit {
   }
 
   getOrganizers(roles: EUserRoles[]) {
+    this.organizers = []
     roles.forEach(role => {
       this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, role).subscribe(data => {
         this.organizers = this.organizers.concat(data.users);
