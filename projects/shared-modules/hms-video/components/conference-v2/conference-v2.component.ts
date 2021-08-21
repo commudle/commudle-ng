@@ -262,9 +262,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
           }
         });
     } else {
-      const meetingUrl = location.href.slice(0, -8);
       this.embeddedVideoStreamsService
-        .startRecording(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, meetingUrl)
+        .startRecording(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, this.getMeetingUrl())
         .subscribe((value) => {
           if (value) {
             this.isRecording = true;
@@ -287,15 +286,19 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
           }
         });
     } else {
-      const meetingUrl = location.href.slice(0, -8);
       this.embeddedVideoStreamsService
-        .startStreaming(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, meetingUrl)
+        .startStreaming(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, this.getMeetingUrl())
         .subscribe((value: boolean) => {
           if (value) {
             this.isStreaming = true;
           }
         });
     }
+  }
+
+  getMeetingUrl(): string {
+    // Remove session path from url and add beam path
+    return location.href.slice(0, -7) + 'beam';
   }
 
   leaveSession(): void {
