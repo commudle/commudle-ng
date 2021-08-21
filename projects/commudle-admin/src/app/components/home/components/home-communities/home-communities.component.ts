@@ -59,8 +59,8 @@ export class HomeCommunitiesComponent implements OnInit, OnDestroy {
   }
 
   getCommunityUserStatus(): void {
+    this.communityStatus = new Map<Number,boolean>();
     if (this.currentUser) {
-      this.communityStatus = new Map<Number,boolean>();
       this.communities.forEach(community => {
         this.appUsersService.getMyRoles('Kommunity', community.id).subscribe(value => {
           // Checking whether the current user has any role in the community
