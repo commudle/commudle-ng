@@ -20,9 +20,9 @@
             <div class="home-community-member-count">{{community.member_count.toString() + ' Members'}}</div>
           </div>
         </div>
-        <button (click)="openDialog(community, communityStatus[i])" *ngIf="community.id"
-                [ngClass]="communityStatus[i] ? 'active' : ''" class="home-communities-join" nbButton shape="round">
-          {{communityStatus[i] ? 'Joined' : 'Join'}}
+        <button (click)="openDialog(community, communityStatus.get(community.id))" *ngIf="community.id"
+                [ngClass]="communityStatus.get(community.id) ? 'active' : ''" class="home-communities-join" nbButton shape="round">
+          {{communityStatus.get(community.id) ? 'Joined' : 'Join'}}
         </button>
       </nb-list-item>
     </nb-list>
