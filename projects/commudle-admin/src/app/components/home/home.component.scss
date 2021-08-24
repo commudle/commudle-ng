@@ -38,6 +38,11 @@
       .home-mobile {
         display: block;
         margin-top: $space-16;
+        
+        & > app-home-promotions{
+          display: flex;
+          justify-content: center;
+        }
       }
     }
   }
