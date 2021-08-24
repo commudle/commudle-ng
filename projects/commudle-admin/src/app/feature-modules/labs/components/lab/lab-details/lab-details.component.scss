@@ -25,8 +25,17 @@
       border-radius: $border-10;
 
       nb-list-item {
+
+        display: flex;
+        justify-content: space-between;
+
         a {
           font-size: $fs-h5;
+        }
+
+        nb-icon{
+          font-size: $fs-32;
+          color: blue;
         }
       }
     }

@@ -20,6 +20,9 @@
             </div>
           </a>
         </div>
+        <div>
+          <nb-icon icon="bookmark" *ngIf="lab.lab_steps[i].id === lab.last_visited_step_id"  ></nb-icon>
+        </div>
       </nb-list-item>
     </nb-list>
   </nb-card>
