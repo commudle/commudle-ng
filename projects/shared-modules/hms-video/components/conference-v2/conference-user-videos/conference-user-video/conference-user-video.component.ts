@@ -6,6 +6,7 @@ import {
   selectIsPeerAudioEnabled,
   selectIsPeerVideoEnabled,
   selectLocalPeer,
+  selectScreenShareByPeerID,
 } from '@100mslive/hms-video-store';
 import {
   AfterViewInit,
@@ -54,7 +55,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   }
 
   ngOnDestroy() {
-    this.detachVideo();
+    // this.detachVideo();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -65,28 +66,50 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
 
   ngAfterViewInit() {
     hmsStore.subscribe((value: boolean) => (this.isAudioEnabled = value), selectIsPeerAudioEnabled(this.peer.id));
-    // INFO: As discussed with Easwar and Akash from 100ms
-    hmsStore.subscribe((value: boolean) => {
-      this.renderPeer(value);
-      this.isVideoEnabled = value;
-    }, selectIsPeerVideoEnabled(this.peer.id));
+    if (this.screenShare) {
+      hmsStore.subscribe((track: HMSTrack) => this.renderTrack(track), selectScreenShareByPeerID(this.peer.id));
+    } else {
+      // INFO: As discussed with Easwar and Akash from 100ms
+      hmsStore.subscribe((value: boolean) => {
+        this.renderTrack(hmsStore.getState(selectCameraStreamByPeerID(this.peer.id)));
+        this.isVideoEnabled = value;
+      }, selectIsPeerVideoEnabled(this.peer.id));
+    }
   }
 
-  renderPeer = (value: boolean) => {
-    if (value) {
-      this.attachVideo();
-    } else {
-      this.detachVideo();
+  // renderPeer = (value: boolean) => {
+  //   if (value) {
+  //     this.attachVideo();
+  //   } else {
+  //     this.detachVideo();
+  //   }
+  // };
+
+  renderTrack = (track: HMSTrack) => {
+    if (track) {
+      if (track.enabled) {
+        this.attachTrack(track.id);
+      } else {
+        this.detachTrack(track.id);
+      }
     }
   };
 
-  attachVideo(): void {
-    hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
+  attachTrack(trackId: string): void {
+    hmsActions.attachVideo(trackId, this.videoElement.nativeElement);
   }
 
-  detachVideo(): void {
-    hmsActions.detachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
+  detachTrack(trackId: string): void {
+    hmsActions.detachVideo(trackId, this.videoElement.nativeElement);
   }
+
+  // attachVideo(): void {
+  //   hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
+  // }
+  //
+  // detachVideo(): void {
+  //   hmsActions.detachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
+  // }
 
   mutePeerAudio(): void {
     const audioTrack: HMSTrack = hmsStore.getState(selectAudioTrackByPeerID(this.peer.id));
