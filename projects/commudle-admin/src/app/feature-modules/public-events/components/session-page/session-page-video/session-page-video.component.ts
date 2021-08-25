@@ -1,5 +1,15 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import * as moment from 'moment';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -13,10 +23,9 @@ import { IUser } from 'projects/shared-models/user.model';
 @Component({
   selector: 'app-session-page-video',
   templateUrl: './session-page-video.component.html',
-  styleUrls: ['./session-page-video.component.scss']
+  styleUrls: ['./session-page-video.component.scss'],
 })
 export class SessionPageVideoComponent implements OnInit, AfterViewInit {
-
   @Input() event: IEvent;
   @Input() userRoles: any[];
   @Input() currentUser: ICurrentUser;
@@ -36,6 +45,7 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
 
   isFullScreen = false;
   compressVideoStream = false;
+  isBeamActive = false;
 
   // For live notifications
   userCount = 0;
@@ -45,14 +55,10 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('interactionWindow') interactionWindows: QueryList<ElementRef>;
 
-  constructor(
-    @Inject(DOCUMENT) private document: any,
-    private cdr: ChangeDetectorRef
-  ) {
-  }
+  constructor(@Inject(DOCUMENT) private document: any, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    document.onfullscreenchange = () => this.isFullScreen = this.document.fullscreenElement;
+    document.onfullscreenchange = () => (this.isFullScreen = this.document.fullscreenElement);
   }
 
   ngAfterViewInit(): void {
@@ -72,10 +78,13 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
   }
 
   toggleInteractionWindow(windowNum: number): void {
-    this.interactionWindows.forEach((item, index) => {
-      item.nativeElement.style.display = windowNum === index ? item.nativeElement.style.display === 'block' ? 'none' : 'block' : 'none';
+    this.interactionWindows.forEach((item: ElementRef, index: number) => {
+      item.nativeElement.style.display =
+        windowNum === index ? (item.nativeElement.style.display === 'block' ? 'none' : 'block') : 'none';
     });
-    this.compressVideoStream = this.interactionWindows.some(value => value.nativeElement.style.display === 'block');
+    this.compressVideoStream = this.interactionWindows.some(
+      (value: ElementRef) => value.nativeElement.style.display === 'block',
+    );
     switch (windowNum) {
       case 2:
         this.newMessage = false;
@@ -92,5 +101,4 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
   getInteractionWindowStatus(windowNum: number): boolean {
     return this.interactionWindows.toArray()[windowNum].nativeElement.style.display === 'none';
   }
-
 }

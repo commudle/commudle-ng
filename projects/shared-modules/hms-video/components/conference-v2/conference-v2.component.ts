@@ -11,10 +11,12 @@ import { HMSRoleChangeRequest } from '@100mslive/hms-video-store/src/core/select
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
@@ -28,11 +30,11 @@ import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hm
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsStageService } from 'projects/shared-modules/hms-video/services/hms-stage.service';
 import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
+import { LocalMediaV2Service } from 'projects/shared-modules/hms-video/services/localmedia-v2.service';
 import { HmsLiveV2Channel } from 'projects/shared-modules/hms-video/services/websockets/hms-live-v2.channel';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
-import { LocalMediaV2Service } from '../../services/localmedia-v2.service';
 
 @Component({
   selector: 'app-conference-v2',
@@ -44,6 +46,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   @Input() currentUser: ICurrentUser;
   @Input() selectedRole: EHmsRoles;
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
+
+  @Output() beamStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   EHmsRoles = EHmsRoles;
 
@@ -324,15 +328,19 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       this.hmsLiveV2Channel.channelData$[this.currentUser.id].subscribe((value: any) => {
         switch (value.action) {
           case this.hmsLiveV2Channel.ACTIONS.RECORDING_STARTED:
+            this.beamStatus.emit(true);
             this.isRecording = true;
             break;
           case this.hmsLiveV2Channel.ACTIONS.RECORDING_STOPPED:
+            this.beamStatus.emit(false);
             this.isRecording = false;
             break;
           case this.hmsLiveV2Channel.ACTIONS.STREAMING_STARTED:
+            this.beamStatus.emit(true);
             this.isStreaming = true;
             break;
           case this.hmsLiveV2Channel.ACTIONS.STREAMING_STOPPED:
+            this.beamStatus.emit(false);
             this.isStreaming = false;
             break;
           case this.hmsLiveV2Channel.ACTIONS.END_STREAM:
