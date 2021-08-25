@@ -19,6 +19,7 @@
     ></app-local-preview-v2>
     <!-- Join room -->
     <app-conference-v2
+      (beamStatus)="beamStatus.emit($event)"
       *ngSwitchCase="EHmsStates.ROOM"
       [currentUser]="currentUser"
       [embeddedVideoStream]="embeddedVideoStream"
