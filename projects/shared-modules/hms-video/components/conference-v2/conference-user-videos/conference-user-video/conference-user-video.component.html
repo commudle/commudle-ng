@@ -31,7 +31,7 @@
   </div>
   <video #videoElement [autoplay]="true" [muted]="peer?.isLocal" playsinline></video>
   <div *ngIf="metaData" class="user-name">
-    <nb-icon [icon]="isAudioEnabled ? '' : 'mic-off'" [status]="isAudioEnabled ? '' : 'danger'"></nb-icon>
+    <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
     {{metaData.name}}
   </div>
 </div>
