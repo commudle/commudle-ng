@@ -71,7 +71,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
     } else {
       // INFO: As discussed with Easwar and Akash from 100ms
       hmsStore.subscribe((value: boolean) => {
-        this.renderTrack(hmsStore.getState(selectCameraStreamByPeerID(this.peer.id)));
+        this.renderTrack(hmsStore.getState(selectCameraStreamByPeerID(this.peer.id)))
         this.isVideoEnabled = value;
       }, selectIsPeerVideoEnabled(this.peer.id));
     }
