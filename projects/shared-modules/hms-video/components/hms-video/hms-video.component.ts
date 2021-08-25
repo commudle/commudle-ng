@@ -1,11 +1,12 @@
 import { HMSClient } from '@100mslive/hmsvideo-web';
 import { Component, Input, OnChanges, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { HmsApiService } from '../../services/hms-api.service';
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
-import { EHmsStates, HmsVideoStateService } from '../../services/hms-video-state.service';
+import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
 import { EHmsRoles } from '../enums/hms-roles.enum';
 @Component({
@@ -69,7 +70,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
     if (this.channelSubscription) {
       this.channelSubscription.unsubscribe();
     }
-    
+
     for (let subs of this.subscriptions) {
       subs.unsubscribe();
     }
