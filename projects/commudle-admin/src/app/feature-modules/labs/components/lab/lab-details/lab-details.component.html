@@ -18,10 +18,8 @@
             <div>
               {{step.name}}
             </div>
+            <app-badge *ngIf=" showContinue && lab.lab_steps[i].id === lab.last_visited_step_id" [text]="'Continue'" [fontSize]="'small'" [color]="'blue'" ></app-badge>
           </a>
-        </div>
-        <div>
-          <nb-icon icon="bookmark" *ngIf="lab.lab_steps[i].id === lab.last_visited_step_id"  ></nb-icon>
         </div>
       </nb-list-item>
     </nb-list>
