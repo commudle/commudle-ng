@@ -263,7 +263,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         });
     } else {
       this.embeddedVideoStreamsService
-        .startRecording(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, this.getMeetingUrl())
+        .startRecording(
+          this.embeddedVideoStream.streamable_id,
+          this.embeddedVideoStream.streamable_type,
+          this.getMeetingUrl(),
+        )
         .subscribe((value) => {
           if (value) {
             this.isRecording = true;
@@ -287,7 +291,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         });
     } else {
       this.embeddedVideoStreamsService
-        .startStreaming(this.embeddedVideoStream.streamable_id, this.embeddedVideoStream.streamable_type, this.getMeetingUrl())
+        .startStreaming(
+          this.embeddedVideoStream.streamable_id,
+          this.embeddedVideoStream.streamable_type,
+          this.getMeetingUrl(),
+        )
         .subscribe((value: boolean) => {
           if (value) {
             this.isStreaming = true;
@@ -302,7 +310,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   leaveSession(): void {
-    hmsActions.leave().then(() => this.hmsVideoStateService.setState(EHmsStates.LEFT));
+    this.hmsVideoStateService.setState(EHmsStates.LEFT);
   }
 
   endSession(): void {
