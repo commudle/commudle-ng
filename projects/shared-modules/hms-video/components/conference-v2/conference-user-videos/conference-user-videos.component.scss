@@ -12,23 +12,18 @@
 
   &.screen-share {
     .user-screen-share {
-      height: 70%;
-      width: 100%;
-
-      video {
-        height: 100%;
-        object-fit: contain;
-        width: 100%;
-      }
+      height: 100%;
+      width: 80%;
     }
 
     .user-videos {
-      flex-wrap: nowrap;
-      height: 30%;
+      height: 100%;
+      overflow-y: auto;
+      width: 20%;
 
       .user-video {
-        height: 100%;
-        width: max-content;
+        height: 25%;
+        width: 100%;
       }
     }
   }

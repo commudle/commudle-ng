@@ -41,6 +41,10 @@
       width: 100%;
     }
 
+    .screen-share {
+      object-fit: contain;
+    }
+
     .user-avatar {
       border-radius: $border-50;
       height: 50px;

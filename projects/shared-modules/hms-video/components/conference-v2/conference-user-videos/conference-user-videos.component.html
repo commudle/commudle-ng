@@ -10,7 +10,7 @@
       'seven': [13, 14, 15, 16].includes(peers.length),
       'default': peers.length > 9
     }"
-  class="user-streams"
+  class="user-streams d-flex flex-row-reverse"
 >
   <div *ngIf="peerScreenShare" class="user-screen-share d-flex justify-content-center">
     <app-conference-user-video [peer]="peerScreenShare" [screenShare]="true"></app-conference-user-video>
