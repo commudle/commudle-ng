@@ -2,30 +2,24 @@
   <nb-card *ngIf="audioDevices.length == 0 && videoDevices.length == 0">
     <nb-card-body>
       <nb-alert accent="info">
-        <p *ngIf="invitation" class="text-center">
-          You are being invited to the Stage!
-        </p>
+        <p *ngIf="invitation" class="text-center">You are being invited to the Stage!</p>
         Please allow access to mic and camera devices to continue!
       </nb-alert>
       <div>
-        <button nbButton fullWidth status="info" (click)="getMediaPermission()">
-          Get Permission
-        </button>
+        <button (click)="getMediaPermission()" fullWidth nbButton status="info">Get Permission</button>
       </div>
     </nb-card-body>
   </nb-card>
   <nb-card *ngIf="audioDevices.length > 0 && videoDevices.length > 0">
     <nb-card-body>
-      <p *ngIf="invitation" class="text-center">
-        You are being invited to the Stage!
-      </p>
+      <p *ngIf="invitation" class="text-center">You are being invited to the Stage!</p>
       <div class="local-video">
-        <video #previewVideo autoplay [muted]="true" playsinline></video>
+        <video #previewVideo [muted]="true" autoplay playsinline></video>
         <div class="controls">
-          <button nbButton ghost (click)="toggleCamera()">
+          <button (click)="toggleCamera()" ghost nbButton>
             <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
           </button>
-          <button nbButton ghost (click)="toggleMic()">
+          <button (click)="toggleMic()" ghost nbButton>
             <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
           </button>
         </div>
@@ -43,7 +37,6 @@
             <nb-option *ngFor="let device of audioDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
           </nb-select>
         </label>
-
         <!-- mic source -->
         <label>
           Video Device
@@ -57,18 +50,13 @@
           </nb-select>
         </label>
       </div>
-
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-around">
-      <button *ngIf="!onStage" nbButton status="success" size="tiny" (click)="emitJoinStage()">
+      <button (click)="close(true)" *ngIf="invitation" nbButton size="tiny" status="success">
         <nb-icon icon="cast"></nb-icon>
         Join Stage
       </button>
-      <button nbButton status="info" size="tiny" (click)="close()">
-        Close
-      </button>
-
+      <button (click)="close(false)" nbButton size="tiny" status="info">Close</button>
     </nb-card-footer>
   </nb-card>
-
 </div>
