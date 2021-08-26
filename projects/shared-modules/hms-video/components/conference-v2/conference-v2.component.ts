@@ -191,7 +191,9 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       let name = '';
       const peers: HMSPeer[] = hmsStore.getState(selectPeers).filter((value: HMSPeer) => {
         const metaData = JSON.parse(value.customerDescription);
-        name = metaData.name;
+        if (metaData.id === userId) {
+          name = metaData.name;
+        }
         return metaData.id === userId;
       });
 
@@ -205,7 +207,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
           this.toastLogService.successDialog('Invited, they will now see a popup!');
         }
       } else {
-        this.toastLogService.warningDialog(`${name} is not in the session`);
+        this.toastLogService.warningDialog(`Selected user is not in the session`);
       }
     }
   }
@@ -215,10 +217,9 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    const requestedByPeer: HMSPeer = request.requestedBy;
-    const roleChangeRequestDialog: NbDialogRef<any> = this.nbDialogService.open(this.roleChangeRequestDialog, {
+    const roleChangeRequestDialog: NbDialogRef<any> = this.nbDialogService.open(ConferenceSettingsComponent, {
       context: {
-        name: JSON.parse(requestedByPeer.customerDescription).name,
+        invitation: true,
       },
       closeOnBackdropClick: false,
       closeOnEsc: false,
@@ -226,7 +227,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     roleChangeRequestDialog.onClose.subscribe((accept: boolean) => {
       if (accept) {
         hmsActions.acceptChangeRole(request);
-        this.openSettings();
       } else {
         hmsActions.rejectChangeRole(request);
       }

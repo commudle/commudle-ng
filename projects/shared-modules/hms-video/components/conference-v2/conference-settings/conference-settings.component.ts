@@ -1,5 +1,5 @@
 import { getLocalStream } from '@100mslive/hms-video';
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { LocalMediaV2Service } from 'projects/shared-modules/hms-video/services/localmedia-v2.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -12,10 +12,10 @@ import { combineLatest } from 'rxjs';
 })
 export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef;
-  @Input() onStage: boolean;
-  @Input() invitation: boolean;
-  @Output() closeSettings = new EventEmitter();
-  @Output() joinStage = new EventEmitter();
+  // @Input() onStage: boolean;
+  invitation: boolean;
+  // @Output() closeSettings = new EventEmitter();
+  // @Output() joinStage = new EventEmitter();
   subscriptions = [];
 
   audioDevices: Array<any> = [];
@@ -161,11 +161,7 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  close(): void {
-    this.dialogRef.close();
-  }
-
-  emitJoinStage() {
-    this.joinStage.emit(true);
+  close(value: boolean): void {
+    this.dialogRef.close(value);
   }
 }
