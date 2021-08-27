@@ -28,6 +28,10 @@
         a {
           font-size: $fs-h5;
         }
+        app-badge{
+          position: relative;
+          top: $space-10;
+        }
       }
     }
 
