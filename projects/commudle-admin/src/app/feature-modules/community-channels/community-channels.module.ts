@@ -40,6 +40,7 @@ import { ArchiveChannelComponent } from './components/channel-settings/archive-c
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 import { LinkyModule } from 'ngx-linky';
+import { MyMentionModule } from 'projects/shared-modules/mention/mention.module';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { LinkyModule } from 'ngx-linky';
     SharedPipesModule,
     SharedDirectivesModule,
     LinkyModule,
+    MyMentionModule,
 
     // nebular
     NbInputModule,
