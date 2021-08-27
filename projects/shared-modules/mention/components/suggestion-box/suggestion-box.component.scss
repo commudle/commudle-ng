@@ -1,0 +1,23 @@
+.suggestions-container{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 42px;
+    background: #555a68;
+
+    height: auto;
+    width: 200px;
+
+    overflow-y: scroll;
+
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    scroll-behavior: smooth;
+
+    .suggestion-item{
+        overflow: hidden; 
+        cursor: pointer;
+    }
+}
+
