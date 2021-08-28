@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyMentionDirective } from './directives/mention-directive/mention.directive';
 import { SuggestionBoxComponent } from './components/suggestion-box/suggestion-box.component';
+import { NbAutocompleteModule } from '@nebular/theme';
 
 
 
@@ -13,7 +14,8 @@ import { SuggestionBoxComponent } from './components/suggestion-box/suggestion-b
   ],
 
   imports: [
-    CommonModule
+    CommonModule,
+    NbAutocompleteModule
   ],
   
   exports: [

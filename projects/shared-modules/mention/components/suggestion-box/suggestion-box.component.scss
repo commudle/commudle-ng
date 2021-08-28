@@ -1,23 +1,52 @@
-.suggestions-container{
+.suggestions-box{
     position: absolute;
-    bottom: 0;
-    margin-bottom: 42px;
-    background: #555a68;
-
-    height: auto;
-    width: 200px;
-
-    overflow-y: scroll;
-
-    border-radius: 4px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-
-    scroll-behavior: smooth;
-
-    .suggestion-item{
-        overflow: hidden; 
-        cursor: pointer;
-    }
+    top:40px;
+    left:60px;
 }
 
+.mention-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 11em;
+  padding: 0.5em 0;
+  margin: 0.125em 0 0;
+  font-size: 1em;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25em;
+}
+
+.mention-item {
+  display: block;
+  padding: 0.2em 1.5em;
+  line-height: 1.5em;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.scrollable-menu {
+  display: block;
+  height: auto;
+  max-height: 292px; /* fits 11 items with 14px font-size */
+  overflow: auto;
+}
+
+.mention-dropdown {
+  bottom: 100%;
+  top: auto;
+  margin-bottom: 2px;
+  background: aqua;
+}

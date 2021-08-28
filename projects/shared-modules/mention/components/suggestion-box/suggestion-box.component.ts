@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-suggestion-box',
@@ -6,6 +6,8 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./suggestion-box.component.scss']
 })
 export class SuggestionBoxComponent implements OnInit {
+
+  @Input() taggableUsers : string[];
 
   constructor() {
   }
