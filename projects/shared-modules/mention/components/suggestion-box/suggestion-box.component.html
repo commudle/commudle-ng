@@ -1,23 +1,5 @@
-<div class="suggestions-container" >
-    <div class="suggestion-item" >
-        Ajay
-    </div>
-    <div class="suggestion-item" >
-        Vijay
-    </div>
-    <div class="suggestion-item" >
-        Sanjay
-    </div>
-    <div class="suggestion-item" >
-        Mrithunjay
-    </div>
-    <div class="suggestion-item" >
-        Sam
-    </div>
-    <div class="suggestion-item" >
-        Jack
-    </div>
-    <div class="suggestion-item" >
-        Lucifer
-    </div>
+<div class="sugggestions-box" >
+    <ul class=" mention-menu mention-item scrollable-menu mention-dropdown " >
+        <li *ngFor="let username of taggableUsers" >{{ username }}</li>
+    </ul>
 </div>
