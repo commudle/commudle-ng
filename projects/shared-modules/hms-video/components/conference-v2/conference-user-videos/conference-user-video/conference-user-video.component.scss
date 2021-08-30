@@ -26,10 +26,41 @@
     z-index: 2;
   }
 
-  video {
+  .user-video {
     height: 100%;
-    object-fit: cover;
+    position: relative;
     width: 100%;
+
+    .hidden {
+      display: none;
+    }
+
+    video {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .screen-share {
+      object-fit: contain;
+    }
+
+    .user-avatar {
+      border-radius: $border-50;
+      height: 50px;
+      left: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
   }
 
   .user-name {

@@ -1,5 +1,6 @@
-import { EHmsStates } from './../../services/hms-video-state.service';
+
 import { Component, ElementRef, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
 import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { combineLatest } from 'rxjs';

@@ -23,6 +23,8 @@ export class LabDetailsComponent implements OnInit {
   @Output() setStep: EventEmitter<number> = new EventEmitter<number>();
   @Output() scrollToChat: EventEmitter<any> = new EventEmitter<any>();
 
+  showContinue:boolean = true;
+
   constructor() {
   }
 
@@ -31,6 +33,9 @@ export class LabDetailsComponent implements OnInit {
 
   onSetStep(value: number) {
     this.setStep.emit(value);
+    if( this.lab.lab_steps[value].id === this.lab.last_visited_step_id ){
+      this.showContinue = false;
+    }
   }
 
   onScrollToChat() {

@@ -24,8 +24,6 @@ export class ConferenceUserVideosComponent implements OnInit {
   };
 
   selectPeerScreenSharing = (peer: HMSPeer) => {
-    if (peer) {
-      this.peerScreenShare = peer;
-    }
+    this.peerScreenShare = peer;
   };
 }

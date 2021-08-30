@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -21,6 +30,8 @@ export class VideoStreamV2Component implements OnInit, OnChanges {
   @Input() width: number;
   @Input() height: number;
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
+
+  @Output() beamStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   playerUrl: any;
 

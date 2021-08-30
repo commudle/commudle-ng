@@ -1,5 +1,8 @@
 <div class="user-video-container">
-  <div *ngIf="!peer?.isLocal && localPeer?.roleName === EHmsRoles.HOST" class="video-controls d-flex">
+  <div
+    *ngIf="!peer?.isLocal && (localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER) && !screenShare"
+    class="video-controls d-flex"
+  >
     <button
       (click)="mutePeerAudio()"
       [disabled]="!isAudioEnabled"
@@ -29,9 +32,20 @@
       <nb-icon icon="log-out"></nb-icon>
     </button>
   </div>
-  <video #videoElement [autoplay]="true" [muted]="peer?.isLocal" playsinline></video>
+  <div class="user-video">
+    <video
+      #videoElement
+      [autoplay]="true"
+      [muted]="peer?.isLocal"
+      [ngClass]="{'hidden': !isVideoEnabled && !screenShare, 'screen-share': screenShare}"
+      playsinline
+    ></video>
+    <div *ngIf="metaData && !isVideoEnabled && !screenShare" class="user-avatar">
+      <img [alt]="metaData.name" [src]="metaData.avatar" [title]="metaData.name" />
+    </div>
+  </div>
   <div *ngIf="metaData" class="user-name">
-    <nb-icon [icon]="isAudioEnabled ? '' : 'mic-off'" [status]="isAudioEnabled ? '' : 'danger'"></nb-icon>
+    <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
     {{metaData.name}}
   </div>
 </div>
