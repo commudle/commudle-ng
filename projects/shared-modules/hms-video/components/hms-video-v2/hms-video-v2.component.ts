@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
-import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
+import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsApiService } from 'projects/shared-modules/hms-video/services/hms-api.service';
-import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
+import { HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
 import { HmsLiveV2Channel } from 'projects/shared-modules/hms-video/services/websockets/hms-live-v2.channel';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -16,6 +17,8 @@ import { Subscription } from 'rxjs';
 })
 export class HmsVideoV2Component implements OnInit, OnDestroy, OnChanges {
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
+
+  @Output() beamStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   currentUser: ICurrentUser;
 

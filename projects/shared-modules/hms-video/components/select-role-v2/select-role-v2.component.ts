@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
+import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
-import { EHmsStates, HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
+import { HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
 
 @Component({
   selector: 'app-select-role-v2',
@@ -20,15 +21,16 @@ export class SelectRoleV2Component implements OnInit {
   ngOnInit(): void {}
 
   selectRole(role: EHmsRoles): void {
-    // Send the role to the parent component
     this.selectedRole.emit(role);
-    // Update the state of hms video
+
     switch (role) {
       case EHmsRoles.VIEWER:
         this.hmsVideoStateService.setState(EHmsStates.ROOM);
         break;
-      default:
+      case EHmsRoles.HOST:
+      case EHmsRoles.HOST_VIEWER:
         this.hmsVideoStateService.setState(EHmsStates.PREVIEW);
+        break;
     }
   }
 }

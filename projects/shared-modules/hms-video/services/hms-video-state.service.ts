@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
+import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
 import { BehaviorSubject } from 'rxjs';
-
-export enum EHmsStates {
-  INIT = 'select_role',
-  PREVIEW = 'preview',
-  ROOM = 'room',
-  LEFT = 'left',
-  ENDED = 'ended',
-}
 
 @Injectable({
   providedIn: 'root',

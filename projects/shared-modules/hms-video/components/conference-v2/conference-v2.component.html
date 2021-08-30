@@ -1,21 +1,21 @@
 <div class="conference-container">
   <app-conference-user-videos></app-conference-user-videos>
-  <div class="d-flex controls">
+  <div *ngIf="localPeer" class="d-flex controls">
     <!-- Recording -->
     <button
       (click)="toggleRecording()"
-      *ngIf="localPeer?.roleName === EHmsRoles.HOST"
+      *ngIf="(localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) && embeddedVideoStream?.rtmp_url.length <= 0"
       [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"
       ghost
       nbButton
       shape="round"
     >
-      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'"></nb-icon>
+      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'" [status]="isRecording ? 'success' : ''"></nb-icon>
     </button>
     <!-- Streaming -->
     <button
       (click)="toggleStreaming()"
-      *ngIf="localPeer?.roleName === EHmsRoles.HOST"
+      *ngIf="(localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) && embeddedVideoStream?.rtmp_url.length > 0"
       [nbTooltip]="isStreaming ? 'Stop Streaming' : 'Start Streaming'"
       ghost
       nbButton
@@ -26,29 +26,29 @@
     <!-- Microphone -->
     <button
       (click)="toggleAudio()"
-      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
-      [nbTooltip]="mic ? 'Mute Audio' : 'Unmute Audio'"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
       ghost
       nbButton
       shape="round"
     >
-      <nb-icon [icon]="mic ? 'mic' : 'mic-off'"></nb-icon>
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
     </button>
     <!-- Camera -->
     <button
       (click)="toggleVideo()"
-      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
-      [nbTooltip]="camera ? 'Mute Video' : 'Unmute Video'"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
       ghost
       nbButton
       shape="round"
     >
-      <nb-icon [icon]="camera ? 'video' : 'video-off'"></nb-icon>
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
     </button>
     <!-- Screen share -->
     <button
       (click)="toggleScreenShare()"
-      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
       [disabled]="isScreenSharing && !isLocalScreenSharing"
       [nbTooltip]="isLocalScreenSharing ? 'Stop Screen Share' : 'Start Screen Share'"
       ghost
@@ -60,7 +60,7 @@
     <!-- Settings -->
     <button
       (click)="openSettings()"
-      *ngIf="localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.GUEST"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
       ghost
       nbButton
       nbTooltip="Open Settings"
@@ -68,33 +68,29 @@
     >
       <nb-icon icon="settings"></nb-icon>
     </button>
-    <!-- Join/Leave Stage -->
-    <!--    <button (click)="toggleStage()" ghost nbButton shape="round">{{isOnStage ? 'Leave stage' : 'Join stage'}}</button>-->
-    <!-- Leave session -->
+    <!--     Leave session -->
     <button (click)="leaveSession()" ghost nbButton nbTooltip="Leave session" shape="round">
       <nb-icon icon="log-out"></nb-icon>
     </button>
+    <!--     Join/Leave Stage -->
+    <button
+      (click)="toggleStage()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
+      {{isOnStage ? 'Leave stage' : 'Join stage'}}
+    </button>
     <!-- End session -->
-    <button (click)="endSession()" *ngIf="localPeer?.roleName === EHmsRoles.HOST" ghost nbButton shape="round">
+    <button
+      (click)="endSession()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
       End session
     </button>
   </div>
 </div>
-
-<ng-template #roleChangeRequestDialog let-data let-ref="dialogRef">
-  <nb-card class="role-change-request-dialog">
-    <nb-card-header class="d-flex justify-content-space-between align-items-center">
-      Invitation to Join Stage
-      <button (click)="ref.close(false)" ghost nbButton shape="round" size="small">
-        <nb-icon icon="close"></nb-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body>
-      <p>Hi, {{currentUser.name}}! <strong>{{data.name}}</strong> is inviting you to the stage.</p>
-    </nb-card-body>
-    <nb-card-footer class="d-flex justify-content-space-between">
-      <button (click)="ref.close(false)" nbButton size="small" status="danger">Reject</button>
-      <button (click)="ref.close(true)" nbButton size="small" status="success">Accept</button>
-    </nb-card-footer>
-  </nb-card>
-</ng-template>

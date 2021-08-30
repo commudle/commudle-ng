@@ -6,46 +6,75 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LocalMediaV2Service {
-  // these are device IDs
-  private selectedAudioDevice: BehaviorSubject<any> = new BehaviorSubject(null);
-  public selectedAudioDevice$ = this.selectedAudioDevice.asObservable();
-  private selectedVideoDevice: BehaviorSubject<any> = new BehaviorSubject(null);
-  public selectedVideoDevice$ = this.selectedVideoDevice.asObservable();
+  // Store and listen to device IDs
+  private audioInputDeviceId: BehaviorSubject<string> = new BehaviorSubject<string>('default');
+  public audioInputDeviceId$ = this.audioInputDeviceId.asObservable();
+  private videoDeviceId: BehaviorSubject<string> = new BehaviorSubject<string>('default');
+  public videoDeviceId$ = this.videoDeviceId.asObservable();
+  private isAudioEnabled: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  public isAudioEnabled$ = this.isAudioEnabled.asObservable();
+  private isVideoEnabled: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  public isVideoEnabled$ = this.isVideoEnabled.asObservable();
 
-  private camera: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  public camera$ = this.camera.asObservable();
+  constructor() {}
 
-  private mic: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  public mic$ = this.mic.asObservable();
-
-  constructor() {
+  setAudioInputDeviceId(deviceId: string): void {
+    this.audioInputDeviceId.next(deviceId);
   }
 
-  getMediaPermission(): Observable<any> {
-    return from(navigator.mediaDevices.getUserMedia({audio: true, video: true}));
+  setVideoDeviceId(deviceId: string): void {
+    this.videoDeviceId.next(deviceId);
   }
 
-  getDevices(): Observable<MediaDeviceInfo[]> {
-    return from(navigator.mediaDevices.enumerateDevices())
+  setIsAudioEnabled(isAudioEnabled: boolean): void {
+    this.isAudioEnabled.next(isAudioEnabled);
   }
 
-  getLocalStream(constraints) {
-    return from(navigator.mediaDevices.getUserMedia(constraints));
+  setIsVideoEnabled(isVideoEnabled: boolean): void {
+    this.isVideoEnabled.next(isVideoEnabled);
   }
 
-  updateAudioDevice(device) {
-    this.selectedAudioDevice.next(device);
+  getMediaPermissions(): Observable<MediaStream> {
+    return from(navigator.mediaDevices.getUserMedia({ audio: true, video: true }));
   }
 
-  updateVideoDevice(device) {
-    this.selectedVideoDevice.next(device);
+  getAudioInputDevices(): Observable<MediaDeviceInfo[]> {
+    return from(
+      navigator.mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) => {
+        return devices.filter((device: MediaDeviceInfo) => device.kind === 'audioinput');
+      }),
+    );
   }
 
-  updateCamera(value) {
-    this.camera.next(value)
+  getVideoDevices(): Observable<MediaDeviceInfo[]> {
+    return from(
+      navigator.mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) => {
+        return devices.filter((device: MediaDeviceInfo) => device.kind === 'videoinput');
+      }),
+    );
   }
 
-  updateMic(value) {
-    this.mic.next(value);
+  getVideoStream(videoId: string): Observable<MediaStream> {
+    return from(navigator.mediaDevices.getUserMedia({ video: { deviceId: videoId } }));
+  }
+
+  // Get current video device id
+  getVideoDeviceId(): string {
+    return this.videoDeviceId.getValue();
+  }
+
+  // Get current audio device id
+  getAudioInputDeviceId(): string {
+    return this.audioInputDeviceId.getValue();
+  }
+
+  // Get current audio enabled state
+  getIsAudioEnabled(): boolean {
+    return this.isAudioEnabled.getValue();
+  }
+
+  // Get current video enabled state
+  getIsVideoEnabled(): boolean {
+    return this.isVideoEnabled.getValue();
   }
 }

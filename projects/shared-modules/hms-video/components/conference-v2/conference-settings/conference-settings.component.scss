@@ -1,43 +1,50 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
 .settings {
-  width: 300px;
-  nb-card {
-    width: 100%;
-    .local-video {
+  left: 50%;
+  max-width: 320px;
+  position: absolute;
+  transform: translateX(-50%);
+
+  nb-card-body {
+    .preview,
+    nb-select {
+      margin: $space-8 0;
+    }
+
+    .preview {
+      aspect-ratio: 16 / 9;
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: black;
-      width: 240px;
-      height: 180px;
-      margin: 0 auto;
-      video {
+      width: 100%;
+
+      .video-container {
+        background-color: black;
+        height: 100%;
         width: 100%;
+
+        video {
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
       }
 
       .controls {
+        bottom: $space-8;
+        left: 50%;
         position: absolute;
-        bottom: 0;
-        font-size: 1.2rem;
+        transform: translateX(-50%);
+
         button {
-          nb-icon {
-            color: white;
-            cursor: pointer;
-          }
+          height: 32px;
+          margin: 0 $space-4;
+          width: 32px;
         }
       }
     }
-
-    .sources {
-      label {
-        display: block;
-        margin-top: 1rem;
-      }
-    }
-
-    button {
-      margin-top: 1rem;
-    }
-
   }
+}
+
+.hidden {
+  display: none;
 }

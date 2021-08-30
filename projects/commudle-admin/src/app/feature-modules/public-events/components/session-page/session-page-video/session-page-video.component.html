@@ -4,7 +4,10 @@
 >
   <nb-card-body>
     <div class="session-page-info d-flex align-items-center">
-      <div *ngIf="embeddedVideoStream.is_recording || embeddedVideoStream.is_streaming" class="ring-container">
+      <div
+        *ngIf="embeddedVideoStream.is_recording || embeddedVideoStream.is_streaming || isBeamActive"
+        class="ring-container"
+      >
         <div class="ring"></div>
         <div class="circle"></div>
       </div>
@@ -20,6 +23,7 @@
     </div>
     <div #videoStream [ngClass]="{'compressed': compressVideoStream}" class="video-stream">
       <app-video-stream-v2
+        (beamStatus)="isBeamActive = $event"
         [currentUser]="currentUser"
         [embeddedVideoStream]="embeddedVideoStream"
         [fillerText]="!currentUser ? 'Login to Access' : (moment() < moment(startTime) ? 'Starting in ' + moment(startTime).fromNow(true) : 'Loading Video...')"
