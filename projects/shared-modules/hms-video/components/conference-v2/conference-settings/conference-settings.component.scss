@@ -1,10 +1,7 @@
 @import 'projects/commudle-admin/src/assets/styles/variables';
 
 .settings {
-  left: 50%;
   max-width: 320px;
-  position: absolute;
-  transform: translateX(-50%);
 
   nb-card-body {
     .preview,

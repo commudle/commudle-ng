@@ -101,7 +101,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.leaveSession();
+    this.leaveRoom();
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
   }
@@ -310,10 +310,14 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     return location.href.slice(0, -7) + 'beam';
   }
 
-  leaveSession(): void {
+  leaveRoom(): void {
     if (hmsStore.getState(selectIsConnectedToRoom)) {
       hmsActions.leave();
     }
+  }
+
+  leaveSession(): void {
+    this.leaveRoom();
     this.hmsVideoStateService.setState(EHmsStates.LEFT);
   }
 
@@ -344,9 +348,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
             this.isStreaming = false;
             break;
           case this.hmsLiveV2Channel.ACTIONS.END_STREAM:
-            if (hmsStore.getState(selectIsConnectedToRoom)) {
-              hmsActions.leave();
-            }
+            this.leaveRoom();
             this.hmsVideoStateService.setState(EHmsStates.ENDED);
             break;
         }
