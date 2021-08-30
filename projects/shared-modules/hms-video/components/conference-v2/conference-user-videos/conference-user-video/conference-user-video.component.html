@@ -1,5 +1,8 @@
 <div class="user-video-container">
-  <div *ngIf="!peer?.isLocal && localPeer?.roleName === EHmsRoles.HOST && !screenShare" class="video-controls d-flex">
+  <div
+    *ngIf="!peer?.isLocal && (localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER) && !screenShare"
+    class="video-controls d-flex"
+  >
     <button
       (click)="mutePeerAudio()"
       [disabled]="!isAudioEnabled"

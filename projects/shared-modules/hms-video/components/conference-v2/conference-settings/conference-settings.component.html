@@ -1,62 +1,53 @@
-<div class="settings">
-  <nb-card *ngIf="audioDevices.length == 0 && videoDevices.length == 0">
-    <nb-card-body>
-      <nb-alert accent="info">
-        <p *ngIf="invitation" class="text-center">You are being invited to the Stage!</p>
-        Please allow access to mic and camera devices to continue!
-      </nb-alert>
-      <div>
-        <button (click)="getMediaPermission()" fullWidth nbButton status="info">Get Permission</button>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-card *ngIf="audioDevices.length > 0 && videoDevices.length > 0">
-    <nb-card-body>
-      <p *ngIf="invitation" class="text-center">You are being invited to the Stage!</p>
-      <div class="local-video">
+<nb-card class="settings">
+  <nb-card-header *ngIf="invitation">You are being invited to the Stage!</nb-card-header>
+  <nb-card-header *ngIf="!invitation">Settings</nb-card-header>
+  <nb-card-body *ngIf="audioInputDevices.length == 0 || videoDevices.length == 0">
+    <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
+    <button (click)="getMediaPermissions()" fullWidth nbButton status="info">Get Permission</button>
+  </nb-card-body>
+  <nb-card-body [ngClass]="{'hidden': audioInputDevices.length == 0 || videoDevices.length == 0}">
+    <div class="preview">
+      <div class="video-container">
         <video #previewVideo [muted]="true" autoplay playsinline></video>
-        <div class="controls">
-          <button (click)="toggleCamera()" ghost nbButton>
-            <nb-icon icon="{{camera ? 'video' : 'video-off'}}"></nb-icon>
-          </button>
-          <button (click)="toggleMic()" ghost nbButton>
-            <nb-icon icon="{{mic ? 'mic' : 'mic-off'}}"></nb-icon>
-          </button>
-        </div>
       </div>
-      <div class="sources d-flex flex-column mt-4">
-        <!-- video source -->
-        <label>
-          Audio Device
-          <nb-select
-            (selectedChange)="setAudioDevice($event)"
-            [selected]="selectedAudioDeviceId"
-            fullWidth
-            size="small"
-          >
-            <nb-option *ngFor="let device of audioDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
-          </nb-select>
-        </label>
-        <!-- mic source -->
-        <label>
-          Video Device
-          <nb-select
-            (selectedChange)="setVideoDevice($event)"
-            [selected]="selectedVideoDeviceId"
-            fullWidth
-            size="small"
-          >
-            <nb-option *ngFor="let device of videoDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
-          </nb-select>
-        </label>
+      <div class="controls">
+        <button
+          (click)="toggleAudio()"
+          [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+          ghost
+          nbButton
+          shape="round"
+        >
+          <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+        </button>
+        <button
+          (click)="toggleVideo()"
+          [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+          ghost
+          nbButton
+          shape="round"
+        >
+          <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+        </button>
       </div>
-    </nb-card-body>
-    <nb-card-footer class="d-flex justify-content-space-around">
-      <button (click)="close(true)" *ngIf="invitation" nbButton size="tiny" status="success">
-        <nb-icon icon="cast"></nb-icon>
-        Join Stage
-      </button>
-      <button (click)="close(false)" nbButton size="tiny" status="info">Close</button>
-    </nb-card-footer>
-  </nb-card>
-</div>
+    </div>
+    <nb-select
+      (selectedChange)="selectAudioInputDevice($event)"
+      [selected]="selectedAudioInputDeviceId"
+      fullWidth
+      size="small"
+    >
+      <nb-option *ngFor="let device of audioInputDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
+    </nb-select>
+    <nb-select (selectedChange)="selectVideoDevice($event)" [selected]="selectedVideoDeviceId" fullWidth size="small">
+      <nb-option *ngFor="let device of videoDevices" [value]="device.deviceId"> {{device.label}} </nb-option>
+    </nb-select>
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-space-around">
+    <button (click)="close(true)" *ngIf="invitation" nbButton size="tiny" status="success">
+      <nb-icon icon="cast"></nb-icon>
+      Join Stage
+    </button>
+    <button (click)="close(false)" nbButton size="tiny" status="info">Close</button>
+  </nb-card-footer>
+</nb-card>

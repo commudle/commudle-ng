@@ -1,5 +1,5 @@
 import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
-import { EHmsRoles } from './../enums/hms-roles.enum';
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsVideoStateService } from '../../services/hms-video-state.service';

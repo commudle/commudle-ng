@@ -1,7 +1,8 @@
+import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
-import { hmsActions } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class HmsBeamComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private isBrowserService: IsBrowserService,
     private footerService: FooterService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     if (!this.isBrowser) {
@@ -40,5 +42,11 @@ export class HmsBeamComponent implements OnInit {
       authToken: this.authToken,
       userName: 'commudle-beam',
     });
+
+    hmsStore.subscribe((value: boolean) => {
+      if (value) {
+        hmsActions.unblockAudio();
+      }
+    }, selectIsConnectedToRoom)
   }
 }
