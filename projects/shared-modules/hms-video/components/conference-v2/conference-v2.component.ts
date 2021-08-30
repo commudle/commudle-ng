@@ -266,7 +266,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   toggleRecording(): void {
-    if (this.serverClient.role !== EHmsRoles.HOST) {
+    if (this.serverClient.role === EHmsRoles.GUEST || this.serverClient.role === EHmsRoles.VIEWER) {
       return;
     }
 
@@ -286,7 +286,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   toggleStreaming(): void {
-    if (this.serverClient.role !== EHmsRoles.HOST) {
+    if (this.serverClient.role === EHmsRoles.GUEST || this.serverClient.role === EHmsRoles.VIEWER) {
       return;
     }
 
