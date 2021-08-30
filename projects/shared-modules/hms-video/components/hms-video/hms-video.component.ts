@@ -8,7 +8,7 @@ import { HmsApiService } from '../../services/hms-api.service';
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
 import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
-import { EHmsRoles } from '../enums/hms-roles.enum';
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 @Component({
   selector: 'app-hms-video',
   templateUrl: './hms-video.component.html',

@@ -20,7 +20,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { EHmsRoles } from 'projects/shared-modules/hms-video/components/enums/hms-roles.enum';
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 

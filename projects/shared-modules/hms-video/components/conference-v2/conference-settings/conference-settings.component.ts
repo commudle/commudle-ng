@@ -1,9 +1,8 @@
-import { getLocalStream } from '@100mslive/hms-video';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { LocalMediaV2Service } from 'projects/shared-modules/hms-video/services/localmedia-v2.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-conference-settings',
@@ -11,153 +10,115 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./conference-settings.component.scss'],
 })
 export class ConferenceSettingsComponent implements OnInit, OnDestroy {
-  @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef;
-  // @Input() onStage: boolean;
   invitation: boolean;
-  // @Output() closeSettings = new EventEmitter();
-  // @Output() joinStage = new EventEmitter();
-  subscriptions = [];
 
-  audioDevices: Array<any> = [];
-  videoDevices: Array<any> = [];
+  audioInputDevices: MediaDeviceInfo[] = [];
+  videoDevices: MediaDeviceInfo[] = [];
 
-  selectedVideoDeviceId: MediaDeviceInfo;
-  selectedAudioDeviceId: any;
+  selectedAudioInputDeviceId: string;
+  selectedVideoDeviceId: string;
+  isAudioEnabled: boolean;
+  isVideoEnabled: boolean;
 
-  localMediaStream: any;
+  @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef<HTMLVideoElement>;
 
-  camera = true;
-  mic = true;
+  subscriptions: Subscription[] = [];
 
   constructor(
-    protected dialogRef: NbDialogRef<any>,
-    private localMediaService: LocalMediaV2Service,
-    private toastLogService: LibToastLogService,
+    protected dialogRef: NbDialogRef<ConferenceSettingsComponent>,
+    private localMediaV2Service: LocalMediaV2Service,
+    private libToastLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {
-    this.getMediaDevices();
+    this.getMediaPermissions();
+  }
 
-    const deviceListener = combineLatest([
-      this.localMediaService.selectedAudioDevice$,
-      this.localMediaService.selectedVideoDevice$,
-      this.localMediaService.mic$,
-      this.localMediaService.camera$,
-    ]);
+  ngOnDestroy(): void {
+    this.stopStream();
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
 
+  getMediaPermissions(): void {
     this.subscriptions.push(
-      deviceListener.subscribe((data) => {
-        this.selectedAudioDeviceId = data[0];
-        this.selectedVideoDeviceId = data[1];
-        this.mic = data[2];
-        this.camera = data[3];
+      this.localMediaV2Service.getMediaPermissions().subscribe((stream: MediaStream) => {
+        if (stream.getTracks().length === 0) {
+          this.libToastLogService.warningDialog('Browser denied permission');
+        } else {
+          this.getMediaDevices();
+        }
+      }),
+    );
+  }
 
-        if (this.selectedAudioDeviceId && this.selectedVideoDeviceId) {
+  getMediaDevices(): void {
+    this.subscriptions.push(
+      combineLatest(
+        this.localMediaV2Service.getAudioInputDevices(),
+        this.localMediaV2Service.getVideoDevices(),
+      ).subscribe(([audioInputDevices, videoDevices]) => {
+        this.audioInputDevices = audioInputDevices;
+        this.videoDevices = videoDevices;
+
+        this.selectAudioInputDevice(audioInputDevices[0].deviceId);
+        this.selectVideoDevice(videoDevices[0].deviceId);
+
+        this.subscribeToMediaDevices();
+      }),
+    );
+  }
+
+  subscribeToMediaDevices(): void {
+    this.subscriptions.push(
+      combineLatest(
+        this.localMediaV2Service.audioInputDeviceId$,
+        this.localMediaV2Service.videoDeviceId$,
+        this.localMediaV2Service.isAudioEnabled$,
+        this.localMediaV2Service.isVideoEnabled$,
+      ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
+        this.selectedAudioInputDeviceId = audioInputDeviceId;
+        this.selectedVideoDeviceId = videoDeviceId;
+        this.isAudioEnabled = isAudioEnabled;
+        this.isVideoEnabled = isVideoEnabled;
+
+        if (this.isVideoEnabled) {
           this.renderVideo();
         }
       }),
     );
   }
 
-  ngOnDestroy() {
-    this.stopStream();
-
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
-  }
-
-  getMediaPermission() {
-    this.localMediaService.getMediaPermission().subscribe(
-      (data) => {
-        for (const track of data.getTracks()) {
-          track.stop();
-        }
-        this.getMediaDevices();
-      },
-      (error) => {
-        this.toastLogService.warningDialog('Browser denied permission', 3000);
-      },
-    );
-  }
-
-  getMediaDevices() {
-    this.localMediaService.getDevices().subscribe((devices) => {
-      devices = devices.filter((dev) => dev.deviceId !== '');
-      const audio: MediaDeviceInfo[] = [];
-      const video: MediaDeviceInfo[] = [];
-
-      for (const dev of devices) {
-        // skipping audiooutput devices
-        switch (dev.kind) {
-          case 'audioinput':
-            audio.push(dev);
-            break;
-          case 'videoinput':
-            video.push(dev);
-            break;
-        }
-      }
-
-      this.audioDevices = audio;
-      this.videoDevices = video;
-
-      if (!this.selectedAudioDeviceId) {
-        this.setAudioDevice(this.audioDevices[0].deviceId);
-      } else {
-        // set from id because the pre selected device ids aren't matching
-        this.setAudioDevice(
-          this.audioDevices.find((k) => String(k.deviceId) === String(this.selectedAudioDeviceId)).deviceId,
-        );
-      }
-
-      if (!this.selectedVideoDeviceId) {
-        this.setVideoDevice(this.videoDevices[0].deviceId);
-      } else {
-        this.setVideoDevice(
-          this.videoDevices.find((k) => String(k.deviceId) === String(this.selectedVideoDeviceId)).deviceId,
-        );
-      }
+  renderVideo(): void {
+    this.localMediaV2Service.getVideoStream(this.selectedVideoDeviceId).subscribe((stream: MediaStream) => {
+      this.previewVideo.nativeElement.srcObject = stream;
     });
   }
 
-  renderVideo() {
-    if (this.mic || this.camera) {
-      const constraints = <any>{};
-      constraints.audio = this.mic ? { deviceId: { exact: this.selectedAudioDeviceId } } : false;
-      constraints.video = this.camera ? { deviceId: { exact: this.selectedVideoDeviceId } } : false;
-
-      getLocalStream(constraints).then((value: MediaStream) => {
-        this.localMediaStream = value;
-        const video = this.previewVideo.nativeElement;
-        video.srcObject = value;
-      });
-    }
+  selectAudioInputDevice(deviceId: string): void {
+    this.localMediaV2Service.setAudioInputDeviceId(deviceId);
   }
 
-  setAudioDevice(deviceId: string): void {
-    this.localMediaService.updateAudioDevice(deviceId);
+  selectVideoDevice(deviceId: string): void {
+    this.localMediaV2Service.setVideoDeviceId(deviceId);
   }
 
-  setVideoDevice(deviceId: string): void {
-    this.localMediaService.updateVideoDevice(deviceId);
+  toggleAudio(): void {
+    this.localMediaV2Service.setIsAudioEnabled(!this.isAudioEnabled);
   }
 
-  toggleMic() {
-    this.localMediaService.updateMic(!this.mic);
+  toggleVideo(): void {
+    this.stopStream();
+    this.localMediaV2Service.setIsVideoEnabled(!this.isVideoEnabled);
   }
 
-  toggleCamera() {
-    this.localMediaService.updateCamera(!this.camera);
-  }
-
-  stopStream() {
-    if (this.localMediaStream) {
-      const tracks = this.localMediaStream.getTracks();
-
-      for (const track of tracks) {
-        track.stop();
+  stopStream(): void {
+    if (this.isVideoEnabled) {
+      const stream: MediaStream | MediaSource | Blob = this.previewVideo.nativeElement.srcObject;
+      if ('getTracks' in stream) {
+        const tracks: MediaStreamTrack[] = stream.getTracks();
+        tracks.forEach((track: MediaStreamTrack) => track.stop());
       }
+      this.previewVideo.nativeElement.srcObject = null;
     }
   }
 

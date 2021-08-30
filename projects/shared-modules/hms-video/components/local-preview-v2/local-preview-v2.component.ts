@@ -1,14 +1,9 @@
-import { getLocalStream } from '@100mslive/hms-video';
-import { DeviceMap, selectDevices } from '@100mslive/hms-video-store';
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
-import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
-import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { LocalMediaV2Service } from 'projects/shared-modules/hms-video/services/localmedia-v2.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { combineLatest } from 'rxjs';
-import { LocalMediaV2Service } from './../../services/localmedia-v2.service';
+import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-local-preview-v2',
@@ -16,145 +11,117 @@ import { LocalMediaV2Service } from './../../services/localmedia-v2.service';
   styleUrls: ['./local-preview-v2.component.scss'],
 })
 export class LocalPreviewV2Component implements OnInit, OnDestroy {
-  @Input() serverClient: IHmsClient;
-  @Input() currentUser: ICurrentUser;
+  audioInputDevices: MediaDeviceInfo[] = [];
+  videoDevices: MediaDeviceInfo[] = [];
 
-  // Available devices
-  devices: DeviceMap = hmsStore.getState(selectDevices);
-
-  audioDevices: Array<any> = [];
-  videoDevices: Array<any> = [];
-
-  selectedVideoDeviceId: any;
-  selectedAudioDeviceId: any;
-
-  localMediaStream: any;
-
-  subscriptions = [];
-
-  camera = true;
-  mic = true;
+  selectedAudioInputDeviceId: string;
+  selectedVideoDeviceId: string;
+  isAudioEnabled: boolean;
+  isVideoEnabled: boolean;
 
   @ViewChild('previewVideo', { static: false }) previewVideo: ElementRef<HTMLVideoElement>;
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private hmsVideoStateService: HmsVideoStateService,
-    private localMediaService: LocalMediaV2Service,
-    private toastLogService: LibToastLogService
-    ) {}
+    private localMediaV2Service: LocalMediaV2Service,
+    private libToastLogService: LibToastLogService,
+  ) {}
 
   ngOnInit(): void {
-    this.getMediaDevices();
-    const deviceListener = combineLatest([
-      this.localMediaService.selectedAudioDevice$,
-      this.localMediaService.selectedVideoDevice$,
-      this.localMediaService.mic$,
-      this.localMediaService.camera$,
-    ]);
+    this.getMediaPermissions();
+  }
 
+  ngOnDestroy(): void {
+    this.stopStream();
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  getMediaPermissions(): void {
     this.subscriptions.push(
-      deviceListener.subscribe((data) => {
-        this.selectedAudioDeviceId = data[0];
-        this.selectedVideoDeviceId = data[1];
-        this.mic = data[2];
-        this.camera = data[3];
+      this.localMediaV2Service.getMediaPermissions().subscribe((stream: MediaStream) => {
+        if (stream.getTracks().length === 0) {
+          this.libToastLogService.warningDialog('Browser denied permission');
+        } else {
+          this.getMediaDevices();
+        }
+      }),
+    );
+  }
 
-        if (this.selectedAudioDeviceId && this.selectedVideoDeviceId) {
+  getMediaDevices(): void {
+    this.subscriptions.push(
+      combineLatest(
+        this.localMediaV2Service.getAudioInputDevices(),
+        this.localMediaV2Service.getVideoDevices(),
+      ).subscribe(([audioInputDevices, videoDevices]) => {
+        this.audioInputDevices = audioInputDevices;
+        this.videoDevices = videoDevices;
+
+        this.selectAudioInputDevice(audioInputDevices[0].deviceId);
+        this.selectVideoDevice(videoDevices[0].deviceId);
+
+        this.subscribeToMediaDevices();
+      }),
+    );
+  }
+
+  subscribeToMediaDevices(): void {
+    this.subscriptions.push(
+      combineLatest(
+        this.localMediaV2Service.audioInputDeviceId$,
+        this.localMediaV2Service.videoDeviceId$,
+        this.localMediaV2Service.isAudioEnabled$,
+        this.localMediaV2Service.isVideoEnabled$,
+      ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
+        this.selectedAudioInputDeviceId = audioInputDeviceId;
+        this.selectedVideoDeviceId = videoDeviceId;
+        this.isAudioEnabled = isAudioEnabled;
+        this.isVideoEnabled = isVideoEnabled;
+
+        if (this.isVideoEnabled) {
           this.renderVideo();
         }
       }),
     );
   }
 
-  ngOnDestroy() {
-    this.stopStream();
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
-  }
-
-  stopStream() {
-    if (this.localMediaStream) {
-      const tracks = this.localMediaStream.getTracks();
-
-      for (const track of tracks) {
-        track.stop();
-      }
-    }
-  }
-
-  getMediaDevices() {
-    this.localMediaService.getDevices().subscribe((devices) => {
-      devices = devices.filter((dev) => dev.deviceId !== '');
-      const audio: MediaDeviceInfo[] = [];
-      const video: MediaDeviceInfo[] = [];
-
-      for (const dev of devices) {
-        // skipping audiooutput devices
-        switch (dev.kind) {
-          case 'audioinput':
-            audio.push(dev);
-            break;
-          case 'videoinput':
-            video.push(dev);
-            break;
-        }
-      }
-
-      this.audioDevices = audio;
-      this.videoDevices = video;
-
-      this.setAudioDevice(this.audioDevices[0].deviceId);
-      this.setVideoDevice(this.videoDevices[0].deviceId);
+  renderVideo(): void {
+    this.localMediaV2Service.getVideoStream(this.selectedVideoDeviceId).subscribe((stream: MediaStream) => {
+      this.previewVideo.nativeElement.srcObject = stream;
     });
   }
 
-  renderVideo() {
-    if (this.mic || this.camera) {
-      const constraints = <any>{};
-      constraints.audio = this.mic ? { deviceId: { exact: this.selectedAudioDeviceId } } : false;
-      constraints.video = this.camera ? { deviceId: { exact: this.selectedVideoDeviceId } } : false;
-
-      getLocalStream(constraints).then((value: MediaStream) => {
-        this.localMediaStream = value;
-        const video = this.previewVideo.nativeElement;
-        video.srcObject = value;
-      });
-    }
+  selectAudioInputDevice(deviceId: string): void {
+    this.localMediaV2Service.setAudioInputDeviceId(deviceId);
   }
 
-  setAudioDevice(deviceId: string): void {
-    this.localMediaService.updateAudioDevice(deviceId);
-  }
-
-  setVideoDevice(deviceId: string): void {
-    this.localMediaService.updateVideoDevice(deviceId);
+  selectVideoDevice(deviceId: string): void {
+    this.localMediaV2Service.setVideoDeviceId(deviceId);
   }
 
   toggleAudio(): void {
-    this.localMediaService.updateMic(!this.mic);
+    this.localMediaV2Service.setIsAudioEnabled(!this.isAudioEnabled);
   }
 
-  toggleVideo() {
-    this.localMediaService.updateCamera(!this.camera);
+  toggleVideo(): void {
+    this.stopStream();
+    this.localMediaV2Service.setIsVideoEnabled(!this.isVideoEnabled);
+  }
+
+  stopStream(): void {
+    if (this.isVideoEnabled) {
+      const stream: MediaStream | MediaSource | Blob = this.previewVideo.nativeElement.srcObject;
+      if ('getTracks' in stream) {
+        const tracks: MediaStreamTrack[] = stream.getTracks();
+        tracks.forEach((track: MediaStreamTrack) => track.stop());
+      }
+      this.previewVideo.nativeElement.srcObject = null;
+    }
   }
 
   joinRoom(): void {
     this.hmsVideoStateService.setState(EHmsStates.ROOM);
-  }
-
-
-  getMediaPermission() {
-    this.localMediaService.getMediaPermission().subscribe(
-      data => {
-        for (const track of data.getTracks()) {
-          track.stop();
-        }
-        this.getMediaDevices();
-      },
-      error => {
-        this.toastLogService.warningDialog('Browser denied permission', 3000);
-      }
-    )
   }
 }

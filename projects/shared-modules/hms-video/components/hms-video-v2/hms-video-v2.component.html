@@ -12,11 +12,7 @@
       [serverClient]="serverClient"
     ></app-select-role-v2>
     <!-- Preview video and audio -->
-    <app-local-preview-v2
-      *ngSwitchCase="EHmsStates.PREVIEW"
-      [currentUser]="currentUser"
-      [serverClient]="serverClient"
-    ></app-local-preview-v2>
+    <app-local-preview-v2 *ngSwitchCase="EHmsStates.PREVIEW"></app-local-preview-v2>
     <!-- Join room -->
     <app-conference-v2
       (beamStatus)="beamStatus.emit($event)"

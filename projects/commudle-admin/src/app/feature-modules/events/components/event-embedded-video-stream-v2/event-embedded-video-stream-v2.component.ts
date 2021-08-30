@@ -32,7 +32,7 @@ export class EventEmbeddedVideoStreamV2Component implements OnInit {
     embed_code: ['', Validators.required],
     zoom_host_email: ['', Validators.email],
     zoom_password: [''],
-    rtmp_url: [''],
+    rtmp_url: ['', [this.validateRtmpUrl.bind(this)]],
   });
 
   constructor(
@@ -55,6 +55,15 @@ export class EventEmbeddedVideoStreamV2Component implements OnInit {
 
   ngOnDestroy() {
     this.authSubs.unsubscribe();
+  }
+
+  validateRtmpUrl(control) {
+    const url: string = control.value;
+    if (url.startsWith('rtmp://')) {
+      return null;
+    } else {
+      return { invalidUrl: true };
+    }
   }
 
   getEmbeddedVideoStream() {
