@@ -117,7 +117,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         avatar: this.currentUser.avatar,
       }),
       settings: {
-        audioInputDeviceId: this.localMediaV2Service.getVideoDeviceId(),
+        audioInputDeviceId: this.localMediaV2Service.getAudioInputDeviceId(),
         videoDeviceId: this.localMediaV2Service.getVideoDeviceId(),
         isAudioMuted: !this.localMediaV2Service.getIsAudioEnabled(),
         isVideoMuted: !this.localMediaV2Service.getIsVideoEnabled(),
