@@ -101,7 +101,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.leaveSession();
+    this.leaveRoom();
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
   }
@@ -117,7 +117,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         avatar: this.currentUser.avatar,
       }),
       settings: {
-        audioInputDeviceId: this.localMediaV2Service.getVideoDeviceId(),
+        audioInputDeviceId: this.localMediaV2Service.getAudioInputDeviceId(),
         videoDeviceId: this.localMediaV2Service.getVideoDeviceId(),
         isAudioMuted: !this.localMediaV2Service.getIsAudioEnabled(),
         isVideoMuted: !this.localMediaV2Service.getIsVideoEnabled(),
@@ -266,7 +266,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   toggleRecording(): void {
-    if (this.serverClient.role !== EHmsRoles.HOST) {
+    if (this.serverClient.role === EHmsRoles.GUEST || this.serverClient.role === EHmsRoles.VIEWER) {
       return;
     }
 
@@ -286,7 +286,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   toggleStreaming(): void {
-    if (this.serverClient.role !== EHmsRoles.HOST) {
+    if (this.serverClient.role === EHmsRoles.GUEST || this.serverClient.role === EHmsRoles.VIEWER) {
       return;
     }
 
@@ -310,10 +310,14 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
     return location.href.slice(0, -7) + 'beam';
   }
 
-  leaveSession(): void {
+  leaveRoom(): void {
     if (hmsStore.getState(selectIsConnectedToRoom)) {
       hmsActions.leave();
     }
+  }
+
+  leaveSession(): void {
+    this.leaveRoom();
     this.hmsVideoStateService.setState(EHmsStates.LEFT);
   }
 
@@ -344,9 +348,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
             this.isStreaming = false;
             break;
           case this.hmsLiveV2Channel.ACTIONS.END_STREAM:
-            if (hmsStore.getState(selectIsConnectedToRoom)) {
-              hmsActions.leave();
-            }
+            this.leaveRoom();
             this.hmsVideoStateService.setState(EHmsStates.ENDED);
             break;
         }
