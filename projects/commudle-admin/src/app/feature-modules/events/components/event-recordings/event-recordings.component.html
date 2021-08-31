@@ -1,4 +1,4 @@
-<nb-card class="event-recordings" *ngIf="recordings.length > 0">
+<nb-card *ngIf="recordings.length > 0" class="event-recordings">
   <nb-card-header>Event Recordings</nb-card-header>
   <nb-card-body>
     <p>
@@ -7,7 +7,7 @@
     </p>
     <nb-list>
       <nb-list-item *ngFor="let recording of recordings">
-        <a [href]="recording.generated_url" target="_blank">{{event.name}} - {{recording.room_name}}</a>
+        <a [href]="recording.generated_url" target="_blank">{{event.name}} - {{recording.id}}</a>
       </nb-list-item>
     </nb-list>
   </nb-card-body>

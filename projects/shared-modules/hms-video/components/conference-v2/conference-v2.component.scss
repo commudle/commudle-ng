@@ -18,6 +18,10 @@
   }
 }
 
-.role-change-request-dialog {
-  max-width: 300px;
+@media all and (max-width: $tab-width) {
+  .conference-container {
+    .controls {
+      bottom: $space-64;
+    }
+  }
 }
