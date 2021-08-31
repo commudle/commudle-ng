@@ -6,8 +6,10 @@ import {
   ElementRef,
   Inject,
   Input,
+  OnChanges,
   OnInit,
   QueryList,
+  SimpleChanges,
   ViewChildren,
 } from '@angular/core';
 import * as moment from 'moment';
@@ -25,7 +27,7 @@ import { IUser } from 'projects/shared-models/user.model';
   templateUrl: './session-page-video.component.html',
   styleUrls: ['./session-page-video.component.scss'],
 })
-export class SessionPageVideoComponent implements OnInit, AfterViewInit {
+export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() event: IEvent;
   @Input() userRoles: any[];
   @Input() currentUser: ICurrentUser;
@@ -59,6 +61,12 @@ export class SessionPageVideoComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     document.onfullscreenchange = () => (this.isFullScreen = this.document.fullscreenElement);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.embeddedVideoStream) {
+      this.isBeamActive = this.embeddedVideoStream.is_recording || this.embeddedVideoStream.is_streaming;
+    }
   }
 
   ngAfterViewInit(): void {
