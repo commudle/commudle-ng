@@ -1,0 +1,17 @@
+<div class="user {{size}}">
+  <div class="profile-picture {{ size }}">
+    <img alt="{{ entity.name }}" src="{{ entity.avatar }}" title="{{ entity.name }}">
+  </div>
+  <div class="profile-info">
+    <p class="name {{ size }} d-flex">
+      <strong>{{ entity.name }}</strong>
+      <img *ngIf="entity.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
+           title="Expert Tick">
+    </p>
+    <p class="designation {{ size }}">
+      {{ entity.username }}
+      <span *ngIf="entity.username?.length > 25">...</span>
+    </p>
+  </div>
+</div>
+

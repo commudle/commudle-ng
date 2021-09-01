@@ -1,4 +1,6 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { IEntity } from '../../models/entity.model';
+
 
 @Component({
   selector: 'app-suggestion-box',
@@ -7,7 +9,9 @@ import { Component, Input, OnInit} from '@angular/core';
 })
 export class SuggestionBoxComponent implements OnInit {
 
-  @Input() taggableUsers : string[];
+  @Input() taggableEntities : IEntity[];
+  @Input() selectedEntity : IEntity;
+  @Output() selectedItemEvent : EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
   }
@@ -15,5 +19,13 @@ export class SuggestionBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onItemClicked(entity : IEntity){
+    console.log(entity)
+    this.selectedItemEvent.emit({ entity : entity, eventType : "click" })
+  }
+
+  onItemHover(entity : IEntity){
+    this.selectedItemEvent.emit({ entity : entity, eventType : "hover" })
+  }
 
 }
