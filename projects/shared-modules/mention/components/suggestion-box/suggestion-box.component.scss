@@ -1,8 +1,4 @@
-.suggestions-box{
-    position: absolute;
-    top:40px;
-    left:60px;
-}
+@import '/projects/commudle-admin/src/assets/styles/variables';
 
 .mention-menu {
   position: absolute;
@@ -40,7 +36,7 @@
 .scrollable-menu {
   display: block;
   height: auto;
-  max-height: 292px; /* fits 11 items with 14px font-size */
+  max-height: 294px; /* fits 11 items with 14px font-size */
   overflow: auto;
 }
 
@@ -48,5 +44,15 @@
   bottom: 100%;
   top: auto;
   margin-bottom: 2px;
-  background: aqua;
+  background: bisque;
+}
+
+.selected{
+  background-color: coral;
+}
+
+.info-box{
+  position: absolute;
+  font-size: small;
+  margin-left: 20px;
 }

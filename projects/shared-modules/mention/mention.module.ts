@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyMentionDirective } from './directives/mention-directive/mention.directive';
 import { SuggestionBoxComponent } from './components/suggestion-box/suggestion-box.component';
-import { NbAutocompleteModule } from '@nebular/theme';
+import { NbListModule } from '@nebular/theme';
+import { EntityProfileComponent } from './components/entity-profile/entity-profile.component';
 
 
 
@@ -10,12 +11,15 @@ import { NbAutocompleteModule } from '@nebular/theme';
 @NgModule({
   declarations: [
     MyMentionDirective,
-    SuggestionBoxComponent
+    SuggestionBoxComponent,
+    EntityProfileComponent
   ],
 
   imports: [
     CommonModule,
-    NbAutocompleteModule
+
+    //Nebular
+    NbListModule
   ],
   
   exports: [
@@ -23,7 +27,8 @@ import { NbAutocompleteModule } from '@nebular/theme';
   ],
 
   entryComponents: [
-    SuggestionBoxComponent
+    SuggestionBoxComponent,
+    EntityProfileComponent
   ]
 })
 export class MyMentionModule { }

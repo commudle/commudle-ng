@@ -1,5 +1,17 @@
 <div class="sugggestions-box" >
-    <ul class=" mention-menu mention-item scrollable-menu mention-dropdown " >
-        <li *ngFor="let username of taggableUsers" >{{ username }}</li>
-    </ul>
+    <nb-list class="sugggestions-box-list mention-menu scrollable-menu mention-dropdown" >
+        <nb-list-item *ngFor="let entity of taggableEntities"
+                      (click)="onItemClicked(entity)"
+                      class="list-item"
+                      [ngClass]=" { 'selected' : entity.name === selectedEntity.name } " 
+                      (mouseover)="onItemHover(entity)">
+        
+        <app-entity-profile [entity]="entity" size="small" ></app-entity-profile>              
+
+        </nb-list-item>
+    </nb-list>
+</div>
+
+<div class="info-box" >
+    # users, ! others
 </div>
