@@ -5,6 +5,7 @@
   <div class="profile-info">
     <p class="name {{ size }} d-flex">
       <strong>{{ entity.name }}</strong>
+      <span *ngIf="entity.type" >({{ entity.type }})</span>
       <img *ngIf="entity.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
            title="Expert Tick">
     </p>

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IEntity } from '../../models/entity.model';
 
 @Component({
   selector: 'app-entity-profile',
@@ -8,7 +7,7 @@ import { IEntity } from '../../models/entity.model';
 })
 export class EntityProfileComponent implements OnInit {
 
-  @Input() entity: IEntity;
+  @Input() entity: any;
   @Input() size: string;
 
   constructor() { }

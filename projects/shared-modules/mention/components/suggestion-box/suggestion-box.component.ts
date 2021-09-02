@@ -1,7 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import { IEntity } from '../../models/entity.model';
-
-
 @Component({
   selector: 'app-suggestion-box',
   templateUrl: './suggestion-box.component.html',
@@ -9,8 +6,8 @@ import { IEntity } from '../../models/entity.model';
 })
 export class SuggestionBoxComponent implements OnInit {
 
-  @Input() taggableEntities : IEntity[];
-  @Input() selectedEntity : IEntity;
+  @Input() taggableEntities : any[];
+  @Input() selectedEntity : any;
   @Output() selectedItemEvent : EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
@@ -19,12 +16,12 @@ export class SuggestionBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onItemClicked(entity : IEntity){
+  onItemClicked(entity : any){
     console.log(entity)
     this.selectedItemEvent.emit({ entity : entity, eventType : "click" })
   }
 
-  onItemHover(entity : IEntity){
+  onItemHover(entity : any){
     this.selectedItemEvent.emit({ entity : entity, eventType : "hover" })
   }
 
