@@ -107,6 +107,11 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   joinSession(): void {
+    this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
+    this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
+    this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
+    this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
+
     hmsActions.join({
       authToken: this.serverClient.token,
       userName: this.currentUser.username,
@@ -117,10 +122,10 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         avatar: this.currentUser.avatar,
       }),
       settings: {
-        audioInputDeviceId: this.localMediaV2Service.getAudioInputDeviceId(),
-        videoDeviceId: this.localMediaV2Service.getVideoDeviceId(),
-        isAudioMuted: !this.localMediaV2Service.getIsAudioEnabled(),
-        isVideoMuted: !this.localMediaV2Service.getIsVideoEnabled(),
+        audioInputDeviceId: this.selectedAudioInputDeviceId,
+        videoDeviceId: this.selectedVideoDeviceId,
+        isAudioMuted: !this.isAudioEnabled,
+        isVideoMuted: !this.isVideoEnabled,
       },
     });
   }
@@ -232,13 +237,16 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    const roleChangeRequestDialog: NbDialogRef<any> = this.nbDialogService.open(ConferenceSettingsComponent, {
-      context: {
-        invitation: true,
+    const roleChangeRequestDialog: NbDialogRef<ConferenceSettingsComponent> = this.nbDialogService.open(
+      ConferenceSettingsComponent,
+      {
+        context: {
+          invitation: true,
+        },
+        closeOnBackdropClick: false,
+        closeOnEsc: false,
       },
-      closeOnBackdropClick: false,
-      closeOnEsc: false,
-    });
+    );
     roleChangeRequestDialog.onClose.subscribe((accept: boolean) => {
       if (accept) {
         hmsActions.acceptChangeRole(request);
@@ -255,8 +263,22 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         this.isOnStage = false;
         break;
       case EHmsRoles.HOST_VIEWER:
-        hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
-        this.isOnStage = true;
+        const joinStageDialog: NbDialogRef<ConferenceSettingsComponent> = this.nbDialogService.open(
+          ConferenceSettingsComponent,
+          {
+            context: {
+              joinStage: true,
+            },
+            closeOnBackdropClick: false,
+            closeOnEsc: false,
+          },
+        );
+        joinStageDialog.onClose.subscribe((accept: boolean) => {
+          if (accept) {
+            hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
+            this.isOnStage = true;
+          }
+        });
         break;
     }
   }
