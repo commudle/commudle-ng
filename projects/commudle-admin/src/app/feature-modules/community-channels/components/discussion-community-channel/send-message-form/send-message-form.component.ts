@@ -27,7 +27,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   @Output() sendUpdatedTextMessage = new EventEmitter();
   @Output() sendUpdatedAttachmentMessage = new EventEmitter();
   subscriptions = [];
-  taggableUsers: IUser[] = [];
+  // taggableUsers: IUser[] = [];
   communityChannel: ICommunityChannel;
 
   uploadedAttachementFiles: IAttachedFile[] = [];
@@ -196,11 +196,11 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.inputElement.nativeElement.focus();
   }
 
-  getTaggableUsers(query) {
-    this.communityChannelsService.getTaggableUsers(query, this.communityChannel.id).subscribe(
-      data => {
-        this.taggableUsers = data.users;
-      }
-    )
-  }
+  // getTaggableUsers(query) {
+  //   this.communityChannelsService.getTaggableUsers(query, this.communityChannel.id).subscribe(
+  //     data => {
+  //       this.taggableUsers = data.users;
+  //     }
+  //   )
+  // }
 }

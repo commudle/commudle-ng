@@ -33,10 +33,8 @@
         <emoji-mart (emojiSelect)="selectEmoji($event)" *ngIf="showEmojiForm" [ngClass]="{'edit': editableMessage}"
                     class="emoji-mart" set="twitter" title="Select an emoji!"></emoji-mart>
       </div>
-      <textarea appMention #inputElement (click)="selectInput()" (searchTerm)="getTaggableUsers($event)"
-                [mentionConfig]="{dropUp: true, labelKey: 'username'}" [mentionListTemplate]="mentionListTemplate"
-                [mention]="taggableUsers" formControlName="content" fullWidth nbInput placeholder="Type here..."
-                rows="{{rows || 1}}"></textarea>
+      <textarea appMention #inputElement (click)="selectInput()" formControlName="content" 
+                fullWidth nbInput placeholder="Type here..." rows="{{rows || 1}}"></textarea>
     </nb-form-field>
     <button [disabled]="!sendUserMessageForm.valid || disabled" fullWidth nbButton outline status="info" type="submit">
       <nb-icon icon="corner-down-left-outline"></nb-icon>

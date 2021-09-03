@@ -1,8 +1,10 @@
-<div class="sugggestions-box" >
+<!-- <div class="info-box" >
+    # users, ! others
+</div> -->
+<div class="suggestions-box" >
     <nb-list class="sugggestions-box-list mention-menu scrollable-menu mention-dropdown" >
         <nb-list-item *ngFor="let entity of taggableEntities"
                       (click)="onItemClicked(entity)"
-                      class="list-item"
                       [ngClass]=" { 'selected' : entity.name === selectedEntity.name } " 
                       (mouseover)="onItemHover(entity)">
         
@@ -12,6 +14,3 @@
     </nb-list>
 </div>
 
-<div class="info-box" >
-    # users, ! others
-</div>

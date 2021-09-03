@@ -1,17 +1,17 @@
 import { Directive, ElementRef, HostListener, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { SuggestionBoxComponent } from '../../components/suggestion-box/suggestion-box.component';
 import { MentionService } from '../../service/mention.service';
-import { IUser } from 'projects/shared-models/user.model';
 @Directive({
   selector: '[appMention]'
 })
-export class MyMentionDirective {
+export class MentionDirective {
 
   componentRef: any;
   triggerCharacter = null;
   nativeElement: HTMLTextAreaElement;
   taggableEntities: any[] = [];
   selectedEntity: any;
+  private coords: {top : number, left : number} = {top : 7, left : 50};
 
   constructor(
     private inputElementRef: ElementRef,
@@ -22,12 +22,88 @@ export class MyMentionDirective {
     this.nativeElement = inputElementRef.nativeElement;
   }
 
-  // @HostListener('blur') //if text area gets out of focus remove autocomplete box
-  // onOutOfFocus(){
-  //   if(this.componentRef){
+  onItemHover(entity: any) {
+    if (this.componentRef) {
+      this.componentRef.instance.selectedEntity = entity;
+      this.selectedEntity = entity;
+    }
+  }
+
+  onItemClicked(entity: any) {
+    this.autoComplete(entity); //entity.name is being used for autocompleting
+    this.nativeElement.focus();
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
+  }
+
+  // @HostListener('blur', ['$event']) //if text area gets out of focus remove autocomplete box
+  // onOutOfFocus(event : any){
+  //   if(this.componentRef && !this.selectedEntity){
   //     this.componentRef.destroy();
   //   }
   // }
+
+  @HostListener('keyup', ['$event'])
+  onEnterKey(event: KeyboardEvent) {
+    
+    if (event.key === "Control") {
+
+      if (this.componentRef && this.selectedEntity) {
+        this.autoComplete(this.selectedEntity);
+        this.nativeElement.focus();
+        this.componentRef.destroy()
+        this.selectedEntity = null;// alert here
+      }
+
+    }
+
+  }
+
+  autoComplete(entity: any) {
+
+    let currentWordTyped = this.getCurrentWord();
+
+    if (entity.name.length >= currentWordTyped.value.slice(1).length) {
+
+      let currentTextInputValue = this.nativeElement.value;
+      
+      let newTextInputValue = "";
+
+      if(entity.type === "users"){
+        newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
+        + this.triggerCharacter + entity.name + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+      }
+      else{
+        switch(entity.type){
+          
+          case 'channels': {
+            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entity.name}</a>`
+            break;
+          }
+
+          case 'events': {
+            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entity.name}</a>`
+            break;
+          }
+
+          default:{
+            newTextInputValue = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entity.name}</a>`;
+          }
+
+        }
+      }
+
+      this.nativeElement.value = newTextInputValue;
+
+      let newCursorPosition = currentWordTyped.startIndex + newTextInputValue.length + 2;
+
+      this.nativeElement.selectionStart = newCursorPosition;
+      this.nativeElement.selectionEnd = newCursorPosition;
+
+    }
+
+  }
 
   @HostListener('input', ['$event'])
   currentString() {
@@ -40,81 +116,91 @@ export class MyMentionDirective {
 
       const query = wordBeingTyped.slice(1);
 
-      switch (this.triggerCharacter) {
+      if (query.length) {
+        
+        switch (this.triggerCharacter) {
 
-        case '#': {
+          case '@': {
 
-          this.mentionService.getUsers(query).subscribe((data: any) => {
+            this.mentionService.getUsers(query).subscribe((data: any) => {
 
-            this.taggableEntities = data.users;
+              for(const entity in data){
+                for(const index in data[entity]){
+                  data[entity][index]["type"] = entity;
+                }
+              }
 
-            if (this.taggableEntities) {
-              this.loadComponent();
-              this.componentRef.instance.taggableEntities = this.taggableEntities;
-            }
-          })
+              this.taggableEntities = data.users;
 
-          break;
+              if (this.taggableEntities) {
+                //console.log(window.getComputedStyle(this.nativeElement))
+               
+                // let computed = window.getComputedStyle(this.nativeElement);
+
+                // this.coords.top = this.nativeElement.offsetTop + parseInt(computed['borderTopWidth']);
+                // this.coords.left = this.nativeElement.offsetTop + parseInt(computed['borderLeftWidth']);
+
+                // console.log(this.coords.top)
+                // console.log(this.coords.left)
+
+                // this.coords.top = (Math.random() * 100) + 1;
+                // this.coords.left = (Math.random() * 500) + 1;
+
+                // console.log(this.nativeElement.getBoundingClientRect())
+
+                // let viewportOffset = this.nativeElement.getBoundingClientRect();
+                // // these are relative to the viewport, i.e. the window
+                // this.coords.top = viewportOffset.height;
+                // this.coords.left = viewportOffset.left;
+              
+                this.loadComponent();
+                this.componentRef.instance.taggableEntities = this.taggableEntities;
+              }
+            })
+
+            break;
+          }
+
+          case '!': {
+
+            this.mentionService.getOthers(query).subscribe((data: any) => {
+
+              console.log(data)
+
+              const results: any[] = []
+
+              for(const entity in data){
+                for(const index in data[entity]){
+                  data[entity][index]["type"] = entity;
+                  results.push(data[entity][index])
+                }
+              }
+
+              this.taggableEntities = results;
+
+              if (this.taggableEntities) {
+                this.loadComponent();
+                this.componentRef.instance.taggableEntities = this.taggableEntities;
+              }
+            })
+
+            break;
+          }
+
+          default: {
+            return this.taggableEntities = []
+          }
+
         }
-
-        case '!': {
-
-          this.mentionService.getOthers(query).subscribe((data: any) => {
-
-            console.log(data)
-
-            const results : any[] = []
-
-            for( const build in data.builds ){
-              data.builds[build]["type"] = "build"
-              results.push(data.builds[build])
-            }
-
-            for( const channel in data.channels ){
-              data.channels[channel]["type"] = "channel"
-              results.push(data.channels[channel])
-            }
-
-            for( const community in data.communities ){
-              data.communities[community]["type"] = "community"
-              results.push(data.communities[community])
-            }
-
-            for( const event in data.events ){
-              data.events[event]["type"] = "event"
-              results.push(data.events[event])
-            }
-
-            for( const lab in data.labs ){
-              data.labs[lab]["type"] = "lab"
-              results.push(data.labs[lab])
-            }
-
-            console.log(results)
-
-            this.taggableEntities = results;
-
-            if (this.taggableEntities) {
-              this.loadComponent();
-              this.componentRef.instance.taggableEntities = this.taggableEntities;
-            }
-          })
-
-          break;
-        }
-
-        default: {
-          return this.taggableEntities = []
-        }
-
       }
 
     }
     else {
-      if (this.componentRef) {
-        console.log('destroyed')
-        this.componentRef.destroy()
-      }
+      setTimeout(() => {
+        if (this.componentRef) {
+          this.componentRef.destroy()
+        }
+      }, 500)
     }
 
   }
@@ -123,8 +209,8 @@ export class MyMentionDirective {
 
     switch (word.charAt(0)) {
 
-      case '#': {
-        this.triggerCharacter = '#';
+      case '@': {
+        this.triggerCharacter = '@';
         break;
       }
 
@@ -136,42 +222,6 @@ export class MyMentionDirective {
       default: {
         this.triggerCharacter = null;
       }
-
-    }
-
-  }
-
-  onItemHover(entity: any) {
-    if (this.componentRef) {
-      this.componentRef.instance.selectedEntity = entity;
-      this.selectedEntity = entity;
-    }
-  }
-
-  onItemClicked(entity: any) {
-    this.autoComplete(entity.name);
-    this.nativeElement.focus();
-    if (this.componentRef) {
-      this.componentRef.destroy();
-    }
-  }
-
-  autoComplete(entity: string) {
-
-    let currentWordTyped = this.getCurrentWord();
-
-    if (entity.length >= currentWordTyped.value.slice(1).length) {
-
-      let currentTextInputValue = this.nativeElement.value;
-      let newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-        + this.triggerCharacter + entity + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
-
-      this.nativeElement.value = newTextInputValue;
-
-      let newCursorPosition = currentWordTyped.startIndex + entity.length + 2;
-
-      this.nativeElement.selectionStart = newCursorPosition;
-      this.nativeElement.selectionEnd = newCursorPosition;
 
     }
 
@@ -191,7 +241,7 @@ export class MyMentionDirective {
 
     word = word.split("").reverse().join("");
 
-    let startIndex = i + 1; //'#' position
+    let startIndex = i + 1; //'@' position
     let endIndex = cursorLocation - 1; // last character position
 
     return {
@@ -246,7 +296,7 @@ export class MyMentionDirective {
   scrollSelectedIntoView() {
     const listElement = this.componentRef.location.nativeElement.firstChild.firstChild.querySelector('.selected');
     if (listElement) {
-      this.scrollIntoView(this.componentRef.location.nativeElement.firstChild.firstChild, listElement, 2, 2);
+      this.scrollIntoView(this.componentRef.location.nativeElement.firstChild.firstChild, listElement, 0, 0);
     }
   }
 
@@ -265,26 +315,12 @@ export class MyMentionDirective {
     }
   }
 
-  @HostListener('keyup', ['$event'])
-  onEnterKey(event: KeyboardEvent) {
-
-    if (event.key === "Control") {
-
-      if (this.componentRef && this.selectedEntity) {
-        this.autoComplete(this.selectedEntity.name);
-        this.nativeElement.focus();
-        this.componentRef.destroy()
-      }
-
-    }
-
-  }
-
   loadComponent() {
     const componentFactory = this._componentResolver.resolveComponentFactory(SuggestionBoxComponent);
     const viewContainerRef = this._viewContainerRef;
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent<SuggestionBoxComponent>(componentFactory);
+    this.componentRef.location.nativeElement.style = `position:absolute; top:${this.coords.top}px; left:${this.coords.left}px`;
 
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
     this.selectedEntity = this.taggableEntities[0];
