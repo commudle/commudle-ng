@@ -147,6 +147,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     SkeletonScreensModule,
     PublicCommunityModule,
     MainNewslettersModule,
+    PageAdsModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -185,7 +186,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    PageAdsModule,
   ],
   providers: [
     AppInitService,
@@ -214,5 +214,4 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
