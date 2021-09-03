@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +24,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
   styleUrls: ['./app.component.scss'],
   providers: [TruncateTextPipe],
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   sideBarNotifications = false;
   sideBarState = 'collapsed';
   faBars = faBars;
@@ -122,6 +122,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.notificationsService.unsubscribeFromNotifications();
   }
 
   checkNotifications(): void {
