@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MyMentionDirective } from './directives/mention-directive/mention.directive';
+import { MentionDirective } from './directives/mention-directive/mention.directive';
 import { SuggestionBoxComponent } from './components/suggestion-box/suggestion-box.component';
 import { NbListModule } from '@nebular/theme';
 import { EntityProfileComponent } from './components/entity-profile/entity-profile.component';
@@ -10,7 +10,7 @@ import { EntityProfileComponent } from './components/entity-profile/entity-profi
 
 @NgModule({
   declarations: [
-    MyMentionDirective,
+    MentionDirective,
     SuggestionBoxComponent,
     EntityProfileComponent
   ],
@@ -23,7 +23,7 @@ import { EntityProfileComponent } from './components/entity-profile/entity-profi
   ],
   
   exports: [
-    MyMentionDirective
+    MentionDirective
   ],
 
   entryComponents: [
@@ -31,4 +31,4 @@ import { EntityProfileComponent } from './components/entity-profile/entity-profi
     EntityProfileComponent
   ]
 })
-export class MyMentionModule { }
+export class MentionModule { }

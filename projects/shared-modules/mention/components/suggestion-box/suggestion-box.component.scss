@@ -1,58 +1,74 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+.suggestions-box{
+  width: 300px;
+}
+
 .mention-menu {
   position: absolute;
-  top: 100%;
   left: 0;
   z-index: 1000;
-  display: none;
   float: left;
   min-width: 11em;
-  padding: 0.5em 0;
-  margin: 0.125em 0 0;
-  font-size: 1em;
-  color: #212529;
-  text-align: left;
-  list-style: none;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25em;
 }
 
-.mention-item {
-  display: block;
-  padding: 0.2em 1.5em;
-  line-height: 1.5em;
-  clear: both;
-  font-weight: 400;
-  color: #212529;
-  text-align: inherit;
-  white-space: nowrap;
-  background-color: transparent;
-  border: 0;
-}
+// .mention-item {
+//   display: block;
+//   padding: 0.2em 1.5em;
+//   line-height: 1.5em;
+//   clear: both;
+//   font-weight: 400;
+//   color: #212529;
+//   text-align: inherit;
+//   white-space: nowrap;
+//   background-color: transparent;
+//   border: 0;
+// }
 
 .scrollable-menu {
   display: block;
   height: auto;
-  max-height: 294px; /* fits 11 items with 14px font-size */
+  max-height: 292px; /* fits 11 items with 14px font-size */
   overflow: auto;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 .mention-dropdown {
   bottom: 100%;
   top: auto;
   margin-bottom: 2px;
-  background: bisque;
+  background: white;
 }
 
 .selected{
-  background-color: coral;
+  background-color: cornflowerblue;
 }
 
 .info-box{
   position: absolute;
   font-size: small;
   margin-left: 20px;
+}
+
+nb-list-item{
+  cursor: pointer;
+  padding: $space-8;
+
+  app-user-profile-mini {
+    width: 100%;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }

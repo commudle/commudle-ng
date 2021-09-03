@@ -17,7 +17,6 @@ export class SuggestionBoxComponent implements OnInit {
   }
 
   onItemClicked(entity : any){
-    console.log(entity)
     this.selectedItemEvent.emit({ entity : entity, eventType : "click" })
   }
 

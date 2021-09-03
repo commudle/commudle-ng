@@ -55,7 +55,7 @@
 
   .profile-info {
     // word-break: break-word;
-    max-width: 80%;
+    max-width: 100%;
     text-align: left;
 
     .name {
@@ -90,7 +90,7 @@
     .designation {
       margin: $space-4 0 0;
       font-size: 0.8rem;
-      color: grey;
+      color: black;
 
       &.medium {
         font-size: 0.9rem;

@@ -10,7 +10,8 @@ export class EntityProfileComponent implements OnInit {
   @Input() entity: any;
   @Input() size: string;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
