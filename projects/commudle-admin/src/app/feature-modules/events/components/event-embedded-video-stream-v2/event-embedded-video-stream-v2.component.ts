@@ -59,7 +59,7 @@ export class EventEmbeddedVideoStreamV2Component implements OnInit {
 
   validateRtmpUrl(control) {
     const url: string = control.value;
-    if (url.startsWith('rtmp://') || url === '') {
+    if (url?.startsWith('rtmp://') || url === '') {
       return null;
     } else {
       return { invalidUrl: true };
