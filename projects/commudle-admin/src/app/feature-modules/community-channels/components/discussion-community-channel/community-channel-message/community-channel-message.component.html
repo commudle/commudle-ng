@@ -10,7 +10,10 @@
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
         </p>
       </div>
-      <div [innerHTML]="message.content | linky:{sanitizeHtml: true}" class="content"></div>
+      <div
+        [innerHTML]="message.content | linky:{sanitizeHtml: true, mention: 'twitter', replaceFn: highlightUserMentions}"
+        class="content"
+      ></div>
       <div *ngIf="message.attachments.length > 0" class="attachments">
         <div *ngFor="let file of message.attachments; let i=index;" class="file">
           <a class="download-link clickable" href="{{file.url}}" target="_blank">
