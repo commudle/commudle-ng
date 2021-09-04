@@ -1,13 +1,12 @@
 <div class="community-channels-dashboard page-padding">
-  <div class="community-list" [ngClass]="{'show': showCommunityList === true}">
+  <div [ngClass]="{'show': showCommunityList}">
     <app-community-list [selectedCommunity]="selectedCommunity"></app-community-list>
   </div>
-  <div class="community-channel-list" [ngClass]="{'show': showCommunityList}">
+  <div [ngClass]="{'show': showCommunityList}" class="community-channel-list">
     <app-community-channel-list></app-community-channel-list>
   </div>
   <div class="community-channel-discussion">
-
     <router-outlet></router-outlet>
-    <router-outlet name="p" *ngIf="channelsQueried"></router-outlet>
+    <router-outlet *ngIf="channelsQueried" name="p"></router-outlet>
   </div>
 </div>
