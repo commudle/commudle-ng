@@ -33,19 +33,14 @@
         </div>
       </div>
       <div class="details-flag">
-        <div
-          (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)"
-          class="votes clickable"
-          nbTooltip="Like!"
-          nbTooltipStatus="danger"
-        >
-          <p
-            [ngClass]="{'low' : message.votes_count > 0 && message.votes_count <= 2, 'medium': message.votes_count > 2 && message.votes_count <= 4, 'high': message.votes_count > 4}"
-          >
-            <nb-icon *ngIf="message.votes_count === 0" icon="heart-outline" status="danger"></nb-icon>
-            <nb-icon *ngIf="message.votes_count > 0" icon="heart" status="danger"></nb-icon>
-            {{ message.votes_count > 0 ? message.votes_count : '' }}
-          </p>
+        <div>
+          <app-votes-display
+            [canVote]="permittedActions.includes(allActions.VOTE)"
+            [votableId]="message.id"
+            icon="heart-outline"
+            size="small"
+            votableType="UserMessage"
+          ></app-votes-display>
         </div>
         <div
           (click)="toggleReplyForm()"
