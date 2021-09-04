@@ -1,41 +1,39 @@
 <div class="discussion-chat-component">
-  <div #messagesContainer class="messages"  (scroll)="loadPreviousMessages()">
-    <div>
-      <div class="message" *ngFor="let um of messages">
-        <app-community-channel-message
-          [message]="um"
-          [canReply]="true && !blocked"
-          [permittedActions]="permittedActions"
-          [allActions]="allActions"
-          [roles]="channelRoles[discussion.parent_id]"
-          (sendReply)="sendReply($event, um.id)"
-          (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
-          (sendVote)="sendVote($event)"
-          (sendDelete)="delete($event)"
-          (sendMessageByEmail)="sendMessageByEmail($event)"
-          ></app-community-channel-message>
-      </div>
-      <div *ngIf="messages.length === 0" class="filler-message">
-        <h4>
-          Begin with a Welcome Message!
-        </h4>
-      </div>
+  <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
+    <div *ngFor="let um of messages" class="message">
+      <app-community-channel-message
+        (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
+        (sendDelete)="delete($event)"
+        (sendMessageByEmail)="sendMessageByEmail($event)"
+        (sendReply)="sendReply($event, um.id)"
+        (sendVote)="sendVote($event)"
+        [allActions]="allActions"
+        [canReply]="!blocked"
+        [message]="um"
+        [permittedActions]="permittedActions"
+        [roles]="channelRoles[discussion.parent_id]"
+      ></app-community-channel-message>
+    </div>
+    <div *ngIf="messages.length === 0" class="filler-message">
+      <h4>Begin with a Welcome Message!</h4>
     </div>
   </div>
   <div class="send-message-form">
     <app-send-message-form
-      *ngIf="(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))) && (this.permittedActions.includes(allActions.ADD))"
-      (sendMessage)="sendMessage($event)"
       (sendAttachmentMessage)="sendAttachmentMessage($event)"
+      (sendMessage)="sendMessage($event)"
+      *ngIf="(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))) && (this.permittedActions.includes(allActions.ADD))"
     ></app-send-message-form>
 
-
     <button
-      *ngIf="!currentUser || !(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)))"
-      nbButton fullWidth status="primary"
-      class="join-button"
       (click)="openJoinChannelDialog()"
-      [ngSwitch]="communityChannel.is_readonly">
+      *ngIf="!currentUser || !(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)))"
+      [ngSwitch]="communityChannel.is_readonly"
+      class="join-button"
+      fullWidth
+      nbButton
+      status="primary"
+    >
       <span *ngSwitchCase="true">Join this readonly channel to receive updates</span>
       <span *ngSwitchCase="false">Join this channel</span>
     </button>
@@ -43,32 +41,23 @@
 
   <ng-template #confirmJoinDialog let-ref="dialogRef">
     <nb-card class="disclaimer">
-      <nb-card-header class="d-flex align-items-center justify-content-space-between">
-        💡 Disclaimer
-      </nb-card-header>
+      <nb-card-header class="d-flex align-items-center justify-content-space-between"> 💡 Disclaimer</nb-card-header>
       <nb-card-body>
         <p>Once you join this channel</p>
         <ul>
+          <li>Your profile will be shared with the admins of this channel and the community to which it belongs</li>
           <li>
-            Your profile will be shared with the admins of this channel and the community to which it belongs
+            If you are not a member of the parent community of the channel, you will be added to it automatically. The
+            admins of this channel and it's community will be able to send you emails and notifications about this
+            channel and it's community
           </li>
-          <li>
-            If you are not a member of the parent community of the channel, you will be added to it automatically. The admins of this channel and it's community will be able to send you emails and notifications about this channel and it's community
-          </li>
-          <li>
-            You will receive emails if someone replies on your thread of messages in this channel.
-          </li>
+          <li>You will receive emails if someone replies on your thread of messages in this channel.</li>
         </ul>
-
       </nb-card-body>
       <nb-card-footer class="d-flex justify-content-space-between">
-        <button nbButton (click)="joinChannel()" status="success">Confirm</button>
-        <button (click)="ref.close()" ghost nbButton status="warning">May Be Later
-        </button>
+        <button (click)="joinChannel()" nbButton status="success">Confirm</button>
+        <button (click)="ref.close()" ghost nbButton status="warning">Maybe Later</button>
       </nb-card-footer>
     </nb-card>
   </ng-template>
-
-
 </div>
-
