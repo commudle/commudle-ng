@@ -1,20 +1,31 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ViewChild, TemplateRef, OnChanges } from '@angular/core';
-import { IUserMessage } from 'projects/shared-models/user_message.model';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import * as moment from 'moment';
-import { filter, map } from 'rxjs/operators';
-import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { NbMenuService } from '@nebular/theme';
+import { Match } from 'autolinker';
+import * as moment from 'moment';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-community-channel-message',
   templateUrl: './community-channel-message.component.html',
-  styleUrls: ['./community-channel-message.component.scss']
+  styleUrls: ['./community-channel-message.component.scss'],
 })
 export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDestroy {
   EUserRoles = EUserRoles;
-  @ViewChild('editMessageTemplate', {static: true}) editMessageTemplate: TemplateRef<any>;
+  @ViewChild('editMessageTemplate', { static: true }) editMessageTemplate: TemplateRef<any>;
 
   @Input() message: IUserMessage;
   @Input() canReply: boolean;
@@ -47,51 +58,44 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
 
   contextMenuItems = [];
 
-  constructor(
-    private authWatchService: LibAuthwatchService,
-    private menuService: NbMenuService,
-  ) { }
+  constructor(private authWatchService: LibAuthwatchService, private menuService: NbMenuService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
     this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe(
-        data => {
-          this.currentUser = data;
-          if (this.currentUser) {
-            if (this.roles) {
-              this.isAdmin = this.roles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN);
-            }
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+        if (this.currentUser) {
+          if (this.roles) {
+            this.isAdmin = this.roles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN);
+          }
 
-            if ((this.currentUser.username === this.message.user.username)) {
-              this.canEdit = true;
-              // this.contextMenuItems.push({
-              //   title: 'Edit'
-              // });
-            }
-            if (!this.canDelete && (this.isAdmin || (this.currentUser.username === this.message.user.username))) {
-              this.canDelete = true;
-              this.contextMenuItems.push({
-                title: 'Delete'
-              });
-            }
+          if (this.currentUser.username === this.message.user.username) {
+            this.canEdit = true;
+            // this.contextMenuItems.push({
+            //   title: 'Edit'
+            // });
+          }
+          if (!this.canDelete && (this.isAdmin || this.currentUser.username === this.message.user.username)) {
+            this.canDelete = true;
+            this.contextMenuItems.push({
+              title: 'Delete',
+            });
+          }
 
-            if (this.isAdmin && !this.canSendMessageByEmail) {
-              this.canSendMessageByEmail = true;
-              this.contextMenuItems.push({
-                title: 'Email to all members'
-              });
-            }
+          if (this.isAdmin && !this.canSendMessageByEmail) {
+            this.canSendMessageByEmail = true;
+            this.contextMenuItems.push({
+              title: 'Email to all members',
+            });
           }
         }
-      )
-    )
-
+      }),
+    );
 
     this.handleContextMenu();
   }
@@ -101,7 +105,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
       subs.unsubscribe();
     }
   }
-
 
   login() {
     if (!this.currentUser) {
@@ -114,7 +117,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     this.sendVote.emit(userMessageId);
   }
 
-
   emitDelete(userMessageId) {
     this.sendDelete.emit(userMessageId);
   }
@@ -126,7 +128,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   emitAttachmentReply(data) {
     this.sendAttachmentReply.emit(data);
   }
-
 
   emitUpdate(data) {
     this.sendUpdatedReply.emit(data);
@@ -144,22 +145,22 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     this.sendMessageByEmail.emit(messageId);
   }
 
-
   handleContextMenu() {
     this.subscriptions.push(
-      this.menuService.onItemClick()
-      .pipe(
-        filter(({tag}) => tag === `community-channel-message-menu-${this.message.id}`),
-        map(({item: title}) => title)
-      ).subscribe(
-        menuItem => {
+      this.menuService
+        .onItemClick()
+        .pipe(
+          filter(({ tag }) => tag === `community-channel-message-menu-${this.message.id}`),
+          map(({ item: title }) => title),
+        )
+        .subscribe((menuItem) => {
           switch (menuItem.title) {
             case 'Edit': {
               this.openEditForm();
               break;
             }
             case 'Delete': {
-              (this.login() && this.emitDelete(this.message.id));
+              this.login() && this.emitDelete(this.message.id);
               break;
             }
             case 'Email to all members': {
@@ -167,11 +168,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               break;
             }
           }
-        }
-      )
+        }),
     );
   }
-
 
   openEditForm() {
     // TODO CHANNEL TEST
@@ -182,4 +181,12 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     // });
   }
 
+  highlightUserMentions(match: Match): string {
+    switch (match.getType()) {
+      case 'mention':
+        return `<a href="https://commudle.com/users/${match
+          .getMatchedText()
+          .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
+    }
+  }
 }
