@@ -4,6 +4,7 @@ import { MentionDirective } from './directives/mention-directive/mention.directi
 import { SuggestionBoxComponent } from './components/suggestion-box/suggestion-box.component';
 import { NbListModule } from '@nebular/theme';
 import { EntityProfileComponent } from './components/entity-profile/entity-profile.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 
 
@@ -17,6 +18,7 @@ import { EntityProfileComponent } from './components/entity-profile/entity-profi
 
   imports: [
     CommonModule,
+    SharedPipesModule,
 
     //Nebular
     NbListModule
@@ -24,11 +26,6 @@ import { EntityProfileComponent } from './components/entity-profile/entity-profi
   
   exports: [
     MentionDirective
-  ],
-
-  entryComponents: [
-    SuggestionBoxComponent,
-    EntityProfileComponent
   ]
 })
 export class MentionModule { }
