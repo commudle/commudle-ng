@@ -10,24 +10,6 @@
     align-items: center;
   }
 
-  .online-status {
-    position: absolute;
-    top: 6px;
-    left: 3px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-
-    &.online {
-      background-color: #36DE4B;
-      box-shadow: 0 1px 4px 2px #36DE4B;
-    }
-
-    &.offline {
-      background-color: #8080806B;
-    }
-  }
-
   .profile-picture {
     max-width: 50px;
     max-height: 50px;
@@ -54,7 +36,6 @@
   }
 
   .profile-info {
-    // word-break: break-word;
     max-width: 100%;
     text-align: left;
 
@@ -87,7 +68,7 @@
       }
     }
 
-    .designation {
+    .description {
       margin: $space-4 0 0;
       font-size: 0.8rem;
       color: black;

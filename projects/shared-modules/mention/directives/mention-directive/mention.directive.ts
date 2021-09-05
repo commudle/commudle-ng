@@ -1,17 +1,20 @@
-import { Directive, ElementRef, HostListener, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { SuggestionBoxComponent } from '../../components/suggestion-box/suggestion-box.component';
-import { MentionService } from '../../service/mention.service';
+import { Directive, ElementRef, HostListener, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
+import { SuggestionBoxComponent } from 'projects/shared-modules/mention/components/suggestion-box/suggestion-box.component';
+import { MentionService } from 'projects/shared-modules/mention/service/mention.service';
+import { Subscription } from 'rxjs';
+
 @Directive({
   selector: '[appMention]'
 })
 export class MentionDirective {
 
-  componentRef: any;
+  componentRef: ComponentRef<SuggestionBoxComponent>;
   triggerCharacter = null;
   nativeElement: HTMLTextAreaElement;
   taggableEntities: any[] = [];
   selectedEntity: any;
   private coords: {top : number, left : number} = {top : 7, left : 50};
+  subscriptions: Subscription[] = [];
 
   constructor(
     private inputElementRef: ElementRef,
@@ -20,6 +23,10 @@ export class MentionDirective {
     private mentionService: MentionService
   ) {
     this.nativeElement = inputElementRef.nativeElement;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
   onItemHover(entity: any) {
@@ -32,6 +39,7 @@ export class MentionDirective {
   onItemClicked(entity: any) {
     this.autoComplete(entity); //entity.name is being used for autocompleting
     this.nativeElement.focus();
+    this.selectedEntity = null;
     if (this.componentRef) {
       this.componentRef.destroy();
     }
@@ -64,7 +72,15 @@ export class MentionDirective {
 
     let currentWordTyped = this.getCurrentWord();
 
-    if (entity.name.length >= currentWordTyped.value.slice(1).length) {
+    let entityName : string;
+    if(entity.type === 'users'){
+      entityName = entity.username;
+    }
+    else{
+      entityName = entity.name;
+    }
+
+    if (entityName.length >= currentWordTyped.value.slice(1).length) {
 
       let currentTextInputValue = this.nativeElement.value;
       
@@ -72,23 +88,23 @@ export class MentionDirective {
 
       if(entity.type === "users"){
         newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-        + this.triggerCharacter + entity.name + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+        + this.triggerCharacter + entityName + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
       }
       else{
         switch(entity.type){
           
           case 'channels': {
-            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entity.name}</a>`
+            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entityName}</a>`
             break;
           }
 
           case 'events': {
-            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entity.name}</a>`
+            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entityName}</a>`
             break;
           }
 
           default:{
-            newTextInputValue = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entity.name}</a>`;
+            newTextInputValue = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entityName}</a>`;
           }
 
         }
@@ -122,67 +138,65 @@ export class MentionDirective {
 
           case '@': {
 
-            this.mentionService.getUsers(query).subscribe((data: any) => {
+            this.subscriptions.push(
 
-              for(const entity in data){
-                for(const index in data[entity]){
-                  data[entity][index]["type"] = entity;
+              this.mentionService.getUsers(query).subscribe((data: any) => {
+
+                for(const entity in data){
+                  for(const index in data[entity]){
+                    data[entity][index]["type"] = entity;
+                  }
                 }
-              }
+  
+                this.taggableEntities = data.users;
+  
+                if (this.taggableEntities.length) {
+                  this.loadComponent();
+                  this.componentRef.instance.taggableEntities = this.taggableEntities;
+                }
+                else{
+                  if(this.componentRef){
+                    this.componentRef.destroy();
+                  }
+                }
+              })
 
-              this.taggableEntities = data.users;
-
-              if (this.taggableEntities) {
-                //console.log(window.getComputedStyle(this.nativeElement))
-               
-                // let computed = window.getComputedStyle(this.nativeElement);
-
-                // this.coords.top = this.nativeElement.offsetTop + parseInt(computed['borderTopWidth']);
-                // this.coords.left = this.nativeElement.offsetTop + parseInt(computed['borderLeftWidth']);
-
-                // console.log(this.coords.top)
-                // console.log(this.coords.left)
-
-                // this.coords.top = (Math.random() * 100) + 1;
-                // this.coords.left = (Math.random() * 500) + 1;
-
-                // console.log(this.nativeElement.getBoundingClientRect())
-
-                // let viewportOffset = this.nativeElement.getBoundingClientRect();
-                // // these are relative to the viewport, i.e. the window
-                // this.coords.top = viewportOffset.height;
-                // this.coords.left = viewportOffset.left;
-              
-                this.loadComponent();
-                this.componentRef.instance.taggableEntities = this.taggableEntities;
-              }
-            })
+            );
 
             break;
           }
 
           case '!': {
 
-            this.mentionService.getOthers(query).subscribe((data: any) => {
+            this.subscriptions.push(
 
-              console.log(data)
+              this.mentionService.getOthers(query).subscribe((data: any) => {
 
-              const results: any[] = []
-
-              for(const entity in data){
-                for(const index in data[entity]){
-                  data[entity][index]["type"] = entity;
-                  results.push(data[entity][index])
+                console.log(data)
+  
+                const results: any[] = []
+  
+                for(const entity in data){
+                  for(const index in data[entity]){
+                    data[entity][index]["type"] = entity;
+                    results.push(data[entity][index])
+                  }
                 }
-              }
+  
+                this.taggableEntities = results;
+  
+                if (this.taggableEntities.length) {
+                  this.loadComponent();
+                  this.componentRef.instance.taggableEntities = this.taggableEntities;
+                }
+                else{
+                  if(this.componentRef){
+                    this.componentRef.destroy();
+                  }
+                }
+              })
 
-              this.taggableEntities = results;
-
-              if (this.taggableEntities) {
-                this.loadComponent();
-                this.componentRef.instance.taggableEntities = this.taggableEntities;
-              }
-            })
+            );
 
             break;
           }
@@ -205,7 +219,7 @@ export class MentionDirective {
 
   }
 
-  setTriggerCharacter(word: string) {
+  setTriggerCharacter(word : string) {
 
     switch (word.charAt(0)) {
 

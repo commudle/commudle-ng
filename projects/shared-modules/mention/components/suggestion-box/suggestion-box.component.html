@@ -1,11 +1,10 @@
-<!-- <div class="info-box" >
-    # users, ! others
-</div> -->
 <div class="suggestions-box" >
     <nb-list class="sugggestions-box-list mention-menu scrollable-menu mention-dropdown" >
         <nb-list-item *ngFor="let entity of taggableEntities"
                       (click)="onItemClicked(entity)"
-                      [ngClass]=" { 'selected' : entity.name === selectedEntity.name } " 
+                      [ngClass]=" { 'selected' : entity.type === 'users' ? 
+                                                 entity.username === selectedEntity.username : 
+                                                 entity.name === selectedEntity.name } " 
                       (mouseover)="onItemHover(entity)">
         
         <app-entity-profile [entity]="entity" size="small" ></app-entity-profile>              

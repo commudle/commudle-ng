@@ -10,27 +10,14 @@
   z-index: 1000;
   float: left;
   min-width: 11em;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: $space-2 solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25em;
 }
-
-// .mention-item {
-//   display: block;
-//   padding: 0.2em 1.5em;
-//   line-height: 1.5em;
-//   clear: both;
-//   font-weight: 400;
-//   color: #212529;
-//   text-align: inherit;
-//   white-space: nowrap;
-//   background-color: transparent;
-//   border: 0;
-// }
 
 .scrollable-menu {
   display: block;
   height: auto;
-  max-height: 292px; /* fits 11 items with 14px font-size */
+  max-height: 292px;
   overflow: auto;
 
   // Custom scrollbar
@@ -42,18 +29,12 @@
 .mention-dropdown {
   bottom: 100%;
   top: auto;
-  margin-bottom: 2px;
-  background: white;
+  margin-bottom: $space-2;
+  background: $white;
 }
 
 .selected{
-  background-color: cornflowerblue;
-}
-
-.info-box{
-  position: absolute;
-  font-size: small;
-  margin-left: 20px;
+  background-color: $cornflower-blue;
 }
 
 nb-list-item{

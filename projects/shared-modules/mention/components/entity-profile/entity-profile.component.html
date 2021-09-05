@@ -10,19 +10,17 @@
   <div class="profile-info">
 
     <p class="name {{ size }} d-flex">
-      <strong>{{ entity.name | slice:0:25 }}</strong>
+      <strong>{{ entity.name | truncatetext:25 }}</strong>
       <img *ngIf="entity.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
            title="Expert Tick">
     </p>
 
-    <p *ngIf="entity.type === 'users'" class="designation {{ size }}">
-      {{ entity.username | slice:0:25 }}
-      <span *ngIf="entity.username?.length > 25">...</span>
+    <p *ngIf="entity.type === 'users'" class="description {{ size }}">
+      {{ entity.username | truncatetext:30 }}
     </p>
 
-    <p *ngIf="entity.type !== 'users'" class="designation {{ size }}">
-      ({{ entity.type }})
-    </p>
+    <p *ngIf="entity.type === 'communities'" class="description {{ size }}" >community</p>
+    <p *ngIf="entity.type !== 'users' && entity.type !== 'communities' " class="description {{ size }}" >{{ entity.type | slice:0:-1 }}</p>
 
   </div>
 </div>
