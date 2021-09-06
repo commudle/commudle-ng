@@ -1,0 +1,55 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.suggestions-box{
+  width: 300px;
+}
+
+.mention-menu {
+  position: absolute;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 11em;
+  border: $space-2 solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25em;
+}
+
+.scrollable-menu {
+  display: block;
+  height: auto;
+  max-height: 292px;
+  overflow: auto;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.mention-dropdown {
+  bottom: 100%;
+  top: auto;
+  margin-bottom: $space-2;
+  background: $white;
+}
+
+.selected{
+  background-color: $cornflower-blue;
+}
+
+nb-list-item{
+  cursor: pointer;
+  padding: $space-8;
+
+  app-user-profile-mini {
+    width: 100%;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
