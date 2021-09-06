@@ -2,6 +2,7 @@ import { Directive, ElementRef, HostListener, ViewContainerRef, ComponentFactory
 import { SuggestionBoxComponent } from 'projects/shared-modules/mention/components/suggestion-box/suggestion-box.component';
 import { MentionService } from 'projects/shared-modules/mention/service/mention.service';
 import { Subscription } from 'rxjs';
+import { getCaretCoordinates } from 'projects/shared-modules/mention/utils/textarea-caret-position';
 
 @Directive({
   selector: '[appMention]'
@@ -13,7 +14,6 @@ export class MentionDirective {
   nativeElement: HTMLTextAreaElement;
   taggableEntities: any[] = [];
   selectedEntity: any;
-  private coords: {top : number, left : number} = {top : 7, left : 50};
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -54,7 +54,7 @@ export class MentionDirective {
 
   @HostListener('keyup', ['$event'])
   onEnterKey(event: KeyboardEvent) {
-    
+
     if (event.key === "Control") {
 
       if (this.componentRef && this.selectedEntity) {
@@ -72,47 +72,62 @@ export class MentionDirective {
 
     let currentWordTyped = this.getCurrentWord();
 
-    let entityName : string;
-    if(entity.type === 'users'){
+    let entityName: string;
+    if (entity.type === 'users') {
       entityName = entity.username;
     }
-    else{
+    else {
       entityName = entity.name;
     }
 
     if (entityName.length >= currentWordTyped.value.slice(1).length) {
 
       let currentTextInputValue = this.nativeElement.value;
-      
-      let newTextInputValue = "";
 
-      if(entity.type === "users"){
+      let newTextInputValue = "";
+      let newCursorPosition = 0;
+
+      if (entity.type === "users") {
         newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-        + this.triggerCharacter + entityName + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+          + this.triggerCharacter + entityName + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+
+        newCursorPosition = currentWordTyped.startIndex + entityName.length + 2;
       }
-      else{
-        switch(entity.type){
-          
+      else {
+
+        let addText: string = "";
+
+        switch (entity.type) {
+
           case 'channels': {
-            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entityName}</a>`
+            addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entityName}</a>`;
+            newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
+              + addText +
+              currentTextInputValue.slice(currentWordTyped.endIndex + 1);
             break;
           }
 
           case 'events': {
-            newTextInputValue = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entityName}</a>`
+            addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entityName}</a>`;
+            newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
+              + addText +
+              currentTextInputValue.slice(currentWordTyped.endIndex + 1);
             break;
           }
 
-          default:{
-            newTextInputValue = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entityName}</a>`;
+          default: {
+            addText = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entityName}</a>`;
+            newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
+              + addText +
+              currentTextInputValue.slice(currentWordTyped.endIndex + 1);
           }
 
         }
+
+        newCursorPosition = currentWordTyped.startIndex + addText.length + 1;
       }
 
       this.nativeElement.value = newTextInputValue;
-
-      let newCursorPosition = currentWordTyped.startIndex + newTextInputValue.length + 2;
 
       this.nativeElement.selectionStart = newCursorPosition;
       this.nativeElement.selectionEnd = newCursorPosition;
@@ -133,7 +148,7 @@ export class MentionDirective {
       const query = wordBeingTyped.slice(1);
 
       if (query.length) {
-        
+
         switch (this.triggerCharacter) {
 
           case '@': {
@@ -142,20 +157,20 @@ export class MentionDirective {
 
               this.mentionService.getUsers(query).subscribe((data: any) => {
 
-                for(const entity in data){
-                  for(const index in data[entity]){
+                for (const entity in data) {
+                  for (const index in data[entity]) {
                     data[entity][index]["type"] = entity;
                   }
                 }
-  
+
                 this.taggableEntities = data.users;
-  
+
                 if (this.taggableEntities.length) {
                   this.loadComponent();
                   this.componentRef.instance.taggableEntities = this.taggableEntities;
                 }
-                else{
-                  if(this.componentRef){
+                else {
+                  if (this.componentRef) {
                     this.componentRef.destroy();
                   }
                 }
@@ -171,24 +186,24 @@ export class MentionDirective {
             this.subscriptions.push(
 
               this.mentionService.getOthers(query).subscribe((data: any) => {
-  
+
                 const results: any[] = []
-  
-                for(const entity in data){
-                  for(const index in data[entity]){
+
+                for (const entity in data) {
+                  for (const index in data[entity]) {
                     data[entity][index]["type"] = entity;
                     results.push(data[entity][index])
                   }
                 }
-  
+
                 this.taggableEntities = results;
-  
+
                 if (this.taggableEntities.length) {
                   this.loadComponent();
                   this.componentRef.instance.taggableEntities = this.taggableEntities;
                 }
-                else{
-                  if(this.componentRef){
+                else {
+                  if (this.componentRef) {
                     this.componentRef.destroy();
                   }
                 }
@@ -217,7 +232,7 @@ export class MentionDirective {
 
   }
 
-  setTriggerCharacter(word : string) {
+  setTriggerCharacter(word: string) {
 
     switch (word.charAt(0)) {
 
@@ -332,19 +347,24 @@ export class MentionDirective {
     const viewContainerRef = this._viewContainerRef;
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent<SuggestionBoxComponent>(componentFactory);
-    this.componentRef.location.nativeElement.style = `position:absolute; top:${this.coords.top}px; left:${this.coords.left}px`;
+
+    const { top, left } = getCaretCoordinates(this.nativeElement, this.nativeElement.selectionStart);
+
+    this.componentRef.location.nativeElement.style = `position:absolute; top:${top}px; left:${left}px`;
 
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
     this.selectedEntity = this.taggableEntities[0];
 
-    this.componentRef.instance.selectedItemEvent.subscribe((data: any) => {
-      if (data.eventType === "click") {
-        this.onItemClicked(data.entity);
-      }
-      else if (data.eventType === "hover") {
-        this.onItemHover(data.entity);
-      }
-    });
+    this.subscriptions.push(
+      this.componentRef.instance.selectedItemEvent.subscribe((data: any) => { 
+        if (data.eventType === "click") {
+          this.onItemClicked(data.entity);
+        }
+        else if (data.eventType === "hover") {
+          this.onItemHover(data.entity);
+        }
+      })
+    )
   }
 
 }
