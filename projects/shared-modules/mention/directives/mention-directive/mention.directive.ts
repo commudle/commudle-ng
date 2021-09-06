@@ -171,8 +171,6 @@ export class MentionDirective {
             this.subscriptions.push(
 
               this.mentionService.getOthers(query).subscribe((data: any) => {
-
-                console.log(data)
   
                 const results: any[] = []
   
