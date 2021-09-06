@@ -355,14 +355,16 @@ export class MentionDirective {
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
     this.selectedEntity = this.taggableEntities[0];
 
-    this.componentRef.instance.selectedItemEvent.subscribe((data: any) => { //unsubscribe
-      if (data.eventType === "click") {
-        this.onItemClicked(data.entity);
-      }
-      else if (data.eventType === "hover") {
-        this.onItemHover(data.entity);
-      }
-    });
+    this.subscriptions.push(
+      this.componentRef.instance.selectedItemEvent.subscribe((data: any) => { 
+        if (data.eventType === "click") {
+          this.onItemClicked(data.entity);
+        }
+        else if (data.eventType === "hover") {
+          this.onItemHover(data.entity);
+        }
+      })
+    )
   }
 
 }
