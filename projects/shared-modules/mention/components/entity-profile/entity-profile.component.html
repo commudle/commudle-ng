@@ -19,8 +19,8 @@
       {{ entity.username | truncatetext:30 }}
     </p>
 
-    <p *ngIf="entity.type === 'communities'" class="description {{ size }}" >community</p>
-    <p *ngIf="entity.type !== 'users' && entity.type !== 'communities' " class="description {{ size }}" >{{ entity.type | slice:0:-1 }}</p>
+    <p *ngIf="entity.type === 'communities'" class="description {{ size }}" >(community)</p>
+    <p *ngIf="entity.type !== 'users' && entity.type !== 'communities' " class="description {{ size }}" >({{ entity.type | slice:0:-1 }})</p>
 
   </div>
 </div>
