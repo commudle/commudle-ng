@@ -37,7 +37,7 @@ export class MentionDirective {
   }
 
   onItemClicked(entity: any) {
-    this.autoComplete(entity); //entity.name is being used for autocompleting
+    this.autoComplete(entity);
     this.nativeElement.focus();
     this.selectedEntity = null;
     if (this.componentRef) {
@@ -74,7 +74,7 @@ export class MentionDirective {
 
     let entityName: string;
     if (entity.type === 'users') {
-      entityName = entity.username;
+      entityName = this.triggerCharacter + entity.username;
     }
     else {
       entityName = entity.name;
@@ -87,53 +87,43 @@ export class MentionDirective {
       let newTextInputValue = "";
       let newCursorPosition = 0;
 
-      if (entity.type === "users") {
-        newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-          + this.triggerCharacter + entityName + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+      let addText: string = entityName;
 
-        newCursorPosition = currentWordTyped.startIndex + entityName.length + 2;
-      }
-      else {
-
-        let addText: string = "";
-
-        switch (entity.type) {
-
-          case 'channels': {
-            addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entityName}</a>`;
-            newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-              + addText +
-              currentTextInputValue.slice(currentWordTyped.endIndex + 1);
-            break;
-          }
-
-          case 'events': {
-            addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entityName}</a>`;
-            newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-              + addText +
-              currentTextInputValue.slice(currentWordTyped.endIndex + 1);
-            break;
-          }
-
-          default: {
-            addText = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entityName}</a>`;
-            newTextInputValue = currentTextInputValue.slice(0, currentWordTyped.startIndex)
-              + addText +
-              currentTextInputValue.slice(currentWordTyped.endIndex + 1);
-          }
-
+      switch(entity.type){
+        case 'users':{
+          newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
+          break;
         }
 
-        newCursorPosition = currentWordTyped.startIndex + addText.length + 1;
+        case 'channels':{
+          addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entityName}</a>`;
+          newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
+          break;
+        }
+
+        case 'events':{
+          addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entityName}</a>`;
+          newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
+          break;
+        }
+
+        default:{
+          addText = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entityName}</a>`;
+          newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
+        }
       }
 
-      this.nativeElement.value = newTextInputValue;
+      newCursorPosition = currentWordTyped.startIndex + addText.length + 1;
 
+      this.nativeElement.value = newTextInputValue;
       this.nativeElement.selectionStart = newCursorPosition;
       this.nativeElement.selectionEnd = newCursorPosition;
-
     }
 
+  }
+
+  newTextInput(text : string, currentTextInputValue : string, currentWordTyped : TypedWord) : string {
+    return currentTextInputValue.slice(0, currentWordTyped.startIndex) + text + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
   }
 
   @HostListener('input', ['$event'])
@@ -148,69 +138,23 @@ export class MentionDirective {
       const query = wordBeingTyped.slice(1);
 
       if (query.length) {
-
         switch (this.triggerCharacter) {
 
           case '@': {
-
             this.subscriptions.push(
-
               this.mentionService.getUsers(query).subscribe((data: any) => {
-
-                for (const entity in data) {
-                  for (const index in data[entity]) {
-                    data[entity][index]["type"] = entity;
-                  }
-                }
-
-                this.taggableEntities = data.users;
-
-                if (this.taggableEntities.length) {
-                  this.loadComponent();
-                  this.componentRef.instance.taggableEntities = this.taggableEntities;
-                }
-                else {
-                  if (this.componentRef) {
-                    this.componentRef.destroy();
-                  }
-                }
+                this.displayComponent(data);
               })
-
             );
-
             break;
           }
 
           case '!': {
-
             this.subscriptions.push(
-
               this.mentionService.getOthers(query).subscribe((data: any) => {
-
-                const results: any[] = []
-
-                for (const entity in data) {
-                  for (const index in data[entity]) {
-                    data[entity][index]["type"] = entity;
-                    results.push(data[entity][index])
-                  }
-                }
-
-                this.taggableEntities = results;
-
-                if (this.taggableEntities.length) {
-                  this.loadComponent();
-                  this.componentRef.instance.taggableEntities = this.taggableEntities;
-                }
-                else {
-                  if (this.componentRef) {
-                    this.componentRef.destroy();
-                  }
-                }
+                this.displayComponent(data);
               })
-
             );
-
             break;
           }
 
@@ -228,6 +172,31 @@ export class MentionDirective {
           this.componentRef.destroy()
         }
       }, 500)
+    }
+
+  }
+
+  displayComponent(data : any){
+
+    const results : any[] = [];
+
+    for (const entity in data) {
+      for (const index in data[entity]) {
+        data[entity][index]["type"] = entity;
+        results.push(data[entity][index])
+      }
+    }
+
+    this.taggableEntities = results;
+
+    if (this.taggableEntities.length) {
+      this.loadComponent();
+      this.componentRef.instance.taggableEntities = this.taggableEntities;
+    }
+    else {
+      if (this.componentRef) {
+        this.componentRef.destroy();
+      }
     }
 
   }
@@ -349,7 +318,6 @@ export class MentionDirective {
     this.componentRef = viewContainerRef.createComponent<SuggestionBoxComponent>(componentFactory);
 
     const { top, left } = getCaretCoordinates(this.nativeElement, this.nativeElement.selectionStart);
-
     this.componentRef.location.nativeElement.style = `position:absolute; top:${top}px; left:${left}px`;
 
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
