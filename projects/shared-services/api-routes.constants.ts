@@ -525,4 +525,9 @@ export const API_ROUTES = {
     INDEX: 'api/v2/tags',
     UPDATE: 'api/v2/tags',
   },
+
+  MENTIONS: {
+    USERS: 'api/v2/mentions/user_entities',
+    OTHERS: 'api/v2/mentions/other_entities'
+  }
 };
