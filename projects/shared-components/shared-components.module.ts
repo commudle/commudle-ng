@@ -30,6 +30,7 @@ import { MessagesListComponent } from 'projects/shared-components/messages/messa
 import { MessagesComponent } from 'projects/shared-components/messages/messages.component';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { HmsVideoModule } from 'projects/shared-modules/hms-video/hms-video.module';
+import { MentionModule } from 'projects/shared-modules/mention/mention.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { BadgeComponent } from './badge/badge.component';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
@@ -121,6 +122,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     HmsVideoModule,
     PickerModule,
     LinkyModule,
+    MentionModule,
 
     // Nebular
     NbButtonModule,
