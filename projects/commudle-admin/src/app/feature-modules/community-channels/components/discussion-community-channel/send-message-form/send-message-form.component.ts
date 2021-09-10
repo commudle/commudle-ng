@@ -33,6 +33,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   uploadedAttachementFiles: IAttachedFile[] = [];
   uploadedFiles = [];
   showEmojiForm = false;
+  showHelperText = false;
 
   sendUserMessageForm = this.fb.group({
     content: [
@@ -68,6 +69,14 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.inputElement.nativeElement.focus();
+  }
+
+  showText(){
+    this.showHelperText = true;
+  }
+
+  hideText(){
+    this.showHelperText = false;
   }
 
   emitMessage() {
