@@ -19,6 +19,7 @@ import { CommunityStatsComponent } from './components/community-stats/community-
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommunityMembersComponent } from './components/community-members/community-members.component';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { CommunityMembersComponent } from './components/community-members/commun
     SharedComponentsModule,
     Ng2SmartTableModule,
     FontAwesomeModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbCardModule,

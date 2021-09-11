@@ -121,6 +121,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     HmsVideoModule,
     PickerModule,
     LinkyModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbButtonModule,
