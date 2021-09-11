@@ -122,7 +122,7 @@
         [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes(EUserRoles.EVENT_VOLUNTEER)"
       ></app-session-page-viewers>
     </div>
-    <div #interactionWindow class="session-page-window">
+    <div #interactionWindow class="session-page-window remove-overflow">
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Chat with other Viewers</p>
         <button (click)="toggleInteractionWindow(2)" ghost nbButton shape="round" size="small">
