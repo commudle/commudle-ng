@@ -22,6 +22,7 @@ import { SelectRoleComponent } from './components/select-role/select-role.compon
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 import { HmsClientManagerService } from './services/hms-client-manager.service';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { HmsClientManagerService } from './services/hms-client-manager.service';
     FormsModule,
     ReactiveFormsModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbButtonModule,

@@ -17,6 +17,7 @@ import {
   NbTooltipModule
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AboutComponent } from './components/about/about.component';
 import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
@@ -51,6 +52,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     ReactiveFormsModule,
     SharedComponentsModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbCardModule,
