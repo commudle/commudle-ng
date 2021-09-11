@@ -4,7 +4,7 @@
   margin-top: 0;
   border: none;
   border-radius: $border-10;
-  overflow: hidden;
+  //overflow: hidden;
   height: calc(100vh - 56px - 16px - 16px);
 
   &.internal-link {
@@ -25,6 +25,7 @@
   nb-card-body {
     padding: 0;
     height: inherit;
+    overflow: unset;
 
     .session-page-info {
       gap: $space-12;
@@ -155,6 +156,10 @@
       background-color: $white;
       border-radius: $border-4;
       overflow: hidden;
+
+      &.remove-overflow{
+        overflow: unset;
+      }
 
       &.open {
         display: block;
