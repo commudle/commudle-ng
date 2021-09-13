@@ -20,6 +20,7 @@ import {
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
@@ -71,6 +72,7 @@ import { LabsRoutingModule } from './labs-routing.module';
     SharedPipesModule,
     NbSpinnerModule,
     LinkyModule,
+    SharedDirectivesModule,
     MentionModule,
 
     // Nebular
