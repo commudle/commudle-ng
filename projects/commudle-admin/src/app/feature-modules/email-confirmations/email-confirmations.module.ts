@@ -8,6 +8,7 @@ import { UserRoleConfirmationComponent } from './components/user-role-confirmati
 import { NbIconModule, NbCardModule, NbSpinnerModule, NbToggleModule } from '@nebular/theme';
 import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-unsubscribe.component';
 import { FormsModule } from '@angular/forms';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     EmailConfirmationsRoutingModule,
     FormsModule,
-
+    SharedDirectivesModule,
 
 
     // Nebular
