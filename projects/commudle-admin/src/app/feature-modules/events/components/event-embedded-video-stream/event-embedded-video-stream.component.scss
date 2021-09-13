@@ -3,22 +3,24 @@
   flex-direction: column;
 
   .embedded-video-stream-form {
+    order: 2;
+
     form {
-      >div {
+      > div {
         margin-bottom: 1rem;
       }
     }
-    order: 2;
   }
 
   .preview {
     order: 1;
-    height: 400px;
+    height: 550px;
     overflow: auto;
   }
 
   nb-option.selected {
     background-color: red !important;
+
     p {
       color: white !important;
     }

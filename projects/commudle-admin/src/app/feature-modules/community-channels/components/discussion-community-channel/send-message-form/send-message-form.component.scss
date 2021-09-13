@@ -114,24 +114,31 @@
 
 }
 
-.mention-list-template {
-  display: flex;
-  >div {
-    overflow: hidden;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 5px;
-    img {
-      width: 100%;
-
-    }
-  }
-
-
-  p.name {
-    margin: 0;
-
-    text-decoration: none !important;
-  }
+.tagging-info{
+  line-height: 10px;
+  font-weight: 400;
+  font-size: 13px;
+  margin-left: 10px;
 }
+
+// .mention-list-template {
+//   display: flex;
+//   >div {
+//     overflow: hidden;
+//     width: 25px;
+//     height: 25px;
+//     border-radius: 50%;
+//     margin-right: 5px;
+//     img {
+//       width: 100%;
+
+//     }
+//   }
+
+
+//   p.name {
+//     margin: 0;
+
+//     text-decoration: none !important;
+//   }
+// }

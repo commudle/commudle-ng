@@ -1,0 +1,88 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+.user-streams {
+  height: calc(100% - 56px);
+  position: relative;
+  width: 100%;
+
+  .user-videos {
+    height: 100%;
+    width: 100%;
+  }
+
+  &.screen-share {
+    .user-screen-share {
+      height: 100%;
+      width: 80%;
+    }
+
+    .user-videos {
+      height: 100%;
+      overflow-y: auto;
+      width: 20%;
+
+      .user-video {
+        height: 25%;
+        width: 100%;
+      }
+    }
+  }
+
+  &.one {
+    .user-video {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &.two {
+    .user-video {
+      height: 100%;
+      width: 50%;
+    }
+  }
+
+  &.three {
+    .user-video {
+      height: 50%;
+      width: 50%;
+    }
+  }
+
+  &.four {
+    .user-video {
+      height: 50%;
+      width: calc(100% / 3);
+    }
+  }
+
+  &.five {
+    .user-video {
+      height: calc(100% / 3);
+      width: calc(100% / 3);
+    }
+  }
+
+  &.six {
+    .user-video {
+      height: calc(100% / 3);
+      width: 25%;
+    }
+  }
+
+  &.seven {
+    .user-video {
+      height: 25%;
+      width: 25%;
+    }
+  }
+
+  &.default {
+    overflow-y: scroll;
+
+    .user-video {
+      height: 25%;
+      width: 25%;
+    }
+  }
+}

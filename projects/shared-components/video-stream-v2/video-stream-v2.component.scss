@@ -1,0 +1,63 @@
+.video-player-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  .video-player {
+    height: 100%;
+    left: 50%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: inherit;
+
+    .filler {
+      color: lightgrey;
+      display: block;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+
+      nb-icon {
+        color: lightgrey;
+        font-size: 3.5rem;
+      }
+    }
+
+    .youtube-player {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+
+      youtube-player {
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    .external-link {
+      text-align: center;
+
+      p {
+        font-size: 1.2rem;
+
+        small {
+          font-size: 0.8rem;
+
+          nb-icon {
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      nb-icon.video-outline {
+        font-size: 3.5rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}

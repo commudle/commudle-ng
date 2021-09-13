@@ -10,6 +10,8 @@
     width: inherit;
     max-width: 100%;
     transform: translate(-50%,-50%);
+    overflow: hidden;
+    border-radius: 12px;
 
     .filler {
       display: block;
