@@ -56,6 +56,7 @@ export class HomeEventComponent implements OnInit {
     this.meta.updateTag(
       {
         name: 'og:image',
+        property: 'og:image',
         content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
       });
     this.meta.updateTag(
@@ -63,9 +64,9 @@ export class HomeEventComponent implements OnInit {
         name: 'og:image:secure_url',
         content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
       });
-    this.meta.updateTag({ name: 'og:title', content: `${this.event.name} | ${this.community.name}` });
-    this.meta.updateTag({ name: 'og:description', content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200)});
-    this.meta.updateTag({ name: 'og:type', content: 'website'});
+    this.meta.updateTag({ name: 'og:title', property: 'og:title', content: `${this.event.name} | ${this.community.name}` });
+    this.meta.updateTag({ name: 'og:description', property: 'og:description', content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200)});
+    this.meta.updateTag({ name: 'og:type', property: 'og:type', content: 'website'});
 
     this.meta.updateTag(
       {
