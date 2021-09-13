@@ -7,7 +7,10 @@
       <div class="author-details">
         <p>
           <strong>{{ message.user.name }}</strong>
+          &nbsp;
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
+          &nbsp;
+          <small><em *ngIf="message.edited">(edited)</em></small>
         </p>
       </div>
       <div
@@ -67,6 +70,8 @@
       <app-community-channel-message
         (sendDelete)="emitDelete($event)"
         (sendMessageByEmail)="emitSendMessageByEmail($event)"
+        (sendUpdatedAttachmentReply)="emitAttachmentUpdate($event)"
+        (sendUpdatedReply)="emitUpdate($event, rep.id)"
         (sendVote)="emitVote($event)"
         [allActions]="allActions"
         [canReply]="false"
@@ -87,17 +92,16 @@
   </div>
 </div>
 
-<!-- <ng-template #editMessageTemplate>
-  <div class="edit-message-form">
+<ng-template #editMessageTemplate>
+  <div *ngIf="canEdit" class="edit-message-form">
     <app-send-message-form
-    *ngIf="canEdit"
-    (sendMessage)="emitReply($event)"
-    (sendAttachmentMessage)="emitAttachmentReply($event)"
-    (sendUpdatedTextMessage)="emitUpdate($event)"
-    (sendUpdatedAttachmentMessage)="emitAttachmentUpdate($event)"
-    [attachmentDisplay]="'bottom'"
-    [editableMessage]="message"
-    [rows]="2"
-  ></app-send-message-form>
+      (sendAttachmentMessage)="emitAttachmentReply($event)"
+      (sendMessage)="emitReply($event)"
+      (sendUpdatedAttachmentMessage)="emitAttachmentUpdate($event)"
+      (sendUpdatedTextMessage)="emitUpdate($event)"
+      [attachmentDisplay]="'bottom'"
+      [editableMessage]="message"
+      [rows]="2"
+    ></app-send-message-form>
   </div>
-</ng-template> -->
+</ng-template>
