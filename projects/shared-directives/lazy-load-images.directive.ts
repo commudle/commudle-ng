@@ -1,17 +1,18 @@
-import { Directive, ElementRef, HostBinding, Input, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Directive({
-  selector: 'img'
+  selector: 'img',
+  providers: [IsBrowserService]
 })
 export class LazyLoadImagesDirective {
 
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;
 
-  private isBrowser: boolean = isPlatformBrowser(this.platformId);
+  private isBrowser: boolean = this.IsBrowserService.isBrowser();
 
-  constructor(private el: ElementRef, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private el: ElementRef, private IsBrowserService : IsBrowserService) {}
 
   ngAfterViewInit() {
     if(this.isBrowser){
