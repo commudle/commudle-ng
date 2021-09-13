@@ -1,0 +1,96 @@
+<div class="conference-container">
+  <app-conference-user-videos></app-conference-user-videos>
+  <div *ngIf="localPeer" class="d-flex controls">
+    <!-- Recording -->
+    <button
+      (click)="toggleRecording()"
+      *ngIf="(localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) && embeddedVideoStream?.rtmp_url.length <= 0"
+      [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'" [status]="isRecording ? 'success' : ''"></nb-icon>
+    </button>
+    <!-- Streaming -->
+    <button
+      (click)="toggleStreaming()"
+      *ngIf="(localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) && embeddedVideoStream?.rtmp_url.length > 0"
+      [nbTooltip]="isStreaming ? 'Stop Streaming' : 'Start Streaming'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isStreaming ? 'success' : ''" icon="radio"></nb-icon>
+    </button>
+    <!-- Microphone -->
+    <button
+      (click)="toggleAudio()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isAudioEnabled ? 'Mute Audio' : 'Unmute Audio'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+    </button>
+    <!-- Camera -->
+    <button
+      (click)="toggleVideo()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [nbTooltip]="isVideoEnabled ? 'Mute Video' : 'Unmute Video'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+    </button>
+    <!-- Screen share -->
+    <button
+      (click)="toggleScreenShare()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
+      [disabled]="isScreenSharing && !isLocalScreenSharing"
+      [nbTooltip]="isLocalScreenSharing ? 'Stop Screen Share' : 'Start Screen Share'"
+      ghost
+      nbButton
+      shape="round"
+    >
+      <nb-icon [status]="isLocalScreenSharing ? 'success' : ''" icon="monitor"></nb-icon>
+    </button>
+    <!-- Settings -->
+    <button
+      (click)="openSettings()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      nbTooltip="Open Settings"
+      shape="round"
+    >
+      <nb-icon icon="settings"></nb-icon>
+    </button>
+    <!--     Leave session -->
+    <button (click)="leaveSession()" ghost nbButton nbTooltip="Leave session" shape="round">
+      <nb-icon icon="log-out"></nb-icon>
+    </button>
+    <!--     Join/Leave Stage -->
+    <button
+      (click)="toggleStage()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
+      {{isOnStage ? 'Leave stage' : 'Join stage'}}
+    </button>
+    <!-- End session -->
+    <button
+      (click)="endSession()"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      ghost
+      nbButton
+      shape="round"
+    >
+      End session
+    </button>
+  </div>
+</div>

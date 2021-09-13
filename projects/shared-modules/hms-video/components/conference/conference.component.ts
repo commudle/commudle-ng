@@ -1,14 +1,15 @@
 import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { EHmsStates } from 'projects/shared-modules/hms-video/enums/hms-states.enum';
 import { IHmsClient } from 'projects/shared-modules/hms-video/models/hms-client.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { combineLatest, Subscription } from 'rxjs';
 import { HmsClientManagerService } from '../../services/hms-client-manager.service';
-import { EHmsStates, HmsVideoStateService } from '../../services/hms-video-state.service';
+import { HmsVideoStateService } from '../../services/hms-video-state.service';
 import { LocalmediaService } from '../../services/localmedia.service';
 import { HmsLiveChannel } from '../../services/websockets/hms-live.channel';
-import { EHmsRoles } from '../enums/hms-roles.enum';
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 
 @Component({
   selector: 'app-conference',

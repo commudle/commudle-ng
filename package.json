@@ -18,6 +18,8 @@
   },
   "private": true,
   "dependencies": {
+    "@100mslive/hms-video": "0.0.173",
+    "@100mslive/hms-video-store": "0.2.34",
     "@100mslive/hmsvideo-web": "^1.0.9",
     "@akveo/ng2-completer": "^9.0.1",
     "@angular/animations": "~11.0.1",

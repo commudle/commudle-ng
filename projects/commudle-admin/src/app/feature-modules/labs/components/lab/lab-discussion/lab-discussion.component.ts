@@ -36,6 +36,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
   });
   limitRows = 5;
   messageLastScrollHeight: number;
+  showHelperText = false;
 
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
   @ViewChild('messageInput') private messageInput: ElementRef;
@@ -73,6 +74,14 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
     this.discussionChatChannel.unsubscribe();
 
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  showText(){
+    this.showHelperText = true;
+  }
+
+  hideText(){
+    this.showHelperText = false;
   }
 
   login() {
