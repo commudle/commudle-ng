@@ -28,6 +28,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   // taggableUsers: IUser[] = [];
   communityChannel: ICommunityChannel;
 
+  existingAttachmentFiles: IAttachedFile[] = [];
   uploadedAttachmentFiles: IAttachedFile[] = [];
   uploadedFiles = [];
   showEmojiForm = false;
@@ -53,6 +54,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       this.sendUserMessageForm.patchValue({
         content: this.editableMessage.content,
       });
+      this.existingAttachmentFiles = this.editableMessage.attachments;
     }
   }
 
@@ -64,13 +66,15 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     if (!this.editableMessage) {
       if (this.uploadedFiles.length > 0) {
         this.emitAttachmentMessage();
-      } else if (this.sendUserMessageForm.valid) {
+      }
+      if (this.sendUserMessageForm.valid) {
         this.emitTextMessage();
       }
     } else {
-      if (this.uploadedFiles.length > 0) {
+      if (this.uploadedFiles.length > 0 || this.existingAttachmentFiles.length > 0) {
         this.emitUpdatedAttachmentMessage();
-      } else if (this.sendUserMessageForm.valid) {
+      }
+      if (this.sendUserMessageForm.valid) {
         this.emitUpdatedTextMessage();
       }
     }
@@ -111,6 +115,8 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     Object.keys(userMessageFormValue).forEach((key) => {
       formData.append(`user_message[${key}]`, userMessageFormValue[key]);
     });
+
+    this.uploadedAttachmentFiles.push(...this.existingAttachmentFiles);
 
     for (let i = 0; i < this.uploadedAttachmentFiles.length; i++) {
       Object.keys(this.uploadedAttachmentFiles[i]).forEach((key) =>
@@ -159,6 +165,10 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       this.uploadedAttachmentFiles.splice(index, 1);
       this.uploadedFiles.splice(index, 1);
     }
+  }
+
+  removeExistingFile(index: number) {
+    this.existingAttachmentFiles[index]['delete'] = true;
   }
 
   selectInput() {

@@ -70,7 +70,7 @@
       <app-community-channel-message
         (sendDelete)="emitDelete($event)"
         (sendMessageByEmail)="emitSendMessageByEmail($event)"
-        (sendUpdatedAttachmentReply)="emitAttachmentUpdate($event)"
+        (sendUpdatedAttachmentReply)="emitAttachmentUpdate($event, rep.id)"
         (sendUpdatedReply)="emitUpdate($event, rep.id)"
         (sendVote)="emitVote($event)"
         [allActions]="allActions"
