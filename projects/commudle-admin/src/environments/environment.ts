@@ -14,9 +14,9 @@ export const environment = {
   // app_url: 'https://t.commudle.com',
   // base_url: 'https://t.commudle.com',
   // action_cable_url: 'https://t.commudle.com/live',
-  // anycable_url: 'wss://t.commudle.com/cable',
+  // anycable_url: 'wss://wst.commudle.com/cable',
   // auth_cookie_name: 'dev_commudle_user_auth',
-  // zoom_call_server_url: 'https://t.commudle.com',
+  // zoom_call_server_url: 'https://zoomt.commudle.com',
 
   session_cookie_name: 'cmdle_sess',
 

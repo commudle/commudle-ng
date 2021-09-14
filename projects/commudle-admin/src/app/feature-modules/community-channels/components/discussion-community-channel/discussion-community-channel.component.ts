@@ -201,7 +201,26 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   sendUpdatedAttachmentMessage(data, userMessageId) {
-    this.discussionsService.communityChannelUpdatedAttachmentMessage(data, userMessageId).subscribe();
+    if (data instanceof Array) {
+      userMessageId = data[1];
+      data = data[0];
+    }
+
+    let message: IUserMessage = this.messages.find((message: IUserMessage) => message.id === userMessageId);
+    if (message === undefined) {
+      const userMessage: IUserMessage = this.messages.find((message: IUserMessage) =>
+        message.user_messages.find((msg: IUserMessage) => msg.id === userMessageId),
+      );
+      if (userMessage === undefined) {
+        return;
+      }
+      message = userMessage.user_messages.find((message: IUserMessage) => message.id === userMessageId);
+    }
+
+    data.append('user_message_id', message.id);
+    data.append('parent_type', message.parent_type);
+    data.append('parent_id', message.parent_id);
+    this.discussionsService.communityChannelUpdateAttachmentMessage(data, userMessageId).subscribe();
   }
 
   sendVote(userMessageId) {
@@ -264,9 +283,9 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
             }
             case this.communityChannelChannel.ACTIONS.UPDATE: {
               if (data.parent_type === 'UserMessage') {
-                let parentMessage = this.findMessageIndex(data.parent_id);
-                let childMessage = this.findReplyIndex(parentMessage, data.user_message.id);
-                this.messages[parentMessage].user_messages[childMessage] = data.user_message;
+                let parentMessageIdx = this.findMessageIndex(data.parent_id);
+                let childMessageIdx = this.findReplyIndex(parentMessageIdx, data.user_message.id);
+                this.messages[parentMessageIdx].user_messages[childMessageIdx] = data.user_message;
               } else {
                 this.messages[this.findMessageIndex(data.user_message.id)] = data.user_message;
               }

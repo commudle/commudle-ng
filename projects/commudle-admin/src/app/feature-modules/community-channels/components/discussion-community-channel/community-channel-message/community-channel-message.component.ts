@@ -139,8 +139,12 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     this.editMessageTemplateRef?.close();
   }
 
-  emitAttachmentUpdate(data): void {
-    this.sendUpdatedAttachmentReply.emit(data);
+  emitAttachmentUpdate(data, userMessageId?: number): void {
+    if (userMessageId) {
+      this.sendUpdatedAttachmentReply.emit([data, userMessageId]);
+    } else {
+      this.sendUpdatedAttachmentReply.emit(data);
+    }
     this.editMessageTemplateRef?.close();
   }
 

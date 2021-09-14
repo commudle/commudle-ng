@@ -411,7 +411,7 @@ export const API_ROUTES = {
       'api/v2/discussions/public_get_or_create_for_community_channel_chat',
     COMMUNITY_CHANNEL: {
       NEW_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/new_attachment_message',
-      UPDATED_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/updated_attachment_message',
+      UPDATE_ATTACHMENT_MESSAGE: 'api/v2/discussions/community_channel/update_attachment_message',
     },
   },
 
