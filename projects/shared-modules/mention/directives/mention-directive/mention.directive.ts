@@ -11,10 +11,11 @@ export class MentionDirective {
 
   componentRef: ComponentRef<SuggestionBoxComponent>;
   triggerCharacter = null;
-  nativeElement: HTMLTextAreaElement;
+  nativeElement: HTMLTextAreaElement | HTMLInputElement ;
   taggableEntities: any[] = [];
   selectedEntity: any;
   subscriptions: Subscription[] = [];
+  private coords: { top : number, left : number } = { top : 0, left : 0 };
 
   constructor(
     private inputElementRef: ElementRef,
@@ -45,23 +46,29 @@ export class MentionDirective {
     }
   }
 
-  // @HostListener('blur', ['$event']) //if text area gets out of focus remove autocomplete box
-  // onOutOfFocus(event : any){
-  //   if(this.componentRef && !this.selectedEntity){
-  //     this.componentRef.destroy();
-  //   }
-  // }
+  @HostListener('blur', ['$event']) //if text area gets out of focus remove autocomplete box
+  onOutOfFocus(event : any){
+    setTimeout( () => {
+      if(this.componentRef){
+        this.componentRef.destroy();
+      }
+    } ,100)
+  }
 
   @HostListener('keyup', ['$event'])
   onEnterKey(event: KeyboardEvent) {
 
-    if (event.key === "Control") {
+    if (event.key === "Enter") {
+
+      event.preventDefault()
+      event.stopPropagation()
+      event.stopImmediatePropagation()
 
       if (this.componentRef && this.selectedEntity) {
         this.autoComplete(this.selectedEntity);
         this.nativeElement.focus();
         this.componentRef.destroy()
-        this.selectedEntity = null;// alert here
+        this.selectedEntity = "";// alert here
       }
 
     }
@@ -191,6 +198,7 @@ export class MentionDirective {
 
     if (this.taggableEntities.length) {
       this.loadComponent();
+      window.requestAnimationFrame( () => this.checkBounds() )
       this.componentRef.instance.taggableEntities = this.taggableEntities;
     }
     else {
@@ -199,6 +207,31 @@ export class MentionDirective {
       }
     }
 
+  }
+
+  checkBounds(){
+    let left = this.coords.left, top = this.coords.top;
+    const boundsHorizontal = this.componentRef.location.nativeElement.firstChild.getBoundingClientRect();
+    const boundsVertical = this.componentRef.location.nativeElement.firstChild.firstChild.getBoundingClientRect();
+    const navbarHeight = 56;
+
+    let dropUp : boolean = true;
+    let lineHeight : number = 0;
+
+    //If it goes off up or down
+    if( boundsVertical.bottom - navbarHeight < boundsVertical.height ){
+      top += boundsVertical.height;
+      dropUp = false;
+      const parentStyles = window.getComputedStyle(this.nativeElement);
+      lineHeight = parseFloat(parentStyles.lineHeight);
+    }
+
+    //if it goes off on right side
+    if (boundsHorizontal.left + boundsHorizontal.width > document.documentElement.clientWidth) {
+      left -= boundsHorizontal.left + boundsHorizontal.width - document.documentElement.clientWidth + 10;
+    }
+
+    this.positionElement(left,top,dropUp,lineHeight);
   }
 
   setTriggerCharacter(word: string) {
@@ -317,8 +350,10 @@ export class MentionDirective {
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent<SuggestionBoxComponent>(componentFactory);
 
-    const { top, left } = getCaretCoordinates(this.nativeElement, this.nativeElement.selectionStart);
-    this.componentRef.location.nativeElement.style = `position:absolute; top:${top}px; left:${left}px`;
+    this.coords = getCaretCoordinates(this.nativeElement, this.nativeElement.selectionStart);
+    this.coords.top += this.nativeElement.offsetTop - this.nativeElement.scrollTop + 5;
+    this.coords.left += this.nativeElement.offsetLeft - this.nativeElement.scrollLeft + 5;
+    this.positionElement(this.coords.left,this.coords.top);
 
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
     this.selectedEntity = this.taggableEntities[0];
@@ -333,6 +368,13 @@ export class MentionDirective {
         }
       })
     )
+  }
+
+  positionElement(left : number, top : number, dropUp : boolean = true, lineHeight : number = 0 ){
+    top += dropUp ? 0 : lineHeight;
+    this.componentRef.location.nativeElement.firstChild.style.position = "absolute";
+    this.componentRef.location.nativeElement.firstChild.style.left = left + 'px';
+    this.componentRef.location.nativeElement.firstChild.style.top = top + 'px';
   }
 
 }
