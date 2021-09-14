@@ -58,7 +58,9 @@
       </div>
       <textarea
         #inputElement
+        (blur)="hideText()"
         (click)="selectInput()"
+        (focus)="showText()"
         appMention
         formControlName="content"
         fullWidth
@@ -71,6 +73,9 @@
       <nb-icon icon="corner-down-left-outline"></nb-icon>
     </button>
   </form>
+  <div *ngIf="this.showHelperText" class="tagging-info">
+    <span>@ users, ! others</span>
+  </div>
 </div>
 
 <!--<ng-template #mentionListTemplate let-item="item">-->

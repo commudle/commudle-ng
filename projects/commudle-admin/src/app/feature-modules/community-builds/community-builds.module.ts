@@ -9,10 +9,11 @@ import {
   NbIconModule,
   NbInputModule,
   NbPopoverModule,
-  NbSelectModule
+  NbSelectModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityBuildsRoutingModule } from './community-builds-routing.module';
 import { CommunityBuildHListItemComponent } from './components/community-build-h-list-item/community-build-h-list-item.component';
@@ -33,7 +34,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     CommunityBuildHListItemComponent,
     CommunityBuildComponent,
     BuildListItemComponent,
-    TeammateInviteConfirmationComponent
+    TeammateInviteConfirmationComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +45,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     SharedComponentsModule,
     EditorModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbCardModule,
@@ -52,8 +54,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     NbButtonModule,
     NbIconModule,
     NbPopoverModule,
-    NbCheckboxModule
-  ]
+    NbCheckboxModule,
+  ],
 })
-export class CommunityBuildsModule {
-}
+export class CommunityBuildsModule {}

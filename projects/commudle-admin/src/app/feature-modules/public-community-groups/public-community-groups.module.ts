@@ -9,26 +9,27 @@ import { CommunityGroupCommunitiesComponent } from './components/community-group
 import { CommunityGroupTeamComponent } from './components/community-group-team/community-group-team.component';
 import { CommunityGroupAboutComponent } from './components/community-group-about/community-group-about.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
     CommunityGroupHomeComponent,
     CommunityGroupCommunitiesComponent,
     CommunityGroupTeamComponent,
-    CommunityGroupAboutComponent
+    CommunityGroupAboutComponent,
   ],
   imports: [
     CommonModule,
     PublicCommunityGroupsRoutingModule,
     SharedComponentsModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbCardModule,
     NbIconModule,
     NbTabsetModule,
-    NbRouteTabsetModule
-  ]
+    NbRouteTabsetModule,
+  ],
 })
-export class PublicCommunityGroupsModule { }
+export class PublicCommunityGroupsModule {}
