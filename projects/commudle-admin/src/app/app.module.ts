@@ -89,6 +89,7 @@ import { ReusableComponentsModule } from './feature-modules/reusable-components/
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { AppInitService } from './services/app-init.service';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -147,6 +148,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     SkeletonScreensModule,
     PublicCommunityModule,
     MainNewslettersModule,
+    SharedDirectivesModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -214,5 +216,4 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
