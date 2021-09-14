@@ -110,11 +110,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   joinSession(): void {
-    this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
-    this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
-    this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
-    this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
-
     hmsActions.join({
       authToken: this.serverClient.token,
       userName: this.currentUser.username,
@@ -124,12 +119,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         username: this.currentUser.username,
         avatar: this.currentUser.avatar,
       }),
-      settings: {
-        audioInputDeviceId: this.selectedAudioInputDeviceId,
-        videoDeviceId: this.selectedVideoDeviceId,
-        isAudioMuted: !this.isAudioEnabled,
-        isVideoMuted: !this.isVideoEnabled,
-      },
     });
   }
 
