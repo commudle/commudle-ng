@@ -16,9 +16,8 @@
 
   .community-channel-discussion {
     background: white;
-    overflow: hidden;
+    //overflow: hidden;
   }
-
 
   @media screen and (min-width: 1080px) {
     .community-list {
@@ -54,7 +53,7 @@
     .community-channel-list {
       width: 0;
       overflow: hidden;
-      
+
       &.show {
         width: 200px;
         position: absolute;
@@ -71,5 +70,4 @@
       flex-grow: 1;
     }
   }
-
 }

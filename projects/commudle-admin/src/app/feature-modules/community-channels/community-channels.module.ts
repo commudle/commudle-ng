@@ -20,7 +20,8 @@ import {
   NbTooltipModule,
   NbBadgeModule,
   NbSpinnerModule,
-  NbPopoverModule} from '@nebular/theme';
+  NbPopoverModule,
+} from '@nebular/theme';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -33,13 +34,14 @@ import { ChannelMembersComponent } from './components/channel-members/channel-me
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { MemberComponent } from './components/channel-members/member/member.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
-import { MentionModule } from 'angular-mentions';
+// import { MentionModule } from 'angular-mentions';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { ArchiveChannelComponent } from './components/channel-settings/archive-channel/archive-channel.component';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 import { LinkyModule } from 'ngx-linky';
+import { MentionModule } from 'projects/shared-modules/mention/mention.module';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import { LinkyModule } from 'ngx-linky';
     MemberComponent,
     NewCommunityChannelComponent,
     ArchiveChannelComponent,
-    EmailJoinComponent
+    EmailJoinComponent,
   ],
   imports: [
     CommonModule,
@@ -68,10 +70,11 @@ import { LinkyModule } from 'ngx-linky';
     FormsModule,
     SharedComponentsModule,
     PickerModule,
-    MentionModule,
+    // MentionModule,
     SharedPipesModule,
     SharedDirectivesModule,
     LinkyModule,
+    MentionModule,
 
     // nebular
     NbInputModule,
@@ -89,8 +92,6 @@ import { LinkyModule } from 'ngx-linky';
     NbSpinnerModule,
     NbPopoverModule,
   ],
-  exports: [
-    CommunityChannelsDashboardComponent
-  ]
+  exports: [CommunityChannelsDashboardComponent],
 })
-export class CommunityChannelsModule { }
+export class CommunityChannelsModule {}

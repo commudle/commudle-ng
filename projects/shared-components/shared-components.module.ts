@@ -29,6 +29,7 @@ import { MessageComponent } from 'projects/shared-components/messages/messages-l
 import { MessagesListComponent } from 'projects/shared-components/messages/messages-list/messages-list.component';
 import { MessagesComponent } from 'projects/shared-components/messages/messages.component';
 import { HmsVideoModule } from 'projects/shared-modules/hms-video/hms-video.module';
+import { MentionModule } from 'projects/shared-modules/mention/mention.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { BadgeComponent } from './badge/badge.component';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
@@ -67,6 +68,7 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,8 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     HmsVideoModule,
     PickerModule,
     LinkyModule,
+    SharedDirectivesModule,
+    MentionModule,
 
     // Nebular
     NbButtonModule,

@@ -119,11 +119,12 @@
 
       .event-chat {
         nb-card {
-          height: 70vh;
+          height: 77vh;
 
           ::ng-deep {
             nb-card-body {
-              overflow: hidden;
+              height: 88%;
+              overflow: unset;
             }
           }
         }

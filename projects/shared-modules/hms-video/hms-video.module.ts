@@ -29,6 +29,7 @@ import { LocalPreviewComponent } from './components/local-preview/local-preview.
 import { SelectRoleV2Component } from './components/select-role-v2/select-role-v2.component';
 import { SelectRoleComponent } from './components/select-role/select-role.component';
 import { HmsClientManagerService } from './services/hms-client-manager.service';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { HmsClientManagerService } from './services/hms-client-manager.service';
     FormsModule,
     ReactiveFormsModule,
     SharedPipesModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbButtonModule,
