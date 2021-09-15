@@ -54,6 +54,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   peers: HMSPeer[] = [];
   localPeer: HMSPeer;
 
+  joinedAsHost: boolean;
+
   isOnStage: boolean;
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
@@ -97,6 +99,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
     if (this.selectedRole === EHmsRoles.HOST) {
       this.isOnStage = true;
+      this.joinedAsHost = true;
     }
   }
 
@@ -107,11 +110,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   }
 
   joinSession(): void {
-    this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
-    this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
-    this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
-    this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
-
     hmsActions.join({
       authToken: this.serverClient.token,
       userName: this.currentUser.username,
@@ -121,28 +119,27 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         username: this.currentUser.username,
         avatar: this.currentUser.avatar,
       }),
-      settings: {
-        audioInputDeviceId: this.selectedAudioInputDeviceId,
-        videoDeviceId: this.selectedVideoDeviceId,
-        isAudioMuted: !this.isAudioEnabled,
-        isVideoMuted: !this.isVideoEnabled,
-      },
     });
   }
 
   subscribeToListeners = (status: boolean) => {
     if (status) {
-      hmsStore.subscribe((peers: HMSPeer[]) => (this.peers = peers), selectPeers);
-      hmsStore.subscribe((localPeer: HMSPeer) => (this.localPeer = localPeer), selectLocalPeer);
+      hmsStore.subscribe((peers: HMSPeer[]) => {
+        this.peers = peers;
+      }, selectPeers);
+      hmsStore.subscribe((localPeer: HMSPeer) => {
+        this.localPeer = localPeer;
+        if (this.joinedAsHost && localPeer.audioTrack && localPeer.videoTrack) {
+          this.setHmsMediaSettings();
+        }
+      }, selectLocalPeer);
 
-      hmsStore.subscribe(
-        (isScreenSharing: boolean) => (this.isScreenSharing = isScreenSharing),
-        selectIsSomeoneScreenSharing,
-      );
-      hmsStore.subscribe(
-        (isLocalScreenSharing: boolean) => (this.isLocalScreenSharing = isLocalScreenSharing),
-        selectIsLocalScreenShared,
-      );
+      hmsStore.subscribe((isScreenSharing: boolean) => {
+        this.isScreenSharing = isScreenSharing;
+      }, selectIsSomeoneScreenSharing);
+      hmsStore.subscribe((isLocalScreenSharing: boolean) => {
+        this.isLocalScreenSharing = isLocalScreenSharing;
+      }, selectIsLocalScreenShared);
 
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
 
@@ -184,6 +181,15 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         }
       }),
     );
+  }
+
+  setHmsMediaSettings(): void {
+    hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
+    hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
+    hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
+    hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+
+    this.joinedAsHost = false;
   }
 
   toggleAudio(): void {
@@ -277,6 +283,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
           if (accept) {
             hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
             this.isOnStage = true;
+            this.joinedAsHost = true;
           }
         });
         break;

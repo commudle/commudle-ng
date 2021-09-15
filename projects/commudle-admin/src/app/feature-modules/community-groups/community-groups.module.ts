@@ -8,7 +8,7 @@ import { CommunityGroupsRoutingModule } from './community-groups-routing.module'
 import { CommunityGroupFormComponent } from './components/community-group-form/community-group-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [CommunityGroupFormComponent, DashboardComponent],
@@ -19,14 +19,14 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
     ReactiveFormsModule,
     EditorModule,
     SharedComponentsModule,
+    SharedDirectivesModule,
 
     // Nebular
     NbCardModule,
     NbInputModule,
     NbButtonModule,
     NbIconModule,
-    NbTabsetModule
-
-  ]
+    NbTabsetModule,
+  ],
 })
-export class CommunityGroupsModule { }
+export class CommunityGroupsModule {}
