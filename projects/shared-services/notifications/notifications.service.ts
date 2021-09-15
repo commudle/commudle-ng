@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CommunityChannelNotificationsChannel } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { UserChatNotificationsChannel } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-notifications.channel';
-import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { Subscription } from 'rxjs';
+import { SessionPageNotificationsService } from '../session-page-notifications.service';
 import { TabTitleNotificationsService } from './tab-title-notifications.service';
 
 @Injectable({
@@ -16,11 +16,13 @@ export class NotificationsService {
     private tabTitleNotificationsService: TabTitleNotificationsService,
     private userChatNotificationsChannel: UserChatNotificationsChannel,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
+    private sessionPageNotificationsService: SessionPageNotificationsService,
   ) {}
 
   subscribeToNotifications(): void {
     this.showPersonalChatNotification();
     this.showChannelNotification();
+    this.showSessionPageNotification();
   }
 
   unsubscribeFromNotifications(): void {
@@ -42,6 +44,22 @@ export class NotificationsService {
       this.communityChannelNotificationsChannel.hasNotifications$.subscribe((value: boolean) => {
         if (value) {
           this.tabTitleNotificationsService.blinkTitle(`New channel message!`);
+        }
+      }),
+    );
+  }
+
+  private showSessionPageNotification(): void {
+    this.subscriptions.push(
+      this.sessionPageNotificationsService.newChat$.subscribe((value: boolean) => {
+        if (value) {
+          console.log(`New chat notification!`);
+          this.tabTitleNotificationsService.blinkTitle(`New chat on session page!`);
+        }
+      }),
+      this.sessionPageNotificationsService.newQna$.subscribe((value: boolean) => {
+        if (value) {
+          this.tabTitleNotificationsService.blinkTitle(`New Q&A on session page!`);
         }
       }),
     );
