@@ -11,6 +11,7 @@ import { combineLatest, Subscription } from 'rxjs';
 })
 export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   invitation: boolean;
+  joinStage: boolean;
 
   audioInputDevices: MediaDeviceInfo[] = [];
   videoDevices: MediaDeviceInfo[] = [];
@@ -35,7 +36,6 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stopStream();
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
@@ -59,33 +59,17 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
       ).subscribe(([audioInputDevices, videoDevices]) => {
         this.audioInputDevices = audioInputDevices;
         this.videoDevices = videoDevices;
-
-        this.selectAudioInputDevice(audioInputDevices[0].deviceId);
-        this.selectVideoDevice(videoDevices[0].deviceId);
-
-        this.subscribeToMediaDevices();
       }),
     );
-  }
 
-  subscribeToMediaDevices(): void {
-    this.subscriptions.push(
-      combineLatest(
-        this.localMediaV2Service.audioInputDeviceId$,
-        this.localMediaV2Service.videoDeviceId$,
-        this.localMediaV2Service.isAudioEnabled$,
-        this.localMediaV2Service.isVideoEnabled$,
-      ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
-        this.selectedAudioInputDeviceId = audioInputDeviceId;
-        this.selectedVideoDeviceId = videoDeviceId;
-        this.isAudioEnabled = isAudioEnabled;
-        this.isVideoEnabled = isVideoEnabled;
+    this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
+    this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
+    this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
+    this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
 
-        if (this.isVideoEnabled) {
-          this.renderVideo();
-        }
-      }),
-    );
+    if (this.isVideoEnabled) {
+      this.renderVideo();
+    }
   }
 
   renderVideo(): void {
@@ -95,20 +79,29 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   }
 
   selectAudioInputDevice(deviceId: string): void {
-    this.localMediaV2Service.setAudioInputDeviceId(deviceId);
+    this.selectedAudioInputDeviceId = deviceId;
   }
 
   selectVideoDevice(deviceId: string): void {
-    this.localMediaV2Service.setVideoDeviceId(deviceId);
+    this.stopStream();
+    this.selectedVideoDeviceId = deviceId;
+    if (this.isVideoEnabled) {
+      this.renderVideo();
+    }
   }
 
   toggleAudio(): void {
-    this.localMediaV2Service.setIsAudioEnabled(!this.isAudioEnabled);
+    this.isAudioEnabled = !this.isAudioEnabled;
   }
 
   toggleVideo(): void {
-    this.stopStream();
-    this.localMediaV2Service.setIsVideoEnabled(!this.isVideoEnabled);
+    if (this.isVideoEnabled) {
+      this.stopStream();
+      this.isVideoEnabled = false;
+    } else {
+      this.renderVideo();
+      this.isVideoEnabled = true;
+    }
   }
 
   stopStream(): void {
@@ -123,6 +116,11 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   }
 
   close(value: boolean): void {
+    this.localMediaV2Service.setAudioInputDeviceId(this.selectedAudioInputDeviceId);
+    this.localMediaV2Service.setVideoDeviceId(this.selectedVideoDeviceId);
+    this.localMediaV2Service.setIsAudioEnabled(this.isAudioEnabled);
+    this.localMediaV2Service.setIsVideoEnabled(this.isVideoEnabled);
+
     this.dialogRef.close(value);
   }
 }
