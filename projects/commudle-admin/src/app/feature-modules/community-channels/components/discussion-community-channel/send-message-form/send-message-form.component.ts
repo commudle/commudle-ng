@@ -1,14 +1,12 @@
-import { IUser } from 'projects/shared-models/user.model';
-import { concat } from 'rxjs';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { CommunityChannelsService } from '../../../services/community-channels.service';
-import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-send-message-form',
@@ -30,7 +28,8 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   // taggableUsers: IUser[] = [];
   communityChannel: ICommunityChannel;
 
-  uploadedAttachementFiles: IAttachedFile[] = [];
+  existingAttachmentFiles: IAttachedFile[] = [];
+  uploadedAttachmentFiles: IAttachedFile[] = [];
   uploadedFiles = [];
   showEmojiForm = false;
   showHelperText = false;
@@ -48,12 +47,15 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.communityChannelManagerService.selectedChannel$.subscribe((data) => (this.communityChannel = data)),
+      this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
+        this.communityChannel = data;
+      }),
     );
     if (this.editableMessage) {
       this.sendUserMessageForm.patchValue({
         content: this.editableMessage.content,
       });
+      this.existingAttachmentFiles = this.editableMessage.attachments;
     }
   }
 
@@ -73,14 +75,21 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     if (!this.editableMessage) {
       if (this.uploadedFiles.length > 0) {
         this.emitAttachmentMessage();
-      } else if (this.sendUserMessageForm.valid) {
+      }
+      if (this.sendUserMessageForm.valid) {
         this.emitTextMessage();
       }
     } else {
+      if (this.uploadedFiles.length > 0 || this.existingAttachmentFiles.length > 0) {
+        this.emitUpdatedAttachmentMessage();
+      }
+      if (this.sendUserMessageForm.valid) {
+        this.emitUpdatedTextMessage();
+      }
     }
 
     this.sendUserMessageForm.reset();
-    this.uploadedAttachementFiles = [];
+    this.uploadedAttachmentFiles = [];
     this.uploadedFiles = [];
     this.fileInput.nativeElement.value = '';
   }
@@ -100,9 +109,9 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       formData.append(`user_message[${key}]`, userMessageFormValue[key]);
     });
 
-    for (let i = 0; i < this.uploadedAttachementFiles.length; i++) {
-      Object.keys(this.uploadedAttachementFiles[i]).forEach((key) =>
-        formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key]),
+    for (let i = 0; i < this.uploadedAttachmentFiles.length; i++) {
+      Object.keys(this.uploadedAttachmentFiles[i]).forEach((key) =>
+        formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachmentFiles[i][key]),
       );
     }
 
@@ -116,9 +125,11 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       formData.append(`user_message[${key}]`, userMessageFormValue[key]);
     });
 
-    for (let i = 0; i < this.uploadedAttachementFiles.length; i++) {
-      Object.keys(this.uploadedAttachementFiles[i]).forEach((key) =>
-        formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key]),
+    this.uploadedAttachmentFiles.push(...this.existingAttachmentFiles);
+
+    for (let i = 0; i < this.uploadedAttachmentFiles.length; i++) {
+      Object.keys(this.uploadedAttachmentFiles[i]).forEach((key) =>
+        formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachmentFiles[i][key]),
       );
     }
 
@@ -144,7 +155,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
           url: null,
           type: null,
         };
-        this.uploadedAttachementFiles.push(imgFile);
+        this.uploadedAttachmentFiles.push(imgFile);
         const reader = new FileReader();
         // let rawData = new ArrayBuffer(12125950*4*5);
         reader.onload = (e: any) => {
@@ -157,12 +168,16 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   }
 
   removeFile(index) {
-    if (this.uploadedAttachementFiles[index]['id']) {
-      this.uploadedAttachementFiles[index]['delete'] = true;
+    if (this.uploadedAttachmentFiles[index]['id']) {
+      this.uploadedAttachmentFiles[index]['delete'] = true;
     } else {
-      this.uploadedAttachementFiles.splice(index, 1);
+      this.uploadedAttachmentFiles.splice(index, 1);
       this.uploadedFiles.splice(index, 1);
     }
+  }
+
+  removeExistingFile(index: number) {
+    this.existingAttachmentFiles[index]['delete'] = true;
   }
 
   selectInput() {

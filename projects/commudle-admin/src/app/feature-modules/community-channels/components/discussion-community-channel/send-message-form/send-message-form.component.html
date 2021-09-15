@@ -1,12 +1,33 @@
 <div class="send-message-form">
+  <div *ngIf="existingAttachmentFiles.length > 0" class="attachments {{attachmentDisplay}}">
+    <ng-container *ngFor="let attachment of existingAttachmentFiles; let i = index">
+      <div *ngIf="!attachment['delete']" class="file">
+        <div (click)="removeExistingFile(i)" class="remove clickable">
+          <nb-icon icon="close-circle" status="danger"></nb-icon>
+        </div>
+        <div *ngIf="!attachment.type.includes('image')" class="file-preview">
+          <p class="name">
+            <small> {{attachment.name | truncatetext:10}} </small>
+          </p>
+          <p class="extension">
+            <small> {{attachment.name.split('.').reverse()[0]}} </small>
+          </p>
+        </div>
+        <div *ngIf="attachment.type.includes('image')" class="image-file-preview">
+          <img alt="{{attachment.name}}" src="{{attachment.url}}" title="{{attachment.name}}" />
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
   <div *ngIf="uploadedFiles.length > 0" class="attachments {{attachmentDisplay}}">
-    <div *ngFor="let file of uploadedAttachementFiles; let i=index;" class="file">
+    <div *ngFor="let file of uploadedAttachmentFiles; let i=index;" class="file">
       <div (click)="removeFile(i)" class="remove clickable">
         <nb-icon icon="close-circle" status="danger"></nb-icon>
       </div>
       <div *ngIf="!file.file.type.includes('image')" class="file-preview">
         <p class="name">
-          <small> {{file.file.name | slice:0:10 }} </small>
+          <small> {{file.file.name | truncatetext:10}} </small>
         </p>
         <p class="extension">
           <small> {{file.file.name.split('.').reverse()[0]}} </small>
@@ -36,11 +57,11 @@
         ></emoji-mart>
       </div>
       <textarea
-        appMention
         #inputElement
+        (blur)="hideText()"
         (click)="selectInput()"
         (focus)="showText()"
-        (blur)="hideText()"
+        appMention
         formControlName="content"
         fullWidth
         nbInput
@@ -57,15 +78,15 @@
   </div>
 </div>
 
-<ng-template #mentionListTemplate let-item="item">
-  <div class="mention-list-template">
-    <div class="avatar">
-      <img alt="{{item.name}}" src="{{item.avatar}}" title="{{item.name}}" />
-    </div>
-    <p class="name">
-      {{item.name}}
-      <br />
-      <small>@{{item.username}}</small>
-    </p>
-  </div>
-</ng-template>
+<!--<ng-template #mentionListTemplate let-item="item">-->
+<!--  <div class="mention-list-template">-->
+<!--    <div class="avatar">-->
+<!--      <img alt="{{item.name}}" src="{{item.avatar}}" title="{{item.name}}" />-->
+<!--    </div>-->
+<!--    <p class="name">-->
+<!--      {{item.name}}-->
+<!--      <br />-->
+<!--      <small>@{{item.username}}</small>-->
+<!--    </p>-->
+<!--  </div>-->
+<!--</ng-template>-->
