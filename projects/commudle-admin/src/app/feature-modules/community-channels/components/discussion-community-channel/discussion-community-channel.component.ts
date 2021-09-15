@@ -223,12 +223,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.discussionsService.communityChannelUpdateAttachmentMessage(data, userMessageId).subscribe();
   }
 
-  sendVote(userMessageId) {
-    this.communityChannelChannel.sendData(this.communityChannelChannel.ACTIONS.VOTE, {
-      user_message_id: userMessageId,
-    });
-  }
-
   delete(userMessageId) {
     if (window.confirm(`Are you sure you want to delete this message and all the replies? This CANNOT BE UNDONE.`)) {
       this.communityChannelChannel.sendData(this.communityChannelChannel.ACTIONS.DELETE, {
@@ -309,15 +303,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               } else {
                 const qi = this.findMessageIndex(data.parent_id);
                 this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
-              }
-              break;
-            }
-            case this.communityChannelChannel.ACTIONS.VOTE: {
-              if (data.parent_type === 'Discussion') {
-                this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
-              } else {
-                const qi = this.findMessageIndex(data.parent_id);
-                this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
               }
               break;
             }

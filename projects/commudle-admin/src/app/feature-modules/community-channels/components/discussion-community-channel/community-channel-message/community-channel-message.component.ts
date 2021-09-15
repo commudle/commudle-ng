@@ -34,7 +34,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   @Input() permittedActions;
   @Input() allActions;
   @Input() currentUser: ICurrentUser;
-  @Output() sendVote = new EventEmitter();
   @Output() sendReply = new EventEmitter();
   @Output() sendAttachmentReply = new EventEmitter();
   @Output() sendUpdatedReply = new EventEmitter();
@@ -112,10 +111,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
       this.authWatchService.logInUser();
     }
     return true;
-  }
-
-  emitVote(userMessageId): void {
-    this.sendVote.emit(userMessageId);
   }
 
   emitDelete(userMessageId): void {

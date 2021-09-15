@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import * as actionCable from 'actioncable';
-import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommunityChannelChannel {
   ACTIONS = {
@@ -15,7 +14,6 @@ export class CommunityChannelChannel {
     ADD: 'add',
     REPLY: 'reply',
     UPDATE: 'update',
-    VOTE: 'vote',
     FLAG: 'flag',
     DELETE: 'delete',
     TOGGLE_BLOCK: 'toggle_block',
@@ -25,57 +23,54 @@ export class CommunityChannelChannel {
   };
 
   actionCable = actionCable;
-  actionCableSubscription;
-  cableConnection;
+  actionCableSubscription: Subscription;
+  cableConnection: actionCable.Cable;
 
-  private subscription;
+  private subscription: actionCable.Channel;
 
   // all the communications received will be observables
   private channelData: BehaviorSubject<any> = new BehaviorSubject(null);
-  public channelData$ = this.channelData.asObservable();
+  public channelData$: Observable<any> = this.channelData.asObservable();
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
-    private authWatchService: LibAuthwatchService
+    private authWatchService: LibAuthwatchService,
   ) {
-    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        this.cableConnection = connection;
-      }
-    );
-  }
-
-
-  subscribe(discussionId) {
-    if (this.cableConnection) {
-      this.subscription = this.cableConnection.subscriptions.create({
-        channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_COMMUNITY_CHAT_CHANNEL_CHANNEL,
-        room: discussionId,
-        app_token: this.authWatchService.getAppToken()
-      }, {
-        received: (data) => {
-          this.channelData.next(data);
-        }
-      });
-    }
-    return this.subscription;
-  }
-
-
-  sendData(action, data) {
-    this.subscription.send({
-      perform: action,
-      data
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe((connection) => {
+      this.cableConnection = connection;
     });
   }
 
+  subscribe(discussionId): ActionCable.Channel {
+    if (this.cableConnection) {
+      this.subscription = this.cableConnection.subscriptions.create(
+        {
+          channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_COMMUNITY_CHAT_CHANNEL_CHANNEL,
+          room: discussionId,
+          app_token: this.authWatchService.getAppToken(),
+        },
+        {
+          received: (data) => {
+            this.channelData.next(data);
+          },
+        },
+      );
+    }
 
+    return this.subscription;
+  }
 
-  unsubscribe() {
+  sendData(action, data): void {
+    this.subscription.send({
+      perform: action,
+      data,
+    });
+  }
+
+  unsubscribe(): void {
     if (this.subscription) {
       this.channelData.next(null);
       this.subscription.unsubscribe();
     }
   }
-
 }
