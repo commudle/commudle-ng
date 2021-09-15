@@ -33,6 +33,7 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
   loadingMessages = false;
   showReplyForm = 0;
   allActions;
+  showHelperText = false;
 
 
   chatMessageForm = this.fb.group({
@@ -67,6 +68,14 @@ export class DiscussionChatComponent implements OnInit, OnDestroy {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
+  }
+
+  showText(){
+    this.showHelperText = true;
+  }
+
+  hideText(){
+    this.showHelperText = false;
   }
 
   scrollToBottom() {

@@ -1,0 +1,79 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+.user-video-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  &:hover {
+    .video-controls {
+      opacity: 1;
+      transition: opacity 0.6s ease-in-out;
+    }
+  }
+
+  .video-controls {
+    background-color: rgba($black, 0.3);
+    border-radius: 32px;
+    gap: $space-8;
+    left: 50%;
+    opacity: 0;
+    padding: $space-8;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease-in-out;
+    z-index: 2;
+  }
+
+  .user-video {
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    .hidden {
+      display: none;
+    }
+
+    video {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .screen-share {
+      object-fit: contain;
+    }
+
+    .user-avatar {
+      border-radius: $border-50;
+      height: 50px;
+      left: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  }
+
+  .user-name {
+    background-color: rgba($black, 0.3);
+    bottom: 0;
+    color: $white;
+    font-size: $fs-h5;
+    left: 0;
+    padding: $space-4;
+    position: absolute;
+
+    nb-icon {
+      font-size: $fs-h5;
+    }
+  }
+}

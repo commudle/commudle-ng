@@ -27,12 +27,13 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   @Output() sendUpdatedTextMessage = new EventEmitter();
   @Output() sendUpdatedAttachmentMessage = new EventEmitter();
   subscriptions = [];
-  taggableUsers: IUser[] = [];
+  // taggableUsers: IUser[] = [];
   communityChannel: ICommunityChannel;
 
   uploadedAttachementFiles: IAttachedFile[] = [];
   uploadedFiles = [];
   showEmojiForm = false;
+  showHelperText = false;
 
   sendUserMessageForm = this.fb.group({
     content: [
@@ -68,6 +69,14 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.inputElement.nativeElement.focus();
+  }
+
+  showText(){
+    this.showHelperText = true;
+  }
+
+  hideText(){
+    this.showHelperText = false;
   }
 
   emitMessage() {
@@ -196,11 +205,11 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.inputElement.nativeElement.focus();
   }
 
-  getTaggableUsers(query) {
-    this.communityChannelsService.getTaggableUsers(query, this.communityChannel.id).subscribe(
-      data => {
-        this.taggableUsers = data.users;
-      }
-    )
-  }
+  // getTaggableUsers(query) {
+  //   this.communityChannelsService.getTaggableUsers(query, this.communityChannel.id).subscribe(
+  //     data => {
+  //       this.taggableUsers = data.users;
+  //     }
+  //   )
+  // }
 }
