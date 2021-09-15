@@ -148,6 +148,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     SkeletonScreensModule,
     PublicCommunityModule,
     MainNewslettersModule,
+    PageAdsModule,
     SharedDirectivesModule,
 
     // external service modules
@@ -187,7 +188,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    PageAdsModule,
   ],
   providers: [
     AppInitService,
