@@ -54,6 +54,8 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   peers: HMSPeer[] = [];
   localPeer: HMSPeer;
 
+  joinedAsHost: boolean;
+
   isOnStage: boolean;
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
@@ -97,6 +99,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
     if (this.selectedRole === EHmsRoles.HOST) {
       this.isOnStage = true;
+      this.joinedAsHost = true;
     }
   }
 
@@ -116,28 +119,27 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         username: this.currentUser.username,
         avatar: this.currentUser.avatar,
       }),
-      settings: {
-        audioInputDeviceId: this.localMediaV2Service.getAudioInputDeviceId(),
-        videoDeviceId: this.localMediaV2Service.getVideoDeviceId(),
-        isAudioMuted: !this.localMediaV2Service.getIsAudioEnabled(),
-        isVideoMuted: !this.localMediaV2Service.getIsVideoEnabled(),
-      },
     });
   }
 
   subscribeToListeners = (status: boolean) => {
     if (status) {
-      hmsStore.subscribe((peers: HMSPeer[]) => (this.peers = peers), selectPeers);
-      hmsStore.subscribe((localPeer: HMSPeer) => (this.localPeer = localPeer), selectLocalPeer);
+      hmsStore.subscribe((peers: HMSPeer[]) => {
+        this.peers = peers;
+      }, selectPeers);
+      hmsStore.subscribe((localPeer: HMSPeer) => {
+        this.localPeer = localPeer;
+        if (this.joinedAsHost && localPeer.audioTrack && localPeer.videoTrack) {
+          this.setHmsMediaSettings();
+        }
+      }, selectLocalPeer);
 
-      hmsStore.subscribe(
-        (isScreenSharing: boolean) => (this.isScreenSharing = isScreenSharing),
-        selectIsSomeoneScreenSharing,
-      );
-      hmsStore.subscribe(
-        (isLocalScreenSharing: boolean) => (this.isLocalScreenSharing = isLocalScreenSharing),
-        selectIsLocalScreenShared,
-      );
+      hmsStore.subscribe((isScreenSharing: boolean) => {
+        this.isScreenSharing = isScreenSharing;
+      }, selectIsSomeoneScreenSharing);
+      hmsStore.subscribe((isLocalScreenSharing: boolean) => {
+        this.isLocalScreenSharing = isLocalScreenSharing;
+      }, selectIsLocalScreenShared);
 
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
 
@@ -179,6 +181,15 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         }
       }),
     );
+  }
+
+  setHmsMediaSettings(): void {
+    hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
+    hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
+    hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
+    hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+
+    this.joinedAsHost = false;
   }
 
   toggleAudio(): void {
@@ -232,13 +243,16 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    const roleChangeRequestDialog: NbDialogRef<any> = this.nbDialogService.open(ConferenceSettingsComponent, {
-      context: {
-        invitation: true,
+    const roleChangeRequestDialog: NbDialogRef<ConferenceSettingsComponent> = this.nbDialogService.open(
+      ConferenceSettingsComponent,
+      {
+        context: {
+          invitation: true,
+        },
+        closeOnBackdropClick: false,
+        closeOnEsc: false,
       },
-      closeOnBackdropClick: false,
-      closeOnEsc: false,
-    });
+    );
     roleChangeRequestDialog.onClose.subscribe((accept: boolean) => {
       if (accept) {
         hmsActions.acceptChangeRole(request);
@@ -255,8 +269,23 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         this.isOnStage = false;
         break;
       case EHmsRoles.HOST_VIEWER:
-        hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
-        this.isOnStage = true;
+        const joinStageDialog: NbDialogRef<ConferenceSettingsComponent> = this.nbDialogService.open(
+          ConferenceSettingsComponent,
+          {
+            context: {
+              joinStage: true,
+            },
+            closeOnBackdropClick: false,
+            closeOnEsc: false,
+          },
+        );
+        joinStageDialog.onClose.subscribe((accept: boolean) => {
+          if (accept) {
+            hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
+            this.isOnStage = true;
+            this.joinedAsHost = true;
+          }
+        });
         break;
     }
   }
