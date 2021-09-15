@@ -1,22 +1,27 @@
 .community-channel {
-  height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  height: 100%;
+
   header {
-    height: 2.5rem;
-    padding: 0.5rem;
     display: flex;
+    height: 2.5rem;
     justify-content: space-between;
+    padding: 0.5rem;
 
     .channel-details {
       min-width: 50%;
+      overflow: hidden;
+
       p {
+        color: grey;
+
+        margin: 0;
+
         nb-icon {
           margin-right: 5px;
         }
-        margin: 0;
-        color: grey;
       }
     }
 
@@ -29,57 +34,55 @@
           }
         }
       }
-
-
     }
   }
 
   main {
-    padding: 0.5rem;
-    height: calc(100% - 2.5rem);
     display: flex;
     flex-wrap: nowrap;
-    .discussion{
-      height: 100%;
+    height: calc(100% - 2.5rem);
+    padding: 0.5rem;
+
+    .discussion {
       flex-grow: 1;
+      height: 100%;
     }
 
     .resources {
+      bottom: 65px;
       max-width: 100vw;
       position: relative;
-      bottom: 65px;
     }
 
     @media screen and (max-width: 1089px) {
       position: relative;
       .resources {
-        position: absolute;
-        max-width: 80%;
         height: 100%;
-        top: 0;
+        max-width: 80%;
+        position: absolute;
         right: 0;
+        top: 0;
       }
     }
   }
-
 
   main.not-found {
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
+
     p {
+      color: grey;
       font-size: 1.5rem;
       line-height: 1.5rem;
-      color: grey;
 
       nb-icon {
-        font-size: 4rem;
         color: lightgrey;
+        font-size: 4rem;
       }
     }
   }
-
 }
 
 .complete-description {

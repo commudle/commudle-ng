@@ -4,7 +4,7 @@
       <div>
         <p class="margin0 fontw-300">
           <nb-icon icon="people" status="basic"></nb-icon>
-          Members
+          Members ({{allUsers.length}})
         </p>
       </div>
       <span [routerLink]="['../']" class="clickable">
@@ -17,13 +17,13 @@
       <nb-list-item *ngFor="let u of allUsers; let i=index">
         <div>
           <app-member
-            [userRolesUser]="u"
-            [currentUserIsAdmin]="currentUserIsAdmin"
+            (exitChannel)="leaveChannel(i)"
             (makeAdmin)="toggleAdmin(i)"
             (removeAdmin)="toggleAdmin(i)"
-            (exitChannel)="leaveChannel(i)"
             (removeFromChannel)="removeFromChannel(i)"
-            ></app-member>
+            [currentUserIsAdmin]="currentUserIsAdmin"
+            [userRolesUser]="u"
+          ></app-member>
         </div>
       </nb-list-item>
     </nb-list>

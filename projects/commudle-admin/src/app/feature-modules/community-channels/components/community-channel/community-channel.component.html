@@ -2,7 +2,7 @@
   <nb-card>
     <nb-card-header>{{selectedChannel.name}}</nb-card-header>
     <nb-card-body>
-      <div class="complete-description" [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true}"></div>
+      <div [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true}" class="complete-description"></div>
     </nb-card-body>
   </nb-card>
 </ng-template>
@@ -12,17 +12,28 @@
     <div class="channel-details">
       <div *ngIf="selectedChannel">
         <p>
-          <nb-icon icon="info-outline" [nbPopover]="channelDescription" [nbPopoverTrigger]="'hover'"></nb-icon>
-          <span [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true} | truncatetext:100">
-          </span>
+          <nb-icon [nbPopoverTrigger]="'hover'" [nbPopover]="channelDescription" icon="info-outline"></nb-icon>
+          <span [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true} | truncatetext:100"></span>
         </p>
       </div>
-
     </div>
     <nb-actions>
-      <nb-action class="channel-list-menu-button" icon="menu-arrow" (click)="toggleCommunityListDisplay()" *ngIf="hasNotifications" [badgePosition]="'top right'" [badgeStatus]="'danger'" [badgeDot]="true">
+      <nb-action
+        (click)="toggleCommunityListDisplay()"
+        *ngIf="hasNotifications"
+        [badgeDot]="true"
+        [badgePosition]="'top right'"
+        [badgeStatus]="'danger'"
+        class="channel-list-menu-button"
+        icon="menu-arrow"
+      >
       </nb-action>
-      <nb-action class="channel-list-menu-button" icon="menu-arrow" (click)="toggleCommunityListDisplay()" *ngIf="!hasNotifications">
+      <nb-action
+        (click)="toggleCommunityListDisplay()"
+        *ngIf="!hasNotifications"
+        class="channel-list-menu-button"
+        icon="menu-arrow"
+      >
       </nb-action>
       <nb-action icon="people" link="members"></nb-action>
     </nb-actions>
@@ -36,12 +47,11 @@
     </div>
   </main>
 
-  <main class="not-found" *ngIf="!discussion && notFound">
+  <main *ngIf="!discussion && notFound" class="not-found">
     <p>
       <nb-icon icon="alert-circle-outline"></nb-icon>
-      <br>
+      <br />
       This channel is either private or does not exist! Please check with the organizers of the selected community
     </p>
   </main>
 </div>
-
