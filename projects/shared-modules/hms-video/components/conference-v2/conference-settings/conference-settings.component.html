@@ -1,6 +1,7 @@
 <nb-card class="settings">
   <nb-card-header *ngIf="invitation">You are being invited to the Stage!</nb-card-header>
-  <nb-card-header *ngIf="!invitation">Settings</nb-card-header>
+  <nb-card-header *ngIf="joinStage">Join the stage</nb-card-header>
+  <nb-card-header *ngIf="!(invitation || joinStage)">Settings</nb-card-header>
   <nb-card-body *ngIf="audioInputDevices.length == 0 || videoDevices.length == 0">
     <nb-alert accent="info">Please allow access to microphone and camera devices to continue!</nb-alert>
     <button (click)="getMediaPermissions()" fullWidth nbButton status="info">Get Permission</button>
@@ -44,7 +45,7 @@
     </nb-select>
   </nb-card-body>
   <nb-card-footer class="d-flex justify-content-space-around">
-    <button (click)="close(true)" *ngIf="invitation" nbButton size="tiny" status="success">
+    <button (click)="close(true)" *ngIf="invitation || joinStage" nbButton size="tiny" status="success">
       <nb-icon icon="cast"></nb-icon>
       Join Stage
     </button>
