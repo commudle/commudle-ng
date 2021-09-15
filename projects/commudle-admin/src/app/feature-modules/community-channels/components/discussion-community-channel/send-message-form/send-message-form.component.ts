@@ -13,11 +13,11 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 @Component({
   selector: 'app-send-message-form',
   templateUrl: './send-message-form.component.html',
-  styleUrls: ['./send-message-form.component.scss']
+  styleUrls: ['./send-message-form.component.scss'],
 })
 export class SendMessageFormComponent implements OnInit, AfterViewInit {
-  @ViewChild('inputElement', {static: true}) inputElement: ElementRef;
-  @ViewChild('fileInput', {static: true})  fileInput: ElementRef;
+  @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
+  @ViewChild('fileInput', { static: true }) fileInput: ElementRef;
   @Input() disabled: boolean;
   @Input() rows: number;
   @Input() attachmentDisplay = 'top';
@@ -36,33 +36,23 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   showHelperText = false;
 
   sendUserMessageForm = this.fb.group({
-    content: [
-      '', [
-          Validators.required,
-          Validators.minLength(1),
-          Validators.maxLength(1000),
-          NoWhitespaceValidator
-        ]
-      ]
+    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]],
   });
-
 
   constructor(
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private communityChannelsService: CommunityChannelsService,
-    private communityChannelManagerService: CommunityChannelManagerService
-  ) { }
+    private communityChannelManagerService: CommunityChannelManagerService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.communityChannelManagerService.selectedChannel$.subscribe(
-        data => this.communityChannel = data
-      )
+      this.communityChannelManagerService.selectedChannel$.subscribe((data) => (this.communityChannel = data)),
     );
     if (this.editableMessage) {
       this.sendUserMessageForm.patchValue({
-        content: this.editableMessage.content
+        content: this.editableMessage.content,
       });
     }
   }
@@ -71,11 +61,11 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.inputElement.nativeElement.focus();
   }
 
-  showText(){
+  showText() {
     this.showHelperText = true;
   }
 
-  hideText(){
+  hideText() {
     this.showHelperText = false;
   }
 
@@ -83,11 +73,10 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     if (!this.editableMessage) {
       if (this.uploadedFiles.length > 0) {
         this.emitAttachmentMessage();
-      } else if (this.sendUserMessageForm.valid){
+      } else if (this.sendUserMessageForm.valid) {
         this.emitTextMessage();
       }
     } else {
-
     }
 
     this.sendUserMessageForm.reset();
@@ -95,7 +84,6 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.uploadedFiles = [];
     this.fileInput.nativeElement.value = '';
   }
-
 
   emitTextMessage() {
     this.sendMessage.emit(this.sendUserMessageForm.value);
@@ -105,23 +93,18 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.sendUpdatedTextMessage.emit(this.sendUserMessageForm.value);
   }
 
-
   emitAttachmentMessage() {
     const formData: any = new FormData();
     const userMessageFormValue = this.sendUserMessageForm.value;
-    Object.keys(userMessageFormValue).forEach(
-      key => {
-        formData.append(`user_message[${key}]`, userMessageFormValue[key])
-      }
-      );
-
+    Object.keys(userMessageFormValue).forEach((key) => {
+      formData.append(`user_message[${key}]`, userMessageFormValue[key]);
+    });
 
     for (let i = 0; i < this.uploadedAttachementFiles.length; i++) {
-      Object.keys(this.uploadedAttachementFiles[i]).forEach(
-        key => formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key])
-        );
+      Object.keys(this.uploadedAttachementFiles[i]).forEach((key) =>
+        formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key]),
+      );
     }
-
 
     this.sendAttachmentMessage.emit(formData);
   }
@@ -129,32 +112,27 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   emitUpdatedAttachmentMessage() {
     const formData: any = new FormData();
     const userMessageFormValue = this.sendUserMessageForm.value;
-    Object.keys(userMessageFormValue).forEach(
-      key => {
-        formData.append(`user_message[${key}]`, userMessageFormValue[key])
-      }
-      );
-
+    Object.keys(userMessageFormValue).forEach((key) => {
+      formData.append(`user_message[${key}]`, userMessageFormValue[key]);
+    });
 
     for (let i = 0; i < this.uploadedAttachementFiles.length; i++) {
-      Object.keys(this.uploadedAttachementFiles[i]).forEach(
-        key => formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key])
-        );
+      Object.keys(this.uploadedAttachementFiles[i]).forEach((key) =>
+        formData.append(`user_message[attachments][][${key}]`, this.uploadedAttachementFiles[i][key]),
+      );
     }
-    
+
     this.sendUpdatedAttachmentMessage.emit(formData);
   }
 
-
   addFiles(event) {
     if (event.target.files && event.target.files.length > 0) {
-      if (event.target.files.length > 5 || (event.target.files.length + this.uploadedFiles.length > 5) ) {
+      if (event.target.files.length > 5 || event.target.files.length + this.uploadedFiles.length > 5) {
         this.toastLogService.warningDialog('Max 5 files can be attached', 3000);
         return;
       }
 
       for (const file of event.target.files) {
-
         if (file.size > 12125950) {
           this.toastLogService.warningDialog('File should be less than 10 Mb', 3000);
           return;
@@ -164,7 +142,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
           file: file,
           name: null,
           url: null,
-          type: null
+          type: null,
         };
         this.uploadedAttachementFiles.push(imgFile);
         const reader = new FileReader();
@@ -178,7 +156,6 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   removeFile(index) {
     if (this.uploadedAttachementFiles[index]['id']) {
       this.uploadedAttachementFiles[index]['delete'] = true;
@@ -187,7 +164,6 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       this.uploadedFiles.splice(index, 1);
     }
   }
-
 
   selectInput() {
     this.showEmojiForm = false;
@@ -200,8 +176,8 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   selectEmoji(event) {
     let currentValue = this.sendUserMessageForm.get('content').value || '';
     this.sendUserMessageForm.patchValue({
-      content: currentValue.concat(`${event.emoji.native}  `)
-    })
+      content: currentValue.concat(`${event.emoji.native}  `),
+    });
     this.inputElement.nativeElement.focus();
   }
 

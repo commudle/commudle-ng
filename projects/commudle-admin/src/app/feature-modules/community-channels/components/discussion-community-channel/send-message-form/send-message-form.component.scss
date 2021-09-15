@@ -34,10 +34,9 @@
           }
         }
       }
-
     }
 
-    >button {
+    > button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -46,7 +45,6 @@
       margin-left: 5px;
     }
   }
-
 
   .attachments {
     display: flex;
@@ -111,10 +109,9 @@
       }
     }
   }
-
 }
 
-.tagging-info{
+.tagging-info {
   line-height: 10px;
   font-weight: 400;
   font-size: 13px;
@@ -134,7 +131,6 @@
 
 //     }
 //   }
-
 
 //   p.name {
 //     margin: 0;

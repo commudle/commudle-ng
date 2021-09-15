@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import { TruncateTextPipe } from 'projects/shared-pipes/truncate-text.pipe';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { CookieConsentService } from './services/cookie-consent.service';
 
 // import * as LogRocket from 'logrocket';
@@ -21,9 +22,9 @@ import { CookieConsentService } from './services/cookie-consent.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [TruncateTextPipe]
+  providers: [TruncateTextPipe],
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   sideBarNotifications = false;
   sideBarState = 'collapsed';
   faBars = faBars;
@@ -50,6 +51,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private footerService: FooterService,
     private cdr: ChangeDetectorRef,
     private truncate: TruncateTextPipe,
+    private notificationsService: NotificationsService,
   ) {
     this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
@@ -70,8 +72,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
           link: `/users/${currentUser.username}`,
           badge: {
             text: 'Profile',
-            status: 'basic'
-          }
+            status: 'basic',
+          },
         });
 
         // LogRocket.init('g90s8l/commudle');
@@ -83,6 +85,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
       if (this.isBrowser) {
         this.actionCableConnectionSocket.connectToServer();
+
+        this.notificationsService.subscribeToNotifications();
       }
     });
 
@@ -118,6 +122,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.notificationsService.unsubscribeFromNotifications();
   }
 
   checkNotifications(): void {
