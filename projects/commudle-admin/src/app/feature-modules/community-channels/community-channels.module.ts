@@ -20,7 +20,8 @@ import {
   NbTooltipModule,
   NbBadgeModule,
   NbSpinnerModule,
-  NbPopoverModule} from '@nebular/theme';
+  NbPopoverModule,
+} from '@nebular/theme';
 import { ChannelSettingsComponent } from './components/channel-settings/channel-settings.component';
 import { EditChannelComponent } from './components/channel-settings/edit-channel/edit-channel.component';
 import { DiscussionCommunityChannelComponent } from './components/discussion-community-channel/discussion-community-channel.component';
@@ -60,7 +61,7 @@ import { MentionModule } from 'projects/shared-modules/mention/mention.module';
     MemberComponent,
     NewCommunityChannelComponent,
     ArchiveChannelComponent,
-    EmailJoinComponent
+    EmailJoinComponent,
   ],
   imports: [
     CommonModule,
@@ -91,8 +92,6 @@ import { MentionModule } from 'projects/shared-modules/mention/mention.module';
     NbSpinnerModule,
     NbPopoverModule,
   ],
-  exports: [
-    CommunityChannelsDashboardComponent
-  ]
+  exports: [CommunityChannelsDashboardComponent],
 })
-export class CommunityChannelsModule { }
+export class CommunityChannelsModule {}

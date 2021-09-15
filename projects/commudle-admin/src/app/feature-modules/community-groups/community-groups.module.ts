@@ -10,7 +10,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
-
 @NgModule({
   declarations: [CommunityGroupFormComponent, DashboardComponent],
   imports: [
@@ -27,8 +26,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     NbInputModule,
     NbButtonModule,
     NbIconModule,
-    NbTabsetModule
-
-  ]
+    NbTabsetModule,
+  ],
 })
-export class CommunityGroupsModule { }
+export class CommunityGroupsModule {}
