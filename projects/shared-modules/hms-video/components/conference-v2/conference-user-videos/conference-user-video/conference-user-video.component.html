@@ -1,0 +1,51 @@
+<div class="user-video-container">
+  <div
+    *ngIf="!peer?.isLocal && (localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER) && !screenShare"
+    class="video-controls d-flex"
+  >
+    <button
+      (click)="mutePeerAudio()"
+      [disabled]="!isAudioEnabled"
+      ghost
+      nbButton
+      nbTooltip="Mute this person's audio"
+      shape="round"
+      size="small"
+    >
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+    </button>
+    <button
+      (click)="mutePeerVideo()"
+      [disabled]="!isVideoEnabled"
+      ghost
+      nbButton
+      nbTooltip="Mute this person's video"
+      shape="round"
+      size="small"
+    >
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+    </button>
+    <button (click)="changeRole()" ghost nbButton nbTooltip="Remove from stage" shape="round" size="small">
+      <nb-icon icon="minus-circle"></nb-icon>
+    </button>
+    <button (click)="removeFromSession()" ghost nbButton nbTooltip="Remove from session" shape="round" size="small">
+      <nb-icon icon="log-out"></nb-icon>
+    </button>
+  </div>
+  <div class="user-video">
+    <video
+      #videoElement
+      [autoplay]="true"
+      [muted]="peer?.isLocal"
+      [ngClass]="{'hidden': !isVideoEnabled && !screenShare, 'screen-share': screenShare}"
+      playsinline
+    ></video>
+    <div *ngIf="metaData && !isVideoEnabled && !screenShare" class="user-avatar">
+      <img [alt]="metaData.name" [src]="metaData.avatar" [title]="metaData.name" />
+    </div>
+  </div>
+  <div *ngIf="metaData" class="user-name">
+    <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
+    {{metaData.name}}
+  </div>
+</div>

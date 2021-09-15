@@ -1,10 +1,10 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import 'projects/commudle-admin/src/assets/styles/variables';
 
 .session-page-video {
   margin-top: 0;
   border: none;
   border-radius: $border-10;
-  overflow: hidden;
+  //overflow: hidden;
   height: calc(100vh - 56px - 16px - 16px);
 
   &.internal-link {
@@ -25,6 +25,7 @@
   nb-card-body {
     padding: 0;
     height: inherit;
+    overflow: unset;
 
     .session-page-info {
       gap: $space-12;
@@ -86,7 +87,8 @@
       position: relative;
       top: 50%;
       transform: translateY(-50%);
-      height: min(calc(100vh - 56px - 16px - 16px), calc(100vw * 9 / 16));
+      height: 100%;
+      //height: min(calc(100vh - 56px - 16px - 16px), calc(100vw * 9 / 16));
       width: 100%;
       transition: width 0.7s ease-in-out;
 
@@ -155,6 +157,10 @@
       background-color: $white;
       border-radius: $border-4;
       overflow: hidden;
+
+      &.remove-overflow{
+        overflow: unset;
+      }
 
       &.open {
         display: block;

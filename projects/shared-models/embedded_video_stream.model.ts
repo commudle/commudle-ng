@@ -13,4 +13,7 @@ export interface IEmbeddedVideoStream {
   zoom_attendee_signature: string;
   hms_room_id: string;
   is_recorded: boolean;
+  rtmp_url: string;
+  is_recording: boolean;
+  is_streaming: boolean;
 }
