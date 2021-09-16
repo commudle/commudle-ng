@@ -10,7 +10,6 @@ import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-
 import { FormsModule } from '@angular/forms';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
-
 @NgModule({
   declarations: [
     RsvpComponent,
@@ -24,12 +23,11 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     FormsModule,
     SharedDirectivesModule,
 
-
     // Nebular
     NbIconModule,
     NbCardModule,
     NbSpinnerModule,
-    NbToggleModule
-  ]
+    NbToggleModule,
+  ],
 })
-export class EmailConfirmationsModule { }
+export class EmailConfirmationsModule {}

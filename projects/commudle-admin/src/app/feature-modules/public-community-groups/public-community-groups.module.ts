@@ -11,13 +11,12 @@ import { CommunityGroupAboutComponent } from './components/community-group-about
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
-
 @NgModule({
   declarations: [
     CommunityGroupHomeComponent,
     CommunityGroupCommunitiesComponent,
     CommunityGroupTeamComponent,
-    CommunityGroupAboutComponent
+    CommunityGroupAboutComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +29,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     NbCardModule,
     NbIconModule,
     NbTabsetModule,
-    NbRouteTabsetModule
-  ]
+    NbRouteTabsetModule,
+  ],
 })
-export class PublicCommunityGroupsModule { }
+export class PublicCommunityGroupsModule {}

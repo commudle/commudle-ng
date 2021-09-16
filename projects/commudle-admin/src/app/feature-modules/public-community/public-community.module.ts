@@ -14,7 +14,7 @@ import {
   NbPopoverModule,
   NbSelectModule,
   NbTabsetModule,
-  NbTooltipModule
+  NbTooltipModule,
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
@@ -29,7 +29,6 @@ import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker
 import { SpeakersComponent } from './components/speakers/speakers.component';
 import { PublicCommunityRoutingModule } from './public-community-routing.module';
 
-
 @NgModule({
   declarations: [
     HomeCommunityComponent,
@@ -40,11 +39,9 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     MembershipToggleComponent,
     CommunityChannelsListComponent,
     SpeakersComponent,
-    SpeakerCardComponent
+    SpeakerCardComponent,
   ],
-  exports: [
-    MembershipToggleComponent
-  ],
+  exports: [MembershipToggleComponent],
   imports: [
     CommonModule,
     PublicCommunityRoutingModule,
@@ -67,8 +64,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     NbBadgeModule,
     NbSelectModule,
     NbOptionModule,
-    NbDialogModule.forChild()
-  ]
+    NbDialogModule.forChild(),
+  ],
 })
-export class PublicCommunityModule {
-}
+export class PublicCommunityModule {}

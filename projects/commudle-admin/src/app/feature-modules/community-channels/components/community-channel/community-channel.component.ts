@@ -1,16 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { CommunityChannelNotificationsChannel } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
-import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
-import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
-import { CommunityChannelNotificationsChannel } from '../../services/websockets/community-channel-notifications.channel';
 
 @Component({
   selector: 'app-community-channel',
   templateUrl: './community-channel.component.html',
-  styleUrls: ['./community-channel.component.scss']
+  styleUrls: ['./community-channel.component.scss'],
 })
 export class CommunityChannelComponent implements OnInit, OnDestroy {
   subscriptions = [];
@@ -27,11 +26,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     private discussionsService: DiscussionsService,
     private activatedRoute: ActivatedRoute,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
-    private footerService: FooterService
   ) {}
 
   ngOnInit() {
-    this.footerService.changeFooterStatus(false);
     this.subscriptions.push(
       this.communityChannelManagerService.communityChannels$.subscribe((data) => {
         if (data && !this.initialized) {

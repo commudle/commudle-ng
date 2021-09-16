@@ -10,7 +10,13 @@
       overflow: unset;
     }
 
-    .header, .embed, .link, .description, .teammate-details, .author-details, .stats {
+    .header,
+    .embed,
+    .link,
+    .description,
+    .teammate-details,
+    .author-details,
+    .stats {
       padding: 0 1.5rem;
     }
 
@@ -48,7 +54,6 @@
       }
     }
 
-
     .description {
       margin: 1rem 0 1rem;
 
@@ -56,7 +61,6 @@
         font-size: 1.5rem;
       }
     }
-
 
     .images {
       overflow-x: auto;
@@ -82,7 +86,6 @@
           }
         }
       }
-
     }
 
     .embed {

@@ -25,10 +25,10 @@ export class SelectRoleV2Component implements OnInit {
 
     switch (role) {
       case EHmsRoles.VIEWER:
+      case EHmsRoles.HOST_VIEWER:
         this.hmsVideoStateService.setState(EHmsStates.ROOM);
         break;
       case EHmsRoles.HOST:
-      case EHmsRoles.HOST_VIEWER:
         this.hmsVideoStateService.setState(EHmsStates.PREVIEW);
         break;
     }
