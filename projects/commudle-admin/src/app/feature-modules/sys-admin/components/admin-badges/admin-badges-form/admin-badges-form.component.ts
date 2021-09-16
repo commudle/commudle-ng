@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SysAdminBadgesService } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-badges.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBadge } from 'projects/shared-models/badge.model';
@@ -14,6 +14,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./admin-badges-form.component.scss']
 })
 export class AdminBadgesFormComponent implements OnInit {
+
+  @ViewChild('inputImage') inputImage: ElementRef;
 
   badge: IBadge;
   badgeForm: FormGroup = this.fb.group(
@@ -75,10 +77,11 @@ export class AdminBadgesFormComponent implements OnInit {
   }
 
   deleteImage(): void {
-    if(this.uploadedImage){
+    if(this.imageUploaded){
       this.uploadedImage = null;
       this.imageUploaded = false;
       this.imageSrc = '';
+      this.inputImage.nativeElement.value = '';
     }
   }
 
