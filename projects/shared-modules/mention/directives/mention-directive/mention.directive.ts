@@ -15,7 +15,8 @@ export class MentionDirective {
   taggableEntities: any[] = [];
   selectedEntity: any;
   subscriptions: Subscription[] = [];
-  private coords: { top : number, left : number } = { top : 0, left : 0 };
+  private coords: { top: number, left: number } = { top: 0, left: 0 };
+  clickedOnBox: boolean = false;
 
   constructor(
     private inputElementRef: ElementRef,
@@ -40,37 +41,69 @@ export class MentionDirective {
   onItemClicked(entity: any) {
     this.autoComplete(entity);
     this.nativeElement.focus();
-    this.selectedEntity = null;
+    this.selectedEntity = "";
     if (this.componentRef) {
       this.componentRef.destroy();
     }
   }
 
   @HostListener('blur', ['$event']) //if text area gets out of focus remove autocomplete box
-  onOutOfFocus(event : any){
-    setTimeout( () => {
-      if(this.componentRef){
-        this.componentRef.destroy();
-      }
-    } ,500)
+  onOutOfFocus(event: any) {
+    if (!this.clickedOnBox && this.componentRef) {
+      this.componentRef.destroy();
+    }
+    this.clickedOnBox = false;
   }
 
-  @HostListener('keyup', ['$event'])
-  onEnterKey(event: KeyboardEvent) {
+  @HostListener('keydown', ['$event'])
+  currentKey(event: KeyboardEvent) {
 
-    if (event.key === "Enter") {
+    if (this.componentRef) {
 
-      if (this.componentRef && this.selectedEntity) {
+      if (event.key === "Tab" || event.key === "Enter") {
+        if (this.selectedEntity) {
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
 
-        event.preventDefault()
-        event.stopPropagation()
-        event.stopImmediatePropagation()
-
-        this.autoComplete(this.selectedEntity);
-        this.nativeElement.focus();
-        this.componentRef.destroy()
-        this.selectedEntity = "";// alert here
+          this.autoComplete(this.selectedEntity);
+          this.nativeElement.focus();
+          this.componentRef.destroy()
+          this.selectedEntity = "";// alert here
+        }
       }
+      else if (event.key === "ArrowUp") {
+
+        let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
+        if (currentSelectedIndex === 0) {
+          this.componentRef.instance.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
+          this.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
+        }
+        else {
+          this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
+          this.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
+        }
+
+        event.preventDefault();
+
+      }
+      else if (event.key === "ArrowDown") {
+
+        let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
+        if (currentSelectedIndex === this.taggableEntities.length - 1) {
+          this.componentRef.instance.selectedEntity = this.taggableEntities[0];
+          this.selectedEntity = this.taggableEntities[0];
+        }
+        else {
+          this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
+          this.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
+        }
+
+        event.preventDefault();
+
+      }
+
+      setTimeout(() => this.scrollSelectedIntoView(), 1);
 
     }
 
@@ -97,25 +130,25 @@ export class MentionDirective {
 
       let addText: string = entityName;
 
-      switch(entity.type){
-        case 'users':{
+      switch (entity.type) {
+        case 'users': {
           newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
           break;
         }
 
-        case 'channels':{
+        case 'channels': {
           addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/channels/app/${entity.id}">${entityName}</a>`;
           newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
           break;
         }
 
-        case 'events':{
+        case 'events': {
           addText = `<a href="https://commudle.com/communities/${entity.kommunity_slug}/events/${entity.slug}">${entityName}</a>`;
           newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
           break;
         }
 
-        default:{
+        default: {
           addText = `<a href="https://commudle.com/${entity.type}/${entity.slug}">${entityName}</a>`;
           newTextInputValue = this.newTextInput(addText, currentTextInputValue, currentWordTyped);
         }
@@ -126,12 +159,19 @@ export class MentionDirective {
       this.nativeElement.value = newTextInputValue;
       this.nativeElement.selectionStart = newCursorPosition;
       this.nativeElement.selectionEnd = newCursorPosition;
+
+      //updates angular binding
+      const event = new Event('input', {
+        bubbles: true,
+        cancelable: false
+      });
+      this.nativeElement.dispatchEvent(event)
     }
 
   }
 
-  newTextInput(text : string, currentTextInputValue : string, currentWordTyped : TypedWord) : string {
-    return currentTextInputValue.slice(0, currentWordTyped.startIndex) + text + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+  newTextInput(text: string, currentTextInputValue: string, currentWordTyped: TypedWord): string {
+    return currentTextInputValue.slice(0, currentWordTyped.startIndex) + text + " " + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
   }
 
   @HostListener('input', ['$event'])
@@ -184,9 +224,9 @@ export class MentionDirective {
 
   }
 
-  displayComponent(data : any){
+  displayComponent(data: any) {
 
-    const results : any[] = [];
+    const results: any[] = [];
 
     for (const entity in data) {
       for (const index in data[entity]) {
@@ -199,7 +239,7 @@ export class MentionDirective {
 
     if (this.taggableEntities.length) {
       this.loadComponent();
-      window.requestAnimationFrame( () => this.checkBounds() )
+      window.requestAnimationFrame(() => this.checkBounds())
       this.componentRef.instance.taggableEntities = this.taggableEntities;
     }
     else {
@@ -210,17 +250,17 @@ export class MentionDirective {
 
   }
 
-  checkBounds(){
+  checkBounds() {
     let left = this.coords.left, top = this.coords.top;
     const boundsHorizontal = this.componentRef.location.nativeElement.firstChild.getBoundingClientRect();
     const boundsVertical = this.componentRef.location.nativeElement.firstChild.firstChild.getBoundingClientRect();
     const navbarHeight = 56;
 
-    let dropUp : boolean = true;
-    let lineHeight : number = 0;
+    let dropUp: boolean = true;
+    let lineHeight: number = 0;
 
     //If it goes off up or down
-    if( boundsVertical.bottom - navbarHeight < boundsVertical.height ){
+    if (boundsVertical.bottom - navbarHeight < boundsVertical.height) {
       top += boundsVertical.height;
       dropUp = false;
       const parentStyles = window.getComputedStyle(this.nativeElement);
@@ -232,7 +272,7 @@ export class MentionDirective {
       left -= boundsHorizontal.left + boundsHorizontal.width - document.documentElement.clientWidth + 10;
     }
 
-    this.positionElement(left,top,dropUp,lineHeight);
+    this.positionElement(left, top, dropUp, lineHeight);
   }
 
   setTriggerCharacter(word: string) {
@@ -281,48 +321,6 @@ export class MentionDirective {
     }
   }
 
-  @HostListener('keydown', ['$event'])
-  currentKey(event: KeyboardEvent) {
-
-    if (this.componentRef) {
-
-      if (event.key === "ArrowUp") {
-
-        let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
-        if (currentSelectedIndex === 0) {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
-          this.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
-        }
-        else {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
-          this.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
-        }
-
-        event.preventDefault();
-
-      }
-      else if (event.key === "ArrowDown") {
-
-        let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
-        if (currentSelectedIndex === this.taggableEntities.length - 1) {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[0];
-          this.selectedEntity = this.taggableEntities[0];
-        }
-        else {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
-          this.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
-        }
-
-        event.preventDefault();
-
-      }
-
-      setTimeout(() => this.scrollSelectedIntoView(), 1);
-
-    }
-
-  }
-
   scrollSelectedIntoView() {
     const listElement = this.componentRef.location.nativeElement.firstChild.firstChild.querySelector('.selected');
     if (listElement) {
@@ -354,13 +352,17 @@ export class MentionDirective {
     this.coords = getCaretCoordinates(this.nativeElement, this.nativeElement.selectionStart);
     this.coords.top += this.nativeElement.offsetTop - this.nativeElement.scrollTop + 5;
     this.coords.left += this.nativeElement.offsetLeft - this.nativeElement.scrollLeft + 5;
-    this.positionElement(this.coords.left,this.coords.top);
+    this.positionElement(this.coords.left, this.coords.top);
 
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
     this.selectedEntity = this.taggableEntities[0];
 
+    this.componentRef.instance['itemClick'].subscribe(() => {
+      this.clickedOnBox = true;
+    })
+
     this.subscriptions.push(
-      this.componentRef.instance.selectedItemEvent.subscribe((data: any) => { 
+      this.componentRef.instance.selectedItemEvent.subscribe((data: any) => {
         if (data.eventType === "click") {
           this.onItemClicked(data.entity);
         }
@@ -371,7 +373,7 @@ export class MentionDirective {
     )
   }
 
-  positionElement(left : number, top : number, dropUp : boolean = true, lineHeight : number = 0 ){
+  positionElement(left: number, top: number, dropUp: boolean = true, lineHeight: number = 0) {
     top += dropUp ? 0 : lineHeight;
     this.componentRef.location.nativeElement.firstChild.style.position = "absolute";
     this.componentRef.location.nativeElement.firstChild.style.left = left + 'px';
