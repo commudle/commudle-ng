@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -66,8 +67,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
 
   ngOnInit(): void {}
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+    console.log(changes);
 
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
