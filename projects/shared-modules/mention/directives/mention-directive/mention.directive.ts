@@ -52,7 +52,7 @@ export class MentionDirective {
       if(this.componentRef){
         this.componentRef.destroy();
       }
-    } ,100)
+    } ,500)
   }
 
   @HostListener('keyup', ['$event'])
@@ -60,11 +60,12 @@ export class MentionDirective {
 
     if (event.key === "Enter") {
 
-      event.preventDefault()
-      event.stopPropagation()
-      event.stopImmediatePropagation()
-
       if (this.componentRef && this.selectedEntity) {
+
+        event.preventDefault()
+        event.stopPropagation()
+        event.stopImmediatePropagation()
+
         this.autoComplete(this.selectedEntity);
         this.nativeElement.focus();
         this.componentRef.destroy()
