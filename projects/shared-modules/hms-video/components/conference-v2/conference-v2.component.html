@@ -60,7 +60,7 @@
     <!-- Settings -->
     <button
       (click)="openSettings()"
-      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST || localPeer.roleName === EHmsRoles.HOST_VIEWER"
+      *ngIf="localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.GUEST"
       ghost
       nbButton
       nbTooltip="Open Settings"

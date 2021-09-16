@@ -1,17 +1,17 @@
-import { Subscription } from 'rxjs';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { VoteChannel } from '../services/websockets/vote.channel';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { SVotesService } from '../services/s-votes.service';
-import { VotersComponent } from './voters/voters.component';
+import { Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { SVotesService } from '../services/s-votes.service';
+import { VoteChannel } from '../services/websockets/vote.channel';
+import { VotersComponent } from './voters/voters.component';
 
 @Component({
   selector: 'app-votes-display',
   templateUrl: './votes-display.component.html',
-  styleUrls: ['./votes-display.component.scss']
+  styleUrls: ['./votes-display.component.scss'],
 })
 export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() votableType: string;
@@ -19,6 +19,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() voteType: string;
   @Input() icon: string;
   @Input() size;
+  @Input() canVote: boolean = true;
 
   uuid = uuidv4();
 
@@ -32,28 +33,23 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   permittedActions = [];
 
   myVote = false;
-  votingChannelSubscription;
   totalVotes = 0;
-
 
   page: 1;
   count: 10;
-
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private voteChannel: VoteChannel,
     private votesService: SVotesService,
-    private toastLogService: LibToastLogService
+    private toastLogService: LibToastLogService,
   ) {}
 
   ngOnInit() {
-    this.userSubscription = this.authWatchService.currentUser$.subscribe(
-      data => {
-        this.currentUser = data;
-        this.initData();
-      }
-    );
+    this.userSubscription = this.authWatchService.currentUser$.subscribe((data) => {
+      this.currentUser = data;
+      this.initData();
+    });
   }
 
   ngOnDestroy() {
@@ -74,60 +70,53 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
     this.receiveData();
   }
 
-
   getAllVotes() {
-    this.votesService.pGetVotesCount(this.votableType, this.votableId).subscribe(
-      data => {
-        this.totalVotes = data.total;
-        this.myVote = data.voted;
-      }
-    );
+    this.votesService.pGetVotesCount(this.votableType, this.votableId).subscribe((data) => {
+      this.totalVotes = data.total;
+      this.myVote = data.voted;
+    });
   }
-
 
   toggleVote() {
-    if (this.currentUser) {
-      this.voteChannel.sendData(
-        this.votableType, this.votableId,
-        this.uuid,
-        this.voteChannel.ACTIONS.TOGGLE_VOTE,
-        {}
-      );
-    } else {
-      this.authWatchService.logInUser();
+    if (this.canVote) {
+      if (this.currentUser) {
+        this.voteChannel.sendData(
+          this.votableType,
+          this.votableId,
+          this.uuid,
+          this.voteChannel.ACTIONS.TOGGLE_VOTE,
+          {},
+        );
+      } else {
+        this.authWatchService.logInUser();
+      }
     }
-
   }
-
 
   receiveData() {
-    this.votesChannelListSubscription = this.voteChannel.channelsList$.subscribe(
-      data => {
-        if (data.has(`${this.votableId}_${this.votableType}_${this.uuid}`) && !this.votesChannelDataSubscription) {
-          this.votesChannelDataSubscription = this.voteChannel.channelData$[`${this.votableId}_${this.votableType}_${this.uuid}`].subscribe(
-            data => {
-              if (data) {
-                switch (data.action) {
-                  case (this.voteChannel.ACTIONS.SET_PERMISSIONS): {
-                    this.permittedActions = data.permitted_actions;
-                    break;
-                  }
-                  case (this.voteChannel.ACTIONS.TOGGLE_VOTE): {
-                    data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
-                    this.myVote = (data.increment && data.user_id === this.currentUser.id) ? true : false;
-                    break;
-                  }
-                  case (this.voteChannel.ACTIONS.ERROR): {
-                    this.toastLogService.warningDialog(data.message, 2000);
-                  }
-                }
+    this.votesChannelListSubscription = this.voteChannel.channelsList$.subscribe((data) => {
+      if (data.has(`${this.votableId}_${this.votableType}_${this.uuid}`) && !this.votesChannelDataSubscription) {
+        this.votesChannelDataSubscription = this.voteChannel.channelData$[
+          `${this.votableId}_${this.votableType}_${this.uuid}`
+        ].subscribe((data) => {
+          if (data) {
+            switch (data.action) {
+              case this.voteChannel.ACTIONS.SET_PERMISSIONS: {
+                this.permittedActions = data.permitted_actions;
+                break;
+              }
+              case this.voteChannel.ACTIONS.TOGGLE_VOTE: {
+                data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
+                this.myVote = data.increment && data.user_id === this.currentUser.id;
+                break;
+              }
+              case this.voteChannel.ACTIONS.ERROR: {
+                this.toastLogService.warningDialog(data.message, 2000);
               }
             }
-          );
-        }
-      },
-    );
+          }
+        });
+      }
+    });
   }
-
-
 }
