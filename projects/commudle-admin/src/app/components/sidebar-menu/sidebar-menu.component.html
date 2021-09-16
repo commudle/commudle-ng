@@ -92,7 +92,7 @@
         <nb-accordion-item-body *ngIf="isPageAdsAdmin">
           <a [routerLink]="['/sys-admin', 'pa']">Page Ads</a>
         </nb-accordion-item-body>
-        <nb-accordion-item-body>
+        <nb-accordion-item-body *ngIf="isBadgesAdmin">
           <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
         </nb-accordion-item-body>
       </nb-accordion-item>

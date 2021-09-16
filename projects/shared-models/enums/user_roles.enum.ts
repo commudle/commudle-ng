@@ -9,5 +9,6 @@ export enum EUserRoles {
   COMMUNITY_CHANNEL_MEMBER = 'community_channel_member',
   NEWSLETTER = 'newsletter',
   PAGE_ADS = 'page_ads',
+  BADGES = 'badges',
   FEATURED_COMMUNITIES = 'featured_communities',
 }
