@@ -27,6 +27,9 @@ import { CommunityControlsComponent } from './components/community-controls/comm
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminRoutingModule } from './sys-admin-routing.module';
 import { SysAdminComponent } from './sys-admin.component';
+import { AdminBadgesComponent } from './components/admin-badges/admin-badges.component';
+import { AdminBadgesListComponent } from './components/admin-badges/admin-badges-list/admin-badges-list.component';
+import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { SysAdminComponent } from './sys-admin.component';
     AdminPageAdsComponent,
     AdminPageAdsListComponent,
     AdminPageAdsFormComponent,
+    AdminBadgesComponent,
+    AdminBadgesListComponent,
+    AdminBadgesFormComponent,
   ],
   imports: [
     CommonModule,
