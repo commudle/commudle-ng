@@ -11,7 +11,7 @@ export class MentionDirective {
 
   componentRef: ComponentRef<SuggestionBoxComponent>;
   triggerCharacter = null;
-  nativeElement: HTMLTextAreaElement | HTMLInputElement ;
+  nativeElement: HTMLTextAreaElement | HTMLInputElement;
   taggableEntities: any[] = [];
   selectedEntity: any;
   subscriptions: Subscription[] = [];
@@ -60,47 +60,57 @@ export class MentionDirective {
 
     if (this.componentRef) {
 
-      if (event.key === "Tab" || event.key === "Enter") {
-        if (this.selectedEntity) {
+      switch (event.key) {
+        case 'Enter': {
+          if (this.selectedEntity) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+
+            this.autoComplete(this.selectedEntity);
+            this.nativeElement.focus();
+            this.componentRef.destroy()
+            this.selectedEntity = "";// alert here
+          }
+
+          if (this.nativeElement instanceof HTMLTextAreaElement) {
+            return false;
+          }
+
+          break;
+        }
+        case 'ArrowUp': {
+
+          let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
+          if (currentSelectedIndex === 0) {
+            this.componentRef.instance.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
+            this.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
+          }
+          else {
+            this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
+            this.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
+          }
+
           event.preventDefault();
-          event.stopPropagation();
-          event.stopImmediatePropagation();
 
-          this.autoComplete(this.selectedEntity);
-          this.nativeElement.focus();
-          this.componentRef.destroy()
-          this.selectedEntity = "";// alert here
+          break;
         }
-      }
-      else if (event.key === "ArrowUp") {
+        case 'ArrowDown': {
+          let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
+          if (currentSelectedIndex === this.taggableEntities.length - 1) {
+            this.componentRef.instance.selectedEntity = this.taggableEntities[0];
+            this.selectedEntity = this.taggableEntities[0];
+          }
+          else {
+            this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
+            this.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
+          }
 
-        let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
-        if (currentSelectedIndex === 0) {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
-          this.selectedEntity = this.taggableEntities[this.taggableEntities.length - 1];
+          event.preventDefault();
+
+          break;
         }
-        else {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
-          this.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
-        }
-
-        event.preventDefault();
-
-      }
-      else if (event.key === "ArrowDown") {
-
-        let currentSelectedIndex = this.taggableEntities.indexOf(this.selectedEntity);
-        if (currentSelectedIndex === this.taggableEntities.length - 1) {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[0];
-          this.selectedEntity = this.taggableEntities[0];
-        }
-        else {
-          this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
-          this.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
-        }
-
-        event.preventDefault();
-
       }
 
       setTimeout(() => this.scrollSelectedIntoView(), 1);
@@ -215,11 +225,16 @@ export class MentionDirective {
 
     }
     else {
+
       setTimeout(() => {
         if (this.componentRef) {
           this.componentRef.destroy()
         }
       }, 500)
+
+      if (this.selectedEntity) {
+        this.selectedEntity = "";
+      }
     }
 
   }
@@ -357,9 +372,11 @@ export class MentionDirective {
     this.componentRef.instance.selectedEntity = this.taggableEntities[0]; // 1st item will be automatically highlighted
     this.selectedEntity = this.taggableEntities[0];
 
-    this.componentRef.instance['itemClick'].subscribe(() => {
-      this.clickedOnBox = true;
-    })
+    this.subscriptions.push(
+      this.componentRef.instance.itemClick.subscribe(() => {
+        this.clickedOnBox = true;
+      })
+    );
 
     this.subscriptions.push(
       this.componentRef.instance.selectedItemEvent.subscribe((data: any) => {
