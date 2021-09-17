@@ -39,10 +39,43 @@ export class AdminBadgesFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.subscriptions.push(
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.getBadge(+params.badgeId || 0);
+      })
+    );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
+  }
+
+  getBadge(badgeId: number): void {
+    if(badgeId > 0){
+      this.subscriptions.push(
+        this.sysAdminBadgesService.getBadgeById(badgeId).subscribe((value) => {
+          this.badge = value;
+          this.prefillBadge();
+        })
+      );
+    }
+  }
+
+  prefillBadge(): void {
+    this.badgeForm.patchValue({
+      name: this.badge.name,
+      badge_type: this.badge.badge_type
+    });
+
+    if(this.badge.image){
+      let iAttachedFile: IAttachedFile;
+      for(const value in this.badge.image){
+        iAttachedFile[value] = value;
+      }
+      this.uploadedImage = iAttachedFile;
+      this.imageSrc = this.badge.image.url;
+      this.imageUploaded = true;
+    }
   }
 
   addImage(event: Event): void {
@@ -89,6 +122,9 @@ export class AdminBadgesFormComponent implements OnInit {
     if(!this.badge){
       this.createBadge();
     }
+    else{
+      this.updateBadge();
+    }
   }
 
   createBadge(): void {
@@ -99,6 +135,19 @@ export class AdminBadgesFormComponent implements OnInit {
             this.libToastLogService.successDialog('Created badge successfully!');
           },
           () => {}
+        );
+      })
+    );
+  }
+
+  updateBadge(): void {
+    this.subscriptions.push(
+      this.sysAdminBadgesService.updateBadge(this.buildFormData(), this.badge.id).subscribe(() => {
+        this.router.navigate(['/sys-admin', 'badges']).then(
+          () => {
+            this.libToastLogService.successDialog('Updated badge successfully!');
+          },
+          () => {},
         );
       })
     );
