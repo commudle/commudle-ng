@@ -30,18 +30,18 @@ export class AdminBadgesListComponent implements OnInit {
   }
 
   getBadges(): void {
-    console.log(this.total)
-    console.log(this.badges.length)
+    //console.log(this.total)
+    //console.log(this.badges.length)
     if (this.badges.length !== this.total) {
        this.sysAdminBadgesService.getAllBadges(this.page, this.count).subscribe((value) => {
-        //console.log(value)
+        console.log(value.badges)
         this.badges = this.badges.concat(value.badges);
         this.page = +value.page;
         this.total = +value.total;
         this.page += 1;
-        console.log(this.badges)
-        console.log(this.total)
-        console.log(this.badges.length)
+        // console.log(this.badges)
+        // console.log(this.total)
+        // console.log(this.badges.length)
       });
     }
   }
