@@ -30,6 +30,7 @@ import { SysAdminComponent } from './sys-admin.component';
 import { AdminBadgesComponent } from './components/admin-badges/admin-badges.component';
 import { AdminBadgesListComponent } from './components/admin-badges/admin-badges-list/admin-badges-list.component';
 import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges
     FormsModule,
     ReactiveFormsModule,
     SharedDirectivesModule,
+    SharedPipesModule,
 
     // Nebular
     NbCardModule,

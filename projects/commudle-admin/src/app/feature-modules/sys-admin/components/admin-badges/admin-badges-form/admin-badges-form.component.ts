@@ -27,7 +27,7 @@ export class AdminBadgesFormComponent implements OnInit {
   uploadedImage: IAttachedFile;
   imageUploaded: boolean = false;
   subscriptions: Subscription[] = [];
-  imageSrc: SafeResourceUrl;
+  imageSrc: string;
 
   constructor(
     private sysAdminBadgesService : SysAdminBadgesService,
@@ -69,7 +69,7 @@ export class AdminBadgesFormComponent implements OnInit {
 
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSrc = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
+          this.imageSrc = reader.result as string;
         }
         reader.readAsDataURL(inputImage)
       }
