@@ -23,7 +23,7 @@
             <nb-list class="files-list">
                 <nb-list-item *ngIf="imageUploaded" class="justify-content-space-between flex-wrap">
                   <div *ngIf="imageSrc" >
-                    <img [src]="imageSrc" alt="No preview available" height="200px"/>
+                    <img [src]="imageSrc | safeUrl" alt="No preview available" height="200px"/>
                   </div>
                   <button (click)="deleteImage()" ghost nbButton size="tiny" status="danger">Delete</button>
                 </nb-list-item>
