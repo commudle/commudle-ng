@@ -8,8 +8,6 @@ export class PioneerAnalyticsService {
   pioneerAnalytics: any;
 
   constructor(private router: Router) {
-    // @ts-ignore
-    this.pioneerAnalytics = window.pioneerAnalytics;
   }
 
   // Call the active() method whenever the current user performs an action that makes them an active user
@@ -18,13 +16,18 @@ export class PioneerAnalyticsService {
   }
 
   startAnalytics(userId: number): void {
-    this.identifyUser(userId);
+    if (window.location.hostname !== 'localhost') {
+      // @ts-ignore
+      this.pioneerAnalytics = window.pioneerAnalytics;
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.trackPage();
-      }
-    });
+      this.identifyUser(userId);
+
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.trackPage();
+        }
+      });
+    }
   }
 
   // Make an identify() call on every page load for logged-in users. identify() tells us who the current user is

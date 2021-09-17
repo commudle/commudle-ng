@@ -89,7 +89,9 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.actionCableConnectionSocket.connectToServer();
 
         this.notificationsService.subscribeToNotifications();
+      }
 
+      if (this.currentUser && this.isBrowser) {
         this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
       }
     });
