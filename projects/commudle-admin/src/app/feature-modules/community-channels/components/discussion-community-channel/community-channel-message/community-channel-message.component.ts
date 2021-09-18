@@ -67,9 +67,8 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-    console.log(changes);
 
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
