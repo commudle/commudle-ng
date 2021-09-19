@@ -10,13 +10,13 @@
     <loc>https://www.commudle.com/communities</loc>
   </url>
   <url>
+    <loc>https://www.commudle.com/builds</loc>
+  </url>
+  <url>
     <loc>https://www.commudle.com/builds/my-builds</loc>
   </url>
   <url>
     <loc>https://www.commudle.com/labs/my-labs</loc>
-  </url>
-  <url>
-    <loc>https://www.commudle.com/builds</loc>
   </url>
   <url>
     <loc>https://www.commudle.com/features</loc>
@@ -64,10 +64,10 @@
     <loc>https://www.commudle.com/users/ujjawalpoonia/following</loc>
   </url>
   <url>
-    <loc>https://www.commudle.com/users/dswh/following</loc>
+    <loc>https://www.commudle.com/users/dswh/followers</loc>
   </url>
   <url>
-    <loc>https://www.commudle.com/users/dswh/followers</loc>
+    <loc>https://www.commudle.com/users/dswh/following</loc>
   </url>
   <url>
     <loc>https://www.commudle.com/users/smilegupta</loc>
