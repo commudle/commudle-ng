@@ -1,6 +1,11 @@
 <div *ngIf="currentUser?.id !== user?.id" class="user-follow">
-  <button (click)="openDialog(userFollowDialog)" [ngClass]="{'active': isFollowing}" class="follow-btn anim-shadow"
-          nbButton size="small">
+  <button
+    (click)="openDialog(userFollowDialog)"
+    [ngClass]="{'active': isFollowing, 'fixed-width': !showIcon}"
+    class="follow-btn anim-shadow"
+    nbButton
+    size="small"
+  >
     <nb-icon *ngIf="showIcon" [icon]="isFollowing ? 'checkmark' : 'plus'"></nb-icon>
     {{isFollowing ? 'Following' : 'Follow'}}
   </button>
@@ -16,8 +21,10 @@
     </nb-card-header>
     <nb-card-body>
       <p>Thank You for joining the journey of <em>{{user.name}}</em>!</p>
-      <p>As a follower you will be able to receive content in the form of emails and notifications about
-        <em>{{user.name}}</em> from Commudle.</p>
+      <p>
+        As a follower you will be able to receive content in the form of emails and notifications about
+        <em>{{user.name}}</em> from Commudle.
+      </p>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>
