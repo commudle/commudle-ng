@@ -53,7 +53,6 @@ export class NotificationsService {
     this.subscriptions.push(
       this.sessionPageNotificationsService.newChat$.subscribe((value: boolean) => {
         if (value) {
-          console.log(`New chat notification!`);
           this.tabTitleNotificationsService.blinkTitle(`New chat on session page!`);
         }
       }),
