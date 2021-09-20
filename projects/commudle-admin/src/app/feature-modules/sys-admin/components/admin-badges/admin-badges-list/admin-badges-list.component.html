@@ -9,10 +9,12 @@
     <nb-card-body>
         <div class="badge-list-container">
             <nb-list>
-                <nb-list-item *ngFor="let badge of badges" class="d-flex justify-content-space-between">
+                <nb-list-item *ngFor="let badge of badges; let i = index" class="d-flex justify-content-space-between">
                     <div class="badge-details">
                         <p class="title">
                             {{badge.name}}
+                            ({{badge.id}})
+                            <nb-tag [text]="badge.badge_type" size="tiny" status="info"></nb-tag>
                         </p>
                         <div *ngIf="badge.image" class="badge-image">
                             <img [src]="badge.image.url | safeUrl" alt="No preview available"/>
@@ -29,7 +31,7 @@
                         >
                           Edit
                         </button>
-                        <button (click)="confirmDeleteBadgeOpen(badge.id)" nbButton outline size="tiny" status="danger">Delete</button>
+                        <button (click)="confirmDeleteBadgeOpen(badge.id,i)" nbButton outline size="tiny" status="danger">Delete</button>
                     </div>
                 </nb-list-item>
             </nb-list>

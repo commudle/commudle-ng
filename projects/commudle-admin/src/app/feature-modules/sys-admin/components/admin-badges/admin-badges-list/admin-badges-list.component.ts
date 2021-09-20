@@ -12,6 +12,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class AdminBadgesListComponent implements OnInit {
 
   currentBadgeId;
+  currentBadgeIndex;
   badges: IBadge[] = [];
   page = 1;
   count = 15;
@@ -30,24 +31,19 @@ export class AdminBadgesListComponent implements OnInit {
   }
 
   getBadges(): void {
-    //console.log(this.total)
-    //console.log(this.badges.length)
     if (this.badges.length !== this.total) {
        this.sysAdminBadgesService.getAllBadges(this.page, this.count).subscribe((value) => {
-        console.log(value.badges)
         this.badges = this.badges.concat(value.badges);
         this.page = +value.page;
         this.total = +value.total;
         this.page += 1;
-        // console.log(this.badges)
-        // console.log(this.total)
-        // console.log(this.badges.length)
       });
     }
   }
 
-  confirmDeleteBadgeOpen(badgeId: number): void {
+  confirmDeleteBadgeOpen(badgeId: number, index: number): void {
     this.currentBadgeId = badgeId;
+    this.currentBadgeIndex = index;
     this.dialogService.open(this.confirmDeleteBadgeDialogue);
   }
 
@@ -56,9 +52,7 @@ export class AdminBadgesListComponent implements OnInit {
       this.sysAdminBadgesService.deleteBadge(this.currentBadgeId).subscribe((data) => {
         if(data){
           this.toastLogService.successDialog('Successfully deleted badge!');
-          //console.log(this.badges)
-          this.getBadges();
-          //console.log(this.badges)
+          this.badges.splice(this.currentBadgeIndex,1);
         }
       })
     }

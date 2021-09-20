@@ -68,11 +68,7 @@ export class AdminBadgesFormComponent implements OnInit {
     });
 
     if(this.badge.image){
-      let iAttachedFile: IAttachedFile;
-      for(const value in this.badge.image){
-        iAttachedFile[value] = value;
-      }
-      this.uploadedImage = iAttachedFile;
+      this.uploadedImage = this.badge.image;
       this.imageSrc = this.badge.image.url;
       this.imageUploaded = true;
     }
