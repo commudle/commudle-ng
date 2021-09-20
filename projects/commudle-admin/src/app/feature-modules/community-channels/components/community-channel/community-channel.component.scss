@@ -41,7 +41,7 @@
     display: flex;
     flex-wrap: nowrap;
     height: calc(100% - 2.5rem);
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 1rem;
 
     .discussion {
       flex-grow: 1;
@@ -56,6 +56,7 @@
 
     @media screen and (max-width: 1089px) {
       position: relative;
+
       .resources {
         height: 100%;
         max-width: 80%;

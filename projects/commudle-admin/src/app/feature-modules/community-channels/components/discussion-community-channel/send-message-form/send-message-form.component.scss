@@ -1,108 +1,117 @@
 .send-message-form {
   position: relative;
+
   form {
-    display: flex;
     align-items: self-start;
+    display: flex;
+
     nb-form-field {
-      width: 100%;
       position: relative;
+      width: 100%;
 
       textarea {
         font-weight: 400;
-        resize: none;
         padding-left: 3.5rem;
+        resize: none;
       }
 
       .nbPrefix {
-        display: flex;
         align-items: center;
+        display: flex;
         margin-left: 1rem;
         margin-top: -5px;
+
         .emoji-button {
           padding: 0.1rem;
         }
 
         emoji-mart {
-          position: absolute;
           bottom: 50px;
           left: 25px;
+          position: absolute;
 
           &.edit {
             bottom: 0;
-            top: 50px;
             left: 0;
+            top: 50px;
           }
         }
       }
     }
 
     > button {
-      display: flex;
       align-items: center;
+      display: flex;
       justify-content: center;
-      width: 20%;
-      max-width: 40px;
       margin-left: 5px;
+      max-width: 40px;
+      width: 20%;
     }
   }
 
   .attachments {
     display: flex;
     justify-content: flex-end;
-    position: absolute;
-    top: -115px;
     left: 10px;
+    overflow-x: auto;
+    padding: 10px;
+
+    position: absolute;
+
+    top: -115px;
+    width: 80%;
 
     &.bottom {
       bottom: -115px;
       top: unset;
     }
 
-    width: 80%;
-    padding: 10px;
-    overflow-x: auto;
     .file {
-      width: 80px;
-      height: 100px;
-      margin: 0 5px;
+      background: white;
       border: 2px solid #bcd4ff;
       border-radius: 5px;
+      height: 100px;
+      margin: 0 5px;
       position: relative;
-      background: white;
+      width: 80px;
+
       .remove {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        border-radius: 50%;
         background: white;
+        border-radius: 50%;
+        position: absolute;
+        right: -10px;
+        top: -10px;
       }
 
       .file-preview {
         display: flex;
         flex-direction: column;
         height: 100%;
+
         .name {
-          margin: 0;
-          height: 80%;
-          text-align: center;
-          display: flex;
           align-items: center;
-        }
-        .extension {
+          display: flex;
+          height: 80%;
           margin: 0;
           text-align: center;
+        }
+
+        .extension {
           border-top: 1px dotted lightgrey;
-          font-weight: bolder;
           color: lightgrey;
+          font-weight: bolder;
+          margin: 0;
+          text-align: center;
         }
       }
 
       .image-file-preview {
+        align-items: center;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        overflow: hidden;
         height: 100%;
+        overflow: hidden;
+
         img {
           width: 100%;
         }
@@ -112,9 +121,8 @@
 }
 
 .tagging-info {
-  line-height: 10px;
-  font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 6px;
   margin-left: 10px;
 }
 
