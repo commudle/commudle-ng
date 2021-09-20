@@ -11,7 +11,7 @@ export class PioneerAnalyticsService {
   }
 
   // Call the active() method whenever the current user performs an action that makes them an active user
-  activeUser(): void {
+  trackAction(): void {
     this.pioneerAnalytics.active();
   }
 
@@ -25,6 +25,7 @@ export class PioneerAnalyticsService {
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationStart) {
           this.trackPage();
+          this.trackAction();
         }
       });
     }
