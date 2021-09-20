@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <form (keyup.enter)="emitMessage()" (ngSubmit)="emitMessage()" [formGroup]="sendUserMessageForm">
+  <form (keydown.enter)="emitMessage()" (ngSubmit)="emitMessage()" [formGroup]="sendUserMessageForm">
     <nb-form-field>
       <div class="nbPrefix" nbPrefix>
         <label class="clickable">

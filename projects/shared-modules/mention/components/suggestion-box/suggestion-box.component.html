@@ -1,6 +1,7 @@
 <div class="suggestions-box" >
     <nb-list class="sugggestions-box-list mention-menu scrollable-menu mention-dropdown" >
         <nb-list-item *ngFor="let entity of taggableEntities"
+                      (mousedown)="itemClick.emit()"     
                       (click)="onItemClicked(entity)"
                       [ngClass]=" { 'selected' : entity.type === 'users' ? 
                                                  entity.username === selectedEntity.username : 
