@@ -304,6 +304,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/badges',
     UPDATE: 'api/v2/badges',
     DELETE: 'api/v2/badges',
+    ASSIGN: 'api/v2/user_badges',
   },
 
   POLLS: {

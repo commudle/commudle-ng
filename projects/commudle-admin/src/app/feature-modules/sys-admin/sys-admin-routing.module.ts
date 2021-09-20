@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AdminBadgesAssignComponent } from './components/admin-badges/admin-badges-assign/admin-badges-assign.component';
 import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
 import { AdminBadgesListComponent } from './components/admin-badges/admin-badges-list/admin-badges-list.component';
 import { AdminBadgesComponent } from './components/admin-badges/admin-badges.component';
@@ -48,6 +49,10 @@ const routes = [
             path: 'form',
             component: AdminBadgesFormComponent,
           },
+          {
+            path: 'assign',
+            component: AdminBadgesAssignComponent,
+          }
         ]
       },
       {

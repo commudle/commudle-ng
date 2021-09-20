@@ -1,0 +1,43 @@
+<nb-card class="admin-bagdes-assign">
+    <nb-card-header class="d-flex justify-content-space-between align-items-center">
+        Badges
+        <button [routerLink]="['/sys-admin', 'badges']" ghost nbButton shape="round" size="small">Show All Badges</button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <form class="form-fields d-flex justify-content-space-between">
+                    <div class="input-fields">
+                        <input formControlName="name" nbInput type="text" placeholder="Username"/>
+                        <input formControlName="name" nbInput type="text" placeholder="Badge Id"/>
+                    </div>
+                    <button nbButton size="medium" status="primary" type="submit">Assign</button>
+                </form>
+            </nb-list-item>
+            <nb-list-item>
+                <nb-list>
+                    <nb-list-item *ngFor="let user_badge of user_badges" class="d-flex justify-content-space-between">
+                        <div class="user-details">
+                            <div class="user-image d-flex align-items-center">
+                                <img alt="{{user_badge.user.name}}" src="{{user_badge.user.avatar}}" title="{{user_badge.user.name}}" />
+                            </div>
+                            <div class="user-info">
+                                <div class="name d-flex align-items-center">
+                                  <p>{{user_badge.user.name}}</p>
+                                  <img *ngIf="user_badge.user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" />
+                                </div>
+                                <p class="username">@{{user_badge.user.username}}</p>
+                                <p class="user-designation">{{user_badge.user.designation}}</p>
+                                <p class="user-member-count">{{user_badge.user.followers_count.toString() + ' followers'}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="user_badge.badge.image" class="badge-image">
+                            <img src="{{user_badge.badge.image.url}} | safeUrl" alt="No preview available"/>
+                        </div>
+                        <button nbButton size="medium" status="danger" >Delete</button>
+                    </nb-list-item>
+                </nb-list>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>

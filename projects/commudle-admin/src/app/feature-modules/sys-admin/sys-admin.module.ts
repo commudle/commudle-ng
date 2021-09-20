@@ -31,6 +31,7 @@ import { AdminBadgesComponent } from './components/admin-badges/admin-badges.com
 import { AdminBadgesListComponent } from './components/admin-badges/admin-badges-list/admin-badges-list.component';
 import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { AdminBadgesAssignComponent } from './components/admin-badges/admin-badges-assign/admin-badges-assign.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
     AdminBadgesComponent,
     AdminBadgesListComponent,
     AdminBadgesFormComponent,
+    AdminBadgesAssignComponent,
   ],
   imports: [
     CommonModule,

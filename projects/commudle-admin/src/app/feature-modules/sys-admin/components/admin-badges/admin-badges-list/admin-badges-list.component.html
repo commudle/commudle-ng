@@ -1,10 +1,16 @@
 <nb-card class="admin-badges-list" >
     <nb-card-header class="d-flex justify-content-space-between align-items-center">
         Badges
-        <button [routerLink]="['/sys-admin', 'badges', 'form']" ghost nbButton shape="round" size="small">
-            <nb-icon icon="plus"></nb-icon>
-            Create New Badge
-        </button>
+        <div>
+            <button [routerLink]="['/sys-admin', 'badges', 'form']" ghost nbButton shape="round" size="small">
+                <nb-icon icon="plus"></nb-icon>
+                Create New Badge
+            </button>
+            <button [routerLink]="['/sys-admin', 'badges', 'assign']" ghost nbButton shape="round" size="small">
+                <nb-icon icon="plus"></nb-icon>
+                Assign a Badge
+            </button>
+        </div>
     </nb-card-header>
     <nb-card-body>
         <div class="badge-list-container">
