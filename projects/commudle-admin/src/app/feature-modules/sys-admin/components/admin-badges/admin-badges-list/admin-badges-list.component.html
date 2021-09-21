@@ -41,6 +41,7 @@
                     </div>
                 </nb-list-item>
             </nb-list>
+            <button (click)="getBadges()" *ngIf="badges.length !== total" fullWidth ghost nbButton>Get more badges</button>
         </div>
     </nb-card-body>
 
