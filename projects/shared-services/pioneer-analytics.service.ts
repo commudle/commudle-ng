@@ -12,7 +12,9 @@ export class PioneerAnalyticsService {
 
   // Call the active() method whenever the current user performs an action that makes them an active user
   trackAction(): void {
-    this.pioneerAnalytics.active();
+    if (window.location.hostname !== 'localhost') {
+      this.pioneerAnalytics.active();
+    }
   }
 
   startAnalytics(userId: number): void {
