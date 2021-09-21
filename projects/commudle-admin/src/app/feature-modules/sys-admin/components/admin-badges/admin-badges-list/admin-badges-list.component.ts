@@ -15,7 +15,7 @@ export class AdminBadgesListComponent implements OnInit {
   currentBadgeIndex;
   badges: IBadge[] = [];
   page = 1;
-  count = 15;
+  count = 5;
   total = -1;
 
   @ViewChild('confirmDeleteBadge') confirmDeleteBadgeDialogue: TemplateRef<any>;
@@ -52,7 +52,10 @@ export class AdminBadgesListComponent implements OnInit {
       this.sysAdminBadgesService.deleteBadge(this.currentBadgeId).subscribe((data) => {
         if(data){
           this.toastLogService.successDialog('Successfully deleted badge!');
-          this.badges.splice(this.currentBadgeIndex,1);
+          this.badges = [];
+          this.page = 1;
+          this.total = -1;
+          this.getBadges();
         }
       })
     }
