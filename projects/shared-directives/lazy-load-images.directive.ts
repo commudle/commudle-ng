@@ -12,16 +12,26 @@ export class LazyLoadImagesDirective {
 
   private isBrowser: boolean = this.IsBrowserService.isBrowser();
 
-  constructor(private el: ElementRef, private IsBrowserService : IsBrowserService) {}
+  constructor(private el: ElementRef, private IsBrowserService: IsBrowserService) { }
 
   ngAfterViewInit() {
-    if(this.isBrowser){
-      this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
+    if (this.isBrowser) {
+      this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
     }
   }
 
   private canLazyLoad() {
     return window && 'IntersectionObserver' in window;
+  }
+
+  private isImageInViewport(): boolean {
+    const rect = this.el.nativeElement.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && 
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth) 
+    );
   }
 
   private lazyLoadImage() {
