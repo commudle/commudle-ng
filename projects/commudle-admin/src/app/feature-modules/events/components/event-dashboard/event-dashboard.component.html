@@ -238,11 +238,11 @@
                   *ngIf="!event.custom_agenda && !event.custom_registration"
                   [event]="event"
                 ></app-event-speakers>
-                <app-event-embedded-video-stream
+                <app-event-embedded-video-stream-v2
                   *ngIf="!event.custom_agenda"
                   [community]="community"
                   [event]="event"
-                ></app-event-embedded-video-stream>
+                ></app-event-embedded-video-stream-v2>
               </div>
             </nb-card-body>
           </nb-card>

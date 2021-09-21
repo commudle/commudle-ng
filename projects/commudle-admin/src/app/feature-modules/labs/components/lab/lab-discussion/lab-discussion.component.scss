@@ -12,6 +12,7 @@
   }
 
   nb-card-body {
+    overflow: unset;
     .discussion-chat-component {
       .send-message-form {
         margin-bottom: 1.5 * $space-16;
@@ -47,4 +48,11 @@
       height: max-content;
     }
   }
+}
+
+.tagging-info {
+  line-height: 10px;
+  font-weight: 400;
+  font-size: 13px;
+  margin-left: 10px;
 }

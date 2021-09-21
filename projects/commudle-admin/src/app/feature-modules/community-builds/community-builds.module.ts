@@ -9,7 +9,7 @@ import {
   NbIconModule,
   NbInputModule,
   NbPopoverModule,
-  NbSelectModule
+  NbSelectModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -34,7 +34,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     CommunityBuildHListItemComponent,
     CommunityBuildComponent,
     BuildListItemComponent,
-    TeammateInviteConfirmationComponent
+    TeammateInviteConfirmationComponent,
   ],
   imports: [
     CommonModule,
@@ -54,8 +54,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     NbButtonModule,
     NbIconModule,
     NbPopoverModule,
-    NbCheckboxModule
-  ]
+    NbCheckboxModule,
+  ],
 })
-export class CommunityBuildsModule {
-}
+export class CommunityBuildsModule {}

@@ -1,0 +1,27 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
+.conference-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  .controls {
+    bottom: $space-8;
+    gap: $space-8;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    button {
+      height: 40px;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .conference-container {
+    .controls {
+      bottom: $space-64;
+    }
+  }
+}
