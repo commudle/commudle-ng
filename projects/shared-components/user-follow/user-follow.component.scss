@@ -2,16 +2,15 @@
 
 .user-follow {
   .follow-btn {
+    background-color: rgba($neon-blue, 0.2);
     border: none;
     border-radius: $border-10;
-    padding: $space-8;
-    width: 74px;
-    height: 32px;
+    color: $neon-blue;
     font-size: $fs-h6;
     font-weight: $fw-400;
+    height: 32px;
+    padding: $space-8;
     text-transform: none;
-    color: $neon-blue;
-    background-color: rgba($neon-blue, 0.2);
 
     &:hover {
       background-color: rgba($neon-blue, 0.2);
@@ -21,9 +20,13 @@
       margin-right: $space-4;
     }
 
+    &.fixed-width {
+      width: 74px;
+    }
+
     &.active {
-      border: 1px solid rgba($neon-blue, 0.2);
       background-color: $white;
+      border: 1px solid rgba($neon-blue, 0.2);
     }
   }
 }
@@ -31,4 +34,3 @@
 .user-follow-dialog {
   width: min(100vw, 500px);
 }
-
