@@ -1,12 +1,13 @@
 <div class="community-build-details">
-
   <nb-card *ngIf="cBuild" class="community-build">
     <nb-card-body>
       <div class="header">
         <div class="build-type">
-          <app-badge [color]="CBuildTypeDisplay[cBuild.build_type].color"
-                     [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
-                     [text]="cBuild.build_type | titlecase"></app-badge>
+          <app-badge
+            [color]="CBuildTypeDisplay[cBuild.build_type].color"
+            [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
+            [text]="cBuild.build_type | titlecase"
+          ></app-badge>
         </div>
         <h1>{{ cBuild.name }}</h1>
         <div class="tags">
@@ -14,10 +15,15 @@
         </div>
         <p class="author">
           {{ cBuild.user.name }}
-          <img *ngIf="cBuild.user.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
-               title="Expert Tick">
+          <img
+            *ngIf="cBuild.user.is_expert"
+            alt="Expert Tick"
+            class="expert-icon"
+            src="/assets/images/Expert-Tick.svg"
+            title="Expert Tick"
+          />
           <span *ngIf="cBuild.user.designation"> , {{ cBuild.user.designation }}</span>
-          <br>
+          <br />
           <small>{{ moment(cBuild.created_at).format('Do MMM YYYY') }}</small>
         </p>
       </div>
@@ -37,12 +43,12 @@
       <div *ngIf="cBuild.images.length > 0" class="images">
         <div class="image-stripe">
           <div (click)="openImage(cBuild.name, image)" *ngFor="let image of cBuild.images" class="image clickable">
-            <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{cBuild.name}}">
+            <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{cBuild.name}}" />
           </div>
         </div>
       </div>
       <div class="author-details">
-        <app-user-profile-card-large [user]="cBuild.user"></app-user-profile-card-large>
+        <app-user-profile-card-large [user]="cBuild.user" [showFollowButton]="true"></app-user-profile-card-large>
       </div>
 
       <div *ngIf="teammates.length > 0" class="teammate-details">
@@ -53,8 +59,12 @@
       </div>
       <div class="stats">
         <p class="stars">
-          <app-votes-display [icon]="'star'" [size]="'large'" [votableId]="cBuild.id"
-                             [votableType]="'CommunityBuild'"></app-votes-display>
+          <app-votes-display
+            [icon]="'star'"
+            [size]="'large'"
+            [votableId]="cBuild.id"
+            [votableType]="'CommunityBuild'"
+          ></app-votes-display>
           <span> Give a star to encourage! </span>
         </p>
       </div>
@@ -65,12 +75,11 @@
       </div>
     </nb-card-body>
   </nb-card>
-
 </div>
 
 <ng-template #imageTemplate>
   <div class="image-window">
-    <img alt="Image" src="{{ this.currImage.url }}" title="Image">
+    <img alt="Image" src="{{ this.currImage.url }}" title="Image" />
     <div class="controls">
       <button (click)="imageNav(-1)" nbButton shape="round" size="small">
         <nb-icon icon="arrow-ios-back-outline"></nb-icon>

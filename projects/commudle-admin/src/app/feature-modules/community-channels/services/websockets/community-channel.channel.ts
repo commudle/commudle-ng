@@ -13,6 +13,7 @@ export class CommunityChannelChannel {
     SET_PERMISSIONS: 'set_permissions',
     ADD: 'add',
     REPLY: 'reply',
+    VOTE: 'vote',
     UPDATE: 'update',
     FLAG: 'flag',
     DELETE: 'delete',
