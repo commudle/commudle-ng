@@ -9,6 +9,7 @@ export class SuggestionBoxComponent implements OnInit {
   @Input() taggableEntities : any[];
   @Input() selectedEntity : any;
   @Output() selectedItemEvent : EventEmitter<any> = new EventEmitter<any>();
+  @Output() itemClick = new EventEmitter();
 
   constructor() {
   }

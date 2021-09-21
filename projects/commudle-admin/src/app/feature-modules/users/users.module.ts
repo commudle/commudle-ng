@@ -20,7 +20,6 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
-import { UserFollowComponent } from 'projects/commudle-admin/src/app/feature-modules/user-follow/user-follow.component';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
@@ -45,7 +44,6 @@ import { UserCoverPhotoComponent } from './components/public-profile/user-extra-
 import { UserExtraDetailsComponent } from './components/public-profile/user-extra-details/user-extra-details.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
-import { RedirectToMyProfileGuard } from './services/guards/redirect-to-my-profile.guard';
 import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
@@ -69,7 +67,6 @@ import { UsersRoutingModule } from './users-routing.module';
     UserFeedPostComponent,
     UserNetworkComponent,
     UserNetworkListComponent,
-    UserFollowComponent,
     UserBadgesComponent,
     UserBasicSocialComponent,
   ],
@@ -101,6 +98,6 @@ import { UsersRoutingModule } from './users-routing.module';
     NbAlertModule,
     NbRouteTabsetModule,
   ],
-  exports: [BasicUserProfileComponent, UserFollowComponent],
+  exports: [BasicUserProfileComponent],
 })
 export class UsersModule {}
