@@ -6,7 +6,6 @@ import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { Subscription } from 'rxjs';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-badges-form',
@@ -34,8 +33,7 @@ export class AdminBadgesFormComponent implements OnInit {
     private fb: FormBuilder,
     private libToastLogService: LibToastLogService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {

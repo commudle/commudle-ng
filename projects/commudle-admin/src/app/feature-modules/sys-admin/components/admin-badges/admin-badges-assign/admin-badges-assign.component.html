@@ -6,12 +6,12 @@
     <nb-card-body>
         <nb-list>
             <nb-list-item>
-                <form class="form-fields d-flex justify-content-space-between">
+                <form (submit)="assignBadge()" [formGroup]="assignBadgeForm" class="form-fields d-flex justify-content-space-between">
                     <div class="input-fields">
-                        <input formControlName="name" nbInput type="text" placeholder="Username"/>
-                        <input formControlName="name" nbInput type="text" placeholder="Badge Id"/>
+                        <input formControlName="username" nbInput type="text" placeholder="Username"/>
+                        <input formControlName="badge_id" nbInput type="number" placeholder="Badge Id"/>
                     </div>
-                    <button nbButton size="medium" status="primary" type="submit">Assign</button>
+                    <button [disabled]="!assignBadgeForm.valid" nbButton size="medium" status="primary" type="submit">Assign</button>
                 </form>
             </nb-list-item>
             <nb-list-item>
@@ -27,17 +27,29 @@
                                   <img *ngIf="user_badge.user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" />
                                 </div>
                                 <p class="username">@{{user_badge.user.username}}</p>
-                                <p class="user-designation">{{user_badge.user.designation}}</p>
-                                <p class="user-member-count">{{user_badge.user.followers_count.toString() + ' followers'}}</p>
                             </div>
                         </div>
                         <div *ngIf="user_badge.badge.image" class="badge-image">
                             <img src="{{user_badge.badge.image.url}} | safeUrl" alt="No preview available"/>
                         </div>
-                        <button nbButton size="medium" status="danger" >Delete</button>
+                        <button (click)="confirmUnassignBadgeOpen(user_badge.id)" nbButton outline size="medium" status="danger" >Delete</button>
                     </nb-list-item>
                 </nb-list>
             </nb-list-item>
         </nb-list>
+        <button (click)="getUserBadges()" *ngIf="user_badges.length !== total" fullWidth ghost nbButton>Get more user badges</button>
     </nb-card-body>
+
+    <ng-template #confirmUnassignBadge let-ref="dialogRef">
+        <nb-card>
+          <nb-card-header class="text-center">Confirmation</nb-card-header>
+          <nb-card-body>
+            <p>Are you sure you want to unassign this Badge from the User?</p>
+          </nb-card-body>
+          <nb-card-footer class="d-flex justify-content-space-between">
+            <button (click)="unassignBadge(); ref.close()" ghost nbButton status="success">Yes</button>
+            <button (click)="ref.close()" nbButton status="danger">No</button>
+          </nb-card-footer>
+        </nb-card>
+    </ng-template>
 </nb-card>

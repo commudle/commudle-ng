@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { IBadge } from 'projects/shared-models/badge.model';
 import { IBadges } from 'projects/shared-models/badges.model';
 import { IUserBadges } from 'projects/shared-models/user_badges.model';
+import { IUserBadge } from 'projects/shared-models/user_badge.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,20 +30,6 @@ export class SysAdminBadgesService {
 
     return this.http.get<IBadges>(
       this.apiRoutesService.getRoute(API_ROUTES.BADGES.INDEX), { params }
-    );
-  }
-
-  getUserBadges(page?: number, count?: number): Observable<IUserBadges> {
-    let params = new HttpParams();
-
-    if (page) {
-      params = params.append('page', String(page));
-    }
-    if (count) {
-      params = params.append('count', String(count));
-    }
-    return this.http.get<IUserBadges>(
-      this.apiRoutesService.getRoute(API_ROUTES.BADGES.ASSIGN), { params }
     );
   }
 
