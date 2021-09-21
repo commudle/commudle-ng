@@ -29,9 +29,7 @@
         <div class="labs d-flex flex-wrap">
           <!-- lab-display-card-component here-->
           <div *ngFor="let lab of (searchedLabs.length > 0 ? searchedLabs : popularLabs)">
-            <a [routerLink]='[lab.slug]'>
-              <app-lab-display-card [lab]="lab"></app-lab-display-card>
-            </a>
+            <app-lab-display-card [lab]="lab"></app-lab-display-card>
           </div>
         </div>
       </div>
