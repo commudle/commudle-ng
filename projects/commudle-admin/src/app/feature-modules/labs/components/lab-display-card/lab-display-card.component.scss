@@ -1,12 +1,21 @@
 @import '/projects/commudle-admin/src/assets/styles/variables';
 
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+
 .lab-display-card {
   width: 336px;
   height: max-content;
   border: 1px solid $maya-blue;
   border-radius: $border-5;
 
-  p, div, h4 {
+  p,
+  div,
+  h4 {
     margin: 0; //to remove default margin
   }
 
@@ -47,14 +56,16 @@
       .stats {
         gap: $space-4;
 
-        p, nb-icon {
+        p,
+        nb-icon {
           font-size: $fs-card-secondary;
           margin-right: $space-4;
           color: $neon-blue;
         }
 
         .views {
-          p, nb-icon {
+          p,
+          nb-icon {
             margin-top: 1px;
           }
         }
