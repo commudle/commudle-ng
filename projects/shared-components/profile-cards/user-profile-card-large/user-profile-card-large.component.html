@@ -13,6 +13,6 @@
     </div>
   </div>
 </a>
-<div class="followers">
+<div class="followers" *ngIf="showFollowButton">
   <app-user-follow [username]="user.username" class="follow-btn"></app-user-follow>
 </div>

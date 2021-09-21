@@ -1,27 +1,37 @@
-<a [routerLink]="[lab.slug]">
-  <div class="lab-display-card">
-    <div [routerLink]="[lab.slug]" class="header-image clickable">
-      <img alt="{{lab.name}}" src="{{lab.header_image?.i350 || '/assets/images/Lab-Default.png'}}" title="{{lab.name}}">
+<div class="lab-display-card">
+  <a [routerLink]="[lab.slug]">
+    <div class="header-image clickable">
+      <img
+        alt="{{lab.name}}"
+        src="{{lab.header_image?.i350 || '/assets/images/Lab-Default.png'}}"
+        title="{{lab.name}}"
+      />
     </div>
-    <div class="content d-flex flex-column justify-content-space-between">
-      <!--padding-->
-      <div [routerLink]="[lab.slug]" class="title clickable">
+  </a>
+  <div class="content d-flex flex-column justify-content-space-between">
+    <!--padding-->
+    <a [routerLink]="[lab.slug]">
+      <div class="title clickable">
         <h4>{{lab.name | truncatetext:40}}</h4>
         <p>Published {{lab.published_at | date}}</p>
       </div>
-  
-      <div class="author-stats d-flex justify-content-space-between">
-        <app-user-profile-card-medium [maxNameLength]="20" [maxDesignationLength]="30" [user]="lab.user"></app-user-profile-card-medium>
-        <div class="stats d-flex">
-          <div class="views d-flex align-items-center">
-            <p>{{lab.visits}}</p>
-            <nb-icon icon="eye"></nb-icon>
-          </div>
-          <div class="likes d-flex align-items-center">
-            <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
-          </div>
+    </a>
+
+    <div class="author-stats d-flex justify-content-space-between">
+      <app-user-profile-card-medium
+        [maxNameLength]="20"
+        [maxDesignationLength]="30"
+        [user]="lab.user"
+      ></app-user-profile-card-medium>
+      <div class="stats d-flex">
+        <div class="views d-flex align-items-center">
+          <p>{{lab.visits}}</p>
+          <nb-icon icon="eye"></nb-icon>
+        </div>
+        <div class="likes d-flex align-items-center">
+          <app-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
         </div>
       </div>
     </div>
-  </div>  
-</a>
+  </div>
+</div>
