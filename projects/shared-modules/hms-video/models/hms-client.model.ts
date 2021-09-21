@@ -1,4 +1,4 @@
-import { EHmsRoles } from "../components/enums/hms-roles.enum";
+import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 
 export interface IHmsClient {
   token: string;

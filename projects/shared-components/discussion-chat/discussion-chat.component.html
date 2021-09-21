@@ -23,6 +23,9 @@
   <div class="send-message-form">
     <form *ngIf="currentUser" [formGroup]="chatMessageForm" (ngSubmit)="sendMessage()">
        <input
+       appMention
+       (focus)="showText()"
+       (blur)="hideText()"
        type="text"
        nbInput
        fullWidth
@@ -33,6 +36,9 @@
          <nb-icon icon="corner-down-left-outline"></nb-icon>
        </button>
     </form>
+    <div *ngIf="this.showHelperText" class="tagging-info" >
+      <span>@ users, ! others</span>
+    </div>
 
     <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
       Post a Message

@@ -1,8 +1,8 @@
 .message {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: nowrap;
+  justify-content: flex-start;
 
   p {
     font-size: 0.8rem;
@@ -13,10 +13,11 @@
   }
 
   .author-image {
-    width: 35px;
-    margin-right: 5px;
-    display: flex;
     align-self: start;
+    display: flex;
+    margin-right: 5px;
+    width: 35px;
+
     img {
       width: 100%;
     }
@@ -24,10 +25,11 @@
 
   .content-controls {
     width: 100%;
+
     .author-details {
       p {
-        margin: 0 0 0.2rem;
         color: grey;
+        margin: 0 0 0.2rem;
       }
     }
 
@@ -37,35 +39,38 @@
     }
 
     .attachments {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      width: fit-content;
-      max-width: 80%;
-      padding: 10px 0;
       background: #e9f1ff;
       border-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      max-width: 80%;
+      padding: 10px 0;
+      width: fit-content;
+
       .file {
-        width: 80px;
-        height: 100px;
-        margin: 0 5px;
+        background: white;
         border: 2px solid #bcd4ff;
         border-radius: 5px;
-        background: white;
+        height: 100px;
+        margin: 0 5px;
         position: relative;
+        width: 80px;
+
         a.download-link {
+          align-items: center;
+          display: flex;
+          height: 100%;
+          justify-content: center;
           position: absolute;
           width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+
           nb-icon {
+            color: #8b8b8b;
             display: none;
             font-size: 3rem;
-            color: #8b8b8b;
-
           }
+
           &:hover {
             nb-icon {
               display: block;
@@ -78,29 +83,32 @@
           flex-direction: column;
           height: 100%;
           overflow: hidden;
+
           .name {
-            margin: 0;
-            height: 80%;
-            text-align: center;
-            display: flex;
             align-items: center;
+            display: flex;
+            height: 80%;
+            margin: 0;
+            text-align: center;
             word-break: break-all;
           }
+
           .extension {
+            border-top: 1px dotted lightgrey;
+            color: lightgrey;
+            font-weight: bolder;
             margin: 0;
             text-align: center;
-            border-top: 1px dotted lightgrey;
-            font-weight: bolder;
-            color: lightgrey;
           }
         }
 
         .image-file-preview {
+          align-items: center;
           display: flex;
           flex-direction: row;
-          align-items: center;
-          overflow: hidden;
           height: 100%;
+          overflow: hidden;
+
           img {
             width: 100%;
           }
@@ -109,11 +117,11 @@
     }
 
     .details-flag {
+      align-items: baseline;
       display: flex;
       justify-content: flex-start;
-      align-items: center;
 
-      >div {
+      > div {
         margin-right: 10px;
 
         p {
@@ -121,13 +129,7 @@
         }
       }
 
-      .votes {
-        nb-icon {
-          font-size: 1.2rem;
-        }
-      }
-
-      .votes, .reply-button {
+      .reply-button {
         p {
           font-size: 1.1rem;
         }
@@ -138,7 +140,6 @@
           vertical-align: revert;
         }
       }
-
     }
   }
 }
@@ -155,19 +156,19 @@
 
   .reply-form {
     width: 100%;
+
     form {
       display: flex;
       width: 100%;
+
       button {
         width: 30px;
       }
     }
-
   }
 }
 
-
 .edit-message-form {
-  min-width: 500px;
   max-width: 90vw;
+  min-width: 500px;
 }

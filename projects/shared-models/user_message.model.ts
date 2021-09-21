@@ -12,4 +12,5 @@ export interface IUserMessage {
   flags_count: number;
   user_messages: IUserMessage[];
   attachments: IAttachedFile[];
+  edited: boolean;
 }
