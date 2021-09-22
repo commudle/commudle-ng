@@ -35,6 +35,11 @@ export class LazyLoadImagesDirective {
   }
 
   private lazyLoadImage() {
+    const config = {
+      rootMargin: '0px 0px 300px 0px',
+      threshold: 0
+    };
+
     const obs = new IntersectionObserver(entries => {
       entries.forEach(({ isIntersecting }) => {
         if (isIntersecting) {
@@ -42,7 +47,7 @@ export class LazyLoadImagesDirective {
           obs.unobserve(this.el.nativeElement);
         }
       });
-    });
+    }, config);
     obs.observe(this.el.nativeElement);
   }
 
