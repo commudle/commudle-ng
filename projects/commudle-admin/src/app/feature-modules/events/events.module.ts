@@ -27,6 +27,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
@@ -88,6 +89,7 @@ import { EventsRoutingModule } from './events-routing.module';
     SharedComponentsModule,
     YouTubePlayerModule,
     ReusableComponentsModule,
+    SharedDirectivesModule,
 
     // External
     FontAwesomeModule,
