@@ -22,57 +22,7 @@
                     nb-list-item{
 
                         .user-details{
-
                             width: 40%;
-
-                            .user-image{
-                                height: 60px;
-                                width: 60px;
-                                min-width: 32px;
-                                overflow: hidden;
-                                border-radius: 50%;
-                                margin-right: $space-8;
-
-                                img {
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                }
-                            }
-
-                            .user-info{
-
-                                .name {
-                                    p{
-                                        font-size: $fs-h5;
-                                        line-height: 16px;
-                                        font-weight: $fw-600;
-                                        color: $gunmetal;
-                                        text-overflow: ellipsis;
-                                        white-space: nowrap;
-                                        margin-bottom: 2px;
-                                    }
-
-                                    img {
-                                        margin-left: $space-4;
-                                        margin-top: 12px;
-                                        width: 14px;
-                                        height: 14px;
-                                    }
-                                }
-
-                                .username {
-                                    font-size: $fs-h5;
-                                    line-height: 16px;
-                                    color: rgba($gunmetal, 0.85);
-                                    margin-bottom: $space-12;
-                                    text-overflow: ellipsis;
-                                    white-space: nowrap;
-                                    overflow: hidden;
-                                    margin-top: 2px;
-                                }
-
-                            }
                         }
 
                         .badge-image{
