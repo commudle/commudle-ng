@@ -17,6 +17,7 @@ import {
   NbSpinnerModule,
   NbTabsetModule,
   NbTagModule,
+  NbToggleModule,
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
@@ -45,6 +46,8 @@ import { UserExtraDetailsComponent } from './components/public-profile/user-extr
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 import { UsersRoutingModule } from './users-routing.module';
+import { EditUserProfileComponent } from './components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component';
+import { EmailPreferencesComponent } from './components/public-profile/user-basic-details/email-preferences/email-preferences.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { UsersRoutingModule } from './users-routing.module';
     UserNetworkListComponent,
     UserBadgesComponent,
     UserBasicSocialComponent,
+    EditUserProfileComponent,
+    EmailPreferencesComponent,
   ],
   imports: [
     CommonModule,
@@ -97,6 +102,7 @@ import { UsersRoutingModule } from './users-routing.module';
     NbListModule,
     NbAlertModule,
     NbRouteTabsetModule,
+    NbToggleModule,
   ],
   exports: [BasicUserProfileComponent],
 })
