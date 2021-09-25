@@ -384,6 +384,7 @@ export const API_ROUTES = {
     },
     FOLLOWERS: 'api/v2/users/followers',
     FOLLOWEES: 'api/v2/users/followees',
+    USER_EMAIL_SUBSCRIPTIONS: 'api/v2/users/email_unsubscribe_groups',
   },
 
   SPEAKER_RESOURCES: {

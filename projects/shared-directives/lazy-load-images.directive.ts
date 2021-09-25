@@ -14,7 +14,7 @@ export class LazyLoadImagesDirective {
 
   constructor(private el: ElementRef, private IsBrowserService: IsBrowserService) { }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     if (this.isBrowser) {
       this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
     }

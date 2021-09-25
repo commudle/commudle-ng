@@ -1,26 +1,25 @@
-import {Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
-import {FormBuilder, Validators} from '@angular/forms';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {LibToastLogService} from 'projects/shared-services/lib-toastlog.service';
-import {debounceTime, switchMap} from 'rxjs/operators';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { debounceTime, switchMap } from 'rxjs/operators';
 import {
   NoSpecialCharactersValidator,
   NoWhitespaceValidator,
-  WhiteSpaceNotAllowedValidator
+  WhiteSpaceNotAllowedValidator,
 } from 'projects/shared-helper-modules/custom-validators.validator';
 import { Router } from '@angular/router';
-import {NbDialogService} from '@nebular/theme';
-
+import { NbDialogService } from '@nebular/theme';
+import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 
 @Component({
   selector: 'app-basic-user-profile',
   templateUrl: './basic-user-profile.component.html',
-  styleUrls: ['./basic-user-profile.component.scss']
+  styleUrls: ['./basic-user-profile.component.scss'],
 })
 export class BasicUserProfileComponent implements OnInit {
-
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
@@ -44,16 +43,17 @@ export class BasicUserProfileComponent implements OnInit {
     medium: [''],
     gitlab: [''],
     facebook: [''],
-    youtube: ['']
+    youtube: [''],
   });
 
   usernameForm = this.fb.group({
-    username: ['', [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator]]
+    username: [
+      '',
+      [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator],
+    ],
   });
 
-  @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
-
-  @ViewChild('confimChangeUsername') confirmChangeUsername: TemplateRef<any>
+  @ViewChild('confimChangeUsername') confirmChangeUsername: TemplateRef<any>;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -61,18 +61,18 @@ export class BasicUserProfileComponent implements OnInit {
     private usersService: AppUsersService,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private dialogService: NbDialogService
-  ) {
-  }
+    private dialogService: NbDialogService,
+    private updateProfileService: UpdateProfileService,
+  ) {}
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(currentUser => {
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
       if (currentUser) {
         this.currentUser = currentUser;
         this.userProfileForm.patchValue(this.currentUser);
         this.uploadedProfilePicture = this.currentUser.avatar;
         this.currentUsername = this.lastUsername = this.currentUser.username;
-        this.usernameForm.patchValue({username: this.currentUser.username});
+        this.usernameForm.patchValue({ username: this.currentUser.username });
       }
     });
 
@@ -88,7 +88,7 @@ export class BasicUserProfileComponent implements OnInit {
       }
       this.uploadedProfilePictureFile = file;
       const reader = new FileReader();
-      reader.onload = () => this.uploadedProfilePicture = reader.result;
+      reader.onload = () => (this.uploadedProfilePicture = reader.result);
       reader.readAsDataURL(file);
     }
   }
@@ -97,11 +97,11 @@ export class BasicUserProfileComponent implements OnInit {
     const formData: any = new FormData();
     //removing extra new lines from the about_me input
     this.userProfileForm.patchValue({
-      about_me: this.userProfileForm.get("about_me").value.replace(/[\n]+/g, "\n").trim()
-    })
+      about_me: this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim(),
+    });
     const userFormData = this.userProfileForm.value;
-    Object.keys(userFormData).forEach(
-      key => !(userFormData[key] == null) ? formData.append(`user[${key}]`, userFormData[key]) : ''
+    Object.keys(userFormData).forEach((key) =>
+      !(userFormData[key] == null) ? formData.append(`user[${key}]`, userFormData[key]) : '',
     );
 
     if (this.uploadedProfilePictureFile != null) {
@@ -111,27 +111,29 @@ export class BasicUserProfileComponent implements OnInit {
     this.usersService.updateUserProfile(formData).subscribe(() => {
       this.authWatchService.updateSignedInUser();
       this.toastLogService.successDialog('Your Profile is now updated!');
-      this.updateProfile.emit();
+      this.updateProfileService.setUpdateProfileStatus(true);
     });
   }
 
   checkUsername() {
-    this.usernameForm.valueChanges.pipe(
-      debounceTime(800),
-      switchMap(() => {
-        this.checkingUsername = true;
-        this.currentUsername = this.usernameForm.get('username').value;
-        return this.usersService.checkUsername(this.currentUsername);
-      })
-    ).subscribe(data => {
-      this.validUsername = data === true;
-      this.checkingUsername = false;
-    });
+    this.usernameForm.valueChanges
+      .pipe(
+        debounceTime(800),
+        switchMap(() => {
+          this.checkingUsername = true;
+          this.currentUsername = this.usernameForm.get('username').value;
+          return this.usersService.checkUsername(this.currentUsername);
+        }),
+      )
+      .subscribe((data) => {
+        this.validUsername = data === true;
+        this.checkingUsername = false;
+      });
   }
 
   setUsername() {
     const newUsername = this.usernameForm.get('username').value;
-    this.usersService.setUsername(newUsername).subscribe(data => {
+    this.usersService.setUsername(newUsername).subscribe((data) => {
       if (data) {
         // this.toastLogService.successDialog('Updated!');
         this.lastUsername = newUsername;
@@ -144,11 +146,9 @@ export class BasicUserProfileComponent implements OnInit {
 
   confirmSubmissionDialogueOpen() {
     //open the dialogue to confirm username submission
-    this.dialogService.open(
-      this.confirmChangeUsername, {
-        closeOnBackdropClick: false,
-        closeOnEsc: false
-      }
-    )
+    this.dialogService.open(this.confirmChangeUsername, {
+      closeOnBackdropClick: false,
+      closeOnEsc: false,
+    });
   }
 }

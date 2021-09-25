@@ -8,6 +8,9 @@ import { UserSocialComponent } from './components/public-profile/user-extra-deta
 import { UserExtraDetailsComponent } from './components/public-profile/user-extra-details/user-extra-details.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
+import { EditUserProfileComponent } from './components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component';
+import { BasicUserProfileComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import { EmailPreferencesComponent } from './components/public-profile/user-basic-details/email-preferences/email-preferences.component';
 
 const routes = [
   {
@@ -15,26 +18,41 @@ const routes = [
     component: PublicProfileComponent,
     children: [
       {
+        path: 'settings',
+        outlet: 'p',
+        component: EditUserProfileComponent,
+        children: [
+          {
+            path: 'user-basic-details',
+            component: BasicUserProfileComponent,
+          },
+          {
+            path: 'email-preferences',
+            component: EmailPreferencesComponent,
+          },
+        ],
+      },
+      {
         path: '',
         component: UserExtraDetailsComponent,
         children: [
           {
             path: '',
-            component: UserContributionsComponent
+            component: UserContributionsComponent,
           },
           {
             path: 'contributions',
-            component: UserContributionsComponent
+            component: UserContributionsComponent,
           },
           {
             path: 'social',
-            component: UserSocialComponent
+            component: UserSocialComponent,
           },
           {
             path: 'feed',
-            component: UserFeedComponent
-          }
-        ]
+            component: UserFeedComponent,
+          },
+        ],
       },
       {
         path: '',
@@ -58,5 +76,4 @@ const routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UsersRoutingModule {
-}
+export class UsersRoutingModule {}

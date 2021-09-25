@@ -21,13 +21,13 @@ p {
   }
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 184px;
-    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);;
+    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);
   }
 
   .profile-photo-container {
@@ -146,6 +146,10 @@ p {
 
   .user-interactions {
     margin: $space-16 0;
+
+    a {
+      text-decoration: none;
+    }
 
     button {
       height: 32px;
