@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>PrismJsHighlightCodeService</li>
+  <li >PrismJsHighlightCodeService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,7 +78,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#highlightAll">highlightAll</a>
+                                <a href="#highlightAll" >highlightAll</a>
                             </li>
                         </ul>
                     </td>
@@ -101,7 +103,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/shared-services/prismjs-highlight-code.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/shared-services/prismjs-highlight-code.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -150,9 +152,7 @@
                 <td class="col-md-4">
                     <a name="highlightAll"></a>
                     <span class="name">
-                        <b>
-                            highlightAll
-                        </b>
+                        <span ><b>highlightAll</b></span>
                         <a href="#highlightAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -166,8 +166,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">projects/shared-services/prismjs-highlight-code.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">projects/shared-services/prismjs-highlight-code.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -191,8 +191,6 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Inject, Injectable, PLATFORM_ID} from &#x27;@angular/core&#x27;;
 import {isPlatformBrowser} from &#x27;@angular/common&#x27;;
-
-import &#x27;clipboard&#x27;;
 
 import &#x27;prismjs&#x27;;
 import &#x27;prismjs/plugins/toolbar/prism-toolbar&#x27;;
@@ -232,14 +230,14 @@ export class PrismJsHighlightCodeService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -260,9 +258,9 @@ export class PrismJsHighlightCodeService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

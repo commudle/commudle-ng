@@ -1,28 +1,27 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-navbar-menu-options {
-  padding-top: $space-8;
   padding-left: $space-8;
+  padding-top: $space-8;
   text-align: center;
 
   a {
-    text-align: center;
-    padding: 0 $space-16 $space-6 $space-16;
     border: none;
-    text-decoration: none;
     color: $gunmetal;
+    padding: 0 $space-16 $space-6 $space-16;
+    text-align: center;
+    text-decoration: none;
 
     .icon {
-      width: 1.5rem;
       height: 1.5rem;
       margin: auto;
+      width: 1.5rem;
 
-      &::ng-deep {
-        nb-icon {
-          margin: 0;
-          width: 100%;
-          color: rgba($azure, 0.4);
-        }
+      fa-icon {
+        color: rgba($azure, 0.4);
+        font-size: $fs-20;
+        margin: 0;
+        width: 100%;
       }
     }
 
@@ -37,10 +36,8 @@
     border-bottom: 3px solid rgba($azure, 0.9);
 
     .icon {
-      &::ng-deep {
-        nb-icon {
-          color: rgba($azure, 0.9);
-        }
+      fa-icon {
+        color: rgba($azure, 0.9);
       }
     }
   }
@@ -48,17 +45,13 @@
 
 @media all and (max-width: $tab-width) {
   .home-navbar-menu-options {
-    position: fixed;
+    background-color: $white;
     bottom: 0;
+    box-shadow: 0 4.9px 17.6px rgba(0, 0, 0, 0.05), 0 16.5px 59px rgba(0, 0, 0, 0.08), 0 74px 264px rgba(0, 0, 0, 0.13);
+    justify-content: space-around;
     left: 0;
     padding: $space-12 $space-8 0 $space-8 !important;
-    background-color: $white;
+    position: fixed;
     width: 100vw;
-    justify-content: space-around;
-    box-shadow: 0 4.9px 17.6px rgba(0, 0, 0, 0.05), 0 16.5px 59px rgba(0, 0, 0, 0.08), 0 74px 264px rgba(0, 0, 0, 0.13);
-
-    nb-action {
-      padding: 0;
-    }
   }
 }

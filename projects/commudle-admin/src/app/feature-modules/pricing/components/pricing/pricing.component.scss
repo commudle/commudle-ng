@@ -1,11 +1,14 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .pricing {
-  min-height: 100vh;
   background-color: white;
+  min-height: 100vh;
   padding-bottom: $space-136;
 
-  p, a, h1, div {
+  p,
+  a,
+  h1,
+  div {
     color: $gunmetal;
   }
 
@@ -26,7 +29,6 @@
     .plans {
       margin-top: $space-36;
     }
-
 
     @media (max-width: $tab-width) {
       padding: 0 $space-24;

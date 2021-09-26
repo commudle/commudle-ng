@@ -1,9 +1,9 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .user {
-  padding: 0.5rem;
-  display: flex;
   align-items: flex-start;
+  display: flex;
+  padding: 0.5rem;
   position: relative;
 
   &.small {
@@ -11,20 +11,20 @@
   }
 
   .online-status {
+    border-radius: 50%;
+    height: 10px;
+    left: 3px;
     position: absolute;
     top: 6px;
-    left: 3px;
     width: 10px;
-    height: 10px;
-    border-radius: 50%;
 
     &.online {
-      background-color: #36DE4B;
-      box-shadow: 0 1px 4px 2px #36DE4B;
+      background-color: #36de4b;
+      box-shadow: 0 1px 4px 2px #36de4b;
     }
 
     &.offline {
-      background-color: #8080806B;
+      background-color: #8080806b;
     }
   }
 

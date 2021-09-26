@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>AppCentralNotificationService</li>
+  <li >AppCentralNotificationService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,22 +78,22 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#notifications">notifications</a>
+                                <a href="#notifications" >notifications</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#notifications$">notifications$</a>
+                                <a href="#notifications$" >notifications$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#sidebarNotifications">sidebarNotifications</a>
+                                <a href="#sidebarNotifications" >sidebarNotifications</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#sidebarNotifications$">sidebarNotifications$</a>
+                                <a href="#sidebarNotifications$" >sidebarNotifications$</a>
                             </li>
                             <li>
-                                <a href="#sideBarNotificationsList">sideBarNotificationsList</a>
+                                <a href="#sideBarNotificationsList" >sideBarNotificationsList</a>
                             </li>
                         </ul>
                     </td>
@@ -106,10 +108,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getCurrentUser">getCurrentUser</a>
+                                <a href="#getCurrentUser" >getCurrentUser</a>
                             </li>
                             <li>
-                                <a href="#resetSidebarNotifications">resetSidebarNotifications</a>
+                                <a href="#resetSidebarNotifications" >resetSidebarNotifications</a>
                             </li>
                         </ul>
                     </td>
@@ -129,7 +131,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>)</code>
+<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -183,9 +185,7 @@
                 <td class="col-md-4">
                     <a name="getCurrentUser"></a>
                     <span class="name">
-                        <b>
-                            getCurrentUser
-                        </b>
+                        <span ><b>getCurrentUser</b></span>
                         <a href="#getCurrentUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -222,9 +222,7 @@
                 <td class="col-md-4">
                     <a name="resetSidebarNotifications"></a>
                     <span class="name">
-                        <b>
-                            resetSidebarNotifications
-                        </b>
+                        <span ><b>resetSidebarNotifications</b></span>
                         <a href="#resetSidebarNotifications"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -258,164 +256,159 @@
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifications"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notifications</b></span>
+                        <a href="#notifications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="notifications"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            notifications</b>
-                            <a href="#notifications"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>BehaviorSubject&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject(false)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>BehaviorSubject&lt;any&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:18</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject(false)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:18</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifications$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>notifications$</b></span>
+                        <a href="#notifications$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="notifications$"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            notifications$</b>
-                            <a href="#notifications$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>this.notifications.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.notifications.asObservable()</code>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:19</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:19</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarNotifications"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>sidebarNotifications</b></span>
+                        <a href="#sidebarNotifications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sidebarNotifications"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            sidebarNotifications</b>
-                            <a href="#sidebarNotifications"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject(false)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:15</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject(false)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:15</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarNotifications$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>sidebarNotifications$</b></span>
+                        <a href="#sidebarNotifications$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sidebarNotifications$"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            sidebarNotifications$</b>
-                            <a href="#sidebarNotifications$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>this.sidebarNotifications.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.sidebarNotifications.asObservable()</code>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:16</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:16</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sideBarNotificationsList"></a>
+                    <span class="name">
+                        <span ><b>sideBarNotificationsList</b></span>
+                        <a href="#sideBarNotificationsList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sideBarNotificationsList"></a>
-                        <span class="name">
-                            <b>
-                            sideBarNotificationsList</b>
-                            <a href="#sideBarNotificationsList"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
     user_profile: false,
     personal_chat_message: false
   }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:10</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/commudle-admin/src/app/services/app-central-notifications.service.ts:10</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -479,14 +472,14 @@ export class AppCentralNotificationService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -507,9 +500,9 @@ export class AppCentralNotificationService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

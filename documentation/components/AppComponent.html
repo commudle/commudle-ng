@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -35,7 +36,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>AppComponent</li>
+  <li
+  >
+  AppComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -66,12 +69,14 @@
 
 
 
+
     <p class="comment">
         <h3>Implements</h3>
     </p>
     <p class="comment">
                     <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
                     <code><a href="https://angular.io/api/core/AfterViewChecked" target="_blank" >AfterViewChecked</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -137,29 +142,29 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cookieAccepted">cookieAccepted</a>
+                                <a href="#cookieAccepted" >cookieAccepted</a>
                             </li>
                             <li>
-                                <a href="#currentUser">currentUser</a>
+                                <a href="#currentUser" >currentUser</a>
                             </li>
                             <li>
-                                <a href="#faBars">faBars</a>
+                                <a href="#faBars" >faBars</a>
                             </li>
                             <li>
-                                <a href="#footerStatus">footerStatus</a>
+                                <a href="#footerStatus" >footerStatus</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#isBrowser">isBrowser</a>
+                                <a href="#isBrowser" >isBrowser</a>
                             </li>
                             <li>
-                                <a href="#sideBarNotifications">sideBarNotifications</a>
+                                <a href="#sideBarNotifications" >sideBarNotifications</a>
                             </li>
                             <li>
-                                <a href="#sideBarState">sideBarState</a>
+                                <a href="#sideBarState" >sideBarState</a>
                             </li>
                             <li>
-                                <a href="#userContextMenu">userContextMenu</a>
+                                <a href="#userContextMenu" >userContextMenu</a>
                             </li>
                         </ul>
                     </td>
@@ -174,22 +179,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#checkHTTPS">checkHTTPS</a>
+                                <a href="#checkNotifications" >checkNotifications</a>
                             </li>
                             <li>
-                                <a href="#checkNotifications">checkNotifications</a>
+                                <a href="#login" >login</a>
                             </li>
                             <li>
-                                <a href="#login">login</a>
+                                <a href="#ngAfterViewChecked" >ngAfterViewChecked</a>
                             </li>
                             <li>
-                                <a href="#ngAfterViewChecked">ngAfterViewChecked</a>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#toggleSidebar">toggleSidebar</a>
+                                <a href="#toggleSidebar" >toggleSidebar</a>
                             </li>
                         </ul>
                     </td>
@@ -209,12 +214,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(document: Document, platformId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>, apiRoutes: <a href="../injectables/ApiRoutesService.html">ApiRoutesService</a>, authWatchService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>, actionCableConnectionSocket: <a href="../injectables/ActionCableConnectionSocket.html">ActionCableConnectionSocket</a>, sidebarService: NbSidebarService, titleService: <a href="https://angular.io/api/platform-browser/Title" target="_blank">Title</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, windowService: NbWindowService, cookieConsentService: <a href="../injectables/CookieConsentService.html">CookieConsentService</a>, appCentralNotificationsService: <a href="../injectables/AppCentralNotificationService.html">AppCentralNotificationService</a>, iconLibraries: NbIconLibraries, footerService: <a href="../injectables/FooterService.html">FooterService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, truncate: <a href="../undefineds/run.html">TruncateTextPipe</a>)</code>
+<code>constructor(document: Document, platformId: Record<string | >, apiRoutes: <a href="../injectables/ApiRoutesService.html" target="_self">ApiRoutesService</a>, authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>, actionCableConnectionSocket: <a href="../injectables/ActionCableConnectionSocket.html" target="_self">ActionCableConnectionSocket</a>, sidebarService: NbSidebarService, titleService: <a href="https://angular.io/api/platform-browser/Title" target="_blank">Title</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, windowService: NbWindowService, cookieConsentService: <a href="../injectables/CookieConsentService.html" target="_self">CookieConsentService</a>, appCentralNotificationsService: <a href="../injectables/AppCentralNotificationService.html" target="_self">AppCentralNotificationService</a>, iconLibraries: NbIconLibraries, footerService: <a href="../injectables/FooterService.html" target="_self">FooterService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, truncate: <a href="../undefineds/run.html" target="_self">TruncateTextPipe</a>, notificationsService: <a href="../injectables/NotificationsService.html" target="_self">NotificationsService</a>, pioneerAnalyticsService: <a href="../injectables/PioneerAnalyticsService.html" target="_self">PioneerAnalyticsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -247,7 +252,7 @@
                                                         <td>platformId</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                                                    <code>Record&lt;string | &gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -411,6 +416,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>notificationsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationsService.html" target="_self" >NotificationsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pioneerAnalyticsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PioneerAnalyticsService.html" target="_self" >PioneerAnalyticsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -433,50 +462,9 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="checkHTTPS"></a>
-                    <span class="name">
-                        <b>
-                            checkHTTPS
-                        </b>
-                        <a href="#checkHTTPS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>checkHTTPS()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:133</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="checkNotifications"></a>
                     <span class="name">
-                        <b>
-                            checkNotifications
-                        </b>
+                        <span ><b>checkNotifications</b></span>
                         <a href="#checkNotifications"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -490,8 +478,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="127"
-                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:127</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:132</a></div>
                 </td>
             </tr>
 
@@ -513,9 +501,7 @@
                 <td class="col-md-4">
                     <a name="login"></a>
                     <span class="name">
-                        <b>
-                            login
-                        </b>
+                        <span ><b>login</b></span>
                         <a href="#login"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -529,8 +515,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:148</a></div>
                 </td>
             </tr>
 
@@ -552,9 +538,7 @@
                 <td class="col-md-4">
                     <a name="ngAfterViewChecked"></a>
                     <span class="name">
-                        <b>
-                            ngAfterViewChecked
-                        </b>
+                        <span ><b>ngAfterViewChecked</b></span>
                         <a href="#ngAfterViewChecked"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -568,8 +552,45 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:128</a></div>
                 </td>
             </tr>
 
@@ -591,9 +612,7 @@
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -607,8 +626,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:74</a></div>
                 </td>
             </tr>
 
@@ -630,9 +649,7 @@
                 <td class="col-md-4">
                     <a name="toggleSidebar"></a>
                     <span class="name">
-                        <b>
-                            toggleSidebar
-                        </b>
+                        <span ><b>toggleSidebar</b></span>
                         <a href="#toggleSidebar"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -646,8 +663,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="141"
-                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:141</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:144</a></div>
                 </td>
             </tr>
 
@@ -666,289 +683,283 @@
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cookieAccepted"></a>
+                    <span class="name">
+                        <span ><b>cookieAccepted</b></span>
+                        <a href="#cookieAccepted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="cookieAccepted"></a>
-                        <span class="name">
-                            <b>
-                            cookieAccepted</b>
-                            <a href="#cookieAccepted"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:41</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:37</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="currentUser"></a>
-                        <span class="name">
-                            <b>
-                            currentUser</b>
-                            <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:39</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:33</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faBars"></a>
+                    <span class="name">
+                        <span ><b>faBars</b></span>
+                        <a href="#faBars"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="faBars"></a>
-                        <span class="name">
-                            <b>
-                            faBars</b>
-                            <a href="#faBars"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>faBars</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>faBars</code>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:38</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:32</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="footerStatus"></a>
+                    <span class="name">
+                        <span ><b>footerStatus</b></span>
+                        <a href="#footerStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="footerStatus"></a>
-                        <span class="name">
-                            <b>
-                            footerStatus</b>
-                            <a href="#footerStatus"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>true</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>true</code>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:42</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:38</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isBrowser"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isBrowser</b></span>
+                        <a href="#isBrowser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isBrowser"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            isBrowser</b>
-                            <a href="#isBrowser"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>isPlatformBrowser(this.platformId)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:44</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>isPlatformBrowser(this.platformId)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:40</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sideBarNotifications"></a>
+                    <span class="name">
+                        <span ><b>sideBarNotifications</b></span>
+                        <a href="#sideBarNotifications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sideBarNotifications"></a>
-                        <span class="name">
-                            <b>
-                            sideBarNotifications</b>
-                            <a href="#sideBarNotifications"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:36</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:30</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sideBarState"></a>
+                    <span class="name">
+                        <span ><b>sideBarState</b></span>
+                        <a href="#sideBarState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sideBarState"></a>
-                        <span class="name">
-                            <b>
-                            sideBarState</b>
-                            <a href="#sideBarState"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>NbSidebarState</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;collapsed&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:37</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;collapsed&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:31</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userContextMenu"></a>
+                    <span class="name">
+                        <span ><b>userContextMenu</b></span>
+                        <a href="#userContextMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="userContextMenu"></a>
-                        <span class="name">
-                            <b>
-                            userContextMenu</b>
-                            <a href="#userContextMenu"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>NbMenuItem[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[{ title: &#x27;Logout&#x27;, link: &#x27;/logout&#x27; }]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>NbMenuItem[]</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:40</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[
-        {title: &#x27;Logout&#x27;, link: &#x27;/logout&#x27;},
-    ]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/app.component.ts:34</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewChecked, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID} from &#x27;@angular/core&#x27;;
-import {DOCUMENT, isPlatformBrowser} from &#x27;@angular/common&#x27;;
-import {Router} from &#x27;@angular/router&#x27;;
-import {Title} from &#x27;@angular/platform-browser&#x27;;
-import {faBars} from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
-import {NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState} from &#x27;@nebular/theme&#x27;;
-import {ApiRoutesService} from &#x27;projects/shared-services/api-routes.service&#x27;;
-import {environment} from &#x27;projects/commudle-admin/src/environments/environment&#x27;;
-import {LibAuthwatchService} from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
-import {ICurrentUser} from &#x27;projects/shared-models/current_user.model&#x27;;
-import {ActionCableConnectionSocket} from &#x27;projects/shared-services/action-cable-connection.socket&#x27;;
-import {AppCentralNotificationService} from &#x27;projects/commudle-admin/src/app/services/app-central-notifications.service&#x27;;
-import {CookieConsentComponent} from &#x27;projects/shared-components/cookie-consent/cookie-consent.component&#x27;;
-import {CookieConsentService} from &#x27;./services/cookie-consent.service&#x27;;
-import {FooterService} from &#x27;projects/commudle-admin/src/app/services/footer.service&#x27;;
-import { TruncateTextPipe } from &quot;projects/shared-pipes/truncate-text.pipe&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, isPlatformBrowser } from &#x27;@angular/common&#x27;;
+import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from &#x27;@angular/core&#x27;;
+import { Title } from &#x27;@angular/platform-browser&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { faBars } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
+import {
+  NbIconLibraries,
+  NbMenuItem,
+  NbSidebarService,
+  NbSidebarState,
+  NbWindowService,
+  NbWindowState,
+} from &#x27;@nebular/theme&#x27;;
+import { AppCentralNotificationService } from &#x27;projects/commudle-admin/src/app/services/app-central-notifications.service&#x27;;
+import { FooterService } from &#x27;projects/commudle-admin/src/app/services/footer.service&#x27;;
+import { environment } from &#x27;projects/commudle-admin/src/environments/environment&#x27;;
+import { CookieConsentComponent } from &#x27;projects/shared-components/cookie-consent/cookie-consent.component&#x27;;
+import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
+import { TruncateTextPipe } from &#x27;projects/shared-pipes/truncate-text.pipe&#x27;;
+import { ActionCableConnectionSocket } from &#x27;projects/shared-services/action-cable-connection.socket&#x27;;
+import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
+import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
+import { NotificationsService } from &#x27;projects/shared-services/notifications/notifications.service&#x27;;
+import { PioneerAnalyticsService } from &#x27;projects/shared-services/pioneer-analytics.service&#x27;;
+import { CookieConsentService } from &#x27;./services/cookie-consent.service&#x27;;
 
 // import * as LogRocket from &#x27;logrocket&#x27;;
 
 @Component({
-    selector: &#x27;app-root&#x27;,
-    templateUrl: &#x27;./app.component.html&#x27;,
-    styleUrls: [&#x27;./app.component.scss&#x27;],
-    providers: [TruncateTextPipe]
+  selector: &#x27;app-root&#x27;,
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.scss&#x27;],
+  providers: [TruncateTextPipe],
 })
-
-
-export class AppComponent implements OnInit, AfterViewChecked {
-
-    sideBarNotifications &#x3D; false;
-    sideBarState &#x3D; &#x27;collapsed&#x27;;
-    faBars &#x3D; faBars;
-    currentUser: ICurrentUser;
-    userContextMenu: NbMenuItem[] &#x3D; [
-        {title: &#x27;Logout&#x27;, link: &#x27;/logout&#x27;},
-    ];
-    cookieAccepted &#x3D; false;
-    footerStatus &#x3D; true;
+export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
+  sideBarNotifications &#x3D; false;
+  sideBarState: NbSidebarState &#x3D; &#x27;collapsed&#x27;;
+  faBars &#x3D; faBars;
+  currentUser: ICurrentUser;
+  userContextMenu: NbMenuItem[] &#x3D; [{ title: &#x27;Logout&#x27;, link: &#x27;/logout&#x27; }];
+  cookieAccepted &#x3D; false;
+  footerStatus &#x3D; true;
 
   private isBrowser: boolean &#x3D; isPlatformBrowser(this.platformId);
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(PLATFORM_ID) private platformId: Record&lt;string, unknown&gt;,
     private apiRoutes: ApiRoutesService,
     private authWatchService: LibAuthwatchService,
     private actionCableConnectionSocket: ActionCableConnectionSocket,
@@ -961,18 +972,21 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
     private cdr: ChangeDetectorRef,
-    private truncate: TruncateTextPipe
+    private truncate: TruncateTextPipe,
+    private notificationsService: NotificationsService,
+    private pioneerAnalyticsService: PioneerAnalyticsService,
   ) {
-    this.checkHTTPS();
+    // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
 
-    this.iconLibraries.registerFontPack(&#x27;fas&#x27;, {iconClassPrefix: &#x27;fa&#x27;, packClass: &#x27;fas&#x27;});
-    this.iconLibraries.registerFontPack(&#x27;fab&#x27;, {iconClassPrefix: &#x27;fa&#x27;, packClass: &#x27;fab&#x27;});
+    this.iconLibraries.registerFontPack(&#x27;far&#x27;, { iconClassPrefix: &#x27;fa&#x27;, packClass: &#x27;far&#x27; });
+    this.iconLibraries.registerFontPack(&#x27;fas&#x27;, { iconClassPrefix: &#x27;fa&#x27;, packClass: &#x27;fas&#x27; });
+    this.iconLibraries.registerFontPack(&#x27;fab&#x27;, { iconClassPrefix: &#x27;fa&#x27;, packClass: &#x27;fab&#x27; });
   }
 
-  ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(currentUser &#x3D;&gt; {
+  ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((currentUser) &#x3D;&gt; {
       this.currentUser &#x3D; currentUser;
 
       if (this.currentUser &amp;&amp; this.userContextMenu.length &lt;&#x3D; 1) {
@@ -994,27 +1008,21 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
       if (this.isBrowser) {
         this.actionCableConnectionSocket.connectToServer();
-      }
-    });
 
-    this.router.events.subscribe(event &#x3D;&gt; {
-      if (this.isBrowser) {
-        setTimeout(() &#x3D;&gt; {
-          if (window.innerWidth &lt;&#x3D; 1000 &amp;&amp; document.getElementById(&#x27;commudleSidebar&#x27;).classList.contains(&#x27;expanded&#x27;)) {
-            this.document.getElementById(&#x27;commudleSidebar&#x27;).classList.remove(&#x27;expanded&#x27;);
-            this.document.getElementById(&#x27;commudleSidebar&#x27;).classList.add(&#x27;collapsed&#x27;);
-            this.sideBarState &#x3D; &#x27;collapsed&#x27;;
-          }
-        }, 10);
+        this.notificationsService.subscribeToNotifications();
+      }
+
+      if (this.currentUser &amp;&amp; this.isBrowser) {
+        this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
       }
     });
 
     if (this.isBrowser &amp;&amp; !this.cookieConsentService.isCookieConsentAccepted()) {
       setTimeout(() &#x3D;&gt; {
         this.windowService.open(CookieConsentComponent, {
-          title: &#x27;Let\&#x27;s Share Cookies!&#x27;,
+          title: &quot;Let&#x27;s Share Cookies!&quot;,
           initialState: NbWindowState.MAXIMIZED,
-          windowClass: &#x27;cookie-consent&#x27;
+          windowClass: &#x27;cookie-consent&#x27;,
         });
       }, 3000);
     }
@@ -1027,33 +1035,33 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    this.footerService.footerStatus$.subscribe(value &#x3D;&gt; this.footerStatus &#x3D; value);
+    this.footerService.footerStatus$.subscribe((value) &#x3D;&gt; (this.footerStatus &#x3D; value));
     this.cdr.detectChanges();
   }
 
-  checkNotifications() {
-    this.sidebarService.onCollapse().subscribe(data &#x3D;&gt; this.sideBarState &#x3D; &#x27;collapsed&#x27;);
-
-    this.appCentralNotificationsService.sidebarNotifications$.subscribe(data &#x3D;&gt; this.sideBarNotifications &#x3D; data);
+  ngOnDestroy(): void {
+    this.notificationsService.unsubscribeFromNotifications();
   }
 
-  checkHTTPS() {
-    if (this.isBrowser) {
-      if (environment.production &amp;&amp; location.protocol !&#x3D;&#x3D; &#x27;https:&#x27;) {
-        // location.replace(&#x60;https:${location.href.substring(location.protocol.length)}&#x60;);
-      }
-    }
+  checkNotifications(): void {
+    this.appCentralNotificationsService.sidebarNotifications$.subscribe((data) &#x3D;&gt; (this.sideBarNotifications &#x3D; data));
   }
 
-  toggleSidebar() {
-      this.sideBarState &#x3D; this.sideBarState &#x3D;&#x3D;&#x3D; &#x27;collapsed&#x27; ? &#x27;expanded&#x27; : &#x27;collapsed&#x27;;
-      this.sidebarService.toggle(false, &#x27;mainMenu&#x27;);
+  // checkHTTPS(): void {
+  //   if (this.isBrowser) {
+  //     if (environment.production &amp;&amp; location.protocol !&#x3D;&#x3D; &#x27;https:&#x27;) {
+  //       location.replace(&#x60;https:${location.href.substring(location.protocol.length)}&#x60;);
+  //     }
+  //   }
+  // }
+
+  toggleSidebar(): void {
+    this.sidebarService.toggle(false, &#x27;mainMenu&#x27;);
   }
 
-  login() {
+  login(): void {
     this.document.location.href &#x3D; &#x60;https://auther.commudle.com/?back_to&#x3D;${encodeURIComponent(window.location.href)}&#x60;;
   }
-
 }
 </code></pre>
     </div>
@@ -1061,9 +1069,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;nb-layout class&#x3D;&quot;home-navbar&quot;&gt;
   &lt;nb-layout-header fixed&gt;
-    &lt;div [routerLink]&#x3D;&quot;[&#x27;/&#x27;]&quot; class&#x3D;&quot;home-navbar-logo d-flex align-items-center clickable&quot;&gt;
-      &lt;img alt&#x3D;&quot;Commudle&quot; src&#x3D;&quot;/assets/images/commudle-logo72.png&quot; title&#x3D;&quot;Commudle&quot;&gt;
-    &lt;/div&gt;
+    &lt;a [routerLink]&#x3D;&quot;[&#x27;/&#x27;]&quot; class&#x3D;&quot;home-navbar-logo d-flex align-items-center clickable&quot;&gt;
+      &lt;img alt&#x3D;&quot;Commudle&quot; src&#x3D;&quot;/assets/images/commudle-logo72.png&quot; title&#x3D;&quot;Commudle&quot; /&gt;
+    &lt;/a&gt;
     &lt;div class&#x3D;&quot;home-navbar-container d-flex align-items-center&quot;&gt;
       &lt;app-search-bar&gt;&lt;/app-search-bar&gt;
       &lt;div class&#x3D;&quot;home-navbar-menu d-flex align-items-center&quot;&gt;
@@ -1071,7 +1079,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
         &lt;div class&#x3D;&quot;home-navbar-menu-user&quot;&gt;
           &lt;div *ngIf&#x3D;&quot;currentUser&quot; class&#x3D;&quot;menu-user-avatar&quot;&gt;
-            &lt;img [nbContextMenu]&#x3D;&quot;userContextMenu&quot; alt&#x3D;&quot;{{currentUser.name}}&quot; src&#x3D;&quot;{{currentUser.avatar}}&quot;&gt;
+            &lt;img [nbContextMenu]&#x3D;&quot;userContextMenu&quot; alt&#x3D;&quot;{{ currentUser.name }}&quot; src&#x3D;&quot;{{ currentUser.avatar }}&quot; /&gt;
           &lt;/div&gt;
           &lt;div *ngIf&#x3D;&quot;!currentUser&quot; class&#x3D;&quot;menu-user-options d-flex flex-row&quot;&gt;
             &lt;button (click)&#x3D;&quot;login()&quot; class&#x3D;&quot;menu-login&quot; nbButton size&#x3D;&quot;small&quot;&gt;Login&lt;/button&gt;
@@ -1083,12 +1091,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
     &lt;/div&gt;
     &lt;div (click)&#x3D;&quot;toggleSidebar()&quot; class&#x3D;&quot;home-sidebar text-right clickable&quot;&gt;
       &lt;fa-icon [icon]&#x3D;&quot;faBars&quot;&gt;&lt;/fa-icon&gt;
-      &lt;nb-badge *ngIf&#x3D;&quot;sideBarState &#x3D;&#x3D; &#x27;collapsed&#x27; &amp;&amp; sideBarNotifications &#x3D;&#x3D; true&quot; [position]&#x3D;&quot;&#x27;top end&#x27;&quot;
-                status&#x3D;&quot;danger&quot;&gt;&lt;/nb-badge&gt;
+      &lt;nb-badge
+        *ngIf&#x3D;&quot;sideBarState &#x3D;&#x3D;&#x3D; &#x27;collapsed&#x27; &amp;&amp; sideBarNotifications &#x3D;&#x3D;&#x3D; true&quot;
+        [position]&#x3D;&quot;&#x27;top end&#x27;&quot;
+        status&#x3D;&quot;danger&quot;
+      &gt;&lt;/nb-badge&gt;
     &lt;/div&gt;
   &lt;/nb-layout-header&gt;
 
-  &lt;nb-sidebar [tag]&#x3D;&quot;&#x27;mainMenu&#x27;&quot; id&#x3D;&quot;commudleSidebar&quot; responsive&#x3D;&quot;true&quot; right state&#x3D;&quot;collapsed&quot;&gt;
+  &lt;nb-sidebar [(state)]&#x3D;&quot;sideBarState&quot; [fixed]&#x3D;&quot;true&quot; right tag&#x3D;&quot;mainMenu&quot;&gt;
     &lt;app-sidebar-menu&gt;&lt;/app-sidebar-menu&gt;
   &lt;/nb-sidebar&gt;
 
@@ -1100,7 +1111,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     &lt;div class&#x3D;&quot;footer&quot;&gt;
       &lt;div class&#x3D;&quot;page-links d-flex flex-column&quot;&gt;
         &lt;div [routerLink]&#x3D;&quot;[&#x27;/&#x27;]&quot; class&#x3D;&quot;logo&quot;&gt;
-          &lt;img alt&#x3D;&quot;Commudle&quot; class&#x3D;&quot;clickable&quot; src&#x3D;&quot;/assets/images/commudle-logo128.png&quot; title&#x3D;&quot;Commudle&quot;&gt;
+          &lt;img alt&#x3D;&quot;Commudle&quot; class&#x3D;&quot;clickable&quot; src&#x3D;&quot;/assets/images/commudle-logo128.png&quot; title&#x3D;&quot;Commudle&quot; /&gt;
         &lt;/div&gt;
 
         &lt;div class&#x3D;&quot;links&quot;&gt;
@@ -1129,7 +1140,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
       &lt;/div&gt;
 
       &lt;div class&#x3D;&quot;social-links d-flex flex-column-reverse align-items-center&quot;&gt;
-        &lt;hr/&gt;
+        &lt;hr /&gt;
 
         &lt;div class&#x3D;&quot;links&quot;&gt;
           &lt;a href&#x3D;&quot;https://twitter.com/commudle&quot; target&#x3D;&quot;_blank&quot;&gt;
@@ -1167,7 +1178,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
                 <p class="comment">
                     <code>./app.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;/projects/commudle-admin/src/assets/styles/variables&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;./projects/commudle-admin/src/assets/styles/variables&#x27;;
 
 .home-navbar {
   width: 100vw;
@@ -1175,14 +1186,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
   nb-layout-header {
     &amp;::ng-deep {
       nav {
-        padding: $space-8 $space-16;
         justify-content: space-between;
+        padding: $space-8 $space-16;
       }
     }
 
     .home-navbar-logo {
       max-width: 3rem;
       min-width: 3rem;
+      text-decoration: none;
 
       img {
         width: 100%;
@@ -1201,10 +1213,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
           margin-left: $space-16;
 
           .menu-user-avatar {
-            max-width: 2.5rem;
-            max-height: 2.5rem;
-            overflow: hidden;
             border-radius: $border-50;
+            max-height: 2.5rem;
+            max-width: 2.5rem;
+            overflow: hidden;
 
             img {
               width: 100%;
@@ -1215,21 +1227,21 @@ export class AppComponent implements OnInit, AfterViewChecked {
             gap: $space-8;
 
             button {
-              padding: $space-8 $space-12;
-              text-transform: capitalize;
+              border: 0.5px solid $neon-blue;
               font-size: $fs-h5;
               font-weight: 400;
-              border: 0.5px solid $neon-blue;
+              padding: $space-8 $space-12;
+              text-transform: capitalize;
             }
 
             .menu-login {
-              color: $neon-blue;
               background-color: $white;
+              color: $neon-blue;
             }
 
             .menu-signup {
-              color: $white;
               background-color: $neon-blue;
+              color: $white;
             }
 
             .menu-login-signup {
@@ -1252,8 +1264,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
   nb-layout-footer {
     &amp;::ng-deep {
       nav {
-        flex-direction: column;
         background-image: linear-gradient(266deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
+        flex-direction: column;
         overflow: hidden;
         padding: 0 !important;
       }
@@ -1265,29 +1277,29 @@ export class AppComponent implements OnInit, AfterViewChecked {
       .page-links {
         .logo {
           img {
-            width: 50px;
             filter: brightness(5);
+            width: 50px;
           }
         }
 
         .links {
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
           flex-wrap: wrap;
+          justify-content: space-between;
 
           &amp; &gt; div {
             display: flex;
             flex-direction: column;
-            width: 50%;
             margin: 15px 0;
+            width: 50%;
 
             a {
+              color: $white;
+              font-size: 12px;
+              font-weight: 600;
               letter-spacing: 0.5px;
               text-decoration: none;
-              color: $white;
-              font-weight: 600;
-              font-size: 12px;
             }
           }
 
@@ -1325,7 +1337,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
         }
       }
 
-      .ellipse-large, .ellipse-small {
+      .ellipse-large,
+      .ellipse-small {
         visibility: hidden;
       }
     }
@@ -1335,25 +1348,25 @@ export class AppComponent implements OnInit, AfterViewChecked {
     nb-layout-footer {
       &amp;::ng-deep {
         nav {
+          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
           display: flex;
           flex-direction: column;
-          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
         }
       }
 
       .footer {
-        padding: 30px 100px 10px;
-        position: relative;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-between;
+        padding: 30px 100px 10px;
+        position: relative;
 
         .page-links {
-          width: 100%;
           flex-direction: row;
           flex-wrap: nowrap;
           justify-content: space-between;
+          width: 100%;
 
           .logo {
             width: 30%;
@@ -1364,8 +1377,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
           }
 
           .links {
-            width: 70%;
             justify-content: space-around;
+            width: 70%;
 
             &amp; &gt; div {
               width: unset;
@@ -1382,8 +1395,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
         }
 
         .social-links {
-          width: 60%;
           flex-direction: column;
+          width: 60%;
 
           hr {
             width: 100%;
@@ -1402,33 +1415,33 @@ export class AppComponent implements OnInit, AfterViewChecked {
             display: block;
 
             p {
-              margin: 0;
               color: $white;
+              margin: 0;
             }
           }
         }
 
         .ellipse-large {
-          visibility: visible;
-          width: 160px;
-          height: 155px;
           background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
           border-radius: 50%;
-          position: absolute;
-          left: -40px;
           bottom: -30px;
+          height: 155px;
+          left: -40px;
+          position: absolute;
+          visibility: visible;
+          width: 160px;
         }
 
         .ellipse-small {
-          visibility: visible;
-          width: 140px;
+          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
+          border-radius: 100px 100px 100px 100px;
+          bottom: -70px;
           height: 135px;
           left: 70px;
-          bottom: -70px;
-          transform: rotate(45deg);
-          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, .71) 73.46%);
-          border-radius: 100px 100px 100px 100px;
           position: absolute;
+          transform: rotate(45deg);
+          visibility: visible;
+          width: 140px;
         }
       }
     }
@@ -1463,12 +1476,18 @@ export class AppComponent implements OnInit, AfterViewChecked {
             margin-left: $space-8 !important;
 
             .menu-user-avatar {
+              height: 35px !important;
               width: 35px !important;
+
+              img {
+                height: 100%;
+                object-fit: cover;
+              }
 
               &amp;::ng-deep {
                 .user-picture {
-                  width: 2rem;
                   height: 2rem;
+                  width: 2rem;
                 }
               }
             }
@@ -1477,19 +1496,20 @@ export class AppComponent implements OnInit, AfterViewChecked {
               gap: $space-4;
 
               button {
-                width: 92px;
-                padding: $space-4 $space-8;
                 font-size: $fs-h6;
+                padding: $space-4 $space-8;
+                width: 92px;
               }
 
-              .menu-login, .menu-signup {
+              .menu-login,
+              .menu-signup {
                 display: none;
               }
 
               .menu-login-signup {
-                display: block;
-                color: $neon-blue;
                 background-color: $white;
+                color: $neon-blue;
+                display: block;
               }
             }
           }
@@ -1502,8 +1522,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
       }
 
       .home-sidebar {
-        width: max-content;
         margin-left: $space-8;
+        width: max-content;
       }
     }
   }
@@ -1548,9 +1568,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nb-layout class="home-navbar">  <nb-layout-header fixed>    <div [routerLink]="[\'/\']" class="home-navbar-logo d-flex align-items-center clickable">      <img alt="Commudle" src="/assets/images/commudle-logo72.png" title="Commudle">    </div>    <div class="home-navbar-container d-flex align-items-center">      <app-search-bar></app-search-bar>      <div class="home-navbar-menu d-flex align-items-center">        <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>        <div class="home-navbar-menu-user">          <div *ngIf="currentUser" class="menu-user-avatar">            <img [nbContextMenu]="userContextMenu" alt="{{currentUser.name}}" src="{{currentUser.avatar}}">          </div>          <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">            <button (click)="login()" class="menu-login" nbButton size="small">Login</button>            <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>            <button (click)="login()" class="menu-login-signup" nbButton size="small">Login/Signup</button>          </div>        </div>      </div>    </div>    <div (click)="toggleSidebar()" class="home-sidebar text-right clickable">      <fa-icon [icon]="faBars"></fa-icon>      <nb-badge *ngIf="sideBarState == \'collapsed\' && sideBarNotifications == true" [position]="\'top end\'"                status="danger"></nb-badge>    </div>  </nb-layout-header>  <nb-sidebar [tag]="\'mainMenu\'" id="commudleSidebar" responsive="true" right state="collapsed">    <app-sidebar-menu></app-sidebar-menu>  </nb-sidebar>  <nb-layout-column>    <router-outlet></router-outlet>  </nb-layout-column>  <nb-layout-footer *ngIf="footerStatus">    <div class="footer">      <div class="page-links d-flex flex-column">        <div [routerLink]="[\'/\']" class="logo">          <img alt="Commudle" class="clickable" src="/assets/images/commudle-logo128.png" title="Commudle">        </div>        <div class="links">          <div class="one">            <a [routerLink]="[\'/\']">HOME</a>            <a [routerLink]="[\'/about\']">ABOUT</a>            <a [routerLink]="[\'/features\']">FEATURES</a>            <!-- <a [routerLink]="[\'/pricing\']">PRICING</a> -->          </div>          <div class="two">            <a [routerLink]="[\'/communities\']">ALL COMMUNITIES</a>            <a [routerLink]="[\'/labs\']">LABS</a>            <a [routerLink]="[\'/builds\']">BUILDS</a>          </div>          <div class="three">            <a [routerLink]="[\'/policies/privacy-policy\']">PRIVACY POLICY</a>            <a [routerLink]="[\'/policies/terms-and-conditions\']">TERMS & CONDITIONS</a>          </div>          <div class="four">            <a [routerLink]="[\'/about\']">FAQ</a>          </div>        </div>      </div>      <div class="social-links d-flex flex-column-reverse align-items-center">        <hr/>        <div class="links">          <a href="https://twitter.com/commudle" target="_blank">            <nb-icon icon="twitter"></nb-icon>          </a>          <a href="https://linkedin.com/company/commudle" target="_blank">            <nb-icon icon="linkedin"></nb-icon>          </a>          <a href="https://facebook.com/commudle" target="_blank">            <nb-icon icon="facebook"></nb-icon>          </a>          <a href="https://github.com/commudle/commudle-ng" target="_blank">            <nb-icon icon="github"></nb-icon>          </a>        </div>        <div class="tech-stack text-center">          <p>Made with Angular, Ruby on Rails, Postgres, Redis and Love</p>        </div>      </div>      <div class="ellipse-large"></div>      <div class="ellipse-small"></div>    </div>  </nb-layout-footer></nb-layout><app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container><app-user-visit-tracker></app-user-visit-tracker><app-sw-update></app-sw-update></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityCardComponent', 'selector': 'app-home-community-card'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'}];
+        var COMPONENT_TEMPLATE = '<div><nb-layout class="home-navbar">  <nb-layout-header fixed>    <a [routerLink]="[\'/\']" class="home-navbar-logo d-flex align-items-center clickable">      <img alt="Commudle" src="/assets/images/commudle-logo72.png" title="Commudle" />    </a>    <div class="home-navbar-container d-flex align-items-center">      <app-search-bar></app-search-bar>      <div class="home-navbar-menu d-flex align-items-center">        <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>        <div class="home-navbar-menu-user">          <div *ngIf="currentUser" class="menu-user-avatar">            <img [nbContextMenu]="userContextMenu" alt="{{ currentUser.name }}" src="{{ currentUser.avatar }}" />          </div>          <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">            <button (click)="login()" class="menu-login" nbButton size="small">Login</button>            <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>            <button (click)="login()" class="menu-login-signup" nbButton size="small">Login/Signup</button>          </div>        </div>      </div>    </div>    <div (click)="toggleSidebar()" class="home-sidebar text-right clickable">      <fa-icon [icon]="faBars"></fa-icon>      <nb-badge        *ngIf="sideBarState === \'collapsed\' && sideBarNotifications === true"        [position]="\'top end\'"        status="danger"      ></nb-badge>    </div>  </nb-layout-header>  <nb-sidebar [(state)]="sideBarState" [fixed]="true" right tag="mainMenu">    <app-sidebar-menu></app-sidebar-menu>  </nb-sidebar>  <nb-layout-column>    <router-outlet></router-outlet>  </nb-layout-column>  <nb-layout-footer *ngIf="footerStatus">    <div class="footer">      <div class="page-links d-flex flex-column">        <div [routerLink]="[\'/\']" class="logo">          <img alt="Commudle" class="clickable" src="/assets/images/commudle-logo128.png" title="Commudle" />        </div>        <div class="links">          <div class="one">            <a [routerLink]="[\'/\']">HOME</a>            <a [routerLink]="[\'/about\']">ABOUT</a>            <a [routerLink]="[\'/features\']">FEATURES</a>            <!-- <a [routerLink]="[\'/pricing\']">PRICING</a> -->          </div>          <div class="two">            <a [routerLink]="[\'/communities\']">ALL COMMUNITIES</a>            <a [routerLink]="[\'/labs\']">LABS</a>            <a [routerLink]="[\'/builds\']">BUILDS</a>          </div>          <div class="three">            <a [routerLink]="[\'/policies/privacy-policy\']">PRIVACY POLICY</a>            <a [routerLink]="[\'/policies/terms-and-conditions\']">TERMS & CONDITIONS</a>          </div>          <div class="four">            <a [routerLink]="[\'/about\']">FAQ</a>          </div>        </div>      </div>      <div class="social-links d-flex flex-column-reverse align-items-center">        <hr />        <div class="links">          <a href="https://twitter.com/commudle" target="_blank">            <nb-icon icon="twitter"></nb-icon>          </a>          <a href="https://linkedin.com/company/commudle" target="_blank">            <nb-icon icon="linkedin"></nb-icon>          </a>          <a href="https://facebook.com/commudle" target="_blank">            <nb-icon icon="facebook"></nb-icon>          </a>          <a href="https://github.com/commudle/commudle-ng" target="_blank">            <nb-icon icon="github"></nb-icon>          </a>        </div>        <div class="tech-stack text-center">          <p>Made with Angular, Ruby on Rails, Postgres, Redis and Love</p>        </div>      </div>      <div class="ellipse-large"></div>      <div class="ellipse-small"></div>    </div>  </nb-layout-footer></nb-layout><app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container><app-user-visit-tracker></app-user-visit-tracker><app-sw-update></app-sw-update></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>
 <script src="../js/tree.js"></script>
@@ -1564,14 +1584,14 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1592,9 +1612,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

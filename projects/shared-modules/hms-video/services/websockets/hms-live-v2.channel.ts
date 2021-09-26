@@ -34,7 +34,7 @@ export class HmsLiveV2Channel {
     private actionCableConnection: ActionCableConnectionSocket,
     private authWatchService: LibAuthwatchService,
   ) {
-    this.actionCableConnection.acSocket$.subscribe((connection: ActionCable.Cable) => {
+    this.actionCableConnection.acSocket$.subscribe((connection) => {
       this.cableConnection = connection;
     });
   }
