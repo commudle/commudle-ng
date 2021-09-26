@@ -105,7 +105,7 @@
     "typescript": "~4.3.5"
   },
   "lint-staged": {
-    "*.ts": "eslint --cache --fix",
-    "*.{ts,scss,component.html,md,json}": "prettier --write"
+    "projects/**/*.ts": "eslint --cache --fix",
+    "projects/**/*.{ts,scss,component.html,md,json}": "prettier --write"
   }
 }

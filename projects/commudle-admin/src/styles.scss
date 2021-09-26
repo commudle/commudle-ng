@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 @import 'themes';
 
 @import '~@nebular/theme/styles/globals';
@@ -5,15 +9,13 @@
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 
-@import "~prismjs/plugins/toolbar/prism-toolbar.css";
-@import "~prismjs/themes/prism-okaidia";
+@import '~prismjs/plugins/toolbar/prism-toolbar.css';
+@import '~prismjs/themes/prism-okaidia';
 @import '~@ctrl/ngx-emoji-mart/picker';
-
-
 
 @include nb-install() {
   @include nb-theme-global();
-};
+}
 
 @import './assets/styles/variables.scss';
 
@@ -21,7 +23,8 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-.validation-error-text, .error-text{
+.validation-error-text,
+.error-text {
   color: red !important;
 }
 
@@ -37,15 +40,13 @@ input {
   z-index: 1100 !important;
 }
 
-.clickable{
+.clickable {
   cursor: pointer;
 }
-
 
 .navigation-link {
   text-decoration: none;
 }
-
 
 .hidden {
   display: none;
@@ -64,28 +65,25 @@ input {
   font-weight: bold;
 }
 
-
-
-
 // Override Nebular
 
 .nb-theme-default nb-layout-header.fixed ~ .layout-container {
   padding-top: 3.5rem;
 }
 
-.nb-theme-default nb-layout .layout .layout-container nb-sidebar.fixed, .nb-theme-default nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
+.nb-theme-default nb-layout .layout .layout-container nb-sidebar.fixed,
+.nb-theme-default nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
   top: 3.5rem;
 }
 
-.nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column  {
+.nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
   padding: 0 !important;
 }
 
 @media (max-width: 820px) {
-  .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column  {
+  .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
     padding: 0 !important;
   }
-
 }
 
 .nb-theme-default nb-card {
@@ -97,10 +95,13 @@ input {
   height: 3.5rem;
 }
 
-.nb-theme-default [nbInput].size-giant, .nb-theme-default[nbIput].size-tiny, .nb-theme-default [nbInput].size-small, .nb-theme-default [nbInput].size-medium, .nb-theme-default [nbInput] {
+.nb-theme-default [nbInput].size-giant,
+.nb-theme-default[nbIput].size-tiny,
+.nb-theme-default [nbInput].size-small,
+.nb-theme-default [nbInput].size-medium,
+.nb-theme-default [nbInput] {
   font-weight: 300;
 }
-
 
 nb-window {
   max-width: 100%;
@@ -134,17 +135,14 @@ nb-window.full-screen-height {
 //   }
 // }
 
-
 // responsive page menu
 .page-menu.responsive {
-
   background-color: white;
-  width: 100%;
+  box-shadow: 2px -5px 15px -7px lightgrey;
   left: 0;
-  z-index: 10;
   position: sticky;
   top: 3.5rem;
-
+  width: 100%;
 
   nb-card {
     margin: 0;
@@ -153,7 +151,7 @@ nb-window.full-screen-height {
     }
   }
 
-  box-shadow: 2px -5px 15px -7px lightgrey;
+  z-index: 10;
 
   .menu-items {
     display: flex;
@@ -179,7 +177,6 @@ nb-window.full-screen-height {
       }
     }
     nb-icon {
-
       font-size: 1.5rem;
     }
 
@@ -187,7 +184,7 @@ nb-window.full-screen-height {
       border-bottom: 3px solid #232b45;
     }
   }
-  @media screen and (min-width: 800px){
+  @media screen and (min-width: 800px) {
     box-shadow: none;
     nb-card {
       margin-bottom: 1rem;
@@ -201,18 +198,14 @@ nb-window.full-screen-height {
         }
       }
     }
-
   }
 }
 
-
-
 .hide-mobile {
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 800px) {
     display: none !important;
   }
 }
-
 
 :focus {
   outline: none;

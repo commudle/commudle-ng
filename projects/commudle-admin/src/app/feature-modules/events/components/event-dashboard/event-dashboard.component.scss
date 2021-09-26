@@ -1,4 +1,4 @@
-@import "projects/commudle-admin/src/assets/styles/variables";
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .event-page {
   justify-content: center;
@@ -180,9 +180,9 @@
         }
 
         .item-group-title:after {
-          content: "";
-          flex: 1 1;
           border-bottom: 2px solid grey;
+          content: '';
+          flex: 1 1;
           margin: auto 0 auto 0.5rem;
         }
       }
@@ -234,8 +234,8 @@
       }
 
       .event-description {
-        background-color: #F9F9F9;
-        min-height: 200px;
+        background-color: #f9f9f9;
+        display: flex;
 
         fa-icon {
           margin-top: 1rem;
@@ -243,7 +243,7 @@
           color: grey;
         }
 
-        display: flex;
+        min-height: 200px;
       }
 
       fa-icon {
@@ -252,9 +252,9 @@
 
       .event-header-image {
         form {
-          width: 800px;
-          max-width: 100%;
           margin: 0 auto;
+          max-width: 100%;
+          width: 800px;
 
           input {
             display: none;
@@ -269,9 +269,9 @@
           }
 
           .uploaded-header-image.filler {
+            background-color: #c5c5c538;
             height: 300px;
             width: 100%;
-            background-color: #C5C5C538;
 
             p {
               margin: 0;
@@ -291,7 +291,7 @@
         margin: 0.5rem 0;
 
         nb-accordion-item-body {
-          background: #F4F7FF73;
+          background: #f4f7ff73;
         }
       }
 

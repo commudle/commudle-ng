@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { faGrin } from '@fortawesome/free-regular-svg-icons';
 import * as moment from 'moment';
 import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -8,10 +9,9 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 @Component({
   selector: 'app-qna-list-item',
   templateUrl: './qna-list-item.component.html',
-  styleUrls: ['./qna-list-item.component.scss']
+  styleUrls: ['./qna-list-item.component.scss'],
 })
 export class QnaListItemComponent implements OnInit {
-
   @Input() canReply: boolean;
   @Input() canVote: boolean;
   @Input() message: IUserMessage;
@@ -29,18 +29,16 @@ export class QnaListItemComponent implements OnInit {
   showEmojiPicker = false;
 
   replyForm = this.fb.group({
-    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]]
+    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
 
   @ViewChild('messageInput') messageInput: ElementRef<HTMLInputElement>;
 
-  constructor(
-    private fb: FormBuilder
-  ) {
-  }
+  faGrin = faGrin;
 
-  ngOnInit(): void {
-  }
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {}
 
   emitReply(): void {
     if (this.replyForm.valid) {
@@ -65,9 +63,8 @@ export class QnaListItemComponent implements OnInit {
 
   addEmoji(event): void {
     this.replyForm.patchValue({
-      content: (this.replyForm.get('content').value || '').concat(`${event.emoji.native}`)
+      content: (this.replyForm.get('content').value || '').concat(`${event.emoji.native}`),
     });
     this.messageInput.nativeElement.focus();
   }
-
 }

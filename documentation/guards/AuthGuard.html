@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -40,7 +41,7 @@
 
 <ol class="breadcrumb">
     <li>Guards</li>
-    <li>AuthGuard</li>
+    <li >AuthGuard</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,6 +66,7 @@
 
 
 
+
                 <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -79,13 +81,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#canActivate">canActivate</a>
+                                <a href="#canActivate" >canActivate</a>
                             </li>
                             <li>
-                                <a href="#canActivateChild">canActivateChild</a>
+                                <a href="#canActivateChild" >canActivateChild</a>
                             </li>
                             <li>
-                                <a href="#isLoggedIn">isLoggedIn</a>
+                                <a href="#isLoggedIn" >isLoggedIn</a>
                             </li>
                         </ul>
                     </td>
@@ -105,7 +107,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(document: Document, authService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, errorHandlerService: <a href="../injectables/LibErrorHandlerService.html">LibErrorHandlerService</a>)</code>
+<code>constructor(document: Document, authService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, errorHandlerService: <a href="../injectables/LibErrorHandlerService.html" target="_self">LibErrorHandlerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -195,9 +197,7 @@
                 <td class="col-md-4">
                     <a name="canActivate"></a>
                     <span class="name">
-                        <b>
-                            canActivate
-                        </b>
+                        <span ><b>canActivate</b></span>
                         <a href="#canActivate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -222,6 +222,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -277,9 +278,7 @@
                 <td class="col-md-4">
                     <a name="canActivateChild"></a>
                     <span class="name">
-                        <b>
-                            canActivateChild
-                        </b>
+                        <span ><b>canActivateChild</b></span>
                         <a href="#canActivateChild"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -304,6 +303,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -359,9 +359,7 @@
                 <td class="col-md-4">
                     <a name="isLoggedIn"></a>
                     <span class="name">
-                        <b>
-                            isLoggedIn
-                        </b>
+                        <span ><b>isLoggedIn</b></span>
                         <a href="#isLoggedIn"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -386,6 +384,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -509,14 +508,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -537,9 +536,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

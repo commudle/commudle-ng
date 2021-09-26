@@ -42,7 +42,7 @@ export class CommunityChannelChannel {
     });
   }
 
-  subscribe(discussionId): ActionCable.Channel {
+  subscribe(discussionId) {
     if (this.cableConnection) {
       this.subscription = this.cableConnection.subscriptions.create(
         {

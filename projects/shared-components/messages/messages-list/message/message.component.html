@@ -1,12 +1,12 @@
 <div *ngIf="message" class="message-container">
   <div class="prefix d-flex align-items-start">
     <div class="avatar">
-      <img alt="{{message.user.name}}" src="{{message.user.avatar}}" title="{{message.user.name}}" />
+      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}" />
     </div>
     <div class="user-container">
       <div class="user d-flex align-items-center">
         <p class="name">
-          <a [routerLink]="['/users', message.user.username]">{{message.user.name}}</a>
+          <a [routerLink]="['/users', message.user.username]">{{ message.user.name }}</a>
         </p>
         <img
           *ngIf="message.user.is_expert"
@@ -17,7 +17,7 @@
         />
       </div>
       <p
-        [innerHTML]="message.content | linky:{sanitizeHtml:true}"
+        [innerHTML]="message.content | linky: { sanitizeHtml: true }"
         [nbTooltip]="moment(message.created_at).fromNow()"
         class="content"
       ></p>
@@ -49,7 +49,7 @@
       ></nb-icon>
     </nb-action>
     <nb-action *ngIf="permittedActions.includes(allActions.FLAG)">
-      <p *ngIf="message.flags_count > 0">{{message.flags_count}}&nbsp;</p>
+      <p *ngIf="message.flags_count > 0">{{ message.flags_count }}&nbsp;</p>
       <nb-icon
         (click)="emitFlag(message.id)"
         class="clickable"
@@ -72,15 +72,15 @@
     <div *ngIf="showReplyForm" class="reply-form">
       <emoji-mart
         (emojiSelect)="addEmoji($event)"
-        [ngClass]="{'active': showEmojiPicker}"
-        [style]="{width: '100%'}"
+        [ngClass]="{ active: showEmojiPicker }"
+        [style]="{ width: '100%' }"
         set="twitter"
         title="Select an emoji"
       ></emoji-mart>
       <form (submit)="emitReply()" [formGroup]="replyForm">
         <nb-form-field>
           <button (click)="showEmojiPicker = !showEmojiPicker" ghost nbButton nbPrefix size="tiny" type="button">
-            <nb-icon icon="grin" pack="far"></nb-icon>
+            <fa-icon [icon]="faGrin"></fa-icon>
           </button>
           <input
             fieldSize="tiny"

@@ -1,17 +1,16 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { EventCollaborationCommunitiesService } from 'projects/commudle-admin/src/app/services/event-collaboration-communities.service';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IEventCollaborationCommunity } from 'projects/shared-models/event_collaboration_community.model';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-collaborating-communities',
   templateUrl: './collaborating-communities.component.html',
-  styleUrls: ['./collaborating-communities.component.scss']
+  styleUrls: ['./collaborating-communities.component.scss'],
 })
 export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
@@ -25,23 +24,23 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
 
   collaborationCommunities: IEventCollaborationCommunity[] = [];
 
+  faInfoCircle = faInfoCircle;
 
   constructor(
     private eventCollaborationCommunitiesService: EventCollaborationCommunitiesService,
     private toastLogService: LibToastLogService,
-    private communitiesService: CommunitiesService
-  ) { }
+    private communitiesService: CommunitiesService,
+  ) {}
 
   ngOnInit() {
     this.communities = [];
-
   }
 
   onSelectionChange($event) {
     this.createCollaboration($event.id);
     this.selectedCommunity = '';
     this.input.nativeElement.value = '';
-    this.communities=[];
+    this.communities = [];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -50,54 +49,39 @@ export class CollaboratingCommunitiesComponent implements OnInit, OnChanges {
     }
   }
 
-
   onChange() {
-    return this.communitiesService.searchByName(this.input.nativeElement.value).subscribe(
-      data => this.communities = data
-    );
+    return this.communitiesService
+      .searchByName(this.input.nativeElement.value)
+      .subscribe((data) => (this.communities = data));
   }
 
-
-
   getCollaborations() {
-    this.eventCollaborationCommunitiesService.get(this.event.id).subscribe(
-      (data) => this.collaborationCommunities = data.event_collaboration_communities
-    );
+    this.eventCollaborationCommunitiesService
+      .get(this.event.id)
+      .subscribe((data) => (this.collaborationCommunities = data.event_collaboration_communities));
   }
 
   createCollaboration(selectedCommunityId) {
-    this.eventCollaborationCommunitiesService.create(this.event.id, selectedCommunityId).subscribe(
-      (data) => {
-        this.collaborationCommunities.push(data);
-        this.toastLogService.successDialog('Collaboration request sent to the primary email of all organizers');
-      }
-    );
+    this.eventCollaborationCommunitiesService.create(this.event.id, selectedCommunityId).subscribe((data) => {
+      this.collaborationCommunities.push(data);
+      this.toastLogService.successDialog('Collaboration request sent to the primary email of all organizers');
+    });
   }
 
   removeCollaboration(collaborationCommunityId, index) {
-    this.eventCollaborationCommunitiesService.destroy(collaborationCommunityId).subscribe(
-      data => {
-        this.collaborationCommunities.splice(index, 1);
-        this.toastLogService.successDialog('Collaboration removed!');
-      }
-    );
+    this.eventCollaborationCommunitiesService.destroy(collaborationCommunityId).subscribe((data) => {
+      this.collaborationCommunities.splice(index, 1);
+      this.toastLogService.successDialog('Collaboration removed!');
+    });
   }
 
   resendConfirmationEmail(collaborationCommunityId) {
-    this.eventCollaborationCommunitiesService.resendInvitationMail(collaborationCommunityId).subscribe(
-      data => {
-        this.toastLogService.successDialog('Collaboration request email resent!');
-      }
-    );
+    this.eventCollaborationCommunitiesService.resendInvitationMail(collaborationCommunityId).subscribe((data) => {
+      this.toastLogService.successDialog('Collaboration request email resent!');
+    });
   }
-
-  // TODO: Remove the below function after 1 month (Added on 10-06-2021)
-  // autocompleteDisplay(value) {
-  //   return value.name;
-  // }
 
   checkTyping() {
-    this.typing = this.input.nativeElement.value.length > 2 ;
+    this.typing = this.input.nativeElement.value.length > 2;
   }
-
 }

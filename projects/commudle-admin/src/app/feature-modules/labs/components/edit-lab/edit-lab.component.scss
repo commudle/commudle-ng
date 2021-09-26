@@ -1,8 +1,8 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .create-lab {
-  width: 100%;
   background: $light-purple;
+  width: 100%;
 
   .page-container {
     padding-bottom: 50px;
@@ -15,12 +15,12 @@
         width: 264px;
 
         .help-video {
-          width: 100%;
-          height: 75px;
+          background: #f1f1ff;
           border: 1px solid lightgrey;
           border-radius: 10px;
-          background: #F1F1FF;
+          height: 75px;
           position: relative;
+          width: 100%;
 
           p {
             position: absolute;
@@ -50,7 +50,7 @@
             font-weight: 300;
 
             fa-icon {
-              color: #4E74FF;
+              color: #4e74ff;
             }
           }
 
@@ -58,22 +58,22 @@
             margin-bottom: 2rem;
 
             label {
-              position: relative;
               padding: 150px 0;
+              position: relative;
 
               > span {
-                height: 100%;
-                padding: 10px;
                 border: 2px dashed lightgrey;
                 border-radius: 10px;
-
-                font-size: 18px;
-                font-weight: 300;
                 color: grey;
+                font-size: 18px;
+
+                font-weight: 300;
+                height: 100%;
+                padding: 10px;
 
                 nb-icon {
                   font-size: 4rem;
-                  margin-bottom: 0.5rem
+                  margin-bottom: 0.5rem;
                 }
               }
 

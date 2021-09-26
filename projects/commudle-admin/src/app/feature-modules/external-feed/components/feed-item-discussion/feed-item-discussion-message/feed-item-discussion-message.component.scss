@@ -1,10 +1,10 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .message {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: nowrap;
+  justify-content: flex-start;
 
   .content-controls {
     width: 100%;
@@ -33,13 +33,13 @@
     }
 
     .details-flag {
+      align-items: flex-start;
       display: flex;
       justify-content: flex-start;
-      align-items: flex-start;
 
       nb-icon {
+        color: #8080808c;
         font-size: $fs-16;
-        color: #8080808C;
       }
 
       > div {

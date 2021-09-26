@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -33,13 +34,14 @@
 <p><img src="https://commudle.com/assets/images/commudle-logo152.png" alt="Commudle Logo" class="img-responsive"></p>
 <h1 id="commudle">Commudle</h1>
 <p><a href="https://commudle.com">www.commudle.com</a></p>
-<p>This is a community management platform for Tech Communities across the world. The inspiration being the personal experiences of Community Organizers. </p>
+<p>This is a community management platform for Tech Communities across the world. The inspiration being the personal
+experiences of Community Organizers.</p>
 <h2 id="to-setup">To setup</h2>
 <ul>
 <li>Install Node.js and npm (at least version 13 of Node.js and at least version 6 of npm)</li>
 <li>Install <a href="https://cli.angular.io/">@angular/cli</a></li>
 <li>Clone the project.</li>
-<li>Run <code>npm install</code>.</li>
+<li>Run <code>npm ci</code>.</li>
 <li>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>.</li>
 <li>The development server directly interacts with the production APIs.</li>
 </ul>
@@ -54,7 +56,8 @@
 <li>Navigate to the <em>Application</em> Tab.</li>
 <li>In the left side navigation bar, under <em>Storage</em> you can find <em>Cookies</em>.</li>
 <li>By clicking on it, you can find a cookie named <strong>commudle_user_auth</strong> with its corresponding value.</li>
-<li>Copy this particular cookie and its value to <code>http://localhost:4200</code>&#39;s cookies and refresh the page to get signed in.</li>
+<li>Copy this particular cookie and its value to <code>http://localhost:4200</code>&#39;s cookies and refresh the page to get signed
+in.</li>
 <li><a href="CONTRIBUTING.md">Contribution Guidelines</a></li>
 <li><a href="CONTRIBUTORS.md">Contributors.md</a></li>
 <li><a href="CODE_OF_CONDUCT.md">Code Of Conduct</a></li>
@@ -63,11 +66,12 @@
 </ul>
 <h2 id="build-for-production">Build for production</h2>
 <ul>
-<li>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</li>
+<li>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory.</li>
 </ul>
 <h2 id="design-framework--ui-kit">Design Framework / UI Kit</h2>
 <ul>
-<li>We are using <a href="https://akveo.github.io/nebular/">Nebular</a> which uses <a href="https://eva.design/">Eva Design System</a> in commudle-admin</li>
+<li>We are using <a href="https://akveo.github.io/nebular/">Nebular</a> which uses <a href="https://eva.design/">Eva Design System</a> in
+commudle-admin</li>
 </ul>
 
 
@@ -83,14 +87,14 @@
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -111,9 +115,9 @@
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 
