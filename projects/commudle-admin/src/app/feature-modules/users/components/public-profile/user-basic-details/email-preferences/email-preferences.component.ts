@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { EmailUnsubscribeGroupsService } from 'projects/commudle-admin/src/app/feature-modules/email-confirmations/services/email-unsubscribe-groups.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { Subscription } from 'rxjs';
@@ -9,14 +9,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./email-preferences.component.scss'],
 })
 export class EmailPreferencesComponent {
-  groupTypes: string[];
-  subscriptionGroups;
+  subscriptionGroups: Object;
   subscriptions: Subscription[] = [];
-  unsubscribeAll: boolean = false;
+  subscribeAll: boolean;
 
   constructor(
     private appUsersService: AppUsersService,
     private emailUnsubscribeGroupsService: EmailUnsubscribeGroupsService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -31,23 +31,39 @@ export class EmailPreferencesComponent {
     this.subscriptions.push(
       this.appUsersService.getUserEmailSubscriptions().subscribe((response) => {
         this.subscriptionGroups = response;
-        this.groupTypes = Object.keys(response).filter((key) => this.subscriptionGroups[key].length > 0);
-        console.log(this.subscriptionGroups);
-        //console.log(this.groupTypes)
+        this.checkAllSubscriptions();
       }),
     );
   }
 
-  toggleSubscription(uuid) {
-    this.subscriptions.push(this.emailUnsubscribeGroupsService.toggleSubscription(uuid).subscribe((response) => {}));
+  toggleSubscription(entity) {
+    this.subscriptions.push(
+      this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response: boolean) => {
+        entity.subscribed = response;
+        this.checkAllSubscriptions();
+        this.cdr.detectChanges();
+      }),
+    );
+  }
+
+  checkAllSubscriptions() {
+    let status: boolean = false;
+    Object.keys(this.subscriptionGroups).forEach((group: string) => {
+      this.subscriptionGroups[group].forEach((entity) => {
+        if (entity.subscribed) {
+          status = true;
+        }
+      });
+    });
+    this.subscribeAll = status;
   }
 
   toggleAllSubscriptions() {
-    this.groupTypes.forEach((group) => {
+    Object.keys(this.subscriptionGroups).forEach((group: string) => {
       this.subscriptionGroups[group].forEach((entity) => {
-        if (entity.subscribed) {
+        if (entity.subscribed == this.subscribeAll) {
           this.subscriptions.push(
-            this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response) => {
+            this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response: boolean) => {
               entity.subscribed = response;
             }),
           );

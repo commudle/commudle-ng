@@ -1,12 +1,27 @@
 .preferences-container {
-  height: 550px;
+  height: 520px;
+
+  .subscribe-all-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
 
   .preferences-list {
     width: 100%;
-  }
 
-  .unsubscribe-all-btn {
-    position: relative;
-    right: 14px;
+    .group-name {
+      margin-left: 15px;
+    }
+
+    nb-list-item {
+      border: none;
+
+      label {
+        margin-left: 12px;
+      }
+    }
   }
 }
