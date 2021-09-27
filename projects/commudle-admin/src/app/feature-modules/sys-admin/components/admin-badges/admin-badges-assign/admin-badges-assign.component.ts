@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IUserBadge } from 'projects/shared-models/user_badge.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -11,7 +11,7 @@ import { SysAdminUserBadgesService } from 'projects/commudle-admin/src/app/featu
   templateUrl: './admin-badges-assign.component.html',
   styleUrls: ['./admin-badges-assign.component.scss']
 })
-export class AdminBadgesAssignComponent implements OnInit {
+export class AdminBadgesAssignComponent implements OnInit, OnDestroy {
 
   user_badges: IUserBadge[] = [];
   page = 1;

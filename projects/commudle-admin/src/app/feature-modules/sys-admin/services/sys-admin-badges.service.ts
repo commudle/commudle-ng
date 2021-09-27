@@ -5,8 +5,6 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { IBadge } from 'projects/shared-models/badge.model';
 import { IBadges } from 'projects/shared-models/badges.model';
-import { IUserBadges } from 'projects/shared-models/user_badges.model';
-import { IUserBadge } from 'projects/shared-models/user_badge.model';
 
 @Injectable({
   providedIn: 'root'

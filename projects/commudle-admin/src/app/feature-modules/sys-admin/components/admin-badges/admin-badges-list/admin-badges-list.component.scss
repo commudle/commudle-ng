@@ -18,9 +18,22 @@
           .badge-details {
             width: 100%;
 
+            @media screen and (max-width: 768px) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
             .title {
               font-size: $fs-20;
               font-weight: $fw-600;
+
+              @media screen and (max-width: 768px) {
+                display: flex;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+              }
             }
 
             .badge-image{
@@ -33,6 +46,10 @@
 
           .controls {
             gap: $space-16;
+
+            @media screen and (max-width: 768px) {
+              margin: 20px;
+            }
           }
         }
       }

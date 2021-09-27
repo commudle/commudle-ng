@@ -2,43 +2,55 @@
 
 .admin-bagdes-assign{
     nb-card-body{
-        nb-list{
-            nb-list-item{
-                .form-fields{
-                    width: 100%;
 
-                    .input-fields{
-                        display: flex;
-                        width: 60%;
-                        gap: 15px;
-                        
-                        input{
-                            width: 50%;
-                        }
-                    }
-                }
-
-                nb-list{
-                    nb-list-item{
-
-                        .user-details{
-                            width: 40%;
-                        }
-
-                        .badge-image{
-                            width: 40%;
-                            img{
-                                width: 200px;
-                                height: 200px;
-                            }
-                        }
-
-                        .button{
-                            width: 20%;
-                        }
-                    }
-                }
+      .form-fields{
+        width: 100%;
+        
+        .input-fields{
+            display: flex;
+            width: 60%;
+            gap: 15px;
+            
+            input{
+                width: 50%;
             }
         }
+      }
+
+      nb-list{
+
+        nb-list-item{
+
+          @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          }
+
+          &:first-child {
+            border-top: none;
+          }
+      
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .user-details{
+              width: 40%;
+
+              @media screen and (max-width: 768px) {
+                width: 100%;
+              }
+          }
+
+          .badge-image{
+              img{
+                  width: 200px;
+                  height: 200px;
+              }
+          }
+        }
     }
+  }
+
 }

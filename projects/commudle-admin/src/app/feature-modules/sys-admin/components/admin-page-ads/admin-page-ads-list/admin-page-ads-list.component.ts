@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { SysAdminPageAdsService } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-page-ads.service';
 import { IPageAd } from 'projects/shared-models/page-ad.model';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './admin-page-ads-list.component.html',
   styleUrls: ['./admin-page-ads-list.component.scss'],
 })
-export class AdminPageAdsListComponent implements OnInit {
+export class AdminPageAdsListComponent implements OnInit, OnDestroy {
   currentAdId;
   ads: IPageAd[] = [];
   page = 1;
