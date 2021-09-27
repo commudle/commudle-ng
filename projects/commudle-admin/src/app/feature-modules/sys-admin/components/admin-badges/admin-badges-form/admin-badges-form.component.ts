@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SysAdminBadgesService } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-badges.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IBadge } from 'projects/shared-models/badge.model';
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './admin-badges-form.component.html',
   styleUrls: ['./admin-badges-form.component.scss']
 })
-export class AdminBadgesFormComponent implements OnInit {
+export class AdminBadgesFormComponent implements OnInit, OnDestroy {
 
   @ViewChild('inputImage') inputImage: ElementRef;
 
