@@ -31,5 +31,11 @@
 
   nb-card-body {
     padding: 0;
+
+    width: 700px;
+
+    @media screen and (max-width: 768px) {
+      width: 95vw;
+    }
   }
 }
