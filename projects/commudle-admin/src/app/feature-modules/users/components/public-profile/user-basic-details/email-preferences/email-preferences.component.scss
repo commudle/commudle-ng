@@ -1,5 +1,5 @@
 .preferences-container {
-  height: 520px;
+  height: 90vh;
 
   .subscribe-all-btn-container {
     width: 100%;
@@ -7,10 +7,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
-  .preferences-list {
+  .preferences-item {
     width: 100%;
+    margin-bottom: 10px;
 
     .group-name {
       margin-left: 15px;
