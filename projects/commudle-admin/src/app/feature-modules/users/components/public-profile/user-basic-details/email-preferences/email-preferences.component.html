@@ -1,26 +1,21 @@
 <div class="preferences-container">
-  <nb-list>
-    <nb-list-item *ngFor="let groupType of groupTypes;">
-      <div class="preferences-list">
-        <strong>{{ groupType }}</strong>
-        <nb-list>
-          <nb-list-item
-            *ngFor="let entity of subscriptionGroups[groupType]"
-            class="display-flex justify-content-space-between"
-          >
-            <label>{{ entity.name }}</label>
-            <nb-toggle (click)="toggleSubscription(entity.uuid)" [(ngModel)]="entity.subscribed"></nb-toggle>
-          </nb-list-item>
-        </nb-list>
-      </div>
-    </nb-list-item>
-    <nb-list-item class="display-flex justify-content-space-between">
-      <strong>Unsubscribe All</strong>
-      <nb-toggle
-        (click)="toggleAllSubscriptions()"
-        class="unsubscribe-all-btn"
-        [(ngModel)]="unsubscribeAll"
-      ></nb-toggle>
-    </nb-list-item>
-  </nb-list>
+  <div class="subscribe-all-btn-container">
+    <strong>Subscribe All</strong>
+    <nb-toggle (click)="toggleAllSubscriptions()" [(ngModel)]="subscribeAll"></nb-toggle>
+  </div>
+  <ng-container *ngFor="let subscriptionGroup of subscriptionGroups | keyvalue">
+    <div *ngIf="subscriptionGroup.value.length !== 0" class="preferences-list">
+      <strong class="group-name">{{ subscriptionGroup.key | capitalizeAndRemoveUnderscore }}</strong>
+      <nb-list>
+        <nb-list-item *ngFor="let entity of subscriptionGroup.value" class="display-flex justify-content-space-between">
+          <label>{{ entity.name }}</label>
+          <nb-toggle
+            (click)="toggleSubscription(entity)"
+            [disabled]="!this.subscribeAll"
+            [(ngModel)]="entity.subscribed"
+          ></nb-toggle>
+        </nb-list-item>
+      </nb-list>
+    </div>
+  </ng-container>
 </div>

@@ -48,6 +48,7 @@ import { UserNetworkComponent } from './components/public-profile/user-network/u
 import { UsersRoutingModule } from './users-routing.module';
 import { EditUserProfileComponent } from './components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component';
 import { EmailPreferencesComponent } from './components/public-profile/user-basic-details/email-preferences/email-preferences.component';
+import { CapitalizeAndRemoveUnderscorePipe } from './pipes/capitalize-and-remove-underscore.pipe';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { EmailPreferencesComponent } from './components/public-profile/user-basi
     UserBasicSocialComponent,
     EditUserProfileComponent,
     EmailPreferencesComponent,
+    CapitalizeAndRemoveUnderscorePipe,
   ],
   imports: [
     CommonModule,
