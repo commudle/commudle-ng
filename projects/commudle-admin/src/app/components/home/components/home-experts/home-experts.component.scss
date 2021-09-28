@@ -8,19 +8,19 @@ a,
 a:hover,
 a:focus,
 a:active {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 .home-experts {
   border: 0;
 
   nb-card-header {
+    border-bottom: none;
+    color: $gunmetal;
     font-size: $fs-h2;
     font-weight: $fw-600;
-    color: $gunmetal;
     padding: $space-28 $space-16 $space-24;
-    border-bottom: none;
   }
 
   .home-experts-list {
@@ -28,72 +28,55 @@ a:active {
 
     nb-list {
       nb-list-item {
-        padding: 0 $space-16 $space-16;
-        margin-bottom: $space-8;
-        display: flex;
-        justify-content: space-between;
         align-items: center;
         border: none;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $space-8;
+        padding: 0 $space-16 $space-16;
 
         app-skeleton-text {
           width: 100%;
         }
 
         .home-expert {
-          width: 100%;
           margin-right: $space-8;
+          width: 100%;
 
-          .home-expert-image {
-            height: 32px;
-            width: 32px;
-            min-width: 32px;
-            overflow: hidden;
-            border-radius: 50%;
-            margin-right: $space-8;
-
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-            }
+          .avatar {
+            @apply com-h-8 com-w-8;
+            @apply com-rounded-full com-object-cover com-object-center;
+            @apply com-mr-2;
           }
 
           .home-expert-details {
-            width: 110px;
-
             .home-expert-name {
               .name {
-                font-size: $fs-h5;
-                line-height: 16px;
-                font-weight: $fw-600;
                 color: $gunmetal;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+                font-size: $fs-h5;
+                font-weight: $fw-600;
+                line-height: 16px;
               }
 
               img {
+                height: 14px;
                 margin-left: $space-4;
                 width: 14px;
-                height: 14px;
               }
             }
 
             .home-expert-designation {
+              color: $taupe-gray;
               font-size: $fs-h7;
               font-style: italic;
               line-height: 12px;
-              color: $taupe-gray;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
             }
 
-            .home-expert-member-count {
+            .home-expert-member-follower-count {
+              color: $neon-blue;
               font-size: $fs-h7;
               font-style: italic;
               line-height: 12px;
-              color: $neon-blue;
             }
           }
         }
@@ -104,8 +87,8 @@ a:active {
       padding: $space-4 $space-16 $space-16;
 
       a {
-        font-size: $fs-h5;
         color: rgba($neon-blue, 0.95);
+        font-size: $fs-h5;
       }
     }
   }

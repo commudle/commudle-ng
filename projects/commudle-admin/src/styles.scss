@@ -18,8 +18,8 @@
 }
 
 @import './assets/styles/variables.scss';
-
 @import './assets/styles/common-classes.scss';
+@import './assets/styles/grid';
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -91,8 +91,8 @@ input {
 }
 
 .nb-theme-default nb-layout-header nav {
-  padding: 0rem 1.25rem;
   height: 3.5rem;
+  padding: 0 1.25rem;
 }
 
 .nb-theme-default [nbInput].size-giant,
@@ -104,8 +104,8 @@ input {
 }
 
 nb-window {
-  max-width: 100%;
   max-height: 100%;
+  max-width: 100%;
   overflow-y: auto;
 }
 
@@ -116,6 +116,7 @@ nb-window.full-screen-width {
 nb-window.full-screen-height {
   nb-card {
     height: 100vh;
+
     nb-card-body {
       height: 90vh;
     }
@@ -144,38 +145,42 @@ nb-window.full-screen-height {
   top: 3.5rem;
   width: 100%;
 
+  z-index: 10;
+
   nb-card {
     margin: 0;
+
     nb-card-body {
       padding: 0.5rem;
     }
   }
 
-  z-index: 10;
-
   .menu-items {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: space-evenly;
     overflow-x: auto;
     width: 100%;
-    justify-content: space-evenly;
+
     a {
+      color: black;
       cursor: pointer;
       margin: 0 0.5rem;
       text-decoration: none;
-      color: black;
       // display: flex;
       // flex-direction: column;
       // align-items: center;
       nb-icon {
         // color: grey !important;
       }
+
       span {
         display: none;
         // font-size: 10px;
         // text-align: center;
       }
     }
+
     nb-icon {
       font-size: 1.5rem;
     }
@@ -184,14 +189,18 @@ nb-window.full-screen-height {
       border-bottom: 3px solid #232b45;
     }
   }
+
   @media screen and (min-width: 800px) {
     box-shadow: none;
     nb-card {
       margin-bottom: 1rem;
+
       .menu-items {
         justify-content: flex-start;
+
         a {
           margin-right: 1.5rem;
+
           span {
             display: inline;
           }

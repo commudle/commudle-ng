@@ -1,9 +1,9 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-events-card {
-  position: relative;
-  width: 256px;
   border: 0.5px solid $silver-sand;
+  //width: 256px;
+  position: relative;
 
   .home-events-attending {
     position: absolute;
@@ -118,7 +118,7 @@
   }
 }
 
-@media all and (max-width: $tab-width) {
+@media all and (max-width: $pc-width) {
   .home-events-card {
     width: 185px;
   }

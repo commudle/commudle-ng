@@ -50,24 +50,22 @@
 
       .home-build-card-author-name {
         color: $gunmetal;
-        display: none;
         font-size: $fs-h6;
         line-height: normal;
         padding-right: $space-4;
       }
 
       img {
-        border-radius: 50%;
-        height: 100%;
+        @apply com-h-6 com-w-6;
+        @apply com-rounded-full com-object-cover com-object-center;
       }
     }
   }
 
-  // &:hover {
   .home-build-card-suffix {
     .home-build-card-author {
       background-color: $lavender;
-      border-radius: $border-8;
+      border-radius: $border-8 12px 12px $border-8;
       padding-left: $space-8;
 
       .home-build-card-author-name {
@@ -75,6 +73,4 @@
       }
     }
   }
-
-  // }
 }
