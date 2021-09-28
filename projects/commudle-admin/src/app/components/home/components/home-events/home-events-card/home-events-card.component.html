@@ -4,15 +4,18 @@
     {{registrations}} Registered
   </div> -->
   <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
-    <div [ngClass]="{'old': moment(event.start_time) < moment()}" class="home-events-image-overlay"></div>
-    <img alt="{{event.name}}" src="{{event.header_image?.i350 || community.logo_path}}" title="{{event.name}}" />
+    <div [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-image-overlay"></div>
+    <img alt="{{ event.name }}" src="{{ event.header_image?.i350 || community.logo_path }}" title="{{ event.name }}" />
   </div>
-  <div *ngIf="event.start_time" [ngClass]="{'old': moment(event.start_time) < moment()}" class="home-events-date">
-    {{moment(event.start_time).format('MMM DD')}}
+  <div *ngIf="event.start_time" [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-date">
+    {{ moment(event.start_time).format('MMM DD') }}
   </div>
   <div class="home-events-details">
-    <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-name clickable">
-      {{event.name | truncatetext:32}}
+    <div
+      [routerLink]="['/communities', community.slug, 'events', event.slug]"
+      class="home-events-name clickable com-line-clamp-2"
+    >
+      {{ event.name }}
     </div>
     <div class="home-events-host d-flex justify-content-space-between align-items-center">
       <div
@@ -20,9 +23,9 @@
         class="home-events-community d-flex align-items-center clickable"
       >
         <div class="home-events-community-logo d-flex align-items-center">
-          <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}" />
+          <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
         </div>
-        <div class="home-events-community-name">{{community.name | truncatetext:30}}</div>
+        <div class="home-events-community-name com-line-clamp-1">{{ community.name }}</div>
       </div>
       <div
         *ngIf="event.start_time && moment(event.start_time) > moment()"

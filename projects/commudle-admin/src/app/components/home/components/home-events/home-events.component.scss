@@ -15,9 +15,7 @@
     padding: $space-16;
 
     .home-events-cards {
-      display: flex;
-      flex-flow: wrap;
-      gap: $space-16;
+      @apply com-grid com-grid-cols-1 lg:com-grid-cols-2 com-gap-4;
       min-height: 524px;
 
       app-skeleton-text {
@@ -42,7 +40,7 @@
   }
 }
 
-@media all and (max-width: $tab-width) {
+@media all and (max-width: $pc-width) {
   .home-events {
     nb-card-body {
       .home-events-cards {
