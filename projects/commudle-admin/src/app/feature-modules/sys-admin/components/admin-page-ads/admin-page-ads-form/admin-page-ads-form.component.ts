@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -35,6 +35,8 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   uploadedFiles: IAttachedFile[] = [];
 
   subscriptions: Subscription[] = [];
+
+  @ViewChild('inputFile') inputFile: ElementRef;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -140,6 +142,8 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     } else {
       this.uploadedFiles.splice(index, 1);
     }
+
+    this.inputFile.nativeElement.value = '';
   }
 
   submitForm(): void {

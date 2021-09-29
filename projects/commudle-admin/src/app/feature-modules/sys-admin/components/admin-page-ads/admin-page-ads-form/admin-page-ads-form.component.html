@@ -41,7 +41,7 @@
       </label>
       <label>
         Files
-        <input (change)="addFiles($event)" fullWidth multiple nbInput type="file" />
+        <input #inputFile (change)="addFiles($event)" fullWidth multiple nbInput type="file" />
       </label>
       <nb-list class="files-list">
         <nb-list-item *ngFor="let file of uploadedFiles; let i=index" class="justify-content-space-between flex-wrap">

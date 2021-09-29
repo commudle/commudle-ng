@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AdminBadgesAssignComponent } from './components/admin-badges/admin-badges-assign/admin-badges-assign.component';
+import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
+import { AdminBadgesListComponent } from './components/admin-badges/admin-badges-list/admin-badges-list.component';
+import { AdminBadgesComponent } from './components/admin-badges/admin-badges.component';
 import { AdminFeaturedCommunitiesComponent } from './components/admin-featured-communities/admin-featured-communities.component';
 import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
 import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
@@ -32,6 +36,24 @@ const routes = [
             component: AdminPageAdsFormComponent,
           },
         ],
+      },
+      {
+        path: 'badges',
+        component: AdminBadgesComponent,
+        children: [
+          {
+            path: '',
+            component: AdminBadgesListComponent,
+          },
+          {
+            path: 'form',
+            component: AdminBadgesFormComponent,
+          },
+          {
+            path: 'assign',
+            component: AdminBadgesAssignComponent,
+          }
+        ]
       },
       {
         path: 'admin-surveys',
