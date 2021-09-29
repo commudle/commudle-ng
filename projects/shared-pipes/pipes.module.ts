@@ -4,6 +4,7 @@ import { NumkeysPipe } from './numkeys.pipe';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { TextToLinksPipe } from './text-to-links.pipe';
 import { TruncateTextPipe } from './truncate-text.pipe';
+import { SafeUrlPipe } from './safe-url.pipe';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     TruncateTextPipe,
     TextToLinksPipe,
     NumkeysPipe,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    SafeUrlPipe
   ],
   imports: [],
   exports: [
@@ -20,7 +22,8 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     TruncateTextPipe,
     TextToLinksPipe,
     NumkeysPipe,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    SafeUrlPipe
   ]
 })
 export class SharedPipesModule {

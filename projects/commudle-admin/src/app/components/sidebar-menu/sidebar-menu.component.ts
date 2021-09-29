@@ -23,6 +23,7 @@ export class SidebarMenuComponent implements OnInit {
   isSystemAdmin = false;
   EUserRoles = EUserRoles;
   isPageAdsAdmin = false;
+  isBadgesAdmin = false;
   isFeaturedCommunitiesAdmin = false;
 
   constructor(
@@ -55,6 +56,10 @@ export class SidebarMenuComponent implements OnInit {
 
         if (currentUser.user_roles.includes(EUserRoles.PAGE_ADS)) {
           this.isPageAdsAdmin = true;
+        }
+
+        if (currentUser.user_roles.includes(EUserRoles.BADGES)) {
+          this.isBadgesAdmin = true;
         }
 
         if (currentUser.user_roles.includes(EUserRoles.FEATURED_COMMUNITIES)) {
