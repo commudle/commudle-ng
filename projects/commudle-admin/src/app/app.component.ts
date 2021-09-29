@@ -3,14 +3,7 @@ import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnIn
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import {
-  NbIconLibraries,
-  NbMenuItem,
-  NbSidebarService,
-  NbSidebarState,
-  NbWindowService,
-  NbWindowState,
-} from '@nebular/theme';
+import { NbMenuItem, NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
 import { AppCentralNotificationService } from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
@@ -55,7 +48,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private windowService: NbWindowService,
     private cookieConsentService: CookieConsentService,
     private appCentralNotificationsService: AppCentralNotificationService,
-    private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
     private cdr: ChangeDetectorRef,
     private truncate: TruncateTextPipe,
@@ -65,10 +57,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
-
-    this.iconLibraries.registerFontPack('far', { iconClassPrefix: 'fa', packClass: 'far' });
-    this.iconLibraries.registerFontPack('fas', { iconClassPrefix: 'fa', packClass: 'fas' });
-    this.iconLibraries.registerFontPack('fab', { iconClassPrefix: 'fa', packClass: 'fab' });
   }
 
   ngOnInit(): void {
