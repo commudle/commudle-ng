@@ -1,0 +1,72 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.admin-badges-list {
+  nb-card-body {
+    padding: 0;
+
+    .badge-list-container {
+      nb-list {
+        nb-list-item {
+          &:first-of-type {
+            border-top: none;
+          }
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+
+          .badge-details {
+            width: 100%;
+
+            @media screen and (max-width: 768px) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .title {
+              font-size: $fs-20;
+              font-weight: $fw-600;
+
+              @media screen and (max-width: 768px) {
+                display: flex;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+              }
+            }
+
+            .badge-image{
+                img{
+                  width: 200px;
+                  height: 200px;
+                }
+            }
+          }
+
+          .controls {
+            gap: $space-16;
+
+            @media screen and (max-width: 768px) {
+              margin: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .admin-badges-list {
+    nb-card-body {
+      .badge-list-container {
+        nb-list {
+          nb-list-item {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import '/projects/commudle-admin/src/assets/styles/variables';
+
+.admin-bagdes-assign{
+    nb-card-body{
+
+      .form-fields{
+        width: 100%;
+        
+        .input-fields{
+            display: flex;
+            width: 60%;
+            gap: 15px;
+            
+            input{
+                width: 50%;
+            }
+        }
+      }
+
+      nb-list{
+
+        nb-list-item{
+
+          @media screen and (max-width: $tab-width) {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          }
+
+          &:first-child {
+            border-top: none;
+          }
+      
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .user-details{
+              width: 40%;
+
+              @media screen and (max-width: $tab-width) {
+                width: 100%;
+              }
+          }
+
+          .badge-image{
+              img{
+                  width: 200px;
+                  height: 200px;
+              }
+          }
+        }
+    }
+  }
+
+}
