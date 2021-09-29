@@ -13,8 +13,9 @@
           <small><em *ngIf="message.edited">(edited)</em></small>
         </p>
       </div>
+      <!-- TODO: Handle if script tag is in message content -->
       <div
-        [innerHTML]="message.content | linky:{sanitizeHtml: true, mention: 'twitter', replaceFn: highlightUserMentions}"
+        [innerHTML]="message.content | linky:{sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions}"
         class="content"
       ></div>
       <div *ngIf="message.attachments.length > 0" class="attachments">

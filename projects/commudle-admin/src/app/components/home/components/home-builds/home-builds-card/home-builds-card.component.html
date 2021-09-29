@@ -1,6 +1,6 @@
 <div [routerLink]="['/builds', build.slug]" class="home-build-card clickable">
   <div class="home-build-card-prefix d-flex justify-content-space-between">
-    <div class="home-build-card-tags d-flex">
+    <div class="home-build-card-tags d-flex flex-wrap">
       <div *ngFor="let tag of build.tags.slice(0, 2)" class="home-build-card-tag">{{tag['name']}}</div>
     </div>
     <div class="home-build-card-attachments"></div>
@@ -17,8 +17,8 @@
       {{build.chat_messages_count}}
     </div>
     <div [routerLink]="['/users', build.user.username]" class="home-build-card-author d-flex align-items-center">
-      <div class="home-build-card-author-name">{{build.user.name}}</div>
-      <img alt="{{build.user.name}}" src="{{build.user.avatar}}" title="{{build.user.name}}">
+      <div class="home-build-card-author-name">{{build.user.name | truncatetext:17}}</div>
+      <img alt="{{build.user.name}}" src="{{build.user.avatar}}" title="{{build.user.name}}" />
     </div>
   </div>
 </div>
