@@ -1,46 +1,48 @@
 <div *ngIf="isBrowser" class="video-player-container">
-  <p *ngIf="!(started && currentUser)" class="filler">
-    <nb-icon icon="video"></nb-icon>
-    <br />
-    {{fillerText}}
-  </p>
+  <div class="video-player">
+    <p *ngIf="!(started && currentUser)" class="filler">
+      <nb-icon icon="video"></nb-icon>
+      <br />
+      {{fillerText}}
+    </p>
 
-  <div *ngIf="currentUser && started" [ngSwitch]="videoSource" class="video-player">
-    <app-hms-video-v2
-      (beamStatus)="beamStatus.emit($event)"
-      *ngSwitchCase="EEmbeddedVideoStreamSources.COMMUDLE"
-      [embeddedVideoStream]="embeddedVideoStream"
-    ></app-hms-video-v2>
+    <div *ngIf="currentUser && started" [ngSwitch]="videoSource" class="youtube-player">
+      <app-hms-video-v2
+        (beamStatus)="beamStatus.emit($event)"
+        *ngSwitchCase="EEmbeddedVideoStreamSources.COMMUDLE"
+        [embeddedVideoStream]="embeddedVideoStream"
+      ></app-hms-video-v2>
 
-    <youtube-player
-      *ngSwitchCase="EEmbeddedVideoStreamSources.YOUTUBE"
-      [height]="height || 360"
-      [videoId]="playerUrl"
-      [width]="width || 640"
-    ></youtube-player>
-
-    <div *ngSwitchCase="EEmbeddedVideoStreamSources.EXTERNAL_LINK" class="external-link">
-      <a *ngIf="playerUrl !== ''" [href]="playerUrl" class="text-info" target="_blank">
-        <nb-icon class="video-outline" icon="video-outline"></nb-icon>
-        <br />
-        Click Here To Access
-        <br />
-        <small>
-          <nb-icon icon="external-link"></nb-icon>
-          {{playerUrl}}
-        </small>
-      </a>
-    </div>
-
-    <div *ngSwitchCase="EEmbeddedVideoStreamSources.ZOOM">
-      <iframe
+      <youtube-player
+        *ngSwitchCase="EEmbeddedVideoStreamSources.YOUTUBE"
         [height]="height || 360"
-        [src]="this.playerUrl"
+        [videoId]="playerUrl"
         [width]="width || 640"
-        allow="camera; microphone"
-      ></iframe>
-    </div>
+      ></youtube-player>
 
-    <div *ngSwitchCase="EEmbeddedVideoStreamSources.OTHER" [innerHTML]="playerUrl"></div>
+      <div *ngSwitchCase="EEmbeddedVideoStreamSources.EXTERNAL_LINK" class="external-link">
+        <a *ngIf="playerUrl !== ''" [href]="playerUrl" class="text-info" target="_blank">
+          <nb-icon class="video-outline" icon="video-outline"></nb-icon>
+          <br />
+          Click Here To Access
+          <br />
+          <small>
+            <nb-icon icon="external-link"></nb-icon>
+            {{playerUrl}}
+          </small>
+        </a>
+      </div>
+
+      <div *ngSwitchCase="EEmbeddedVideoStreamSources.ZOOM">
+        <iframe
+          [height]="height || 360"
+          [src]="this.playerUrl"
+          [width]="width || 640"
+          allow="camera; microphone"
+        ></iframe>
+      </div>
+
+      <div *ngSwitchCase="EEmbeddedVideoStreamSources.OTHER" [innerHTML]="playerUrl"></div>
+    </div>
   </div>
 </div>
