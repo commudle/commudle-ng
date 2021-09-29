@@ -92,7 +92,6 @@ export class AdminBadgesFormComponent implements OnInit, OnDestroy {
           type: null,
         };
         this.uploadedImage = iAttachedFile;
-        this.imageUploaded = true;
 
         const reader = new FileReader();
         reader.onload = () => {
@@ -104,9 +103,8 @@ export class AdminBadgesFormComponent implements OnInit, OnDestroy {
   }
 
   deleteImage(): void {
-    if(this.imageUploaded){
+    if(this.imageSrc){
       this.uploadedImage = null;
-      this.imageUploaded = false;
       this.imageSrc = '';
       this.inputImage.nativeElement.value = '';
     }

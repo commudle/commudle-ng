@@ -14,7 +14,7 @@
           </form>
         </div>
         <nb-list>
-          <nb-list-item *ngFor="let user_badge of user_badges" class="d-flex justify-content-space-between">
+          <nb-list-item *ngFor="let user_badge of userBadges" class="d-flex justify-content-space-between">
               <div class="user-details">
                   <app-user-profile-card-large [user]="user_badge.user" ></app-user-profile-card-large>
               </div>
@@ -24,7 +24,7 @@
               <button (click)="confirmUnassignBadgeOpen(user_badge.id)" nbButton outline size="medium" status="danger" >Delete</button>
           </nb-list-item>
         </nb-list>
-        <button (click)="getUserBadges()" *ngIf="user_badges.length !== total" fullWidth ghost nbButton>Get more user badges</button>
+        <button (click)="getUserBadges()" *ngIf="userBadges.length !== total" fullWidth ghost nbButton>Get more user badges</button>
     </nb-card-body>
 
     <ng-template #confirmUnassignBadge let-ref="dialogRef">

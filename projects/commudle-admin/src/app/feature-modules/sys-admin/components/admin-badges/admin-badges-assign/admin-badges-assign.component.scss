@@ -21,7 +21,7 @@
 
         nb-list-item{
 
-          @media screen and (max-width: 768px) {
+          @media screen and (max-width: $tab-width) {
             flex-direction: column;
             align-items: center;
             gap: 20px;
@@ -38,7 +38,7 @@
           .user-details{
               width: 40%;
 
-              @media screen and (max-width: 768px) {
+              @media screen and (max-width: $tab-width) {
                 width: 100%;
               }
           }
