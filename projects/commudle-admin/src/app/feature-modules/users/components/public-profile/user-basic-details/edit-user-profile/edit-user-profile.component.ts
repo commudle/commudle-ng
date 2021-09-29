@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-mo
   templateUrl: './edit-user-profile.component.html',
   styleUrls: ['./edit-user-profile.component.scss'],
 })
-export class EditUserProfileComponent {
+export class EditUserProfileComponent implements OnInit, OnDestroy {
   @ViewChild('editProfile', { static: true }) editProfile: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;
   subscriptions: Subscription[] = [];
@@ -22,20 +22,23 @@ export class EditUserProfileComponent {
   ) {}
 
   ngOnInit(): void {
-    this.openForm();
+    this.openDialog();
+    this.updateProfile();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  openForm() {
+  openDialog() {
     this.dialogRef = this.dialogService.open(this.editProfile, { hasScroll: true });
 
     this.dialogRef.onClose.subscribe(() => {
       this.router.navigate([{ outlets: { p: null } }], { relativeTo: this.activatedRoute.parent });
     });
+  }
 
+  updateProfile() {
     this.subscriptions.push(
       this.updateProfileService.updateProfile$.subscribe((value) => {
         if (value) {
@@ -45,4 +48,5 @@ export class EditUserProfileComponent {
       }),
     );
   }
+
 }

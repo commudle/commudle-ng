@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { EmailUnsubscribeGroupsService } from 'projects/commudle-admin/src/app/feature-modules/email-confirmations/services/email-unsubscribe-groups.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './email-preferences.component.html',
   styleUrls: ['./email-preferences.component.scss'],
 })
-export class EmailPreferencesComponent {
+export class EmailPreferencesComponent implements OnInit, OnDestroy {
   subscriptionGroups: Object;
   subscriptions: Subscription[] = [];
   subscribeAll: boolean;
@@ -31,6 +31,7 @@ export class EmailPreferencesComponent {
     this.subscriptions.push(
       this.appUsersService.getUserEmailSubscriptions().subscribe((response) => {
         this.subscriptionGroups = response;
+        //delete this.subscriptionGroups['labs'];
         this.checkAllSubscriptions();
       }),
     );

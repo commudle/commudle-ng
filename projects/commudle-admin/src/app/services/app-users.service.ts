@@ -146,6 +146,6 @@ export class AppUsersService {
   }
 
   getUserEmailSubscriptions(): Observable<any> {
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.USER_EMAIL_SUBSCRIPTIONS));
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.EMAIL_UNSUBSCRIBE_GROUPS));
   }
 }
