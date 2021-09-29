@@ -3,16 +3,19 @@
 .admin-badges-form {
   nb-card-body {
     .form-fields {
-      label, nb-toggle, button {
+      label, button {
         margin: $space-8 0;
       }
     }
 
-    .image-list {
-      margin: $space-8 0 $space-16;
+    .image-container {
 
-      nb-list-item {
-        padding: $space-8 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      img{
+        height: 200px;
       }
     }
   }

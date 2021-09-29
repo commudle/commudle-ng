@@ -13,7 +13,7 @@ import { SysAdminUserBadgesService } from 'projects/commudle-admin/src/app/featu
 })
 export class AdminBadgesAssignComponent implements OnInit, OnDestroy {
 
-  user_badges: IUserBadge[] = [];
+  userBadges: IUserBadge[] = [];
   page = 1;
   count = 5;
   total = -1;
@@ -45,10 +45,10 @@ export class AdminBadgesAssignComponent implements OnInit, OnDestroy {
   }
 
   getUserBadges(): void {
-    if(this.user_badges.length !== this.total){
+    if(this.userBadges.length !== this.total){
       this.subscriptions.push(
         this.sysAdminUserBadgesService.getUserBadges(this.page, this.count).subscribe((value) => {
-          this.user_badges = this.user_badges.concat(value.user_badges);
+          this.userBadges = this.userBadges.concat(value.user_badges);
           this.page = +value.page;
           this.total = +value.total;
           this.page += 1;
@@ -60,12 +60,12 @@ export class AdminBadgesAssignComponent implements OnInit, OnDestroy {
   assignBadge(): void {
     this.subscriptions.push(
       this.sysAdminUserBadgesService.assignBadge(this.assignBadgeForm.value).subscribe(() => {
+        this.libToastLogService.successDialog('Assigned badge successfully!');
         this.assignBadgeForm.reset()
-        this.user_badges = [];
+        this.userBadges = [];
         this.page = 1;
         this.total = -1;
         this.getUserBadges();
-        this.libToastLogService.successDialog('Assigned badge successfully!');
       })
     )
   }
@@ -81,7 +81,7 @@ export class AdminBadgesAssignComponent implements OnInit, OnDestroy {
         this.sysAdminUserBadgesService.unassignBadge(this.currentUserBadgeId).subscribe((data) => {
           if(data){
             this.libToastLogService.successDialog('Successfully Unassigned Badge!');
-            this.user_badges = [];
+            this.userBadges = [];
             this.page = 1;
             this.total = -1;
             this.getUserBadges();
