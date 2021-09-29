@@ -4,7 +4,10 @@
     <!-- Recording -->
     <button
       (click)="toggleRecording()"
-      *ngIf="(localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) && embeddedVideoStream?.rtmp_url.length <= 0"
+      *ngIf="
+        (localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) &&
+        embeddedVideoStream?.rtmp_url.length <= 0
+      "
       [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"
       ghost
       nbButton
@@ -15,7 +18,10 @@
     <!-- Streaming -->
     <button
       (click)="toggleStreaming()"
-      *ngIf="(localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) && embeddedVideoStream?.rtmp_url.length > 0"
+      *ngIf="
+        (localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) &&
+        embeddedVideoStream?.rtmp_url.length > 0
+      "
       [nbTooltip]="isStreaming ? 'Stop Streaming' : 'Start Streaming'"
       ghost
       nbButton
@@ -64,12 +70,13 @@
       ghost
       nbButton
       nbTooltip="Open Settings"
+      nbTooltipTrigger="hover"
       shape="round"
     >
       <nb-icon icon="settings"></nb-icon>
     </button>
     <!--     Leave session -->
-    <button (click)="leaveSession()" ghost nbButton nbTooltip="Leave session" shape="round">
+    <button (click)="leaveSession()" ghost nbButton nbTooltip="Leave session" nbTooltipTrigger="hover" shape="round">
       <nb-icon icon="log-out"></nb-icon>
     </button>
     <!--     Join/Leave Stage -->
@@ -80,7 +87,7 @@
       nbButton
       shape="round"
     >
-      {{isOnStage ? 'Leave stage' : 'Join stage'}}
+      {{ isOnStage ? 'Leave stage' : 'Join stage' }}
     </button>
     <!-- End session -->
     <button

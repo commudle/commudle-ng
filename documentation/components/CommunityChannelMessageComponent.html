@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -35,7 +36,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>CommunityChannelMessageComponent</li>
+  <li
+  >
+  CommunityChannelMessageComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -66,11 +69,13 @@
 
 
 
+
     <p class="comment">
         <h3>Implements</h3>
     </p>
     <p class="comment">
                     <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
                     <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
@@ -131,28 +136,40 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#canEdit">canEdit</a>
+                                <a href="#canDelete" >canDelete</a>
                             </li>
                             <li>
-                                <a href="#contextMenuItems">contextMenuItems</a>
+                                <a href="#canEdit" >canEdit</a>
                             </li>
                             <li>
-                                <a href="#editMessageTemplate">editMessageTemplate</a>
+                                <a href="#canSendMessageByEmail" >canSendMessageByEmail</a>
                             </li>
                             <li>
-                                <a href="#editMode">editMode</a>
+                                <a href="#contextMenuItems" >contextMenuItems</a>
                             </li>
                             <li>
-                                <a href="#moment">moment</a>
+                                <a href="#editMessageTemplate" >editMessageTemplate</a>
                             </li>
                             <li>
-                                <a href="#sanitizedContent">sanitizedContent</a>
+                                <a href="#editMessageTemplateRef" >editMessageTemplateRef</a>
                             </li>
                             <li>
-                                <a href="#showReplyForm">showReplyForm</a>
+                                <a href="#editMode" >editMode</a>
                             </li>
                             <li>
-                                <a href="#subscriptions">subscriptions</a>
+                                <a href="#EUserRoles" >EUserRoles</a>
+                            </li>
+                            <li>
+                                <a href="#isAdmin" >isAdmin</a>
+                            </li>
+                            <li>
+                                <a href="#moment" >moment</a>
+                            </li>
+                            <li>
+                                <a href="#showReplyForm" >showReplyForm</a>
+                            </li>
+                            <li>
+                                <a href="#subscriptions" >subscriptions</a>
                             </li>
                         </ul>
                     </td>
@@ -167,40 +184,46 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#emitAttachmentReply">emitAttachmentReply</a>
+                                <a href="#emitAttachmentReply" >emitAttachmentReply</a>
                             </li>
                             <li>
-                                <a href="#emitAttachmentUpdate">emitAttachmentUpdate</a>
+                                <a href="#emitAttachmentUpdate" >emitAttachmentUpdate</a>
                             </li>
                             <li>
-                                <a href="#emitDelete">emitDelete</a>
+                                <a href="#emitDelete" >emitDelete</a>
                             </li>
                             <li>
-                                <a href="#emitReply">emitReply</a>
+                                <a href="#emitReply" >emitReply</a>
                             </li>
                             <li>
-                                <a href="#emitUpdate">emitUpdate</a>
+                                <a href="#emitSendMessageByEmail" >emitSendMessageByEmail</a>
                             </li>
                             <li>
-                                <a href="#emitVote">emitVote</a>
+                                <a href="#emitUpdate" >emitUpdate</a>
                             </li>
                             <li>
-                                <a href="#handleContextMenu">handleContextMenu</a>
+                                <a href="#handleContextMenu" >handleContextMenu</a>
                             </li>
                             <li>
-                                <a href="#login">login</a>
+                                <a href="#highlightUserMentions" >highlightUserMentions</a>
                             </li>
                             <li>
-                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                                <a href="#login" >login</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
                             </li>
                             <li>
-                                <a href="#openEditForm">openEditForm</a>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
-                                <a href="#toggleReplyForm">toggleReplyForm</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openEditForm" >openEditForm</a>
+                            </li>
+                            <li>
+                                <a href="#toggleReplyForm" >toggleReplyForm</a>
                             </li>
                         </ul>
                     </td>
@@ -215,19 +238,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#allActions">allActions</a>
+                                <a href="#allActions" >allActions</a>
                             </li>
                             <li>
-                                <a href="#canReply">canReply</a>
+                                <a href="#canReply" >canReply</a>
                             </li>
                             <li>
-                                <a href="#currentUser">currentUser</a>
+                                <a href="#currentUser" >currentUser</a>
                             </li>
                             <li>
-                                <a href="#message">message</a>
+                                <a href="#message" >message</a>
                             </li>
                             <li>
-                                <a href="#permittedActions">permittedActions</a>
+                                <a href="#permittedActions" >permittedActions</a>
+                            </li>
+                            <li>
+                                <a href="#roles" >roles</a>
                             </li>
                         </ul>
                     </td>
@@ -242,25 +268,25 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#sendAttachmentReply">sendAttachmentReply</a>
+                                <a href="#sendAttachmentReply" >sendAttachmentReply</a>
                             </li>
                             <li>
-                                <a href="#sendDelete">sendDelete</a>
+                                <a href="#sendDelete" >sendDelete</a>
                             </li>
                             <li>
-                                <a href="#sendFlag">sendFlag</a>
+                                <a href="#sendFlag" >sendFlag</a>
                             </li>
                             <li>
-                                <a href="#sendReply">sendReply</a>
+                                <a href="#sendMessageByEmail" >sendMessageByEmail</a>
                             </li>
                             <li>
-                                <a href="#sendUpdatedAttachmentReply">sendUpdatedAttachmentReply</a>
+                                <a href="#sendReply" >sendReply</a>
                             </li>
                             <li>
-                                <a href="#sendUpdatedReply">sendUpdatedReply</a>
+                                <a href="#sendUpdatedAttachmentReply" >sendUpdatedAttachmentReply</a>
                             </li>
                             <li>
-                                <a href="#sendVote">sendVote</a>
+                                <a href="#sendUpdatedReply" >sendUpdatedReply</a>
                             </li>
                         </ul>
                     </td>
@@ -278,12 +304,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>, menuService: NbMenuService)</code>
+<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>, menuService: NbMenuService, nbWindowService: NbWindowService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -324,6 +350,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>nbWindowService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NbWindowService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -343,9 +381,15 @@
                         <b>allActions</b>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:35</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -366,7 +410,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:32</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -387,7 +431,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:36</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -408,7 +452,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:31</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -421,9 +465,41 @@
                         <b>permittedActions</b>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:34</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="roles"></a>
+                        <b>roles</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>{}</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:33</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -447,7 +523,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:38</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -468,7 +544,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:42</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -489,7 +565,28 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:41</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sendMessageByEmail"></a>
+                        <b>sendMessageByEmail</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:43</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -510,7 +607,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:37</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -531,7 +628,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -552,28 +649,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:28</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="sendVote"></a>
-                        <b>sendVote</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:39</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -592,9 +668,7 @@
                 <td class="col-md-4">
                     <a name="emitAttachmentReply"></a>
                     <span class="name">
-                        <b>
-                            emitAttachmentReply
-                        </b>
+                        <span ><b>emitAttachmentReply</b></span>
                         <a href="#emitAttachmentReply"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -608,8 +682,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:124</a></div>
                 </td>
             </tr>
 
@@ -619,6 +693,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -658,24 +733,22 @@
                 <td class="col-md-4">
                     <a name="emitAttachmentUpdate"></a>
                     <span class="name">
-                        <b>
-                            emitAttachmentUpdate
-                        </b>
+                        <span ><b>emitAttachmentUpdate</b></span>
                         <a href="#emitAttachmentUpdate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>emitAttachmentUpdate(data)</code>
+<code>emitAttachmentUpdate(data, userMessageId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:137</a></div>
                 </td>
             </tr>
 
@@ -685,19 +758,35 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
+                                    <td>
+                                    </td>
 
                                     <td>
                                         No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userMessageId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -724,9 +813,7 @@
                 <td class="col-md-4">
                     <a name="emitDelete"></a>
                     <span class="name">
-                        <b>
-                            emitDelete
-                        </b>
+                        <span ><b>emitDelete</b></span>
                         <a href="#emitDelete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -740,8 +827,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:116</a></div>
                 </td>
             </tr>
 
@@ -751,6 +838,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -790,9 +878,7 @@
                 <td class="col-md-4">
                     <a name="emitReply"></a>
                     <span class="name">
-                        <b>
-                            emitReply
-                        </b>
+                        <span ><b>emitReply</b></span>
                         <a href="#emitReply"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -806,8 +892,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:120</a></div>
                 </td>
             </tr>
 
@@ -817,6 +903,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -827,6 +914,71 @@
                             <tbody>
                                 <tr>
                                     <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitSendMessageByEmail"></a>
+                    <span class="name">
+                        <span ><b>emitSendMessageByEmail</b></span>
+                        <a href="#emitSendMessageByEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>emitSendMessageByEmail(messageId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:150</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>messageId</td>
 
                                     <td>
                                         No
@@ -856,24 +1008,22 @@
                 <td class="col-md-4">
                     <a name="emitUpdate"></a>
                     <span class="name">
-                        <b>
-                            emitUpdate
-                        </b>
+                        <span ><b>emitUpdate</b></span>
                         <a href="#emitUpdate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>emitUpdate(data)</code>
+<code>emitUpdate(data, userMessageId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:128</a></div>
                 </td>
             </tr>
 
@@ -883,16 +1033,20 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
+                                    <td>
+                                    </td>
 
                                     <td>
                                         No
@@ -900,68 +1054,14 @@
 
 
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="emitVote"></a>
-                    <span class="name">
-                        <b>
-                            emitVote
-                        </b>
-                        <a href="#emitVote"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>emitVote(userMessageId)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:85</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
                                     <td>userMessageId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
-                                        No
+                                        Yes
                                     </td>
 
 
@@ -988,9 +1088,7 @@
                 <td class="col-md-4">
                     <a name="handleContextMenu"></a>
                     <span class="name">
-                        <b>
-                            handleContextMenu
-                        </b>
+                        <span ><b>handleContextMenu</b></span>
                         <a href="#handleContextMenu"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1004,8 +1102,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:154</a></div>
                 </td>
             </tr>
 
@@ -1025,11 +1123,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="highlightUserMentions"></a>
+                    <span class="name">
+                        <span ><b>highlightUserMentions</b></span>
+                        <a href="#highlightUserMentions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>highlightUserMentions(match: Match)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>match</td>
+                                    <td>
+                                            <code>Match</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="login"></a>
                     <span class="name">
-                        <b>
-                            login
-                        </b>
+                        <span ><b>login</b></span>
                         <a href="#login"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1043,8 +1208,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:109</a></div>
                 </td>
             </tr>
 
@@ -1064,11 +1229,46 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:69</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnDestroy"></a>
                     <span class="name">
-                        <b>
-                            ngOnDestroy
-                        </b>
+                        <span ><b>ngOnDestroy</b></span>
                         <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1082,8 +1282,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:105</a></div>
                 </td>
             </tr>
 
@@ -1105,9 +1305,7 @@
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1121,8 +1319,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:67</a></div>
                 </td>
             </tr>
 
@@ -1144,9 +1342,7 @@
                 <td class="col-md-4">
                     <a name="openEditForm"></a>
                     <span class="name">
-                        <b>
-                            openEditForm
-                        </b>
+                        <span ><b>openEditForm</b></span>
                         <a href="#openEditForm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1160,8 +1356,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:181</a></div>
                 </td>
             </tr>
 
@@ -1183,9 +1379,7 @@
                 <td class="col-md-4">
                     <a name="toggleReplyForm"></a>
                     <span class="name">
-                        <b>
-                            toggleReplyForm
-                        </b>
+                        <span ><b>toggleReplyForm</b></span>
                         <a href="#toggleReplyForm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1199,8 +1393,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:146</a></div>
                 </td>
             </tr>
 
@@ -1219,278 +1413,391 @@
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canDelete"></a>
+                    <span class="name">
+                        <span ><b>canDelete</b></span>
+                        <a href="#canDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="canEdit"></a>
-                        <span class="name">
-                            <b>
-                            canEdit</b>
-                            <a href="#canEdit"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:48</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:33</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canEdit"></a>
+                    <span class="name">
+                        <span ><b>canEdit</b></span>
+                        <a href="#canEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="contextMenuItems"></a>
-                        <span class="name">
-                            <b>
-                            contextMenuItems</b>
-                            <a href="#contextMenuItems"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>[]</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:45</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:44</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canSendMessageByEmail"></a>
+                    <span class="name">
+                        <span ><b>canSendMessageByEmail</b></span>
+                        <a href="#canSendMessageByEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editMessageTemplate"></a>
-                        <span class="name">
-                            <b>
-                            editMessageTemplate</b>
-                            <a href="#editMessageTemplate"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:49</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @ViewChild(&#x27;editMessageTemplate&#x27;, {static: true})<br />
-                            </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:18</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contextMenuItems"></a>
+                    <span class="name">
+                        <span ><b>contextMenuItems</b></span>
+                        <a href="#contextMenuItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editMode"></a>
-                        <span class="name">
-                            <b>
-                            editMode</b>
-                            <a href="#editMode"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:59</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:34</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editMessageTemplate"></a>
+                    <span class="name">
+                        <span ><b>editMessageTemplate</b></span>
+                        <a href="#editMessageTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="moment"></a>
-                        <span class="name">
-                            <b>
-                            moment</b>
-                            <a href="#moment"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;editMessageTemplate&#x27;, {static: true})<br />
+                        </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>moment</code>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:29</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:40</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editMessageTemplateRef"></a>
+                    <span class="name">
+                        <span ><b>editMessageTemplateRef</b></span>
+                        <a href="#editMessageTemplateRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sanitizedContent"></a>
-                        <span class="name">
-                            <b>
-                            sanitizedContent</b>
-                            <a href="#sanitizedContent"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:38</a></div>
-                            </td>
-                        </tr>
+                        <i>Type : </i>    <code>NbWindowRef</code>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="showReplyForm"></a>
-                        <span class="name">
-                            <b>
-                            showReplyForm</b>
-                            <a href="#showReplyForm"><span class="icon ion-ios-link"></span></a>
-                        </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:51</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:42</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editMode"></a>
+                    <span class="name">
+                        <span ><b>editMode</b></span>
+                        <a href="#editMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="subscriptions"></a>
-                        <span class="name">
-                            <b>
-                            subscriptions</b>
-                            <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>[]</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:46</a></div>
                         </td>
                     </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EUserRoles"></a>
+                    <span class="name">
+                        <span ><b>EUserRoles</b></span>
+                        <a href="#EUserRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EUserRoles</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>[]</code>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:28</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:36</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAdmin"></a>
+                    <span class="name">
+                        <span ><b>isAdmin</b></span>
+                        <a href="#isAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>moment</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showReplyForm"></a>
+                    <span class="name">
+                        <span ><b>showReplyForm</b></span>
+                        <a href="#showReplyForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/community-channels/components/discussion-community-channel/community-channel-message/community-channel-message.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy, ViewChild, TemplateRef } from &#x27;@angular/core&#x27;;
-import { IUserMessage } from &#x27;projects/shared-models/user_message.model&#x27;;
-import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
-import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import { NbMenuService, NbWindowRef, NbWindowService } from &#x27;@nebular/theme&#x27;;
+import { Match } from &#x27;autolinker&#x27;;
 import * as moment from &#x27;moment&#x27;;
-import { IDiscussion } from &#x27;projects/shared-models/discussion.model&#x27;;
-import { NbDialogService, NbMenuService } from &#x27;@nebular/theme&#x27;;
+import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
+import { EUserRoles } from &#x27;projects/shared-models/enums/user_roles.enum&#x27;;
+import { IUserMessage } from &#x27;projects/shared-models/user_message.model&#x27;;
+import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
 import { filter, map } from &#x27;rxjs/operators&#x27;;
-import { SendMessageFormComponent } from &#x27;../send-message-form/send-message-form.component&#x27;;
 
 @Component({
   selector: &#x27;app-community-channel-message&#x27;,
   templateUrl: &#x27;./community-channel-message.component.html&#x27;,
-  styleUrls: [&#x27;./community-channel-message.component.scss&#x27;]
+  styleUrls: [&#x27;./community-channel-message.component.scss&#x27;],
 })
-export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
-  @ViewChild(&#x27;editMessageTemplate&#x27;, {static: true}) editMessageTemplate: TemplateRef&lt;any&gt;;
+export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDestroy {
+  EUserRoles &#x3D; EUserRoles;
+  @ViewChild(&#x27;editMessageTemplate&#x27;, { static: true }) editMessageTemplate: TemplateRef&lt;any&gt;;
 
   @Input() message: IUserMessage;
   @Input() canReply: boolean;
+  @Input() roles &#x3D; [];
   @Input() permittedActions;
   @Input() allActions;
   @Input() currentUser: ICurrentUser;
-  @Output() sendVote &#x3D; new EventEmitter();
   @Output() sendReply &#x3D; new EventEmitter();
   @Output() sendAttachmentReply &#x3D; new EventEmitter();
   @Output() sendUpdatedReply &#x3D; new EventEmitter();
   @Output() sendUpdatedAttachmentReply &#x3D; new EventEmitter();
   @Output() sendFlag &#x3D; new EventEmitter();
   @Output() sendDelete &#x3D; new EventEmitter();
+  @Output() sendMessageByEmail &#x3D; new EventEmitter();
 
   canEdit &#x3D; false;
   editMode &#x3D; false;
+  isAdmin &#x3D; false;
+  canDelete &#x3D; false;
+  canSendMessageByEmail &#x3D; false;
 
-  subscriptions &#x3D; [];
+  editMessageTemplateRef: NbWindowRef;
 
-  sanitizedContent;
+  subscriptions: Subscription[] &#x3D; [];
 
   moment &#x3D; moment;
 
@@ -1501,106 +1808,137 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
   constructor(
     private authWatchService: LibAuthwatchService,
     private menuService: NbMenuService,
-  ) { }
+    private nbWindowService: NbWindowService,
+  ) {}
 
-  ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(
-      data &#x3D;&gt; {
+  ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    this.subscriptions.forEach((subscription: Subscription) &#x3D;&gt; subscription.unsubscribe());
+
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) &#x3D;&gt; {
         this.currentUser &#x3D; data;
-        if (this.currentUser &amp;&amp; this.currentUser.username &#x3D;&#x3D;&#x3D; this.message.user.username) {
-          this.canEdit &#x3D; true;
-          // this.contextMenuItems.push({
-          //   title: &#x27;Edit&#x27;
-          // });
-          this.contextMenuItems.push({
-            title: &#x27;Delete&#x27;
-          });
-        }
-      }
-    )
+        if (this.currentUser) {
+          if (this.roles) {
+            this.isAdmin &#x3D; this.roles.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN);
+          }
 
+          if (!this.canEdit &amp;&amp; this.currentUser.username &#x3D;&#x3D;&#x3D; this.message.user.username) {
+            this.canEdit &#x3D; true;
+            this.contextMenuItems.push({
+              title: &#x27;Edit&#x27;,
+            });
+          }
+          if (!this.canDelete &amp;&amp; (this.isAdmin || this.currentUser.username &#x3D;&#x3D;&#x3D; this.message.user.username)) {
+            this.canDelete &#x3D; true;
+            this.contextMenuItems.push({
+              title: &#x27;Delete&#x27;,
+            });
+          }
+          if (this.isAdmin &amp;&amp; !this.canSendMessageByEmail) {
+            this.canSendMessageByEmail &#x3D; true;
+            this.contextMenuItems.push({
+              title: &#x27;Email to all members&#x27;,
+            });
+          }
+        }
+      }),
+    );
 
     this.handleContextMenu();
   }
 
   ngOnDestroy(): void {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription: Subscription) &#x3D;&gt; subscription.unsubscribe());
   }
 
-
-  login() {
+  login(): boolean {
     if (!this.currentUser) {
       this.authWatchService.logInUser();
     }
     return true;
   }
 
-  emitVote(userMessageId) {
-    this.sendVote.emit(userMessageId);
-  }
-
-
-  emitDelete(userMessageId) {
+  emitDelete(userMessageId): void {
     this.sendDelete.emit(userMessageId);
   }
 
-  emitReply(data) {
+  emitReply(data): void {
     this.sendReply.emit(data);
   }
 
-  emitAttachmentReply(data) {
+  emitAttachmentReply(data): void {
     this.sendAttachmentReply.emit(data);
   }
 
-
-  emitUpdate(data) {
-    this.sendUpdatedReply.emit(data);
+  emitUpdate(data, userMessageId?: number): void {
+    if (userMessageId) {
+      this.sendUpdatedReply.emit([data, userMessageId]);
+    } else {
+      this.sendUpdatedReply.emit(data);
+    }
+    this.editMessageTemplateRef?.close();
   }
 
-  emitAttachmentUpdate(data) {
-    this.sendUpdatedAttachmentReply.emit(data);
+  emitAttachmentUpdate(data, userMessageId?: number): void {
+    if (userMessageId) {
+      this.sendUpdatedAttachmentReply.emit([data, userMessageId]);
+    } else {
+      this.sendUpdatedAttachmentReply.emit(data);
+    }
+    this.editMessageTemplateRef?.close();
   }
 
-  toggleReplyForm() {
+  toggleReplyForm(): void {
     this.showReplyForm &#x3D; !this.showReplyForm;
   }
 
+  emitSendMessageByEmail(messageId): void {
+    this.sendMessageByEmail.emit(messageId);
+  }
 
-  handleContextMenu() {
+  handleContextMenu(): void {
     this.subscriptions.push(
-      this.menuService.onItemClick()
-      .pipe(
-        filter(({tag}) &#x3D;&gt; tag &#x3D;&#x3D;&#x3D; &#x60;community-channel-message-menu-${this.message.id}&#x60;),
-        map(({item: title}) &#x3D;&gt; title)
-      ).subscribe(
-        menuItem &#x3D;&gt; {
+      this.menuService
+        .onItemClick()
+        .pipe(
+          filter(({ tag }) &#x3D;&gt; tag &#x3D;&#x3D;&#x3D; &#x60;community-channel-message-menu-${this.message.id}&#x60;),
+          map(({ item: title }) &#x3D;&gt; title),
+        )
+        .subscribe((menuItem) &#x3D;&gt; {
           switch (menuItem.title) {
             case &#x27;Edit&#x27;: {
               this.openEditForm();
               break;
             }
             case &#x27;Delete&#x27;: {
-              this.login() &amp;&amp; this.emitDelete(this.message.id)
+              this.login() &amp;&amp; this.emitDelete(this.message.id);
+              break;
+            }
+            case &#x27;Email to all members&#x27;: {
+              this.sendMessageByEmail.emit(this.message.id);
               break;
             }
           }
-        }
-      )
+        }),
     );
   }
 
-
-  openEditForm() {
-    // TODO CHANNEL TEST
-    // this.dialogService.open(this.editMessageTemplate, {
-    //   context: {
-    //     title: &#x27;This is a title passed to the dialog component&#x27;
-    //   }
-    // });
+  openEditForm(): void {
+    this.editMessageTemplateRef &#x3D; this.nbWindowService.open(this.editMessageTemplate, {
+      title: &#x27;Edit your message&#x27;,
+    });
   }
 
+  highlightUserMentions(match: Match): string {
+    switch (match.getType()) {
+      case &#x27;mention&#x27;:
+        return &#x60;&lt;a href&#x3D;&quot;https://commudle.com/users/${match
+          .getMatchedText()
+          .slice(1)}&quot; target&#x3D;&quot;_blank&quot;&gt;${match.getMatchedText()}&lt;/a&gt;&#x60;;
+    }
+  }
 }
 </code></pre>
     </div>
@@ -1609,16 +1947,23 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
         <pre class="line-numbers"><code class="language-html">&lt;div&gt;
   &lt;div class&#x3D;&quot;message&quot;&gt;
     &lt;div class&#x3D;&quot;author-image&quot;&gt;
-      &lt;img alt&#x3D;&quot;{{ message.user.name }}&quot; src&#x3D;&quot;{{ message.user.avatar }}&quot; title&#x3D;&quot;{{ message.user.name }}&quot;&gt;
+      &lt;img alt&#x3D;&quot;{{ message.user.name }}&quot; src&#x3D;&quot;{{ message.user.avatar }}&quot; title&#x3D;&quot;{{ message.user.name }}&quot; /&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;content-controls&quot;&gt;
       &lt;div class&#x3D;&quot;author-details&quot;&gt;
         &lt;p&gt;
           &lt;strong&gt;{{ message.user.name }}&lt;/strong&gt;
+          &amp;nbsp;
           &lt;small&gt;{{ moment(message.created_at).format(&#x27;h:mm A, dddd Do MMM, YYYY &#x27;) }}&lt;/small&gt;
+          &amp;nbsp;
+          &lt;small&gt;&lt;em *ngIf&#x3D;&quot;message.edited&quot;&gt;(edited)&lt;/em&gt;&lt;/small&gt;
         &lt;/p&gt;
       &lt;/div&gt;
-      &lt;div [innerHTML]&#x3D;&quot;message.content | textToLinks&quot; class&#x3D;&quot;content&quot;&gt;&lt;/div&gt;
+      &lt;!-- TODO: Handle if script tag is in message content --&gt;
+      &lt;div
+        [innerHTML]&#x3D;&quot;message.content | linky:{sanitizeHtml: false, mention: &#x27;twitter&#x27;, replaceFn: highlightUserMentions}&quot;
+        class&#x3D;&quot;content&quot;
+      &gt;&lt;/div&gt;
       &lt;div *ngIf&#x3D;&quot;message.attachments.length &gt; 0&quot; class&#x3D;&quot;attachments&quot;&gt;
         &lt;div *ngFor&#x3D;&quot;let file of message.attachments; let i&#x3D;index;&quot; class&#x3D;&quot;file&quot;&gt;
           &lt;a class&#x3D;&quot;download-link clickable&quot; href&#x3D;&quot;{{file.url}}&quot; target&#x3D;&quot;_blank&quot;&gt;
@@ -1633,63 +1978,79 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
             &lt;/p&gt;
           &lt;/div&gt;
           &lt;div *ngIf&#x3D;&quot;file.type.includes(&#x27;image&#x27;)&quot; class&#x3D;&quot;image-file-preview&quot;&gt;
-            &lt;img alt&#x3D;&quot;{{ file.name }}&quot; src&#x3D;&quot;{{file.url}}&quot; title&#x3D;&quot;{{file.name}}&quot;&gt;
+            &lt;img alt&#x3D;&quot;{{ file.name }}&quot; src&#x3D;&quot;{{file.url}}&quot; title&#x3D;&quot;{{file.name}}&quot; /&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;details-flag&quot;&gt;
-        &lt;div (click)&#x3D;&quot;this.login() &amp;&amp; permittedActions.includes(allActions.VOTE) &amp;&amp; emitVote(message.id)&quot;
-             class&#x3D;&quot;votes clickable&quot; nbTooltip&#x3D;&quot;Like!&quot; nbTooltipStatus&#x3D;&quot;danger&quot;&gt;
-          &lt;p
-            [ngClass]&#x3D;&quot;{&#x27;low&#x27; : message.votes_count &gt; 0 &amp;&amp; message.votes_count &lt;&#x3D; 2, &#x27;medium&#x27;: message.votes_count &gt; 2 &amp;&amp; message.votes_count &lt;&#x3D; 4, &#x27;high&#x27;: message.votes_count &gt; 4}&quot;&gt;
-            &lt;nb-icon *ngIf&#x3D;&quot;message.votes_count &#x3D;&#x3D;&#x3D; 0&quot; icon&#x3D;&quot;heart-outline&quot; status&#x3D;&quot;danger&quot;&gt;&lt;/nb-icon&gt;
-            &lt;nb-icon *ngIf&#x3D;&quot;message.votes_count &gt; 0&quot; icon&#x3D;&quot;heart&quot; status&#x3D;&quot;danger&quot;&gt;&lt;/nb-icon&gt;
-            {{ message.votes_count &gt; 0 ? message.votes_count : &#x27;&#x27; }}
-          &lt;/p&gt;
+        &lt;div&gt;
+          &lt;app-votes-display
+            [canVote]&#x3D;&quot;permittedActions.includes(allActions.VOTE)&quot;
+            [votableId]&#x3D;&quot;message.id&quot;
+            icon&#x3D;&quot;heart-outline&quot;
+            size&#x3D;&quot;small&quot;
+            votableType&#x3D;&quot;UserMessage&quot;
+          &gt;&lt;/app-votes-display&gt;
         &lt;/div&gt;
-        &lt;div (click)&#x3D;&quot;toggleReplyForm()&quot; *ngIf&#x3D;&quot;permittedActions.includes(allActions.ADD) &amp;&amp; canReply&quot;
-             class&#x3D;&quot;clickable reply-button&quot;&gt;
+        &lt;div
+          (click)&#x3D;&quot;toggleReplyForm()&quot;
+          *ngIf&#x3D;&quot;permittedActions.includes(allActions.ADD) &amp;&amp; canReply&quot;
+          class&#x3D;&quot;clickable reply-button&quot;
+        &gt;
           &lt;p class&#x3D;&quot;text-info&quot;&gt;
             &lt;small&gt;Reply&lt;/small&gt;
           &lt;/p&gt;
         &lt;/div&gt;
-        &lt;div *ngIf&#x3D;&quot;contextMenuItems.length &gt; 0&quot;
-             [nbContextMenuTag]&#x3D;&quot;&#x27;community-channel-message-menu-&#x27;.concat((message.id).toString())&quot;
-             [nbContextMenu]&#x3D;&quot;contextMenuItems&quot; class&#x3D;&quot;message-context-menu clickable&quot;&gt;
+        &lt;div
+          *ngIf&#x3D;&quot;contextMenuItems.length &gt; 0&quot;
+          [nbContextMenuTag]&#x3D;&quot;&#x27;community-channel-message-menu-&#x27;.concat((message.id).toString())&quot;
+          [nbContextMenu]&#x3D;&quot;contextMenuItems&quot;
+          class&#x3D;&quot;message-context-menu clickable&quot;
+        &gt;
           &lt;nb-icon icon&#x3D;&quot;more-vertical&quot; status&#x3D;&quot;basic&quot;&gt;&lt;/nb-icon&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-
   &lt;/div&gt;
   &lt;div *ngIf&#x3D;&quot;canReply&quot; class&#x3D;&quot;replies-container&quot;&gt;
     &lt;div *ngFor&#x3D;&quot;let rep of message.user_messages&quot; class&#x3D;&quot;reply-message&quot;&gt;
-      &lt;app-community-channel-message (sendDelete)&#x3D;&quot;emitDelete($event)&quot; (sendVote)&#x3D;&quot;emitVote($event)&quot;
-                                     [allActions]&#x3D;&quot;allActions&quot; [canReply]&#x3D;&quot;false&quot; [message]&#x3D;&quot;rep&quot;
-                                     [permittedActions]&#x3D;&quot;permittedActions&quot;&gt;&lt;/app-community-channel-message&gt;
+      &lt;app-community-channel-message
+        (sendDelete)&#x3D;&quot;emitDelete($event)&quot;
+        (sendMessageByEmail)&#x3D;&quot;emitSendMessageByEmail($event)&quot;
+        (sendUpdatedAttachmentReply)&#x3D;&quot;emitAttachmentUpdate($event, rep.id)&quot;
+        (sendUpdatedReply)&#x3D;&quot;emitUpdate($event, rep.id)&quot;
+        [allActions]&#x3D;&quot;allActions&quot;
+        [canReply]&#x3D;&quot;false&quot;
+        [message]&#x3D;&quot;rep&quot;
+        [permittedActions]&#x3D;&quot;permittedActions&quot;
+        [roles]&#x3D;&quot;roles&quot;
+      &gt;&lt;/app-community-channel-message&gt;
     &lt;/div&gt;
 
     &lt;div *ngIf&#x3D;&quot;showReplyForm&quot; class&#x3D;&quot;reply-form&quot;&gt;
-      &lt;app-send-message-form (sendAttachmentMessage)&#x3D;&quot;emitAttachmentReply($event)&quot; (sendMessage)&#x3D;&quot;emitReply($event)&quot;
-                             *ngIf&#x3D;&quot;canReply&quot; [attachmentDisplay]&#x3D;&quot;&#x27;bottom&#x27;&quot;&gt;&lt;/app-send-message-form&gt;
+      &lt;app-send-message-form
+        (sendAttachmentMessage)&#x3D;&quot;emitAttachmentReply($event)&quot;
+        (sendMessage)&#x3D;&quot;emitReply($event)&quot;
+        *ngIf&#x3D;&quot;canReply&quot;
+        [attachmentDisplay]&#x3D;&quot;&#x27;bottom&#x27;&quot;
+      &gt;&lt;/app-send-message-form&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- &lt;ng-template #editMessageTemplate&gt;
-  &lt;div class&#x3D;&quot;edit-message-form&quot;&gt;
+&lt;ng-template #editMessageTemplate&gt;
+  &lt;div *ngIf&#x3D;&quot;canEdit&quot; class&#x3D;&quot;edit-message-form&quot;&gt;
     &lt;app-send-message-form
-    *ngIf&#x3D;&quot;canEdit&quot;
-    (sendMessage)&#x3D;&quot;emitReply($event)&quot;
-    (sendAttachmentMessage)&#x3D;&quot;emitAttachmentReply($event)&quot;
-    (sendUpdatedTextMessage)&#x3D;&quot;emitUpdate($event)&quot;
-    (sendUpdatedAttachmentMessage)&#x3D;&quot;emitAttachmentUpdate($event)&quot;
-    [attachmentDisplay]&#x3D;&quot;&#x27;bottom&#x27;&quot;
-    [editableMessage]&#x3D;&quot;message&quot;
-    [rows]&#x3D;&quot;2&quot;
-  &gt;&lt;/app-send-message-form&gt;
+      (sendAttachmentMessage)&#x3D;&quot;emitAttachmentReply($event)&quot;
+      (sendMessage)&#x3D;&quot;emitReply($event)&quot;
+      (sendUpdatedAttachmentMessage)&#x3D;&quot;emitAttachmentUpdate($event)&quot;
+      (sendUpdatedTextMessage)&#x3D;&quot;emitUpdate($event)&quot;
+      [attachmentDisplay]&#x3D;&quot;&#x27;bottom&#x27;&quot;
+      [editableMessage]&#x3D;&quot;message&quot;
+      [rows]&#x3D;&quot;2&quot;
+    &gt;&lt;/app-send-message-form&gt;
   &lt;/div&gt;
-&lt;/ng-template&gt; --&gt;
+&lt;/ng-template&gt;
 </code></pre>
     </div>
 
@@ -1700,8 +2061,8 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
                 <pre class="line-numbers"><code class="language-scss">.message {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: nowrap;
+  justify-content: flex-start;
 
   p {
     font-size: 0.8rem;
@@ -1712,10 +2073,11 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
   }
 
   .author-image {
-    width: 35px;
-    margin-right: 5px;
-    display: flex;
     align-self: start;
+    display: flex;
+    margin-right: 5px;
+    width: 35px;
+
     img {
       width: 100%;
     }
@@ -1723,10 +2085,11 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
 
   .content-controls {
     width: 100%;
+
     .author-details {
       p {
-        margin: 0 0 0.2rem;
         color: grey;
+        margin: 0 0 0.2rem;
       }
     }
 
@@ -1736,35 +2099,38 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
     }
 
     .attachments {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      width: fit-content;
-      max-width: 80%;
-      padding: 10px 0;
       background: #e9f1ff;
       border-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      max-width: 80%;
+      padding: 10px 0;
+      width: fit-content;
+
       .file {
-        width: 80px;
-        height: 100px;
-        margin: 0 5px;
+        background: white;
         border: 2px solid #bcd4ff;
         border-radius: 5px;
-        background: white;
+        height: 100px;
+        margin: 0 5px;
         position: relative;
+        width: 80px;
+
         a.download-link {
+          align-items: center;
+          display: flex;
+          height: 100%;
+          justify-content: center;
           position: absolute;
           width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+
           nb-icon {
+            color: #8b8b8b;
             display: none;
             font-size: 3rem;
-            color: #8b8b8b;
-
           }
+
           &amp;:hover {
             nb-icon {
               display: block;
@@ -1777,29 +2143,32 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
           flex-direction: column;
           height: 100%;
           overflow: hidden;
+
           .name {
-            margin: 0;
-            height: 80%;
-            text-align: center;
-            display: flex;
             align-items: center;
+            display: flex;
+            height: 80%;
+            margin: 0;
+            text-align: center;
             word-break: break-all;
           }
+
           .extension {
+            border-top: 1px dotted lightgrey;
+            color: lightgrey;
+            font-weight: bolder;
             margin: 0;
             text-align: center;
-            border-top: 1px dotted lightgrey;
-            font-weight: bolder;
-            color: lightgrey;
           }
         }
 
         .image-file-preview {
+          align-items: center;
           display: flex;
           flex-direction: row;
-          align-items: center;
-          overflow: hidden;
           height: 100%;
+          overflow: hidden;
+
           img {
             width: 100%;
           }
@@ -1808,11 +2177,11 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
     }
 
     .details-flag {
+      align-items: baseline;
       display: flex;
       justify-content: flex-start;
-      align-items: center;
 
-      &gt;div {
+      &gt; div {
         margin-right: 10px;
 
         p {
@@ -1820,13 +2189,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
         }
       }
 
-      .votes {
-        nb-icon {
-          font-size: 1.2rem;
-        }
-      }
-
-      .votes, .reply-button {
+      .reply-button {
         p {
           font-size: 1.1rem;
         }
@@ -1837,7 +2200,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
           vertical-align: revert;
         }
       }
-
     }
   }
 }
@@ -1854,21 +2216,21 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
 
   .reply-form {
     width: 100%;
+
     form {
       display: flex;
       width: 100%;
+
       button {
         width: 30px;
       }
     }
-
   }
 }
 
-
 .edit-message-form {
-  min-width: 500px;
   max-width: 90vw;
+  min-width: 500px;
 }
 </code></pre>
     </div>
@@ -1898,9 +2260,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>  <div class="message">    <div class="author-image">      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}">    </div>    <div class="content-controls">      <div class="author-details">        <p>          <strong>{{ message.user.name }}</strong>          <small>{{ moment(message.created_at).format(\'h:mm A, dddd Do MMM, YYYY \') }}</small>        </p>      </div>      <div [innerHTML]="message.content | textToLinks" class="content"></div>      <div *ngIf="message.attachments.length > 0" class="attachments">        <div *ngFor="let file of message.attachments; let i=index;" class="file">          <a class="download-link clickable" href="{{file.url}}" target="_blank">            <nb-icon icon="external-link"></nb-icon>          </a>          <div *ngIf="!file.type.includes(\'image\')" class="file-preview">            <p class="name">              <small>{{file.name | slice:0:20 }}</small>            </p>            <p class="extension">              <small>{{file.name.split(\'.\').reverse()[0]}}</small>            </p>          </div>          <div *ngIf="file.type.includes(\'image\')" class="image-file-preview">            <img alt="{{ file.name }}" src="{{file.url}}" title="{{file.name}}">          </div>        </div>      </div>      <div class="details-flag">        <div (click)="this.login() && permittedActions.includes(allActions.VOTE) && emitVote(message.id)"             class="votes clickable" nbTooltip="Like!" nbTooltipStatus="danger">          <p            [ngClass]="{\'low\' : message.votes_count > 0 && message.votes_count <= 2, \'medium\': message.votes_count > 2 && message.votes_count <= 4, \'high\': message.votes_count > 4}">            <nb-icon *ngIf="message.votes_count === 0" icon="heart-outline" status="danger"></nb-icon>            <nb-icon *ngIf="message.votes_count > 0" icon="heart" status="danger"></nb-icon>            {{ message.votes_count > 0 ? message.votes_count : \'\' }}          </p>        </div>        <div (click)="toggleReplyForm()" *ngIf="permittedActions.includes(allActions.ADD) && canReply"             class="clickable reply-button">          <p class="text-info">            <small>Reply</small>          </p>        </div>        <div *ngIf="contextMenuItems.length > 0"             [nbContextMenuTag]="\'community-channel-message-menu-\'.concat((message.id).toString())"             [nbContextMenu]="contextMenuItems" class="message-context-menu clickable">          <nb-icon icon="more-vertical" status="basic"></nb-icon>        </div>      </div>    </div>  </div>  <div *ngIf="canReply" class="replies-container">    <div *ngFor="let rep of message.user_messages" class="reply-message">      <app-community-channel-message (sendDelete)="emitDelete($event)" (sendVote)="emitVote($event)"                                     [allActions]="allActions" [canReply]="false" [message]="rep"                                     [permittedActions]="permittedActions"></app-community-channel-message>    </div>    <div *ngIf="showReplyForm" class="reply-form">      <app-send-message-form (sendAttachmentMessage)="emitAttachmentReply($event)" (sendMessage)="emitReply($event)"                             *ngIf="canReply" [attachmentDisplay]="\'bottom\'"></app-send-message-form>    </div>  </div></div><!-- <ng-template #editMessageTemplate>  <div class="edit-message-form">    <app-send-message-form    *ngIf="canEdit"    (sendMessage)="emitReply($event)"    (sendAttachmentMessage)="emitAttachmentReply($event)"    (sendUpdatedTextMessage)="emitUpdate($event)"    (sendUpdatedAttachmentMessage)="emitAttachmentUpdate($event)"    [attachmentDisplay]="\'bottom\'"    [editableMessage]="message"    [rows]="2"  ></app-send-message-form>  </div></ng-template> --></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityCardComponent', 'selector': 'app-home-community-card'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'}];
+        var COMPONENT_TEMPLATE = '<div><div>  <div class="message">    <div class="author-image">      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}" />    </div>    <div class="content-controls">      <div class="author-details">        <p>          <strong>{{ message.user.name }}</strong>          &nbsp;          <small>{{ moment(message.created_at).format(\'h:mm A, dddd Do MMM, YYYY \') }}</small>          &nbsp;          <small><em *ngIf="message.edited">(edited)</em></small>        </p>      </div>      <!-- TODO: Handle if script tag is in message content -->      <div        [innerHTML]="message.content | linky:{sanitizeHtml: false, mention: \'twitter\', replaceFn: highlightUserMentions}"        class="content"      ></div>      <div *ngIf="message.attachments.length > 0" class="attachments">        <div *ngFor="let file of message.attachments; let i=index;" class="file">          <a class="download-link clickable" href="{{file.url}}" target="_blank">            <nb-icon icon="external-link"></nb-icon>          </a>          <div *ngIf="!file.type.includes(\'image\')" class="file-preview">            <p class="name">              <small>{{file.name | slice:0:20 }}</small>            </p>            <p class="extension">              <small>{{file.name.split(\'.\').reverse()[0]}}</small>            </p>          </div>          <div *ngIf="file.type.includes(\'image\')" class="image-file-preview">            <img alt="{{ file.name }}" src="{{file.url}}" title="{{file.name}}" />          </div>        </div>      </div>      <div class="details-flag">        <div>          <app-votes-display            [canVote]="permittedActions.includes(allActions.VOTE)"            [votableId]="message.id"            icon="heart-outline"            size="small"            votableType="UserMessage"          ></app-votes-display>        </div>        <div          (click)="toggleReplyForm()"          *ngIf="permittedActions.includes(allActions.ADD) && canReply"          class="clickable reply-button"        >          <p class="text-info">            <small>Reply</small>          </p>        </div>        <div          *ngIf="contextMenuItems.length > 0"          [nbContextMenuTag]="\'community-channel-message-menu-\'.concat((message.id).toString())"          [nbContextMenu]="contextMenuItems"          class="message-context-menu clickable"        >          <nb-icon icon="more-vertical" status="basic"></nb-icon>        </div>      </div>    </div>  </div>  <div *ngIf="canReply" class="replies-container">    <div *ngFor="let rep of message.user_messages" class="reply-message">      <app-community-channel-message        (sendDelete)="emitDelete($event)"        (sendMessageByEmail)="emitSendMessageByEmail($event)"        (sendUpdatedAttachmentReply)="emitAttachmentUpdate($event, rep.id)"        (sendUpdatedReply)="emitUpdate($event, rep.id)"        [allActions]="allActions"        [canReply]="false"        [message]="rep"        [permittedActions]="permittedActions"        [roles]="roles"      ></app-community-channel-message>    </div>    <div *ngIf="showReplyForm" class="reply-form">      <app-send-message-form        (sendAttachmentMessage)="emitAttachmentReply($event)"        (sendMessage)="emitReply($event)"        *ngIf="canReply"        [attachmentDisplay]="\'bottom\'"      ></app-send-message-form>    </div>  </div></div><ng-template #editMessageTemplate>  <div *ngIf="canEdit" class="edit-message-form">    <app-send-message-form      (sendAttachmentMessage)="emitAttachmentReply($event)"      (sendMessage)="emitReply($event)"      (sendUpdatedAttachmentMessage)="emitAttachmentUpdate($event)"      (sendUpdatedTextMessage)="emitUpdate($event)"      [attachmentDisplay]="\'bottom\'"      [editableMessage]="message"      [rows]="2"    ></app-send-message-form>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
     var ACTUAL_COMPONENT = {'name': 'CommunityChannelMessageComponent'};
 </script>
 <script src="../js/tree.js"></script>
@@ -1914,14 +2276,14 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1942,9 +2304,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnDestroy {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

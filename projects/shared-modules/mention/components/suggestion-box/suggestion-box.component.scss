@@ -1,17 +1,17 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
-.suggestions-box{
+.suggestions-box {
   width: 300px;
 }
 
 .mention-menu {
-  position: absolute;
-  left: 0;
-  z-index:1000;
-  float: left;
-  min-width: 11em;
   border: $space-2 solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25em;
+  float: left;
+  left: 0;
+  min-width: 11em;
+  position: absolute;
+  z-index: 1000;
 }
 
 .scrollable-menu {
@@ -33,11 +33,11 @@
   background: $white;
 }
 
-.selected{
+.selected {
   background-color: $cornflower-blue;
 }
 
-nb-list-item{
+nb-list-item {
   cursor: pointer;
   padding: $space-8;
 

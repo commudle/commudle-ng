@@ -1,21 +1,20 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .error-page-container {
-
   nb-card {
-    width: 1120px;
     padding: $space-32;
     text-align: center;
+    width: 1120px;
     word-wrap: break-word;
 
     .animation-container {
-      width: 500px;
       height: 300px;
       overflow: hidden;
+      width: 500px;
       img {
-        width: 100%; 
+        bottom: $space-110;
         position: relative;
-        bottom: $space-110; 
+        width: 100%;
       }
     }
 

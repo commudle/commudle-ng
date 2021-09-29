@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -34,7 +35,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li>PublicEventsRoutingModule</li>
+    <li >PublicEventsRoutingModule</li>
 </ol>
 
 
@@ -60,6 +61,7 @@
 
 
 
+
         <div class="container-fluid module">
             <div class="row">
             </div>
@@ -72,9 +74,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
-import { CommunityDetailsResolver } from &#x27;../../resolvers/community-details.resolver&#x27;;
-import { PublicEventDetailsResolver } from &#x27;../../resolvers/public-event-details.resolver&#x27;;
+import { CommunityDetailsResolver } from &#x27;projects/commudle-admin/src/app/resolvers/community-details.resolver&#x27;;
+import { PublicEventDetailsResolver } from &#x27;projects/commudle-admin/src/app/resolvers/public-event-details.resolver&#x27;;
+import { HmsBeamComponent } from &#x27;projects/shared-modules/hms-video/components/hms-beam/hms-beam.component&#x27;;
+import { CheckRedirectGuard } from &#x27;projects/shared-services/check-redirect.guard&#x27;;
 import { HomeEventComponent } from &#x27;./components/home-event/home-event.component&#x27;;
+import { SessionPageComponent } from &#x27;./components/session-page/session-page.component&#x27;;
 import { SpeakerSessionPageComponent } from &#x27;./components/speaker-session-page/speaker-session-page.component&#x27;;
 
 const routes &#x3D; [
@@ -91,6 +96,15 @@ const routes &#x3D; [
       },
       {
         path: &#x27;session&#x27;,
+        component: SessionPageComponent,
+        canDeactivate: [CheckRedirectGuard],
+      },
+      {
+        path: &#x27;beam&#x27;,
+        component: HmsBeamComponent,
+      },
+      {
+        path: &#x27;session-old&#x27;,
         component: SpeakerSessionPageComponent,
       },
     ],
@@ -115,14 +129,14 @@ export class PublicEventsRoutingModule {}
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -143,9 +157,9 @@ export class PublicEventsRoutingModule {}
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

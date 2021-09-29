@@ -2,11 +2,13 @@
   height: 100%;
 
   .send-message {
-    position: sticky;
     bottom: 0;
+    position: sticky;
 
     emoji-mart {
+      bottom: 40px;
       display: none;
+      position: absolute;
 
       &.active {
         display: initial;

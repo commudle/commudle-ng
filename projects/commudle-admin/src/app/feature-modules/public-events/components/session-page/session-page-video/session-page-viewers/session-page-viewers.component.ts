@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { UserObjectVisitChannel } from 'projects/commudle-admin/src/app/services/websockets/user-object-visit.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -35,6 +36,8 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   currentUser: ICurrentUser;
   pingInterval;
 
+  faChalkboardTeacher = faChalkboardTeacher;
+
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -68,6 +71,10 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
           this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe((data) => {
             if (data) {
               this.getCurrentUsersList();
+              // After 40 secs, we will get the current users list again
+              setTimeout(() => {
+                this.getCurrentUsersList();
+              }, 40000);
             }
           }),
           this.authWatchService.currentUser$.subscribe((currentUser) => {

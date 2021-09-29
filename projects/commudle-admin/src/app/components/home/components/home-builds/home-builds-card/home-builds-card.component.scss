@@ -1,4 +1,4 @@
-@import 'projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-build-card {
   .home-build-card-prefix {
@@ -6,11 +6,11 @@
       gap: $space-4;
 
       .home-build-card-tag {
-        padding: 0 $space-8;
-        font-size: $fs-h6;
-        color: $neon-blue;
         background-color: $lavender;
         border-radius: $border-20;
+        color: $neon-blue;
+        font-size: $fs-h6;
+        padding: 0 $space-8;
       }
     }
   }
@@ -19,28 +19,28 @@
     margin: $space-8 0;
 
     .home-build-card-name {
+      color: $gunmetal;
       font-size: $fs-h5;
       font-weight: 600;
       line-height: 16px;
-      color: $gunmetal;
     }
 
     .home-build-card-description {
-      margin-top: $space-4;
+      color: $spanish-gray;
       font-size: $fs-h6;
       line-height: normal;
-      color: $spanish-gray;
+      margin-top: $space-4;
     }
   }
 
   .home-build-card-suffix {
     .home-build-card-interactions {
-      font-size: $fs-h6;
       color: $gunmetal;
+      font-size: $fs-h6;
 
       nb-icon {
-        font-size: $fs-h4;
         color: $silver-sand;
+        font-size: $fs-h4;
       }
     }
 
@@ -49,31 +49,28 @@
       overflow: hidden;
 
       .home-build-card-author-name {
-        display: none;
+        color: $gunmetal;
         font-size: $fs-h6;
         line-height: normal;
-        color: $gunmetal;
         padding-right: $space-4;
       }
 
       img {
-        height: 100%;
-        border-radius: 50%;
+        @apply com-h-6 com-w-6;
+        @apply com-rounded-full com-object-cover com-object-center;
       }
     }
   }
 
-  // &:hover {
-    .home-build-card-suffix {
-      .home-build-card-author {
-        border-radius: $border-8;
-        background-color: $lavender;
-        padding-left: $space-8;
+  .home-build-card-suffix {
+    .home-build-card-author {
+      background-color: $lavender;
+      border-radius: $border-8 12px 12px $border-8;
+      padding-left: $space-8;
 
-        .home-build-card-author-name {
-          display: block;
-        }
+      .home-build-card-author-name {
+        display: block;
       }
     }
-  // }
+  }
 }

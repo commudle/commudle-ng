@@ -1,31 +1,31 @@
 <div class="d-flex home-navbar-menu-options">
   <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/']" routerLinkActive="active">
     <div class="icon">
-      <nb-icon icon="home" pack="fas"></nb-icon>
+      <fa-icon [icon]="faHome"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Home</div>
   </a>
   <a [routerLink]="['/about']" routerLinkActive="active">
     <div class="icon">
-      <nb-icon icon="info-circle" pack="fas"></nb-icon>
+      <fa-icon [icon]="faInfoCircle"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">About</div>
   </a>
   <a [routerLink]="['/builds']" routerLinkActive="active">
     <div class="icon">
-      <nb-icon icon="lightbulb" pack="fas"></nb-icon>
+      <fa-icon [icon]="faLightbulb"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Builds</div>
   </a>
   <a [routerLink]="['/labs']" routerLinkActive="active">
     <div class="icon">
-      <nb-icon icon="flask" pack="fas"></nb-icon>
+      <fa-icon [icon]="faFlask"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Labs</div>
   </a>
   <a [routerLink]="['/communities']" routerLinkActive="active">
     <div class="icon">
-      <nb-icon icon="user-friends" pack="fas"></nb-icon>
+      <fa-icon [icon]="faUserFriends"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Communities</div>
   </a>

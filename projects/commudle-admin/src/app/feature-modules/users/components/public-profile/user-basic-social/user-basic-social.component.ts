@@ -1,27 +1,28 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import {IUser} from 'projects/shared-models/user.model';
-import {CompleteUrlPipe} from 'projects/shared-pipes/complete-url.pipe';
+import { Component, Input, OnInit } from '@angular/core';
+import { faDribbble, faGitlab, faMediumM, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { IUser } from 'projects/shared-models/user.model';
+import { CompleteUrlPipe } from 'projects/shared-pipes/complete-url.pipe';
 
 @Component({
   selector: 'app-user-basic-social',
   templateUrl: './user-basic-social.component.html',
   styleUrls: ['./user-basic-social.component.scss'],
-  providers: [CompleteUrlPipe]
+  providers: [CompleteUrlPipe],
 })
 export class UserBasicSocialComponent implements OnInit {
-
   @Input() user: IUser;
 
   socialLinks = [];
   expanded = false;
 
-  constructor(
-    private completeUrlPipe: CompleteUrlPipe,
-  ) {
-  }
+  faYoutube = faYoutube;
+  faMediumM = faMediumM;
+  faDribbble = faDribbble;
+  faGitlab = faGitlab;
 
-  ngOnInit(): void {  }
+  constructor(private completeUrlPipe: CompleteUrlPipe) {}
+
+  ngOnInit(): void {}
 
   isValid(value: string): boolean {
     if (value && value !== '') {
@@ -34,7 +35,7 @@ export class UserBasicSocialComponent implements OnInit {
   }
 
   getCompressedUrl(url: string, urlType: string = '') {
-    const transformedUrl = new URL(this.completeUrlPipe.transform(url, urlType))
-    return (transformedUrl.host.replace(/^www./, '') + transformedUrl.pathname);
+    const transformedUrl = new URL(this.completeUrlPipe.transform(url, urlType));
+    return transformedUrl.host.replace(/^www./, '') + transformedUrl.pathname;
   }
 }

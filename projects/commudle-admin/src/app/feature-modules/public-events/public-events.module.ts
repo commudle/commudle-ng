@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NbActionsModule,
   NbAlertModule,
@@ -12,7 +13,6 @@ import {
   NbListModule,
   NbPopoverModule,
   NbTabsetModule,
-  NbTagModule,
   NbToggleModule,
   NbTooltipModule,
   NbUserModule,
@@ -92,6 +92,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbActionsModule,
     NbUserModule,
     NbToggleModule,
+    FontAwesomeModule,
   ],
 })
 export class PublicEventsModule {}
