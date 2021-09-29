@@ -1,11 +1,11 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .user-cover-photo {
-  height: 187px;
   background-color: $white;
   border-radius: $border-10;
-  position: relative;
+  height: 187px;
   overflow: hidden;
+  position: relative;
 
   .cover-image {
     height: inherit;
@@ -28,14 +28,14 @@
   .cover-change {
     border: none;
     border-radius: $border-10;
-    position: absolute;
     bottom: 16px;
-    left: 16px;
     color: $neon-blue;
-    //background-color: rgba(196, 196, 196, 0.6);
-    text-transform: none;
     font-weight: $fw-400;
-    transition: all .2s ease-in-out;
+    left: 16px;
+    //background-color: rgba(196, 196, 196, 0.6);
+    position: absolute;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       transform: scale(1.05);

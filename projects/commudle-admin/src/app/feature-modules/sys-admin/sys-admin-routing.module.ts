@@ -52,8 +52,8 @@ const routes = [
           {
             path: 'assign',
             component: AdminBadgesAssignComponent,
-          }
-        ]
+          },
+        ],
       },
       {
         path: 'admin-surveys',

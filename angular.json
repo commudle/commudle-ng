@@ -17,38 +17,25 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/commudle-admin",
+            "outputPath": "dist/commudle-admin/browser",
             "index": "projects/commudle-admin/src/index.html",
             "main": "projects/commudle-admin/src/main.ts",
             "polyfills": "projects/commudle-admin/src/polyfills.ts",
             "tsConfig": "projects/commudle-admin/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "aot": true,
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
               "projects/commudle-admin/src/assets",
               "projects/commudle-admin/src/manifest.webmanifest"
             ],
-            "styles": [
-              "projects/commudle-admin/src/styles.scss",
-              "./node_modules/@fortawesome/fontawesome-free/css/all.css"
-            ]
+            "styles": ["projects/commudle-admin/src/styles.scss"],
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "projects/commudle-admin/ngsw-config.json"
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/commudle-admin/src/environments/environment.ts",
-                  "with": "projects/commudle-admin/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -61,21 +48,42 @@
                   "maximumError": "10kb"
                 }
               ],
-              "serviceWorker": true,
-              "ngswConfigPath": "projects/commudle-admin/ngsw-config.json"
+              "fileReplacements": [
+                {
+                  "replace": "projects/commudle-admin/src/environments/environment.ts",
+                  "with": "projects/commudle-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "commudle-admin:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "commudle-admin:build:production"
+            },
+            "development": {
+              "browserTarget": "commudle-admin:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -90,160 +98,72 @@
             "polyfills": "projects/commudle-admin/src/polyfills.ts",
             "tsConfig": "projects/commudle-admin/tsconfig.spec.json",
             "karmaConfig": "projects/commudle-admin/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
               "projects/commudle-admin/src/assets",
               "projects/commudle-admin/src/manifest.webmanifest"
             ],
-            "styles": [
-              "projects/commudle-admin/src/styles.scss"
-            ],
+            "styles": ["projects/commudle-admin/src/styles.scss"],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/commudle-admin/**/*.ts",
-              "projects/commudle-admin/**/*.html"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/commudle-admin/e2e/protractor.conf.js",
-            "devServerTarget": "commudle-admin:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "commudle-admin:serve:production"
-            }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/commudle-admin-server",
+            "outputPath": "dist/commudle-admin/server",
             "main": "projects/commudle-admin/server.ts",
-            "tsConfig": "projects/commudle-admin/tsconfig.server.json"
+            "tsConfig": "projects/commudle-admin/tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
           },
           "configurations": {
             "production": {
+              "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "projects/commudle-admin/src/environments/environment.ts",
                   "with": "projects/commudle-admin/src/environments/environment.prod.ts"
                 }
-              ],
-              "sourceMap": false,
-              "optimization": {
-                "scripts": false,
-                "styles": true
-              }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "commudle-admin:build:development",
+              "serverTarget": "commudle-admin:server:development"
+            },
+            "production": {
+              "browserTarget": "commudle-admin:build:production",
+              "serverTarget": "commudle-admin:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "commudle-admin:build",
-            "serverTarget": "commudle-admin:server"
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
               "browserTarget": "commudle-admin:build:production",
               "serverTarget": "commudle-admin:server:production"
+            },
+            "development": {
+              "browserTarget": "commudle-admin:build:development",
+              "serverTarget": "commudle-admin:server:development"
             }
-          }
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "commudle-admin:build:production",
-            "serverTarget": "commudle-admin:server:production",
-            "routes": [
-              "/"
-            ]
           },
-          "configurations": {
-            "production": {}
-          }
-        }
-      }
-    },
-    "lib-authwatch": {
-      "projectType": "library",
-      "root": "projects/lib-authwatch",
-      "sourceRoot": "projects/lib-authwatch/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/lib-authwatch/tsconfig.lib.json",
-            "project": "projects/lib-authwatch/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/lib-authwatch/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/lib-authwatch/src/test.ts",
-            "tsConfig": "projects/lib-authwatch/tsconfig.spec.json",
-            "karmaConfig": "projects/lib-authwatch/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/lib-authwatch/**/*.ts",
-              "projects/lib-authwatch/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "api-routes": {
-      "projectType": "library",
-      "root": "projects/api-routes",
-      "sourceRoot": "projects/api-routes/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/api-routes/tsconfig.lib.json",
-            "project": "projects/api-routes/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/api-routes/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/api-routes/src/test.ts",
-            "tsConfig": "projects/api-routes/tsconfig.spec.json",
-            "karmaConfig": "projects/api-routes/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/api-routes/**/*.ts",
-              "projects/api-routes/**/*.html"
-            ]
-          }
+          "defaultConfiguration": "production"
         }
       }
     },
@@ -254,16 +174,19 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/lib-error-handler/tsconfig.lib.json",
             "project": "projects/lib-error-handler/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/lib-error-handler/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lib-error-handler/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -272,61 +195,9 @@
             "tsConfig": "projects/lib-error-handler/tsconfig.spec.json",
             "karmaConfig": "projects/lib-error-handler/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/lib-error-handler/**/*.ts",
-              "projects/lib-error-handler/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "lib-api-parser": {
-      "projectType": "library",
-      "root": "projects/lib-api-parser",
-      "sourceRoot": "projects/lib-api-parser/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/lib-api-parser/tsconfig.lib.json",
-            "project": "projects/lib-api-parser/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/lib-api-parser/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/lib-api-parser/src/test.ts",
-            "tsConfig": "projects/lib-api-parser/tsconfig.spec.json",
-            "karmaConfig": "projects/lib-api-parser/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/lib-api-parser/tsconfig.lib.json",
-              "projects/lib-api-parser/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }
   },
-  "defaultProject": "commudle-admin",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "commudle-admin"
 }

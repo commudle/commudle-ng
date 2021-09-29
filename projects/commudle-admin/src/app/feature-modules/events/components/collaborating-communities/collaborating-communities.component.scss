@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .actions {
   a {
@@ -6,7 +6,6 @@
     display: block;
   }
 }
-
 
 .collaboration-communities {
   display: flex;
@@ -33,7 +32,7 @@
       text-align: center;
     }
   }
-  
+
   nb-icon {
     font-size: 1rem;
   }

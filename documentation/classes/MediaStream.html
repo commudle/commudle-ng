@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -42,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>MediaStream</li>
+  <li >MediaStream</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -76,6 +77,7 @@
 
 
 
+
     </div>
 
 
@@ -86,14 +88,17 @@ const domino &#x3D; require(&#x27;domino&#x27;);
 const fs &#x3D; require(&#x27;fs&#x27;);
 const path &#x3D; require(&#x27;path&#x27;);
 const cors &#x3D; require(&#x27;cors&#x27;);
-const template &#x3D; fs.readFileSync(path.join(__dirname, &#x27;../../dist&#x27;, &#x27;commudle-admin&#x27;, &#x27;index.html&#x27;)).toString();
+const template &#x3D; fs
+  .readFileSync(path.join(path.join(process.cwd(), &#x27;dist/commudle-admin/browser&#x27;), &#x27;index.html&#x27;))
+  .toString();
 const win &#x3D; domino.createWindow(template);
-class MediaStream{};
+class MediaStream {}
 (global as any).WebSocket &#x3D; require(&#x27;ws&#x27;);
 (global as any).XMLHttpRequest &#x3D; require(&#x27;xhr2&#x27;);
 global[&#x27;window&#x27;] &#x3D; win;
 global[&#x27;document&#x27;] &#x3D; win.document;
 global[&#x27;localStorage&#x27;] &#x3D; win.localStorage;
+// @ts-ignore
 global[&#x27;MediaStream&#x27;] &#x3D; MediaStream;
 global[&#x27;DOMTokenList&#x27;] &#x3D; win.DOMTokenList;
 global[&#x27;Node&#x27;] &#x3D; win.Node;
@@ -104,10 +109,8 @@ global[&#x27;MutationObserver&#x27;] &#x3D; getMockMutationObserver();
 
 function getMockMutationObserver() {
   return class {
-    observe(node, options) {
-    }
-    disconnect() {
-    }
+    observe(node, options) {}
+    disconnect() {}
     takeRecords() {
       return [];
     }
@@ -122,22 +125,22 @@ import { AppServerModule } from &#x27;./src/main.server&#x27;;
 import { APP_BASE_HREF } from &#x27;@angular/common&#x27;;
 import { existsSync } from &#x27;fs&#x27;;
 
-
-
 // The Express app is exported so that it can be used by serverless Functions.
-export function app() {
+export function app(): express.Express {
   const server &#x3D; express();
-  const distFolder &#x3D; join(process.cwd(), &#x27;dist/commudle-admin&#x27;);
+  const distFolder &#x3D; join(process.cwd(), &#x27;dist/commudle-admin/browser&#x27;);
   const indexHtml &#x3D; existsSync(join(distFolder, &#x27;index.original.html&#x27;)) ? &#x27;index.original.html&#x27; : &#x27;index&#x27;;
-
 
   // cors configuration for 301 redirects
   server.use(cors());
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-  server.engine(&#x27;html&#x27;, ngExpressEngine({
-    bootstrap: AppServerModule,
-  }));
+  server.engine(
+    &#x27;html&#x27;,
+    ngExpressEngine({
+      bootstrap: AppServerModule,
+    }),
+  );
 
   server.set(&#x27;view engine&#x27;, &#x27;html&#x27;);
   server.set(&#x27;views&#x27;, distFolder);
@@ -145,15 +148,16 @@ export function app() {
   // Example Express Rest API endpoints
   // server.get(&#x27;/api/**&#x27;, (req, res) &#x3D;&gt; { });
   // Serve static files from /browser
-  server.get(&#x27;*.*&#x27;, express.static(distFolder, {
-    maxAge: &#x27;1y&#x27;
-  }));
-
+  server.get(
+    &#x27;*.*&#x27;,
+    express.static(distFolder, {
+      maxAge: &#x27;1y&#x27;,
+    }),
+  );
 
   server.get(&#x27;/health-check&#x27;, (req, res) &#x3D;&gt; {
     res.status(200).send({ health: &#x27;good&#x27; });
   });
-
 
   server.get(&#x27;/admin/**&#x27;, (req, res) &#x3D;&gt; {
     res.sendFile(join(distFolder, &#x27;index.html&#x27;));
@@ -167,7 +171,7 @@ export function app() {
   return server;
 }
 
-function run() {
+function run(): void {
   const port &#x3D; process.env.PORT || 4000;
 
   // Start up the Node server
@@ -182,7 +186,7 @@ function run() {
 // The below code is to ensure that the server is run only when not requiring the bundle.
 declare const __non_webpack_require__: NodeRequire;
 const mainModule &#x3D; __non_webpack_require__.main;
-const moduleFilename &#x3D; mainModule &amp;&amp; mainModule.filename || &#x27;&#x27;;
+const moduleFilename &#x3D; (mainModule &amp;&amp; mainModule.filename) || &#x27;&#x27;;
 if (moduleFilename &#x3D;&#x3D;&#x3D; __filename || moduleFilename.includes(&#x27;iisnode&#x27;)) {
   run();
 }
@@ -194,14 +198,14 @@ export * from &#x27;./src/main.server&#x27;;
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -222,9 +226,9 @@ export * from &#x27;./src/main.server&#x27;;
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

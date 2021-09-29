@@ -1,6 +1,10 @@
 <div class="user-video-container">
   <div
-    *ngIf="!peer?.isLocal && (localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER) && !screenShare"
+    *ngIf="
+      !peer?.isLocal &&
+      (localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER) &&
+      !screenShare
+    "
     class="video-controls d-flex"
   >
     <button
@@ -9,6 +13,7 @@
       ghost
       nbButton
       nbTooltip="Mute this person's audio"
+      nbTooltipTrigger="hover"
       shape="round"
       size="small"
     >
@@ -20,15 +25,32 @@
       ghost
       nbButton
       nbTooltip="Mute this person's video"
+      nbTooltipTrigger="hover"
       shape="round"
       size="small"
     >
       <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
     </button>
-    <button (click)="changeRole()" ghost nbButton nbTooltip="Remove from stage" shape="round" size="small">
+    <button
+      (click)="changeRole()"
+      ghost
+      nbButton
+      nbTooltip="Remove from stage"
+      nbTooltipTrigger="hover"
+      shape="round"
+      size="small"
+    >
       <nb-icon icon="minus-circle"></nb-icon>
     </button>
-    <button (click)="removeFromSession()" ghost nbButton nbTooltip="Remove from session" shape="round" size="small">
+    <button
+      (click)="removeFromSession()"
+      ghost
+      nbButton
+      nbTooltip="Remove from session"
+      nbTooltipTrigger="hover"
+      shape="round"
+      size="small"
+    >
       <nb-icon icon="log-out"></nb-icon>
     </button>
   </div>
@@ -37,7 +59,7 @@
       #videoElement
       [autoplay]="true"
       [muted]="peer?.isLocal"
-      [ngClass]="{'hidden': !isVideoEnabled && !screenShare, 'screen-share': screenShare}"
+      [ngClass]="{ hidden: !isVideoEnabled && !screenShare, 'screen-share': screenShare }"
       playsinline
     ></video>
     <div *ngIf="metaData && !isVideoEnabled && !screenShare" class="user-avatar">
@@ -46,6 +68,6 @@
   </div>
   <div *ngIf="metaData" class="user-name">
     <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
-    {{metaData.name}}
+    {{ metaData.name }}
   </div>
 </div>

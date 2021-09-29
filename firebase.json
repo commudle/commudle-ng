@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/commudle-admin",
+    "public": "dist/commudle-admin/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

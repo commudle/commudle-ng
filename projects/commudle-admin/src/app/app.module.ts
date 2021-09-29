@@ -46,6 +46,7 @@ import { LabsModule } from 'projects/commudle-admin/src/app/feature-modules/labs
 import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
@@ -89,7 +90,6 @@ import { ReusableComponentsModule } from './feature-modules/reusable-components/
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { AppInitService } from './services/app-init.service';
-import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -187,7 +187,12 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     // Other external npm modules
     Ng2CompleterModule,
     Ng2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     AppInitService,

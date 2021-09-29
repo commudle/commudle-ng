@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>TrackSlotsService</li>
+  <li >TrackSlotsService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,22 +78,25 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#createTrackSlot">createTrackSlot</a>
+                                <a href="#createTrackSlot" >createTrackSlot</a>
                             </li>
                             <li>
-                                <a href="#deleteTrackSlot">deleteTrackSlot</a>
+                                <a href="#deleteTrackSlot" >deleteTrackSlot</a>
                             </li>
                             <li>
-                                <a href="#pGetLiveEventSessions">pGetLiveEventSessions</a>
+                                <a href="#getPolls" >getPolls</a>
                             </li>
                             <li>
-                                <a href="#pGetTrackSlot">pGetTrackSlot</a>
+                                <a href="#pGetLiveEventSessions" >pGetLiveEventSessions</a>
                             </li>
                             <li>
-                                <a href="#pToggleVote">pToggleVote</a>
+                                <a href="#pGetTrackSlot" >pGetTrackSlot</a>
                             </li>
                             <li>
-                                <a href="#updateTrackSlot">updateTrackSlot</a>
+                                <a href="#pToggleVote" >pToggleVote</a>
+                            </li>
+                            <li>
+                                <a href="#updateTrackSlot" >updateTrackSlot</a>
                             </li>
                         </ul>
                     </td>
@@ -111,12 +116,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html">ApiRoutesService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html" target="_self">ApiRoutesService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -177,9 +182,7 @@
                 <td class="col-md-4">
                     <a name="createTrackSlot"></a>
                     <span class="name">
-                        <b>
-                            createTrackSlot
-                        </b>
+                        <span ><b>createTrackSlot</b></span>
                         <a href="#createTrackSlot"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -193,8 +196,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:22</a></div>
                 </td>
             </tr>
 
@@ -204,6 +207,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -243,9 +247,7 @@
                 <td class="col-md-4">
                     <a name="deleteTrackSlot"></a>
                     <span class="name">
-                        <b>
-                            deleteTrackSlot
-                        </b>
+                        <span ><b>deleteTrackSlot</b></span>
                         <a href="#deleteTrackSlot"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -259,8 +261,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -270,6 +272,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -307,11 +310,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getPolls"></a>
+                    <span class="name">
+                        <span ><b>getPolls</b></span>
+                        <a href="#getPolls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPolls(trackSlotId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>trackSlotId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;IPolls&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="pGetLiveEventSessions"></a>
                     <span class="name">
-                        <b>
-                            pGetLiveEventSessions
-                        </b>
+                        <span ><b>pGetLiveEventSessions</b></span>
                         <a href="#pGetLiveEventSessions"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -325,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -336,6 +406,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -375,9 +446,7 @@
                 <td class="col-md-4">
                     <a name="pGetTrackSlot"></a>
                     <span class="name">
-                        <b>
-                            pGetTrackSlot
-                        </b>
+                        <span ><b>pGetTrackSlot</b></span>
                         <a href="#pGetTrackSlot"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -391,8 +460,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -402,6 +471,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -441,9 +511,7 @@
                 <td class="col-md-4">
                     <a name="pToggleVote"></a>
                     <span class="name">
-                        <b>
-                            pToggleVote
-                        </b>
+                        <span ><b>pToggleVote</b></span>
                         <a href="#pToggleVote"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -457,8 +525,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/track_slots.service.ts:57</a></div>
                 </td>
             </tr>
 
@@ -468,6 +536,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -507,9 +576,7 @@
                 <td class="col-md-4">
                     <a name="updateTrackSlot"></a>
                     <span class="name">
-                        <b>
-                            updateTrackSlot
-                        </b>
+                        <span ><b>updateTrackSlot</b></span>
                         <a href="#updateTrackSlot"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -534,6 +601,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -582,13 +650,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
-import { API_ROUTES } from &#x27;projects/shared-services/api-routes.constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { IPolls } from &#x27;projects/shared-models/polls.model&#x27;;
 import { ITrackSlot } from &#x27;projects/shared-models/track-slot.model&#x27;;
 import { ITrackSlots } from &#x27;projects/shared-models/track_slots.model&#x27;;
+import { API_ROUTES } from &#x27;projects/shared-services/api-routes.constants&#x27;;
+import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
 
 
 @Injectable({
@@ -599,11 +668,10 @@ export class TrackSlotsService {
   constructor(
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService
-  ) { }
-
+  ) {
+  }
 
   createTrackSlot(newTrackSlot): Observable&lt;ITrackSlot&gt; {
-
     return this.http.post&lt;ITrackSlot&gt;(
       this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.CREATE),
       {
@@ -623,19 +691,16 @@ export class TrackSlotsService {
     );
   }
 
-
   deleteTrackSlot(trackSlotId): Observable&lt;any&gt; {
-    let params &#x3D; new HttpParams().set(&#x27;track_slot_id&#x27;, trackSlotId);
+    const params &#x3D; new HttpParams().set(&#x27;track_slot_id&#x27;, trackSlotId);
     return this.http.delete&lt;any&gt;(
       this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.DELETE), { params }
     );
   }
 
-
-
   // PUBLIC METHODS
   pGetTrackSlot(trackSlotId): Observable&lt;ITrackSlot&gt; {
-    let params &#x3D; new HttpParams().set(&#x27;track_slot_id&#x27;, trackSlotId);
+    const params &#x3D; new HttpParams().set(&#x27;track_slot_id&#x27;, trackSlotId);
     return this.http.get&lt;any&gt;(
       this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.GET), { params }
     );
@@ -648,11 +713,19 @@ export class TrackSlotsService {
   }
 
   pGetLiveEventSessions(eventId): Observable&lt;ITrackSlots&gt; {
-    let params &#x3D; new HttpParams().set(&#x27;event_id&#x27;, eventId);
+    const params &#x3D; new HttpParams().set(&#x27;event_id&#x27;, eventId);
     return this.http.get&lt;ITrackSlots&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.LIVE_EVENT_SESSIONS), {params}
-    )
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.LIVE_EVENT_SESSIONS), { params }
+    );
   }
+
+  getPolls(trackSlotId: number): Observable&lt;IPolls&gt; {
+    const params &#x3D; new HttpParams().set(&#x27;track_slot_id&#x27;, String(trackSlotId));
+    return this.http.get&lt;IPolls&gt;(
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.POLLS), { params }
+    );
+  }
+
 }
 </code></pre>
     </div>
@@ -665,14 +738,14 @@ export class TrackSlotsService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -693,9 +766,9 @@ export class TrackSlotsService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

@@ -1,0 +1,27 @@
+/*
+This is a class for three column layout where the middle column occupies twice the space as compared to other columns
+ */
+.three-column-layout {
+  @apply com-grid com-grid-cols-4;
+
+  // First column and third column will have a span of 1 while second column will have a span of 2
+  & > *:nth-child(1),
+  & > *:nth-child(3) {
+    @apply com-col-span-1;
+  }
+
+  & > *:nth-child(2) {
+    @apply com-col-span-2;
+  }
+}
+
+/*
+This is a class for one column layout where the column occupies 100% width
+ */
+.one-column-layout {
+  @apply com-grid com-grid-cols-1;
+
+  & > * {
+    @apply com-col-span-1;
+  }
+}
