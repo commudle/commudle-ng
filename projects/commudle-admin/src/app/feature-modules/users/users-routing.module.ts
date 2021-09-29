@@ -23,7 +23,7 @@ const routes = [
         component: EditUserProfileComponent,
         children: [
           {
-            path: 'user-basic-details',
+            path: 'basic-details',
             component: BasicUserProfileComponent,
           },
           {

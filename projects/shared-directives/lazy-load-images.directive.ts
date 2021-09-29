@@ -1,11 +1,11 @@
-import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, HostBinding, Input } from '@angular/core';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Directive({
   selector: 'img',
   providers: [IsBrowserService]
 })
-export class LazyLoadImagesDirective {
+export class LazyLoadImagesDirective implements AfterContentInit {
 
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;

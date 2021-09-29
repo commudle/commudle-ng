@@ -26,7 +26,7 @@
 
   <div class="user-interactions d-flex justify-content-center">
     <div *ngIf="currentUser?.id === user.id">
-      <a [routerLink]="[{outlets: {'p': ['settings', 'user-basic-details']}}]">
+      <a [routerLink]="[{outlets: {'p': ['settings', 'basic-details']}}]">
         <button class="anim-shadow" nbButton size="small">
           <nb-icon icon="edit"></nb-icon>
           Edit bio
