@@ -1,6 +1,5 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {UserFollowComponent} from './user-follow.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserFollowComponent } from './user-follow.component';
 
 describe('UserFollowComponent', () => {
   let component: UserFollowComponent;
@@ -8,9 +7,8 @@ describe('UserFollowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserFollowComponent]
-    })
-      .compileComponents();
+      declarations: [UserFollowComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

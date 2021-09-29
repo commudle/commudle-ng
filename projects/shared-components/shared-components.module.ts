@@ -28,6 +28,8 @@ import { LinkyModule } from 'ngx-linky';
 import { MessageComponent } from 'projects/shared-components/messages/messages-list/message/message.component';
 import { MessagesListComponent } from 'projects/shared-components/messages/messages-list/messages-list.component';
 import { MessagesComponent } from 'projects/shared-components/messages/messages.component';
+import { UserFollowComponent } from 'projects/shared-components/user-follow/user-follow.component';
+import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { HmsVideoModule } from 'projects/shared-modules/hms-video/hms-video.module';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
@@ -68,7 +70,6 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
-import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     QnaListComponent,
     QnaListItemComponent,
     VideoStreamV2Component,
+    UserFollowComponent,
   ],
   imports: [
     CommonModule,
@@ -176,6 +178,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     MessagesComponent,
     QnaComponent,
     VideoStreamV2Component,
+    UserFollowComponent,
   ],
 })
 export class SharedComponentsModule {}
