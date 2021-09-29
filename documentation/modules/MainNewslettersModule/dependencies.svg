@@ -14,10 +14,6 @@
 <title>cluster_MainNewslettersModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 1777,-230.8 1777,-32.8 8,-32.8"/>
 </g>
-<g id="clust11" class="cluster">
-<title>cluster_MainNewslettersModule_exports</title>
-<polygon fill="none" stroke="black" points="879,-170.8 879,-222.8 1071,-222.8 1071,-170.8 879,-170.8"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_MainNewslettersModule_declarations</title>
 <polygon fill="none" stroke="black" points="240,-40.8 240,-92.8 1769,-92.8 1769,-40.8 240,-40.8"/>
@@ -25,6 +21,10 @@
 <g id="clust10" class="cluster">
 <title>cluster_MainNewslettersModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 232,-92.8 232,-40.8 16,-40.8"/>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster_MainNewslettersModule_exports</title>
+<polygon fill="none" stroke="black" points="879,-170.8 879,-222.8 1071,-222.8 1071,-170.8 879,-170.8"/>
 </g>
 <!-- IndexComponent -->
 <g id="node1" class="node">

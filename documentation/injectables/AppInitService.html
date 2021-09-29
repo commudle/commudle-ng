@@ -103,7 +103,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">projects/commudle-admin/src/app/services/app-init.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">projects/commudle-admin/src/app/services/app-init.service.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -178,8 +178,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/app-init.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/app-init.service.ts:11</a></div>
                 </td>
             </tr>
 
@@ -202,19 +202,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import &#x27;rxjs/add/operator/toPromise&#x27;;
 import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
-import { environment } from &#x27;../../environments/environment&#x27;;
 import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
+import &#x27;rxjs/add/operator/toPromise&#x27;;
+import { environment } from &#x27;../../environments/environment&#x27;;
 
 @Injectable()
 export class AppInitService {
-
-  constructor(
-    private apiRoutesService: ApiRoutesService,
-    private authWatchService: LibAuthwatchService
-  ) { }
+  constructor(private apiRoutesService: ApiRoutesService, private authWatchService: LibAuthwatchService) {}
 
   initializeApp(): Promise&lt;any&gt; {
     return new Promise((resolve, reject) &#x3D;&gt; {
@@ -225,7 +220,6 @@ export class AppInitService {
       resolve(null);
     });
   }
-
 }
 </code></pre>
     </div>

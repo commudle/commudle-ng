@@ -18,13 +18,13 @@
 <title>cluster_SharedComponentsModule_declarations</title>
 <polygon fill="none" stroke="black" points="459,-40.8 459,-92.8 7881,-92.8 7881,-40.8 459,-40.8"/>
 </g>
-<g id="clust44" class="cluster">
-<title>cluster_SharedComponentsModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 451,-92.8 451,-40.8 16,-40.8"/>
-</g>
 <g id="clust45" class="cluster">
 <title>cluster_SharedComponentsModule_exports</title>
 <polygon fill="none" stroke="black" points="1156,-170.8 1156,-222.8 6764,-222.8 6764,-170.8 1156,-170.8"/>
+</g>
+<g id="clust44" class="cluster">
+<title>cluster_SharedComponentsModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 451,-92.8 451,-40.8 16,-40.8"/>
 </g>
 <!-- BadgeComponent -->
 <g id="node1" class="node">

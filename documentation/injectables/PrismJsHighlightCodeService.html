@@ -166,8 +166,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">projects/shared-services/prismjs-highlight-code.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">projects/shared-services/prismjs-highlight-code.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -189,29 +189,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Inject, Injectable, PLATFORM_ID} from &#x27;@angular/core&#x27;;
-import {isPlatformBrowser} from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { isPlatformBrowser } from &#x27;@angular/common&#x27;;
+import { Inject, Injectable, PLATFORM_ID } from &#x27;@angular/core&#x27;;
 
 import &#x27;prismjs&#x27;;
-import &#x27;prismjs/plugins/toolbar/prism-toolbar&#x27;;
-import &#x27;prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard&#x27;;
-import &#x27;prismjs/components/prism-css&#x27;;
-import &#x27;prismjs/components/prism-javascript&#x27;;
-import &#x27;prismjs/components/prism-java&#x27;;
-import &#x27;prismjs/components/prism-markup&#x27;;
-import &#x27;prismjs/components/prism-typescript&#x27;;
-import &#x27;prismjs/components/prism-sass&#x27;;
-import &#x27;prismjs/components/prism-scss&#x27;;
 import &#x27;prismjs/components/prism-c&#x27;;
 import &#x27;prismjs/components/prism-cpp&#x27;;
+import &#x27;prismjs/components/prism-css&#x27;;
+import &#x27;prismjs/components/prism-java&#x27;;
+import &#x27;prismjs/components/prism-javascript&#x27;;
+import &#x27;prismjs/components/prism-markup&#x27;;
+import &#x27;prismjs/components/prism-sass&#x27;;
+import &#x27;prismjs/components/prism-scss&#x27;;
+import &#x27;prismjs/components/prism-typescript&#x27;;
+import &#x27;prismjs/plugins/toolbar/prism-toolbar&#x27;;
+import &#x27;prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard&#x27;;
 
 declare var Prism: any;
 
 @Injectable()
 export class PrismJsHighlightCodeService {
-
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {
-  }
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   highlightAll() {
     if (isPlatformBrowser(this.platformId)) {

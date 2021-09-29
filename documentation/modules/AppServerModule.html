@@ -56,13 +56,13 @@
 <title>cluster_AppServerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 148,-230.8 148,-32.8 8,-32.8"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_AppServerModule_bootstrap</title>
-<polygon fill="none" stroke="black" points="16,-170.8 16,-222.8 140,-222.8 140,-170.8 16,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_AppServerModule_imports</title>
 <polygon fill="none" stroke="black" points="28,-40.8 28,-92.8 128,-92.8 128,-40.8 28,-40.8"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_AppServerModule_bootstrap</title>
+<polygon fill="none" stroke="black" points="16,-170.8 16,-222.8 140,-222.8 140,-170.8 16,-170.8"/>
 </g>
 <!-- AppModule -->
 <g id="node1" class="node">
@@ -161,15 +161,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { ServerModule } from &#x27;@angular/platform-server&#x27;;
-
-import { AppModule } from &#x27;./app.module&#x27;;
 import { AppComponent } from &#x27;./app.component&#x27;;
 
+import { AppModule } from &#x27;./app.module&#x27;;
+
 @NgModule({
-  imports: [
-    AppModule,
-    ServerModule,
-  ],
+  imports: [AppModule, ServerModule],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {}

@@ -1,20 +1,20 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .admin-badges-form {
   nb-card-body {
     .form-fields {
-      label, button {
+      label,
+      button {
         margin: $space-8 0;
       }
     }
 
     .image-container {
-
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
-      
-      img{
+
+      img {
         height: 200px;
       }
     }

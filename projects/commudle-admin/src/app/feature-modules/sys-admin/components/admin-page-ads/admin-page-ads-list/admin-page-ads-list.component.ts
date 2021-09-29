@@ -42,8 +42,8 @@ export class AdminPageAdsListComponent implements OnInit, OnDestroy {
           this.page = +value.page;
           this.total = +value.total;
           this.page += 1;
-        })
-      )
+        }),
+      );
     }
   }
 
@@ -63,8 +63,8 @@ export class AdminPageAdsListComponent implements OnInit, OnDestroy {
             this.total = -1;
             this.getAds();
           }
-        })
-      )
+        }),
+      );
     }
   }
 }

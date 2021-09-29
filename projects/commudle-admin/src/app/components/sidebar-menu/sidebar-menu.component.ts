@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { CommunitiesService } from '../../services/communities.service';
 
 @Component({
   selector: 'app-sidebar-menu',
