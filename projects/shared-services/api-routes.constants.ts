@@ -298,6 +298,20 @@ export const API_ROUTES = {
     },
   },
 
+  BADGES: {
+    INDEX: 'api/v2/badges',
+    SHOW: 'api/v2/badges/show',
+    CREATE: 'api/v2/badges',
+    UPDATE: 'api/v2/badges',
+    DELETE: 'api/v2/badges',
+  },
+
+  USER_BADGES: {
+    INDEX: 'api/v2/user_badges', 
+    CREATE: 'api/v2/user_badges',
+    DELETE: 'api/v2/user_badges'
+  },
+
   POLLS: {
     PUBLIC: {
       SHOW: 'api/v2/polls/public',
