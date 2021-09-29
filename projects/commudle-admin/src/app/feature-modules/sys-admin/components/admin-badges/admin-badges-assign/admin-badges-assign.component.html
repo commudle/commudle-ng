@@ -1,42 +1,52 @@
-<nb-card class="admin-bagdes-assign">
-    <nb-card-header class="d-flex justify-content-space-between align-items-center">
-        Badges
-        <button [routerLink]="['/sys-admin', 'badges']" ghost nbButton shape="round" size="small">Show All Badges</button>
-    </nb-card-header>
-    <nb-card-body>
-        <div>
-          <form (submit)="assignBadge()" [formGroup]="assignBadgeForm" class="form-fields d-flex justify-content-space-between">
-            <div class="input-fields">
-                <input formControlName="username" nbInput type="text" placeholder="Username"/>
-                <input formControlName="badge_id" nbInput type="number" placeholder="Badge Id"/>
-            </div>
-            <button [disabled]="!assignBadgeForm.valid" nbButton size="medium" status="primary" type="submit">Assign</button>
-          </form>
+<nb-card class="admin-badges-assign">
+  <nb-card-header class="d-flex justify-content-space-between align-items-center">
+    Badges
+    <button [routerLink]="['/sys-admin', 'badges']" ghost nbButton shape="round" size="small">Show All Badges</button>
+  </nb-card-header>
+  <nb-card-body>
+    <div>
+      <form
+        (submit)="assignBadge()"
+        [formGroup]="assignBadgeForm"
+        class="form-fields d-flex justify-content-space-between"
+      >
+        <div class="input-fields">
+          <input formControlName="username" nbInput placeholder="Username" type="text" />
+          <input formControlName="badge_id" nbInput placeholder="Badge Id" type="number" />
         </div>
-        <nb-list>
-          <nb-list-item *ngFor="let user_badge of userBadges" class="d-flex justify-content-space-between">
-              <div class="user-details">
-                  <app-user-profile-card-large [user]="user_badge.user" ></app-user-profile-card-large>
-              </div>
-              <div *ngIf="user_badge.badge.image" class="badge-image">
-                  <img src="{{user_badge.badge.image.url}} | safeUrl" alt="{{user_badge.user.name}}"/>
-              </div>
-              <button (click)="confirmUnassignBadgeOpen(user_badge.id)" nbButton outline size="medium" status="danger" >Delete</button>
-          </nb-list-item>
-        </nb-list>
-        <button (click)="getUserBadges()" *ngIf="userBadges.length !== total" fullWidth ghost nbButton>Get more user badges</button>
-    </nb-card-body>
+        <button [disabled]="!assignBadgeForm.valid" nbButton size="medium" status="primary" type="submit">
+          Assign
+        </button>
+      </form>
+    </div>
+    <nb-list>
+      <nb-list-item *ngFor="let user_badge of userBadges" class="d-flex justify-content-space-between">
+        <div class="user-details">
+          <app-user-profile-card-large [user]="user_badge.user"></app-user-profile-card-large>
+        </div>
+        <div *ngIf="user_badge.badge.image" class="badge-image">
+          <img alt="{{ user_badge.user.name }}" src="{{ user_badge.badge.image.url }} | safeUrl" />
+        </div>
+        <button (click)="confirmUnassignBadgeOpen(user_badge.id)" nbButton outline size="medium" status="danger">
+          Delete
+        </button>
+      </nb-list-item>
+    </nb-list>
+    <button (click)="getUserBadges()" *ngIf="userBadges.length !== total" fullWidth ghost nbButton>
+      Get more user badges
+    </button>
+  </nb-card-body>
 
-    <ng-template #confirmUnassignBadge let-ref="dialogRef">
-        <nb-card>
-          <nb-card-header class="text-center">Confirmation</nb-card-header>
-          <nb-card-body>
-            <p>Are you sure you want to unassign this Badge from the User?</p>
-          </nb-card-body>
-          <nb-card-footer class="d-flex justify-content-space-between">
-            <button (click)="unassignBadge(); ref.close()" ghost nbButton status="success">Yes</button>
-            <button (click)="ref.close()" nbButton status="danger">No</button>
-          </nb-card-footer>
-        </nb-card>
-    </ng-template>
+  <ng-template #confirmUnassignBadge let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header class="text-center">Confirmation</nb-card-header>
+      <nb-card-body>
+        <p>Are you sure you want to unassign this Badge from the User?</p>
+      </nb-card-body>
+      <nb-card-footer class="d-flex justify-content-space-between">
+        <button (click)="unassignBadge(); ref.close()" ghost nbButton status="success">Yes</button>
+        <button (click)="ref.close()" nbButton status="danger">No</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
 </nb-card>

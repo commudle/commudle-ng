@@ -14,13 +14,13 @@
 <title>cluster_ReusableComponentsModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 404,-230.8 404,-32.8 8,-32.8"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ReusableComponentsModule_declarations</title>
-<polygon fill="none" stroke="black" points="19,-40.8 19,-92.8 392,-92.8 392,-40.8 19,-40.8"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_ReusableComponentsModule_exports</title>
 <polygon fill="none" stroke="black" points="16,-170.8 16,-222.8 396,-222.8 396,-170.8 16,-170.8"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_ReusableComponentsModule_declarations</title>
+<polygon fill="none" stroke="black" points="19,-40.8 19,-92.8 392,-92.8 392,-40.8 19,-40.8"/>
 </g>
 <!-- CommunityEmailsListComponent -->
 <g id="node1" class="node">

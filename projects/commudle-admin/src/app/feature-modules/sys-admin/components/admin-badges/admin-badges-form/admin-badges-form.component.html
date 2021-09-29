@@ -1,32 +1,32 @@
-<nb-card class="admin-badges-form" >
-    <nb-card-header class="d-flex justify-content-space-between align-items-center">
-        Badges
-        <button [routerLink]="['/sys-admin', 'badges']" ghost nbButton shape="round" size="small">Show All Badges</button>
-    </nb-card-header>
-    <nb-card-body>
-        <form (submit)="submitForm()" [formGroup]="badgeForm" class="form-fields d-flex flex-column" >
-            <label>
-                Name*
-                <input formControlName="name" fullWidth nbInput type="text" />
-            </label>
-            <label>
-                Badge Type*
-                <nb-select formControlName="badge_type" fullWidth placeholder="Select Badge Type">
-                    <nb-option value="expert">Expert</nb-option>
-                    <nb-option value="author">Author</nb-option>
-                </nb-select>
-            </label>
-            <label>
-                Image*
-                <input #inputImage (change)="addImage($event)" accept="image/svg+xml" fullWidth nbInput type="file" />
-            </label>
-            <div *ngIf="imageSrc" class="image-container">
-              <img [src]="imageSrc | safeUrl" alt="{{uploadedImage.file?.name || uploadedImage.name}}"/>
-              <button (click)="deleteImage()" outline nbButton size="tiny" status="danger">Delete</button>
-            </div>
-            <button [disabled]="!badgeForm.valid || !imageUploaded" fullWidth ghost nbButton status="primary" type="submit">
-                {{badge ? 'Update Badge' : 'Create Badge'}}
-            </button>
-        </form>
-    </nb-card-body>
+<nb-card class="admin-badges-form">
+  <nb-card-header class="d-flex justify-content-space-between align-items-center">
+    Badges
+    <button [routerLink]="['/sys-admin', 'badges']" ghost nbButton shape="round" size="small">Show All Badges</button>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="submitForm()" [formGroup]="badgeForm" class="form-fields d-flex flex-column">
+      <label>
+        Name*
+        <input formControlName="name" fullWidth nbInput type="text" />
+      </label>
+      <label>
+        Badge Type*
+        <nb-select formControlName="badge_type" fullWidth placeholder="Select Badge Type">
+          <nb-option value="expert">Expert</nb-option>
+          <nb-option value="author">Author</nb-option>
+        </nb-select>
+      </label>
+      <label>
+        Image*
+        <input #inputImage (change)="addImage($event)" accept="image/svg+xml" fullWidth nbInput type="file" />
+      </label>
+      <div *ngIf="imageSrc" class="image-container">
+        <img [src]="imageSrc | safeUrl" alt="{{ uploadedImage.file?.name || uploadedImage.name }}" />
+        <button (click)="deleteImage()" nbButton outline size="tiny" status="danger">Delete</button>
+      </div>
+      <button [disabled]="!badgeForm.valid || !imageUploaded" fullWidth ghost nbButton status="primary" type="submit">
+        {{ badge ? 'Update Badge' : 'Create Badge' }}
+      </button>
+    </form>
+  </nb-card-body>
 </nb-card>

@@ -74,6 +74,10 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
+import { AdminBadgesAssignComponent } from &#x27;./components/admin-badges/admin-badges-assign/admin-badges-assign.component&#x27;;
+import { AdminBadgesFormComponent } from &#x27;./components/admin-badges/admin-badges-form/admin-badges-form.component&#x27;;
+import { AdminBadgesListComponent } from &#x27;./components/admin-badges/admin-badges-list/admin-badges-list.component&#x27;;
+import { AdminBadgesComponent } from &#x27;./components/admin-badges/admin-badges.component&#x27;;
 import { AdminFeaturedCommunitiesComponent } from &#x27;./components/admin-featured-communities/admin-featured-communities.component&#x27;;
 import { AdminPageAdsFormComponent } from &#x27;./components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component&#x27;;
 import { AdminPageAdsListComponent } from &#x27;./components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component&#x27;;
@@ -104,6 +108,24 @@ const routes &#x3D; [
           {
             path: &#x27;form&#x27;,
             component: AdminPageAdsFormComponent,
+          },
+        ],
+      },
+      {
+        path: &#x27;badges&#x27;,
+        component: AdminBadgesComponent,
+        children: [
+          {
+            path: &#x27;&#x27;,
+            component: AdminBadgesListComponent,
+          },
+          {
+            path: &#x27;form&#x27;,
+            component: AdminBadgesFormComponent,
+          },
+          {
+            path: &#x27;assign&#x27;,
+            component: AdminBadgesAssignComponent,
           },
         ],
       },
