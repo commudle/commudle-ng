@@ -71,6 +71,10 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
           this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe((data) => {
             if (data) {
               this.getCurrentUsersList();
+              // After 40 secs, we will get the current users list again
+              setTimeout(() => {
+                this.getCurrentUsersList();
+              }, 40000);
             }
           }),
           this.authWatchService.currentUser$.subscribe((currentUser) => {

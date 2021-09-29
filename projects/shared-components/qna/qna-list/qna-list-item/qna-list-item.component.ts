@@ -50,6 +50,10 @@ export class QnaListItemComponent implements OnInit {
   }
 
   emitVote(messageId: number): void {
+    if (this.message.user.id == this.currentUser.id) {
+      return;
+    }
+
     this.sendVote.emit(messageId);
   }
 

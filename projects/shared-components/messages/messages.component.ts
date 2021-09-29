@@ -152,6 +152,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
       this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.ADD, { user_message: messageContent });
       this.messageForm.reset();
       this.messageForm.updateValueAndValidity();
+      this.showEmojiPicker = false;
     }
   }
 

@@ -23,21 +23,18 @@
       ></p>
     </div>
     <div
-      *ngIf="
-        permittedActions.includes(allActions.VOTE) &&
-        message.user.id !== currentUser?.id &&
-        canVote &&
-        message.parent_type != 'UserMessage'
-      "
+      *ngIf="permittedActions.includes(allActions.VOTE) && canVote && message.parent_type !== 'UserMessage'"
+      [ngClass]="{ clickable: message.user.id !== currentUser?.id }"
       class="upvote-btn d-flex align-items-center"
     >
       <p *ngIf="message.votes_count > 0">{{ message.votes_count }}&nbsp;</p>
       <nb-icon
         (click)="emitVote(message.id)"
-        class="clickable"
+        [nbTooltip]="
+          message.user.id === currentUser?.id ? 'You cannot upvote your own question' : 'Upvote this question'
+        "
+        [status]="message.user.id === currentUser?.id ? 'basic' : 'info'"
         icon="arrow-upward"
-        nbTooltip="Upvote this message"
-        status="info"
       ></nb-icon>
     </div>
   </div>

@@ -44,6 +44,7 @@ export class MessageComponent implements OnInit {
       this.replyForm.reset();
       this.replyForm.updateValueAndValidity();
       this.showReplyForm = false;
+      this.showEmojiPicker = false;
     }
   }
 
