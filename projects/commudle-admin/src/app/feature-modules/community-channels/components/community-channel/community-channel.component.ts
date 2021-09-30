@@ -5,6 +5,11 @@ import { CommunityChannelNotificationsChannel } from 'projects/commudle-admin/sr
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { CommunityChannelsService } from '../../services/community-channels.service';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
+import * as moment from 'moment';
+import { Match } from 'autolinker';
 
 @Component({
   selector: 'app-community-channel',
@@ -20,12 +25,16 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   displayCommunityList = false;
   hasNotifications = false;
   sidebarOpen = false;
+  faThumbtack = faThumbtack;
+  pinnedMessages: IUserMessage[];
+  moment = moment;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
     private activatedRoute: ActivatedRoute,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
+    private communityChannelsService: CommunityChannelsService,
   ) {}
 
   ngOnInit() {
@@ -48,12 +57,23 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
         this.hasNotifications = data;
       }),
     );
+    this.getPinnedMessages();
   }
 
   ngOnDestroy(): void {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
+  }
+
+  getPinnedMessages() {
+    let channelId = this.activatedRoute.snapshot.params.community_channel_id;
+    this.subscriptions.push(
+      this.communityChannelsService.getPinnedMessages(channelId).subscribe((response) => {
+        this.pinnedMessages = response;
+        console.log(this.pinnedMessages);
+      }),
+    );
   }
 
   initialize() {
@@ -81,5 +101,14 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   toggleCommunityListDisplay() {
     this.communityChannelManagerService.setCommunityListview(!this.displayCommunityList);
     this.displayCommunityList = !this.displayCommunityList;
+  }
+
+  highlightUserMentions(match: Match): string {
+    switch (match.getType()) {
+      case 'mention':
+        return `<a href="https://commudle.com/users/${match
+          .getMatchedText()
+          .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
+    }
   }
 }
