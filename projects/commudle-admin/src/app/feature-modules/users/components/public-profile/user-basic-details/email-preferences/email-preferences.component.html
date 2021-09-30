@@ -1,12 +1,13 @@
 <div class="preferences-container">
   <div class="subscribe-all-btn-container">
     <strong>Emails</strong>
-    <nb-toggle 
-      (click)="toggleAllSubscriptions()" 
-      [(ngModel)]="subscribeAll" 
+    <nb-toggle
+      (click)="toggleAllSubscriptions()"
+      [(ngModel)]="subscribeAllStatus"
       labelPosition="left"
-      status="success">
-      {{ subscribeAll ? 'On' : 'Off' }}
+      status="success"
+    >
+      {{ subscribeAllStatus ? 'On' : 'Off' }}
     </nb-toggle>
   </div>
   <ng-container *ngFor="let subscriptionGroup of subscriptionGroups | keyvalue">
@@ -16,11 +17,12 @@
         <nb-list-item *ngFor="let entity of subscriptionGroup.value" class="display-flex justify-content-space-between">
           <label>{{ entity.name }}</label>
           <nb-toggle
-            (click)="this.subscribeAll && toggleSubscription(entity)"
-            [disabled]="!this.subscribeAll"
+            (click)="this.subscribeAllStatus && toggleSubscription(entity)"
+            [disabled]="!this.subscribeAllStatus"
             [(ngModel)]="entity.subscribed"
             labelPosition="left"
-            status="success">
+            status="success"
+          >
             {{ entity.subscribed ? 'On' : 'Off' }}
           </nb-toggle>
         </nb-list-item>
