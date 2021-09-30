@@ -6,10 +6,11 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
-import { CommunityChannelsService } from '../../services/community-channels.service';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
 import * as moment from 'moment';
 import { Match } from 'autolinker';
+import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
+import { UpdatePinnedMessagesService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/update-pinned-messages.service';
 
 @Component({
   selector: 'app-community-channel',
@@ -35,6 +36,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
     private communityChannelsService: CommunityChannelsService,
+    private updatePinnedMessagesService: UpdatePinnedMessagesService,
   ) {}
 
   ngOnInit() {
@@ -58,6 +60,14 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
       }),
     );
     this.getPinnedMessages();
+
+    this.subscriptions.push(
+      this.updatePinnedMessagesService.updatePinnedMessages$.subscribe((value) => {
+        if (value) {
+          this.getPinnedMessages();
+        }
+      }),
+    );
   }
 
   ngOnDestroy(): void {
