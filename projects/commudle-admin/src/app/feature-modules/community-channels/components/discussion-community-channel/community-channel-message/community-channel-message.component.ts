@@ -20,7 +20,8 @@ import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
-import { CommunityChannelsService } from '../../../services/community-channels.service';
+import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
+import { UpdatePinnedMessagesService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/update-pinned-messages.service';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -70,6 +71,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     private nbWindowService: NbWindowService,
     private activatedRoute: ActivatedRoute,
     private communityChannelsService: CommunityChannelsService,
+    private updatePinnedMessages: UpdatePinnedMessagesService,
   ) {}
 
   ngOnInit(): void {}
@@ -193,6 +195,10 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
                 this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe((response) => {
                   if (response) {
                     this.message.pinned = true;
+                    this.updatePinnedMessages.setUpdatePinnedMessagesStatus(true);
+
+                    const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
+                    this.contextMenuItems[idx].title = 'Unpin Message';
                   }
                 }),
               );
@@ -204,6 +210,10 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
                 this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe((response) => {
                   if (response) {
                     this.message.pinned = false;
+                    this.updatePinnedMessages.setUpdatePinnedMessagesStatus(true);
+
+                    const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
+                    this.contextMenuItems[idx].title = 'Pin Message';
                   }
                 }),
               );
