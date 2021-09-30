@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { EmailUnsubscribeGroupsService } from 'projects/commudle-admin/src/app/feature-modules/email-confirmations/services/email-unsubscribe-groups.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-email-preferences',
@@ -9,14 +11,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./email-preferences.component.scss'],
 })
 export class EmailPreferencesComponent implements OnInit, OnDestroy {
-  subscriptionGroups: Object;
+  subscriptionGroups: any;
   subscriptions: Subscription[] = [];
-  subscribeAll: boolean;
+  subscribeAllStatus: boolean;
 
   constructor(
     private appUsersService: AppUsersService,
     private emailUnsubscribeGroupsService: EmailUnsubscribeGroupsService,
     private cdr: ChangeDetectorRef,
+    private toastLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +34,6 @@ export class EmailPreferencesComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.appUsersService.getUserEmailSubscriptions().subscribe((response) => {
         this.subscriptionGroups = response;
-        //delete this.subscriptionGroups['labs'];
         this.checkAllSubscriptions();
       }),
     );
@@ -40,6 +42,9 @@ export class EmailPreferencesComponent implements OnInit, OnDestroy {
   toggleSubscription(entity) {
     this.subscriptions.push(
       this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response: boolean) => {
+        response
+          ? this.toastLogService.successDialog('Subscribed Successfully')
+          : this.toastLogService.successDialog('Unsubscribed Successfully');
         entity.subscribed = response;
         this.checkAllSubscriptions();
         this.cdr.detectChanges();
@@ -48,28 +53,24 @@ export class EmailPreferencesComponent implements OnInit, OnDestroy {
   }
 
   checkAllSubscriptions() {
-    let status: boolean = false;
-    Object.keys(this.subscriptionGroups).forEach((group: string) => {
-      this.subscriptionGroups[group].forEach((entity) => {
-        if (entity.subscribed) {
-          status = true;
-        }
-      });
-    });
-    this.subscribeAll = status;
+    this.subscribeAllStatus = _.some(this.subscriptionGroups, (group) => _.some(group, (entity) => entity.subscribed));
   }
 
   toggleAllSubscriptions() {
-    Object.keys(this.subscriptionGroups).forEach((group: string) => {
-      this.subscriptionGroups[group].forEach((entity) => {
-        if (entity.subscribed == this.subscribeAll) {
-          this.subscriptions.push(
-            this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response: boolean) => {
-              entity.subscribed = response;
-            }),
-          );
-        }
-      });
-    });
+    let entities = [];
+
+    for (let property in this.subscriptionGroups) {
+      entities = entities.concat(
+        this.subscriptionGroups[property].filter((entity) => entity.subscribed === this.subscribeAllStatus),
+      );
+    }
+
+    for (let entity of entities) {
+      this.subscriptions.push(
+        this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response: boolean) => {
+          entity.subscribed = response;
+        }),
+      );
+    }
   }
 }
