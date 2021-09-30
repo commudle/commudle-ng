@@ -18,6 +18,9 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
+import { CommunityChannelsService } from '../../../services/community-channels.service';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -47,6 +50,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   isAdmin = false;
   canDelete = false;
   canSendMessageByEmail = false;
+  canPinMessage = false;
 
   editMessageTemplateRef: NbWindowRef;
 
@@ -58,10 +62,14 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
 
   contextMenuItems = [];
 
+  faThumbtack = faThumbtack;
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private menuService: NbMenuService,
     private nbWindowService: NbWindowService,
+    private activatedRoute: ActivatedRoute,
+    private communityChannelsService: CommunityChannelsService,
   ) {}
 
   ngOnInit(): void {}
@@ -93,6 +101,12 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             this.canSendMessageByEmail = true;
             this.contextMenuItems.push({
               title: 'Email to all members',
+            });
+          }
+          if (!this.canPinMessage && (this.isAdmin || this.currentUser.username === this.message.user.username)) {
+            this.canPinMessage = true;
+            this.contextMenuItems.push({
+              title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
             });
           }
         }
@@ -171,6 +185,28 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             }
             case 'Email to all members': {
               this.sendMessageByEmail.emit(this.message.id);
+              break;
+            }
+            case 'Pin Message': {
+              let channelId = this.activatedRoute.snapshot.params.community_channel_id;
+              this.subscriptions.push(
+                this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe((response) => {
+                  if (response) {
+                    this.message.pinned = true;
+                  }
+                }),
+              );
+              break;
+            }
+            case 'Unpin Message': {
+              let channelId = this.activatedRoute.snapshot.params.community_channel_id;
+              this.subscriptions.push(
+                this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe((response) => {
+                  if (response) {
+                    this.message.pinned = false;
+                  }
+                }),
+              );
               break;
             }
           }

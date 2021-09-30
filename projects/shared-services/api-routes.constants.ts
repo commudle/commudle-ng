@@ -74,6 +74,11 @@ export const API_ROUTES = {
       REMOVE: 'api/v2/community_channels/members/remove',
       EXIT_CHANNEL: 'api/v2/community_channels/members/exit_channel',
     },
+    PINNING_MESSAGES: {
+      PIN: 'api/v2/community_channels/pin_message',
+      UNPIN: 'api/v2/community_channels/unpin_message',
+      PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages'
+    }
   },
 
   COMMUNITY_GROUPS: {
@@ -529,5 +534,9 @@ export const API_ROUTES = {
   MENTIONS: {
     USERS: 'api/v2/mentions/user_entities',
     OTHERS: 'api/v2/mentions/other_entities'
+  },
+
+  PINNING_MESSAGE: {
+    PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages'
   }
 };

@@ -11,6 +11,7 @@
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
           &nbsp;
           <small><em *ngIf="message.edited">(edited)</em></small>
+          <fa-icon *ngIf="message.pinned" [icon]="faThumbtack"></fa-icon>
         </p>
       </div>
       <!-- TODO: Handle if script tag is in message content -->
