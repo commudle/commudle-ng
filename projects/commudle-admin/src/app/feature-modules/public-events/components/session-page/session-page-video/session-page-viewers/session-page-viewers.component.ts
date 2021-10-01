@@ -34,7 +34,8 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   usersListSubscription: Subscription;
   usersList: IUser[] = [];
   currentUser: ICurrentUser;
-  pingInterval;
+  pingInterval: NodeJS.Timeout;
+  searchQuery: string;
 
   faChalkboardTeacher = faChalkboardTeacher;
 
@@ -71,10 +72,6 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
           this.userObjectVisitChannel.channelConnectionStatus$[this.channelName].subscribe((data) => {
             if (data) {
               this.getCurrentUsersList();
-              // After 40 secs, we will get the current users list again
-              setTimeout(() => {
-                this.getCurrentUsersList();
-              }, 40000);
             }
           }),
           this.authWatchService.currentUser$.subscribe((currentUser) => {
@@ -174,5 +171,13 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     // });
 
     this.hmsStageService.inviteToStage(userId);
+  }
+
+  refreshUsersList(): void {
+    if (this.event.event_status.name === EEventStatuses.COMPLETED) {
+      this.getPastUsersList();
+    } else {
+      this.getCurrentUsersList();
+    }
   }
 }

@@ -59,6 +59,13 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
       ).subscribe(([audioInputDevices, videoDevices]) => {
         this.audioInputDevices = audioInputDevices;
         this.videoDevices = videoDevices;
+
+        if (this.localMediaV2Service.getAudioInputDeviceId() === 'default') {
+          this.selectAudioInputDevice(audioInputDevices[0].deviceId);
+        }
+        if (this.localMediaV2Service.getVideoDeviceId() === 'default') {
+          this.selectVideoDevice(videoDevices[0].deviceId);
+        }
       }),
     );
 
@@ -107,11 +114,13 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   stopStream(): void {
     if (this.isVideoEnabled) {
       const stream: MediaStream | MediaSource | Blob = this.previewVideo.nativeElement.srcObject;
-      if ('getTracks' in stream) {
-        const tracks: MediaStreamTrack[] = stream.getTracks();
-        tracks.forEach((track: MediaStreamTrack) => track.stop());
+      if (stream) {
+        if ('getTracks' in stream) {
+          const tracks: MediaStreamTrack[] = stream.getTracks();
+          tracks.forEach((track: MediaStreamTrack) => track.stop());
+        }
+        this.previewVideo.nativeElement.srcObject = null;
       }
-      this.previewVideo.nativeElement.srcObject = null;
     }
   }
 
