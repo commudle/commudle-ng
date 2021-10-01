@@ -36,16 +36,25 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.stopStream();
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   getMediaPermissions(): void {
     this.subscriptions.push(
-      this.localMediaV2Service.getMediaPermissions().subscribe((stream: MediaStream) => {
-        if (stream.getTracks().length === 0) {
-          this.libToastLogService.warningDialog('Browser denied permission');
-        } else {
+      combineLatest(
+        this.localMediaV2Service.getMediaPermissions('camera'),
+        this.localMediaV2Service.getMediaPermissions('microphone'),
+      ).subscribe(([cameraPermissions, microphonePermissions]) => {
+        if (cameraPermissions === 'granted' && microphonePermissions === 'granted') {
           this.getMediaDevices();
+        } else if (cameraPermissions === 'prompt' || microphonePermissions === 'prompt') {
+          navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then((stream: MediaStream) => {
+            stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
+            this.getMediaPermissions();
+          });
+        } else if (cameraPermissions === 'denied' || microphonePermissions === 'denied') {
+          this.libToastLogService.warningDialog('Browser denied permission');
         }
       }),
     );
@@ -60,6 +69,15 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
         this.audioInputDevices = audioInputDevices;
         this.videoDevices = videoDevices;
 
+        this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
+        this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
+        this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
+        this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
+
+        if (this.isVideoEnabled) {
+          this.renderVideo();
+        }
+
         if (this.localMediaV2Service.getAudioInputDeviceId() === 'default') {
           this.selectAudioInputDevice(audioInputDevices[0].deviceId);
         }
@@ -68,19 +86,11 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
         }
       }),
     );
-
-    this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
-    this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
-    this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
-    this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
-
-    if (this.isVideoEnabled) {
-      this.renderVideo();
-    }
   }
 
   renderVideo(): void {
     this.localMediaV2Service.getVideoStream(this.selectedVideoDeviceId).subscribe((stream: MediaStream) => {
+      this.stopStream();
       this.previewVideo.nativeElement.srcObject = stream;
     });
   }
@@ -102,12 +112,10 @@ export class ConferenceSettingsComponent implements OnInit, OnDestroy {
   }
 
   toggleVideo(): void {
+    this.stopStream();
+    this.isVideoEnabled = !this.isVideoEnabled;
     if (this.isVideoEnabled) {
-      this.stopStream();
-      this.isVideoEnabled = false;
-    } else {
       this.renderVideo();
-      this.isVideoEnabled = true;
     }
   }
 
