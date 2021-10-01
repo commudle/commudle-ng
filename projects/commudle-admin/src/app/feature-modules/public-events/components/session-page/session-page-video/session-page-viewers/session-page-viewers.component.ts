@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
+import * as _ from 'lodash';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { UserObjectVisitChannel } from 'projects/commudle-admin/src/app/services/websockets/user-object-visit.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -142,17 +143,11 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
                   break;
                 }
                 case this.userObjectVisitChannel.ACTIONS.USER_ADD: {
-                  const existingUserIndex = this.usersList.findIndex((k) => k.id === data.user.id);
-                  if (existingUserIndex === -1 && this.usersList.length > 0) {
-                    this.usersList.push(data.user);
-                  }
+                  this.usersList = _.unionBy(this.usersList, [data.user], 'id');
                   break;
                 }
                 case this.userObjectVisitChannel.ACTIONS.USER_REMOVE: {
-                  const existingUserIndex = this.usersList.findIndex((k) => k.id === data.user_id);
-                  if (existingUserIndex !== -1 && this.currentUser && data.user_id !== this.currentUser.id) {
-                    this.usersList.splice(existingUserIndex, 1);
-                  }
+                  this.usersList = this.usersList.filter((user: IUser) => user.id !== data.user_id);
                   break;
                 }
               }

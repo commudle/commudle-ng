@@ -34,14 +34,18 @@ export class LocalMediaV2Service {
     this.isVideoEnabled.next(isVideoEnabled);
   }
 
-  getMediaPermissions(): Observable<MediaStream> {
-    return from(navigator.mediaDevices.getUserMedia({ audio: true, video: true }));
+  getMediaPermissions(name: PermissionName): Observable<PermissionState> {
+    return from(
+      navigator.permissions.query({ name }).then((permission: PermissionStatus) => {
+        return permission.state;
+      }),
+    );
   }
 
   getAudioInputDevices(): Observable<MediaDeviceInfo[]> {
     return from(
       navigator.mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) => {
-        return devices.filter((device: MediaDeviceInfo) => device.kind === 'audioinput');
+        return devices.filter((device: MediaDeviceInfo) => device.kind === 'audioinput' && device.label !== '');
       }),
     );
   }
@@ -49,7 +53,7 @@ export class LocalMediaV2Service {
   getVideoDevices(): Observable<MediaDeviceInfo[]> {
     return from(
       navigator.mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) => {
-        return devices.filter((device: MediaDeviceInfo) => device.kind === 'videoinput');
+        return devices.filter((device: MediaDeviceInfo) => device.kind === 'videoinput' && device.label !== '');
       }),
     );
   }
