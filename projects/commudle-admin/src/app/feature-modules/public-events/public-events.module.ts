@@ -8,6 +8,7 @@ import {
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
+  NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbListModule,
@@ -93,6 +94,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbUserModule,
     NbToggleModule,
     FontAwesomeModule,
+    NbFormFieldModule,
   ],
 })
 export class PublicEventsModule {}
