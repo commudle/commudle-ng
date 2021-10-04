@@ -190,6 +190,13 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
           this.isVideoEnabled = isVideoEnabled;
           hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
         }
+
+        console.log(
+          this.selectedVideoDeviceId,
+          this.selectedAudioInputDeviceId,
+          this.isVideoEnabled,
+          this.isAudioEnabled,
+        );
       }),
     );
   }
@@ -223,7 +230,13 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   inviteToStage(userId: number): void {
     if (userId) {
-      const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => JSON.parse(peer.customerDescription).id === userId);
+      let peers: HMSPeer[] = [];
+      // const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => JSON.parse(peer.customerDescription).id === userId);
+      for (let i = 0; i < this.peers.length; i++){
+        if (this.peers[i].customerDescription && JSON.parse(this.peers[i].customerDescription).id && JSON.parse(this.peers[i].customerDescription).id === userId) {
+          peers.push(this.peers[i]);
+        }
+      }
       if (peers.length > 0) {
         const roleName: string = peers[0].roleName;
         const name: string = JSON.parse(peers[0].customerDescription).name;
