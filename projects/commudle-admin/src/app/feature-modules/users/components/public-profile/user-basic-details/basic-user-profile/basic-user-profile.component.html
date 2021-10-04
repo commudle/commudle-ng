@@ -1,4 +1,4 @@
-<div *ngIf="currentUser" class="page-padding">
+<div *ngIf="currentUser" class="page-padding basic-details-container">
   <div class="username">
     <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
       <div>
@@ -35,7 +35,7 @@
       </div>
       <div>
         <button
-          [disabled]="!validUsername || currentUsername == lastUsername || checkingUsername"
+          [disabled]="!validUsername || (currentUsername == lastUsername) || checkingUsername"
           [nbSpinner]="checkingUsername"
           nbButton
           size="small"
@@ -50,7 +50,7 @@
 
   <ng-template #confimChangeUsername let-ref="dialogRef">
     <nb-card>
-      <nb-card-header class="text-center"> Confirmation</nb-card-header>
+      <nb-card-header class="text-center"> Confirmation </nb-card-header>
       <nb-card-body>
         <p>
           <nb-icon icon="info"></nb-icon>

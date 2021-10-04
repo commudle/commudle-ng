@@ -1,0 +1,30 @@
+.preferences-container {
+  height: 620px;
+
+  .subscribe-all-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .preferences-item {
+    width: 100%;
+    margin-bottom: 10px;
+
+    .group-name {
+      margin-left: 15px;
+    }
+
+    nb-list-item {
+      border: none;
+
+      label {
+        margin-left: 12px;
+      }
+    }
+  }
+}
