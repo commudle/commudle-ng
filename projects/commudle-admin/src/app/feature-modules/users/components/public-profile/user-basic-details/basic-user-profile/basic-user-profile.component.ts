@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faBehance, faDribbble, faFacebook, faGitlab, faMediumM, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { NbDialogService } from '@nebular/theme';
+import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import {
   NoSpecialCharactersValidator,
@@ -13,7 +14,6 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -54,7 +54,7 @@ export class BasicUserProfileComponent implements OnInit {
     ],
   });
 
-  @ViewChild('confimChangeUsername') confirmChangeUsername: TemplateRef<any>;
+  @ViewChild('confirmChangeUsername') confirmChangeUsername: TemplateRef<any>;
 
   faYoutube = faYoutube;
   faMediumM = faMediumM;

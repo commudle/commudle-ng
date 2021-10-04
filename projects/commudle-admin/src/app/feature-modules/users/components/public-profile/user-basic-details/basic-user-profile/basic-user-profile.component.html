@@ -25,7 +25,7 @@
           <small> *Username cannot contain spaces & special characters </small>
         </p>
         <p
-          *ngIf="validUsername == false && currentUsername != currentUser.username"
+          *ngIf="validUsername === false && currentUsername !== currentUser.username"
           class="field-error validation-error-text"
           icon="alert-circle-outline"
           status="danger"
@@ -35,7 +35,7 @@
       </div>
       <div>
         <button
-          [disabled]="!validUsername || (currentUsername == lastUsername) || checkingUsername"
+          [disabled]="!validUsername || currentUsername === lastUsername || checkingUsername"
           [nbSpinner]="checkingUsername"
           nbButton
           size="small"
@@ -48,9 +48,9 @@
     </form>
   </div>
 
-  <ng-template #confimChangeUsername let-ref="dialogRef">
+  <ng-template #confirmChangeUsername let-ref="dialogRef">
     <nb-card>
-      <nb-card-header class="text-center"> Confirmation </nb-card-header>
+      <nb-card-header class="text-center"> Confirmation</nb-card-header>
       <nb-card-body>
         <p>
           <nb-icon icon="info"></nb-icon>
@@ -73,7 +73,7 @@
         </label>
 
         <div>
-          <div *ngIf="uploadedProfilePicture == null" class="uploaded-profile"></div>
+          <div *ngIf="uploadedProfilePicture === null" class="uploaded-profile"></div>
           <div *ngIf="uploadedProfilePicture" class="uploaded-profile-image">
             <img alt="Profile Picture" src="{{ uploadedProfilePicture }}" title="Profile Picture" />
           </div>

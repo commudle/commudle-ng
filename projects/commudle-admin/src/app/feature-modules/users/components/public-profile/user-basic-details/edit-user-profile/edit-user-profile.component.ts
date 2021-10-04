@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit,TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { Subscription } from 'rxjs';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -10,14 +10,15 @@ import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-mo
   styleUrls: ['./edit-user-profile.component.scss'],
 })
 export class EditUserProfileComponent implements OnInit, OnDestroy {
-  @ViewChild('editProfile', { static: true }) editProfile: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;
   subscriptions: Subscription[] = [];
 
+  @ViewChild('editProfile', { static: true }) editProfile: TemplateRef<any>;
+
   constructor(
-    private dialogService: NbDialogService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private dialogService: NbDialogService,
     private updateProfileService: UpdateProfileService,
   ) {}
 
@@ -48,5 +49,4 @@ export class EditUserProfileComponent implements OnInit, OnDestroy {
       }),
     );
   }
-
 }

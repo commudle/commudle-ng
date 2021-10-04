@@ -18,8 +18,8 @@
           <label>{{ entity.name }}</label>
           <nb-toggle
             (click)="this.subscribeAllStatus && toggleSubscription(entity)"
-            [disabled]="!this.subscribeAllStatus"
             [(ngModel)]="entity.subscribed"
+            [disabled]="!this.subscribeAllStatus"
             labelPosition="left"
             status="success"
           >

@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .profile-dialog {
   nb-card-header {
@@ -31,7 +31,6 @@
 
   nb-card-body {
     padding: 0;
-    
     width: 700px;
 
     @media screen and (max-width: 768px) {

@@ -47,7 +47,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   isAdmin = false;
   canDelete = false;
   canSendMessageByEmail = false;
-  canPinMessage = false;
 
   editMessageTemplateRef: NbWindowRef;
 
@@ -56,7 +55,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   moment = moment;
 
   showReplyForm = false;
-  showPin = false;
 
   contextMenuItems = [];
 
@@ -95,12 +93,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             this.canSendMessageByEmail = true;
             this.contextMenuItems.push({
               title: 'Email to all members',
-            });
-          }
-          if (!this.canPinMessage && (this.isAdmin || this.currentUser.username === this.message.user.username)) {
-            this.canPinMessage = true;
-            this.contextMenuItems.push({
-              title: 'Pin Message',
             });
           }
         }
@@ -179,18 +171,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             }
             case 'Email to all members': {
               this.sendMessageByEmail.emit(this.message.id);
-              break;
-            }
-            case 'Pin Message': {
-              this.showPin = true;
-              const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
-              this.contextMenuItems[idx].title = 'Unpin Message';
-              break;
-            }
-            case 'Unpin Message': {
-              this.showPin = false;
-              const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
-              this.contextMenuItems[idx].title = 'Pin Message';
               break;
             }
           }
