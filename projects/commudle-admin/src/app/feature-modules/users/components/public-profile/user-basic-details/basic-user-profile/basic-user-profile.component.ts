@@ -13,6 +13,7 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -53,8 +54,6 @@ export class BasicUserProfileComponent implements OnInit {
     ],
   });
 
-  @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
-
   @ViewChild('confimChangeUsername') confirmChangeUsername: TemplateRef<any>;
 
   faYoutube = faYoutube;
@@ -71,6 +70,7 @@ export class BasicUserProfileComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private router: Router,
     private dialogService: NbDialogService,
+    private updateProfileService: UpdateProfileService,
   ) {}
 
   ngOnInit() {
@@ -119,7 +119,7 @@ export class BasicUserProfileComponent implements OnInit {
     this.usersService.updateUserProfile(formData).subscribe(() => {
       this.authWatchService.updateSignedInUser();
       this.toastLogService.successDialog('Your Profile is now updated!');
-      this.updateProfile.emit();
+      this.updateProfileService.setUpdateProfileStatus(true);
     });
   }
 

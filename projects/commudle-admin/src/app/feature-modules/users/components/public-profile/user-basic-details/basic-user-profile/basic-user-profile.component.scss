@@ -1,3 +1,7 @@
+.basic-details-container {
+  height: 630px;
+}
+
 .row {
   display: flex;
   flex-direction: column;
@@ -15,7 +19,6 @@
       flex-direction: row;
     }
   }
-
 }
 
 .uploaded-profile {
@@ -26,7 +29,6 @@
   margin: 0 auto;
   position: relative;
 }
-
 
 .uploaded-profile-image {
   height: 150px;

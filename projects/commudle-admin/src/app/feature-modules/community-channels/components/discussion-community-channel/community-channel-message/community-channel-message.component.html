@@ -11,6 +11,7 @@
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
           &nbsp;
           <small><em *ngIf="message.edited">(edited)</em></small>
+          <nb-icon *ngIf="showPin" icon="star"></nb-icon>
         </p>
       </div>
       <!-- TODO: Handle if script tag is in message content -->

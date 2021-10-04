@@ -148,6 +148,10 @@ p {
   .user-interactions {
     margin: $space-16 0;
 
+    a {
+      text-decoration: none;
+    }
+
     button {
       background-color: rgba($neon-blue, 0.2);
       border: none;
