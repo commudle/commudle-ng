@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 import { EmailUnsubscribeGroupsService } from 'projects/commudle-admin/src/app/feature-modules/email-confirmations/services/email-unsubscribe-groups.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
-import { Subscription } from 'rxjs';
-import * as _ from 'lodash';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-email-preferences',
@@ -57,20 +57,18 @@ export class EmailPreferencesComponent implements OnInit, OnDestroy {
   }
 
   toggleAllSubscriptions() {
-    let entities = [];
+    const entities = _.flatMapDeep(this.subscriptionGroups, (group) =>
+      group.filter((entity) => {
+        return entity.subscribed === this.subscribeAllStatus;
+      }),
+    );
 
-    for (let property in this.subscriptionGroups) {
-      entities = entities.concat(
-        this.subscriptionGroups[property].filter((entity) => entity.subscribed === this.subscribeAllStatus),
-      );
-    }
-
-    for (let entity of entities) {
+    entities.forEach((entity) => {
       this.subscriptions.push(
         this.emailUnsubscribeGroupsService.toggleSubscription(entity.uuid).subscribe((response: boolean) => {
           entity.subscribed = response;
         }),
       );
-    }
+    });
   }
 }

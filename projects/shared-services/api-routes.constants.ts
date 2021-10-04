@@ -307,9 +307,9 @@ export const API_ROUTES = {
   },
 
   USER_BADGES: {
-    INDEX: 'api/v2/user_badges', 
+    INDEX: 'api/v2/user_badges',
     CREATE: 'api/v2/user_badges',
-    DELETE: 'api/v2/user_badges'
+    DELETE: 'api/v2/user_badges',
   },
 
   POLLS: {
@@ -543,6 +543,6 @@ export const API_ROUTES = {
 
   MENTIONS: {
     USERS: 'api/v2/mentions/user_entities',
-    OTHERS: 'api/v2/mentions/other_entities'
-  }
+    OTHERS: 'api/v2/mentions/other_entities',
+  },
 };

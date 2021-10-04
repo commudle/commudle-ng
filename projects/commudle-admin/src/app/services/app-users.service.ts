@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
-import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
-import { IUser } from 'projects/shared-models/user.model';
-import { ILabs } from 'projects/shared-models/labs.model';
-import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
-import { ITags } from 'projects/shared-models/tags.model';
+import { Injectable } from '@angular/core';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
-import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IBadges } from 'projects/shared-models/badges.model';
+import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
+import { ILabs } from 'projects/shared-models/labs.model';
+import { IPost } from 'projects/shared-models/post.model';
+import { IPosts } from 'projects/shared-models/posts.model';
 import { ISocialResources } from 'projects/shared-models/social_resources.model';
 import { ISpeakerResources } from 'projects/shared-models/speaker_resources.model';
-import { IPosts } from 'projects/shared-models/posts.model';
-import { IPost } from 'projects/shared-models/post.model';
+import { ITags } from 'projects/shared-models/tags.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

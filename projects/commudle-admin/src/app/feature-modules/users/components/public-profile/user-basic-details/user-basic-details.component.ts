@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
-import { IUser } from 'projects/shared-models/user.model';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
   selector: 'app-user-basic-details',

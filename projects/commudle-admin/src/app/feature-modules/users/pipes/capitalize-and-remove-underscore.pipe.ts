@@ -5,10 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CapitalizeAndRemoveUnderscorePipe implements PipeTransform {
   transform(value: string): string {
-    const frags = value.split('_');
-    for (let i = 0; i < frags.length; i++) {
-      frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
-    }
+    let frags = value.split('_');
+    frags = frags.map((item: string) => item.charAt(0).toUpperCase() + item.slice(1));
     return frags.join(' ');
   }
 }

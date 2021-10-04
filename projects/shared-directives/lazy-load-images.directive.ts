@@ -3,24 +3,23 @@ import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Directive({
   selector: 'img',
-  providers: [IsBrowserService]
+  providers: [IsBrowserService],
 })
 export class LazyLoadImagesDirective implements AfterContentInit {
-
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;
 
   private isBrowser: boolean = this.IsBrowserService.isBrowser();
 
-  constructor(private el: ElementRef, private IsBrowserService: IsBrowserService) { }
+  constructor(private el: ElementRef, private IsBrowserService: IsBrowserService) {}
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     if (this.isBrowser) {
       this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
     }
   }
 
-  private canLazyLoad() {
+  private canLazyLoad(): boolean {
     return window && 'IntersectionObserver' in window;
   }
 
@@ -29,13 +28,13 @@ export class LazyLoadImagesDirective implements AfterContentInit {
     return (
       rect.top >= 0 &&
       rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && 
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth) 
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   }
 
-  private lazyLoadImage() {
-    const obs = new IntersectionObserver(entries => {
+  private lazyLoadImage(): void {
+    const obs: IntersectionObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
       entries.forEach(({ isIntersecting }) => {
         if (isIntersecting) {
           this.loadImage();
@@ -46,8 +45,7 @@ export class LazyLoadImagesDirective implements AfterContentInit {
     obs.observe(this.el.nativeElement);
   }
 
-  private loadImage() {
+  private loadImage(): void {
     this.srcAttr = this.src;
   }
-
 }
