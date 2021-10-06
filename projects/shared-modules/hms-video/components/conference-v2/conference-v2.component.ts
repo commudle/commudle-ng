@@ -132,9 +132,12 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       hmsStore.subscribe((localPeer: HMSPeer) => {
         this.localPeer = localPeer;
         if (localPeer?.audioTrack && localPeer?.videoTrack) {
-          this.setHmsMediaSettings();
+          this.subscribeToMediaDevices();
         }
-        if (this.joinedAsHost) {
+        if (this.joinedAsHost && localPeer) {
+          if (this.selectedRole === EHmsRoles.HOST) {
+            hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
+          }
           this.joinedAsHost = false;
         }
       }, selectLocalPeer);
@@ -155,11 +158,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
 
       this.receiveChannelData();
-      this.subscribeToMediaDevices();
-
-      if (this.selectedRole === EHmsRoles.HOST) {
-        hmsActions.changeRole(hmsStore.getState(selectLocalPeer).id, EHmsRoles.HOST, true);
-      }
     }
   };
 
@@ -192,13 +190,6 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
         }
       }),
     );
-  }
-
-  setHmsMediaSettings(): void {
-    hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
-    hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
-    hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
-    hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
   }
 
   toggleAudio(): void {
