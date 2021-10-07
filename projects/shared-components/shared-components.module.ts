@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -147,6 +148,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     NbTagModule,
     NbActionsModule,
     NbFormFieldModule,
+    FontAwesomeModule,
   ],
   exports: [
     WorkInProgressComponent,

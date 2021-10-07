@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>EmbeddedVideoStreamsService</li>
+  <li >EmbeddedVideoStreamsService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,13 +78,28 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#createOrUpdate">createOrUpdate</a>
+                                <a href="#createOrUpdate" >createOrUpdate</a>
                             </li>
                             <li>
-                                <a href="#get">get</a>
+                                <a href="#createOrUpdateV2" >createOrUpdateV2</a>
                             </li>
                             <li>
-                                <a href="#pGet">pGet</a>
+                                <a href="#get" >get</a>
+                            </li>
+                            <li>
+                                <a href="#pGet" >pGet</a>
+                            </li>
+                            <li>
+                                <a href="#startRecording" >startRecording</a>
+                            </li>
+                            <li>
+                                <a href="#startStreaming" >startStreaming</a>
+                            </li>
+                            <li>
+                                <a href="#stopRecording" >stopRecording</a>
+                            </li>
+                            <li>
+                                <a href="#stopStreaming" >stopStreaming</a>
                             </li>
                         </ul>
                     </td>
@@ -102,12 +119,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html">ApiRoutesService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html" target="_self">ApiRoutesService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -168,9 +185,7 @@
                 <td class="col-md-4">
                     <a name="createOrUpdate"></a>
                     <span class="name">
-                        <b>
-                            createOrUpdate
-                        </b>
+                        <span ><b>createOrUpdate</b></span>
                         <a href="#createOrUpdate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -184,8 +199,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:21</a></div>
                 </td>
             </tr>
 
@@ -195,6 +210,72 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>embeddedVideoStreamData</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IEmbeddedVideoStream.html" target="_self" >Observable&lt;IEmbeddedVideoStream&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createOrUpdateV2"></a>
+                    <span class="name">
+                        <span ><b>createOrUpdateV2</b></span>
+                        <a href="#createOrUpdateV2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createOrUpdateV2(embeddedVideoStreamData)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -234,24 +315,22 @@
                 <td class="col-md-4">
                     <a name="get"></a>
                     <span class="name">
-                        <b>
-                            get
-                        </b>
+                        <span ><b>get</b></span>
                         <a href="#get"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>get(eventId)</code>
+<code>get(eventId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:14</a></div>
                 </td>
             </tr>
 
@@ -261,16 +340,21 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>eventId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -300,24 +384,22 @@
                 <td class="col-md-4">
                     <a name="pGet"></a>
                     <span class="name">
-                        <b>
-                            pGet
-                        </b>
+                        <span ><b>pGet</b></span>
                         <a href="#pGet"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>pGet(streamableType, streamableId)</code>
+<code>pGet(streamableType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, streamableId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -327,16 +409,21 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>streamableType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -346,6 +433,9 @@
                                 </tr>
                                 <tr>
                                     <td>streamableId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -369,55 +459,435 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startRecording"></a>
+                    <span class="name">
+                        <span ><b>startRecording</b></span>
+                        <a href="#startRecording"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startRecording(streamableId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, streamableType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, meetingUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>streamableId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>streamableType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>meetingUrl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startStreaming"></a>
+                    <span class="name">
+                        <span ><b>startStreaming</b></span>
+                        <a href="#startStreaming"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startStreaming(streamableId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, streamableType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, meetingUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:62</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>streamableId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>streamableType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>meetingUrl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stopRecording"></a>
+                    <span class="name">
+                        <span ><b>stopRecording</b></span>
+                        <a href="#stopRecording"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stopRecording(streamableId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, streamableType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>streamableId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>streamableType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stopStreaming"></a>
+                    <span class="name">
+                        <span ><b>stopStreaming</b></span>
+                        <a href="#stopStreaming"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stopStreaming(streamableId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, streamableType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/embedded-video-streams.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>streamableId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>streamableType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
-import { API_ROUTES } from &#x27;projects/shared-services/api-routes.constants&#x27;;
-import { IEventCollaborationCommunities } from &#x27;projects/shared-models/event_collaborations_communities.model&#x27;;
-import { IEventCollaborationCommunity } from &#x27;projects/shared-models/event_collaboration_community.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 import { IEmbeddedVideoStream } from &#x27;projects/shared-models/embedded_video_stream.model&#x27;;
+import { API_ROUTES } from &#x27;projects/shared-services/api-routes.constants&#x27;;
+import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
 export class EmbeddedVideoStreamsService {
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
-
-  get(eventId): Observable&lt;IEmbeddedVideoStream&gt; {
-    let params &#x3D; new HttpParams().set(&#x27;event_id&#x27;, eventId);
-    return this.http.get&lt;IEmbeddedVideoStream&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.GET), { params }
-    );
+  get(eventId: number): Observable&lt;IEmbeddedVideoStream&gt; {
+    const params &#x3D; new HttpParams().set(&#x27;event_id&#x27;, String(eventId));
+    return this.http.get&lt;IEmbeddedVideoStream&gt;(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.GET), {
+      params,
+    });
   }
 
   createOrUpdate(embeddedVideoStreamData): Observable&lt;IEmbeddedVideoStream&gt; {
     return this.http.post&lt;IEmbeddedVideoStream&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.CREATE_UPDATE_FOR_EVENT), {
-        embedded_video_stream: embeddedVideoStreamData
-      }
+      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.CREATE_UPDATE_FOR_EVENT),
+      {
+        embedded_video_stream: embeddedVideoStreamData,
+      },
     );
   }
 
+  createOrUpdateV2(embeddedVideoStreamData): Observable&lt;IEmbeddedVideoStream&gt; {
+    return this.http.post&lt;IEmbeddedVideoStream&gt;(
+      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.V2_CREATE_UPDATE_FOR_EVENT),
+      {
+        embedded_video_stream: embeddedVideoStreamData,
+      },
+    );
+  }
 
-  pGet(streamableType, streamableId): Observable&lt;IEmbeddedVideoStream&gt; {
-    let params &#x3D; new HttpParams().set(&#x27;streamable_id&#x27;, streamableId).set(&#x27;streamable_type&#x27;, streamableType);
+  pGet(streamableType: string, streamableId: number): Observable&lt;IEmbeddedVideoStream&gt; {
+    const params &#x3D; new HttpParams().set(&#x27;streamable_id&#x27;, String(streamableId)).set(&#x27;streamable_type&#x27;, streamableType);
     return this.http.get&lt;IEmbeddedVideoStream&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.PUBLIC.GET), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.PUBLIC.GET),
+      { params },
     );
   }
 
+  startRecording(streamableId: number, streamableType: string, meetingUrl: string): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.RECORDING.START), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
+      meeting_url: meetingUrl,
+    });
+  }
+
+  stopRecording(streamableId: number, streamableType: string): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.RECORDING.STOP), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
+    });
+  }
+
+  startStreaming(streamableId: number, streamableType: string, meetingUrl: string): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.STREAMING.START), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
+      meeting_url: meetingUrl,
+    });
+  }
+
+  stopStreaming(streamableId: number, streamableType: string): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.EMBEDDED_VIDEO_STREAMS.STREAMING.STOP), {
+      streamable_id: streamableId,
+      streamable_type: streamableType,
+    });
+  }
 }
 </code></pre>
     </div>
@@ -430,14 +900,14 @@ export class EmbeddedVideoStreamsService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -458,9 +928,9 @@ export class EmbeddedVideoStreamsService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

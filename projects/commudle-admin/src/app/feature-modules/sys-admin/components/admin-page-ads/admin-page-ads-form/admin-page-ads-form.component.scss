@@ -1,9 +1,11 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .admin-page-ads-form {
   nb-card-body {
     .form-fields {
-      label, nb-toggle, button {
+      label,
+      nb-toggle,
+      button {
         margin: $space-8 0;
       }
 

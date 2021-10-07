@@ -15,7 +15,6 @@ import {
   HostListener,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   SimpleChanges,
   ViewChild,
@@ -29,7 +28,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   templateUrl: './conference-user-video.component.html',
   styleUrls: ['./conference-user-video.component.scss'],
 })
-export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() peer: HMSPeer;
   @Input() screenShare: boolean;
 
@@ -54,10 +53,6 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
     hmsStore.subscribe((peer: HMSPeer) => (this.localPeer = peer), selectLocalPeer);
   }
 
-  ngOnDestroy() {
-    // this.detachVideo();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (this.peer?.customerDescription) {
       this.metaData = JSON.parse(this.peer.customerDescription);
@@ -71,19 +66,16 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
     } else {
       // INFO: As discussed with Easwar and Akash from 100ms
       hmsStore.subscribe((value: boolean) => {
-        this.renderTrack(hmsStore.getState(selectCameraStreamByPeerID(this.peer.id)))
+        this.renderTrack(hmsStore.getState(selectCameraStreamByPeerID(this.peer.id)));
         this.isVideoEnabled = value;
       }, selectIsPeerVideoEnabled(this.peer.id));
+      hmsStore.subscribe((value: HMSTrack) => {
+        if (this.isVideoEnabled) {
+          this.renderTrack(value);
+        }
+      }, selectCameraStreamByPeerID(this.peer.id));
     }
   }
-
-  // renderPeer = (value: boolean) => {
-  //   if (value) {
-  //     this.attachVideo();
-  //   } else {
-  //     this.detachVideo();
-  //   }
-  // };
 
   renderTrack = (track: HMSTrack) => {
     if (track) {
@@ -102,14 +94,6 @@ export class ConferenceUserVideoComponent implements OnInit, OnDestroy, OnChange
   detachTrack(trackId: string): void {
     hmsActions.detachVideo(trackId, this.videoElement.nativeElement);
   }
-
-  // attachVideo(): void {
-  //   hmsActions.attachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
-  // }
-  //
-  // detachVideo(): void {
-  //   hmsActions.detachVideo(this.peer.videoTrack, this.videoElement.nativeElement);
-  // }
 
   mutePeerAudio(): void {
     const audioTrack: HMSTrack = hmsStore.getState(selectAudioTrackByPeerID(this.peer.id));

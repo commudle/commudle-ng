@@ -1,19 +1,19 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .user {
+  align-items: flex-start;
+  display: flex;
   padding: 0.5rem 0.5rem 0.5rem 0;
   position: relative;
-  display: flex;
-  align-items: flex-start;
 
-  .profile-picture{
-    max-width: 40px;
-    max-height: 40px;
-    min-width: 40px;
-    overflow: hidden;
-    margin-right: 0.5rem;
+  .profile-picture {
     border-radius: 50%;
     display: flex;
+    margin-right: 0.5rem;
+    max-height: 40px;
+    max-width: 40px;
+    min-width: 40px;
+    overflow: hidden;
     img {
       width: 100%;
     }
@@ -102,8 +102,5 @@
         font-size: 0.7rem;
       }
     }
-
   }
-
-
 }

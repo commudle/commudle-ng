@@ -41,7 +41,7 @@
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
           <a (click)="closeSidebar()" [routerLink]="['/admin', 'orgs', cGroup.slug]">
-            <nb-user name="{{cGroup.name}}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
+            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
             <span class="org-badge">
               <app-badge
                 [color]="'#001FFF'"
@@ -55,7 +55,7 @@
 
         <nb-accordion-item-body *ngFor="let community of managedCommunities">
           <a (click)="closeSidebar()" [routerLink]="['/admin', 'communities', community.slug]">
-            <nb-user name="{{community.name}}" picture="{{ community.logo_path }}" size="tiny"></nb-user>
+            <nb-user name="{{ community.name }}" picture="{{ community.logo_path }}" size="tiny"></nb-user>
           </a>
         </nb-accordion-item-body>
       </nb-accordion-item>
@@ -91,6 +91,9 @@
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isPageAdsAdmin">
           <a [routerLink]="['/sys-admin', 'pa']">Page Ads</a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body *ngIf="isBadgesAdmin">
+          <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

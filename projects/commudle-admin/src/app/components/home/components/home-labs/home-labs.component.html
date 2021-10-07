@@ -13,7 +13,7 @@
       <ul *ngIf="labs.length > 0">
         <li *ngFor="let lab of labs" class="clickable">
           <p class="name">
-            <a [routerLink]="['/labs', lab.slug]">{{ lab.name | truncatetext:45 }}</a>
+            <a [routerLink]="['/labs', lab.slug]" class="com-line-clamp-2">{{ lab.name }}</a>
           </p>
           <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
         </li>
@@ -29,12 +29,15 @@
     </div>
     <div *ngIf="labs.length > 0" class="home-labs-mobile">
       <div class="home-labs-mobile-image">
-        <img alt="{{labs[0].name}}" src="{{labs[0].header_image?.i350 || '/assets/images/Lab-Default.png'}}"
-             title="{{labs[0].name}}">
+        <img
+          alt="{{ labs[0].name }}"
+          src="{{ labs[0].header_image?.i350 || '/assets/images/Lab-Default.png' }}"
+          title="{{ labs[0].name }}"
+        />
       </div>
       <div class="home-labs-mobile-details">
-        <div class="home-labs-mobile-name">{{labs[0].name}}</div>
-        <div class="home-labs-mobile-author">{{labs[0].user.name}}</div>
+        <div class="home-labs-mobile-name">{{ labs[0].name }}</div>
+        <div class="home-labs-mobile-author">{{ labs[0].user.name }}</div>
       </div>
     </div>
     <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-mobile-link clickable text-center">

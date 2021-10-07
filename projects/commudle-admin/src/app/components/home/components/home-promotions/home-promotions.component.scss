@@ -1,4 +1,4 @@
-//@import 'projects/commudle-admin/src/assets/styles/variables';
+//@import './projects/commudle-admin/src/assets/styles/variables';;
 //
 //.home-promotions {
 //  border: none;
@@ -16,3 +16,23 @@
 //    }
 //  }
 //}
+
+app-pa-slots {
+  &::ng-deep {
+    .page-ads-container {
+      height: 264px;
+      width: 264px;
+      @apply com-mx-auto;
+
+      @screen lg {
+        @apply com-w-auto com-h-auto;
+        @apply com-mx-2;
+        min-height: 240px;
+      }
+
+      @screen xl {
+        min-height: 304px;
+      }
+    }
+  }
+}

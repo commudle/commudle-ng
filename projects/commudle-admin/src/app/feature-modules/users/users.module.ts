@@ -17,6 +17,7 @@ import {
   NbSpinnerModule,
   NbTabsetModule,
   NbTagModule,
+  NbToggleModule,
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
@@ -25,6 +26,8 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
 import { BasicUserProfileComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import { EditUserProfileComponent } from './components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component';
+import { EmailPreferencesComponent } from './components/public-profile/user-basic-details/email-preferences/email-preferences.component';
 import { UserBasicDetailsComponent } from './components/public-profile/user-basic-details/user-basic-details.component';
 import { UserBasicSocialComponent } from './components/public-profile/user-basic-social/user-basic-social.component';
 import { UserBadgesComponent } from './components/public-profile/user-extra-details/user-badges/user-badges.component';
@@ -44,6 +47,7 @@ import { UserCoverPhotoComponent } from './components/public-profile/user-extra-
 import { UserExtraDetailsComponent } from './components/public-profile/user-extra-details/user-extra-details.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
+import { CapitalizeAndRemoveUnderscorePipe } from './pipes/capitalize-and-remove-underscore.pipe';
 import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
@@ -69,6 +73,9 @@ import { UsersRoutingModule } from './users-routing.module';
     UserNetworkListComponent,
     UserBadgesComponent,
     UserBasicSocialComponent,
+    EditUserProfileComponent,
+    EmailPreferencesComponent,
+    CapitalizeAndRemoveUnderscorePipe,
   ],
   imports: [
     CommonModule,
@@ -97,6 +104,7 @@ import { UsersRoutingModule } from './users-routing.module';
     NbListModule,
     NbAlertModule,
     NbRouteTabsetModule,
+    NbToggleModule,
   ],
   exports: [BasicUserProfileComponent],
 })

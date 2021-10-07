@@ -1,0 +1,1784 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>commudle-ng documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">commudle-ng documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  SessionPageVideoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-session-page-video</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./session-page-video.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./session-page-video.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#compressVideoStream" >compressVideoStream</a>
+                            </li>
+                            <li>
+                                <a href="#EUserRoles" >EUserRoles</a>
+                            </li>
+                            <li>
+                                <a href="#interactionWindows" >interactionWindows</a>
+                            </li>
+                            <li>
+                                <a href="#isBeamActive" >isBeamActive</a>
+                            </li>
+                            <li>
+                                <a href="#isFullScreen" >isFullScreen</a>
+                            </li>
+                            <li>
+                                <a href="#moment" >moment</a>
+                            </li>
+                            <li>
+                                <a href="#newMessage" >newMessage</a>
+                            </li>
+                            <li>
+                                <a href="#newPoll" >newPoll</a>
+                            </li>
+                            <li>
+                                <a href="#newQna" >newQna</a>
+                            </li>
+                            <li>
+                                <a href="#userCount" >userCount</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getInteractionWindowStatus" >getInteractionWindowStatus</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleFullScreen" >toggleFullScreen</a>
+                            </li>
+                            <li>
+                                <a href="#toggleInteractionWindow" >toggleInteractionWindow</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#chat" >chat</a>
+                            </li>
+                            <li>
+                                <a href="#community" >community</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#embeddedVideoStream" >embeddedVideoStream</a>
+                            </li>
+                            <li>
+                                <a href="#endTime" >endTime</a>
+                            </li>
+                            <li>
+                                <a href="#event" >event</a>
+                            </li>
+                            <li>
+                                <a href="#pollableId" >pollableId</a>
+                            </li>
+                            <li>
+                                <a href="#pollableType" >pollableType</a>
+                            </li>
+                            <li>
+                                <a href="#qna" >qna</a>
+                            </li>
+                            <li>
+                                <a href="#speaker" >speaker</a>
+                            </li>
+                            <li>
+                                <a href="#startTime" >startTime</a>
+                            </li>
+                            <li>
+                                <a href="#trackSlot" >trackSlot</a>
+                            </li>
+                            <li>
+                                <a href="#userRoles" >userRoles</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(document: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>document</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="chat"></a>
+                        <b>chat</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IDiscussion.html" target="_self" >IDiscussion</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:37</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="community"></a>
+                        <b>community</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ICommunity.html" target="_self" >ICommunity</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:41</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentUser"></a>
+                        <b>currentUser</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ICurrentUser.html" target="_self" >ICurrentUser</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:33</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="embeddedVideoStream"></a>
+                        <b>embeddedVideoStream</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IEmbeddedVideoStream.html" target="_self" >IEmbeddedVideoStream</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:34</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="endTime"></a>
+                        <b>endTime</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:36</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="event"></a>
+                        <b>event</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IEvent.html" target="_self" >IEvent</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:31</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pollableId"></a>
+                        <b>pollableId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:39</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pollableType"></a>
+                        <b>pollableType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:40</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="qna"></a>
+                        <b>qna</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IDiscussion.html" target="_self" >IDiscussion</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:38</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="speaker"></a>
+                        <b>speaker</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IUser.html" target="_self" >IUser</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:43</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="startTime"></a>
+                        <b>startTime</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:35</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="trackSlot"></a>
+                        <b>trackSlot</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ITrackSlot.html" target="_self" >ITrackSlot</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:42</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userRoles"></a>
+                        <b>userRoles</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:32</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInteractionWindowStatus"></a>
+                    <span class="name">
+                        <span ><b>getInteractionWindowStatus</b></span>
+                        <a href="#getInteractionWindowStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInteractionWindowStatus(windowNum: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:109</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>windowNum</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:62</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleFullScreen"></a>
+                    <span class="name">
+                        <span ><b>toggleFullScreen</b></span>
+                        <a href="#toggleFullScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleFullScreen()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleInteractionWindow"></a>
+                    <span class="name">
+                        <span ><b>toggleInteractionWindow</b></span>
+                        <a href="#toggleInteractionWindow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleInteractionWindow(windowNum: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:88</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>windowNum</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compressVideoStream"></a>
+                    <span class="name">
+                        <span ><b>compressVideoStream</b></span>
+                        <a href="#compressVideoStream"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EUserRoles"></a>
+                    <span class="name">
+                        <span ><b>EUserRoles</b></span>
+                        <a href="#EUserRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EUserRoles</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="interactionWindows"></a>
+                    <span class="name">
+                        <span ><b>interactionWindows</b></span>
+                        <a href="#interactionWindows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>QueryList&lt;ElementRef&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChildren(&#x27;interactionWindow&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isBeamActive"></a>
+                    <span class="name">
+                        <span ><b>isBeamActive</b></span>
+                        <a href="#isBeamActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullScreen"></a>
+                    <span class="name">
+                        <span ><b>isFullScreen</b></span>
+                        <a href="#isFullScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moment"></a>
+                    <span class="name">
+                        <span ><b>moment</b></span>
+                        <a href="#moment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>moment</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newMessage"></a>
+                    <span class="name">
+                        <span ><b>newMessage</b></span>
+                        <a href="#newMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newPoll"></a>
+                    <span class="name">
+                        <span ><b>newPoll</b></span>
+                        <a href="#newPoll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newQna"></a>
+                    <span class="name">
+                        <span ><b>newQna</b></span>
+                        <a href="#newQna"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userCount"></a>
+                    <span class="name">
+                        <span ><b>userCount</b></span>
+                        <a href="#userCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/public-events/components/session-page/session-page-video/session-page-video.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  OnInit,
+  QueryList,
+  SimpleChanges,
+  ViewChildren,
+} from &#x27;@angular/core&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { ICommunity } from &#x27;projects/shared-models/community.model&#x27;;
+import { ICurrentUser } from &#x27;projects/shared-models/current_user.model&#x27;;
+import { IDiscussion } from &#x27;projects/shared-models/discussion.model&#x27;;
+import { IEmbeddedVideoStream } from &#x27;projects/shared-models/embedded_video_stream.model&#x27;;
+import { EUserRoles } from &#x27;projects/shared-models/enums/user_roles.enum&#x27;;
+import { IEvent } from &#x27;projects/shared-models/event.model&#x27;;
+import { ITrackSlot } from &#x27;projects/shared-models/track-slot.model&#x27;;
+import { IUser } from &#x27;projects/shared-models/user.model&#x27;;
+
+@Component({
+  selector: &#x27;app-session-page-video&#x27;,
+  templateUrl: &#x27;./session-page-video.component.html&#x27;,
+  styleUrls: [&#x27;./session-page-video.component.scss&#x27;],
+})
+export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewInit {
+  @Input() event: IEvent;
+  @Input() userRoles: any[];
+  @Input() currentUser: ICurrentUser;
+  @Input() embeddedVideoStream: IEmbeddedVideoStream;
+  @Input() startTime: Date;
+  @Input() endTime: Date;
+  @Input() chat: IDiscussion;
+  @Input() qna: IDiscussion;
+  @Input() pollableId: number;
+  @Input() pollableType: string;
+  @Input() community: ICommunity;
+  @Input() trackSlot: ITrackSlot;
+  @Input() speaker: IUser;
+
+  moment &#x3D; moment;
+  EUserRoles &#x3D; EUserRoles;
+
+  isFullScreen &#x3D; false;
+  compressVideoStream &#x3D; false;
+  isBeamActive &#x3D; false;
+
+  // For live notifications
+  userCount &#x3D; 0;
+  newMessage &#x3D; false;
+  newQna &#x3D; false;
+  newPoll &#x3D; false;
+
+  @ViewChildren(&#x27;interactionWindow&#x27;) interactionWindows: QueryList&lt;ElementRef&gt;;
+
+  constructor(@Inject(DOCUMENT) private document: any, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    document.onfullscreenchange &#x3D; () &#x3D;&gt; (this.isFullScreen &#x3D; this.document.fullscreenElement);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.embeddedVideoStream) {
+      this.isBeamActive &#x3D; this.embeddedVideoStream.is_recording || this.embeddedVideoStream.is_streaming;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if ([&#x27;commudle&#x27;, &#x27;youtube&#x27;].includes(this.embeddedVideoStream.source)) {
+      this.toggleInteractionWindow(0);
+      this.cdr.detectChanges();
+    }
+  }
+
+  toggleFullScreen(): void {
+    if (this.isFullScreen) {
+      this.document.exitFullscreen();
+    } else {
+      this.document.documentElement.requestFullscreen();
+    }
+    this.isFullScreen &#x3D; !this.isFullScreen;
+  }
+
+  toggleInteractionWindow(windowNum: number): void {
+    this.interactionWindows.forEach((item: ElementRef, index: number) &#x3D;&gt; {
+      item.nativeElement.style.display &#x3D;
+        windowNum &#x3D;&#x3D;&#x3D; index ? (item.nativeElement.style.display &#x3D;&#x3D;&#x3D; &#x27;block&#x27; ? &#x27;none&#x27; : &#x27;block&#x27;) : &#x27;none&#x27;;
+    });
+    this.compressVideoStream &#x3D; this.interactionWindows.some(
+      (value: ElementRef) &#x3D;&gt; value.nativeElement.style.display &#x3D;&#x3D;&#x3D; &#x27;block&#x27;,
+    );
+    switch (windowNum) {
+      case 2:
+        this.newMessage &#x3D; false;
+        break;
+      case 3:
+        this.newQna &#x3D; false;
+        break;
+      case 4:
+        this.newPoll &#x3D; false;
+        break;
+    }
+  }
+
+  getInteractionWindowStatus(windowNum: number): boolean {
+    return this.interactionWindows.toArray()[windowNum].nativeElement.style.display &#x3D;&#x3D;&#x3D; &#x27;none&#x27;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nb-card
+  [ngClass]&#x3D;&quot;{&#x27;fullscreen&#x27;: isFullScreen, &#x27;internal-link&#x27;: [&#x27;commudle&#x27;, &#x27;youtube&#x27;].includes(embeddedVideoStream.source), &#x27;external-link&#x27;: [&#x27;external_link&#x27;, &#x27;jitsi&#x27;].includes(embeddedVideoStream.source)}&quot;
+  class&#x3D;&quot;session-page-video&quot;
+&gt;
+  &lt;nb-card-body&gt;
+    &lt;div class&#x3D;&quot;session-page-info d-flex align-items-center&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;isBeamActive&quot; class&#x3D;&quot;ring-container&quot;&gt;
+        &lt;div class&#x3D;&quot;ring&quot;&gt;&lt;/div&gt;
+        &lt;div class&#x3D;&quot;circle&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;button
+        (click)&#x3D;&quot;toggleFullScreen()&quot;
+        *ngIf&#x3D;&quot;currentUser &amp;&amp; [&#x27;commudle&#x27;, &#x27;youtube&#x27;].includes(embeddedVideoStream.source)&quot;
+        class&#x3D;&quot;fullscreen-btn&quot;
+        nbButton
+        shape&#x3D;&quot;round&quot;
+      &gt;
+        &lt;nb-icon [icon]&#x3D;&quot;isFullScreen ? &#x27;collapse&#x27; : &#x27;expand&#x27;&quot;&gt;&lt;/nb-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div #videoStream [ngClass]&#x3D;&quot;{&#x27;compressed&#x27;: compressVideoStream}&quot; class&#x3D;&quot;video-stream&quot;&gt;
+      &lt;app-video-stream-v2
+        (beamStatus)&#x3D;&quot;isBeamActive &#x3D; $event&quot;
+        [currentUser]&#x3D;&quot;currentUser&quot;
+        [embeddedVideoStream]&#x3D;&quot;embeddedVideoStream&quot;
+        [fillerText]&#x3D;&quot;!currentUser ? &#x27;Login to Access&#x27; : (moment() &lt; moment(startTime) ? &#x27;Starting in &#x27; + moment(startTime).fromNow(true) : &#x27;Loading Video...&#x27;)&quot;
+        [height]&#x3D;&quot;videoStream.clientHeight&quot;
+        [started]&#x3D;&quot;moment() &gt;&#x3D; moment(startTime)&quot;
+        [videoCode]&#x3D;&quot;!currentUser || moment() &lt; moment(startTime) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id&quot;
+        [videoSource]&#x3D;&quot;embeddedVideoStream.source&quot;
+        [width]&#x3D;&quot;videoStream.clientWidth&quot;
+      &gt;&lt;/app-video-stream-v2&gt;
+    &lt;/div&gt;
+    &lt;div
+      *ngIf&#x3D;&quot;currentUser &amp;&amp; [&#x27;commudle&#x27;, &#x27;youtube&#x27;].includes(embeddedVideoStream.source) &amp;&amp; interactionWindows&quot;
+      class&#x3D;&quot;user-interactions&quot;
+    &gt;
+      &lt;button
+        (click)&#x3D;&quot;toggleInteractionWindow(0)&quot;
+        [ngClass]&#x3D;&quot;{&#x27;active&#x27;: !getInteractionWindowStatus(0)}&quot;
+        nbButton
+        nbTooltip&#x3D;&quot;Info&quot;
+        shape&#x3D;&quot;round&quot;
+      &gt;
+        &lt;nb-icon icon&#x3D;&quot;info-outline&quot;&gt;&lt;/nb-icon&gt;
+      &lt;/button&gt;
+      &lt;button
+        (click)&#x3D;&quot;toggleInteractionWindow(1)&quot;
+        [ngClass]&#x3D;&quot;{&#x27;active&#x27;: !getInteractionWindowStatus(1)}&quot;
+        nbButton
+        nbTooltip&#x3D;&quot;Viewers&quot;
+        shape&#x3D;&quot;round&quot;
+      &gt;
+        &lt;nb-badge class&#x3D;&quot;notification&quot; status&#x3D;&quot;info&quot; text&#x3D;&quot;{{userCount}}&quot;&gt;&lt;/nb-badge&gt;
+        &lt;nb-icon icon&#x3D;&quot;people-outline&quot;&gt;&lt;/nb-icon&gt;
+      &lt;/button&gt;
+      &lt;button
+        (click)&#x3D;&quot;toggleInteractionWindow(2)&quot;
+        [ngClass]&#x3D;&quot;{&#x27;active&#x27;: !getInteractionWindowStatus(2)}&quot;
+        nbButton
+        nbTooltip&#x3D;&quot;Messages&quot;
+        shape&#x3D;&quot;round&quot;
+      &gt;
+        &lt;nb-badge [dotMode]&#x3D;&quot;true&quot; [ngClass]&#x3D;&quot;{&#x27;notification&#x27;: newMessage}&quot; status&#x3D;&quot;info&quot;&gt;&lt;/nb-badge&gt;
+        &lt;nb-icon icon&#x3D;&quot;message-circle-outline&quot;&gt;&lt;/nb-icon&gt;
+      &lt;/button&gt;
+      &lt;button
+        (click)&#x3D;&quot;toggleInteractionWindow(3)&quot;
+        [ngClass]&#x3D;&quot;{&#x27;active&#x27;: !getInteractionWindowStatus(3)}&quot;
+        nbButton
+        nbTooltip&#x3D;&quot;QnA&quot;
+        shape&#x3D;&quot;round&quot;
+      &gt;
+        &lt;nb-badge [dotMode]&#x3D;&quot;true&quot; [ngClass]&#x3D;&quot;{&#x27;notification&#x27;: newQna}&quot; status&#x3D;&quot;info&quot;&gt;&lt;/nb-badge&gt;
+        Q
+      &lt;/button&gt;
+      &lt;button
+        (click)&#x3D;&quot;toggleInteractionWindow(4)&quot;
+        [ngClass]&#x3D;&quot;{&#x27;active&#x27;: !getInteractionWindowStatus(4)}&quot;
+        nbButton
+        nbTooltip&#x3D;&quot;Polls&quot;
+        shape&#x3D;&quot;round&quot;
+      &gt;
+        &lt;nb-badge [dotMode]&#x3D;&quot;true&quot; [ngClass]&#x3D;&quot;{&#x27;notification&#x27;: newPoll}&quot; status&#x3D;&quot;info&quot;&gt;&lt;/nb-badge&gt;
+        &lt;nb-icon icon&#x3D;&quot;bar-chart&quot;&gt;&lt;/nb-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div #interactionWindow class&#x3D;&quot;session-page-window&quot;&gt;
+      &lt;div class&#x3D;&quot;actions d-flex align-items-center justify-content-space-between&quot;&gt;
+        &lt;p class&#x3D;&quot;heading&quot;&gt;Session Details&lt;/p&gt;
+        &lt;button (click)&#x3D;&quot;toggleInteractionWindow(0)&quot; ghost nbButton shape&#x3D;&quot;round&quot; size&#x3D;&quot;small&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;close&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;app-session-page-details
+        (openViewers)&#x3D;&quot;toggleInteractionWindow(1)&quot;
+        [community]&#x3D;&quot;community&quot;
+        [endTime]&#x3D;&quot;endTime&quot;
+        [event]&#x3D;&quot;event&quot;
+        [speaker]&#x3D;&quot;speaker&quot;
+        [startTime]&#x3D;&quot;startTime&quot;
+        [trackSlot]&#x3D;&quot;trackSlot&quot;
+      &gt;&lt;/app-session-page-details&gt;
+    &lt;/div&gt;
+    &lt;div #interactionWindow class&#x3D;&quot;session-page-window&quot;&gt;
+      &lt;div class&#x3D;&quot;actions d-flex align-items-center justify-content-space-between&quot;&gt;
+        &lt;p class&#x3D;&quot;heading&quot;&gt;People attending the Session&lt;/p&gt;
+        &lt;button (click)&#x3D;&quot;toggleInteractionWindow(1)&quot; ghost nbButton shape&#x3D;&quot;round&quot; size&#x3D;&quot;small&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;close&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;app-session-page-viewers
+        (userCount)&#x3D;&quot;userCount &#x3D; $event&quot;
+        [activeEvent]&#x3D;&quot;moment().isBetween(moment(startTime), moment(endTime))&quot;
+        [embeddedVideoStream]&#x3D;&quot;embeddedVideoStream&quot;
+        [event]&#x3D;&quot;event&quot;
+        [isAdmin]&#x3D;&quot;userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes(EUserRoles.EVENT_VOLUNTEER)&quot;
+      &gt;&lt;/app-session-page-viewers&gt;
+    &lt;/div&gt;
+    &lt;div #interactionWindow class&#x3D;&quot;session-page-window remove-overflow&quot;&gt;
+      &lt;div class&#x3D;&quot;actions d-flex align-items-center justify-content-space-between&quot;&gt;
+        &lt;p class&#x3D;&quot;heading&quot;&gt;Chat with other Viewers&lt;/p&gt;
+        &lt;button (click)&#x3D;&quot;toggleInteractionWindow(2)&quot; ghost nbButton shape&#x3D;&quot;round&quot; size&#x3D;&quot;small&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;close&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;app-session-page-chat
+        (newMessage)&#x3D;&quot;newMessage &#x3D; getInteractionWindowStatus(2)&quot;
+        [chat]&#x3D;&quot;chat&quot;
+      &gt;&lt;/app-session-page-chat&gt;
+    &lt;/div&gt;
+    &lt;div #interactionWindow class&#x3D;&quot;session-page-window&quot;&gt;
+      &lt;div class&#x3D;&quot;actions d-flex align-items-center justify-content-space-between&quot;&gt;
+        &lt;p class&#x3D;&quot;heading&quot;&gt;Ask a Question&lt;/p&gt;
+        &lt;button (click)&#x3D;&quot;toggleInteractionWindow(3)&quot; ghost nbButton shape&#x3D;&quot;round&quot; size&#x3D;&quot;small&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;close&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;app-session-page-qna (newQna)&#x3D;&quot;newQna &#x3D; getInteractionWindowStatus(3)&quot; [qna]&#x3D;&quot;qna&quot;&gt;&lt;/app-session-page-qna&gt;
+    &lt;/div&gt;
+    &lt;div #interactionWindow class&#x3D;&quot;session-page-window&quot;&gt;
+      &lt;div class&#x3D;&quot;actions d-flex align-items-center justify-content-space-between&quot;&gt;
+        &lt;p class&#x3D;&quot;heading&quot;&gt;Participate in Polls&lt;/p&gt;
+        &lt;button (click)&#x3D;&quot;toggleInteractionWindow(4)&quot; ghost nbButton shape&#x3D;&quot;round&quot; size&#x3D;&quot;small&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;close&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;app-session-page-poll [pollableId]&#x3D;&quot;pollableId&quot; [pollableType]&#x3D;&quot;pollableType&quot;&gt;&lt;/app-session-page-poll&gt;
+    &lt;/div&gt;
+  &lt;/nb-card-body&gt;
+&lt;/nb-card&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./session-page-video.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;./projects/commudle-admin/src/assets/styles/variables&#x27;;
+
+.session-page-video {
+  margin-top: 0;
+  border: none;
+  border-radius: $border-10;
+  //overflow: hidden;
+  height: calc(100vh - 56px - 16px - 16px);
+
+  &amp;.internal-link {
+    background-color: $black;
+  }
+
+  &amp;.external-link {
+    height: 150px;
+
+    nb-card-body {
+      .video-stream {
+        position: initial;
+        height: initial;
+      }
+    }
+  }
+
+  nb-card-body {
+    padding: 0;
+    height: inherit;
+    overflow: unset;
+
+    .session-page-info {
+      gap: $space-12;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 1;
+
+      .ring-container {
+        position: relative;
+
+        .circle {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: $ultra-red;
+        }
+
+        .ring {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          border: 3px solid $ultra-red;
+          position: absolute;
+          left: -5px;
+          top: -5px;
+          animation: pulsate 1s ease-out infinite;
+          opacity: 0;
+        }
+
+        @-webkit-keyframes pulsate {
+          0% {
+            transform: scale(0.1, 0.1);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1.2, 1.2);
+            opacity: 0;
+          }
+        }
+      }
+
+      .fullscreen-btn {
+        border: none;
+        color: $white;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+
+        &amp;:hover {
+          background-color: rgba($spanish-gray, 0.4);
+        }
+      }
+    }
+
+    .video-stream {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 100%;
+      //height: min(calc(100vh - 56px - 16px - 16px), calc(100vw * 9 / 16));
+      width: 100%;
+      transition: width 0.7s ease-in-out;
+
+      @media all and (min-width: $tab-width) {
+        &amp;.compressed {
+          width: calc(100% - 300px - 36px);
+        }
+      }
+    }
+
+    .user-interactions {
+      position: absolute;
+      right: 60px;
+      bottom: 8px;
+
+      button {
+        position: relative;
+        border: none;
+        height: 44px;
+        width: 44px;
+        margin: 0 $space-4;
+        padding: $space-12;
+        font-size: $fs-20;
+        font-weight: $fw-400;
+        color: $white;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+
+        &amp;.active {
+          &amp;::before {
+            content: &#x27;&#x27;;
+            position: absolute;
+            bottom: 40px;
+            border-top: 12px solid $white;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+          }
+        }
+
+        &amp;:hover {
+          background-color: rgba($spanish-gray, 0.4);
+        }
+
+        nb-badge {
+          display: none;
+
+          &amp;.notification {
+            display: initial;
+          }
+        }
+
+        nb-icon {
+          margin: 0;
+        }
+      }
+    }
+
+    .session-page-window {
+      display: none;
+      position: absolute;
+      width: 328px;
+      right: 0;
+      top: 40px;
+      bottom: 44px;
+      margin: $space-16 $space-8;
+      background-color: $white;
+      border-radius: $border-4;
+      overflow: hidden;
+
+      &amp;.remove-overflow {
+        overflow: unset;
+      }
+
+      &amp;.open {
+        display: block;
+      }
+
+      .actions {
+        padding: $space-8;
+        box-shadow: rgba(17, 17, 26, 0.1) 0 0 16px;
+
+        .heading {
+          margin: 0;
+          font-weight: $fw-500;
+          color: $gunmetal;
+        }
+      }
+
+      app-session-page-details {
+        &amp;::ng-deep {
+          nb-card {
+            border-radius: 0;
+            margin: $space-16 0 0;
+
+            nb-card-body {
+              padding: 0 $space-8 $space-8;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &amp;.fullscreen {
+    position: fixed;
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .session-page-video {
+    height: calc(100vh - 56px - 16px - 16px - 44px);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nb-card  [ngClass]="{\'fullscreen\': isFullScreen, \'internal-link\': [\'commudle\', \'youtube\'].includes(embeddedVideoStream.source), \'external-link\': [\'external_link\', \'jitsi\'].includes(embeddedVideoStream.source)}"  class="session-page-video">  <nb-card-body>    <div class="session-page-info d-flex align-items-center">      <div *ngIf="isBeamActive" class="ring-container">        <div class="ring"></div>        <div class="circle"></div>      </div>      <button        (click)="toggleFullScreen()"        *ngIf="currentUser && [\'commudle\', \'youtube\'].includes(embeddedVideoStream.source)"        class="fullscreen-btn"        nbButton        shape="round"      >        <nb-icon [icon]="isFullScreen ? \'collapse\' : \'expand\'"></nb-icon>      </button>    </div>    <div #videoStream [ngClass]="{\'compressed\': compressVideoStream}" class="video-stream">      <app-video-stream-v2        (beamStatus)="isBeamActive = $event"        [currentUser]="currentUser"        [embeddedVideoStream]="embeddedVideoStream"        [fillerText]="!currentUser ? \'Login to Access\' : (moment() < moment(startTime) ? \'Starting in \' + moment(startTime).fromNow(true) : \'Loading Video...\')"        [height]="videoStream.clientHeight"        [started]="moment() >= moment(startTime)"        [videoCode]="!currentUser || moment() < moment(startTime) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"        [videoSource]="embeddedVideoStream.source"        [width]="videoStream.clientWidth"      ></app-video-stream-v2>    </div>    <div      *ngIf="currentUser && [\'commudle\', \'youtube\'].includes(embeddedVideoStream.source) && interactionWindows"      class="user-interactions"    >      <button        (click)="toggleInteractionWindow(0)"        [ngClass]="{\'active\': !getInteractionWindowStatus(0)}"        nbButton        nbTooltip="Info"        shape="round"      >        <nb-icon icon="info-outline"></nb-icon>      </button>      <button        (click)="toggleInteractionWindow(1)"        [ngClass]="{\'active\': !getInteractionWindowStatus(1)}"        nbButton        nbTooltip="Viewers"        shape="round"      >        <nb-badge class="notification" status="info" text="{{userCount}}"></nb-badge>        <nb-icon icon="people-outline"></nb-icon>      </button>      <button        (click)="toggleInteractionWindow(2)"        [ngClass]="{\'active\': !getInteractionWindowStatus(2)}"        nbButton        nbTooltip="Messages"        shape="round"      >        <nb-badge [dotMode]="true" [ngClass]="{\'notification\': newMessage}" status="info"></nb-badge>        <nb-icon icon="message-circle-outline"></nb-icon>      </button>      <button        (click)="toggleInteractionWindow(3)"        [ngClass]="{\'active\': !getInteractionWindowStatus(3)}"        nbButton        nbTooltip="QnA"        shape="round"      >        <nb-badge [dotMode]="true" [ngClass]="{\'notification\': newQna}" status="info"></nb-badge>        Q      </button>      <button        (click)="toggleInteractionWindow(4)"        [ngClass]="{\'active\': !getInteractionWindowStatus(4)}"        nbButton        nbTooltip="Polls"        shape="round"      >        <nb-badge [dotMode]="true" [ngClass]="{\'notification\': newPoll}" status="info"></nb-badge>        <nb-icon icon="bar-chart"></nb-icon>      </button>    </div>    <div #interactionWindow class="session-page-window">      <div class="actions d-flex align-items-center justify-content-space-between">        <p class="heading">Session Details</p>        <button (click)="toggleInteractionWindow(0)" ghost nbButton shape="round" size="small">          <nb-icon icon="close"></nb-icon>        </button>      </div>      <app-session-page-details        (openViewers)="toggleInteractionWindow(1)"        [community]="community"        [endTime]="endTime"        [event]="event"        [speaker]="speaker"        [startTime]="startTime"        [trackSlot]="trackSlot"      ></app-session-page-details>    </div>    <div #interactionWindow class="session-page-window">      <div class="actions d-flex align-items-center justify-content-space-between">        <p class="heading">People attending the Session</p>        <button (click)="toggleInteractionWindow(1)" ghost nbButton shape="round" size="small">          <nb-icon icon="close"></nb-icon>        </button>      </div>      <app-session-page-viewers        (userCount)="userCount = $event"        [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"        [embeddedVideoStream]="embeddedVideoStream"        [event]="event"        [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes(EUserRoles.EVENT_VOLUNTEER)"      ></app-session-page-viewers>    </div>    <div #interactionWindow class="session-page-window remove-overflow">      <div class="actions d-flex align-items-center justify-content-space-between">        <p class="heading">Chat with other Viewers</p>        <button (click)="toggleInteractionWindow(2)" ghost nbButton shape="round" size="small">          <nb-icon icon="close"></nb-icon>        </button>      </div>      <app-session-page-chat        (newMessage)="newMessage = getInteractionWindowStatus(2)"        [chat]="chat"      ></app-session-page-chat>    </div>    <div #interactionWindow class="session-page-window">      <div class="actions d-flex align-items-center justify-content-space-between">        <p class="heading">Ask a Question</p>        <button (click)="toggleInteractionWindow(3)" ghost nbButton shape="round" size="small">          <nb-icon icon="close"></nb-icon>        </button>      </div>      <app-session-page-qna (newQna)="newQna = getInteractionWindowStatus(3)" [qna]="qna"></app-session-page-qna>    </div>    <div #interactionWindow class="session-page-window">      <div class="actions d-flex align-items-center justify-content-space-between">        <p class="heading">Participate in Polls</p>        <button (click)="toggleInteractionWindow(4)" ghost nbButton shape="round" size="small">          <nb-icon icon="close"></nb-icon>        </button>      </div>      <app-session-page-poll [pollableId]="pollableId" [pollableType]="pollableType"></app-session-page-poll>    </div>  </nb-card-body></nb-card></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
+    var ACTUAL_COMPONENT = {'name': 'SessionPageVideoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SessionPageVideoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

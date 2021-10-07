@@ -1,10 +1,10 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .message {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: nowrap;
+  justify-content: flex-start;
 
   p {
     font-size: 0.8rem;
@@ -31,7 +31,10 @@
     width: 100%;
 
     .author-details {
-      a, a:hover, a:focus, a:active {
+      a,
+      a:hover,
+      a:focus,
+      a:active {
         text-decoration: none;
       }
 
@@ -72,9 +75,9 @@
     }
 
     .details-flag {
+      align-items: flex-start;
       display: flex;
       justify-content: flex-start;
-      align-items: flex-start;
 
       > div {
         margin-right: 10px;
@@ -90,12 +93,12 @@
         }
       }
 
-      .votes, .reply-button {
+      .votes,
+      .reply-button {
         p {
           font-size: 1.1rem;
         }
       }
-
     }
   }
 }

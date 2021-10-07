@@ -1,16 +1,16 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .create-lab {
-  width: 100%;
-  min-height: 90vh;
   background: $light-purple;
+  min-height: 90vh;
+  width: 100%;
 
   .form-container {
     .header {
       font-weight: 300;
 
       fa-icon {
-        color: #4E74FF;
+        color: #4e74ff;
       }
     }
 
@@ -18,11 +18,13 @@
       input {
         font-size: 1.8rem;
 
-        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
           font-size: 1.3rem;
         }
 
-        &::-moz-placeholder { /* Firefox 19+ */
+        &::-moz-placeholder {
+          /* Firefox 19+ */
           font-size: 1.3rem;
         }
       }

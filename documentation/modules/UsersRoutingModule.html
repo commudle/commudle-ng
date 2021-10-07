@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -34,7 +35,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li>UsersRoutingModule</li>
+    <li >UsersRoutingModule</li>
 </ol>
 
 
@@ -60,6 +61,7 @@
 
 
 
+
         <div class="container-fluid module">
             <div class="row">
             </div>
@@ -72,8 +74,10 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
+import { AuthGuard } from &#x27;projects/shared-services/lib-authwatch.guard&#x27;;
 import { PublicProfileComponent } from &#x27;./components/public-profile/public-profile.component&#x27;;
 import { UserContributionsComponent } from &#x27;./components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component&#x27;;
+import { UserFeedComponent } from &#x27;./components/public-profile/user-extra-details/user-content/user-feed/user-feed.component&#x27;;
 import { UserSocialComponent } from &#x27;./components/public-profile/user-extra-details/user-content/user-social/user-social.component&#x27;;
 import { UserExtraDetailsComponent } from &#x27;./components/public-profile/user-extra-details/user-extra-details.component&#x27;;
 import { UserNetworkListComponent } from &#x27;./components/public-profile/user-network/user-network-list/user-network-list.component&#x27;;
@@ -90,18 +94,21 @@ const routes &#x3D; [
         children: [
           {
             path: &#x27;&#x27;,
-            redirectTo: &#x27;contributions&#x27;,
-            pathMatch: &#x27;full&#x27;,
+            component: UserContributionsComponent
           },
           {
             path: &#x27;contributions&#x27;,
-            component: UserContributionsComponent,
+            component: UserContributionsComponent
           },
           {
             path: &#x27;social&#x27;,
-            component: UserSocialComponent,
+            component: UserSocialComponent
           },
-        ],
+          {
+            path: &#x27;feed&#x27;,
+            component: UserFeedComponent
+          }
+        ]
       },
       {
         path: &#x27;&#x27;,
@@ -125,7 +132,8 @@ const routes &#x3D; [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UsersRoutingModule {}
+export class UsersRoutingModule {
+}
 </code></pre>
     </div>
 </div>
@@ -139,14 +147,14 @@ export class UsersRoutingModule {}
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -167,9 +175,9 @@ export class UsersRoutingModule {}
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
+import { BasicUserProfileComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import { EditUserProfileComponent } from './components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component';
+import { EmailPreferencesComponent } from './components/public-profile/user-basic-details/email-preferences/email-preferences.component';
 import { UserContributionsComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component';
 import { UserFeedComponent } from './components/public-profile/user-extra-details/user-content/user-feed/user-feed.component';
 import { UserSocialComponent } from './components/public-profile/user-extra-details/user-content/user-social/user-social.component';
@@ -15,26 +17,41 @@ const routes = [
     component: PublicProfileComponent,
     children: [
       {
+        path: 'settings',
+        outlet: 'p',
+        component: EditUserProfileComponent,
+        children: [
+          {
+            path: 'basic-details',
+            component: BasicUserProfileComponent,
+          },
+          {
+            path: 'email-preferences',
+            component: EmailPreferencesComponent,
+          },
+        ],
+      },
+      {
         path: '',
         component: UserExtraDetailsComponent,
         children: [
           {
             path: '',
-            component: UserContributionsComponent
+            component: UserContributionsComponent,
           },
           {
             path: 'contributions',
-            component: UserContributionsComponent
+            component: UserContributionsComponent,
           },
           {
             path: 'social',
-            component: UserSocialComponent
+            component: UserSocialComponent,
           },
           {
             path: 'feed',
-            component: UserFeedComponent
-          }
-        ]
+            component: UserFeedComponent,
+          },
+        ],
       },
       {
         path: '',
@@ -58,5 +75,4 @@ const routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UsersRoutingModule {
-}
+export class UsersRoutingModule {}

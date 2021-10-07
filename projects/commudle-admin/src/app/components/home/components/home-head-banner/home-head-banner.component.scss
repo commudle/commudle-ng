@@ -1,16 +1,18 @@
-@import "/projects/commudle-admin/src/assets/styles/variables.scss";
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .head-banner {
   border: none;
 
-  p, a, h1 {
+  p,
+  a,
+  h1 {
     color: $gunmetal;
   }
 
   section.header {
     .logo {
-      width: 200px;
       line-height: 15px;
+      width: 200px;
 
       img {
         width: 100%;
@@ -18,10 +20,10 @@
     }
 
     h1 {
-      margin: 0 0 0 49px;
       font-size: $fs-card-title;
-      line-height: calc(1 * #{$fs-card-title});
       font-weight: $fw-500;
+      line-height: calc(1 * #{$fs-card-title});
+      margin: 0 0 0 49px;
     }
   }
 
@@ -29,19 +31,24 @@
     margin-top: $space-36;
 
     a {
-      width: 100%;
       margin: $space-4 0;
       text-decoration: none;
+      width: 100%;
 
       nb-card {
-        margin: 0;
         color: $gunmetal;
+        margin: 0;
 
         nb-card-body {
           padding: 0;
 
           div.header {
             padding: $space-12;
+
+            fa-icon {
+              text-align: center;
+              width: 20px;
+            }
 
             p {
               margin: 0 0 0 $space-8;

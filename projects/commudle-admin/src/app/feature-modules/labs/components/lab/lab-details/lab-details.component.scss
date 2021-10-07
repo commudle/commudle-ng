@@ -1,9 +1,9 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .menu {
+  height: fit-content;
   position: sticky;
   top: 72px;
-  height: fit-content;
   width: 264px;
 
   nb-card {
@@ -28,7 +28,7 @@
         a {
           font-size: $fs-h5;
         }
-        app-badge{
+        app-badge {
           position: relative;
           top: $space-10;
         }
