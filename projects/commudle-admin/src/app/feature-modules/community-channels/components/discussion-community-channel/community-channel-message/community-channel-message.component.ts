@@ -21,7 +21,7 @@ import { filter, map } from 'rxjs/operators';
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
-import { UpdatePinnedMessagesService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/update-pinned-messages.service';
+import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -71,7 +71,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     private nbWindowService: NbWindowService,
     private activatedRoute: ActivatedRoute,
     private communityChannelsService: CommunityChannelsService,
-    private updatePinnedMessages: UpdatePinnedMessagesService,
+    private communityChannelManagerService: CommunityChannelManagerService,
   ) {}
 
   ngOnInit(): void {}
@@ -116,6 +116,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     );
 
     this.handleContextMenu();
+    this.togglePinMessageForOthers();
   }
 
   ngOnDestroy(): void {
@@ -192,36 +193,55 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             case 'Pin Message': {
               let channelId = this.activatedRoute.snapshot.params.community_channel_id;
               this.subscriptions.push(
-                this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe((response) => {
-                  if (response) {
-                    this.message.pinned = true;
-                    this.updatePinnedMessages.setUpdatePinnedMessagesStatus(true);
-
-                    const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
-                    this.contextMenuItems[idx].title = 'Unpin Message';
-                  }
-                }),
+                this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe(() => {}),
               );
               break;
             }
             case 'Unpin Message': {
               let channelId = this.activatedRoute.snapshot.params.community_channel_id;
               this.subscriptions.push(
-                this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe((response) => {
-                  if (response) {
-                    this.message.pinned = false;
-                    this.updatePinnedMessages.setUpdatePinnedMessagesStatus(true);
-
-                    const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
-                    this.contextMenuItems[idx].title = 'Pin Message';
-                  }
-                }),
+                this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe(() => {}),
               );
               break;
             }
           }
         }),
     );
+  }
+
+  togglePinMessageForOthers() {
+    this.subscriptions.push(
+      this.communityChannelManagerService.showPinnedMessage$.subscribe((data) => {
+        if (data) {
+          switch (data.action) {
+            case 'pin': {
+              this.pinMessage(data.user_message);
+              break;
+            }
+            case 'unpin': {
+              this.unpinMessage(data.user_message);
+              break;
+            }
+          }
+        }
+      }),
+    );
+  }
+
+  pinMessage(message: IUserMessage) {
+    if (message.id === this.message.id) {
+      this.message.pinned = true;
+      const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
+      this.contextMenuItems[idx].title = 'Unpin Message';
+    }
+  }
+
+  unpinMessage(message: IUserMessage) {
+    if (message.id === this.message.id) {
+      this.message.pinned = false;
+      const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
+      this.contextMenuItems[idx].title = 'Pin Message';
+    }
   }
 
   openEditForm(): void {

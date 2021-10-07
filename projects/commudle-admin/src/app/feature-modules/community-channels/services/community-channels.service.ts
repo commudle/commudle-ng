@@ -156,6 +156,18 @@ export class CommunityChannelsService {
     );
   }
 
+  getDiscussionMessagesForScroll(communityChannelId, messageId, page, count): Observable<IUserMessages> {
+    const params = new HttpParams()
+      .set('community_channel_id', communityChannelId)
+      .set('page', page)
+      .set('count', count)
+      .set('user_message_id', messageId);
+    return this.http.get<IUserMessages>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES_SCROLL),
+      { params },
+    );
+  }
+
   sendMessageByEmail(userMessageId, communityChannelId): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.SEND_MESSAGE_BY_EMAIL_TO_ALL_MEMBERS),
