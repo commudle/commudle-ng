@@ -1,8 +1,8 @@
 <ng-template #channelDescription>
   <nb-card>
-    <nb-card-header>{{selectedChannel.name}}</nb-card-header>
+    <nb-card-header>{{ selectedChannel.name }}</nb-card-header>
     <nb-card-body>
-      <div [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true}" class="complete-description"></div>
+      <div [innerHTML]="selectedChannel.description | linky: { sanitizeHtml: true }" class="complete-description"></div>
     </nb-card-body>
   </nb-card>
 </ng-template>
@@ -13,7 +13,7 @@
       <div *ngIf="selectedChannel">
         <p>
           <nb-icon [nbPopoverTrigger]="'hover'" [nbPopover]="channelDescription" icon="info-outline"></nb-icon>
-          <span [innerHTML]="selectedChannel.description | linky:{sanitizeHtml: true} | truncatetext:100"></span>
+          <span [innerHTML]="selectedChannel.description | linky: { sanitizeHtml: true } | truncatetext: 100"></span>
         </p>
       </div>
     </div>
@@ -23,7 +23,7 @@
         [nbPopover]="pinnedMessagesContainer"
         [nbPopoverContext]="'pinnedMessagesPopover'"
         [icon]="faThumbtack"
-        [style]="{ 'color' : 'green' }"
+        [style]="{ color: 'green' }"
         transform="rotate-45"
         size="lg"
       ></fa-icon>
@@ -69,8 +69,11 @@
         </p>
       </div>
       <div
-        [innerHTML]="latestPinnedMessage.content | linky:{sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions}"
-        class="content"
+        [innerHTML]="
+          latestPinnedMessage.content
+            | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
+        "
+        class="content com-line-clamp-1"
       ></div>
     </div>
     <div class="message-controls">
@@ -79,10 +82,7 @@
     </div>
   </div>
 
-  <main
-    [ngStyle]="{ 'height' : latestPinnedMessage ? 'calc(100% - 6.0rem)' : 'calc(100% - 2.5rem)' }"
-    *ngIf="discussion"
-  >
+  <main [ngStyle]="{ height: latestPinnedMessage ? 'calc(100% - 6.0rem)' : 'calc(100% - 2.5rem)' }" *ngIf="discussion">
     <div class="discussion">
       <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
     </div>
@@ -125,7 +125,10 @@
                 </p>
               </div>
               <div
-                [innerHTML]="pinnedMessage.content | linky:{sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions}"
+                [innerHTML]="
+                  pinnedMessage.content
+                    | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
+                "
                 class="content"
               ></div>
             </div>
