@@ -55,6 +55,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
+  highlightMessage;
+  highlightMessageId;
 
   constructor(
     private fb: FormBuilder,
@@ -67,7 +69,15 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private nbDialogService: NbDialogService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.subscriptions.push(
+      this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
+        if (message) {
+          this.scrollToMessage(message);
+        }
+      }),
+    );
+  }
 
   ngOnChanges() {
     this.communityChannelChannel.unsubscribe();
@@ -162,6 +172,30 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
           this.nextPage += 1;
         });
     }
+  }
+
+  scrollToMessage(message: IUserMessage) {
+    // this.communityChannelsService.getDiscussionMessagesForScroll(this.discussion.parent_id, message.id, this.nextPage, this.pageSize).subscribe((response) => {
+    //   console.log(response)
+    //   this.messages = response.user_messages
+    //   console.log(response.user_messages)
+    // })
+    // const idx = this.messages.findIndex((msg) => msg.id === message.id);
+    // if(idx === -1){
+    // }
+    // else{
+    // }
+    // let messageElement = document.getElementById(message.id.toString());
+    //     messageElement.scrollIntoView({
+    //       behavior: 'auto',
+    //       block: 'center',
+    //       inline: 'center'
+    //     });
+    //     this.highlightMessageId = message.id;
+    //     this.highlightMessage = true;
+    //     setTimeout(() => {
+    //       this.highlightMessage = false;
+    //     }, 1000);
   }
 
   sendMessageByEmail(userMessageId) {
@@ -263,6 +297,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
           switch (data.action) {
             case this.communityChannelChannel.ACTIONS.SET_PERMISSIONS: {
               this.permittedActions = data.permitted_actions;
+              this.communityChannelManagerService.setUserPermissions(this.permittedActions);
               break;
             }
             case this.communityChannelChannel.ACTIONS.ADD: {
@@ -315,6 +350,14 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               if (this.currentUser && Number(data.user_id) === this.currentUser.id) {
                 window.location.reload();
               }
+            }
+            case this.communityChannelChannel.ACTIONS.PIN: {
+              this.communityChannelManagerService.setShowPinnedMessage(data);
+              break;
+            }
+            case this.communityChannelChannel.ACTIONS.UNPIN: {
+              this.communityChannelManagerService.setShowPinnedMessage(data);
+              break;
             }
           }
         }

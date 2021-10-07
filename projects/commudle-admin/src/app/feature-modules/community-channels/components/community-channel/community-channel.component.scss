@@ -27,15 +27,83 @@
       }
     }
 
-    nb-actions {
-      display: inline-flex;
-      nb-action {
-        position: relative;
-        @media screen and (min-width: 1089px) {
-          &.channel-list-menu-button {
-            display: none;
+    .extra-details {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 60%;
+
+      fa-icon {
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      nb-actions {
+        nb-action {
+          position: relative;
+          @media screen and (min-width: 1089px) {
+            &.channel-list-menu-button {
+              display: none;
+            }
           }
         }
+      }
+    }
+  }
+
+  .latest-pinned-message {
+    background: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0.5rem 0.5rem 1rem;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    height: 60px;
+    overflow: hidden;
+
+    .author-image {
+      align-self: start;
+      display: flex;
+      margin-right: 5px;
+      width: 35px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .author-details-container {
+      width: 70%;
+      .author-details {
+        p {
+          color: grey;
+          margin: 0 0 0.2rem;
+        }
+      }
+
+      .content {
+        overflow: hidden;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    }
+
+    .message-controls {
+      margin-left: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+
+      fa-icon {
+        cursor: pointer;
+      }
+
+      button {
+        height: 15px;
+        width: 40px;
       }
     }
   }
@@ -43,7 +111,6 @@
   main {
     display: flex;
     flex-wrap: nowrap;
-    height: calc(100% - 2.5rem);
     padding: 0.5rem 0.5rem 1rem;
 
     .discussion {
@@ -97,6 +164,7 @@
   margin: 0;
   height: auto;
   max-height: 368px;
+  max-width: 450px;
 
   nb-card-body {
     padding: 0;
@@ -118,29 +186,63 @@
           justify-content: flex-start;
 
           .author-image {
+            flex: 10%;
             align-self: start;
             display: flex;
             margin-right: 5px;
-            width: 35px;
 
             img {
               width: 100%;
             }
           }
 
-          .author-details {
-            p {
-              color: grey;
-              margin: 0 0 0.2rem;
+          .author-details-container {
+            flex: 90%;
+            .author-details {
+              p {
+                color: grey;
+                margin: 0 0 0.2rem;
+              }
+            }
+
+            .content {
+              white-space: pre-wrap;
+              word-break: break-word;
             }
           }
+        }
 
-          .content {
-            white-space: pre-wrap;
-            word-break: break-word;
+        .message-controls {
+          margin-left: auto;
+          margin-bottom: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 15px;
+
+          fa-icon {
+            cursor: pointer;
+          }
+
+          button {
+            height: 15px;
+            width: 40px;
           }
         }
       }
     }
+  }
+}
+
+.highlight-message {
+  animation: highlight 2s;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: initial;
   }
 }
