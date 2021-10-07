@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
   margin: 0;
@@ -28,11 +28,12 @@ p {
     nb-card-body {
       &::ng-deep {
         .content {
-          p, span {
-            font-size: $fs-h4;
-            font-family: $primary-font-family !important;
-            line-height: 19px;
+          p,
+          span {
             color: $gunmetal;
+            font-family: $primary-font-family !important;
+            font-size: $fs-h4;
+            line-height: 19px;
           }
         }
       }
@@ -54,15 +55,15 @@ p {
 
         .organizer + .organizer {
           &:before {
-            content: "";
+            border-left: 1px solid $gunmetal;
+            content: '';
+            height: 80px;
+            left: -26px;
             position: absolute;
             top: 4px;
-            left: -26px;
-            height: 80px;
-            border-left: 1px solid $gunmetal;
           }
 
-          &:nth-of-type(3n+1) {
+          &:nth-of-type(3n + 1) {
             &:before {
               border-left: none;
             }
@@ -96,4 +97,3 @@ p {
     }
   }
 }
-

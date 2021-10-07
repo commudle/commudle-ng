@@ -41,16 +41,16 @@
       </label>
       <label>
         Files
-        <input (change)="addFiles($event)" fullWidth multiple nbInput type="file" />
+        <input #inputFile (change)="addFiles($event)" fullWidth multiple nbInput type="file" />
       </label>
       <nb-list class="files-list">
-        <nb-list-item *ngFor="let file of uploadedFiles; let i=index" class="justify-content-space-between flex-wrap">
-          <p>{{file.file?.name || file.name}}</p>
+        <nb-list-item *ngFor="let file of uploadedFiles; let i = index" class="justify-content-space-between flex-wrap">
+          <p>{{ file.file?.name || file.name }}</p>
           <button (click)="deleteFile(i)" ghost nbButton size="tiny" status="danger">Delete</button>
         </nb-list-item>
       </nb-list>
       <button [disabled]="!pageAdForm.valid" fullWidth ghost nbButton status="primary" type="submit">
-        {{pageAd ? 'Update Ad' : 'Create Ad'}}
+        {{ pageAd ? 'Update Ad' : 'Create Ad' }}
       </button>
     </form>
   </nb-card-body>

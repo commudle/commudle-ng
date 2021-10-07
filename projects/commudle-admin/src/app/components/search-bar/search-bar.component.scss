@@ -1,8 +1,8 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-navbar-search {
   position: relative;
-  
+
   .search-container {
     .search-form {
       width: 100%;
@@ -15,13 +15,10 @@
       }
 
       input {
-        height: 2.5rem;
-        border: none;
-        border-top-left-radius: $border-8;
-        border-bottom-left-radius: $border-8;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
         background-color: $light-purple;
+        border: none;
+        border-radius: $border-8 0 0 $border-8;
+        height: 2.5rem;
         transition-delay: 0.12s;
         transition-property: border-bottom-left-radius;
         &::placeholder {
@@ -31,8 +28,8 @@
     }
 
     .search-filter {
-      position: relative;
       max-width: 150px;
+      position: relative;
 
       &::before {
         content: '';
@@ -45,13 +42,10 @@
 
       &::ng-deep {
         button {
-          height: 100%;
-          border: none;
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          border-top-right-radius: $border-8;
-          border-bottom-right-radius: $border-8;
           background-color: $light-purple;
+          border: none;
+          border-radius: 0 $border-8 $border-8 0;
+          height: 100%;
           min-width: 150px;
           transition-delay: 0.12s;
           transition-property: border-bottom-right-radius;
@@ -59,7 +53,7 @@
       }
     }
 
-    .search-form-expanded{
+    .search-form-expanded {
       input {
         border-bottom-left-radius: 0;
         transition-delay: -1.1s;
@@ -76,25 +70,24 @@
         }
       }
     }
-
   }
 
   .search-suffix {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    box-shadow: 0 7px 9px 0 rgba(100, 100, 111, 0.2);
     border-bottom-left-radius: $border-8;
     border-bottom-right-radius: $border-8;
-    
+    box-shadow: 0 7px 9px 0 rgba(100, 100, 111, 0.2);
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+
     .search-results {
-      height: 0;
-      overflow: auto;
       background-color: $light-purple;
-      transition: all 0.3s ease-in-out;
       border-bottom-left-radius: $border-8;
       border-bottom-right-radius: $border-8;
+      height: 0;
+      overflow: auto;
+      transition: all 0.3s ease-in-out;
 
       .placeholder-text {
         width: 100%;
@@ -105,29 +98,29 @@
       }
 
       .loading-text {
-        width: 100%;
+        background-color: $light-purple;
         height: 100%;
         position: absolute;
-        background-color: $light-purple;
+        width: 100%;
         z-index: 3;
 
         .spinner {
           height: 40px;
 
           & > div {
+            animation: stretch-delay 1.2s infinite ease-in-out;
+            background-color: $cadet;
+            display: inline-block;
+            height: 100%;
             margin: 0 1px;
             width: 4px;
-            height: 100%;
-            display: inline-block;
-            background-color: $cadet;
-            animation: stretch-delay 1.2s infinite ease-in-out;
 
             &:nth-child(2) {
               animation-delay: -1.1s;
             }
 
             &:nth-child(3) {
-              animation-delay: -1.0s;
+              animation-delay: -1s;
             }
 
             &:nth-child(4) {
@@ -140,11 +133,13 @@
           }
 
           @keyframes stretch-delay {
-            0%, 40%, 100% {
+            0%,
+            40%,
+            100% {
               transform: scaleY(0.4);
             }
             20% {
-              transform: scaleY(1.0);
+              transform: scaleY(1);
             }
           }
         }

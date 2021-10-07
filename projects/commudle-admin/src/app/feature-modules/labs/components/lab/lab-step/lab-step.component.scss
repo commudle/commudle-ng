@@ -1,7 +1,7 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
-$title: #2F2E41;
-$content: #231F20;
+$title: #2f2e41;
+$content: #231f20;
 
 $spacing: 16px;
 
@@ -39,7 +39,8 @@ $spacing: 16px;
         }
       }
 
-      p, li {
+      p,
+      li {
         color: $content;
         font-size: 1.1rem;
         line-height: 1.5rem;
@@ -57,7 +58,3 @@ $spacing: 16px;
     width: 80vw;
   }
 }
-
-
-
-

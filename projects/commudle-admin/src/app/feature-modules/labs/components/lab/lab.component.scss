@@ -1,15 +1,16 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .lab {
-  width: 100%;
   background: $light-purple;
   padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
+  width: 100%;
 
   .body {
-    max-width: 1152px;
     margin: 0 auto;
+    max-width: 1152px;
 
-    nb-sidebar, .toggle-details {
+    nb-sidebar,
+    .toggle-details {
       display: none;
     }
 
@@ -17,9 +18,9 @@
       width: 100%;
 
       nb-card {
-        min-height: 80vh;
         border: none;
         margin: 0 $space-16 $space-16;
+        min-height: 80vh;
 
         nb-card-body {
           padding: $space-64;
@@ -50,9 +51,9 @@
                 }
 
                 .details {
-                  width: max-content;
-                  height: max-content;
                   font-style: italic;
+                  height: max-content;
+                  width: max-content;
 
                   p {
                     font-size: $fs-h5;
@@ -60,7 +61,10 @@
                     margin: 0 $space-16 0 $space-8;
                   }
 
-                  a, a:hover, a:focus, a:active {
+                  a,
+                  a:hover,
+                  a:focus,
+                  a:active {
                     text-decoration: none;
                   }
 
@@ -146,7 +150,8 @@
                   }
                 }
 
-                p, li {
+                p,
+                li {
                   color: $raisin-black;
                   font-size: 1.1rem;
                   line-height: 1.5rem;

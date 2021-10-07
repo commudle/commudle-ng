@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>ActionCableConnectionSocket</li>
+  <li >ActionCableConnectionSocket</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,18 +78,18 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#acSocket">acSocket</a>
+                                <a href="#acSocket" >acSocket</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#acSocket$">acSocket$</a>
+                                <a href="#acSocket$" >acSocket$</a>
                             </li>
                             <li>
-                                <a href="#actionCable">actionCable</a>
+                                <a href="#actionCable" >actionCable</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#baseAcUrl">baseAcUrl</a>
+                                <a href="#baseAcUrl" >baseAcUrl</a>
                             </li>
                         </ul>
                     </td>
@@ -102,16 +104,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#connectToServer">connectToServer</a>
+                                <a href="#connectToServer" >connectToServer</a>
                             </li>
                             <li>
-                                <a href="#getBaseUrl">getBaseUrl</a>
+                                <a href="#getBaseUrl" >getBaseUrl</a>
                             </li>
                             <li>
-                                <a href="#getRoute">getRoute</a>
+                                <a href="#getRoute" >getRoute</a>
                             </li>
                             <li>
-                                <a href="#setBaseUrl">setBaseUrl</a>
+                                <a href="#setBaseUrl" >setBaseUrl</a>
                             </li>
                         </ul>
                     </td>
@@ -131,7 +133,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html">LibAuthwatchService</a>)</code>
+<code>constructor(authWatchService: <a href="../injectables/LibAuthwatchService.html" target="_self">LibAuthwatchService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -185,9 +187,7 @@
                 <td class="col-md-4">
                     <a name="connectToServer"></a>
                     <span class="name">
-                        <b>
-                            connectToServer
-                        </b>
+                        <span ><b>connectToServer</b></span>
                         <a href="#connectToServer"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -224,9 +224,7 @@
                 <td class="col-md-4">
                     <a name="getBaseUrl"></a>
                     <span class="name">
-                        <b>
-                            getBaseUrl
-                        </b>
+                        <span ><b>getBaseUrl</b></span>
                         <a href="#getBaseUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -263,9 +261,7 @@
                 <td class="col-md-4">
                     <a name="getRoute"></a>
                     <span class="name">
-                        <b>
-                            getRoute
-                        </b>
+                        <span ><b>getRoute</b></span>
                         <a href="#getRoute"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -290,6 +286,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -333,9 +330,7 @@
                 <td class="col-md-4">
                     <a name="setBaseUrl"></a>
                     <span class="name">
-                        <b>
-                            setBaseUrl
-                        </b>
+                        <span ><b>setBaseUrl</b></span>
                         <a href="#setBaseUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -360,6 +355,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -400,123 +396,119 @@
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acSocket"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>acSocket</b></span>
+                        <a href="#acSocket"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="acSocket"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            acSocket</b>
-                            <a href="#acSocket"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>BehaviorSubject&lt;actionCable.Cable&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject(null)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>BehaviorSubject&lt;actionCable.Cable&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:14</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject(null)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:14</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acSocket$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>acSocket$</b></span>
+                        <a href="#acSocket$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="acSocket$"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            acSocket$</b>
-                            <a href="#acSocket$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Observable&lt;actionCable.Cable&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.acSocket.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>Observable&lt;actionCable.Cable&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:15</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>this.acSocket.asObservable()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:15</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actionCable"></a>
+                    <span class="name">
+                        <span ><b>actionCable</b></span>
+                        <a href="#actionCable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="actionCable"></a>
-                        <span class="name">
-                            <b>
-                            actionCable</b>
-                            <a href="#actionCable"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>actionCable</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>actionCable</code>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:13</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:13</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="baseAcUrl"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            baseAcUrl</b>
-                            <a href="#baseAcUrl"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:12</a></div>
-                            </td>
-                        </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseAcUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>baseAcUrl</b></span>
+                        <a href="#baseAcUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/shared-services/action-cable-connection.socket.ts:12</a></div>
+                        </td>
+                    </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -576,14 +568,14 @@ export class ActionCableConnectionSocket {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -604,9 +596,9 @@ export class ActionCableConnectionSocket {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -34,7 +35,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li>AppRoutingModule</li>
+    <li >AppRoutingModule</li>
 </ol>
 
 
@@ -60,6 +61,7 @@
 
 
 
+
         <div class="container-fluid module">
             <div class="row">
             </div>
@@ -72,17 +74,18 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
-import { LibErrorHandlerComponent } from &#x27;projects/lib-error-handler/src/public-api&#x27;;
+import { Error404PageComponent, LibErrorHandlerComponent } from &#x27;projects/lib-error-handler/src/public-api&#x27;;
 import { EUserRoles } from &#x27;projects/shared-models/enums/user_roles.enum&#x27;;
 import { AuthGuard } from &#x27;projects/shared-services/lib-authwatch.guard&#x27;;
+import { CommunitiesComponent } from &#x27;./components/communities/communities.component&#x27;;
 import { FillDataFormComponent } from &#x27;./components/fill-data-form/fill-data-form.component&#x27;;
 import { AboutComponent } from &#x27;./components/home/about/about.component&#x27;;
-import { CommunitiesComponent } from &#x27;./components/home/communities/communities.component&#x27;;
 import { FeaturesComponent } from &#x27;./components/home/features/features.component&#x27;;
 import { HomeComponent } from &#x27;./components/home/home.component&#x27;;
 import { LogoutComponent } from &#x27;./components/logout/logout.component&#x27;;
 import { SpeakerResourceFormComponent } from &#x27;./components/speaker-resource-form/speaker-resource-form.component&#x27;;
 import { MainNewsletterComponent } from &#x27;./feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component&#x27;;
+import { RedirectToMyProfileGuard } from &#x27;./feature-modules/users/services/guards/redirect-to-my-profile.guard&#x27;;
 import { InitResolver } from &#x27;./resolvers/init.resolver&#x27;;
 
 const routes &#x3D; [
@@ -105,6 +108,12 @@ const routes &#x3D; [
   {
     path: &#x27;communities&#x27;,
     component: CommunitiesComponent,
+  },
+  {
+    path: &#x27;my-profile&#x27;,
+    canActivate: [AuthGuard, RedirectToMyProfileGuard],
+    pathMatch: &#x27;full&#x27;,
+    children: [],
   },
   {
     path: &#x27;communities/:community_id&#x27;,
@@ -226,9 +235,11 @@ const routes &#x3D; [
       },
     ],
   },
+
   { path: &#x27;logout&#x27;, component: LogoutComponent },
   { path: &#x27;error&#x27;, component: LibErrorHandlerComponent },
-  { path: &#x27;**&#x27;, redirectTo: &#x27;/error&#x27; },
+  { path: &#x27;404&#x27;, component: Error404PageComponent },
+  { path: &#x27;**&#x27;, redirectTo: &#x27;/404&#x27; },
 ];
 
 @NgModule({
@@ -239,7 +250,7 @@ const routes &#x3D; [
     }),
   ],
   exports: [RouterModule],
-  providers: [InitResolver],
+  providers: [InitResolver, RedirectToMyProfileGuard],
 })
 export class AppRoutingModule {}
 
@@ -259,14 +270,14 @@ export class AppRoutingModule {}
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -287,9 +298,9 @@ export class AppRoutingModule {}
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

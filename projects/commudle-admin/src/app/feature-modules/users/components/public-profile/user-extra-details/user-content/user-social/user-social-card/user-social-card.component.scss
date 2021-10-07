@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
   margin: 0;
@@ -77,7 +77,6 @@ p {
 
 @media all and (max-width: $tab-width) {
   .user-social-card {
-
     nb-card-body {
       flex-direction: column;
 

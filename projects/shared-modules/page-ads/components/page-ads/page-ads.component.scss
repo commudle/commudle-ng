@@ -1,8 +1,8 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
-  margin: 0;
   color: $gunmetal;
+  margin: 0;
 }
 
 //*::-webkit-scrollbar {
@@ -17,15 +17,15 @@ p {
 //}
 
 .page-ads-container {
-  border: none;
-  overflow: hidden;
   background-color: transparent;
+  border: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  overflow: hidden;
 
   a {
-    text-decoration: none;
     color: initial;
+    text-decoration: none;
 
     //.carousel {
     //  position: relative;
@@ -112,6 +112,7 @@ p {
       overflow: hidden;
 
       img {
+        display: block;
         width: 100%;
       }
     }
@@ -121,14 +122,14 @@ p {
 
       .title {
         font-size: $fs-h5;
-        line-height: 16px;
         font-weight: $fw-600;
+        line-height: 16px;
       }
 
       .content {
-        margin-top: $space-4;
         font-size: $fs-h6;
         line-height: 14px;
+        margin-top: $space-4;
       }
     }
   }

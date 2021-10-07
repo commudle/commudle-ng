@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .community-group-form {
   .header {
@@ -7,35 +7,35 @@
     }
   }
   .form {
-    max-width: 1000px;
     margin: 0 auto;
+    max-width: 1000px;
     form {
-      div[role="group"] {
-        >div {
+      div[role='group'] {
+        > div {
           margin-bottom: $space-16;
         }
       }
       .logo {
-        margin-top: 1.5rem;
         margin-bottom: 1.5rem;
+        margin-top: 1.5rem;
         label {
-          position: relative;
           padding: 150px 0;
+          position: relative;
 
-          >span {
-            height: 100%;
+          > span {
+            align-items: center;
+            color: grey;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
             font-size: 1.5rem;
+
             font-weight: 300;
-            color: grey;
+            height: 100%;
+            justify-content: center;
 
             nb-icon {
               font-size: 4rem;
-              margin-bottom: 0.5rem
+              margin-bottom: 0.5rem;
             }
           }
 
@@ -58,8 +58,6 @@
           text-align: center;
         }
       }
-
     }
   }
-
 }

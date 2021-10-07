@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>UserMessagesService</li>
+  <li >UserMessagesService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,16 +78,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getPersonalChatDiscussionMessages">getPersonalChatDiscussionMessages</a>
+                                <a href="#getPersonalChatDiscussionMessages" >getPersonalChatDiscussionMessages</a>
                             </li>
                             <li>
-                                <a href="#getTrackSlotDiscussionQuestions">getTrackSlotDiscussionQuestions</a>
+                                <a href="#getTrackSlotDiscussionQuestions" >getTrackSlotDiscussionQuestions</a>
                             </li>
                             <li>
-                                <a href="#pGetCommunityChannelDiscussionMessages">pGetCommunityChannelDiscussionMessages</a>
+                                <a href="#pGetCommunityChannelDiscussionMessages" >pGetCommunityChannelDiscussionMessages</a>
                             </li>
                             <li>
-                                <a href="#pGetDiscussionChatMessages">pGetDiscussionChatMessages</a>
+                                <a href="#pGetDiscussionChatMessages" >pGetDiscussionChatMessages</a>
                             </li>
                         </ul>
                     </td>
@@ -105,7 +107,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html">ApiRoutesService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html" target="_self">ApiRoutesService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -171,9 +173,7 @@
                 <td class="col-md-4">
                     <a name="getPersonalChatDiscussionMessages"></a>
                     <span class="name">
-                        <b>
-                            getPersonalChatDiscussionMessages
-                        </b>
+                        <span ><b>getPersonalChatDiscussionMessages</b></span>
                         <a href="#getPersonalChatDiscussionMessages"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -198,6 +198,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -255,9 +256,7 @@
                 <td class="col-md-4">
                     <a name="getTrackSlotDiscussionQuestions"></a>
                     <span class="name">
-                        <b>
-                            getTrackSlotDiscussionQuestions
-                        </b>
+                        <span ><b>getTrackSlotDiscussionQuestions</b></span>
                         <a href="#getTrackSlotDiscussionQuestions"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -282,6 +281,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -339,9 +339,7 @@
                 <td class="col-md-4">
                     <a name="pGetCommunityChannelDiscussionMessages"></a>
                     <span class="name">
-                        <b>
-                            pGetCommunityChannelDiscussionMessages
-                        </b>
+                        <span ><b>pGetCommunityChannelDiscussionMessages</b></span>
                         <a href="#pGetCommunityChannelDiscussionMessages"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -366,6 +364,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -423,9 +422,7 @@
                 <td class="col-md-4">
                     <a name="pGetDiscussionChatMessages"></a>
                     <span class="name">
-                        <b>
-                            pGetDiscussionChatMessages
-                        </b>
+                        <span ><b>pGetDiscussionChatMessages</b></span>
                         <a href="#pGetDiscussionChatMessages"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -450,6 +447,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -569,14 +567,14 @@ export class UserMessagesService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -597,9 +595,9 @@ export class UserMessagesService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
