@@ -175,27 +175,38 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   scrollToMessage(message: IUserMessage) {
-    // this.communityChannelsService.getDiscussionMessagesForScroll(this.discussion.parent_id, message.id, this.nextPage, this.pageSize).subscribe((response) => {
-    //   console.log(response)
-    //   this.messages = response.user_messages
-    //   console.log(response.user_messages)
-    // })
-    // const idx = this.messages.findIndex((msg) => msg.id === message.id);
-    // if(idx === -1){
-    // }
-    // else{
-    // }
-    // let messageElement = document.getElementById(message.id.toString());
-    //     messageElement.scrollIntoView({
-    //       behavior: 'auto',
-    //       block: 'center',
-    //       inline: 'center'
-    //     });
-    //     this.highlightMessageId = message.id;
-    //     this.highlightMessage = true;
-    //     setTimeout(() => {
-    //       this.highlightMessage = false;
-    //     }, 1000);
+    const idx = this.messages.findIndex((msg) => msg.id === message.id);
+    if (idx === -1) {
+      this.communityChannelsService
+        .getDiscussionMessagesForScroll(this.discussion.parent_id, message.id, this.nextPage, this.pageSize)
+        .subscribe((response) => {
+          console.log(response.user_messages);
+          this.messages = response.user_messages.reverse();
+          let messageElement = document.getElementById(message.id.toString());
+          messageElement.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center',
+          });
+          this.highlightMessageId = message.id;
+          this.highlightMessage = true;
+          setTimeout(() => {
+            this.highlightMessage = false;
+          }, 1000);
+        });
+    } else {
+      let messageElement = document.getElementById(message.id.toString());
+      messageElement.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center',
+      });
+      this.highlightMessageId = message.id;
+      this.highlightMessage = true;
+      setTimeout(() => {
+        this.highlightMessage = false;
+      }, 1000);
+    }
   }
 
   sendMessageByEmail(userMessageId) {

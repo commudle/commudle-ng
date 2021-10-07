@@ -74,7 +74,7 @@
     }
 
     .author-details-container {
-      width: 70%;
+      width: 100%;
       .author-details {
         p {
           color: grey;
@@ -83,7 +83,6 @@
       }
 
       .content {
-        overflow: hidden;
         white-space: pre-wrap;
         word-break: break-word;
       }
