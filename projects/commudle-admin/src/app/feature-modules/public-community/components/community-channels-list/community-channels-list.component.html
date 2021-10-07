@@ -1,5 +1,35 @@
 <div>
-  <a [routerLink]="['/communities', this.community.slug, 'channels']" ghost nbButton status="link">
-    Visit All Channels
-  </a>
+  <nb-card>
+    <nb-card-body>
+      <div *ngIf="channels.length > 0" class="channels d-flex flex-wrap justify-content-center">
+        <a
+          *ngFor="let channel of channels"
+          [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]"
+          class="clickable"
+        >
+          <nb-card class="channel">
+            <nb-card-body class="d-flex">
+              <div class="header-image d-flex align-items-center justify-content-center">
+                <img alt="{{ channel.name }}" src="{{ channel.logo || communityLogo }}" title="{{ channel.name }}" />
+              </div>
+              <div class="details">
+                <h5>
+                  {{ channel.name }}
+                </h5>
+                <p class="member-count">Member Count : {{ channel.member_count }}</p>
+                <p class="com-line-clamp-4 com-pr-2 com-text-justify">
+                  {{ channel.description }}
+                </p>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </a>
+      </div>
+      <div class="visit-all">
+        <a [routerLink]="['/communities', this.community.slug, 'channels']" ghost nbButton status="link">
+          Visit All Channels
+        </a>
+      </div>
+    </nb-card-body>
+  </nb-card>
 </div>
