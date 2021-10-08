@@ -214,7 +214,9 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   inviteToStage(userId: number): void {
     if (userId) {
-      const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => JSON.parse(peer.customerDescription).id === userId);
+      const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => {
+        return peer.customerDescription && JSON.parse(peer.customerDescription)?.id === userId;
+      });
       if (peers.length > 0) {
         const roleName: string = peers[0].roleName;
         const name: string = JSON.parse(peers[0].customerDescription).name;
