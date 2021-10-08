@@ -181,6 +181,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   openEditForm(): void {
     this.editMessageTemplateRef = this.nbWindowService.open(this.editMessageTemplate, {
       title: 'Edit your message',
+      windowClass: 'remove-overflow-mention',
     });
   }
 
