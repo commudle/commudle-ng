@@ -7,98 +7,98 @@ nb-card {
   nb-card-body {
     padding: 0;
 
-    .visit-all {
-      display: flex;
-      justify-content: center;
-    }
-  }
-}
+    .channels {
+      background-color: $white;
+      padding: $space-32 0;
+      border-radius: $border-10;
+      gap: $space-32;
 
-.channels {
-  background-color: $white;
-  padding: $space-32 0;
-  border-radius: $border-10;
-  gap: $space-32;
+      a {
+        text-decoration: none;
+        position: relative;
+      }
 
-  a {
-    text-decoration: none;
-    position: relative;
-  }
-
-  nb-card {
-    height: 207px;
-    border: 1px solid $silver-sand;
-    margin: 0;
-    overflow: hidden;
-  }
-
-  .channel {
-    width: 768px;
-
-    &:hover {
-      box-shadow: 0 2px 5px 1px $lightgrey;
-    }
-
-    nb-card-body {
-      .header-image {
-        margin-right: $space-24;
-        width: 220px;
-        min-width: 220px;
-        height: 134px;
+      nb-card {
+        height: 128px;
+        border: 1px solid $silver-sand;
+        margin: 0;
         overflow: hidden;
-        margin-top: auto;
-        margin-bottom: auto;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
       }
 
-      .details {
-        h5 {
-          color: $gunmetal;
-          margin: $space-24 0 $space-8 0;
-          line-height: 21px;
-          font-size: $fs-18;
-          font-weight: $fw-600;
+      .channel {
+        width: 768px;
+
+        &:hover {
+          box-shadow: 0 2px 5px 1px $lightgrey;
         }
 
-        .member-count {
-          line-height: 0.75rem;
-        }
-      }
-    }
-  }
+        nb-card-body {
+          .header-image {
+            margin-right: $space-24;
+            width: 220px;
+            min-width: 220px;
 
-  @media all and (max-width: $mobile-width) {
-    padding: $space-40 $space-20 $space-20 $space-20;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
 
-    .channel {
-      width: 318px;
-      height: 410px;
+          .details {
+            h5 {
+              color: $gunmetal;
+              margin: $space-12 0 $space-8 0;
+              line-height: 21px;
+              font-size: $fs-18;
+              font-weight: $fw-600;
+            }
 
-      nb-card-body {
-        flex-direction: column;
+            .member-count {
+              line-height: 0.75rem;
+            }
 
-        .details {
-          padding: $space-10;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .header-image {
-          margin: 0;
-          width: 100%;
-          height: 160px;
-
-          img {
-            object-fit: contain;
+            .complete-description {
+              white-space: pre-wrap;
+            }
           }
         }
       }
+
+      @media all and (max-width: $mobile-width) {
+        padding: $space-40 $space-20 $space-20 $space-20;
+
+        .channel {
+          width: 318px;
+          height: 335px;
+
+          nb-card-body {
+            flex-direction: column;
+
+            .details {
+              padding: $space-10;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .header-image {
+              margin: 0;
+              width: 100%;
+              height: 160px;
+
+              img {
+                object-fit: contain;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .visit-all-channels {
+      display: flex;
+      justify-content: center;
     }
   }
 }

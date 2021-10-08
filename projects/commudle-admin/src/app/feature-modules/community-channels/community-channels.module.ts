@@ -42,6 +42,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 import { LinkyModule } from 'ngx-linky';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
+import { CommunityChannelsDashboardChannelListComponent } from './components/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MentionModule } from 'projects/shared-modules/mention/mention.module';
     NewCommunityChannelComponent,
     ArchiveChannelComponent,
     EmailJoinComponent,
+    CommunityChannelsDashboardChannelListComponent,
   ],
   imports: [
     CommonModule,

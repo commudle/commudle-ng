@@ -1,0 +1,79 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  margin: 0;
+  border: none;
+  height: 100%;
+
+  .channels-list-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-16;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      justify-content: center;
+
+      .channel-list-card {
+        position: relative;
+        width: 265px;
+        height: 296px;
+        border: 0.5px solid $silver-sand;
+        border-radius: $border-8;
+        padding: $space-16;
+
+        .prefix {
+          .image {
+            min-width: 48px;
+            width: 48px;
+            height: 48px;
+            border: 0.5px solid $silver-sand;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              width: 100%;
+              height: inherit;
+              object-fit: contain;
+            }
+          }
+
+          .details {
+            margin-left: $space-8;
+
+            .name {
+              font-weight: $fw-600;
+              font-size: $fs-h5;
+              line-height: 16px;
+              color: $gunmetal;
+            }
+
+            .member-count {
+              font-style: italic;
+              font-size: $fs-h6;
+              line-height: 14px;
+              color: #777777;
+            }
+          }
+        }
+
+        .about {
+          margin-top: $space-16;
+          font-size: $fs-h6;
+          line-height: 14px;
+          color: rgba($gunmetal, 0.85);
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: $tab-width) {
+    .channels-list-cards {
+      flex-wrap: nowrap;
+      overflow: scroll;
+    }
+  }
+}

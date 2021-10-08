@@ -1,0 +1,21 @@
+<nb-card *ngIf="channels.length > 0">
+  <nb-card-header> All Channels </nb-card-header>
+  <nb-card-body class="channels-list-cards">
+    <ng-container *ngFor="let channel of channels">
+      <a [routerLink]="[channel.id]">
+        <div class="channel-list-card">
+          <div class="prefix d-flex">
+            <div class="image">
+              <img alt="{{ channel.name }}" src="{{ channel.logo || communityLogo }}" title="{{ channel.name }}" />
+            </div>
+            <div class="details">
+              <div class="name">{{ channel.name | truncatetext: 30 }}</div>
+              <div class="member-count">{{ channel.member_count }} Members</div>
+            </div>
+          </div>
+          <div [innerHTML]="channel.description | linky: { sanitizeHtml: true }" class="about com-line-clamp-15"></div>
+        </div>
+      </a>
+    </ng-container>
+  </nb-card-body>
+</nb-card>

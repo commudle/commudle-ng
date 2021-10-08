@@ -17,15 +17,16 @@
                   {{ channel.name }}
                 </h5>
                 <p class="member-count">Member Count : {{ channel.member_count }}</p>
-                <p class="com-line-clamp-4 com-pr-2 com-text-justify">
-                  {{ channel.description }}
-                </p>
+                <div
+                  [innerHTML]="channel.description | linky: { sanitizeHtml: true }"
+                  class="complete-description com-line-clamp-2"
+                ></div>
               </div>
             </nb-card-body>
           </nb-card>
         </a>
       </div>
-      <div class="visit-all">
+      <div class="visit-all-channels">
         <a [routerLink]="['/communities', this.community.slug, 'channels']" ghost nbButton status="link">
           Visit All Channels
         </a>
