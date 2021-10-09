@@ -12,6 +12,7 @@ import {
 import { NbMenuService, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { Match } from 'autolinker';
 import * as moment from 'moment';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
@@ -187,7 +188,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   highlightUserMentions(match: Match): string {
     switch (match.getType()) {
       case 'mention':
-        return `<a href="https://commudle.com/users/${match
+        return `<a href="${environment.app_url}/users/${match
           .getMatchedText()
           .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
     }
