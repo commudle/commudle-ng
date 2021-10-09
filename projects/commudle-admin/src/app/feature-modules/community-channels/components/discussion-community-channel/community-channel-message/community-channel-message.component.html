@@ -16,7 +16,9 @@
       <!-- TODO: Handle if script tag is in message content -->
       <div
         [innerHTML]="
-          message.content | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
+          message.content
+            | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
+            | safeHtml
         "
         class="content"
       ></div>
