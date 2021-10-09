@@ -59,6 +59,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   joinedAsHost: boolean;
 
   isOnStage: boolean;
+  enableHmsForStage: boolean;
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
   isRecording: boolean;
@@ -162,34 +163,50 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   };
 
   subscribeToMediaDevices(): void {
-    this.subscriptions.push(
-      combineLatest(
-        this.localMediaV2Service.audioInputDeviceId$,
-        this.localMediaV2Service.videoDeviceId$,
-        this.localMediaV2Service.isAudioEnabled$,
-        this.localMediaV2Service.isVideoEnabled$,
-      ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
-        if (this.selectedAudioInputDeviceId !== audioInputDeviceId) {
-          this.selectedAudioInputDeviceId = audioInputDeviceId;
-          hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
-        }
+    if (this.enableHmsForStage) {
+      this.enableHmsForStage = false;
 
-        if (this.selectedVideoDeviceId !== videoDeviceId) {
-          this.selectedVideoDeviceId = videoDeviceId;
-          hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
-        }
+      this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
+      this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
+      this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
+      this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
 
-        if (this.isAudioEnabled !== isAudioEnabled) {
-          this.isAudioEnabled = isAudioEnabled;
-          hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
-        }
+      hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
+      hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
+      hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
+      hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+    } else {
+      this.subscriptions.push(
+        combineLatest(
+          this.localMediaV2Service.audioInputDeviceId$,
+          this.localMediaV2Service.videoDeviceId$,
+          this.localMediaV2Service.isAudioEnabled$,
+          this.localMediaV2Service.isVideoEnabled$,
+        ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
+          if (!this.enableHmsForStage) {
+            if (this.selectedAudioInputDeviceId !== audioInputDeviceId) {
+              this.selectedAudioInputDeviceId = audioInputDeviceId;
+              hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
+            }
 
-        if (this.isVideoEnabled !== isVideoEnabled) {
-          this.isVideoEnabled = isVideoEnabled;
-          hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
-        }
-      }),
-    );
+            if (this.selectedVideoDeviceId !== videoDeviceId) {
+              this.selectedVideoDeviceId = videoDeviceId;
+              hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
+            }
+
+            if (this.isAudioEnabled !== isAudioEnabled) {
+              this.isAudioEnabled = isAudioEnabled;
+              hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
+            }
+
+            if (this.isVideoEnabled !== isVideoEnabled) {
+              this.isVideoEnabled = isVideoEnabled;
+              hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+            }
+          }
+        }),
+      );
+    }
   }
 
   toggleAudio(): void {
@@ -287,6 +304,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
             hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
             this.isOnStage = true;
             this.joinedAsHost = true;
+            this.enableHmsForStage = true;
           }
         });
         break;
