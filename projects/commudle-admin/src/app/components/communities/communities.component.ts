@@ -18,7 +18,10 @@ export class CommunitiesComponent implements OnInit {
 
   setMeta(): void {
     this.title.setTitle('Communities & Experts');
-    this.meta.updateTag({ name: 'description', content: `Find the Developer Communities you want to join, or build your own! Grow your Developer network.` });
+    this.meta.updateTag({
+      name: 'description',
+      content: `Find the Developer Communities you want to join, or build your own! Grow your Developer network.`,
+    });
 
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
     this.meta.updateTag({

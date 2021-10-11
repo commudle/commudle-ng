@@ -1,27 +1,66 @@
+/* BASE LAYOUT */
+
 /*
-This is a class for three column layout where the middle column occupies twice the space as compared to other columns
+HTML Emmet's
+1. div.base-layout>div.container
+ */
+.base-layout {
+  @apply com-min-h-screen com-max-w-screen-xl com-mx-auto;
+}
+
+.container {
+  @apply com-container;
+}
+
+/* GRID LAYOUT */
+
+@mixin grid-layout {
+  @apply com-grid com-grid-cols-12;
+}
+
+/*
+HTML Emmet's
+1. div.three-column-layout>div*3
  */
 .three-column-layout {
-  @apply com-grid com-grid-cols-4;
+  @include grid-layout;
 
-  // First column and third column will have a span of 1 while second column will have a span of 2
   & > *:nth-child(1),
   & > *:nth-child(3) {
-    @apply com-col-span-1;
+    @apply com-col-span-3;
   }
 
   & > *:nth-child(2) {
-    @apply com-col-span-2;
+    @apply com-col-span-6;
   }
 }
 
 /*
-This is a class for one column layout where the column occupies 100% width
+HTML Emmet's
+1. div.two-column-layout>div.left-column+div.main-column
+2. div.two-column-layout>div.main-column+div.right-column
+ */
+.two-column-layout {
+  @include grid-layout;
+
+  .left-column,
+  .right-column {
+    @apply com-col-span-2;
+  }
+
+  .main-column {
+    @apply com-col-span-10;
+  }
+}
+
+/*
+HTML Emmet's
+1. div.one-column-layout
  */
 .one-column-layout {
-  @apply com-grid com-grid-cols-1;
+  @include grid-layout;
 
   & > * {
-    @apply com-col-span-1;
+    @apply com-col-span-12;
   }
 }
