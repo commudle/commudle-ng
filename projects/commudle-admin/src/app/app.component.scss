@@ -22,7 +22,7 @@
     }
 
     .home-navbar-container {
-      width: 1120px;
+      width: calc(1280px - 16px);
 
       app-search-bar {
         flex: 1;
