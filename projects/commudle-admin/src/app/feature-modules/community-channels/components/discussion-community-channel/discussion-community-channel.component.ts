@@ -55,8 +55,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
-  highlightMessage;
-  highlightMessageId;
+  // highlightMessage;
+  // highlightMessageId;
 
   constructor(
     private fb: FormBuilder,
@@ -70,13 +70,13 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   ) {}
 
   ngOnInit() {
-    this.subscriptions.push(
-      this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
-        if (message) {
-          this.scrollToMessage(message);
-        }
-      }),
-    );
+    // this.subscriptions.push(
+    //   this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
+    //     if (message) {
+    //       this.scrollToMessage(message);
+    //     }
+    //   }),
+    // );
   }
 
   ngOnChanges() {
@@ -174,40 +174,40 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     }
   }
 
-  scrollToMessage(message: IUserMessage) {
-    const idx = this.messages.findIndex((msg) => msg.id === message.id);
-    if (idx === -1) {
-      this.communityChannelsService
-        .getDiscussionMessagesForScroll(this.discussion.parent_id, message.id, this.nextPage, this.pageSize)
-        .subscribe((response) => {
-          console.log(response.user_messages);
-          this.messages = response.user_messages.reverse();
-          let messageElement = document.getElementById(message.id.toString());
-          messageElement.scrollIntoView({
-            behavior: 'auto',
-            block: 'center',
-            inline: 'center',
-          });
-          this.highlightMessageId = message.id;
-          this.highlightMessage = true;
-          setTimeout(() => {
-            this.highlightMessage = false;
-          }, 1000);
-        });
-    } else {
-      let messageElement = document.getElementById(message.id.toString());
-      messageElement.scrollIntoView({
-        behavior: 'auto',
-        block: 'center',
-        inline: 'center',
-      });
-      this.highlightMessageId = message.id;
-      this.highlightMessage = true;
-      setTimeout(() => {
-        this.highlightMessage = false;
-      }, 1000);
-    }
-  }
+  // scrollToMessage(message: IUserMessage) {
+  //   const idx = this.messages.findIndex((msg) => msg.id === message.id);
+  //   if (idx === -1) {
+  //     this.communityChannelsService
+  //       .getDiscussionMessagesForScroll(this.discussion.parent_id, message.id, this.nextPage, this.pageSize)
+  //       .subscribe((response) => {
+  //         console.log(response.user_messages);
+  //         this.messages = response.user_messages.reverse();
+  //         let messageElement = document.getElementById(message.id.toString());
+  //         messageElement.scrollIntoView({
+  //           behavior: 'auto',
+  //           block: 'center',
+  //           inline: 'center',
+  //         });
+  //         this.highlightMessageId = message.id;
+  //         this.highlightMessage = true;
+  //         setTimeout(() => {
+  //           this.highlightMessage = false;
+  //         }, 1000);
+  //       });
+  //   } else {
+  //     let messageElement = document.getElementById(message.id.toString());
+  //     messageElement.scrollIntoView({
+  //       behavior: 'auto',
+  //       block: 'center',
+  //       inline: 'center',
+  //     });
+  //     this.highlightMessageId = message.id;
+  //     this.highlightMessage = true;
+  //     setTimeout(() => {
+  //       this.highlightMessage = false;
+  //     }, 1000);
+  //   }
+  // }
 
   sendMessageByEmail(userMessageId) {
     if (window.confirm(`Are you sure you want to send this to all members on their email?`)) {
