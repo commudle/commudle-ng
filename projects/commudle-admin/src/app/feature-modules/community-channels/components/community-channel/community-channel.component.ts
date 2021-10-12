@@ -32,7 +32,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   latestPinnedMessage: IUserMessage;
   moment = moment;
   isAdmin: boolean;
-  @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
+  //@ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -128,14 +128,14 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.communityChannelsService.unpinMessage(message.id, channelId).subscribe(() => {}));
   }
 
-  scrollToMessage(message: IUserMessage) {
-    this.communityChannelManagerService.setScrollToMessage(message);
-    this.popovers.forEach((popover) => {
-      if (popover.context === 'pinnedMessagesPopover') {
-        popover.hide();
-      }
-    });
-  }
+  // scrollToMessage(message: IUserMessage) {
+  //   this.communityChannelManagerService.setScrollToMessage(message);
+  //   this.popovers.forEach((popover) => {
+  //     if (popover.context === 'pinnedMessagesPopover') {
+  //       popover.hide();
+  //     }
+  //   });
+  // }
 
   initialize() {
     this.subscriptions.push(

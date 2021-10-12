@@ -78,7 +78,7 @@
     </div>
     <div class="message-controls">
       <fa-icon *ngIf="isAdmin" (click)="removePinnedMessage(latestPinnedMessage)" [icon]="faWindowClose"></fa-icon>
-      <button (click)="scrollToMessage(latestPinnedMessage)" nbButton outline size="tiny" status="info">Jump</button>
+      <!-- <button (click)="scrollToMessage(latestPinnedMessage)" nbButton outline size="tiny" status="info">Jump</button> -->
     </div>
   </div>
 
@@ -135,7 +135,7 @@
           </div>
           <div class="message-controls">
             <fa-icon (click)="removePinnedMessage(pinnedMessage)" [icon]="faWindowClose"></fa-icon>
-            <button (click)="scrollToMessage(pinnedMessage)" nbButton outline size="tiny" status="info">Jump</button>
+            <!-- <button (click)="scrollToMessage(pinnedMessage)" nbButton outline size="tiny" status="info">Jump</button> -->
           </div>
         </nb-list-item>
       </nb-list>
