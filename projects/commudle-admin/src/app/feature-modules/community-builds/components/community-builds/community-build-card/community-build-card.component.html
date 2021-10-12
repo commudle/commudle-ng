@@ -12,7 +12,7 @@
         [nbIcon]="CBuildTypeDisplay[communityBuild.build_type].icon"
         [text]="communityBuild.build_type | titlecase"
       ></app-badge>
-      <p class="date fs-p4">{{ communityBuild.created_at | date }}</p>
+      <p class="fs-p4">{{ communityBuild.created_at | date }}</p>
     </div>
     <div class="section">
       <h5 class="title fs-h5">{{ communityBuild.name }}</h5>
@@ -27,7 +27,7 @@
           [votableType]="'CommunityBuild'"
         ></app-votes-display>
         <div class="comments">
-          <span> {{ communityBuild.chat_messages_count || 0 }} </span>
+          <p class="fs-p3">{{ communityBuild.chat_messages_count || 0 }}</p>
           <nb-icon icon="message-circle-outline"></nb-icon>
         </div>
       </div>
