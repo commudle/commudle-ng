@@ -1,14 +1,18 @@
 .votes {
-  > p {
+  div {
+    font-size: 0.875rem;
     margin: 0;
 
     .count {
       color: grey;
+      display: inline-block;
+      font-size: 0.875rem;
+      margin: 0 2px 0 0;
     }
 
     nb-icon {
-      font-size: 1.2rem;
       color: #8080808c;
+      font-size: 1rem;
     }
 
     nb-icon.star.has-votes {
@@ -20,12 +24,12 @@
     }
 
     nb-icon.voted-heart {
-      color: #FF1E1ED6;
+      color: #ff1e1ed6;
     }
   }
 
   &.size-large {
-    > p {
+    div {
       font-size: 1.8rem;
 
       nb-icon {
