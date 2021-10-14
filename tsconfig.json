@@ -9,6 +9,7 @@
     "paths": {
       "lib-error-handler": ["dist/lib-error-handler/lib-error-handler", "dist/lib-error-handler"]
     },
+    "allowSyntheticDefaultImports": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

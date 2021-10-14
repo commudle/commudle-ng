@@ -161,6 +161,10 @@ const routes = [
       },
     ],
   },
+  {
+    path: 'public-pages',
+    loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
+  },
 
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },
