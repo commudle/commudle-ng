@@ -1,0 +1,180 @@
+//@import './projects/commudle-admin/src/assets/styles/variables';
+//
+//.about {
+//  margin: 0 auto;
+//  max-width: $max-page-width;
+//  padding: 1rem;
+//
+//  .page-header {
+//    h1 {
+//      font-size: 3.5rem;
+//      margin: 0;
+//    }
+//
+//    p {
+//      font-size: 1.2rem;
+//    }
+//  }
+//}
+
+.about {
+  background-color: white;
+
+  p {
+    color: #6b747b;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .header {
+    background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
+
+    a {
+      background-color: #594cda;
+      border: 1px solid #594cda;
+      border-radius: 32px;
+      color: #ffffff;
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 0;
+      margin: 0 0.25rem 1.25rem;
+      padding: 1.625rem 2.75rem 1.625rem 2.75rem;
+      transition: all 0.2s;
+    }
+
+    .primary-btn {
+      &:hover {
+        background-color: transparent;
+        border: 1px solid #594cda;
+        color: #594cda;
+      }
+    }
+
+    .secondary-btn {
+      background-color: #eb427e;
+      border: 1px solid #eb427e;
+
+      &:hover {
+        background: transparent;
+        border: 1px solid #eb427e;
+        color: #eb427e;
+      }
+    }
+  }
+
+  .content {
+    p {
+      @apply com-mb-4 com-text-gray-800 com-text-3xl com-leading-10 lg:com-max-w-5xl lg:com-mx-auto;
+    }
+  }
+
+  .features {
+    .card {
+      background-color: #f1f9fc;
+
+      h4 {
+        @apply com-my-1.5 com-font-bold;
+      }
+    }
+  }
+
+  .testimonials {
+    background-color: #f1f9fc;
+
+    .content {
+      @apply com-italic com-mb-3 com-mt-0;
+    }
+
+    .author {
+      @apply com-font-semibold com-m-0;
+      color: #252c38;
+    }
+  }
+
+  .pricing {
+    @apply com-relative com-pt-32 com-bg-cover com-text-center;
+    background: linear-gradient(rgba(50, 60, 70, 0.9), rgba(50, 60, 70, 0.9)),
+      url(https://inovatik.com/pavo-tw/images/pricing-background.jpg) center center no-repeat;
+
+    h2 {
+      @apply com-mb-2.5 com-mt-0 com-text-white lg:com-max-w-xl lg:com-mx-auto;
+    }
+
+    .subtitle {
+      @apply com-mb-16 com-mt-0 com-text-white lg:com-max-w-3xl lg:com-mx-auto;
+    }
+
+    .card {
+      @apply com-relative com-rounded-lg com-mb-24 com-pt-12 com-px-7 com-pb-9 lg:com-px-9 com-bg-white;
+      border: 1px solid #bcc4ca;
+
+      .title {
+        @apply com-mb-4 com-mt-0 com-text-2xl com-font-bold com-text-center;
+        color: #eb427e;
+      }
+
+      .price {
+        .currency {
+          @apply com-mr-1.5 com-text-3xl;
+          color: #252c38;
+          vertical-align: 80%;
+        }
+
+        .value {
+          @apply com-text-7xl com-font-semibold com-text-center;
+          color: #252c38;
+        }
+      }
+
+      .frequency {
+        @apply com-mb-6 com-mt-0 com-text-sm com-text-center;
+      }
+
+      .description {
+        @apply com-mb-5 com-mt-0 com-text-left;
+      }
+
+      .list {
+        li {
+          fa-icon {
+            @apply com-self-center;
+            color: #594cda;
+          }
+
+          p {
+            @apply com-inline-block com-my-0 com-ml-1.5 com-flex-1;
+          }
+        }
+      }
+
+      a {
+        background-color: #594cda;
+        border: 1px solid #594cda;
+        border-radius: 32px;
+        bottom: -1.5rem;
+        color: #ffffff;
+        display: inline-block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        left: 50%;
+        line-height: 0;
+        padding: 1.375rem 2.25rem;
+        position: absolute;
+        text-align: center;
+        transform: translateX(-50%);
+        transition: all 0.2s;
+        width: max-content;
+
+        &:hover {
+          background-color: #ffffff;
+          border: 1px solid #594cda;
+          color: #594cda;
+        }
+      }
+    }
+  }
+}

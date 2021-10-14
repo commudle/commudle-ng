@@ -22,7 +22,8 @@
     }
 
     .home-navbar-container {
-      width: calc(1280px - 16px);
+      width: calc(#{theme('screens.xl')} - 16px);
+      @apply com-mx-4;
 
       app-search-bar {
         flex: 1;
