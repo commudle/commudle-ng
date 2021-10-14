@@ -1,0 +1,58 @@
+p {
+  @apply com-m-0;
+}
+
+.community-build-card {
+  @apply com-p-4 com-flex com-flex-col md:com-flex-row com-no-underline com-rounded-lg com-overflow-hidden com-transition-shadow hover:com-shadow-lg;
+  border: 0.5px solid #c4c4c4;
+
+  img {
+    @apply com-w-full com-h-40 com-object-cover;
+
+    @screen md {
+      @apply com-w-40;
+      min-width: theme('width.40');
+    }
+  }
+
+  .details {
+    @apply com-px-4 com-pt-4 com-w-full;
+
+    @screen md {
+      @apply com-pt-0;
+    }
+
+    .prefix {
+      @apply com-flex com-justify-between com-items-center;
+    }
+
+    .section {
+      .title,
+      .content {
+        @apply com-my-2;
+      }
+
+      .content {
+        @apply com-line-clamp-2;
+      }
+    }
+
+    .suffix {
+      @apply com-flex com-justify-between com-items-center;
+
+      .interactions {
+        @apply com-flex com-gap-2 com-items-center;
+
+        .comments {
+          p {
+            @apply com-inline-block com-mr-0.5;
+          }
+
+          nb-icon {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

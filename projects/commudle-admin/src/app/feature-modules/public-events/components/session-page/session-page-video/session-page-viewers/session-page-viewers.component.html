@@ -15,7 +15,7 @@
     ></app-user-profile-mini>
     <button
       (click)="inviteToStage(user.id)"
-      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && currentUser.id !== user.id"
+      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && currentUser?.id !== user.id"
       class="invite-to-stage"
       ghost
       nbButton
