@@ -44,6 +44,8 @@
     "@nebular/eva-icons": "8.0.0",
     "@nebular/theme": "^8.0.0",
     "@nguniversal/express-engine": "^12.1.0",
+    "@sanity/block-content-to-html": "^2.0.0",
+    "@sanity/client": "^2.21.0",
     "@swimlane/ngx-datatable": "^20.0.0",
     "@tinymce/tinymce-angular": "^4.2.4",
     "actioncable": "^5.2.6",
