@@ -36,6 +36,7 @@
       fa-icon {
         cursor: pointer;
         margin-right: 10px;
+        color: $black;
       }
 
       nb-actions {
@@ -52,41 +53,12 @@
   }
 
   .latest-pinned-message {
-    background: white;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     padding: 0.5rem 0.5rem 1rem;
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
     height: 60px;
     overflow: hidden;
-
-    .author-image {
-      align-self: start;
-      display: flex;
-      margin-right: 5px;
-      width: 35px;
-
-      img {
-        width: 100%;
-      }
-    }
-
-    .author-details-container {
-      width: 100%;
-      .author-details {
-        p {
-          color: grey;
-          margin: 0 0 0.2rem;
-        }
-      }
-
-      .content {
-        white-space: pre-wrap;
-        word-break: break-word;
-      }
-    }
 
     .message-controls {
       margin-left: auto;
@@ -164,6 +136,7 @@
   height: auto;
   max-height: 368px;
   max-width: 450px;
+  border-radius: inherit;
 
   nb-card-body {
     padding: 0;
@@ -176,39 +149,6 @@
 
         &:last-child {
           border-bottom: none;
-        }
-
-        .message {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          justify-content: flex-start;
-
-          .author-image {
-            flex: 10%;
-            align-self: start;
-            display: flex;
-            margin-right: 5px;
-
-            img {
-              width: 100%;
-            }
-          }
-
-          .author-details-container {
-            flex: 90%;
-            .author-details {
-              p {
-                color: grey;
-                margin: 0 0 0.2rem;
-              }
-            }
-
-            .content {
-              white-space: pre-wrap;
-              word-break: break-word;
-            }
-          }
         }
 
         .message-controls {
@@ -244,4 +184,12 @@
   50% {
     background-color: initial;
   }
+}
+
+.with-latest-pinned-message {
+  height: calc(100% - 6rem);
+}
+
+.without-latest-pinned-message {
+  height: calc(100% - 2.5rem);
 }

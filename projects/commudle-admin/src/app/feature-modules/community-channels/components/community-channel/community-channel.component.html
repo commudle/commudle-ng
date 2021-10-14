@@ -23,7 +23,6 @@
         [nbPopover]="pinnedMessagesContainer"
         [nbPopoverContext]="'pinnedMessagesPopover'"
         [icon]="faThumbtack"
-        [style]="{ color: 'green' }"
         transform="rotate-45"
         size="lg"
       ></fa-icon>
@@ -50,39 +49,26 @@
     </div>
   </header>
 
-  <div class="latest-pinned-message" *ngIf="selectedChannel && latestPinnedMessage">
-    <div class="author-image">
-      <img
-        alt="{{ latestPinnedMessage.user.name }}"
-        [src]="latestPinnedMessage.user.avatar"
-        title="{{ latestPinnedMessage.user.name }}"
-      />
-    </div>
-    <div class="author-details-container">
-      <div class="author-details">
-        <p>
-          <strong>{{ latestPinnedMessage.user.name }}</strong>
-          &nbsp;
-          <small>{{ moment(latestPinnedMessage.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
-          &nbsp;
-          <small><em *ngIf="latestPinnedMessage.edited">(edited)</em></small>
-        </p>
-      </div>
-      <div
-        [innerHTML]="
-          latestPinnedMessage.content
-            | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
-        "
-        class="content com-line-clamp-1"
-      ></div>
-    </div>
+  <div class="latest-pinned-message" *ngIf="latestPinnedMessage && discussion">
+    <app-community-channel-message
+      [allActions]="allActions"
+      [message]="latestPinnedMessage"
+      [permittedActions]="permittedActions"
+      [roles]="channelRoles[discussion.parent_id]"
+      [lineClamp]="true"
+      [showMessageControls]="false"
+      [showPin]="false"
+    ></app-community-channel-message>
     <div class="message-controls">
       <fa-icon *ngIf="isAdmin" (click)="removePinnedMessage(latestPinnedMessage)" [icon]="faWindowClose"></fa-icon>
       <!-- <button (click)="scrollToMessage(latestPinnedMessage)" nbButton outline size="tiny" status="info">Jump</button> -->
     </div>
   </div>
 
-  <main [ngStyle]="{ height: latestPinnedMessage ? 'calc(100% - 6.0rem)' : 'calc(100% - 2.5rem)' }" *ngIf="discussion">
+  <main
+    [ngClass]="latestPinnedMessage ? 'with-latest-pinned-message' : 'without-latest-pinned-message'"
+    *ngIf="discussion"
+  >
     <div class="discussion">
       <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
     </div>
@@ -106,33 +92,14 @@
     <nb-card-body>
       <nb-list>
         <nb-list-item *ngFor="let pinnedMessage of pinnedMessages">
-          <div class="message">
-            <div class="author-image">
-              <img
-                alt="{{ pinnedMessage.user.name }}"
-                src="{{ pinnedMessage.user.avatar }}"
-                title="{{ pinnedMessage.user.name }}"
-              />
-            </div>
-            <div class="author-details-container">
-              <div class="author-details">
-                <p>
-                  <strong>{{ pinnedMessage.user.name }}</strong>
-                  &nbsp;
-                  <small>{{ moment(pinnedMessage.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
-                  &nbsp;
-                  <small><em *ngIf="pinnedMessage.edited">(edited)</em></small>
-                </p>
-              </div>
-              <div
-                [innerHTML]="
-                  pinnedMessage.content
-                    | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
-                "
-                class="content"
-              ></div>
-            </div>
-          </div>
+          <app-community-channel-message
+            [allActions]="allActions"
+            [message]="pinnedMessage"
+            [permittedActions]="permittedActions"
+            [roles]="channelRoles[discussion.parent_id]"
+            [showMessageControls]="false"
+            [showPin]="false"
+          ></app-community-channel-message>
           <div class="message-controls">
             <fa-icon (click)="removePinnedMessage(pinnedMessage)" [icon]="faWindowClose"></fa-icon>
             <!-- <button (click)="scrollToMessage(pinnedMessage)" nbButton outline size="tiny" status="info">Jump</button> -->

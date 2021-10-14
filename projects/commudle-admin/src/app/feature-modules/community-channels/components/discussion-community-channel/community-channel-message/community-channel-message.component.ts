@@ -22,6 +22,7 @@ import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -38,6 +39,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   @Input() permittedActions;
   @Input() allActions;
   @Input() currentUser: ICurrentUser;
+  @Input() lineClamp: boolean = false;
+  @Input() showMessageControls: boolean = true;
+  @Input() showPin: boolean = true;
   @Output() sendReply = new EventEmitter();
   @Output() sendAttachmentReply = new EventEmitter();
   @Output() sendUpdatedReply = new EventEmitter();
@@ -72,6 +76,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     private activatedRoute: ActivatedRoute,
     private communityChannelsService: CommunityChannelsService,
     private communityChannelManagerService: CommunityChannelManagerService,
+    private libToastLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {}
@@ -116,7 +121,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     );
 
     this.handleContextMenu();
-    this.togglePinMessageForOthers();
+    this.togglePinStatus();
   }
 
   ngOnDestroy(): void {
@@ -193,14 +198,18 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             case 'Pin Message': {
               let channelId = this.activatedRoute.snapshot.params.community_channel_id;
               this.subscriptions.push(
-                this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe(() => {}),
+                this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe(() => {
+                  this.libToastLogService.successDialog('Pinned Message Successfully!');
+                }),
               );
               break;
             }
             case 'Unpin Message': {
               let channelId = this.activatedRoute.snapshot.params.community_channel_id;
               this.subscriptions.push(
-                this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe(() => {}),
+                this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe(() => {
+                  this.libToastLogService.successDialog('Unpinned Message Successfully!');
+                }),
               );
               break;
             }
@@ -209,9 +218,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     );
   }
 
-  togglePinMessageForOthers() {
+  togglePinStatus() {
     this.subscriptions.push(
-      this.communityChannelManagerService.showPinnedMessage$.subscribe((data) => {
+      this.communityChannelManagerService.pinData$.subscribe((data) => {
         if (data) {
           switch (data.action) {
             case 'pin': {
@@ -232,7 +241,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     if (message.id === this.message.id) {
       this.message.pinned = true;
       const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
-      this.contextMenuItems[idx].title = 'Unpin Message';
+      if (idx !== -1) {
+        this.contextMenuItems[idx].title = 'Unpin Message';
+      }
     }
   }
 
@@ -240,7 +251,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     if (message.id === this.message.id) {
       this.message.pinned = false;
       const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
-      this.contextMenuItems[idx].title = 'Pin Message';
+      if (idx !== -1) {
+        this.contextMenuItems[idx].title = 'Pin Message';
+      }
     }
   }
 
