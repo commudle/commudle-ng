@@ -11,7 +11,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import * as moment from 'moment';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
@@ -363,11 +362,11 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               }
             }
             case this.communityChannelChannel.ACTIONS.PIN: {
-              this.communityChannelManagerService.setShowPinnedMessage(data);
+              this.communityChannelManagerService.setPinData(data);
               break;
             }
             case this.communityChannelChannel.ACTIONS.UNPIN: {
-              this.communityChannelManagerService.setShowPinnedMessage(data);
+              this.communityChannelManagerService.setPinData(data);
               break;
             }
           }

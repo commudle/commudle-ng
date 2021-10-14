@@ -44,8 +44,8 @@ export class CommunityChannelManagerService {
   public showCommunityList$ = this.showCommunityList.asObservable();
 
   //pin or unpin message
-  private showPinnedMessage: BehaviorSubject<any> = new BehaviorSubject(null);
-  public showPinnedMessage$ = this.showPinnedMessage.asObservable();
+  private pinData: BehaviorSubject<any> = new BehaviorSubject(null);
+  public pinData$ = this.pinData.asObservable();
 
   private userPermissions: BehaviorSubject<string[]> = new BehaviorSubject([]);
   public userPermissions$ = this.userPermissions.asObservable();
@@ -171,8 +171,8 @@ export class CommunityChannelManagerService {
     this.showCommunityList.next(value);
   }
 
-  setShowPinnedMessage(data: any) {
-    this.showPinnedMessage.next(data);
+  setPinData(data: any) {
+    this.pinData.next(data);
   }
 
   setUserPermissions(permissions) {

@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { Match } from 'autolinker';
 import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { NbPopoverDirective } from '@nebular/theme';
+import { CommunityChannelChannel } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel.channel';
 
 @Component({
   selector: 'app-community-channel',
@@ -33,6 +34,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   moment = moment;
   isAdmin: boolean;
   //@ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
+  channelRoles = {};
+  permittedActions = [];
+  allActions;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -40,6 +44,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
     private communityChannelsService: CommunityChannelsService,
+    private communityChannelChannel: CommunityChannelChannel,
   ) {}
 
   ngOnInit() {
@@ -70,7 +75,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.communityChannelManagerService.showPinnedMessage$.subscribe((data) => {
+      this.communityChannelManagerService.pinData$.subscribe((data) => {
         if (data) {
           switch (data.action) {
             case 'pin': {
@@ -93,7 +98,15 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
       }),
     );
 
+    this.subscriptions.push(
+      this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
+        this.channelRoles = data;
+      }),
+    );
+
     this.checkAdmin();
+
+    this.allActions = this.communityChannelChannel.ACTIONS;
   }
 
   ngOnDestroy(): void {
@@ -107,6 +120,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
       this.communityChannelManagerService.userPermissions$.subscribe((permissions: string[]) => {
         if (permissions.length) {
           this.isAdmin = permissions.includes('unpin');
+          this.permittedActions = permissions;
         }
       }),
     );

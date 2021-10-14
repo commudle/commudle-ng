@@ -11,13 +11,7 @@
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
           &nbsp;
           <small><em *ngIf="message.edited">(edited)</em></small>
-          <fa-icon
-            *ngIf="message.pinned"
-            [icon]="faThumbtack"
-            [style]="{ color: 'green' }"
-            transform="rotate-45"
-            size="lg"
-          ></fa-icon>
+          <fa-icon *ngIf="message.pinned && showPin" [icon]="faThumbtack" transform="rotate-45" size="lg"></fa-icon>
         </p>
       </div>
       <!-- TODO: Handle if script tag is in message content -->
@@ -26,6 +20,7 @@
           message.content | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
         "
         class="content"
+        [ngClass]="{ 'com-line-clamp-1': lineClamp }"
       ></div>
       <div *ngIf="message.attachments.length > 0" class="attachments">
         <div *ngFor="let file of message.attachments; let i = index" class="file">
@@ -45,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="details-flag">
+      <div class="details-flag" *ngIf="showMessageControls">
         <div>
           <app-votes-display
             [canVote]="permittedActions.includes(allActions.VOTE)"
