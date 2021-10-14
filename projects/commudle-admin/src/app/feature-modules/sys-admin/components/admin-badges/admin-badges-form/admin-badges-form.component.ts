@@ -19,7 +19,7 @@ export class AdminBadgesFormComponent implements OnInit, OnDestroy {
     badge_type: ['', Validators.required],
   });
   uploadedImage: IAttachedFile;
-  imageUploaded: boolean = false;
+  imageUploaded = false;
   subscriptions: Subscription[] = [];
   imageSrc: string;
 
