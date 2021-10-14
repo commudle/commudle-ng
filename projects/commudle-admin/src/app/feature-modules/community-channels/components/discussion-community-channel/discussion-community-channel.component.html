@@ -1,6 +1,11 @@
 <div class="discussion-chat-component">
   <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
-    <div *ngFor="let um of messages" class="message">
+    <div
+      *ngFor="let um of messages"
+      class="message"
+      id="{{ um.id }}"
+      [ngClass]="{ active : highlightMessage && um.id === highlightMessageId }"
+    >
       <app-community-channel-message
         (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
         (sendDelete)="delete($event)"

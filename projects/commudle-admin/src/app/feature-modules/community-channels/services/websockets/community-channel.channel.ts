@@ -21,6 +21,8 @@ export class CommunityChannelChannel {
     ERROR: 'error',
     CHANGE_PERMISSION: 'change_permission',
     READ_MESSAGE: 'read_message',
+    PIN: 'pin',
+    UNPIN: 'unpin',
   };
 
   actionCable = actionCable;
