@@ -1,11 +1,6 @@
 <div class="discussion-chat-component">
-  <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
-    <div
-      *ngFor="let um of messages"
-      class="message"
-      id="{{ um.id }}"
-      [ngClass]="{ active : highlightMessage && um.id === highlightMessageId }"
-    >
+  <div #messagesContainer (scroll)="loadMessages()" class="messages">
+    <div *ngFor="let um of messages" class="message" id="{{ um.id }}">
       <app-community-channel-message
         (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
         (sendDelete)="delete($event)"
@@ -28,12 +23,24 @@
     <app-send-message-form
       (sendAttachmentMessage)="sendAttachmentMessage($event)"
       (sendMessage)="sendMessage($event)"
-      *ngIf="(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))) && (this.permittedActions.includes(allActions.ADD))"
+      *ngIf="
+        channelRoles[discussion.parent_id] &&
+        (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) ||
+          channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)) &&
+        this.permittedActions.includes(allActions.ADD)
+      "
     ></app-send-message-form>
 
     <button
       (click)="openJoinChannelDialog()"
-      *ngIf="!currentUser || !(channelRoles[discussion.parent_id] && (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)))"
+      *ngIf="
+        !currentUser ||
+        !(
+          channelRoles[discussion.parent_id] &&
+          (channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) ||
+            channelRoles[discussion.parent_id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER))
+        )
+      "
       [ngSwitch]="communityChannel.is_readonly"
       class="join-button"
       fullWidth

@@ -156,12 +156,17 @@ export class CommunityChannelsService {
     );
   }
 
-  getDiscussionMessagesForScroll(communityChannelId, messageId, page, count): Observable<IUserMessages> {
-    const params = new HttpParams()
-      .set('community_channel_id', communityChannelId)
-      .set('page', page)
-      .set('count', count)
-      .set('user_message_id', messageId);
+  getDiscussionMessagesForScroll(communityChannelId, count, action, messageId): Observable<IUserMessages> {
+    let params;
+    if (action === 'initial') {
+      params = new HttpParams().set('community_channel_id', communityChannelId).set('count', count);
+    } else {
+      params = new HttpParams()
+        .set('community_channel_id', communityChannelId)
+        .set('type', action)
+        .set('user_message_id', messageId)
+        .set('count', count);
+    }
     return this.http.get<IUserMessages>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES_SCROLL),
       { params },
