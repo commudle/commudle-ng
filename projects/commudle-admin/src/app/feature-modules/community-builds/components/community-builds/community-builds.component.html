@@ -1,30 +1,85 @@
-<div class="community-builds page-padding">
-  <nb-card class="header">
-    <nb-card-body>
-      <h1>
-        <nb-icon icon="bulb-outline" status="warning"></nb-icon>
-        Builds
-      </h1>
-      <p>
-        From coding a small, simple and useful <strong>Project</strong> to <strong>Slides</strong> which you used for a talk,
-        <br/>
-        share something which is your Build! The best ones get featured.
-      </p>
-      <br>
-      <a nbButton status="primary" [routerLink]="['/builds/create']">
-        <nb-icon icon="plus-circle-outline"></nb-icon>
-        Share Your Build
-      </a>
-    </nb-card-body>
-  </nb-card>
-  <div class="builds-list">
-    <div *ngFor="let build of communityBuilds">
-      <app-community-build-h-list-item [communityBuild]="build"></app-community-build-h-list-item>
+<!--<div class="community-builds page-padding">-->
+<!--  <nb-card class="header">-->
+<!--    <nb-card-body>-->
+<!--      <h1>-->
+<!--        <nb-icon icon="bulb-outline" status="warning"></nb-icon>-->
+<!--        Builds-->
+<!--      </h1>-->
+<!--      <p>-->
+<!--        From coding a small, simple and useful <strong>Project</strong> to <strong>Slides</strong> which you used for a-->
+<!--        talk,-->
+<!--        <br />-->
+<!--        share something which is your Build! The best ones get featured.-->
+<!--      </p>-->
+<!--      <br />-->
+<!--      <a [routerLink]="['/builds/create']" nbButton status="primary">-->
+<!--        <nb-icon icon="plus-circle-outline"></nb-icon>-->
+<!--        Share Your Build-->
+<!--      </a>-->
+<!--    </nb-card-body>-->
+<!--  </nb-card>-->
+<!--  <div class="builds-list">-->
+<!--    <div *ngFor="let build of communityBuilds">-->
+<!--      <app-community-build-h-list-item [communityBuild]="build"></app-community-build-h-list-item>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div *ngIf="canLoadMore && total" class="load-more-button">-->
+<!--    <button-->
+<!--      (click)="getCommunityBuilds()"-->
+<!--      [disabled]="isLoading"-->
+<!--      fullWidth-->
+<!--      nbButton-->
+<!--      outline-->
+<!--      size="small"-->
+<!--      status="primary"-->
+<!--    >-->
+<!--      Load More!-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="community-builds base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="info">
+        <nb-card-body>
+          <h1 class="fs-h1">
+            <nb-icon icon="bulb-outline" status="warning"></nb-icon>
+            Builds
+          </h1>
+          <h4 class="fs-h4">
+            From coding a small, simple and useful
+            <strong>Project</strong>
+            to
+            <strong>Slides</strong>
+            which you used for a talk,
+            <br />
+            share something which is your Build! The best ones get featured.
+          </h4>
+          <a [routerLink]="['/builds/create']" nbButton size="small" status="primary">
+            <nb-icon icon="plus-circle-outline"></nb-icon>
+            Share Your Build
+          </a>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-body class="com-flex com-flex-col com-gap-4">
+          <app-community-build-card
+            *ngFor="let communityBuild of communityBuilds"
+            [communityBuild]="communityBuild"
+          ></app-community-build-card>
+        </nb-card-body>
+      </nb-card>
+      <button
+        (click)="getCommunityBuilds()"
+        *ngIf="canLoadMore && total"
+        [disabled]="isLoading"
+        nbButton
+        outline
+        size="small"
+        status="primary"
+      >
+        Load More!
+      </button>
     </div>
-  </div>
-  <div class="load-more-button" *ngIf="canLoadMore && total">
-    <button [disabled]="isLoading" (click)="getCommunityBuilds()" fullWidth nbButton status="primary" size="small" outline>
-      Load More!
-    </button>
   </div>
 </div>
