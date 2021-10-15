@@ -31,6 +31,7 @@ export const API_ROUTES = {
     CREATE: 'api/v2/community_builds',
     UPDATE: 'api/v2/community_builds',
     DELETE: 'api/v2/community_builds',
+    PUBLISH: 'api/v2/community_builds/publish',
     UPDATE_TAGS: 'api/v2/community_builds/update_tags',
     UPDATE_PUBLISH_STATUS: 'api/v2/community_builds/update_publish_status',
     CONFIRM_TEAMMATE_INVITE: 'api/v2/community_builds/confirm_teammate_invite',

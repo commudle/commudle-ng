@@ -14,6 +14,7 @@ import {
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityBuildsRoutingModule } from './community-builds-routing.module';
 import { CommunityBuildDetailsComponent } from './components/community-build/community-build-details/community-build-details.component';
@@ -55,6 +56,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     NbIconModule,
     NbPopoverModule,
     NbCheckboxModule,
+    PageAdsModule,
   ],
 })
 export class CommunityBuildsModule {}
