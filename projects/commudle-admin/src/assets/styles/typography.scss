@@ -1,0 +1,50 @@
+/*
+HEADING STYLES
+*/
+// Main title
+h1.fs-h1 {
+  @apply com-text-5xl com-font-bold;
+}
+
+// Sub title
+h2.fs-h2 {
+  @apply com-text-4xl com-font-bold;
+}
+
+// Tertiary title
+h3.fs-h3 {
+  @apply com-text-3xl com-font-bold;
+}
+
+// Title Normal
+h4.fs-h4 {
+  @apply com-text-xl com-font-normal;
+}
+
+// Title Small
+h5.fs-h5 {
+  @apply com-text-lg com-font-semibold;
+}
+
+/*
+BODY STYLES
+*/
+// Paragraph Big
+p.fs-p1 {
+  @apply com-text-lg;
+}
+
+// Paragraph Normal
+p.fs-p2 {
+  @apply com-text-base;
+}
+
+// Paragraph Small
+p.fs-p3 {
+  @apply com-text-sm;
+}
+
+// Paragraph Extra small
+p.fs-p4 {
+  @apply com-text-xs;
+}

@@ -11,9 +11,10 @@ import { IUserRolesUsers } from 'projects/shared-models/user_roles_users.model';
 import { IUsers } from 'projects/shared-models/users.model';
 import { ICommunities } from 'projects/shared-models/communities.model';
 import { IUserMessages } from 'projects/shared-models/user_messages.model';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommunityChannelsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
@@ -30,14 +31,18 @@ export class CommunityChannelsService {
   create(communityId, channelData): Observable<ICommunityChannel> {
     const params = new HttpParams().set('community_id', communityId);
     return this.http.post<ICommunityChannel>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.CREATE), channelData, {params}
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.CREATE),
+      channelData,
+      { params },
     );
   }
 
   update(communityChannelId, channelData): Observable<ICommunityChannel> {
     const params = new HttpParams().set('community_channel_id', communityChannelId);
     return this.http.put<ICommunityChannel>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.UPDATE), channelData, {params}
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.UPDATE),
+      channelData,
+      { params },
     );
   }
 
@@ -49,9 +54,9 @@ export class CommunityChannelsService {
 
   index(communityId): Observable<ICommunityChannels> {
     const params = new HttpParams().set('community_id', communityId);
-    return this.http.get<ICommunityChannels>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX), {params}
-    );
+    return this.http.get<ICommunityChannels>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.INDEX), {
+      params,
+    });
   }
 
   getJoinToken(communityChannelId): Observable<string> {
@@ -82,9 +87,7 @@ export class CommunityChannelsService {
     if (token) {
       params.token = token;
     }
-    return this.http.put<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params
-    );
+    return this.http.put<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.JOIN_CHANNEL), params);
   }
 
   joinByToken(token): Observable<boolean> {
@@ -94,78 +97,109 @@ export class CommunityChannelsService {
     );
   }
 
-
   membersList(communityChannelId, page, count): Observable<IUserRolesUsers> {
-    const params = new HttpParams().set('community_channel_id', communityChannelId).set('page', page).set('count', count);
-    return this.http.get<IUserRolesUsers>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.INDEX),
-      {params}
-    );
+    const params = new HttpParams()
+      .set('community_channel_id', communityChannelId)
+      .set('page', page)
+      .set('count', count);
+    return this.http.get<IUserRolesUsers>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.INDEX), {
+      params,
+    });
   }
-
 
   toggleAdmin(userRolesUserId): Observable<IUserRolesUser> {
     return this.http.put<IUserRolesUser>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.TOGGLE_ADMIN),
       {
-        user_roles_user_id: userRolesUserId
-      }
+        user_roles_user_id: userRolesUserId,
+      },
     );
   }
-
 
   removeMembership(userRolesUserId): Observable<any> {
     const params = new HttpParams().set('user_roles_user_id', userRolesUserId);
-    return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.REMOVE),
-      {params}
-    );
+    return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.REMOVE), {
+      params,
+    });
   }
-
 
   exitChannel(channelId): Observable<any> {
     const params = new HttpParams().set('community_channel_id', channelId);
-    return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.EXIT_CHANNEL),
-      {params}
-    );
+    return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.MEMBERS.EXIT_CHANNEL), {
+      params,
+    });
   }
 
-
-  getTaggableUsers(query, channelId):  Observable<IUsers> {
+  getTaggableUsers(query, channelId): Observable<IUsers> {
     const params = new HttpParams().set('query', query).set('community_channel_id', channelId);
-    return this.http.get<IUsers>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.TAGGABLE_USERS),
-      {params}
-    );
+    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.TAGGABLE_USERS), {
+      params,
+    });
   }
-
 
   deleteLogo(communityChannelId): Observable<boolean> {
     const params = new HttpParams().set('community_channel_id', communityChannelId);
 
-    return this.http.delete<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE_LOGO),
-      {params}
-    );
+    return this.http.delete<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DELETE_LOGO), {
+      params,
+    });
   }
-
 
   getDiscussionMessages(communityChannelId, page, count): Observable<IUserMessages> {
-    const params = new HttpParams().set('community_channel_id', communityChannelId).set('page', page).set('count', count);
+    const params = new HttpParams()
+      .set('community_channel_id', communityChannelId)
+      .set('page', page)
+      .set('count', count);
     return this.http.get<IUserMessages>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES), {params}
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES),
+      { params },
     );
   }
 
+  getDiscussionMessagesForScroll(communityChannelId, messageId, page, count): Observable<IUserMessages> {
+    const params = new HttpParams()
+      .set('community_channel_id', communityChannelId)
+      .set('page', page)
+      .set('count', count)
+      .set('user_message_id', messageId);
+    return this.http.get<IUserMessages>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.DISCUSSION_MESSAGES_SCROLL),
+      { params },
+    );
+  }
 
   sendMessageByEmail(userMessageId, communityChannelId): Observable<boolean> {
     return this.http.post<boolean>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.SEND_MESSAGE_BY_EMAIL_TO_ALL_MEMBERS),
       {
         community_channel_id: communityChannelId,
-        user_message_id: userMessageId
+        user_message_id: userMessageId,
       },
+    );
+  }
+
+  pinMessage(userMessageId, communityChannelId): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.PINNING_MESSAGES.PIN), {
+      community_channel_id: communityChannelId,
+      user_message_id: userMessageId,
+    });
+  }
+
+  unpinMessage(userMessageId, communityChannelId): Observable<boolean> {
+    return this.http.post<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.PINNING_MESSAGES.UNPIN),
+      {
+        community_channel_id: communityChannelId,
+        user_message_id: userMessageId,
+      },
+    );
+  }
+
+  getPinnedMessages(communityChannelId): Observable<IUserMessage[]> {
+    const params = new HttpParams().set('community_channel_id', communityChannelId);
+    return this.http.get<IUserMessage[]>(
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_CHANNELS.PINNING_MESSAGES.PINNED_MESSAGES),
+      { params },
     );
   }
 }

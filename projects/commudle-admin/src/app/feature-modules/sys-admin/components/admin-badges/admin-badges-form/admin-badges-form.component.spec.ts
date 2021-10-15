@@ -8,9 +8,8 @@ describe('AdminBadgesFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminBadgesFormComponent ]
-    })
-    .compileComponents();
+      declarations: [AdminBadgesFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

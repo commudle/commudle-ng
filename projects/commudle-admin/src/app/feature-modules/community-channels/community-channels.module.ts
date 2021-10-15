@@ -42,6 +42,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 import { LinkyModule } from 'ngx-linky';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,9 @@ import { MentionModule } from 'projects/shared-modules/mention/mention.module';
     SharedDirectivesModule,
     LinkyModule,
     MentionModule,
+
+    //External
+    FontAwesomeModule,
 
     // nebular
     NbInputModule,
