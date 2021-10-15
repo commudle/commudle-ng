@@ -1,3 +1,5 @@
+@import 'projects/commudle-admin/src/assets/styles/variables';
+
 .community-channel {
   display: flex;
   flex-direction: column;
@@ -25,14 +27,54 @@
       }
     }
 
-    nb-actions {
-      nb-action {
-        position: relative;
-        @media screen and (min-width: 1089px) {
-          &.channel-list-menu-button {
-            display: none;
+    .extra-details {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 60%;
+
+      fa-icon {
+        cursor: pointer;
+        margin-right: 10px;
+        color: $black;
+      }
+
+      nb-actions {
+        nb-action {
+          position: relative;
+          @media screen and (min-width: 1089px) {
+            &.channel-list-menu-button {
+              display: none;
+            }
           }
         }
+      }
+    }
+  }
+
+  .latest-pinned-message {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 0.5rem 1rem;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    height: 60px;
+    overflow: hidden;
+
+    .message-controls {
+      margin-left: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+
+      fa-icon {
+        cursor: pointer;
+      }
+
+      button {
+        height: 15px;
+        width: 40px;
       }
     }
   }
@@ -40,7 +82,6 @@
   main {
     display: flex;
     flex-wrap: nowrap;
-    height: calc(100% - 2.5rem);
     padding: 0.5rem 0.5rem 1rem;
 
     .discussion {
@@ -88,4 +129,67 @@
 
 .complete-description {
   white-space: pre-wrap;
+}
+
+.pinned-messages-container {
+  margin: 0;
+  height: auto;
+  max-height: 368px;
+  max-width: 450px;
+  border-radius: inherit;
+
+  nb-card-body {
+    padding: 0;
+
+    nb-list {
+      nb-list-item {
+        &:first-child {
+          border-top: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .message-controls {
+          margin-left: auto;
+          margin-bottom: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 15px;
+
+          fa-icon {
+            cursor: pointer;
+          }
+
+          button {
+            height: 15px;
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.highlight-message {
+  animation: highlight 2s;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: initial;
+  }
+}
+
+.with-latest-pinned-message {
+  height: calc(100% - 6rem);
+}
+
+.without-latest-pinned-message {
+  height: calc(100% - 2.5rem);
 }

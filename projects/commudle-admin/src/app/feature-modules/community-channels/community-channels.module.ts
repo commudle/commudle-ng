@@ -42,6 +42,7 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
 import { EmailJoinComponent } from './components/email-join/email-join.component';
 import { LinkyModule } from 'ngx-linky';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommunityChannelsDashboardChannelListComponent } from './components/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list.component';
 
 @NgModule({
@@ -77,6 +78,9 @@ import { CommunityChannelsDashboardChannelListComponent } from './components/com
     SharedDirectivesModule,
     LinkyModule,
     MentionModule,
+
+    //External
+    FontAwesomeModule,
 
     // nebular
     NbInputModule,

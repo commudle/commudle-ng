@@ -16,10 +16,10 @@
         <div
           (click)="changeTag(searchTag)"
           *ngFor="let searchTag of searchTags"
-          [ngClass]="{'active': tag === searchTag}"
+          [ngClass]="{ active: tag === searchTag }"
           class="clickable search-tag"
         >
-          {{searchTag}}
+          {{ searchTag }}
         </div>
       </div>
       <div class="search-bar">
@@ -29,7 +29,7 @@
         </nb-form-field>
       </div>
     </div>
-    <div class="communities-list-cards d-flex flex-wrap">
+    <div class="communities-list-cards">
       <app-communities-list-card
         *ngFor="let community of communities"
         [community]="community"

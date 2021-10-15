@@ -1,0 +1,36 @@
+<a [routerLink]="[communityBuild.slug]" class="community-build-card">
+  <img
+    [alt]="communityBuild.name"
+    [src]="communityBuild.images[0]?.url || '/assets/images/commudle-logo192.png'"
+    [title]="communityBuild.name"
+  />
+  <div class="details">
+    <div class="prefix">
+      <app-badge
+        [color]="CBuildTypeDisplay[communityBuild.build_type].color"
+        [fontSize]="'small'"
+        [nbIcon]="CBuildTypeDisplay[communityBuild.build_type].icon"
+        [text]="communityBuild.build_type | titlecase"
+      ></app-badge>
+      <p class="fs-p4">{{ communityBuild.created_at | date }}</p>
+    </div>
+    <div class="section">
+      <h5 class="title fs-h5">{{ communityBuild.name }}</h5>
+      <p class="content fs-p2">{{ getDescription() }}</p>
+    </div>
+    <div class="suffix">
+      <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
+      <div class="interactions">
+        <app-votes-display
+          [icon]="'star'"
+          [votableId]="communityBuild.id"
+          [votableType]="'CommunityBuild'"
+        ></app-votes-display>
+        <div class="comments">
+          <p class="fs-p3">{{ communityBuild.chat_messages_count || 0 }}</p>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

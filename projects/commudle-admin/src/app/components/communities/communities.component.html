@@ -1,49 +1,25 @@
-<div class="communities-container">
-  <!-- DESKTOP -->
-  <div *ngIf="windowWidth > 768" class="d-flex">
-    <div class="communities">
-      <div class="about">
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div *ngIf="windowWidth > 1024" class="two-column-layout">
+      <div class="main-column">
         <app-communities-about></app-communities-about>
         <app-communities-featured></app-communities-featured>
+        <app-communities-list></app-communities-list>
       </div>
-
-      <div class="content d-flex">
-        <div class="left-column">
-          <app-communities-posts></app-communities-posts>
-        </div>
-
-        <div class="center-column">
-          <app-communities-list></app-communities-list>
-        </div>
+      <div class="right-column">
+        <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
+        <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_3"></app-pa-slots>
       </div>
     </div>
-    <div class="ads">
-      <app-pa-slots [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
-      <app-pa-slots [adHeight]="162" [showContent]="true" [showTitle]="true" slot="slot_3"></app-pa-slots>
-    </div>
-  </div>
 
-  <!-- MOBILE -->
-  <div *ngIf="windowWidth <= 768" class="communities-mobile">
-    <app-communities-about></app-communities-about>
-    <div class="d-flex justify-content-center">
-      <app-pa-slots
-        [adHeight]="162"
-        [adWidth]="162"
-        [showContent]="true"
-        [showTitle]="true"
-        slot="slot_2"
-      ></app-pa-slots>
-      <app-pa-slots
-        [adHeight]="162"
-        [adWidth]="162"
-        [showContent]="true"
-        [showTitle]="true"
-        slot="slot_3"
-      ></app-pa-slots>
+    <div *ngIf="windowWidth <= 1024" class="one-column-layout">
+      <app-communities-about></app-communities-about>
+      <div class="com-grid com-grid-cols-2">
+        <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
+        <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_3"></app-pa-slots>
+      </div>
+      <app-communities-featured></app-communities-featured>
+      <app-communities-list></app-communities-list>
     </div>
-    <app-communities-featured></app-communities-featured>
-    <app-communities-posts></app-communities-posts>
-    <app-communities-list></app-communities-list>
   </div>
 </div>
