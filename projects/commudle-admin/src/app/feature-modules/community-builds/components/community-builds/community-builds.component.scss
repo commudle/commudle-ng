@@ -5,11 +5,11 @@
 
       nb-card-body {
         @apply com-p-5;
-      }
-    }
 
-    button {
-      @apply com-mb-10 com-mx-2;
+        button {
+          @apply com-mt-4;
+        }
+      }
     }
 
     .one-column-layout {
