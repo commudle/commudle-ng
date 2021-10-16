@@ -206,14 +206,10 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   submitForm(publishStatus: EPublishStatus) {
-    if (publishStatus === EPublishStatus.published) {
-      this.publishCommunityBuild(publishStatus);
+    if (!this.cBuild) {
+      this.createCommunityBuild(publishStatus);
     } else {
-      if (!this.cBuild) {
-        this.createCommunityBuild(publishStatus);
-      } else {
-        this.updateCommunityBuild(publishStatus);
-      }
+      this.updateCommunityBuild(publishStatus);
     }
   }
 
@@ -258,20 +254,6 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       this.cBuild = data;
       this.submitTags();
     });
-  }
-
-  publishCommunityBuild(publishStatus: EPublishStatus) {
-    if (this.cBuild?.id) {
-      this.communityBuildsService.publish(this.buildFormData(publishStatus), this.cBuild.id).subscribe((value) => {
-        this.cBuild = value;
-        this.submitTags();
-      });
-    } else {
-      this.communityBuildsService.publish(this.buildFormData(publishStatus)).subscribe((value) => {
-        this.cBuild = value;
-        this.submitTags();
-      });
-    }
   }
 
   onTagAdd(value: string) {

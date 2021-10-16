@@ -49,19 +49,6 @@ export class CommunityBuildsService {
     );
   }
 
-  publish(communityBuild, communityBuildId?: number): Observable<ICommunityBuild> {
-    let params: HttpParams;
-    if (communityBuildId) {
-      params = new HttpParams().set('community_build_id', communityBuildId);
-    }
-
-    return this.http.post<ICommunityBuild>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLISH),
-      communityBuild,
-      { params },
-    );
-  }
-
   updateTags(communityBuildId, tags): Observable<any> {
     const params = new HttpParams().set('community_build_id', communityBuildId);
     return this.http.put<any>(
