@@ -3,7 +3,7 @@
     <div class="one-column-layout">
       <nb-card *ngIf="guideline" class="guideline">
         <nb-card-body>
-          <div [innerHTML]="richText | safeHtml"></div>
+          <div class="content" [innerHTML]="richText | safeHtml"></div>
         </nb-card-body>
       </nb-card>
     </div>
