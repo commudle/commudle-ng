@@ -60,3 +60,5 @@ ssr-deployment-staging.sh
 .ebextensions/
 dist.zip
 .eslintcache
+
+functions/
