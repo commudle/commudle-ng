@@ -185,7 +185,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     const pageAdFormValue = this.pageAdForm.value;
 
     Object.keys(pageAdFormValue).forEach((value) => {
-      if (pageAdFormValue[value] != null) {
+      if (pageAdFormValue[value]) {
         if (['start_at', 'end_at'].includes(value)) {
           const time = pageAdFormValue[value] + this.getTimeZone();
           formData.append(`page_ad[${value}]`, moment.parseZone(time).utc().format());
