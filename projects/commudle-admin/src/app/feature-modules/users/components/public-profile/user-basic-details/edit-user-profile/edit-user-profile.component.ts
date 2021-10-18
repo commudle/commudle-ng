@@ -28,6 +28,7 @@ export class EditUserProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.dialogRef.close();
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
