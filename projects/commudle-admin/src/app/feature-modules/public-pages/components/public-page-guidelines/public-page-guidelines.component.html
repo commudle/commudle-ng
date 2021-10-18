@@ -4,7 +4,6 @@
       <nb-card *ngIf="guideline" class="guideline">
         <nb-card-header>
           <h1 class="fs-h1 title">{{ guideline.title }}</h1>
-          <h4 class="fs-h4 description">{{ guideline.description }}</h4>
         </nb-card-header>
         <nb-card-body>
           <div [innerHTML]="richText | safeHtml"></div>
