@@ -1,24 +1,16 @@
-import { Injectable } from '@angular/core';
-import { ICommunities } from 'projects/shared-models/communities.model';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
-import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
-import { ICommunity } from 'projects/shared-models/community.model';
+import { Injectable } from '@angular/core';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommunityBuildsService {
-
-
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getAll(page?, count?): Observable<ICommunityBuilds> {
     let params = new HttpParams();
@@ -29,23 +21,20 @@ export class CommunityBuildsService {
     if (count) {
       params = params.append('count', count);
     }
-    return this.http.get<ICommunityBuilds>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.INDEX), {params}
-    );
+    return this.http.get<ICommunityBuilds>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.INDEX), {
+      params,
+    });
   }
 
   show(communityBuildId): Observable<ICommunityBuild> {
     const params = new HttpParams().set('community_build_id', communityBuildId);
-    return this.http.get<ICommunityBuild>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.SHOW), {params}
-    );
+    return this.http.get<ICommunityBuild>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.SHOW), { params });
   }
-
-
 
   create(commmunityBuild): Observable<ICommunityBuild> {
     return this.http.post<ICommunityBuild>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CREATE), commmunityBuild
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CREATE),
+      commmunityBuild,
     );
   }
 
@@ -55,7 +44,7 @@ export class CommunityBuildsService {
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE),
       commmunityBuild,
       {
-        params
+        params,
       },
     );
   }
@@ -65,70 +54,59 @@ export class CommunityBuildsService {
     return this.http.put<any>(
       this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_TAGS),
       { tags },
-      { params }
+      { params },
     );
   }
 
-
   updatePublishStatus(communityBuildId, publishStatus): Observable<boolean> {
-    const params = new HttpParams().set('community_build_id', communityBuildId);
-    return this.http.put<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_PUBLISH_STATUS),
-      {
-        community_build_id: communityBuildId,
-        publish_status: publishStatus
-      }
-    );
+    return this.http.put<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.UPDATE_PUBLISH_STATUS), {
+      community_build_id: communityBuildId,
+      publish_status: publishStatus,
+    });
   }
 
   destroy(communityBuildId): Observable<ICommunityBuild> {
     const params = new HttpParams().set('community_build_id', communityBuildId);
-    return this.http.delete<ICommunityBuild>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.DELETE), {params}
-    );
+    return this.http.delete<ICommunityBuild>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.DELETE), {
+      params,
+    });
   }
-
-
 
   confirmTeammateInvite(communityBuildId, token): Observable<boolean> {
     return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CONFIRM_TEAMMATE_INVITE), {
+      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.CONFIRM_TEAMMATE_INVITE),
+      {
         community_build_id: communityBuildId,
-        token
-      }
+        token,
+      },
     );
   }
 
-
   resendTeammateInvite(communityBuildId, userRolesUserId): Observable<boolean> {
-    return this.http.post<boolean>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.RESEND_TEAMMATE_INVITE), {
-        community_build_id: communityBuildId,
-        user_roles_user_id: userRolesUserId
-      }
-    );
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.RESEND_TEAMMATE_INVITE), {
+      community_build_id: communityBuildId,
+      user_roles_user_id: userRolesUserId,
+    });
   }
 
   removeTeammate(communityBuildId, userId) {
     const params = new HttpParams().set('community_build_id', communityBuildId).set('user_roles_user_id', userId);
-    return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.REMOVE_TEAMMATE), {params}
-    );
+    return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.REMOVE_TEAMMATE), {
+      params,
+    });
   }
 
   pGetAll(page, count): Observable<ICommunityBuilds> {
     const params = new HttpParams().set('page', page).set('count', count);
-    return this.http.get<ICommunityBuilds>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX), {params}
-    );
+    return this.http.get<ICommunityBuilds>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.INDEX), {
+      params,
+    });
   }
 
   pShow(communityBuildId): Observable<ICommunityBuild> {
     const params = new HttpParams().set('community_build_id', communityBuildId);
-    return this.http.get<ICommunityBuild>(
-      this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.SHOW), {params}
-    );
+    return this.http.get<ICommunityBuild>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITY_BUILDS.PUBLIC.SHOW), {
+      params,
+    });
   }
-
-
 }
