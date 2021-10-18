@@ -48,7 +48,10 @@ export class PublicPageGuidelinesComponent implements OnInit {
 
     this.meta.updateTag({
       name: 'og:image',
-      content: `${this.guideline.meta_thumbnail || 'https://commudle.com/assets/images/commudle-logo192.png'}`,
+      content: `${
+        this.cmsService.getImageUrl(this.guideline.meta_thumbnail) ||
+        'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
     });
     this.meta.updateTag({
       name: 'og:image:secure_url',
