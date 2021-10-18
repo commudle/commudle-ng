@@ -60,9 +60,9 @@
     </div>
   </div>
 
-  <hr *ngIf="tags.length > 0" />
+  <hr />
 
-  <div *ngIf="tags.length > 0" class="user-tags">
+  <div class="user-tags">
     <div class="heading">Skills</div>
     <nb-tag-list>
       <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
