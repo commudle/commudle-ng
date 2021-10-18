@@ -1,11 +1,11 @@
 <div *ngIf="user" class="public-profile page-container d-flex justify-content-center">
   <div class="basic-details">
-    <app-user-basic-details (updateProfile)="getUserData()" [currentUser]="currentUser"
-                            [user]="user"></app-user-basic-details>
+    <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
     <app-user-basic-social [user]="user"></app-user-basic-social>
   </div>
 
   <div class="extra-details">
     <router-outlet></router-outlet>
+    <router-outlet name="p"></router-outlet>
   </div>
 </div>

@@ -8,7 +8,7 @@ import {
   Output,
   QueryList,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import * as moment from 'moment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -17,10 +17,9 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 @Component({
   selector: 'app-messages-list',
   templateUrl: './messages-list.component.html',
-  styleUrls: ['./messages-list.component.scss']
+  styleUrls: ['./messages-list.component.scss'],
 })
 export class MessagesListComponent implements OnInit, AfterViewInit {
-
   @Input() messages: IUserMessage[] = [];
   @Input() currentUser: ICurrentUser;
   @Input() allActions;
@@ -32,21 +31,19 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
   @Output() sendDelete: EventEmitter<number> = new EventEmitter<number>();
 
   moment = moment;
-  messageContainer: any;
+  messageContainer: HTMLDivElement;
   isNearBottom: boolean;
 
   @ViewChild('messagesList') messagesList: ElementRef<HTMLDivElement>;
   @ViewChildren('message') messageElements: QueryList<any>;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.messageContainer = this.messagesList.nativeElement;
-    this.messageElements.changes.subscribe(value => this.onMessageElementsChanged(value));
+    this.messageElements.changes.subscribe((value) => this.onMessageElementsChanged(value));
   }
 
   emitReply(messageId: number, content): void {
@@ -70,7 +67,7 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
   scrollToBottom(): void {
     this.messageContainer.scroll({
       top: this.messageContainer.scrollHeight,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 
@@ -84,5 +81,4 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
     const height = this.messageContainer.scrollHeight;
     return position > height - threshold;
   }
-
 }

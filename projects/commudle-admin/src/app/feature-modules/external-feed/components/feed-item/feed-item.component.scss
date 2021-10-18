@@ -1,4 +1,4 @@
- @import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .single-external-feed {
   width: 100%;
@@ -19,6 +19,6 @@
   }
 
   .feed-discussion {
-     margin: $space-32 0 $space-64;
-   }
+    margin: $space-32 0 $space-64;
+  }
 }

@@ -40,11 +40,19 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
 
   getMediaPermissions(): void {
     this.subscriptions.push(
-      this.localMediaV2Service.getMediaPermissions().subscribe((stream: MediaStream) => {
-        if (stream.getTracks().length === 0) {
-          this.libToastLogService.warningDialog('Browser denied permission');
-        } else {
+      combineLatest(
+        this.localMediaV2Service.getMediaPermissions('camera'),
+        this.localMediaV2Service.getMediaPermissions('microphone'),
+      ).subscribe(([cameraPermissions, microphonePermissions]) => {
+        if (cameraPermissions === 'granted' && microphonePermissions === 'granted') {
           this.getMediaDevices();
+        } else if (cameraPermissions === 'prompt' || microphonePermissions === 'prompt') {
+          navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then((stream: MediaStream) => {
+            stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
+            this.getMediaPermissions();
+          });
+        } else if (cameraPermissions === 'denied' || microphonePermissions === 'denied') {
+          this.libToastLogService.warningDialog('Browser denied permission');
         }
       }),
     );
@@ -89,6 +97,7 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
 
   renderVideo(): void {
     this.localMediaV2Service.getVideoStream(this.selectedVideoDeviceId).subscribe((stream: MediaStream) => {
+      this.stopStream();
       this.previewVideo.nativeElement.srcObject = stream;
     });
   }
@@ -113,11 +122,13 @@ export class LocalPreviewV2Component implements OnInit, OnDestroy {
   stopStream(): void {
     if (this.isVideoEnabled) {
       const stream: MediaStream | MediaSource | Blob = this.previewVideo.nativeElement.srcObject;
-      if ('getTracks' in stream) {
-        const tracks: MediaStreamTrack[] = stream.getTracks();
-        tracks.forEach((track: MediaStreamTrack) => track.stop());
+      if (stream) {
+        if ('getTracks' in stream) {
+          const tracks: MediaStreamTrack[] = stream.getTracks();
+          tracks.forEach((track: MediaStreamTrack) => track.stop());
+        }
+        this.previewVideo.nativeElement.srcObject = null;
       }
-      this.previewVideo.nativeElement.srcObject = null;
     }
   }
 

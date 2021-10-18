@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-navbar {
   width: 100vw;
@@ -6,15 +6,15 @@
   nb-layout-header {
     &::ng-deep {
       nav {
-        padding: $space-8 $space-16;
         justify-content: space-between;
+        padding: $space-8 $space-16;
       }
     }
 
     .home-navbar-logo {
-      text-decoration: none;
       max-width: 3rem;
       min-width: 3rem;
+      text-decoration: none;
 
       img {
         width: 100%;
@@ -22,7 +22,7 @@
     }
 
     .home-navbar-container {
-      width: 1120px;
+      width: calc(1280px - 16px);
 
       app-search-bar {
         flex: 1;
@@ -33,10 +33,10 @@
           margin-left: $space-16;
 
           .menu-user-avatar {
-            max-width: 2.5rem;
-            max-height: 2.5rem;
-            overflow: hidden;
             border-radius: $border-50;
+            max-height: 2.5rem;
+            max-width: 2.5rem;
+            overflow: hidden;
 
             img {
               width: 100%;
@@ -47,21 +47,21 @@
             gap: $space-8;
 
             button {
-              padding: $space-8 $space-12;
-              text-transform: capitalize;
+              border: 0.5px solid $neon-blue;
               font-size: $fs-h5;
               font-weight: 400;
-              border: 0.5px solid $neon-blue;
+              padding: $space-8 $space-12;
+              text-transform: capitalize;
             }
 
             .menu-login {
-              color: $neon-blue;
               background-color: $white;
+              color: $neon-blue;
             }
 
             .menu-signup {
-              color: $white;
               background-color: $neon-blue;
+              color: $white;
             }
 
             .menu-login-signup {
@@ -84,8 +84,8 @@
   nb-layout-footer {
     &::ng-deep {
       nav {
-        flex-direction: column;
         background-image: linear-gradient(266deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
+        flex-direction: column;
         overflow: hidden;
         padding: 0 !important;
       }
@@ -97,29 +97,29 @@
       .page-links {
         .logo {
           img {
-            width: 50px;
             filter: brightness(5);
+            width: 50px;
           }
         }
 
         .links {
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
           flex-wrap: wrap;
+          justify-content: space-between;
 
           & > div {
             display: flex;
             flex-direction: column;
-            width: 50%;
             margin: 15px 0;
+            width: 50%;
 
             a {
+              color: $white;
+              font-size: 12px;
+              font-weight: 600;
               letter-spacing: 0.5px;
               text-decoration: none;
-              color: $white;
-              font-weight: 600;
-              font-size: 12px;
             }
           }
 
@@ -157,7 +157,8 @@
         }
       }
 
-      .ellipse-large, .ellipse-small {
+      .ellipse-large,
+      .ellipse-small {
         visibility: hidden;
       }
     }
@@ -167,25 +168,25 @@
     nb-layout-footer {
       &::ng-deep {
         nav {
+          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
           display: flex;
           flex-direction: column;
-          background-image: linear-gradient(265.99deg, $brilliant-azure 14.24%, $neon-blue 98.56%);
         }
       }
 
       .footer {
-        padding: 30px 100px 10px;
-        position: relative;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-between;
+        padding: 30px 100px 10px;
+        position: relative;
 
         .page-links {
-          width: 100%;
           flex-direction: row;
           flex-wrap: nowrap;
           justify-content: space-between;
+          width: 100%;
 
           .logo {
             width: 30%;
@@ -196,8 +197,8 @@
           }
 
           .links {
-            width: 70%;
             justify-content: space-around;
+            width: 70%;
 
             & > div {
               width: unset;
@@ -214,8 +215,8 @@
         }
 
         .social-links {
-          width: 60%;
           flex-direction: column;
+          width: 60%;
 
           hr {
             width: 100%;
@@ -234,33 +235,33 @@
             display: block;
 
             p {
-              margin: 0;
               color: $white;
+              margin: 0;
             }
           }
         }
 
         .ellipse-large {
-          visibility: visible;
-          width: 160px;
-          height: 155px;
           background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
           border-radius: 50%;
-          position: absolute;
-          left: -40px;
           bottom: -30px;
+          height: 155px;
+          left: -40px;
+          position: absolute;
+          visibility: visible;
+          width: 160px;
         }
 
         .ellipse-small {
-          visibility: visible;
-          width: 140px;
+          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, 0.71) 73.46%);
+          border-radius: 100px 100px 100px 100px;
+          bottom: -70px;
           height: 135px;
           left: 70px;
-          bottom: -70px;
-          transform: rotate(45deg);
-          background: linear-gradient(226.61deg, $neon-blue 14.04%, rgba($maya-blue, .71) 73.46%);
-          border-radius: 100px 100px 100px 100px;
           position: absolute;
+          transform: rotate(45deg);
+          visibility: visible;
+          width: 140px;
         }
       }
     }
@@ -295,8 +296,8 @@
             margin-left: $space-8 !important;
 
             .menu-user-avatar {
-              width: 35px !important;
               height: 35px !important;
+              width: 35px !important;
 
               img {
                 height: 100%;
@@ -305,8 +306,8 @@
 
               &::ng-deep {
                 .user-picture {
-                  width: 2rem;
                   height: 2rem;
+                  width: 2rem;
                 }
               }
             }
@@ -315,19 +316,20 @@
               gap: $space-4;
 
               button {
-                width: 92px;
-                padding: $space-4 $space-8;
                 font-size: $fs-h6;
+                padding: $space-4 $space-8;
+                width: 92px;
               }
 
-              .menu-login, .menu-signup {
+              .menu-login,
+              .menu-signup {
                 display: none;
               }
 
               .menu-login-signup {
-                display: block;
-                color: $neon-blue;
                 background-color: $white;
+                color: $neon-blue;
+                display: block;
               }
             }
           }
@@ -340,8 +342,8 @@
       }
 
       .home-sidebar {
-        width: max-content;
         margin-left: $space-8;
+        width: max-content;
       }
     }
   }

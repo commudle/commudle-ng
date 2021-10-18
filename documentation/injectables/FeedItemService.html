@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>FeedItemService</li>
+  <li >FeedItemService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,7 +78,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#popular_tags_api">popular_tags_api</a>
+                                <a href="#popular_tags_api" >popular_tags_api</a>
                             </li>
                         </ul>
                     </td>
@@ -91,19 +93,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#pGetAll">pGetAll</a>
+                                <a href="#pGetAll" >pGetAll</a>
                             </li>
                             <li>
-                                <a href="#pGetPopularFeed">pGetPopularFeed</a>
+                                <a href="#pGetPopularFeed" >pGetPopularFeed</a>
                             </li>
                             <li>
-                                <a href="#pGetPopularTags">pGetPopularTags</a>
+                                <a href="#pGetPopularTags" >pGetPopularTags</a>
                             </li>
                             <li>
-                                <a href="#pGetTagBasedFeed">pGetTagBasedFeed</a>
+                                <a href="#pGetTagBasedFeed" >pGetTagBasedFeed</a>
                             </li>
                             <li>
-                                <a href="#pShow">pShow</a>
+                                <a href="#pShow" >pShow</a>
                             </li>
                         </ul>
                     </td>
@@ -123,7 +125,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html">ApiRoutesService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, apiRoutesService: <a href="../injectables/ApiRoutesService.html" target="_self">ApiRoutesService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -189,9 +191,7 @@
                 <td class="col-md-4">
                     <a name="pGetAll"></a>
                     <span class="name">
-                        <b>
-                            pGetAll
-                        </b>
+                        <span ><b>pGetAll</b></span>
                         <a href="#pGetAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -216,6 +216,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -255,9 +256,7 @@
                 <td class="col-md-4">
                     <a name="pGetPopularFeed"></a>
                     <span class="name">
-                        <b>
-                            pGetPopularFeed
-                        </b>
+                        <span ><b>pGetPopularFeed</b></span>
                         <a href="#pGetPopularFeed"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -282,6 +281,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -321,9 +321,7 @@
                 <td class="col-md-4">
                     <a name="pGetPopularTags"></a>
                     <span class="name">
-                        <b>
-                            pGetPopularTags
-                        </b>
+                        <span ><b>pGetPopularTags</b></span>
                         <a href="#pGetPopularTags"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -360,9 +358,7 @@
                 <td class="col-md-4">
                     <a name="pGetTagBasedFeed"></a>
                     <span class="name">
-                        <b>
-                            pGetTagBasedFeed
-                        </b>
+                        <span ><b>pGetTagBasedFeed</b></span>
                         <a href="#pGetTagBasedFeed"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -387,6 +383,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -444,9 +441,7 @@
                 <td class="col-md-4">
                     <a name="pShow"></a>
                     <span class="name">
-                        <b>
-                            pShow
-                        </b>
+                        <span ><b>pShow</b></span>
                         <a href="#pShow"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -471,6 +466,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -507,42 +503,41 @@
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="popular_tags_api"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>popular_tags_api</b></span>
+                        <a href="#popular_tags_api"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="popular_tags_api"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            popular_tags_api</b>
-                            <a href="#popular_tags_api"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;https://feed.commudle.com/feed/v2/popular-tags/&quot;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/services/feed-items.service.ts:13</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;https://feed.commudle.com/feed/v2/popular-tags/&quot;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/services/feed-items.service.ts:13</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -620,14 +615,14 @@ export class FeedItemService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -648,9 +643,9 @@ export class FeedItemService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

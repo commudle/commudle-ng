@@ -7,7 +7,7 @@ import {
   OnDestroy,
   OnInit,
   PLATFORM_ID,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
@@ -23,10 +23,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-lab',
   templateUrl: './lab.component.html',
-  styleUrls: ['./lab.component.scss']
+  styleUrls: ['./lab.component.scss'],
 })
 export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
-
   public src;
 
   routeSubscriptions: Subscription[] = [];
@@ -58,19 +57,18 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private dialogService: NbDialogService,
     private footerService: FooterService,
-    private nbSidebarService: NbSidebarService
-  ) {
-  }
+    private nbSidebarService: NbSidebarService,
+  ) {}
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
   // defined on the server side, we need isBrowser
   ngOnInit() {
     if (this.isBrowser) {
       this.routeSubscriptions.push(
-        this.activatedRoute.params.subscribe(data => {
+        this.activatedRoute.params.subscribe((data) => {
           this.getLab(data.lab_id);
           this.setStep(-1);
-        })
+        }),
       );
 
       // Listen for url changes
@@ -83,7 +81,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
             this.setStep(-1);
           } else {
             // Navigation between steps
-            this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === stepId);
+            this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
           }
         }
       });
@@ -103,10 +101,14 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
           for (const img of imagesList) {
             const g0 = img;
             g0.classList.add('clickable');
-            g0.addEventListener('click', () => {
-              this.src = g0.src;
-              this.dialogService.open(this.dialog);
-            }, false);
+            g0.addEventListener(
+              'click',
+              () => {
+                this.src = g0.src;
+                this.dialogService.open(this.dialog);
+              },
+              false,
+            );
           }
           this.triggerDialogB = true;
         }
@@ -117,7 +119,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   // Called once, before the instance is destroyed.
   ngOnDestroy(): void {
-    this.routeSubscriptions.forEach(subscription => subscription.unsubscribe());
+    this.routeSubscriptions.forEach((subscription) => subscription.unsubscribe());
 
     // Show Footer
     this.footerService.changeFooterStatus(true);
@@ -128,42 +130,48 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   setMeta() {
-    this.title.setTitle(`${ this.lab.name } | By ${ this.lab.user.name }`);
+    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag({
       name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
     });
     this.meta.updateTag({
       name: 'og:image',
-      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
+      content: `${
+        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
     });
     this.meta.updateTag({
       name: 'og:image:secure_url',
-      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
+      content: `${
+        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: `${ this.lab.name } | By ${ this.lab.user.name }`
+      content: `${this.lab.name} | By ${this.lab.user.name}`,
     });
     this.meta.updateTag({
       name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
     });
     this.meta.updateTag({
       name: 'og:type',
-      content: 'article'
+      content: 'article',
     });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${ this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png' }`
+      content: `${
+        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: `${ this.lab.name } | By ${ this.lab.user.name }`
+      content: `${this.lab.name} | By ${this.lab.user.name}`,
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200)
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
     });
   }
 
@@ -172,7 +180,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   getLab(labId) {
-    this.labsService.pShow(labId).subscribe(data => {
+    this.labsService.pShow(labId).subscribe((data) => {
       this.lab = data;
       this.setMeta();
       this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
@@ -180,10 +188,14 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.lastVisitedStepId = this.lab.last_visited_step_id;
       this.getDiscussionChat();
       // Get only published labs
-      this.labsService.getSimilarLabs(this.lab.id).subscribe(value => {
+      this.labsService.getSimilarLabs(this.lab.id).subscribe((value) => {
         this.similarLabs = [];
-        value.labs.forEach(similarLab => {
-          if (similarLab.publish_status === 'published' && similarLab.id !== this.lab.id && this.similarLabs.length < 4) {
+        value.labs.forEach((similarLab) => {
+          if (
+            similarLab.publish_status === 'published' &&
+            similarLab.id !== this.lab.id &&
+            this.similarLabs.length < 4
+          ) {
             this.similarLabs.push(similarLab);
           }
         });
@@ -191,12 +203,12 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
       if (this.activatedRoute.firstChild) {
         this.routeSubscriptions.push(
-          this.activatedRoute.firstChild.params.subscribe(value => {
+          this.activatedRoute.firstChild.params.subscribe((value) => {
             if (value.step_id) {
-              this.selectedLabStep = this.lab.lab_steps.findIndex(k => k.id === parseInt(value.step_id, 10));
+              this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === parseInt(value.step_id, 10));
               this.setStep(this.selectedLabStep);
             }
-          })
+          }),
         );
       }
     });
@@ -220,7 +232,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   getDiscussionChat() {
-    this.discussionsService.pGetOrCreateForLabChat(this.lab.id).subscribe(data => this.discussionChat = data);
+    this.discussionsService.pGetOrCreateForLabChat(this.lab.id).subscribe((data) => (this.discussionChat = data));
   }
 
   scroll(el: HTMLElement) {
@@ -232,7 +244,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   toggleDetails() {
-    this.nbSidebarService.toggle(false, 'right');
+    this.nbSidebarService.toggle(false, 'labMenu');
   }
-
 }

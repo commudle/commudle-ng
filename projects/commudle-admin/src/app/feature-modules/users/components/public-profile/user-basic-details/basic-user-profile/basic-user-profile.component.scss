@@ -1,7 +1,12 @@
+.basic-details-container {
+  height: 630px;
+}
+
 .row {
   display: flex;
   flex-direction: column;
   margin: 0 -0.5rem 0.8rem;
+
   @media screen and (min-width: 800px) {
     flex-direction: row;
   }
@@ -10,12 +15,12 @@
     flex: 1 0 100%;
     flex-direction: column;
     margin: 0 0.5rem 0.8rem;
+
     @media screen and (min-width: 800px) {
       flex: 1 0 calc(50% - 1rem);
       flex-direction: row;
     }
   }
-
 }
 
 .uploaded-profile {
@@ -26,7 +31,6 @@
   margin: 0 auto;
   position: relative;
 }
-
 
 .uploaded-profile-image {
   height: 150px;

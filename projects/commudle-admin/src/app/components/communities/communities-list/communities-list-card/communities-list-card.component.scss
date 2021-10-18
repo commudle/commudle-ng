@@ -1,31 +1,35 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 .community-list-card {
-  position: relative;
-  width: 248px;
-  height: 296px;
   border: 0.5px solid $silver-sand;
   border-radius: $border-8;
+  height: 296px;
   padding: $space-16;
+  position: relative;
+  width: 260px;
+
+  @screen lg {
+    width: inherit;
+  }
 
   .prefix {
     .image {
-      min-width: 48px;
-      width: 48px;
-      height: 48px;
       border: 0.5px solid $silver-sand;
       border-radius: 50%;
+      height: 48px;
+      min-width: 48px;
       overflow: hidden;
+      width: 48px;
 
       img {
-        width: 100%;
         height: inherit;
         object-fit: contain;
+        width: 100%;
       }
     }
 
@@ -33,61 +37,61 @@ a {
       margin-left: $space-8;
 
       .name {
-        font-weight: $fw-600;
-        font-size: $fs-h5;
-        line-height: 16px;
         color: $gunmetal;
+        font-size: $fs-h5;
+        font-weight: $fw-600;
+        line-height: 16px;
       }
 
       .member-count {
-        font-style: italic;
-        font-size: $fs-h6;
-        line-height: 14px;
         color: #777777;
+        font-size: $fs-h6;
+        font-style: italic;
+        line-height: 14px;
       }
     }
   }
 
   .tags {
-    margin-top: $space-16;
     display: flex;
     flex-wrap: wrap;
     gap: $space-8;
+    margin-top: $space-16;
 
     .tag {
-      padding: $space-4 $space-10;
-      border-radius: $border-5;
       background-color: $azureish-white;
+      border-radius: $border-5;
+      color: $gunmetal;
       font-size: $fs-h7;
       line-height: 12px;
-      color: $gunmetal;
+      padding: $space-4 $space-10;
     }
   }
 
   .about {
-    margin-top: $space-16;
+    color: rgba($gunmetal, 0.85);
     font-size: $fs-h6;
     line-height: 14px;
-    color: rgba($gunmetal, 0.85);
+    margin-top: $space-16;
   }
 
   .suffix {
-    position: absolute;
     bottom: 16px;
+    position: absolute;
     right: 16px;
 
     .members {
       display: inline-flex;
       flex-direction: row-reverse;
-      width: 32px;
       height: 20px;
       margin-right: $space-36;
+      width: 32px;
 
       .avatar {
-        position: relative;
         border: 1px solid $white;
         border-radius: $border-50;
         overflow: hidden;
+        position: relative;
         width: 20px;
 
         &:not(:last-child) {
@@ -95,8 +99,8 @@ a {
         }
 
         img {
-          width: 100%;
           display: block;
+          width: 100%;
         }
       }
     }
@@ -105,18 +109,18 @@ a {
       app-membership-toggle {
         &::ng-deep {
           button {
-            padding: $space-8;
-            height: 32px;
-            width: 152px;
-            min-width: 152px;
             background: $white;
             border: 1px solid $silver-sand;
             border-radius: $border-4;
-            font-weight: normal;
-            font-size: $fs-h5;
-            line-height: 16px;
             color: $neon-blue;
+            font-size: $fs-h5;
+            font-weight: normal;
+            height: 32px;
+            line-height: 16px;
+            min-width: 152px;
+            padding: $space-8;
             text-transform: capitalize;
+            width: 152px;
           }
         }
       }

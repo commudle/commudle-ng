@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -31,7 +32,7 @@
                    <div class="content-data">
 
 <h1 id="contributing-to-commudle">Contributing to Commudle</h1>
-<p>We&#39;re building the world&#39;s largest platform for Tech Communities and every contribution matters. </p>
+<p>We&#39;re building the world&#39;s largest platform for Tech Communities and every contribution matters.</p>
 <p>This is the front end of the platform and is based on Angular 2+ (we keep updating to the latest version fast)</p>
 <p>Though we&#39;d like to keep it informal, but here&#39;s some guidelines to keep in mind while contributing</p>
 <h3 id="creating-an-issue">Creating an Issue</h3>
@@ -42,8 +43,9 @@
 <li>Proposing a better coding strategy</li>
 </ul>
 <p>We use github to host code, to track issues and feature requests, as well as accept pull requests.</p>
-<p>###Submitting a Pull Request</p>
-<p>Pull requests are the best way to propose changes to the codebase (we use Github Flow). We actively welcome your pull requests. </p>
+<h3 id="submitting-a-pull-request">Submitting a Pull Request</h3>
+<p>Pull requests are the best way to propose changes to the codebase (we use Github Flow). We actively welcome your pull
+requests.</p>
 <h3 id="the-instructions-to-setup-the-repository-in-a-local-environment-are-mentioned-in-the-readme">The instructions to setup the repository in a local environment are mentioned in the <a href="README.md">ReadMe</a></h3>
 <h4 id="branch-names">Branch Names</h4>
 <p>Your branches should be named with a prefix for their purpose, viz.</p>
@@ -56,7 +58,8 @@ In the above examples, replace <code>branchname</code> with the name of your bra
 <h4 id="extra-guidelines">Extra Guidelines</h4>
 <ul>
 <li>Comment on the issue by introducing yourself and asking to solve it</li>
-<li>For complicated issues, brainstorming with some screenshots will be needed from both sides so that the maintainers and you, both are on the same line of thought</li>
+<li>For complicated issues, brainstorming with some screenshots will be needed from both sides so that the maintainers and
+you, both are on the same line of thought</li>
 <li>Keep a consistent coding style</li>
 <li>Ensure your PR mentions which issue it is closing</li>
 <li>Always feel free to reach out for help in comments</li>
@@ -77,14 +80,14 @@ In the above examples, replace <code>branchname</code> with the name of your bra
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -105,9 +108,9 @@ In the above examples, replace <code>branchname</code> with the name of your bra
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

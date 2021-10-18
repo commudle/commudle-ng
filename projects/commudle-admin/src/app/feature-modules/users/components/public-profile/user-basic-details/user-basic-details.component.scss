@@ -1,19 +1,19 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
   margin: 0;
 }
 
 .user-personal-details {
-  padding: $space-16;
-  border-radius: $border-10;
   background-color: $white;
-  position: relative;
+  border-radius: $border-10;
   overflow: hidden;
+  padding: $space-16;
+  position: relative;
 
   &.normal {
-    overflow: initial;
     margin-top: $space-110;
+    overflow: initial;
 
     &:before {
       content: none;
@@ -21,45 +21,46 @@ p {
   }
 
   &:before {
-    content: "";
+    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);
+    content: '';
+    height: 184px;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 184px;
-    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);;
   }
 
   .profile-photo-container {
-    display: table;
-    position: relative;
-    height: 160px;
-    width: 160px;
-    margin: $space-70 auto $space-8;
-    padding: $space-4;
     background-color: $white;
     border-radius: 50%;
+    display: table;
+    height: 160px;
+    margin: $space-70 auto $space-8;
+    padding: $space-4;
+    position: relative;
+    width: 160px;
 
     &.normal {
-      width: 188px;
+      border: 1.5px solid $mercury;
       height: 188px;
       margin: -$space-130 auto $space-20;
-      border: 1.5px solid $mercury;
       padding: 0;
+      width: 188px;
     }
 
     .profile-photo {
-      overflow: hidden;
       border-radius: 50%;
       height: 100%;
-      width: 100%;
       max-height: 188px;
+      overflow: hidden;
+      width: 100%;
 
       img {
-        width: 100%;
+        display: block;
         height: inherit;
         object-fit: cover;
         object-position: center top;
+        width: 100%;
       }
     }
   }
@@ -69,37 +70,37 @@ p {
 
     .heading {
       font-size: $fs-h4;
-      line-height: 19px;
       font-weight: $fw-500;
+      line-height: 19px;
       margin: $space-16 0 $space-4;
     }
 
     .name {
-      font-weight: $fw-600;
       font-size: $fs-20;
+      font-weight: $fw-600;
       line-height: 23px;
 
       .expert-icon {
-        position: absolute;
-        margin: $space-2 0 0 $space-8;
-        width: 18px;
         height: 18px;
+        margin: $space-2 0 0 $space-8;
+        position: absolute;
+        width: 18px;
       }
     }
 
     .username {
+      color: rgba($gunmetal, 0.85);
       font-size: $fs-h5;
       line-height: 16px;
-      color: rgba($gunmetal, 0.85);
       margin-bottom: $space-12;
+      overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      overflow: hidden;
     }
 
     .designation {
-      font-weight: $fw-500;
       font-size: $fs-h4;
+      font-weight: $fw-500;
       line-height: 19px;
       margin-bottom: $space-4;
       word-break: break-word;
@@ -109,10 +110,10 @@ p {
       margin-bottom: $space-48;
 
       a {
-        margin: 0 $space-4;
         color: $cadet;
         font-size: $fs-h5;
         font-style: italic;
+        margin: 0 $space-4;
         text-decoration: none;
 
         &:hover {
@@ -124,40 +125,44 @@ p {
     .location {
       color: $cadet;
       font-size: $fs-h5;
-      line-height: 16px;
       font-style: italic;
+      line-height: 16px;
     }
 
     .about {
-      margin: $space-16 0;
+      color: rgba($gunmetal, 0.85);
       font-size: $fs-h5;
       line-height: 16px;
-      color: rgba($gunmetal, 0.85);
+      margin: $space-16 0;
       white-space: pre-line;
     }
   }
 
   hr {
-    margin: $space-12 auto;
+    background-color: $chinese-silver;
     border: 0;
     height: 1px;
-    background-color: $chinese-silver;
+    margin: $space-12 auto;
   }
 
   .user-interactions {
     margin: $space-16 0;
 
+    a {
+      text-decoration: none;
+    }
+
     button {
-      height: 32px;
+      background-color: rgba($neon-blue, 0.2);
       border: none;
       border-radius: $border-10;
       color: $neon-blue;
-      background-color: rgba($neon-blue, 0.2);
-      padding: $space-8;
       font-size: $fs-h6;
       font-weight: $fw-400;
-      text-transform: none;
+      height: 32px;
       margin: 0 $space-8;
+      padding: $space-8;
+      text-transform: none;
 
       nb-icon {
         margin-right: $space-4;
@@ -175,13 +180,13 @@ p {
 
     nb-tag-list {
       nb-tag {
-        border: none;
-        color: $gunmetal;
         background-color: $azureish-white;
+        border: none;
+        border-radius: $border-10;
+        color: $gunmetal;
         font-size: $fs-h5;
         font-weight: $fw-500;
         padding: $space-2 $space-8;
-        border-radius: $border-10;
 
         &.tags-add {
           cursor: pointer;

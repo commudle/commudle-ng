@@ -1,5 +1,12 @@
+<nb-form-field>
+  <input [(ngModel)]="searchQuery" fieldSize="small" fullWidth nbInput placeholder="Search for a viewer" type="text" />
+  <button (click)="refreshUsersList()" ghost nbButton nbSuffix nbTooltip="Refresh the viewers list">
+    <nb-icon icon="refresh"></nb-icon>
+  </button>
+</nb-form-field>
+
 <nb-list class="session-page-viewers">
-  <nb-list-item *ngFor="let user of usersList">
+  <nb-list-item *ngFor="let user of usersList | searchBy: searchQuery | orderBy: ['name']:['asc']">
     <app-user-profile-mini
       [designation]="true"
       [showLiveStatus]="true"
@@ -8,7 +15,7 @@
     ></app-user-profile-mini>
     <button
       (click)="inviteToStage(user.id)"
-      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && currentUser.id !== user.id"
+      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && currentUser?.id !== user.id"
       class="invite-to-stage"
       ghost
       nbButton
@@ -16,7 +23,7 @@
       size="small"
       status="info"
     >
-      <nb-icon icon="chalkboard-teacher" pack="fas"></nb-icon>
+      <fa-icon [icon]="faChalkboardTeacher"></fa-icon>
     </button>
   </nb-list-item>
 </nb-list>

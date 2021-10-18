@@ -1,8 +1,11 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
-a, a:hover, a:focus, a:active {
-  text-decoration: none;
+a,
+a:hover,
+a:focus,
+a:active {
   color: inherit;
+  text-decoration: none;
 }
 
 .user-profile-small {

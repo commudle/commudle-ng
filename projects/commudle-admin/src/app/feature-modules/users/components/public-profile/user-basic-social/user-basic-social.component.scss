@@ -1,38 +1,33 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .user-basic-social {
-  margin: $space-16 0 0;
   border: none;
+  margin: $space-16 0 0;
 
   .user-social {
-    padding: $space-32 $space-44 $space-40;
     gap: $space-24;
+    padding: $space-32 $space-44 $space-40;
 
     a {
-      display: flex;
-      justify-content: center;
       align-items: center;
-      color: initial;
-      text-decoration: none;
-      padding: $space-4;
-      width: 32px;
-      height: 32px;
-      border-radius: $border-16;
       background-color: $water;
+      border-radius: $border-16;
+      color: initial;
+      display: flex;
+      height: 32px;
+      justify-content: center;
+      padding: $space-4;
+      text-decoration: none;
+      width: 32px;
 
-      nb-icon {
+      nb-icon,
+      fa-icon {
         color: $neon-blue;
-
-        &[pack='fab'] {
-          width: 22px;
-          font-size: $fs-20;
-          text-align: center;
-        }
       }
     }
 
     &.compressed {
-      gap: $space-16
+      gap: $space-16;
     }
 
     &.expanded {
@@ -47,12 +42,12 @@
         }
 
         span {
-          width: calc(calc(264px - 32px) - 54px);
+          color: $neon-blue;
           margin-right: $space-12;
-          white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: $neon-blue;
+          white-space: nowrap;
+          width: calc(calc(264px - 32px) - 54px);
         }
       }
     }

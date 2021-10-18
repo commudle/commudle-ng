@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -38,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>LabsHomeService</li>
+  <li >LabsHomeService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,6 +63,7 @@
 
 
 
+
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
@@ -76,19 +78,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#labSearch">labSearch</a>
+                                <a href="#labSearch" >labSearch</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#labSearch$">labSearch$</a>
+                                <a href="#labSearch$" >labSearch$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#tagSearch">tagSearch</a>
+                                <a href="#tagSearch" >tagSearch</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#tagSearch$">tagSearch$</a>
+                                <a href="#tagSearch$" >tagSearch$</a>
                             </li>
                         </ul>
                     </td>
@@ -103,13 +105,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getLabsByTags">getLabsByTags</a>
+                                <a href="#getLabsByTags" >getLabsByTags</a>
                             </li>
                             <li>
-                                <a href="#getLabSearchResults">getLabSearchResults</a>
+                                <a href="#getLabSearchResults" >getLabSearchResults</a>
                             </li>
                             <li>
-                                <a href="#getTagSearchResults">getTagSearchResults</a>
+                                <a href="#getTagSearchResults" >getTagSearchResults</a>
                             </li>
                         </ul>
                     </td>
@@ -129,7 +131,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(labsService: <a href="../injectables/LabsService.html">LabsService</a>)</code>
+<code>constructor(labsService: <a href="../injectables/LabsService.html" target="_self">LabsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -183,9 +185,7 @@
                 <td class="col-md-4">
                     <a name="getLabsByTags"></a>
                     <span class="name">
-                        <b>
-                            getLabsByTags
-                        </b>
+                        <span ><b>getLabsByTags</b></span>
                         <a href="#getLabsByTags"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -210,6 +210,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -299,9 +300,7 @@
                 <td class="col-md-4">
                     <a name="getLabSearchResults"></a>
                     <span class="name">
-                        <b>
-                            getLabSearchResults
-                        </b>
+                        <span ><b>getLabSearchResults</b></span>
                         <a href="#getLabSearchResults"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -326,6 +325,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -393,9 +393,7 @@
                 <td class="col-md-4">
                     <a name="getTagSearchResults"></a>
                     <span class="name">
-                        <b>
-                            getTagSearchResults
-                        </b>
+                        <span ><b>getTagSearchResults</b></span>
                         <a href="#getTagSearchResults"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -420,6 +418,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -484,141 +483,137 @@
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="labSearch"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>labSearch</b></span>
+                        <a href="#labSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="labSearch"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            labSearch</b>
-                            <a href="#labSearch"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../interfaces/ILab.html" target="_self" >BehaviorSubject&lt;ILab[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;ILab[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../interfaces/ILab.html" target="_self" >BehaviorSubject&lt;ILab[]&gt;</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:17</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject&lt;ILab[]&gt;([])</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:17</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="labSearch$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>labSearch$</b></span>
+                        <a href="#labSearch$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="labSearch$"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            labSearch$</b>
-                            <a href="#labSearch$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../interfaces/ILab.html" target="_self" >Observable&lt;ILab[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.labSearch.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../interfaces/ILab.html" target="_self" >Observable&lt;ILab[]&gt;</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:18</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>this.labSearch.asObservable()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:18</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tagSearch"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>tagSearch</b></span>
+                        <a href="#tagSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="tagSearch"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            tagSearch</b>
-                            <a href="#tagSearch"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>BehaviorSubject&lt;ITag[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;ITag[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>BehaviorSubject&lt;ITag[]&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:13</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject&lt;ITag[]&gt;([])</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:13</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tagSearch$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>tagSearch$</b></span>
+                        <a href="#tagSearch$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="tagSearch$"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            tagSearch$</b>
-                            <a href="#tagSearch$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Observable&lt;ITag[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.tagSearch.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>Observable&lt;ITag[]&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:14</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>this.tagSearch.asObservable()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:14</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -677,14 +672,14 @@ export class LabsHomeService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -705,9 +700,9 @@ export class LabsHomeService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+
        <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

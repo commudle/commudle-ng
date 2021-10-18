@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables.scss';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .main-newsletter-form {
   .editor {
@@ -20,8 +20,6 @@
     height: fit-content;
   }
 }
-
-
 
 // tinymce style
 editor {

@@ -13,21 +13,30 @@
       <nb-list-item *ngFor="let community of communities; let i = index">
         <div [routerLink]="['/communities', community.slug]" class="home-community d-flex align-items-center clickable">
           <div class="home-community-image d-flex align-items-center">
-            <img alt="{{community.name}}" src="{{community.logo_image?.i64}}" title="{{community.name}}">
+            <img alt="{{ community.name }}" src="{{ community.logo_image?.i64 }}" title="{{ community.name }}" />
           </div>
           <div class="home-community-details">
-            <div class="home-community-name">{{community.name | truncatetext:20}}</div>
-            <div class="home-community-member-count">{{community.member_count.toString() + ' Members'}}</div>
+            <div class="home-community-name com-line-clamp-2">{{ community.name }}</div>
+            <div class="home-community-member-count">{{ community.member_count.toString() + ' Members' }}</div>
           </div>
         </div>
-        <button (click)="openDialog(community, communityStatus.get(community.id))" *ngIf="community.id"
-                [ngClass]="communityStatus.get(community.id) ? 'active' : ''" class="home-communities-join" nbButton shape="round">
-          {{communityStatus.get(community.id) ? 'Joined' : 'Join'}}
+        <button
+          (click)="openDialog(community, communityStatus.get(community.id))"
+          *ngIf="community.id"
+          [ngClass]="communityStatus.get(community.id) ? 'active' : ''"
+          class="home-communities-join"
+          nbButton
+          shape="round"
+        >
+          {{ communityStatus.get(community.id) ? 'Joined' : 'Join' }}
         </button>
       </nb-list-item>
     </nb-list>
-    <div *ngIf="communities.length > 0" [routerLink]="['/communities']"
-         class="home-communities-all text-center clickable">
+    <div
+      *ngIf="communities.length > 0"
+      [routerLink]="['/communities']"
+      class="home-communities-all text-center clickable"
+    >
       <a>Find more</a>
     </div>
   </nb-card-body>
@@ -44,20 +53,18 @@
     <nb-card-body>
       <p>We are excited to have you join our Community!</p>
       <p>
-        As a part of <strong>{{data.community.name}}</strong>, the following information will be shared between you,
+        As a part of <strong>{{ data.community.name }}</strong> the following information will be shared between you,
         Commudle and the organizers:
       </p>
       <ul>
+        <li>Your email address</li>
         <li>
-          Your email address
-        </li>
-        <li>
-          Organizers of the {{data.community.name}} and Commudle admins will be sending you communication mails for
+          Organizers of the {{ data.community.name }} and Commudle admins will be sending you communication mails for
           different events, surveys, newsletters and more activities in the community
         </li>
         <li>
-          Organizers of the {{data.community.name}} have the right to allow or not allow you into an event organized
-          for {{data.community.name}}
+          Organizers of the {{ data.community.name }} have the right to allow or not allow you into an event organized
+          for {{ data.community.name }}
         </li>
       </ul>
     </nb-card-body>
@@ -77,11 +84,12 @@
       </button>
     </nb-card-header>
     <nb-card-body>
-      <p>Are you sure you want to leave {{data.community.name}}?</p>
+      <p>Are you sure you want to leave {{ data.community.name }}?</p>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" nbButton status="success">No, I'm staying</button>
-      <button (click)="toggleCommunityStatus(data.community, ref)" ghost nbButton status="danger">Yes, I will leave
+      <button (click)="toggleCommunityStatus(data.community, ref)" ghost nbButton status="danger">
+        Yes, I will leave
       </button>
     </nb-card-footer>
   </nb-card>

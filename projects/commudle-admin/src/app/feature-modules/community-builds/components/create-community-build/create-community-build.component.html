@@ -1,5 +1,4 @@
 <div class="community-build page-padding">
-
   <nb-card class="page-header">
     <nb-card-body>
       <h1>
@@ -10,22 +9,14 @@
         We're super excited to know about your Build. Just fill the details below and give us 2 days to publish it 😃
       </p>
       <ul *ngIf="!cBuild">
-        <li>
-          <strong>Project:</strong> Code should be open sourced!
-        </li>
-        <li>
-          <strong>Product:</strong> Should be live :D
-        </li>
-        <li>
-          <strong>Slides:</strong> You delivered / are planning to use them for a Tech Session
-        </li>
+        <li><strong>Project:</strong> Code should be open sourced!</li>
+        <li><strong>Product:</strong> Should be live :D</li>
+        <li><strong>Slides:</strong> You delivered / are planning to use them for a Tech Session</li>
         <li>
           <strong>Course:</strong> Anything from which people can learn to add to their skills, can be both
           online/offline!
         </li>
-        <li>
-          <strong>Other:</strong> Everything else! We'll keep adding more categories
-        </li>
+        <li><strong>Other:</strong> Everything else! We'll keep adding more categories</li>
       </ul>
     </nb-card-body>
   </nb-card>
@@ -34,45 +25,68 @@
     <nb-card-body>
       <form (keydown.enter)="$event.preventDefault()" [formGroup]="communityBuildForm">
         <div class="field">
-          <label fullWidth>
+          <label>
             What are you sharing today?*
-            <br>
-            <nb-select (selectedChange)="setBuildType()" formControlName="build_type" placeholder="Select One"
-                       size="medium" status="primary">
+            <br />
+            <nb-select
+              (selectedChange)="setBuildType()"
+              formControlName="build_type"
+              placeholder="Select One"
+              size="medium"
+              status="primary"
+            >
               <nb-option *ngFor="let bType of buildTypes" [value]="EBuildType[bType]">
                 {{ bType | titlecase }}
               </nb-option>
             </nb-select>
           </label>
           <span
-            *ngIf="communityBuildForm.get('build_type').touched && communityBuildForm.get('build_type').invalid && communityBuildForm.get('build_type').errors.required"
-            class="validation-error-text">
+            *ngIf="
+              communityBuildForm.get('build_type').touched &&
+              communityBuildForm.get('build_type').invalid &&
+              communityBuildForm.get('build_type').errors.required
+            "
+            class="validation-error-text"
+          >
             Required Field
           </span>
         </div>
 
         <div class="field">
-          <label fullWidth>
+          <label>
             Name of Build*
-            <input formControlName="name" fullWidth nbInput size="large" type="text">
+            <input formControlName="name" fullWidth nbInput size="large" type="text" />
           </label>
           <span
-            *ngIf="communityBuildForm.get('name').touched && communityBuildForm.get('name').invalid && communityBuildForm.get('name').errors.required"
-            class="validation-error-text">
+            *ngIf="
+              communityBuildForm.get('name').touched &&
+              communityBuildForm.get('name').invalid &&
+              communityBuildForm.get('name').errors.required
+            "
+            class="validation-error-text"
+          >
             Required Field
           </span>
         </div>
         <div *ngIf="teammates.length > 0" class="field">
           Teammates
-          <div *ngFor="let teammate of teammates; let i=index;">
+          <div *ngFor="let teammate of teammates; let i = index">
             <div
-              *ngIf="teammate.status == eUserRolesUserStatus.INVITED || teammate.status == eUserRolesUserStatus.ACCEPTED"
-              class="d-flex justify-content-space-between align-items-center">
+              *ngIf="
+                teammate.status === eUserRolesUserStatus.INVITED || teammate.status === eUserRolesUserStatus.ACCEPTED
+              "
+              class="d-flex justify-content-space-between align-items-center"
+            >
               <app-user-profile-horizontal [aboutMe]="true" [user]="teammate.user"></app-user-profile-horizontal>
               <div class="d-flex flex-column justify-content-space-between">
-                <small (click)="sendInvitationMail(teammate)" *ngIf="teammate.status == eUserRolesUserStatus.INVITED"
-                       class="option clickable">Resend</small>
-                <small (click)="removeTeammember(teammate, i)" class="option clickable">Remove</small>
+                <small
+                  (click)="sendInvitationMail(teammate)"
+                  *ngIf="teammate.status === eUserRolesUserStatus.INVITED"
+                  class="option clickable"
+                >
+                  Resend
+                </small>
+                <small (click)="removeTeamMember(teammate, i)" class="option clickable">Remove</small>
               </div>
             </div>
           </div>
@@ -81,15 +95,25 @@
         <div class="field" formArrayName="team">
           <div *ngFor="let email of communityBuildForm.controls.team['controls']; let i = index">
             <div [formGroupName]="i" class="teammate-email d-flex align-items-center">
-              <input formControlName='value' fullWidth nbInput
-                     placeholder="Enter email (we will send an invitation to join)" required>
+              <input
+                formControlName="value"
+                fullWidth
+                nbInput
+                placeholder="Enter email (we will send an invitation to join)"
+                required
+              />
               <nb-icon (click)="removeTeammate(i)" class="clickable" icon="close-circle" status="danger"></nb-icon>
             </div>
             <span
-              *ngIf="emailList.controls[i].get('value').touched && emailList.controls[i].get('value').invalid && emailList.controls[i].get('value').errors.required"
-              class="validation-error-text">
-                Required Field
-              </span>
+              *ngIf="
+                emailList.controls[i].get('value').touched &&
+                emailList.controls[i].get('value').invalid &&
+                emailList.controls[i].get('value').errors.required
+              "
+              class="validation-error-text"
+            >
+              Required Field
+            </span>
           </div>
           <button (click)="addTeammate()" class="add-button" nbButton status="primary">
             <nb-icon icon="plus"></nb-icon>
@@ -98,17 +122,26 @@
         </div>
 
         <div class="field">
-          <label fullWidth>
-            {{linkFieldLabel}}
-            <span *ngIf="this.communityBuildForm.get('build_type').value == EBuildType.slides"
-                  [nbPopover]="googleSlidesEmbed" class="text-info clickable" nbPopoverTrigger="hover">
+          <label>
+            {{ linkFieldLabel }}
+            <span
+              *ngIf="communityBuildForm.get('build_type').value === EBuildType.slides"
+              [nbPopover]="googleSlidesEmbed"
+              class="text-info clickable"
+              nbPopoverTrigger="hover"
+            >
               How to embed Google Slides
             </span>
-            <input formControlName="link" fullWidth nbInput size="large" type="url">
+            <input formControlName="link" fullWidth nbInput size="large" type="url" />
           </label>
           <span
-            *ngIf="communityBuildForm.get('link').touched && communityBuildForm.get('link').invalid && communityBuildForm.get('link').errors.required"
-            class="validation-error-text">
+            *ngIf="
+              communityBuildForm.get('link').touched &&
+              communityBuildForm.get('link').invalid &&
+              communityBuildForm.get('link').errors.required
+            "
+            class="validation-error-text"
+          >
             Required Field
           </span>
         </div>
@@ -116,9 +149,7 @@
         <div *ngIf="embeddedLink" [innerHTML]="embeddedLink" class="embedded-slides"></div>
 
         <div class="field">
-          <label>
-            How is it useful for others?*
-          </label>
+          <label> How is it useful for others?* </label>
           <editor
             [init]="{
               height: 500,
@@ -130,14 +161,15 @@
                 'insertdatetime table paste code help wordcount autoresize'
               ],
               toolbar:
-                'formatselect | bold italic backcolor | \
-                link | alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | table | charmap | removeformat | help',
+                'formatselect | bold italic backcolor | ' +
+                'link | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | table | charmap | removeformat | help',
               default_link_target: '_blank',
               branding: false
             }"
             apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-            formControlName="description">
+            formControlName="description"
+          >
           </editor>
         </div>
 
@@ -147,14 +179,17 @@
               <nb-icon icon="plus"></nb-icon>
               Add Images
             </span>
-            <input (change)="addImages($event)" accept="image/*" fullWidth multiple nbInput type="file">
+            <input (change)="addImages($event)" accept="image/*" fullWidth multiple nbInput type="file" />
           </label>
 
           <div class="images">
-            <div *ngFor="let image of uploadedImagesFiles; let i=index;">
+            <div *ngFor="let image of uploadedImagesFiles; let i = index">
               <div *ngIf="!uploadedImagesFiles[i]['delete']">
-                <img alt="{{uploadedImages[i].name || 'Image'}}" src="{{ uploadedImages[i] }}"
-                     title="{{uploadedImages[i].name || 'Image'}}">
+                <img
+                  alt="{{ uploadedImages[i].name || 'Image' }}"
+                  src="{{ uploadedImages[i] }}"
+                  title="{{ uploadedImages[i].name || 'Image' }}"
+                />
                 <p class="clickable">
                   <nb-icon (click)="removeImage(i)" icon="close-circle" status="danger"></nb-icon>
                 </p>
@@ -164,10 +199,14 @@
         </div>
 
         <div class="field">
-          <label fullWidth>
+          <label>
             Tags
-            <app-tag (tagAdd)="onTagAdd($event)" (tagDelete)="onTagDelete($event)" [editable]="true"
-                     [tags]="tags"></app-tag>
+            <app-tag
+              (tagAdd)="onTagAdd($event)"
+              (tagDelete)="onTagDelete($event)"
+              [editable]="true"
+              [tags]="tags"
+            ></app-tag>
           </label>
         </div>
 
@@ -179,15 +218,38 @@
         </div>
 
         <div class="field actions">
-          <button (click)="submitForm(EPublishStatus.draft)" [disabled]="!communityBuildForm.valid" nbButton outline
-                  status="info" type="submit">
+          <button
+            (click)="submitForm(EPublishStatus.draft)"
+            [disabled]="!communityBuildForm.valid"
+            nbButton
+            outline
+            status="info"
+            type="submit"
+          >
             <nb-icon icon="edit"></nb-icon>
             Save as Draft
           </button>
-          <button (click)="submitForm(EPublishStatus.submitted)" [disabled]="!communityBuildForm.valid" nbButton outline
-                  status="primary" type="submit">
+          <button
+            (click)="submitForm(EPublishStatus.submitted)"
+            [disabled]="!communityBuildForm.valid"
+            nbButton
+            outline
+            status="primary"
+            type="submit"
+          >
             <nb-icon icon="checkmark"></nb-icon>
             Submit For Approval
+          </button>
+          <button
+            (click)="submitForm(EPublishStatus.published)"
+            [disabled]="communityBuildForm.invalid"
+            nbButton
+            outline
+            status="success"
+            type="submit"
+          >
+            <nb-icon icon="cloud-upload"></nb-icon>
+            Publish Directly
           </button>
         </div>
       </form>
@@ -207,19 +269,14 @@
             <strong>(Default)</strong>.
           </strong>
         </li>
-        <li>
-          Click Publish
-        </li>
+        <li>Click Publish</li>
         <li>
           Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
           <small>
             <code>
-              <div>
-                <div>&lt;iframe src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000"
-                  frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true"
-                  webkitallowfullscreen="true"&gt;&lt;/iframe&gt;
-                </div>
-              </div>
+              {{
+                '&lt;iframe allowfullscreen="true" frameborder="0" height="569" mozallowfullscreen="true" src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000" webkitallowfullscreen="true" width="960"&gt;&lt;/iframe&gt;'
+              }}
             </code>
           </small>
         </li>

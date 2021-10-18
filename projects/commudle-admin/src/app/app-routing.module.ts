@@ -1,4 +1,3 @@
-import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Error404PageComponent, LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
@@ -12,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
+import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
 import { InitResolver } from './resolvers/init.resolver';
 
 const routes = [
@@ -38,7 +38,8 @@ const routes = [
   {
     path: 'my-profile',
     canActivate: [AuthGuard, RedirectToMyProfileGuard],
-    pathMatch: 'full', children: []
+    pathMatch: 'full',
+    children: [],
   },
   {
     path: 'communities/:community_id',
@@ -159,6 +160,10 @@ const routes = [
           import('./feature-modules/community-groups/community-groups.module').then((m) => m.CommunityGroupsModule),
       },
     ],
+  },
+  {
+    path: 'public',
+    loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
   },
 
   { path: 'logout', component: LogoutComponent },

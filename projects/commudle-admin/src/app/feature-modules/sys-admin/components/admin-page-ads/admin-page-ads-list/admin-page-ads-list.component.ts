@@ -1,20 +1,22 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { SysAdminPageAdsService } from 'projects/commudle-admin/src/app/feature-modules/sys-admin/services/sys-admin-page-ads.service';
 import { IPageAd } from 'projects/shared-models/page-ad.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-pa-slots-list',
   templateUrl: './admin-page-ads-list.component.html',
   styleUrls: ['./admin-page-ads-list.component.scss'],
 })
-export class AdminPageAdsListComponent implements OnInit {
+export class AdminPageAdsListComponent implements OnInit, OnDestroy {
   currentAdId;
   ads: IPageAd[] = [];
   page = 1;
   count = 5;
   total = -1;
+  subscriptions: Subscription[] = [];
 
   @ViewChild('confirmDeleteAd') confirmDeleteAdDialogue: TemplateRef<any>;
 
@@ -28,14 +30,20 @@ export class AdminPageAdsListComponent implements OnInit {
     this.getAds();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((value) => value.unsubscribe());
+  }
+
   getAds(): void {
     if (this.ads.length !== this.total) {
-      this.sysAdminPageAdsService.getAllAds(this.page, this.count).subscribe((value) => {
-        this.ads = this.ads.concat(value.page_ads);
-        this.page = +value.page;
-        this.total = +value.total;
-        this.page += 1;
-      });
+      this.subscriptions.push(
+        this.sysAdminPageAdsService.getAllAds(this.page, this.count).subscribe((value) => {
+          this.ads = this.ads.concat(value.page_ads);
+          this.page = +value.page;
+          this.total = +value.total;
+          this.page += 1;
+        }),
+      );
     }
   }
 
@@ -46,12 +54,17 @@ export class AdminPageAdsListComponent implements OnInit {
 
   deleteAd(): void {
     if (this.currentAdId) {
-      this.sysAdminPageAdsService.deleteAd(this.currentAdId).subscribe((data) => {
-        if (data) {
-          this.toastLogService.successDialog('Successfully deleted ad!');
-          this.getAds();
-        }
-      });
+      this.subscriptions.push(
+        this.sysAdminPageAdsService.deleteAd(this.currentAdId).subscribe((data) => {
+          if (data) {
+            this.toastLogService.successDialog('Successfully deleted ad!');
+            this.ads = [];
+            this.page = 1;
+            this.total = -1;
+            this.getAds();
+          }
+        }),
+      );
     }
   }
 }
