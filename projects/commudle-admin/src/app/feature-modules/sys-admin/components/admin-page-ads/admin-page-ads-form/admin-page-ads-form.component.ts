@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -35,6 +35,8 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
   uploadedFiles: IAttachedFile[] = [];
 
   subscriptions: Subscription[] = [];
+
+  @ViewChild('inputFile') inputFile: ElementRef;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -140,6 +142,8 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     } else {
       this.uploadedFiles.splice(index, 1);
     }
+
+    this.inputFile.nativeElement.value = '';
   }
 
   submitForm(): void {
@@ -181,7 +185,7 @@ export class AdminPageAdsFormComponent implements OnInit, OnDestroy {
     const pageAdFormValue = this.pageAdForm.value;
 
     Object.keys(pageAdFormValue).forEach((value) => {
-      if (pageAdFormValue[value] != null) {
+      if (pageAdFormValue[value]) {
         if (['start_at', 'end_at'].includes(value)) {
           const time = pageAdFormValue[value] + this.getTimeZone();
           formData.append(`page_ad[${value}]`, moment.parseZone(time).utc().format());

@@ -1,7 +1,9 @@
 import {
   HMSPeer,
   selectIsConnectedToRoom,
+  selectIsLocalAudioEnabled,
   selectIsLocalScreenShared,
+  selectIsLocalVideoEnabled,
   selectIsSomeoneScreenSharing,
   selectLocalPeer,
   selectPeers,
@@ -57,6 +59,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
   joinedAsHost: boolean;
 
   isOnStage: boolean;
+  enableHmsForStage: boolean;
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
   isRecording: boolean;
@@ -129,11 +132,23 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       }, selectPeers);
       hmsStore.subscribe((localPeer: HMSPeer) => {
         this.localPeer = localPeer;
-        if (this.joinedAsHost && localPeer.audioTrack && localPeer.videoTrack) {
-          this.setHmsMediaSettings();
+        if (localPeer?.audioTrack && localPeer?.videoTrack) {
+          this.subscribeToMediaDevices();
+        }
+        if (this.joinedAsHost && localPeer) {
+          if (this.selectedRole === EHmsRoles.HOST) {
+            hmsActions.changeRole(localPeer.id, EHmsRoles.HOST, true);
+          }
+          this.joinedAsHost = false;
         }
       }, selectLocalPeer);
 
+      hmsStore.subscribe((value: boolean) => {
+        this.isAudioEnabled = value;
+      }, selectIsLocalAudioEnabled);
+      hmsStore.subscribe((value: boolean) => {
+        this.isVideoEnabled = value;
+      }, selectIsLocalVideoEnabled);
       hmsStore.subscribe((isScreenSharing: boolean) => {
         this.isScreenSharing = isScreenSharing;
       }, selectIsSomeoneScreenSharing);
@@ -144,52 +159,54 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
 
       this.receiveChannelData();
-      this.subscribeToMediaDevices();
-
-      if (this.selectedRole === EHmsRoles.HOST) {
-        hmsActions.changeRole(hmsStore.getState(selectLocalPeer).id, EHmsRoles.HOST, true);
-      }
     }
   };
 
   subscribeToMediaDevices(): void {
-    this.subscriptions.push(
-      combineLatest(
-        this.localMediaV2Service.audioInputDeviceId$,
-        this.localMediaV2Service.videoDeviceId$,
-        this.localMediaV2Service.isAudioEnabled$,
-        this.localMediaV2Service.isVideoEnabled$,
-      ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
-        if (this.selectedAudioInputDeviceId !== audioInputDeviceId) {
-          this.selectedAudioInputDeviceId = audioInputDeviceId;
-          hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
-        }
+    if (this.enableHmsForStage) {
+      this.enableHmsForStage = false;
 
-        if (this.selectedVideoDeviceId !== videoDeviceId) {
-          this.selectedVideoDeviceId = videoDeviceId;
-          hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
-        }
+      this.selectedAudioInputDeviceId = this.localMediaV2Service.getAudioInputDeviceId();
+      this.selectedVideoDeviceId = this.localMediaV2Service.getVideoDeviceId();
+      this.isAudioEnabled = this.localMediaV2Service.getIsAudioEnabled();
+      this.isVideoEnabled = this.localMediaV2Service.getIsVideoEnabled();
 
-        if (this.isAudioEnabled !== isAudioEnabled) {
-          this.isAudioEnabled = isAudioEnabled;
-          hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
-        }
+      hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
+      hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
+      hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
+      hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+    } else {
+      this.subscriptions.push(
+        combineLatest(
+          this.localMediaV2Service.audioInputDeviceId$,
+          this.localMediaV2Service.videoDeviceId$,
+          this.localMediaV2Service.isAudioEnabled$,
+          this.localMediaV2Service.isVideoEnabled$,
+        ).subscribe(([audioInputDeviceId, videoDeviceId, isAudioEnabled, isVideoEnabled]) => {
+          if (!this.enableHmsForStage) {
+            if (this.selectedAudioInputDeviceId !== audioInputDeviceId) {
+              this.selectedAudioInputDeviceId = audioInputDeviceId;
+              hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
+            }
 
-        if (this.isVideoEnabled !== isVideoEnabled) {
-          this.isVideoEnabled = isVideoEnabled;
-          hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
-        }
-      }),
-    );
-  }
+            if (this.selectedVideoDeviceId !== videoDeviceId) {
+              this.selectedVideoDeviceId = videoDeviceId;
+              hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
+            }
 
-  setHmsMediaSettings(): void {
-    hmsActions.setAudioSettings({ deviceId: this.selectedAudioInputDeviceId });
-    hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
-    hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
-    hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+            if (this.isAudioEnabled !== isAudioEnabled) {
+              this.isAudioEnabled = isAudioEnabled;
+              hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
+            }
 
-    this.joinedAsHost = false;
+            if (this.isVideoEnabled !== isVideoEnabled) {
+              this.isVideoEnabled = isVideoEnabled;
+              hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+            }
+          }
+        }),
+      );
+    }
   }
 
   toggleAudio(): void {
@@ -214,7 +231,9 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   inviteToStage(userId: number): void {
     if (userId) {
-      const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => JSON.parse(peer.customerDescription).id === userId);
+      const peers: HMSPeer[] = this.peers.filter((peer: HMSPeer) => {
+        return peer.customerDescription && JSON.parse(peer.customerDescription)?.id === userId;
+      });
       if (peers.length > 0) {
         const roleName: string = peers[0].roleName;
         const name: string = JSON.parse(peers[0].customerDescription).name;
@@ -227,6 +246,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
             break;
           case EHmsRoles.VIEWER:
             peers.forEach((peer: HMSPeer) => hmsActions.changeRole(peer.id, EHmsRoles.GUEST));
+            this.toastLogService.successDialog(`Invited ${name} to the stage, they will now see a popup`);
             break;
           case EHmsRoles.GUEST:
             this.toastLogService.warningDialog(`Cannot invite ${name} to stage, they are already on the stage`);
@@ -284,6 +304,7 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
             hmsActions.changeRole(this.localPeer.id, EHmsRoles.HOST, true);
             this.isOnStage = true;
             this.joinedAsHost = true;
+            this.enableHmsForStage = true;
           }
         });
         break;
@@ -352,7 +373,10 @@ export class ConferenceV2Component implements OnInit, OnChanges, OnDestroy {
 
   endSession(): void {
     if (this.serverClient.role === EHmsRoles.HOST || this.serverClient.role === EHmsRoles.HOST_VIEWER) {
-      this.hmsLiveV2Channel.sendData(this.hmsLiveV2Channel.ACTIONS.END_STREAM, this.currentUser.id, {});
+      if (window.confirm('Are you sure you want to end the session?')) {
+        this.hmsLiveV2Channel.sendData(this.hmsLiveV2Channel.ACTIONS.END_STREAM, this.currentUser.id, {});
+        this.toastLogService.successDialog('Session has ended');
+      }
     }
   }
 

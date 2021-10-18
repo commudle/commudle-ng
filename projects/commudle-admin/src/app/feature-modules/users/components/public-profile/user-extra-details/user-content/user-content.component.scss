@@ -1,4 +1,4 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .user-content {
   nb-card {
@@ -16,7 +16,6 @@
   }
 
   nb-route-tabset {
-
     &::ng-deep {
       .route-tabset {
         padding-top: $space-8;
@@ -49,7 +48,8 @@
           }
         }
       }
-      .user-contributions, .user-social {
+      .user-contributions,
+      .user-social {
         padding: $space-32;
       }
     }

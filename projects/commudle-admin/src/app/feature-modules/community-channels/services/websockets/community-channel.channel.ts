@@ -21,6 +21,8 @@ export class CommunityChannelChannel {
     ERROR: 'error',
     CHANGE_PERMISSION: 'change_permission',
     READ_MESSAGE: 'read_message',
+    PIN: 'pin',
+    UNPIN: 'unpin',
   };
 
   actionCable = actionCable;
@@ -42,7 +44,7 @@ export class CommunityChannelChannel {
     });
   }
 
-  subscribe(discussionId): ActionCable.Channel {
+  subscribe(discussionId) {
     if (this.cableConnection) {
       this.subscription = this.cableConnection.subscriptions.create(
         {

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -11,10 +12,9 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-public-profile',
   templateUrl: './public-profile.component.html',
-  styleUrls: ['./public-profile.component.scss']
+  styleUrls: ['./public-profile.component.scss'],
 })
 export class PublicProfileComponent implements OnInit, OnDestroy {
-
   user: IUser;
   currentUser: ICurrentUser;
 
@@ -26,34 +26,44 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     private usersService: AppUsersService,
     private footerService: FooterService,
     private meta: Meta,
-    private title: Title
-  ) {
-  }
+    private title: Title,
+    private updateProfileService: UpdateProfileService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(this.activatedRoute.params.subscribe(() => this.getUserData()));
 
     // Get logged in user
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
+
+    this.subscriptions.push(
+      this.updateProfileService.updateProfile$.subscribe((value) => {
+        if (value) {
+          this.getUserData();
+        }
+      }),
+    );
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 
     // Show Footer
     this.footerService.changeFooterStatus(true);
-    this.meta.removeTag('name=\'robots\'');
+    this.meta.removeTag("name='robots'");
   }
 
   // Get user's data
   getUserData() {
-    this.subscriptions.push(this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe(data => {
-      this.user = data;
-      this.setMeta();
-    }));
+    this.subscriptions.push(
+      this.usersService.getProfile(this.activatedRoute.snapshot.params.username).subscribe((data) => {
+        this.user = data;
+        this.setMeta();
+      }),
+    );
   }
 
   setMeta() {
@@ -80,5 +90,4 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'twitter:title', content: titleText });
     this.meta.updateTag({ name: 'twitter:description', content: `${this.user.about_me}` });
   }
-
 }

@@ -1,11 +1,15 @@
-import { IAttachedFile } from "./attached-file.model";
+import { IAttachedFile } from './attached-file.model';
+
+enum EBadgeTypes {
+  EXPERT = 'expert',
+  AUTHOR = 'author',
+}
 
 export interface IBadge {
   // keeping id to any because it can be null
   id: number;
   name: string;
-  type: string;
-  image: IAttachedFile
-
+  image: IAttachedFile;
+  slug: string;
+  badge_type: EBadgeTypes;
 }
-

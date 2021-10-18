@@ -65,6 +65,7 @@ export const API_ROUTES = {
     DELETE_LOGO: 'api/v2/community_channels/delete_logo',
     JOIN_CHANNEL: 'api/v2/community_channels/join_channel',
     DISCUSSION_MESSAGES: 'api/v2/community_channels/discussion_messages',
+    DISCUSSION_MESSAGES_SCROLL: 'api/v2/community_channels/discussion_messages_paginated',
     SEND_MESSAGE_BY_EMAIL_TO_ALL_MEMBERS: 'api/v2/community_channels/send_message_by_email_to_all_members',
     MEMBERS: {
       INDEX: 'api/v2/community_channels/members',
@@ -73,6 +74,11 @@ export const API_ROUTES = {
       TOGGLE_ADMIN: 'api/v2/community_channels/members/toggle_admin',
       REMOVE: 'api/v2/community_channels/members/remove',
       EXIT_CHANNEL: 'api/v2/community_channels/members/exit_channel',
+    },
+    PINNING_MESSAGES: {
+      PIN: 'api/v2/community_channels/pin_message',
+      UNPIN: 'api/v2/community_channels/unpin_message',
+      PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages',
     },
   },
 
@@ -298,6 +304,20 @@ export const API_ROUTES = {
     },
   },
 
+  BADGES: {
+    INDEX: 'api/v2/badges',
+    SHOW: 'api/v2/badges/show',
+    CREATE: 'api/v2/badges',
+    UPDATE: 'api/v2/badges',
+    DELETE: 'api/v2/badges',
+  },
+
+  USER_BADGES: {
+    INDEX: 'api/v2/user_badges',
+    CREATE: 'api/v2/user_badges',
+    DELETE: 'api/v2/user_badges',
+  },
+
   POLLS: {
     PUBLIC: {
       SHOW: 'api/v2/polls/public',
@@ -384,6 +404,7 @@ export const API_ROUTES = {
     },
     FOLLOWERS: 'api/v2/users/followers',
     FOLLOWEES: 'api/v2/users/followees',
+    EMAIL_UNSUBSCRIBE_GROUPS: 'api/v2/users/email_unsubscribe_groups',
   },
 
   SPEAKER_RESOURCES: {
@@ -528,6 +549,10 @@ export const API_ROUTES = {
 
   MENTIONS: {
     USERS: 'api/v2/mentions/user_entities',
-    OTHERS: 'api/v2/mentions/other_entities'
-  }
+    OTHERS: 'api/v2/mentions/other_entities',
+  },
+
+  PINNING_MESSAGE: {
+    PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages',
+  },
 };

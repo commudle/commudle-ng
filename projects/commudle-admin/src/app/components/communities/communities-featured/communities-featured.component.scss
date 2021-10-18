@@ -1,16 +1,16 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
-@import '/projects/commudle-admin/src/assets/styles/text-styles';
+@import './projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/text-styles';
 
 p {
-  margin: 0;
   color: $gunmetal;
+  margin: 0;
 }
 
 .communities-featured {
-  position: relative;
   border: none;
   margin-bottom: $space-32;
   overflow: hidden;
+  position: relative;
 
   //&:before {
   //  content: '';
@@ -40,22 +40,28 @@ p {
     }
 
     .featured-communities-list {
-      gap: $space-16;
+      @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+
+      @screen lg {
+        @apply com-grid com-grid-cols-4 com-overflow-x-auto com-gap-4;
+      }
 
       .featured-community-card {
-        position: relative;
-        width: 257px;
+        background-color: $white;
         border: 1px solid $silver-sand;
         border-radius: $border-8;
-        overflow: hidden;
-        background-color: $white;
-        flex: 0 0 auto;
+        min-width: 260px;
+        position: relative;
+
+        @screen lg {
+          min-width: inherit;
+        }
 
         .actions {
-          position: absolute;
-          top: $space-12;
-          right: $space-12;
           gap: $space-8;
+          position: absolute;
+          right: $space-12;
+          top: $space-12;
 
           button {
             background-color: $azureish-white;
@@ -68,8 +74,8 @@ p {
 
         .image {
           height: 156px;
-          width: 100%;
           overflow: hidden;
+          width: 100%;
 
           img {
             width: 100%;

@@ -1,0 +1,40 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.profile-dialog {
+  nb-card-header {
+    .navigation-buttons {
+      position: relative;
+      top: 17px;
+      display: flex;
+      gap: 15px;
+
+      a {
+        text-align: center;
+        padding: 0 $space-16 $space-6 $space-16;
+        border: none;
+        text-decoration: none;
+        color: $gunmetal;
+      }
+
+      .profile-navbar-menu-option {
+        font-size: $fs-17;
+        font-weight: bold;
+        line-height: 24px;
+        cursor: pointer;
+      }
+
+      .active {
+        border-bottom: 4px solid rgba($azure, 0.9);
+      }
+    }
+  }
+
+  nb-card-body {
+    padding: 0;
+    width: 700px;
+
+    @media screen and (max-width: 768px) {
+      width: 95vw;
+    }
+  }
+}

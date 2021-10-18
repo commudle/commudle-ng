@@ -1,4 +1,4 @@
-@import 'projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 nb-card.home-labs {
   border: none;
@@ -24,11 +24,14 @@ nb-card.home-labs {
   }
 }
 
-p, h3, a {
+p,
+h3,
+a {
   margin: 0;
 }
 
-.home-labs-mobile-heading, .all-labs-mobile-link {
+.home-labs-mobile-heading,
+.all-labs-mobile-link {
   display: none;
 }
 
@@ -78,7 +81,9 @@ p, h3, a {
 @media all and (max-width: $tab-width) {
   nb-card.home-labs {
     nb-card-body {
-      .home-labs-heading, .labs-list, .all-labs-link {
+      .home-labs-heading,
+      .labs-list,
+      .all-labs-link {
         display: none;
       }
 

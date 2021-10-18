@@ -11,32 +11,38 @@
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
           &nbsp;
           <small><em *ngIf="message.edited">(edited)</em></small>
+          <fa-icon *ngIf="message.pinned && showPin" [icon]="faThumbtack" transform="rotate-45" size="lg"></fa-icon>
         </p>
       </div>
       <!-- TODO: Handle if script tag is in message content -->
       <div
-        [innerHTML]="message.content | linky:{sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions}"
+        [innerHTML]="
+          message.content
+            | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
+            | safeHtml
+        "
         class="content"
+        [ngClass]="{ 'com-line-clamp-1': lineClamp }"
       ></div>
       <div *ngIf="message.attachments.length > 0" class="attachments">
-        <div *ngFor="let file of message.attachments; let i=index;" class="file">
-          <a class="download-link clickable" href="{{file.url}}" target="_blank">
+        <div *ngFor="let file of message.attachments; let i = index" class="file">
+          <a class="download-link clickable" href="{{ file.url }}" target="_blank">
             <nb-icon icon="external-link"></nb-icon>
           </a>
           <div *ngIf="!file.type.includes('image')" class="file-preview">
             <p class="name">
-              <small>{{file.name | slice:0:20 }}</small>
+              <small>{{ file.name | slice: 0:20 }}</small>
             </p>
             <p class="extension">
-              <small>{{file.name.split('.').reverse()[0]}}</small>
+              <small>{{ file.name.split('.').reverse()[0] }}</small>
             </p>
           </div>
           <div *ngIf="file.type.includes('image')" class="image-file-preview">
-            <img alt="{{ file.name }}" src="{{file.url}}" title="{{file.name}}" />
+            <img alt="{{ file.name }}" src="{{ file.url }}" title="{{ file.name }}" />
           </div>
         </div>
       </div>
-      <div class="details-flag">
+      <div class="details-flag" *ngIf="showMessageControls">
         <div>
           <app-votes-display
             [canVote]="permittedActions.includes(allActions.VOTE)"
@@ -57,7 +63,7 @@
         </div>
         <div
           *ngIf="contextMenuItems.length > 0"
-          [nbContextMenuTag]="'community-channel-message-menu-'.concat((message.id).toString())"
+          [nbContextMenuTag]="'community-channel-message-menu-'.concat(message.id.toString())"
           [nbContextMenu]="contextMenuItems"
           class="message-context-menu clickable"
         >

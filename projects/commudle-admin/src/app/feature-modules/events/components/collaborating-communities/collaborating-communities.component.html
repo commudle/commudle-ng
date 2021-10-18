@@ -1,13 +1,13 @@
 <div>
   <div class="collaboration-communities">
-    <div *ngFor="let col of collaborationCommunities;  let i = index;" class="community">
+    <div *ngFor="let col of collaborationCommunities; let i = index" class="community">
       <div class="logo">
         <a [routerLink]="['/communities', col.community.slug]">
-          <img alt="{{ col.community.name }}" src="{{ col.community.logo_path }}" title="{{ col.community.name }}">
+          <img alt="{{ col.community.name }}" src="{{ col.community.logo_path }}" title="{{ col.community.name }}" />
         </a>
       </div>
       <div class="details">
-        <p> {{col.community.name | slice:0:10}} </p>
+        <p>{{ col.community.name | slice: 0:10 }}</p>
         <div *ngIf="event.editable" class="actions">
           <a (click)="resendConfirmationEmail(col.id)" *ngIf="!col.approved" class="clickable">
             <small> Resend Request </small>
@@ -21,32 +21,30 @@
     <div *ngIf="event.editable">
       <label>
         <p>
-          <nb-icon icon="info-circle" pack="fas"></nb-icon>
+          <fa-icon [icon]="faInfoCircle"></fa-icon>
           Type 3 or more characters to get the results
         </p>
 
-        <input #autoInput
-        nbInput
-        type="text"
-        [value]="selectedCommunity"
-        (input)="onChange()"
-        (keyup)="checkTyping()"
-        placeholder="Enter Name..."
-        [nbAutocomplete]="auto" />
+        <input
+          #autoInput
+          (input)="onChange()"
+          (keyup)="checkTyping()"
+          [nbAutocomplete]="auto"
+          [value]="selectedCommunity"
+          nbInput
+          placeholder="Enter Name..."
+          type="text"
+        />
       </label>
 
       <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
-
         <nb-option *ngFor="let community of communities" [value]="community">
           <div class="logo">
-            <img src="{{community.logo_path}}" alt="{{ community.name }}" title="{{ community.name }}">
+            <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
           </div>
           {{ community.name }}
         </nb-option>
-        <nb-option disabled *ngIf="communities.length===0 && typing">
-          No Results
-        </nb-option>
-
+        <nb-option *ngIf="communities.length === 0 && typing" disabled>No Results</nb-option>
       </nb-autocomplete>
     </div>
   </div>

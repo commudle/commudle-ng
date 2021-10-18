@@ -1,7 +1,7 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .session-page-viewers {
-  height: calc(100% - 48px);
+  height: calc(100% - 48px - 32px);
 
   // Custom scrollbar
   &::-webkit-scrollbar {
@@ -13,10 +13,10 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: darken($light-purple, 5%);
-    border-radius: $border-10;
-    border: 3px solid transparent;
     background-clip: content-box;
+    background-color: darken($light-purple, 5%);
+    border: 3px solid transparent;
+    border-radius: $border-10;
   }
 
   &::-webkit-scrollbar-thumb:hover {
@@ -41,6 +41,8 @@
     .invite-to-stage {
       display: none;
       height: 32px;
+      padding-left: 0;
+      padding-right: 0;
       width: 32px;
     }
 

@@ -1,8 +1,8 @@
-@import '/projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 .communities-list {
-  margin-top: 0;
   border: none;
+  margin-top: 0;
 
   nb-card-body {
     padding: $space-24 $space-32;
@@ -11,19 +11,19 @@
       margin-bottom: $space-16;
 
       .heading {
-        font-weight: $fw-600;
-        font-size: $fs-26;
-        line-height: 30px;
         color: $gunmetal;
+        font-size: $fs-26;
+        font-weight: $fw-600;
+        line-height: 30px;
       }
 
       .controls {
         min-width: max-content;
 
         button {
-          width: 40px;
-          height: 28px;
           background: rgba($neon-blue, 0.3);
+          height: 28px;
+          width: 40px;
 
           nb-icon {
             color: $neon-blue;
@@ -45,18 +45,18 @@
     }
 
     .search {
-      margin: $space-44 0 $space-24;
       gap: $space-8 $space-32;
+      margin: $space-44 0 $space-24;
 
       .search-tags {
         gap: $space-8 $space-20;
 
         .search-tag {
-          padding: $space-8 $space-6;
+          border-bottom: 2px solid $white;
+          color: rgba($gunmetal, 0.85);
           font-size: $fs-h5;
           line-height: 16px;
-          color: rgba($gunmetal, 0.85);
-          border-bottom: 2px solid $white;
+          padding: $space-8 $space-6;
 
           &.active {
             border-bottom: 2px solid $gunmetal;
@@ -68,49 +68,42 @@
         nb-form-field {
           &::ng-deep {
             .nb-form-field-prefix-medium {
-              margin-right: -$space-32;
               height: 24px;
+              margin-right: -$space-32;
               width: 32px;
             }
 
             .nb-form-field-suffix-medium {
-              margin-left: -$space-32;
               height: 24px;
+              margin-left: -$space-32;
               width: 32px;
             }
           }
 
           nb-icon {
+            color: rgba($gunmetal, 0.85);
             height: 16px;
             width: 16px;
-            color: rgba($gunmetal, 0.85);
           }
 
           input {
-            height: 24px;
-            width: 140px;
+            background: #edf1f7;
             border: none;
             border-radius: $space-4;
-            padding: $space-8 $space-32;
             font-size: $fs-h6;
-            background: #edf1f7;
+            height: 24px;
+            padding: $space-8 $space-32;
+            width: 140px;
           }
         }
       }
     }
 
     .communities-list-cards {
-      gap: $space-16;
-    }
-  }
-}
+      @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
 
-@media all and (max-width: $tab-width) {
-  .communities-list {
-    nb-card-body {
-      .communities-list-cards {
-        flex-wrap: nowrap;
-        overflow: scroll;
+      @screen lg {
+        @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
       }
     }
   }

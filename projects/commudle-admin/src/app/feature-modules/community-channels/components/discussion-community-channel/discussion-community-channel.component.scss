@@ -1,4 +1,4 @@
-@import 'projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 :host {
   height: 100%;
@@ -76,4 +76,17 @@
 .disclaimer {
   max-width: 90vh;
   width: 350px;
+}
+
+.active {
+  animation: highlight 1000ms ease-out;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: initial;
+  }
 }

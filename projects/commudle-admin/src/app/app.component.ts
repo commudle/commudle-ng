@@ -3,7 +3,7 @@ import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnIn
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { NbIconLibraries, NbMenuItem, NbSidebarService, NbWindowService, NbWindowState } from '@nebular/theme';
+import { NbMenuItem, NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
 import { AppCentralNotificationService } from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
@@ -27,7 +27,7 @@ import { CookieConsentService } from './services/cookie-consent.service';
 })
 export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   sideBarNotifications = false;
-  sideBarState = 'collapsed';
+  sideBarState: NbSidebarState = 'collapsed';
   faBars = faBars;
   currentUser: ICurrentUser;
   userContextMenu: NbMenuItem[] = [{ title: 'Logout', link: '/logout' }];
@@ -48,20 +48,15 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private windowService: NbWindowService,
     private cookieConsentService: CookieConsentService,
     private appCentralNotificationsService: AppCentralNotificationService,
-    private iconLibraries: NbIconLibraries,
     private footerService: FooterService,
     private cdr: ChangeDetectorRef,
     private truncate: TruncateTextPipe,
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
   ) {
-    this.checkHTTPS();
+    // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
-
-    this.iconLibraries.registerFontPack('far', { iconClassPrefix: 'fa', packClass: 'far' });
-    this.iconLibraries.registerFontPack('fas', { iconClassPrefix: 'fa', packClass: 'fas' });
-    this.iconLibraries.registerFontPack('fab', { iconClassPrefix: 'fa', packClass: 'fab' });
   }
 
   ngOnInit(): void {
@@ -96,18 +91,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
       }
     });
 
-    this.router.events.subscribe(() => {
-      if (this.isBrowser) {
-        setTimeout(() => {
-          if (window.innerWidth <= 1000 && document.getElementById('commudleSidebar').classList.contains('expanded')) {
-            this.document.getElementById('commudleSidebar').classList.remove('expanded');
-            this.document.getElementById('commudleSidebar').classList.add('collapsed');
-            this.sideBarState = 'collapsed';
-          }
-        }, 10);
-      }
-    });
-
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       setTimeout(() => {
         this.windowService.open(CookieConsentComponent, {
@@ -135,21 +118,18 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   checkNotifications(): void {
-    this.sidebarService.onCollapse().subscribe(() => (this.sideBarState = 'collapsed'));
-
     this.appCentralNotificationsService.sidebarNotifications$.subscribe((data) => (this.sideBarNotifications = data));
   }
 
-  checkHTTPS(): void {
-    if (this.isBrowser) {
-      if (environment.production && location.protocol !== 'https:') {
-        // location.replace(`https:${location.href.substring(location.protocol.length)}`);
-      }
-    }
-  }
+  // checkHTTPS(): void {
+  //   if (this.isBrowser) {
+  //     if (environment.production && location.protocol !== 'https:') {
+  //       location.replace(`https:${location.href.substring(location.protocol.length)}`);
+  //     }
+  //   }
+  // }
 
   toggleSidebar(): void {
-    this.sideBarState = this.sideBarState === 'collapsed' ? 'expanded' : 'collapsed';
     this.sidebarService.toggle(false, 'mainMenu');
   }
 

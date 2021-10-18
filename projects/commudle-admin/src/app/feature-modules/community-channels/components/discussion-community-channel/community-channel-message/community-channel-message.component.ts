@@ -12,12 +12,18 @@ import {
 import { NbMenuService, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { Match } from 'autolinker';
 import * as moment from 'moment';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
+import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
+import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -34,6 +40,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   @Input() permittedActions;
   @Input() allActions;
   @Input() currentUser: ICurrentUser;
+  @Input() lineClamp: boolean = false;
+  @Input() showMessageControls: boolean = true;
+  @Input() showPin: boolean = true;
   @Output() sendReply = new EventEmitter();
   @Output() sendAttachmentReply = new EventEmitter();
   @Output() sendUpdatedReply = new EventEmitter();
@@ -47,6 +56,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   isAdmin = false;
   canDelete = false;
   canSendMessageByEmail = false;
+  canPinMessage = false;
 
   editMessageTemplateRef: NbWindowRef;
 
@@ -58,10 +68,16 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
 
   contextMenuItems = [];
 
+  faThumbtack = faThumbtack;
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private menuService: NbMenuService,
     private nbWindowService: NbWindowService,
+    private activatedRoute: ActivatedRoute,
+    private communityChannelsService: CommunityChannelsService,
+    private communityChannelManagerService: CommunityChannelManagerService,
+    private libToastLogService: LibToastLogService,
   ) {}
 
   ngOnInit(): void {}
@@ -95,11 +111,18 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               title: 'Email to all members',
             });
           }
+          if (!this.canPinMessage && (this.isAdmin || this.currentUser.username === this.message.user.username)) {
+            this.canPinMessage = true;
+            this.contextMenuItems.push({
+              title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
+            });
+          }
         }
       }),
     );
 
     this.handleContextMenu();
+    this.togglePinStatus();
   }
 
   ngOnDestroy(): void {
@@ -173,9 +196,66 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               this.sendMessageByEmail.emit(this.message.id);
               break;
             }
+            case 'Pin Message': {
+              let channelId = this.activatedRoute.snapshot.params.community_channel_id;
+              this.subscriptions.push(
+                this.communityChannelsService.pinMessage(this.message.id, channelId).subscribe(() => {
+                  this.libToastLogService.successDialog('Pinned Message Successfully!');
+                }),
+              );
+              break;
+            }
+            case 'Unpin Message': {
+              let channelId = this.activatedRoute.snapshot.params.community_channel_id;
+              this.subscriptions.push(
+                this.communityChannelsService.unpinMessage(this.message.id, channelId).subscribe(() => {
+                  this.libToastLogService.successDialog('Unpinned Message Successfully!');
+                }),
+              );
+              break;
+            }
           }
         }),
     );
+  }
+
+  togglePinStatus() {
+    this.subscriptions.push(
+      this.communityChannelManagerService.pinData$.subscribe((data) => {
+        if (data) {
+          switch (data.action) {
+            case 'pin': {
+              this.pinMessage(data.user_message);
+              break;
+            }
+            case 'unpin': {
+              this.unpinMessage(data.user_message);
+              break;
+            }
+          }
+        }
+      }),
+    );
+  }
+
+  pinMessage(message: IUserMessage) {
+    if (message.id === this.message.id) {
+      this.message.pinned = true;
+      const idx = this.contextMenuItems.findIndex((item) => item.title === 'Pin Message');
+      if (idx !== -1) {
+        this.contextMenuItems[idx].title = 'Unpin Message';
+      }
+    }
+  }
+
+  unpinMessage(message: IUserMessage) {
+    if (message.id === this.message.id) {
+      this.message.pinned = false;
+      const idx = this.contextMenuItems.findIndex((item) => item.title === 'Unpin Message');
+      if (idx !== -1) {
+        this.contextMenuItems[idx].title = 'Pin Message';
+      }
+    }
   }
 
   openEditForm(): void {
@@ -187,7 +267,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   highlightUserMentions(match: Match): string {
     switch (match.getType()) {
       case 'mention':
-        return `<a href="https://commudle.com/users/${match
+        return `<a href="${environment.app_url}/users/${match
           .getMatchedText()
           .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
     }

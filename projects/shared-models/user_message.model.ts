@@ -13,4 +13,5 @@ export interface IUserMessage {
   user_messages: IUserMessage[];
   attachments: IAttachedFile[];
   edited: boolean;
+  pinned: boolean;
 }
