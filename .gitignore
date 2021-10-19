@@ -62,3 +62,5 @@ dist.zip
 .eslintcache
 
 functions/
+
+report.*

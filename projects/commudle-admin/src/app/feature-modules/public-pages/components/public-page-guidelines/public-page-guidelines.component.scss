@@ -7,3 +7,18 @@
     @apply com-my-4;
   }
 }
+
+
+div.content {
+
+  &::ng-deep {
+    figure {
+      max-width: 100%;
+    }
+
+    img {
+      max-width: 100% !important;
+    }
+  }
+
+}
