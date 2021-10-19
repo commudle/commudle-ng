@@ -6,17 +6,17 @@
         Share Your Build!
       </h1>
       <p>
-        We're super excited to know about your Build. Just fill the details below and give us 2 days to publish it 😃
+        We as Software Developers create so many side projects which are really cool, from a simple script to a complete app or even a tutorial/course you have created.
+        This is the place where you can share them with thousands of more developers like you.
       </p>
       <ul *ngIf="!cBuild">
         <li><strong>Project:</strong> Code should be open sourced!</li>
-        <li><strong>Product:</strong> Should be live :D</li>
-        <li><strong>Slides:</strong> You delivered / are planning to use them for a Tech Session</li>
+        <!-- <li><strong>Product:</strong> Should be live :D</li>
+        <li><strong>Slides:</strong> You delivered / are planning to use them for a Tech Session</li> -->
         <li>
           <strong>Course:</strong> Anything from which people can learn to add to their skills, can be both
           online/offline!
         </li>
-        <li><strong>Other:</strong> Everything else! We'll keep adding more categories</li>
       </ul>
     </nb-card-body>
   </nb-card>
@@ -124,14 +124,14 @@
         <div class="field">
           <label>
             {{ linkFieldLabel }}
-            <span
+            <!-- <span
               *ngIf="communityBuildForm.get('build_type').value === EBuildType.slides"
               [nbPopover]="googleSlidesEmbed"
               class="text-info clickable"
               nbPopoverTrigger="hover"
             >
               How to embed Google Slides
-            </span>
+            </span> -->
             <input formControlName="link" fullWidth nbInput size="large" type="url" />
           </label>
           <span
