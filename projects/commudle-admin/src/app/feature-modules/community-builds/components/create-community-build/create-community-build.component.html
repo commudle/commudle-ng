@@ -26,7 +26,7 @@
       <form (keydown.enter)="$event.preventDefault()" [formGroup]="communityBuildForm">
         <div class="field">
           <label>
-            What are you sharing today?*
+            Select a category?*
             <br />
             <nb-select
               (selectedChange)="setBuildType()"
@@ -54,8 +54,15 @@
 
         <div class="field">
           <label>
-            Name of Build*
-            <input formControlName="name" fullWidth nbInput size="large" type="text" />
+            Title of your build*
+            <input
+              formControlName="name"
+              fullWidth
+              nbInput
+              size="large"
+              type="text"
+              placeholder="Name of your project or course"
+            />
           </label>
           <span
             *ngIf="
@@ -123,7 +130,7 @@
 
         <div class="field">
           <label>
-            {{ linkFieldLabel }}
+            Link*
             <!-- <span
               *ngIf="communityBuildForm.get('build_type').value === EBuildType.slides"
               [nbPopover]="googleSlidesEmbed"
@@ -132,7 +139,14 @@
             >
               How to embed Google Slides
             </span> -->
-            <input formControlName="link" fullWidth nbInput size="large" type="url" />
+            <input
+              formControlName="link"
+              fullWidth
+              nbInput
+              size="large"
+              type="url"
+              placeholder="URL of open sourced code or live deployed project"
+            />
           </label>
           <span
             *ngIf="
@@ -169,6 +183,7 @@
             }"
             apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
             formControlName="description"
+            placeholder="Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too."
           >
           </editor>
         </div>
@@ -200,7 +215,7 @@
 
         <div class="field">
           <label>
-            Tags
+            Tags*
             <app-tag
               (tagAdd)="onTagAdd($event)"
               (tagDelete)="onTagDelete($event)"
@@ -211,10 +226,10 @@
         </div>
 
         <div>
-          <p class="text-info">
+          <!-- <p class="text-info">
             *After you click 'Submit for Approval', we'll just review it once and publish it within 2 days. In case of
             any changes, we'll reach out on your email!
-          </p>
+          </p> -->
         </div>
 
         <div class="field actions">
@@ -229,7 +244,7 @@
             <nb-icon icon="edit"></nb-icon>
             Save as Draft
           </button>
-          <button
+          <!-- <button
             (click)="submitForm(EPublishStatus.submitted)"
             [disabled]="!communityBuildForm.valid"
             nbButton
@@ -239,7 +254,7 @@
           >
             <nb-icon icon="checkmark"></nb-icon>
             Submit For Approval
-          </button>
+          </button> -->
           <button
             (click)="submitForm(EPublishStatus.published)"
             [disabled]="communityBuildForm.invalid"

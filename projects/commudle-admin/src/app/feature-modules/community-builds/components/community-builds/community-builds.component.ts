@@ -25,7 +25,7 @@ export class CommunityBuildsComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle('Community Builds - Projects Shared by Developers');
+    this.title.setTitle('Builds - Projects Shared by Developers');
     this.meta.updateTag({
       name: 'description',
       content: `Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.`,
@@ -36,7 +36,7 @@ export class CommunityBuildsComponent implements OnInit {
       name: 'og:image:secure_url',
       content: 'https://commudle.com/assets/images/commudle-logo192.png',
     });
-    this.meta.updateTag({ name: 'og:title', content: `Community Builds - Projects Shared by Developers` });
+    this.meta.updateTag({ name: 'og:title', content: `Builds - Projects Shared by Developers` });
     this.meta.updateTag({
       name: 'og:description',
       content: `Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.`,
@@ -44,7 +44,7 @@ export class CommunityBuildsComponent implements OnInit {
     this.meta.updateTag({ name: 'og:type', content: 'website' });
 
     this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `Community Builds - Projects Shared by Developers` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Builds - Projects Shared by Developers` });
     this.meta.updateTag({
       name: 'twitter:description',
       content: `Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.`,

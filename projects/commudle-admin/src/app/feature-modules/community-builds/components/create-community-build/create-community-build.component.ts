@@ -33,7 +33,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: [''],
+    link: ['', Validators.required],
     team: this.fb.array([]),
   });
 

@@ -48,7 +48,7 @@ export class MyCommunityBuildsComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    title.setTitle('My Builds');
+    this.title.setTitle('My Builds');
     this.meta.updateTag({
       name: 'robots',
       content: 'noindex',
