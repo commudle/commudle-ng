@@ -30,7 +30,6 @@ export class PublicPageGuidelinesComponent implements OnInit {
       this.cmsService.getData(slug).subscribe((value: ICMSGuideline) => {
         this.guideline = value;
         this.richText = this.cmsService.getHtmlFromBlock(value);
-        console.log(this.richText);
         this.setMeta();
       });
     });
@@ -56,7 +55,10 @@ export class PublicPageGuidelinesComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'og:image:secure_url',
-      content: `${this.guideline.meta_thumbnail || 'https://commudle.com/assets/images/commudle-logo192.png'}`,
+      content: `${
+        this.cmsService.getImageUrl(this.guideline.meta_thumbnail) ||
+        'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
     });
     this.meta.updateTag({ name: 'og:title', content: this.guideline.meta_title });
     this.meta.updateTag({
@@ -67,7 +69,10 @@ export class PublicPageGuidelinesComponent implements OnInit {
 
     this.meta.updateTag({
       name: 'twitter:image',
-      content: `${this.guideline.meta_thumbnail || 'https://commudle.com/assets/images/commudle-logo192.png'}`,
+      content: `${
+        this.cmsService.getImageUrl(this.guideline.meta_thumbnail) ||
+        'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
     });
     this.meta.updateTag({ name: 'twitter:title', content: this.guideline.meta_title });
     this.meta.updateTag({
