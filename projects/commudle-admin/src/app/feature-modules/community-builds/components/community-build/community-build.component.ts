@@ -10,70 +10,75 @@ import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services
   styleUrls: ['./community-build.component.scss']
 })
 export class CommunityBuildComponent implements OnInit {
-
   communityBuild: ICommunityBuild;
   constructor(
     private title: Title,
     private meta: Meta,
     private activatedRoute: ActivatedRoute,
-    private communityBuildsService: CommunityBuildsService
-
-  ) { }
+    private communityBuildsService: CommunityBuildsService,
+  ) {}
 
   setMeta() {
+    this.title.setTitle(`${this.communityBuild.name} | By ${this.communityBuild.user.name}`);
     this.meta.updateTag({
       name: 'description',
-      content: this.communityBuild.description.replace(/<[^>]*>/g, '')
+      content: this.communityBuild.description.replace(/<[^>]*>/g, '').substring(0, 160) + '...',
     });
-    this.meta.updateTag(
-      {
-        name: 'og:image',
-        content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
-      });
-    this.meta.updateTag(
-      {
-        name: 'og:image:secure_url',
-        content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
-      });
-    this.meta.updateTag({ name: 'og:title', content: `${this.communityBuild.name} | By ${this.communityBuild.user.name}` });
+    this.meta.updateTag({
+      name: 'og:image',
+      content: `${
+        this.communityBuild.images.length > 0
+          ? this.communityBuild.images[0].url
+          : 'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
+    });
+    this.meta.updateTag({
+      name: 'og:image:secure_url',
+      content: `${
+        this.communityBuild.images.length > 0
+          ? this.communityBuild.images[0].url
+          : 'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
+    });
+    this.meta.updateTag({
+      name: 'og:title',
+      content: `${this.communityBuild.name} | By ${this.communityBuild.user.name}`,
+    });
     this.meta.updateTag({
       name: 'og:description',
-      content: this.communityBuild.description.replace(/<[^>]*>/g, '')
+      content: this.communityBuild.description.replace(/<[^>]*>/g, '').substring(0, 160) + '...',
     });
-    this.meta.updateTag({ name: 'og:type', content: 'website'});
+    this.meta.updateTag({ name: 'og:type', content: 'website' });
 
-    this.meta.updateTag(
-      {
-        name: 'twitter:image',
-        content: `${this.communityBuild.images.length > 0 ? this.communityBuild.images[0].url : 'https://commudle.com/assets/images/commudle-logo192.png'}`
-      });
-    this.meta.updateTag(
-      { name: 'twitter:title', content: `${this.communityBuild.name} | By ${this.communityBuild.user.name}` }
-      );
+    this.meta.updateTag({
+      name: 'twitter:image',
+      content: `${
+        this.communityBuild.images.length > 0
+          ? this.communityBuild.images[0].url
+          : 'https://commudle.com/assets/images/commudle-logo192.png'
+      }`,
+    });
+    this.meta.updateTag({
+      name: 'twitter:title',
+      content: `${this.communityBuild.name} | By ${this.communityBuild.user.name}`,
+    });
 
     this.meta.updateTag({
       name: 'twitter:description',
-      content: this.communityBuild.description.replace(/<[^>]*>/g, '')
+      content: this.communityBuild.description.replace(/<[^>]*>/g, '').substring(0, 160) + '...',
     });
   }
 
   ngOnInit() {
-
-    this.activatedRoute.params.subscribe(
-      data => {
-        this.getCommunityBuild(data.community_build_id);
-      }
-    );
+    this.activatedRoute.params.subscribe((data) => {
+      this.getCommunityBuild(data.community_build_id);
+    });
   }
 
   getCommunityBuild(id) {
-    this.communityBuildsService.pShow(id).subscribe(
-      data => {
-        this.communityBuild = data;
-        this.title.setTitle(`${this.communityBuild.name} | By ${this.communityBuild.user.name}`);
-        this.setMeta();
-      }
-    );
+    this.communityBuildsService.pShow(id).subscribe((data) => {
+      this.communityBuild = data;
+      this.setMeta();
+    });
   }
-
 }

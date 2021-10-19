@@ -33,7 +33,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: [''],
+    link: ['', Validators.required],
     team: this.fb.array([]),
   });
 
@@ -53,45 +53,39 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex',
-    });
+    this.title.setTitle(`Publish a Project - Builds`);
     this.meta.updateTag({
       name: 'description',
-      content: `Project, Slides from a Session, an Online Course, share it all with the community!`,
+      content: `Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!`,
     });
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
     this.meta.updateTag({
       name: 'og:image:secure_url',
       content: 'https://commudle.com/assets/images/commudle-logo192.png',
     });
-    this.meta.updateTag({ name: 'og:title', content: `Share Your Build | Community Builds` });
+    this.meta.updateTag({ name: 'og:title', content: `Publish a Project - Builds` });
     this.meta.updateTag({
       name: 'og:description',
-      content: `Project, Slides from a Session, an Online Course, share it all with the community!`,
+      content: `Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!`,
     });
     this.meta.updateTag({ name: 'og:type', content: 'website' });
 
     this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `Share Your Build | Community Builds` });
+    this.meta.updateTag({ name: 'twitter:title', content: `Publish a Project - Builds` });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: `Project, Slides from a Session, an Online Course, share it all with the community!`,
+      content: `Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!`,
     });
   }
 
   ngOnInit() {
+    this.setMeta();
     this.getCommunityBuild();
     this.setBuildType();
     this.linkDisplay();
-    this.title.setTitle('Share Your Build!');
-    this.setMeta();
   }
 
-  ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
-  }
+  ngOnDestroy() {}
 
   addTeammate() {
     this.emailList.push(this.fb.group({ value: new FormControl('', [Validators.required, Validators.email]) }));
@@ -107,7 +101,6 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
       if (cbId) {
         this.communityBuildsService.show(cbId).subscribe((data) => {
           this.cBuild = data;
-          this.title.setTitle(`${this.cBuild.name} | Edit`);
           this.prefillCommunityBuild();
           this.tags = data.tags;
         });
@@ -151,10 +144,10 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   setBuildType() {
     const val = this.communityBuildForm.get('build_type').value;
     switch (val) {
-      case EBuildType.slides: {
-        this.linkFieldLabel = 'Iframe for Embedding OR Link*';
-        break;
-      }
+      // case EBuildType.slides: {
+      //   this.linkFieldLabel = 'Iframe for Embedding OR Link*';
+      //   break;
+      // }
       default: {
         this.linkFieldLabel = 'Any Link?';
         this.embeddedLink = null;

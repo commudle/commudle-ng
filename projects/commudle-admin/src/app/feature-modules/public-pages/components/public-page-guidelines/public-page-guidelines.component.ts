@@ -30,6 +30,7 @@ export class PublicPageGuidelinesComponent implements OnInit {
       this.cmsService.getData(slug).subscribe((value: ICMSGuideline) => {
         this.guideline = value;
         this.richText = this.cmsService.getHtmlFromBlock(value);
+        console.log(this.richText);
         this.setMeta();
       });
     });
