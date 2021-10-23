@@ -33,7 +33,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   latestPinnedMessage: IUserMessage;
   moment = moment;
   isAdmin: boolean;
-  //@ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
+  @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
   channelRoles = {};
   permittedActions = [];
   allActions;
@@ -142,14 +142,14 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.communityChannelsService.unpinMessage(message.id, channelId).subscribe(() => {}));
   }
 
-  // scrollToMessage(message: IUserMessage) {
-  //   this.communityChannelManagerService.setScrollToMessage(message);
-  //   this.popovers.forEach((popover) => {
-  //     if (popover.context === 'pinnedMessagesPopover') {
-  //       popover.hide();
-  //     }
-  //   });
-  // }
+  scrollToMessage(message: IUserMessage) {
+    this.communityChannelManagerService.setScrollToMessage(message);
+    this.popovers.forEach((popover) => {
+      if (popover.context === 'pinnedMessagesPopover') {
+        popover.hide();
+      }
+    });
+  }
 
   initialize() {
     this.subscriptions.push(
@@ -176,14 +176,5 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   toggleCommunityListDisplay() {
     this.communityChannelManagerService.setCommunityListview(!this.displayCommunityList);
     this.displayCommunityList = !this.displayCommunityList;
-  }
-
-  highlightUserMentions(match: Match): string {
-    switch (match.getType()) {
-      case 'mention':
-        return `<a href="https://commudle.com/users/${match
-          .getMatchedText()
-          .slice(1)}" target="_blank">${match.getMatchedText()}</a>`;
-    }
   }
 }

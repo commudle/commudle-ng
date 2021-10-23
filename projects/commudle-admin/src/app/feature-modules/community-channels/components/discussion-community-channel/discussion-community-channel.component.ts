@@ -11,6 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import * as moment from 'moment';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
@@ -41,9 +42,9 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   messages: IUserMessage[] = [];
   permittedActions = [];
   blocked = true;
-  pageSize = 10;
-  nextPage = 1;
-  allMessagesLoaded = false;
+  pageSize = 15;
+  allPreviousMessagesLoaded = false;
+  allLatestMessagesLoaded = false;
   loadingMessages = false;
   showReplyForm = 0;
   allActions;
@@ -54,8 +55,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
-  // highlightMessage;
-  // highlightMessageId;
+  action: string = 'initial';
+  oldestMessageId;
+  latestMessageId;
+  messageId;
+  isInitial;
+  highlight = true;
 
   constructor(
     private fb: FormBuilder,
@@ -66,16 +71,17 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private communityChannelManagerService: CommunityChannelManagerService,
     private communityChannelsService: CommunityChannelsService,
     private nbDialogService: NbDialogService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    // this.subscriptions.push(
-    //   this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
-    //     if (message) {
-    //       this.scrollToMessage(message);
-    //     }
-    //   }),
-    // );
+    this.subscriptions.push(
+      this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
+        if (message) {
+          this.scrollToMessage(message);
+        }
+      }),
+    );
   }
 
   ngOnChanges() {
@@ -83,10 +89,10 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
     }
-    this.allMessagesLoaded = false;
+    this.allPreviousMessagesLoaded = false;
+    this.allLatestMessagesLoaded = false;
     this.messages = [];
-    this.pageSize = 10;
-    this.nextPage = 1;
+    this.pageSize = 15;
     this.blocked = false;
     this.showReplyForm = 0;
 
@@ -106,6 +112,15 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
 
     this.receiveData();
     this.allActions = this.communityChannelChannel.ACTIONS;
+
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params.user_message_id) {
+        this.action = 'around';
+        this.messageId = params.user_message_id;
+      } else {
+        this.action = 'initial';
+      }
+    });
     this.getDiscussionMessages();
   }
 
@@ -127,8 +142,19 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     }, 100);
   }
 
-  loadPreviousMessages() {
-    if (this.messagesContainer.nativeElement.scrollTop <= 300) {
+  loadMessages() {
+    let element = this.messagesContainer.nativeElement;
+    let scrollBottom = element.scrollHeight - element.clientHeight - element.scrollTop;
+
+    if (element.scrollTop <= 300) {
+      this.action = 'before';
+      this.messageId = this.oldestMessageId;
+      this.getDiscussionMessages();
+    }
+
+    if (scrollBottom <= 300) {
+      this.action = 'after';
+      this.messageId = this.latestMessageId;
       this.getDiscussionMessages();
     }
   }
@@ -154,59 +180,114 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   getDiscussionMessages() {
-    if (!this.allMessagesLoaded && !this.loadingMessages) {
+    if ((!this.allPreviousMessagesLoaded || !this.allLatestMessagesLoaded) && !this.loadingMessages) {
       this.loadingMessages = true;
+      let action = this.action;
+      let messageId = this.messageId;
       this.communityChannelsService
-        .getDiscussionMessages(this.discussion.parent_id, this.nextPage, this.pageSize)
+        .getDiscussionMessagesForScroll(this.discussion.parent_id, this.pageSize, action, messageId)
         .subscribe((data) => {
-          if (data.user_messages.length !== this.pageSize) {
-            this.allMessagesLoaded = true;
+          switch (action) {
+            case 'initial': {
+              this.isInitial = true;
+              this.messages.unshift(...data.user_messages.reverse());
+              if (this.messages.length) {
+                this.oldestMessageId = this.messages[0].id;
+                this.latestMessageId = this.messages[this.messages.length - 1].id;
+              }
+              this.loadingMessages = false;
+              this.scrollToBottom(); //alert here
+              break;
+            }
+            case 'before': {
+              if (data.user_messages.length !== this.pageSize) {
+                this.allPreviousMessagesLoaded = true;
+              }
+              this.messages.unshift(...data.user_messages.reverse());
+              this.oldestMessageId = this.messages[0].id;
+              this.loadingMessages = false;
+              break;
+            }
+            case 'after': {
+              if (data.user_messages.length !== this.pageSize) {
+                this.allLatestMessagesLoaded = true;
+              }
+              this.messages.push(...data.user_messages.reverse());
+              this.latestMessageId = this.messages[this.messages.length - 1].id;
+              this.loadingMessages = false;
+              break;
+            }
+            case 'around': {
+              this.isInitial = false;
+              this.messages = data.user_messages.reverse();
+              this.allPreviousMessagesLoaded = false;
+              this.allLatestMessagesLoaded = false;
+              this.loadingMessages = false;
+              if (this.messages.length) {
+                this.oldestMessageId = this.messages[0].id;
+                this.latestMessageId = this.messages[this.messages.length - 1].id;
+              }
+              setTimeout(() => {
+                if (this.highlight) {
+                  this.highlightMessage(messageId, true);
+                } else {
+                  this.highlightMessage(messageId, false);
+                  this.highlight = true;
+                }
+              }, 1);
+              break;
+            }
           }
-          this.messages.unshift(...data.user_messages.reverse());
-          this.loadingMessages = false;
-          if (this.nextPage === 1) {
-            this.scrollToBottom();
-          }
-
-          this.nextPage += 1;
         });
     }
   }
 
-  // scrollToMessage(message: IUserMessage) {
-  //   const idx = this.messages.findIndex((msg) => msg.id === message.id);
-  //   if (idx === -1) {
+  // getDiscussionMessages() {
+  //   if (!this.allMessagesLoaded && !this.loadingMessages) {
+  //     this.loadingMessages = true;
   //     this.communityChannelsService
-  //       .getDiscussionMessagesForScroll(this.discussion.parent_id, message.id, this.nextPage, this.pageSize)
-  //       .subscribe((response) => {
-  //         console.log(response.user_messages);
-  //         this.messages = response.user_messages.reverse();
-  //         let messageElement = document.getElementById(message.id.toString());
-  //         messageElement.scrollIntoView({
-  //           behavior: 'auto',
-  //           block: 'center',
-  //           inline: 'center',
-  //         });
-  //         this.highlightMessageId = message.id;
-  //         this.highlightMessage = true;
-  //         setTimeout(() => {
-  //           this.highlightMessage = false;
-  //         }, 1000);
+  //       .getDiscussionMessages(this.discussion.parent_id, this.nextPage, this.pageSize)
+  //       .subscribe((data) => {
+  //         if (data.user_messages.length !== this.pageSize) {
+  //           this.allMessagesLoaded = true;
+  //         }
+  //         this.messages.unshift(...data.user_messages.reverse());
+  //         this.loadingMessages = false;
+  //         if (this.nextPage === 1) {
+  //           this.scrollToBottom();
+  //         }
+
+  //         this.nextPage += 1;
   //       });
-  //   } else {
-  //     let messageElement = document.getElementById(message.id.toString());
-  //     messageElement.scrollIntoView({
-  //       behavior: 'auto',
-  //       block: 'center',
-  //       inline: 'center',
-  //     });
-  //     this.highlightMessageId = message.id;
-  //     this.highlightMessage = true;
-  //     setTimeout(() => {
-  //       this.highlightMessage = false;
-  //     }, 1000);
   //   }
   // }
+
+  scrollToMessage(message: IUserMessage) {
+    const idx = this.messages.findIndex((msg) => msg.id === message.id);
+    if (idx === -1) {
+      this.action = 'around';
+      this.messageId = message.id;
+      this.getDiscussionMessages();
+    } else {
+      this.highlightMessage(message.id, true);
+    }
+  }
+
+  highlightMessage(messageId, highlight) {
+    let messageElement = document.getElementById(messageId.toString());
+    messageElement.scrollIntoView({
+      behavior: 'auto',
+      block: 'center',
+      inline: 'center',
+    });
+
+    if (highlight) {
+      messageElement.classList.add('active');
+      setTimeout(() => {
+        messageElement.classList.remove('active');
+      }, 1000);
+    }
+  }
 
   sendMessageByEmail(userMessageId) {
     if (window.confirm(`Are you sure you want to send this to all members on their email?`)) {
@@ -311,8 +392,14 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               break;
             }
             case this.communityChannelChannel.ACTIONS.ADD: {
-              this.messages.push(data.user_message);
-              this.scrollToBottom();
+              if (this.isInitial) {
+                this.messages.push(data.user_message);
+                this.latestMessageId = this.messages[this.messages.length - 1].id;
+                this.scrollToBottom();
+              } else {
+                this.highlight = false;
+                this.scrollToMessage(data.user_message);
+              }
               this.newMessage.emit();
               break;
             }
