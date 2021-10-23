@@ -264,7 +264,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
 
   scrollToMessage(message: IUserMessage) {
     const idx = this.messages.findIndex((msg) => msg.id === message.id);
-    if (idx === -1) {
+    //message goes out of view if the message on which we are jumping is either 1st or 2nd message of the current page
+    if (idx === -1 || idx == 0 || idx == 1) {
       this.action = 'around';
       this.messageId = message.id;
       this.getDiscussionMessages();
