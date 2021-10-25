@@ -220,3 +220,12 @@ nb-window.full-screen-height {
 :focus {
   outline: none;
 }
+
+.remove-overflow-mention {
+  overflow: unset;
+  nb-card {
+    nb-card-body {
+      overflow: unset;
+    }
+  }
+}
