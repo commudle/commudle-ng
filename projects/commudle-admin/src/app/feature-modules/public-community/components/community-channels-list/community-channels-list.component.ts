@@ -13,7 +13,6 @@ import { ICommunityChannel } from 'projects/shared-models/community-channel.mode
 export class CommunityChannelsListComponent implements OnInit {
   community: ICommunity;
   channels: ICommunityChannel[] = [];
-  communityLogo;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,7 +24,6 @@ export class CommunityChannelsListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
-      this.communityLogo = this.community.logo_path;
       this.getChannels();
       this.setMeta();
     });

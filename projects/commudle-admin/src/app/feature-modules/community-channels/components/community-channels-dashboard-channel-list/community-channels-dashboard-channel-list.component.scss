@@ -5,21 +5,37 @@ nb-card {
   border: none;
   height: 100%;
 
-  .channels-list-cards {
+  nb-card-header {
     display: flex;
-    flex-wrap: wrap;
-    gap: $space-16;
+    justify-content: space-between;
+
+    nb-actions {
+      nb-action {
+        position: relative;
+        @media screen and (min-width: 1089px) {
+          &.channel-list-menu-button {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .channels-list-cards {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, 265px);
+    justify-content: center;
 
     a {
       text-decoration: none;
       color: inherit;
-      display: flex;
-      justify-content: center;
+      height: 320px;
 
       .channel-list-card {
         position: relative;
         width: 265px;
-        height: 296px;
+        height: 320px;
         border: 0.5px solid $silver-sand;
         border-radius: $border-8;
         padding: $space-16;
@@ -46,15 +62,16 @@ nb-card {
             .name {
               font-weight: $fw-600;
               font-size: $fs-h5;
-              line-height: 16px;
+              line-height: 14px;
               color: $gunmetal;
+              margin: 0;
             }
 
             .member-count {
               font-style: italic;
               font-size: $fs-h6;
-              line-height: 14px;
               color: #777777;
+              margin: 0;
             }
           }
         }
@@ -67,13 +84,6 @@ nb-card {
           white-space: pre-wrap;
         }
       }
-    }
-  }
-
-  @media all and (max-width: $tab-width) {
-    .channels-list-cards {
-      flex-wrap: nowrap;
-      overflow: scroll;
     }
   }
 }
