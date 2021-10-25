@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import sanityClient, { SanityClient } from '@sanity/client';
-import { from } from 'rxjs';
-import sanityImageUrlBuilder from '@sanity/image-url';
+import builder from '@sanity/image-url';
+import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { from, Observable } from 'rxjs';
 
 const blocksToHtml = require('@sanity/block-content-to-html');
 
@@ -18,19 +20,16 @@ export class CmsService {
     apiVersion: '2021-06-07', // use a UTC date string
     useCdn: true, // `false` if you want to ensure fresh data
   });
+  imageUrlBuilder: ImageUrlBuilder = builder(this.client);
 
-  imageUrlBuiler;
+  constructor() {}
 
-  constructor() {
-    this.imageUrlBuiler = sanityImageUrlBuilder(this.client);
-  }
-
-  getData(slug: string) {
+  getDataBySlug(slug: string): Observable<any> {
     const query: string = `*[slug.current == "${slug}"][0]`;
     return from(this.client.fetch(query));
   }
 
-  getHtmlFromBlock(value: any, field: string = 'content') {
+  getHtmlFromBlock(value: any, field: string = 'content'): any {
     return blocksToHtml({
       blocks: value[field],
       projectId: this.projectId,
@@ -38,7 +37,7 @@ export class CmsService {
     });
   }
 
-  getImageUrl(source) {
-    return this.imageUrlBuiler.image(source);
+  getImageUrl(source: SanityImageSource): ImageUrlBuilder {
+    return this.imageUrlBuilder.image(source);
   }
 }

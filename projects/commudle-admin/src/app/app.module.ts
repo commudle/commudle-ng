@@ -56,6 +56,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { AppComponent } from './app.component';
+import { AboutComponent } from './components/about/about.component';
 import { CommunitiesAboutComponent } from './components/communities/communities-about/communities-about.component';
 import { CommunitiesFeaturedComponent } from './components/communities/communities-featured/communities-featured.component';
 import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
@@ -63,7 +64,6 @@ import { CommunitiesListComponent } from './components/communities/communities-l
 import { CommunitiesPromotionsComponent } from './components/communities/communities-promotions/communities-promotions.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
-import { AboutComponent } from './components/home/about/about.component';
 import { HomeBuildsCardComponent } from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
 import { HomeBuildsComponent } from './components/home/components/home-builds/home-builds.component';
 import { HomeCommunitiesComponent } from './components/home/components/home-communities/home-communities.component';
