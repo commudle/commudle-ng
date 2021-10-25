@@ -93,6 +93,7 @@ export class AdminBadgesFormComponent implements OnInit, OnDestroy {
           this.imageSrc = reader.result as string;
         };
         reader.readAsDataURL(inputImage);
+        this.imageUploaded = true;
       }
     }
   }
@@ -100,6 +101,7 @@ export class AdminBadgesFormComponent implements OnInit, OnDestroy {
   deleteImage(): void {
     if (this.imageSrc) {
       this.uploadedImage = null;
+      this.imageUploaded = false;
       this.imageSrc = '';
       this.inputImage.nativeElement.value = '';
     }
