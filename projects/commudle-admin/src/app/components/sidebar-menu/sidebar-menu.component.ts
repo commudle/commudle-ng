@@ -3,7 +3,9 @@ import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
+import { ICommunities } from 'projects/shared-models/communities.model';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
+import { ICommunityGroups } from 'projects/shared-models/community-groups.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
@@ -38,13 +40,14 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   getCurrentUser(): void {
-    this.authWatchService.currentUser$.subscribe((currentUser) => {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
+
       if (currentUser) {
         // check if current user is having a specific role and add corresponding items
-        const matchingOrganizerRoles = currentUser.user_roles.filter(
-          (value) => -1 !== this.communityOrganizerRoles.indexOf(value),
-        );
+        const matchingOrganizerRoles = currentUser.user_roles.filter((value: string) => {
+          return -1 !== this.communityOrganizerRoles.indexOf(value);
+        });
 
         if (matchingOrganizerRoles.length > 0) {
           this.getManagingCommunities(matchingOrganizerRoles);
@@ -76,21 +79,19 @@ export class SidebarMenuComponent implements OnInit {
   getManagingCommunities(userRoles: string[]): void {
     this.managedCommunities = [];
     for (const role of userRoles) {
-      this.communitiesService.getRoleCommunities(role).subscribe((data) => {
+      this.communitiesService.getRoleCommunities(role).subscribe((data: ICommunities) => {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];
       });
     }
   }
 
   getManagingCommunityGroups(): void {
-    this.communityGroupsService.getManagingCommunityGroups().subscribe((data) => {
+    this.communityGroupsService.getManagingCommunityGroups().subscribe((data: ICommunityGroups) => {
       this.managedCommunityGroups = data.community_groups;
     });
   }
 
   closeSidebar(): void {
-    if (window.screen.width <= 1000) {
-      this.sidebarService.collapse();
-    }
+    this.sidebarService.collapse('mainMenu');
   }
 }
