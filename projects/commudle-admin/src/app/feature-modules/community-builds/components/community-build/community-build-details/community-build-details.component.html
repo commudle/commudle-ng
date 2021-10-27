@@ -30,30 +30,28 @@
       <div *ngIf="embedCode" [innerHTML]="embedCode" class="embed"></div>
       <div *ngIf="cBuild.link && !embedCode" class="link">
         <p>
-          Visit the {{cBuild.build_type}}:
+          Visit the {{ cBuild.build_type }}:
           <a href="{{ cBuild.link }}" target="_blank">
             {{ cBuild.link }}
             <nb-icon icon="external-link"></nb-icon>
           </a>
         </p>
       </div>
-      <div class="description">
-        <div [innerHTML]="cBuild.description"></div>
-      </div>
+      <div [innerHTML]="cBuild.description" class="description"></div>
       <div *ngIf="cBuild.images.length > 0" class="images">
         <div class="image-stripe">
           <div (click)="openImage(cBuild.name, image)" *ngFor="let image of cBuild.images" class="image clickable">
-            <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{cBuild.name}}" />
+            <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{ cBuild.name }}" />
           </div>
         </div>
       </div>
       <div class="author-details">
-        <app-user-profile-card-large [user]="cBuild.user" [showFollowButton]="true"></app-user-profile-card-large>
+        <app-user-profile-card-large [showFollowButton]="true" [user]="cBuild.user"></app-user-profile-card-large>
       </div>
 
       <div *ngIf="teammates.length > 0" class="teammate-details">
         <p>Teammates</p>
-        <div *ngFor="let teammate of teammates;">
+        <div *ngFor="let teammate of teammates">
           <app-user-profile-card-large [user]="teammate.user"></app-user-profile-card-large>
         </div>
       </div>
