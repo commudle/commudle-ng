@@ -1,28 +1,28 @@
 <div class="sidebar">
   <nb-list class="sidebar-common-menu">
     <nb-list-item>
-      <a (click)="closeSidebar()" [routerLink]="['/']">
+      <a [routerLink]="['/']">
         <nb-icon icon="home-outline"></nb-icon>
         Home
       </a>
     </nb-list-item>
 
     <nb-list-item>
-      <a (click)="closeSidebar()" [routerLink]="['/builds/my-builds']">
+      <a [routerLink]="['/builds/my-builds']">
         <nb-icon icon="bulb-outline"></nb-icon>
         My Builds
       </a>
     </nb-list-item>
 
     <nb-list-item>
-      <a (click)="closeSidebar()" [routerLink]="['/labs/my-labs']">
+      <a [routerLink]="['/labs/my-labs']">
         <fa-icon [icon]="faFlask"></fa-icon>
         &nbsp; My Labs
       </a>
     </nb-list-item>
 
     <nb-list-item *ngIf="currentUser">
-      <a (click)="closeSidebar()" [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
+      <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
         <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>
         <span *ngIf="!currentUser.profile_completed" class="incomplete-badge">
           <app-badge [color]="'red'" [fontSize]="'small'" [text]="'Incomplete'"></app-badge>
@@ -31,7 +31,7 @@
     </nb-list-item>
 
     <nb-list-item *ngIf="currentUser && currentUser.user_roles.includes(EUserRoles.NEWSLETTER)">
-      <a (click)="closeSidebar()" [routerLink]="['/admin/newsletters']"> Newsletters </a>
+      <a [routerLink]="['/admin/newsletters']"> Newsletters </a>
     </nb-list-item>
   </nb-list>
 
@@ -41,7 +41,7 @@
         <nb-accordion-item-header>Organizer Menu</nb-accordion-item-header>
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
-          <a (click)="closeSidebar()" [routerLink]="['/admin', 'orgs', cGroup.slug]">
+          <a [routerLink]="['/admin', 'orgs', cGroup.slug]">
             <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
             <span class="org-badge">
               <app-badge
@@ -55,7 +55,7 @@
         </nb-accordion-item-body>
 
         <nb-accordion-item-body *ngFor="let community of managedCommunities">
-          <a (click)="closeSidebar()" [routerLink]="['/admin', 'communities', community.slug]">
+          <a [routerLink]="['/admin', 'communities', community.slug]">
             <nb-user name="{{ community.name }}" picture="{{ community.logo_path }}" size="tiny"></nb-user>
           </a>
         </nb-accordion-item-body>
@@ -68,16 +68,16 @@
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>System Admin</nb-accordion-item-header>
         <nb-accordion-item-body>
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin']"> Admin Home </a>
+          <a [routerLink]="['/sys-admin']"> Admin Home </a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin', 'admin-surveys']"> Admin Surveys </a>
+          <a [routerLink]="['/sys-admin', 'admin-surveys']"> Admin Surveys </a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin', 'community-builds']"> Community Builds </a>
+          <a [routerLink]="['/sys-admin', 'community-builds']"> Community Builds </a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin', 'labs']"> Labs </a>
+          <a [routerLink]="['/sys-admin', 'labs']"> Labs </a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
@@ -88,13 +88,13 @@
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Common Menu</nb-accordion-item-header>
         <nb-accordion-item-body *ngIf="isFeaturedCommunitiesAdmin">
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin', 'featured-communities']">Featured Communities</a>
+          <a [routerLink]="['/sys-admin', 'featured-communities']">Featured Communities</a>
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isPageAdsAdmin">
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin', 'pa']">Page Ads</a>
+          <a [routerLink]="['/sys-admin', 'pa']">Page Ads</a>
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isBadgesAdmin">
-          <a (click)="closeSidebar()" [routerLink]="['/sys-admin', 'badges']">Badges</a>
+          <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

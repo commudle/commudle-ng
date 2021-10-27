@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
@@ -33,10 +34,12 @@ export class SidebarMenuComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
     private sidebarService: NbSidebarService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUser();
+    this.closeSidebar();
   }
 
   getCurrentUser(): void {
@@ -92,6 +95,10 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   closeSidebar(): void {
-    this.sidebarService.collapse('mainMenu');
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.sidebarService.collapse('mainMenu');
+      }
+    });
   }
 }
