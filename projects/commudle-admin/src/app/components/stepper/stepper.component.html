@@ -1,0 +1,15 @@
+<nb-card>
+  <nb-card-body>
+    <nb-stepper orientation="horizontal">
+      <nb-step [label]="stepOne">
+        <ng-template #stepOne>Basic Profile</ng-template>
+        <div class="basic-details">
+          <app-basic-user-profile [pagePadding]="false"> </app-basic-user-profile>
+        </div>
+        <div class="next-button-only">
+          <button nbButton nbStepperNext status="primary">Next</button>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

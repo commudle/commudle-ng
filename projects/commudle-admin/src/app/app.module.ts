@@ -28,6 +28,7 @@ import {
   NbSidebarModule,
   NbSidebarService,
   NbSpinnerModule,
+  NbStepperModule,
   NbTabsetModule,
   NbThemeModule,
   NbTimepickerModule,
@@ -80,8 +81,11 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
+import { CircularProgressiveBarComponent } from './components/profile-status-bar/circular-progressive-bar/circular-progressive-bar.component';
+import { ProfileStatusBarComponent } from './components/profile-status-bar/profile-status-bar.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
 import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
@@ -127,6 +131,9 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     HomeHeadBannerComponent,
     HomeExternalFeedLinksComponent,
     SearchBarComponent,
+    StepperComponent,
+    ProfileStatusBarComponent,
+    CircularProgressiveBarComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -183,6 +190,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbSpinnerModule,
     NbTimepickerModule.forRoot(),
     NbActionsModule,
+    NbStepperModule,
 
     // Other external npm modules
     Ng2CompleterModule,

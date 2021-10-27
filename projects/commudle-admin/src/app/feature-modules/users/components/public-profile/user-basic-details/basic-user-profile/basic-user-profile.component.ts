@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faBehance, faDribbble, faFacebook, faGitlab, faMediumM, faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -21,6 +21,7 @@ import { debounceTime, switchMap } from 'rxjs/operators';
   styleUrls: ['./basic-user-profile.component.scss'],
 })
 export class BasicUserProfileComponent implements OnInit {
+  @Input() pagePadding = true;
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;

@@ -1,4 +1,4 @@
-<div *ngIf="currentUser" class="page-padding basic-details-container">
+<div *ngIf="currentUser" [ngClass]="{ 'page-padding': pagePadding }" class="page-padding basic-details-container">
   <div class="username">
     <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
       <div>

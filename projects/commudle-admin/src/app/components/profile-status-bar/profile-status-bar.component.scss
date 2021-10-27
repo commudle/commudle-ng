@@ -1,0 +1,18 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.profile-complete-banner {
+  background: #b6c6ff;
+  padding: 10px 45px;
+  height: 80px;
+
+  p {
+    font-weight: 700;
+    font-size: larger;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .profile-complete-banner {
+    margin-top: 9px;
+  }
+}
