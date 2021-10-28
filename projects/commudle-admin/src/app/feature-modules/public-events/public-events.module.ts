@@ -38,8 +38,6 @@ import { SessionPageQnaComponent } from './components/session-page/session-page-
 import { SessionPageVideoComponent } from './components/session-page/session-page-video/session-page-video.component';
 import { SessionPageViewersComponent } from './components/session-page/session-page-video/session-page-viewers/session-page-viewers.component';
 import { SessionPageComponent } from './components/session-page/session-page.component';
-import { SpeakerSessionPageComponent } from './components/speaker-session-page/speaker-session-page.component';
-import { UsersListComponent } from './components/speaker-session-page/users-list/users-list.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { TeamComponent } from './components/team/team.component';
@@ -48,7 +46,6 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
 @NgModule({
   declarations: [
     HomeEventComponent,
-    SpeakerSessionPageComponent,
     HighlightedLinksComponent,
     LiveSessionsComponent,
     AgendaComponent,
@@ -61,7 +58,6 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     AttendingMembersComponent,
     AutoAttendanceComponent,
     SponsorsComponent,
-    UsersListComponent,
     SessionPageComponent,
     SessionPageDetailsComponent,
     SessionPageVideoComponent,

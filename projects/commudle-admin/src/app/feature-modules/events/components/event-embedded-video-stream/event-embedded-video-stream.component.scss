@@ -13,8 +13,8 @@
   }
 
   .preview {
-    order: 1;
     height: 550px;
+    order: 1;
     overflow: auto;
   }
 
@@ -25,23 +25,4 @@
       color: white !important;
     }
   }
-
-  // @media screen and (min-width: 920px) {
-  //   flex-direction: row;
-  //   flex-wrap: wrap;
-  //   justify-content: space-evenly;
-  //   align-items: center;
-
-  //   .embedded-video-stream-form {
-  //     width: 45%;
-  //     order: 1;
-  //   }
-
-  //   .preview {
-  //     width: 50%;
-  //     height: 360px;
-  //     margin-left: 1rem;
-  //     order: 2;
-  //   }
-  // }
 }
