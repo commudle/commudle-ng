@@ -1,7 +1,7 @@
 <div class="sidebar">
   <nb-list class="sidebar-common-menu">
     <nb-list-item>
-      <a (click)="closeSidebar()" [routerLink]="['/']">
+      <a [routerLink]="['/']">
         <nb-icon icon="home-outline"></nb-icon>
         Home
       </a>
@@ -29,6 +29,7 @@
         </span>
       </a>
     </nb-list-item>
+
     <nb-list-item *ngIf="currentUser && currentUser.user_roles.includes(EUserRoles.NEWSLETTER)">
       <a [routerLink]="['/admin/newsletters']"> Newsletters </a>
     </nb-list-item>
@@ -40,7 +41,7 @@
         <nb-accordion-item-header>Organizer Menu</nb-accordion-item-header>
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
-          <a (click)="closeSidebar()" [routerLink]="['/admin', 'orgs', cGroup.slug]">
+          <a [routerLink]="['/admin', 'orgs', cGroup.slug]">
             <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
             <span class="org-badge">
               <app-badge
@@ -54,7 +55,7 @@
         </nb-accordion-item-body>
 
         <nb-accordion-item-body *ngFor="let community of managedCommunities">
-          <a (click)="closeSidebar()" [routerLink]="['/admin', 'communities', community.slug]">
+          <a [routerLink]="['/admin', 'communities', community.slug]">
             <nb-user name="{{ community.name }}" picture="{{ community.logo_path }}" size="tiny"></nb-user>
           </a>
         </nb-accordion-item-body>

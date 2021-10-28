@@ -37,7 +37,8 @@ const routes = [
         children: [
           {
             path: '',
-            component: UserContributionsComponent,
+            redirectTo: 'contributions',
+            pathMatch: 'prefix',
           },
           {
             path: 'contributions',
@@ -69,6 +70,7 @@ const routes = [
       },
     ],
   },
+  { path: '', redirectTo: '/', pathMatch: 'prefix' },
 ];
 
 @NgModule({
