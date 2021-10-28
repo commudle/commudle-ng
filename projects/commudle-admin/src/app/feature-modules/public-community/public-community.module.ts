@@ -16,6 +16,7 @@ import {
   NbTabsetModule,
   NbTooltipModule,
 } from '@nebular/theme';
+import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
@@ -50,6 +51,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
+    LinkyModule,
 
     // Nebular
     NbCardModule,

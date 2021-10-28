@@ -1,15 +1,15 @@
 <div *ngIf="community" class="home-component d-flex flex-column align-items-center">
   <div class="page-header d-flex flex-column">
     <div class="logo d-flex align-items-center">
-      <img alt="{{community.name}}" src="{{community.logo_path}}" title="{{community.name}}" />
+      <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
     </div>
     <div class="details">
-      <h1>{{community.name}}</h1>
+      <h1>{{ community.name }}</h1>
       <div class="membership d-flex flex-column">
         <p class="member-count">
           <a [routerLink]="['members']">
             <nb-icon icon="people" status="basic"></nb-icon>
-            {{community.member_count}} Members
+            {{ community.member_count }} Members
           </a>
         </p>
         <div class="social-links-container d-flex justify-content-space-between">
@@ -20,7 +20,7 @@
           <div class="community-social-links d-flex align-items-center">
             <a
               *ngIf="community.facebook"
-              href="{{community.facebook | completeurl:'facebook'}}"
+              href="{{ community.facebook | completeurl: 'facebook' }}"
               rel="noreferrer"
               target="_blank"
             >
@@ -28,7 +28,7 @@
             </a>
             <a
               *ngIf="community.linkedin"
-              href="{{community.linkedin | completeurl:'linkedin'}}"
+              href="{{ community.linkedin | completeurl: 'linkedin' }}"
               rel="noreferrer"
               target="_blank"
             >
@@ -36,7 +36,7 @@
             </a>
             <a
               *ngIf="community.twitter"
-              href="{{community.twitter | completeurl:'twitter'}}"
+              href="{{ community.twitter | completeurl: 'twitter' }}"
               rel="noreferrer"
               target="_blank"
             >
@@ -44,13 +44,13 @@
             </a>
             <a
               *ngIf="community.github"
-              href="{{community.github | completeurl:'github'}}"
+              href="{{ community.github | completeurl: 'github' }}"
               rel="noreferrer"
               target="_blank"
             >
               <nb-icon icon="github" status="info"></nb-icon>
             </a>
-            <a *ngIf="community.website" href="{{community.website | completeurl}}" rel="noreferrer" target="_blank">
+            <a *ngIf="community.website" href="{{ community.website | completeurl }}" rel="noreferrer" target="_blank">
               <nb-icon icon="globe" status="info"></nb-icon>
             </a>
           </div>
@@ -88,7 +88,7 @@
             <nb-icon icon="people" status="success"></nb-icon>
             <span class="title">Members</span>
           </a>
-          <a [routerLink]="['/communities', this.community.slug, 'channels']" class="d-flex" routerLinkActive="active">
+          <a [routerLink]="['public-channels']" class="d-flex" routerLinkActive="active">
             <nb-icon icon="hash" status="success"></nb-icon>
             <span class="title">Channels</span>
           </a>
