@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
+import { ICommunities } from 'projects/shared-models/communities.model';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
+import { ICommunityGroups } from 'projects/shared-models/community-groups.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
@@ -31,20 +34,23 @@ export class SidebarMenuComponent implements OnInit {
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
     private sidebarService: NbSidebarService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUser();
+    this.closeSidebar();
   }
 
   getCurrentUser(): void {
-    this.authWatchService.currentUser$.subscribe((currentUser) => {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
+
       if (currentUser) {
         // check if current user is having a specific role and add corresponding items
-        const matchingOrganizerRoles = currentUser.user_roles.filter(
-          (value) => -1 !== this.communityOrganizerRoles.indexOf(value),
-        );
+        const matchingOrganizerRoles = currentUser.user_roles.filter((value: string) => {
+          return -1 !== this.communityOrganizerRoles.indexOf(value);
+        });
 
         if (matchingOrganizerRoles.length > 0) {
           this.getManagingCommunities(matchingOrganizerRoles);
@@ -76,21 +82,23 @@ export class SidebarMenuComponent implements OnInit {
   getManagingCommunities(userRoles: string[]): void {
     this.managedCommunities = [];
     for (const role of userRoles) {
-      this.communitiesService.getRoleCommunities(role).subscribe((data) => {
+      this.communitiesService.getRoleCommunities(role).subscribe((data: ICommunities) => {
         this.managedCommunities = [...this.managedCommunities, ...data.communities];
       });
     }
   }
 
   getManagingCommunityGroups(): void {
-    this.communityGroupsService.getManagingCommunityGroups().subscribe((data) => {
+    this.communityGroupsService.getManagingCommunityGroups().subscribe((data: ICommunityGroups) => {
       this.managedCommunityGroups = data.community_groups;
     });
   }
 
   closeSidebar(): void {
-    if (window.screen.width <= 1000) {
-      this.sidebarService.collapse();
-    }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.sidebarService.collapse('mainMenu');
+      }
+    });
   }
 }

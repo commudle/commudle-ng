@@ -2,36 +2,49 @@
   <form (ngSubmit)="submitForm()" [formGroup]="communityChannelForm" class="community-channel-form">
     <div class="logo field">
       <div *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)" class="uploaded-logo">
-        <img alt="Profile Picture" src="{{uploadedLogoImage || existingChannel.logo.url}}" title="Profile Picture">
+        <img alt="Profile Picture" src="{{ uploadedLogoImage || existingChannel.logo.url }}" title="Profile Picture" />
       </div>
       <div class="delete-logo-button">
-        <button (click)="removeLogo()" *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)" ghost
-                nbButton size="tiny" status="danger" type="button">
+        <button
+          (click)="removeLogo()"
+          *ngIf="uploadedLogoImage || (existingChannel && existingChannel.logo)"
+          ghost
+          nbButton
+          size="tiny"
+          status="danger"
+          type="button"
+        >
           <nb-icon icon="close-circle"></nb-icon>
           Remove Logo
         </button>
       </div>
 
-      <label [ngClass]="{'hidden': uploadedLogoImage || (existingChannel && existingChannel.logo) }" class="clickable">
+      <label [ngClass]="{ hidden: uploadedLogoImage || (existingChannel && existingChannel.logo) }" class="clickable">
         <span>
           <span>
             <nb-icon icon="image-outline"></nb-icon>
           </span>
           <span>
             Click To Upload A Logo
-            <br>
+            <br />
             <small>(200x200)</small>
           </span>
         </span>
-        <input (change)="displaySelectedLogo($event)" accept="image/*" formControlName="logo" fullWidth nbInput
-               type="file">
+        <input
+          (change)="displaySelectedLogo($event)"
+          accept="image/*"
+          formControlName="logo"
+          fullWidth
+          nbInput
+          type="file"
+        />
       </label>
     </div>
 
     <div class="field">
       <label fullWidth>
         Name*
-        <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text">
+        <input fieldSize="tiny" formControlName="name" fullWidth nbInput type="text" />
       </label>
     </div>
 
@@ -42,19 +55,19 @@
       </label>
     </div>
 
-    <div class="field">
+    <div class="field com-flex com-flex-col">
       <nb-checkbox formControlName="is_private" status="basic">
-        Private
+        Private: Allow only people with invite link or invitation email to join
       </nb-checkbox>
       <nb-checkbox formControlName="is_readonly" status="basic">
-        Read only
+        Readonly: Allow only admins to post in the group
       </nb-checkbox>
     </div>
 
     <div class="field">
       <label fullWidth>
         Group Name (optional)
-        <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text">
+        <input fieldSize="tiny" formControlName="group_name" fullWidth nbInput type="text" />
       </label>
     </div>
 

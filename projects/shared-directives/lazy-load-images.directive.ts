@@ -1,11 +1,11 @@
-import { AfterContentInit, Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Directive({
   selector: 'img',
   providers: [IsBrowserService],
 })
-export class LazyLoadImagesDirective implements AfterContentInit {
+export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;
 
@@ -16,6 +16,14 @@ export class LazyLoadImagesDirective implements AfterContentInit {
   ngAfterContentInit(): void {
     if (this.isBrowser) {
       this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.src) {
+      if (!changes.src.firstChange && changes.src.previousValue !== changes.src.currentValue) {
+        this.srcAttr = changes.src.currentValue;
+      }
     }
   }
 
