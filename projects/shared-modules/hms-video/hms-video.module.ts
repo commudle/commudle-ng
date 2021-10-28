@@ -13,40 +13,27 @@ import {
   NbSpinnerModule,
   NbTooltipModule,
 } from '@nebular/theme';
-import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-import { ConferenceSettingsComponent } from './components/conference-v2/conference-settings/conference-settings.component';
-import { ConferenceUserVideoComponent } from './components/conference-v2/conference-user-videos/conference-user-video/conference-user-video.component';
-import { ConferenceUserVideosComponent } from './components/conference-v2/conference-user-videos/conference-user-videos.component';
-import { ConferenceV2Component } from './components/conference-v2/conference-v2.component';
-import { ConferenceComponent } from './components/conference/conference.component';
-import { SettingsComponent } from './components/conference/settings/settings.component';
-import { UserVideoComponent } from './components/conference/user-video/user-video.component';
-import { HmsBeamComponent } from './components/hms-beam/hms-beam.component';
-import { HmsVideoV2Component } from './components/hms-video-v2/hms-video-v2.component';
-import { HmsVideoComponent } from './components/hms-video/hms-video.component';
-import { LocalPreviewV2Component } from './components/local-preview-v2/local-preview-v2.component';
-import { LocalPreviewComponent } from './components/local-preview/local-preview.component';
-import { SelectRoleV2Component } from './components/select-role-v2/select-role-v2.component';
-import { SelectRoleComponent } from './components/select-role/select-role.component';
-import { HmsClientManagerService } from './services/hms-client-manager.service';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { HmsBeamComponent } from './components/hms-beam/hms-beam.component';
+import { ConferenceSettingsComponent } from './components/hms-video/conference/conference-settings/conference-settings.component';
+import { ConferenceUserVideoComponent } from './components/hms-video/conference/conference-user-videos/conference-user-video/conference-user-video.component';
+import { ConferenceUserVideosComponent } from './components/hms-video/conference/conference-user-videos/conference-user-videos.component';
+import { ConferenceComponent } from './components/hms-video/conference/conference.component';
+import { HmsVideoComponent } from './components/hms-video/hms-video.component';
+import { LocalPreviewComponent } from './components/hms-video/local-preview/local-preview.component';
+import { SelectRoleComponent } from './components/hms-video/select-role/select-role.component';
 
 @NgModule({
   declarations: [
     HmsVideoComponent,
-    LocalPreviewComponent,
-    ConferenceComponent,
-    SettingsComponent,
-    UserVideoComponent,
-    SelectRoleComponent,
-    ConferenceV2Component,
-    HmsVideoV2Component,
-    SelectRoleV2Component,
-    LocalPreviewV2Component,
-    ConferenceUserVideosComponent,
-    ConferenceSettingsComponent,
     HmsBeamComponent,
+    ConferenceComponent,
+    ConferenceSettingsComponent,
+    ConferenceUserVideosComponent,
     ConferenceUserVideoComponent,
+    LocalPreviewComponent,
+    SelectRoleComponent,
   ],
   imports: [
     CommonModule,
@@ -67,15 +54,6 @@ import { SharedDirectivesModule } from 'projects/shared-directives/shared-direct
     NbDialogModule.forChild(),
     NbAlertModule,
   ],
-  exports: [HmsVideoComponent, HmsVideoV2Component],
-  // TODO: Should this be removed?
-  providers: [
-    [
-      {
-        provide: 'HmsClientManagerService',
-        useClass: HmsClientManagerService,
-      },
-    ],
-  ],
+  exports: [HmsVideoComponent],
 })
 export class HmsVideoModule {}

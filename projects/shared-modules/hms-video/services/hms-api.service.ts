@@ -16,10 +16,4 @@ export class HmsApiService {
 
     return this.http.get<IHmsClient>(this.apiRoutesService.getRoute(API_ROUTES.HMS_CLIENT.CLIENT_TOKEN), { params });
   }
-
-  getClientTokenV2(roomId): Observable<IHmsClient> {
-    const params = new HttpParams().set('hms_room_id', roomId);
-
-    return this.http.get<IHmsClient>(this.apiRoutesService.getRoute(API_ROUTES.HMS_CLIENT.CLIENT_TOKEN_V2), { params });
-  }
 }

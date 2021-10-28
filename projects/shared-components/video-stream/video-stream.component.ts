@@ -1,65 +1,58 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
-  Inject,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
-  PLATFORM_ID,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IEmbeddedVideoStream } from 'projects/shared-models/embedded_video_stream.model';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Component({
   selector: 'app-video-stream',
   templateUrl: './video-stream.component.html',
   styleUrls: ['./video-stream.component.scss'],
+  providers: [IsBrowserService],
 })
 export class VideoStreamComponent implements OnInit, OnChanges {
   @Input() started: boolean;
   @Input() currentUser: ICurrentUser;
+  @Input() fillerText: string = 'Loading...';
   @Input() videoSource: string;
   @Input() videoCode: any;
-  @Input() fillerText: string;
   @Input() width: number;
   @Input() height: number;
-  @Input() userEmail: string;
-  @Input() userName: string;
-  // zoom specific attributes
-  @Input() zoomSignature: string;
-  @Input() zoomHostEmail: string;
-  @Input() zoomPassword: string;
-  @Input() zoomHostSignature: string;
-  // hms specific attributes
-  @Input() hmsRoomId: string;
-  @Input() streamable_id: number;
-  @Input() streamable_type: string;
+  @Input() embeddedVideoStream: IEmbeddedVideoStream;
 
-  isBrowser: boolean = isPlatformBrowser(this.platformId);
-  api;
-  EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
-  environment = environment;
+  @Output() beamStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   playerUrl: any;
+
+  environment = environment;
+  isBrowser: boolean = this.isBrowserService.isBrowser();
+  EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
   constructor(
     private sanitizer: DomSanitizer,
     private changeDetectorRef: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: object,
+    private isBrowserService: IsBrowserService,
   ) {}
 
-  ngOnInit() {
-    this.setPreview();
-    if (!this.fillerText) {
-      this.fillerText = 'Loading...';
-    }
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.setPreview();
+    if (changes.currentUser || changes.embeddedVideoStream || changes.videoCode || changes.videoSource) {
+      if (this.currentUser && this.embeddedVideoStream && this.videoCode && this.videoSource) {
+        this.setPreview();
+      }
+    }
   }
 
   setPreview() {
@@ -95,7 +88,7 @@ export class VideoStreamComponent implements OnInit, OnChanges {
 
   createZoomUrl() {
     return encodeURI(
-      `${environment.zoom_call_server_url}?email=${this.userEmail}&meeting_number=${this.videoCode}&name=${this.userName}&signature=${this.zoomSignature}&host_email=${this.zoomHostEmail}&host_signature=${this.zoomHostSignature}&password=${this.zoomPassword}`,
+      `${environment.zoom_call_server_url}?email=${this.currentUser.email}&meeting_number=${this.videoCode}&name=${this.currentUser.name}&signature=${this.embeddedVideoStream.zoom_host_signature}&host_email=${this.embeddedVideoStream.zoom_host_email}&host_signature=${this.embeddedVideoStream.zoom_host_signature}&password=${this.embeddedVideoStream.zoom_password}`,
     );
   }
 }
