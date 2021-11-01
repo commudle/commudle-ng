@@ -30,7 +30,7 @@
   }
 
   .header {
-    background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
+    //background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
 
     a {
       background-color: #594cda;
@@ -226,7 +226,7 @@
 
   .footer {
     @apply com-pt-24 com-pb-12 com-text-center;
-    background: linear-gradient(rgba(255, 255, 255, 1), rgba(197, 234, 249, 1));
+    //background: linear-gradient(rgba(255, 255, 255, 1), rgba(197, 234, 249, 1));
 
     .email {
       @apply com-text-indigo-600 hover:com-text-gray-500;
