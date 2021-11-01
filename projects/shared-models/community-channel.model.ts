@@ -13,5 +13,5 @@ export interface ICommunityChannel {
   is_readonly: boolean;
   logo: IAttachedFile;
   my_roles: any[];
+  member_count: number;
 }
-

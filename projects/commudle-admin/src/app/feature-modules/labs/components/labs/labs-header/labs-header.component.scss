@@ -1,0 +1,165 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.lab-header {
+  @apply com-mt-12;
+
+  .lab-header-text {
+    @apply com-self-center md:com-mr-24;
+
+    p {
+      color: $gunmetal;
+      margin: 0;
+    }
+
+    .lab-content {
+      .lab-quote {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+      }
+
+      .lab-heading {
+        font-size: 1.75rem;
+        margin: $space-16 0 $space-12;
+
+        span {
+          color: $neon-blue;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .lab-content-search {
+      .lab-search-tags {
+        color: $neon-blue;
+        font-size: 1.75rem;
+        font-weight: 600;
+        line-height: 2rem;
+        margin-bottom: $space-8;
+      }
+    }
+  }
+
+  @media all and (max-width: $tab-width) {
+    .lab-header-text {
+      .lab-content {
+        .lab-quote {
+          font-size: 1rem;
+          line-height: 1.25rem;
+        }
+
+        .lab-heading {
+          font-size: 1.5rem;
+          line-height: 1.75rem;
+          margin: $space-12 0 $space-8;
+        }
+      }
+    }
+  }
+
+  .lab-header-banner {
+    max-width: 352px;
+    padding: $space-16;
+
+    .lab-trending {
+      nb-card {
+        border: 2px solid rgba($gunmetal, 0.14);
+        border-radius: $border-5;
+        margin: 0;
+
+        nb-card-header {
+          border-bottom: none;
+          color: $gunmetal;
+          font-size: 1.1rem;
+          font-weight: 600;
+          padding: $space-8 0;
+          text-align: center;
+        }
+
+        nb-card-body {
+          padding: 0 $space-16;
+
+          nb-list {
+            nb-list-item {
+              border-bottom: 1px solid rgba($gunmetal, 0.22);
+              padding: $space-12 0;
+
+              &:first-child {
+                border-top: none;
+              }
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              .trending-event-container {
+                display: flex;
+                width: 100%;
+
+                .event-image {
+                  height: $space-56;
+                  margin: 0 $space-8 0 0;
+                  min-width: $space-56;
+
+                  img {
+                    height: auto;
+                    width: 100%;
+                  }
+                }
+
+                .event-details {
+                  color: $gunmetal;
+                  width: 100%;
+
+                  .event-name {
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    margin: 0 0 $space-4;
+                  }
+
+                  .event-content {
+                    font-size: 0.8rem;
+
+                    .event-description {
+                      margin: 0 0 $space-4;
+                    }
+
+                    .event-suffix {
+                      display: flex;
+                      justify-content: space-between;
+
+                      .event-type {
+                        color: $neon-blue;
+                        text-transform: uppercase;
+                      }
+
+                      .event-stats {
+                        color: $cyber-yellow;
+
+                        nb-icon {
+                          font-size: 0.9rem;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .lab-graphic {
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+  }
+
+  @media all and (max-width: $tab-width) {
+    .lab-header-banner {
+      max-width: 320px;
+    }
+  }
+}

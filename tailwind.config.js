@@ -1,16 +1,13 @@
 module.exports = {
   prefix: 'com-',
-  jit: 'true',
-  purge: {
-    enabled: true,
-    content: ['./projects/**/*.{html,scss,ts}'],
-  },
+  mode: 'jit',
+  purge: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       lineClamp: {
-        15: '15'
-      }
+        15: '15',
+      },
     },
     container: {
       center: true,

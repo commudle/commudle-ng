@@ -8,59 +8,58 @@ a:active {
 }
 
 .lab-display-card {
-  width: 336px;
-  height: max-content;
   border: 1px solid $maya-blue;
   border-radius: $border-5;
+  height: max-content;
+  overflow: hidden;
 
   p,
-  div,
   h4 {
-    margin: 0; //to remove default margin
+    margin: 0;
   }
 
   .header-image {
-    width: 100%;
-    height: 134px;
-    overflow: hidden;
+    border-bottom: 1px solid $maya-blue;
     border-top-left-radius: $border-5;
     border-top-right-radius: $border-5;
+    height: 134px;
+    overflow: hidden;
 
     img {
-      width: 100%;
+      @apply com-h-full com-w-full com-object-cover com-object-center;
     }
-
-    border-bottom: 1px solid $maya-blue;
   }
 
   .content {
+    background-color: $white;
     height: 130px;
     padding: $space-12 $space-16 $space-8;
 
     .title {
       h4 {
-        line-height: 23px;
-        font-size: $fs-card-title;
         color: $neon-blue;
+        font-size: $fs-card-title;
+        line-height: 23px;
       }
 
       p {
+        color: rgba($gunmetal, 0.5);
+        font-size: $fs-card-secondary;
         font-style: italic;
         font-weight: normal;
-        font-size: $fs-card-secondary;
-        color: rgba($gunmetal, 0.5);
       }
     }
 
     .author-stats {
       .stats {
         gap: $space-4;
+        margin-left: $space-16;
 
         p,
         nb-icon {
+          color: $neon-blue;
           font-size: $fs-card-secondary;
           margin-right: $space-4;
-          color: $neon-blue;
         }
 
         .views {
@@ -74,9 +73,11 @@ a:active {
           app-votes-display {
             &::ng-deep {
               p {
+                font-size: $fs-card-secondary;
+
                 span {
-                  font-size: $fs-card-secondary;
                   color: $neon-blue;
+                  font-size: $fs-card-secondary;
                 }
               }
 

@@ -2,7 +2,7 @@
   <nb-card-header>
     All Channels
     <nb-actions>
-      <nb-action (click)="toggleCommunityListDisplay()" class="channel-list-menu-button" icon="menu-arrow"> </nb-action>
+      <nb-action (click)="toggleCommunityListDisplay()" class="channel-list-menu-button" icon="menu-arrow"></nb-action>
     </nb-actions>
   </nb-card-header>
   <nb-card-body class="channels-list-cards">
@@ -18,7 +18,7 @@
               />
             </div>
             <div class="details">
-              <p class="name">{{ channel.name | truncatetext: 30 }}</p>
+              <p class="name com-line-clamp-2">{{ channel.name }}</p>
               <p class="member-count">{{ channel.member_count }} Members</p>
             </div>
           </div>
