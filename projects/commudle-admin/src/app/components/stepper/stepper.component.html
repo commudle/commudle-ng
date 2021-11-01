@@ -2,12 +2,32 @@
   <nb-card-body>
     <nb-stepper orientation="horizontal">
       <nb-step [label]="stepOne">
-        <ng-template #stepOne>Basic Profile</ng-template>
-        <div class="basic-details">
-          <app-basic-user-profile [pagePadding]="false"> </app-basic-user-profile>
+        <ng-template #stepOne>
+          <label class="step-one-heading">Username & Skills</label>
+        </ng-template>
+        <div class="content">
+          <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
+          <div>
+            <div class="tag-dialog-info">
+              <nb-icon icon="info-outline"></nb-icon>
+              Maximum {{ maxTags }} tags can be added. Tags reflect your fields of interest.
+            </div>
+            <nb-tag-list (tagRemove)="onTagRemove($event)">
+              <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
+              <input
+                (tagAdd)="onTagAdd($event)"
+                fullWidth
+                nbTagInput
+                placeholder="type a tag and press enter"
+                type="text"
+              />
+            </nb-tag-list>
+          </div>
         </div>
         <div class="next-button-only">
-          <button nbButton nbStepperNext status="primary">Next</button>
+          <button [disabled]="!validUsername" nbButton nbStepperNext status="primary" (click)="submitStepOne()">
+            Next
+          </button>
         </div>
       </nb-step>
     </nb-stepper>

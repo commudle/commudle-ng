@@ -1,0 +1,64 @@
+<div class="username">
+  <form (ngSubmit)="confirmSubmissionDialogueOpen()" [formGroup]="usernameForm">
+    <div>
+      <label>
+        Choose a username to for your public profile
+        <nb-form-field>
+          <nb-icon icon="at-outline" nbPrefix></nb-icon>
+          <input
+            (change)="checkUsername()"
+            fieldSize="small"
+            formControlName="username"
+            nbInput
+            status="primary"
+            type="text"
+          />
+        </nb-form-field>
+      </label>
+      <p
+        *ngIf="usernameForm.controls.username.errors"
+        class="field-error validation-error-text"
+        icon="alert-circle-outline"
+        status="danger"
+      >
+        <small> *Username cannot contain spaces & special characters </small>
+      </p>
+      <p
+        *ngIf="validUsername === false && currentUsername !== currentUser.username"
+        class="field-error validation-error-text"
+        icon="alert-circle-outline"
+        status="danger"
+      >
+        <small> *Username already taken </small>
+      </p>
+    </div>
+    <div *ngIf="showSaveButton">
+      <button
+        [disabled]="!validUsername || currentUsername === lastUsername || checkingUsername"
+        [nbSpinner]="checkingUsername"
+        nbButton
+        size="small"
+        status="success"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng-template #confirmChangeUsername let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="text-center"> Confirmation</nb-card-header>
+    <nb-card-body>
+      <p>
+        <nb-icon icon="info"></nb-icon>
+        Are you sure you want to change your username?
+      </p>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-start">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="setUsername()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

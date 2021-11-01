@@ -8,10 +8,11 @@ nb-card {
     padding: 1rem 1rem;
     overflow: unset;
 
-    .basic-details {
+    .content {
       overflow-x: hidden;
       overflow-y: scroll;
       height: 70vh;
+      width: 50vw;
 
       // Custom scrollbar
       &::-webkit-scrollbar {
@@ -55,4 +56,8 @@ nb-card {
       justify-content: flex-start;
     }
   }
+}
+
+.step-one-heading {
+  margin-left: 12px;
 }

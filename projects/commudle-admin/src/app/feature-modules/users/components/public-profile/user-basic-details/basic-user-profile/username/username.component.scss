@@ -1,0 +1,16 @@
+.username {
+  margin-bottom: 2rem;
+
+  .field-error {
+    margin: 0;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      margin: 1.2rem 1rem 0;
+    }
+  }
+}

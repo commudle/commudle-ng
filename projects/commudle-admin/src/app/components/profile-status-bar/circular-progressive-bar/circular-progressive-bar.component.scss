@@ -6,13 +6,13 @@ svg {
     transform: rotate(-90deg);
 
     .progress-meter {
-      stroke: #ccc;
+      stroke: #2aa5ff38;
       fill: none;
     }
 
     .progress-value {
       fill: none;
-      stroke: black;
+      stroke: #2aa5ff;
       transition: all;
     }
   }

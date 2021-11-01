@@ -1,18 +1,35 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.profile-complete-banner {
-  background: #b6c6ff;
-  padding: 10px 45px;
-  height: 80px;
+.profile-status-bar-container {
+  background: #1ac7e340;
+  height: 75px;
 
-  p {
-    font-weight: 700;
-    font-size: larger;
+  .profile-status-bar-content {
+    app-circular-progressive-bar {
+      margin-right: 5px;
+      position: relative;
+      top: 2px;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: medium;
+    }
+
+    button {
+      margin-left: 5px;
+    }
   }
 }
 
 @media all and (max-width: $tab-width) {
-  .profile-complete-banner {
+  .profile-status-bar-container {
     margin-top: 9px;
+  }
+}
+
+@media all and (max-width: $mobile-width) {
+  p {
+    display: none;
   }
 }

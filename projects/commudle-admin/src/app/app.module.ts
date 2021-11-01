@@ -30,6 +30,7 @@ import {
   NbSpinnerModule,
   NbStepperModule,
   NbTabsetModule,
+  NbTagModule,
   NbThemeModule,
   NbTimepickerModule,
   NbToastrModule,
@@ -191,6 +192,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbTimepickerModule.forRoot(),
     NbActionsModule,
     NbStepperModule,
+    NbTagModule,
 
     // Other external npm modules
     Ng2CompleterModule,

@@ -1,19 +1,11 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { faBehance, faDribbble, faFacebook, faGitlab, faMediumM, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { NbDialogService } from '@nebular/theme';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
-import {
-  NoSpecialCharactersValidator,
-  NoWhitespaceValidator,
-  WhiteSpaceNotAllowedValidator,
-} from 'projects/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-basic-user-profile',
@@ -25,10 +17,6 @@ export class BasicUserProfileComponent implements OnInit {
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
-  validUsername;
-  lastUsername = '';
-  currentUsername = '';
-  checkingUsername = false;
 
   userProfileForm = this.fb.group({
     name: ['', Validators.required],
@@ -48,15 +36,6 @@ export class BasicUserProfileComponent implements OnInit {
     youtube: [''],
   });
 
-  usernameForm = this.fb.group({
-    username: [
-      '',
-      [Validators.required, NoWhitespaceValidator, WhiteSpaceNotAllowedValidator, NoSpecialCharactersValidator],
-    ],
-  });
-
-  @ViewChild('confirmChangeUsername') confirmChangeUsername: TemplateRef<any>;
-
   faYoutube = faYoutube;
   faMediumM = faMediumM;
   faDribbble = faDribbble;
@@ -69,8 +48,6 @@ export class BasicUserProfileComponent implements OnInit {
     private fb: FormBuilder,
     private usersService: AppUsersService,
     private toastLogService: LibToastLogService,
-    private router: Router,
-    private dialogService: NbDialogService,
     private updateProfileService: UpdateProfileService,
   ) {}
 
@@ -80,12 +57,8 @@ export class BasicUserProfileComponent implements OnInit {
         this.currentUser = currentUser;
         this.userProfileForm.patchValue(this.currentUser);
         this.uploadedProfilePicture = this.currentUser.avatar;
-        this.currentUsername = this.lastUsername = this.currentUser.username;
-        this.usernameForm.patchValue({ username: this.currentUser.username });
       }
     });
-
-    this.checkUsername();
   }
 
   displaySelectedProfileImage(event: any) {
@@ -121,43 +94,6 @@ export class BasicUserProfileComponent implements OnInit {
       this.authWatchService.updateSignedInUser();
       this.toastLogService.successDialog('Your Profile is now updated!');
       this.updateProfileService.setUpdateProfileStatus(true);
-    });
-  }
-
-  checkUsername() {
-    this.usernameForm.valueChanges
-      .pipe(
-        debounceTime(800),
-        switchMap(() => {
-          this.checkingUsername = true;
-          this.currentUsername = this.usernameForm.get('username').value;
-          return this.usersService.checkUsername(this.currentUsername);
-        }),
-      )
-      .subscribe((data) => {
-        this.validUsername = data === true;
-        this.checkingUsername = false;
-      });
-  }
-
-  setUsername() {
-    const newUsername = this.usernameForm.get('username').value;
-    this.usersService.setUsername(newUsername).subscribe((data) => {
-      if (data) {
-        // this.toastLogService.successDialog('Updated!');
-        this.lastUsername = newUsername;
-        this.router.navigate(['/users', newUsername]).then(() => location.reload());
-        // get the user again from the server
-        this.authWatchService.checkAlreadySignedIn().subscribe();
-      }
-    });
-  }
-
-  confirmSubmissionDialogueOpen() {
-    //open the dialogue to confirm username submission
-    this.dialogService.open(this.confirmChangeUsername, {
-      closeOnBackdropClick: false,
-      closeOnEsc: false,
     });
   }
 }
