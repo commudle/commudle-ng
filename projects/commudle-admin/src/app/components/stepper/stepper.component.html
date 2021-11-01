@@ -1,6 +1,7 @@
 <nb-card>
   <nb-card-body>
     <nb-stepper orientation="horizontal">
+      <!-- add disableStepNavigation -->
       <nb-step [label]="stepOne">
         <ng-template #stepOne>
           <label class="step-one-heading">Username & Skills</label>
@@ -24,10 +25,41 @@
             </nb-tag-list>
           </div>
         </div>
-        <div class="next-button-only">
+        <div class="navigation-buttons next-button-only">
           <button [disabled]="!validUsername" nbButton nbStepperNext status="primary" (click)="submitStepOne()">
             Next
           </button>
+        </div>
+      </nb-step>
+
+      <nb-step [label]="stepTwo">
+        <ng-template #stepTwo>
+          <label>Basic profile</label>
+        </ng-template>
+        <div class="content"></div>
+        <div class="navigation-buttons both-buttons">
+          <button nbButton nbStepperPrevious status="primary">Prev</button>
+          <button nbButton nbStepperNext status="primary">Next</button>
+        </div>
+      </nb-step>
+
+      <nb-step [label]="stepThree">
+        <ng-template #stepThree>
+          <label>Social Links</label>
+        </ng-template>
+        <div class="content"></div>
+        <div class="navigation-buttons both-buttons">
+          <button nbButton nbStepperPrevious status="primary">Prev</button>
+          <button nbButton nbStepperNext status="primary">Next</button>
+        </div>
+      </nb-step>
+
+      <nb-step [hidden]="true">
+        <div class="content">
+          <h3 class="text-center">Thank you for completing your profile!</h3>
+        </div>
+        <div class="navigation-buttons next-button-only">
+          <button nbButton status="primary" (click)="closeStepper()">Close</button>
         </div>
       </nb-step>
     </nb-stepper>

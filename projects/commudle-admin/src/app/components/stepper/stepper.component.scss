@@ -35,25 +35,24 @@ nb-card {
       }
     }
 
-    .both-buttons {
+    .navigation-buttons {
       position: relative;
       top: 15px;
-      display: flex;
-      justify-content: space-between;
-    }
 
-    .next-button-only {
-      position: relative;
-      top: 15px;
-      display: flex;
-      justify-content: flex-end;
-    }
+      &.both-buttons {
+        display: flex;
+        justify-content: space-between;
+      }
 
-    .prev-button-only {
-      position: relative;
-      top: 15px;
-      display: flex;
-      justify-content: flex-start;
+      &.next-button-only {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      &.prev-button-only {
+        display: flex;
+        justify-content: flex-start;
+      }
     }
   }
 }

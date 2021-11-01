@@ -3,6 +3,7 @@ import { NbTagComponent, NbTagInputAddEvent } from '@nebular/theme';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { StepperService } from 'projects/commudle-admin/src/app/services/stepper.service';
 
 @Component({
   selector: 'app-stepper',
@@ -20,6 +21,7 @@ export class StepperComponent implements OnInit {
     private authWatchService: LibAuthwatchService,
     private usersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
+    private stepperService: StepperService,
   ) {}
 
   ngOnInit(): void {
@@ -65,5 +67,9 @@ export class StepperComponent implements OnInit {
 
   checkUsername(validUsername) {
     this.validUsername = validUsername;
+  }
+
+  closeStepper() {
+    this.stepperService.dialogRef.close();
   }
 }
