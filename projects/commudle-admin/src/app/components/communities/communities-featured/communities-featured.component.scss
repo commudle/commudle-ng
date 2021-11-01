@@ -51,6 +51,7 @@ p {
         border: 1px solid $silver-sand;
         border-radius: $border-8;
         min-width: 260px;
+        overflow: hidden;
         position: relative;
 
         @screen lg {

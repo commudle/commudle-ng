@@ -31,9 +31,11 @@ p {
     margin-left: $space-16;
 
     .name {
-      color: $black;
-      font-size: $fs-18;
-      line-height: 21px;
+      p {
+        color: $black;
+        font-size: $fs-18;
+        line-height: 21px;
+      }
 
       img {
         height: 16px;

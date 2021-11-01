@@ -1,18 +1,18 @@
 <a [routerLink]="['/users', user.username]">
   <div class="user-profile-large d-flex align-items-center">
     <div class="avatar">
-      <img alt="{{user.name}}" src="{{user.avatar}}" title="{{user.name}}" />
+      <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
     </div>
     <div class="details">
       <div class="name d-flex align-items-center">
-        {{user.name | truncatetext:maxNameLength}}
+        <p class="com-line-clamp-1">{{ user.name }}</p>
         <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
       </div>
-      <p class="username">@{{user.username | truncatetext:maxUserNameLength}}</p>
-      <p class="designation">{{(user.designation || '--') | truncatetext:maxDesignationLength}}</p>
+      <p class="username com-line-clamp-1">@{{ user.username }}</p>
+      <p class="designation com-line-clamp-1">{{ user.designation || '--' }}</p>
     </div>
   </div>
 </a>
-<div class="followers" *ngIf="showFollowButton">
+<div *ngIf="showFollowButton" class="followers">
   <app-user-follow [username]="user.username" class="follow-btn"></app-user-follow>
 </div>

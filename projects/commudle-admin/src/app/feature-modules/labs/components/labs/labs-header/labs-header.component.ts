@@ -1,11 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ILab } from 'projects/shared-models/lab.model';
 
 @Component({
-  selector: 'app-header-banner',
-  templateUrl: './header-banner.component.html',
-  styleUrls: ['./header-banner.component.scss']
+  selector: 'app-labs-header',
+  templateUrl: './labs-header.component.html',
+  styleUrls: ['./labs-header.component.scss'],
 })
-export class HeaderBannerComponent implements OnInit {
+export class LabsHeaderComponent implements OnInit {
+  @Input() tags: string[] = [];
+  @Input() labs: ILab[] = [];
 
   trending = [];
   // trending = [
@@ -51,10 +54,11 @@ export class HeaderBannerComponent implements OnInit {
   //   },
   // ];
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  getVisits(): number {
+    return this.labs.reduce((acc: 0, lab: ILab) => acc + lab.visits, 0);
+  }
 }
