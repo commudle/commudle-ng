@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ICMSGuideline } from 'projects/commudle-admin/src/app/feature-modules/public-pages/models/guideline-cms.model';
 import { CmsService } from 'projects/shared-services/cms.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-public-page-guidelines',
@@ -26,13 +25,9 @@ export class PublicPageGuidelinesComponent implements OnInit {
   }
 
   getData(): void {
-    this.activatedRoute.params.pipe(map((value: Params) => value.name)).subscribe((slug) => {
-      this.cmsService.getDataBySlug(slug).subscribe((value: ICMSGuideline) => {
-        this.guideline = value;
-        this.richText = this.cmsService.getHtmlFromBlock(value);
-        this.setMeta();
-      });
-    });
+    this.guideline = this.activatedRoute.snapshot.data.publicPage;
+    this.richText = this.cmsService.getHtmlFromBlock(this.guideline);
+    this.setMeta();
   }
 
   setMeta(): void {
