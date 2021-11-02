@@ -5,7 +5,7 @@ import { CommunityChannelNotificationsChannel } from 'projects/commudle-admin/sr
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
-import { faThumbtack, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import { IUserMessage } from 'projects/shared-models/user_message.model';
 import * as moment from 'moment';
 import { Match } from 'autolinker';
@@ -28,7 +28,6 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
   hasNotifications = false;
   sidebarOpen = false;
   faThumbtack = faThumbtack;
-  faWindowClose = faWindowClose;
   pinnedMessages: IUserMessage[];
   latestPinnedMessage: IUserMessage;
   moment = moment;
