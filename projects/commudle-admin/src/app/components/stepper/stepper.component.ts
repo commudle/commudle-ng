@@ -4,6 +4,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { StepperService } from 'projects/commudle-admin/src/app/services/stepper.service';
+import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 
 @Component({
   selector: 'app-stepper',
@@ -22,6 +23,7 @@ export class StepperComponent implements OnInit {
     private usersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
     private stepperService: StepperService,
+    private updateProfileService: UpdateProfileService,
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,26 @@ export class StepperComponent implements OnInit {
           }
         });
       }
+    });
+
+    this.userProfileManagerService.submitBasicInfo$.subscribe((basicInfoFormData) => {
+      if (basicInfoFormData) {
+        this.submitForm(basicInfoFormData);
+      }
+    });
+
+    this.userProfileManagerService.submitSocialLinks$.subscribe((socialLinksFormData) => {
+      if (socialLinksFormData) {
+        this.submitForm(socialLinksFormData);
+      }
+    });
+  }
+
+  submitForm(data) {
+    const formData: FormData = new FormData();
+    Object.keys(data).forEach((key) => (!(data[key] == null) ? formData.append(`user[${key}]`, data[key]) : ''));
+    this.usersService.updateUserProfile(formData).subscribe(() => {
+      this.updateProfileService.setUpdateProfileStatus(true);
     });
   }
 
@@ -58,11 +80,19 @@ export class StepperComponent implements OnInit {
 
   submitStepOne() {
     //update username (not working correctly)
-    //this.userProfileManagerService.setUpdateUsername(true);
+    this.userProfileManagerService.setUpdateUsername(true);
     // Get the updated user tags
     this.tags = this.tagsDialog;
     // When the save button is clicked, update the tags
     this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
+  }
+
+  submitStepTwo() {
+    this.userProfileManagerService.setUpdateBasicInfo(true);
+  }
+
+  submitStepThree() {
+    this.userProfileManagerService.setUpdateSocialLinks(true);
   }
 
   checkUsername(validUsername) {

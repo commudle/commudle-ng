@@ -6,7 +6,8 @@ import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-us
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-
+import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
+import { combineLatest } from 'rxjs';
 @Component({
   selector: 'app-basic-user-profile',
   templateUrl: './basic-user-profile.component.html',
@@ -49,6 +50,7 @@ export class BasicUserProfileComponent implements OnInit {
     private usersService: AppUsersService,
     private toastLogService: LibToastLogService,
     private updateProfileService: UpdateProfileService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit() {
@@ -57,6 +59,29 @@ export class BasicUserProfileComponent implements OnInit {
         this.currentUser = currentUser;
         this.userProfileForm.patchValue(this.currentUser);
         this.uploadedProfilePicture = this.currentUser.avatar;
+      }
+    });
+
+    combineLatest(
+      this.userProfileManagerService.submitBasicInfo$,
+      this.userProfileManagerService.submitSocialLinks$,
+    ).subscribe(([basicInfoFormData, socialLinksFormData]) => {
+      if (basicInfoFormData && socialLinksFormData) {
+        const formData: FormData = new FormData();
+        Object.keys(basicInfoFormData).forEach((key) =>
+          !(basicInfoFormData[key] == null) ? formData.append(`user[${key}]`, basicInfoFormData[key]) : '',
+        );
+        Object.keys(socialLinksFormData).forEach((key) =>
+          !(socialLinksFormData[key] == null) ? formData.append(`user[${key}]`, socialLinksFormData[key]) : '',
+        );
+
+        this.usersService.updateUserProfile(formData).subscribe(() => {
+          this.authWatchService.updateSignedInUser();
+          this.toastLogService.successDialog('Your Profile is now updated!');
+          this.updateProfileService.setUpdateProfileStatus(true);
+          this.userProfileManagerService.setSubmitBasicInfo(null);
+          this.userProfileManagerService.setSubmitSocialLinks(null);
+        });
       }
     });
   }
@@ -76,24 +101,26 @@ export class BasicUserProfileComponent implements OnInit {
   }
 
   updateUserDetails() {
-    const formData: any = new FormData();
-    //removing extra new lines from the about_me input
-    this.userProfileForm.patchValue({
-      about_me: this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim(),
-    });
-    const userFormData = this.userProfileForm.value;
-    Object.keys(userFormData).forEach((key) =>
-      !(userFormData[key] == null) ? formData.append(`user[${key}]`, userFormData[key]) : '',
-    );
+    this.userProfileManagerService.setUpdateBasicInfo(true);
+    this.userProfileManagerService.setUpdateSocialLinks(true);
+    // const formData: any = new FormData();
+    // //removing extra new lines from the about_me input
+    // this.userProfileForm.patchValue({
+    //   about_me: this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim(),
+    // });
+    // const userFormData = this.userProfileForm.value;
+    // Object.keys(userFormData).forEach((key) =>
+    //   !(userFormData[key] == null) ? formData.append(`user[${key}]`, userFormData[key]) : '',
+    // );
 
-    if (this.uploadedProfilePictureFile != null) {
-      formData.append('user[profile_image]', this.uploadedProfilePictureFile);
-    }
+    // if (this.uploadedProfilePictureFile != null) {
+    //   formData.append('user[profile_image]', this.uploadedProfilePictureFile);
+    // }
 
-    this.usersService.updateUserProfile(formData).subscribe(() => {
-      this.authWatchService.updateSignedInUser();
-      this.toastLogService.successDialog('Your Profile is now updated!');
-      this.updateProfileService.setUpdateProfileStatus(true);
-    });
+    // this.usersService.updateUserProfile(formData).subscribe(() => {
+    //   this.authWatchService.updateSignedInUser();
+    //   this.toastLogService.successDialog('Your Profile is now updated!');
+    //   this.updateProfileService.setUpdateProfileStatus(true);
+    // });
   }
 }

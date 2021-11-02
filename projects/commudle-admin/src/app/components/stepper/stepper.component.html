@@ -36,10 +36,12 @@
         <ng-template #stepTwo>
           <label>Basic profile</label>
         </ng-template>
-        <div class="content"></div>
+        <div class="content">
+          <app-basic-info></app-basic-info>
+        </div>
         <div class="navigation-buttons both-buttons">
           <button nbButton nbStepperPrevious status="primary">Prev</button>
-          <button nbButton nbStepperNext status="primary">Next</button>
+          <button nbButton nbStepperNext status="primary" (click)="submitStepTwo()">Next</button>
         </div>
       </nb-step>
 
@@ -47,10 +49,12 @@
         <ng-template #stepThree>
           <label>Social Links</label>
         </ng-template>
-        <div class="content"></div>
+        <div class="content">
+          <app-social-links></app-social-links>
+        </div>
         <div class="navigation-buttons both-buttons">
           <button nbButton nbStepperPrevious status="primary">Prev</button>
-          <button nbButton nbStepperNext status="primary">Next</button>
+          <button nbButton nbStepperNext status="primary" (click)="submitStepThree()">Next</button>
         </div>
       </nb-step>
 

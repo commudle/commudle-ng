@@ -88,7 +88,7 @@ export class UsernameComponent implements OnInit {
       if (data) {
         // this.toastLogService.successDialog('Updated!');
         this.lastUsername = newUsername;
-        this.router.navigate(['/users', newUsername]).then(() => location.reload());
+        //this.router.navigate(['/users', newUsername]).then(() => location.reload());
         // get the user again from the server
         this.authWatchService.checkAlreadySignedIn().subscribe();
       }

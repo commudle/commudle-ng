@@ -1,1 +1,86 @@
-<p>social-links works!</p>
+<form (ngSubmit)="updateSocialLinks()" [formGroup]="socialLinksForm">
+  <div class="row">
+    <div>
+      <label>
+        <nb-icon icon="info"></nb-icon>
+        Personal Website
+        <input formControlName="personal_website" fullWidth nbInput placeholder="Enter complete url" type="url" />
+      </label>
+    </div>
+    <div>
+      <label>
+        <nb-icon icon="github"></nb-icon>
+        Github
+        <input formControlName="github" fullWidth nbInput placeholder="Link to your profile" type="url" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        <nb-icon icon="linkedin"></nb-icon>
+        Linkedin
+        <input formControlName="linkedin" fullWidth nbInput placeholder="Link to your profile" type="url" />
+      </label>
+    </div>
+    <div>
+      <label>
+        <nb-icon icon="twitter"></nb-icon>
+        Twitter
+        <input formControlName="twitter" fullWidth nbInput placeholder="Link to your profile" type="url" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        <fa-icon [icon]="faYoutube"></fa-icon>
+        Youtube
+        <input formControlName="youtube" fullWidth nbInput placeholder="Link to your channel" type="url" />
+      </label>
+    </div>
+    <div>
+      <label>
+        <fa-icon [icon]="faMediumM"></fa-icon>
+        Medium
+        <input formControlName="medium" fullWidth nbInput placeholder="Link to your profile / publication" type="url" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        <fa-icon [icon]="faDribbble"></fa-icon>
+        Dribbble
+        <input formControlName="dribbble" fullWidth nbInput placeholder="Link to your work" type="url" />
+      </label>
+    </div>
+    <div>
+      <label>
+        <fa-icon [icon]="faBehance"></fa-icon>
+        Behance
+        <input formControlName="behance" fullWidth nbInput placeholder="Link to your work" type="url" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        <fa-icon [icon]="faGitlab"></fa-icon>
+        Gitlab
+        <input formControlName="gitlab" fullWidth nbInput placeholder="Link to your work" type="url" />
+      </label>
+    </div>
+    <div>
+      <label>
+        <fa-icon [icon]="faFacebook"></fa-icon>
+        Facebook
+        <input formControlName="facebook" fullWidth nbInput placeholder="Link to your profile / page" type="url" />
+      </label>
+    </div>
+  </div>
+</form>

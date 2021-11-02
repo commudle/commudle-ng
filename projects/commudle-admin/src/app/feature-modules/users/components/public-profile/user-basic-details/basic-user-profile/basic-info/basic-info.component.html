@@ -1,1 +1,101 @@
-<p>basic-info works!</p>
+<form (ngSubmit)="updateBasicInfo()" [formGroup]="basicInfoForm">
+  <div class="row">
+    <div>
+      <label>
+        Profile Picture*
+        <input (change)="displaySelectedProfileImage($event)" accept="image/*" fullWidth nbInput type="file" />
+      </label>
+
+      <div>
+        <div *ngIf="uploadedProfilePicture === null" class="uploaded-profile"></div>
+        <div *ngIf="uploadedProfilePicture" class="uploaded-profile-image">
+          <img alt="Profile Picture" src="{{ uploadedProfilePicture }}" title="Profile Picture" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label>
+        Name*
+        <input formControlName="name" fullWidth nbInput type="text" />
+      </label>
+      <span
+        *ngIf="
+          basicInfoForm['controls'].name.touched &&
+          basicInfoForm['controls'].name.invalid &&
+          basicInfoForm['controls'].name.errors.required
+        "
+        class="validation-error-text"
+      >
+        Required Field
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        What's Your Tagline?*
+        <input formControlName="designation" fullWidth nbInput placeholder="Blogger, Developer, Designer" type="text" />
+      </label>
+      <span
+        *ngIf="
+          basicInfoForm['controls'].designation.touched &&
+          basicInfoForm['controls'].designation.invalid &&
+          basicInfoForm['controls'].designation.errors.required
+        "
+        class="validation-error-text"
+      >
+        Required Field
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        About Me*
+        <textarea
+          formControlName="about_me"
+          fullWidth
+          nbInput
+          placeholder="A little bit about your interests! (max 250 characters)"
+          rows="3"
+        ></textarea>
+      </label>
+      <span
+        *ngIf="
+          (basicInfoForm['controls'].about_me.touched || basicInfoForm.get('about_me').value) &&
+          basicInfoForm['controls'].about_me.invalid
+        "
+        class="validation-error-text"
+      >
+        Required field. Maximum 300 characters.
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>
+        <nb-icon icon="pin"></nb-icon>
+        Location
+        <input formControlName="location" fullWidth nbInput placeholder="Where are you from?" type="text" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="gender-input">
+      <label>
+        Gender
+        <nb-radio-group formControlName="gender" name="gender">
+          <nb-radio value="male">Male</nb-radio>
+          <nb-radio value="female">Female</nb-radio>
+          <nb-radio value="prefer_not_to_answer">Other/Prefer Not To answer</nb-radio>
+        </nb-radio-group>
+      </label>
+    </div>
+  </div>
+</form>

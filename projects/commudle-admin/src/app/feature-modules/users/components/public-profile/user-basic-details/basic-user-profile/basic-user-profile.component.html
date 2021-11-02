@@ -1,7 +1,13 @@
 <div *ngIf="currentUser" [ngClass]="{ 'page-padding': pagePadding }" class="page-padding basic-details-container">
   <app-username></app-username>
+  <app-basic-info></app-basic-info>
+  <app-social-links></app-social-links>
+  <div class="submit-button">
+    <!-- handle disabled -->
+    <button fullWidth nbButton size="medium" status="primary" (click)="updateUserDetails()">Save</button>
+  </div>
 
-  <form (ngSubmit)="updateUserDetails()" [formGroup]="userProfileForm">
+  <!-- <form (ngSubmit)="updateUserDetails()" [formGroup]="userProfileForm">
     <div class="row">
       <div>
         <label>
@@ -204,5 +210,5 @@
         Save
       </button>
     </div>
-  </form>
+  </form> -->
 </div>

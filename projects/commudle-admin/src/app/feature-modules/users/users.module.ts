@@ -112,6 +112,6 @@ import { SocialLinksComponent } from './components/public-profile/user-basic-det
     NbRouteTabsetModule,
     NbToggleModule,
   ],
-  exports: [BasicUserProfileComponent, UsernameComponent],
+  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
 })
 export class UsersModule {}
