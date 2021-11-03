@@ -61,7 +61,13 @@
       [showPin]="false"
     ></app-community-channel-message>
     <div class="message-controls">
-      <fa-icon (click)="removePinnedMessage(latestPinnedMessage)" *ngIf="isAdmin" [icon]="faWindowClose"></fa-icon>
+      <nb-icon
+        (click)="removePinnedMessage(latestPinnedMessage)"
+        *ngIf="isAdmin"
+        nbTooltip="Delete Message"
+        nbTooltipStatus="danger"
+        icon="trash-2-outline"
+      ></nb-icon>
       <button (click)="scrollToMessage(latestPinnedMessage)" nbButton outline size="tiny" status="info">Jump</button>
     </div>
   </div>
@@ -102,7 +108,13 @@
             [showPin]="false"
           ></app-community-channel-message>
           <div class="message-controls">
-            <fa-icon (click)="removePinnedMessage(pinnedMessage)" [icon]="faWindowClose"></fa-icon>
+            <nb-icon
+              (click)="removePinnedMessage(pinnedMessage)"
+              *ngIf="isAdmin"
+              nbTooltip="Delete Message"
+              nbTooltipStatus="danger"
+              icon="trash-2-outline"
+            ></nb-icon>
             <button (click)="scrollToMessage(pinnedMessage)" nbButton outline size="tiny" status="info">Jump</button>
           </div>
         </nb-list-item>

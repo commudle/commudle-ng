@@ -74,15 +74,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     private activatedRoute: ActivatedRoute,
   ) {}
 
-  ngOnInit() {
-    this.subscriptions.push(
-      this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
-        if (message) {
-          this.scrollToMessage(message);
-        }
-      }),
-    );
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     this.communityChannelChannel.unsubscribe();
@@ -105,6 +97,12 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
       }),
       this.communityChannelManagerService.selectedChannel$.subscribe((data) => {
         this.communityChannel = data;
+      }),
+      this.communityChannelManagerService.scrollToMessage$.subscribe((message) => {
+        if (message) {
+          this.scrollToMessage(message);
+          this.communityChannelManagerService.setScrollToMessage(null);
+        }
       }),
     );
 
