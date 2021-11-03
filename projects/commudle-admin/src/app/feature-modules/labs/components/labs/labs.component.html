@@ -14,24 +14,17 @@
 
           <hr />
 
-          <div class="com-grid com-gap-12 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3">
+          <div
+            (scrolled)="getLabsByTags()"
+            [infiniteScrollDisabled]="searchedLabs.length >= total"
+            [infiniteScrollDistance]="3"
+            appInfiniteScroll
+            class="com-grid com-gap-12 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3"
+          >
             <ng-container *ngFor="let lab of searchedLabs.length > 0 ? searchedLabs : popularLabs">
               <app-labs-card [lab]="lab"></app-labs-card>
             </ng-container>
           </div>
-
-          <button
-            (click)="getLabsByTags()"
-            *ngIf="searchedLabs.length < total"
-            class="com-mt-4"
-            fullWidth
-            nbButton
-            outline
-            size="small"
-            status="info"
-          >
-            Load More
-          </button>
         </nb-card-body>
       </nb-card>
     </div>
