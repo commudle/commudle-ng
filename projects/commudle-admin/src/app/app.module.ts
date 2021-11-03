@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -47,10 +47,11 @@ import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/use
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { ApiParserResponseInterceptor } from 'projects/shared-interceptors/api-parser-response.interceptor';
+import { BrowserStateInterceptor } from 'projects/shared-interceptors/browser-state.interceptor';
+import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch-token.interceptor';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
-import { AuthTokenInterceptor } from 'projects/shared-services/lib-authwatch-token.interceptor';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -131,6 +132,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
   imports: [
     AppRoutingModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -216,6 +218,11 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiParserResponseInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BrowserStateInterceptor,
       multi: true,
     },
   ],
