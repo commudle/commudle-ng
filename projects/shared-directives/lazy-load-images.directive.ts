@@ -1,4 +1,13 @@
-import { AfterContentInit, Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  AfterContentInit,
+  Directive,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Directive({
@@ -6,15 +15,17 @@ import { IsBrowserService } from 'projects/shared-services/is-browser.service';
   providers: [IsBrowserService],
 })
 export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
-  @HostBinding('attr.src') srcAttr = null;
+  @HostBinding('attr.src') srcAttr;
   @Input() src: string;
 
   private isBrowser: boolean = this.IsBrowserService.isBrowser();
 
-  constructor(private el: ElementRef, private IsBrowserService: IsBrowserService) {}
+  constructor(private el: ElementRef, private IsBrowserService: IsBrowserService, private renderer: Renderer2) {}
 
   ngAfterContentInit(): void {
     if (this.isBrowser) {
+      this.addClass('remove-image');
+      this.srcAttr = null;
       this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
     }
   }
@@ -25,6 +36,14 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
         this.srcAttr = changes.src.currentValue;
       }
     }
+  }
+
+  addClass(className: string) {
+    this.renderer.addClass(this.el.nativeElement, className);
+  }
+
+  removeClass(className: string) {
+    this.renderer.removeClass(this.el.nativeElement, className);
   }
 
   private canLazyLoad(): boolean {
@@ -60,5 +79,6 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
 
   private loadImage(): void {
     this.srcAttr = this.src;
+    this.removeClass('remove-image');
   }
 }
