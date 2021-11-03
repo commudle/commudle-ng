@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -40,27 +40,26 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CookieService } from 'ngx-cookie-service';
-import { CommunitiesPostsComponent } from 'projects/commudle-admin/src/app/components/communities/communities-posts/communities-posts.component';
-import { SearchBarComponent } from 'projects/commudle-admin/src/app/components/search-bar/search-bar.component';
-import { LabsModule } from 'projects/commudle-admin/src/app/feature-modules/labs/labs.module';
-import { UsersModule } from 'projects/commudle-admin/src/app/feature-modules/users/users.module';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { ApiParserResponseInterceptor } from 'projects/shared-interceptors/api-parser-response.interceptor';
+import { BrowserStateInterceptor } from 'projects/shared-interceptors/browser-state.interceptor';
+import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch-token.interceptor';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
-import { ApiParserResponseInterceptor } from 'projects/shared-services/api-parser-response.interceptor';
-import { AuthTokenInterceptor } from 'projects/shared-services/lib-authwatch-token.interceptor';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { AppComponent } from './app.component';
+import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesAboutComponent } from './components/communities/communities-about/communities-about.component';
 import { CommunitiesFeaturedComponent } from './components/communities/communities-featured/communities-featured.component';
 import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
 import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
+import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
 import { CommunitiesPromotionsComponent } from './components/communities/communities-promotions/communities-promotions.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
@@ -80,15 +79,18 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
+import { LabsModule } from './feature-modules/labs/labs.module';
 import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
 import { PublicCommunityModule } from './feature-modules/public-community/public-community.module';
 import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
+import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
@@ -112,6 +114,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     SidebarMenuComponent,
     SpeakerResourceFormComponent,
     AboutComponent,
+    AboutOldComponent,
     FeaturesComponent,
     CommunitiesComponent,
     SwUpdateComponent,
@@ -131,6 +134,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
   imports: [
     AppRoutingModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -216,6 +220,11 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiParserResponseInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BrowserStateInterceptor,
       multi: true,
     },
   ],

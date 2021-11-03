@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import sanityClient, { SanityClient } from '@sanity/client';
-import builder from '@sanity/image-url';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { from, Observable } from 'rxjs';
+import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+const axios = require('axios').default;
+const sanityClient = require('@sanity/client');
 const blocksToHtml = require('@sanity/block-content-to-html');
+const builder = require('@sanity/image-url');
 
 @Injectable({
   providedIn: 'root',
@@ -13,20 +15,27 @@ const blocksToHtml = require('@sanity/block-content-to-html');
 export class CmsService {
   projectId = 'r9a0cpxc';
   dataset = 'production';
+  apiVersion = '2021-06-07';
 
-  client: SanityClient = sanityClient({
+  client = sanityClient({
     projectId: this.projectId,
     dataset: this.dataset,
-    apiVersion: '2021-06-07', // use a UTC date string
+    apiVersion: this.apiVersion, // use a UTC date string
     useCdn: true, // `false` if you want to ensure fresh data
   });
   imageUrlBuilder: ImageUrlBuilder = builder(this.client);
 
+  private cmsUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
+
   constructor() {}
 
-  getDataBySlug(slug: string): Observable<any> {
+  getDataBySlug(slug: string) {
     const query: string = `*[slug.current == "${slug}"][0]`;
-    return from(this.client.fetch(query));
+    const url: string = `${this.cmsUrl}?query=${encodeURIComponent(query)}`;
+
+    const data = async () => await axios.get(url);
+
+    return from(data()).pipe(map((data) => data.data.result));
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
