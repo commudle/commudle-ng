@@ -24,10 +24,13 @@ export class PublicPageGuidelinesComponent implements OnInit {
     this.getData();
   }
 
-  getData(): void {
-    this.guideline = this.activatedRoute.snapshot.data.publicPage;
-    this.richText = this.cmsService.getHtmlFromBlock(this.guideline);
-    this.setMeta();
+  getData() {
+    const slug: string = this.activatedRoute.snapshot.params.name;
+    this.cmsService.getDataBySlug(slug).subscribe((value: ICMSGuideline) => {
+      this.guideline = value;
+      this.richText = this.cmsService.getHtmlFromBlock(value);
+      this.setMeta();
+    });
   }
 
   setMeta(): void {
