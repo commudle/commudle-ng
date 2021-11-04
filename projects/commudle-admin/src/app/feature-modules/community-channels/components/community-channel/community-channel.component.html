@@ -19,12 +19,13 @@
     </div>
     <div class="extra-details">
       <fa-icon
+        *ngIf="pinnedMessages?.length > 0"
+        [icon]="faThumbtack"
+        [nbPopoverContext]="'pinnedMessagesPopover'"
         [nbPopoverPlacement]="'bottom'"
         [nbPopover]="pinnedMessagesContainer"
-        [nbPopoverContext]="'pinnedMessagesPopover'"
-        [icon]="faThumbtack"
-        transform="rotate-45"
         size="lg"
+        transform="rotate-45"
       ></fa-icon>
       <nb-actions>
         <nb-action
@@ -49,25 +50,31 @@
     </div>
   </header>
 
-  <div class="latest-pinned-message" *ngIf="latestPinnedMessage && discussion">
+  <div *ngIf="latestPinnedMessage && discussion" class="latest-pinned-message">
     <app-community-channel-message
       [allActions]="allActions"
+      [lineClamp]="true"
       [message]="latestPinnedMessage"
       [permittedActions]="permittedActions"
       [roles]="channelRoles[discussion.parent_id]"
-      [lineClamp]="true"
       [showMessageControls]="false"
       [showPin]="false"
     ></app-community-channel-message>
     <div class="message-controls">
-      <fa-icon *ngIf="isAdmin" (click)="removePinnedMessage(latestPinnedMessage)" [icon]="faWindowClose"></fa-icon>
-      <!-- <button (click)="scrollToMessage(latestPinnedMessage)" nbButton outline size="tiny" status="info">Jump</button> -->
+      <nb-icon
+        (click)="removePinnedMessage(latestPinnedMessage)"
+        *ngIf="isAdmin"
+        nbTooltip="Delete Message"
+        nbTooltipStatus="danger"
+        icon="trash-2-outline"
+      ></nb-icon>
+      <button (click)="scrollToMessage(latestPinnedMessage)" nbButton outline size="tiny" status="info">Jump</button>
     </div>
   </div>
 
   <main
-    [ngClass]="latestPinnedMessage ? 'with-latest-pinned-message' : 'without-latest-pinned-message'"
     *ngIf="discussion"
+    [ngClass]="latestPinnedMessage ? 'with-latest-pinned-message' : 'without-latest-pinned-message'"
   >
     <div class="discussion">
       <app-discussion-community-channel [discussion]="discussion"></app-discussion-community-channel>
@@ -101,8 +108,14 @@
             [showPin]="false"
           ></app-community-channel-message>
           <div class="message-controls">
-            <fa-icon (click)="removePinnedMessage(pinnedMessage)" [icon]="faWindowClose"></fa-icon>
-            <!-- <button (click)="scrollToMessage(pinnedMessage)" nbButton outline size="tiny" status="info">Jump</button> -->
+            <nb-icon
+              (click)="removePinnedMessage(pinnedMessage)"
+              *ngIf="isAdmin"
+              nbTooltip="Delete Message"
+              nbTooltipStatus="danger"
+              icon="trash-2-outline"
+            ></nb-icon>
+            <button (click)="scrollToMessage(pinnedMessage)" nbButton outline size="tiny" status="info">Jump</button>
           </div>
         </nb-list-item>
       </nb-list>

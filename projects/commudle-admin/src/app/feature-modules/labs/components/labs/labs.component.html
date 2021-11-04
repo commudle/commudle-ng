@@ -1,38 +1,32 @@
-<div class="labs-home">
-  <div class="labs-home-container">
-    <section class="nav">
-      <!-- search bar component will contain the filter also -->
-      <app-search-bar (updateTags)="onTagsUpdate($event)" [labSearchParams]="searchedTags"></app-search-bar>
-      <!-- create lab button -->
-    </section>
+<div class="labs base-layout com-mb-12">
+  <div class="container">
+    <div class="one-column-layout">
+      <app-labs-search (updateTags)="onTagsUpdate($event)" [labSearchParams]="searchedTags"></app-labs-search>
+      <app-labs-header [labs]="searchedLabs" [tags]="searchedTags"></app-labs-header>
 
-    <section class="header d-flex align-items-center justify-content-space-between">
-      <!-- header text section -->
-      <app-header-text [labs]="searchedLabs" [tags]="searchedTags"></app-header-text>
-      <!-- header banner or the graphic -->
-      <app-header-banner></app-header-banner>
-    </section>
-
-    <section class="body">
-      <!-- List of lab cards -->
-      <div class="labs-container">
-        <!-- display list of popular tags and horizontal rule if the search bar is empty -->
-        <div class="popular-tags d-flex flex-wrap">
-          <!-- popular tags here -->
-          <button (click)="onTagAdd(tag.name)" *ngFor="let tag of popularTags" class="tag" ghost nbButton>
-            {{tag.name}}
-          </button>
-        </div>
-
-        <hr>
-
-        <div class="labs d-flex flex-wrap">
-          <!-- lab-display-card-component here-->
-          <div *ngFor="let lab of (searchedLabs.length > 0 ? searchedLabs : popularLabs)">
-            <app-lab-display-card [lab]="lab"></app-lab-display-card>
+      <nb-card>
+        <nb-card-body>
+          <div class="popular-tags d-flex flex-wrap">
+            <button (click)="onTagAdd(tag.name)" *ngFor="let tag of popularTags" class="tag" ghost nbButton>
+              {{ tag.name }}
+            </button>
           </div>
-        </div>
-      </div>
-    </section>
+
+          <hr />
+
+          <div
+            (scrolled)="getLabsByTags()"
+            [infiniteScrollDisabled]="searchedLabs.length >= total"
+            [infiniteScrollDistance]="3"
+            appInfiniteScroll
+            class="com-grid com-gap-12 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3"
+          >
+            <ng-container *ngFor="let lab of searchedLabs.length > 0 ? searchedLabs : popularLabs">
+              <app-labs-card [lab]="lab"></app-labs-card>
+            </ng-container>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 </div>

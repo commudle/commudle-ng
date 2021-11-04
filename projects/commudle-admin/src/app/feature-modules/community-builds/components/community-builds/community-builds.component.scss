@@ -5,16 +5,12 @@
 
       nb-card-body {
         @apply com-p-5;
-
-        button {
-          @apply com-mt-4;
-        }
       }
     }
 
-    .one-column-layout {
-      .info {
-        nb-card-body {
+    .info {
+      nb-card-body {
+        h1 {
           nb-icon {
             @apply com-text-5xl;
           }

@@ -1,69 +1,19 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.labs-home {
-  background-color: $white;
-  min-height: 100vh;
-
-  .labs-home-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: $space-32;
-
-    @media all and (max-width: $max-page-width) and (min-width: $tab-width) {
-      padding: $space-16 $space-32;
+.labs {
+  .popular-tags {
+    .tag {
+      color: $gunmetal;
+      font-size: $fs-h3;
+      font-weight: $fw-400;
+      text-transform: lowercase;
     }
+  }
 
-    .header {
-      padding: $space-28 $space-32 $space-16 $space-80;
-    }
-
-    .body {
-      padding: 0 $space-48;
-
-      .labs-container {
-        min-height: 500px;
-
-        .popular-tags {
-          .tag {
-            font-size: $fs-h3;
-            font-weight: $fw-400;
-            text-transform: lowercase;
-            color: $gunmetal;
-          }
-        }
-
-        hr {
-          height: 2px;
-          background-color: rgba($gunmetal, 0.2);
-          border: none;
-          margin: $space-12 0 $space-32;
-        }
-
-        .labs {
-          gap: $space-48;
-        }
-
-        @media all and (max-width: $tab-width) {
-          .labs {
-            justify-content: center;
-          }
-
-          hr {
-            margin: $space-12 $space-16 $space-32;
-          }
-        }
-      }
-    }
-
-    @media all and (max-width: $tab-width) {
-      .header {
-        padding: $space-28 0;
-        flex-direction: column;
-      }
-
-      .body {
-        padding: 0 $space-16;
-      }
-    }
+  hr {
+    background-color: rgba($gunmetal, 0.2);
+    border: none;
+    height: 2px;
+    margin: $space-12 0 $space-32;
   }
 }

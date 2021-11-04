@@ -12,6 +12,7 @@ import { CommunityChannelsDashboardComponent } from './components/community-chan
 import { JoinByTokenComponent } from './components/join-by-token/join-by-token.component';
 import { NewCommunityChannelComponent } from './components/new-community-channel/new-community-channel.component';
 import { EmailJoinComponent } from './components/email-join/email-join.component';
+import { CommunityChannelsDashboardChannelListComponent } from './components/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list.component';
 
 const routes = [
   {
@@ -31,6 +32,10 @@ const routes = [
       community: CommunityDetailsResolver,
     },
     children: [
+      {
+        path: '',
+        component: CommunityChannelsDashboardChannelListComponent,
+      },
       {
         path: 'new-channel',
         outlet: 'p',

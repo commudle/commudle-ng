@@ -1,22 +1,3 @@
-//@import './projects/commudle-admin/src/assets/styles/variables';
-//
-//.about {
-//  margin: 0 auto;
-//  max-width: $max-page-width;
-//  padding: 1rem;
-//
-//  .page-header {
-//    h1 {
-//      font-size: 3.5rem;
-//      margin: 0;
-//    }
-//
-//    p {
-//      font-size: 1.2rem;
-//    }
-//  }
-//}
-
 .about {
   background-color: white;
 
@@ -30,7 +11,7 @@
   }
 
   .header {
-    background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
+    //background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
 
     a {
       background-color: #594cda;
@@ -226,7 +207,7 @@
 
   .footer {
     @apply com-pt-24 com-pb-12 com-text-center;
-    background: linear-gradient(rgba(255, 255, 255, 1), rgba(197, 234, 249, 1));
+    //background: linear-gradient(rgba(255, 255, 255, 1), rgba(197, 234, 249, 1));
 
     .email {
       @apply com-text-indigo-600 hover:com-text-gray-500;
