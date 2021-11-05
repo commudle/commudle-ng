@@ -22,7 +22,24 @@
               <p class="member-count">{{ channel.member_count }} Members</p>
             </div>
           </div>
-          <div [innerHTML]="channel.description | linky: { sanitizeHtml: true }" class="about com-line-clamp-15"></div>
+          <div [innerHTML]="channel.description | linky: { sanitizeHtml: true }" class="about com-line-clamp-14"></div>
+          <div
+            *ngIf="channelRoles[channel.id]"
+            class="channel-join"
+            [ngSwitch]="
+              channelRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) ||
+              channelRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER)
+            "
+          >
+            <button class="join-btn anim-shadow" *ngSwitchCase="false" nbButton size="small">
+              <nb-icon [icon]="'plus'"></nb-icon>
+              Join
+            </button>
+            <button class="join-btn anim-shadow" *ngSwitchCase="true" nbButton size="small">
+              <nb-icon [icon]="'checkmark'"></nb-icon>
+              Joined
+            </button>
+          </div>
         </div>
       </a>
     </ng-container>

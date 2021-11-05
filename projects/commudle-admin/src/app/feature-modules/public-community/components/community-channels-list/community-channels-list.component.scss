@@ -62,6 +62,32 @@ nb-card {
               white-space: pre-wrap;
             }
           }
+
+          .channel-join {
+            padding: 5px;
+            margin-top: auto;
+            margin-left: auto;
+
+            .join-btn {
+              background-color: rgba($neon-blue, 0.2);
+              border: none;
+              border-radius: $border-10;
+              color: $neon-blue;
+              font-size: $fs-h6;
+              font-weight: $fw-400;
+              height: 32px;
+              padding: $space-8;
+              text-transform: none;
+
+              &:hover {
+                background-color: rgba($neon-blue, 0.2);
+              }
+
+              nb-icon {
+                margin-right: $space-4;
+              }
+            }
+          }
         }
       }
 
@@ -70,7 +96,7 @@ nb-card {
 
         .channel {
           width: 318px;
-          height: 335px;
+          height: 347px;
 
           nb-card-body {
             flex-direction: column;

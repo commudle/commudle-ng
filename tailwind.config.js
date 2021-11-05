@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       lineClamp: {
-        15: '15',
+        14: '14',
       },
     },
     container: {
