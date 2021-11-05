@@ -32,7 +32,10 @@
               "projects/commudle-admin/src/assets",
               "projects/commudle-admin/src/manifest.webmanifest"
             ],
-            "styles": ["projects/commudle-admin/src/styles.scss"],
+            "styles": [
+              "projects/commudle-admin/src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-svg-core/styles.css"
+            ],
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "projects/commudle-admin/ngsw-config.json"

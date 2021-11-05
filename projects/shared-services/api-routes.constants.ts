@@ -549,8 +549,4 @@ export const API_ROUTES = {
     USERS: 'api/v2/mentions/user_entities',
     OTHERS: 'api/v2/mentions/other_entities',
   },
-
-  PINNING_MESSAGE: {
-    PINNED_MESSAGES: 'api/v2/community_channels/pinned_messages',
-  },
 };
