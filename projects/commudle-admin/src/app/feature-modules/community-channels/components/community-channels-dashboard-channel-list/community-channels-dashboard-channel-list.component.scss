@@ -25,7 +25,11 @@ nb-card {
     display: grid;
     grid-gap: 15px;
     grid-template-columns: repeat(auto-fill, 265px);
-    justify-content: center;
+    justify-content: start;
+
+    @media screen and (max-width: $tab-width) {
+      justify-content: center;
+    }
 
     a {
       text-decoration: none;
