@@ -77,19 +77,19 @@ nb-card {
         }
 
         .about {
-          margin-top: $space-16;
+          margin-top: $space-10;
           font-size: $fs-h6;
           line-height: 14px;
           color: rgba($gunmetal, 0.85);
           white-space: pre-wrap;
         }
 
-        .channel-join {
+        .enter-channel-btn-container {
           position: absolute;
-          bottom: 8px;
-          right: 8px;
+          width: 88%;
+          bottom: 10px;
 
-          .join-btn {
+          .enter-channel-btn {
             background-color: rgba($neon-blue, 0.2);
             border: none;
             border-radius: $border-10;

@@ -63,12 +63,17 @@ nb-card {
             }
           }
 
-          .channel-join {
-            padding: 5px;
-            margin-top: auto;
+          .enter-channel-btn-container {
+            padding: 7px;
             margin-left: auto;
 
-            .join-btn {
+            @media all and (max-width: $mobile-width) {
+              width: 100%;
+              position: absolute;
+              bottom: 0px;
+            }
+
+            .enter-channel-btn {
               background-color: rgba($neon-blue, 0.2);
               border: none;
               border-radius: $border-10;

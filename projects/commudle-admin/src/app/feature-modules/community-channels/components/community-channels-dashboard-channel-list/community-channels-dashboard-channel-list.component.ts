@@ -4,7 +4,6 @@ import { ICommunityChannel } from 'projects/shared-models/community-channel.mode
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
-import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 
 @Component({
   selector: 'app-community-channels-dashboard-channel-list',
@@ -15,8 +14,6 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
   channels: ICommunityChannel[] = [];
   community: ICommunity;
   displayCommunityList = false;
-  channelRoles = {};
-  EUserRoles = EUserRoles;
   subscriptions = [];
 
   constructor(
@@ -31,10 +28,6 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit, O
         this.community = this.activatedRoute.snapshot.data.community;
         this.getChannels();
         this.communityChannelManagerService.setCommunityListview(false);
-      }),
-      this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
-        this.channelRoles = data;
-        console.log(this.channelRoles);
       }),
     );
   }
