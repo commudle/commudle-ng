@@ -44,7 +44,6 @@ import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { ApiParserResponseInterceptor } from 'projects/shared-interceptors/api-parser-response.interceptor';
-import { BrowserStateInterceptor } from 'projects/shared-interceptors/browser-state.interceptor';
 import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch-token.interceptor';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
@@ -222,11 +221,11 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       useClass: ApiParserResponseInterceptor,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: BrowserStateInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: BrowserStateInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })
