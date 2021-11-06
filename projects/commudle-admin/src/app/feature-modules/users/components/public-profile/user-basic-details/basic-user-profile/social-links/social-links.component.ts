@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -12,6 +12,7 @@ import { faBehance, faDribbble, faFacebook, faGitlab, faMediumM, faYoutube } fro
 })
 export class SocialLinksComponent implements OnInit {
   currentUser: ICurrentUser;
+  @Output() socialLinksFormValidity: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   socialLinksForm = this.fb.group({
     personal_website: [''],
@@ -44,12 +45,14 @@ export class SocialLinksComponent implements OnInit {
       if (currentUser) {
         this.currentUser = currentUser;
         this.socialLinksForm.patchValue(this.currentUser);
+        this.socialLinksFormValidity.emit(this.socialLinksForm.valid); // initial
         this.userProfileManagerService.userProfileForm.patchValue(this.socialLinksForm.value); // initial changes
       }
     });
 
     this.socialLinksForm.valueChanges.subscribe((value) => {
       this.userProfileManagerService.userProfileForm.patchValue(value);
+      this.socialLinksFormValidity.emit(this.socialLinksForm.valid); // whenever form value changes check validity
     });
   }
 }

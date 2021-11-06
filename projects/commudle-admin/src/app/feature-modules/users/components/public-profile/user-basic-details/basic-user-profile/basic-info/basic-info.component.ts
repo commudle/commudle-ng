@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -14,6 +14,7 @@ export class BasicInfoComponent implements OnInit {
   currentUser: ICurrentUser;
   uploadedProfilePicture: any;
   uploadedProfilePictureFile: File;
+  @Output() basicInfoFormValidity: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   basicInfoForm = this.fb.group({
     name: ['', Validators.required],
@@ -35,6 +36,7 @@ export class BasicInfoComponent implements OnInit {
       if (currentUser) {
         this.currentUser = currentUser;
         this.basicInfoForm.patchValue(this.currentUser);
+        this.basicInfoFormValidity.emit(this.basicInfoForm.valid); //initial validity
         this.uploadedProfilePicture = this.currentUser.avatar;
         this.userProfileManagerService.userProfileForm.patchValue(this.basicInfoForm.value);
       }
@@ -42,6 +44,7 @@ export class BasicInfoComponent implements OnInit {
 
     this.basicInfoForm.valueChanges.subscribe((value) => {
       this.userProfileManagerService.userProfileForm.patchValue(value);
+      this.basicInfoFormValidity.emit(this.basicInfoForm.valid); // whenever form value changes check validity
     });
   }
 

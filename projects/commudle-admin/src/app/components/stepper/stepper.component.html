@@ -37,11 +37,19 @@
           <label>Basic profile</label>
         </ng-template>
         <div class="content">
-          <app-basic-info></app-basic-info>
+          <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
         </div>
         <div class="navigation-buttons both-buttons">
           <button nbButton nbStepperPrevious status="primary">Prev</button>
-          <button nbButton nbStepperNext status="primary" (click)="submitStepTwo()">Next</button>
+          <button
+            [disabled]="!validBasicDetailsStatus"
+            nbButton
+            nbStepperNext
+            status="primary"
+            (click)="submitStepTwo()"
+          >
+            Next
+          </button>
         </div>
       </nb-step>
 
@@ -50,11 +58,19 @@
           <label>Social Links</label>
         </ng-template>
         <div class="content">
-          <app-social-links></app-social-links>
+          <app-social-links (socialLinksFormValidity)="checkSocialLinksValidity($event)"></app-social-links>
         </div>
         <div class="navigation-buttons both-buttons">
           <button nbButton nbStepperPrevious status="primary">Prev</button>
-          <button nbButton nbStepperNext status="primary" (click)="submitStepThree()">Next</button>
+          <button
+            [disabled]="!validSocialLinksStatus"
+            nbButton
+            nbStepperNext
+            status="primary"
+            (click)="submitStepThree()"
+          >
+            Next
+          </button>
         </div>
       </nb-step>
 

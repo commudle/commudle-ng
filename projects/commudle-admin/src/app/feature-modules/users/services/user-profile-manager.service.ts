@@ -45,7 +45,7 @@ export class UserProfileManagerService {
     this.updateUsername.next(value);
   }
 
-  updateUserDetails() {
+  updateUserDetails(showToast: boolean) {
     const formData: any = new FormData();
     //removing extra new lines from the about_me input
     this.userProfileForm.patchValue({
@@ -56,15 +56,15 @@ export class UserProfileManagerService {
       !(userFormData[key] == null) ? formData.append(`user[${key}]`, userFormData[key]) : '',
     );
 
-    console.log(this.uploadedProfilePictureFile);
-
     if (this.uploadedProfilePictureFile != null) {
       formData.append('user[profile_image]', this.uploadedProfilePictureFile);
     }
 
     this.usersService.updateUserProfile(formData).subscribe(() => {
       this.authWatchService.updateSignedInUser();
-      this.toastLogService.successDialog('Your Profile is now updated!');
+      if (showToast) {
+        this.toastLogService.successDialog(`Your Profile is now updated!`);
+      }
       this.updateProfileService.setUpdateProfileStatus(true);
     });
   }

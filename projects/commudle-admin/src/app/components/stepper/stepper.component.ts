@@ -17,6 +17,8 @@ export class StepperComponent implements OnInit {
   maxTags = 5;
 
   validUsername = true;
+  validBasicDetailsStatus: boolean;
+  validSocialLinksStatus: boolean;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -66,12 +68,24 @@ export class StepperComponent implements OnInit {
     // this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
   }
 
-  submitStepTwo() {}
+  submitStepTwo() {
+    this.userProfileManagerService.updateUserDetails(false);
+  }
 
-  submitStepThree() {}
+  submitStepThree() {
+    this.userProfileManagerService.updateUserDetails(false);
+  }
 
   checkUsername(validUsername) {
     this.validUsername = validUsername;
+  }
+
+  checkBasicDetailsValidity(status: boolean) {
+    this.validBasicDetailsStatus = status;
+  }
+
+  checkSocialLinksValidity(status: boolean) {
+    this.validSocialLinksStatus = status;
   }
 
   closeStepper() {
