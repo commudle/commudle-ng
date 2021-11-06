@@ -1,0 +1,156 @@
+<div class="about">
+  <header class="header com-py-28 com-text-center md:com-pt-32 lg:com-text-left xl:com-py-36">
+    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8 lg:com-grid lg:com-grid-cols-2 lg:com-gap-x-8">
+      <div class="com-mb-16 lg:com-mt-32 xl:com-mt-40 xl:com-mr-12">
+        <h1 class="fs-h1 com-mb-5">{{ ICmsAbout?.header?.details?.title }}</h1>
+        <p class="fs-p1 com-mb-8">
+          {{ ICmsAbout?.header?.details?.text }}
+        </p>
+        <a class="primary-btn" href="{{ ICmsAbout?.header?.links[0]?.url }}">{{ ICmsAbout?.header?.links[0]?.text }}</a>
+        <a class="secondary-btn" href="{{ ICmsAbout?.header?.links[1]?.url }}">
+          {{ ICmsAbout?.header?.links[1]?.text }}
+        </a>
+      </div>
+      <div class="xl:com-text-right">
+        <img
+          alt="alternative"
+          class="com-inline com-w-full"
+          src="{{ getImageUrl(ICmsAbout?.header?.details?.image) }}"
+        />
+      </div>
+    </div>
+  </header>
+
+  <div class="content com-pt-4 com-pb-14 com-text-center">
+    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8 xl:com-px-4">
+      <p>{{ ICmsAbout?.tagline }}</p>
+    </div>
+  </div>
+
+  <div class="features com-pt-16 com-pb-20 com-text-center">
+    <div
+      class="
+        com-container com-max-w-screen-xl com-px-4
+        sm:com-px-8
+        xl:com-px-4
+        com-grid com-grid-cols-1 com-gap-12
+        md:com-grid-cols-2
+        lg:com-grid-cols-3
+      "
+    >
+      <div
+        *ngFor="let feature of ICmsAbout?.features"
+        class="card com-pt-12 com-px-4 com-pb-8 com-rounded-2xl lg:com-px-12"
+      >
+        <img alt="alternative" class="com-w-20 com-h-20 com-mx-auto com-mb-4" src="{{ getImageUrl(feature.image) }}" />
+        <h4 class="fs-h4 com-font-bold">{{ feature.title }}</h4>
+        <p class="fs-h2">{{ feature.text }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonials com-py-32 com-bg-gray-100">
+    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8">
+      <h2 class="fs-h2 com-mb-12 com-text-center com-lg:max-w-xl com-lg:mx-auto">What do users think about Pavo</h2>
+      <div class="com-max-w-screen-lg com-mx-auto com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-16">
+        <div *ngFor="let testimonial of ICmsAbout?.testimonials" class="com-text-center">
+          <img
+            alt="alternative"
+            class="com-h-20 com-w-20 com-mb-5 com-mx-auto com-rounded-full"
+            src="{{ getImageUrl(testimonial.image) }}"
+          />
+          <p class="content fs-p2">{{ testimonial.text }}</p>
+          <p class="author fs-p2">{{ testimonial.title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing">
+    <div class="com-absolute com-bottom-0 com-h-40 com-w-full com-bg-white"></div>
+    <div class="com-container com-max-w-screen-xl com-px-4 com-pb-px sm:com-px-8">
+      <h2 class="fs-h2">Pricing options for all budgets</h2>
+      <p class="subtitle fs-p2">
+        Our pricing plans are setup in such a way that any user can start enjoying Pavo without worrying so much about
+        costs. They are flexible and work for any type of industry
+      </p>
+      <div class="com-max-w-screen-lg com-mx-auto com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-9">
+        <div *ngFor="let price of ICmsAbout?.pricing" class="card">
+          <p class="title">{{ price.title }}</p>
+          <div class="price">
+            <span class="currency">$</span><span class="value">{{ price.amount }}</span>
+          </div>
+          <p class="frequency">Monthly</p>
+          <p class="description fs-p2">{{ price.description.text }}</p>
+          <ul class="list com-m-0 com-mb-7 com-p-0 com-space-y-2 com-text-left">
+            <li *ngFor="let point of price.description.points" class="com-flex">
+              <fa-icon [icon]="faChevronRight" size="xs"></fa-icon>
+              <p class="fs-p2">{{ point }}</p>
+            </li>
+          </ul>
+          <a href="{{ price.link.url }}">{{ price.link.text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="download com-pt-20 com-pb-32">
+    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8 lg:com-grid lg:com-grid-cols-2">
+      <div class="com-mb-16 lg:com-mb-0">
+        <img
+          alt="alternative"
+          class="com-inline com-w-full"
+          src="https://inovatik.com/pavo-tw/images/conclusion-smartphone.png"
+        />
+      </div>
+      <div class="lg:com-mt-24 xl:com-mt-44 xl:com-ml-12">
+        <p>{{ ICmsAbout?.download?.details?.text }}</p>
+        <a class="primary-btn" href="{{ ICmsAbout?.header?.links[0]?.url }}">{{ ICmsAbout?.header?.links[0]?.text }}</a>
+        <a class="secondary-btn" href="{{ ICmsAbout?.header?.links[1]?.url }}">
+          {{ ICmsAbout?.header?.links[1]?.text }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8">
+      <h3 class="fs-h3 com-mb-8 lg:com-max-w-3xl lg:com-mx-auto">
+        {{ ICmsAbout?.contact?.content }}
+        <a [href]="'mailto:' + ICmsAbout?.contact?.email" class="email">{{ ICmsAbout?.contact?.email }}</a>
+      </h3>
+      <!--      <div class="social-container">-->
+      <!--        <span class="fa-stack">-->
+      <!--          <a href="#your-link">-->
+      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
+      <!--            <i class="fab fa-facebook-f fa-stack-1x"></i>-->
+      <!--          </a>-->
+      <!--        </span>-->
+      <!--        <span class="fa-stack">-->
+      <!--          <a href="#your-link">-->
+      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
+      <!--            <i class="fab fa-twitter fa-stack-1x"></i>-->
+      <!--          </a>-->
+      <!--        </span>-->
+      <!--        <span class="fa-stack">-->
+      <!--          <a href="#your-link">-->
+      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
+      <!--            <i class="fab fa-pinterest-p fa-stack-1x"></i>-->
+      <!--          </a>-->
+      <!--        </span>-->
+      <!--        <span class="fa-stack">-->
+      <!--          <a href="#your-link">-->
+      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
+      <!--            <i class="fab fa-instagram fa-stack-1x"></i>-->
+      <!--          </a>-->
+      <!--        </span>-->
+      <!--        <span class="fa-stack">-->
+      <!--          <a href="#your-link">-->
+      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
+      <!--            <i class="fab fa-youtube fa-stack-1x"></i>-->
+      <!--          </a>-->
+      <!--        </span>-->
+      <!--      </div>-->
+    </div>
+  </div>
+</div>

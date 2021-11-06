@@ -4,6 +4,8 @@
 
 @import 'themes';
 
+@import '~@fortawesome/fontawesome-svg-core/styles.css';
+
 @import '~@nebular/theme/styles/globals';
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
@@ -219,4 +221,18 @@ nb-window.full-screen-height {
 
 :focus {
   outline: none;
+}
+
+.remove-overflow-mention {
+  overflow: unset;
+
+  nb-card {
+    nb-card-body {
+      overflow: unset;
+    }
+  }
+}
+
+.remove-image {
+  filter: opacity(0);
 }

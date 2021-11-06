@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ICMSGuideline } from 'projects/commudle-admin/src/app/feature-modules/public-pages/models/guideline-cms.model';
 import { CmsService } from 'projects/shared-services/cms.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-public-page-guidelines',
@@ -12,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class PublicPageGuidelinesComponent implements OnInit {
   guideline: ICMSGuideline;
-  richText;
+  richText: any;
 
   constructor(
     private cmsService: CmsService,
@@ -25,22 +24,17 @@ export class PublicPageGuidelinesComponent implements OnInit {
     this.getData();
   }
 
-  getData(): void {
-    this.activatedRoute.params.pipe(map((value: Params) => value.name)).subscribe((slug) => {
-      this.cmsService.getData(slug).subscribe((value: ICMSGuideline) => {
-        this.guideline = value;
-        this.richText = this.cmsService.getHtmlFromBlock(value);
-        this.setMeta();
-      });
+  getData() {
+    const slug: string = this.activatedRoute.snapshot.params.name;
+    this.cmsService.getDataBySlug(slug).subscribe((value: ICMSGuideline) => {
+      this.guideline = value;
+      this.richText = this.cmsService.getHtmlFromBlock(value);
+      this.setMeta();
     });
   }
 
   setMeta(): void {
     this.title.setTitle(this.guideline.meta_title);
-    this.meta.updateTag({
-      name: 'og:title',
-      content: this.guideline.meta_title,
-    });
     this.meta.updateTag({
       name: 'description',
       content: this.guideline.meta_description,
@@ -79,6 +73,7 @@ export class PublicPageGuidelinesComponent implements OnInit {
       name: 'twitter:description',
       content: this.guideline.meta_description,
     });
+
     this.meta.updateTag({
       name: 'author',
       content: 'Commudle',

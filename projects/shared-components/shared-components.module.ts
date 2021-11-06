@@ -42,8 +42,6 @@ import { DiscussionChatComponent } from './discussion-chat/discussion-chat.compo
 import { UserMessageComponent } from './discussion-chat/user-message/user-message.component';
 import { DiscussionPersonalChatComponent } from './discussion-personal-chat/discussion-personal-chat.component';
 import { UserPersonalChatMessageComponent } from './discussion-personal-chat/user-personal-chat-message/user-personal-chat-message.component';
-import { DiscussionQnAComponent } from './discussion-qna/discussion-qna.component';
-import { QnaUserMessageComponent } from './discussion-qna/qna-user-message/qna-user-message.component';
 import { FlagsDisplayComponent } from './flags-display/flags-display.component';
 import { FormResponsesComponent } from './form-responses/form-responses.component';
 import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
@@ -66,7 +64,6 @@ import { UserObjectVisitPixelComponent } from './user-object-visit-pixel/user-ob
 import { UserProfileHorizontalComponent } from './user-profile-horizontal/user-profile-horizontal.component';
 import { UserProfileMiniComponent } from './user-profile-mini/user-profile-mini.component';
 import { UserVisitTrackerComponent } from './user-visit-tracker/user-visit-tracker.component';
-import { VideoStreamV2Component } from './video-stream-v2/video-stream-v2.component';
 import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
@@ -79,8 +76,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     BadgeComponent,
     DiscussionChatComponent,
     UserMessageComponent,
-    DiscussionQnAComponent,
-    QnaUserMessageComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
@@ -113,7 +108,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     QnaComponent,
     QnaListComponent,
     QnaListItemComponent,
-    VideoStreamV2Component,
     UserFollowComponent,
   ],
   imports: [
@@ -156,8 +150,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     BadgeComponent,
     DiscussionChatComponent,
     UserMessageComponent,
-    QnaUserMessageComponent,
-    DiscussionQnAComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
@@ -179,7 +171,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     UserProfileCardSmallComponent,
     MessagesComponent,
     QnaComponent,
-    VideoStreamV2Component,
     UserFollowComponent,
   ],
 })

@@ -3,9 +3,10 @@ import { RouterModule } from '@angular/router';
 import { Error404PageComponent, LibErrorHandlerComponent } from 'projects/lib-error-handler/src/public-api';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { AuthGuard } from 'projects/shared-services/lib-authwatch.guard';
+import { AboutOldComponent } from './components/about-old/about-old.component';
+import { AboutComponent } from './components/about/about.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
-import { AboutComponent } from './components/home/about/about.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -20,8 +21,12 @@ const routes = [
     component: HomeComponent,
   },
   {
-    path: 'about',
+    path: 'about-wip',
     component: AboutComponent,
+  },
+  {
+    path: 'about',
+    component: AboutOldComponent,
   },
   {
     path: 'features',
@@ -165,7 +170,6 @@ const routes = [
     path: 'public',
     loadChildren: () => import('./feature-modules/public-pages/public-pages.module').then((m) => m.PublicPagesModule),
   },
-
   { path: 'logout', component: LogoutComponent },
   { path: 'error', component: LibErrorHandlerComponent },
   { path: '404', component: Error404PageComponent },

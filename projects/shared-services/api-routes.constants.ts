@@ -118,8 +118,7 @@ export const API_ROUTES = {
   // embedded_video_streams
   EMBEDDED_VIDEO_STREAMS: {
     GET: 'api/v2/embedded_video_streams',
-    CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/create_update_for_event',
-    V2_CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/v2_create_update_for_event',
+    CREATE_UPDATE_FOR_EVENT: 'api/v2/embedded_video_streams/v2_create_update_for_event',
     RECORDING: {
       START: 'api/v2/embedded_video_streams/start_recording',
       STOP: 'api/v2/embedded_video_streams/stop_recording',
@@ -243,8 +242,7 @@ export const API_ROUTES = {
 
   // hms_clients
   HMS_CLIENT: {
-    CLIENT_TOKEN: 'api/v2/hms_clients/client_token',
-    CLIENT_TOKEN_V2: 'api/v2/hms_clients/client_token/v2',
+    CLIENT_TOKEN: 'api/v2/hms_clients/client_token/v2',
   },
 
   // event_locations

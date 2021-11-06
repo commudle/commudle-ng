@@ -5,9 +5,10 @@
 
   .community-build {
     width: 100%;
+
     nb-card-body {
-      padding: 1rem 0;
       overflow: unset;
+      padding: 1rem 0;
     }
 
     .header,
@@ -26,18 +27,18 @@
       }
 
       h1 {
-        margin: 0;
         font-weight: 400;
+        margin: 0;
       }
 
       .author {
         color: grey;
 
         .expert-icon {
-          vertical-align: middle;
-          margin-left: $space-4;
-          width: 12px;
           height: 12px;
+          margin-left: $space-4;
+          vertical-align: middle;
+          width: 12px;
         }
       }
     }
@@ -46,26 +47,28 @@
       margin: 0 0 1rem;
 
       span {
+        background: #5072ff;
+        border-radius: 21px;
+        color: white;
         font-size: 0.8rem;
         padding: 5px 8px;
-        border-radius: 21px;
-        background: #5072ff;
-        color: white;
       }
     }
 
     .description {
       margin: 1rem 0 1rem;
 
-      p {
-        font-size: 1.5rem;
+      &::ng-deep {
+        pre {
+          white-space: pre-wrap;
+        }
       }
     }
 
     .images {
-      overflow-x: auto;
-      margin-bottom: 1.5rem;
       background: #d3d3d33b;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
 
       .image-stripe {
         display: flex;
@@ -73,13 +76,13 @@
         width: fit-content;
 
         .image {
-          width: 280px;
-          height: 280px;
-          border: 1px solid lightgrey;
-          overflow: hidden;
-          display: flex;
           align-items: center;
+          border: 1px solid lightgrey;
+          display: flex;
+          height: 280px;
           margin: 0 0.5rem;
+          overflow: hidden;
+          width: 280px;
 
           img {
             width: 100%;
@@ -89,10 +92,10 @@
     }
 
     .embed {
-      max-width: 100%;
-      overflow: auto;
       display: flex;
       justify-content: center;
+      max-width: 100%;
+      overflow: auto;
 
       iframe {
         width: 100% !important;
@@ -114,9 +117,9 @@
       display: flex;
 
       > p {
-        margin: 0.5rem 1rem 0 0;
-        display: flex;
         align-items: center;
+        display: flex;
+        margin: 0.5rem 1rem 0 0;
 
         > span {
           margin-left: 0.5rem;
@@ -136,14 +139,14 @@
 
   .comments {
     border-top: 1px solid lightgrey;
-    padding: $space-12 $space-16 $space-32;
-    margin: 1rem 0;
     height: 550px;
+    margin: 1rem 0;
+    padding: $space-12 $space-16 $space-32;
 
     > p {
-      margin: 0 0 1rem;
       font-size: 1.3rem;
       font-weight: 300;
+      margin: 0 0 1rem;
     }
   }
 }
@@ -154,9 +157,9 @@
 
   .controls {
     display: flex;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     justify-content: space-between;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 
     button {
       margin-left: 0.5rem;

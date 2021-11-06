@@ -8,6 +8,7 @@ import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedd
 import { IEvent } from 'projects/shared-models/event.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-event-embedded-video-stream',
@@ -17,12 +18,9 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
   @Input() community: ICommunity;
-  authSubs;
-  EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
 
+  EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   evs = <IEmbeddedVideoStream>{};
-  youtubeVideoId: string;
-  embeddedVideoUrl: any;
   currentUser: ICurrentUser;
 
   embeddedVideoStreamForm = this.fb.group({
@@ -32,8 +30,10 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
     embed_code: ['', Validators.required],
     zoom_host_email: ['', Validators.email],
     zoom_password: [''],
-    is_recorded: [false],
+    rtmp_url: ['', [this.validateRtmpUrl.bind(this)]],
   });
+
+  subscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -50,11 +50,20 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
 
     this.getEmbeddedVideoStream();
 
-    this.authSubs = this.authService.currentUser$.subscribe((data) => (this.currentUser = data));
+    this.subscription = this.authService.currentUser$.subscribe((data: ICurrentUser) => (this.currentUser = data));
   }
 
   ngOnDestroy() {
-    this.authSubs.unsubscribe();
+    this.subscription.unsubscribe();
+  }
+
+  validateRtmpUrl(control) {
+    const url: string = control.value;
+    if (url?.startsWith('rtmp://') || url === '') {
+      return null;
+    } else {
+      return { invalidUrl: true };
+    }
   }
 
   getEmbeddedVideoStream() {

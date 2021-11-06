@@ -22,6 +22,7 @@ global['Text'] = win.Text;
 global['HTMLElement'] = win.HTMLElement;
 global['navigator'] = win.navigator;
 global['MutationObserver'] = getMockMutationObserver();
+global['XMLHttpRequest'] = win.XMLHttpRequest;
 
 function getMockMutationObserver() {
   return class {

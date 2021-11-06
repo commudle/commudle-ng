@@ -54,7 +54,7 @@
                           >
                             <img
                               alt="Profile Picture"
-                              src="{{uploadedHeaderImage || event.header_image_path}}"
+                              src="{{ uploadedHeaderImage || event.header_image_path }}"
                               title="Profile Picture"
                             />
                           </div>
@@ -111,9 +111,9 @@
                       <div *ngIf="event.start_time">
                         <fa-icon [icon]="faClock"></fa-icon>
                         <p>
-                          {{moment(event.start_time).format("dddd Do MMM, YYYY h:mm A")}} to
-                          {{moment(event.end_time).format("dddd Do MMM, YYYY h:mm A")}}
-                          {{moment(event.end_time).format("z")}}
+                          {{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }} to
+                          {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
+                          {{ moment(event.end_time).format('z') }}
                         </p>
                       </div>
                     </div>
@@ -149,7 +149,7 @@
         <p class="item-group-title">Event Manager</p>
 
         <div #eventUpdates>
-          <nb-card *ngIf="event.event_status.name != EEventStatuses.DRAFT">
+          <nb-card *ngIf="event.event_status.name !== EEventStatuses.DRAFT">
             <nb-card-header>Updates / Timeline</nb-card-header>
             <nb-card-body>
               <app-event-updates [event]="event"></app-event-updates>
@@ -210,7 +210,7 @@
               <div *ngIf="!event.start_time">
                 <nb-alert accent="info">
                   <a
-                    [routerLink]="['/admin/communities',community.slug,'event-dashboard',event.slug,'edit']"
+                    [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']"
                     ghost
                     nbButton
                     status="info"
@@ -221,7 +221,7 @@
               </div>
               <div *ngIf="event.start_time">
                 <p *ngIf="!event.custom_agenda">
-                  <a [routerLink]="['/communities',community.slug,'events',event.slug,'session']" target="_blank">
+                  <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
                     Public Session Page
                     <nb-icon icon="external-link"></nb-icon>
                   </a>
@@ -238,11 +238,11 @@
                   *ngIf="!event.custom_agenda && !event.custom_registration"
                   [event]="event"
                 ></app-event-speakers>
-                <app-event-embedded-video-stream-v2
+                <app-event-embedded-video-stream
                   *ngIf="!event.custom_agenda"
                   [community]="community"
                   [event]="event"
-                ></app-event-embedded-video-stream-v2>
+                ></app-event-embedded-video-stream>
               </div>
             </nb-card-body>
           </nb-card>
@@ -405,7 +405,7 @@
                 <small>
                   Use the forms you created on
                   <strong>
-                    <a [routerLink]="['/admin/communities', community.slug]">{{community.name}}</a>
+                    <a [routerLink]="['/admin/communities', community.slug]">{{ community.name }}</a>
                   </strong>
                   page
                 </small>
