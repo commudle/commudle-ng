@@ -44,19 +44,12 @@ export class SocialLinksComponent implements OnInit {
       if (currentUser) {
         this.currentUser = currentUser;
         this.socialLinksForm.patchValue(this.currentUser);
+        this.userProfileManagerService.userProfileForm.patchValue(this.socialLinksForm.value); // initial changes
       }
     });
 
-    this.userProfileManagerService.updateBasicInfo$.subscribe((value) => {
-      if (value) {
-        this.updateSocialLinks();
-        this.userProfileManagerService.setUpdateSocialLinks(false);
-      }
+    this.socialLinksForm.valueChanges.subscribe((value) => {
+      this.userProfileManagerService.userProfileForm.patchValue(value);
     });
-  }
-
-  updateSocialLinks() {
-    const socialLinksFormData = this.socialLinksForm.value;
-    this.userProfileManagerService.setSubmitSocialLinks(socialLinksFormData);
   }
 }

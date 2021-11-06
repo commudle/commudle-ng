@@ -23,7 +23,6 @@ export class StepperComponent implements OnInit {
     private usersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
     private stepperService: StepperService,
-    private updateProfileService: UpdateProfileService,
   ) {}
 
   ngOnInit(): void {
@@ -37,26 +36,6 @@ export class StepperComponent implements OnInit {
           }
         });
       }
-    });
-
-    this.userProfileManagerService.submitBasicInfo$.subscribe((basicInfoFormData) => {
-      if (basicInfoFormData) {
-        this.submitForm(basicInfoFormData);
-      }
-    });
-
-    this.userProfileManagerService.submitSocialLinks$.subscribe((socialLinksFormData) => {
-      if (socialLinksFormData) {
-        this.submitForm(socialLinksFormData);
-      }
-    });
-  }
-
-  submitForm(data) {
-    const formData: FormData = new FormData();
-    Object.keys(data).forEach((key) => (!(data[key] == null) ? formData.append(`user[${key}]`, data[key]) : ''));
-    this.usersService.updateUserProfile(formData).subscribe(() => {
-      this.updateProfileService.setUpdateProfileStatus(true);
     });
   }
 
@@ -79,21 +58,17 @@ export class StepperComponent implements OnInit {
   }
 
   submitStepOne() {
-    //update username (not working correctly)
-    this.userProfileManagerService.setUpdateUsername(true);
-    // Get the updated user tags
-    this.tags = this.tagsDialog;
-    // When the save button is clicked, update the tags
-    this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
+    // //update username (not working correctly)
+    // this.userProfileManagerService.setUpdateUsername(true);
+    // // Get the updated user tags
+    // this.tags = this.tagsDialog;
+    // // When the save button is clicked, update the tags
+    // this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
   }
 
-  submitStepTwo() {
-    this.userProfileManagerService.setUpdateBasicInfo(true);
-  }
+  submitStepTwo() {}
 
-  submitStepThree() {
-    this.userProfileManagerService.setUpdateSocialLinks(true);
-  }
+  submitStepThree() {}
 
   checkUsername(validUsername) {
     this.validUsername = validUsername;

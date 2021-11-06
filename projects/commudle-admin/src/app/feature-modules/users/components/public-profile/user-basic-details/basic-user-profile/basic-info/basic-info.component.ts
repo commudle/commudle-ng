@@ -36,14 +36,12 @@ export class BasicInfoComponent implements OnInit {
         this.currentUser = currentUser;
         this.basicInfoForm.patchValue(this.currentUser);
         this.uploadedProfilePicture = this.currentUser.avatar;
+        this.userProfileManagerService.userProfileForm.patchValue(this.basicInfoForm.value);
       }
     });
 
-    this.userProfileManagerService.updateBasicInfo$.subscribe((value) => {
-      if (value) {
-        this.updateBasicInfo();
-        this.userProfileManagerService.setUpdateBasicInfo(false);
-      }
+    this.basicInfoForm.valueChanges.subscribe((value) => {
+      this.userProfileManagerService.userProfileForm.patchValue(value);
     });
   }
 
@@ -55,20 +53,14 @@ export class BasicInfoComponent implements OnInit {
         return;
       }
       this.uploadedProfilePictureFile = file;
+
+      if (this.uploadedProfilePictureFile != null) {
+        this.userProfileManagerService.uploadedProfilePictureFile = this.uploadedProfilePictureFile;
+      }
+
       const reader = new FileReader();
       reader.onload = () => (this.uploadedProfilePicture = reader.result);
       reader.readAsDataURL(file);
     }
-  }
-
-  updateBasicInfo() {
-    this.basicInfoForm.patchValue({
-      about_me: this.basicInfoForm.get('about_me').value.replace(/[\n]+/g, '\n').trim(),
-    });
-    const basicInfoFormData = this.basicInfoForm.value;
-    if (this.uploadedProfilePictureFile != null) {
-      basicInfoFormData['profile_image'] = this.uploadedProfilePictureFile;
-    }
-    this.userProfileManagerService.setSubmitBasicInfo(basicInfoFormData);
   }
 }
