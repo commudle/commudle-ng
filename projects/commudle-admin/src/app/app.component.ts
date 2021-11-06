@@ -16,6 +16,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
 import { CookieConsentService } from './services/cookie-consent.service';
+import { ProfileStatusBarService } from './services/profile-status-bar.service';
 
 // import * as LogRocket from 'logrocket';
 
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   userContextMenu: NbMenuItem[] = [{ title: 'Logout', link: '/logout' }];
   cookieAccepted = false;
   footerStatus = true;
+  profileBarStatus = true;
 
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
@@ -53,6 +55,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private truncate: TruncateTextPipe,
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
+    private profileStatusBarService: ProfileStatusBarService,
   ) {
     // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
@@ -110,6 +113,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngAfterViewChecked(): void {
     this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
+    this.profileStatusBarService.profileBarStatus$.subscribe((value) => (this.profileBarStatus = value));
     this.cdr.detectChanges();
   }
 

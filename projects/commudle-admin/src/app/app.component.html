@@ -35,7 +35,7 @@
   </nb-sidebar>
 
   <nb-layout-column>
-    <app-profile-status-bar *ngIf="currentUser !== null"></app-profile-status-bar>
+    <app-profile-status-bar *ngIf="currentUser !== null && profileBarStatus"></app-profile-status-bar>
     <router-outlet></router-outlet>
   </nb-layout-column>
 
