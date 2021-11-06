@@ -73,10 +73,11 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
 
   emitMessage() {
     if (!this.editableMessage) {
-      if (this.uploadedFiles.length > 0) {
+      if (this.sendUserMessageForm.valid && this.uploadedFiles.length > 0) {
         this.emitAttachmentMessage();
-      }
-      if (this.sendUserMessageForm.valid) {
+      } else if (this.uploadedFiles.length > 0) {
+        this.emitAttachmentMessage();
+      } else if (this.sendUserMessageForm.valid) {
         this.emitTextMessage();
       }
     } else {
