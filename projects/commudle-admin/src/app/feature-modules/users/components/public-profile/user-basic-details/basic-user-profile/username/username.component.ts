@@ -27,6 +27,7 @@ export class UsernameComponent implements OnInit {
   currentUsername = '';
   checkingUsername = false;
   currentUser: ICurrentUser;
+  reloadPage = true;
 
   usernameForm = this.fb.group({
     username: [
@@ -57,7 +58,12 @@ export class UsernameComponent implements OnInit {
 
     this.userProfileManagerService.updateUsername$.subscribe((value) => {
       if (value) {
-        this.setUsername();
+        if (!this.router.url.includes('/users/' + this.lastUsername)) {
+          this.reloadPage = false;
+        }
+        if (this.currentUsername != this.lastUsername) {
+          this.setUsername();
+        }
         this.userProfileManagerService.setUpdateUsername(false);
       }
     });
@@ -88,7 +94,10 @@ export class UsernameComponent implements OnInit {
       if (data) {
         // this.toastLogService.successDialog('Updated!');
         this.lastUsername = newUsername;
-        //this.router.navigate(['/users', newUsername]).then(() => location.reload());
+        if (this.reloadPage) {
+          this.router.navigate(['/users', newUsername]).then(() => location.reload());
+        }
+        this.reloadPage = true;
         // get the user again from the server
         this.authWatchService.checkAlreadySignedIn().subscribe();
       }

@@ -4,7 +4,6 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { UserProfileManagerService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { StepperService } from 'projects/commudle-admin/src/app/services/stepper.service';
-import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 
 @Component({
   selector: 'app-stepper',
@@ -60,12 +59,12 @@ export class StepperComponent implements OnInit {
   }
 
   submitStepOne() {
-    // //update username (not working correctly)
-    // this.userProfileManagerService.setUpdateUsername(true);
-    // // Get the updated user tags
-    // this.tags = this.tagsDialog;
-    // // When the save button is clicked, update the tags
-    // this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
+    //update username
+    this.userProfileManagerService.setUpdateUsername(true);
+    // Get the updated user tags
+    this.tags = this.tagsDialog;
+    // When the save button is clicked, update the tags
+    this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
   }
 
   submitStepTwo() {

@@ -66,15 +66,26 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.authWatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
 
-      if (this.currentUser && this.userContextMenu.length <= 1) {
-        this.userContextMenu.unshift({
-          title: `@${this.truncate.transform(currentUser.username, 10)}`,
-          link: `/users/${currentUser.username}`,
-          badge: {
-            text: 'Profile',
-            status: 'basic',
-          },
-        });
+      if (this.currentUser) {
+        if (this.userContextMenu.length <= 1) {
+          this.userContextMenu.unshift({
+            title: `@${this.truncate.transform(currentUser.username, 10)}`,
+            link: `/users/${currentUser.username}`,
+            badge: {
+              text: 'Profile',
+              status: 'basic',
+            },
+          });
+        } else {
+          this.userContextMenu[0] = {
+            title: `@${this.truncate.transform(currentUser.username, 10)}`,
+            link: `/users/${currentUser.username}`,
+            badge: {
+              text: 'Profile',
+              status: 'basic',
+            },
+          };
+        }
 
         // LogRocket.init('g90s8l/commudle');
         // LogRocket.identify(`${this.currentUser.username}`, {
