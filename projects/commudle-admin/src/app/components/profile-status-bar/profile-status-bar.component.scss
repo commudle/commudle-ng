@@ -6,7 +6,7 @@
 
   .profile-status-bar-content {
     app-circular-progressive-bar {
-      margin-right: 5px;
+      margin: 0 5px;
       position: relative;
       top: 2px;
     }
@@ -17,7 +17,7 @@
     }
 
     button {
-      margin-left: 5px;
+      margin: 5px;
     }
   }
 }

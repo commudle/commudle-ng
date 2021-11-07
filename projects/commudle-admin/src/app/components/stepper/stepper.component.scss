@@ -2,7 +2,12 @@
 
 nb-card {
   overflow: hidden;
-  height: 95vh;
+  height: 97vh;
+  width: 800px;
+
+  @media all and (max-width: $tab-width) {
+    width: 90vw;
+  }
 
   nb-card-body {
     padding: 1rem 1rem;
@@ -11,8 +16,19 @@ nb-card {
     .content {
       overflow-x: hidden;
       overflow-y: scroll;
-      height: 70vh;
-      width: 50vw;
+      height: 75vh;
+
+      .skills-gif-container {
+        display: flex;
+        justify-content: center;
+        height: 68%;
+      }
+
+      .profile-completed-gif {
+        display: flex;
+        justify-content: center;
+        height: 68%;
+      }
 
       // Custom scrollbar
       &::-webkit-scrollbar {
@@ -37,7 +53,7 @@ nb-card {
 
     .navigation-buttons {
       position: relative;
-      top: 15px;
+      top: 5px;
 
       &.both-buttons {
         display: flex;
@@ -58,5 +74,5 @@ nb-card {
 }
 
 .step-one-heading {
-  margin-left: 12px;
+  margin-left: 25px;
 }

@@ -84,7 +84,11 @@ export class UsernameComponent implements OnInit {
       .subscribe((data) => {
         this.validUsername = data === true;
         this.checkingUsername = false;
-        this.usernameValidation.emit(this.validUsername);
+        if (this.currentUsername === this.lastUsername) {
+          this.usernameValidation.emit(true);
+        } else {
+          this.usernameValidation.emit(this.validUsername);
+        }
       });
   }
 

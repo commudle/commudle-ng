@@ -31,9 +31,11 @@ export class StepperComponent implements OnInit {
       if (currentUser) {
         this.usersService.getProfile(currentUser.username).subscribe((data) => {
           if (data) {
-            data.tags.forEach((tag) => this.tags.push(tag.name));
-            this.tagsDialog = [];
-            this.tags.forEach((tag) => this.tagsDialog.push(tag));
+            if (this.tags.length != data.tags.length) {
+              data.tags.forEach((tag) => this.tags.push(tag.name));
+              this.tagsDialog = [];
+              this.tags.forEach((tag) => this.tagsDialog.push(tag));
+            }
           }
         });
       }
