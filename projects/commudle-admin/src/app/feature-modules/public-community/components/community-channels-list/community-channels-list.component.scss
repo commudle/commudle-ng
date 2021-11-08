@@ -64,13 +64,17 @@ nb-card {
           }
 
           .enter-channel-btn-container {
-            padding: 7px;
-            margin-left: auto;
+            position: absolute;
+            top: 7px;
+            right: 7px;
 
             @media all and (max-width: $mobile-width) {
               width: 100%;
               position: absolute;
               bottom: 0px;
+              top: unset;
+              right: unset;
+              padding: 7px;
             }
 
             .enter-channel-btn {
