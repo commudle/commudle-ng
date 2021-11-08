@@ -29,7 +29,7 @@ export class CmsService {
   constructor(private httpClient: HttpClient) {}
 
   getDataBySlug(slug: string) {
-    const params = new HttpParams().set('query', `*[_type == "page" && slug.current == "${slug}"]`);
+    const params = new HttpParams().set('query', `*[slug.current == "${slug}"]`);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result[0]));
   }
 
