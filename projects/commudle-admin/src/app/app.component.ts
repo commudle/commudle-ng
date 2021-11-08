@@ -138,6 +138,12 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.sidebarService.toggle(false, 'mainMenu');
   }
 
+  closeSidebar(): void {
+    if (this.sideBarState === 'expanded') {
+      this.sidebarService.collapse('mainMenu');
+    }
+  }
+
   login(): void {
     this.document.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
   }

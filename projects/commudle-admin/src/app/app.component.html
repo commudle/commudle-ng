@@ -34,7 +34,15 @@
     </div>
   </nb-layout-header>
 
-  <nb-sidebar [(state)]="sideBarState" [fixed]="true" right tag="mainMenu">
+  <nb-sidebar
+    (clickOutside)="closeSidebar()"
+    [(state)]="sideBarState"
+    [fixed]="true"
+    appClickOutside
+    exclude=".home-sidebar"
+    right
+    tag="mainMenu"
+  >
     <app-sidebar-menu></app-sidebar-menu>
   </nb-sidebar>
 
