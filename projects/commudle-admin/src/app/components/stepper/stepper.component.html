@@ -10,7 +10,7 @@
           <div>
             <div class="tag-dialog-info">
               <nb-icon icon="info-outline"></nb-icon>
-              Maximum {{ maxTags }} tags can be added. Tags reflect your fields of interest.
+              Add {{ maxTags }} of your skills which you want other developers to see!
             </div>
             <nb-tag-list (tagRemove)="onTagRemove($event)">
               <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
@@ -18,7 +18,7 @@
                 (tagAdd)="onTagAdd($event)"
                 fullWidth
                 nbTagInput
-                placeholder="type a tag and press enter"
+                placeholder="Type a tag and press enter"
                 type="text"
               />
             </nb-tag-list>
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="navigation-buttons next-button-only">
-          <button [disabled]="!validUsername" nbButton nbStepperNext status="primary" (click)="submitStepOne()">
+          <button [disabled]="!validUsername" nbButton nbStepperNext status="success" (click)="submitStepOne()">
             Next
           </button>
         </div>
@@ -46,12 +46,12 @@
           <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
         </div>
         <div class="navigation-buttons both-buttons">
-          <button nbButton nbStepperPrevious status="primary">Prev</button>
+          <button nbButton nbStepperPrevious status="success">Prev</button>
           <button
             [disabled]="!validBasicDetailsStatus"
             nbButton
             nbStepperNext
-            status="primary"
+            status="success"
             (click)="submitStepTwo()"
           >
             Next
@@ -67,12 +67,12 @@
           <app-social-links (socialLinksFormValidity)="checkSocialLinksValidity($event)"></app-social-links>
         </div>
         <div class="navigation-buttons both-buttons">
-          <button nbButton nbStepperPrevious status="primary">Prev</button>
+          <button nbButton nbStepperPrevious status="success">Prev</button>
           <button
             [disabled]="!validSocialLinksStatus"
             nbButton
             nbStepperNext
-            status="primary"
+            status="success"
             (click)="submitStepThree()"
           >
             Next
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div class="navigation-buttons next-button-only">
-          <button nbButton status="primary" (click)="closeStepper()">Close</button>
+          <button nbButton status="success" (click)="closeStepper()">Close</button>
         </div>
       </nb-step>
     </nb-stepper>

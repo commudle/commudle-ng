@@ -19,17 +19,22 @@ export class StepperService {
     about_me: 10,
     location: 10,
     gender: 10,
-    personal_website: 3,
-    github: 3,
-    linkedin: 3,
-    twitter: 3,
-    youtube: 3,
-    medium: 3,
-    dribbble: 3,
-    behance: 3,
-    gitlab: 3,
-    facebook: 3,
+    skills: 20,
+    socialLinks: 10,
   };
+
+  private socialLinks = [
+    'personal_website',
+    'github',
+    'linkedin',
+    'twitter',
+    'youtube',
+    'medium',
+    'dribble',
+    'behance',
+    'gitlab',
+    'facebook',
+  ];
 
   currentUser: ICurrentUser;
   dialogRef: NbDialogRef<any>;
@@ -50,6 +55,19 @@ export class StepperService {
 
   calculateProfilePercentage() {
     let profilePercentage = 0;
+
+    if (this.currentUser.tags.length >= 5) {
+      profilePercentage += this.profileWeights['skills'];
+    }
+
+    for (const link of this.socialLinks) {
+      //if any one link is present add 10%
+      if (this.currentUser[link]) {
+        profilePercentage += this.profileWeights['socialLinks'];
+        break;
+      }
+    }
+
     for (const field in this.profileWeights) {
       if (this.currentUser[field]) {
         profilePercentage += this.profileWeights[field];
@@ -59,6 +77,6 @@ export class StepperService {
   }
 
   showStepper() {
-    this.dialogRef = this.dialogService.open(StepperComponent, { hasScroll: true });
+    this.dialogRef = this.dialogService.open(StepperComponent, { hasScroll: true, closeOnBackdropClick: false });
   }
 }

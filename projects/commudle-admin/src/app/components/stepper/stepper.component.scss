@@ -6,22 +6,59 @@ nb-card {
   width: 800px;
 
   @media all and (max-width: $tab-width) {
-    width: 90vw;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
   }
 
   nb-card-body {
     padding: 1rem 1rem;
     overflow: unset;
 
+    nb-stepper {
+      &::ng-deep {
+        .header {
+          .connector-past {
+            background-color: #00d68f;
+          }
+
+          .step {
+            .label-index {
+              border-color: #00d68f;
+            }
+
+            &.completed {
+              .label-index {
+                background-color: #00d68f;
+                border-color: #00d68f;
+              }
+            }
+          }
+        }
+
+        .step-content {
+          padding: 0;
+        }
+      }
+    }
+
     .content {
       overflow-x: hidden;
       overflow-y: scroll;
       height: 75vh;
 
+      @media all and (max-width: $tab-width) {
+        height: 80vh;
+      }
+
       .skills-gif-container {
         display: flex;
         justify-content: center;
         height: 68%;
+
+        @media all and (max-width: $mobile-width) {
+          display: none;
+        }
       }
 
       .profile-completed-gif {
@@ -52,8 +89,7 @@ nb-card {
     }
 
     .navigation-buttons {
-      position: relative;
-      top: 5px;
+      padding-top: 1rem;
 
       &.both-buttons {
         display: flex;
