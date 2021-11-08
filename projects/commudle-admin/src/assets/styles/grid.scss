@@ -15,7 +15,7 @@ HTML Emmet's
 /* GRID LAYOUT */
 
 @mixin grid-layout {
-  @apply com-grid com-grid-cols-24 com-gap-4;
+  @apply com-grid com-grid-cols-24;
 }
 
 /*
@@ -30,11 +30,25 @@ HTML Emmet's
   }
 
   & > *:nth-child(2) {
-    @apply com-col-span-11;
+    @apply com-col-span-12;
   }
 
   & > *:nth-child(3) {
-    @apply com-col-span-7;
+    @apply com-col-span-6;
+  }
+
+  .uneven {
+    & > *:nth-child(1) {
+      @apply com-col-span-6;
+    }
+
+    & > *:nth-child(2) {
+      @apply com-col-span-11;
+    }
+
+    & > *:nth-child(3) {
+      @apply com-col-span-7;
+    }
   }
 }
 
