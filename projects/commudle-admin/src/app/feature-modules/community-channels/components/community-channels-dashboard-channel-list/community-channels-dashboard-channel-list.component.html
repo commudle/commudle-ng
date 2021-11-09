@@ -22,7 +22,13 @@
               <p class="member-count">{{ channel.member_count }} Members</p>
             </div>
           </div>
-          <div [innerHTML]="channel.description | linky: { sanitizeHtml: true }" class="about com-line-clamp-15"></div>
+          <div [innerHTML]="channel.description | linky: { sanitizeHtml: true }" class="about com-line-clamp-14"></div>
+          <div class="enter-channel-btn-container">
+            <button class="enter-channel-btn" nbButton fullWidth size="small">
+              Enter Channel
+              <nb-icon [icon]="'arrow-forward-outline'"></nb-icon>
+            </button>
+          </div>
         </div>
       </a>
     </ng-container>

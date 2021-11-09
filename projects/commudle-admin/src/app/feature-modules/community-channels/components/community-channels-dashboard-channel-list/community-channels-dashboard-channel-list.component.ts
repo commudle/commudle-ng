@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityChannel } from 'projects/shared-models/community-channel.model';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -10,10 +10,11 @@ import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/
   templateUrl: './community-channels-dashboard-channel-list.component.html',
   styleUrls: ['./community-channels-dashboard-channel-list.component.scss'],
 })
-export class CommunityChannelsDashboardChannelListComponent implements OnInit {
+export class CommunityChannelsDashboardChannelListComponent implements OnInit, OnDestroy {
   channels: ICommunityChannel[] = [];
   community: ICommunity;
   displayCommunityList = false;
+  subscriptions = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,17 +23,25 @@ export class CommunityChannelsDashboardChannelListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(() => {
-      this.community = this.activatedRoute.snapshot.data.community;
-      this.getChannels();
-      this.communityChannelManagerService.setCommunityListview(false);
-    });
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe(() => {
+        this.community = this.activatedRoute.snapshot.data.community;
+        this.getChannels();
+        this.communityChannelManagerService.setCommunityListview(false);
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   getChannels() {
-    this.communityChannelsService.index(this.community.id).subscribe((data) => {
-      this.channels = data.community_channels;
-    });
+    this.subscriptions.push(
+      this.communityChannelsService.index(this.community.id).subscribe((data) => {
+        this.channels = data.community_channels;
+      }),
+    );
   }
 
   toggleCommunityListDisplay() {

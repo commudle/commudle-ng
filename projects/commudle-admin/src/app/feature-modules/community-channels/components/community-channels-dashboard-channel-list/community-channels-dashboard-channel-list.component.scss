@@ -81,11 +81,37 @@ nb-card {
         }
 
         .about {
-          margin-top: $space-16;
+          margin-top: $space-10;
           font-size: $fs-h6;
           line-height: 14px;
           color: rgba($gunmetal, 0.85);
           white-space: pre-wrap;
+        }
+
+        .enter-channel-btn-container {
+          position: absolute;
+          width: 88%;
+          bottom: 10px;
+
+          .enter-channel-btn {
+            background-color: rgba($neon-blue, 0.2);
+            border: none;
+            border-radius: $border-10;
+            color: $neon-blue;
+            font-size: $fs-h6;
+            font-weight: $fw-400;
+            height: 32px;
+            padding: $space-8;
+            text-transform: none;
+
+            &:hover {
+              background-color: rgba($neon-blue, 0.2);
+            }
+
+            nb-icon {
+              margin-right: $space-4;
+            }
+          }
         }
       }
     }

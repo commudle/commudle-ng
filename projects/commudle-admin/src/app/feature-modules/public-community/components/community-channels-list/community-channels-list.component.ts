@@ -13,6 +13,7 @@ import { ICommunityChannel } from 'projects/shared-models/community-channel.mode
 export class CommunityChannelsListComponent implements OnInit {
   community: ICommunity;
   channels: ICommunityChannel[] = [];
+  subscriptions = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -21,18 +22,26 @@ export class CommunityChannelsListComponent implements OnInit {
     private communityChannelsService: CommunityChannelsService,
   ) {}
 
-  ngOnInit() {
-    this.activatedRoute.parent.data.subscribe((data) => {
-      this.community = data.community;
-      this.getChannels();
-      this.setMeta();
-    });
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.activatedRoute.parent.data.subscribe((data) => {
+        this.community = data.community;
+        this.getChannels();
+        this.setMeta();
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   getChannels() {
-    this.communityChannelsService.index(this.community.id).subscribe((data) => {
-      this.channels = data.community_channels;
-    });
+    this.subscriptions.push(
+      this.communityChannelsService.index(this.community.id).subscribe((data) => {
+        this.channels = data.community_channels;
+      }),
+    );
   }
 
   setMeta() {
