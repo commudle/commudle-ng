@@ -8,6 +8,13 @@ module.exports = {
       lineClamp: {
         14: '14',
       },
+      gridTemplateColumns: {
+        24: 'repeat(24, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-19': 'span 19 / span 19',
+        'span-20': 'span 20 / span 20',
+      },
     },
     container: {
       center: true,

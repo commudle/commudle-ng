@@ -24,9 +24,11 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
 
   ngAfterContentInit(): void {
     if (this.isBrowser) {
-      this.addClass('remove-image');
+      this.addClass('lazy-load');
       this.srcAttr = null;
       this.canLazyLoad() && !this.isImageInViewport() ? this.lazyLoadImage() : this.loadImage();
+    } else {
+      this.loadImage();
     }
   }
 
@@ -46,11 +48,11 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
     this.renderer.removeClass(this.el.nativeElement, className);
   }
 
-  private canLazyLoad(): boolean {
+  canLazyLoad(): boolean {
     return window && 'IntersectionObserver' in window;
   }
 
-  private isImageInViewport(): boolean {
+  isImageInViewport(): boolean {
     const rect = this.el.nativeElement.getBoundingClientRect();
     return (
       rect.top >= 0 &&
@@ -60,25 +62,26 @@ export class LazyLoadImagesDirective implements AfterContentInit, OnChanges {
     );
   }
 
-  private lazyLoadImage(): void {
+  lazyLoadImage(): void {
     const config: IntersectionObserverInit = {
       rootMargin: '0px 0px 300px 0px',
       threshold: 0,
     };
 
-    const obs: IntersectionObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+    const observer: IntersectionObserver = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
       entries.forEach(({ isIntersecting }) => {
         if (isIntersecting) {
           this.loadImage();
-          obs.unobserve(this.el.nativeElement);
+          observer.unobserve(this.el.nativeElement);
         }
       });
     }, config);
-    obs.observe(this.el.nativeElement);
+
+    observer.observe(this.el.nativeElement);
   }
 
-  private loadImage(): void {
+  loadImage(): void {
     this.srcAttr = this.src;
-    this.removeClass('remove-image');
+    this.renderer.listen(this.el.nativeElement, 'load', () => this.removeClass('lazy-load'));
   }
 }

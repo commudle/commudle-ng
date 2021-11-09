@@ -2,6 +2,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { config } from '@fortawesome/fontawesome-svg-core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuItem, NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
 import { AppCentralNotificationService } from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
@@ -57,10 +58,12 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
+
+    config.autoAddCss = false;
   }
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe((currentUser) => {
+    this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
 
       if (this.currentUser && this.userContextMenu.length <= 1) {
@@ -109,7 +112,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked(): void {
-    this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
+    this.footerService.footerStatus$.subscribe((value: boolean) => (this.footerStatus = value));
     this.cdr.detectChanges();
   }
 
@@ -118,7 +121,9 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   checkNotifications(): void {
-    this.appCentralNotificationsService.sidebarNotifications$.subscribe((data) => (this.sideBarNotifications = data));
+    this.appCentralNotificationsService.sidebarNotifications$.subscribe(
+      (data: boolean) => (this.sideBarNotifications = data),
+    );
   }
 
   // checkHTTPS(): void {
@@ -131,6 +136,12 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   toggleSidebar(): void {
     this.sidebarService.toggle(false, 'mainMenu');
+  }
+
+  closeSidebar(): void {
+    if (this.sideBarState === 'expanded') {
+      this.sidebarService.collapse('mainMenu');
+    }
   }
 
   login(): void {

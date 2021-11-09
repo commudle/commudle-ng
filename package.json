@@ -23,7 +23,7 @@
     "@100mslive/hms-video-store": "0.2.71",
     "@akveo/ng2-completer": "^9.0.1",
     "@angular/animations": "~12.2.0",
-    "@angular/cdk": "^12.0.0",
+    "@angular/cdk": "^12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -51,7 +51,6 @@
     "actioncable": "^5.2.6",
     "angular-mentions": "^1.4.0",
     "autolinker": "^3.14.3",
-    "axios": "^0.24.0",
     "chart.js": "^2.9.4",
     "cors": "^2.8.5",
     "eva-icons": "^1.1.2",
@@ -73,7 +72,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.7",
+    "@angular-devkit/build-angular": "~12.2.0",
     "@angular-eslint/builder": "12.5.0",
     "@angular-eslint/eslint-plugin": "12.5.0",
     "@angular-eslint/eslint-plugin-template": "12.5.0",

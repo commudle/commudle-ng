@@ -1,10 +1,9 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const axios = require('axios').default;
 const sanityClient = require('@sanity/client');
 const blocksToHtml = require('@sanity/block-content-to-html');
 const builder = require('@sanity/image-url');
@@ -27,15 +26,11 @@ export class CmsService {
 
   private cmsUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   getDataBySlug(slug: string) {
-    const query: string = `*[slug.current == "${slug}"][0]`;
-    const url: string = `${this.cmsUrl}?query=${encodeURIComponent(query)}`;
-
-    const data = async () => await axios.get(url);
-
-    return from(data()).pipe(map((data) => data.data.result));
+    const params = new HttpParams().set('query', `*[slug.current == "${slug}"]`);
+    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result[0]));
   }
 
   getHtmlFromBlock(value: any, field: string = 'content'): any {
