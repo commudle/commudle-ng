@@ -9,8 +9,6 @@ import { StepperComponent } from 'projects/commudle-admin/src/app/components/ste
   providedIn: 'root',
 })
 export class StepperService {
-  // user basic info = 70% , total fields = 7, each weight = 10
-  // social links = 30%, total fields = 10, each weight = 3
   private profileWeights: Object = {
     username: 10,
     avatar: 10,
@@ -77,6 +75,10 @@ export class StepperService {
   }
 
   showStepper() {
-    this.dialogRef = this.dialogService.open(StepperComponent, { hasScroll: true, closeOnBackdropClick: false });
+    this.dialogRef = this.dialogService.open(StepperComponent, {
+      hasScroll: true,
+      closeOnBackdropClick: false,
+      closeOnEsc: false,
+    });
   }
 }

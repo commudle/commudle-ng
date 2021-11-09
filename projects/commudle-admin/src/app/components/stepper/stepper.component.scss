@@ -6,14 +6,15 @@ nb-card {
   width: 800px;
 
   @media all and (max-width: $tab-width) {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+    width: 95vw;
   }
 
   nb-card-body {
     padding: 1rem 1rem;
     overflow: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     nb-stepper {
       &::ng-deep {
@@ -47,8 +48,17 @@ nb-card {
       overflow-y: scroll;
       height: 75vh;
 
-      @media all and (max-width: $tab-width) {
-        height: 80vh;
+      .username {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        @media all and (max-width: $mobile-width) {
+          nb-icon {
+            position: relative;
+            top: 10px;
+          }
+        }
       }
 
       .skills-gif-container {

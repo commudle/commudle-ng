@@ -61,12 +61,14 @@ export class StepperComponent implements OnInit {
   }
 
   submitStepOne() {
-    //update username
-    this.userProfileManagerService.setUpdateUsername(true);
     // Get the updated user tags
     this.tags = this.tagsDialog;
     // When the save button is clicked, update the tags
-    this.usersService.updateTags({ tags: this.tags }).subscribe(() => {});
+    this.usersService.updateTags({ tags: this.tags }).subscribe(() => {
+      this.authWatchService.updateSignedInUser();
+    });
+    //update username
+    this.userProfileManagerService.setUpdateUsername(true);
   }
 
   submitStepTwo() {

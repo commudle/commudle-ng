@@ -61,7 +61,7 @@ export class UsernameComponent implements OnInit {
         if (!this.router.url.includes('/users/' + this.lastUsername)) {
           this.reloadPage = false;
         }
-        if (this.currentUsername != this.lastUsername) {
+        if (this.currentUsername !== this.lastUsername) {
           this.setUsername();
         }
         this.userProfileManagerService.setUpdateUsername(false);

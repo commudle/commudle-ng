@@ -6,7 +6,10 @@
           <label class="step-one-heading">Username & Skills</label>
         </ng-template>
         <div class="content">
-          <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
+          <div class="username">
+            <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
+            <nb-icon *ngIf="validUsername" [icon]="'checkmark-outline'" status="success"></nb-icon>
+          </div>
           <div>
             <div class="tag-dialog-info">
               <nb-icon icon="info-outline"></nb-icon>
@@ -32,7 +35,13 @@
           </div>
         </div>
         <div class="navigation-buttons next-button-only">
-          <button [disabled]="!validUsername" nbButton nbStepperNext status="success" (click)="submitStepOne()">
+          <button
+            [disabled]="!validUsername || tagsDialog.length === 0"
+            nbButton
+            nbStepperNext
+            status="success"
+            (click)="submitStepOne()"
+          >
             Next
           </button>
         </div>
