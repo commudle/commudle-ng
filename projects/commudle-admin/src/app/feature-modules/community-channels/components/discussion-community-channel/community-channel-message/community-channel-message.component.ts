@@ -20,10 +20,12 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-community-channel-message',
@@ -57,6 +59,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
   canDelete = false;
   canSendMessageByEmail = false;
   canPinMessage = false;
+  canShareMessage = false;
 
   editMessageTemplateRef: NbWindowRef;
 
@@ -78,6 +81,9 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
     private communityChannelsService: CommunityChannelsService,
     private communityChannelManagerService: CommunityChannelManagerService,
     private libToastLogService: LibToastLogService,
+    private navigatorShareService: NavigatorShareService,
+    private clipboard: Clipboard,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
@@ -115,6 +121,12 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
             this.canPinMessage = true;
             this.contextMenuItems.push({
               title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
+            });
+          }
+          if (!this.canShareMessage) {
+            this.canShareMessage = true;
+            this.contextMenuItems.push({
+              title: 'Share Message Link',
             });
           }
         }
@@ -214,9 +226,34 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               );
               break;
             }
+            case 'Share Message Link': {
+              this.copyTextToClipboard(this.message);
+              break;
+            }
           }
         }),
     );
+  }
+
+  copyTextToClipboard(message: IUserMessage): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(`${environment.app_url + this.router.url}?user_message_id=${message.id}`)) {
+        this.libToastLogService.successDialog('Copied message link successfully!');
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({
+        title: 'Hey, check out this message!',
+        url: `${environment.app_url + this.router.url}?user_message_id=${message.id}`,
+      })
+      .then(() => {
+        this.libToastLogService.successDialog('Shared successfully!');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   togglePinStatus() {
