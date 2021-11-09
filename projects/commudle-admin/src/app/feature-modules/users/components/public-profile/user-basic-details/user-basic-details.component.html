@@ -82,11 +82,11 @@
     <nb-card-body class="text-center">
       <div class="tag-dialog-info">
         <nb-icon icon="info-outline"></nb-icon>
-        Maximum {{ maxTags }} tags can be added. Tags reflect your fields of interest.
+        Add {{ maxTags }} of your skills which you want other developers to see!
       </div>
       <nb-tag-list (tagRemove)="onTagRemove($event)">
         <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
-        <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput placeholder="type a tag and press enter" type="text" />
+        <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput placeholder="Type a tag and press enter" type="text" />
       </nb-tag-list>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">

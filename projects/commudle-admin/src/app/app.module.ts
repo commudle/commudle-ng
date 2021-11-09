@@ -28,7 +28,9 @@ import {
   NbSidebarModule,
   NbSidebarService,
   NbSpinnerModule,
+  NbStepperModule,
   NbTabsetModule,
+  NbTagModule,
   NbThemeModule,
   NbTimepickerModule,
   NbToastrModule,
@@ -78,9 +80,12 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
+import { CircularProgressiveBarComponent } from './components/profile-status-bar/circular-progressive-bar/circular-progressive-bar.component';
+import { ProfileStatusBarComponent } from './components/profile-status-bar/profile-status-bar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
 import { LabsModule } from './feature-modules/labs/labs.module';
@@ -129,6 +134,9 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     HomeHeadBannerComponent,
     HomeExternalFeedLinksComponent,
     SearchBarComponent,
+    StepperComponent,
+    ProfileStatusBarComponent,
+    CircularProgressiveBarComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -186,6 +194,8 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbSpinnerModule,
     NbTimepickerModule.forRoot(),
     NbActionsModule,
+    NbStepperModule,
+    NbTagModule,
 
     // Other external npm modules
     Ng2CompleterModule,

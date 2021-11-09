@@ -17,6 +17,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
 import { CookieConsentService } from './services/cookie-consent.service';
+import { ProfileStatusBarService } from './services/profile-status-bar.service';
 
 // import * as LogRocket from 'logrocket';
 
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   userContextMenu: NbMenuItem[] = [{ title: 'Logout', link: '/logout' }];
   cookieAccepted = false;
   footerStatus = true;
+  profileBarStatus = true;
 
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
@@ -54,6 +56,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private truncate: TruncateTextPipe,
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
+    private profileStatusBarService: ProfileStatusBarService,
   ) {
     // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
@@ -66,15 +69,26 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
 
-      if (this.currentUser && this.userContextMenu.length <= 1) {
-        this.userContextMenu.unshift({
-          title: `@${this.truncate.transform(currentUser.username, 10)}`,
-          link: `/users/${currentUser.username}`,
-          badge: {
-            text: 'Profile',
-            status: 'basic',
-          },
-        });
+      if (this.currentUser) {
+        if (this.userContextMenu.length <= 1) {
+          this.userContextMenu.unshift({
+            title: `@${this.truncate.transform(currentUser.username, 10)}`,
+            link: `/users/${currentUser.username}`,
+            badge: {
+              text: 'Profile',
+              status: 'basic',
+            },
+          });
+        } else {
+          this.userContextMenu[0] = {
+            title: `@${this.truncate.transform(currentUser.username, 10)}`,
+            link: `/users/${currentUser.username}`,
+            badge: {
+              text: 'Profile',
+              status: 'basic',
+            },
+          };
+        }
 
         // LogRocket.init('g90s8l/commudle');
         // LogRocket.identify(`${this.currentUser.username}`, {
@@ -112,7 +126,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked(): void {
-    this.footerService.footerStatus$.subscribe((value: boolean) => (this.footerStatus = value));
+    this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
+    this.profileStatusBarService.profileBarStatus$.subscribe((value) => (this.profileBarStatus = value));
     this.cdr.detectChanges();
   }
 
