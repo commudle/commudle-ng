@@ -22,7 +22,7 @@ export class UsernameComponent implements OnInit {
   @Input() showSaveButton = true;
   @Output() usernameValidation: EventEmitter<any> = new EventEmitter<any>();
 
-  validUsername;
+  validUsername = false;
   lastUsername = '';
   currentUsername = '';
   checkingUsername = false;

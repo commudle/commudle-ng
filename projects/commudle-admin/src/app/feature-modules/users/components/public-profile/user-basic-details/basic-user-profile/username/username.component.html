@@ -13,6 +13,11 @@
             status="primary"
             type="text"
           />
+          <nb-icon
+            [icon]="validUsername || currentUser.username === currentUsername ? 'checkmark-outline' : 'close-outline'"
+            [status]="validUsername || currentUser.username === currentUsername ? 'success' : 'danger'"
+            nbSuffix
+          ></nb-icon>
         </nb-form-field>
       </label>
       <p
@@ -24,7 +29,7 @@
         <small> *Username cannot contain spaces & special characters </small>
       </p>
       <p
-        *ngIf="validUsername === false && currentUsername !== currentUser.username"
+        *ngIf="!validUsername && currentUsername !== currentUser.username && !usernameForm.controls.username.errors"
         class="field-error validation-error-text"
         icon="alert-circle-outline"
         status="danger"

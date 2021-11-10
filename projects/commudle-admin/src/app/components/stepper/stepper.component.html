@@ -1,15 +1,12 @@
 <nb-card>
   <nb-card-body>
-    <nb-stepper orientation="horizontal" disableStepNavigation>
+    <nb-stepper orientation="horizontal" disableStepNavigation class="user-profile-completion-stepper">
       <nb-step [label]="stepOne">
         <ng-template #stepOne>
           <label class="step-one-heading">Username & Skills</label>
         </ng-template>
         <div class="content">
-          <div class="username">
-            <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
-            <nb-icon *ngIf="validUsername" [icon]="'checkmark-outline'" status="success"></nb-icon>
-          </div>
+          <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
           <div>
             <div class="tag-dialog-info">
               <nb-icon icon="info-outline"></nb-icon>
@@ -26,13 +23,12 @@
               />
             </nb-tag-list>
           </div>
-          <div class="skills-gif-container">
-            <img
-              alt="Skills"
-              src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGdaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b373211d40f97d30372232728c78d825bbff51fe/userflow-skills.gif"
-              title="Skills"
-            />
-          </div>
+          <img
+            alt="Skills"
+            src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGdaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b373211d40f97d30372232728c78d825bbff51fe/userflow-skills.gif"
+            title="Skills"
+            class="skills-gif"
+          />
         </div>
         <div class="navigation-buttons next-button-only">
           <button
@@ -55,7 +51,7 @@
           <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
         </div>
         <div class="navigation-buttons both-buttons">
-          <button nbButton nbStepperPrevious status="success">Prev</button>
+          <button nbButton nbStepperPrevious status="basic">Prev</button>
           <button
             [disabled]="!validBasicDetailsStatus"
             nbButton
@@ -76,7 +72,7 @@
           <app-social-links (socialLinksFormValidity)="checkSocialLinksValidity($event)"></app-social-links>
         </div>
         <div class="navigation-buttons both-buttons">
-          <button nbButton nbStepperPrevious status="success">Prev</button>
+          <button nbButton nbStepperPrevious status="basic">Prev</button>
           <button
             [disabled]="!validSocialLinksStatus"
             nbButton
@@ -92,13 +88,12 @@
       <nb-step [hidden]="true">
         <div class="content">
           <h3 class="text-center">Thank you for completing your profile!</h3>
-          <div class="profile-completed-gif">
-            <img
-              alt="Completed"
-              src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGNaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33ad326a4cad4e6d33e037188dd68e9ccedc0ee5/userflow-done.gif"
-              title="Completed"
-            />
-          </div>
+          <img
+            alt="Completed"
+            src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGNaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33ad326a4cad4e6d33e037188dd68e9ccedc0ee5/userflow-done.gif"
+            title="Completed"
+            class="completed-gif"
+          />
         </div>
         <div class="navigation-buttons next-button-only">
           <button nbButton status="success" (click)="closeStepper()">Close</button>
