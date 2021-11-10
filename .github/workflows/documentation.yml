@@ -1,0 +1,26 @@
+name: Generate documentation
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  documentation:
+    name: Generate documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Install all dependencies
+        run: npm ci
+
+      - name: Build documentation
+        run: npm run docs
+
+      - name: Push documentation
+      - run: |
+          git add .
+          git commit -m "Update documentation" --no-verify
+          git push origin docs
