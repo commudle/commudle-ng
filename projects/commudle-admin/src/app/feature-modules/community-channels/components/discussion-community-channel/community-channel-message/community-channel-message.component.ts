@@ -126,7 +126,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
           if (!this.canShareMessage) {
             this.canShareMessage = true;
             this.contextMenuItems.push({
-              title: 'Share Message Link',
+              title: 'Share this message',
             });
           }
         }
@@ -226,7 +226,7 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
               );
               break;
             }
-            case 'Share Message Link': {
+            case 'Share this message': {
               this.copyTextToClipboard(this.message);
               break;
             }
@@ -250,9 +250,6 @@ export class CommunityChannelMessageComponent implements OnInit, OnChanges, OnDe
       })
       .then(() => {
         this.libToastLogService.successDialog('Shared successfully!');
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }
 

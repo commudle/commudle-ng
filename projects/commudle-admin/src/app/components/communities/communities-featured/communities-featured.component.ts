@@ -40,7 +40,7 @@ export class CommunitiesFeaturedComponent implements OnInit {
           `${featuredCommunity.kommunity.name} | ${featuredCommunity.reason} | ${environment.app_url}/communities/${featuredCommunity.kommunity.slug}`,
         )
       ) {
-        this.libToastLogService.successDialog('Copied the share message successfully!');
+        this.libToastLogService.successDialog('Copied the message successfully!');
       }
       return;
     }
@@ -53,9 +53,6 @@ export class CommunitiesFeaturedComponent implements OnInit {
       })
       .then(() => {
         this.libToastLogService.successDialog('Shared successfully!');
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }
 }
