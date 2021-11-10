@@ -47,9 +47,9 @@ export class CommunitiesFeaturedComponent implements OnInit {
 
     this.navigatorShareService
       .share({
-        title: 'My Awesome app',
-        text: 'hey check out my Share button',
-        url: 'https://developers.google.com/web',
+        title: `${featuredCommunity.kommunity.name}`,
+        text: `${featuredCommunity.reason}`,
+        url: `${environment.app_url}/communities/${featuredCommunity.kommunity.slug}`,
       })
       .then(() => {
         this.libToastLogService.successDialog('Shared successfully!');
