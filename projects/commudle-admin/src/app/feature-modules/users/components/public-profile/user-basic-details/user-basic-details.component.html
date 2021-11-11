@@ -86,7 +86,15 @@
       </div>
       <nb-tag-list (tagRemove)="onTagRemove($event)">
         <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
-        <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput placeholder="Type a tag and press enter" type="text" />
+        <input
+          (tagAdd)="onTagAdd($event)"
+          fullWidth
+          nbTagInput
+          placeholder="Type a tag and press enter or comma"
+          type="text"
+          [separatorKeys]="[13, 188]"
+          (keypress)="restrictComma($event)"
+        />
       </nb-tag-list>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
