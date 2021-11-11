@@ -90,6 +90,12 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     input.nativeElement.value = '';
   }
 
+  restrictComma(event) {
+    if (event.code === 'Comma') {
+      event.preventDefault();
+    }
+  }
+
   // Open a chat with the particular user
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
