@@ -63,29 +63,27 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
   // defined on the server side, we need isBrowser
   ngOnInit() {
-    if (this.isBrowser) {
-      this.routeSubscriptions.push(
-        this.activatedRoute.params.subscribe((data) => {
-          this.getLab(data.lab_id);
-          this.setStep(-1);
-        }),
-      );
+    this.routeSubscriptions.push(
+      this.activatedRoute.params.subscribe((data) => {
+        this.getLab(data.lab_id);
+        this.setStep(-1);
+      }),
+    );
 
-      // Listen for url changes
-      this.router.events.subscribe((event: NavigationStart) => {
-        if (event.navigationTrigger === 'popstate') {
-          // Get step id from url
-          const stepId = parseInt(event.url.split('/').pop(), 10);
-          if (isNaN(stepId)) {
-            // Navigation between a step and overview
-            this.setStep(-1);
-          } else {
-            // Navigation between steps
-            this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
-          }
+    // Listen for url changes
+    this.router.events.subscribe((event: NavigationStart) => {
+      if (event.navigationTrigger === 'popstate') {
+        // Get step id from url
+        const stepId = parseInt(event.url.split('/').pop(), 10);
+        if (isNaN(stepId)) {
+          // Navigation between a step and overview
+          this.setStep(-1);
+        } else {
+          // Navigation between steps
+          this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
         }
-      });
-    }
+      }
+    });
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
@@ -133,7 +131,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag({
       name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -153,7 +151,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
     this.meta.updateTag({
       name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
     });
     this.meta.updateTag({
       name: 'og:type',
@@ -171,12 +169,14 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
     });
   }
 
   scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (this.isBrowser) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   getLab(labId) {
