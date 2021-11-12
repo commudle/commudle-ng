@@ -15,10 +15,6 @@ nb-card {
   nb-card-body {
     padding: 0;
 
-    a {
-      text-decoration: none;
-    }
-
     .user-card {
       overflow: hidden;
 
@@ -59,6 +55,12 @@ nb-card {
           height: 100%;
           object-fit: cover;
         }
+      }
+
+      app-user-follow {
+        position: absolute;
+        top: 80px;
+        right: 8px;
       }
 
       .user-details {
