@@ -68,6 +68,10 @@ nb-card {
         margin: $space-9 $space-16 $space-16;
         padding-top: $space-7;
 
+        a {
+          text-decoration: none;
+        }
+
         .text-details {
           p {
             color: $gunmetal;
