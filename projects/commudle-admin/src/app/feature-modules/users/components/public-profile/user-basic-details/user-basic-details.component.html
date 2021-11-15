@@ -24,7 +24,10 @@
     </div>
   </div>
 
-  <div class="user-interactions d-flex justify-content-center">
+  <div
+    class="user-interactions d-flex justify-content-center"
+    [ngClass]="{ 'share-btn-newline': currentUser?.id !== user.id }"
+  >
     <div *ngIf="currentUser?.id === user.id">
       <a [routerLink]="[{ outlets: { p: ['settings', 'basic-details'] } }]">
         <button class="anim-shadow" nbButton size="small">
@@ -40,6 +43,12 @@
       </button>
     </div>
     <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
+    <div class="share-button">
+      <button (click)="copyTextToClipboard(user)" nbButton shape="round" size="small">
+        <nb-icon icon="share"></nb-icon>
+        Share
+      </button>
+    </div>
   </div>
 
   <hr *ngIf="user.location || user.about_me" />

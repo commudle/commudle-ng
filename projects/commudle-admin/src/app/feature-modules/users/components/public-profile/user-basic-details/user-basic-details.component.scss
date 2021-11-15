@@ -221,3 +221,8 @@ p {
     border-radius: 0;
   }
 }
+
+.share-btn-newline {
+  flex-wrap: wrap;
+  row-gap: 7px;
+}
