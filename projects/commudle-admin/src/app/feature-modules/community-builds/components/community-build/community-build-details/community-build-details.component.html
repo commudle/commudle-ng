@@ -31,7 +31,7 @@
       <div *ngIf="cBuild.link && !embedCode" class="link">
         <p>
           Visit the {{ cBuild.build_type }}:
-          <a href="{{ cBuild.link }}" target="_blank">
+          <a [href]="cBuild.link | completeurl" rel="noreferrer" target="_blank">
             {{ cBuild.link }}
             <nb-icon icon="external-link"></nb-icon>
           </a>

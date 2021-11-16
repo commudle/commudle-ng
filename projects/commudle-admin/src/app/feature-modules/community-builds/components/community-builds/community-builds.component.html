@@ -24,16 +24,23 @@
           </nb-card-body>
         </nb-card>
         <nb-card>
-          <nb-card-body
-            (scrolled)="getCommunityBuilds()"
-            [infiniteScrollDisabled]="!(canLoadMore && total)"
-            appInfiniteScroll
-            class="com-flex com-flex-col com-gap-4"
-          >
-            <app-community-build-card
-              *ngFor="let communityBuild of communityBuilds"
-              [communityBuild]="communityBuild"
-            ></app-community-build-card>
+          <nb-card-body>
+            <div
+              (scrolled)="getCommunityBuilds()"
+              [infiniteScrollDisabled]="!(canLoadMore && total)"
+              appInfiniteScroll
+              class="com-flex com-flex-col com-gap-4"
+            >
+              <app-community-build-card
+                *ngFor="let communityBuild of communityBuilds"
+                [communityBuild]="communityBuild"
+              ></app-community-build-card>
+            </div>
+            <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+              <div class="spinner">
+                <div *ngFor="let _ of [].constructor(5)"></div>
+              </div>
+            </div>
           </nb-card-body>
         </nb-card>
       </div>

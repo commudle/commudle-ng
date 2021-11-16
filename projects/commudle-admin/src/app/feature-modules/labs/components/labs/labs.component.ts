@@ -22,6 +22,8 @@ export class LabsComponent implements OnInit {
   searchedTags: string[] = [];
   searchedLabs: ILab[] = [];
 
+  isLoading = false;
+
   constructor(private meta: Meta, private title: Title, private labsService: LabsService) {}
 
   ngOnInit() {
@@ -97,11 +99,13 @@ export class LabsComponent implements OnInit {
   }
 
   getLabsByTags(replace: boolean = false): void {
+    this.isLoading = true;
     this.labsService.searchLabsByTags(this.searchedTags, this.page, this.count).subscribe((value: ILabs) => {
       this.searchedLabs = replace ? value.labs : this.searchedLabs.concat(value.labs);
       this.total = value.total;
       this.count = value.count;
       this.page++;
+      this.isLoading = false;
     });
   }
 }
