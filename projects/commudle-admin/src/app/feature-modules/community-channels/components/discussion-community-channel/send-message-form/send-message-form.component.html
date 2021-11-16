@@ -1,5 +1,5 @@
 <div class="send-message-form">
-  <div *ngIf="existingAttachmentFiles.length > 0" class="attachments {{attachmentDisplay}}">
+  <div *ngIf="existingAttachmentFiles.length > 0" class="attachments {{ attachmentDisplay }}">
     <ng-container *ngFor="let attachment of existingAttachmentFiles; let i = index">
       <div *ngIf="!attachment['delete']" class="file">
         <div (click)="removeExistingFile(i)" class="remove clickable">
@@ -7,39 +7,39 @@
         </div>
         <div *ngIf="!attachment.type.includes('image')" class="file-preview">
           <p class="name">
-            <small> {{attachment.name | truncatetext:10}} </small>
+            <small> {{ attachment.name | truncatetext: 10 }} </small>
           </p>
           <p class="extension">
-            <small> {{attachment.name.split('.').reverse()[0]}} </small>
+            <small> {{ attachment.name.split('.').reverse()[0] }} </small>
           </p>
         </div>
         <div *ngIf="attachment.type.includes('image')" class="image-file-preview">
-          <img alt="{{attachment.name}}" src="{{attachment.url}}" title="{{attachment.name}}" />
+          <img alt="{{ attachment.name }}" src="{{ attachment.url }}" title="{{ attachment.name }}" />
         </div>
       </div>
     </ng-container>
   </div>
 
-  <div *ngIf="uploadedFiles.length > 0" class="attachments {{attachmentDisplay}}">
-    <div *ngFor="let file of uploadedAttachmentFiles; let i=index;" class="file">
+  <div *ngIf="uploadedFiles.length > 0" class="attachments {{ attachmentDisplay }}">
+    <div *ngFor="let file of uploadedAttachmentFiles; let i = index" class="file">
       <div (click)="removeFile(i)" class="remove clickable">
         <nb-icon icon="close-circle" status="danger"></nb-icon>
       </div>
       <div *ngIf="!file.file.type.includes('image')" class="file-preview">
         <p class="name">
-          <small> {{file.file.name | truncatetext:10}} </small>
+          <small> {{ file.file.name | truncatetext: 10 }} </small>
         </p>
         <p class="extension">
-          <small> {{file.file.name.split('.').reverse()[0]}} </small>
+          <small> {{ file.file.name.split('.').reverse()[0] }} </small>
         </p>
       </div>
       <div *ngIf="file.file.type.includes('image')" class="image-file-preview">
-        <img alt="{{file.file.name}}" src="{{uploadedFiles[i]}}" title="{{file.file.name}}" />
+        <img alt="{{ file.file.name }}" src="{{ uploadedFiles[i] }}" title="{{ file.file.name }}" />
       </div>
     </div>
   </div>
 
-  <form (keydown.enter)="emitMessage()" (ngSubmit)="emitMessage()" [formGroup]="sendUserMessageForm">
+  <form (keydown.enter)="emitMessage($event)" (ngSubmit)="emitMessage($event)" [formGroup]="sendUserMessageForm">
     <nb-form-field>
       <div class="nbPrefix" nbPrefix>
         <label class="clickable">
@@ -50,7 +50,7 @@
         <emoji-mart
           (emojiSelect)="selectEmoji($event)"
           *ngIf="showEmojiForm"
-          [ngClass]="{'edit': editableMessage}"
+          [ngClass]="{ edit: editableMessage }"
           class="emoji-mart"
           set="twitter"
           title="Select an emoji!"
@@ -66,7 +66,7 @@
         fullWidth
         nbInput
         placeholder="Type here..."
-        rows="{{rows || 1}}"
+        rows="{{ rows || 1 }}"
       ></textarea>
     </nb-form-field>
     <button [disabled]="!sendUserMessageForm.valid || disabled" fullWidth nbButton outline status="info" type="submit">
