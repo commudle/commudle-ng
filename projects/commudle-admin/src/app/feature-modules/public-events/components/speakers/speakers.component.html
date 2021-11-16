@@ -8,10 +8,23 @@
     </nb-card-header>
     <nb-card-body>
       <div *ngFor="let speaker of speakers" class="speaker">
-        <app-user-profile-card-large [maxDesignationLength]="45" [user]="speaker.user"></app-user-profile-card-large>
+        <!-- TODO : try fixing line clamp for username instead of using truncateText -->
+        <app-user-profile-card-large
+          [maxDesignationLength]="45"
+          [user]="speaker.user"
+          [showFollowButton]="true"
+          [alignFollowToRight]="true"
+          [maxUserNameLength]="20"
+        ></app-user-profile-card-large>
       </div>
       <div *ngFor="let speaker of simpleAgendaSpeakers" class="speaker">
-        <app-user-profile-card-large [maxDesignationLength]="45" [user]="speaker.user"></app-user-profile-card-large>
+        <app-user-profile-card-large
+          [maxDesignationLength]="45"
+          [user]="speaker.user"
+          [showFollowButton]="true"
+          [alignFollowToRight]="true"
+          [maxUserNameLength]="20"
+        ></app-user-profile-card-large>
       </div>
     </nb-card-body>
   </nb-card>

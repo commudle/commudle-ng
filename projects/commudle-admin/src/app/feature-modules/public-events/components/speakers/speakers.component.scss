@@ -1,21 +1,21 @@
 nb-card-body {
   display: flex;
   flex-direction: column;
-
-  @media screen and (min-width: 800px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+  padding: 0.5rem 1.5rem;
 
   .speaker {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 0.5rem 0;
     border-bottom: 1px dotted lightgrey;
+    padding: 0.5rem 0;
 
-    @media screen and (min-width: 800px) {
-      width: 50%;
+    &:last-child {
+      border-bottom: none;
+    }
+
+    app-user-profile-card-large {
+      width: 100%;
     }
   }
 }
