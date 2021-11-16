@@ -230,6 +230,10 @@
         color: $neon-blue;
         font-size: $fs-24;
       }
+
+      .share-button {
+        margin: $space-24 0 0;
+      }
     }
 
     @media (min-width: $tab-width) {

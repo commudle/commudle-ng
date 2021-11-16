@@ -19,6 +19,10 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { ILab } from 'projects/shared-models/lab.model';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { Subscription } from 'rxjs';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-lab',
@@ -58,6 +62,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private dialogService: NbDialogService,
     private footerService: FooterService,
     private nbSidebarService: NbSidebarService,
+    private navigatorShareService: NavigatorShareService,
+    private libToastLogService: LibToastLogService,
+    private clipboard: Clipboard,
   ) {}
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
@@ -245,5 +252,23 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toggleDetails() {
     this.nbSidebarService.toggle(false, 'labMenu');
+  }
+
+  copyTextToClipboard(lab: ILab): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(`${environment.app_url}/labs/${lab.slug}`)) {
+        this.libToastLogService.successDialog('Copied Lab successfully!');
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({
+        title: `${lab.name}`,
+        url: `${environment.app_url}/labs/${lab.slug}`,
+      })
+      .then(() => {
+        this.libToastLogService.successDialog('Shared successfully!');
+      });
   }
 }

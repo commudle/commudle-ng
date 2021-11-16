@@ -4,6 +4,10 @@ import { UserChatsService } from 'projects/commudle-admin/src/app/feature-module
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -34,6 +38,9 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     private appUsersService: AppUsersService,
     private userChatsService: UserChatsService,
     private toastrService: NbToastrService,
+    private navigatorShareService: NavigatorShareService,
+    private libToastLogService: LibToastLogService,
+    private clipboard: Clipboard,
   ) {}
 
   ngOnInit(): void {}
@@ -99,5 +106,23 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // Open a chat with the particular user
   openChatWithUser(): void {
     this.userChatsService.changeFollowerId(this.user.id);
+  }
+
+  copyTextToClipboard(user: IUser): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(`${environment.app_url}/users/${user.username}`)) {
+        this.libToastLogService.successDialog('Copied profile successfully!');
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({
+        title: `${user.name} (${user.designation})`,
+        url: `${environment.app_url}/users/${user.username}`,
+      })
+      .then(() => {
+        this.libToastLogService.successDialog('Shared successfully!');
+      });
   }
 }
