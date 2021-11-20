@@ -1,12 +1,12 @@
-<nb-card class="home-events">
-  <nb-card-header>
-    Events
-  </nb-card-header>
-  <nb-card-body>
+<nb-card class="home-events-container">
+  <nb-card-header class="home-events-header">Events</nb-card-header>
+  <nb-card-body class="home-events-body">
     <!--  DESKTOP  -->
     <div *ngIf="!isLoading" class="home-events-cards">
-      <app-home-events-card *ngFor="let event of events | slice:eventsStartIdx:eventsStartIdx + 4"
-                            [event]="event"></app-home-events-card>
+      <app-home-events-card
+        *ngFor="let event of events | slice: eventsStartIdx:eventsStartIdx + 4"
+        [event]="event"
+      ></app-home-events-card>
     </div>
     <div *ngIf="isLoading" class="home-events-cards">
       <app-skeleton-text *ngFor="let _ of [].constructor(4)" [rows]="3"></app-skeleton-text>
@@ -19,13 +19,24 @@
       <app-skeleton-text [rows]="3"></app-skeleton-text>
     </div>
 
-
-    <div class="home-events-controller d-flex justify-content-space-between">
-      <button (click)="updateEventsIdx(-4)" *ngIf="eventsStartIdx !== 0" nbButton size="small">
+    <div class="home-events-navigation d-flex justify-content-space-between">
+      <button
+        (click)="updateEventsIdx(-4)"
+        *ngIf="eventsStartIdx !== 0"
+        class="home-event-navigation-right-btn"
+        nbButton
+        size="small"
+      >
         <nb-icon icon="arrow-left"></nb-icon>
       </button>
       <span></span>
-      <button (click)="updateEventsIdx(4)" *ngIf="eventsStartIdx + 4 !== maxEventsCount" nbButton size="small">
+      <button
+        (click)="updateEventsIdx(4)"
+        *ngIf="eventsStartIdx + 4 !== maxEventsCount"
+        class="home-event-navigation-left-btn"
+        nbButton
+        size="small"
+      >
         <nb-icon icon="arrow-right"></nb-icon>
       </button>
     </div>

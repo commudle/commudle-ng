@@ -1,59 +1,47 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-nb-card.home-labs {
-  border: none;
+.home-labs-container {
+  border: 0;
   padding: $space-16;
 
-  nb-card-header {
+  .home-labs-header {
+    border-bottom: none;
+    color: $gunmetal;
     font-size: $fs-h2;
     font-weight: $fw-600;
-    color: $gunmetal;
-    padding: $space-16 0 $space-4;
-    border-bottom: none;
+    padding: $space-16 0 $space-12;
 
-    p.sub-header {
-      font-size: $fs-card-list-title;
+    .home-labs-sub-header {
       color: $spanish-gray;
+      font-size: $fs-card-list-title;
       line-height: normal;
       margin: $space-4 0 0;
     }
   }
 
-  nb-card-body {
+  .home-labs-body {
     padding: 0;
-  }
-}
 
-p,
-h3,
-a {
-  margin: 0;
-}
+    .home-labs-list {
+      nb-list-item {
+        align-items: flex-start;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: $space-16 0;
 
-.home-labs-mobile-heading,
-.all-labs-mobile-link {
-  display: none;
-}
+        app-skeleton-text {
+          width: 100%;
+        }
 
-.labs-list {
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: $space-8 0;
-
-    li {
-      padding: $space-12 0;
-      margin-bottom: $space-8;
-
-      p.name {
-        font-size: $fs-text;
-        font-weight: $fw-500;
-        line-height: normal;
-        margin-bottom: $space-4;
-
-        a {
-          text-decoration: none;
+        .home-lab-name {
           color: $gunmetal;
+          font-size: $fs-text;
+          font-weight: $fw-500;
+          line-height: normal;
+          margin-bottom: $space-4;
+          text-decoration: none;
 
           &:hover {
             text-decoration: underline;
@@ -61,75 +49,12 @@ a {
         }
       }
     }
-  }
-}
 
-.all-labs-link {
-  padding: 0 $space-12;
-  text-align: center;
-
-  a {
-    font-size: $fs-h5;
-    color: rgba($neon-blue, 0.95);
-  }
-}
-
-.home-labs-mobile {
-  display: none;
-}
-
-@media all and (max-width: $tab-width) {
-  nb-card.home-labs {
-    nb-card-body {
-      .home-labs-heading,
-      .labs-list,
-      .all-labs-link {
-        display: none;
-      }
-
-      .home-labs-mobile-heading {
-        display: block;
-        margin: 0 0 $space-16;
-      }
-
-      .home-labs-mobile {
-        display: flex;
-
-        app-skeleton-text {
-          width: 100%;
-        }
-
-        .home-labs-mobile-image {
-          width: 50%;
-          overflow: hidden;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        .home-labs-mobile-details {
-          width: 50%;
-          margin-left: $space-8;
-
-          .home-labs-mobile-name {
-            font-size: $fs-h5;
-            font-weight: $fw-500;
-            line-height: 16px;
-          }
-
-          .home-labs-mobile-author {
-            margin-top: $space-4;
-            font-size: $fs-h6;
-            color: $spanish-gray;
-            line-height: normal;
-          }
-        }
-      }
-
-      .all-labs-mobile-link {
-        display: block;
-      }
+    .home-labs-all {
+      color: rgba($neon-blue, 0.95);
+      display: block;
+      font-size: $fs-h5;
+      padding: $space-12 0 $space-8;
     }
   }
 }

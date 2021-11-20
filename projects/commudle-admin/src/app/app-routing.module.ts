@@ -179,7 +179,8 @@ const routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled',
+      initialNavigation: 'enabledBlocking',
+      // TODO: modify the below to use the new option
       relativeLinkResolution: 'legacy',
     }),
   ],
