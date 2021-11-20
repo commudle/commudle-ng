@@ -1,5 +1,5 @@
-<nb-card [style.height.px]="adHeight" [style.width.px]="adWidth" class="page-ads-container">
-  <a *ngIf="pageAd" [href]="pageAd.link" target="_blank">
+<nb-card *ngIf="pageAd" [style.height.px]="adHeight" [style.width.px]="adWidth" class="page-ads-container">
+  <a [href]="pageAd.link" target="_blank">
     <!--    TODO: Carousel isn't working properly, reference: https://css-tricks.com/css-only-carousel/-->
     <!--    <section *ngIf="pageAd.files.length > 0" class="carousel">-->
     <!--      <ol class="carousel__viewport">-->
