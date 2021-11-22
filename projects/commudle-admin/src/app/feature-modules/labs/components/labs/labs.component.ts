@@ -38,7 +38,7 @@ export class LabsComponent implements OnInit {
     this.meta.updateTag({
       name: 'description',
       content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -51,12 +51,12 @@ export class LabsComponent implements OnInit {
     this.meta.updateTag({
       name: 'og:title',
       content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:description',
       content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:type',
@@ -73,7 +73,7 @@ export class LabsComponent implements OnInit {
     this.meta.updateTag({
       name: 'twitter:description',
       content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
   }
 
