@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: 'https://commudle.com/assets/images/commudle-logo192.png'
+      content: 'https://commudle.com/assets/images/commudle-logo192.png',
     });
     this.meta.updateTag({
       name: 'twitter:title',
@@ -65,5 +65,4 @@ export class HomeComponent implements OnInit {
   getWindowWidth(): number {
     return window.innerWidth;
   }
-
 }

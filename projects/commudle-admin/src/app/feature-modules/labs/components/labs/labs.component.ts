@@ -34,11 +34,11 @@ export class LabsComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle('Labs | Learn Something New!');
+    this.title.setTitle('Labs - Step By Step Tutorials');
     this.meta.updateTag({
       name: 'description',
       content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -50,12 +50,13 @@ export class LabsComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: 'Labs | Learn Something New!',
+      content:
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:description',
       content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:type',
@@ -67,12 +68,12 @@ export class LabsComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Labs | Learn Something New!',
+      content: 'Labs - Step By Step Tutorials',
     });
     this.meta.updateTag({
       name: 'twitter:description',
       content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps/projects & cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
   }
 
