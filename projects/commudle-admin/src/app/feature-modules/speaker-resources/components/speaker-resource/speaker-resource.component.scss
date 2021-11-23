@@ -2,7 +2,7 @@
 
 .speaker-resources {
   .left-column {
-    width: 280px;
+    width: 370px;
 
     .user-profile {
       border: none;
@@ -35,7 +35,7 @@
 
         .content {
           margin-top: $space-16;
-          word-break: break-word;
+          white-space: pre-wrap;
 
           .embedded-content {
             margin-top: $space-8;
