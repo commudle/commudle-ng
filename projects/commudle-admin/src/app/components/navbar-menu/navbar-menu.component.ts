@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faFlask, faHome, faInfoCircle, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { faFlask, faHome, faInfoCircle, faLightbulb, faUserFriends, faBell } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { NotificationsPopoverComponent } from '../../feature-modules/notifications/components/notifications-popover/notifications-popover.component';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -15,8 +16,19 @@ export class NavbarMenuComponent implements OnInit {
   faLightbulb = faLightbulb;
   faFlask = faFlask;
   faUserFriends = faUserFriends;
+  faBell = faBell;
+
+  viewType: string;
+
+  notificationsPopoverComponent = NotificationsPopoverComponent;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      this.viewType = 'mobile';
+    } else {
+      this.viewType = 'not-mobile';
+    }
+  }
 }

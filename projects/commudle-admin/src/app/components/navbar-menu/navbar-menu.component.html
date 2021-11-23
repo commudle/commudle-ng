@@ -1,16 +1,31 @@
-<div class="d-flex home-navbar-menu-options">
+<div class="d-flex home-navbar-menu-options" [ngSwitch]="viewType">
   <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faHome"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Home</div>
   </a>
-  <a [routerLink]="['/about']" routerLinkActive="active">
+  <!-- <a [routerLink]="['/about']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faInfoCircle"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">About</div>
+  </a> -->
+
+  <a *ngSwitchCase="'mobile'" [routerLink]="['/notifications']" routerLinkActive="active">
+    <div class="icon">
+      <fa-icon [icon]="faBell"></fa-icon>
+    </div>
+    <div class="home-navbar-menu-option">Notifications</div>
   </a>
+
+  <a *ngSwitchCase="'not-mobile'" style="cursor: pointer">
+    <div class="icon">
+      <fa-icon [icon]="faBell" [nbPopover]="notificationsPopoverComponent" nbPopoverPlacement="bottom"></fa-icon>
+    </div>
+    <div class="home-navbar-menu-option">Notifications</div>
+  </a>
+
   <a [routerLink]="['/builds']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faLightbulb"></fa-icon>
