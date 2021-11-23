@@ -15,7 +15,7 @@ HTML Emmet's
 /* GRID LAYOUT */
 
 @mixin grid-layout {
-  @apply com-grid com-grid-cols-12;
+  @apply com-grid com-grid-cols-24;
 }
 
 /*
@@ -25,13 +25,30 @@ HTML Emmet's
 .three-column-layout {
   @include grid-layout;
 
-  & > *:nth-child(1),
-  & > *:nth-child(3) {
-    @apply com-col-span-3;
+  & > *:nth-child(1) {
+    @apply com-col-span-6;
   }
 
   & > *:nth-child(2) {
+    @apply com-col-span-12;
+  }
+
+  & > *:nth-child(3) {
     @apply com-col-span-6;
+  }
+
+  .uneven {
+    & > *:nth-child(1) {
+      @apply com-col-span-6;
+    }
+
+    & > *:nth-child(2) {
+      @apply com-col-span-11;
+    }
+
+    & > *:nth-child(3) {
+      @apply com-col-span-7;
+    }
   }
 }
 
@@ -45,11 +62,22 @@ HTML Emmet's
 
   .left-column,
   .right-column {
-    @apply com-col-span-2;
+    @apply com-col-span-5;
   }
 
   .main-column {
-    @apply com-col-span-10;
+    @apply com-col-span-19;
+  }
+
+  &.thin {
+    .left-column,
+    .right-column {
+      @apply com-col-span-4;
+    }
+
+    .main-column {
+      @apply com-col-span-20;
+    }
   }
 }
 
@@ -61,6 +89,6 @@ HTML Emmet's
   @include grid-layout;
 
   & > * {
-    @apply com-col-span-12;
+    @apply com-col-span-full;
   }
 }

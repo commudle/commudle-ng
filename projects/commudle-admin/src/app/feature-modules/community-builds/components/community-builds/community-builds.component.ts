@@ -53,6 +53,7 @@ export class CommunityBuildsComponent implements OnInit {
 
   getCommunityBuilds() {
     if (!this.isLoading && (!this.total || this.communityBuilds.length < this.total)) {
+      this.isLoading = true;
       this.communityBuildsService.pGetAll(this.page, this.count).subscribe((data: ICommunityBuilds) => {
         this.communityBuilds = this.communityBuilds.concat(data.community_builds);
         this.page += 1;

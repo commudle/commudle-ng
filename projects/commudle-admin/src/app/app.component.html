@@ -9,9 +9,13 @@
         <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
 
         <div class="home-navbar-menu-user">
-          <div *ngIf="currentUser" class="menu-user-avatar">
-            <img [nbContextMenu]="userContextMenu" alt="{{ currentUser.name }}" src="{{ currentUser.avatar }}" />
-          </div>
+          <img
+            *ngIf="currentUser"
+            [nbContextMenu]="userContextMenu"
+            alt="{{ currentUser.name }}"
+            class="menu-user-avatar"
+            src="{{ currentUser.avatar }}"
+          />
           <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
             <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
             <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>
@@ -30,11 +34,20 @@
     </div>
   </nb-layout-header>
 
-  <nb-sidebar [(state)]="sideBarState" [fixed]="true" right tag="mainMenu">
+  <nb-sidebar
+    (clickOutside)="closeSidebar()"
+    [(state)]="sideBarState"
+    [fixed]="true"
+    appClickOutside
+    exclude=".home-sidebar"
+    right
+    tag="mainMenu"
+  >
     <app-sidebar-menu></app-sidebar-menu>
   </nb-sidebar>
 
   <nb-layout-column>
+    <app-profile-status-bar *ngIf="currentUser && profileBarStatus"></app-profile-status-bar>
     <router-outlet></router-outlet>
   </nb-layout-column>
 

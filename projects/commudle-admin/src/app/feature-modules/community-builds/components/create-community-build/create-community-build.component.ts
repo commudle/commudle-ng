@@ -1,12 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { EBuildType, EPublishStatus, ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { EUserRolesUserStatus, IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-community-build',
@@ -33,9 +42,11 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     build_type: ['', Validators.required],
     description: ['', Validators.required],
     publish_status: [EPublishStatus.draft, Validators.required],
-    link: ['', Validators.required],
+    link: ['', [Validators.required, this.validateLink()]],
     team: this.fb.array([]),
   });
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private title: Title,
@@ -85,7 +96,23 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     this.linkDisplay();
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+  }
+
+  validateLink(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const link: string = control.value;
+      if (link) {
+        if (link.startsWith('http://') || link.startsWith('https://')) {
+          return null;
+        } else {
+          return { invalidLink: true };
+        }
+      }
+      return null;
+    };
+  }
 
   addTeammate() {
     this.emailList.push(this.fb.group({ value: new FormControl('', [Validators.required, Validators.email]) }));
@@ -96,10 +123,10 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   getCommunityBuild() {
-    this.activatedRoute.params.subscribe((data) => {
+    this.activatedRoute.params.subscribe((data: Params) => {
       const cbId = data.community_build_id;
       if (cbId) {
-        this.communityBuildsService.show(cbId).subscribe((data) => {
+        this.communityBuildsService.show(cbId).subscribe((data: ICommunityBuild) => {
           this.cBuild = data;
           this.prefillCommunityBuild();
           this.tags = data.tags;
@@ -181,9 +208,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
         };
         this.uploadedImagesFiles.push(imgFile);
         const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.uploadedImages.push(reader.result);
-        };
+        reader.onload = (e: any) => this.uploadedImages.push(reader.result);
         reader.readAsDataURL(file);
       }
     }
@@ -210,7 +235,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     const formData: any = new FormData();
     const cBuildFormValue = this.communityBuildForm.value;
 
-    Object.keys(cBuildFormValue).forEach((key) => {
+    Object.keys(cBuildFormValue).forEach((key: string) => {
       if (cBuildFormValue[key] != null && key != 'team') {
         formData.append(`community_build[${key}]`, cBuildFormValue[key]);
       }
@@ -223,7 +248,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
     }
 
     for (let i = 0; i < this.uploadedImagesFiles.length; i++) {
-      Object.keys(this.uploadedImagesFiles[i]).forEach((key) =>
+      Object.keys(this.uploadedImagesFiles[i]).forEach((key: string) =>
         formData.append(`community_build[images][][${key}]`, this.uploadedImagesFiles[i][key]),
       );
     }
@@ -236,17 +261,19 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   createCommunityBuild(publishStatus: EPublishStatus) {
-    this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe((data) => {
+    this.communityBuildsService.create(this.buildFormData(publishStatus)).subscribe((data: ICommunityBuild) => {
       this.cBuild = data;
       this.submitTags();
     });
   }
 
   updateCommunityBuild(publishStatus: EPublishStatus) {
-    this.communityBuildsService.update(this.cBuild.id, this.buildFormData(publishStatus)).subscribe((data) => {
-      this.cBuild = data;
-      this.submitTags();
-    });
+    this.communityBuildsService
+      .update(this.cBuild.id, this.buildFormData(publishStatus))
+      .subscribe((data: ICommunityBuild) => {
+        this.cBuild = data;
+        this.submitTags();
+      });
   }
 
   onTagAdd(value: string) {
@@ -256,7 +283,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   onTagDelete(value: string) {
-    this.tags = this.tags.filter((tag) => tag !== value);
+    this.tags = this.tags.filter((tag: string) => tag !== value);
   }
 
   submitTags() {

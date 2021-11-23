@@ -1,5 +1,9 @@
 <nb-card
-  [ngClass]="{'fullscreen': isFullScreen, 'internal-link': ['commudle', 'youtube'].includes(embeddedVideoStream.source), 'external-link': ['external_link', 'jitsi'].includes(embeddedVideoStream.source)}"
+  [ngClass]="{
+    fullscreen: isFullScreen,
+    'internal-link': ['commudle', 'youtube'].includes(embeddedVideoStream.source),
+    'external-link': ['external_link', 'jitsi'].includes(embeddedVideoStream.source)
+  }"
   class="session-page-video"
 >
   <nb-card-body>
@@ -18,18 +22,28 @@
         <nb-icon [icon]="isFullScreen ? 'collapse' : 'expand'"></nb-icon>
       </button>
     </div>
-    <div #videoStream [ngClass]="{'compressed': compressVideoStream}" class="video-stream">
-      <app-video-stream-v2
+    <div #videoStream [ngClass]="{ compressed: compressVideoStream }" class="video-stream">
+      <app-video-stream
         (beamStatus)="isBeamActive = $event"
         [currentUser]="currentUser"
         [embeddedVideoStream]="embeddedVideoStream"
-        [fillerText]="!currentUser ? 'Login to Access' : (moment() < moment(startTime) ? 'Starting in ' + moment(startTime).fromNow(true) : 'Loading Video...')"
+        [fillerText]="
+          !currentUser
+            ? 'Login to Access'
+            : moment() < moment(startTime)
+            ? 'Starting in ' + moment(startTime).fromNow(true)
+            : 'Loading Video...'
+        "
         [height]="videoStream.clientHeight"
         [started]="moment() >= moment(startTime)"
-        [videoCode]="!currentUser || moment() < moment(startTime) ? false : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id"
+        [videoCode]="
+          !currentUser || moment() < moment(startTime)
+            ? false
+            : embeddedVideoStream.embed_code || embeddedVideoStream.hms_room_id
+        "
         [videoSource]="embeddedVideoStream.source"
         [width]="videoStream.clientWidth"
-      ></app-video-stream-v2>
+      ></app-video-stream>
     </div>
     <div
       *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source) && interactionWindows"
@@ -37,7 +51,7 @@
     >
       <button
         (click)="toggleInteractionWindow(0)"
-        [ngClass]="{'active': !getInteractionWindowStatus(0)}"
+        [ngClass]="{ active: !getInteractionWindowStatus(0) }"
         nbButton
         nbTooltip="Info"
         shape="round"
@@ -46,42 +60,42 @@
       </button>
       <button
         (click)="toggleInteractionWindow(1)"
-        [ngClass]="{'active': !getInteractionWindowStatus(1)}"
+        [ngClass]="{ active: !getInteractionWindowStatus(1) }"
         nbButton
         nbTooltip="Viewers"
         shape="round"
       >
-        <nb-badge class="notification" status="info" text="{{userCount}}"></nb-badge>
+        <nb-badge class="notification" status="info" text="{{ userCount }}"></nb-badge>
         <nb-icon icon="people-outline"></nb-icon>
       </button>
       <button
         (click)="toggleInteractionWindow(2)"
-        [ngClass]="{'active': !getInteractionWindowStatus(2)}"
+        [ngClass]="{ active: !getInteractionWindowStatus(2) }"
         nbButton
         nbTooltip="Messages"
         shape="round"
       >
-        <nb-badge [dotMode]="true" [ngClass]="{'notification': newMessage}" status="info"></nb-badge>
+        <nb-badge [dotMode]="true" [ngClass]="{ notification: newMessage }" status="info"></nb-badge>
         <nb-icon icon="message-circle-outline"></nb-icon>
       </button>
       <button
         (click)="toggleInteractionWindow(3)"
-        [ngClass]="{'active': !getInteractionWindowStatus(3)}"
+        [ngClass]="{ active: !getInteractionWindowStatus(3) }"
         nbButton
         nbTooltip="QnA"
         shape="round"
       >
-        <nb-badge [dotMode]="true" [ngClass]="{'notification': newQna}" status="info"></nb-badge>
+        <nb-badge [dotMode]="true" [ngClass]="{ notification: newQna }" status="info"></nb-badge>
         Q
       </button>
       <button
         (click)="toggleInteractionWindow(4)"
-        [ngClass]="{'active': !getInteractionWindowStatus(4)}"
+        [ngClass]="{ active: !getInteractionWindowStatus(4) }"
         nbButton
         nbTooltip="Polls"
         shape="round"
       >
-        <nb-badge [dotMode]="true" [ngClass]="{'notification': newPoll}" status="info"></nb-badge>
+        <nb-badge [dotMode]="true" [ngClass]="{ notification: newPoll }" status="info"></nb-badge>
         <nb-icon icon="bar-chart"></nb-icon>
       </button>
     </div>

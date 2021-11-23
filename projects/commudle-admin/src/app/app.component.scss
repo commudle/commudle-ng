@@ -30,17 +30,11 @@
 
       .home-navbar-menu {
         .home-navbar-menu-user {
-          margin-left: $space-16;
+          margin-left: $space-8;
 
           .menu-user-avatar {
-            border-radius: $border-50;
-            max-height: 2.5rem;
-            max-width: 2.5rem;
-            overflow: hidden;
-
-            img {
-              width: 100%;
-            }
+            @apply com-h-10 com-w-10;
+            @apply com-rounded-full com-object-cover com-object-center com-align-middle;
           }
 
           .menu-user-options {
@@ -293,23 +287,8 @@
 
         .home-navbar-menu {
           .home-navbar-menu-user {
-            margin-left: $space-8 !important;
-
             .menu-user-avatar {
-              height: 35px !important;
-              width: 35px !important;
-
-              img {
-                height: 100%;
-                object-fit: cover;
-              }
-
-              &::ng-deep {
-                .user-picture {
-                  height: 2rem;
-                  width: 2rem;
-                }
-              }
+              @apply com-h-8 com-w-8;
             }
 
             .menu-user-options {

@@ -48,7 +48,11 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     this.title.setTitle('All Communities');
-    this.meta.updateTag({ name: 'description', content: 'Over 90 Communities and 20,000 Users are using Commudle.' });
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Find a community you want to join, network & learn with software developers and build recognition with your "Developer Profile" as you contribute to communities.',
+    });
 
     this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
     this.meta.updateTag({
@@ -58,7 +62,8 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'og:title', content: 'All Communities' });
     this.meta.updateTag({
       name: 'og:description',
-      content: 'Over 90 Communities and 20,000 Users are using Commudle.',
+      content:
+        'Find a community you want to join, network & learn with software developers and build recognition with your "Developer Profile" as you contribute to communities.',
     });
     this.meta.updateTag({ name: 'og:type', content: 'website' });
 
@@ -66,7 +71,8 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'twitter:title', content: 'All Communities' });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: 'Over 90 Communities and 20,000 Users are using Commudle.',
+      content:
+        'Find a community you want to join, network & learn with software developers and build recognition with your "Developer Profile" as you contribute to communities.',
     });
   }
 

@@ -19,47 +19,50 @@ export class HomeComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle('Commudle - Find & Connect With Developers');
+    this.title.setTitle('Commudle - Connect & Learn With Software Developers');
 
     this.meta.updateTag({
       name: 'description',
-      content: 'Learn from developer experts around you & grow with developer communities. Login to begin!'
+      content:
+        'A community platform for software developers to connect over online events, channels, share knowledge & find jobs. Join now to build your "Developer Network".',
     });
     this.meta.updateTag({
       name: 'og:image',
       content: 'https://commudle.com/assets/images/commudle-logo192.png'
     });
     this.meta.updateTag({
-      name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'
+      name: 'og:image:secure_url',
+      content: 'https://commudle.com/assets/images/commudle-logo192.png',
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: 'Commudle - Find & Connect With Developers'
+      content: 'Commudle - Connect & Learn With Software Developers',
     });
     this.meta.updateTag({
       name: 'og:description',
-      content: 'Learn from developer experts around you & grow with developer communities. Login to begin!'
+      content:
+        'A community platform for software developers to connect over online events, channels, share knowledge & find jobs. Join now to build your "Developer Network".',
     });
     this.meta.updateTag({
       name: 'og:type',
-      content: 'website'
+      content: 'website',
     });
     this.meta.updateTag({
       name: 'twitter:image',
-      content: 'https://commudle.com/assets/images/commudle-logo192.png'
+      content: 'https://commudle.com/assets/images/commudle-logo192.png',
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Commudle - Find & Connect With Developers'
+      content: 'Commudle - Connect & Learn With Software Developers',
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: 'Learn from developer experts around you & grow with developer communities. Login to begin!'
+      content:
+        'A community platform for software developers to connect over online events, channels, share knowledge & find jobs. Join now to build your "Developer Network".',
     });
   }
 
   getWindowWidth(): number {
     return window.innerWidth;
   }
-
 }

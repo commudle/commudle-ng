@@ -16,10 +16,10 @@ p {
   }
 
   .details {
-    @apply com-px-4 com-pt-4 com-w-full;
+    @apply com-pt-4 com-w-full;
 
     @screen md {
-      @apply com-pt-0;
+      @apply com-pl-4 com-pt-0;
     }
 
     .prefix {

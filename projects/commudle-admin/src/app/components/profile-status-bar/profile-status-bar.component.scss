@@ -1,0 +1,35 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.profile-status-bar-container {
+  background: #1ac7e340;
+  height: 65px;
+
+  .profile-status-bar-content {
+    app-circular-progressive-bar {
+      margin: 0 5px;
+      position: relative;
+      top: 2px;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: medium;
+    }
+
+    button {
+      margin: 5px;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .profile-status-bar-container {
+    margin-top: 9px;
+  }
+}
+
+@media all and (max-width: $mobile-width) {
+  p {
+    display: none;
+  }
+}

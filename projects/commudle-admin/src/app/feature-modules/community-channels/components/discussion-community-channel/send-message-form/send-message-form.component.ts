@@ -71,12 +71,13 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.showHelperText = false;
   }
 
-  emitMessage() {
+  emitMessage(event) {
     if (!this.editableMessage) {
-      if (this.uploadedFiles.length > 0) {
+      if (this.sendUserMessageForm.valid && this.uploadedFiles.length > 0) {
         this.emitAttachmentMessage();
-      }
-      if (this.sendUserMessageForm.valid) {
+      } else if (this.uploadedFiles.length > 0) {
+        this.emitAttachmentMessage();
+      } else if (this.sendUserMessageForm.valid) {
         this.emitTextMessage();
       }
     } else {
@@ -88,6 +89,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       }
     }
 
+    event.preventDefault();
     this.sendUserMessageForm.reset();
     this.uploadedAttachmentFiles = [];
     this.uploadedFiles = [];

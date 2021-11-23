@@ -49,6 +49,9 @@ import { UserNetworkListComponent } from './components/public-profile/user-netwo
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 import { CapitalizeAndRemoveUnderscorePipe } from './pipes/capitalize-and-remove-underscore.pipe';
 import { UsersRoutingModule } from './users-routing.module';
+import { UsernameComponent } from './components/public-profile/user-basic-details/basic-user-profile/username/username.component';
+import { BasicInfoComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-info/basic-info.component';
+import { SocialLinksComponent } from './components/public-profile/user-basic-details/basic-user-profile/social-links/social-links.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,9 @@ import { UsersRoutingModule } from './users-routing.module';
     EditUserProfileComponent,
     EmailPreferencesComponent,
     CapitalizeAndRemoveUnderscorePipe,
+    UsernameComponent,
+    BasicInfoComponent,
+    SocialLinksComponent,
   ],
   imports: [
     CommonModule,
@@ -106,6 +112,6 @@ import { UsersRoutingModule } from './users-routing.module';
     NbRouteTabsetModule,
     NbToggleModule,
   ],
-  exports: [BasicUserProfileComponent],
+  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
 })
 export class UsersModule {}

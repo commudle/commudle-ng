@@ -19,12 +19,11 @@
   },
   "private": true,
   "dependencies": {
-    "@100mslive/hms-video": "0.0.204",
-    "@100mslive/hms-video-store": "0.2.57",
-    "@100mslive/hmsvideo-web": "^1.0.9",
+    "@100mslive/hms-video": "0.1.18",
+    "@100mslive/hms-video-store": "0.2.71",
     "@akveo/ng2-completer": "^9.0.1",
     "@angular/animations": "~12.2.0",
-    "@angular/cdk": "^12.0.0",
+    "@angular/cdk": "^12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -73,7 +72,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.7",
+    "@angular-devkit/build-angular": "~12.2.0",
     "@angular-eslint/builder": "12.5.0",
     "@angular-eslint/eslint-plugin": "12.5.0",
     "@angular-eslint/eslint-plugin-template": "12.5.0",

@@ -1,0 +1,55 @@
+<nb-card class="lab-header">
+  <nb-card-body class="com-flex com-flex-col md:com-flex-row com-justify-between com-min-h-[344px]">
+    <div class="lab-header-text">
+      <div *ngIf="tags.length === 0" class="lab-content">
+        <p class="lab-quote">The best way to learn, is step by step.</p>
+        <p class="lab-heading">We introduce <span>Labs,</span></p>
+        <p class="lab-quote">
+          Guided tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.
+        </p>
+      </div>
+
+      <div *ngIf="tags.length > 0" class="lab-content-search">
+        <div class="lab-search-tags">Labs on {{ tags.join(', ') }}</div>
+        <p>{{ getVisits() }} visits</p>
+      </div>
+    </div>
+
+    <div class="lab-header-banner">
+      <div *ngIf="trending.length > 0" class="lab-trending">
+        <nb-card>
+          <nb-card-header>TRENDING</nb-card-header>
+          <nb-card-body>
+            <nb-list>
+              <nb-list-item *ngFor="let event of trending">
+                <div class="trending-event-container">
+                  <div *ngIf="event.image" class="event-image">
+                    <img alt="{{ event.name }}" src="{{ event.image }}" title="{{ event.name }}" />
+                  </div>
+                  <div class="event-details">
+                    <div *ngIf="event.name" class="event-name">{{ event.name }}</div>
+                    <div class="event-content">
+                      <div *ngIf="event.description" class="event-description">{{ event.description }}</div>
+                      <div class="event-suffix">
+                        <div *ngIf="event.type" class="event-type">{{ event.type }}</div>
+                        <span></span>
+                        <div *ngIf="event.stats" class="event-stats">
+                          <nb-icon [icon]="event.stats.icon"></nb-icon>
+                          {{ event.stats.text }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nb-list-item>
+            </nb-list>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+      <div *ngIf="trending.length === 0" class="lab-graphic">
+        <img alt="Lab Header Image" src="/assets/images/Labs-Home.png" title="Lab Header Image" />
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

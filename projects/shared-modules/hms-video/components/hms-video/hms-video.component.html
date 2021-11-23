@@ -1,22 +1,30 @@
 <div class="hms-video">
-  <div class="state-container d-flex justify-content-center align-items-center" [ngSwitch]="currentState" [nbSpinner]="!this.hmsClient" nbSpinnerStatus="info">
-    <div *ngSwitchCase="EHmsStates.INIT" class="select-role">
-      <app-select-role
-        *ngIf="hmsClient && connectedToChannel"
-        [roomId]="roomId"
-        [client]="serverClient"
-        [hmsClient]="hmsClient"
-        [user]="user"
-        (selectedRole)="setSelectedRole($event)"
-      ></app-select-role>
-    </div>
-
-    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW" class="local-preview" [hmsClient]="hmsClient"></app-local-preview>
-    <app-conference *ngSwitchCase="EHmsStates.ROOM" class="room" [roomId]="roomId" [serverClient]="serverClient" [serverClient]="serverClient" [client]="hmsClient" [selectedRole]="selectedRole"></app-conference>
-    <div *ngSwitchCase="EHmsStates.ENDED" class="webinar-ended">
-      <nb-alert accent="info">
-        This session has completed!
-      </nb-alert>
-    </div>
+  <div
+    [nbSpinner]="!serverClient || !currentUser || !hmsState"
+    [ngSwitch]="hmsState"
+    class="state-container"
+    nbSpinnerStatus="primary"
+  >
+    <!-- Select role -->
+    <app-select-role
+      (selectedRole)="selectedRole = $event"
+      *ngSwitchCase="EHmsStates.INIT"
+      [serverClient]="serverClient"
+    ></app-select-role>
+    <!-- Preview video and audio -->
+    <app-local-preview *ngSwitchCase="EHmsStates.PREVIEW"></app-local-preview>
+    <!-- Join room -->
+    <app-conference
+      (beamStatus)="beamStatus.emit($event)"
+      *ngSwitchCase="EHmsStates.ROOM"
+      [currentUser]="currentUser"
+      [embeddedVideoStream]="embeddedVideoStream"
+      [selectedRole]="selectedRole"
+      [serverClient]="serverClient"
+    ></app-conference>
+    <!-- Left session -->
+    <nb-alert *ngSwitchCase="EHmsStates.LEFT" accent="info">You have left the session!</nb-alert>
+    <!-- Session end -->
+    <nb-alert *ngSwitchCase="EHmsStates.ENDED" accent="info">This session has completed!</nb-alert>
   </div>
 </div>

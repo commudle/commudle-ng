@@ -1,5 +1,5 @@
 <div class="event-location-tracks">
-  <button (click)="showAddTrackForm()" *ngIf="event.editable" nbButton size="tiny" size="tiny" status="primary">
+  <button (click)="showAddTrackForm()" *ngIf="event.editable" nbButton size="tiny" status="primary">
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp; Add Track
   </button>
@@ -11,7 +11,7 @@
       <div class="time-container">
         <div *ngFor="let hour of hours">
           <div *ngFor="let minute of minutes">
-            <div *ngIf="minute%5 == 0" class="time-cell">
+            <div *ngIf="minute % 5 == 0" class="time-cell">
               <p class="time-display">{{ displayTime(hour, minute) }}</p>
             </div>
           </div>
@@ -46,7 +46,7 @@
           <div *ngFor="let minute of minutes">
             <div
               (click)="event.editable && showAddSlotForm(lt, hour, minute)"
-              *ngIf="minute%5 == 0"
+              *ngIf="minute % 5 == 0"
               class="time-cell fill"
             >
               <p class="filler-text">
@@ -61,7 +61,7 @@
       <div class="track-slots-container">
         <div *ngFor="let slot of lt.track_slots">
           <div
-            [ngStyle]="{'height': slotSessionHeight(slot) + 'rem', 'top': slotSessionOffsetFromTop(slot) + 'rem'}"
+            [ngStyle]="{ height: slotSessionHeight(slot) + 'rem', top: slotSessionOffsetFromTop(slot) + 'rem' }"
             class="track-slot"
           >
             <!-- TODO: check why having a div tag inside p tag causes error, the below was initially a p tag -->
@@ -75,11 +75,11 @@
               ></nb-icon>
               <ng-template #embeddedVideo>
                 <div class="embedded-video">
-                  <app-video-stream-v2
+                  <app-video-stream
                     [videoCode]="slot.embedded_video_stream.embed_code"
                     [videoSource]="slot.embedded_video_stream.source"
                     fillerText="Auto Preview"
-                  ></app-video-stream-v2>
+                  ></app-video-stream>
                 </div>
               </ng-template>
               <nb-icon (click)="confirmDeleteSlot(slot)" class="clickable" icon="close-square-outline"></nb-icon>
@@ -100,7 +100,7 @@
             <div *ngIf="event.editable">
               <a
                 *ngIf="!slot.speaker_resource"
-                [queryParams]="{token: slot.rsvp_token, event_id: event.slug}"
+                [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
                 [routerLink]="['/speaker-resource-form']"
                 class="text-info"
                 target="_blank"
@@ -110,7 +110,7 @@
               </a>
               <a
                 *ngIf="slot.speaker_resource"
-                [queryParams]="{token: slot.rsvp_token, event_id: event.slug}"
+                [queryParams]="{ token: slot.rsvp_token, event_id: event.slug }"
                 [routerLink]="['/speaker-resource-form']"
                 class="clickable text-info"
                 target="_blank"
@@ -122,7 +122,7 @@
             <p>
               <small>
                 <a
-                  [queryParams]="{track_slot_id: slot.id}"
+                  [queryParams]="{ track_slot_id: slot.id }"
                   [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
                   target="_blank"
                 >
@@ -139,18 +139,22 @@
 
   <ng-template #eventLocationTrackFormTemplate let-data>
     <form
-      (ngSubmit)="data.operationType == 'create' ? createTrack() : editTrack(data.eventLocationTrackId) "
+      (ngSubmit)="data.operationType === 'create' ? createTrack() : editTrack(data.eventLocationTrackId)"
       [formGroup]="eventLocationTrackForm"
       class="event-location-track-form"
     >
       <div formGroupName="event_location_track">
         <div>
-          <label fullWidth>
+          <label>
             Name*
             <input formControlName="name" fullWidth nbInput type="text" />
           </label>
           <span
-            *ngIf="eventLocationTrackForm['controls'].event_location_track['controls'].name.touched && eventLocationTrackForm['controls'].event_location_track['controls'].name.invalid && eventLocationTrackForm['controls'].event_location_track['controls'].name.errors.required"
+            *ngIf="
+              eventLocationTrackForm['controls'].event_location_track['controls'].name.touched &&
+              eventLocationTrackForm['controls'].event_location_track['controls'].name.invalid &&
+              eventLocationTrackForm['controls'].event_location_track['controls'].name.errors.required
+            "
             class="validation-error-text"
           >
             Required Field
@@ -185,14 +189,17 @@
             </nb-select>
           </div>
           <div>
-            <label fullWidth>
+            <label>
               Video Url / Zoom Meeting Id / Embed Iframe / External Link (depending on the source above)
               <textarea formControlName="embed_code" fullWidth nbInput type="text"></textarea>
             </label>
           </div>
 
           <div
-            *ngIf="eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM"
+            *ngIf="
+              eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value ===
+              EEmbeddedVideoStreamSources.ZOOM
+            "
           >
             <label>
               Meeting/Webinar Host Email*
@@ -200,7 +207,10 @@
             </label>
           </div>
           <div
-            *ngIf="eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM"
+            *ngIf="
+              eventLocationTrackForm.get('event_location_track').get('embedded_video_stream').get('source').value ===
+              EEmbeddedVideoStreamSources.ZOOM
+            "
           >
             <label>
               Meeting/Webinar Password (visible only to organizers)*
@@ -221,22 +231,22 @@
       <p>Are you sure you want to delete this track?</p>
     </div>
     <div>
-      <button (click)="deleteTrack(true,data.eventLocationTrackId)" nbButton status="link">Yes</button>
-      <button (click)="deleteTrack(false,data.eventLocationTrackId)" nbButton status="link">No</button>
+      <button (click)="deleteTrack(true, data.eventLocationTrackId)" nbButton status="link">Yes</button>
+      <button (click)="deleteTrack(false, data.eventLocationTrackId)" nbButton status="link">No</button>
     </div>
   </ng-template>
 
   <!-- track slot windows -->
   <ng-template #trackSlotFormTemplate let-data>
     <form
-      (ngSubmit)="data.operationType == 'create' ? addSlot() : editSlot(data.trackSlotId)"
+      (ngSubmit)="data.operationType === 'create' ? addSlot() : editSlot(data.trackSlotId)"
       [formGroup]="trackSlotForm"
       class="track-slot-form"
     >
       <div formGroupName="track_slot">
         <div>
           <nb-select formControlName="event_location_track_id" placeholder="Select Track">
-            <nb-option-group *ngFor="let location of eventLocations" title="{{location.id}}">
+            <nb-option-group *ngFor="let location of eventLocations" title="{{ location.id }}">
               <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
                 {{ ltrack.name }}
               </nb-option>
@@ -251,7 +261,11 @@
         <div>
           <input formControlName="session_title" fullWidth nbInput placeholder="Session Name*" type="text" />
           <span
-            *ngIf="trackSlotForm['controls'].track_slot['controls'].session_title.touched && trackSlotForm['controls'].track_slot['controls'].session_title.invalid && trackSlotForm['controls'].track_slot['controls'].session_title.errors.required"
+            *ngIf="
+              trackSlotForm['controls'].track_slot['controls'].session_title.touched &&
+              trackSlotForm['controls'].track_slot['controls'].session_title.invalid &&
+              trackSlotForm['controls'].track_slot['controls'].session_title.errors.required
+            "
             class="validation-error-text"
           >
             Required Field
@@ -274,7 +288,11 @@
           />
           <nb-timepicker #startTimePicker></nb-timepicker>
           <span
-            *ngIf="trackSlotForm['controls'].track_slot['controls'].start_time.touched && trackSlotForm['controls'].track_slot['controls'].start_time.invalid && trackSlotForm['controls'].track_slot['controls'].start_time.errors.required"
+            *ngIf="
+              trackSlotForm['controls'].track_slot['controls'].start_time.touched &&
+              trackSlotForm['controls'].track_slot['controls'].start_time.invalid &&
+              trackSlotForm['controls'].track_slot['controls'].start_time.errors.required
+            "
             class="validation-error-text"
           >
             Required Field
@@ -292,7 +310,11 @@
           />
           <nb-timepicker #endTimePicker></nb-timepicker>
           <span
-            *ngIf="trackSlotForm['controls'].track_slot['controls'].end_time.touched && trackSlotForm['controls'].track_slot['controls'].end_time.invalid && trackSlotForm['controls'].track_slot['controls'].end_time.errors.required"
+            *ngIf="
+              trackSlotForm['controls'].track_slot['controls'].end_time.touched &&
+              trackSlotForm['controls'].track_slot['controls'].end_time.invalid &&
+              trackSlotForm['controls'].track_slot['controls'].end_time.errors.required
+            "
             class="validation-error-text"
           >
             Required Field
@@ -327,13 +349,16 @@
             </nb-select>
           </div>
           <div>
-            <label fullWidth>
+            <label>
               Video Url / Zoom Meeting ID / Embed Iframe (depending on the source above)
               <textarea formControlName="embed_code" fullWidth nbInput type="text"></textarea>
             </label>
           </div>
           <div
-            *ngIf="trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM"
+            *ngIf="
+              trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value ===
+              EEmbeddedVideoStreamSources.ZOOM
+            "
           >
             <label>
               Meeting/Webinar Host Email*
@@ -341,7 +366,10 @@
             </label>
           </div>
           <div
-            *ngIf="trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value == EEmbeddedVideoStreamSources.ZOOM"
+            *ngIf="
+              trackSlotForm.get('track_slot').get('embedded_video_stream').get('source').value ===
+              EEmbeddedVideoStreamSources.ZOOM
+            "
           >
             <label>
               Meeting/Webinar Password (visible only to organizers)*
@@ -362,8 +390,8 @@
       <p>Are you sure you want to delete this slot?</p>
     </div>
     <div>
-      <button (click)="deleteSlot(true,data.trackSlot)" nbButton status="link">Yes</button>
-      <button (click)="deleteSlot(false,data.trackSlot)" nbButton status="link">No</button>
+      <button (click)="deleteSlot(true, data.trackSlot)" nbButton status="link">Yes</button>
+      <button (click)="deleteSlot(false, data.trackSlot)" nbButton status="link">No</button>
     </div>
   </ng-template>
 </div>

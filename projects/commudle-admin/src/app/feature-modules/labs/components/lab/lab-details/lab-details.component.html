@@ -1,17 +1,12 @@
 <div class="menu">
   <div *ngIf="!hideUser" class="user">
-    <app-user-profile-card-large
-      [maxDesignationLength]="18"
-      [maxNameLength]="14"
-      [showFollowButton]="true"
-      [user]="lab.user"
-    ></app-user-profile-card-large>
+    <app-user-profile-card-large [showFollowButton]="true" [user]="lab.user"></app-user-profile-card-large>
   </div>
   <nb-card *ngIf="!hideSteps" class="steps">
     <nb-list>
       <nb-list-item
         (click)="onSetStep(-1)"
-        [ngClass]="{'active': selectedLabStep === -1}"
+        [ngClass]="{ active: selectedLabStep === -1 }"
         [routerLink]="['/labs', lab.slug]"
         class="clickable"
       >
@@ -20,18 +15,18 @@
       <nb-list-item
         (click)="onSetStep(i)"
         *ngFor="let step of lab.lab_steps; let i = index"
-        [ngClass]="{'active': selectedLabStep === i}"
+        [ngClass]="{ active: selectedLabStep === i }"
         [routerLink]="['steps', lab.lab_steps[i].id]"
         class="clickable"
       >
         <div>
           <a [routerLink]="['steps', lab.lab_steps[i].id]">
-            <div>{{step.name}}</div>
+            <div>{{ step.name }}</div>
             <app-badge
               *ngIf="showContinue && i !== lab.lab_steps.length - 1 && lab.lab_steps[i].id === lab.last_visited_step_id"
-              [text]="'Continue'"
-              [fontSize]="'small'"
               [color]="'blue'"
+              [fontSize]="'small'"
+              [text]="'Continue'"
             ></app-badge>
           </a>
         </div>
@@ -39,10 +34,10 @@
     </nb-list>
   </nb-card>
   <nb-card *ngIf="similarLabs.length > 0 && !hideRelatedLabs" class="related-labs">
-    <nb-card-header> RELATED POSTS </nb-card-header>
+    <nb-card-header> RELATED POSTS</nb-card-header>
     <nb-card-body>
       <div *ngFor="let lab of similarLabs" [routerLink]="['/labs', lab.slug]" class="details clickable">
-        <p class="name">{{lab.name}}</p>
+        <p class="name">{{ lab.name }}</p>
         <p class="type">LAB</p>
       </div>
     </nb-card-body>
@@ -51,7 +46,12 @@
     <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
     <div (click)="onScrollToChat()" *ngIf="discussionChat" class="message-count clickable">
       <nb-icon icon="message-circle-outline"></nb-icon>
-      {{messagesCount}}
+      {{ messagesCount }}
+    </div>
+    <div class="share-button">
+      <button (click)="copyTextToClipboard(lab)" nbButton shape="round" size="small">
+        <nb-icon icon="share"></nb-icon>
+      </button>
     </div>
   </div>
 </div>

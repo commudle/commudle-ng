@@ -40,22 +40,19 @@ export class CommunitiesFeaturedComponent implements OnInit {
           `${featuredCommunity.kommunity.name} | ${featuredCommunity.reason} | ${environment.app_url}/communities/${featuredCommunity.kommunity.slug}`,
         )
       ) {
-        this.libToastLogService.successDialog('Copied the share message successfully!');
+        this.libToastLogService.successDialog('Copied the message successfully!');
       }
       return;
     }
 
     this.navigatorShareService
       .share({
-        title: 'My Awesome app',
-        text: 'hey check out my Share button',
-        url: 'https://developers.google.com/web',
+        title: `${featuredCommunity.kommunity.name}`,
+        text: `${featuredCommunity.reason}`,
+        url: `${environment.app_url}/communities/${featuredCommunity.kommunity.slug}`,
       })
       .then(() => {
         this.libToastLogService.successDialog('Shared successfully!');
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }
 }

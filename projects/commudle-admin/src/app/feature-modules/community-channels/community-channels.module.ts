@@ -43,6 +43,7 @@ import { EmailJoinComponent } from './components/email-join/email-join.component
 import { LinkyModule } from 'ngx-linky';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommunityChannelsDashboardChannelListComponent } from './components/community-channels-dashboard-channel-list/community-channels-dashboard-channel-list.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NewCommunityChannelComponent,
     ArchiveChannelComponent,
     EmailJoinComponent,
+    CommunityChannelsDashboardChannelListComponent,
   ],
   imports: [
     CommonModule,

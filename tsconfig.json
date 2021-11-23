@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
     "paths": {
       "lib-error-handler": ["dist/lib-error-handler/lib-error-handler", "dist/lib-error-handler"]
     },

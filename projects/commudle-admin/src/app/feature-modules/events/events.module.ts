@@ -36,7 +36,6 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { EventCommentsComponent } from './components/event-comments/event-comments.component';
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
 import { FormGroupsComponent } from './components/event-dashboard/form-groups/form-groups.component';
-import { EventEmbeddedVideoStreamV2Component } from './components/event-embedded-video-stream-v2/event-embedded-video-stream-v2.component';
 import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-video-stream/event-embedded-video-stream.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
 import { UserDetailsCellComponent } from './components/event-form-responses/user-details-cell/user-details-cell.component';
@@ -77,7 +76,6 @@ import { EventsRoutingModule } from './events-routing.module';
     SponsorsComponent,
     EventSpeakersComponent,
     EventRecordingsComponent,
-    EventEmbeddedVideoStreamV2Component,
   ],
   imports: [
     CommonModule,

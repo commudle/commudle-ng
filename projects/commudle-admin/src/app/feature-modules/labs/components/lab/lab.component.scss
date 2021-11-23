@@ -27,12 +27,12 @@
 
           .introduction {
             .lab-title {
+              color: $gunmetal;
               font-size: $fs-35;
               font-weight: $fw-500;
               line-height: 2.75rem;
-              color: $gunmetal;
-              text-transform: capitalize;
               margin: 0 0 $space-20;
+              text-transform: capitalize;
             }
 
             .lab-detail {
@@ -40,10 +40,10 @@
 
               .user-profile {
                 .avatar {
-                  height: 24px;
-                  width: 24px;
                   border-radius: 50%;
+                  height: 24px;
                   overflow: hidden;
+                  width: 24px;
 
                   img {
                     width: 100%;
@@ -56,8 +56,8 @@
                   width: max-content;
 
                   p {
-                    font-size: $fs-h5;
                     color: $spanish-gray;
+                    font-size: $fs-h5;
                     margin: 0 $space-16 0 $space-8;
                   }
 
@@ -69,19 +69,19 @@
                   }
 
                   .name {
-                    text-transform: capitalize;
                     color: $neon-blue;
+                    text-transform: capitalize;
                   }
 
                   .date {
-                    margin-left: $space-4;
                     font-style: normal;
+                    margin-left: $space-4;
                   }
 
                   .expert-icon {
+                    height: 12px;
                     margin-left: $space-4;
                     width: 12px;
-                    height: 12px;
                   }
                 }
               }
@@ -92,15 +92,15 @@
                 &::ng-deep {
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
-                      padding: $space-4 $space-12;
-                      font-size: $fs-h7;
-                      font-weight: $fw-400;
-                      line-height: 12px;
-                      text-transform: lowercase;
-                      color: $gunmetal;
                       background-color: $azureish-white;
                       border: none;
                       border-radius: $border-5;
+                      color: $gunmetal;
+                      font-size: $fs-h7;
+                      font-weight: $fw-400;
+                      line-height: 12px;
+                      padding: $space-4 $space-12;
+                      text-transform: lowercase;
                     }
                   }
                 }
@@ -136,8 +136,8 @@
 
               ::ng-deep {
                 img {
-                  max-width: 100%;
                   height: auto;
+                  max-width: 100%;
                 }
 
                 code {
@@ -162,9 +162,9 @@
         }
 
         nb-card-footer {
-          padding: $space-24 0 0;
           background-color: $light-purple;
           border: none;
+          padding: $space-24 0 0;
         }
 
         @media all and (max-width: $tab-width) {
@@ -180,9 +180,9 @@
           }
 
           nb-card-footer {
-            position: sticky;
             bottom: $space-64;
             padding: $space-8 0;
+            position: sticky;
           }
         }
       }
@@ -190,28 +190,30 @@
 
     .interactions {
       display: none;
-      width: max-content;
       height: fit-content;
       margin-left: $space-16;
       position: sticky;
       top: 50vh;
+      width: max-content;
 
       app-votes-display {
         direction: rtl;
 
         &::ng-deep {
-          p {
-            font-size: 1.5rem;
-
-            span {
+          .votes {
+            p {
               color: $neon-blue;
+              font-size: 1.5rem;
             }
 
-            nb-icon {
-              font-size: 1.5rem;
+            span {
+              nb-icon {
+                font-size: 1.5rem;
+                margin-right: $space-4;
 
-              &:not(.voted-heart) {
-                color: $neon-blue;
+                &:not(.voted-heart) {
+                  color: $neon-blue;
+                }
               }
             }
           }
@@ -219,14 +221,18 @@
       }
 
       .discussion {
-        margin: $space-24 0 0;
-        font-size: $fs-24;
         color: $neon-blue;
+        font-size: $fs-24;
+        margin: $space-24 0 0;
       }
 
       nb-icon {
-        font-size: $fs-24;
         color: $neon-blue;
+        font-size: $fs-24;
+      }
+
+      .share-button {
+        margin: $space-24 0 0;
       }
     }
 
@@ -243,12 +249,12 @@
 
   .steps-navigation {
     button {
+      background-color: $neon-blue;
+      border-radius: $border-10;
+      color: $white;
       font-size: $fs-18;
       font-weight: $fw-500;
       text-transform: capitalize;
-      color: $white;
-      background-color: $neon-blue;
-      border-radius: $border-10;
     }
   }
 
@@ -267,25 +273,25 @@
       justify-content: normal;
 
       .toggle-details {
+        background-color: $neon-blue;
+        border-bottom-right-radius: $border-10;
+        border-top-right-radius: $border-10;
+        color: white;
         display: block;
+        font-size: 2.25rem;
+        left: 0;
+        padding: $space-4;
         position: fixed;
         top: $space-96;
-        left: 0;
-        font-size: 2.25rem;
-        padding: $space-4;
-        color: white;
-        background-color: $neon-blue;
         z-index: 3;
-        border-top-right-radius: $border-10;
-        border-bottom-right-radius: $border-10;
       }
 
       .desktop-lab-details {
         &::ng-deep {
           .menu {
+            height: initial;
             position: initial;
             top: initial;
-            height: initial;
             width: 100%;
 
             nb-card {
@@ -304,22 +310,22 @@
 
         &::ng-deep {
           .main-container {
-            z-index: 3;
-            top: $space-56;
-            right: 0;
-            width: 80vw;
+            backdrop-filter: blur(20px);
             height: calc(100vh - 3.5rem);
             padding: $space-16;
-            backdrop-filter: blur(20px);
+            right: 0;
+            top: $space-56;
+            width: 80vw;
+            z-index: 3;
 
             .scrollable {
               padding: 0;
 
               app-lab-details {
                 .menu {
+                  height: initial;
                   position: initial;
                   top: initial;
-                  height: initial;
                   width: 100%;
 
                   nb-card {

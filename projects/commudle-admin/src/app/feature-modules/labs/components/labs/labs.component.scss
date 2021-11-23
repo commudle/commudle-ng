@@ -1,69 +1,61 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.labs-home {
-  background-color: $white;
-  min-height: 100vh;
-
-  .labs-home-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: $space-32;
-
-    @media all and (max-width: $max-page-width) and (min-width: $tab-width) {
-      padding: $space-16 $space-32;
+.labs {
+  .popular-tags {
+    .tag {
+      color: $gunmetal;
+      font-size: $fs-h3;
+      font-weight: $fw-400;
+      text-transform: lowercase;
     }
+  }
 
-    .header {
-      padding: $space-28 $space-32 $space-16 $space-80;
-    }
+  .loading-spinner {
+    .spinner {
+      height: 40px;
 
-    .body {
-      padding: 0 $space-48;
+      & > div {
+        animation: stretch-delay 1.2s infinite ease-in-out;
+        background-color: $cadet;
+        display: inline-block;
+        height: 100%;
+        margin: 0 1px;
+        width: 4px;
 
-      .labs-container {
-        min-height: 500px;
-
-        .popular-tags {
-          .tag {
-            font-size: $fs-h3;
-            font-weight: $fw-400;
-            text-transform: lowercase;
-            color: $gunmetal;
-          }
+        &:nth-child(2) {
+          animation-delay: -1.1s;
         }
 
-        hr {
-          height: 2px;
-          background-color: rgba($gunmetal, 0.2);
-          border: none;
-          margin: $space-12 0 $space-32;
+        &:nth-child(3) {
+          animation-delay: -1s;
         }
 
-        .labs {
-          gap: $space-48;
+        &:nth-child(4) {
+          animation-delay: -0.9s;
         }
 
-        @media all and (max-width: $tab-width) {
-          .labs {
-            justify-content: center;
-          }
+        &:nth-child(5) {
+          animation-delay: -0.8s;
+        }
+      }
 
-          hr {
-            margin: $space-12 $space-16 $space-32;
-          }
+      @keyframes stretch-delay {
+        0%,
+        40%,
+        100% {
+          transform: scaleY(0.4);
+        }
+        20% {
+          transform: scaleY(1);
         }
       }
     }
+  }
 
-    @media all and (max-width: $tab-width) {
-      .header {
-        padding: $space-28 0;
-        flex-direction: column;
-      }
-
-      .body {
-        padding: 0 $space-16;
-      }
-    }
+  hr {
+    background-color: rgba($gunmetal, 0.2);
+    border: none;
+    height: 2px;
+    margin: $space-12 0 $space-32;
   }
 }
