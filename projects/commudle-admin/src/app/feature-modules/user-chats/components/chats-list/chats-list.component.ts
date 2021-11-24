@@ -7,10 +7,9 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 @Component({
   selector: 'app-chats-list',
   templateUrl: './chats-list.component.html',
-  styleUrls: ['./chats-list.component.scss']
+  styleUrls: ['./chats-list.component.scss'],
 })
 export class ChatsListComponent implements OnInit {
-
   @Input() currentUser: ICurrentUser;
   @Input() allPersonalChatUsers: IDiscussionFollower[];
   @Output() getChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
@@ -22,12 +21,11 @@ export class ChatsListComponent implements OnInit {
 
   constructor(
     private authWatchService: LibAuthwatchService,
-    private userChatNotificationsChannel: UserChatNotificationsChannel
-  ) {
-  }
+    private userChatNotificationsChannel: UserChatNotificationsChannel,
+  ) {}
 
   ngOnInit(): void {
-    this.authWatchService.currentUser$.subscribe(data => this.showLiveStatus = !!data);
+    this.authWatchService.currentUser$.subscribe((data) => (this.showLiveStatus = !!data));
 
     this.userChatNotificationsChannel.subscribe();
 
@@ -40,14 +38,12 @@ export class ChatsListComponent implements OnInit {
   }
 
   liveUpdates() {
-    this.userChatNotificationsChannel.newMessagesCounter$.subscribe(value => {
+    this.userChatNotificationsChannel.newMessagesCounter$.subscribe((value) => {
       if (value.length > 0) {
         this.moveUserToTop.emit(value);
-
         this.unreadCount = value.length;
         this.userChatNotificationsChannel.resetMessageCounter();
       }
     });
   }
-
 }
