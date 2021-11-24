@@ -7,7 +7,7 @@ a:active {
   text-decoration: none;
 }
 
-.lab-display-card {
+.labs-card-container {
   border: 1px solid $maya-blue;
   border-radius: $border-5;
   height: max-content;
@@ -18,31 +18,32 @@ a:active {
     margin: 0;
   }
 
-  .header-image {
+  .labs-card-header {
     border-bottom: 1px solid $maya-blue;
     border-top-left-radius: $border-5;
     border-top-right-radius: $border-5;
+    display: block;
     height: 134px;
     overflow: hidden;
 
-    img {
-      @apply com-h-full com-w-full com-object-cover com-object-center;
+    .labs-card-header {
+      @apply com-h-full com-w-full com-object-cover com-object-center com-border-none;
     }
   }
 
-  .content {
+  .labs-card-content {
     background-color: $white;
     height: 130px;
     padding: $space-12 $space-16 $space-8;
 
-    .title {
-      h4 {
+    .labs-card-content-prefix {
+      .labs-card-title {
         color: $neon-blue;
         font-size: $fs-card-title;
         line-height: 23px;
       }
 
-      p {
+      .labs-card-date {
         color: rgba($gunmetal, 0.5);
         font-size: $fs-card-secondary;
         font-style: italic;
@@ -50,8 +51,8 @@ a:active {
       }
     }
 
-    .author-stats {
-      .stats {
+    .labs-card-content-suffix {
+      .labs-card-stats {
         gap: $space-4;
         margin-left: $space-16;
 
@@ -62,14 +63,14 @@ a:active {
           margin-right: $space-4;
         }
 
-        .views {
+        .labs-card-views {
           p,
           nb-icon {
             margin-top: 1px;
           }
         }
 
-        .likes {
+        .labs-card-likes {
           app-votes-display {
             &::ng-deep {
               p {
