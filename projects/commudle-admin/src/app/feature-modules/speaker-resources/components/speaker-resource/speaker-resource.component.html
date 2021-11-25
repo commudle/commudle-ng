@@ -2,43 +2,56 @@
   <div class="left-column">
     <nb-card class="user-profile">
       <nb-card-body>
-        <app-user-profile-card-large [maxDesignationLength]="18" [maxNameLength]="14"
-                                     [user]="speakerResource.user"></app-user-profile-card-large>
+        <app-user-profile-card-large
+          [showFollowButton]="true"
+          [alignFollowToRight]="true"
+          [user]="speakerResource.user"
+        >
+        </app-user-profile-card-large>
       </nb-card-body>
     </nb-card>
   </div>
   <div class="center-column">
     <nb-card class="details">
       <nb-card-body>
-        <div class="title">{{speakerResource.title}}</div>
+        <div class="title">{{ speakerResource.title }}</div>
         <div class="event">
           At
           <a
-            [routerLink]="['/communities', speakerResource.event.kommunity_slug, 'events', speakerResource.event.slug]">
-            {{speakerResource.event.name}}
+            [routerLink]="['/communities', speakerResource.event.kommunity_slug, 'events', speakerResource.event.slug]"
+          >
+            {{ speakerResource.event.name }}
           </a>
         </div>
         <div class="date">
           <nb-icon icon="clock-outline"></nb-icon>
-          {{moment(speakerResource.event.start_time).format('dddd Do MMM, YYYY')}}
+          {{ moment(speakerResource.event.start_time).format('dddd Do MMM, YYYY') }}
         </div>
         <div class="content">
-          <div *ngIf="speakerResource.session_details_links" [innerHTML]="speakerResource.session_details_links"></div>
+          <div
+            *ngIf="speakerResource.session_details_links"
+            [innerHTML]="speakerResource.session_details_links | linky: { sanitizeHtml: true }"
+          ></div>
           <div *ngIf="speakerResource.embedded_content" [innerHTML]="iframe" class="embedded-content"></div>
         </div>
         <div class="interactions d-flex">
-          <app-votes-display [icon]="'heart-outline'" [votableId]="speakerResource.id"
-                             [votableType]="'SpeakerResource'"></app-votes-display>
+          <app-votes-display
+            [icon]="'heart-outline'"
+            [votableId]="speakerResource.id"
+            [votableType]="'SpeakerResource'"
+          ></app-votes-display>
           <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
             <nb-icon icon="message-circle-outline"></nb-icon>
-            {{messagesCount}}
+            {{ messagesCount }}
           </div>
         </div>
       </nb-card-body>
     </nb-card>
     <div #discussionChatContainer>
-      <app-speaker-resource-discussion *ngIf="discussionChat"
-                                       [discussion]="discussionChat"></app-speaker-resource-discussion>
+      <app-speaker-resource-discussion
+        *ngIf="discussionChat"
+        [discussion]="discussionChat"
+      ></app-speaker-resource-discussion>
     </div>
   </div>
 </div>
