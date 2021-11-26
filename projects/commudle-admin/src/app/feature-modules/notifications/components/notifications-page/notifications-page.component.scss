@@ -1,4 +1,20 @@
-nb-card {
+.container {
   max-width: 768px;
-  margin: 0 auto;
+
+  nb-card {
+    nb-card-body {
+      padding: 1rem 1rem;
+
+      nb-list {
+        nb-list-item {
+          &:first-child {
+            border-top: none;
+          }
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
 }

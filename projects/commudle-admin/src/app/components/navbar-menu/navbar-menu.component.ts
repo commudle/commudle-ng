@@ -18,7 +18,8 @@ export class NavbarMenuComponent implements OnInit {
   faUserFriends = faUserFriends;
   faBell = faBell;
 
-  viewType: string;
+  mobileView: boolean;
+  notificationCount = 0;
 
   notificationsPopoverComponent = NotificationsPopoverComponent;
 
@@ -26,9 +27,9 @@ export class NavbarMenuComponent implements OnInit {
 
   ngOnInit(): void {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      this.viewType = 'mobile';
+      this.mobileView = true;
     } else {
-      this.viewType = 'not-mobile';
+      this.mobileView = false;
     }
   }
 }
