@@ -1,31 +1,31 @@
-<nb-card class="communities-list" id="communities-list">
+<nb-card class="communities-list-container" id="communities-list">
   <nb-card-body>
-    <div class="prefix d-flex justify-content-space-between align-items-center">
-      <div class="heading">Popular Communities</div>
-      <div class="controls">
-        <button (click)="changePage(-1)" class="left-btn" nbButton>
+    <div class="communities-list-prefix d-flex justify-content-space-between align-items-center">
+      <div class="communities-list-heading">Popular Communities</div>
+      <div class="communities-list-navigation">
+        <button (click)="changePage(-1)" class="communities-list-left-btn" nbButton>
           <nb-icon icon="arrow-ios-back"></nb-icon>
         </button>
-        <button (click)="changePage(1)" class="right-btn" nbButton>
+        <button (click)="changePage(1)" class="communities-list-right-btn" nbButton>
           <nb-icon icon="arrow-ios-forward"></nb-icon>
         </button>
       </div>
     </div>
-    <div class="search d-flex flex-wrap align-items-center">
-      <div class="search-tags d-flex flex-wrap">
+    <div class="communities-list-search d-flex flex-wrap align-items-center">
+      <div class="communities-list-search-tags d-flex flex-wrap">
         <div
           (click)="changeTag(searchTag)"
           *ngFor="let searchTag of searchTags"
           [ngClass]="{ active: tag === searchTag }"
-          class="clickable search-tag"
+          class="clickable communities-list-search-tag"
         >
           {{ searchTag }}
         </div>
       </div>
-      <div class="search-bar">
+      <div class="communities-list-search-bar">
         <nb-form-field>
           <nb-icon icon="search" nbPrefix></nb-icon>
-          <input [formControl]="searchField" nbInput type="text" />
+          <input [formControl]="searchField" class="communities-list-search-input" nbInput type="text" />
         </nb-form-field>
       </div>
     </div>
