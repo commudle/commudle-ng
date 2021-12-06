@@ -1,6 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.search-container {
+.labs-search-container {
   padding: $space-24 0 0;
 
   .lab-search {
@@ -8,10 +8,10 @@
     position: relative;
     width: 100%;
 
-    .search-form {
+    .labs-search-form {
       max-width: 100%;
 
-      input {
+      .labs-search-input {
         background-color: $white;
         border: none;
         border-radius: 0;
@@ -30,14 +30,14 @@
       }
     }
 
-    .search-suffix {
+    .labs-search-suffix {
       left: 0;
       margin-left: $space-8;
       position: absolute;
       right: 0;
       z-index: 2;
 
-      .lab-search-params {
+      .labs-search-params {
         &::ng-deep {
           nb-tag-list {
             background-color: $white;
@@ -67,7 +67,7 @@
         }
       }
 
-      .tag-search-results {
+      .labs-tag-search-results {
         background-color: $white;
         height: 0;
         overflow: auto;
@@ -88,7 +88,7 @@
           padding: 0;
           width: 100%;
 
-          li {
+          .labs-tag-search-result {
             padding: 0.4 * $space-16 $space-16;
             transition: all 0.2s ease-in-out;
 
@@ -119,14 +119,14 @@
         }
       }
 
-      .tag-search-results.active {
+      .labs-tag-search-results.active {
         @apply com-shadow-lg;
         height: 30vh;
       }
     }
   }
 
-  .lab-actions {
+  .labs-search-actions {
     min-width: max-content;
 
     button {
@@ -151,7 +151,7 @@
       }
     }
 
-    .create-lab-btn {
+    .labs-create-btn {
       background-color: $neon-blue;
       color: white;
       margin: 0 $space-8;
@@ -172,12 +172,12 @@
       padding: 0;
       width: initial;
 
-      .search-suffix {
+      .labs-search-suffix {
         margin-left: 0;
       }
     }
 
-    .lab-actions {
+    .labs-search-actions {
       align-self: center;
 
       .filter-btn {

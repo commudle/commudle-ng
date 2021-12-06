@@ -12,7 +12,7 @@ a:active {
   text-decoration: none;
 }
 
-.home-experts {
+.home-experts-container {
   border: 0;
 
   nb-card-header {
@@ -23,10 +23,10 @@ a:active {
     padding: $space-28 $space-16 $space-24;
   }
 
-  .home-experts-list {
+  nb-card-body {
     padding: 0;
 
-    nb-list {
+    .home-experts-list {
       nb-list-item {
         align-items: center;
         border: none;
@@ -43,7 +43,7 @@ a:active {
           margin-right: $space-8;
           width: 100%;
 
-          .avatar {
+          .home-expert-avatar {
             @apply com-h-8 com-w-8;
             @apply com-rounded-full com-object-cover com-object-center;
             @apply com-mr-2;
@@ -51,7 +51,7 @@ a:active {
 
           .home-expert-details {
             .home-expert-name {
-              .name {
+              p {
                 color: $gunmetal;
                 font-size: $fs-h5;
                 font-weight: $fw-600;
@@ -72,7 +72,7 @@ a:active {
               line-height: 12px;
             }
 
-            .home-expert-member-follower-count {
+            .home-expert-followers {
               color: $neon-blue;
               font-size: $fs-h7;
               font-style: italic;

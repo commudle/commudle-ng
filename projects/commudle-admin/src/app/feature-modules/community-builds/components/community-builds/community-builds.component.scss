@@ -1,6 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.community-builds {
+.community-builds-container {
   .container {
     nb-card {
       @apply com-mb-4;
@@ -52,12 +52,22 @@
       }
     }
 
-    .info {
+    .community-builds-header {
       nb-card-body {
-        h1 {
+        .community-builds-title {
           nb-icon {
             @apply com-text-5xl;
           }
+        }
+      }
+    }
+
+    app-pa-slots {
+      &::ng-deep {
+        .page-ads-container {
+          height: 264px;
+          width: 264px;
+          @apply com-mx-auto;
         }
       }
     }

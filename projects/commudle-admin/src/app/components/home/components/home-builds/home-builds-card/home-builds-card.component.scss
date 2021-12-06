@@ -1,11 +1,11 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.home-build-card {
-  .home-build-card-prefix {
-    .home-build-card-tags {
+.home-builds-card {
+  .home-builds-card-prefix {
+    .home-builds-card-tags {
       gap: $space-4;
 
-      .home-build-card-tag {
+      .home-builds-card-tag {
         background-color: $lavender;
         border-radius: $border-20;
         color: $neon-blue;
@@ -15,17 +15,17 @@
     }
   }
 
-  .home-build-card-content {
+  .home-builds-card-content {
     margin: $space-8 0;
 
-    .home-build-card-name {
+    .home-builds-card-name {
       color: $gunmetal;
       font-size: $fs-h5;
       font-weight: 600;
       line-height: 16px;
     }
 
-    .home-build-card-description {
+    .home-builds-card-description {
       color: $spanish-gray;
       font-size: $fs-h6;
       line-height: normal;
@@ -33,8 +33,8 @@
     }
   }
 
-  .home-build-card-suffix {
-    .home-build-card-interactions {
+  .home-builds-card-suffix {
+    .home-builds-card-interactions {
       color: $gunmetal;
       font-size: $fs-h6;
 
@@ -44,11 +44,11 @@
       }
     }
 
-    .home-build-card-author {
+    .home-builds-card-author {
       height: 24px;
       overflow: hidden;
 
-      .home-build-card-author-name {
+      .home-builds-card-author-name {
         color: $gunmetal;
         font-size: $fs-h6;
         line-height: normal;
@@ -62,13 +62,13 @@
     }
   }
 
-  .home-build-card-suffix {
-    .home-build-card-author {
+  .home-builds-card-suffix {
+    .home-builds-card-author {
       background-color: $lavender;
       border-radius: $border-8 12px 12px $border-8;
       padding-left: $space-8;
 
-      .home-build-card-author-name {
+      .home-builds-card-author-name {
         display: block;
       }
     }

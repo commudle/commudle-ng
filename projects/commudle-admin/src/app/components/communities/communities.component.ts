@@ -1,19 +1,24 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Component({
   selector: 'app-communities',
   templateUrl: './communities.component.html',
   styleUrls: ['./communities.component.scss'],
+  providers: [IsBrowserService],
 })
 export class CommunitiesComponent implements OnInit {
   windowWidth: number;
 
-  constructor(private title: Title, private meta: Meta, private cdr: ChangeDetectorRef) {}
+  constructor(private title: Title, private meta: Meta, private isBrowserService: IsBrowserService) {}
 
   ngOnInit(): void {
     this.setMeta();
-    this.windowWidth = window.innerWidth;
+
+    if (this.isBrowserService.isBrowser()) {
+      this.windowWidth = window.innerWidth;
+    }
   }
 
   setMeta(): void {
