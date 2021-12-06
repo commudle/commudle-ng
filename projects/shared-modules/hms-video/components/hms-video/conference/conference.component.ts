@@ -15,6 +15,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -42,7 +43,7 @@ import { ConferenceSettingsComponent } from './conference-settings/conference-se
   templateUrl: './conference.component.html',
   styleUrls: ['./conference.component.scss'],
 })
-export class ConferenceComponent implements OnInit, OnDestroy {
+export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   @Input() serverClient: IHmsClient;
   @Input() currentUser: ICurrentUser;
   @Input() selectedRole: EHmsRoles;
@@ -174,6 +175,8 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
       hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
       hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+
+      this.subscribeToMediaDevices();
     } else {
       this.subscriptions.push(
         combineLatest(
