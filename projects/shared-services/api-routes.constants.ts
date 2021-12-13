@@ -549,4 +549,8 @@ export const API_ROUTES = {
     USERS: 'api/v2/mentions/user_entities',
     OTHERS: 'api/v2/mentions/other_entities',
   },
+
+  RECOMMENDATIONS: {
+    LABS: 'api/v2/disco_recommendations/labs',
+  },
 };
