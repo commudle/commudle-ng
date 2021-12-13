@@ -1,6 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.recommended-labs {
+.recommended-community-builds {
   margin: $space-16 0 0;
   overflow: hidden;
 
@@ -15,16 +15,16 @@
   nb-card-body {
     padding: 0;
 
-    .recommended-labs-details {
+    .recommended-builds-details {
       padding: $space-8 $space-16;
       transition: all 0.3s ease-in-out;
 
-      .recommended-lab-name {
+      .recommended-build-name {
         font-size: $fs-h5;
         margin: 0;
       }
 
-      .recommended-lab-type {
+      .recommended-build-type {
         color: $neon-blue;
         font-size: $fs-h6;
         margin: 0;
