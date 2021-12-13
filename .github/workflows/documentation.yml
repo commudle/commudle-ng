@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Clone repository
         run: npm ci && npm run compodoc:generate
       - name: Push documentation
-      - run: |
+        run: |
           git add .
           git commit -m "docs: update documentation"
-          git push origin docs
