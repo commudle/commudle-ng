@@ -8,6 +8,6 @@ import { RecommendedLabsComponent } from './components/recommended-labs/recommen
 @NgModule({
   declarations: [RecommendedLabsComponent, RecommendedBuildsComponent],
   imports: [CommonModule, NbCardModule, RouterModule],
-  exports: [RecommendedLabsComponent],
+  exports: [RecommendedLabsComponent, RecommendedBuildsComponent],
 })
 export class RecommendationsModule {}
