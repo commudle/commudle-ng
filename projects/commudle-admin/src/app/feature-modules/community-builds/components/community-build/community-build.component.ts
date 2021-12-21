@@ -1,22 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { ICommunityBuild } from 'projects/shared-models/community-build.model';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
+import { ICommunityBuild } from 'projects/shared-models/community-build.model';
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Component({
   selector: 'app-community-build',
   templateUrl: './community-build.component.html',
-  styleUrls: ['./community-build.component.scss']
+  styleUrls: ['./community-build.component.scss'],
+  providers: [IsBrowserService],
 })
 export class CommunityBuildComponent implements OnInit {
   communityBuild: ICommunityBuild;
+
+  windowWidth: number;
+
   constructor(
     private title: Title,
     private meta: Meta,
     private activatedRoute: ActivatedRoute,
     private communityBuildsService: CommunityBuildsService,
+    private isBrowserService: IsBrowserService,
   ) {}
+
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((data) => {
+      this.getCommunityBuild(data.community_build_id);
+    });
+
+    if (this.isBrowserService.isBrowser()) {
+      this.windowWidth = window.innerWidth;
+    }
+  }
 
   setMeta() {
     this.title.setTitle(`${this.communityBuild.name} | By ${this.communityBuild.user.name}`);
@@ -66,12 +82,6 @@ export class CommunityBuildComponent implements OnInit {
     this.meta.updateTag({
       name: 'twitter:description',
       content: this.communityBuild.description.replace(/<[^>]*>/g, '').substring(0, 160) + '...',
-    });
-  }
-
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((data) => {
-      this.getCommunityBuild(data.community_build_id);
     });
   }
 

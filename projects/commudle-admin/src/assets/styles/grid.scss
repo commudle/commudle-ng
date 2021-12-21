@@ -79,6 +79,17 @@ HTML Emmet's
       @apply com-col-span-20;
     }
   }
+
+  &.wide {
+    .left-column,
+    .right-column {
+      @apply com-col-span-6;
+    }
+
+    .main-column {
+      @apply com-col-span-18;
+    }
+  }
 }
 
 /*

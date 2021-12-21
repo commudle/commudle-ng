@@ -1,24 +1,43 @@
-<div class="page-padding">
-  <div class="community-build page-container" *ngIf="communityBuild">
-    <div class="page-navigation-actions">
-      <a nbButton ghost size="small" class="padding-0" [routerLink]="['/builds']">
-        <nb-icon icon="arrow-ios-back"></nb-icon> More Builds
-      </a>
-      <a nbButton ghost status="primary" size="small" class="padding-0" [routerLink]="['/builds/create']">
-        <nb-icon icon="plus-circle-outline"></nb-icon> Submit Your Build
-      </a>
+<div *ngIf="communityBuild" class="base-layout community-build-container">
+  <div class="container">
+    <div *ngIf="windowWidth > 1024" class="two-column-layout wide">
+      <div class="main-column">
+        <app-community-build-details [cBuild]="communityBuild"></app-community-build-details>
+      </div>
+      <div class="right-column">
+        <nb-card>
+          <nb-card-body>
+            <app-user-profile-card-large
+              [showFollowButton]="true"
+              [user]="communityBuild.user"
+            ></app-user-profile-card-large>
+            <ng-container *ngIf="communityBuild.user_roles_users.length > 0">
+              <p class="fs-p1">Teammates</p>
+              <ng-container *ngFor="let teammate of communityBuild.user_roles_users">
+                <app-user-profile-card-small
+                  *ngIf="teammate.user.name"
+                  [user]="teammate.user"
+                  class="com-block com-mt-2"
+                ></app-user-profile-card-small>
+              </ng-container>
+            </ng-container>
+          </nb-card-body>
+        </nb-card>
+      </div>
     </div>
-    <app-community-build-details [cBuild]="communityBuild" [showComments]="true"></app-community-build-details>
-    <div class="page-navigation-actions">
-      <a nbButton ghost size="small" class="padding-0" [routerLink]="['/builds']">
-        <nb-icon icon="arrow-ios-back"></nb-icon> More Builds
-      </a>
-      <a nbButton ghost status="primary" size="small" class="padding-0" [routerLink]="['/builds/create']">
-        <nb-icon icon="plus-circle-outline"></nb-icon> Submit Your Build
-      </a>
+    <div *ngIf="windowWidth <= 1024" class="one-column-layout">
+      <app-user-profile-card-large [showFollowButton]="true" [user]="communityBuild.user"></app-user-profile-card-large>
+      <ng-container *ngIf="communityBuild.user_roles_users.length > 0">
+        <p class="fs-p1">Teammates</p>
+        <ng-container *ngFor="let teammate of communityBuild.user_roles_users">
+          <app-user-profile-card-small
+            *ngIf="teammate.user.name"
+            [user]="teammate.user"
+            class="com-block com-mt-2"
+          ></app-user-profile-card-small>
+        </ng-container>
+      </ng-container>
+      <app-community-build-details [cBuild]="communityBuild"></app-community-build-details>
     </div>
-
   </div>
 </div>
-
-
