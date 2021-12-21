@@ -3,11 +3,13 @@ import { Meta, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Component({
   selector: 'app-community-builds',
   templateUrl: './community-builds.component.html',
   styleUrls: ['./community-builds.component.scss'],
+  providers: [IsBrowserService],
 })
 export class CommunityBuildsComponent implements OnInit {
   communityBuilds: ICommunityBuild[] = [];
@@ -17,11 +19,22 @@ export class CommunityBuildsComponent implements OnInit {
   isLoading = false;
   canLoadMore = true;
 
-  constructor(private communityBuildsService: CommunityBuildsService, private title: Title, private meta: Meta) {}
+  windowWidth: number;
+
+  constructor(
+    private communityBuildsService: CommunityBuildsService,
+    private title: Title,
+    private meta: Meta,
+    private isBrowserService: IsBrowserService,
+  ) {}
 
   ngOnInit() {
     this.setMeta();
     this.getCommunityBuilds();
+
+    if (this.isBrowserService.isBrowser()) {
+      this.windowWidth = window.innerWidth;
+    }
   }
 
   setMeta() {
@@ -53,6 +66,7 @@ export class CommunityBuildsComponent implements OnInit {
 
   getCommunityBuilds() {
     if (!this.isLoading && (!this.total || this.communityBuilds.length < this.total)) {
+      this.isLoading = true;
       this.communityBuildsService.pGetAll(this.page, this.count).subscribe((data: ICommunityBuilds) => {
         this.communityBuilds = this.communityBuilds.concat(data.community_builds);
         this.page += 1;

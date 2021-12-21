@@ -19,6 +19,10 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { ILab } from 'projects/shared-models/lab.model';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { Subscription } from 'rxjs';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-lab',
@@ -58,34 +62,35 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private dialogService: NbDialogService,
     private footerService: FooterService,
     private nbSidebarService: NbSidebarService,
+    private navigatorShareService: NavigatorShareService,
+    private libToastLogService: LibToastLogService,
+    private clipboard: Clipboard,
   ) {}
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
   // defined on the server side, we need isBrowser
   ngOnInit() {
-    if (this.isBrowser) {
-      this.routeSubscriptions.push(
-        this.activatedRoute.params.subscribe((data) => {
-          this.getLab(data.lab_id);
-          this.setStep(-1);
-        }),
-      );
+    this.routeSubscriptions.push(
+      this.activatedRoute.params.subscribe((data) => {
+        this.getLab(data.lab_id);
+        this.setStep(-1);
+      }),
+    );
 
-      // Listen for url changes
-      this.router.events.subscribe((event: NavigationStart) => {
-        if (event.navigationTrigger === 'popstate') {
-          // Get step id from url
-          const stepId = parseInt(event.url.split('/').pop(), 10);
-          if (isNaN(stepId)) {
-            // Navigation between a step and overview
-            this.setStep(-1);
-          } else {
-            // Navigation between steps
-            this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
-          }
+    // Listen for url changes
+    this.router.events.subscribe((event: NavigationStart) => {
+      if (event.navigationTrigger === 'popstate') {
+        // Get step id from url
+        const stepId = parseInt(event.url.split('/').pop(), 10);
+        if (isNaN(stepId)) {
+          // Navigation between a step and overview
+          this.setStep(-1);
+        } else {
+          // Navigation between steps
+          this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
         }
-      });
-    }
+      }
+    });
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
@@ -133,7 +138,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
     this.meta.updateTag({
       name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -153,7 +158,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
     this.meta.updateTag({
       name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
     });
     this.meta.updateTag({
       name: 'og:type',
@@ -171,12 +176,14 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     });
     this.meta.updateTag({
       name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
     });
   }
 
   scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (this.isBrowser) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   getLab(labId) {
@@ -245,5 +252,23 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toggleDetails() {
     this.nbSidebarService.toggle(false, 'labMenu');
+  }
+
+  copyTextToClipboard(lab: ILab): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(`${environment.app_url}/labs/${lab.slug}`)) {
+        this.libToastLogService.successDialog('Copied Lab successfully!');
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({
+        title: `${lab.name}`,
+        url: `${environment.app_url}/labs/${lab.slug}`,
+      })
+      .then(() => {
+        this.libToastLogService.successDialog('Shared successfully!');
+      });
   }
 }

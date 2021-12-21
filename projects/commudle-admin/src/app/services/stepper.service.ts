@@ -54,16 +54,20 @@ export class StepperService {
   calculateProfilePercentage() {
     let profilePercentage = 0;
 
-    if (this.currentUser.tags.length >= 5) {
+    if (this.currentUser.tags.length >= 1) {
       profilePercentage += this.profileWeights['skills'];
     }
 
+    let socialLinksPresent = 0;
+
     for (const link of this.socialLinks) {
-      //if any one link is present add 10%
       if (this.currentUser[link]) {
-        profilePercentage += this.profileWeights['socialLinks'];
-        break;
+        socialLinksPresent += 1;
       }
+    }
+
+    if (socialLinksPresent >= 3) {
+      profilePercentage += this.profileWeights['socialLinks'];
     }
 
     for (const field in this.profileWeights) {

@@ -12,6 +12,7 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() maxUserNameLength = 50;
   @Input() maxDesignationLength = 50;
   @Input() showFollowButton = false;
+  @Input() alignFollowToRight = false;
 
   constructor() {}
 

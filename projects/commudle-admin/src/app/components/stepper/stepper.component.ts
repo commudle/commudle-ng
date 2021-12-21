@@ -60,6 +60,12 @@ export class StepperComponent implements OnInit {
     input.nativeElement.value = '';
   }
 
+  restrictComma(event) {
+    if (event.code === 'Comma') {
+      event.preventDefault();
+    }
+  }
+
   submitStepOne() {
     // Get the updated user tags
     this.tags = this.tagsDialog;

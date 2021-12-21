@@ -1,24 +1,29 @@
-<div *ngIf="community" class="community-list-card">
-  <a [routerLink]="['/communities', community.slug]" class="prefix d-flex">
-    <div class="image">
-      <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
-    </div>
-    <div class="details">
-      <div class="name com-line-clamp-2">{{ community.name }}</div>
-      <div class="member-count">{{ community.member_count }} Members</div>
+<div *ngIf="community" class="community-list-card-container">
+  <a [routerLink]="['/communities', community.slug]" class="community-list-card-prefix d-flex">
+    <img
+      alt="{{ community.name }}"
+      class="community-list-card-logo"
+      src="{{ community.logo_path }}"
+      title="{{ community.name }}"
+    />
+    <div class="community-list-card-details">
+      <p class="community-list-card-name com-line-clamp-2">{{ community.name }}</p>
+      <p class="community-list-card-members">{{ community.member_count }} Members</p>
     </div>
   </a>
-  <a [routerLink]="['/communities', community.slug]" class="tags">
-    <div *ngFor="let tag of community.tags" class="tag">{{ tag.name }}</div>
+  <a [routerLink]="['/communities', community.slug]" class="community-list-card-tags">
+    <div *ngFor="let tag of community.tags" class="community-list-card-tag">{{ tag.name }}</div>
   </a>
-  <div *ngIf="community.mini_description" class="about com-line-clamp-4">{{ community.mini_description }}</div>
-  <div class="suffix d-flex align-items-center">
-    <a [routerLink]="['/communities', community.slug, 'members']" class="members">
-      <span *ngFor="let member of members" class="avatar">
+  <div *ngIf="community.mini_description" class="community-list-card-about com-line-clamp-4">
+    {{ community.mini_description }}
+  </div>
+  <div class="community-list-card-suffix d-flex align-items-center">
+    <a [routerLink]="['/communities', community.slug, 'members']" class="community-list-card-member-avatars">
+      <span *ngFor="let member of members" class="community-list-card-member-avatar">
         <img alt="{{ member.name }}" src="{{ member.avatar }}" title="{{ member.name }}" />
       </span>
     </a>
-    <div class="join-community">
+    <div class="community-join-btn">
       <app-membership-toggle [community]="community"></app-membership-toggle>
     </div>
   </div>

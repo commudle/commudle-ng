@@ -22,6 +22,8 @@ export class LabsComponent implements OnInit {
   searchedTags: string[] = [];
   searchedLabs: ILab[] = [];
 
+  isLoading = false;
+
   constructor(private meta: Meta, private title: Title, private labsService: LabsService) {}
 
   ngOnInit() {
@@ -32,11 +34,11 @@ export class LabsComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle('Labs | Learn Something New!');
+    this.title.setTitle('Labs - Step By Step Tutorials');
     this.meta.updateTag({
       name: 'description',
       content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:image',
@@ -48,12 +50,13 @@ export class LabsComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'og:title',
-      content: 'Labs | Learn Something New!',
+      content:
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:description',
       content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
     this.meta.updateTag({
       name: 'og:type',
@@ -65,12 +68,12 @@ export class LabsComponent implements OnInit {
     });
     this.meta.updateTag({
       name: 'twitter:title',
-      content: 'Labs | Learn Something New!',
+      content: 'Labs - Step By Step Tutorials',
     });
     this.meta.updateTag({
       name: 'twitter:description',
       content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
+        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
     });
   }
 
@@ -97,11 +100,13 @@ export class LabsComponent implements OnInit {
   }
 
   getLabsByTags(replace: boolean = false): void {
+    this.isLoading = true;
     this.labsService.searchLabsByTags(this.searchedTags, this.page, this.count).subscribe((value: ILabs) => {
       this.searchedLabs = replace ? value.labs : this.searchedLabs.concat(value.labs);
       this.total = value.total;
       this.count = value.count;
       this.page++;
+      this.isLoading = false;
     });
   }
 }

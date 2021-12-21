@@ -16,9 +16,11 @@
               <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
               <input
                 (tagAdd)="onTagAdd($event)"
+                [separatorKeys]="[13, 188]"
+                (keypress)="restrictComma($event)"
                 fullWidth
                 nbTagInput
-                placeholder="Type a tag and press enter"
+                placeholder="Type a tag and press enter or comma"
                 type="text"
               />
             </nb-tag-list>

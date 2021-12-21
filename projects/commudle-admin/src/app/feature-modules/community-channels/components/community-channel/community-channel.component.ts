@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
@@ -44,6 +44,7 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
     private communityChannelsService: CommunityChannelsService,
     private communityChannelChannel: CommunityChannelChannel,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -148,6 +149,13 @@ export class CommunityChannelComponent implements OnInit, OnDestroy {
         popover.hide();
       }
     });
+  }
+
+  closeChannelMembersList() {
+    let currentUrl = this.router.url;
+    if (currentUrl.includes('members')) {
+      this.router.navigate([currentUrl.substring(0, currentUrl.lastIndexOf('/'))]);
+    }
   }
 
   initialize() {

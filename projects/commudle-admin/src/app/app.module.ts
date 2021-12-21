@@ -42,6 +42,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
@@ -50,7 +51,6 @@ import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
-import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { AppComponent } from './app.component';
@@ -61,7 +61,6 @@ import { CommunitiesFeaturedComponent } from './components/communities/communiti
 import { CommunitiesListCardComponent } from './components/communities/communities-list/communities-list-card/communities-list-card.component';
 import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
 import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
-import { CommunitiesPromotionsComponent } from './components/communities/communities-promotions/communities-promotions.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { HomeBuildsCardComponent } from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
@@ -107,7 +106,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     OrganizerCommunitiesListComponent,
     CommunityComponent,
     CommunitiesAboutComponent,
-    CommunitiesPromotionsComponent,
     CommunitiesListComponent,
     CommunitiesListCardComponent,
     CommunitiesPostsComponent,
