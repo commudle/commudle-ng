@@ -1,97 +1,36 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
+p {
+  margin: 0;
+}
+
 .community-build-details {
-  width: 100%;
+  .community-build-name {
+    margin: $space-20 0;
+  }
 
-  .community-build {
-    width: 100%;
-
-    nb-card-body {
-      overflow: unset;
-      padding: 1rem 0;
-    }
-
-    .header,
-    .embed,
-    .link,
-    .description,
-    .teammate-details,
-    .author-details,
-    .stats {
-      padding: 0 1.5rem;
-    }
-
-    .header {
-      .date {
-        color: grey;
-      }
-
-      h1 {
-        font-weight: 400;
-        margin: 0;
-      }
-
-      .author {
-        color: grey;
-
-        .expert-icon {
-          height: 12px;
-          margin-left: $space-4;
-          vertical-align: middle;
-          width: 12px;
+  .community-build-tags {
+    &::ng-deep {
+      .nb-tag-list-tags-wrapper {
+        nb-tag {
+          background-color: $azureish-white;
+          border: none;
+          border-radius: $border-5;
+          color: $gunmetal;
+          font-size: $fs-h6;
+          font-weight: $fw-400;
+          line-height: 12px;
+          padding: $space-4 $space-12;
+          text-transform: lowercase;
         }
       }
     }
+  }
 
-    .build-type {
-      margin: 0 0 1rem;
+  .community-build-content {
+    margin: $space-20 0;
 
-      span {
-        background: #5072ff;
-        border-radius: 21px;
-        color: white;
-        font-size: 0.8rem;
-        padding: 5px 8px;
-      }
-    }
-
-    .description {
-      margin: 1rem 0 1rem;
-
-      &::ng-deep {
-        pre {
-          white-space: pre-wrap;
-        }
-      }
-    }
-
-    .images {
-      background: #d3d3d33b;
-      margin-bottom: 1.5rem;
-      overflow-x: auto;
-
-      .image-stripe {
-        display: flex;
-        flex-wrap: nowrap;
-        width: fit-content;
-
-        .image {
-          align-items: center;
-          border: 1px solid lightgrey;
-          display: flex;
-          height: 280px;
-          margin: 0 0.5rem;
-          overflow: hidden;
-          width: 280px;
-
-          img {
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .embed {
+    .community-build-embed {
       display: flex;
       justify-content: center;
       max-width: 100%;
@@ -102,51 +41,34 @@
       }
     }
 
-    .link {
-      margin-bottom: 1rem;
-
-      p {
-        margin: 0;
-
-        a {
-        }
-      }
-    }
-
-    .stats {
-      display: flex;
-
-      > p {
-        align-items: center;
-        display: flex;
-        margin: 0.5rem 1rem 0 0;
-
-        > span {
-          margin-left: 0.5rem;
-        }
-      }
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-
-      app-badge {
-        margin: 5px;
-      }
+    .community-build-link {
+      margin: $space-8 0;
     }
   }
 
-  .comments {
-    border-top: 1px solid lightgrey;
-    height: 550px;
-    margin: 1rem 0;
-    padding: $space-12 $space-16 $space-32;
+  .commudle-build-images {
+    background: #d3d3d33b;
+    margin-top: 1.5rem;
+    overflow-x: auto;
 
-    > p {
-      font-size: 1.3rem;
-      font-weight: 300;
-      margin: 0 0 1rem;
+    .commudle-build-images-stripe {
+      display: flex;
+      flex-wrap: nowrap;
+      width: fit-content;
+
+      .commudle-build-image {
+        align-items: center;
+        border: 1px solid lightgrey;
+        display: flex;
+        height: 280px;
+        margin: 0 0.5rem;
+        overflow: hidden;
+        width: 280px;
+
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 }
