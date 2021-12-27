@@ -3,68 +3,32 @@
     <div class="one-column-layout">
       <nb-card>
         <nb-card-body>
-          <nb-list>
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-            <nb-list-item
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum iste ex doloremque earum nihil, ad quos
-              blanditiis odio ipsam velit optio cupiditate quam deserunt, maxime repellat impedit dolores harum.
-              Quisquam.</nb-list-item
-            >
-          </nb-list>
+          <div
+            (scrolled)="getOlderNotifications()"
+            [infiniteScrollDisabled]="!(canLoadMore && total)"
+            appInfiniteScroll
+            class="com-flex com-flex-col com-gap-4"
+          >
+            <nb-list>
+              <nb-list-item *ngFor="let notification of notifications">
+                <div class="avatar">
+                  <img
+                    alt="{{ notification.sender?.name }}"
+                    src="{{ notification.sender?.avatar }}"
+                    title="{{ notification.sender?.name }}"
+                  />
+                </div>
+                <div class="content">
+                  {{ notification.notification_message }}
+                </div>
+              </nb-list-item>
+            </nb-list>
+          </div>
+          <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+            <div class="spinner">
+              <div *ngFor="let _ of [].constructor(5)"></div>
+            </div>
+          </div>
         </nb-card-body>
       </nb-card>
     </div>

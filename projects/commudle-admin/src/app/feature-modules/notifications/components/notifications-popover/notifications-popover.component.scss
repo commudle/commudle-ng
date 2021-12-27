@@ -9,6 +9,47 @@ nb-card {
     padding: 0;
     nb-list {
       nb-list-item {
+        position: relative;
+
+        &:hover {
+          background-color: honeydew;
+          border-left: solid crimson;
+          cursor: pointer;
+
+          nb-icon {
+            visibility: visible;
+          }
+        }
+
+        .avatar {
+          border-radius: 50%;
+          max-height: 56px;
+          max-width: 56px;
+          min-width: 56px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .content {
+          margin: 0 12px;
+        }
+
+        nb-icon {
+          position: absolute;
+          right: 20px;
+          border-radius: 6px;
+          font-size: 30px;
+          padding: 2px;
+          visibility: hidden;
+
+          &:hover {
+            background-color: #d0d7de;
+          }
+        }
+
         border: 0;
       }
     }
