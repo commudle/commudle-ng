@@ -1,0 +1,13 @@
+<nb-card *ngIf="recommendedLabs.length > 0" class="recommended-labs">
+  <nb-card-header>Recommended Labs</nb-card-header>
+  <nb-card-body>
+    <div
+      *ngFor="let lab of recommendedLabs"
+      [routerLink]="['/labs', lab.slug]"
+      class="recommended-labs-details clickable"
+    >
+      <p class="recommended-lab-name">{{ lab.name }}</p>
+      <p class="recommended-lab-type">LAB</p>
+    </div>
+  </nb-card-body>
+</nb-card>

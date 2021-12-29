@@ -554,4 +554,9 @@ export const API_ROUTES = {
     INDEX: 'api/v2/notifications',
     UPDATE_STATUS: 'api/v2/notifications/update_status',
   },
+
+  RECOMMENDATIONS: {
+    LABS: 'api/v2/disco_recommendations/labs',
+    COMMUNITY_BUILDS: 'api/v2/disco_recommendations/community_builds',
+  },
 };
