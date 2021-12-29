@@ -23,7 +23,6 @@ export class NotificationChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
-    private authWatchService: LibAuthwatchService,
   ) {
     this.actionCableConnection.acSocket$.subscribe((connection) => {
       this.cableConnection = connection;
@@ -42,7 +41,5 @@ export class NotificationChannel {
         },
       },
     );
-
-    return this.subscription;
   }
 }

@@ -13,7 +13,7 @@
     <div class="home-navbar-menu-option">About</div>
   </a> -->
 
-  <a *ngIf="mobileView" [routerLink]="['/notifications']" class="notification">
+  <a *ngIf="mobileView" [routerLink]="['/notifications']" class="notification" routerLinkActive="active">
     <div class="icon">
       <span *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</span>
       <fa-icon [icon]="faBell"></fa-icon>

@@ -12,8 +12,7 @@ nb-card {
         position: relative;
 
         &:hover {
-          background-color: honeydew;
-          border-left: solid crimson;
+          background-color: rgba(0, 0, 0, 0.05);
           cursor: pointer;
 
           nb-icon {
@@ -21,20 +20,28 @@ nb-card {
           }
         }
 
-        .avatar {
-          border-radius: 50%;
-          max-height: 56px;
-          max-width: 56px;
-          min-width: 56px;
-          overflow: hidden;
-
-          img {
-            width: 100%;
-          }
+        nb-badge{
+          margin-left: 10px;
         }
 
-        .content {
-          margin: 0 12px;
+        a {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+
+
+          .avatar {
+            overflow: hidden;
+  
+            img {
+              width: 100%;
+            }
+          }
+  
+          .content {
+            margin: 0 12px;
+          }
         }
 
         nb-icon {

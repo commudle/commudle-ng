@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { INotification } from 'projects/shared-models/notification.model';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
+import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum'
 
 @Component({
   selector: 'app-notifications-popover',
@@ -15,6 +15,8 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
 
   page = 1;
   count = 10;
+
+  ENotificationStatus = ENotificationStatus;
 
   constructor(private notificationChannel: NotificationChannel, private notificationService: NotificationService) {}
 
@@ -30,10 +32,11 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
   }
 
   getOlderNotifications() {
-    this.notificationService.getAllNotifications(this.page, this.count).subscribe((val) => {
-      this.notifications = val.notifications;
-      console.log(this.notifications);
-    });
+    this.subscriptions.push(
+      this.notificationService.getAllNotifications(this.page, this.count).subscribe((val) => {
+        this.notifications = val.notifications;
+      })
+    )
   }
 
   receiveData() {
@@ -42,9 +45,13 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              this.notifications.unshift(data?.notification);
+              this.notifications.unshift(data.notification);
             }
             case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+              const idx = this.notifications.findIndex((notification) => notification.id === data.notification_queue_id);
+              if(idx != -1){
+                this.notifications[idx].status = data.status;
+              }
             }
           }
         }
@@ -53,28 +60,16 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
   }
 
   markAsRead(notification: INotification) {
-    this.changeStatus(ENotificationStatuses.READ, notification);
+    this.changeStatus(ENotificationStatus.READ, notification);
   }
 
   markAsInteracted(notification: INotification) {
-    this.changeStatus(ENotificationStatuses.INTERACTED, notification);
+    this.changeStatus(ENotificationStatus.INTERACTED, notification);
   }
 
-  changeStatus(status: string, notification: INotification) {
-    this.notificationService.updateNotificationStatus(status, notification.id).subscribe((val) => {
-      if (val) {
-        let idx = -1;
-        for (let i = 0; i < this.notifications.length; i++) {
-          if (this.notifications[i].id === notification.id) {
-            idx = i;
-            break;
-          }
-        }
-
-        if (idx != -1) {
-          this.notifications[idx].status = status;
-        }
-      }
-    });
+  changeStatus(status: ENotificationStatus, notification: INotification) {
+    this.subscriptions.push(
+      this.notificationService.updateNotificationStatus(status, notification.id).subscribe()
+    )
   }
 }

@@ -34,26 +34,30 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
   getOlderNotifications() {
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
-      this.notificationService.getAllNotifications(this.page, this.count).subscribe((val) => {
-        this.notifications = this.notifications.concat(val.notifications);
-        this.page += 1;
-        this.total = val.total;
-        this.isLoading = false;
-        if (this.notifications.length >= this.total) {
-          this.canLoadMore = false;
-        }
-      });
+      this.subscriptions.push(
+        this.notificationService.getAllNotifications(this.page, this.count).subscribe((val) => {
+          this.notifications = this.notifications.concat(val.notifications);
+          this.page += 1;
+          this.total = val.total;
+          this.isLoading = false;
+          if (this.notifications.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        })
+      )
     }
   }
 
   receiveData() {
     this.subscriptions.push(
       this.notificationChannel.notificationData$.subscribe((data) => {
-        switch (data?.action) {
-          case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-            this.notifications.unshift(data?.notification);
-          }
-          case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+        if(data){
+          switch (data.action) {
+            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              this.notifications.unshift(data.notification);
+            }
+            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+            }
           }
         }
       }),

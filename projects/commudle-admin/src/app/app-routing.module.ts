@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: 'notifications',
-    component: NotificationsPageComponent,
+    loadChildren: () => import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   {
     path: 'features',

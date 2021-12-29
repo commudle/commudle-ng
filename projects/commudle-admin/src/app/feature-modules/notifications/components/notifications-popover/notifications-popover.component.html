@@ -2,34 +2,36 @@
   <nb-card-header> Notifications </nb-card-header>
   <nb-card-body>
     <nb-list>
-      <nb-list-item *ngFor="let notification of notifications" (click)="markAsInteracted(notification)">
+      <nb-list-item *ngFor="let notification of notifications">
         <nb-badge
-          *ngIf="notification.status === 'unread'"
+          *ngIf="notification.status === ENotificationStatus.UNREAD"
           status="primary"
           dotMode="true"
           position="left center"
         ></nb-badge>
-        <div class="avatar">
-          <img
-            alt="{{ notification.sender.name }}"
-            src="{{ notification.sender.avatar }}"
-            title="{{ notification.sender.name }}"
-          />
-        </div>
-        <div class="content">
-          {{ notification.notification_message }}
-        </div>
+        <a [routerLink]="['/users', notification.sender.username]" (click)="markAsInteracted(notification)">
+          <div class="avatar com-rounded-[50%] com-max-h-[56px] com-max-w-[56px] com-min-w-[56px]">
+            <img
+              alt="{{ notification.sender.name }}"
+              src="{{ notification.sender.avatar }}"
+              title="{{ notification.sender.name }}"
+            />
+          </div>
+          <p class="content">
+            {{ notification.notification_message }}
+          </p>
+        </a>
         <nb-icon
-          *ngIf="notification.status === 'unread'"
+          *ngIf="notification.status === ENotificationStatus.UNREAD"
           (click)="markAsRead(notification)"
           [icon]="'checkmark-outline'"
           [status]="'basic'"
+          title="Mark as read"
         ></nb-icon>
       </nb-list-item>
     </nb-list>
   </nb-card-body>
   <nb-card-footer>
-    <!-- TODO: change it to commudle.com -->
-    <a href="https://test.commudle/notifications"> View All Notifications </a>
+    <a [routerLink]="['/notifications']"> View All Notifications </a>
   </nb-card-footer>
 </nb-card>

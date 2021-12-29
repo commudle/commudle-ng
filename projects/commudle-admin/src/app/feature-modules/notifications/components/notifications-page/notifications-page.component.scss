@@ -1,19 +1,14 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .container {
-  max-width: 768px;
 
   nb-card {
     nb-card-body {
-      padding: 1rem 1rem;
+      padding: 1rem;
 
       nb-list {
         nb-list-item {
           .avatar {
-            border-radius: 50%;
-            max-height: 56px;
-            max-width: 56px;
-            min-width: 56px;
             overflow: hidden;
 
             img {
