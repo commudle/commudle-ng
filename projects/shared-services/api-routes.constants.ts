@@ -549,4 +549,9 @@ export const API_ROUTES = {
     USERS: 'api/v2/mentions/user_entities',
     OTHERS: 'api/v2/mentions/other_entities',
   },
+
+  NOTIFICATIONS: {
+    INDEX: 'api/v2/notifications',
+    UPDATE_STATUS: 'api/v2/notifications/update_status',
+  },
 };

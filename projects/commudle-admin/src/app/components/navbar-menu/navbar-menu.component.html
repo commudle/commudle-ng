@@ -5,12 +5,36 @@
     </div>
     <div class="home-navbar-menu-option">Home</div>
   </a>
-  <a [routerLink]="['/about']" routerLinkActive="active">
+
+  <!-- <a [routerLink]="['/about']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faInfoCircle"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">About</div>
+  </a> -->
+
+  <a *ngIf="mobileView" [routerLink]="['/notifications']" class="notification" routerLinkActive="active">
+    <div class="icon">
+      <span *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</span>
+      <fa-icon [icon]="faBell"></fa-icon>
+    </div>
+    <div class="home-navbar-menu-option">Notifications</div>
   </a>
+
+  <a *ngIf="!mobileView" class="notification">
+    <div class="icon">
+      <span *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</span>
+      <fa-icon
+        (click)="resetCount()"
+        [icon]="faBell"
+        [nbPopover]="notificationsPopoverComponent"
+        [nbPopoverContext]="{ notificationMessage: notificationMessage }"
+        nbPopoverPlacement="bottom"
+      ></fa-icon>
+    </div>
+    <div class="home-navbar-menu-option">Notifications</div>
+  </a>
+
   <a [routerLink]="['/builds']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faLightbulb"></fa-icon>

@@ -22,6 +22,7 @@ import {
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
+  NbPopoverModule,
   NbRadioModule,
   NbRouteTabsetModule,
   NbSelectModule,
@@ -89,6 +90,7 @@ import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
 import { LabsModule } from './feature-modules/labs/labs.module';
 import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
+import { NotificationsModule } from './feature-modules/notifications/notifications.module';
 import { PublicCommunityModule } from './feature-modules/public-community/public-community.module';
 import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
@@ -159,6 +161,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     MainNewslettersModule,
     PageAdsModule,
     SharedDirectivesModule,
+    NotificationsModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -194,6 +197,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbActionsModule,
     NbStepperModule,
     NbTagModule,
+    NbPopoverModule,
 
     // Other external npm modules
     Ng2CompleterModule,

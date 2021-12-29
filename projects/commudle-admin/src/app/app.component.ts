@@ -16,6 +16,7 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
+import { NotificationChannel } from './feature-modules/notifications/services/websockets/notification-channel';
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 
@@ -57,6 +58,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
     private profileStatusBarService: ProfileStatusBarService,
+    private notificationChannel: NotificationChannel,
   ) {
     // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);

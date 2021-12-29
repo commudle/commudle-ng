@@ -5,6 +5,22 @@
   padding-top: $space-8;
   text-align: center;
 
+  .notification {
+    position: relative;
+    cursor: pointer;
+
+    .notification-badge {
+      font-size: 10px;
+      position: absolute;
+      top: -7px;
+      right: 34px;
+      padding: 0 6px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+    }
+  }
+
   a {
     border: none;
     color: $gunmetal;
@@ -53,5 +69,9 @@
     padding: $space-12 $space-8 0 $space-8 !important;
     position: fixed;
     width: 100vw;
+
+    a {
+      padding: 0 $space-12 $space-6 $space-12;
+    }
   }
 }
