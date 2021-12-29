@@ -7,17 +7,16 @@
 
   .notification {
     position: relative;
-    cursor: pointer;
 
     .notification-badge {
-      font-size: 10px;
-      position: absolute;
-      top: -7px;
-      right: 34px;
-      padding: 0 6px;
+      background: $ultra-red;
       border-radius: 50%;
-      background: red;
-      color: white;
+      color: $white;
+      font-size: 10px;
+      padding: 0 6px;
+      position: absolute;
+      right: 34px;
+      top: -7px;
     }
   }
 

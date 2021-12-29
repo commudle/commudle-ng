@@ -12,7 +12,6 @@ import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
-import { NotificationsPageComponent } from './feature-modules/notifications/components/notifications-page/notifications-page.component';
 import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
 import { InitResolver } from './resolvers/init.resolver';
 
@@ -31,7 +30,8 @@ const routes = [
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
+    loadChildren: () =>
+      import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   {
     path: 'features',

@@ -1,7 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .container {
-
   nb-card {
     nb-card-body {
       padding: 1rem;
@@ -9,20 +8,15 @@
       nb-list {
         nb-list-item {
           .avatar {
-            overflow: hidden;
-
-            img {
-              width: 100%;
-            }
-          }
-
-          .content {
-            margin: 0 12px;
+            @apply com-mr-3;
+            @apply com-h-12 com-w-12;
+            @apply com-rounded-full com-object-cover com-object-center com-align-middle;
           }
 
           &:first-child {
             border-top: none;
           }
+
           &:last-child {
             border-bottom: none;
           }

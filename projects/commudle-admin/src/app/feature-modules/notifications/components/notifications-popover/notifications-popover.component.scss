@@ -1,14 +1,17 @@
 nb-card {
-  width: 500px;
-  max-height: 500px;
-  margin: 0;
-  border-radius: 0.25rem;
   border: 0;
+  border-radius: 0.25rem;
+  margin: 0;
+  max-height: 500px;
+  width: 500px;
 
   nb-card-body {
     padding: 0;
+
     nb-list {
       nb-list-item {
+        border: 0;
+
         position: relative;
 
         &:hover {
@@ -20,53 +23,48 @@ nb-card {
           }
         }
 
-        nb-badge{
+        nb-badge {
           margin-left: 10px;
         }
 
         a {
-          text-decoration: none;
-          display: flex;
           align-items: center;
+          display: flex;
           padding-left: 10px;
-
+          text-decoration: none;
 
           .avatar {
-            overflow: hidden;
-  
-            img {
-              width: 100%;
-            }
+            @apply com-mr-3;
+            @apply com-h-12 com-w-12;
+            @apply com-rounded-full com-object-cover com-object-center com-align-middle;
           }
-  
+
           .content {
             margin: 0 12px;
           }
         }
 
         nb-icon {
-          position: absolute;
-          right: 20px;
           border-radius: 6px;
           font-size: 30px;
           padding: 2px;
+          position: absolute;
+          right: 20px;
           visibility: hidden;
 
           &:hover {
             background-color: #d0d7de;
           }
         }
-
-        border: 0;
       }
     }
   }
 
   nb-card-footer {
-    padding: 0.5rem 1rem;
     border: 0;
+    cursor: pointer;
     display: flex;
     justify-content: flex-end;
-    cursor: pointer;
+    padding: 0.5rem 1rem;
   }
 }

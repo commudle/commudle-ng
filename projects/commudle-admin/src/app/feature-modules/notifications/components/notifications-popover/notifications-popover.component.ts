@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
-import { INotification } from 'projects/shared-models/notification.model';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum'
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
+import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
+import { INotification } from 'projects/shared-models/notification.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notifications-popover',
@@ -10,7 +11,6 @@ import { ENotificationStatus } from 'projects/shared-models/enums/notification_s
   styleUrls: ['./notifications-popover.component.scss'],
 })
 export class NotificationsPopoverComponent implements OnInit, OnDestroy {
-  subscriptions = [];
   notifications: INotification[] = [];
 
   page = 1;
@@ -18,10 +18,12 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
 
   ENotificationStatus = ENotificationStatus;
 
+  subscriptions: Subscription[] = [];
+
   constructor(private notificationChannel: NotificationChannel, private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    this.getOlderNotifications();
+    this.getNotifications();
     this.receiveData();
   }
 
@@ -31,12 +33,12 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
     });
   }
 
-  getOlderNotifications() {
+  getNotifications() {
     this.subscriptions.push(
-      this.notificationService.getAllNotifications(this.page, this.count).subscribe((val) => {
-        this.notifications = val.notifications;
-      })
-    )
+      this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
+        this.notifications = value.notifications;
+      }),
+    );
   }
 
   receiveData() {
@@ -46,10 +48,13 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
               this.notifications.unshift(data.notification);
+              break;
             }
             case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
-              const idx = this.notifications.findIndex((notification) => notification.id === data.notification_queue_id);
-              if(idx != -1){
+              const idx = this.notifications.findIndex(
+                (notification) => notification.id === data.notification_queue_id,
+              );
+              if (idx != -1) {
                 this.notifications[idx].status = data.status;
               }
             }
@@ -59,17 +64,7 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
     );
   }
 
-  markAsRead(notification: INotification) {
-    this.changeStatus(ENotificationStatus.READ, notification);
-  }
-
-  markAsInteracted(notification: INotification) {
-    this.changeStatus(ENotificationStatus.INTERACTED, notification);
-  }
-
   changeStatus(status: ENotificationStatus, notification: INotification) {
-    this.subscriptions.push(
-      this.notificationService.updateNotificationStatus(status, notification.id).subscribe()
-    )
+    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
   }
 }

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as actionCable from 'actioncable';
-import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -21,9 +20,7 @@ export class NotificationChannel {
   private notificationData: BehaviorSubject<any> = new BehaviorSubject(null);
   public notificationData$: Observable<any> = this.notificationData.asObservable();
 
-  constructor(
-    private actionCableConnection: ActionCableConnectionSocket,
-  ) {
+  constructor(private actionCableConnection: ActionCableConnectionSocket) {
     this.actionCableConnection.acSocket$.subscribe((connection) => {
       this.cableConnection = connection;
       this.subscribe();
