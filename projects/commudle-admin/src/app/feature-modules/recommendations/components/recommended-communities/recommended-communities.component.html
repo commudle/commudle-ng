@@ -1,0 +1,13 @@
+<nb-card *ngIf="recommendedCommunities.length > 0" class="recommended-communities">
+  <nb-card-header>Recommended Communities</nb-card-header>
+  <nb-card-body>
+    <div
+      *ngFor="let community of recommendedCommunities"
+      [routerLink]="['/communities', community.slug]"
+      class="recommended-communities-details clickable"
+    >
+      <p class="recommended-community-name">{{ community.name }}</p>
+      <p class="recommended-community-type">COMMUNITY</p>
+    </div>
+  </nb-card-body>
+</nb-card>
