@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, TemplateRef } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-follow.component.html',
   styleUrls: ['./user-follow.component.scss'],
 })
-export class UserFollowComponent implements OnInit, OnDestroy {
+export class UserFollowComponent implements OnChanges, OnDestroy {
   @Input() username: string;
   @Input() showIcon = true;
 
@@ -29,7 +29,7 @@ export class UserFollowComponent implements OnInit, OnDestroy {
     private nbDialogService: NbDialogService,
   ) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     // Get user's data
     this.subscriptions.push(this.appUsersService.getProfile(this.username).subscribe((data) => (this.user = data)));
 
