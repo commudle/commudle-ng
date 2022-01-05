@@ -20,7 +20,7 @@
     ></emoji-mart>
     <form (submit)="sendMessage()" *ngIf="permittedActions.includes(allActions.ADD)" [formGroup]="messageForm">
       <nb-form-field>
-        <button (click)="showEmojiPicker = !showEmojiPicker" ghost nbButton nbPrefix type="button">
+        <button (click)="showEmojiPicker = !showEmojiPicker" class="emoji-picker" ghost nbButton nbPrefix type="button">
           <fa-icon [icon]="faGrin"></fa-icon>
         </button>
         <input

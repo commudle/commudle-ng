@@ -558,5 +558,6 @@ export const API_ROUTES = {
   RECOMMENDATIONS: {
     LABS: 'api/v2/disco_recommendations/labs',
     COMMUNITY_BUILDS: 'api/v2/disco_recommendations/community_builds',
+    COMMUNITIES: 'api/v2/disco_recommendations/communities',
   },
 };

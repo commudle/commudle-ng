@@ -4,6 +4,12 @@ p {
   margin: 0;
 }
 
+.community-build-discussion {
+  nb-card-body {
+    overflow: initial;
+  }
+}
+
 .community-build-details {
   .community-build-name {
     margin: $space-20 0;

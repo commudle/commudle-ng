@@ -92,6 +92,7 @@ import { LabsModule } from './feature-modules/labs/labs.module';
 import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
 import { NotificationsModule } from './feature-modules/notifications/notifications.module';
 import { PublicCommunityModule } from './feature-modules/public-community/public-community.module';
+import { RecommendationsModule } from './feature-modules/recommendations/recommendations.module';
 import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
@@ -162,6 +163,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PageAdsModule,
     SharedDirectivesModule,
     NotificationsModule,
+    RecommendationsModule,
 
     // external service modules
     LibErrorHandlerModule,
