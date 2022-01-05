@@ -1,9 +1,17 @@
-<div class="page-padding">
-  <button nbButton status="primary" [routerLink]="['/admin/orgs/create']">
-    Create Community Group
-  </button>
+<div class="base-layout com-my-5">
+  <div class="container">
+    <div class="one-column-layout">
+      <div class="com-flex com-justify-center com-gap-4">
+        <button [routerLink]="['/admin/orgs/create']" nbButton status="primary">
+          <nb-icon icon="plus"></nb-icon>
+          Create Community Group
+        </button>
 
-  <button nbButton status="primary" [routerLink]="['/admin/communities/new']">
-    Create Community
-  </button>
+        <button [routerLink]="['/admin/communities/new']" nbButton status="primary">
+          <nb-icon icon="plus"></nb-icon>
+          Create Community
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

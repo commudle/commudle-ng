@@ -1,130 +1,152 @@
-<div class="community-group-form page-padding">
-  <nb-card class="header">
-    <nb-card-body *ngIf="!communityGroup">
-      <h1> New Community Group </h1>
-      <p> A community group can have multiple community chapters in it. </p>
-    </nb-card-body>
+<div class="community-group-form base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="header">
+        <nb-card-body *ngIf="!communityGroup">
+          <h1>New Community Group</h1>
+          <p>A community group can have multiple community chapters in it.</p>
+        </nb-card-body>
 
-    <nb-card-body *ngIf="communityGroup">
-      <h1> Edit {{communityGroup.name}} </h1>
-    </nb-card-body>
-  </nb-card>
-  <nb-card class="form">
-    <nb-card-body>
-      <form (ngSubmit)="createOrUpdateCommunityGroup()" [formGroup]="communityGroupForm"
-            class="community-edit-details-form">
-        <div>
-          <div role="group">
+        <nb-card-body *ngIf="communityGroup">
+          <h1>Edit {{ communityGroup.name }}</h1>
+        </nb-card-body>
+      </nb-card>
+      <nb-card class="form">
+        <nb-card-body>
+          <form
+            (ngSubmit)="createOrUpdateCommunityGroup()"
+            [formGroup]="communityGroupForm"
+            class="community-edit-details-form"
+          >
             <div>
-              <label fullWidth>
-                Name*
-                <input formControlName="name" fullWidth nbInput type="text">
-              </label>
-            </div>
+              <div role="group">
+                <div>
+                  <label>
+                    Name*
+                    <input formControlName="name" fullWidth nbInput type="text" />
+                  </label>
+                </div>
 
-            <div class="logo">
-              <div *ngIf="uploadedLogoImage || communityGroup && communityGroup.logo" class="uploaded-logo">
-                <img alt="Profile Picture" src="{{uploadedLogoImage || communityGroup.logo.url}}"
-                     title="Profile Picture">
-              </div>
-              <div class="delete-logo-button">
-                <button (click)="removeLogo()" *ngIf="uploadedLogoImage || communityGroup && communityGroup.logo"
-                        nbButton outline size="tiny" status="danger">
-                  <nb-icon icon="close-circle"></nb-icon>
-                  Remove Logo
-                </button>
-              </div>
-              <label
-                [ngClass]="{'hidden': uploadedLogoImage || (communityGroup && communityGroup.logo && communityGroup.logo.url)}"
-                class="clickable">
-                <span>
-                  <span>
-                    <nb-icon icon="image-outline"></nb-icon>
-                  </span>
-                  <span>
-                    Click to upload a Logo image
-                  </span>
-                </span>
-                <input (change)="displaySelectedLogo($event)" accept="image/*" formControlName="logo" fullWidth nbInput
-                        type="file">
-              </label>
-            </div>
+                <div class="logo">
+                  <div *ngIf="uploadedLogoImage || (communityGroup && communityGroup.logo)" class="uploaded-logo">
+                    <img
+                      alt="Profile Picture"
+                      src="{{ uploadedLogoImage || communityGroup.logo.url }}"
+                      title="Profile Picture"
+                    />
+                  </div>
+                  <div class="delete-logo-button">
+                    <button
+                      (click)="removeLogo()"
+                      *ngIf="uploadedLogoImage || (communityGroup && communityGroup.logo)"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="danger"
+                    >
+                      <nb-icon icon="close-circle"></nb-icon>
+                      Remove Logo
+                    </button>
+                  </div>
+                  <label
+                    [ngClass]="{
+                      hidden: uploadedLogoImage || (communityGroup && communityGroup.logo && communityGroup.logo.url)
+                    }"
+                    class="clickable"
+                  >
+                    <span>
+                      <span>
+                        <nb-icon icon="image-outline"></nb-icon>
+                      </span>
+                      <span> Click to upload a Logo image </span>
+                    </span>
+                    <input
+                      (change)="displaySelectedLogo($event)"
+                      accept="image/*"
+                      formControlName="logo"
+                      fullWidth
+                      nbInput
+                      type="file"
+                    />
+                  </label>
+                </div>
 
-            <div>
-              <label fullWidth>
-                Tagline (describe in max 160 characters)*
-                <textarea rows="2" formControlName="mini_description" fullWidth nbInput></textarea>
-              </label>
-            </div>
+                <div>
+                  <label>
+                    Tagline (describe in max 160 characters)*
+                    <textarea formControlName="mini_description" fullWidth nbInput rows="2"></textarea>
+                  </label>
+                </div>
 
-            <div>
-              <label fullWidth>
-                Website
-                <input rows="2" formControlName="website" fullWidth nbInput type="url">
-              </label>
-            </div>
+                <div>
+                  <label>
+                    Website
+                    <input formControlName="website" fullWidth nbInput type="url" />
+                  </label>
+                </div>
 
-            <div>
-              <label fullWidth>
-                Facebook
-                <input rows="2" formControlName="facebook" fullWidth nbInput type="url">
-              </label>
-            </div>
-            <div>
-              <label fullWidth>
-                Twitter
-                <input rows="2" formControlName="twitter" fullWidth nbInput type="url">
-              </label>
-            </div>
-            <div>
-              <label fullWidth>
-                Github
-                <input rows="2" formControlName="github" fullWidth nbInput type="url">
-              </label>
-            </div>
-            <div>
-              <label fullWidth>
-                Linkedin
-                <input rows="2" formControlName="linkedin" fullWidth nbInput type="url">
-              </label>
-            </div>
+                <div>
+                  <label>
+                    Facebook
+                    <input formControlName="facebook" fullWidth nbInput type="url" />
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Twitter
+                    <input formControlName="twitter" fullWidth nbInput type="url" />
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Github
+                    <input formControlName="github" fullWidth nbInput type="url" />
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Linkedin
+                    <input formControlName="linkedin" fullWidth nbInput type="url" />
+                  </label>
+                </div>
 
-
-
-
-            <label>
-              About*
-            </label>
-            <editor
-              [init]="{
-                height: 300,
-                menubar: false,
-                convert_urls: false,
-                plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount'
-                ],
-                toolbar:
-                  'undo redo | formatselect | bold italic backcolor | \
+                <label> About* </label>
+                <editor
+                  [init]="{
+                    height: 300,
+                    menubar: false,
+                    convert_urls: false,
+                    plugins: [
+                      'advlist autolink lists link image charmap print preview anchor',
+                      'searchreplace visualblocks code fullscreen',
+                      'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic backcolor | \
                   alignleft aligncenter alignright alignjustify | \
                   bullist numlist outdent indent | removeformat | help'
-              }"
-              apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
-              formControlName="description">
-            </editor>
-          </div>
-        </div>
+                  }"
+                  apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                  formControlName="description"
+                >
+                </editor>
+              </div>
+            </div>
 
-        <div>
-          <button
-            [disabled]="!communityGroupForm.valid || ((communityGroup && !communityGroup.logo) && !uploadedLogoImage)"
-            fullWidth nbButton status="primary" type="submit">
-            Save
-          </button>
-        </div>
-
-      </form>
-    </nb-card-body>
-  </nb-card>
+            <div>
+              <button
+                [disabled]="!communityGroupForm.valid || (communityGroup && !communityGroup.logo && !uploadedLogoImage)"
+                fullWidth
+                nbButton
+                status="primary"
+                type="submit"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
 </div>
