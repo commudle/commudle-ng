@@ -1,6 +1,6 @@
-<div class="com-min-h-screen com-max-w-screen-xl com-mx-auto com-mb-8">
-  <div class="com-container">
-    <div *ngIf="getWindowWidth() > 1024" class="three-column-layout">
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div *appBreakpoints="'>lg'" class="three-column-layout">
       <div>
         <app-home-labs></app-home-labs>
         <app-home-communities></app-home-communities>
@@ -16,7 +16,7 @@
         <app-home-builds></app-home-builds>
       </div>
     </div>
-    <div *ngIf="getWindowWidth() <= 1024" class="one-column-layout">
+    <div *appBreakpoints="'<=lg'" class="one-column-layout">
       <app-home-head-banner></app-home-head-banner>
       <app-home-events></app-home-events>
       <app-home-promotions></app-home-promotions>

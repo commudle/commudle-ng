@@ -3,38 +3,25 @@ import { Meta, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
-import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 
 @Component({
   selector: 'app-community-builds',
   templateUrl: './community-builds.component.html',
   styleUrls: ['./community-builds.component.scss'],
-  providers: [IsBrowserService],
 })
 export class CommunityBuildsComponent implements OnInit {
   communityBuilds: ICommunityBuild[] = [];
   page = 1;
   count = 10;
-  total;
+  total: number;
   isLoading = false;
   canLoadMore = true;
 
-  windowWidth: number;
-
-  constructor(
-    private communityBuildsService: CommunityBuildsService,
-    private title: Title,
-    private meta: Meta,
-    private isBrowserService: IsBrowserService,
-  ) {}
+  constructor(private communityBuildsService: CommunityBuildsService, private title: Title, private meta: Meta) {}
 
   ngOnInit() {
     this.setMeta();
     this.getCommunityBuilds();
-
-    if (this.isBrowserService.isBrowser()) {
-      this.windowWidth = window.innerWidth;
-    }
   }
 
   setMeta() {

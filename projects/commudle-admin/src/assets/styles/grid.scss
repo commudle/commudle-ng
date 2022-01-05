@@ -6,10 +6,10 @@ HTML Emmet's
  */
 .base-layout {
   @apply com-min-h-screen com-max-w-screen-xl com-mx-auto;
-}
 
-.container {
-  @apply com-container;
+  .container {
+    @apply com-container;
+  }
 }
 
 /* GRID LAYOUT */
