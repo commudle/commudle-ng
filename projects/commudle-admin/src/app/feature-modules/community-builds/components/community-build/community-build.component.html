@@ -1,6 +1,6 @@
 <div *ngIf="communityBuild" class="base-layout community-build-container">
   <div class="container">
-    <div *ngIf="windowWidth > 1024" class="two-column-layout wide">
+    <div *appBreakpoints="'>lg'" class="two-column-layout wide">
       <div class="main-column">
         <app-community-build-details [cBuild]="communityBuild"></app-community-build-details>
       </div>
@@ -25,18 +25,25 @@
         </nb-card>
       </div>
     </div>
-    <div *ngIf="windowWidth <= 1024" class="one-column-layout">
-      <app-user-profile-card-large [showFollowButton]="true" [user]="communityBuild.user"></app-user-profile-card-large>
-      <ng-container *ngIf="communityBuild.user_roles_users.length > 0">
-        <p class="fs-p1">Teammates</p>
-        <ng-container *ngFor="let teammate of communityBuild.user_roles_users">
-          <app-user-profile-card-small
-            *ngIf="teammate.user.name"
-            [user]="teammate.user"
-            class="com-block com-mt-2"
-          ></app-user-profile-card-small>
-        </ng-container>
-      </ng-container>
+    <div *appBreakpoints="'<=lg'" class="one-column-layout">
+      <nb-card>
+        <nb-card-body>
+          <app-user-profile-card-large
+            [showFollowButton]="true"
+            [user]="communityBuild.user"
+          ></app-user-profile-card-large>
+          <ng-container *ngIf="communityBuild.user_roles_users.length > 0">
+            <p class="fs-p1">Teammates</p>
+            <ng-container *ngFor="let teammate of communityBuild.user_roles_users">
+              <app-user-profile-card-small
+                *ngIf="teammate.user.name"
+                [user]="teammate.user"
+                class="com-block com-mt-2"
+              ></app-user-profile-card-small>
+            </ng-container>
+          </ng-container>
+        </nb-card-body>
+      </nb-card>
       <app-community-build-details [cBuild]="communityBuild"></app-community-build-details>
     </div>
   </div>

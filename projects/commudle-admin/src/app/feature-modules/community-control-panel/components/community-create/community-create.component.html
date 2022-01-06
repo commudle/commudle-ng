@@ -1,38 +1,44 @@
-<div class="community-form page-padding">
-  <nb-card class="page-header">
-    <nb-card-body *ngIf="!communityGroup">
-      <h1 class="lh-fw">Create New Community</h1>
-    </nb-card-body>
-    <nb-card-body *ngIf="communityGroup" class="community-group">
-      <div class="logo">
-        <img alt="{{communityGroup.name}}" src="{{communityGroup.logo.url}}" title="{{communityGroup.name}}">
-      </div>
-      <p>{{communityGroup.name}}</p>
-      <h1 class="lh-fw">Add A New Community</h1>
-    </nb-card-body>
-  </nb-card>
-  <nb-card class="form-container">
-    <nb-card-body>
-      <form (ngSubmit)="createCommunity()" [formGroup]="communityForm">
-        <div>
-          <label fullWidth>
-            Name*
-            <input formControlName="name" fullWidth nbInput type="text">
-          </label>
-        </div>
-        <div>
-          <label>
-            Email*
-            <input formControlName="contact_email" fullWidth nbInput type="text">
-          </label>
-        </div>
+<div class="community-form base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="page-header">
+        <nb-card-body *ngIf="!communityGroup">
+          <h1 class="lh-fw">Create New Community</h1>
+        </nb-card-body>
+        <nb-card-body *ngIf="communityGroup" class="community-group">
+          <div class="logo">
+            <img
+              alt="{{ communityGroup.name }}"
+              src="{{ communityGroup.logo.url }}"
+              title="{{ communityGroup.name }}"
+            />
+          </div>
+          <p>{{ communityGroup.name }}</p>
+          <h1 class="lh-fw">Add A New Community</h1>
+        </nb-card-body>
+      </nb-card>
+      <nb-card class="form-container">
+        <nb-card-body>
+          <form (ngSubmit)="createCommunity()" [formGroup]="communityForm">
+            <div>
+              <label>
+                Name*
+                <input formControlName="name" fullWidth nbInput type="text" />
+              </label>
+            </div>
+            <div>
+              <label>
+                Email*
+                <input formControlName="contact_email" fullWidth nbInput type="text" />
+              </label>
+            </div>
 
-        <div>
-          <button [disabled]="!communityForm.valid" fullWidth nbButton status="primary" type="submit">
-            Save
-          </button>
-        </div>
-      </form>
-    </nb-card-body>
-  </nb-card>
+            <div>
+              <button [disabled]="!communityForm.valid" fullWidth nbButton status="primary" type="submit">Save</button>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
 </div>

@@ -1,8 +1,8 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
-  margin: 0;
   color: $gunmetal;
+  margin: 0;
 }
 
 .community-about {
@@ -10,16 +10,15 @@ p {
 
   nb-card {
     margin: $space-16 0 0;
-    border: none;
 
     nb-card-body {
       padding: $space-40 $space-32;
 
       .heading {
-        margin-bottom: $space-32;
         font-size: $fs-32;
         font-weight: $fw-600;
         line-height: 38px;
+        margin-bottom: $space-32;
       }
     }
   }
@@ -48,9 +47,9 @@ p {
         gap: $space-24 $space-52;
 
         .organizer {
-          width: 264px;
-          position: relative;
           padding: $space-16;
+          position: relative;
+          width: 264px;
         }
 
         .organizer + .organizer {

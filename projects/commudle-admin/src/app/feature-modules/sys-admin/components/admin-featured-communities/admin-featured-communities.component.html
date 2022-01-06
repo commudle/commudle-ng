@@ -1,45 +1,57 @@
-<nb-card class="admin-featured-communities">
-  <nb-card-header class="d-flex align-items-center justify-content-space-between">
-    Featured Communities
-    <button (click)="openDialog(createFeaturedCommunityDialog)" ghost nbButton size="small">
-      <nb-icon icon="plus"></nb-icon>
-      Create
-    </button>
-  </nb-card-header>
-  <nb-card-body>
-    <nb-list class="featured-communities-container">
-      <nb-list-item *ngFor="let featuredCommunity of featuredCommunities" class="justify-content-space-between">
-        <div>
-          <app-community-badge [community]="featuredCommunity.kommunity"></app-community-badge>
-          <p>{{featuredCommunity.reason}}</p>
-        </div>
-        <div class="actions d-flex">
-          <button
-            (click)="openDialog(updateFeaturedCommunityDialog, featuredCommunity.id, true)"
-            nbButton
-            outline
-            size="tiny"
-            status="info"
-          >
-            Edit
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="admin-featured-communities">
+        <nb-card-header class="d-flex align-items-center justify-content-space-between">
+          Featured Communities
+          <button (click)="openDialog(createFeaturedCommunityDialog)" ghost nbButton size="small">
+            <nb-icon icon="plus"></nb-icon>
+            Create
           </button>
-          <button
-            (click)="openDialog(deleteFeaturedCommunityDialog, featuredCommunity.id)"
-            nbButton
-            outline
-            size="tiny"
-            status="danger"
-          >
-            Delete
-          </button>
-        </div>
-      </nb-list-item>
-    </nb-list>
-  </nb-card-body>
-  <button (click)="getFeaturedCommunities()" *ngIf="featuredCommunities.length !== total" fullWidth ghost nbButton>
-    Get more featured communities
-  </button>
-</nb-card>
+        </nb-card-header>
+        <nb-card-body>
+          <nb-list class="featured-communities-container">
+            <nb-list-item *ngFor="let featuredCommunity of featuredCommunities" class="justify-content-space-between">
+              <div>
+                <app-community-badge [community]="featuredCommunity.kommunity"></app-community-badge>
+                <p>{{ featuredCommunity.reason }}</p>
+              </div>
+              <div class="actions d-flex">
+                <button
+                  (click)="openDialog(updateFeaturedCommunityDialog, featuredCommunity.id, true)"
+                  nbButton
+                  outline
+                  size="tiny"
+                  status="info"
+                >
+                  Edit
+                </button>
+                <button
+                  (click)="openDialog(deleteFeaturedCommunityDialog, featuredCommunity.id)"
+                  nbButton
+                  outline
+                  size="tiny"
+                  status="danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </nb-card-body>
+        <button
+          (click)="getFeaturedCommunities()"
+          *ngIf="featuredCommunities.length !== total"
+          fullWidth
+          ghost
+          nbButton
+        >
+          Get more featured communities
+        </button>
+      </nb-card>
+    </div>
+  </div>
+</div>
 
 <ng-template #createFeaturedCommunityDialog let-ref="dialogRef">
   <nb-card class="create-featured-community-dialog">
@@ -64,13 +76,13 @@
         <nb-option *ngFor="let community of communities" [value]="community">
           <div style="margin-right: 8px; width: 50px; height: 50px; overflow: hidden; border-radius: 50%">
             <img
-              alt="{{community.name}}"
-              src="{{community.logo_path}}"
+              alt="{{ community.name }}"
+              src="{{ community.logo_path }}"
               style="width: 100%; height: 100%; object-fit: cover"
-              title="{{community.name}}"
+              title="{{ community.name }}"
             />
           </div>
-          {{community.name}}
+          {{ community.name }}
         </nb-option>
       </nb-autocomplete>
       <div *ngIf="selectedCommunity" class="d-flex justify-content-space-between">

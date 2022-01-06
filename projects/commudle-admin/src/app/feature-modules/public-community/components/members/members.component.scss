@@ -2,38 +2,37 @@
 
 .community-members {
   margin: $space-32 0 $space-16;
-  border: none;
 
   nb-card-body {
     padding: $space-40;
 
     .header-text {
       color: $gunmetal;
-      max-width: fit-content;
-      margin: 0 0 0 $space-16;
       font-size: $fs-26;
       font-weight: $fw-600;
       line-height: 30px;
+      margin: 0 0 0 $space-16;
+      max-width: fit-content;
     }
 
     .users {
-      margin-top: $space-24;
       gap: $space-24 $space-52;
+      margin-top: $space-24;
 
       .user {
-        width: 264px;
-        position: relative;
         padding: $space-16;
+        position: relative;
+        width: 264px;
       }
 
       .user + .user {
         &:before {
+          border-left: 1px solid $silver-sand;
           content: '';
+          height: 80px;
+          left: -26px;
           position: absolute;
           top: 4px;
-          left: -26px;
-          height: 80px;
-          border-left: 1px solid $silver-sand;
         }
 
         &:nth-of-type(3n + 1) {
