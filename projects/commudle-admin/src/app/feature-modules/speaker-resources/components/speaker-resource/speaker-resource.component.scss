@@ -5,8 +5,6 @@
     width: 370px;
 
     .user-profile {
-      border: none;
-
       nb-card-body {
         padding: $space-16;
       }
@@ -17,8 +15,6 @@
     width: min(856px, 100vw);
 
     .details {
-      border: none;
-
       nb-card-body {
         .title {
           font-size: $fs-h1;

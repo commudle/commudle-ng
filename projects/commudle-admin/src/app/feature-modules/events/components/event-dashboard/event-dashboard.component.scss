@@ -44,13 +44,12 @@
     margin-top: $space-8;
 
     .side-menu.responsive {
-      background-color: $white;
-      position: fixed;
       bottom: 0;
+      box-shadow: 2px -5px 15px -7px lightgrey;
       left: 0;
+      position: fixed;
       width: 100%;
       z-index: 2;
-      box-shadow: 2px -5px 15px -7px lightgrey;
 
       nb-card {
         margin-bottom: 0;
@@ -67,13 +66,13 @@
           padding: 0 5px;
 
           a {
-            height: 100%;
-            width: fit-content;
-            text-decoration: none;
-            padding: 0.5rem 0.5rem;
-            text-transform: uppercase;
             font-size: 12px;
+            height: 100%;
+            padding: 0.5rem 0.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
             white-space: nowrap;
+            width: fit-content;
 
             nb-icon {
               margin-right: 5px;
@@ -93,40 +92,36 @@
       }
 
       @media screen and (min-width: 800px) {
+        box-shadow: none;
+        height: fit-content;
+        margin-right: $space-8;
         max-width: 100vw;
         position: sticky;
-        height: fit-content;
         top: 5.2rem;
-        box-shadow: none;
-        margin-right: $space-8;
         width: 25%;
 
         nb-card {
-          border: none;
           margin: 0;
-
-          nb-card-body {
-            border: none;
-          }
         }
+
         .menu-items {
           flex-direction: column;
 
           .item {
-            text-align: left;
             cursor: pointer;
+            text-align: left;
 
             :hover {
               text-decoration: underline !important;
             }
 
             a {
-              height: 100%;
-              text-decoration: none;
-              padding: 0.5rem 0.5rem;
-              text-transform: uppercase;
-              font-size: 0.85rem;
               color: rgb(34, 43, 69);
+              font-size: 0.85rem;
+              height: 100%;
+              padding: 0.5rem 0.5rem;
+              text-decoration: none;
+              text-transform: uppercase;
               width: 100%;
 
               small {
@@ -171,12 +166,12 @@
         }
 
         .item-group-title {
-          margin: 0;
+          color: grey;
           display: flex;
+          font-size: 1rem;
+          margin: 0;
           padding-right: 5px;
           text-transform: uppercase;
-          font-size: 1rem;
-          color: grey;
         }
 
         .item-group-title:after {
@@ -191,10 +186,10 @@
         margin-bottom: 0.5rem;
 
         nb-card-header {
-          font-weight: 300;
-          font-size: 1rem;
-          padding: 0 1rem;
           color: grey;
+          font-size: 1rem;
+          font-weight: 300;
+          padding: 0 1rem;
         }
       }
 
@@ -202,8 +197,8 @@
         margin-top: 1.5rem;
 
         h3 {
-          margin-top: 0;
           margin-bottom: 0.5rem;
+          margin-top: 0;
         }
 
         .edit-button {
@@ -237,13 +232,13 @@
         background-color: #f9f9f9;
         display: flex;
 
-        fa-icon {
-          margin-top: 1rem;
-          margin-right: 0.5rem;
-          color: grey;
-        }
-
         min-height: 200px;
+
+        fa-icon {
+          color: grey;
+          margin-right: 0.5rem;
+          margin-top: 1rem;
+        }
       }
 
       fa-icon {
@@ -274,9 +269,9 @@
             width: 100%;
 
             p {
-              margin: 0;
-              font-size: 1.5rem;
               color: grey;
+              font-size: 1.5rem;
+              margin: 0;
             }
           }
 
