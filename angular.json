@@ -66,8 +66,7 @@
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "extractCss": true
+              "buildOptimizer": true
             },
             "development": {
               "buildOptimizer": false,
