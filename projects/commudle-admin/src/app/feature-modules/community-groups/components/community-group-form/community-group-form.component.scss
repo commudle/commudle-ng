@@ -6,18 +6,19 @@
       font-weight: 300;
     }
   }
+
   .form {
-    margin: 0 auto;
-    max-width: 1000px;
     form {
       div[role='group'] {
         > div {
           margin-bottom: $space-16;
         }
       }
+
       .logo {
         margin-bottom: 1.5rem;
         margin-top: 1.5rem;
+
         label {
           padding: 150px 0;
           position: relative;
@@ -45,10 +46,11 @@
         }
 
         .uploaded-logo {
-          overflow: hidden;
+          align-items: center;
           display: flex;
           justify-content: center;
-          align-items: center;
+          overflow: hidden;
+
           img {
             max-width: 100%;
           }

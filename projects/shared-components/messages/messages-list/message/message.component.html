@@ -79,7 +79,15 @@
       ></emoji-mart>
       <form (submit)="emitReply()" [formGroup]="replyForm">
         <nb-form-field>
-          <button (click)="showEmojiPicker = !showEmojiPicker" ghost nbButton nbPrefix size="tiny" type="button">
+          <button
+            (click)="showEmojiPicker = !showEmojiPicker"
+            class="emoji-picker"
+            ghost
+            nbButton
+            nbPrefix
+            size="tiny"
+            type="button"
+          >
             <fa-icon [icon]="faGrin"></fa-icon>
           </button>
           <input

@@ -1,12 +1,11 @@
 .channel-members {
-  width: 300px;
-  max-width: 100vw;
   height: 100%;
+  max-width: 100vw;
   width: 300px;
 
   nb-card {
     height: 100%;
-    border: none;
+
     nb-card-header {
       display: flex;
       justify-content: space-between;
@@ -17,7 +16,8 @@
       nb-list-item {
         border: none;
         padding: 0.5rem;
-        >div {
+
+        > div {
           width: 100%;
         }
       }

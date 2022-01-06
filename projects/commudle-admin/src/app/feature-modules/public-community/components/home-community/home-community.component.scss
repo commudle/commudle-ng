@@ -1,19 +1,19 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-component {
-  max-width: 976px;
   margin: 0 auto;
+  max-width: 976px;
 
   .page-header {
-    margin: $space-32 0 $space-64 0;
     flex-direction: row;
     justify-content: flex-start;
+    margin: $space-32 0 $space-64 0;
 
     .logo {
-      margin-right: $space-88;
-      width: 208px;
       height: 208px;
+      margin-right: $space-88;
       overflow: hidden;
+      width: 208px;
 
       img {
         width: 100%;
@@ -22,11 +22,11 @@
 
     .details {
       h1 {
-        font-weight: $fw-600;
-        margin: $space-28 0 $space-8 0;
-        line-height: 38px;
-        font-size: $fs-32;
         color: $gunmetal;
+        font-size: $fs-32;
+        font-weight: $fw-600;
+        line-height: 38px;
+        margin: $space-28 0 $space-8 0;
       }
 
       .membership {
@@ -34,8 +34,8 @@
           margin: 0 0 $space-78 0;
 
           a {
-            text-decoration: none;
             color: $gunmetal;
+            text-decoration: none;
           }
         }
 
@@ -45,19 +45,19 @@
           .membership-toggle {
             ::ng-deep {
               button {
-                padding: $space-8;
-                font-weight: $fw-400;
-                font-size: $fs-14;
                 background-color: $neon-blue;
                 color: $white;
+                font-size: $fs-14;
+                font-weight: $fw-400;
+                padding: $space-8;
                 text-transform: none;
               }
 
               nb-select {
                 button {
-                  padding: $space-4;
                   background-color: initial;
                   color: initial;
+                  padding: $space-4;
                 }
               }
             }
@@ -86,10 +86,10 @@
           flex-direction: column;
 
           .social-links-container {
-            width: fit-content;
-            gap: $space-24;
             flex-direction: column;
+            gap: $space-24;
             justify-content: space-between;
+            width: fit-content;
 
             .community-social-links {
               justify-content: space-between;
@@ -114,8 +114,8 @@
     margin: auto 0;
 
     .page-header {
-      flex-direction: column;
       align-self: center;
+      flex-direction: column;
 
       .logo {
         margin: 0 auto;
@@ -128,9 +128,9 @@
           align-items: center;
 
           .social-links-container {
-            width: fit-content;
-            gap: $space-24;
             flex-direction: column;
+            gap: $space-24;
+            width: fit-content;
 
             .community-social-links {
               justify-content: space-between;
@@ -146,7 +146,6 @@
   width: 100%;
 
   nb-card {
-    border: none;
     margin: 0;
 
     nb-card-body {
@@ -161,22 +160,22 @@
 
   .menu-items {
     a {
+      color: $gunmetal;
+      cursor: pointer;
+      font-size: $fs-14;
       height: fit-content;
+      line-height: 16px;
       margin: 0;
       padding: 0 $space-24 $space-17 $space-24;
-      font-size: $fs-14;
-      line-height: 16px;
-      cursor: pointer;
       text-decoration: none;
-      color: $gunmetal;
 
       nb-icon {
         color: rgba(47, 46, 65, 0.5);
       }
 
       .title {
-        margin-left: $space-8;
         align-self: center;
+        margin-left: $space-8;
       }
 
       span {

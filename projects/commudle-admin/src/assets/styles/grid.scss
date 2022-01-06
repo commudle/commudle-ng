@@ -6,10 +6,10 @@ HTML Emmet's
  */
 .base-layout {
   @apply com-min-h-screen com-max-w-screen-xl com-mx-auto;
-}
 
-.container {
-  @apply com-container;
+  .container {
+    @apply com-container;
+  }
 }
 
 /* GRID LAYOUT */
@@ -77,6 +77,17 @@ HTML Emmet's
 
     .main-column {
       @apply com-col-span-20;
+    }
+  }
+
+  &.wide {
+    .left-column,
+    .right-column {
+      @apply com-col-span-6;
+    }
+
+    .main-column {
+      @apply com-col-span-18;
     }
   }
 }

@@ -1,9 +1,9 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 nb-card {
-  margin: 0;
   border: none;
   height: 100%;
+  margin: 0;
 
   nb-card-header {
     display: flex;
@@ -12,6 +12,7 @@ nb-card {
     nb-actions {
       nb-action {
         position: relative;
+
         @media screen and (min-width: 1089px) {
           &.channel-list-menu-button {
             display: none;
@@ -32,31 +33,31 @@ nb-card {
     }
 
     a {
-      text-decoration: none;
       color: inherit;
       height: 320px;
+      text-decoration: none;
 
       .channel-list-card {
-        position: relative;
-        width: 265px;
-        height: 320px;
         border: 0.5px solid $silver-sand;
         border-radius: $border-8;
+        height: 320px;
         padding: $space-16;
+        position: relative;
+        width: 265px;
 
         .prefix {
           .image {
-            min-width: 48px;
-            width: 48px;
-            height: 48px;
             border: 0.5px solid $silver-sand;
             border-radius: 50%;
+            height: 48px;
+            min-width: 48px;
             overflow: hidden;
+            width: 48px;
 
             img {
-              width: 100%;
               height: inherit;
               object-fit: contain;
+              width: 100%;
             }
           }
 
@@ -64,34 +65,34 @@ nb-card {
             margin-left: $space-8;
 
             .name {
-              font-weight: $fw-600;
-              font-size: $fs-h5;
-              line-height: 14px;
               color: $gunmetal;
+              font-size: $fs-h5;
+              font-weight: $fw-600;
+              line-height: 14px;
               margin: 0;
             }
 
             .member-count {
-              font-style: italic;
-              font-size: $fs-h6;
               color: #777777;
+              font-size: $fs-h6;
+              font-style: italic;
               margin: 0;
             }
           }
         }
 
         .about {
-          margin-top: $space-10;
+          color: rgba($gunmetal, 0.85);
           font-size: $fs-h6;
           line-height: 14px;
-          color: rgba($gunmetal, 0.85);
+          margin-top: $space-10;
           white-space: pre-wrap;
         }
 
         .enter-channel-btn-container {
+          bottom: 10px;
           position: absolute;
           width: 88%;
-          bottom: 10px;
 
           .enter-channel-btn {
             background-color: rgba($neon-blue, 0.2);

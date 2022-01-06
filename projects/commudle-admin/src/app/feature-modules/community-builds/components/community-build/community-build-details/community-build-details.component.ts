@@ -1,23 +1,20 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NbWindowService } from '@nebular/theme';
 import * as moment from 'moment';
-import {NbWindowService} from '@nebular/theme';
-import {DomSanitizer} from '@angular/platform-browser';
-import {CBuildTypeDisplay, EBuildType, ICommunityBuild} from 'projects/shared-models/community-build.model';
-import {DiscussionsService} from 'projects/commudle-admin/src/app/services/discussions.service';
-import {IDiscussion} from 'projects/shared-models/discussion.model';
-import { IUserRolesUser } from "projects/shared-models/user_roles_user.model";
+import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { CBuildTypeDisplay, EBuildType, ICommunityBuild } from 'projects/shared-models/community-build.model';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 
 @Component({
   selector: 'app-community-build-details',
   templateUrl: './community-build-details.component.html',
-  styleUrls: ['./community-build-details.component.scss']
+  styleUrls: ['./community-build-details.component.scss'],
 })
-
 export class CommunityBuildDetailsComponent implements OnInit {
-  @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
-  moment = moment;
   @Input() cBuild: ICommunityBuild;
-  @Input() showComments: boolean;
+
   discussionChat: IDiscussion;
   teammates: IUserRolesUser[] = [];
   EBuildType = EBuildType;
@@ -26,12 +23,15 @@ export class CommunityBuildDetailsComponent implements OnInit {
   embedCode: any;
   currImage = null;
 
+  moment = moment;
+
+  @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
+
   constructor(
     private windowService: NbWindowService,
     private discussionsService: DiscussionsService,
-    private sanitizer: DomSanitizer
-  ) {
-  }
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit() {
     this.getDiscussionChat();
@@ -45,12 +45,9 @@ export class CommunityBuildDetailsComponent implements OnInit {
 
   openImage(title, image) {
     this.currImage = image;
-    this.windowService.open(
-      this.imageTemplate,
-      {
-        title,
-      },
-    );
+    this.windowService.open(this.imageTemplate, {
+      title,
+    });
   }
 
   imageNav(direction) {
@@ -61,8 +58,8 @@ export class CommunityBuildDetailsComponent implements OnInit {
   }
 
   getDiscussionChat() {
-    this.discussionsService.pGetOrCreateForCommunityBuildChat(this.cBuild.id).subscribe(
-      data => this.discussionChat = data
-    );
+    this.discussionsService
+      .pGetOrCreateForCommunityBuildChat(this.cBuild.id)
+      .subscribe((data) => (this.discussionChat = data));
   }
 }

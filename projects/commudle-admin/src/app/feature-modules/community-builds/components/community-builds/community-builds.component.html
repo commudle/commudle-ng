@@ -1,6 +1,6 @@
-<div class="community-builds-container base-layout">
+<div class="community-builds-container base-layout com-mb-8">
   <div class="container">
-    <div *ngIf="windowWidth > 1024" class="two-column-layout thin">
+    <div *appBreakpoints="'>lg'" class="two-column-layout thin">
       <div class="main-column">
         <nb-card class="community-builds-header">
           <nb-card-body>
@@ -50,10 +50,11 @@
       </div>
       <div class="right-column">
         <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></app-pa-slots>
+        <app-recommended-builds></app-recommended-builds>
       </div>
     </div>
 
-    <div *ngIf="windowWidth <= 1024" class="one-column-layout">
+    <div *appBreakpoints="'<=lg'" class="one-column-layout">
       <nb-card class="community-builds-header">
         <nb-card-body>
           <h1 class="fs-h1 community-builds-title">

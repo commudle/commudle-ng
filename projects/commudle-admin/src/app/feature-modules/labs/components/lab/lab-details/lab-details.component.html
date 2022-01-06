@@ -34,7 +34,7 @@
     </nb-list>
   </nb-card>
   <nb-card *ngIf="similarLabs.length > 0 && !hideRelatedLabs" class="related-labs">
-    <nb-card-header> RELATED POSTS</nb-card-header>
+    <nb-card-header>Related Labs</nb-card-header>
     <nb-card-body>
       <div *ngFor="let lab of similarLabs" [routerLink]="['/labs', lab.slug]" class="details clickable">
         <p class="name">{{ lab.name }}</p>
@@ -42,6 +42,9 @@
       </div>
     </nb-card-body>
   </nb-card>
+  <ng-container *ngIf="!hideRecommendedLabs">
+    <app-recommended-labs></app-recommended-labs>
+  </ng-container>
   <div *ngIf="!hideInteractions" class="interactions d-flex flex-row justify-content-space-around">
     <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
     <div (click)="onScrollToChat()" *ngIf="discussionChat" class="message-count clickable">

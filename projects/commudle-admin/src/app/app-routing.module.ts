@@ -29,6 +29,11 @@ const routes = [
     component: AboutOldComponent,
   },
   {
+    path: 'notifications',
+    loadChildren: () =>
+      import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
+  },
+  {
     path: 'features',
     component: FeaturesComponent,
   },

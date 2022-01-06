@@ -1,7 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 nb-card {
-  border: none;
   margin: $space-32 0 $space-16;
 
   nb-card-body {
@@ -11,13 +10,13 @@ nb-card {
 
 .events {
   background-color: $white;
-  padding: $space-32 0;
   border-radius: $border-10;
   gap: $space-32;
+  padding: $space-32 0;
 
   a {
-    text-decoration: none;
     position: relative;
+    text-decoration: none;
   }
 
   nb-card {
@@ -37,17 +36,17 @@ nb-card {
       //padding: 0 $space-24 0 0;
 
       .header-image {
-        margin-right: $space-24;
-        width: 220px;
-        min-width: 220px;
         height: 128px;
+        margin-right: $space-24;
+        min-width: 220px;
         overflow: hidden;
+        width: 220px;
 
         img {
-          width: 100%;
           height: 100%;
           object-fit: cover;
           object-position: top left;
+          width: 100%;
         }
 
         nb-icon {
@@ -57,13 +56,13 @@ nb-card {
 
       .details {
         h5 {
-          color: $gunmetal;
-          margin: $space-24 0 $space-8 0;
-          display: flex;
           align-items: flex-start;
-          line-height: 21px;
+          color: $gunmetal;
+          display: flex;
           font-size: $fs-18;
           font-weight: $fw-600;
+          line-height: 21px;
+          margin: $space-24 0 $space-8 0;
 
           nb-icon {
             margin-right: $space-8;
@@ -73,10 +72,10 @@ nb-card {
 
         .timings {
           p {
-            margin: 0;
             color: $gunmetal;
             font-size: $fs-14;
             line-height: 16px;
+            margin: 0;
 
             nb-icon {
               &.time {
@@ -88,10 +87,10 @@ nb-card {
 
         .past-timings {
           p {
-            margin: 0;
             color: $gunmetal;
             font-size: $fs-14;
             line-height: 16px;
+            margin: 0;
 
             nb-icon {
               font-size: $fs-14;
@@ -117,14 +116,14 @@ nb-card {
     margin: 0 0 1rem;
 
     nb-card-body {
-      padding: 0 0 $space-24;
-      flex-direction: column;
       align-items: center;
+      flex-direction: column;
+      padding: 0 0 $space-24;
 
       .header-image {
-        width: 100%;
         height: 100%;
         margin: 0 0 $space-24;
+        width: 100%;
 
         img {
           width: 100%;
@@ -137,12 +136,12 @@ nb-card {
 
       .details {
         h5 {
-          margin: 0 0 0.5rem;
-          font-weight: 400;
-          font-size: 2rem;
-          line-height: 2rem !important;
-          flex-direction: column;
           align-items: center;
+          flex-direction: column;
+          font-size: 2rem;
+          font-weight: 400;
+          line-height: 2rem !important;
+          margin: 0 0 0.5rem;
           text-align: center;
         }
 

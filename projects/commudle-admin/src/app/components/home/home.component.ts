@@ -56,8 +56,4 @@ export class HomeComponent implements OnInit {
         'A community platform for software developers to connect over online events, channels, share knowledge & find jobs. Join now to build your "Developer Network".',
     });
   }
-
-  getWindowWidth(): number {
-    return window.innerWidth;
-  }
 }

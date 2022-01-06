@@ -1,7 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 nb-card {
-  border: none;
   margin: $space-32 0 $space-16;
 
   nb-card-body {
@@ -9,18 +8,18 @@ nb-card {
 
     .channels {
       background-color: $white;
-      padding: $space-32 0;
       border-radius: $border-10;
       gap: $space-32;
+      padding: $space-32 0;
 
       a {
-        text-decoration: none;
         position: relative;
+        text-decoration: none;
       }
 
       nb-card {
-        height: 128px;
         border: 1px solid $silver-sand;
+        height: 128px;
         margin: 0;
         overflow: hidden;
       }
@@ -35,23 +34,23 @@ nb-card {
         nb-card-body {
           .header-image {
             margin-right: $space-24;
-            width: 220px;
             min-width: 220px;
+            width: 220px;
 
             img {
-              width: 100%;
               height: 100%;
               object-fit: cover;
+              width: 100%;
             }
           }
 
           .details {
             h5 {
               color: $gunmetal;
-              margin: $space-12 0 $space-8 0;
-              line-height: 21px;
               font-size: $fs-18;
               font-weight: $fw-600;
+              line-height: 21px;
+              margin: $space-12 0 $space-8 0;
             }
 
             .member-count {
@@ -65,16 +64,16 @@ nb-card {
 
           .enter-channel-btn-container {
             position: absolute;
-            top: 7px;
             right: 7px;
+            top: 7px;
 
             @media all and (max-width: $mobile-width) {
-              width: 100%;
-              position: absolute;
               bottom: 0px;
-              top: unset;
-              right: unset;
               padding: 7px;
+              position: absolute;
+              right: unset;
+              top: unset;
+              width: 100%;
             }
 
             .enter-channel-btn {
@@ -104,23 +103,23 @@ nb-card {
         padding: $space-40 $space-20 $space-20 $space-20;
 
         .channel {
-          width: 318px;
           height: 347px;
+          width: 318px;
 
           nb-card-body {
             flex-direction: column;
 
             .details {
-              padding: $space-10;
+              align-items: center;
               display: flex;
               flex-direction: column;
-              align-items: center;
+              padding: $space-10;
             }
 
             .header-image {
+              height: 160px;
               margin: 0;
               width: 100%;
-              height: 160px;
 
               img {
                 object-fit: contain;

@@ -1,10 +1,10 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ILab } from 'projects/shared-models/lab.model';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { ILab } from 'projects/shared-models/lab.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-lab-details',
@@ -21,6 +21,7 @@ export class LabDetailsComponent implements OnInit {
   @Input() hideUser: boolean;
   @Input() hideSteps: boolean;
   @Input() hideRelatedLabs: boolean;
+  @Input() hideRecommendedLabs: boolean;
   @Input() hideInteractions: boolean;
 
   @Output() setStep: EventEmitter<number> = new EventEmitter<number>();

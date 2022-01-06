@@ -1,69 +1,79 @@
-<div class="page-padding">
-  <h4> Community Builds </h4>
-
-  <div>
-    <nb-card class="community-builds">
-      <nb-card-body>
-        <div *ngFor="let cb of cBuilds" class="community-build">
-          <div class="content">
-            <p>
-              <small>Created: {{ moment(cb.created_at).fromNow() }}</small>
-            </p>
-            <p>
-              <small>Updated: {{ moment(cb.updated_at).fromNow() }}</small>
-            </p>
-            <p *ngIf="cb.published_at">
-              <small>Published: {{ moment(cb.published_at).fromNow() }}</small>
-            </p>
-            <h5>
-              {{ cb.name }}
-              <a target="_blank" [routerLink]="['/builds', cb.slug]">
-              <nb-icon icon="external-link"></nb-icon>
-              </a>
-            </h5>
-
-          </div>
-          <div class="creator">
-            <app-user-profile-horizontal [socialMediaLinks]="true" [user]="cb.user"></app-user-profile-horizontal>
-            <p>
-              {{cb.user.email}}
-            </p>
-          </div>
-          <div class="stats">
-            <div>
-              <app-votes-display [icon]="'star'" [votableId]="cb.id"
-                                 [votableType]="'CommunityBuild'"></app-votes-display>
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <h4>Community Builds</h4>
+      <nb-card class="community-builds">
+        <nb-card-body>
+          <div *ngFor="let cb of cBuilds" class="community-build">
+            <div class="content">
+              <p>
+                <small>Created: {{ moment(cb.created_at).fromNow() }}</small>
+              </p>
+              <p>
+                <small>Updated: {{ moment(cb.updated_at).fromNow() }}</small>
+              </p>
+              <p *ngIf="cb.published_at">
+                <small>Published: {{ moment(cb.published_at).fromNow() }}</small>
+              </p>
+              <h5>
+                {{ cb.name }}
+                <a [routerLink]="['/builds', cb.slug]" target="_blank">
+                  <nb-icon icon="external-link"></nb-icon>
+                </a>
+              </h5>
             </div>
-            <div class="tags">
-              <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
+            <div class="creator">
+              <app-user-profile-horizontal [socialMediaLinks]="true" [user]="cb.user"></app-user-profile-horizontal>
+              <p>
+                {{ cb.user.email }}
+              </p>
+            </div>
+            <div class="stats">
+              <div>
+                <app-votes-display
+                  [icon]="'star'"
+                  [votableId]="cb.id"
+                  [votableType]="'CommunityBuild'"
+                ></app-votes-display>
+              </div>
+              <div class="tags">
+                <app-badge *ngFor="let t of cb.tags" [text]="t"></app-badge>
+              </div>
+            </div>
+            <div class="actions">
+              <div class="status-update">
+                <nb-select
+                  (selectedChange)="updatePublishStatus($event, cb.id)"
+                  [selected]="cb.publish_status"
+                  placeholder="Select Status"
+                  size="small"
+                  status="primary"
+                >
+                  <nb-option *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]">
+                    {{ EPublishStatus[ps] | titlecase }}
+                  </nb-option>
+                </nb-select>
+              </div>
+              <div>
+                <button [routerLink]="['/builds', cb.slug, 'edit']" nbButton outline size="tiny" status="info">
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
-          <div class="actions">
-            <div class="status-update">
-              <nb-select (selectedChange)="updatePublishStatus($event, cb.id)" [selected]="cb.publish_status"
-                         size="small" status="primary">
-                <nb-option *ngFor="let ps of publishStatuses" [value]="EPublishStatus[ps]" placeholder="Select Status">
-                  {{ EPublishStatus[ps] | titlecase }}
-                </nb-option>
-              </nb-select>
-            </div>
-            <div>
-              <button [routerLink]="['/builds', cb.slug, 'edit']" nbButton outline size="tiny" status="info">
-                Edit
-              </button>
-            </div>
-          </div>
-        </div>
-      </nb-card-body>
-    </nb-card>
-    <button [disabled]="isLoading" *ngIf="cBuilds.length < total && cBuilds.length > 0" nbButton fullWidth status="primary" size="small" (click)="getAllBuilds()">
-      Load More
-    </button>
-  </div>
-
-  <ng-template #imageTemplate let-data>
-    <div class="image-window">
-      <img alt="Image" src="{{data.imageUrl}}" title="Image">
+        </nb-card-body>
+      </nb-card>
+      <button
+        (click)="getAllBuilds()"
+        *ngIf="cBuilds.length < total && cBuilds.length > 0"
+        [disabled]="isLoading"
+        class="com-mx-2"
+        nbButton
+        size="small"
+        status="primary"
+      >
+        Load More
+      </button>
     </div>
-  </ng-template>
+  </div>
 </div>
