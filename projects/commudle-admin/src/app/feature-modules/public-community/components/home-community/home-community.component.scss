@@ -7,7 +7,7 @@
     margin: $space-32 0 $space-64 0;
 
     .logo {
-      @apply com-mr-20 com-h-52 com-w-52 com-object-contain;
+      @apply com-mr-20 com-h-40 com-w-40 lg:com-h-52 lg:com-w-52 com-object-contain;
     }
 
     .details {
