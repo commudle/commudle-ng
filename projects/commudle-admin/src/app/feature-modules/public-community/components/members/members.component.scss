@@ -11,55 +11,13 @@
       font-size: $fs-26;
       font-weight: $fw-600;
       line-height: 30px;
-      margin: 0 0 0 $space-16;
+      margin: 0 0 $space-24;
       max-width: fit-content;
-    }
-
-    .users {
-      gap: $space-24 $space-52;
-      margin-top: $space-24;
-
-      .user {
-        padding: $space-16;
-        position: relative;
-        width: 264px;
-      }
-
-      .user + .user {
-        &:before {
-          border-left: 1px solid $silver-sand;
-          content: '';
-          height: 80px;
-          left: -26px;
-          position: absolute;
-          top: 4px;
-        }
-
-        &:nth-of-type(3n + 1) {
-          &:before {
-            border-left: none;
-          }
-        }
-      }
     }
 
     .load-more {
       margin-top: $space-32;
       text-align: center;
-    }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .community-members {
-    nb-card-body {
-      .users {
-        .user + .user {
-          &:before {
-            border-left: none;
-          }
-        }
-      }
     }
   }
 }

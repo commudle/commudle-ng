@@ -22,9 +22,7 @@ export class SpeakersComponent implements OnInit, OnDestroy {
     private communitySpeakerService: CommunitiesService,
     private title: Title,
     private meta: Meta,
-  ) {
-    // do nothing
-  }
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(

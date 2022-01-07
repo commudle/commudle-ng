@@ -1,15 +1,10 @@
-<nb-card class="community-members">
+<nb-card [nbSpinner]="members.length === 0" class="community-members">
   <nb-card-body>
     <p class="header-text">Be one of us!</p>
-    <div class="users d-flex flex-wrap">
-      <div *ngFor="let member of members" class="user">
-        <app-user-profile-card-large
-          [maxDesignationLength]="18"
-          [maxNameLength]="13"
-          [maxUserNameLength]="25"
-          [user]="member"
-        ></app-user-profile-card-large>
-      </div>
+    <div class="users com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3">
+      <ng-container *ngFor="let member of members">
+        <app-user-profile-card-large [user]="member"></app-user-profile-card-large>
+      </ng-container>
     </div>
 
     <div *ngIf="canLoadMore" class="load-more">

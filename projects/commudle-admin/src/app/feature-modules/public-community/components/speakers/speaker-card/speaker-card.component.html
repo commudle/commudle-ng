@@ -20,8 +20,8 @@
       <div class="user-details d-flex flex-column justify-content-space-between">
         <a [routerLink]="['/users', speaker.username]" class="clickable">
           <div class="text-details">
-            <p class="user-name d-flex align-items-center">
-              {{ speaker.name | truncatetext: 14 }}
+            <p class="user-name d-flex align-items-center com-line-clamp-1">
+              {{ speaker.name }}
               <img
                 *ngIf="speaker.is_expert"
                 alt="Expert Tick"
@@ -30,7 +30,7 @@
                 title="Expert Tick"
               />
             </p>
-            <p *ngIf="speaker.designation" class="designation">{{ speaker.designation | truncatetext: 60 }}</p>
+            <p *ngIf="speaker.designation" class="designation com-line-clamp-2">{{ speaker.designation }}</p>
           </div>
         </a>
         <div *ngIf="speaker.tags.length > 0" class="user-card-tags d-flex flex-wrap">

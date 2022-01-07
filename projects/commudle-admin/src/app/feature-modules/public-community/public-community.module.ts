@@ -13,6 +13,7 @@ import {
   NbOptionModule,
   NbPopoverModule,
   NbSelectModule,
+  NbSpinnerModule,
   NbTabsetModule,
   NbTooltipModule,
 } from '@nebular/theme';
@@ -67,6 +68,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     NbSelectModule,
     NbOptionModule,
     NbDialogModule.forChild(),
+    NbSpinnerModule,
   ],
 })
 export class PublicCommunityModule {}

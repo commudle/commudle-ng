@@ -1,26 +1,18 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-component {
-  margin: 0 auto;
-  max-width: 976px;
-
   .page-header {
     flex-direction: row;
     justify-content: flex-start;
     margin: $space-32 0 $space-64 0;
 
     .logo {
-      height: 208px;
-      margin-right: $space-88;
-      overflow: hidden;
-      width: 208px;
-
-      img {
-        width: 100%;
-      }
+      @apply com-mr-20 com-h-40 com-w-40 lg:com-h-52 lg:com-w-52 com-object-contain;
     }
 
     .details {
+      width: 100%;
+
       h1 {
         color: $gunmetal;
         font-size: $fs-32;
@@ -40,8 +32,6 @@
         }
 
         .social-links-container {
-          width: 680px;
-
           .membership-toggle {
             ::ng-deep {
               button {
@@ -64,6 +54,7 @@
           }
 
           .community-social-links {
+            align-self: center;
             gap: $space-24;
 
             nb-icon {
