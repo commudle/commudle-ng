@@ -9,11 +9,10 @@ import { IUser } from 'projects/shared-models/user.model';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-
-  community: ICommunity;
+  community: ICommunity = null;
   EUserRoles = EUserRoles;
   organizers: IUser[] = [];
 
@@ -21,9 +20,8 @@ export class AboutComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private meta: Meta,
-    private title: Title
-  ) {
-  }
+    private title: Title,
+  ) {}
 
   setMeta() {
     this.title.setTitle(`${this.community.name}`);
@@ -32,7 +30,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(data => {
+    this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
       this.setMeta();
       this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
@@ -40,12 +38,11 @@ export class AboutComponent implements OnInit {
   }
 
   getOrganizers(roles: EUserRoles[]) {
-    this.organizers = []
-    roles.forEach(role => {
-      this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, role).subscribe(data => {
+    this.organizers = [];
+    roles.forEach((role) => {
+      this.userRolesUsersService.pGetCommunityLeadersByRole(this.community.id, role).subscribe((data) => {
         this.organizers = this.organizers.concat(data.users);
       });
     });
   }
-
 }

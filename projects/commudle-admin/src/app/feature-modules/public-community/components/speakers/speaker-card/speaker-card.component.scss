@@ -1,12 +1,12 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 nb-card {
-  width: 264px;
+  border: 1px solid $silver-sand;
   height: 306px;
   margin: $space-24;
-  transition: all 0.5s ease;
   overflow: hidden;
-  border: 1px solid $silver-sand;
+  transition: all 0.5s ease;
+  width: 260px;
 
   &:hover {
     box-shadow: 0 5px 15px $azureish-white;
@@ -19,15 +19,15 @@ nb-card {
       overflow: hidden;
 
       .banner {
-        width: 100%;
-        height: 72px;
         background: $azureish-white;
+        height: 72px;
         overflow: hidden;
+        width: 100%;
 
         img {
-          width: 100%;
           height: 100%;
           object-fit: cover;
+          width: 100%;
         }
       }
 
@@ -35,32 +35,32 @@ nb-card {
         display: grid;
 
         div {
-          grid-row-start: 1;
           grid-column-start: 1;
+          grid-row-start: 1;
         }
       }
 
       .user-image {
-        width: 86px;
-        height: 86px;
-        overflow: hidden;
+        background: $lightgrey;
         border: $border-3 solid $white;
         border-radius: $border-50;
-        background: $lightgrey;
-        margin-top: $space-24;
+        height: 86px;
         margin-left: $space-10;
+        margin-top: $space-24;
+        overflow: hidden;
+        width: 86px;
 
         img {
-          width: 100%;
           height: 100%;
           object-fit: cover;
+          width: 100%;
         }
       }
 
       app-user-follow {
         position: absolute;
-        top: 80px;
         right: 8px;
+        top: 80px;
       }
 
       .user-details {
@@ -85,18 +85,18 @@ nb-card {
             margin-bottom: $space-8;
 
             .expert-icon {
-              vertical-align: middle;
-              margin-left: $space-4;
-              width: 14px;
               height: 14px;
+              margin-left: $space-4;
+              vertical-align: middle;
+              width: 14px;
             }
           }
 
           .designation {
             color: $gunmetal;
             font-size: $fs-14;
-            line-height: 16px;
             font-weight: $fw-400;
+            line-height: 16px;
           }
         }
 
@@ -106,11 +106,11 @@ nb-card {
           overflow: hidden;
 
           .user-card-tag {
-            padding: $space-8;
-            font-size: $fs-card-secondary;
-            color: $gunmetal;
             background-color: $azureish-white;
             border-radius: $border-8;
+            color: $gunmetal;
+            font-size: $fs-card-secondary;
+            padding: $space-8;
           }
         }
       }

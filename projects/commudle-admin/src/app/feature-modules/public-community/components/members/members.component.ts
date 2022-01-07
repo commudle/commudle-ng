@@ -16,7 +16,7 @@ export class MembersComponent implements OnInit, OnDestroy {
   members: IUser[] = [];
 
   page = 1;
-  count = 48;
+  count = 24;
   canLoadMore = true;
 
   subscriptions: Subscription[] = [];
@@ -26,9 +26,7 @@ export class MembersComponent implements OnInit, OnDestroy {
     private userRolesUsersService: UserRolesUsersService,
     private title: Title,
     private meta: Meta,
-  ) {
-    // do nothing
-  }
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(

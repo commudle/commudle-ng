@@ -12,7 +12,7 @@ nb-card {
   background-color: $white;
   border-radius: $border-10;
   gap: $space-32;
-  padding: $space-32 0;
+  padding: $space-32;
 
   a {
     position: relative;
@@ -25,135 +25,137 @@ nb-card {
     overflow: hidden;
   }
 
-  .event {
-    width: 768px;
+  .event-clickable {
+    width: 100%;
 
-    &:hover {
-      box-shadow: 0 2px 5px 1px $lightgrey;
-    }
+    .event {
+      width: 100%;
 
-    nb-card-body {
-      //padding: 0 $space-24 0 0;
-
-      .header-image {
-        height: 128px;
-        margin-right: $space-24;
-        min-width: 220px;
-        overflow: hidden;
-        width: 220px;
-
-        img {
-          height: 100%;
-          object-fit: cover;
-          object-position: top left;
-          width: 100%;
-        }
-
-        nb-icon {
-          font-size: $fs-32;
-        }
+      &:hover {
+        box-shadow: 0 2px 5px 1px $lightgrey;
       }
 
-      .details {
-        h5 {
-          align-items: flex-start;
-          color: $gunmetal;
-          display: flex;
-          font-size: $fs-18;
-          font-weight: $fw-600;
-          line-height: 21px;
-          margin: $space-24 0 $space-8 0;
+      nb-card-body {
+        .header-image {
+          height: 128px;
+          margin-right: $space-24;
+          min-width: 220px;
+          overflow: hidden;
+          width: 220px;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+            object-position: top left;
+            width: 100%;
+          }
 
           nb-icon {
-            margin-right: $space-8;
-            min-width: 16px;
+            font-size: $fs-32;
           }
         }
 
-        .timings {
-          p {
+        .details {
+          h5 {
+            align-items: flex-start;
             color: $gunmetal;
-            font-size: $fs-14;
-            line-height: 16px;
-            margin: 0;
+            display: flex;
+            font-size: $fs-18;
+            font-weight: $fw-600;
+            line-height: 21px;
+            margin: $space-24 0 $space-8 0;
 
             nb-icon {
-              &.time {
-                margin-right: $space-8;
-              }
+              margin-right: $space-8;
+              min-width: 16px;
             }
           }
-        }
 
-        .past-timings {
-          p {
-            color: $gunmetal;
-            font-size: $fs-14;
-            line-height: 16px;
-            margin: 0;
-
-            nb-icon {
+          .timings {
+            p {
+              color: $gunmetal;
               font-size: $fs-14;
               line-height: 16px;
+              margin: 0;
 
-              &.time {
-                margin-right: $space-8;
+              nb-icon {
+                &.time {
+                  margin-right: $space-8;
+                }
               }
             }
           }
-        }
 
-        .event-name {
-          .collaboration {
-            font-size: $fs-14;
+          .past-timings {
+            p {
+              color: $gunmetal;
+              font-size: $fs-14;
+              line-height: 16px;
+              margin: 0;
+
+              nb-icon {
+                font-size: $fs-14;
+                line-height: 16px;
+
+                &.time {
+                  margin-right: $space-8;
+                }
+              }
+            }
+          }
+
+          .event-name {
+            .collaboration {
+              font-size: $fs-14;
+            }
           }
         }
       }
     }
-  }
 
-  .event.upcoming {
-    margin: 0 0 1rem;
+    .event.upcoming {
+      margin: 0 0 1rem;
 
-    nb-card-body {
-      align-items: center;
-      flex-direction: column;
-      padding: 0 0 $space-24;
+      nb-card-body {
+        align-items: center;
+        flex-direction: column;
+        padding: 0 0 $space-24;
 
-      .header-image {
-        height: 100%;
-        margin: 0 0 $space-24;
-        width: 100%;
-
-        img {
+        .header-image {
+          height: 100%;
+          margin: 0 0 $space-24;
           width: 100%;
+
+          img {
+            width: 100%;
+          }
+
+          nb-icon {
+            font-size: 3rem;
+          }
         }
 
-        nb-icon {
-          font-size: 3rem;
-        }
-      }
+        .details {
+          h5 {
+            align-items: center;
+            flex-direction: column;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 2rem !important;
+            margin: 0 0 0.5rem;
+            text-align: center;
+          }
 
-      .details {
-        h5 {
-          align-items: center;
-          flex-direction: column;
-          font-size: 2rem;
-          font-weight: 400;
-          line-height: 2rem !important;
-          margin: 0 0 0.5rem;
-          text-align: center;
-        }
+          .timings {
+            text-align: center;
 
-        .timings {
-          text-align: center;
-
-          p {
-            color: grey;
-            font-size: 1.2rem;
-
-            nb-icon {
+            p {
+              color: grey;
               font-size: 1.2rem;
+
+              nb-icon {
+                font-size: 1.2rem;
+              }
             }
           }
         }
@@ -163,19 +165,22 @@ nb-card {
 
   @media all and (max-width: $mobile-width) {
     padding: $space-40 $space-20 $space-20 $space-20;
-    .event {
-      width: 318px;
 
-      nb-card-body {
-        flex-direction: column;
+    .event-clickable {
+      .event {
+        width: 318px;
 
-        .details {
-          padding: $space-10;
-        }
+        nb-card-body {
+          flex-direction: column;
 
-        .header-image {
-          margin: 0;
-          width: 100%;
+          .details {
+            padding: $space-10;
+          }
+
+          .header-image {
+            margin: 0;
+            width: 100%;
+          }
         }
       }
     }

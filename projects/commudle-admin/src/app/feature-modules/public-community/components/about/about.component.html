@@ -1,20 +1,17 @@
-<div *ngIf="community" class="community-about">
-  <nb-card class="about">
+<div class="community-about com-grid com-grid-cols-1 lg:com-grid-cols-2 com-gap-4">
+  <nb-card [nbSpinner]="community === null" class="about">
     <nb-card-body>
       <p class="heading">Who we are</p>
       <p [innerHTML]="community.about | safeHtml" class="content"></p>
     </nb-card-body>
   </nb-card>
 
-  <nb-card class="organizers">
+  <nb-card [nbSpinner]="organizers.length === 0">
     <nb-card-body>
       <p class="heading">Meet our Organizers</p>
-      <div class="organizer-container d-flex flex-wrap">
+      <div class="organizers com-grid com-grid-cols-1 lg:com-grid-cols-2 com-gap-4">
         <ng-container *ngFor="let organizer of organizers">
-          <div *ngIf="organizer.name" class="organizer">
-            <app-user-profile-card-large [maxDesignationLength]="18" [maxNameLength]="12" [maxUserNameLength]="18"
-                                         [user]="organizer"></app-user-profile-card-large>
-          </div>
+          <app-user-profile-card-large [user]="organizer"></app-user-profile-card-large>
         </ng-container>
       </div>
     </nb-card-body>

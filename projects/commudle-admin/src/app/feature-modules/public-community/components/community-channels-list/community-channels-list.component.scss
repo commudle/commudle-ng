@@ -10,7 +10,7 @@ nb-card {
       background-color: $white;
       border-radius: $border-10;
       gap: $space-32;
-      padding: $space-32 0;
+      padding: $space-32;
 
       a {
         position: relative;
@@ -24,75 +24,79 @@ nb-card {
         overflow: hidden;
       }
 
-      .channel {
-        width: 768px;
+      .channel-clickable {
+        width: 100%;
 
-        &:hover {
-          box-shadow: 0 2px 5px 1px $lightgrey;
-        }
+        .channel {
+          width: 100%;
 
-        nb-card-body {
-          .header-image {
-            margin-right: $space-24;
-            min-width: 220px;
-            width: 220px;
-
-            img {
-              height: 100%;
-              object-fit: cover;
-              width: 100%;
-            }
+          &:hover {
+            box-shadow: 0 2px 5px 1px $lightgrey;
           }
 
-          .details {
-            h5 {
-              color: $gunmetal;
-              font-size: $fs-18;
-              font-weight: $fw-600;
-              line-height: 21px;
-              margin: $space-12 0 $space-8 0;
+          nb-card-body {
+            .header-image {
+              margin-right: $space-24;
+              min-width: 220px;
+              width: 220px;
+
+              img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+              }
             }
 
-            .member-count {
-              line-height: 0.75rem;
-            }
-
-            .complete-description {
-              white-space: pre-wrap;
-            }
-          }
-
-          .enter-channel-btn-container {
-            position: absolute;
-            right: 7px;
-            top: 7px;
-
-            @media all and (max-width: $mobile-width) {
-              bottom: 0px;
-              padding: 7px;
-              position: absolute;
-              right: unset;
-              top: unset;
-              width: 100%;
-            }
-
-            .enter-channel-btn {
-              background-color: rgba($neon-blue, 0.2);
-              border: none;
-              border-radius: $border-10;
-              color: $neon-blue;
-              font-size: $fs-h6;
-              font-weight: $fw-400;
-              height: 32px;
-              padding: $space-8;
-              text-transform: none;
-
-              &:hover {
-                background-color: rgba($neon-blue, 0.2);
+            .details {
+              h5 {
+                color: $gunmetal;
+                font-size: $fs-18;
+                font-weight: $fw-600;
+                line-height: 21px;
+                margin: $space-12 0 $space-8 0;
               }
 
-              nb-icon {
-                margin-right: $space-4;
+              .member-count {
+                line-height: 0.75rem;
+              }
+
+              .complete-description {
+                white-space: pre-wrap;
+              }
+            }
+
+            .enter-channel-btn-container {
+              position: absolute;
+              right: 7px;
+              top: 7px;
+
+              @media all and (max-width: $mobile-width) {
+                bottom: 0;
+                padding: 7px;
+                position: absolute;
+                right: unset;
+                top: unset;
+                width: 100%;
+              }
+
+              .enter-channel-btn {
+                background-color: rgba($neon-blue, 0.2);
+                border: none;
+                border-radius: $border-10;
+                color: $neon-blue;
+                font-size: $fs-h6;
+                font-weight: $fw-400;
+                height: 32px;
+                padding: $space-8;
+                text-transform: none;
+
+                &:hover {
+                  background-color: rgba($neon-blue, 0.2);
+                }
+
+                nb-icon {
+                  margin-right: $space-4;
+                }
               }
             }
           }
@@ -102,27 +106,29 @@ nb-card {
       @media all and (max-width: $mobile-width) {
         padding: $space-40 $space-20 $space-20 $space-20;
 
-        .channel {
-          height: 347px;
-          width: 318px;
+        .channel-clickable {
+          .channel {
+            height: 347px;
+            width: 318px;
 
-          nb-card-body {
-            flex-direction: column;
-
-            .details {
-              align-items: center;
-              display: flex;
+            nb-card-body {
               flex-direction: column;
-              padding: $space-10;
-            }
 
-            .header-image {
-              height: 160px;
-              margin: 0;
-              width: 100%;
+              .details {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                padding: $space-10;
+              }
 
-              img {
-                object-fit: contain;
+              .header-image {
+                height: 160px;
+                margin: 0;
+                width: 100%;
+
+                img {
+                  object-fit: contain;
+                }
               }
             }
           }

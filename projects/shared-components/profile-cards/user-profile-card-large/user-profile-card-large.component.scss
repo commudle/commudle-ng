@@ -35,6 +35,7 @@ p {
         color: $black;
         font-size: $fs-18;
         line-height: 21px;
+        word-break: break-word;
       }
 
       img {
@@ -57,6 +58,7 @@ p {
       font-size: $fs-h5;
       line-height: 16px;
       margin-top: $space-4;
+      word-break: break-word;
     }
   }
 }

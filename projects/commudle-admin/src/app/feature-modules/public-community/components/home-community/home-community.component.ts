@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { ActivatedRoute } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-community',
   templateUrl: './home-community.component.html',
-  styleUrls: ['./home-community.component.scss']
+  styleUrls: ['./home-community.component.scss'],
 })
 export class HomeCommunityComponent implements OnInit {
   community: ICommunity;
@@ -16,24 +16,24 @@ export class HomeCommunityComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private communitiesService: CommunitiesService,
     private title: Title,
-    private meta: Meta
-  ) { }
+    private meta: Meta,
+  ) {}
 
   setMeta() {
-    this.meta.updateTag({ name: 'description', content: this.community.mini_description});
+    this.meta.updateTag({ name: 'description', content: this.community.mini_description });
     this.meta.updateTag({ name: 'og:image', content: this.community.logo_path });
     this.meta.updateTag({ name: 'og:image:secure_url', content: this.community.logo_path });
     this.meta.updateTag({ name: 'og:title', content: this.community.name });
-    this.meta.updateTag({ name: 'og:description', content: this.community.mini_description});
-    this.meta.updateTag({ name: 'og:type', content: 'profile'});
+    this.meta.updateTag({ name: 'og:description', content: this.community.mini_description });
+    this.meta.updateTag({ name: 'og:type', content: 'profile' });
 
     this.meta.updateTag({ name: 'twitter:image', content: this.community.logo_path });
     this.meta.updateTag({ name: 'twitter:title', content: this.community.name });
-    this.meta.updateTag({ name: 'twitter:description', content: this.community.mini_description});
+    this.meta.updateTag({ name: 'twitter:description', content: this.community.mini_description });
   }
 
   ngOnInit() {
-    this.activatedRoute.data.subscribe(data => {
+    this.activatedRoute.data.subscribe((data) => {
       this.community = data.community;
       this.title.setTitle(`${this.community.name}`);
       this.setMeta();
@@ -41,11 +41,8 @@ export class HomeCommunityComponent implements OnInit {
   }
 
   getCommunity(communityId) {
-    this.communitiesService.pGetCommunityDetails(communityId).subscribe(
-      data => {
-        this.community = data;
-      }
-    );
+    this.communitiesService.pGetCommunityDetails(communityId).subscribe((data) => {
+      this.community = data;
+    });
   }
-
 }
