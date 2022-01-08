@@ -1,24 +1,31 @@
 .community-stats {
+  a {
+    width: max-content;
+  }
+
   .page-header {
     h3 {
       font-weight: 300;
       margin-bottom: 0;
+
       nb-icon {
         font-size: 2rem;
       }
+
       small {
         font-size: 1rem;
       }
     }
-
   }
 
   nb-card.stat-card.members {
     height: fit-content;
+
     nb-card-header {
       h3 {
         font-weight: 300;
         margin: 0;
+
         small {
           font-size: 1rem;
         }
@@ -26,31 +33,34 @@
     }
 
     nb-card-body {
+      align-items: center;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
-      align-items: center;
       padding: 0 1rem 3rem;
-      >p {
-        text-align: center;
+
+      > p {
         font-size: 1.3rem;
         margin: 0;
-      }
-      .chart-container {
-        position: relative;
-        width: 330px;
         text-align: center;
       }
 
+      .chart-container {
+        position: relative;
+        text-align: center;
+        width: 330px;
+      }
+
       .wide.chart-container {
-        width: 500px;
         height: 300px;
-        max-width: 100vw;
         margin-bottom: 3rem;
+        max-width: 100vw;
+        width: 500px;
       }
 
       .numbers {
         text-align: center;
+
         span {
           font-size: 1.3rem;
         }
@@ -63,6 +73,7 @@
       h3 {
         font-weight: 300;
         margin: 0;
+
         small {
           font-size: 1rem;
         }
@@ -70,31 +81,32 @@
     }
 
     nb-card-body {
+      align-items: center;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
-      align-items: center;
+
       .chart-container {
         position: relative;
-        width: 330px;
         text-align: center;
+        width: 330px;
       }
 
       .wide.chart-container {
-        width: 100%;
-        max-width: 100vw;
         height: 400px;
-        max-height: 70vh;
         margin-bottom: 3rem;
+        max-height: 70vh;
+        max-width: 100vw;
+        width: 100%;
       }
 
       .numbers {
         text-align: center;
+
         span {
           font-size: 1.3rem;
         }
       }
     }
   }
-
 }
