@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
 import { Chart } from 'chart.js';
 import { StatsEventsService } from 'projects/commudle-admin/src/app/services/stats/stats-events.service';
-import { DiscussionChatComponent } from 'projects/shared-components/discussion-chat/discussion-chat.component';
+import { MessagesComponent } from 'projects/shared-components/messages/messages.component';
 import { PollResultComponent } from 'projects/shared-components/poll-result/poll-result.component';
 import { QnaComponent } from 'projects/shared-components/qna/qna.component';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -185,7 +185,7 @@ export class EventStatsComponent implements OnInit {
     let currentDiscussionType;
     switch (discussion.discussion_type) {
       case 'chat':
-        currentDiscussionType = DiscussionChatComponent;
+        currentDiscussionType = MessagesComponent;
         break;
       case 'question_answers':
         currentDiscussionType = QnaComponent;
