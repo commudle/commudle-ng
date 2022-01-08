@@ -36,26 +36,16 @@ HTML Emmet's
   & > *:nth-child(3) {
     @apply com-col-span-6;
   }
-
-  .uneven {
-    & > *:nth-child(1) {
-      @apply com-col-span-6;
-    }
-
-    & > *:nth-child(2) {
-      @apply com-col-span-11;
-    }
-
-    & > *:nth-child(3) {
-      @apply com-col-span-7;
-    }
-  }
 }
 
 /*
 HTML Emmet's
 1. div.two-column-layout>div.left-column+div.main-column
 2. div.two-column-layout>div.main-column+div.right-column
+3. div.two-column-layout.thin>div.left-column+div.main-column
+4. div.two-column-layout.thin>div.main-column+div.right-column
+5. div.two-column-layout.wide>div.left-column+div.main-column
+6. div.two-column-layout.wide>div.main-column+div.right-column
  */
 .two-column-layout {
   @include grid-layout;
