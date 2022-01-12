@@ -1,16 +1,16 @@
-import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { IEvent } from 'projects/shared-models/event.model';
-import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
-import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Title, Meta } from '@angular/platform-browser';
-import { NbSidebarService } from '@nebular/theme';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
+import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
+import { ICommunity } from 'projects/shared-models/community.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
+import { IEvent } from 'projects/shared-models/event.model';
+
 @Component({
   selector: 'app-home-event',
   templateUrl: './home-event.component.html',
@@ -34,18 +34,33 @@ export class HomeEventComponent implements OnInit {
   hasInterestedMembers = false;
   hasSponsors = false;
 
+  @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('agendaSection', { static: false }) agendaSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('speakersSection', { static: false }) speakersSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('sponsorsSection', { static: false }) sponsorsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('collaborationCommunitiesSection', { static: false })
+  collaborationCommunitiesSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('commentsSection', { static: false }) commentsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('volunteersSection', { static: false }) volunteersSectionRef: ElementRef<HTMLDivElement>;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
     private title: Title,
     private meta: Meta,
-    private sidebarService: NbSidebarService,
     private discussionsService: DiscussionsService,
   ) {}
 
-  scroll(el: HTMLElement) {
-    el.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.getEvent(params.event_id);
+    });
+  }
+
+  scroll(element: ElementRef<HTMLDivElement>) {
+    element.nativeElement.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
   }
 
   setMeta() {
@@ -84,13 +99,6 @@ export class HomeEventComponent implements OnInit {
     this.meta.updateTag({
       name: 'twitter:description',
       content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-  }
-
-  ngOnInit() {
-    this.sidebarService.toggle(true, 'right');
-    this.activatedRoute.params.subscribe((params) => {
-      this.getEvent(params.event_id);
     });
   }
 

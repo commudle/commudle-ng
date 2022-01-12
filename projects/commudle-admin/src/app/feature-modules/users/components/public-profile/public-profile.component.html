@@ -1,6 +1,6 @@
 <div *ngIf="user" class="base-layout com-my-8">
   <div class="container">
-    <div *appBreakpoints="'>lg'" class="two-column-layout com-gap-4">
+    <div class="two-column-layout com-gap-4">
       <div class="left-column">
         <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
         <app-user-basic-social [user]="user"></app-user-basic-social>
@@ -9,13 +9,6 @@
         <router-outlet></router-outlet>
         <router-outlet name="p"></router-outlet>
       </div>
-    </div>
-
-    <div *appBreakpoints="'<=lg'" class="one-column-layout com-gap-4">
-      <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
-      <app-user-basic-social [user]="user"></app-user-basic-social>
-      <router-outlet></router-outlet>
-      <router-outlet name="p"></router-outlet>
     </div>
   </div>
 </div>
