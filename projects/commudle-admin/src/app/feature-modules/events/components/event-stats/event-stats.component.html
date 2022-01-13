@@ -1,194 +1,170 @@
 <div class="base-layout com-my-8">
   <div class="container">
-    <div *ngIf="event" class="one-column-layout event-stats"></div>
-    <a
-      [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
-      class="padding-0"
-      ghost
-      nbButton
-      size="small"
-    >
-      <nb-icon icon="arrow-ios-back"></nb-icon>
-      Back
-    </a>
+    <div *ngIf="event" class="one-column-layout event-stats">
+      <a
+        [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
+        class="padding-0"
+        ghost
+        nbButton
+        size="small"
+      >
+        <nb-icon icon="arrow-ios-back"></nb-icon>
+        Back
+      </a>
 
-    <nb-card class="page-header">
-      <nb-card-header>
-        <h3>
-          <nb-icon icon="trending-up-outline"></nb-icon>
-          {{ event.name }}
-          <small> Event Stats </small>
-        </h3>
-      </nb-card-header>
-    </nb-card>
+      <nb-card class="page-header">
+        <nb-card-header>
+          <h3>
+            <nb-icon icon="trending-up-outline"></nb-icon>
+            {{ event.name }}
+            <small> Event Stats </small>
+          </h3>
+        </nb-card-header>
+      </nb-card>
 
-    <nb-card class="stat-card attendees">
-      <nb-card-header>
-        <h3>Attendees</h3>
-      </nb-card-header>
-      <nb-card-body>
-        <div class="chart-container">
-          <p *ngIf="attendees">
-            {{
-              attendees.entry_passes.male +
-                attendees.entry_passes.female +
-                attendees.entry_passes.NA +
-                attendees.entry_passes.prefer_not_to_answer
-            }}
-            <br />
-            Entry Passes Sent
-          </p>
-          <canvas id="entry-passes-distribution"></canvas>
-        </div>
-        <div class="chart-container">
-          <p *ngIf="attendees">
-            <span>
+      <nb-card class="stat-card attendees">
+        <nb-card-header>
+          <h3>Attendees</h3>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="chart-container">
+            <p *ngIf="attendees">
               {{
-                this.attendees.invited_attendees.male +
-                  this.attendees.uninvited_attendees.male +
-                  this.attendees.invited_attendees.female +
+                attendees.entry_passes.male +
+                  attendees.entry_passes.female +
+                  attendees.entry_passes.NA +
+                  attendees.entry_passes.prefer_not_to_answer
+              }}
+              <br />
+              Entry Passes Sent
+            </p>
+            <canvas id="entry-passes-distribution"></canvas>
+          </div>
+          <div class="chart-container">
+            <p *ngIf="attendees">
+              <span>
+                {{
+                  this.attendees.invited_attendees.male +
+                    this.attendees.uninvited_attendees.male +
+                    this.attendees.invited_attendees.female +
+                    this.attendees.uninvited_attendees.female +
+                    this.attendees.invited_attendees.NA +
+                    this.attendees.invited_attendees.prefer_not_to_answer +
+                    this.attendees.uninvited_attendees.NA +
+                    this.attendees.uninvited_attendees.prefer_not_to_answer
+                }}
+              </span>
+              <br />
+              Total People In The Event
+            </p>
+            <canvas id="attendees-distribution"></canvas>
+            <p *ngIf="attendees">
+              Uninvited:
+              <span>{{
+                this.attendees.uninvited_attendees.male +
                   this.attendees.uninvited_attendees.female +
-                  this.attendees.invited_attendees.NA +
-                  this.attendees.invited_attendees.prefer_not_to_answer +
                   this.attendees.uninvited_attendees.NA +
                   this.attendees.uninvited_attendees.prefer_not_to_answer
-              }}
-            </span>
-            <br />
-            Total People In The Event
-          </p>
-          <canvas id="attendees-distribution"></canvas>
-          <p *ngIf="attendees">
-            Uninvited:
-            <span>{{
-              this.attendees.uninvited_attendees.male +
-                this.attendees.uninvited_attendees.female +
-                this.attendees.uninvited_attendees.NA +
-                this.attendees.uninvited_attendees.prefer_not_to_answer
-            }}</span>
-          </p>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <p>
-          <small>
-            *In case of online events, anyone (unique, without entry pass also) who spent more than 5 minutes on any of
-            the live session pages during the event counts as a live attendee.
-          </small>
-          <br />
-          <small> **Auto attendance marking for online events has started from 21st August, 2020 only </small>
-        </p>
-      </nb-card-footer>
-    </nb-card>
-
-    <nb-card *ngIf="this.discussions.length > 0" class="stat-card discussions">
-      <nb-card-header>
-        <h3>
-          <nb-icon icon="message-square-outline"></nb-icon>
-          Discussions
-        </h3>
-      </nb-card-header>
-      <nb-card-body>
-        <nb-list>
-          <nb-list-item>
-            <p class="type">Type</p>
-            <p class="parent">Where?</p>
-            <p class="messages">Messages</p>
-            <p class="link"></p>
-          </nb-list-item>
-          <nb-list-item *ngFor="let discussion of discussions">
-            <p class="type">{{ discussion.discussion_type | titlecase }}</p>
-            <p class="parent">{{ discussion.parent_name }}</p>
-            <p class="messages">{{ discussion.user_messages_count }} Messages</p>
-            <p class="link">
-              <a (click)="openDiscussionWindow(discussion)" nbButton outline size="tiny" status="primary"> OPEN </a>
+              }}</span>
             </p>
-          </nb-list-item>
-        </nb-list>
-      </nb-card-body>
-    </nb-card>
-
-    <nb-card *ngIf="this.polls.length > 0" class="stat-card polls">
-      <nb-card-header>
-        <h3>
-          <nb-icon icon="message-square-outline"></nb-icon>
-          Polls
-        </h3>
-      </nb-card-header>
-      <nb-card-body>
-        <nb-list>
-          <nb-list-item>
-            <p class="question">Question</p>
-            <p class="pollable">Where?</p>
-            <p class="responses">Responses</p>
-            <p class="results"></p>
-          </nb-list-item>
-          <nb-list-item *ngFor="let poll of polls">
-            <p class="question">{{ poll.questions[0].title }}</p>
-            <p class="pollable">{{ poll.pollable_name }}</p>
-            <p class="responses">{{ poll.total_responses }}</p>
-            <p class="results">
-              <a (click)="openPollWindow(poll)" nbButton outline size="tiny" status="primary"> Results </a>
-            </p>
-          </nb-list-item>
-        </nb-list>
-      </nb-card-body>
-    </nb-card>
-
-    <nb-card class="stat-card registration">
-      <nb-card-header>
-        <h3>Registration Numbers</h3>
-      </nb-card-header>
-      <nb-card-body *ngIf="!event.custom_registration" class="simple-registration">
-        <div class="number-group">
-          <p class="total">
-            <span> Total Registered </span>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <p>
+            <small>
+              *In case of online events, anyone (unique, without entry pass also) who spent more than 5 minutes on any
+              of the live session pages during the event counts as a live attendee.
+            </small>
             <br />
-            {{ totalRegistrations }}
+            <small> **Auto attendance marking for online events has started from 21st August, 2020 only </small>
           </p>
-          <p class="gender">
-            <span class="label">Male</span><br />
-            {{ totalMaleRegistrations }}
-          </p>
-          <p class="gender">
-            <span class="label">Female</span><br />
-            {{ totalFemaleRegistrations }}
-          </p>
-          <p class="gender">
-            <span class="label">Other/NA</span><br />
-            {{ totalOtherGenderRegistrations }}
-          </p>
-        </div>
-        <div *ngFor="let reg of registrations" class="number-group">
-          <p class="total">
-            <span> Status: {{ reg.registration_status | titlecase }} </span>
-            <br />
-            {{ (reg['male'] || 0) + (reg['female'] || 0) + (reg['NA'] || 0) + (reg['prefer_not_to_answer'] || 0) }}
-            <br />
-          </p>
-          <p class="gender">
-            <span class="label">Male</span><br />
-            {{ reg['male'] || 0 }}
-          </p>
-          <p class="gender">
-            <span class="label">Female</span><br />
-            {{ reg['female'] || 0 }}
-          </p>
-          <p class="gender">
-            <span class="label">Other/NA</span><br />
-            {{ (reg['NA'] || 0) + (reg['prefer_not_to_say'] || 0) }}
-          </p>
-        </div>
-      </nb-card-body>
+        </nb-card-footer>
+      </nb-card>
 
-      <nb-card-body *ngIf="event.custom_registration" class="custom-registration">
-        <div *ngFor="let regForm of registrations" class="form-group">
-          <h5 class="form-name">Form: {{ regForm.form_name }}</h5>
-          <div *ngFor="let reg of regForm.data" class="number-group">
+      <nb-card *ngIf="this.discussions.length > 0" class="stat-card discussions">
+        <nb-card-header>
+          <h3>
+            <nb-icon icon="message-square-outline"></nb-icon>
+            Discussions
+          </h3>
+        </nb-card-header>
+        <nb-card-body>
+          <nb-list>
+            <nb-list-item>
+              <p class="type">Type</p>
+              <p class="parent">Where?</p>
+              <p class="messages">Messages</p>
+              <p class="link"></p>
+            </nb-list-item>
+            <nb-list-item *ngFor="let discussion of discussions">
+              <p class="type">{{ discussion.discussion_type | titlecase }}</p>
+              <p class="parent">{{ discussion.parent_name }}</p>
+              <p class="messages">{{ discussion.user_messages_count }} Messages</p>
+              <p class="link">
+                <a (click)="openDiscussionWindow(discussion)" nbButton outline size="tiny" status="primary"> OPEN </a>
+              </p>
+            </nb-list-item>
+          </nb-list>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card *ngIf="this.polls.length > 0" class="stat-card polls">
+        <nb-card-header>
+          <h3>
+            <nb-icon icon="message-square-outline"></nb-icon>
+            Polls
+          </h3>
+        </nb-card-header>
+        <nb-card-body>
+          <nb-list>
+            <nb-list-item>
+              <p class="question">Question</p>
+              <p class="pollable">Where?</p>
+              <p class="responses">Responses</p>
+              <p class="results"></p>
+            </nb-list-item>
+            <nb-list-item *ngFor="let poll of polls">
+              <p class="question">{{ poll.questions[0].title }}</p>
+              <p class="pollable">{{ poll.pollable_name }}</p>
+              <p class="responses">{{ poll.total_responses }}</p>
+              <p class="results">
+                <a (click)="openPollWindow(poll)" nbButton outline size="tiny" status="primary"> Results </a>
+              </p>
+            </nb-list-item>
+          </nb-list>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card class="stat-card registration">
+        <nb-card-header>
+          <h3>Registration Numbers</h3>
+        </nb-card-header>
+        <nb-card-body *ngIf="!event.custom_registration" class="simple-registration">
+          <div class="number-group">
             <p class="total">
-              <small> Status: {{ reg.registration_status | titlecase }} </small>
+              <span> Total Registered </span>
+              <br />
+              {{ totalRegistrations }}
+            </p>
+            <p class="gender">
+              <span class="label">Male</span><br />
+              {{ totalMaleRegistrations }}
+            </p>
+            <p class="gender">
+              <span class="label">Female</span><br />
+              {{ totalFemaleRegistrations }}
+            </p>
+            <p class="gender">
+              <span class="label">Other/NA</span><br />
+              {{ totalOtherGenderRegistrations }}
+            </p>
+          </div>
+          <div *ngFor="let reg of registrations" class="number-group">
+            <p class="total">
+              <span> Status: {{ reg.registration_status | titlecase }} </span>
               <br />
               {{ (reg['male'] || 0) + (reg['female'] || 0) + (reg['NA'] || 0) + (reg['prefer_not_to_answer'] || 0) }}
+              <br />
             </p>
             <p class="gender">
               <span class="label">Male</span><br />
@@ -203,34 +179,61 @@
               {{ (reg['NA'] || 0) + (reg['prefer_not_to_say'] || 0) }}
             </p>
           </div>
-        </div>
-      </nb-card-body>
-    </nb-card>
+        </nb-card-body>
 
-    <nb-card class="stat-card visitors">
-      <nb-card-header>
-        <h3>
-          <nb-icon icon="eye-outline"></nb-icon>
-          {{ uniqueVisitors }}
-          <small> Unique Visitors </small>
-        </h3>
-      </nb-card-header>
-      <nb-card-body>
-        <p>
-          Visitors on the
-          <a [routerLink]="['/communities', community.slug, 'events', event.slug]" target="_blank">Public Event Page</a>
-        </p>
-        <div class="chart-container">
-          <canvas id="{{ event.id }}-event-visitors"></canvas>
-        </div>
-        <div class="notification">
+        <nb-card-body *ngIf="event.custom_registration" class="custom-registration">
+          <div *ngFor="let regForm of registrations" class="form-group">
+            <h5 class="form-name">Form: {{ regForm.form_name }}</h5>
+            <div *ngFor="let reg of regForm.data" class="number-group">
+              <p class="total">
+                <small> Status: {{ reg.registration_status | titlecase }} </small>
+                <br />
+                {{ (reg['male'] || 0) + (reg['female'] || 0) + (reg['NA'] || 0) + (reg['prefer_not_to_answer'] || 0) }}
+              </p>
+              <p class="gender">
+                <span class="label">Male</span><br />
+                {{ reg['male'] || 0 }}
+              </p>
+              <p class="gender">
+                <span class="label">Female</span><br />
+                {{ reg['female'] || 0 }}
+              </p>
+              <p class="gender">
+                <span class="label">Other/NA</span><br />
+                {{ (reg['NA'] || 0) + (reg['prefer_not_to_say'] || 0) }}
+              </p>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card class="stat-card visitors">
+        <nb-card-header>
+          <h3>
+            <nb-icon icon="eye-outline"></nb-icon>
+            {{ uniqueVisitors }}
+            <small> Unique Visitors </small>
+          </h3>
+        </nb-card-header>
+        <nb-card-body>
           <p>
-            <small>
-              <i> *Sessions of the same user which are > 1 minute are counted multiple times for the chart above </i>
-            </small>
+            Visitors on the
+            <a [routerLink]="['/communities', community.slug, 'events', event.slug]" target="_blank"
+              >Public Event Page</a
+            >
           </p>
-        </div>
-      </nb-card-body>
-    </nb-card>
+          <div class="chart-container">
+            <canvas id="{{ event.id }}-event-visitors"></canvas>
+          </div>
+          <div class="notification">
+            <p>
+              <small>
+                <i> *Sessions of the same user which are > 1 minute are counted multiple times for the chart above </i>
+              </small>
+            </p>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 </div>
