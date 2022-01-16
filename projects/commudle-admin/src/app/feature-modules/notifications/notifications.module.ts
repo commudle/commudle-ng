@@ -6,12 +6,10 @@ import { NotificationsPageComponent } from './components/notifications-page/noti
 import { NbBadgeModule, NbCardModule, NbIconModule, NbListModule } from '@nebular/theme';
 import { InfiniteScrollModule } from 'projects/shared-modules/infinite-scroll/infinite-scroll.module';
 import { NotificationRoutingModule } from './notification-routing.module';
+import { NotificationsListComponent } from './components/notifications-list/notifications-list.component';
 
 @NgModule({
-  declarations: [
-    NotificationsPopoverComponent, 
-    NotificationsPageComponent
-  ],
+  declarations: [NotificationsPopoverComponent, NotificationsPageComponent, NotificationsListComponent],
   imports: [
     CommonModule,
     InfiniteScrollModule,

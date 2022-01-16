@@ -21,16 +21,17 @@
     <div class="home-navbar-menu-option">Notifications</div>
   </a>
 
-  <a *ngIf="!mobileView" class="notification">
+  <a
+    *ngIf="!mobileView"
+    class="notification"
+    (click)="resetCount()"
+    [nbPopover]="notificationsPopoverComponent"
+    [nbPopoverContext]="{ notificationMessage: notificationMessage }"
+    nbPopoverPlacement="bottom"
+  >
     <div class="icon">
-      <span *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</span>
-      <fa-icon
-        (click)="resetCount()"
-        [icon]="faBell"
-        [nbPopover]="notificationsPopoverComponent"
-        [nbPopoverContext]="{ notificationMessage: notificationMessage }"
-        nbPopoverPlacement="bottom"
-      ></fa-icon>
+      <div *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</div>
+      <fa-icon [icon]="faBell"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Notifications</div>
   </a>

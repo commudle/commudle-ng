@@ -1,36 +1,32 @@
 <div class="base-layout">
   <div class="container">
-    <div class="one-column-layout">
-      <nb-card>
-        <nb-card-body>
-          <div
-            (scrolled)="getOlderNotifications()"
-            [infiniteScrollDisabled]="!(canLoadMore && total)"
-            appInfiniteScroll
-            class="com-flex com-flex-col com-gap-4"
-          >
-            <nb-list>
-              <nb-list-item *ngFor="let notification of notifications">
-                <div class="avatar com-rounded-[50%] com-max-h-[56px] com-max-w-[56px] com-min-w-[56px]">
-                  <img
-                    alt="{{ notification.sender?.name }}"
-                    src="{{ notification.sender?.avatar }}"
-                    title="{{ notification.sender?.name }}"
-                  />
-                </div>
-                <div class="content">
-                  {{ notification.notification_message }}
-                </div>
-              </nb-list-item>
-            </nb-list>
-          </div>
-          <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
-            <div class="spinner">
-              <div *ngFor="let _ of [].constructor(5)"></div>
+    <div class="two-column-layout thin">
+      <div class="left-column">
+        <nb-card>
+          <nb-card-body>
+            <h5>Notifications</h5>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="main-column">
+        <nb-card>
+          <nb-card-body>
+            <div
+              (scrolled)="getOlderNotifications()"
+              [infiniteScrollDisabled]="!(canLoadMore && total)"
+              appInfiniteScroll
+              class="com-flex com-flex-col com-gap-4"
+            >
+              <app-notifications-list [notifications]="notifications"></app-notifications-list>
             </div>
-          </div>
-        </nb-card-body>
-      </nb-card>
+            <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+              <div class="spinner">
+                <div *ngFor="let _ of [].constructor(5)"></div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
     </div>
   </div>
 </div>
