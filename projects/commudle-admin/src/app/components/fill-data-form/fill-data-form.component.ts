@@ -1,41 +1,41 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataFormEntitiesService } from '../../services/data-form-entities.service';
-import { IDataFormEntity, Visibility } from 'projects/shared-models/data_form_entity.model';
-import { EventsService } from '../../services/events.service';
-import { IEvent } from 'projects/shared-models/event.model';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { CommunitiesService } from '../../services/communities.service';
-import { Title, Meta } from '@angular/platform-browser';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
+import { DataFormEntitiesService } from 'projects/commudle-admin/src/app/services/data-form-entities.service';
+import { DataFormEntityResponsesService } from 'projects/commudle-admin/src/app/services/data-form-entity-responses.service';
+import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { LibErrorHandlerService } from 'projects/lib-error-handler/src/public-api';
-import { DataFormEntityResponsesService } from '../../services/data-form-entity-responses.service';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { NbDialogService } from '@nebular/theme';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-
+import { IDataFormEntity } from 'projects/shared-models/data_form_entity.model';
+import { IEvent } from 'projects/shared-models/event.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
-  styleUrls: ['./fill-data-form.component.scss']
+  styleUrls: ['./fill-data-form.component.scss'],
 })
 export class FillDataFormComponent implements OnInit, OnDestroy {
-  @ViewChild('formConfirmationDialog', {static: true}) formConfirmationDialog: TemplateRef<any>;
-
   dataFormEntity: IDataFormEntity;
-  Visibility: Visibility;
   formClosed = false;
   showProfileForm = false;
   redirectRoute: any;
   event: IEvent;
   community: ICommunity;
   selectedFormResponse: any;
-  subscriptions = [];
   currentUser: ICurrentUser;
-  dialogRef;
+  dialogRef: NbDialogRef<any>;
 
   existingResponses;
+
+  subscriptions: Subscription[] = [];
+
+  @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,94 +43,63 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
     private router: Router,
-    private title: Title,
-    private meta: Meta,
+    private seoService: SeoService,
     private errorHandler: LibErrorHandlerService,
     private dataFormEntityResponsesService: DataFormEntityResponsesService,
     private toastLogService: LibToastLogService,
     private dialogService: NbDialogService,
-    private authWatchService: LibAuthwatchService
-  ) { }
+    private authWatchService: LibAuthwatchService,
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe(params => {
+      this.activatedRoute.params.subscribe((params) => {
         this.getDataFormEntity(params.data_form_entity_id);
-      })
+      }),
     );
 
     this.subscriptions.push(
-      this.activatedRoute.queryParams.subscribe(
-        data => {
-          if (data.next) {
-            this.redirectRoute = [decodeURIComponent(data.next)];
-          }
+      this.activatedRoute.queryParams.subscribe((data) => {
+        if (data.next) {
+          this.redirectRoute = [decodeURIComponent(data.next)];
         }
-      )
+      }),
     );
 
-    this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe(
-        data => this.currentUser = data
-      )
-    );
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
   }
 
   ngOnDestroy() {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
+    this.dialogRef?.close();
   }
-
-
-  setMeta() {
-    this.meta.updateTag({ name: 'description', content: `Fill the form for ${this.dataFormEntity.name}`});
-
-
-    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'og:title', content: `${this.dataFormEntity.name}` });
-    this.meta.updateTag({ name: 'og:description', content: `Fill the form for ${this.dataFormEntity.name}`});
-    this.meta.updateTag( { name: 'og:type', content: 'website'});
-
-    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.dataFormEntity.name}` });
-    this.meta.updateTag({ name: 'twitter:description', content: `Fill the form for ${this.dataFormEntity.name}`});
-  }
-
 
   getDataFormEntity(dataFormEntityId) {
-    this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe(
-      data => {
-        this.dataFormEntity = data;
-        this.title.setTitle(`${this.dataFormEntity.name}`);
-        this.setMeta();
-        this.formClosed = !this.dataFormEntity.user_can_fill_form;
-        if (!this.formClosed) {
-          this.getExistingResponses();
-          this.getParent();
-        }
+    this.dataFormEntitiesService.getDataFormEntity(dataFormEntityId).subscribe((data) => {
+      this.dataFormEntity = data;
+      this.seoService.setTags(
+        `${this.dataFormEntity.name}`,
+        `Fill the form for ${this.dataFormEntity.name}`,
+        'https://commudle.com/assets/images/commudle-logo192.png',
+      );
+      this.formClosed = !this.dataFormEntity.user_can_fill_form;
+      if (!this.formClosed) {
+        this.getExistingResponses();
+        this.getParent();
       }
-    );
+    });
   }
 
   getExistingResponses() {
-    this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe(
-      data => {
-        this.existingResponses = data.existing_responses;
+    this.dataFormEntityResponsesService.getExistingResponse(this.dataFormEntity.id).subscribe((data) => {
+      this.existingResponses = data.existing_responses;
 
-        if (!this.dataFormEntity.multi_response &&  this.existingResponses.length >= 1) {
-          this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
-        }
+      if (!this.dataFormEntity.multi_response && this.existingResponses.length >= 1) {
+        this.selectedFormResponse = this.existingResponses[this.existingResponses.length - 1];
       }
-    );
+    });
   }
-
-
 
   getParent() {
     switch (this.dataFormEntity.redirectable_entity_type) {
@@ -143,58 +112,46 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
         break;
       default:
         this.errorHandler.handleError(404, 'You cannot fill this form');
-
     }
   }
 
-
   getEvent() {
-    this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe(
-      data => {
-        this.event = data;
-        this.title.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
-        this.getCommunity(this.event.kommunity_id);
+    this.eventsService.pGetEvent(this.dataFormEntity.redirectable_entity_id).subscribe((data) => {
+      this.event = data;
+      this.seoService.setTitle(`${this.dataFormEntity.name} | ${this.event.name}`);
+      this.getCommunity(this.event.kommunity_id);
 
-        if (this.event.header_image_path) {
-          this.meta.updateTag({name: 'og:image', content: this.event.header_image_path});
-        }
+      if (this.event.header_image_path) {
+        this.seoService.setTag('og:image', this.event.header_image_path);
       }
-    );
+    });
   }
 
   getCommunity(communityId) {
-    this.communitiesService.getCommunityDetails(communityId).subscribe(
-      data => {
-        this.community = data;
+    this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
+      this.community = data;
 
-        if (!this.event.header_image_path) {
-          this.meta.updateTag({name: 'og:image', content: this.community.logo_path});
-        }
-        // if (!this.redirectRoute) {
-        //   this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
-        // }
+      if (!this.event.header_image_path) {
+        this.seoService.setTag('og:image', this.community.logo_path);
       }
-    );
+      // if (!this.redirectRoute) {
+      //   this.redirectRoute = ['/communities', this.community.slug, 'events', this.event.slug];
+      // }
+    });
   }
 
-
   submitForm($event) {
-    this.dataFormEntityResponsesService.submitDataFormEntityResponse(
-      this.dataFormEntity.id,
-      $event).subscribe(
-      data => {
-        // this.toastLogService.successDialog('Saved!');
-        this.redirectTo();
-      }
-    );
+    this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
+      // this.toastLogService.successDialog('Saved!');
+      this.redirectTo();
+    });
   }
 
   redirectTo() {
     if (this.redirectRoute) {
       this.router.navigate(this.redirectRoute);
     } else {
-      this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {closeOnBackdropClick: false});
+      this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
     }
   }
-
 }
