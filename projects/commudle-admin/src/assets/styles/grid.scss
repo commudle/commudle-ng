@@ -7,6 +7,10 @@ HTML Emmet's
 .base-layout {
   @apply com-min-h-screen com-max-w-screen-xl com-mx-auto;
 
+  &.thin {
+    @apply com-max-w-screen-md;
+  }
+
   .container {
     @apply com-container;
   }
