@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
@@ -79,8 +79,7 @@ export class EditLabComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: object,
-    private meta: Meta,
-    private title: Title,
+    private seoService : SeoService,
     private dialogService: NbDialogService,
   ) {}
 
@@ -120,60 +119,20 @@ export class EditLabComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
     if (this.autoSaveInterval) {
       clearInterval(this.autoSaveInterval);
     }
   }
 
   setMeta() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex',
-    });
-    this.meta.updateTag({
-      name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, ''),
-    });
-    this.title.setTitle(`Edit ${this.lab.name} | By ${this.lab.user.name}`);
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `Edit ${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, ''),
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `Edit ${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, ''),
-    });
+    this.seoService.setTag('robots', 'noindex');
+
+    this.seoService.setTags(
+      `Edit ${this.lab.name} | By ${this.lab.user.name}`,
+      this.lab.description.replace(/<[^>]*>/g, ''),
+      'https://commudle.com/assets/images/commudle-logo192.png'
+    );
   }
 
   getLab() {

@@ -7,7 +7,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Title, Meta } from '@angular/platform-browser';
+ import { SeoService } from 'projects/shared-services/seo.service';
 import { NbSidebarService } from '@nebular/theme';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
@@ -38,8 +38,7 @@ export class HomeEventComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
     private sidebarService: NbSidebarService,
     private discussionsService: DiscussionsService,
   ) {}
@@ -49,42 +48,11 @@ export class HomeEventComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.event.name} | ${this.community.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-
-    this.meta.updateTag({
-      name: 'og:image',
-      property: 'og:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      property: 'og:title',
-      content: `${this.event.name} | ${this.community.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      property: 'og:description',
-      content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-    this.meta.updateTag({ name: 'og:type', property: 'og:type', content: 'website' });
-
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.event.name} | ${this.community.name}` });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
+    this.seoService.setTags(
+      `${this.event.name} | ${this.community.name}`,
+      this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
+      `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+    );
   }
 
   ngOnInit() {

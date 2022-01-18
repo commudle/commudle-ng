@@ -3,8 +3,8 @@ import { AdminSurveysService } from '../../services/admin-surveys.service';
 import { EAdminSurveyStatus, IAdminSurvey } from 'projects/shared-models/admin-survey.model';
 import { NbWindowService } from '@nebular/theme';
 import { FormResponsesComponent } from 'projects/shared-components/form-responses/form-responses.component';
-import { Title } from '@angular/platform-browser';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-admin-surveys',
@@ -19,11 +19,11 @@ export class AdminSurveysComponent implements OnInit {
     private adminSurveysService: AdminSurveysService,
     private windowService: NbWindowService,
     private toastLogService: LibToastLogService,
-    private title: Title
+    private seoService: SeoService,
   ) { }
 
   ngOnInit() {
-    this.title.setTitle('Admin: Surveys');
+    this.seoService.setTitle('Admin: Surveys');
     this.getSurveys();
   }
 

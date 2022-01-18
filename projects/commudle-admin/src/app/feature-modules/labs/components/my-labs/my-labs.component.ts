@@ -2,10 +2,9 @@ import { Component, OnInit, TemplateRef, ViewChild, OnDestroy } from '@angular/c
 import * as moment from 'moment';
 import { ILab, EPublishStatus } from 'projects/shared-models/lab.model';
 import { LabsService } from '../../services/labs.service';
-import { Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { NbWindowService } from '@nebular/theme';
 import { EPublishStatusColors } from 'projects/shared-models/community-build.model';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -30,12 +29,12 @@ export class MyLabsComponent implements OnInit, OnDestroy {
 
   constructor(
     private labsService: LabsService,
-    private title: Title,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
-    private appUsersService: AppUsersService
+    private appUsersService: AppUsersService,
+    private seoService: SeoService,
   ) {
-    title.setTitle('My Labs');
+    this.seoService.setTitle('My Labs');
   }
 
   ngOnInit() {

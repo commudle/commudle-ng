@@ -5,7 +5,7 @@ import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-community-create',
@@ -27,8 +27,7 @@ export class CommunityCreateComponent implements OnInit, OnDestroy {
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
     private toastLogService: LibToastLogService,
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit() {
@@ -42,15 +41,12 @@ export class CommunityCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   setTitle() {
-    this.title.setTitle(`Create Community`);
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTitle(`Create Community`);
+    this.seoService.setTag('robots', 'noindex');
   }
 
   createCommunity() {

@@ -13,7 +13,7 @@ import {ICurrentUser} from 'projects/shared-models/current_user.model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { ActivatedRoute } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-user-social',
@@ -67,8 +67,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     private socialResourceService: SocialResourceService,
     private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) {
   }
 
@@ -227,9 +226,9 @@ export class UserSocialComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     const titleText = `More links by @${this.user.username}`;
-    this.title.setTitle(titleText);
-    this.meta.updateTag({ name: 'og:title', content: titleText });
-    this.meta.updateTag({ name: 'twitter:title', content: titleText });
+    this.seoService.setTitle(titleText);
+    this.seoService.setTag('og:title', titleText);
+    this.seoService.setTag('twitter:title', titleText);
   }
 
 

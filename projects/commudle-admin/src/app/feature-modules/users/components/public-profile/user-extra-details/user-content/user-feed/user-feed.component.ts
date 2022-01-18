@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -28,8 +28,7 @@ export class UserFeedComponent implements OnInit, OnDestroy {
     private nbToastrService: NbToastrService,
     private activatedRoute: ActivatedRoute,
     private authWatchService: LibAuthwatchService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) {
   }
 
@@ -75,9 +74,9 @@ export class UserFeedComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     const titleText = `Updates from @${this.user.username}`;
-    this.title.setTitle(titleText);
-    this.meta.updateTag({ name: 'og:title', content: titleText });
-    this.meta.updateTag({ name: 'twitter:title', content: titleText });
+    this.seoService.setTitle(titleText);
+    this.seoService.setTag('og:title', titleText);
+    this.seoService.setTag('twitter:title', titleText);
   }
 
 }

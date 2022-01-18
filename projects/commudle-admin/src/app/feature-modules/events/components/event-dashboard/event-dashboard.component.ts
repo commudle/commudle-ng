@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { faClock, faEdit, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { IEventStatus } from 'projects/shared-models/event_status.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
@@ -41,35 +41,30 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private titleService: Title,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) {}
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTag('robots', 'noindex');
 
     this.sidebarService.collapse('mainMenu');
     this.activatedRoute.data.subscribe(data => {
       this.event = data.event;
 
-      this.title.setTitle(`Dashboard : ${this.event.name}`);
+      this.seoService.setTitle(`Dashboard : ${this.event.name}`);
 
       this.community = data.community;
-      this.titleService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
+      this.seoService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
 

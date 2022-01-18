@@ -1,7 +1,7 @@
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
-import { Component, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
@@ -41,12 +41,10 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private titleService: Title,
     private communitiesService: CommunitiesService,
     private activatedRoute: ActivatedRoute,
     private windowService: NbWindowService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
@@ -54,7 +52,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
 
@@ -71,11 +69,8 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
   }
 
   setTitle() {
-    this.titleService.setTitle(`Admin Dashboard | ${this.community.name}`);
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTitle(`Admin Dashboard | ${this.community.name}`);
+    this.seoService.setTag('robots', 'noindex');
   }
 
   sendEmails() {

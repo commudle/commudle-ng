@@ -6,7 +6,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -32,8 +32,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
     private communityChannelManagerService: CommunityChannelManagerService,
     private authWatchService: LibAuthwatchService,
     private communityChannelNotifications: CommunityChannelNotificationsChannel,
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit() {
@@ -93,19 +92,11 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
 
 
   setMeta() {
-    this.title.setTitle(`${this.selectedChannel.name} - ${this.selectedCommunity.name}`)
-    this.meta.updateTag({ name: 'description', content: `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`});
-
-
-    this.meta.updateTag({ name: 'og:image', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'og:title', content: `${this.selectedChannel.name} - ${this.selectedCommunity.name}` });
-    this.meta.updateTag({ name: 'og:description', content: `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`});
-    this.meta.updateTag( { name: 'og:type', content: 'website'});
-
-    this.meta.updateTag({ name: 'twitter:image', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.selectedChannel.name} - ${this.selectedCommunity.name}` });
-    this.meta.updateTag({ name: 'twitter:description', content: `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`});
+    this.seoService.setTags(
+      `${this.selectedChannel.name} - ${this.selectedCommunity.name}`,
+      `${this.selectedChannel.description.replace(/<[^>]*>/g, '').substring(0, 160)}`,
+      this.selectedCommunity.logo_path
+    );
   }
 
 

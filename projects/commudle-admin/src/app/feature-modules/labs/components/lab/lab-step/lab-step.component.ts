@@ -9,7 +9,7 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
@@ -17,6 +17,7 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -47,8 +48,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
   ) {}
 
   ngOnInit() {
@@ -99,29 +99,12 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.step.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
 
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `${this.step.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `${this.step.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
+    this.seoService.setTags(
+      `${this.step.name}`,
+      this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
+      ''
+    );
   }
 
   addLabStepVisit() {

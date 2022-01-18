@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-community-controls',
@@ -9,11 +9,11 @@ import { Title } from '@angular/platform-browser';
 export class CommunityControlsComponent implements OnInit {
 
   constructor(
-    private title: Title
+    private seoService: SeoService,
   ) { }
 
   ngOnInit(): void {
-    this.title.setTitle('Admin: Community Controls')
+    this.seoService.setTitle('Admin: Community Controls');
   }
 
 }

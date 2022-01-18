@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-pricing',
@@ -9,8 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
 export class PricingComponent implements OnInit, OnDestroy {
 
   constructor(
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit(): void {
@@ -18,35 +17,15 @@ export class PricingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   setMeta() {
-    // TODO Remove noindex
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
-    this.title.setTitle('Pricing & Features');
-    this.meta.updateTag({
-      name: 'description',
-      content: 'Plans for all Developer Communities, student, individual, non-profite and enterprise!'
-    });
-    this.meta.updateTag({name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
-    this.meta.updateTag({name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
-    this.meta.updateTag({name: 'og:title', content: 'Pricing & Features'});
-    this.meta.updateTag({
-      name: 'og:description',
-      content: 'Plans for all Developer Communities, student, individual, non-profite and enterprise!'
-    });
-    this.meta.updateTag({name: 'og:type', content: 'website'});
-
-    this.meta.updateTag({name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png'});
-    this.meta.updateTag({name: 'twitter:title', content: 'Pricing & Features'});
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: 'Plans for all Developer Communities, student, individual, non-profite and enterprise!'
-    });
+    this.seoService.setTags(
+      'Pricing & Features',
+      'Plans for all Developer Communities, student, individual, non-profite and enterprise!',
+      'https://commudle.com/assets/images/commudle-logo192.png'
+    );
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { CommunityChannelsService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channels.service';
@@ -17,8 +17,7 @@ export class CommunityChannelsListComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
+    private seoService : SeoService,
     private communityChannelsService: CommunityChannelsService,
   ) {}
 
@@ -45,8 +44,8 @@ export class CommunityChannelsListComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle(`Public Channels | ${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `Public Channels | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Public Channels | ${this.community.name}` });
+    this.seoService.setTitle(`Public Channels | ${this.community.name}`);
+    this.seoService.setTag('og:title', `Public Channels | ${this.community.name}`);
+    this.seoService.setTag('twitter:title', `Public Channels | ${this.community.name}`);
   }
 }

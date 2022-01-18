@@ -9,7 +9,7 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NbDialogService, NbSidebarService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
@@ -23,6 +23,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-lab',
@@ -52,8 +53,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(DOCUMENT) private doc: Document,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
+    private seoService : SeoService,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
     private router: Router,
@@ -135,49 +135,11 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
+    this.seoService.setTags(
+      `${this.lab.name} | By ${this.lab.user.name}`,
+      this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
+      'https://commudle.com/assets/images/commudle-logo192.png'
+    );
   }
 
   scrollToTop() {

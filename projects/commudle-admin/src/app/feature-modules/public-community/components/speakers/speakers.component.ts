@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -20,8 +20,7 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitySpeakerService: CommunitiesService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +40,9 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   }
 
   setMeta(): void {
-    this.title.setTitle(`Speakers | ${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `Speakers | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Speakers | ${this.community.name}` });
+    this.seoService.setTitle(`Speakers | ${this.community.name}`);
+    this.seoService.setTag('og:title', `Speakers | ${this.community.name}`);
+    this.seoService.setTag('twitter:title', `Speakers | ${this.community.name}`);
   }
 
   getSpeakerDetails(): void {

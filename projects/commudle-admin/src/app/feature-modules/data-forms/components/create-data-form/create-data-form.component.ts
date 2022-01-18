@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataFormsService } from 'projects/commudle-admin/src/app/services/data_forms.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-create-data-form',
@@ -26,16 +26,12 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private titleService: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('New Form');
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTitle('New Form');
+    this.seoService.setTag('robots', 'noindex');
     // get the parent values
     this.activatedRoute.queryParams.subscribe(params => {
       this.parentType = params['parent_type'];
@@ -44,7 +40,7 @@ export class CreateDataFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   saveDataForm(data) {

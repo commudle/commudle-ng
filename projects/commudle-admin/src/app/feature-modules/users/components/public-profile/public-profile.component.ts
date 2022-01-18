@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
@@ -25,8 +25,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private usersService: AppUsersService,
     private footerService: FooterService,
-    private meta: Meta,
-    private title: Title,
+    private seoService : SeoService,
     private updateProfileService: UpdateProfileService,
   ) {}
 
@@ -53,7 +52,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
     // Show Footer
     this.footerService.changeFooterStatus(true);
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   // Get user's data
@@ -68,7 +67,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
 
   setMeta() {
     if (!this.user.is_expert) {
-      this.meta.updateTag({ name: 'robots', content: 'noindex' });
+      this.seoService.setTag('robots', 'noindex');
     }
 
     let titleText = this.user.name;
@@ -77,17 +76,10 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
       titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
     }
 
-    this.title.setTitle(titleText);
-    this.meta.updateTag({ name: 'description', content: `${this.user.about_me}` });
-
-    this.meta.updateTag({ name: 'og:image', content: this.user.avatar });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: this.user.avatar });
-    this.meta.updateTag({ name: 'og:title', content: titleText });
-    this.meta.updateTag({ name: 'og:description', content: `${this.user.about_me}` });
-    this.meta.updateTag({ name: 'og:type', content: 'website' });
-
-    this.meta.updateTag({ name: 'twitter:image', content: this.user.avatar });
-    this.meta.updateTag({ name: 'twitter:title', content: titleText });
-    this.meta.updateTag({ name: 'twitter:description', content: `${this.user.about_me}` });
+    this.seoService.setTags(
+      titleText,
+      `${this.user.about_me}`,
+      this.user.avatar
+    );
   }
 }

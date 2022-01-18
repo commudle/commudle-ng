@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-sys-admin',
@@ -9,18 +9,15 @@ import { Meta } from '@angular/platform-browser';
 export class SysAdminComponent implements OnInit, OnDestroy {
 
   constructor(
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTag('robots', 'noindex');
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
 }

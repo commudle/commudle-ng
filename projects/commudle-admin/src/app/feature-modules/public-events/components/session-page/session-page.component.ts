@@ -1,7 +1,7 @@
 import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { CookieService } from 'ngx-cookie-service';
@@ -66,8 +66,7 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     private trackSlotsService: TrackSlotsService,
     private discussionsService: DiscussionsService,
     private embeddedVideoStreamsService: EmbeddedVideoStreamsService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
     private userObjectVisitsService: UserObjectVisitsService,
     private authWatchService: LibAuthwatchService,
     private location: Location,
@@ -78,42 +77,11 @@ export class SessionPageComponent implements OnInit, OnDestroy {
   ) {}
 
   setMeta() {
-    this.meta.updateTag({
-      name: 'description',
-      content: `${this.event.description.replace(/<[^>]*>/g, '')}`,
-    });
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `${this.event.name} | Live`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: `${this.event.description.replace(/<[^>]*>/g, '')}`,
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'website',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `${this.event.name} | Live`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: `${this.event.description.replace(/<[^>]*>/g, '')}`,
-    });
+    this.seoService.setTags(
+      `${this.event.name} | Live`,
+      `${this.event.description.replace(/<[^>]*>/g, '')}`,
+      `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`
+    );
   }
 
   ngOnInit() {
@@ -162,7 +130,7 @@ export class SessionPageComponent implements OnInit, OnDestroy {
           this.getEventEmbeddedVideoStream();
           this.getDiscussionQnA();
           this.getDiscussionChat();
-          this.title.setTitle(`Live Session | ${this.event.name}`);
+          this.seoService.setTitle(`Live Session | ${this.event.name}`);
           this.pollableId = this.event.id;
           this.pollableType = 'Event';
         }
@@ -184,16 +152,13 @@ export class SessionPageComponent implements OnInit, OnDestroy {
       }
 
       if (this.speaker) {
-        this.title.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
-        this.meta.updateTag({ name: 'og:title', content: `${this.speaker.name} | ${this.trackSlot.session_title}` });
-        this.meta.updateTag({
-          name: 'twitter:title',
-          content: `${this.speaker.name} | ${this.trackSlot.session_title}`,
-        });
+        this.seoService.setTitle(`${this.speaker.name} | ${this.trackSlot.session_title}`);
+        this.seoService.setTag('og:title', `${this.speaker.name} | ${this.trackSlot.session_title}`);
+        this.seoService.setTag('twitter:title', `${this.speaker.name} | ${this.trackSlot.session_title}`);
       } else {
-        this.title.setTitle(`${this.trackSlot.session_title}`);
-        this.meta.updateTag({ name: 'og:title', content: `${this.trackSlot.session_title}` });
-        this.meta.updateTag({ name: 'twitter:title', content: `${this.trackSlot.session_title}` });
+        this.seoService.setTitle(`${this.trackSlot.session_title}`);
+        this.seoService.setTag('og:title', `${this.trackSlot.session_title}`);
+        this.seoService.setTag('twitter:title', `${this.trackSlot.session_title}`);
       }
     });
   }

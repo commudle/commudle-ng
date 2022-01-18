@@ -3,7 +3,7 @@ import { EventCollaborationCommunitiesService } from 'projects/commudle-admin/sr
 import { ActivatedRoute } from '@angular/router';
 import { IEventCollaborationCommunity } from 'projects/shared-models/event_collaboration_community.model';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-collaboration-community',
@@ -18,8 +18,7 @@ export class CollaborationCommunityComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventCollaborationCommunitiesService: EventCollaborationCommunitiesService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
@@ -29,15 +28,12 @@ export class CollaborationCommunityComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.title.setTitle('Confirm Collaboration');
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTitle('Confirm Collaboration');
+    this.seoService.setTag('robots', 'noindex');
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
 

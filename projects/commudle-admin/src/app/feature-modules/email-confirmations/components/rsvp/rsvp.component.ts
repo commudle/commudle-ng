@@ -5,7 +5,7 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { ERegistrationStatuses } from 'projects/shared-models/enums/registration_statuses.enum';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-rsvp',
@@ -23,15 +23,11 @@ export class RsvpComponent implements OnInit, OnDestroy {
   constructor(
     private dataFormEntityResponseGroupsService: DataFormEntityResponseGroupsService,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTag('robots', 'noindex');
 
     this.activatedRoute.queryParams.subscribe(
       data => {
@@ -43,8 +39,8 @@ export class RsvpComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.title.setTitle('RSVP');
-    this.meta.removeTag("name='robots'");
+    this.seoService.setTitle('RSVP');
+    this.seoService.removeTag("name='robots'");
   }
 
 

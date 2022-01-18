@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IEmailUnsubscribeGroup } from 'projects/shared-models/email-unsubscribe-group.model';
@@ -23,8 +23,7 @@ export class EmailUnsubscribeComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private emailUnsubscribeGroupsService: EmailUnsubscribeGroupsService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
     private toastLogService: LibToastLogService,
     private authwatchService: LibAuthwatchService
   ) { }
@@ -48,7 +47,7 @@ export class EmailUnsubscribeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
 
     for (const sub of this.subscriptions) {
       sub.unsubscribe();
@@ -78,11 +77,8 @@ export class EmailUnsubscribeComponent implements OnInit, OnDestroy {
 
 
   setMeta() {
-    this.title.setTitle('Email Preferences');
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTitle('Email Preferences');
+    this.seoService.setTag('robots', 'noindex');
   }
 
 }

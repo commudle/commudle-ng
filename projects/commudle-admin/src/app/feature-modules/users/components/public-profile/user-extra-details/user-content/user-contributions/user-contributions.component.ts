@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
@@ -31,8 +31,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
   constructor(
     private appUsersService: AppUsersService,
     private activatedRoute: ActivatedRoute,
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) {
   }
 
@@ -117,7 +116,7 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
     if (this.user.designation) {
       titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
     }
-    this.title.setTitle(titleText);
+    this.seoService.setTitle(titleText);
   }
 
 }

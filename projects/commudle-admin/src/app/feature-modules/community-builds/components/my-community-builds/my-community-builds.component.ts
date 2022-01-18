@@ -5,7 +5,7 @@ import { ICommunityBuild, EPublishStatus, EPublishStatusColors } from 'projects/
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { NbWindowService } from '@nebular/theme';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 
@@ -25,8 +25,7 @@ export class MyCommunityBuildsComponent implements OnInit, OnDestroy {
 
   constructor(
     private communityBuildsService: CommunityBuildsService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
     private appUsersService: AppUsersService,
@@ -44,15 +43,12 @@ export class MyCommunityBuildsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   setMeta() {
-    this.title.setTitle('My Builds');
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex',
-    });
+    this.seoService.setTitle('My Builds');
+    this.seoService.setTag('robots', 'noindex');
   }
 
   getAllBuilds() {

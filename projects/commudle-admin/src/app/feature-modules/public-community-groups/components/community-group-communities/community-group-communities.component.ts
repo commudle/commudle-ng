@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
 
 @Component({
@@ -18,8 +18,7 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private communityGroupsService: CommunityGroupsService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
@@ -54,19 +53,11 @@ export class CommunityGroupCommunitiesComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle(`${this.communityGroup.name}`);
-    this.meta.updateTag({ name: 'description', content: `${this.communityGroup.mini_description}`});
-
-
-    this.meta.updateTag({ name: 'og:image', content: `${this.communityGroup.logo.i350}` });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: `${this.communityGroup.logo.i350}` });
-    this.meta.updateTag({ name: 'og:title', content: `${this.communityGroup.name}` });
-    this.meta.updateTag({ name: 'og:description', content: `${this.communityGroup.mini_description}`});
-    this.meta.updateTag( { name: 'og:type', content: 'website'});
-
-    this.meta.updateTag({ name: 'twitter:image', content: `${this.communityGroup.logo.i350}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.communityGroup.name}` });
-    this.meta.updateTag({ name: 'twitter:description', content: `Fill the form for ${this.communityGroup.mini_description}`});
+    this.seoService.setTags(
+      `${this.communityGroup.name}`,
+      `${this.communityGroup.mini_description}`,
+      `${this.communityGroup.logo.i350}`
+    );
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { LibErrorHandlerService } from './lib-error-handler.service';
 import { Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'lib-lib-error-handler',
@@ -16,14 +16,11 @@ export class LibErrorHandlerComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private errorHandlerService: LibErrorHandlerService,
     private router: Router,
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTag('robots', 'noindex');
   }
 
   ngOnChanges() {
@@ -32,7 +29,7 @@ export class LibErrorHandlerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
 

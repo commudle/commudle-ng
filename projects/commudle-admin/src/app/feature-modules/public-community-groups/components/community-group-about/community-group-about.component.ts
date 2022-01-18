@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-community-group-about',
@@ -16,8 +17,7 @@ export class CommunityGroupAboutComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
@@ -38,19 +38,11 @@ export class CommunityGroupAboutComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle(`About | ${this.communityGroup.name}`);
-    this.meta.updateTag({ name: 'description', content: `${this.communityGroup.mini_description}`});
-
-
-    this.meta.updateTag({ name: 'og:image', content: `About | ${this.communityGroup.logo.i350}` });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: `${this.communityGroup.logo.i350}` });
-    this.meta.updateTag({ name: 'og:title', content: `About | ${this.communityGroup.name}` });
-    this.meta.updateTag({ name: 'og:description', content: `${this.communityGroup.mini_description}`});
-    this.meta.updateTag( { name: 'og:type', content: 'website'});
-
-    this.meta.updateTag({ name: 'twitter:image', content: `${this.communityGroup.logo.i350}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `About | ${this.communityGroup.name}` });
-    this.meta.updateTag({ name: 'twitter:description', content: `Fill the form for ${this.communityGroup.mini_description}`});
+    this.seoService.setTags(
+      `About | ${this.communityGroup.name}`,
+      `${this.communityGroup.mini_description}`,
+      `${this.communityGroup.logo.i350}`
+    );
   }
 
 

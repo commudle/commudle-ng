@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -24,8 +24,7 @@ export class MembersComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -45,9 +44,9 @@ export class MembersComponent implements OnInit, OnDestroy {
   }
 
   setMeta(): void {
-    this.title.setTitle(`Members | ${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `Members | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Members | ${this.community.name}` });
+    this.seoService.setTitle(`Members | ${this.community.name}`);
+    this.seoService.setTag('og:title', `Members | ${this.community.name}`);
+    this.seoService.setTag('twitter:title', `Members | ${this.community.name}`);
   }
 
   getMembers(): void {

@@ -1,4 +1,4 @@
-import { Title, Meta } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,8 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FeaturesComponent implements OnInit {
 
   constructor(
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
@@ -18,41 +17,12 @@ export class FeaturesComponent implements OnInit {
   }
 
   setMeta() {
-    this.title.setTitle('Features');
-    this.meta.updateTag({
-      name: 'description',
-      content: 'From being able to manage a large community, to organizing engaging events, commudle has everything!'
-    });
-    this.meta.updateTag(
-      {
-        name: 'og:image',
-        content: `https://commudle.com/assets/images/commudle-logo192.png`
-      });
-    this.meta.updateTag(
-      {
-        name: 'og:image:secure_url',
-        content: `https://commudle.com/assets/images/commudle-logo192.png`
-      });
-    this.meta.updateTag({ name: 'og:title', content: `Features | Commudle` });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: 'From being able to manage a large community, to organizing engaging events, commudle has everything!'
-    });
-    this.meta.updateTag({ name: 'og:type', content: 'website'});
 
-    this.meta.updateTag(
-      {
-        name: 'twitter:image',
-        content: `https://commudle.com/assets/images/commudle-logo192.png`
-      });
-    this.meta.updateTag(
-      { name: 'twitter:title', content: `Features | Commudle` }
-      );
-
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: 'From being able to manage a large community, to organizing engaging events, commudle has everything!'
-    });
+    this.seoService.setTags(
+      'Features',
+      'From being able to manage a large community, to organizing engaging events, commudle has everything!',
+      'https://commudle.com/assets/images/commudle-logo192.png'
+    );
   }
 
 }

@@ -6,7 +6,7 @@ import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { ICommunityGroup } from 'projects/shared-models/community-group.model';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-user-role-confirmation',
@@ -23,8 +23,7 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   ngOnInit() {
@@ -34,15 +33,12 @@ export class UserRoleConfirmationComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.title.setTitle('Confirm Role');
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTitle('Confirm Role');
+    this.seoService.setTag('robots', 'noindex');
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   activateRole(token) {

@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
@@ -16,6 +16,7 @@ import { EBuildType, EPublishStatus, ICommunityBuild } from 'projects/shared-mod
 import { EUserRolesUserStatus, IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-create-community-build',
@@ -49,8 +50,7 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private title: Title,
-    private meta: Meta,
+    private seoService : SeoService,
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
@@ -64,29 +64,11 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle(`Publish a Project - Builds`);
-    this.meta.updateTag({
-      name: 'description',
-      content: `Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!`,
-    });
-    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: 'https://commudle.com/assets/images/commudle-logo192.png',
-    });
-    this.meta.updateTag({ name: 'og:title', content: `Publish a Project - Builds` });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: `Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!`,
-    });
-    this.meta.updateTag({ name: 'og:type', content: 'website' });
-
-    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `Publish a Project - Builds` });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: `Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!`,
-    });
+    this.seoService.setTags(
+      'Publish a Project - Builds',
+      'Publish your project (from your first script to a complete web or mobile app) with link to open source code, live deployment, screenshots and description. Add teammates too!',
+      'https://commudle.com/assets/images/commudle-logo192.png'
+    );
   }
 
   ngOnInit() {

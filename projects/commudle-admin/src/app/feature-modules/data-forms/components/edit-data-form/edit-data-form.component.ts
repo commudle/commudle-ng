@@ -8,7 +8,7 @@ import { IQuestionType } from 'projects/shared-models/question_type.model';
 import { IQuestionChoice } from 'projects/shared-models/question_choice.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 @Component({
   selector: 'app-edit-data-form',
   templateUrl: './edit-data-form.component.html',
@@ -99,15 +99,11 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private router: Router,
-    private titleService: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) { }
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.setTag('robots', 'noindex');
     // get the question types
     this.activatedRoute.data.subscribe((data) => {
       this.questionTypes = data.questionTypes.question_types;
@@ -129,7 +125,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
       this.dataFormsService.getDataFormDetails(data.id).subscribe(
         (dataForm) => {
           this.dataForm = dataForm;
-          this.titleService.setTitle(`Edit ${this.dataForm.name} Form`);
+          this.seoService.setTitle(`Edit ${this.dataForm.name} Form`);
           this.fillExistingDataForm();
         }
       );
@@ -140,7 +136,7 @@ export class EditDataFormComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.removeTag("name='robots'");
   }
 
   fillExistingDataForm() {

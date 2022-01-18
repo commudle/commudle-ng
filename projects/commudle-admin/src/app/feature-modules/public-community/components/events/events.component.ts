@@ -5,7 +5,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { IEvent } from 'projects/shared-models/event.model';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 
 @Component({
@@ -22,14 +22,13 @@ export class EventsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
-    private meta: Meta,
-    private title: Title
+    private seoService : SeoService,
   ) { }
 
   setMeta() {
-    this.title.setTitle(`Events | ${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `Events | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Events | ${this.community.name}` });
+    this.seoService.setTitle(`Events | ${this.community.name}`);
+    this.seoService.setTag('og:title', `Events | ${this.community.name}`);
+    this.seoService.setTag('twitter:title', `Events | ${this.community.name}`);
   }
 
   ngOnInit() {

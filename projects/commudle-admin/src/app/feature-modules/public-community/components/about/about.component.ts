@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 import { ICommunity } from 'projects/shared-models/community.model';
@@ -19,14 +19,13 @@ export class AboutComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
-    private meta: Meta,
-    private title: Title,
+    private seoService : SeoService,
   ) {}
 
   setMeta() {
-    this.title.setTitle(`${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.community.name}` });
+    this.seoService.setTitle(`${this.community.name}`);
+    this.seoService.setTag('og:title', `${this.community.name}`);
+    this.seoService.setTag('twitter:title', `${this.community.name}`);
   }
 
   ngOnInit() {
