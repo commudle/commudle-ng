@@ -1,90 +1,81 @@
-<div class="page-padding">
-  <div>
-    <nb-card>
-      <nb-card-body>
-        <p>
-          <a nbButton ghost size="tiny" class="padding-0 navigation-link" [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]">
-            <nb-icon icon="arrow-ios-back"></nb-icon>
-            Back
-          </a>
-        </p>
-        <h3>{{ event.name }}</h3>
-        <p>Registrations</p>
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <div>
+        <nb-card>
+          <nb-card-body>
+            <p>
+              <a
+                nbButton
+                ghost
+                size="tiny"
+                class="padding-0 navigation-link"
+                [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
+              >
+                <nb-icon icon="arrow-ios-back"></nb-icon>
+                Back
+              </a>
+            </p>
+            <h3>{{ event.name }}</h3>
+            <p>Registrations</p>
 
-        <div class="group-actions">
-          <button nbButton status="primary" outline size="small" (click)="openEntryPassEmailWindow()">Send All Entry Passes</button>
+            <div class="group-actions">
+              <button nbButton status="primary" outline size="small" (click)="openEntryPassEmailWindow()">
+                Send All Entry Passes
+              </button>
 
-          <button
-              nbButton
-              status="info"
-              outline size="small"
-              (click)="sendCSV()">
-              <nb-icon icon="email-outline"></nb-icon>
-              CSV
-          </button>
+              <button nbButton status="info" outline size="small" (click)="sendCSV()">
+                <nb-icon icon="email-outline"></nb-icon>
+                CSV
+              </button>
 
-          <nb-select
-            *ngIf="event.editable"
-            placeholder="Bulk Status Change"
-            (selectedChange)="bulkStatusChangeConfirmation($event)"
-            filled
-            status="info"
-            size="small"
-            [(ngModel)]="bulkStatus"
-            [ngModelOptions]="{standalone: true}"
-            >
+              <nb-select
+                *ngIf="event.editable"
+                placeholder="Bulk Status Change"
+                (selectedChange)="bulkStatusChangeConfirmation($event)"
+                filled
+                status="info"
+                size="small"
+                [(ngModel)]="bulkStatus"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                <nb-option *ngFor="let rs of registrationStatuses" [value]="rs">
+                  {{ rs.name | titlecase }}
+                </nb-option>
+              </nb-select>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
 
-            <nb-option *ngFor="let rs of registrationStatuses" [value]="rs">
-              {{ rs.name | titlecase }}
-            </nb-option>
-          </nb-select>
-        </div>
-
-      </nb-card-body>
-    </nb-card>
-  </div>
-
-  <div>
-    <!-- <nb-card>
-      <nb-card-body> -->
+      <div>
+        <!-- <nb-card>
+          <nb-card-body> -->
         <div class="data-table-container">
           <ngx-datatable
-          #table
-          class="material expandable"
-          [rows]="rows"
-
-          [loadingIndicator]="isLoading"
-          [columnMode]="ColumnMode.force"
-          [headerHeight]="100"
-          [footerHeight]="50"
-          rowHeight="auto"
-          [scrollbarV]="true"
-          [scrollbarH]="true"
-          [virtualization]="false"
-          [count]="totalEntries"
-          [externalPaging]="true"
-          [offset]="page - 1"
-          [limit]="count"
-          (page)="setPage($event.offset)"
-          [messages]="{emptyMessage: emptyMessage}">
-
-
+            #table
+            class="material expandable"
+            [rows]="rows"
+            [loadingIndicator]="isLoading"
+            [columnMode]="ColumnMode.force"
+            [headerHeight]="100"
+            [footerHeight]="50"
+            rowHeight="auto"
+            [scrollbarV]="true"
+            [scrollbarH]="true"
+            [virtualization]="false"
+            [count]="totalEntries"
+            [externalPaging]="true"
+            [offset]="page - 1"
+            [limit]="count"
+            (page)="setPage($event.offset)"
+            [messages]="{ emptyMessage: emptyMessage }"
+          >
             <!-- complete table format -->
-            <ngx-datatable-column
-              name="User Details"
-              [frozenLeft]="true"
-              [width]="360"
-              [canAutoResize]="true"
-              >
-
-              <ng-template
-                let-column="column"
-                ngx-datatable-header-template
-                >
+            <ngx-datatable-column name="User Details" [frozenLeft]="true" [width]="360" [canAutoResize]="true">
+              <ng-template let-column="column" ngx-datatable-header-template>
                 <div class="header-column-template">
-                  <p>
-                    User Details
-                  </p>
+                  <p>User Details</p>
                   <form [formGroup]="searchForm">
                     <div class="name-filter">
                       <input
@@ -101,20 +92,16 @@
 
                   <div class="registration-status-filter">
                     <div (click)="registrationStatusFilter(0)">
-                      <p [ngClass]="{'text-primary': 0 == registrationStatusId}">All</p>
+                      <p [ngClass]="{ 'text-primary': 0 == registrationStatusId }">All</p>
                     </div>
                     <div *ngFor="let rs of registrationStatuses" (click)="registrationStatusFilter(rs.id)">
-                      <p [ngClass]="{'text-primary': rs.id == registrationStatusId}">{{ rs.name }}</p>
+                      <p [ngClass]="{ 'text-primary': rs.id == registrationStatusId }">{{ rs.name }}</p>
                     </div>
                   </div>
                 </div>
-
               </ng-template>
 
-              <ng-template
-                let-row="row"
-                let-expanded="expanded"
-                ngx-datatable-cell-template>
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
                 <div class="row-header user-details">
                   <app-user-details
                     [userResponse]="row"
@@ -122,32 +109,31 @@
                     [community]="community"
                     [event]="event"
                     (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
-                    (updateEntryPass)="updateEntryPass($event, row.id)">
+                    (updateEntryPass)="updateEntryPass($event, row.id)"
+                  >
                   </app-user-details>
                 </div>
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
-
         </div>
 
-      <!-- </nb-card-body>
-    </nb-card> -->
-
+        <!-- </nb-card-body>
+        </nb-card> -->
+      </div>
+    </div>
   </div>
 </div>
 
-
-
 <ng-template #confirmStatusChange let-data>
-  <p>
-    This will change the status of all {{totalEntries}} entries and <strong>cannot be undone</strong>.
-  </p>
+  <p>This will change the status of all {{ totalEntries }} entries and <strong>cannot be undone</strong>.</p>
   <p>
     <nb-checkbox [(ngModel)]="bulkStatusChangeForCanceled">Change status of 'Canceled' responses also</nb-checkbox>
   </p>
   <div>
-    <button nbButton ghost size="medium" status="success" (click)="bulkStatusChange(data.registration_status.id)">Yes</button>
+    <button nbButton ghost size="medium" status="success" (click)="bulkStatusChange(data.registration_status.id)">
+      Yes
+    </button>
     <button nbButton ghost size="medium" status="danger" (click)="windowRef.close()">No</button>
   </div>
 </ng-template>
