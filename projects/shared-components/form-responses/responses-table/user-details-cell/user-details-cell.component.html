@@ -1,12 +1,14 @@
 <div>
   <div class="user-details-container">
-    <p class="timeago" title="{{moment(userResponse.created_at).format('dddd Do MMM, YYYY h:mm A')}}">
+    <p class="timeago" title="{{ moment(userResponse.created_at).format('dddd Do MMM, YYYY h:mm A') }}">
       {{ moment(userResponse.created_at).fromNow() }}
     </p>
-    <h6>{{ user.name }}</h6>
-    <div class="user-avatar">
-      <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}">
-    </div>
+    <a *ngIf="user.username" [routerLink]="['/users', user.username]" target="_blank">
+      <h6>{{ user.name }}</h6>
+      <div class="user-avatar">
+        <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
+      </div>
+    </a>
     <p class="contact-details">
       <small>{{ user.email }}</small>
     </p>

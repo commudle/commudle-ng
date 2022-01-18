@@ -5,15 +5,20 @@
     margin: 0;
     color: $low-emphasis-text;
   }
-  h6 {
-    margin: 0;
-  }
-  .user-avatar {
-    min-height: 50px;
-    overflow: hidden;
-    width: 50px;
-    img {
-      width: 100%;
+
+  a {
+    text-decoration: none;
+
+    h6 {
+      margin: 0;
+    }
+    .user-avatar {
+      min-height: 50px;
+      overflow: hidden;
+      width: 50px;
+      img {
+        width: 100%;
+      }
     }
   }
 

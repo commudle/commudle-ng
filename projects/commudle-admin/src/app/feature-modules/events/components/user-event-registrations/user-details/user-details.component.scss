@@ -1,13 +1,17 @@
-.user-details-container{
-  h6{
-    margin: 0;
-  }
-  .user-avatar{
-    width: 50px;
-    min-height: 50px;
-    overflow: hidden;
-    img {
-      width: 100%;
+.user-details-container {
+  a {
+    text-decoration: none;
+
+    h6 {
+      margin: 0;
+    }
+    .user-avatar {
+      width: 50px;
+      min-height: 50px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
     }
   }
 
@@ -31,28 +35,26 @@
   .registration-status-list {
     display: flex;
     flex-wrap: wrap;
-    >div{
+    > div {
       cursor: pointer;
-      p{
+      p {
         padding: 5px;
         border: 0.5px solid lightgrey;
         font-size: 12px;
         margin: 0;
         color: blue;
 
-        &.disabled{
+        &.disabled {
           color: lightgrey;
         }
 
-        &.selected-status{
+        &.selected-status {
           color: green;
           font-weight: bold;
         }
       }
-
     }
   }
-
 
   .action-buttons {
     .entry-pass-code {
@@ -72,7 +74,7 @@
 }
 
 .confirmed-status-actions {
-  >button {
+  > button {
     margin-bottom: 0.5rem;
   }
 }
