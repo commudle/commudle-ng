@@ -23,6 +23,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-lab',
@@ -52,8 +53,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(DOCUMENT) private doc: Document,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
     private router: Router,
@@ -65,6 +64,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private navigatorShareService: NavigatorShareService,
     private libToastLogService: LibToastLogService,
     private clipboard: Clipboard,
+    private seoService: SeoService,
   ) {}
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
@@ -134,52 +134,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.prismJsHighlightCodeService.highlightAll();
   }
 
-  setMeta() {
-    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-  }
-
   scrollToTop() {
     if (this.isBrowser) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -189,7 +143,12 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   getLab(labId) {
     this.labsService.pShow(labId).subscribe((data) => {
       this.lab = data;
-      this.setMeta();
+      this.seoService.setTags(
+        `${this.lab.name} | By ${this.lab.user.name}`,
+        this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
+        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png',
+        'article',
+      );
       this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
       this.triggerDialogB = false;
       this.lastVisitedStepId = this.lab.last_visited_step_id;
