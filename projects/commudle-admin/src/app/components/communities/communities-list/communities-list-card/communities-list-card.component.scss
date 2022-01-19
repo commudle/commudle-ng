@@ -22,6 +22,7 @@ p {
   }
 
   .community-list-card-prefix {
+    @apply com-items-center;
     .community-list-card-logo {
       border: 0.5px solid $silver-sand;
       @apply com-h-12 com-w-12;
@@ -32,6 +33,7 @@ p {
       margin-left: $space-8;
 
       .community-list-card-name {
+        @apply com-m-0;
         color: $gunmetal;
         font-size: $fs-h5;
         font-weight: $fw-600;

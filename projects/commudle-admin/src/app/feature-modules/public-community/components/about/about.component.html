@@ -1,14 +1,14 @@
 <div class="community-about com-grid com-grid-cols-1 lg:com-grid-cols-5 com-gap-4">
   <nb-card [nbSpinner]="community === null" class="about lg:com-col-span-3">
     <nb-card-body>
-      <p class="heading">Who we are</p>
-      <p [innerHTML]="community.about | safeHtml" class="content"></p>
+      <h3 class="heading">Who we are</h3>
+      <p [innerHTML]="community.about | linky: { sanitizeHtml: false } | safeHtml" class="content"></p>
     </nb-card-body>
   </nb-card>
 
   <nb-card [nbSpinner]="organizers.length === 0" class="lg:com-col-span-2">
     <nb-card-body>
-      <p class="heading">Meet our Organizers</p>
+      <h3 class="heading">Community Leaders</h3>
       <div class="organizers com-grid com-grid-cols-1 lg:com-grid-cols-2 com-gap-4">
         <ng-container *ngFor="let organizer of organizers">
           <app-user-profile-card-large [user]="organizer"></app-user-profile-card-large>
