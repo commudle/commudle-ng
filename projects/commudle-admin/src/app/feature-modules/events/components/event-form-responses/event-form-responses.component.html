@@ -1,175 +1,170 @@
 <div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
-      <div>
-        <nb-card>
-          <nb-card-body>
-            <h3>{{ event.name }}</h3>
-            <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
+      <nb-card>
+        <nb-card-body>
+          <h3>{{ event.name }}</h3>
+          <p *ngIf="dataForm">{{ dataForm.name }} Responses</p>
 
-            <div class="group-actions">
-              <button (click)="openRSVPEmailWindow()" nbButton outline size="small" status="primary">
-                Send All RSVP Emails
-              </button>
-              <button (click)="openEntryPassEmailWindow()" nbButton outline size="small" status="primary">
-                Send All Entry Passes
-              </button>
+          <div class="group-actions">
+            <button (click)="openRSVPEmailWindow()" nbButton outline size="small" status="primary">
+              Send All RSVP Emails
+            </button>
+            <button (click)="openEntryPassEmailWindow()" nbButton outline size="small" status="primary">
+              Send All Entry Passes
+            </button>
 
-              <button (click)="sendCSV()" nbButton outline size="small" status="info">
-                <nb-icon icon="email-outline"></nb-icon>
-                CSV
-              </button>
+            <button (click)="sendCSV()" nbButton outline size="small" status="info">
+              <nb-icon icon="email-outline"></nb-icon>
+              CSV
+            </button>
 
-              <nb-select
-                (selectedChange)="bulkStatusChangeConfirmation($event)"
-                *ngIf="event.editable"
-                [(ngModel)]="bulkStatus"
-                [ngModelOptions]="{ standalone: true }"
-                filled
-                placeholder="Bulk Status Change"
-                status="info"
-              >
-                <nb-option *ngFor="let rs of registrationStatuses" [value]="rs"> {{ rs.name | titlecase }} </nb-option>
-              </nb-select>
-            </div>
-          </nb-card-body>
-        </nb-card>
-      </div>
-
-      <div>
-        <!-- <nb-card>
-          <nb-card-body> -->
-        <div class="data-table-container">
-          <ngx-datatable
-            #table
-            (page)="setPage($event.offset)"
-            [columnMode]="ColumnMode.force"
-            [count]="totalEntries"
-            [externalPaging]="true"
-            [footerHeight]="50"
-            [headerHeight]="100"
-            [limit]="count"
-            [loadingIndicator]="isLoading"
-            [messages]="{ emptyMessage: emptyMessage }"
-            [offset]="page - 1"
-            [rows]="rows"
-            [scrollbarH]="true"
-            [scrollbarV]="true"
-            [sortType]="SortType.single"
-            [virtualization]="false"
-            class="material expandable"
-            rowHeight="auto"
-          >
-            <!-- responsive row format -->
-            <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">
-              <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
-                <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
-                  <div *ngFor="let question of questions">
-                    <p>
-                      <strong> Q. {{ question.title }} </strong>
-                    </p>
-                    <div>
-                      <p
-                        [innerHTML]="
-                          getQuestionResponse(row.data_form_entity_response_values, question.id)
-                            | linky: { sanitizeHtml: true }
-                        "
-                        class="question-responses"
-                      ></p>
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
-            </ngx-datatable-row-detail>
-            <!-- responsive row format -->
-
-            <!-- complete table format -->
-            <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
-              <ng-template let-column="column" ngx-datatable-header-template>
-                <div class="header-column-template">
-                  <p>User Details</p>
-                  <form [formGroup]="searchForm">
-                    <div class="name-filter">
-                      <input
-                        [disabled]="isLoading"
-                        fieldSize="tiny"
-                        formControlName="name"
-                        fullWidth
-                        nbInput
-                        placeholder="{{ isLoading ? 'Still Loading' : 'Search by name or email' }}"
-                        type="text"
-                      />
-                    </div>
-                  </form>
-
-                  <div class="registration-status-filter">
-                    <div (click)="registrationStatusFilter(0)">
-                      <p [ngClass]="{ 'text-primary': 0 == registrationStatusId }">All</p>
-                    </div>
-                    <div (click)="registrationStatusFilter(rs.id)" *ngFor="let rs of registrationStatuses">
-                      <p [ngClass]="{ 'text-primary': rs.id == registrationStatusId }">{{ rs.name | titlecase }}</p>
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
-
-              <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
-                <div class="row-header user-details">
-                  <app-user-details-cell
-                    (updateEntryPass)="updateEntryPass($event, row.id)"
-                    (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
-                    [community]="community"
-                    [eventDataFormEntityGroupId]="eventDataFormEntityGroup.id"
-                    [event]="event"
-                    [registrationStatuses]="registrationStatuses"
-                    [registrationType]="eventDataFormEntityGroup.registration_type"
-                    [userResponse]="row"
-                  >
-                  </app-user-details-cell>
-                  <p
-                    (click)="toggleExpandRow(row)"
-                    [class.datatable-icon-down]="expanded"
-                    [class.datatable-icon-right]="!expanded"
-                    class="desktop-hidden view-mobile-response"
-                    title="Expand/Collapse Row"
-                  >
-                    View Responses
-                  </p>
-                </div>
-              </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column
-              *ngFor="let question of questions"
-              [canAutoResize]="true"
-              [width]="200"
-              name="{{ question.title }}"
+            <nb-select
+              (selectedChange)="bulkStatusChangeConfirmation($event)"
+              *ngIf="event.editable"
+              [(ngModel)]="bulkStatus"
+              [ngModelOptions]="{ standalone: true }"
+              filled
+              placeholder="Bulk Status Change"
+              status="info"
             >
-              <ng-template ngx-datatable-header-template>
-                <div class="row-header question mobile-hidden">
-                  <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">{{ question.title }}</p>
-                  <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
-                </div>
-              </ng-template>
+              <nb-option *ngFor="let rs of registrationStatuses" [value]="rs"> {{ rs.name | titlecase }} </nb-option>
+            </nb-select>
+          </div>
+        </nb-card-body>
+      </nb-card>
 
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <div class="row-cell question mobile-hidden" style="height: 100px">
-                  <p
-                    [innerHTML]="
-                      getQuestionResponse(row.data_form_entity_response_values, question.id)
-                        | linky: { sanitizeHtml: true }
-                    "
-                    class="question-responses"
-                  ></p>
-                </div>
-              </ng-template>
-            </ngx-datatable-column>
-          </ngx-datatable>
-        </div>
+      <nb-card class="data-table-responses">
+        <nb-card-body>
+          <div class="data-table-container">
+            <ngx-datatable
+              #table
+              (page)="setPage($event.offset)"
+              [columnMode]="ColumnMode.force"
+              [count]="totalEntries"
+              [externalPaging]="true"
+              [footerHeight]="50"
+              [headerHeight]="100"
+              [limit]="count"
+              [loadingIndicator]="isLoading"
+              [messages]="{ emptyMessage: emptyMessage }"
+              [offset]="page - 1"
+              [rows]="rows"
+              [scrollbarH]="true"
+              [scrollbarV]="true"
+              [sortType]="SortType.single"
+              [virtualization]="false"
+              class="material expandable"
+              rowHeight="auto"
+            >
+              <!-- responsive row format -->
+              <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">
+                <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
+                  <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
+                    <div *ngFor="let question of questions">
+                      <p>
+                        <strong> Q. {{ question.title }} </strong>
+                      </p>
+                      <div>
+                        <p
+                          [innerHTML]="
+                            getQuestionResponse(row.data_form_entity_response_values, question.id)
+                              | linky: { sanitizeHtml: true }
+                          "
+                          class="question-responses"
+                        ></p>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngx-datatable-row-detail>
+              <!-- responsive row format -->
 
-        <!-- </nb-card-body>
-      </nb-card> -->
-      </div>
+              <!-- complete table format -->
+              <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                  <div class="header-column-template">
+                    <p>User Details</p>
+                    <form [formGroup]="searchForm">
+                      <div class="name-filter">
+                        <input
+                          [disabled]="isLoading"
+                          fieldSize="tiny"
+                          formControlName="name"
+                          fullWidth
+                          nbInput
+                          placeholder="{{ isLoading ? 'Still Loading' : 'Search by name or email' }}"
+                          type="text"
+                        />
+                      </div>
+                    </form>
+
+                    <div class="registration-status-filter">
+                      <div (click)="registrationStatusFilter(0)">
+                        <p [ngClass]="{ 'text-primary': 0 == registrationStatusId }">All</p>
+                      </div>
+                      <div (click)="registrationStatusFilter(rs.id)" *ngFor="let rs of registrationStatuses">
+                        <p [ngClass]="{ 'text-primary': rs.id == registrationStatusId }">{{ rs.name | titlecase }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+                <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+                  <div class="row-header user-details">
+                    <app-user-details-cell
+                      (updateEntryPass)="updateEntryPass($event, row.id)"
+                      (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
+                      [community]="community"
+                      [eventDataFormEntityGroupId]="eventDataFormEntityGroup.id"
+                      [event]="event"
+                      [registrationStatuses]="registrationStatuses"
+                      [registrationType]="eventDataFormEntityGroup.registration_type"
+                      [userResponse]="row"
+                    >
+                    </app-user-details-cell>
+                    <p
+                      (click)="toggleExpandRow(row)"
+                      [class.datatable-icon-down]="expanded"
+                      [class.datatable-icon-right]="!expanded"
+                      class="desktop-hidden view-mobile-response"
+                      title="Expand/Collapse Row"
+                    >
+                      View Responses
+                    </p>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column
+                *ngFor="let question of questions"
+                [canAutoResize]="true"
+                [width]="200"
+                name="{{ question.title }}"
+              >
+                <ng-template ngx-datatable-header-template>
+                  <div class="row-header question mobile-hidden">
+                    <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">{{ question.title }}</p>
+                    <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
+                  </div>
+                </ng-template>
+
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <div class="row-cell question mobile-hidden" style="height: 100px">
+                    <p
+                      [innerHTML]="
+                        getQuestionResponse(row.data_form_entity_response_values, question.id)
+                          | linky: { sanitizeHtml: true }
+                      "
+                      class="question-responses"
+                    ></p>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </nb-card-body>
+      </nb-card>
     </div>
   </div>
 </div>
