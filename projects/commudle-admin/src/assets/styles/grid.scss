@@ -7,15 +7,18 @@ HTML Emmet's
 .base-layout {
   @apply com-min-h-screen com-max-w-screen-xl com-mx-auto;
 
+  &.thin {
+    @apply com-max-w-screen-md;
+  }
+
   .container {
     @apply com-container;
   }
 }
 
 /* GRID LAYOUT */
-
-@mixin grid-layout {
-  @apply com-grid com-grid-cols-24;
+@mixin grid-layout($grid) {
+  @apply com-grid com-grid-cols-#{$grid};
 }
 
 /*
@@ -23,7 +26,7 @@ HTML Emmet's
 1. div.three-column-layout>div*3
  */
 .three-column-layout {
-  @include grid-layout;
+  @include grid-layout(24);
 
   & > *:nth-child(1) {
     @apply com-col-span-6;
@@ -36,58 +39,64 @@ HTML Emmet's
   & > *:nth-child(3) {
     @apply com-col-span-6;
   }
-
-  .uneven {
-    & > *:nth-child(1) {
-      @apply com-col-span-6;
-    }
-
-    & > *:nth-child(2) {
-      @apply com-col-span-11;
-    }
-
-    & > *:nth-child(3) {
-      @apply com-col-span-7;
-    }
-  }
 }
 
 /*
 HTML Emmet's
 1. div.two-column-layout>div.left-column+div.main-column
 2. div.two-column-layout>div.main-column+div.right-column
+3. div.two-column-layout.thin>div.left-column+div.main-column
+4. div.two-column-layout.thin>div.main-column+div.right-column
+5. div.two-column-layout.wide>div.left-column+div.main-column
+6. div.two-column-layout.wide>div.main-column+div.right-column
  */
 .two-column-layout {
-  @include grid-layout;
+  @include grid-layout(1);
 
-  .left-column,
-  .right-column {
-    @apply com-col-span-5;
+  &.mobile-reverse {
+    .main-column {
+      @apply com-row-start-2;
+    }
   }
 
-  .main-column {
-    @apply com-col-span-19;
-  }
+  @screen lg {
+    @include grid-layout(24);
 
-  &.thin {
     .left-column,
     .right-column {
-      @apply com-col-span-4;
+      @apply com-col-span-5;
     }
 
     .main-column {
-      @apply com-col-span-20;
-    }
-  }
-
-  &.wide {
-    .left-column,
-    .right-column {
-      @apply com-col-span-6;
+      @apply com-col-span-19;
     }
 
-    .main-column {
-      @apply com-col-span-18;
+    &.thin {
+      .left-column,
+      .right-column {
+        @apply com-col-span-4;
+      }
+
+      .main-column {
+        @apply com-col-span-20;
+      }
+    }
+
+    &.wide {
+      .left-column,
+      .right-column {
+        @apply com-col-span-6;
+      }
+
+      .main-column {
+        @apply com-col-span-18;
+      }
+    }
+
+    &.mobile-reverse {
+      .main-column {
+        @apply com-row-start-1;
+      }
     }
   }
 }
@@ -97,7 +106,7 @@ HTML Emmet's
 1. div.one-column-layout
  */
 .one-column-layout {
-  @include grid-layout;
+  @include grid-layout(24);
 
   & > * {
     @apply com-col-span-full;

@@ -1,49 +1,67 @@
-<div *ngIf="liveSessions.length > 0 || (!event.custom_agenda && moment().isBetween(moment(event.start_time).subtract(25, 'minutes'), moment(event.end_time)))">
-  <nb-card>
-    <nb-card-header *ngIf="(moment() > moment(event.start_time)) || liveSessions.length > 0">
-      <nb-icon
-        icon="flash" status="success">
-      </nb-icon>
+<nb-card
+  *ngIf="
+    liveSessions.length > 0 ||
+    (!event.custom_agenda &&
+      moment().isBetween(moment(event.start_time).subtract(25, 'minutes'), moment(event.end_time)))
+  "
+>
+  <nb-card-header *ngIf="moment() > moment(event.start_time) || liveSessions.length > 0">
+    <h6>
+      <nb-icon icon="flash" status="success"></nb-icon>
       Live Now!
-    </nb-card-header>
-    <nb-card-body>
-      <div *ngIf="event.custom_agenda && liveSessions.length > 0">
-        <div class="session" *ngFor="let session of liveSessions">
-          <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" [queryParams]="{track_slot_id: session.id}" target="_blank">
-            <div *ngIf="session.tags_list">
-              <app-badge *ngFor="let tag of session.tags_list.split(',')" [text]="tag" [fontSize]="'small'"></app-badge>
-            </div>
-            <h6 class="title">{{ session.session_title }} <small><nb-icon icon="external-link"></nb-icon></small></h6>
-            <p class="selected-session" *ngIf="session.user_vote === true">
-              <small>Selected By You</small>
-            </p>
-          </a>
-        </div>
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="event.custom_agenda && liveSessions.length > 0">
+      <div *ngFor="let session of liveSessions" class="session">
+        <a
+          [queryParams]="{ track_slot_id: session.id }"
+          [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+          target="_blank"
+        >
+          <div *ngIf="session.tags_list">
+            <app-badge *ngFor="let tag of session.tags_list.split(',')" [fontSize]="'small'" [text]="tag"></app-badge>
+          </div>
+          <h6 class="title">
+            {{ session.session_title }}
+            <small>
+              <nb-icon icon="external-link"></nb-icon>
+            </small>
+          </h6>
+          <p *ngIf="session.user_vote === true" class="selected-session">
+            <small>Selected By You</small>
+          </p>
+        </a>
       </div>
-      <div *ngIf="!event.custom_agenda">
-        <div class="session">
-          <a
-            [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
-            *ngIf="moment().isBetween(moment(event.start_time).subtract(25, 'minutes'), moment(event.start_time))"
-            target="_blank"
-            >
-            <h6 class="title text-info">Going Live Soon! Click Here To Go To Session Page
-              <small><nb-icon icon="external-link"></nb-icon></small>
-            </h6>
-          </a>
+    </ng-container>
+    <ng-container *ngIf="!event.custom_agenda">
+      <div class="session">
+        <a
+          *ngIf="moment().isBetween(moment(event.start_time).subtract(25, 'minutes'), moment(event.start_time))"
+          [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+          target="_blank"
+        >
+          <h6 class="title text-info">
+            Going Live Soon! Click Here To Go To Session Page
+            <small>
+              <nb-icon icon="external-link"></nb-icon>
+            </small>
+          </h6>
+        </a>
 
-          <a
-            [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
-            *ngIf="(moment() >= moment(event.start_time))"
-            target="_blank"
-            >
-            <h6 class="title text-info">We're Live! Click Here
-              <small><nb-icon icon="external-link"></nb-icon></small>
-            </h6>
-          </a>
-        </div>
+        <a
+          *ngIf="moment() >= moment(event.start_time)"
+          [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+          target="_blank"
+        >
+          <h6 class="title text-info">
+            We're Live! Click Here
+            <small>
+              <nb-icon icon="external-link"></nb-icon>
+            </small>
+          </h6>
+        </a>
       </div>
-
-    </nb-card-body>
-  </nb-card>
-</div>
+    </ng-container>
+  </nb-card-body>
+</nb-card>
