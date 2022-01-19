@@ -23,7 +23,7 @@ export class SeoService {
     this.meta.removeTag(`name="${tag}"`);
   }
 
-  setTags(title: string, description: string, image: string, platformType = 'website') {
+  setTags(title: string, description: string, image: string, contentType = 'website') {
     this.setTitle(title);
     this.setTag('description', description);
     this.setTag('image', image);
@@ -34,7 +34,7 @@ export class SeoService {
     this.setTag('twitter:title', title);
     this.setTag('twitter:description', description);
     this.setTag('twitter:image', image);
-    this.setTag('og:type', platformType);
+    this.setTag('og:type', contentType);
   }
 
   noIndex(value) {
