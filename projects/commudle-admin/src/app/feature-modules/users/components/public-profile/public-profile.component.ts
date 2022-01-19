@@ -67,10 +67,6 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    if (!this.user.is_expert) {
-      this.meta.updateTag({ name: 'robots', content: 'noindex' });
-    }
-
     let titleText = this.user.name;
 
     if (this.user.designation) {
