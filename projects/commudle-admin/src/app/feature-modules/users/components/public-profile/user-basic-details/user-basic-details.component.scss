@@ -50,10 +50,9 @@ p {
 
     .profile-photo {
       border-radius: 50%;
-      height: 100%;
-      max-height: 188px;
+      height: 188px;
+      width: 188px;
       overflow: hidden;
-      width: 100%;
 
       img {
         display: block;
