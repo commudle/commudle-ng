@@ -75,18 +75,19 @@ p {
     }
 
     .name {
+      @apply com-flex com-justify-center;
       h1 {
+        @apply com-my-0 com-mr-0;
+        margin-left: 26px;
         font-size: $fs-20;
         font-weight: $fw-600;
         line-height: 23px;
-        @apply com-m-0;
       }
 
       .expert-icon {
+        width: 18px;
         height: 18px;
         margin: $space-2 0 0 $space-8;
-        position: absolute;
-        width: 18px;
       }
     }
 
