@@ -5,6 +5,7 @@ import { ILab } from 'projects/shared-models/lab.model';
 import { ILabs } from 'projects/shared-models/labs.model';
 import { ITag } from 'projects/shared-models/tag.model';
 import { ITags } from 'projects/shared-models/tags.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-labs',
@@ -24,57 +25,21 @@ export class LabsComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(private meta: Meta, private title: Title, private labsService: LabsService) {}
+  constructor(
+    private meta: Meta,
+    private title: Title,
+    private labsService: LabsService,
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit() {
-    this.setMeta();
-
     this.getPopularTags();
     this.getLabsByTags();
-  }
-
-  setMeta() {
-    this.title.setTitle('Labs - Step By Step Tutorials');
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
-    });
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `https://commudle.com/assets/images/commudle-logo192.png`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `https://commudle.com/assets/images/commudle-logo192.png`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'website',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `https://commudle.com/assets/images/commudle-logo192.png`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: 'Labs - Step By Step Tutorials',
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content:
-        'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
-    });
+    this.seoService.setTags(
+      'Labs - Step By Step Tutorials',
+      'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+      `https://commudle.com/assets/images/commudle-logo192.png`,
+    );
   }
 
   getPopularTags() {
