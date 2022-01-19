@@ -7,14 +7,16 @@
 
   <div class="user-details text-center">
     <div class="name">
-      {{ user.name }}
-      <img
-        *ngIf="user.is_expert"
-        alt="Expert Tick"
-        class="expert-icon"
-        src="/assets/images/Expert-Tick.svg"
-        title="Expert Tick"
-      />
+      <h1>
+        {{ user.name }}
+        <img
+          *ngIf="user.is_expert"
+          alt="Expert Tick"
+          class="expert-icon"
+          src="/assets/images/Expert-Tick.svg"
+          title="Expert Tick"
+        />
+      </h1>
     </div>
     <p class="username">@{{ user.username }}</p>
     <p *ngIf="user.designation" class="designation">{{ user.designation }}</p>

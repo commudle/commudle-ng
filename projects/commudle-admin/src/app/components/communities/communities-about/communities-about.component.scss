@@ -20,6 +20,7 @@ a {
         font-size: $fs-40;
         font-weight: $fw-600;
         line-height: 47px;
+        @apply com-m-0;
       }
 
       .communities-about-subheader {

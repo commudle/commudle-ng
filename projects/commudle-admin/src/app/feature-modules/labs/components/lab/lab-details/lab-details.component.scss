@@ -28,9 +28,22 @@
           font-size: $fs-h5;
         }
 
+        .lab-step-title {
+          @apply com-text-sm com-m-0 com-font-normal;
+          color: $neon-blue;
+        }
+
         app-badge {
           position: relative;
           top: $space-10;
+        }
+      }
+
+      .active {
+        background-color: $neon-blue;
+
+        .lab-step-title {
+          color: $white;
         }
       }
     }
@@ -39,13 +52,7 @@
       border-bottom: 2px solid rgba(83, 110, 255, 0.35);
     }
 
-    .active {
-      background-color: $neon-blue;
 
-      a {
-        color: $white;
-      }
-    }
 
     a {
       color: $neon-blue;

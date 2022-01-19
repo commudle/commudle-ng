@@ -9,6 +9,7 @@ import { NbWindowService } from '@nebular/theme';
 import { EPublishStatusColors } from 'projects/shared-models/community-build.model';
 import { faFlask } from '@fortawesome/free-solid-svg-icons';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-my-labs',
@@ -30,30 +31,28 @@ export class MyLabsComponent implements OnInit, OnDestroy {
 
   constructor(
     private labsService: LabsService,
-    private title: Title,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
-    private appUsersService: AppUsersService
-  ) {
-    title.setTitle('My Labs');
-  }
+    private appUsersService: AppUsersService,
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit() {
+    this.seoService.setTitle('My Labs');
+    this.seoService.noIndex(true);
     this.getAllLabs();
-    this.userSubscription = this.authWatchService.currentUser$.subscribe(
-      data => {
-        if (data && !data.profile_completed) {
-          this.incompleteProfile = true;
-        }
+    this.userSubscription = this.authWatchService.currentUser$.subscribe((data) => {
+      if (data && !data.profile_completed) {
+        this.incompleteProfile = true;
       }
-    );
+    });
   }
-
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.userSubscription.unsubscribe();
+    this.seoService.noIndex(false);
   }
 
 

@@ -17,6 +17,7 @@ import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -49,6 +50,7 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private dialogService: NbDialogService,
     private title: Title,
     private meta: Meta,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
@@ -62,10 +64,16 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.activatedRoute.params.subscribe((data: Params) => {
         this.labsService.pGetStep(data.step_id).subscribe((stepData: ILabStep) => {
           this.step = stepData;
+
+          this.seoService.setTags(
+            `${this.step.name}`,
+            this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
+            'https://commudle.com/assets/images/commudle-logo192.png',
+          );
+
           this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
           this.triggerDialogB = false;
           this.addLabStepVisit();
-          this.setMeta();
         });
       }),
     );
@@ -96,32 +104,6 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       }
     }
-  }
-
-  setMeta() {
-    this.title.setTitle(`${this.step.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `${this.step.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
-
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `${this.step.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
-    });
   }
 
   addLabStepVisit() {
