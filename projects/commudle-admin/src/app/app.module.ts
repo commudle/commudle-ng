@@ -40,7 +40,6 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { Ng2CompleterModule } from 'ng2-completer';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
@@ -202,7 +201,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NbPopoverModule,
 
     // Other external npm modules
-    Ng2CompleterModule,
     Ng2SmartTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

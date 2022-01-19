@@ -19,8 +19,6 @@ import { NotificationChannel } from './feature-modules/notifications/services/we
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 
-// import * as LogRocket from 'logrocket';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -88,12 +86,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
             },
           };
         }
-
-        // LogRocket.init('g90s8l/commudle');
-        // LogRocket.identify(`${this.currentUser.username}`, {
-        //   name: `${this.currentUser.name}`,
-        //   email: `${this.currentUser.email}`,
-        // });
       }
 
       if (this.isBrowser) {
