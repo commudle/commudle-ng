@@ -35,4 +35,15 @@ export class SeoService {
     this.setTag('twitter:description', description);
     this.setTag('twitter:image', image);
   }
+
+  noIndex(value) {
+    if (value) {
+      this.meta.updateTag({
+        name: 'robots',
+        content: 'noindex',
+      });
+    } else {
+      this.meta.removeTag("name='robots'");
+    }
+  }
 }
