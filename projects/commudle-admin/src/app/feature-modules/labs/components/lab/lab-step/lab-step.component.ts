@@ -9,7 +9,7 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
@@ -48,8 +48,6 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
-    private title: Title,
-    private meta: Meta,
     private seoService: SeoService,
   ) {}
 

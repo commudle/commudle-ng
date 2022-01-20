@@ -37,14 +37,11 @@ export class SeoService {
     this.setTag('og:type', contentType);
   }
 
-  noIndex(value) {
+  noIndex(value: boolean) {
     if (value) {
-      this.meta.updateTag({
-        name: 'robots',
-        content: 'noindex',
-      });
+      this.setTag('robots', 'noindex');
     } else {
-      this.meta.removeTag("name='robots'");
+      this.removeTag('robots');
     }
   }
 }

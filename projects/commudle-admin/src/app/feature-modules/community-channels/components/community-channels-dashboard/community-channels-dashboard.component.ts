@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityChannelManagerService } from 'projects/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,20 +14,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-channels-dashboard.component.scss'],
 })
 export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
-  subscriptions = [];
-
   currentUser: ICurrentUser;
   selectedCommunity: ICommunity;
   communityChannels;
   channelsQueried = false;
   showCommunityList = false;
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
     private communityChannelManagerService: CommunityChannelManagerService,
-    private title: Title,
-    private meta: Meta,
+    private seoService: SeoService,
     private footerService: FooterService,
   ) {}
 
@@ -64,26 +63,10 @@ export class CommunityChannelsDashboardComponent implements OnInit, OnDestroy {
   }
 
   setMeta() {
-    this.title.setTitle(`Channels - ${this.selectedCommunity.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
-    });
-
-    this.meta.updateTag({ name: 'og:image', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'og:title', content: `Channels - ${this.selectedCommunity.name}` });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
-    });
-    this.meta.updateTag({ name: 'og:type', content: 'website' });
-
-    this.meta.updateTag({ name: 'twitter:image', content: this.selectedCommunity.logo_path });
-    this.meta.updateTag({ name: 'twitter:title', content: `Channels - ${this.selectedCommunity.name}` });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
-    });
+    this.seoService.setTags(
+      `Channels - ${this.selectedCommunity.name}`,
+      `Interact with members in channels for ${this.selectedCommunity.name}! Share knowledge, network & grow together!`,
+      this.selectedCommunity.logo_path,
+    );
   }
 }

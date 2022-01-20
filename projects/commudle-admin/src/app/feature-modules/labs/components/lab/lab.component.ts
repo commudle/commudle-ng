@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewChecked,
@@ -9,21 +10,20 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NbDialogService, NbSidebarService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { ILab } from 'projects/shared-models/lab.model';
-import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
-import { Subscription } from 'rxjs';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lab',

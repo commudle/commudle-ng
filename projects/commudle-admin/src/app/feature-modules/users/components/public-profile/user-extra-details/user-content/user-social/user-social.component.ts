@@ -1,27 +1,26 @@
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {IUser} from 'projects/shared-models/user.model';
-import {AppUsersService} from 'projects/commudle-admin/src/app/services/app-users.service';
-import {ISocialResource} from 'projects/shared-models/social_resource.model';
-import {Subject, Subscription} from 'rxjs';
-import {NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
-import {debounceTime} from 'rxjs/operators';
-import {LinkPreviewService} from 'projects/commudle-admin/src/app/services/link-preview.service';
-import {ILinkPreview} from 'projects/shared-models/link-preview.model';
-import {FormBuilder, Validators} from '@angular/forms';
-import {SocialResourceService} from 'projects/commudle-admin/src/app/services/social-resource.service';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { LinkPreviewService } from 'projects/commudle-admin/src/app/services/link-preview.service';
+import { SocialResourceService } from 'projects/commudle-admin/src/app/services/social-resource.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { ILinkPreview } from 'projects/shared-models/link-preview.model';
+import { ISocialResource } from 'projects/shared-models/social_resource.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { SeoService } from 'projects/shared-services/seo.service';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-social',
   templateUrl: './user-social.component.html',
-  styleUrls: ['./user-social.component.scss']
+  styleUrls: ['./user-social.component.scss'],
 })
 export class UserSocialComponent implements OnInit, OnDestroy {
-
   user: IUser;
   currentUser: ICurrentUser;
   subscriptions: Subscription[] = [];
@@ -46,14 +45,12 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     image: this.fb.group({
       url: ['', Validators.required],
     }),
-    display_order: ['', Validators.required]
+    display_order: ['', Validators.required],
   });
   tags: string[] = [];
   urlPattern = new RegExp(
-    '^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
-    );
-
-
+    '^(http://www.|https://www.|http://|https://)?[a-z0-9]+([-.][a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?$',
+  );
 
   @ViewChild('addLinkDialog') addLinkDialog: TemplateRef<any>;
   addLinkDialogRef: NbDialogRef<any>;
@@ -67,23 +64,20 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     private socialResourceService: SocialResourceService,
     private authWatchService: LibAuthwatchService,
     private activatedRoute: ActivatedRoute,
-    private title: Title,
-    private meta: Meta
-  ) {
-  }
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit(): void {
-
-    this.subscriptions.push(this.activatedRoute.parent.params.subscribe(data => {
-      // Get user's data
-      this.getUserData();
-    }));
+    this.subscriptions.push(
+      this.activatedRoute.parent.params.subscribe(() => {
+        // Get user's data
+        this.getUserData();
+      }),
+    );
     // Get logged in user
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe(data => this.currentUser = data));
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
     // Subscribe to search
-    this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(
-      debounceTime(1000)
-    ).subscribe(value => {
+    this.socialLinkChangedSubscription = this.socialLinkChanged.pipe(debounceTime(1000)).subscribe((value) => {
       if (!!this.urlPattern.test(value)) {
         this.invalidUrl = false;
         this.getLinkPreview(value.replace(/\s/g, ''));
@@ -94,31 +88,33 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(value => value.unsubscribe());
+    this.subscriptions.forEach((value) => value.unsubscribe());
     this.socialLinkChangedSubscription.unsubscribe();
   }
 
   // Get user's data
   getUserData() {
-    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe(data => {
+    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe((data) => {
       this.user = data;
-      this.setMeta();
+      this.seoService.setTitle(`More links by @${this.user.username}`);
       // Get user's social resources
       this.getSocialResources();
     });
   }
 
   getSocialResources(): void {
-    this.subscriptions.push(this.appUsersService.socialResources(this.user.username).subscribe(value => {
-      this.socialResources = value.social_resources;
-    }));
+    this.subscriptions.push(
+      this.appUsersService.socialResources(this.user.username).subscribe((value) => {
+        this.socialResources = value.social_resources;
+      }),
+    );
   }
 
   onOpenDialog(): void {
     this.addLinkDialogRef = this.nbDialogService.open(this.addLinkDialog, {
       closeOnBackdropClick: false,
       closeOnEsc: false,
-      autoFocus: false
+      autoFocus: false,
     });
   }
 
@@ -132,7 +128,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   getLinkPreview(url: string): void {
     this.isLoading = true;
     if (url !== '') {
-      this.linkPreviewService.getPreview(url).subscribe(value => {
+      this.linkPreviewService.getPreview(url).subscribe((value) => {
         this.linkPreview = value;
         this.createForm(url);
         this.isLoading = false;
@@ -151,9 +147,9 @@ export class UserSocialComponent implements OnInit, OnDestroy {
       favicon: this.linkPreview.favicon,
       link: url,
       image: {
-        url: this.linkPreview.images[0]
+        url: this.linkPreview.images[0],
       },
-      display_order: this.socialResources.length
+      display_order: this.socialResources.length,
     });
   }
 
@@ -164,12 +160,12 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   }
 
   removeTag(tag: string): void {
-    this.tags = this.tags.filter(value => value !== tag);
+    this.tags = this.tags.filter((value) => value !== tag);
   }
 
   addSocialResource(): void {
     if (this.socialResourcesForm.valid && this.tags.length > 0) {
-      this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(value => {
+      this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(() => {
         this.nbToastrService.success('Social resource successfully added!', 'Success');
         // Close dialog
         this.addLinkDialogRef.close();
@@ -188,7 +184,7 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   }
 
   deleteSocialResource(socialResourceId: number): void {
-    this.socialResourceService.destroy(socialResourceId).subscribe(value => {
+    this.socialResourceService.destroy(socialResourceId).subscribe(() => {
       this.nbToastrService.success('Social resource successfully removed!', 'Success');
       this.getSocialResources();
     });
@@ -213,10 +209,10 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     for (const [index, val] of this.socialResources.entries()) {
       displayOrder.push({
         id: val.id,
-        display_order: length - index - 1
+        display_order: length - index - 1,
       });
     }
-    this.socialResourceService.updateDisplayOrder(displayOrder).subscribe(value => {
+    this.socialResourceService.updateDisplayOrder(displayOrder).subscribe((value) => {
       if (value) {
         this.nbToastrService.success('Social resources order updated!', 'Success');
       } else {
@@ -224,14 +220,4 @@ export class UserSocialComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  setMeta(): void {
-    const titleText = `More links by @${this.user.username}`;
-    this.title.setTitle(titleText);
-    this.meta.updateTag({ name: 'og:title', content: titleText });
-    this.meta.updateTag({ name: 'twitter:title', content: titleText });
-  }
-
-
-
 }

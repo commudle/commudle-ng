@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,8 +24,7 @@ export class MembersComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
-    private title: Title,
-    private meta: Meta,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -34,20 +33,14 @@ export class MembersComponent implements OnInit, OnDestroy {
         this.community = data.community;
         if (this.community) {
           this.getMembers();
-          this.setMeta();
+          this.seoService.setTitle(`Members | ${this.community.name}`);
         }
       }),
     );
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((value) => value.unsubscribe());
-  }
-
-  setMeta(): void {
-    this.title.setTitle(`Members | ${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `Members | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Members | ${this.community.name}` });
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   getMembers(): void {

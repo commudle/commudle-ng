@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MainNewslettersService } from 'projects/commudle-admin/src/app/feature-modules/main-newsletters/services/main-newsletters.service';
 import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,8 +21,7 @@ export class MainNewsletterComponent implements OnInit, OnDestroy {
     private mainNewslettersService: MainNewslettersService,
     private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -49,26 +49,10 @@ export class MainNewsletterComponent implements OnInit, OnDestroy {
   }
 
   setMeta(): void {
-    this.title.setTitle('Commudle IDE | Newsletter for Developers by Developers');
-    this.meta.updateTag({ name: 'description', content: `${this.mainNewsletter.email_subject}` });
-
-    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: 'https://commudle.com/assets/images/commudle-logo192.png',
-    });
-    this.meta.updateTag({ name: 'og:title', content: `Commudle IDE | Newsletter for Developers by Developers` });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: `${this.mainNewsletter.email_subject}`,
-    });
-    this.meta.updateTag({ name: 'og:type', content: 'website' });
-
-    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `Commudle IDE | Newsletter for Developers by Developers` });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: `${this.mainNewsletter.email_subject}`,
-    });
+    this.seoService.setTags(
+      'Commudle IDE | Newsletter for Developers by Developers',
+      this.mainNewsletter.email_subject,
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }

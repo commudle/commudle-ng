@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
 import { Chart } from 'chart.js';
@@ -11,6 +10,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IPoll } from 'projects/shared-models/poll.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-event-stats',
@@ -36,8 +36,8 @@ export class EventStatsComponent implements OnInit {
   constructor(
     private statsEventsService: StatsEventsService,
     private activatedRoute: ActivatedRoute,
-    private title: Title,
     private windowService: NbWindowService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class EventStatsComponent implements OnInit {
       this.event = data.event;
 
       this.community = data.community;
-      this.title.setTitle(`${this.event.name} Stats | ${this.community.name}`);
+      this.seoService.setTitle(`${this.event.name} Stats | ${this.community.name}`);
 
       this.getUniqueVisitors();
       this.getRegistrations();

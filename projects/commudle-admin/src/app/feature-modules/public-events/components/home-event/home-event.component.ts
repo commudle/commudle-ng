@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
@@ -10,6 +9,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'projects/shared-models/event.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-home-event',
@@ -48,8 +48,7 @@ export class HomeEventComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private communitiesService: CommunitiesService,
-    private title: Title,
-    private meta: Meta,
+    private seoService: SeoService,
     private discussionsService: DiscussionsService,
   ) {}
 
@@ -63,45 +62,6 @@ export class HomeEventComponent implements OnInit {
     element.nativeElement.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
   }
 
-  setMeta() {
-    this.title.setTitle(`${this.event.name} | ${this.community.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-
-    this.meta.updateTag({
-      name: 'og:image',
-      property: 'og:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      property: 'og:title',
-      content: `${this.event.name} | ${this.community.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      property: 'og:description',
-      content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-    this.meta.updateTag({ name: 'og:type', property: 'og:type', content: 'website' });
-
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${this.event.header_image_path ? this.event.header_image_path : this.community.logo_path}`,
-    });
-    this.meta.updateTag({ name: 'twitter:title', content: `${this.event.name} | ${this.community.name}` });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-  }
-
   getEvent(eventId) {
     this.eventsService.pGetEvent(eventId).subscribe((event) => {
       this.event = event;
@@ -113,7 +73,11 @@ export class HomeEventComponent implements OnInit {
   getCommunity(communityId) {
     this.communitiesService.getCommunityDetails(communityId).subscribe((community) => {
       this.community = community;
-      this.setMeta();
+      this.seoService.setTags(
+        `${this.event.name} | ${this.community.name}`,
+        this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
+        this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
+      );
     });
   }
 

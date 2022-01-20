@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
 import * as moment from 'moment';
@@ -9,6 +8,7 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'projects/shared-models/event.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -46,23 +46,22 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
     private windowService: NbWindowService,
-    private meta: Meta,
-    private title: Title,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
-    this.meta.updateTag({ name: 'robots', content: 'noindex' });
+    this.seoService.noIndex(true);
 
     this.activatedRoute.data.subscribe((value) => {
       this.event = value.event;
 
       this.community = value.community;
-      this.title.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
+      this.seoService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.noIndex(false);
   }
 
   updateRegistrationType(value) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedItemService } from 'projects/commudle-admin/src/app/services/feed-items.service';
-import { Title, Meta } from '@angular/platform-browser';
+ import { SeoService } from 'projects/shared-services/seo.service';
 import { IFeedItem } from 'projects/shared-models/feed-item.model';
 
 @Component({
@@ -22,8 +22,7 @@ export class ExternalFeedComponent implements OnInit {
 
   constructor(
     private feedItemService: FeedItemService,
-    private title: Title,
-    private meta: Meta
+    private seoService : SeoService
   ) {
   }
 
@@ -130,20 +129,11 @@ export class ExternalFeedComponent implements OnInit {
   }
 
   setMeta(): void{
-    this.title.setTitle('Feed from Around the World');
-
-    this.meta.updateTag({ name: 'description', content: `Find what more is happening around the world of tech`});
-
-
-    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'og:image:secure_url', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'og:title', content: `Feed from Around the World` });
-    this.meta.updateTag({ name: 'og:description', content: `Find what more is happening around the world of tech`});
-    this.meta.updateTag( { name: 'og:type', content: 'website'});
-
-    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `Feed from Around the World` });
-    this.meta.updateTag({ name: 'twitter:description', content: `Find what more is happening around the world of tech`});
+    this.seoService.setTags(
+      'Feed from Around the World',
+      `Find what more is happening around the world of tech`,
+      'https://commudle.com/assets/images/commudle-logo192.png'
+    );
   }
 
 }

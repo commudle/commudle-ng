@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { ICMSAbout } from 'projects/commudle-admin/src/app/components/about/models/about-cms.model';
 import { CmsService } from 'projects/shared-services/cms.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-about',
@@ -16,20 +16,21 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   ICmsAbout: ICMSAbout;
 
-  constructor(private title: Title, private meta: Meta, private cmsService: CmsService) {}
+  constructor(private cmsService: CmsService, private seoService: SeoService) {}
 
   ngOnInit(): void {
     // this.setMeta();
     this.getData();
-    this.meta.addTag({ name: 'robots', content: 'noindex' });
+
+    this.seoService.noIndex(true);
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.noIndex(false);
   }
 
   // setMeta(): void {
-  //   this.title.setTitle('About');
+  //   this.seoService.setTitle('About');
   //   this.meta.updateTag({
   //     name: 'description',
   //     content: `We aim to provide a platform where all the amazing content, ranging from slides, to sessions (even links to those) are all at one place. We want to know what those amazing side projects you have built, even if it's yet to be given those finishing touches.`,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ILabs } from 'projects/shared-models/labs.model';
@@ -25,16 +24,12 @@ export class LabsComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(
-    private meta: Meta,
-    private title: Title,
-    private labsService: LabsService,
-    private seoService: SeoService,
-  ) {}
+  constructor(private labsService: LabsService, private seoService: SeoService) {}
 
   ngOnInit() {
     this.getPopularTags();
     this.getLabsByTags();
+
     this.seoService.setTags(
       'Labs - Step By Step Tutorials',
       'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
