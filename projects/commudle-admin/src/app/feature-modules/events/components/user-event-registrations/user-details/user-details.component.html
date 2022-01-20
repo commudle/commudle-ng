@@ -1,11 +1,6 @@
 <div>
   <div class="user-details-container">
-    <a *ngIf="user.username" [routerLink]="['/users', user.username]">
-      <h6>{{ user.name }}</h6>
-      <div class="user-avatar">
-        <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
-      </div>
-    </a>
+    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
     <p class="contact-details">
       <small>{{ user.email }}</small>
     </p>

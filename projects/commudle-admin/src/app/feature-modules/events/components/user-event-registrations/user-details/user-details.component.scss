@@ -1,16 +1,9 @@
 .user-details-container {
-  a {
-    text-decoration: none;
-
-    h6 {
-      margin: 0;
-    }
-    .user-avatar {
-      width: 50px;
-      min-height: 50px;
-      overflow: hidden;
-      img {
-        width: 100%;
+  app-user-profile-card-large {
+    &::ng-deep {
+      .user-profile-large {
+        margin: 10px 0;
+        background-color: transparent;
       }
     }
   }
