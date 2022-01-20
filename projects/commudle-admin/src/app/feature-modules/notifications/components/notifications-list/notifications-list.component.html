@@ -1,0 +1,32 @@
+<nb-list>
+  <nb-list-item *ngFor="let notification of notifications">
+    <nb-badge
+      *ngIf="notification.status === ENotificationStatus.UNREAD"
+      dotMode="true"
+      position="left center"
+      status="primary"
+    ></nb-badge>
+    <a
+      (click)="changeStatus(ENotificationStatus.INTERACTED, notification)"
+      [routerLink]="['/users', notification.sender.username]"
+    >
+      <div class="avatar com-rounded-[50%] com-max-h-[56px] com-max-w-[56px] com-min-w-[56px]">
+        <img
+          alt="{{ notification.sender.name }}"
+          src="{{ notification.sender.avatar }}"
+          title="{{ notification.sender.name }}"
+        />
+      </div>
+      <p class="content">
+        <strong>{{ notification.sender.name }}</strong> started following you.
+      </p>
+    </a>
+    <nb-icon
+      (click)="changeStatus(ENotificationStatus.READ, notification)"
+      *ngIf="notification.status === ENotificationStatus.UNREAD"
+      icon="checkmark-outline"
+      status="basic"
+      title="Mark as read"
+    ></nb-icon>
+  </nb-list-item>
+</nb-list>

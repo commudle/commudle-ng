@@ -1,65 +1,49 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.container {
-  nb-card {
-    nb-card-body {
-      padding: 1rem;
+.base-layout {
+  .container {
+    .one-column-layout {
+      nb-card {
+        nb-card-body {
+          .loading-spinner {
+            .spinner {
+              height: 40px;
 
-      nb-list {
-        nb-list-item {
-          .avatar {
-            @apply com-mr-3;
-            @apply com-h-12 com-w-12;
-            @apply com-rounded-full com-object-cover com-object-center com-align-middle;
-          }
+              & > div {
+                animation: stretch-delay 1.2s infinite ease-in-out;
+                background-color: $cadet;
+                display: inline-block;
+                height: 100%;
+                margin: 0 1px;
+                width: 4px;
 
-          &:first-child {
-            border-top: none;
-          }
+                &:nth-child(2) {
+                  animation-delay: -1.1s;
+                }
 
-          &:last-child {
-            border-bottom: none;
-          }
-        }
-      }
+                &:nth-child(3) {
+                  animation-delay: -1s;
+                }
 
-      .loading-spinner {
-        .spinner {
-          height: 40px;
+                &:nth-child(4) {
+                  animation-delay: -0.9s;
+                }
 
-          & > div {
-            animation: stretch-delay 1.2s infinite ease-in-out;
-            background-color: $cadet;
-            display: inline-block;
-            height: 100%;
-            margin: 0 1px;
-            width: 4px;
+                &:nth-child(5) {
+                  animation-delay: -0.8s;
+                }
+              }
 
-            &:nth-child(2) {
-              animation-delay: -1.1s;
-            }
-
-            &:nth-child(3) {
-              animation-delay: -1s;
-            }
-
-            &:nth-child(4) {
-              animation-delay: -0.9s;
-            }
-
-            &:nth-child(5) {
-              animation-delay: -0.8s;
-            }
-          }
-
-          @keyframes stretch-delay {
-            0%,
-            40%,
-            100% {
-              transform: scaleY(0.4);
-            }
-            20% {
-              transform: scaleY(1);
+              @keyframes stretch-delay {
+                0%,
+                40%,
+                100% {
+                  transform: scaleY(0.4);
+                }
+                20% {
+                  transform: scaleY(1);
+                }
+              }
             }
           }
         }

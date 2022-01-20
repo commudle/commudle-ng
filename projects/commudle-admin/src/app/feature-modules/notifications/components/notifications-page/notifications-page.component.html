@@ -1,25 +1,13 @@
-<div class="base-layout com-mb-8">
+<div class="base-layout thin com-mb-8">
   <div class="container">
     <div class="one-column-layout">
       <nb-card>
+        <nb-card-header>
+          <h6>Notifications</h6>
+        </nb-card-header>
         <nb-card-body>
-          <div
-            (scrolled)="getNotifications()"
-            [infiniteScrollDisabled]="!(canLoadMore && total)"
-            appInfiniteScroll
-            class="com-flex com-flex-col com-gap-4"
-          >
-            <nb-list>
-              <nb-list-item *ngFor="let notification of notifications">
-                <img
-                  alt="{{ notification.sender.name }}"
-                  class="avatar"
-                  src="{{ notification.sender.avatar }}"
-                  title="{{ notification.sender.name }}"
-                />
-                <p class="fs-p2">{{ notification.notification_message }}</p>
-              </nb-list-item>
-            </nb-list>
+          <div (scrolled)="getNotifications()" [infiniteScrollDisabled]="!(canLoadMore && total)" appInfiniteScroll>
+            <app-notifications-list [notifications]="notifications"></app-notifications-list>
           </div>
           <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
             <div class="spinner">

@@ -1,0 +1,52 @@
+nb-list {
+  nb-list-item {
+    position: relative;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+
+      nb-icon {
+        visibility: visible;
+      }
+    }
+
+    nb-badge {
+      margin-left: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+
+      .avatar {
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .content {
+        margin: 0 12px;
+      }
+    }
+
+    nb-icon {
+      position: absolute;
+      right: 20px;
+      border-radius: 6px;
+      font-size: 30px;
+      padding: 2px;
+      visibility: hidden;
+
+      &:hover {
+        background-color: #d0d7de;
+      }
+    }
+
+    border: 0;
+  }
+}

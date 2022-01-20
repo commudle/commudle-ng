@@ -7,57 +7,6 @@ nb-card {
 
   nb-card-body {
     padding: 0;
-
-    nb-list {
-      nb-list-item {
-        border: 0;
-
-        position: relative;
-
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.05);
-          cursor: pointer;
-
-          nb-icon {
-            visibility: visible;
-          }
-        }
-
-        nb-badge {
-          margin-left: 10px;
-        }
-
-        a {
-          align-items: center;
-          display: flex;
-          padding-left: 10px;
-          text-decoration: none;
-
-          .avatar {
-            @apply com-mr-3;
-            @apply com-h-12 com-w-12;
-            @apply com-rounded-full com-object-cover com-object-center com-align-middle;
-          }
-
-          .content {
-            margin: 0 12px;
-          }
-        }
-
-        nb-icon {
-          border-radius: 6px;
-          font-size: 30px;
-          padding: 2px;
-          position: absolute;
-          right: 20px;
-          visibility: hidden;
-
-          &:hover {
-            background-color: #d0d7de;
-          }
-        }
-      }
-    }
   }
 
   nb-card-footer {

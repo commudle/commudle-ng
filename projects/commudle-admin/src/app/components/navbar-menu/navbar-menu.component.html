@@ -13,7 +13,7 @@
   </a> -->
   <a
     (click)="resetCount()"
-    *ngIf="mobileView"
+    *appBreakpoints="'<=lg'"
     [routerLink]="['/notifications']"
     class="notification"
     routerLinkActive="active"
@@ -24,15 +24,15 @@
     </div>
     <div class="home-navbar-menu-option">Notifications</div>
   </a>
-  <a (click)="resetCount()" *ngIf="!mobileView" class="notification">
+  <a
+    (click)="resetCount()"
+    *appBreakpoints="'>lg'"
+    [nbPopover]="notificationsPopoverComponent"
+    class="notification clickable"
+  >
     <div class="icon">
-      <span *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</span>
-      <fa-icon
-        [icon]="faBell"
-        [nbPopoverContext]="{ notificationMessage: notificationMessage }"
-        [nbPopover]="notificationsPopoverComponent"
-        nbPopoverPlacement="bottom"
-      ></fa-icon>
+      <div *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</div>
+      <fa-icon [icon]="faBell"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Notifications</div>
   </a>

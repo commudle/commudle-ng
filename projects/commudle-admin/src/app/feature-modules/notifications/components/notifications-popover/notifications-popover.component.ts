@@ -36,7 +36,7 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
   getNotifications() {
     this.subscriptions.push(
       this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
-        this.notifications = value.notifications;
+        this.notifications = value.notifications.reverse();
       }),
     );
   }
@@ -62,9 +62,5 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
         }
       }),
     );
-  }
-
-  changeStatus(status: ENotificationStatus, notification: INotification) {
-    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
   }
 }
