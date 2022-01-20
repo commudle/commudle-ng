@@ -3,12 +3,7 @@
     <p class="timeago" title="{{ moment(userResponse.created_at).format('dddd Do MMM, YYYY h:mm A') }}">
       {{ moment(userResponse.created_at).fromNow() }}
     </p>
-    <a *ngIf="user.username" [routerLink]="['/users', user.username]" target="_blank">
-      <h6>{{ user.name }}</h6>
-      <div class="user-avatar">
-        <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
-      </div>
-    </a>
+    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
     <p class="contact-details">
       <small>{{ user.email }}</small>
     </p>

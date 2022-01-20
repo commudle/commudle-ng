@@ -6,18 +6,11 @@
     color: $low-emphasis-text;
   }
 
-  a {
-    text-decoration: none;
-
-    h6 {
-      margin: 0;
-    }
-    .user-avatar {
-      min-height: 50px;
-      overflow: hidden;
-      width: 50px;
-      img {
-        width: 100%;
+  app-user-profile-card-large {
+    &::ng-deep {
+      .user-profile-large {
+        margin: 10px 0;
+        background-color: transparent;
       }
     }
   }
