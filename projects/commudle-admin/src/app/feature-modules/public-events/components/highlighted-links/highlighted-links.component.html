@@ -1,53 +1,70 @@
-<div>
-  <nb-card *ngIf="openForms.length > 0">
-    <nb-card-body>
-      <div class="open-forms">
-        <div class="form-link" *ngFor="let form of openForms">
-          <a
-            nbButton
-            [routerLink]="['/fill-form', form.data_form_entity_id]"
-            size="small"
-            status="primary"
-            nbTooltip="{{form.name}}">
-            <nb-icon *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.SPEAKER" icon="award"></nb-icon>
-            <nb-icon *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.ATTENDEE" icon="people"></nb-icon>
-            <nb-icon *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK" icon="bulb"></nb-icon>
-            <nb-icon class="edit-icon" *ngIf="form.already_filled" icon="edit"></nb-icon>
-
-            {{ form.name }}
-          </a>
-        </div>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-card *ngIf="eventSimpleRegistration">
-    <nb-card-body>
-      <nb-alert *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.CLOSED && eventSimpleRegistration.user_event_registrations_count == 0" status="primary">
-        Registrations will open soon!
-      </nb-alert>
-
-      <nb-alert *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.CLOSED && eventSimpleRegistration.user_event_registrations_count > 0" outline="basic">
-        Registrations closed
-      </nb-alert>
-
-      <button nbButton
-        *ngIf="eventSimpleRegistration.status == EEventSimpleRegistrationStatuses.OPEN"
-        status="primary"
-        (click)="toggleUserEventRegistration()"
+<nb-card *ngIf="openForms.length > 0">
+  <nb-card-body>
+    <div class="open-forms">
+      <div *ngFor="let form of openForms" class="form-link">
+        <a
+          [routerLink]="['/fill-form', form.data_form_entity_id]"
+          nbButton
+          nbTooltip="{{ form.name }}"
+          size="small"
+          status="primary"
         >
-        <span *ngIf="!eventSimpleRegistration.current_user_registered">
-          Register Here!
-        </span>
+          <nb-icon
+            *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.SPEAKER"
+            icon="award"
+          ></nb-icon>
+          <nb-icon
+            *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.ATTENDEE"
+            icon="people"
+          ></nb-icon>
+          <nb-icon
+            *ngIf="!form.already_filled && form.registration_type.name === ERegistationTypes.FEEDBACK"
+            icon="bulb"
+          ></nb-icon>
+          <nb-icon *ngIf="form.already_filled" class="edit-icon" icon="edit"></nb-icon>
 
-        <span *ngIf="eventSimpleRegistration.current_user_registered">
-          Cancel My Registration
-        </span>
-      </button>
-      <p *ngIf="userEventRegistration">
-        <nb-alert status="basic" outline>Your status: {{ userEventRegistration.registration_status.name | titlecase }}</nb-alert>
-      </p>
+          {{ form.name }}
+        </a>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
 
+<nb-card *ngIf="eventSimpleRegistration">
+  <nb-card-body>
+    <nb-alert
+      *ngIf="
+        eventSimpleRegistration.status === EEventSimpleRegistrationStatuses.CLOSED &&
+        eventSimpleRegistration.user_event_registrations_count === 0
+      "
+      status="primary"
+    >
+      Registrations will open soon!
+    </nb-alert>
 
-    </nb-card-body>
-  </nb-card>
-</div>
+    <nb-alert
+      *ngIf="
+        eventSimpleRegistration.status === EEventSimpleRegistrationStatuses.CLOSED &&
+        eventSimpleRegistration.user_event_registrations_count > 0
+      "
+      outline="basic"
+    >
+      Registrations closed
+    </nb-alert>
+
+    <button
+      (click)="toggleUserEventRegistration()"
+      *ngIf="eventSimpleRegistration.status === EEventSimpleRegistrationStatuses.OPEN"
+      nbButton
+      status="primary"
+    >
+      <span *ngIf="!eventSimpleRegistration.current_user_registered"> Register Here! </span>
+      <span *ngIf="eventSimpleRegistration.current_user_registered"> Cancel My Registration </span>
+    </button>
+    <p *ngIf="userEventRegistration">
+      <nb-alert outline status="basic">
+        Your status: {{ userEventRegistration.registration_status.name | titlecase }}
+      </nb-alert>
+    </p>
+  </nb-card-body>
+</nb-card>

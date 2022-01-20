@@ -86,6 +86,7 @@ p {
           padding: $space-16;
 
           .featured-community-name {
+            @apply com-m-0;
             @include card-title-text;
           }
 

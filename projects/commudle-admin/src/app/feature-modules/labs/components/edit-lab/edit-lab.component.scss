@@ -2,165 +2,156 @@
 
 .create-lab {
   background: $light-purple;
-  width: 100%;
 
-  .page-container {
-    padding-bottom: 50px;
+  .three-column-layout {
+    @media screen and (max-width: $mobile-width) {
+      display: flex;
+      flex-direction: column;
+    }
 
-    @media screen and (min-width: $max-page-width) {
-      flex-direction: row;
-      justify-content: center;
+    .left-col {
+      .help-video {
+        background: #f1f1ff;
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        height: 75px;
+        position: relative;
+        width: 100%;
 
-      .left-col {
-        width: 264px;
+        p {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: $neon-blue;
+        }
 
-        .help-video {
-          background: #f1f1ff;
-          border: 1px solid lightgrey;
-          border-radius: 10px;
-          height: 75px;
-          position: relative;
-          width: 100%;
+        nb-icon {
+          font-size: 35px;
+        }
 
-          p {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: $neon-blue;
-          }
-
+        &:hover {
           nb-icon {
-            font-size: 35px;
-          }
-
-          &:hover {
-            nb-icon {
-              color: $bittersweet;
-            }
+            color: $bittersweet;
           }
         }
       }
+    }
 
-      .center-col {
-        width: 960px;
+    .center-col {
+      .container {
+        .header {
+          font-weight: 300;
 
-        .container {
-          .header {
-            font-weight: 300;
+          fa-icon {
+            color: #4e74ff;
+          }
+        }
 
-            fa-icon {
-              color: #4e74ff;
+        form.lab-header-image {
+          margin-bottom: 2rem;
+
+          label {
+            padding: 150px 0;
+            position: relative;
+
+            > span {
+              border: 2px dashed lightgrey;
+              border-radius: 10px;
+              color: grey;
+              font-size: 18px;
+
+              font-weight: 300;
+              height: 100%;
+              padding: 10px;
+
+              nb-icon {
+                font-size: 4rem;
+                margin-bottom: 0.5rem;
+              }
+            }
+
+            input {
+              display: none;
             }
           }
 
-          form.lab-header-image {
-            margin-bottom: 2rem;
+          .uploaded-header-image {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            label {
-              padding: 150px 0;
-              position: relative;
-
-              > span {
-                border: 2px dashed lightgrey;
-                border-radius: 10px;
-                color: grey;
-                font-size: 18px;
-
-                font-weight: 300;
-                height: 100%;
-                padding: 10px;
-
-                nb-icon {
-                  font-size: 4rem;
-                  margin-bottom: 0.5rem;
-                }
-              }
-
-              input {
-                display: none;
-              }
-            }
-
-            .uploaded-header-image {
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              img {
-                max-width: 100%;
-              }
-            }
-
-            .delete-header-image-button {
-              display: block;
-              margin: 0 auto;
+            img {
+              max-width: 100%;
             }
           }
 
-          form.lab-form {
-            .overview {
-              input {
-                font-size: $input-title;
-                font-weight: 300;
-              }
-
-              > div {
-                margin-bottom: 1rem;
-              }
-            }
-
-            .lab-step {
-              margin-top: 4.5rem;
-
-              h3.steps-counter {
-                font-weight: 300;
-                margin-bottom: 0;
-              }
-
-              .name input {
-                font-size: 1.5rem;
-                font-weight: 300;
-                margin-bottom: 1rem;
-              }
-            }
-          }
-
-          .tags {
-            margin-top: 3.5rem;
-          }
-
-          @media screen and (min-width: 1020px) {
-            max-width: 1020px;
+          .delete-header-image-button {
+            display: block;
             margin: 0 auto;
           }
         }
 
-        .add-step-button {
-          width: 100%;
-        }
+        form.lab-form {
+          .overview {
+            input {
+              font-size: $input-title;
+              font-weight: 300;
+            }
 
-        .actions-card {
-          margin: 8px;
-        }
-
-        .actions {
-          margin-top: 1rem;
-
-          button {
-            margin-right: 0.5rem;
+            > div {
+              margin-bottom: 1rem;
+            }
           }
+
+          .lab-step {
+            margin-top: 4.5rem;
+
+            h3.steps-counter {
+              font-weight: 300;
+              margin-bottom: 0;
+            }
+
+            .name input {
+              font-size: 1.5rem;
+              font-weight: 300;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+
+        .tags {
+          margin-top: 3.5rem;
+        }
+
+        @media screen and (min-width: 1020px) {
+          max-width: 1020px;
+          margin: 0 auto;
         }
       }
 
-      .right-col {
-        width: 120px;
+      .add-step-button {
+        width: 100%;
+      }
 
-        > button {
-          position: sticky;
-          top: 4.5rem;
+      .actions-card {
+        margin: 8px;
+      }
+
+      .actions {
+        margin-top: 1rem;
+
+        button {
+          margin-right: 0.5rem;
         }
+      }
+    }
+
+    .right-col {
+      > button {
+        position: sticky;
+        top: 4.5rem;
       }
     }
   }

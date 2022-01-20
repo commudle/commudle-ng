@@ -1,9 +1,9 @@
-<div class="base-layout">
+<div class="base-layout com-mb-8">
   <div class="container">
     <div class="one-column-layout">
       <nb-card *ngIf="guideline" class="guideline">
         <nb-card-body>
-          <div class="content" [innerHTML]="richText | safeHtml"></div>
+          <div [innerHTML]="richText | safeHtml" class="content"></div>
         </nb-card-body>
       </nb-card>
     </div>

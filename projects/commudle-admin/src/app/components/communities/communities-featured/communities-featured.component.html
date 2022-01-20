@@ -1,6 +1,6 @@
 <nb-card class="communities-featured-container">
   <nb-card-body>
-    <p class="communities-featured-heading">Featured Communities</p>
+    <h2 class="communities-featured-heading">Featured Communities</h2>
     <div class="communities-featured-list">
       <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
         <div class="featured-community-actions d-flex">
@@ -34,7 +34,7 @@
           [routerLink]="['/communities', featuredCommunity.kommunity.slug]"
           class="clickable featured-community-about"
         >
-          <p class="featured-community-name">{{ featuredCommunity.kommunity.name }}</p>
+          <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
           <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
         </div>
       </div>

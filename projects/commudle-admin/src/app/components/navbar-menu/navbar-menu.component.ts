@@ -20,9 +20,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faUserFriends = faUserFriends;
   faBell = faBell;
 
-  mobileView: boolean;
   notificationCount = 0;
-
   notificationsPopoverComponent = NotificationsPopoverComponent;
 
   subscriptions: Subscription[] = [];
@@ -30,8 +28,6 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   constructor(private notificationChannel: NotificationChannel) {}
 
   ngOnInit(): void {
-    this.mobileView = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
     this.receiveData();
   }
 
