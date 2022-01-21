@@ -23,7 +23,7 @@
 
     <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
-        <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>
+        <nb-user name="My Profile" picture="{{ currentUser.photo.i32 }}" size="tiny"></nb-user>
         <span *ngIf="!currentUser.profile_completed" class="incomplete-badge">
           <app-badge [color]="'red'" [fontSize]="'small'" [text]="'Incomplete'"></app-badge>
         </span>

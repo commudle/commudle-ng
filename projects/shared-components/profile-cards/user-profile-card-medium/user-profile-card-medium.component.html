@@ -1,6 +1,6 @@
 <a [routerLink]="['/users', user.username]">
   <div class="user-profile-medium d-flex align-items-center">
-    <img alt="{{ user.name }}" class="avatar" src="{{ user.avatar }}" title="{{ user.name }}" />
+    <img alt="{{ user.name }}" class="avatar" src="{{ user.photo.i32 }}" title="{{ user.name }}" />
     <div class="details">
       <div class="name d-flex align-items-center com-line-clamp-1">
         {{ user.name }}
