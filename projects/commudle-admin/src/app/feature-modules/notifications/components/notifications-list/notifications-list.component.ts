@@ -26,4 +26,8 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
   changeStatus(status: ENotificationStatus, notification: INotification) {
     this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
   }
+
+  closePopover() {
+    this.notificationService.setCloseNotificationPopover(true);
+  }
 }

@@ -7,6 +7,7 @@
 
   .notification {
     position: relative;
+    padding: 0 $space-12 $space-6 $space-12;
 
     .notification-badge {
       background: $ultra-red;

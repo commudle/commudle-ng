@@ -7,6 +7,7 @@
         </nb-card-header>
         <nb-card-body>
           <div (scrolled)="getNotifications()" [infiniteScrollDisabled]="!(canLoadMore && total)" appInfiniteScroll>
+            <h4 *ngIf="notifications.length === 0" class="com-text-center">No Notifications Yet</h4>
             <app-notifications-list [notifications]="notifications"></app-notifications-list>
           </div>
           <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">

@@ -63,4 +63,8 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
       }),
     );
   }
+
+  closePopover() {
+    this.notificationService.setCloseNotificationPopover(true);
+  }
 }

@@ -1,5 +1,5 @@
 <nb-list>
-  <nb-list-item *ngFor="let notification of notifications">
+  <nb-list-item (click)="closePopover()" *ngFor="let notification of notifications">
     <nb-badge
       *ngIf="notification.status === ENotificationStatus.UNREAD"
       dotMode="true"
@@ -22,7 +22,7 @@
       </p>
     </a>
     <nb-icon
-      (click)="changeStatus(ENotificationStatus.READ, notification)"
+      (click)="changeStatus(ENotificationStatus.READ, notification); $event.stopPropagation()"
       *ngIf="notification.status === ENotificationStatus.UNREAD"
       icon="checkmark-outline"
       status="basic"

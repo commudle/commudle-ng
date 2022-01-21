@@ -1,9 +1,10 @@
 <nb-card>
   <nb-card-header>Notifications</nb-card-header>
   <nb-card-body>
+    <h4 *ngIf="notifications.length === 0" class="com-text-center">No Notifications Yet</h4>
     <app-notifications-list [notifications]="notifications"></app-notifications-list>
   </nb-card-body>
   <nb-card-footer>
-    <a [routerLink]="['/notifications']"> View All Notifications </a>
+    <a (click)="closePopover()" [routerLink]="['/notifications']"> View All Notifications </a>
   </nb-card-footer>
 </nb-card>
