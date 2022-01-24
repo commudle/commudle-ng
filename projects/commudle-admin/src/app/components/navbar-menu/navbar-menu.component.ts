@@ -5,7 +5,7 @@ import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/f
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Subscription } from 'rxjs';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -28,12 +28,15 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationChannel: NotificationChannel, private notificationService: NotificationService) {}
+  constructor(
+    private notificationChannel: NotificationChannel,
+    private notificationStateService: NotificationStateService,
+  ) {}
 
   ngOnInit(): void {
     this.receiveData();
 
-    this.notificationService.closeNotificationPopover$.subscribe((value) => {
+    this.notificationStateService.closeNotificationPopover$.subscribe((value) => {
       if (value) {
         this.popovers.forEach((popover) => {
           if (popover.context === 'notificationsPopover') {
@@ -41,7 +44,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
           }
         });
 
-        this.notificationService.setCloseNotificationPopover(false);
+        this.notificationStateService.setCloseNotificationPopover(false);
       }
     });
   }
