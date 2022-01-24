@@ -120,7 +120,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
         id: this.currentUser.id,
         name: this.currentUser.name,
         username: this.currentUser.username,
-        avatar: this.currentUser.photo.i64,
+        avatar: this.currentUser.avatar,
       }),
     });
   }

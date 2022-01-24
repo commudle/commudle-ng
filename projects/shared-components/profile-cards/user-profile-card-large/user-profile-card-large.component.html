@@ -2,7 +2,7 @@
   <a [routerLink]="['/users', user.username]">
     <div class="user-profile-large d-flex align-items-center">
       <div class="avatar">
-        <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
+        <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
       </div>
       <div class="details">
         <div class="name d-flex align-items-center">
@@ -14,7 +14,7 @@
       </div>
     </div>
   </a>
-  <div *ngIf="showFollowButton" [ngClass]="{ 'align-right': alignFollowToRight }" class="followers">
+  <div *ngIf="showFollowButton" class="followers" [ngClass]="{ 'align-right': alignFollowToRight }">
     <app-user-follow [username]="user.username" class="follow-btn"></app-user-follow>
   </div>
 </div>

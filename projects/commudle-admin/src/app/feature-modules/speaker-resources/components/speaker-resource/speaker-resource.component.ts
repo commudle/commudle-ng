@@ -76,7 +76,7 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
     this.seoService.setTags(
       `${this.speakerResource.title} by ${this.speakerResource.user.name}`,
       `Session by ${this.speakerResource.user.name} at ${this.speakerResource.event.name} on ${this.speakerResource.title}`,
-      this.speakerResource.user.photo.i64,
+      this.speakerResource.user.avatar,
     );
   }
 }
