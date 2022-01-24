@@ -1,7 +1,7 @@
 <div>
   <div class="message">
     <div class="author-image">
-      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}" />
+      <img alt="{{ message.user.name }}" src="{{ message.user.photo.i64 }}" title="{{ message.user.name }}" />
     </div>
     <div class="content-controls">
       <div class="author-details">
@@ -11,7 +11,7 @@
           <small>{{ moment(message.created_at).format('h:mm A, dddd Do MMM, YYYY ') }}</small>
           &nbsp;
           <small><em *ngIf="message.edited">(edited)</em></small>
-          <fa-icon *ngIf="message.pinned && showPin" [icon]="faThumbtack" transform="rotate-45" size="lg"></fa-icon>
+          <fa-icon *ngIf="message.pinned && showPin" [icon]="faThumbtack" size="lg" transform="rotate-45"></fa-icon>
         </p>
       </div>
       <!-- TODO: Handle if script tag is in message content -->
@@ -21,8 +21,8 @@
             | linky: { sanitizeHtml: false, mention: 'twitter', replaceFn: highlightUserMentions }
             | safeHtml
         "
-        class="content"
         [ngClass]="{ 'com-line-clamp-1': lineClamp }"
+        class="content"
       ></div>
       <div *ngIf="message.attachments.length > 0" class="attachments">
         <div *ngFor="let file of message.attachments; let i = index" class="file">
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div class="details-flag" *ngIf="showMessageControls">
+      <div *ngIf="showMessageControls" class="details-flag">
         <div>
           <app-votes-display
             [canVote]="permittedActions.includes(allActions.VOTE)"

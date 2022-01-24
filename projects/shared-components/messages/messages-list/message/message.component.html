@@ -1,7 +1,7 @@
 <div *ngIf="message" class="message-container">
   <div class="prefix d-flex align-items-start">
     <div class="avatar">
-      <img alt="{{ message.user.name }}" src="{{ message.user.avatar }}" title="{{ message.user.name }}" />
+      <img alt="{{ message.user.name }}" src="{{ message.user.photo.i32 }}" title="{{ message.user.name }}" />
     </div>
     <div class="user-container">
       <div class="user d-flex align-items-center">

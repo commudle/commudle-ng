@@ -4,14 +4,14 @@
     <nb-list class="posts-list">
       <nb-list-item *ngFor="let post of posts" [routerLink]="['/users', post.user.username, 'feed']" class="clickable">
         <div class="image">
-          <img alt="{{post.user.name}}" src="{{post.user.avatar}}" title="{{post.user.name}}" />
+          <img alt="{{ post.user.name }}" src="{{ post.user.photo.i32 }}" title="{{ post.user.name }}" />
         </div>
         <div class="content">
           <div class="name">
-            {{post.user.name | truncatetext:10}}
-            <span class="username">@{{post.user.username | truncatetext:10}}</span>
+            {{ post.user.name | truncatetext: 10 }}
+            <span class="username">@{{ post.user.username | truncatetext: 10 }}</span>
           </div>
-          <div class="post">{{post.content}}</div>
+          <div class="post">{{ post.content }}</div>
         </div>
       </nb-list-item>
     </nb-list>

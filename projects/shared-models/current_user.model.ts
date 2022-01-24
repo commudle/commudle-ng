@@ -1,5 +1,6 @@
-import { IBadge } from "./badge.model";
-import { ITag } from "./tag.model";
+import { IAttachedFile } from './attached-file.model';
+import { IBadge } from './badge.model';
+import { ITag } from './tag.model';
 
 export interface ICurrentUser {
   id: number;
@@ -19,6 +20,7 @@ export interface ICurrentUser {
   facebook: string;
   youtube: string;
   avatar: string;
+  photo: IAttachedFile;
   user_roles: string[];
   has_community_builds: boolean;
   profile_completed: boolean;
@@ -28,5 +30,4 @@ export interface ICurrentUser {
   tags: ITag[];
   is_expert: boolean;
   badges: IBadge[];
-
 }

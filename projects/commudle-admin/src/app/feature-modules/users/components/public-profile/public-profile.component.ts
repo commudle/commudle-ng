@@ -71,6 +71,6 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
       titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
     }
 
-    this.seoService.setTags(titleText, this.user.about_me, this.user.avatar);
+    this.seoService.setTags(titleText, this.user.about_me, this.user.photo.i64);
   }
 }

@@ -1,27 +1,56 @@
-<div class="user {{size}}">
-  <div class="profile-picture {{ size }}" [ngSwitch]="entity.type" >
-    <img *ngSwitchCase="'users'" alt="{{ entity.name }}" src="{{ entity.avatar }}" title="{{ entity.name }}">
-    <img *ngSwitchCase="'builds'" alt="{{ entity.name }}" src="{{ entity.images[0]?.i32 || '/assets/images/commudle-logo32.png' }}" title="{{ entity.name }}">
-    <img *ngSwitchCase="'channels'" alt="{{ entity.name }}" src="{{ entity.logo?.i32 || '/assets/images/commudle-logo32.png'  }}" title="{{ entity.name }}">
-    <img *ngSwitchCase="'communities'" alt="{{ entity.name }}" src="{{ entity.logo_image?.i32 || '/assets/images/commudle-logo32.png' }}" title="{{ entity.name }}">
-    <img *ngSwitchCase="'events'" alt="{{ entity.name }}" src="{{ entity.header_image?.i32 || '/assets/images/commudle-logo32.png' }}" title="{{ entity.name }}">
-    <img *ngSwitchCase="'labs'" alt="{{ entity.name }}" src="{{ entity.header_image?.i32 || '/assets/images/commudle-logo32.png' }}" title="{{ entity.name }}">
+<div class="user {{ size }}">
+  <div [ngSwitch]="entity.type" class="profile-picture {{ size }}">
+    <img *ngSwitchCase="'users'" alt="{{ entity.name }}" src="{{ entity.photo?.i64 }}" title="{{ entity.name }}" />
+    <img
+      *ngSwitchCase="'builds'"
+      alt="{{ entity.name }}"
+      src="{{ entity.images[0]?.i32 || '/assets/images/commudle-logo32.png' }}"
+      title="{{ entity.name }}"
+    />
+    <img
+      *ngSwitchCase="'channels'"
+      alt="{{ entity.name }}"
+      src="{{ entity.logo?.i32 || '/assets/images/commudle-logo32.png' }}"
+      title="{{ entity.name }}"
+    />
+    <img
+      *ngSwitchCase="'communities'"
+      alt="{{ entity.name }}"
+      src="{{ entity.logo_image?.i32 || '/assets/images/commudle-logo32.png' }}"
+      title="{{ entity.name }}"
+    />
+    <img
+      *ngSwitchCase="'events'"
+      alt="{{ entity.name }}"
+      src="{{ entity.header_image?.i32 || '/assets/images/commudle-logo32.png' }}"
+      title="{{ entity.name }}"
+    />
+    <img
+      *ngSwitchCase="'labs'"
+      alt="{{ entity.name }}"
+      src="{{ entity.header_image?.i32 || '/assets/images/commudle-logo32.png' }}"
+      title="{{ entity.name }}"
+    />
   </div>
   <div class="profile-info">
-
     <p class="name {{ size }} d-flex">
-      <strong>{{ entity.name | truncatetext:25 }}</strong>
-      <img *ngIf="entity.is_expert" alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg"
-           title="Expert Tick">
+      <strong>{{ entity.name | truncatetext: 25 }}</strong>
+      <img
+        *ngIf="entity.is_expert"
+        alt="Expert Tick"
+        class="expert-icon"
+        src="/assets/images/Expert-Tick.svg"
+        title="Expert Tick"
+      />
     </p>
 
     <p *ngIf="entity.type === 'users'" class="description {{ size }}">
-      {{ entity.username | truncatetext:30 }}
+      {{ entity.username | truncatetext: 30 }}
     </p>
 
-    <p *ngIf="entity.type === 'communities'" class="description {{ size }}" >(community)</p>
-    <p *ngIf="entity.type !== 'users' && entity.type !== 'communities' " class="description {{ size }}" >({{ entity.type | slice:0:-1 }})</p>
-
+    <p *ngIf="entity.type === 'communities'" class="description {{ size }}">(community)</p>
+    <p *ngIf="entity.type !== 'users' && entity.type !== 'communities'" class="description {{ size }}">
+      ({{ entity.type | slice: 0:-1 }})
+    </p>
   </div>
 </div>
-

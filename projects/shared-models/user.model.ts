@@ -1,6 +1,6 @@
-import {IAttachedFile} from './attached-file.model';
-import {IBadge} from './badge.model';
-import {ITag} from './tag.model';
+import { IAttachedFile } from './attached-file.model';
+import { IBadge } from './badge.model';
+import { ITag } from './tag.model';
 
 export interface IUser {
   id: number;
@@ -20,6 +20,7 @@ export interface IUser {
   youtube: string;
   gender: string;
   avatar: string;
+  photo: IAttachedFile;
   profile_banner_image: IAttachedFile;
   username: string;
   location: string;
