@@ -2,7 +2,7 @@
   <div class="message">
     <div>
       <a [routerLink]="['/users', message.user.username]" target="_blank">
-        <nb-user [picture]="message.user.photo.i32" onlyPicture="true"></nb-user>
+        <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
       </a>
     </div>
     <div class="content-controls">
@@ -10,8 +10,8 @@
         <div class="d-flex justify-content-space-between">
           <div class="d-flex align-items-center">
             <a [routerLink]="['/users', message.user.username]" target="_blank">
-              <span class="name">{{ message.user.name }}</span>
-              <span class="username">@{{ message.user.username }}</span>
+              <span class="name">{{message.user.name}}</span>
+              <span class="username">@{{message.user.username}}</span>
               <img
                 *ngIf="message.user.is_expert"
                 alt="Expert Tick"
@@ -21,14 +21,14 @@
               />
             </a>
           </div>
-          <div class="date">{{ moment(message.created_at).format("MMM D [']YY") }}</div>
+          <div class="date">{{moment(message.created_at).format("MMM D [']YY")}}</div>
         </div>
       </div>
-      <div [innerHTML]="message.content | linky: { sanitizeHtml: true }" class="content"></div>
+      <div [innerHTML]="message.content | linky:{sanitizeHtml: true}" class="content"></div>
       <div class="details-flag">
         <div (click)="login() && permittedActions.includes(allActions.FLAG) && emitFlag(message.id)" class="clickable">
           <p
-            [ngClass]="{ 'error-text': message.flags_count > 0 }"
+            [ngClass]="{'error-text': message.flags_count > 0}"
             nbTooltip="Report this message. (3 reports will delete it)"
             nbTooltipStatus="warning"
           >
@@ -37,11 +37,7 @@
           </p>
         </div>
         <div
-          (click)="
-            login() &&
-              (permittedActions.includes(allActions.DELETE) || (currentUser && message.user.id === currentUser.id)) &&
-              emitDelete(message.id)
-          "
+          (click)="login() && (permittedActions.includes(allActions.DELETE) || (currentUser && message.user.id === currentUser.id)) && emitDelete(message.id)"
           *ngIf="permittedActions.includes(allActions.DELETE)"
           class="clickable"
           nbTooltip="Delete"

@@ -20,7 +20,7 @@
   <div class="community-list-card-suffix d-flex align-items-center">
     <a [routerLink]="['/communities', community.slug, 'members']" class="community-list-card-member-avatars">
       <span *ngFor="let member of members" class="community-list-card-member-avatar">
-        <img alt="{{ member.name }}" src="{{ member.photo.i32 }}" title="{{ member.name }}" />
+        <img alt="{{ member.name }}" src="{{ member.avatar }}" title="{{ member.name }}" />
       </span>
     </a>
     <div class="community-join-btn">

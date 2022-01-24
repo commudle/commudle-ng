@@ -3,27 +3,27 @@
     <nb-card-body>
       <div class="title">
         <div class="image">
-          <img *ngIf="lab.header_image" alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}" />
+          <img *ngIf="lab.header_image" alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}">
           <div *ngIf="!lab.header_image" class="header-filler">
             <nb-icon icon="link-outline"></nb-icon>
           </div>
         </div>
         <p>
-          {{ lab.name | slice: 0:55 }} <span *ngIf="lab.name.length > 55">...</span>
-          <br />
+          {{ lab.name | slice:0:55 }} <span *ngIf="lab.name.length > 55">...</span>
+          <br>
           <small>Published {{ moment(lab.published_at).format('Do MMM YYYY') }}</small>
         </p>
       </div>
       <div class="body">
         <div class="header">
-          <div *ngIf="lab.user.photo.i64" class="image">
-            <img alt="{{ lab.user.name }}" src="{{ lab.user.photo.i64 }}" title="{{ lab.user.name }}" />
+          <div *ngIf="lab.user.avatar" class="image">
+            <img alt="{{ lab.user.name }}" src="{{ lab.user.avatar }}" title="{{ lab.user.name }}">
           </div>
           <div class="author">
             <p>
-              {{ lab.user.name | slice: 0:30 }}
-              <br />
-              <small>{{ lab.user.designation | slice: 0:40 }}</small>
+              {{ lab.user.name | slice:0:30 }}
+              <br>
+              <small>{{ lab.user.designation | slice:0:40 }}</small>
             </p>
           </div>
         </div>
