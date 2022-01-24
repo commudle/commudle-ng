@@ -1,9 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { faBell, faFlask, faHome, faInfoCircle, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { NbPopoverDirective } from '@nebular/theme';
 import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/notifications-popover/notifications-popover.component';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { Subscription } from 'rxjs';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -22,13 +24,29 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   notificationCount = 0;
   notificationsPopoverComponent = NotificationsPopoverComponent;
+  @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationChannel: NotificationChannel) {}
+  constructor(
+    private notificationChannel: NotificationChannel,
+    private notificationStateService: NotificationStateService,
+  ) {}
 
   ngOnInit(): void {
     this.receiveData();
+
+    this.notificationStateService.closeNotificationPopover$.subscribe((value) => {
+      if (value) {
+        this.popovers.forEach((popover) => {
+          if (popover.context === 'notificationsPopover') {
+            popover.hide();
+          }
+        });
+
+        this.notificationStateService.setCloseNotificationPopover(false);
+      }
+    });
   }
 
   ngOnDestroy(): void {

@@ -4,6 +4,7 @@ import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-mod
 import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
   selector: 'app-notifications-popover',
@@ -20,7 +21,11 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationChannel: NotificationChannel, private notificationService: NotificationService) {}
+  constructor(
+    private notificationChannel: NotificationChannel,
+    private notificationService: NotificationService,
+    private notificationStateService: NotificationStateService,
+  ) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -62,5 +67,9 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
         }
       }),
     );
+  }
+
+  closePopover() {
+    this.notificationStateService.setCloseNotificationPopover(true);
   }
 }

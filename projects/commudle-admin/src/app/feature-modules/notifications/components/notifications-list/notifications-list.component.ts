@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
 import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
 import { INotification } from 'projects/shared-models/notification.model';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
   selector: 'app-notifications-list',
@@ -15,7 +16,10 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
 
   subscriptions = [];
 
-  constructor(private notificationService: NotificationService) {}
+  constructor(
+    private notificationService: NotificationService,
+    private notificationStateService: NotificationStateService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -25,5 +29,9 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
 
   changeStatus(status: ENotificationStatus, notification: INotification) {
     this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
+  }
+
+  closePopover() {
+    this.notificationStateService.setCloseNotificationPopover(true);
   }
 }
