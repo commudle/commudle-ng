@@ -26,7 +26,7 @@ export class CommunityChannelsListComponent implements OnInit, OnDestroy {
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
         this.getChannels();
-        this.seoService.setTitle(`Public Channels | ${this.community.name}`);
+        this.seoService.setTitle(`Channels | ${this.community.name}`);
       }),
     );
   }
