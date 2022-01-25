@@ -21,6 +21,8 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  isLoading = false;
+
   constructor(
     private notificationChannel: NotificationChannel,
     private notificationService: NotificationService,
@@ -39,9 +41,11 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
   }
 
   getNotifications() {
+    this.isLoading = true;
     this.subscriptions.push(
       this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
         this.notifications = value.notifications.reverse();
+        this.isLoading = false;
       }),
     );
   }
