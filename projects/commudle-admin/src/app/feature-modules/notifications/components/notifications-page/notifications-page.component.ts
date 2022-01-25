@@ -3,6 +3,8 @@ import { NotificationService } from 'projects/commudle-admin/src/app/feature-mod
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-notifications-page',
@@ -20,14 +22,23 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationChannel: NotificationChannel, public notificationService: NotificationService) {}
+  constructor(
+    private notificationChannel: NotificationChannel,
+    private notificationService: NotificationService,
+    private notificationStateService: NotificationStateService,
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit(): void {
+    this.notificationStateService.setNotificationPageState(true);
     this.getNotifications();
     this.receiveData();
+    this.seoService.noIndex(true);
   }
 
   ngOnDestroy(): void {
+    this.seoService.noIndex(false);
+    this.notificationStateService.setNotificationPageState(false);
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 

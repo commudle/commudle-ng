@@ -25,6 +25,10 @@ nb-list {
         overflow: hidden;
 
         img {
+          display: block;
+          height: inherit;
+          object-fit: cover;
+          object-position: center top;
           width: 100%;
         }
       }
