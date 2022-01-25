@@ -28,7 +28,8 @@
   a {
     border: none;
     color: $gunmetal;
-    padding: 0 $space-16 $space-6 $space-16;
+    padding: 0 $space-12 $space-6 $space-12;
+    margin: 0 $space-4;
     text-align: center;
     text-decoration: none;
 
@@ -78,4 +79,8 @@
       padding: 0 $space-12 $space-6 $space-12;
     }
   }
+}
+
+.pointer-none {
+  pointer-events: none;
 }

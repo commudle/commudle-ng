@@ -4,7 +4,7 @@ import { NbMenuItem, NbPopoverDirective } from '@nebular/theme';
 import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/notifications-popover/notifications-popover.component';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
@@ -30,6 +30,8 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   homeContextMenu: NbMenuItem[] = [{ title: 'About', link: '/about' }];
 
+  notificationIconHighlight: boolean = false;
+
   constructor(
     private notificationChannel: NotificationChannel,
     private notificationStateService: NotificationStateService,
@@ -38,17 +40,28 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.receiveData();
 
-    this.notificationStateService.closeNotificationPopover$.subscribe((value) => {
-      if (value) {
-        this.popovers.forEach((popover) => {
-          if (popover.context === 'notificationsPopover') {
-            popover.hide();
-          }
-        });
+    this.subscriptions.push(
+      this.notificationStateService.closeNotificationPopover$.subscribe((value) => {
+        if (value) {
+          this.popovers.forEach((popover) => {
+            if (popover.context === 'notificationsPopover') {
+              popover.hide();
+            }
+          });
 
-        this.notificationStateService.setCloseNotificationPopover(false);
-      }
-    });
+          this.notificationStateService.setCloseNotificationPopover(false);
+        }
+      }),
+    );
+
+    this.subscriptions.push(
+      combineLatest(
+        this.notificationStateService.notificationPageState$,
+        this.notificationStateService.notificationPopoverState$,
+      ).subscribe(([notificationPageState, notificationPopoverState]) => {
+        this.notificationIconHighlight = notificationPageState || notificationPopoverState;
+      }),
+    );
   }
 
   ngOnDestroy(): void {

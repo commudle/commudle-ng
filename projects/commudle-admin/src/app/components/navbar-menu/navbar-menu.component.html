@@ -40,6 +40,7 @@
       [nbPopover]="notificationsPopoverComponent"
       [nbPopoverContext]="'notificationsPopover'"
       class="notification clickable"
+      [ngClass]="{ active: notificationIconHighlight }"
     >
       <div class="icon">
         <div *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</div>

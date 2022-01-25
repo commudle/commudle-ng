@@ -30,11 +30,13 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.notificationStateService.setNotificationPopoverState(true);
     this.getNotifications();
     this.receiveData();
   }
 
   ngOnDestroy(): void {
+    this.notificationStateService.setNotificationPopoverState(false);
     this.subscriptions.forEach((subscription) => {
       subscription.unsubscribe();
     });
