@@ -1,9 +1,7 @@
 <div [ngClass]="{ 'com-flex': alignFollowToRight }">
   <a [routerLink]="['/users', user.username]">
     <div class="user-profile-large d-flex align-items-center">
-      <div class="avatar">
-        <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
-      </div>
+      <img class="avatar" alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
       <div class="details">
         <div class="name d-flex align-items-center">
           <p class="com-line-clamp-1">{{ user.name }}</p>
