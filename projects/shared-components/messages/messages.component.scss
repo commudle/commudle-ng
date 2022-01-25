@@ -9,9 +9,18 @@
       bottom: 40px;
       display: none;
       position: absolute;
+      width: clamp(250px, 100%, 360px);
 
       &.active {
         display: initial;
+      }
+    }
+
+    form {
+      nb-form-field {
+        .emoji-picker {
+          @apply com-p-2.5;
+        }
       }
     }
   }

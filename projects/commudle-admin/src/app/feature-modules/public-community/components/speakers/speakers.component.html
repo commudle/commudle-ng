@@ -1,5 +1,5 @@
 <div class="speakers-container">
-  <nb-card class="speakers">
+  <nb-card [nbSpinner]="speakers.length === 0" class="speakers">
     <ng-container *ngFor="let speaker of speakers">
       <app-speaker-card *ngIf="speaker.name" [speaker]="speaker"></app-speaker-card>
     </ng-container>

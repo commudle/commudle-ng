@@ -1,39 +1,27 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { DOCUMENT } from '@angular/common';
-import { Meta } from '@angular/platform-browser';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.scss']
+  styleUrls: ['./logout.component.scss'],
 })
 export class LogoutComponent implements OnInit, OnDestroy {
-
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private authWatchService: LibAuthwatchService,
-    private meta: Meta
-    // private router: Router
-  ) { }
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
-    this.authWatchService.signOut().subscribe(() => {
-      this.document.location.href = '/';
-    });
+    this.seoService.noIndex(true);
 
+    this.authWatchService.signOut().subscribe(() => (this.document.location.href = '/'));
   }
-
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-    this.meta.removeTag("name='robots'");
+    this.seoService.noIndex(false);
   }
-
 }

@@ -1,103 +1,82 @@
-import { NbSidebarService, NbWindowService } from '@nebular/theme';
-import { Component, OnInit, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
-import { IEvent } from 'projects/shared-models/event.model';
-import { ActivatedRoute } from '@angular/router';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { faClock, faEdit, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import * as moment from 'moment';
-import { Meta, Title } from '@angular/platform-browser';
-import { IEventStatus } from 'projects/shared-models/event_status.model';
-import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
-import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { NbWindowService } from '@nebular/theme';
+import * as moment from 'moment';
+import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
+import { IEvent } from 'projects/shared-models/event.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
-  styleUrls: ['./event-dashboard.component.scss']
+  styleUrls: ['./event-dashboard.component.scss'],
 })
 export class EventDashboardComponent implements OnInit, OnDestroy {
-  @ViewChild('eventGuideTemplate') eventGuideTemplate: TemplateRef<any>;
+  event: IEvent;
+  community: ICommunity;
 
   moment = moment;
   EEventStatuses = EEventStatuses;
 
-  faClock = faClock;
-  faEdit = faEdit;
-  faInfoCircle = faInfoCircle;
-
-  event: IEvent;
-  community: ICommunity;
-
   uploadedHeaderImageFile: File;
   uploadedHeaderImage;
-
 
   eventHeaderImageForm = this.fb.group({
     header_image: ['', Validators.required],
   });
 
+  @ViewChild('statusSection') statusSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('detailsSection') detailsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('updatesSection') updatesSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('registrationsSection') registrationsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('agendaSection') agendaSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('collaborationsSection') collaborationsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('volunteersSection') volunteersSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('sponsorsSection') sponsorsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('emailsSection') emailsSectionRef: ElementRef<HTMLDivElement>;
+  @ViewChild('eventGuideSection') eventGuideSectionRef: TemplateRef<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private titleService: Title,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
-    private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
-    private meta: Meta,
-    private title: Title
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.noIndex(true);
 
-    this.sidebarService.collapse('mainMenu');
-    this.activatedRoute.data.subscribe(data => {
-      this.event = data.event;
+    this.activatedRoute.data.subscribe((value) => {
+      this.event = value.event;
 
-      this.title.setTitle(`Dashboard : ${this.event.name}`);
-
-      this.community = data.community;
-      this.titleService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
+      this.community = value.community;
+      this.seoService.setTitle(`${this.event.name} Dashboard | ${this.community.name}`);
     });
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
-  }
-
-
-  updateEventStatus($event: IEventStatus) {
-    this.event.event_status = $event;
+    this.seoService.noIndex(false);
   }
 
   updateRegistrationType(value) {
-    this.eventsService.updateCustomRegistration(this.event.id, value).subscribe(
-      data => {
-        this.event = data;
-      }
-    );
+    this.eventsService.updateCustomRegistration(this.event.id, value).subscribe((data) => {
+      this.event = data;
+    });
   }
 
   updateAgendaType(value) {
-    this.eventsService.updateCustomAgenda(this.event.id, value).subscribe(
-      data => {
-        this.event = data;
-      }
-    );
+    this.eventsService.updateCustomAgenda(this.event.id, value).subscribe((data) => {
+      this.event = data;
+    });
   }
 
-
-
-
   displaySelectedHeaderImage(event: any) {
-
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       if (file.size > 2425190) {
@@ -106,46 +85,36 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       }
       this.uploadedHeaderImageFile = file;
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.uploadedHeaderImage = reader.result;
-      };
+      reader.onload = () => (this.uploadedHeaderImage = reader.result);
 
       reader.readAsDataURL(file);
       this.updateEventHeader();
     }
-
   }
 
   updateEventHeader() {
     const formData: any = new FormData();
     formData.append('header_image', this.uploadedHeaderImageFile);
-    this.eventsService.updateHeaderImage(this.event.id, formData).subscribe(
-      data => {
-        this.event = data;
-        this.toastLogService.successDialog('Updated!');
-      }
-    );
-  }
-
-  scroll(el: HTMLElement) {
-    el.scrollIntoView({block: "start", behavior: "smooth"});
-  }
-
-  deleteEventHeader() {
-    this.eventsService.deleteHeaderImage(this.event.id).subscribe(
-      data => {
-        this.uploadedHeaderImage = null;
-        this.uploadedHeaderImageFile = null;
-        this.event = data;
-        this.toastLogService.successDialog('Deleted');
-      }
-    );
-  }
-
-  openGuide() {
-    this.windowService.open(this.eventGuideTemplate, {
-      title: "It's simple!"
+    this.eventsService.updateHeaderImage(this.event.id, formData).subscribe((data) => {
+      this.event = data;
+      this.toastLogService.successDialog('Updated!');
     });
   }
 
+  scroll(element: ElementRef<HTMLDivElement>) {
+    element.nativeElement.scrollIntoView({ block: 'start', behavior: 'smooth', inline: 'nearest' });
+  }
+
+  deleteEventHeader() {
+    this.eventsService.deleteHeaderImage(this.event.id).subscribe((data) => {
+      this.uploadedHeaderImage = null;
+      this.uploadedHeaderImageFile = null;
+      this.event = data;
+      this.toastLogService.successDialog('Deleted');
+    });
+  }
+
+  openGuide() {
+    this.windowService.open(this.eventGuideSectionRef, { title: "It's simple!" });
+  }
 }

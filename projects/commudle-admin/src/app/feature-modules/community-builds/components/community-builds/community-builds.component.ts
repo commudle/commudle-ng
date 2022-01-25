@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { CommunityBuildsService } from 'projects/commudle-admin/src/app/services/community-builds.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ICommunityBuilds } from 'projects/shared-models/community-builds.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-community-builds',
@@ -13,42 +13,19 @@ export class CommunityBuildsComponent implements OnInit {
   communityBuilds: ICommunityBuild[] = [];
   page = 1;
   count = 10;
-  total;
+  total: number;
   isLoading = false;
   canLoadMore = true;
 
-  constructor(private communityBuildsService: CommunityBuildsService, private title: Title, private meta: Meta) {}
+  constructor(private communityBuildsService: CommunityBuildsService, private seoService: SeoService) {}
 
   ngOnInit() {
-    this.setMeta();
+    this.seoService.setTags(
+      'Builds - Projects Shared by Developers',
+      'Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
     this.getCommunityBuilds();
-  }
-
-  setMeta() {
-    this.title.setTitle('Builds - Projects Shared by Developers');
-    this.meta.updateTag({
-      name: 'description',
-      content: `Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.`,
-    });
-
-    this.meta.updateTag({ name: 'og:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: 'https://commudle.com/assets/images/commudle-logo192.png',
-    });
-    this.meta.updateTag({ name: 'og:title', content: `Builds - Projects Shared by Developers` });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: `Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.`,
-    });
-    this.meta.updateTag({ name: 'og:type', content: 'website' });
-
-    this.meta.updateTag({ name: 'twitter:image', content: 'https://commudle.com/assets/images/commudle-logo192.png' });
-    this.meta.updateTag({ name: 'twitter:title', content: `Builds - Projects Shared by Developers` });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: `Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.`,
-    });
   }
 
   getCommunityBuilds() {

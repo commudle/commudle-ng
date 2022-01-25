@@ -1,25 +1,26 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
-  margin: 0;
   color: $gunmetal;
+  margin: 0;
 }
 
 .community-about {
   margin: $space-32 0;
 
   nb-card {
+    height: max-content;
     margin: $space-16 0 0;
-    border: none;
 
     nb-card-body {
       padding: $space-40 $space-32;
 
       .heading {
-        margin-bottom: $space-32;
+        @apply com-m-0;
         font-size: $fs-32;
         font-weight: $fw-600;
         line-height: 38px;
+        margin-bottom: $space-32;
       }
     }
   }
@@ -39,39 +40,6 @@ p {
       }
     }
   }
-
-  .organizers {
-    nb-card-body {
-      padding: $space-40;
-
-      .organizer-container {
-        gap: $space-24 $space-52;
-
-        .organizer {
-          width: 264px;
-          position: relative;
-          padding: $space-16;
-        }
-
-        .organizer + .organizer {
-          &:before {
-            border-left: 1px solid $gunmetal;
-            content: '';
-            height: 80px;
-            left: -26px;
-            position: absolute;
-            top: 4px;
-          }
-
-          &:nth-of-type(3n + 1) {
-            &:before {
-              border-left: none;
-            }
-          }
-        }
-      }
-    }
-  }
 }
 
 @media all and (max-width: $tab-width) {
@@ -79,20 +47,6 @@ p {
     .about {
       nb-card-body {
         padding: $space-16;
-      }
-    }
-
-    .organizers {
-      nb-card-body {
-        padding: $space-16;
-
-        .organizer-container {
-          .organizer + .organizer {
-            &:before {
-              border-left: none;
-            }
-          }
-        }
       }
     }
   }

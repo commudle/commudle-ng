@@ -1,12 +1,16 @@
-<div class="main-newsletter">
-  <div class="page-padding d-flex justify-content-center" [nbSpinner]="!mainNewsletter">
-    <nb-card *ngIf="mainNewsletter">
-      <nb-card-body>
-        <p *ngIf="mainNewsletter.published_at">
-          Published on: {{mainNewsletter.published_at.toLocaleDateString()}}
-        </p>
-        <div class="content" [innerHTML]="sanitizedContent" *ngIf="mainNewsletter"></div>
-      </nb-card-body>
-    </nb-card>
+<div class="base-layout thin com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card [nbSpinner]="!mainNewsletter">
+        <nb-card-header>
+          <h1 class="newsletter-title">
+            {{ mainNewsletter?.title || 'Loading...' }}
+          </h1>
+        </nb-card-header>
+        <nb-card-body>
+          <div *ngIf="mainNewsletter" [innerHTML]="sanitizedContent"></div>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 </div>

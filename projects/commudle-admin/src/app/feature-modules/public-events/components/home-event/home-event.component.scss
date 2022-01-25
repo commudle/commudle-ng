@@ -1,197 +1,33 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+.base-layout {
+  .container {
+    .home-event-menu {
+      @apply com-sticky com-top-14 com-z-10;
 
-.page-container {
-  .event {
-    max-width: 1280px;
-    margin: 0 auto;
+      nb-card-body {
+        @apply com-px-0;
 
-    .header {
-      .image {
-        width: 100%;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-        }
-      }
-    }
-
-    .community-details {
-      width: fit-content;
-      margin-bottom: 1rem;
-    }
-
-    .filler {
-      padding: 0.5rem;
-    }
-
-    .event-components {
-      ::ng-deep {
-        > div {
-          nb-card {
-            margin: 0px;
+        nb-actions {
+          nb-icon {
+            @apply com-text-xl;
           }
-        }
-      }
-
-      .info {
-        order: 2;
-        margin: $space-8 0px;
-
-        .sponsors {
-          margin: $space-16 0px;
-        }
-      }
-
-      .highlighted-info {
-        order: 1;
-        margin: $space-8 0px;
-
-        .timings {
-          background-color: white;
-          padding: 0.5rem;
-          text-align: center;
-          margin: $space-16 0px;
-
-          @media screen and (min-width: 640px) {
-            text-align: left;
-          }
-        }
-
-        .past-session-link {
-          background-color: white;
-          padding: 0.5rem;
-          margin-top: 3px;
-
-          p {
-            text-align: center;
-
-            a {
-              text-decoration: none;
-
-              nb-icon {
-                font-size: 2rem;
-              }
-            }
-          }
-        }
-      }
-
-      @media screen and (min-width: 640px) {
-        flex-direction: row;
-
-        ::ng-deep {
-          > div {
-            nb-card {
-              margin: 0px;
-            }
-          }
-        }
-
-        .highlighted-info {
-          flex-grow: 1;
-          order: 2;
-          width: 30%;
-          height: fit-content;
-          position: sticky;
-          top: 5.5rem;
-          margin-left: $space-8;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .info {
-          flex-grow: 3;
-          order: 1;
-          width: 70%;
-          margin-right: $space-8;
-
-          .description {
-            margin-bottom: $space-16;
-          }
-        }
-
-        .full-width-column {
-          width: 100% !important;
-        }
-      }
-
-      .event-chat {
-        nb-card {
-          height: 77vh;
-
-          ::ng-deep {
-            nb-card-body {
-              height: 88%;
-              overflow: unset;
-            }
-          }
-        }
-      }
-    }
-
-    .page-menu {
-      //position: fixed;
-      //background-color: white;
-      //width: 100%;
-      //bottom: 0;
-      //left: 0;
-      z-index: 10;
-      //box-shadow: 2px -5px 15px -7px lightgrey;
-      margin: $space-16 0;
-
-      nb-card {
-        margin: 0;
-      }
-
-      .menu-items {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        width: 100%;
-        justify-content: space-evenly;
-
-        a {
-          cursor: pointer;
-          margin: 0 0.5rem;
-          text-decoration: none;
-          color: black;
 
           span {
-            display: none;
-            font-size: 0.9rem;
-          }
-        }
-
-        nb-icon {
-          font-size: 1.2rem;
-        }
-      }
-
-      @media screen and (min-width: 800px) {
-        position: sticky;
-        top: 3.5rem;
-        box-shadow: none;
-
-        nb-card {
-          .menu-items {
-            justify-content: flex-start;
-
-            a {
-              margin-right: 1.5rem;
-
-              span {
-                display: inline;
-              }
-
-              nb-icon {
-                font-size: 1rem;
-              }
-            }
+            @apply com-text-base com-ml-2 com-font-semibold;
           }
         }
       }
+    }
+
+    .two-column-layout {
+      .home-event-discussion {
+        nb-card-body {
+          @apply com-p-0;
+        }
+      }
+    }
+
+    app-messages {
+      @apply com-block com-h-96;
     }
   }
 }

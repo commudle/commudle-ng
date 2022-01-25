@@ -1,46 +1,45 @@
-<div class="page-padding">
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card>
+        <nb-card-body>
+          <h1><fa-icon class="text-primary" [icon]="faFlask"></fa-icon> My Labs</h1>
+          <p>All your labs, at one place!</p>
+        </nb-card-body>
+      </nb-card>
 
-  <nb-card>
-    <nb-card-body>
-      <h4>
-        <fa-icon class="text-primary" [icon]="faFlask"></fa-icon> My Labs
-      </h4>
-      <p>All your labs, at one place!</p>
-    </nb-card-body>
-  </nb-card>
+      <div class="add-new-lab">
+        <button *ngIf="incompleteProfile" nbButton status="danger" size="medium" [routerLink]="['/my-profile/edit']">
+          <nb-icon icon="alert-circle"></nb-icon>
+          Click Here To Complete Your Profile
+        </button>
+        &nbsp;
+        <button nbButton status="primary" size="medium" [routerLink]="['/labs/create']">
+          <nb-icon icon="plus"></nb-icon>
+          New Lab!
+        </button>
+        &nbsp;
+        <button nbButton status="warning" size="medium" [routerLink]="['/labs']">
+          <nb-icon icon="arrowhead-right-outline"></nb-icon>
+          More Labs
+        </button>
+      </div>
 
-  <div class="add-new-lab">
-    <button *ngIf="incompleteProfile" nbButton status="danger" size='medium' [routerLink]="['/my-profile/edit']">
-      <nb-icon icon="alert-circle"></nb-icon>
-      Click Here To Complete Your Profile
-    </button>
-    &nbsp;
-    <button nbButton status="primary" size='medium' [routerLink]="['/labs/create']">
-      <nb-icon icon="plus"></nb-icon>
-      New Lab!
-    </button>
-    &nbsp;
-    <button nbButton status="warning" size='medium' [routerLink]="['/labs']">
-      <nb-icon icon="arrowhead-right-outline"></nb-icon>
-      More Labs
-    </button>
+      <div class="labs" *ngIf="labs.length > 0">
+        <nb-card>
+          <nb-card-body>
+            <div class="lab" *ngFor="let lab of labs; let i = index">
+              <app-lab-list-item [lab]="lab" (destroyLab)="destroyLab($event)"></app-lab-list-item>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="add-new-build" *ngIf="labs.length > 5">
+        <button nbButton status="primary" size="medium" [routerLink]="['/labs/create']">
+          <nb-icon icon="plus"></nb-icon>
+          New Lab!
+        </button>
+      </div>
+    </div>
   </div>
-
-  <div class="labs" *ngIf="labs.length > 0">
-    <nb-card>
-      <nb-card-body>
-        <div class="lab" *ngFor="let lab of labs; let i = index">
-          <app-lab-list-item [lab]="lab" (destroyLab)="destroyLab($event)"></app-lab-list-item>
-        </div>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="add-new-build" *ngIf="labs.length > 5">
-    <button nbButton status="primary" size='medium' [routerLink]="['/labs/create']">
-      <nb-icon icon="plus"></nb-icon>
-      New Lab!
-    </button>
-  </div>
-
-
 </div>

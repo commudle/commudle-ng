@@ -1,30 +1,41 @@
-<nb-card class="communities-featured">
+<nb-card class="communities-featured-container">
   <nb-card-body>
-    <p class="heading">Featured Communities</p>
-    <div class="featured-communities-list">
+    <h2 class="communities-featured-heading">Featured Communities</h2>
+    <div class="communities-featured-list">
       <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
-        <div class="actions d-flex">
+        <div class="featured-community-actions d-flex">
           <a [routerLink]="['/communities', featuredCommunity.kommunity.slug, 'members']">
-            <button nbButton shape="round" size="small">
+            <button class="featured-community-members-btn" nbButton shape="round" size="small">
               <nb-icon icon="people"></nb-icon>
             </button>
           </a>
-          <a>
-            <button (click)="copyTextToClipboard(featuredCommunity)" nbButton shape="round" size="small">
-              <nb-icon icon="share"></nb-icon>
-            </button>
-          </a>
+          <button
+            (click)="copyTextToClipboard(featuredCommunity)"
+            class="featured-community-share-btn"
+            nbButton
+            shape="round"
+            size="small"
+          >
+            <nb-icon icon="share"></nb-icon>
+          </button>
         </div>
-        <div [routerLink]="['/communities', featuredCommunity.kommunity.slug]" class="clickable image">
+        <div
+          [routerLink]="['/communities', featuredCommunity.kommunity.slug]"
+          class="clickable featured-community-image-container"
+        >
           <img
             alt="{{ featuredCommunity.kommunity.name }}"
+            class="featured-community-image"
             src="{{ featuredCommunity.kommunity.logo_image?.url }}"
             title="{{ featuredCommunity.kommunity.name }}"
           />
         </div>
-        <div [routerLink]="['/communities', featuredCommunity.kommunity.slug]" class="clickable content">
-          <p class="name">{{ featuredCommunity.kommunity.name }}</p>
-          <p class="reason">{{ featuredCommunity.reason }}</p>
+        <div
+          [routerLink]="['/communities', featuredCommunity.kommunity.slug]"
+          class="clickable featured-community-about"
+        >
+          <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
+          <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
         </div>
       </div>
     </div>

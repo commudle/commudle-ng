@@ -87,3 +87,10 @@
     }
   }
 }
+
+.no-users {
+  left: 50%;
+  position: absolute;
+  top: $space-16;
+  transform: translateX(-50%);
+}

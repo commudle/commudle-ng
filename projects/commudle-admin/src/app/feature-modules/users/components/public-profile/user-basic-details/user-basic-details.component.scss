@@ -50,10 +50,9 @@ p {
 
     .profile-photo {
       border-radius: 50%;
-      height: 100%;
-      max-height: 188px;
+      height: 188px;
+      width: 188px;
       overflow: hidden;
-      width: 100%;
 
       img {
         display: block;
@@ -76,15 +75,19 @@ p {
     }
 
     .name {
-      font-size: $fs-20;
-      font-weight: $fw-600;
-      line-height: 23px;
+      @apply com-flex com-justify-center;
+      h1 {
+        @apply com-my-0 com-mr-0;
+        margin-left: 26px;
+        font-size: $fs-20;
+        font-weight: $fw-600;
+        line-height: 23px;
+      }
 
       .expert-icon {
+        width: 18px;
         height: 18px;
         margin: $space-2 0 0 $space-8;
-        position: absolute;
-        width: 18px;
       }
     }
 

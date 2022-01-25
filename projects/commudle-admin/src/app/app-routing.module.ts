@@ -29,6 +29,11 @@ const routes = [
     component: AboutOldComponent,
   },
   {
+    path: 'notifications',
+    loadChildren: () =>
+      import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
+  },
+  {
     path: 'features',
     component: FeaturesComponent,
   },
@@ -179,7 +184,8 @@ const routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled',
+      initialNavigation: 'enabledBlocking',
+      // TODO: modify the below to use the new option
       relativeLinkResolution: 'legacy',
     }),
   ],

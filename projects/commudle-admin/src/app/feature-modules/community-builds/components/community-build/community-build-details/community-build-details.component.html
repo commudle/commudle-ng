@@ -1,79 +1,69 @@
-<div class="community-build-details">
-  <nb-card *ngIf="cBuild" class="community-build">
-    <nb-card-body>
-      <div class="header">
-        <div class="build-type">
-          <app-badge
-            [color]="CBuildTypeDisplay[cBuild.build_type].color"
-            [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
-            [text]="cBuild.build_type | titlecase"
-          ></app-badge>
+<nb-card *ngIf="cBuild" class="community-build-details">
+  <nb-card-body>
+    <div class="com-flex com-justify-between com-items-center">
+      <app-badge
+        [color]="CBuildTypeDisplay[cBuild.build_type].color"
+        [nbIcon]="CBuildTypeDisplay[cBuild.build_type].icon"
+        [text]="cBuild.build_type | titlecase"
+      ></app-badge>
+      <p class="fs-p3">{{ cBuild.created_at | date }}</p>
+    </div>
+    <h1 class="fs-h2 community-build-name">{{ cBuild.name }}</h1>
+    <div class="community-build-author com-my-4">
+      <span class="com-text-sm">Created by</span>
+      <app-user-profile-card-small
+        [user]="cBuild.user"
+        class="com-inline-block com-align-middle com-ml-2"
+      ></app-user-profile-card-small>
+      <span *ngIf="cBuild.user_roles_users.length > 0" class="com-text-sm com-text-gray-500">
+        + {{ cBuild.user_roles_users.length }} others
+      </span>
+    </div>
+    <div class="community-build-tags">
+      <app-tag [tags]="cBuild.tags"></app-tag>
+    </div>
+    <div *ngIf="cBuild.images.length > 0" class="commudle-build-images">
+      <div class="commudle-build-images-stripe">
+        <div
+          (click)="openImage(cBuild.name, image)"
+          *ngFor="let image of cBuild.images"
+          class="commudle-build-image clickable"
+        >
+          <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{ cBuild.name }}" />
         </div>
-        <h1>{{ cBuild.name }}</h1>
-        <div class="tags">
-          <app-badge *ngFor="let tag of cBuild.tags" [color]="'#b7b7b7'" [text]="tag"></app-badge>
-        </div>
-        <p class="author">
-          {{ cBuild.user.name }}
-          <img
-            *ngIf="cBuild.user.is_expert"
-            alt="Expert Tick"
-            class="expert-icon"
-            src="/assets/images/Expert-Tick.svg"
-            title="Expert Tick"
-          />
-          <span *ngIf="cBuild.user.designation"> , {{ cBuild.user.designation }}</span>
-          <br />
-          <small>{{ moment(cBuild.created_at).format('Do MMM YYYY') }}</small>
-        </p>
       </div>
-      <div *ngIf="embedCode" [innerHTML]="embedCode" class="embed"></div>
-      <div *ngIf="cBuild.link && !embedCode" class="link">
-        <p>
+    </div>
+    <div class="community-build-content">
+      <div *ngIf="embedCode" [innerHTML]="embedCode" class="community-build-embed"></div>
+      <ng-container *ngIf="cBuild.link && !embedCode">
+        <p class="fs-h2 community-build-link">
           Visit the {{ cBuild.build_type }}:
           <a [href]="cBuild.link | completeurl" rel="noreferrer" target="_blank">
             {{ cBuild.link }}
             <nb-icon icon="external-link"></nb-icon>
           </a>
         </p>
-      </div>
-      <div [innerHTML]="cBuild.description" class="description"></div>
-      <div *ngIf="cBuild.images.length > 0" class="images">
-        <div class="image-stripe">
-          <div (click)="openImage(cBuild.name, image)" *ngFor="let image of cBuild.images" class="image clickable">
-            <img alt="{{ cBuild.name }}" src="{{ image.url }}" title="{{ cBuild.name }}" />
-          </div>
-        </div>
-      </div>
-      <div class="author-details">
-        <app-user-profile-card-large [showFollowButton]="true" [user]="cBuild.user"></app-user-profile-card-large>
-      </div>
+      </ng-container>
+      <div [innerHTML]="cBuild.description"></div>
+    </div>
+    <div class="com-mt-8">
+      <app-votes-display
+        [votableId]="cBuild.id"
+        class="com-inline-block com-mr-2"
+        icon="star"
+        votableType="CommunityBuild"
+      ></app-votes-display>
+      <span>Give a star to encourage!</span>
+    </div>
+  </nb-card-body>
+</nb-card>
 
-      <div *ngIf="teammates.length > 0" class="teammate-details">
-        <p>Teammates</p>
-        <div *ngFor="let teammate of teammates">
-          <app-user-profile-card-large [user]="teammate.user"></app-user-profile-card-large>
-        </div>
-      </div>
-      <div class="stats">
-        <p class="stars">
-          <app-votes-display
-            [icon]="'star'"
-            [size]="'large'"
-            [votableId]="cBuild.id"
-            [votableType]="'CommunityBuild'"
-          ></app-votes-display>
-          <span> Give a star to encourage! </span>
-        </p>
-      </div>
-
-      <div *ngIf="discussionChat" class="comments">
-        <p>Discussion</p>
-        <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
-      </div>
-    </nb-card-body>
-  </nb-card>
-</div>
+<nb-card *ngIf="discussionChat" class="community-build-discussion">
+  <nb-card-header>Discussion</nb-card-header>
+  <nb-card-body>
+    <app-messages [discussion]="discussionChat"></app-messages>
+  </nb-card-body>
+</nb-card>
 
 <ng-template #imageTemplate>
   <div class="image-window">

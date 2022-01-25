@@ -2,8 +2,8 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
-  margin: 0;
   color: $gunmetal;
+  margin: 0;
 }
 
 a {
@@ -11,53 +11,52 @@ a {
   text-decoration: none;
 }
 
-.communities-about {
-  border: none;
-
+.communities-about-container {
   nb-card-body {
     padding: $space-40 0 $space-40 $space-64;
 
-    .content {
-      .header {
-        font-weight: $fw-600;
+    .communities-about-content {
+      .communities-about-header {
         font-size: $fs-40;
+        font-weight: $fw-600;
         line-height: 47px;
+        @apply com-m-0;
       }
 
-      .subheader {
+      .communities-about-subheader {
         font-size: $fs-18;
         line-height: 21px;
       }
 
-      .navigation {
-        margin-top: $space-72;
+      .communities-about-navigation {
         gap: $space-16;
+        margin-top: $space-72;
 
         button {
-          font-size: $fs-h5;
-          line-height: 16px;
-          font-weight: normal;
-          text-transform: capitalize;
-          padding: $space-8;
           border: 1px solid $gunmetal;
+          font-size: $fs-h5;
+          font-weight: normal;
+          line-height: 16px;
+          padding: $space-8;
+          text-transform: capitalize;
         }
 
-        .create {
-          color: $white;
+        .community-create-btn {
           background-color: $gunmetal;
+          color: $white;
         }
 
-        .explore {
-          color: $gunmetal;
+        .communities-explore {
           background-color: $white;
+          color: $gunmetal;
         }
       }
     }
 
-    .image {
+    .communities-about-image {
+      height: 212px;
       margin-top: -$space-16;
       width: 296px;
-      height: 212px;
 
       img {
         width: 100%;
@@ -67,14 +66,14 @@ a {
 }
 
 @media all and (max-width: $tab-width) {
-  .communities-about {
+  .communities-about-container {
     nb-card-body {
-      padding: $space-16;
       flex-direction: column-reverse;
+      padding: $space-16;
 
-      .image {
-        margin-top: 0;
+      .communities-about-image {
         margin-bottom: $space-24;
+        margin-top: 0;
       }
     }
   }

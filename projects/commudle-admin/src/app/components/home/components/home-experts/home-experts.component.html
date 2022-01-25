@@ -1,22 +1,22 @@
-<nb-card class="home-experts">
-  <nb-card-header> Experts</nb-card-header>
-  <nb-card-body class="home-experts-list">
-    <nb-list *ngIf="experts.length === 0">
+<nb-card class="home-experts-container">
+  <nb-card-header>Experts</nb-card-header>
+  <nb-card-body class="home-experts-body">
+    <nb-list *ngIf="experts.length === 0" class="home-experts-list">
       <nb-list-item *ngFor="let _ of [].constructor(3)">
         <app-skeleton-text [rows]="2"></app-skeleton-text>
       </nb-list-item>
     </nb-list>
-    <nb-list *ngIf="experts.length > 0">
+    <nb-list *ngIf="experts.length > 0" class="home-experts-list">
       <nb-list-item *ngFor="let expert of experts; let i = index" class="clickable">
         <a [routerLink]="['/users', expert.username]" class="home-expert d-flex align-items-center">
-          <img alt="{{ expert.name }}" class="avatar" src="{{ expert.avatar }}" title="{{ expert.name }}" />
+          <img alt="{{ expert.name }}" class="home-expert-avatar" src="{{ expert.avatar }}" title="{{ expert.name }}" />
           <div class="home-expert-details">
             <div class="home-expert-name d-flex align-items-center">
-              <p class="name com-line-clamp-1">{{ expert.name }}</p>
+              <p class="com-line-clamp-1">{{ expert.name }}</p>
               <img *ngIf="expert.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" />
             </div>
             <p class="home-expert-designation com-line-clamp-1">{{ expert.designation }}</p>
-            <p class="home-expert-member-follower-count">{{ expert.followers_count.toString() + ' followers' }}</p>
+            <p class="home-expert-followers">{{ expert.followers_count.toString() + ' followers' }}</p>
           </div>
         </a>
         <app-user-follow

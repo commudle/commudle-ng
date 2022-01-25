@@ -2,7 +2,6 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { config } from '@fortawesome/fontawesome-svg-core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuItem, NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
 import { AppCentralNotificationService } from 'projects/commudle-admin/src/app/services/app-central-notifications.service';
@@ -16,10 +15,9 @@ import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
+import { NotificationChannel } from './feature-modules/notifications/services/websockets/notification-channel';
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
-
-// import * as LogRocket from 'logrocket';
 
 @Component({
   selector: 'app-root',
@@ -57,12 +55,11 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
     private profileStatusBarService: ProfileStatusBarService,
+    private notificationChannel: NotificationChannel,
   ) {
     // this.checkHTTPS();
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
-
-    config.autoAddCss = false;
   }
 
   ngOnInit(): void {
@@ -89,12 +86,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
             },
           };
         }
-
-        // LogRocket.init('g90s8l/commudle');
-        // LogRocket.identify(`${this.currentUser.username}`, {
-        //   name: `${this.currentUser.name}`,
-        //   email: `${this.currentUser.email}`,
-        // });
       }
 
       if (this.isBrowser) {

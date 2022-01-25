@@ -23,3 +23,10 @@
     </ng-container>
   </div>
 </div>
+
+<nb-alert *ngIf="peers.length === 1" [closable]="true" class="no-users">
+  <span>
+    <nb-icon icon="people-outline"></nb-icon>
+    Welcome! Other users will be joining shortly.
+  </span>
+</nb-alert>

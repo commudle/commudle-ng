@@ -1,30 +1,29 @@
-<div class="newsletters-index page-padding">
-  <div class="page-container">
-    <nb-card>
-      <nb-card-body>
-        <a nbButton status="primary" [routerLink]="['new']">
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <div class="com-flex com-justify-between com-items-center com-px-2">
+        <h4>Newsletters</h4>
+        <a [routerLink]="['new']" nbButton status="primary">
           <nb-icon icon="plus"></nb-icon>
           Create Newsletter
         </a>
-      </nb-card-body>
-    </nb-card>
-
-    <nb-card>
-      <nb-card-body [nbSpinner]="isLoading">
-        <p>
-          <strong>
-            If the newsletter is 'Published', everyone who receives an email (not the test email), will have an option to unsubscribe from future newsletters
-          </strong>
-        </p>
-        <nb-list>
-          <nb-list-item *ngFor="let nl of newsletters">
-            <app-main-newsletter-list-item [newsletter]="nl"></app-main-newsletter-list-item>
-          </nb-list-item>
-        </nb-list>
-        <p *ngIf="!isLoading && this.newsletters.length === 0">
-          No newsletters found
-        </p>
-      </nb-card-body>
-    </nb-card>
+      </div>
+      <nb-card>
+        <nb-card-body [nbSpinner]="isLoading">
+          <p>
+            <strong>
+              If the newsletter is 'Published', everyone who receives an email (not the test email), will have an option
+              to unsubscribe from future newsletters
+            </strong>
+          </p>
+          <nb-list>
+            <nb-list-item *ngFor="let nl of newsletters">
+              <app-main-newsletter-list-item [newsletter]="nl"></app-main-newsletter-list-item>
+            </nb-list-item>
+          </nb-list>
+          <p *ngIf="!isLoading && this.newsletters.length === 0">No newsletters found</p>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 </div>

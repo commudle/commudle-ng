@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { IFeedItem } from "projects/shared-models/feed-item.model";
-import { Title, Meta } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { FeedItemService } from "projects/commudle-admin/src/app/services/feed-items.service";
 
@@ -12,8 +11,6 @@ import { FeedItemService } from "projects/commudle-admin/src/app/services/feed-i
 export class FeedItemComponent implements OnInit {
   feedItem: IFeedItem;
   constructor(
-    private title: Title,
-    private meta: Meta,
     private activatedRoute: ActivatedRoute,
     private feedItemService: FeedItemService
   ) {}

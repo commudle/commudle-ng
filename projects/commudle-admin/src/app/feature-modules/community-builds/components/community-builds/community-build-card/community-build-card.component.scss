@@ -6,44 +6,40 @@ p {
   @apply com-p-4 com-flex com-flex-col md:com-flex-row com-no-underline com-rounded-lg com-overflow-hidden com-transition-shadow hover:com-shadow-lg;
   border: 0.5px solid #c4c4c4;
 
-  img {
+  .community-build-card-image {
     @apply com-w-full com-h-40 com-object-cover;
 
     @screen md {
-      @apply com-w-40;
-      min-width: theme('width.40');
+      @apply com-w-40 com-min-w-[10rem];
     }
   }
 
-  .details {
+  .community-build-card-details {
     @apply com-pt-4 com-w-full;
 
     @screen md {
       @apply com-pl-4 com-pt-0;
     }
 
-    .prefix {
+    .community-build-card-prefix {
       @apply com-flex com-justify-between com-items-center;
     }
 
-    .section {
-      .title,
-      .content {
+    .community-build-card-content {
+      .community-build-card-title,
+      .community-build-card-description {
         @apply com-my-2;
-      }
-
-      .content {
         @apply com-line-clamp-2;
       }
     }
 
-    .suffix {
+    .community-build-card-suffix {
       @apply com-flex com-justify-between com-items-center;
 
-      .interactions {
+      .community-build-card-interactions {
         @apply com-flex com-gap-2 com-items-center;
 
-        .comments {
+        .community-build-card-comments {
           p {
             @apply com-inline-block com-mr-0.5;
           }

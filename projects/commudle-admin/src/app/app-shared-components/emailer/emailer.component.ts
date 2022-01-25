@@ -317,17 +317,17 @@ export class EmailerComponent implements OnInit {
     let subjectLine = '';
     switch (emailType) {
       case EemailTypes.ENTRY_PASS:
-        subjectLine = `ENTRY PASS :: [${this.community.name}] :: ${this.event.name}`;
+        subjectLine = `ENTRY PASS :: ${this.event.name}`;
         break;
       case EemailTypes.SEND_LINK:
         if (this.selectedEventDataFormEntityGroup) {
-          subjectLine = `${this.selectedEventDataFormEntityGroup.name}  :: [${this.community.name}] :: ${this.event.name}`;
+          subjectLine = `${this.selectedEventDataFormEntityGroup.name} :: ${this.event.name}`;
         } else {
           subjectLine = `${this.event.name}  :: [${this.community.name}]`;
         }
         break;
       case EemailTypes.RSVP:
-        subjectLine = `RSVP :: [${this.community.name}] :: ${this.event.name}`;
+        subjectLine = `RSVP :: ${this.event.name} :: Reserve your seat`;
         break;
       default:
         subjectLine = '';

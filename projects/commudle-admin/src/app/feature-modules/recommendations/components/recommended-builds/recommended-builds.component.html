@@ -1,0 +1,13 @@
+<nb-card *ngIf="recommendedCommunityBuilds.length > 0" class="recommended-community-builds">
+  <nb-card-header>Recommended Builds</nb-card-header>
+  <nb-card-body>
+    <div
+      *ngFor="let communityBuild of recommendedCommunityBuilds"
+      [routerLink]="['/builds', communityBuild.slug]"
+      class="recommended-builds-details clickable"
+    >
+      <p class="recommended-build-name">{{ communityBuild.name }}</p>
+      <p class="recommended-build-type">{{ communityBuild.build_type | uppercase }}</p>
+    </div>
+  </nb-card-body>
+</nb-card>

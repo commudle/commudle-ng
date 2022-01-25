@@ -1,26 +1,26 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .discussion {
-  border: none;
   border-radius: 0;
   margin: $space-16;
 
   nb-card-header {
+    color: $gunmetal;
     font-size: 1.1rem;
     font-weight: 500;
-    color: $gunmetal;
   }
 
   nb-card-body {
     overflow: unset;
+
     .discussion-chat-component {
       .send-message-form {
         margin-bottom: 1.5 * $space-16;
 
         nb-form-field {
           textarea {
-            resize: none;
             padding: $space-8 $space-80 $space-8 $space-40;
+            resize: none;
 
             &::placeholder {
               padding-top: 2px;
@@ -51,8 +51,8 @@
 }
 
 .tagging-info {
-  line-height: 10px;
-  font-weight: 400;
   font-size: 13px;
+  font-weight: 400;
+  line-height: 10px;
   margin-left: 10px;
 }

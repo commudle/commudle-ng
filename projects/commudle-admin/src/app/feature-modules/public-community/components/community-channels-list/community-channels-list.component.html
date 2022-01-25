@@ -1,10 +1,10 @@
-<nb-card>
+<nb-card [nbSpinner]="channels.length === 0">
   <nb-card-body>
     <div *ngIf="channels.length > 0" class="channels d-flex flex-wrap justify-content-center">
       <a
         *ngFor="let channel of channels"
         [routerLink]="['/communities', channel.kommunity_id, 'channels', 'app', channel.id]"
-        class="clickable"
+        class="channel-clickable"
       >
         <nb-card class="channel">
           <nb-card-body class="d-flex">
@@ -26,7 +26,7 @@
               ></div>
             </div>
             <div class="enter-channel-btn-container">
-              <button class="enter-channel-btn" nbButton fullWidth size="small">
+              <button class="enter-channel-btn" fullWidth nbButton size="small">
                 Enter Channel
                 <nb-icon [icon]="'arrow-forward-outline'"></nb-icon>
               </button>

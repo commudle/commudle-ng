@@ -1,6 +1,6 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.lab-header {
+.lab-header-container {
   @apply com-mt-12;
 
   .lab-header-text {
@@ -12,12 +12,12 @@
     }
 
     .lab-content {
-      .lab-quote {
+      .lab-header-quote {
         font-size: 1.1rem;
         line-height: 1.5rem;
       }
 
-      .lab-heading {
+      .lab-header-heading {
         font-size: 1.75rem;
         margin: $space-16 0 $space-12;
 
@@ -42,12 +42,12 @@
   @media all and (max-width: $tab-width) {
     .lab-header-text {
       .lab-content {
-        .lab-quote {
+        .lab-header-quote {
           font-size: 1rem;
           line-height: 1.25rem;
         }
 
-        .lab-heading {
+        .lab-header-heading {
           font-size: 1.5rem;
           line-height: 1.75rem;
           margin: $space-12 0 $space-8;

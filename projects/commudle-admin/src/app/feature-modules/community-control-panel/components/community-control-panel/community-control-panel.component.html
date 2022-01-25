@@ -1,58 +1,49 @@
-<div class="page-padding">
-  <nb-card>
-    <nb-card-body>
-      <div *ngIf="community">
-        <div class="basic-details">
-          <div>
-            <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}">
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card *ngIf="community">
+        <nb-card-body>
+          <div class="basic-details">
+            <div>
+              <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
+            </div>
+            <h4>{{ community.name }}</h4>
           </div>
-          <h4>{{ community.name }}</h4>
-        </div>
 
-        <p>
-          <nb-icon icon="people-outline"></nb-icon>
-          {{ community.member_count }} Members&nbsp;&nbsp;
-          <button (click)="sendEmails()" nbButton size="small"
-                  status="primary">
-            <nb-icon icon="email-outline"></nb-icon>
-            Send Emails
-          </button>
-          &nbsp;&nbsp;
-          <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
-            Public Page
-            <nb-icon icon="external-link"></nb-icon>
-          </a>
-          &nbsp;&nbsp;
-          <a [routerLink]="['/communities', community.slug, 'channels']" nbButton size="small" status="primary" target="_blank">
-            Channels
-            <nb-icon icon="external-link"></nb-icon>
-          </a>
-          &nbsp;&nbsp;
-          <a [routerLink]="['stats']" nbButton size="small" status="success">
-            <nb-icon icon="trending-up-outline"></nb-icon>
-            Stats <sup>Beta</sup>&nbsp;
-            <nb-icon icon="external-link"></nb-icon>
-          </a>
-        </p>
-      </div>
-      <div>
-        <nb-route-tabset [tabs]="tabs">
-          <!-- <nb-tab tabTitle="Events">
-            <app-community-events-list></app-community-events-list>
-          </nb-tab>
-          <nb-tab tabTitle="Forms">
-            <app-community-forms-list></app-community-forms-list>
-          </nb-tab>
-          <nb-tab tabTitle="Edit Details" [lazyLoad]="true">
-            <app-community-edit-details
-        (updateCommunity)="setCommunity($event)"></app-community-edit-details>
-          </nb-tab>
-          <nb-tab tabTitle="Team">
-            <app-community-team [community]="community"></app-community-team>
+          <p>
+            <nb-icon icon="people-outline"></nb-icon>
+            {{ community.member_count }} Members&nbsp;&nbsp;
+            <button (click)="sendEmails()" nbButton size="small" status="primary">
+              <nb-icon icon="email-outline"></nb-icon>
+              Send Emails
+            </button>
+            &nbsp;&nbsp;
+            <a [routerLink]="['/communities', community.slug]" nbButton size="small" status="primary" target="_blank">
+              Public Page
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+            &nbsp;&nbsp;
+            <a
+              [routerLink]="['/communities', community.slug, 'channels']"
+              nbButton
+              size="small"
+              status="primary"
+              target="_blank"
+            >
+              Channels
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+            &nbsp;&nbsp;
+            <a [routerLink]="['stats']" nbButton size="small" status="success">
+              <nb-icon icon="trending-up-outline"></nb-icon>
+              Stats <sup>Beta</sup>&nbsp;
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+          </p>
 
-          </nb-tab> -->
-        </nb-route-tabset>
-      </div>
-    </nb-card-body>
-  </nb-card>
+          <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
 </div>

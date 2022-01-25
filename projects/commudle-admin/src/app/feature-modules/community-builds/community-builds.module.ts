@@ -12,6 +12,7 @@ import {
   NbSelectModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { RecommendationsModule } from 'projects/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { InfiniteScrollModule } from 'projects/shared-modules/infinite-scroll/infinite-scroll.module';
@@ -50,6 +51,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     SharedDirectivesModule,
     PageAdsModule,
     InfiniteScrollModule,
+    RecommendationsModule,
 
     // Nebular
     NbCardModule,

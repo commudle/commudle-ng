@@ -1,0 +1,38 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.recommended-community-builds {
+  margin: $space-16 0 0;
+  overflow: hidden;
+
+  nb-card-header {
+    border-bottom: none;
+    color: $neon-blue;
+    font-size: $fs-h4;
+    font-weight: $fw-400;
+    padding: $space-16;
+  }
+
+  nb-card-body {
+    padding: 0;
+
+    .recommended-builds-details {
+      padding: $space-8 $space-16;
+      transition: all 0.3s ease-in-out;
+
+      .recommended-build-name {
+        font-size: $fs-h5;
+        margin: 0;
+      }
+
+      .recommended-build-type {
+        color: $neon-blue;
+        font-size: $fs-h6;
+        margin: 0;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}

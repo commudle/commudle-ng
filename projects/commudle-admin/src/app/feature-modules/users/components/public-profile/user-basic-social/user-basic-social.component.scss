@@ -1,12 +1,11 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .user-basic-social {
-  border: none;
   margin: $space-16 0 0;
 
   .user-social {
     gap: $space-24;
-    padding: $space-32 $space-44 $space-40;
+    padding: $space-32;
 
     a {
       align-items: center;

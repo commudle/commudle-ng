@@ -1,19 +1,18 @@
-<div *ngIf="collaborationCommunities.length > 0">
-  <nb-card>
-    <nb-card-header>
-      <nb-icon icon="people"></nb-icon>
-      Our Co-Hosts
-    </nb-card-header>
-    <nb-card-body>
-      <div *ngFor="let cc of collaborationCommunities" class="community">
-        <a [routerLink]="['/communities', cc.community.slug]">
-          <div class="logo">
-            <img alt="{{ cc.community.name }} Logo" src="{{ cc.community.logo_path }}"
-                 title="{{ cc.community.name }} Logo">
-          </div>
-          <p>{{ cc.community.name }}</p>
-        </a>
-      </div>
-    </nb-card-body>
-  </nb-card>
-</div>
+<nb-card *ngIf="collaborationCommunities.length > 0">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="pricetags-outline" status="warning"></nb-icon>
+      Collaborations
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngFor="let cc of collaborationCommunities" class="community">
+      <a [routerLink]="['/communities', cc.community.slug]">
+        <div class="logo">
+          <img alt="{{ cc.community.name }}" src="{{ cc.community.logo_path }}" title="{{ cc.community.name }}" />
+        </div>
+        <p>{{ cc.community.name }}</p>
+      </a>
+    </div>
+  </nb-card-body>
+</nb-card>

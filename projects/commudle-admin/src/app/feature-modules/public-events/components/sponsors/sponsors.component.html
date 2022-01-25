@@ -1,22 +1,20 @@
-<div *ngIf="sponsors.length > 0" class="sponsors">
-  <nb-card>
-    <nb-card-header>
-      <h6>
-        <nb-icon icon="briefcase-outline"></nb-icon>
-        Sponsors
-      </h6>
-    </nb-card-header>
-    <nb-card-body>
-      <nb-list>
-        <nb-list-item *ngFor="let sp of sponsors" class="sponsor">
-          <a href="{{sp.sponsor.link}}" target="_blank">
-            <div class="logo">
-              <img alt="{{sp.sponsor.name}}" src="{{sp.sponsor.logo.url}}" title="{{sp.sponsor.name}}">
-            </div>
-            <p class="name">{{sp.sponsor.name}}</p>
-          </a>
-        </nb-list-item>
-      </nb-list>
-    </nb-card-body>
-  </nb-card>
-</div>
+<nb-card *ngIf="sponsors.length > 0" class="sponsors">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="briefcase-outline" status="danger"></nb-icon>
+      Sponsors
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let sp of sponsors" class="sponsor">
+        <a href="{{ sp.sponsor.link }}" target="_blank">
+          <div class="logo">
+            <img alt="{{ sp.sponsor.name }}" src="{{ sp.sponsor.logo.url }}" title="{{ sp.sponsor.name }}" />
+          </div>
+          <p class="name">{{ sp.sponsor.name }}</p>
+        </a>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

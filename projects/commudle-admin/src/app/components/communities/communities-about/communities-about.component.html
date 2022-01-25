@@ -1,22 +1,19 @@
-<nb-card class="communities-about">
+<nb-card class="communities-about-container">
   <nb-card-body class="d-flex justify-content-space-between">
-    <div class="content">
-      <p class="header">Build Your Community or Join One!</p>
-      <p class="subheader">
-        For you to build along with your developer friends & learn from our <br />
-        Experts
-      </p>
-      <div class="navigation d-flex">
+    <div class="communities-about-content">
+      <h1 class="communities-about-header">Build Your Community or Join One!</h1>
+      <p class="communities-about-subheader">For you to build along with your developer friends & learn from Experts</p>
+      <div class="communities-about-navigation d-flex">
         <a [routerLink]="['/fill-form', 465]" target="_blank">
-          <button class="create" nbButton size="small">
+          <button class="community-create-btn" nbButton size="small">
             <nb-icon icon="plus"></nb-icon>
             Start Your Community
           </button>
         </a>
-        <button (click)="scrollToCommunitiesList()" class="explore" nbButton size="small">Explore</button>
+        <button (click)="scrollToCommunitiesList()" class="communities-explore" nbButton size="small">Explore</button>
       </div>
     </div>
-    <div class="image">
+    <div class="communities-about-image">
       <img alt="Communities Home" src="/assets/images/Communities-Home.png" title="Communities Home" />
     </div>
   </nb-card-body>

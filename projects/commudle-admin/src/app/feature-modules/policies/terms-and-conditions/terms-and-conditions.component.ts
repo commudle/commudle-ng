@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-terms-and-conditions',
   templateUrl: './terms-and-conditions.component.html',
-  styleUrls: ['./terms-and-conditions.component.scss']
+  styleUrls: ['./terms-and-conditions.component.scss'],
 })
 export class TermsAndConditionsComponent implements OnInit {
-
-  constructor(
-    private title: Title
-  ) { }
+  constructor(private seoService: SeoService) {}
 
   ngOnInit() {
-    this.title.setTitle('Terms and Conditions');
+    this.seoService.setTitle('Terms and Conditions');
   }
-
 }

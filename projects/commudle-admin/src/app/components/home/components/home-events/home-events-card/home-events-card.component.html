@@ -1,39 +1,36 @@
-<div *ngIf="community && event" class="home-events-card anim-shadow">
+<a
+  *ngIf="community && event"
+  [routerLink]="['/communities', community.slug, 'events', event.slug]"
+  class="home-events-card-container anim-shadow"
+>
   <!-- <div *ngIf="registrations > 0" class="home-events-attending">
     <nb-icon icon="people"></nb-icon>
     {{registrations}} Registered
   </div> -->
-  <div [routerLink]="['/communities', community.slug, 'events', event.slug]" class="home-events-image clickable">
-    <div [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-image-overlay"></div>
+  <div class="home-events-card-image">
+    <div [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-card-image-overlay"></div>
     <img alt="{{ event.name }}" src="{{ event.header_image?.i350 || community.logo_path }}" title="{{ event.name }}" />
   </div>
-  <div *ngIf="event.start_time" [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-date">
+  <div *ngIf="event.start_time" [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-card-date">
     {{ moment(event.start_time).format('MMM DD') }}
   </div>
-  <div class="home-events-details">
-    <div
-      [routerLink]="['/communities', community.slug, 'events', event.slug]"
-      class="home-events-name clickable com-line-clamp-2"
-    >
+  <div class="home-events-card-details">
+    <div class="home-events-card-name com-line-clamp-2">
       {{ event.name }}
     </div>
-    <div class="home-events-host d-flex justify-content-space-between align-items-center">
-      <div
-        [routerLink]="['/communities', community.slug]"
-        class="home-events-community d-flex align-items-center clickable"
-      >
-        <div class="home-events-community-logo d-flex align-items-center">
-          <img alt="{{ community.name }}" src="{{ community.logo_path }}" title="{{ community.name }}" />
-        </div>
-        <div class="home-events-community-name com-line-clamp-1">{{ community.name }}</div>
+    <div class="home-events-card-host d-flex justify-content-space-between align-items-center">
+      <div class="home-events-card-community d-flex align-items-center">
+        <img
+          alt="{{ community.name }}"
+          class="home-events-card-community-logo"
+          src="{{ community.logo_path }}"
+          title="{{ community.name }}"
+        />
+        <div class="home-events-card-community-name com-line-clamp-1">{{ community.name }}</div>
       </div>
-      <div
-        *ngIf="event.start_time && moment(event.start_time) > moment()"
-        [routerLink]="['/communities', community.slug, 'events', event.slug]"
-        class="home-events-register clickable"
-      >
+      <div *ngIf="event.start_time && moment(event.start_time) > moment()" class="home-events-card-register">
         Register
       </div>
     </div>
   </div>
-</div>
+</a>

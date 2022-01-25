@@ -1,16 +1,55 @@
 <div class="d-flex home-navbar-menu-options">
-  <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/']" routerLinkActive="active">
+  <a
+    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLink]="['/']"
+    routerLinkActive="active"
+    [nbContextMenu]="homeContextMenu"
+    nbContextMenuTrigger="hover"
+  >
     <div class="icon">
       <fa-icon [icon]="faHome"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">Home</div>
   </a>
-  <a [routerLink]="['/about']" routerLinkActive="active">
+  <!-- <a [routerLink]="['/about']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faInfoCircle"></fa-icon>
     </div>
     <div class="home-navbar-menu-option">About</div>
-  </a>
+  </a> -->
+  <ng-container *ngIf="currentUser">
+    <a
+      (click)="resetCount()"
+      *appBreakpoints="'<=lg'"
+      [routerLink]="['/notifications']"
+      class="notification"
+      routerLinkActive="active"
+    >
+      <div class="icon">
+        <span *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</span>
+        <fa-icon [icon]="faBell"></fa-icon>
+      </div>
+      <div class="home-navbar-menu-option">Notifications</div>
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="currentUser">
+    <a
+      (click)="resetCount()"
+      *appBreakpoints="'>lg'"
+      [nbPopover]="notificationsPopoverComponent"
+      [nbPopoverContext]="'notificationsPopover'"
+      class="notification clickable"
+      [ngClass]="{ active: notificationIconHighlight }"
+    >
+      <div class="icon">
+        <div *ngIf="notificationCount > 0" class="notification-badge">{{ notificationCount }}</div>
+        <fa-icon [icon]="faBell"></fa-icon>
+      </div>
+      <div class="home-navbar-menu-option">Notifications</div>
+    </a>
+  </ng-container>
+
   <a [routerLink]="['/builds']" routerLinkActive="active">
     <div class="icon">
       <fa-icon [icon]="faLightbulb"></fa-icon>

@@ -1,6 +1,6 @@
 <div class="base-layout com-mb-8">
   <div class="container">
-    <div *ngIf="windowWidth > 1024" class="two-column-layout thin">
+    <div *appBreakpoints="'>lg'" class="two-column-layout thin">
       <div class="main-column">
         <app-communities-about></app-communities-about>
         <app-communities-featured></app-communities-featured>
@@ -9,10 +9,11 @@
       <div class="right-column">
         <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
         <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_3"></app-pa-slots>
+        <app-recommended-communities></app-recommended-communities>
       </div>
     </div>
 
-    <div *ngIf="windowWidth <= 1024" class="one-column-layout">
+    <div *appBreakpoints="'<=lg'" class="one-column-layout">
       <app-communities-about></app-communities-about>
       <div class="com-grid com-grid-cols-2">
         <app-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></app-pa-slots>
@@ -20,6 +21,7 @@
       </div>
       <app-communities-featured></app-communities-featured>
       <app-communities-list></app-communities-list>
+      <app-recommended-communities></app-recommended-communities>
     </div>
   </div>
 </div>

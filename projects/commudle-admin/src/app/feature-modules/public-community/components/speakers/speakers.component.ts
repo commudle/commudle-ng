@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,11 +20,8 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private communitySpeakerService: CommunitiesService,
-    private title: Title,
-    private meta: Meta,
-  ) {
-    // do nothing
-  }
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -32,20 +29,14 @@ export class SpeakersComponent implements OnInit, OnDestroy {
         this.community = data.community;
         if (this.community) {
           this.getSpeakerDetails();
-          this.setMeta();
+          this.seoService.setTitle(`Speakers | ${this.community.name}`);
         }
       }),
     );
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((value) => value.unsubscribe());
-  }
-
-  setMeta(): void {
-    this.title.setTitle(`Speakers | ${this.community.name}`);
-    this.meta.updateTag({ name: 'og:title', content: `Speakers | ${this.community.name}` });
-    this.meta.updateTag({ name: 'twitter:title', content: `Speakers | ${this.community.name}` });
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   getSpeakerDetails(): void {
