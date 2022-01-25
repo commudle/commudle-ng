@@ -16,14 +16,8 @@ p {
   background-color: $white;
 
   .avatar {
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-    }
+    @apply com-h-14 com-w-14;
+    @apply com-rounded-full com-object-cover com-object-center com-align-middle;
   }
 
   .details {
