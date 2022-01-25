@@ -1,6 +1,7 @@
 <nb-card>
   <nb-card-header>Notifications</nb-card-header>
   <nb-card-body>
+    <h4 *ngIf="notifications.length === 0 && !isLoading" class="com-text-center">No Notifications Yet</h4>
     <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
       <div class="spinner">
         <div *ngFor="let _ of [].constructor(5)"></div>
