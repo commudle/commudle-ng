@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { faBell, faFlask, faHome, faInfoCircle, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { NbPopoverDirective } from '@nebular/theme';
+import { NbMenuItem, NbPopoverDirective } from '@nebular/theme';
 import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/notifications-popover/notifications-popover.component';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -27,6 +27,8 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   subscriptions: Subscription[] = [];
+
+  homeContextMenu: NbMenuItem[] = [{ title: 'About', link: '/about' }];
 
   constructor(
     private notificationChannel: NotificationChannel,
