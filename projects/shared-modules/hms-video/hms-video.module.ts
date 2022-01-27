@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import {
   NbAlertModule,
   NbButtonModule,
@@ -53,6 +54,7 @@ import { SelectRoleComponent } from './components/hms-video/select-role/select-r
     NbTooltipModule,
     NbDialogModule.forChild(),
     NbAlertModule,
+    RouterModule,
   ],
   exports: [HmsVideoComponent],
 })
