@@ -3,6 +3,7 @@ import { NotificationService } from 'projects/commudle-admin/src/app/feature-mod
 import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-notifications-list',
@@ -15,6 +16,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
   ENotificationStatus = ENotificationStatus;
 
   subscriptions = [];
+  moment = moment;
 
   constructor(
     private notificationService: NotificationService,
