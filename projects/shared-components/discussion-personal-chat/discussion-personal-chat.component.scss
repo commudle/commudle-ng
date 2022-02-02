@@ -15,12 +15,7 @@
     }
 
     .messages {
-      height: 312px;
-
-      @media all and (max-width: $mobile-width) {
-        height: 390px;
-      }
-
+      height: 90%;
       overflow-y: auto;
 
       .message {
@@ -60,6 +55,16 @@
           bottom: 50px;
           left: 25px;
           position: absolute;
+
+          ::ng-deep {
+            .emoji-mart-scroll {
+              height: 250px;
+            }
+
+            .emoji-mart-bar {
+              display: none;
+            }
+          }
         }
 
         button {
