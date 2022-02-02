@@ -88,4 +88,19 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
         break;
     }
   }
+
+  getPicture(option: ISearchResult) {
+    switch (option.type) {
+      case 'User':
+        return 'avatar' in option ? option.avatar : '';
+      case 'Lab':
+        return 'header_image' in option ? option.header_image?.i32 : '';
+      case 'Kommunity':
+        return 'logo_image' in option ? option.logo_image?.i32 : '';
+      case 'CommunityBuild':
+        return 'images' in option ? option.images[0]?.i32 : '';
+      case 'Event':
+        return 'header_image' in option ? option.header_image?.i32 : '';
+    }
+  }
 }

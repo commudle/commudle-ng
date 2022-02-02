@@ -29,7 +29,7 @@
   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
   <nb-option-group *ngFor="let group of groupedResults | keyvalue" [title]="group.key">
     <nb-option *ngFor="let option of group.value" [value]="option">
-      <nb-user [name]="option.name" [showTitle]="false"></nb-user>
+      <nb-user [name]="option.name" [picture]="getPicture(option)" [showTitle]="false"></nb-user>
     </nb-option>
   </nb-option-group>
 </nb-autocomplete>
