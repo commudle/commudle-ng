@@ -30,6 +30,7 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.seoService.noIndex(true);
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((data) => {
         this.setChannel(data.community_channel_id);
@@ -55,7 +56,6 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   // function to find and set the correct selected channel
   setChannel(channelId) {
     this.openDialog();
-    this.seoService.noIndex(true);
     this.channel = this.communityChannelManagerService.findChannel(channelId);
     this.setRoles();
   }
