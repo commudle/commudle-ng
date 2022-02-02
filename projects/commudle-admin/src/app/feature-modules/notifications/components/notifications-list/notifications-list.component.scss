@@ -52,5 +52,11 @@ nb-list {
     }
 
     border: 0;
+
+    .notification-time {
+      position: absolute;
+      top: 0;
+      right: 10px;
+    }
   }
 }
