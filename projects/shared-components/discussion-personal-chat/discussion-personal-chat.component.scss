@@ -1,3 +1,5 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
 :host {
   height: 100%;
 
@@ -13,7 +15,12 @@
     }
 
     .messages {
-      height: 90%;
+      height: 312px;
+
+      @media all and (max-width: $mobile-width) {
+        height: 390px;
+      }
+
       overflow-y: auto;
 
       .message {
@@ -44,6 +51,16 @@
 
       form {
         display: flex;
+
+        .emoji-button {
+          padding: 0.1rem;
+        }
+
+        emoji-mart {
+          bottom: 50px;
+          left: 25px;
+          position: absolute;
+        }
 
         button {
           width: 20%;
