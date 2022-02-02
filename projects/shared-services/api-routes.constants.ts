@@ -338,6 +338,10 @@ export const API_ROUTES = {
   // communication_mailers
   SEND_COMMUNITY_EMAILS: 'api/v2/communication_mailers/community_emails',
 
+  SEARCH: {
+    INDEX: 'api/v2/search',
+  },
+
   // user_roles_users
   USER_ROLES_USERS: {
     GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',

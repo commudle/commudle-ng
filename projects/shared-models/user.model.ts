@@ -1,6 +1,6 @@
-import {IAttachedFile} from './attached-file.model';
-import {IBadge} from './badge.model';
-import {ITag} from './tag.model';
+import { IAttachedFile } from './attached-file.model';
+import { IBadge } from './badge.model';
+import { ITag } from './tag.model';
 
 export interface IUser {
   id: number;
@@ -28,4 +28,8 @@ export interface IUser {
   badges: IBadge[];
   followers_count: number;
   followees_count: number;
+}
+
+export interface IUserSearch extends IUser {
+  type: string;
 }
