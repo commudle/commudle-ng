@@ -13,12 +13,20 @@
   }
   .answer {
     padding: 0 0.5rem;
+
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      nb-checkbox {
+        margin-bottom: 1rem;
+      }
+    }
   }
   .detail {
     display: flex;
 
-
-    p{
+    p {
       margin-bottom: 0.5rem;
       .title {
         font-weight: 200;
@@ -43,16 +51,6 @@
       margin-right: 1rem;
     }
   }
-
-  .checkboxes {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    nb-checkbox {
-      margin-bottom: 1rem;
-    }
-  }
-
 }
 
 nb-alert {
