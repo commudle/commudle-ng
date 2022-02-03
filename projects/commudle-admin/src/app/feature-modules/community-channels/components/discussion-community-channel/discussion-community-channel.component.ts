@@ -87,6 +87,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.pageSize = 15;
     this.blocked = false;
     this.showReplyForm = 0;
+    this.loadingMessages = false;
 
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((user) => {
@@ -178,8 +179,10 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   getDiscussionMessages() {
+    console.log(this.loadingMessages);
     if ((!this.allPreviousMessagesLoaded || !this.allLatestMessagesLoaded) && !this.loadingMessages) {
       this.loadingMessages = true;
+      console.log(this.loadingMessages);
       let action = this.action;
       let messageId = this.messageId;
       this.communityChannelsService
@@ -236,6 +239,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               break;
             }
           }
+          console.log(this.loadingMessages);
         });
     }
   }

@@ -1,4 +1,4 @@
-<div class="discussion-chat-component">
+<div class="discussion-chat-component" [nbSpinner]="loadingMessages" nbSpinnerSize="giant" nbSpinnerStatus="primary">
   <div #messagesContainer (scroll)="loadMessages()" class="messages">
     <div *ngFor="let um of messages" class="message" id="{{ um.id }}">
       <app-community-channel-message
