@@ -23,7 +23,25 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
     private notificationStateService: NotificationStateService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    moment.locale('en', {
+      relativeTime: {
+        past: '%s',
+        s: '1s',
+        ss: '%ss',
+        m: '1m',
+        mm: '%dm',
+        h: '1h',
+        hh: '%dh',
+        d: '1d',
+        dd: '%dd',
+        M: '1M',
+        MM: '%dM',
+        y: '1Y',
+        yy: '%dY',
+      },
+    });
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());

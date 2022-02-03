@@ -35,6 +35,14 @@ nb-list {
 
       .content {
         margin: 0 12px;
+
+        .notification-text {
+          display: inline;
+        }
+
+        .notification-time {
+          display: inline;
+        }
       }
     }
 
@@ -52,11 +60,5 @@ nb-list {
     }
 
     border: 0;
-
-    .notification-time {
-      position: absolute;
-      top: 0;
-      right: 10px;
-    }
   }
 }
