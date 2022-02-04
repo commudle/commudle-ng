@@ -256,6 +256,12 @@ nb-option-list.search-autocomplete {
       }
     }
   }
+
+  nb-option-group.search-results-group {
+    nb-option {
+      @apply com-pl-6;
+    }
+  }
 }
 
 .loading-spinner {

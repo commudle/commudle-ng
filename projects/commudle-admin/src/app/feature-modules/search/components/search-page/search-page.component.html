@@ -1,0 +1,47 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="two-column-layout">
+      <div class="left-column">
+        <nb-card [nbSpinner]="searchLoader" class="search-filters">
+          <nb-card-header>Filters</nb-card-header>
+          <nb-card-body *ngIf="filters.length > 0">
+            <nb-checkbox (checkedChange)="onFilterChange(filter)" *ngFor="let filter of filters">
+              {{ filter }}
+            </nb-checkbox>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="main-column">
+        <nb-card [nbSpinner]="searchLoader">
+          <nb-card-header>
+            You searched for <strong>{{ query }}</strong>
+          </nb-card-header>
+          <nb-card-body *ngIf="total > 0">
+            {{ total }} Results Found
+            <nb-list>
+              <nb-list-item *ngFor="let option of getResults()" class="search-result">
+                <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
+
+                <a (click)="navigate(option)" ghost nbButton size="small">
+                  Visit
+                  <nb-icon icon="arrow-forward"></nb-icon>
+                </a>
+              </nb-list-item>
+            </nb-list>
+            <button
+              (click)="getSearchData()"
+              *ngIf="total !== results.length"
+              [nbSpinner]="loadMoreLoader"
+              fullWidth
+              ghost
+              nbButton
+              status="primary"
+            >
+              Load More
+            </button>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>

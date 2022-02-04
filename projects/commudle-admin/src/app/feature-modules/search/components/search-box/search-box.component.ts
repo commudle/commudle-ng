@@ -1,6 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import {
+  getPicture,
+  groupResults,
+  navigate,
+} from 'projects/commudle-admin/src/app/feature-modules/search/components/utils/search.utils';
 import { SearchService } from 'projects/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { ISearch, ISearchResult } from 'projects/shared-models/search.model';
 import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
@@ -16,6 +21,9 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   groupedResults = {};
 
   searchLoader = false;
+
+  navigate = navigate;
+  getPicture = getPicture;
 
   @ViewChild('searchInput', { static: false }) searchInput: ElementRef<HTMLInputElement>;
 
@@ -49,58 +57,11 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
         this.searchLoader = false;
         this.total = value.total;
 
-        this.groupedResults = this.groupResults(value.results);
+        this.groupedResults = groupResults(value.results);
       });
   }
 
-  groupResults(value: ISearchResult[]) {
-    return value.reduce((r, a) => {
-      r[a.type] = [...(r[a.type] || []), a];
-      return r;
-    }, {});
-  }
-
   handleDisplay(result: ISearchResult | string) {
-    return typeof result === 'string' ? result : result.name;
-  }
-
-  navigate(option: ISearchResult) {
-    switch (option.type) {
-      case 'User':
-        this.router.navigate(['/users', 'username' in option ? option.username : null]);
-        break;
-      case 'Lab':
-        this.router.navigate(['/labs', 'slug' in option ? option.slug : null]);
-        break;
-      case 'Kommunity':
-        this.router.navigate(['/communities', 'slug' in option ? option.slug : null]);
-        break;
-      case 'CommunityBuild':
-        this.router.navigate(['/builds', 'slug' in option ? option.slug : null]);
-        break;
-      case 'Event':
-        this.router.navigate([
-          '/communities',
-          'kommunity_slug' in option ? option.kommunity_slug : null,
-          'events',
-          'slug' in option ? option.slug : null,
-        ]);
-        break;
-    }
-  }
-
-  getPicture(option: ISearchResult) {
-    switch (option.type) {
-      case 'User':
-        return 'avatar' in option ? option.avatar : '';
-      case 'Lab':
-        return 'header_image' in option ? option.header_image?.i32 : '';
-      case 'Kommunity':
-        return 'logo_image' in option ? option.logo_image?.i32 : '';
-      case 'CommunityBuild':
-        return 'images' in option ? option.images[0]?.i32 : '';
-      case 'Event':
-        return 'header_image' in option ? option.header_image?.i32 : '';
-    }
+    return typeof result === 'string' ? result : result['query'] || result.name;
   }
 }
