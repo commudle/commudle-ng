@@ -19,8 +19,11 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
@@ -45,12 +48,24 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
 
   EHmsRoles = EHmsRoles;
 
+  currentUser: ICurrentUser;
+  isFollowing = false;
+
   @ViewChild('videoElement') videoElement: ElementRef<HTMLVideoElement>;
 
-  constructor(private toastLogService: LibToastLogService) {}
+  constructor(
+    private toastLogService: LibToastLogService,
+    private authWatchService: LibAuthwatchService,
+    private appUsersService: AppUsersService,
+  ) {}
 
   ngOnInit(): void {
     hmsStore.subscribe((peer: HMSPeer) => (this.localPeer = peer), selectLocalPeer);
+
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
+      this.checkFollowing();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -131,5 +146,17 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
   unloadNotification($event: any) {
     hmsActions.leave();
     delete $event['returnValue'];
+  }
+
+  toggleFollow(username: string) {
+    this.appUsersService.toggleFollow(username).subscribe(() => {
+      this.checkFollowing();
+    });
+  }
+
+  checkFollowing() {
+    if (this.currentUser && this.metaData) {
+      this.appUsersService.check_followee(this.metaData.username).subscribe((value) => (this.isFollowing = value));
+    }
   }
 }

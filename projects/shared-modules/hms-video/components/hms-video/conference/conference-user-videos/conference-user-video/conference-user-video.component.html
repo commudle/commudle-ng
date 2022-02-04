@@ -69,5 +69,17 @@
   <div *ngIf="metaData" class="user-name">
     <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
     {{ metaData.name }}
+    <button
+      *ngIf="currentUser?.id !== metaData.id"
+      (click)="toggleFollow(metaData.username)"
+      ghost
+      nbButton
+      [nbTooltip]="isFollowing ? 'Following' : 'Follow'"
+      shape="round"
+      size="small"
+    >
+      <nb-icon *ngIf="!isFollowing" icon="plus-outline"></nb-icon>
+      <nb-icon *ngIf="isFollowing" icon="checkmark"></nb-icon>
+    </button>
   </div>
 </div>
