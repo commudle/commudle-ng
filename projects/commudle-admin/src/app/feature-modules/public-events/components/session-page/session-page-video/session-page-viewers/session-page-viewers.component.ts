@@ -1,8 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
+import { faChalkboardTeacher, faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import * as _ from 'lodash';
+import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { UserObjectVisitChannel } from 'projects/commudle-admin/src/app/services/websockets/user-object-visit.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -12,7 +13,6 @@ import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { HmsStageService } from 'projects/shared-modules/hms-video/services/hms-stage.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -39,17 +39,18 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   searchQuery: string;
 
   faChalkboardTeacher = faChalkboardTeacher;
+  faCommentDots = faCommentDots;
 
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
     private userObjectVisitChannel: UserObjectVisitChannel,
     private eventsService: EventsService,
-    private toastLogService: LibToastLogService,
     private activatedRoute: ActivatedRoute,
     private authWatchService: LibAuthwatchService,
     @Inject(PLATFORM_ID) private platformId: object,
     private hmsStageService: HmsStageService,
+    private userChatsService: UserChatsService,
   ) {}
 
   ngOnInit(): void {
@@ -174,5 +175,9 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
     } else {
       this.getCurrentUsersList();
     }
+  }
+
+  messageUser(userId) {
+    this.userChatsService.changeFollowerId(userId);
   }
 }
