@@ -3,7 +3,9 @@
     <div class="one-column-layout">
       <nb-card [nbSpinner]="!mainNewsletter">
         <nb-card-header>
-          {{ mainNewsletter?.title || 'Loading...' }}
+          <h1 class="newsletter-title">
+            {{ mainNewsletter?.title || 'Loading...' }}
+          </h1>
         </nb-card-header>
         <nb-card-body>
           <div *ngIf="mainNewsletter" [innerHTML]="sanitizedContent"></div>
