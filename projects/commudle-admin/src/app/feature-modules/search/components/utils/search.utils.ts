@@ -16,10 +16,10 @@ export function navigate(option: ISearchResult): void {
     case 'Lab':
       this.router.navigate(['/labs', option['slug']]);
       break;
-    case 'Kommunity':
+    case 'Community':
       this.router.navigate(['/communities', option['slug']]);
       break;
-    case 'CommunityBuild':
+    case 'Community Build':
       this.router.navigate(['/builds', option['slug']]);
       break;
     case 'Event':
@@ -37,9 +37,9 @@ export function getPicture(option: ISearchResult): string {
       return 'avatar' in option ? option.avatar : '';
     case 'Lab':
       return 'header_image' in option ? option.header_image?.i32 : '';
-    case 'Kommunity':
+    case 'Community':
       return 'logo_image' in option ? option.logo_image?.i32 : '';
-    case 'CommunityBuild':
+    case 'Community Build':
       return 'images' in option ? option.images[0]?.i32 : '';
     case 'Event':
       return 'header_image' in option ? option.header_image?.i32 : '';
@@ -58,9 +58,9 @@ export function getTitle(option: ISearchResult): string {
       return 'designation' in option ? option.designation : '';
     case 'Lab':
       return 'description' in option ? convertHtmlToText(option.description) : '';
-    case 'Kommunity':
+    case 'Community':
       return 'about' in option ? convertHtmlToText(option.about) : '';
-    case 'CommunityBuild':
+    case 'Community Build':
       return 'description' in option ? convertHtmlToText(option.description) : '';
     case 'Event':
       return 'description' in option ? convertHtmlToText(option.description) : '';
