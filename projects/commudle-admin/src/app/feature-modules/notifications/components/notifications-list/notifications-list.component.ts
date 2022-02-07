@@ -24,6 +24,22 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.setNotificationTimeFormat();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  changeStatus(status: ENotificationStatus, notification: INotification) {
+    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
+  }
+
+  closePopover() {
+    this.notificationStateService.setCloseNotificationPopover(true);
+  }
+
+  setNotificationTimeFormat() {
     moment.locale('en', {
       relativeTime: {
         past: '%s',
@@ -41,17 +57,5 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
         yy: '%dY',
       },
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
-  }
-
-  changeStatus(status: ENotificationStatus, notification: INotification) {
-    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
-  }
-
-  closePopover() {
-    this.notificationStateService.setCloseNotificationPopover(true);
   }
 }
