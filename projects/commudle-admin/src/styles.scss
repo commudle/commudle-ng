@@ -240,3 +240,68 @@ nb-window.full-screen-height {
 img.lazy-load {
   filter: opacity(0);
 }
+
+nb-option-list.search-autocomplete {
+  @apply com-shadow-lg;
+
+  ul.option-list {
+    height: 20rem;
+
+    nb-option.search-placeholder {
+      @apply com-h-full com-items-center com-justify-center;
+
+      @variants focus, hover {
+        cursor: auto;
+        background-color: inherit;
+      }
+    }
+  }
+
+  nb-option-group.search-results-group {
+    nb-option {
+      @apply com-pl-6;
+    }
+  }
+}
+
+.loading-spinner {
+  .spinner {
+    height: 40px;
+
+    & > div {
+      animation: stretch-delay 1.2s infinite ease-in-out;
+      background-color: $cadet;
+      display: inline-block;
+      height: 100%;
+      margin: 0 1px;
+      width: 4px;
+
+      &:nth-child(2) {
+        animation-delay: -1.1s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: -1s;
+      }
+
+      &:nth-child(4) {
+        animation-delay: -0.9s;
+      }
+
+      &:nth-child(5) {
+        animation-delay: -0.8s;
+      }
+    }
+
+    @keyframes stretch-delay {
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.4);
+      }
+      20% {
+        transform: scaleY(1);
+      }
+    }
+  }
+}

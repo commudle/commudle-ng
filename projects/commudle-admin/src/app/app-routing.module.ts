@@ -131,6 +131,10 @@ const routes = [
     component: MainNewsletterComponent,
   },
   {
+    path: 'search',
+    loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
+  },
+  {
     path: 'admin',
     children: [
       // {
