@@ -21,3 +21,7 @@ export interface IEvent {
   kommunity_slug: string;
   header_image?: IAttachedFile;
 }
+
+export interface IEventSearch extends IEvent {
+  type: string;
+}

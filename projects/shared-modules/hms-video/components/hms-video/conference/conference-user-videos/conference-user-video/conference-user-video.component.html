@@ -66,8 +66,8 @@
       <img [alt]="metaData.name" [src]="metaData.avatar" [title]="metaData.name" />
     </div>
   </div>
-  <div *ngIf="metaData" class="user-name">
+  <a *ngIf="metaData" [routerLink]="['/users', metaData?.username]" class="user-name" target="_blank">
     <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
-    {{ metaData.name }}
-  </div>
+    {{ displayText }}
+  </a>
 </div>

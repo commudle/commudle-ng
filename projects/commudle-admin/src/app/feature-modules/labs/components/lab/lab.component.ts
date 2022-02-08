@@ -77,6 +77,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       }),
     );
 
+    // TODO check the validity of this code, why are we using navigationTrigger on this
     // Listen for url changes
     this.router.events.subscribe((event: NavigationStart) => {
       if (event.navigationTrigger === 'popstate') {
@@ -140,15 +141,19 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+  setMeta() {
+    this.seoService.setTags(
+      `${this.lab.name} | By ${this.lab.user.name}`,
+      this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
+      this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png',
+      'article',
+    );
+  }
+
   getLab(labId) {
     this.labsService.pShow(labId).subscribe((data) => {
       this.lab = data;
-      this.seoService.setTags(
-        `${this.lab.name} | By ${this.lab.user.name}`,
-        this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png',
-        'article',
-      );
+      this.setMeta();
       this.labDescription = this.sanitizer.bypassSecurityTrustHtml(this.lab.description);
       this.triggerDialogB = false;
       this.lastVisitedStepId = this.lab.last_visited_step_id;
@@ -185,6 +190,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.lastVisitedStepId = null;
     this.selectedLabStep = index;
     this.highlightCodeSnippets();
+    if (this.selectedLabStep === -1 && this.lab) {
+      this.setMeta();
+    }
   }
 
   changeStep(count) {
@@ -194,6 +202,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.highlightCodeSnippets();
     if (this.selectedLabStep === -1) {
       this.router.navigate(['/labs', this.lab.slug]);
+      this.setMeta();
     }
   }
 

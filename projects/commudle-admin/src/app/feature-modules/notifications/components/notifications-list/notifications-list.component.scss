@@ -35,6 +35,11 @@ nb-list {
 
       .content {
         margin: 0 12px;
+
+        .notification-text,
+        .notification-time {
+          display: inline;
+        }
       }
     }
 

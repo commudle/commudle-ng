@@ -1,5 +1,5 @@
-import { IUser } from './user.model';
 import { IAttachedFile } from './attached-file.model';
+import { IUser } from './user.model';
 import { IUserRolesUser } from './user_roles_user.model';
 
 export interface ICommunityBuild {
@@ -20,6 +20,10 @@ export interface ICommunityBuild {
   images: IAttachedFile[];
   tags: string[];
   user_roles_users: IUserRolesUser[];
+}
+
+export interface ICommunityBuildSearch extends ICommunityBuild {
+  type: string;
 }
 
 export enum EBuildType {

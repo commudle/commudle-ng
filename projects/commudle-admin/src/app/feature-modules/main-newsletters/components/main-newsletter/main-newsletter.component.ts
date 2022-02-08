@@ -50,7 +50,7 @@ export class MainNewsletterComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     this.seoService.setTags(
-      'Commudle IDE | Newsletter for Developers by Developers',
+      this.mainNewsletter.title,
       this.mainNewsletter.email_subject,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
