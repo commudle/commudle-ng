@@ -15,6 +15,7 @@ import {
   HostListener,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
   ViewChild,
@@ -28,7 +29,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
   templateUrl: './conference-user-video.component.html',
   styleUrls: ['./conference-user-video.component.scss'],
 })
-export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterViewInit {
+export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Input() peer: HMSPeer;
   @Input() screenShare: boolean;
 
@@ -40,6 +41,8 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
     username: string;
     avatar: string;
   };
+  displayText = '';
+  interval: any;
   isAudioEnabled: boolean;
   isVideoEnabled: boolean;
 
@@ -56,6 +59,7 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
   ngOnChanges(changes: SimpleChanges) {
     if (this.peer?.customerDescription) {
       this.metaData = JSON.parse(this.peer.customerDescription);
+      this.displayText = this.metaData.name;
     }
   }
 
@@ -75,6 +79,14 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
         }
       }, selectCameraStreamByPeerID(this.peer.id));
     }
+
+    this.interval = setInterval(() => {
+      return (this.displayText = this.displayText === this.metaData.name ? this.metaData.username : this.metaData.name);
+    }, 30000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
   renderTrack = (track: HMSTrack) => {

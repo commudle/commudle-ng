@@ -2,19 +2,19 @@
   <app-conference-user-videos></app-conference-user-videos>
   <div *ngIf="localPeer" class="d-flex controls">
     <!-- Recording -->
-    <button
-      (click)="toggleRecording()"
-      *ngIf="
-        (localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) &&
-        embeddedVideoStream?.rtmp_url.length <= 0
-      "
-      [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"
-      ghost
-      nbButton
-      shape="round"
-    >
-      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'" [status]="isRecording ? 'success' : ''"></nb-icon>
-    </button>
+    <!--    <button-->
+    <!--      (click)="toggleRecording()"-->
+    <!--      *ngIf="-->
+    <!--        (localPeer.roleName === EHmsRoles.HOST || localPeer.roleName === EHmsRoles.HOST_VIEWER) &&-->
+    <!--        embeddedVideoStream?.rtmp_url.length <= 0-->
+    <!--      "-->
+    <!--      [nbTooltip]="isRecording ? 'Stop Recording' : 'Start Recording'"-->
+    <!--      ghost-->
+    <!--      nbButton-->
+    <!--      shape="round"-->
+    <!--    >-->
+    <!--      <nb-icon [icon]="isRecording ? 'stop-circle' : 'play-circle'" [status]="isRecording ? 'success' : ''"></nb-icon>-->
+    <!--    </button>-->
     <!-- Streaming -->
     <button
       (click)="toggleStreaming()"
