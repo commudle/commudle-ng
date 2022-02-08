@@ -1,5 +1,10 @@
-<div class="discussion-chat-component" [nbSpinner]="loadingMessages" nbSpinnerSize="giant" nbSpinnerStatus="primary">
+<div class="discussion-chat-component">
   <div #messagesContainer (scroll)="loadMessages()" class="messages">
+    <div *ngIf="isLoadingPrev && !allPreviousMessagesLoaded" class="loading-spinner com-my-4 com-text-center">
+      <div class="spinner">
+        <div *ngFor="let _ of [].constructor(5)"></div>
+      </div>
+    </div>
     <div *ngFor="let um of messages" class="message" id="{{ um.id }}">
       <app-community-channel-message
         (sendAttachmentReply)="sendAttachmentReply($event, um.id)"
@@ -17,6 +22,11 @@
     </div>
     <div *ngIf="messages.length === 0" class="filler-message">
       <h4>Begin with a Welcome Message!</h4>
+    </div>
+    <div *ngIf="isLoadingNext && !allLatestMessagesLoaded" class="loading-spinner com-my-4 com-text-center">
+      <div class="spinner">
+        <div *ngFor="let _ of [].constructor(5)"></div>
+      </div>
     </div>
   </div>
   <div class="send-message-form">

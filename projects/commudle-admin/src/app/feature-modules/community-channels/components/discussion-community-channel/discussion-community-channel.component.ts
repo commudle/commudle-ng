@@ -46,6 +46,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   allPreviousMessagesLoaded = false;
   allLatestMessagesLoaded = false;
   loadingMessages = false;
+  isLoadingPrev = false;
+  isLoadingNext = false;
   showReplyForm = 0;
   allActions;
   channelRoles = {};
@@ -88,6 +90,8 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     this.blocked = false;
     this.showReplyForm = 0;
     this.loadingMessages = false;
+    this.isLoadingPrev = false;
+    this.isLoadingNext = false;
 
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((user) => {
@@ -145,13 +149,13 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
     let element = this.messagesContainer.nativeElement;
     let scrollBottom = element.scrollHeight - element.clientHeight - element.scrollTop;
 
-    if (element.scrollTop <= 300) {
+    if (element.scrollTop <= 200) {
       this.action = 'before';
       this.messageId = this.oldestMessageId;
       this.getDiscussionMessages();
     }
 
-    if (scrollBottom <= 300) {
+    if (scrollBottom <= 200) {
       this.action = 'after';
       this.messageId = this.latestMessageId;
       this.getDiscussionMessages();
@@ -179,10 +183,18 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
   }
 
   getDiscussionMessages() {
-    console.log(this.loadingMessages);
     if ((!this.allPreviousMessagesLoaded || !this.allLatestMessagesLoaded) && !this.loadingMessages) {
       this.loadingMessages = true;
-      console.log(this.loadingMessages);
+      switch (this.action) {
+        case 'before': {
+          this.isLoadingPrev = true;
+          break;
+        }
+        case 'after': {
+          this.isLoadingNext = true;
+          break;
+        }
+      }
       let action = this.action;
       let messageId = this.messageId;
       this.communityChannelsService
@@ -207,6 +219,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               this.messages.unshift(...data.user_messages.reverse());
               this.oldestMessageId = this.messages[0].id;
               this.loadingMessages = false;
+              this.isLoadingPrev = false;
               break;
             }
             case 'after': {
@@ -216,6 +229,7 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               this.messages.push(...data.user_messages.reverse());
               this.latestMessageId = this.messages[this.messages.length - 1].id;
               this.loadingMessages = false;
+              this.isLoadingNext = false;
               break;
             }
             case 'around': {
@@ -239,7 +253,6 @@ export class DiscussionCommunityChannelComponent implements OnInit, OnChanges, O
               break;
             }
           }
-          console.log(this.loadingMessages);
         });
     }
   }
