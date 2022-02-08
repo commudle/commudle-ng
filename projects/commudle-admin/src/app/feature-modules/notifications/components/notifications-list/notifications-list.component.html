@@ -17,9 +17,12 @@
           title="{{ notification.sender.name }}"
         />
       </div>
-      <p class="content">
-        <strong>{{ notification.sender.name }}</strong> started following you.
-      </p>
+      <div class="content">
+        <p class="notification-text">
+          <strong>{{ notification.sender.name }}</strong> started following you.
+        </p>
+        <p class="fs-p4 notification-time">{{ moment(notification.created_at).fromNow() }}</p>
+      </div>
     </a>
     <nb-icon
       (click)="changeStatus(ENotificationStatus.READ, notification); $event.stopPropagation()"
