@@ -27,23 +27,27 @@
 
   <div class="send-message-form">
     <form *ngIf="currentUser && !blocked" [formGroup]="chatMessageForm" (ngSubmit)="sendMessage()">
-      <a (click)="toggleEmojiForm()" class="emoji-button" ghost nbButton nbPrefix> 😃 </a>
-      <emoji-mart
-        (emojiSelect)="selectEmoji($event)"
-        *ngIf="showEmojiForm"
-        class="emoji-mart"
-        set="twitter"
-        title="Select an emoji!"
-        perLine="7"
-      ></emoji-mart>
-      <input
-        #inputElement
-        formControlName="content"
-        fullWidth
-        nbInput
-        placeholder="Send a message (max 200 characters)"
-        type="text"
-      />
+      <nb-form-field>
+        <div class="nbPrefix" nbPrefix>
+          <a (click)="toggleEmojiForm()" class="emoji-button" ghost nbButton>😃</a>
+          <emoji-mart
+            (emojiSelect)="selectEmoji($event)"
+            *ngIf="showEmojiForm"
+            class="emoji-mart"
+            set="twitter"
+            title="Select an emoji!"
+            perLine="7"
+          ></emoji-mart>
+        </div>
+        <input
+          #inputElement
+          formControlName="content"
+          fullWidth
+          nbInput
+          placeholder="Send a message (max 200 characters)"
+          type="text"
+        />
+      </nb-form-field>
       <button
         [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)"
         fullWidth
