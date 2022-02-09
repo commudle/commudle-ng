@@ -48,6 +48,7 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { ApiParserResponseInterceptor } from 'projects/shared-interceptors/api-parser-response.interceptor';
 import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch-token.interceptor';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
@@ -165,6 +166,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NotificationsModule,
     RecommendationsModule,
     SearchModule,
+    MiniUserProfileModule,
 
     // external service modules
     LibErrorHandlerModule,

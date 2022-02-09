@@ -1,0 +1,39 @@
+<nb-card>
+  <nb-card-body>
+    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+    <div class="user-tags">
+      <nb-tag-list>
+        <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
+      </nb-tag-list>
+    </div>
+    <div class="count-container">
+      <div class="count">
+        <p>
+          <strong>{{ user.followers_count }}</strong>
+        </p>
+        <p><strong>Followers</strong></p>
+      </div>
+
+      <div class="count">
+        <p>
+          <strong>{{ badgesCount }}</strong>
+        </p>
+        <p><strong>Badges</strong></p>
+      </div>
+
+      <div class="count">
+        <p>
+          <strong>{{ communitiesCount }}</strong>
+        </p>
+        <p><strong>Communities</strong></p>
+      </div>
+    </div>
+    <div class="buttons-container">
+      <app-user-follow [username]="'arpansac'"></app-user-follow>
+      <button class="anim-shadow" nbButton size="small">
+        <nb-icon icon="paper-plane"></nb-icon>
+        Message
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>
