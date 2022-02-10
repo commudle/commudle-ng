@@ -1,0 +1,19 @@
+.homepage-card {
+  aspect-ratio: 3/4;
+  @apply com-flex com-flex-col com-rounded-xl com-overflow-hidden;
+
+  .homepage-card-content {
+    aspect-ratio: 2/3;
+    background: rgb(188, 26, 110);
+    min-width: 180px;
+    @apply com-px-3 com-py-4 md:com-px-4 md:com-py-6;
+
+    .title {
+      @apply com-pb-1.5 lg:com-pb-3 com-text-white com-text-xl lg:com-text-3xl com-font-medium;
+    }
+
+    .subtitle {
+      @apply com-text-white com-text-base lg:com-text-xl com-font-normal;
+    }
+  }
+}

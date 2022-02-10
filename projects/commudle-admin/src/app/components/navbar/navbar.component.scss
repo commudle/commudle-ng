@@ -1,0 +1,11 @@
+:host {
+  width: 100%;
+}
+
+.home-sidebar {
+  @apply com-w-12 com-h-12 com-flex com-justify-end com-items-center com-cursor-pointer;
+
+  fa-icon {
+    @apply com-text-xl;
+  }
+}

@@ -1,0 +1,58 @@
+<div class="homepage">
+  <div class="homepage-section com-container com-py-24">
+    <div class="com-flex com-flex-col md:com-flex-row com-justify-center com-items-center md:com-justify-start">
+      <div class="com-w-full">
+        <div
+          class="
+            com-mt-2
+            md:com-mt-6
+            com-text-3xl
+            md:com-text-6xl
+            com-text-center
+            md:com-text-left
+            com-text-black com-font-black com-leading-none
+          "
+        >
+          Land your dream tech job
+        </div>
+        <div
+          class="
+            com-mt-3 com-mb-6 com-text-lg
+            md:com-text-2xl
+            com-text-center
+            md:com-text-left
+            com-text-gray-500 com-font-medium com-leading-tight
+          "
+        >
+          Join the interview prep platform and community that thousands of people are using.
+        </div>
+        <div class="com-mt-4 com-flex com-justify-center md:com-justify-start">
+          <a class="com-w-full sm:com-w-auto" nbButton status="info">View courses</a>
+        </div>
+      </div>
+      <div class="com-hidden lg:com-block com-w-full com-mb-4 com-ml-8">
+        <img
+          alt=""
+          class="com-pointer-events-none com-w-full"
+          src="https://www.tryexponent.com/_next/static/image/assets/images/landing_hero.0e59f11d2ac8fea8c0b732c643dae45e.jpg"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="homepage-section com-container com-pt-24 com-pb-12">
+    <div class="section-heading">Inspiration for your next trip</div>
+    <div class="com-flex com-gap-6 com-overflow-x-auto">
+      <app-homepage-card *ngFor="let content of cardContent" [content]="content"></app-homepage-card>
+    </div>
+  </div>
+
+  <div class="homepage-section com-container com-py-16">
+    <div class="section-heading">Discover Airbnb Experiences</div>
+    <div class="com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 com-pb-20 md:com-pb-24">
+      <app-homepage-banner [content]="bannerContent[0]"></app-homepage-banner>
+      <app-homepage-banner [content]="bannerContent[1]"></app-homepage-banner>
+    </div>
+    <app-homepage-banner [content]="bannerContent[2]"></app-homepage-banner>
+  </div>
+</div>

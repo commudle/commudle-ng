@@ -1,0 +1,44 @@
+<div class="com-flex com-justify-between com-items-center com-gap-2">
+  <a [routerLink]="['/']">
+    <img
+      alt="Commudle"
+      class="com-w-12 com-h-12 com-object-contain"
+      src="/assets/images/commudle-logo72.png"
+      title="Commudle"
+    />
+  </a>
+
+  <app-navbar-menu *appBreakpoints="'<=md'" [currentUser]="currentUser"></app-navbar-menu>
+
+  <div class="com-max-w-screen-xl com-container com-grid com-grid-cols-4 md:com-grid-cols-3 com-items-center com-gap-2">
+    <app-search-box class="com-col-span-3 md:com-col-span-1 md:com-justify-self-start"></app-search-box>
+
+    <app-navbar-menu
+      *appBreakpoints="'>md'"
+      [currentUser]="currentUser"
+      class="com-justify-self-center"
+    ></app-navbar-menu>
+
+    <div class="com-justify-self-end">
+      <img
+        *ngIf="currentUser; else guest"
+        [alt]="currentUser.name"
+        [nbContextMenu]="userContextMenu"
+        [src]="currentUser.avatar"
+        class="com-w-11 com-h-11 com-object-cover com-rounded-full"
+      />
+      <ng-template #guest>
+        <button (click)="login()" nbButton size="small">Login/Signup</button>
+      </ng-template>
+    </div>
+  </div>
+
+  <div (click)="toggleSidebar()" class="home-sidebar">
+    <fa-icon [icon]="faBars"></fa-icon>
+    <nb-badge
+      *ngIf="sideBarState === 'collapsed' && sideBarNotifications"
+      position="top end"
+      status="danger"
+    ></nb-badge>
+  </div>
+</div>

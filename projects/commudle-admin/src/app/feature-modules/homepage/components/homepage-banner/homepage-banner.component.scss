@@ -1,0 +1,28 @@
+.homepage-banner {
+  aspect-ratio: 1/1;
+  @apply com-bg-cover com-bg-center com-bg-no-repeat com-rounded-xl com-overflow-hidden;
+  @apply com-p-6 md:com-p-10 lg:com-p-20;
+  @apply com-flex com-flex-col;
+
+  &.secondary {
+    aspect-ratio: 3/4;
+    @apply com-justify-between;
+
+    @screen md {
+      aspect-ratio: 2/1;
+    }
+
+    .title {
+      @apply com-text-3xl md:com-text-5xl lg:com-text-7xl;
+    }
+  }
+
+  .title {
+    @apply com-pb-6 com-text-white com-whitespace-pre-line;
+    @apply com-text-xl md:com-text-3xl lg:com-text-5xl com-font-semibold;
+  }
+
+  button {
+    width: max-content;
+  }
+}

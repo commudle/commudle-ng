@@ -75,31 +75,31 @@ input {
 // Override Nebular
 
 .nb-theme-default nb-layout-header.fixed ~ .layout-container {
-  padding-top: 3.5rem;
+  padding-top: 4.25rem;
 }
 
 .nb-theme-default nb-layout .layout .layout-container nb-sidebar.fixed,
 .nb-theme-default nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
-  top: 3.5rem;
+  top: 4.25rem;
 }
 
 .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
   padding: 0 !important;
 }
 
-@media (max-width: 820px) {
-  .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
-    padding: 0 !important;
-  }
-}
+//@media (max-width: 820px) {
+//  .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
+//    padding: 0 !important;
+//  }
+//}
 
 .nb-theme-default nb-card {
   margin: 16px 8px;
 }
 
 .nb-theme-default nb-layout-header nav {
-  height: 3.5rem;
-  padding: 0 1.25rem;
+  height: 4.25rem;
+  padding: 0 1.125rem;
 }
 
 .nb-theme-default [nbInput].size-giant,

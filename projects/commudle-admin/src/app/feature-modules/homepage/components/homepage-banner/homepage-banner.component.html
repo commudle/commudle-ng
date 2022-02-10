@@ -1,0 +1,8 @@
+<div
+  [ngClass]="{ secondary: content.type === 'secondary' }"
+  class="homepage-banner"
+  style="background-image: url({{ content.image }})"
+>
+  <div class="title">{{ content.title }}</div>
+  <button nbButton status="control">{{ content.buttonText }}</button>
+</div>

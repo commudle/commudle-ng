@@ -1,37 +1,6 @@
-<nb-layout class="home-navbar">
+<nb-layout class="home-layout">
   <nb-layout-header fixed>
-    <a [routerLink]="['/']" class="home-navbar-logo d-flex align-items-center clickable">
-      <img alt="Commudle" src="/assets/images/commudle-logo72.png" title="Commudle" />
-    </a>
-    <div class="home-navbar-container d-flex align-items-center">
-      <app-search-box></app-search-box>
-      <div class="home-navbar-menu d-flex align-items-center">
-        <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
-
-        <div class="home-navbar-menu-user">
-          <img
-            *ngIf="currentUser"
-            [nbContextMenu]="userContextMenu"
-            alt="{{ currentUser.name }}"
-            class="menu-user-avatar"
-            src="{{ currentUser.avatar }}"
-          />
-          <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
-            <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
-            <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>
-            <button (click)="login()" class="menu-login-signup" nbButton size="small">Login/Signup</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div (click)="toggleSidebar()" class="home-sidebar text-right clickable">
-      <fa-icon [icon]="faBars"></fa-icon>
-      <nb-badge
-        *ngIf="sideBarState === 'collapsed' && sideBarNotifications === true"
-        [position]="'top end'"
-        status="danger"
-      ></nb-badge>
-    </div>
+    <app-navbar></app-navbar>
   </nb-layout-header>
 
   <nb-sidebar
