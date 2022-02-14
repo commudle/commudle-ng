@@ -1,36 +1,44 @@
-<nb-card>
+<nb-card class="fade-in" (mouseover)="onMouseEnter()" (mouseout)="onMouseLeave()">
   <nb-card-body>
-    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
-    <div class="user-tags">
+    <div>
+      <a *ngIf="user" [routerLink]="['/users', user.username]">
+        <div class="user-profile-large d-flex align-items-center">
+          <img class="avatar" alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
+          <div class="details">
+            <div class="name d-flex align-items-center">
+              <p class="com-line-clamp-1">{{ user.name }}</p>
+              <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
+            </div>
+            <p class="username com-line-clamp-1">@{{ user.username }}</p>
+            <p class="designation com-line-clamp-3">{{ user.designation || '--' }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div *ngIf="miniUser.tags.length > 0" class="user-tags">
       <nb-tag-list>
-        <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
+        <nb-tag *ngFor="let tag of miniUser.tags" [text]="tag.name"></nb-tag>
       </nb-tag-list>
     </div>
-    <div class="count-container">
-      <div class="count">
-        <p>
-          <strong>{{ user.followers_count }}</strong>
-        </p>
-        <p><strong>Followers</strong></p>
+    <div class="user-statistics-container">
+      <div class="entity-count">
+        <p>{{ miniUser.followers_count }}</p>
+        <p>Followers</p>
       </div>
 
-      <div class="count">
-        <p>
-          <strong>{{ badgesCount }}</strong>
-        </p>
-        <p><strong>Badges</strong></p>
+      <div class="entity-count">
+        <p>{{ miniUser.badges.length }}</p>
+        <p>Badges</p>
       </div>
 
-      <div class="count">
-        <p>
-          <strong>{{ communitiesCount }}</strong>
-        </p>
-        <p><strong>Communities</strong></p>
+      <div class="entity-count">
+        <p>{{ miniUser.communities_count }}</p>
+        <p>Communities</p>
       </div>
     </div>
     <div class="buttons-container">
-      <app-user-follow [username]="'arpansac'"></app-user-follow>
-      <button class="anim-shadow" nbButton size="small">
+      <app-user-follow [username]="miniUser.username"></app-user-follow>
+      <button (click)="openChatWithUser()" class="anim-shadow" nbButton size="small">
         <nb-icon icon="paper-plane"></nb-icon>
         Message
       </button>

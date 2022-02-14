@@ -11,6 +11,7 @@
         <a [routerLink]="['/users', expert.username]" class="home-expert d-flex align-items-center">
           <img
             appMiniUserProfile
+            [username]="expert.username"
             alt="{{ expert.name }}"
             class="home-expert-avatar"
             src="{{ expert.avatar }}"
@@ -18,7 +19,7 @@
           />
           <div class="home-expert-details">
             <div class="home-expert-name d-flex align-items-center">
-              <p class="com-line-clamp-1">{{ expert.name }}</p>
+              <p appMiniUserProfile [username]="expert.username" class="com-line-clamp-1">{{ expert.name }}</p>
               <img *ngIf="expert.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" />
             </div>
             <p class="home-expert-designation com-line-clamp-1">{{ expert.designation }}</p>

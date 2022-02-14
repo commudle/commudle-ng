@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mini-user-profile',
@@ -7,41 +11,37 @@ import { IUser } from 'projects/shared-models/user.model';
   styleUrls: ['./mini-user-profile.component.scss'],
 })
 export class MiniUserProfileComponent implements OnInit {
-  user: IUser = {
-    id: null,
-    name: 'Ajay Singh',
-    email: null,
-    about_me: null,
-    designation: 'Software Developer',
-    personal_website: null,
-    linkedin: null,
-    github: null,
-    twitter: null,
-    dribbble: null,
-    behance: null,
-    medium: null,
-    gitlab: null,
-    facebook: null,
-    youtube: null,
-    gender: null,
-    avatar: 'assets/images/commudle-logo96.png',
-    profile_banner_image: null,
-    username: 'vector',
-    location: null,
-    tags: null,
-    is_expert: true,
-    badges: null,
-    followers_count: 300,
-    followees_count: 400,
-  };
+  @Input() username: string;
+  @Input() miniUser: IMiniUserProfile;
+  @Output() popupHover = new EventEmitter();
 
-  tags: string[] = ['React', 'Angular', 'Express', 'Ruby'];
+  user: IUser;
 
-  badgesCount = 4;
+  subscriptions: Subscription[] = [];
 
-  communitiesCount = 10;
+  constructor(private userChatsService: UserChatsService, private appUsersService: AppUsersService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.appUsersService.getProfile(this.username).subscribe((response) => {
+        this.user = response;
+      }),
+    );
+  }
 
-  ngOnInit(): void {}
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((value) => value.unsubscribe());
+  }
+
+  openChatWithUser(): void {
+    this.userChatsService.changeFollowerId(this.miniUser.id);
+  }
+
+  onMouseEnter() {
+    this.popupHover.emit(true);
+  }
+
+  onMouseLeave() {
+    this.popupHover.emit(false);
+  }
 }
