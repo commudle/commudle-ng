@@ -1,18 +1,17 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
-import {IUserMessage} from 'projects/shared-models/user_message.model';
-import {ICurrentUser} from 'projects/shared-models/current_user.model';
-import {FormBuilder, Validators} from '@angular/forms';
-import {NoWhitespaceValidator} from 'projects/shared-helper-modules/custom-validators.validator';
-import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
+import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-lab-discussion-message',
   templateUrl: './lab-discussion-message.component.html',
-  styleUrls: ['./lab-discussion-message.component.scss']
+  styleUrls: ['./lab-discussion-message.component.scss'],
 })
 export class LabDiscussionMessageComponent implements OnInit {
-
   @Input() message: IUserMessage;
   @Input() canReply: boolean;
   @Input() permittedActions;
@@ -25,21 +24,16 @@ export class LabDiscussionMessageComponent implements OnInit {
   moment = moment;
   showReplyForm = false;
   userMessageReplyForm = this.fb.group({
-    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]]
+    content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1000), NoWhitespaceValidator]],
   });
   limitRows = 3;
   messageLastScrollHeight: number;
 
   @ViewChild('messageInput') private messageInput: ElementRef;
 
-  constructor(
-    private authWatchService: LibAuthwatchService,
-    private fb: FormBuilder
-  ) {
-  }
+  constructor(private authWatchService: LibAuthwatchService, private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login() {
     if (!this.currentUser) {
@@ -52,8 +46,8 @@ export class LabDiscussionMessageComponent implements OnInit {
     this.sendFlag.emit(userMessageId);
   }
 
-  emitDelete(userMessageId) {
-    this.sendDelete.emit(userMessageId);
+  emitDelete(userMessageId, isSelfMessage) {
+    this.sendDelete.emit({ userMessageId, isSelfMessage });
   }
 
   emitReply() {

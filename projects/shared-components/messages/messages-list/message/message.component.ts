@@ -19,7 +19,7 @@ export class MessageComponent implements OnInit {
   @Input() permittedActions;
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();
-  @Output() sendDelete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() sendDelete = new EventEmitter();
 
   moment = moment;
 
@@ -52,8 +52,8 @@ export class MessageComponent implements OnInit {
     this.sendFlag.emit(messageId);
   }
 
-  emitDelete(messageId: number): void {
-    this.sendDelete.emit(messageId);
+  emitDelete(messageId: number, isSelfMessage: boolean): void {
+    this.sendDelete.emit({ messageId, isSelfMessage });
   }
 
   addEmoji(event): void {

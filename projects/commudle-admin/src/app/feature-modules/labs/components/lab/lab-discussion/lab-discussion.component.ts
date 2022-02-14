@@ -10,17 +10,17 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import * as moment from 'moment';
-import { IDiscussion } from 'projects/shared-models/discussion.model';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
-import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import * as moment from 'moment';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
+import { DiscussionChatChannel } from 'projects/shared-components/services/websockets/discussion-chat.channel';
+import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
-import { LabDiscussionChatChannel } from 'projects/commudle-admin/src/app/feature-modules/labs/services/websockets/lab-discussion-chat.channel';
 
 @Component({
   selector: 'app-lab-discussion',
@@ -55,7 +55,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
     private userMessagesService: UserMessagesService,
-    private discussionChatChannel: LabDiscussionChatChannel,
+    private discussionChatChannel: DiscussionChatChannel,
     private authWatchService: LibAuthwatchService,
   ) {}
 
@@ -114,10 +114,6 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
       });
   }
 
-  toggleReplyForm(messageId) {
-    this.showReplyForm === messageId ? (this.showReplyForm = 0) : (this.showReplyForm = messageId);
-  }
-
   sendMessage() {
     this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.ADD, {
       user_message: {
@@ -133,8 +129,11 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  delete(userMessageId) {
-    this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.DELETE, {
+  delete({ userMessageId, isSelfMessage }) {
+    const action = isSelfMessage
+      ? this.discussionChatChannel.ACTIONS.DELETE_SELF
+      : this.discussionChatChannel.ACTIONS.DELETE_ANY;
+    this.discussionChatChannel.sendData(action, {
       user_message_id: userMessageId,
     });
   }
@@ -151,21 +150,19 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
       this.discussionChatChannel.channelData$.subscribe((data) => {
         if (data) {
           switch (data.action) {
-            case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS: {
+            case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS:
               this.permittedActions = data.permitted_actions;
               break;
-            }
-            case this.discussionChatChannel.ACTIONS.ADD: {
+            case this.discussionChatChannel.ACTIONS.ADD:
               this.messages.unshift(data.user_message);
               this.newMessage.emit();
               break;
-            }
-            case this.discussionChatChannel.ACTIONS.REPLY: {
+            case this.discussionChatChannel.ACTIONS.REPLY:
               this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
               this.newMessage.emit();
               break;
-            }
-            case this.discussionChatChannel.ACTIONS.DELETE: {
+            case this.discussionChatChannel.ACTIONS.DELETE_ANY:
+            case this.discussionChatChannel.ACTIONS.DELETE_SELF:
               if (data.parent_type === 'Discussion') {
                 this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
               } else {
@@ -173,8 +170,7 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
                 this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
               }
               break;
-            }
-            case this.discussionChatChannel.ACTIONS.FLAG: {
+            case this.discussionChatChannel.ACTIONS.FLAG:
               if (data.parent_type === 'Discussion') {
                 this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
               } else {
@@ -182,10 +178,9 @@ export class LabDiscussionComponent implements OnInit, OnDestroy, OnChanges {
                 this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
               }
               break;
-            }
-            case this.discussionChatChannel.ACTIONS.ERROR: {
+            case this.discussionChatChannel.ACTIONS.ERROR:
               this.toastLogService.warningDialog(data.message, 2000);
-            }
+              break;
           }
         }
       }),
