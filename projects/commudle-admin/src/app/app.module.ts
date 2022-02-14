@@ -64,6 +64,7 @@ import { CommunitiesListComponent } from './components/communities/communities-l
 import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeBuildsCardComponent } from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
 import { HomeBuildsComponent } from './components/home/components/home-builds/home-builds.component';
 import { HomeCommunitiesComponent } from './components/home/components/home-communities/home-communities.component';
@@ -141,6 +142,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     ProfileStatusBarComponent,
     CircularProgressiveBarComponent,
     NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     AppRoutingModule,

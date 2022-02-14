@@ -1,6 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
-import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { CookieConsentComponent } from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -23,7 +22,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   sideBarState: NbSidebarState = 'collapsed';
   currentUser: ICurrentUser;
   cookieAccepted = false;
-  footerStatus = true;
   profileBarStatus = true;
 
   isBrowser = this.isBrowserService.isBrowser();
@@ -35,7 +33,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
     private cookieConsentService: CookieConsentService,
-    private footerService: FooterService,
     private cdr: ChangeDetectorRef,
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
@@ -77,7 +74,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked(): void {
-    this.footerService.footerStatus$.subscribe((value) => (this.footerStatus = value));
     this.profileStatusBarService.profileBarStatus$.subscribe((value) => (this.profileBarStatus = value));
     this.cdr.detectChanges();
   }

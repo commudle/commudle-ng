@@ -2,10 +2,10 @@ import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@a
 import { faBell, faFlask, faHome, faInfoCircle, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { NbMenuItem, NbPopoverDirective } from '@nebular/theme';
 import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/notifications-popover/notifications-popover.component';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { combineLatest, Subscription } from 'rxjs';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
   selector: 'app-navbar-menu',
