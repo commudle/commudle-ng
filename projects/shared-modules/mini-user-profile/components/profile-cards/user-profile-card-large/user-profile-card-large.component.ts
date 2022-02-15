@@ -13,6 +13,7 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() maxDesignationLength = 50;
   @Input() showFollowButton = false;
   @Input() alignFollowToRight = false;
+  @Input() activateMiniProfileDirective = true;
 
   constructor() {}
 

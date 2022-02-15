@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserProfileCardMediumComponent } from 'projects/shared-components/profile-cards/user-profile-card-medium/user-profile-card-medium.component';
+import { UserProfileCardMediumComponent } from 'projects/shared-modules/mini-user-profile/components/profile-cards/user-profile-card-medium/user-profile-card-medium.component';
 
 describe('UserProfileCardMediumComponent', () => {
   let component: UserProfileCardMediumComponent;
@@ -8,9 +8,8 @@ describe('UserProfileCardMediumComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserProfileCardMediumComponent]
-    })
-      .compileComponents();
+      declarations: [UserProfileCardMediumComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -18,6 +18,7 @@ import { debounce } from 'projects/shared-modules/mini-user-profile/helper/debou
 })
 export class MiniUserProfileDirective implements OnDestroy {
   @Input() username: string;
+  @Input() activateMiniProfileDirective: boolean = true;
   componentRef: ComponentRef<MiniUserProfileComponent>;
   nativeElement: any;
   subscriptions: Subscription[] = [];
@@ -38,26 +39,26 @@ export class MiniUserProfileDirective implements OnDestroy {
     this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  @HostListener('focusin')
   @HostListener('mouseenter')
-  onMouseOver(e) {
-    this.subscriptions.push(
-      this.miniUserProfileService.getUserMiniProfile(this.username).subscribe((response) => {
-        if (response) {
-          this.miniUser = response;
-          this.loadComponent();
-          window.requestAnimationFrame(() => {
-            this.getElementCoordinates();
-            this.positionElement();
-          });
-        }
-      }),
-    );
+  onMouseOver() {
+    if (this.activateMiniProfileDirective) {
+      this.subscriptions.push(
+        this.miniUserProfileService.getUserMiniProfile(this.username).subscribe((response) => {
+          if (response) {
+            this.miniUser = response;
+            this.loadComponent();
+            window.requestAnimationFrame(() => {
+              this.getElementCoordinates();
+              this.positionElement();
+            });
+          }
+        }),
+      );
+    }
   }
 
-  @HostListener('focusout')
   @HostListener('mouseleave')
-  onMouseOut(e) {
+  onMouseOut() {
     this.destroyComponent();
   }
 
@@ -68,9 +69,6 @@ export class MiniUserProfileDirective implements OnDestroy {
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent<MiniUserProfileComponent>(componentFactory);
     popupContainer.appendChild(this.componentRef.location.nativeElement);
-    this.componentRef.instance.username = this.username;
-    this.componentRef.instance.miniUser = this.miniUser;
-    this.positionElement();
 
     this.subscriptions.push(
       this.componentRef.instance.popupHover.subscribe((data) => {
@@ -80,9 +78,12 @@ export class MiniUserProfileDirective implements OnDestroy {
         }
       }),
     );
+    this.componentRef.instance.username = this.username;
+    this.componentRef.instance.miniUser = this.miniUser;
+    this.positionElement();
   }
 
-  @debounce(100)
+  @debounce(50)
   destroyComponent() {
     if (!this.cursorOnPopover && this.componentRef) {
       this.componentRef.destroy();
@@ -128,19 +129,5 @@ export class MiniUserProfileDirective implements OnDestroy {
     this.componentRef.location.nativeElement.firstChild.style.position = 'fixed';
     this.componentRef.location.nativeElement.firstChild.style.left = this.coords.left + 'px';
     this.componentRef.location.nativeElement.firstChild.style.top = this.coords.top + 'px';
-  }
-
-  debounce(delay: number): MethodDecorator {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-      const original = descriptor.value;
-      const key = `__timeout__${propertyKey}`;
-
-      descriptor.value = function (...args) {
-        clearTimeout(this[key]);
-        this[key] = setTimeout(() => original.apply(this, args), delay);
-      };
-
-      return descriptor;
-    };
   }
 }

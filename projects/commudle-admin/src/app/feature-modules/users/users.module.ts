@@ -21,7 +21,6 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
-import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
@@ -52,6 +51,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsernameComponent } from './components/public-profile/user-basic-details/basic-user-profile/username/username.component';
 import { BasicInfoComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-info/basic-info.component';
 import { SocialLinksComponent } from './components/public-profile/user-basic-details/basic-user-profile/social-links/social-links.component';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 
 @NgModule({
   declarations: [
@@ -90,9 +90,9 @@ import { SocialLinksComponent } from './components/public-profile/user-basic-det
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedComponentsModule,
     DragDropModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,

@@ -28,7 +28,6 @@ import {
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { LinkyModule } from 'ngx-linky';
-import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
@@ -55,6 +54,7 @@ import { UserEventRegistrationsComponent } from './components/user-event-registr
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 
 @NgModule({
   declarations: [
@@ -88,10 +88,10 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     ReactiveFormsModule,
     EditorModule,
     AppSharedComponentsModule,
-    SharedComponentsModule,
     YouTubePlayerModule,
     ReusableComponentsModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
 
     // External
     FontAwesomeModule,

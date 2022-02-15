@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './mini-user-profile.component.html',
   styleUrls: ['./mini-user-profile.component.scss'],
 })
-export class MiniUserProfileComponent implements OnInit {
+export class MiniUserProfileComponent implements OnInit, OnDestroy {
   @Input() username: string;
   @Input() miniUser: IMiniUserProfile;
   @Output() popupHover = new EventEmitter();

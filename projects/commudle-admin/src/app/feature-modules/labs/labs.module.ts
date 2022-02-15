@@ -24,6 +24,7 @@ import { SharedComponentsModule } from 'projects/shared-components/shared-compon
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { InfiniteScrollModule } from 'projects/shared-modules/infinite-scroll/infinite-scroll.module';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 import { CreateLabComponent } from './components/create-lab/create-lab.component';
@@ -74,6 +75,7 @@ import { LabsRoutingModule } from './labs-routing.module';
     MentionModule,
     InfiniteScrollModule,
     RecommendationsModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,

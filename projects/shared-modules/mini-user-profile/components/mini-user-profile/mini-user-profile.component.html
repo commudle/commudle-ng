@@ -1,20 +1,10 @@
 <nb-card class="fade-in" (mouseover)="onMouseEnter()" (mouseout)="onMouseLeave()">
   <nb-card-body>
-    <div>
-      <a *ngIf="user" [routerLink]="['/users', user.username]">
-        <div class="user-profile-large d-flex align-items-center">
-          <img class="avatar" alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
-          <div class="details">
-            <div class="name d-flex align-items-center">
-              <p class="com-line-clamp-1">{{ user.name }}</p>
-              <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
-            </div>
-            <p class="username com-line-clamp-1">@{{ user.username }}</p>
-            <p class="designation com-line-clamp-3">{{ user.designation || '--' }}</p>
-          </div>
-        </div>
-      </a>
-    </div>
+    <app-user-profile-card-large
+      *ngIf="user"
+      [user]="user"
+      [activateMiniProfileDirective]="false"
+    ></app-user-profile-card-large>
     <div *ngIf="miniUser.tags.length > 0" class="user-tags">
       <nb-tag-list>
         <nb-tag *ngFor="let tag of miniUser.tags" [text]="tag.name"></nb-tag>
