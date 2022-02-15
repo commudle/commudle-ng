@@ -1,0 +1,47 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+:host {
+  position: relative;
+}
+
+.home-labs-list {
+  nb-list-item {
+    align-items: flex-start;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $space-16 0;
+
+    app-skeleton-text {
+      width: 100%;
+    }
+
+    .home-lab-name {
+      color: $gunmetal;
+      font-size: $fs-text;
+      font-weight: $fw-500;
+      line-height: normal;
+      margin-bottom: $space-4;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.home-labs-all {
+  color: rgba($neon-blue, 0.95);
+  display: block;
+  font-size: $fs-h5;
+  padding: $space-12 0 $space-8;
+
+  @screen md {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

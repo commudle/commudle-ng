@@ -1,0 +1,72 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.home-builds-card {
+  .home-builds-card-prefix {
+    .home-builds-card-tags {
+      gap: $space-4;
+
+      .home-builds-card-tag {
+        background-color: $lavender;
+        border-radius: $border-20;
+        color: $neon-blue;
+        font-size: $fs-h6;
+        padding: 0 $space-8;
+      }
+    }
+  }
+
+  .home-builds-card-content {
+    margin: $space-8 0;
+
+    .home-builds-card-name {
+      color: $gunmetal;
+      font-size: $fs-h5;
+      font-weight: 600;
+      line-height: 16px;
+    }
+
+    .home-builds-card-description {
+      color: $spanish-gray;
+      font-size: $fs-h6;
+      line-height: normal;
+      margin-top: $space-4;
+      word-break: break-word;
+    }
+  }
+
+  .home-builds-card-suffix {
+    .home-builds-card-interactions {
+      color: $gunmetal;
+      font-size: $fs-h6;
+
+      nb-icon {
+        color: $silver-sand;
+        font-size: $fs-h4;
+      }
+    }
+
+    .home-builds-card-author {
+      background-color: $lavender;
+      border-radius: 12px;
+      height: 24px;
+      overflow: hidden;
+      padding-right: $space-8;
+
+      .home-builds-card-author-name {
+        color: $gunmetal;
+        font-size: $fs-h6;
+        line-height: normal;
+        padding-left: $space-4;
+      }
+
+      img {
+        @apply com-h-6 com-w-6;
+        @apply com-rounded-full com-object-cover com-object-center;
+      }
+
+      .home-builds-card-author-name {
+        display: block;
+      }
+    }
+  }
+}

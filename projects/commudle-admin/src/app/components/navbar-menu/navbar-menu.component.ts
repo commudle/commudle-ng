@@ -1,10 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { faBell, faFlask, faHome, faInfoCircle, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { NbMenuItem, NbPopoverDirective } from '@nebular/theme';
+import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { faBell, faFlask, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { NbPopoverDirective } from '@nebular/theme';
 import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/notifications-popover/notifications-popover.component';
 import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
@@ -13,32 +14,32 @@ import { combineLatest, Subscription } from 'rxjs';
   styleUrls: ['./navbar-menu.component.scss'],
 })
 export class NavbarMenuComponent implements OnInit, OnDestroy {
-  @Input() currentUser: ICurrentUser;
+  currentUser: ICurrentUser;
 
-  faHome = faHome;
-  faInfoCircle = faInfoCircle;
   faLightbulb = faLightbulb;
   faFlask = faFlask;
   faUserFriends = faUserFriends;
   faBell = faBell;
 
   notificationCount = 0;
+  notificationIconHighlight = false;
   notificationsPopoverComponent = NotificationsPopoverComponent;
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   subscriptions: Subscription[] = [];
 
-  homeContextMenu: NbMenuItem[] = [{ title: 'About', link: '/about' }];
-
-  notificationIconHighlight: boolean = false;
-
   constructor(
     private notificationChannel: NotificationChannel,
     private notificationStateService: NotificationStateService,
+    private authwatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit(): void {
     this.receiveData();
+
+    this.authwatchService.currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
+    });
 
     this.subscriptions.push(
       this.notificationStateService.closeNotificationPopover$.subscribe((value) => {
