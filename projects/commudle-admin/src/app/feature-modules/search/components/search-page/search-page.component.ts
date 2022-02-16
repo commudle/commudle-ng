@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   getPicture,
   getTitle,
@@ -34,6 +34,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private seoService: SeoService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

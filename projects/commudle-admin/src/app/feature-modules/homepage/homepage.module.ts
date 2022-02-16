@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NbButtonModule, NbCardModule, NbIconModule, NbListModule } from '@nebular/theme';
+import { SearchModule } from 'projects/commudle-admin/src/app/feature-modules/search/search.module';
 import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
@@ -31,6 +32,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     SkeletonScreensModule,
     SharedComponentsModule,
     SharedDirectivesModule,
+    SearchModule,
     NbButtonModule,
     NbCardModule,
     NbIconModule,

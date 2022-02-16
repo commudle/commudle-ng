@@ -1,4 +1,4 @@
-<nb-form-field>
+<nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
   <nb-icon icon="search-outline" nbPrefix></nb-icon>
   <input
     #searchInput
