@@ -32,7 +32,7 @@
         votableType="UserMessage"
       ></app-votes-display>
     </nb-action>
-    <nb-action *ngIf="permittedActions.includes(allActions.ADD) && canReply">
+    <nb-action *ngIf="permittedActions.includes(allActions.REPLY) && canReply">
       <nb-icon
         (click)="showReplyForm = !showReplyForm"
         class="clickable"
@@ -40,9 +40,14 @@
         nbTooltip="Reply to this message"
       ></nb-icon>
     </nb-action>
-    <nb-action *ngIf="permittedActions.includes(allActions.DELETE) || message.user.id === currentUser.id">
+    <nb-action
+      *ngIf="
+        permittedActions.includes(allActions.DELETE_ANY) ||
+        (permittedActions.includes(allActions.DELETE_SELF) && message.user.id === currentUser.id)
+      "
+    >
       <nb-icon
-        (click)="emitDelete(message.id)"
+        (click)="emitDelete(message.id, message.user.id === currentUser.id)"
         class="clickable"
         icon="trash-outline"
         nbTooltip="Delete this message"
@@ -60,7 +65,7 @@
   </nb-actions>
   <div *ngIf="canReply" class="replies">
     <app-message
-      (sendDelete)="emitDelete($event)"
+      (sendDelete)="emitDelete(message.id, message.user.id === currentUser.id)"
       (sendFlag)="emitFlag($event)"
       *ngFor="let reply of message.user_messages"
       [allActions]="allActions"

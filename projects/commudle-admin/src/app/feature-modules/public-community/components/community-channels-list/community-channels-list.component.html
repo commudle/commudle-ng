@@ -1,4 +1,4 @@
-<nb-card [nbSpinner]="channels.length === 0">
+<nb-card [nbSpinner]="channelLoader">
   <nb-card-body>
     <div *ngIf="channels.length > 0" class="channels d-flex flex-wrap justify-content-center">
       <a
@@ -35,7 +35,7 @@
         </nb-card>
       </a>
     </div>
-    <div class="visit-all-channels">
+    <div *ngIf="channels.length > 0" class="visit-all-channels">
       <a [routerLink]="['/communities', this.community.slug, 'channels']" ghost nbButton status="link">
         Visit All Channels
       </a>

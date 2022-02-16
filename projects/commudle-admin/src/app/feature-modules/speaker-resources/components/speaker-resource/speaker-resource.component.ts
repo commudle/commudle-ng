@@ -20,7 +20,6 @@ export class SpeakerResourceComponent implements OnInit, OnDestroy {
   moment = moment;
   community: ICommunity;
 
-  discussion: IDiscussion;
   discussionChat: IDiscussion;
   messagesCount: number;
 
