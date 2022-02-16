@@ -1,0 +1,16 @@
+<div class="com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900">Builds</div>
+<div class="com-text-base com-leading-relaxed com-text-gray-500 com-mb-4">
+  See what others are building or share your own projects
+</div>
+
+<nb-list *ngIf="builds.length === 0" class="home-builds-list">
+  <nb-list-item *ngFor="let _ of [].constructor(3)">
+    <app-skeleton-text [rows]="4"></app-skeleton-text>
+  </nb-list-item>
+</nb-list>
+<nb-list *ngIf="builds.length > 0" class="home-builds-list">
+  <nb-list-item *ngFor="let build of builds" class="home-builds-list-item">
+    <app-homepage-builds-card [build]="build" class="com-w-full"></app-homepage-builds-card>
+  </nb-list-item>
+</nb-list>
+<a *ngIf="builds.length > 0" [routerLink]="['/builds']" class="home-builds-all text-center">View all</a>

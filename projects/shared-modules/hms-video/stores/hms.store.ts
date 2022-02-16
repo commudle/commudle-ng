@@ -14,4 +14,4 @@ export const hmsActions: IHMSActions = hms.getHMSActions();
 export const hmsStore: IHMSStoreReadOnly = hms.getStore();
 export const hmsNotifications: IHMSNotifications = hms.getNotifications();
 
-hmsActions.setLogLevel(HMSLogLevel.WARN);
+hmsActions.setLogLevel(HMSLogLevel.VERBOSE);

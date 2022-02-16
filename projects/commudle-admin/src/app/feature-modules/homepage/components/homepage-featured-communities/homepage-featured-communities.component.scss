@@ -1,0 +1,75 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/text-styles';
+
+p {
+  color: $gunmetal;
+  margin: 0;
+}
+
+.communities-featured-list {
+  @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+
+  @screen lg {
+    @apply com-grid com-grid-cols-4 com-overflow-x-auto com-gap-6;
+  }
+
+  .featured-community-card {
+    aspect-ratio: 3/4;
+    background-color: $white;
+    border: 1px solid $silver-sand;
+    border-radius: $border-8;
+    min-width: 260px;
+    overflow: hidden;
+    position: relative;
+
+    @screen lg {
+      min-width: inherit;
+    }
+
+    .featured-community-actions {
+      gap: $space-8;
+      position: absolute;
+      right: $space-12;
+      top: $space-12;
+
+      button {
+        background-color: $azureish-white;
+
+        nb-icon {
+          color: $neon-blue;
+        }
+      }
+    }
+
+    .featured-community-image-container {
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      width: 100%;
+
+      .featured-community-image {
+        width: 100%;
+      }
+    }
+
+    .featured-community-about {
+      aspect-ratio: 3/2;
+      padding: $space-16;
+
+      .featured-community-name {
+        @apply com-m-0;
+        @include card-title-text;
+      }
+
+      .featured-community-reason {
+        @include card-content-text;
+        margin-top: $space-8;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-featured-list {
+    overflow-x: scroll;
+  }
+}

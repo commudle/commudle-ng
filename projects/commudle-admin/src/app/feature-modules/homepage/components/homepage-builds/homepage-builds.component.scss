@@ -1,0 +1,24 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.home-builds-list {
+  nb-list-item {
+    flex-direction: column;
+    padding: $space-12 0;
+
+    app-skeleton-text,
+    app-home-builds-card {
+      width: 100%;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.home-builds-all {
+  color: rgba($neon-blue, 0.95);
+  display: block;
+  font-size: $fs-h5;
+  padding: $space-12 0 $space-8;
+}

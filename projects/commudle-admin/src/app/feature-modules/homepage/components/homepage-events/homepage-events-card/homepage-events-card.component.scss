@@ -1,0 +1,129 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.home-events-card-container {
+  border: 0.5px solid $silver-sand;
+  border-radius: $border-10;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+
+  .home-events-card-image {
+    height: 156px;
+    overflow: hidden;
+
+    .home-events-card-image-overlay {
+      background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+      height: 156px;
+      position: absolute;
+      width: 100%;
+
+      &.old {
+        background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
+      }
+    }
+
+    img {
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+    }
+  }
+
+  .home-events-card-date {
+    background-color: $white;
+    border: 1px solid $neon-blue;
+    border-radius: $border-8;
+    color: $neon-blue;
+    font-size: $fs-h4;
+    font-weight: $fw-500;
+    height: 58px;
+    padding: $space-8 $space-12;
+    position: absolute;
+    right: 12px;
+    text-align: center;
+    top: 120px;
+    width: 58px;
+    word-break: break-word;
+
+    &.old {
+      border-color: $cadet;
+      color: $cadet;
+    }
+  }
+
+  .home-events-card-details {
+    margin: $space-12 $space-12 $space-8;
+
+    .home-events-card-name {
+      color: $gunmetal;
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      height: 2rem;
+      line-height: 16px;
+      max-width: 171px;
+    }
+
+    .home-events-card-host {
+      margin-top: $space-16;
+
+      .home-events-card-community {
+        .home-events-card-community-logo {
+          border: 0.5px solid $platinum;
+          @apply com-h-7 com-w-7;
+          @apply com-rounded-full com-object-contain com-object-center com-align-middle;
+        }
+
+        .home-events-card-community-name {
+          color: $text-low-emphasis;
+          font-size: $fs-card-secondary;
+          font-weight: $fw-500;
+          line-height: normal;
+          margin: 0 $space-16 0 $space-8;
+        }
+      }
+
+      .home-events-card-register {
+        color: $neon-blue;
+        font-size: $fs-h5;
+        font-weight: $fw-600;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $pc-width) {
+  .home-events-card-container {
+    width: 185px;
+  }
+
+  .home-events-attending {
+    display: none;
+  }
+
+  .home-events-card-image {
+    height: 88px;
+
+    .home-events-card-image-overlay {
+      height: 88px;
+    }
+
+    img {
+      object-position: center !important;
+    }
+  }
+
+  .home-events-card-details {
+    margin: $space-24 $space-8 $space-8 !important;
+
+    .home-events-card-name {
+      max-width: 100% !important;
+    }
+
+    .home-events-card-host {
+      display: none;
+    }
+  }
+}

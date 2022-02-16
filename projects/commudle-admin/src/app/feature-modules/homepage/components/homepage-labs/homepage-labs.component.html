@@ -1,0 +1,15 @@
+<div class="com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900">Labs</div>
+<div class="com-text-base com-leading-relaxed com-text-gray-500 com-mb-4">Learn from people like you</div>
+
+<nb-list *ngIf="labs.length === 0" class="home-labs-list">
+  <nb-list-item *ngFor="let _ of [].constructor(4)">
+    <app-skeleton-text [rows]="2"></app-skeleton-text>
+  </nb-list-item>
+</nb-list>
+<nb-list *ngIf="labs.length > 0" class="home-labs-list">
+  <nb-list-item *ngFor="let lab of labs">
+    <a [routerLink]="['/labs', lab.slug]" class="home-lab-name com-line-clamp-2">{{ lab.name }}</a>
+    <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
+  </nb-list-item>
+</nb-list>
+<a *ngIf="labs.length > 0" [routerLink]="['/labs']" class="home-labs-all text-center">View all</a>

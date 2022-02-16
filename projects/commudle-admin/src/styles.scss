@@ -74,22 +74,27 @@ input {
 
 // Override Nebular
 
-.nb-theme-default nb-layout-header.fixed ~ .layout-container {
-  padding-top: 3.5rem;
-}
+.nb-theme-default {
+  nb-layout-footer {
+    &.fixed {
+      background-color: $white;
+      bottom: 0;
+      height: nb-theme('header-height');
+      left: 0;
+      position: fixed;
+      right: 0;
+      z-index: 1040;
 
-.nb-theme-default nb-layout .layout .layout-container nb-sidebar.fixed,
-.nb-theme-default nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
-  top: 3.5rem;
-}
+      @at-root {
+        .home-layout .layout-container .content .columns {
+          padding-bottom: nb-theme('header-height');
 
-.nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
-  padding: 0 !important;
-}
-
-@media (max-width: 820px) {
-  .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
-    padding: 0 !important;
+          @screen md {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -97,13 +102,8 @@ input {
   margin: 16px 8px;
 }
 
-.nb-theme-default nb-layout-header nav {
-  height: 3.5rem;
-  padding: 0 1.25rem;
-}
-
 .nb-theme-default [nbInput].size-giant,
-.nb-theme-default[nbIput].size-tiny,
+.nb-theme-default [nbInput].size-tiny,
 .nb-theme-default [nbInput].size-small,
 .nb-theme-default [nbInput].size-medium,
 .nb-theme-default [nbInput] {

@@ -1,0 +1,9 @@
+.homepage {
+  @apply com-w-full com-min-h-screen com-bg-white com-px-4 md:com-px-0;
+
+  .homepage-section {
+    .section-heading {
+      @apply com-mb-8 md:com-mb-12 com-text-2xl md:com-text-4xl com-text-left com-text-black com-font-semibold;
+    }
+  }
+}
