@@ -2,20 +2,22 @@
   <nb-card>
     <nb-card-body>
       <div *ngIf="feedItem.details.image.length > 0" class="image">
-        <img alt="{{ feedItem.details.source }}" src="{{ feedItem.details.image }}" title="{{feedItem.details.source}}">
+        <img
+          alt="{{ feedItem.details.source }}"
+          src="{{ feedItem.details.image }}"
+          title="{{ feedItem.details.source }}"
+        />
       </div>
       <div class="source-details d-flex align-items-center">
         <div class="source-info">
-          <em> {{ feedItem.details.source }} </em> <br/>
+          <em> {{ feedItem.details.source }} </em> <br />
           <small> {{ feedItem.details.created_at }} </small>
         </div>
       </div>
       <div class="title">
-        <h3 class="name"> {{ feedItem.details.title }} </h3>
+        <h3 class="name">{{ feedItem.details.title }}</h3>
       </div>
-      <div *ngFor="let tag of feedItem.details.tags" class="tags">
-        <span class="tag-hash">#</span> {{ tag.name }}
-      </div>
+      <div *ngFor="let tag of feedItem.details.tags" class="tags"><span class="tag-hash">#</span>{{ tag.name }}</div>
       <p>
         Visit the post at:
         <a href="{{ feedItem.details.link }}">{{ feedItem.details.source }}</a>
@@ -37,6 +39,10 @@
     </nb-card-body>
   </nb-card>
 </div>
-<div class="feed-discussion">
-  <app-feed-item-discussion *ngIf="discussionChat" [discussion]="discussionChat"></app-feed-item-discussion>
-</div>
+
+<nb-card *ngIf="discussionChat">
+  <nb-card-header>Discussion</nb-card-header>
+  <nb-card-body>
+    <app-messages [discussion]="discussionChat"></app-messages>
+  </nb-card-body>
+</nb-card>

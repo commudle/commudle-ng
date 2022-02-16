@@ -1,38 +1,28 @@
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbPopoverModule,
+  NbSelectModule,
+  NbUserModule,
+} from '@nebular/theme';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { ExternalFeedHListItemComponent } from './components/external-feed-hlist-item/external-feed-hlist-item.component';
+import { ExternalFeedComponent } from './components/external-feed/external-feed.component';
+import { FeedItemDetailsComponent } from './components/feed-item-details/feed-item-details.component';
 import { FeedItemComponent } from './components/feed-item/feed-item.component';
 import { ExternalFeedRoutingModule } from './external-feed-routing.module';
-import { FeedItemDetailsComponent } from './components/feed-item-details/feed-item-details.component'
-import { ExternalFeedComponent } from './components/external-feed/external-feed.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-	NbCardModule,
-	NbSelectModule,
-	NbInputModule,
-	NbButtonModule,
-	NbIconModule,
-	NbPopoverModule,
-	NbCheckboxModule,
-    NbFormFieldModule,
-    NbUserModule,
-} from '@nebular/theme';
-import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-import { EditorModule } from '@tinymce/tinymce-angular';
-import {SharedPipesModule} from 'projects/shared-pipes/pipes.module';
-import {ExternalFeedHListItemComponent} from './components/external-feed-hlist-item/external-feed-hlist-item.component';
-import {FeedItemDiscussionComponent} from './components/feed-item-discussion/feed-item-discussion.component';
-import {FeedItemDiscussionMessageComponent} from './components/feed-item-discussion/feed-item-discussion-message/feed-item-discussion-message.component';
-import { DatePipe } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    ExternalFeedComponent,
-    FeedItemDetailsComponent,
-    FeedItemComponent,
-    ExternalFeedHListItemComponent,
-    FeedItemDiscussionMessageComponent,
-    FeedItemDiscussionComponent,
-  ],
+  declarations: [ExternalFeedComponent, FeedItemDetailsComponent, FeedItemComponent, ExternalFeedHListItemComponent],
   imports: [
     CommonModule,
     ExternalFeedRoutingModule,
@@ -54,6 +44,6 @@ import { DatePipe } from '@angular/common';
     NbUserModule,
     NbCheckboxModule,
   ],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
-export class ExternalFeedModule { }
+export class ExternalFeedModule {}

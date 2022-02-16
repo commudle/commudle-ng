@@ -10,6 +10,7 @@ import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 export class ConferenceUserVideosComponent implements OnInit {
   peers: HMSPeer[] = [];
   peerScreenShare: HMSPeer;
+  showAlert = true;
 
   constructor() {}
 
