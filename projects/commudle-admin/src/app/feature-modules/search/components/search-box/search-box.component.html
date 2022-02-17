@@ -2,8 +2,10 @@
   <nb-icon icon="search-outline" nbPrefix></nb-icon>
   <input
     #searchInput
+    (keyup.enter)="onSubmit()"
+    [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
     [formControl]="inputFormControl"
-    [nbAutocomplete]="autoComplete"
+    [nbAutocomplete]="showSuggestions ? autoComplete : loading"
     [overlayOffset]="0"
     fullWidth
     nbInput
@@ -11,6 +13,8 @@
     type="text"
   />
 </nb-form-field>
+
+<nb-autocomplete #loading></nb-autocomplete>
 
 <nb-autocomplete
   #autoComplete

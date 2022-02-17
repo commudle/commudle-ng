@@ -18,6 +18,7 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 
 })
 export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input() overrideSearchStatus = false;
+  @Input() showSuggestions = true;
 
   inputFormControl: FormControl;
   total = -1;
@@ -56,6 +57,12 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
         debounceTime(500),
         distinctUntilChanged(),
         tap(() => {
+          if (!this.showSuggestions) {
+            this.onSubmit();
+          }
+        }),
+        filter(() => this.showSuggestions),
+        tap(() => {
           this.searchLoader = true;
           this.groupedResults = {};
         }),
@@ -75,7 +82,11 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     });
   }
 
-  handleDisplay(result: ISearchResult | string) {
+  handleDisplay = (result: ISearchResult | string) => {
     return typeof result === 'string' ? result : result['query'] || result.name;
+  };
+
+  onSubmit() {
+    this.router.navigate(['/search'], { queryParams: { q: this.inputFormControl.value } });
   }
 }
