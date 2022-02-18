@@ -56,13 +56,11 @@ p {
       padding: $space-16;
 
       .featured-community-name {
-        @apply com-m-0;
-        @include card-title-text;
+        @apply com-m-0 com-text-lg com-font-semibold com-line-clamp-1;
       }
 
       .featured-community-reason {
-        @include card-content-text;
-        margin-top: $space-8;
+        @apply com-mt-2 com-text-base com-line-clamp-3;
       }
     }
   }
@@ -72,4 +70,8 @@ p {
   .communities-featured-list {
     overflow-x: scroll;
   }
+}
+
+.home-view-all-communities {
+  background-color: #0095fa;
 }

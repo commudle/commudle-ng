@@ -6,10 +6,13 @@
     [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
     [formControl]="inputFormControl"
     [nbAutocomplete]="showSuggestions ? autoComplete : loading"
+    [ngClass]="{ giant: overrideSearchStatus }"
     [overlayOffset]="0"
+    [shape]="shape"
+    class="main-search-bar"
     fullWidth
     nbInput
-    placeholder="Start typing..."
+    placeholder="Find developers, communities, projects or tutorials"
     type="text"
   />
 </nb-form-field>

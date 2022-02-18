@@ -18,11 +18,19 @@ a {
     @apply com-mx-0 com-my-6 com-border-0;
 
     .name {
-      @apply com-mt-0 com-line-clamp-2 com-font-semibold com-leading-6 com-h-12;
+      @apply com-mt-0 com-line-clamp-2 com-leading-6 com-h-12;
     }
 
     nb-icon {
       @apply com-text-sm;
     }
   }
+}
+
+.home-labs-view-all {
+  color: #0095fa;
+}
+
+.home-write-tutorial {
+  background-color: #0095fa;
 }

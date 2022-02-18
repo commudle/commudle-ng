@@ -18,7 +18,7 @@ a {
     @apply com-mx-0 com-my-6 com-border-0;
 
     .name {
-      @apply com-mt-0 com-mb-1 com-line-clamp-1 com-font-semibold;
+      @apply com-mt-0 com-mb-1 com-line-clamp-1;
     }
 
     .description {
@@ -29,4 +29,12 @@ a {
       @apply com-text-sm;
     }
   }
+}
+
+.home-builds-view-all {
+  color: #0095fa;
+}
+
+.home-share-project {
+  background-color: #0095fa;
 }

@@ -19,6 +19,7 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 
 export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input() overrideSearchStatus = false;
   @Input() showSuggestions = true;
+  @Input() shape: 'round' | 'rectangle' | 'semi-round';
 
   inputFormControl: FormControl;
   total = -1;

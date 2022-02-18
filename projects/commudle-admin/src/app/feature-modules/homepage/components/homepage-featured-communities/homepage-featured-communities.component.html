@@ -29,7 +29,12 @@
     </div>
     <div [routerLink]="['/communities', featuredCommunity.kommunity.slug]" class="clickable featured-community-about">
       <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
-      <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
+      <p class="featured-community-reason">{{ featuredCommunity.kommunity.mini_description }}</p>
     </div>
   </div>
 </div>
+
+<button class="home-view-all-communities com-mt-6" nbButton shape="semi-round" status="info">
+  View all communities
+  <nb-icon icon="arrow-forward"></nb-icon>
+</button>
