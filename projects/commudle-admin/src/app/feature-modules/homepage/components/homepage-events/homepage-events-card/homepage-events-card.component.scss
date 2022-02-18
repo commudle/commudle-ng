@@ -62,7 +62,10 @@
       font-weight: $fw-600;
       height: 2rem;
       line-height: 16px;
-      max-width: 171px;
+
+      @screen md {
+        max-width: 80%;
+      }
     }
 
     .home-events-card-host {

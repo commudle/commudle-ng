@@ -1,6 +1,6 @@
 <div class="com-flex com-justify-between com-items-center">
   <div class="com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900 com-mb-4">Events</div>
-  <div>
+  <div *appBreakpoints="'>md'">
     <button
       (click)="updateEventsIdx(-4)"
       [disabled]="eventsStartIdx === 0"
@@ -22,17 +22,22 @@
     </button>
   </div>
 </div>
-<ng-container *ngIf="!isLoading; else loading">
-  <div *appBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-[254px]">
+<div *appBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-[254px]">
+  <ng-container *ngIf="!isLoading; else loading">
     <app-homepage-events-card
       *ngFor="let event of events | slice: eventsStartIdx:eventsStartIdx + 4"
       [event]="event"
     ></app-homepage-events-card>
-  </div>
-  <div *appBreakpoints="'<=md'" class="com-flex com-gap-6 com-overflow-x-auto">
+  </ng-container>
+  <ng-template #loading>
+    <app-skeleton-text *ngFor="let _ of [].constructor(4)" [rows]="4"></app-skeleton-text>
+  </ng-template>
+</div>
+<div *appBreakpoints="'<=md'" class="com-flex com-gap-6 com-overflow-x-auto com-min-h-[222px]">
+  <ng-container *ngIf="!isLoading; else loading">
     <app-homepage-events-card *ngFor="let event of events" [event]="event"></app-homepage-events-card>
-  </div>
-</ng-container>
-<ng-template #loading>
-  <app-skeleton-text [rows]="5"></app-skeleton-text>
-</ng-template>
+  </ng-container>
+  <ng-template #loading>
+    <app-skeleton-text [rows]="4" class="com-w-full"></app-skeleton-text>
+  </ng-template>
+</div>
