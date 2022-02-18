@@ -24,9 +24,9 @@
   </div>
 </div>
 
-<nb-alert *ngIf="peers.length === 1" [closable]="true" class="no-users">
+<nb-alert (close)="showAlert = false" *ngIf="peers.length === 0 && showAlert" class="no-users" closable>
   <span>
     <nb-icon icon="people-outline"></nb-icon>
-    Welcome! Other users will be joining shortly.
+    Welcome! The hosts will be joining shortly.
   </span>
 </nb-alert>

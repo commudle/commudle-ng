@@ -38,8 +38,6 @@ import { BadgeComponent } from './badge/badge.component';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
 import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
 import { DataFormFillComponent } from './data-form-fill/data-form-fill.component';
-import { DiscussionChatComponent } from './discussion-chat/discussion-chat.component';
-import { UserMessageComponent } from './discussion-chat/user-message/user-message.component';
 import { DiscussionPersonalChatComponent } from './discussion-personal-chat/discussion-personal-chat.component';
 import { UserPersonalChatMessageComponent } from './discussion-personal-chat/user-personal-chat-message/user-personal-chat-message.component';
 import { FlagsDisplayComponent } from './flags-display/flags-display.component';
@@ -74,8 +72,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     WorkInProgressComponent,
     UserProfileHorizontalComponent,
     BadgeComponent,
-    DiscussionChatComponent,
-    UserMessageComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,
@@ -148,8 +144,6 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     WorkInProgressComponent,
     UserProfileHorizontalComponent,
     BadgeComponent,
-    DiscussionChatComponent,
-    UserMessageComponent,
     CommunityBadgeComponent,
     VideoStreamComponent,
     PollsComponent,

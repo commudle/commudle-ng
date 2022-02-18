@@ -95,7 +95,8 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
               this.messages[this.findMessageIndex(value.parent_id)].user_messages.push(value.user_message);
               this.newMessage.emit();
               break;
-            case this.discussionChatChannel.ACTIONS.DELETE:
+            case this.discussionChatChannel.ACTIONS.DELETE_ANY:
+            case this.discussionChatChannel.ACTIONS.DELETE_SELF:
               if (value.parent_type === 'Discussion') {
                 this.messages.splice(this.findMessageIndex(value.user_message_id), 1);
               } else {
@@ -169,8 +170,11 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
     this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.FLAG, { user_message_id: messageId });
   }
 
-  sendDelete(messageId: number): void {
-    this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.DELETE, { user_message_id: messageId });
+  sendDelete({ messageId, isSelfMessage }): void {
+    const action = isSelfMessage
+      ? this.discussionChatChannel.ACTIONS.DELETE_SELF
+      : this.discussionChatChannel.ACTIONS.DELETE_ANY;
+    this.discussionChatChannel.sendData(action, { user_message_id: messageId });
   }
 
   addEmoji(event): void {
