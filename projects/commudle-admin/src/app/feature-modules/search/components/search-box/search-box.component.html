@@ -38,7 +38,7 @@
   </nb-option-group>
   <nb-option
     *ngIf="total > 0"
-    [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value }"
+    [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }"
     class="com-justify-center com-items-center com-gap-2"
   >
     Show all results

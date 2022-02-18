@@ -69,10 +69,10 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
         switchMap((value: string) => this.searchService.getSearchResults(value)),
       )
       .subscribe((value: ISearch) => {
+        this.groupedResults = groupResults(value.results);
+
         this.searchLoader = false;
         this.total = value.total;
-
-        this.groupedResults = groupResults(value.results);
       });
   }
 
@@ -82,11 +82,13 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     });
   }
 
-  handleDisplay = (result: ISearchResult | string) => {
+  handleDisplay(result: ISearchResult | string) {
     return typeof result === 'string' ? result : result['query'] || result.name;
-  };
+  }
 
   onSubmit() {
-    this.router.navigate(['/search'], { queryParams: { q: this.inputFormControl.value } });
+    this.router.navigate(['/search'], {
+      queryParams: { q: this.inputFormControl.value?.name || this.inputFormControl.value },
+    });
   }
 }
