@@ -53,14 +53,36 @@ p {
 
     .featured-community-about {
       aspect-ratio: 3/2;
-      padding: $space-16;
+      @apply com-p-3 md:com-p-4 com-flex com-flex-col com-justify-between;
 
       .featured-community-name {
-        @apply com-m-0 com-text-lg com-font-semibold com-line-clamp-1;
+        @apply com-m-0 com-text-xl com-font-semibold com-line-clamp-1;
       }
 
       .featured-community-reason {
-        @apply com-mt-2 com-text-base com-line-clamp-3;
+        @apply com-text-base com-line-clamp-2 md:com-line-clamp-3;
+      }
+
+      .featured-community-join-btn {
+        @apply com-flex com-justify-between com-items-center;
+
+        app-membership-toggle {
+          &::ng-deep {
+            button {
+              background: $white;
+              border: 1px solid $silver-sand;
+              border-radius: $border-4;
+              color: $neon-blue;
+              font-size: $fs-h5;
+              font-weight: normal;
+              height: 32px;
+              line-height: 16px;
+              min-width: 152px;
+              padding: $space-8;
+              width: 152px;
+            }
+          }
+        }
       }
     }
   }
