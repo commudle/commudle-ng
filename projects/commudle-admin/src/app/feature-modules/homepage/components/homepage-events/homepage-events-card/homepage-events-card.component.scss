@@ -99,7 +99,7 @@
 
 @media all and (max-width: $pc-width) {
   .home-events-card-container {
-    width: 185px;
+    width: 230px;
   }
 
   .home-events-attending {
@@ -123,10 +123,6 @@
 
     .home-events-card-name {
       max-width: 100% !important;
-    }
-
-    .home-events-card-register {
-      text-transform: capitalize;
     }
   }
 }
