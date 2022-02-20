@@ -5,12 +5,12 @@ import {
   NbAutocompleteModule,
   NbButtonModule,
   NbCardModule,
-  NbCheckboxModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbListModule,
   NbSpinnerModule,
+  NbTagModule,
   NbUserModule,
 } from '@nebular/theme';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
@@ -31,8 +31,8 @@ import { SearchRoutingModule } from './search-routing.module';
     NbCardModule,
     NbSpinnerModule,
     NbButtonModule,
-    NbCheckboxModule,
     NbListModule,
+    NbTagModule,
   ],
   exports: [SearchBoxComponent],
 })

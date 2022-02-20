@@ -1,0 +1,15 @@
+nb-form-field {
+  &.hide {
+    @apply com-hidden;
+  }
+
+  &::ng-deep {
+    .main-search-bar.giant {
+      @apply com-text-lg;
+
+      &::placeholder {
+        @apply com-text-lg;
+      }
+    }
+  }
+}

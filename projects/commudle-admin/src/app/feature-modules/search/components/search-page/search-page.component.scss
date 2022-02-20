@@ -1,34 +1,20 @@
 .base-layout {
   .container {
-    .two-column-layout {
-      .left-column {
-        .search-filters {
-          @apply com-sticky com-top-16;
+    .one-column-layout {
+      .search-results {
+        nb-card-body {
+          nb-list {
+            @apply com-mt-4;
 
-          nb-card-body {
-            @apply com-flex com-flex-col;
-          }
-        }
-      }
+            .search-result {
+              @apply com-px-0 com-border-0 com-cursor-pointer;
 
-      .main-column {
-        nb-card {
-          nb-card-body {
-            nb-list {
-              @apply com-mt-4;
-
-              .search-result {
-                @apply com-gap-2 com-border-0;
-
-                nb-user {
-                  @apply com-w-full;
-
-                  &::ng-deep {
-                    .info-container {
-                      .user-name,
-                      .user-title {
-                        @apply com-line-clamp-1;
-                      }
+              nb-user {
+                &::ng-deep {
+                  .info-container {
+                    .user-name,
+                    .user-title {
+                      @apply com-line-clamp-1;
                     }
                   }
                 }

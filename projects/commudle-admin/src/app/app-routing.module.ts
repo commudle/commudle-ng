@@ -21,6 +21,10 @@ const routes = [
     component: HomeComponent,
   },
   {
+    path: 'home',
+    loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
+  },
+  {
     path: 'about-wip',
     component: AboutComponent,
   },

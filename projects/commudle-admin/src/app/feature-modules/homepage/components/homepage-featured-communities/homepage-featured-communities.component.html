@@ -1,0 +1,53 @@
+<div class="communities-featured-list">
+  <div *ngFor="let featuredCommunity of featuredCommunities" class="featured-community-card">
+    <div class="featured-community-actions d-flex">
+      <a [routerLink]="['/communities', featuredCommunity.kommunity.slug, 'members']">
+        <button class="featured-community-members-btn" nbButton shape="round" size="small">
+          <nb-icon icon="people"></nb-icon>
+        </button>
+      </a>
+      <button
+        (click)="copyTextToClipboard(featuredCommunity)"
+        class="featured-community-share-btn"
+        nbButton
+        shape="round"
+        size="small"
+      >
+        <nb-icon icon="share"></nb-icon>
+      </button>
+    </div>
+    <div
+      [routerLink]="['/communities', featuredCommunity.kommunity.slug]"
+      class="clickable featured-community-image-container"
+    >
+      <img
+        alt="{{ featuredCommunity.kommunity.name }}"
+        class="featured-community-image"
+        src="{{ featuredCommunity.kommunity.logo_image?.url }}"
+        title="{{ featuredCommunity.kommunity.name }}"
+      />
+    </div>
+    <div [routerLink]="['/communities', featuredCommunity.kommunity.slug]" class="clickable featured-community-about">
+      <div>
+        <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
+        <p class="featured-community-reason">{{ featuredCommunity.kommunity.mini_description }}</p>
+        <span class="com-block md:com-hidden com-mt-2 com-text-base">
+          <nb-icon icon="people-outline"></nb-icon>
+          {{ featuredCommunity.kommunity.member_count }} members
+        </span>
+      </div>
+      <div class="featured-community-join-btn">
+        <span class="com-hidden md:com-block com-text-base">
+          <nb-icon icon="people-outline"></nb-icon>
+          {{ featuredCommunity.kommunity.member_count }}
+        </span>
+        <app-membership-toggle [community]="featuredCommunity.kommunity"></app-membership-toggle>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="home-view-all-communities com-mt-6" nbButton shape="semi-round" status="info">
+  View all communities
+  <nb-icon icon="arrow-forward"></nb-icon>
+</button>
