@@ -1,24 +1,40 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.heading {
+  @apply com-m-0 com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900;
+}
+
+.subheading {
+  @apply com-m-0 com-text-base com-leading-relaxed com-font-normal com-text-gray-500 com-mb-4;
+}
 
 .home-builds-list {
-  nb-list-item {
-    flex-direction: column;
-    padding: $space-12 0;
+  nb-card {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+    @apply com-mx-0 com-my-6 com-border-0;
 
-    app-skeleton-text,
-    app-home-builds-card {
-      width: 100%;
+    .name {
+      @apply com-mt-0 com-mb-1 com-line-clamp-1;
     }
 
-    &:last-child {
-      border-bottom: none;
+    .description {
+      @apply com-mt-0 com-text-gray-400 com-line-clamp-1;
+    }
+
+    nb-icon {
+      @apply com-text-sm;
     }
   }
 }
 
-.home-builds-all {
-  color: rgba($neon-blue, 0.95);
-  display: block;
-  font-size: $fs-h5;
-  padding: $space-12 0 $space-8;
+.home-builds-view-all {
+  color: #0095fa;
+}
+
+.home-share-project {
+  background-color: #0095fa;
 }

@@ -19,7 +19,14 @@ export class HomepageBuildsComponent implements OnInit {
     }
   }
 
-  getBuilds() {
+  getBuilds(): void {
     this.homeService.communityBuilds().subscribe((value) => (this.builds = value.community_builds.slice(0, 3)));
+  }
+
+  getDescription(build: ICommunityBuild): string {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = build.description;
+    const htmlContent = txt.value;
+    return htmlContent.replace(/<[^>]+>/g, '');
   }
 }

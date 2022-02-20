@@ -1,16 +1,43 @@
-<div class="com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900">Builds - Share all your projects</div>
-<div class="com-text-base com-leading-relaxed com-text-gray-500 com-mb-4">
-  Find what others are building, collaborate on your next big thing
+<h2 class="heading">Builds - Share all your projects</h2>
+<h3 class="subheading">Find what others are building, collaborate on your next big thing</h3>
+
+<div class="home-builds-list">
+  <ng-container *ngIf="builds.length > 0; else loading">
+    <a *ngFor="let build of builds" [routerLink]="['/builds', build.slug]">
+      <nb-card>
+        <nb-card-body>
+          <p class="fs-p1 name">{{ build.name }}</p>
+          <p class="fs-p3 description">{{ getDescription(build) }}</p>
+          <div class="com-flex com-justify-between com-items-center com-gap-2">
+            <app-user-profile-card-small [user]="build.user"></app-user-profile-card-small>
+            <div class="com-flex com-gap-2 com-text-sm com-text-gray-400">
+              <span class="com-flex com-items-center com-gap-1">
+                <nb-icon icon="heart"></nb-icon>
+                {{ build.votes_count }}
+              </span>
+              <span class="com-flex com-items-center com-gap-1">
+                <nb-icon icon="message-circle"></nb-icon>
+                {{ build.chat_messages_count }}
+              </span>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </a>
+  </ng-container>
+  <ng-template #loading>
+    <nb-card *ngFor="let _ of [].constructor(3)">
+      <nb-card-body>
+        <app-skeleton-text [rows]="3"></app-skeleton-text>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
 </div>
 
-<nb-list *ngIf="builds.length === 0" class="home-builds-list">
-  <nb-list-item *ngFor="let _ of [].constructor(3)">
-    <app-skeleton-text [rows]="4"></app-skeleton-text>
-  </nb-list-item>
-</nb-list>
-<nb-list *ngIf="builds.length > 0" class="home-builds-list">
-  <nb-list-item *ngFor="let build of builds" class="home-builds-list-item">
-    <app-homepage-builds-card [build]="build" class="com-w-full"></app-homepage-builds-card>
-  </nb-list-item>
-</nb-list>
-<a *ngIf="builds.length > 0" [routerLink]="['/builds']" class="home-builds-all text-center">View all</a>
+<div class="com-flex com-gap-4 com-mt-6">
+  <button class="home-builds-view-all" ghost nbButton shape="semi-round" status="info">View all</button>
+  <button class="home-share-project" nbButton shape="semi-round" status="info">
+    Share your project
+    <nb-icon icon="arrow-forward"></nb-icon>
+  </button>
+</div>

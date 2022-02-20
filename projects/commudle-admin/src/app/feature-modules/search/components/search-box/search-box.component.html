@@ -1,16 +1,23 @@
-<nb-form-field>
+<nb-form-field [ngClass]="{ hide: !searchStatus && !overrideSearchStatus }">
   <nb-icon icon="search-outline" nbPrefix></nb-icon>
   <input
     #searchInput
+    (keyup.enter)="onSubmit()"
+    [fieldSize]="overrideSearchStatus ? 'giant' : 'medium'"
     [formControl]="inputFormControl"
-    [nbAutocomplete]="autoComplete"
+    [nbAutocomplete]="showSuggestions ? autoComplete : loading"
+    [ngClass]="{ giant: overrideSearchStatus }"
     [overlayOffset]="0"
+    [shape]="shape"
+    class="main-search-bar"
     fullWidth
     nbInput
-    placeholder="Start typing..."
+    placeholder="Find developers, communities, projects or tutorials"
     type="text"
   />
 </nb-form-field>
+
+<nb-autocomplete #loading></nb-autocomplete>
 
 <nb-autocomplete
   #autoComplete
@@ -34,7 +41,7 @@
   </nb-option-group>
   <nb-option
     *ngIf="total > 0"
-    [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value }"
+    [value]="{ type: 'all', name: 'See all results', query: inputFormControl.value?.name || inputFormControl.value }"
     class="com-justify-center com-items-center com-gap-2"
   >
     Show all results

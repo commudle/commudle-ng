@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NbButtonModule, NbCardModule, NbIconModule, NbListModule } from '@nebular/theme';
+import { PublicCommunityModule } from 'projects/commudle-admin/src/app/feature-modules/public-community/public-community.module';
+import { SearchModule } from 'projects/commudle-admin/src/app/feature-modules/search/search.module';
 import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
-import { HomepageBuildsCardComponent } from './components/homepage-builds/homepage-builds-card/homepage-builds-card.component';
 import { HomepageBuildsComponent } from './components/homepage-builds/homepage-builds.component';
 import { HomepageEventsCardComponent } from './components/homepage-events/homepage-events-card/homepage-events-card.component';
 import { HomepageEventsComponent } from './components/homepage-events/homepage-events.component';
@@ -20,7 +21,6 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     HomepageEventsComponent,
     HomepageEventsCardComponent,
     HomepageBuildsComponent,
-    HomepageBuildsCardComponent,
     HomepageLabsComponent,
     HomepageFeaturesComponent,
     HomepageFeaturedCommunitiesComponent,
@@ -31,6 +31,8 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     SkeletonScreensModule,
     SharedComponentsModule,
     SharedDirectivesModule,
+    PublicCommunityModule,
+    SearchModule,
     NbButtonModule,
     NbCardModule,
     NbIconModule,

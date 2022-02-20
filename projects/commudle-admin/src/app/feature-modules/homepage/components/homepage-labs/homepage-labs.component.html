@@ -1,17 +1,42 @@
-<div class="com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900">Labs - Step by step tutorials</div>
-<div class="com-text-base com-leading-relaxed com-text-gray-500 com-mb-4">
-  It’s easy to share anything new you learn in tech, just publish a lab
+<h2 class="heading">Labs - Step by step tutorials</h2>
+<h3 class="subheading">It’s easy to share anything new you learn in tech, just publish a lab</h3>
+
+<div class="home-labs-list">
+  <ng-container *ngIf="labs.length > 0; else loading">
+    <a *ngFor="let lab of labs" [routerLink]="['/labs', lab.slug]">
+      <nb-card>
+        <nb-card-body>
+          <p class="fs-p1 name">{{ lab.name }}</p>
+          <div class="com-flex com-justify-between com-items-center com-gap-2">
+            <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
+            <div class="com-flex com-gap-2 com-text-sm com-text-gray-400">
+              <span class="com-flex com-items-center com-gap-1">
+                <nb-icon icon="heart"></nb-icon>
+                {{ lab.votes_count }}
+              </span>
+              <span class="com-flex com-items-center com-gap-1">
+                <nb-icon icon="eye"></nb-icon>
+                {{ lab.visits }}
+              </span>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </a>
+  </ng-container>
+  <ng-template #loading>
+    <nb-card *ngFor="let _ of [].constructor(3)">
+      <nb-card-body>
+        <app-skeleton-text [rows]="3"></app-skeleton-text>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
 </div>
 
-<nb-list *ngIf="labs.length === 0" class="home-labs-list">
-  <nb-list-item *ngFor="let _ of [].constructor(4)">
-    <app-skeleton-text [rows]="2"></app-skeleton-text>
-  </nb-list-item>
-</nb-list>
-<nb-list *ngIf="labs.length > 0" class="home-labs-list">
-  <nb-list-item *ngFor="let lab of labs">
-    <a [routerLink]="['/labs', lab.slug]" class="home-lab-name com-line-clamp-2">{{ lab.name }}</a>
-    <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
-  </nb-list-item>
-</nb-list>
-<a *ngIf="labs.length > 0" [routerLink]="['/labs']" class="home-labs-all text-center">View all</a>
+<div class="com-flex com-gap-4 com-mt-6">
+  <button class="home-labs-view-all" ghost nbButton shape="semi-round" status="info">View all</button>
+  <button class="home-write-tutorial" nbButton shape="semi-round" status="info">
+    Write a tutorial
+    <nb-icon icon="arrow-forward"></nb-icon>
+  </button>
+</div>

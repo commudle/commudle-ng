@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   getPicture,
   getTitle,
   navigate,
 } from 'projects/commudle-admin/src/app/feature-modules/search/components/utils/search.utils';
+import { SearchStatusService } from 'projects/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'projects/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { ISearch } from 'projects/shared-models/search.model';
 import { SeoService } from 'projects/shared-services/seo.service';
@@ -34,16 +35,20 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private seoService: SeoService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private searchStatusService: SearchStatusService,
   ) {}
 
   ngOnInit(): void {
     this.seoService.noIndex(true);
+    this.searchStatusService.setSearchStatus(false);
 
     this.getData();
   }
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
+    this.searchStatusService.setSearchStatus(true);
   }
 
   getData() {
