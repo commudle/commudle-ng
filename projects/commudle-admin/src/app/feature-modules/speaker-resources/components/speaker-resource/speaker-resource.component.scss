@@ -47,6 +47,17 @@
         }
       }
     }
+
+    .speaker-resource-discussion {
+      nb-card-body {
+        overflow: initial;
+        padding: 0;
+
+        app-messages {
+          @apply com-block com-h-96;
+        }
+      }
+    }
   }
 }
 

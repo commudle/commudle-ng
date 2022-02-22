@@ -14,16 +14,7 @@ p {
     width: 100%;
 
     .avatar {
-      border-radius: $border-50;
-      max-height: 32px;
-      max-width: 32px;
-      min-width: 32px;
-      overflow: hidden;
-
-      img {
-        height: 100%;
-        width: 100%;
-      }
+      @apply com-h-8 com-w-8 com-rounded-full com-object-cover com-object-center;
     }
 
     .user-container {
@@ -47,6 +38,10 @@ p {
           height: 12px;
           margin-left: $space-4;
           width: 12px;
+        }
+
+        .time {
+          @apply com-ml-2 com-text-xs com-text-gray-500;
         }
       }
 

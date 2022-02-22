@@ -4,7 +4,7 @@
   </button>
   <div #messagesList (scroll)="onScroll()" [ngClass]="{ compressed: showMessagesLoader }" class="messages-list">
     <app-message
-      #message
+      #messageElement
       (sendDelete)="emitDelete($event)"
       (sendFlag)="emitFlag($event)"
       (sendReply)="emitReply(message.id, $event)"

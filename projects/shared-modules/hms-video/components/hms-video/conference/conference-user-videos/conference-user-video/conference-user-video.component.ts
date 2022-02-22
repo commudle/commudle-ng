@@ -32,6 +32,7 @@ import { LibToastLogService } from 'projects/shared-services/lib-toastlog.servic
 export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Input() peer: HMSPeer;
   @Input() screenShare: boolean;
+  @Input() isSpeaker: boolean;
 
   localPeer: HMSPeer;
 

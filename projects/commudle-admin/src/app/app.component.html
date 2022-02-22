@@ -24,64 +24,6 @@
   <nb-layout-footer *appBreakpoints="'<=md'" fixed>
     <app-navbar-menu></app-navbar-menu>
   </nb-layout-footer>
-
-  <!--  <div *ngIf="footerStatus" class="footer">-->
-  <!--    <div class="page-links d-flex flex-column">-->
-  <!--      <div [routerLink]="['/']" class="logo">-->
-  <!--        <img alt="Commudle" class="clickable" src="/assets/images/commudle-logo128.png" title="Commudle" />-->
-  <!--      </div>-->
-
-  <!--      <div class="links">-->
-  <!--        <div class="one">-->
-  <!--          <a [routerLink]="['/']">HOME</a>-->
-  <!--          <a [routerLink]="['/about']">ABOUT</a>-->
-  <!--          <a [routerLink]="['/features']">FEATURES</a>-->
-  <!--          &lt;!&ndash; <a [routerLink]="['/pricing']">PRICING</a> &ndash;&gt;-->
-  <!--        </div>-->
-
-  <!--        <div class="two">-->
-  <!--          <a [routerLink]="['/communities']">ALL COMMUNITIES</a>-->
-  <!--          <a [routerLink]="['/labs']">LABS</a>-->
-  <!--          <a [routerLink]="['/builds']">BUILDS</a>-->
-  <!--        </div>-->
-
-  <!--        <div class="three">-->
-  <!--          <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>-->
-  <!--          <a [routerLink]="['/policies/terms-and-conditions']">TERMS & CONDITIONS</a>-->
-  <!--        </div>-->
-
-  <!--        <div class="four">-->
-  <!--          <a [routerLink]="['/about']">FAQ</a>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-
-  <!--    <div class="social-links d-flex flex-column-reverse align-items-center">-->
-  <!--      <hr />-->
-
-  <!--      <div class="links">-->
-  <!--        <a href="https://twitter.com/commudle" target="_blank">-->
-  <!--          <nb-icon icon="twitter"></nb-icon>-->
-  <!--        </a>-->
-  <!--        <a href="https://linkedin.com/company/commudle" target="_blank">-->
-  <!--          <nb-icon icon="linkedin"></nb-icon>-->
-  <!--        </a>-->
-  <!--        <a href="https://facebook.com/commudle" target="_blank">-->
-  <!--          <nb-icon icon="facebook"></nb-icon>-->
-  <!--        </a>-->
-  <!--        <a href="https://github.com/commudle/commudle-ng" target="_blank">-->
-  <!--          <nb-icon icon="github"></nb-icon>-->
-  <!--        </a>-->
-  <!--      </div>-->
-
-  <!--      <div class="tech-stack text-center">-->
-  <!--        <p>Made with Angular, Ruby on Rails, Postgres, Redis and Love</p>-->
-  <!--      </div>-->
-  <!--    </div>-->
-
-  <!--    <div class="ellipse-large"></div>-->
-  <!--    <div class="ellipse-small"></div>-->
-  <!--  </div>-->
 </nb-layout>
 
 <app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>

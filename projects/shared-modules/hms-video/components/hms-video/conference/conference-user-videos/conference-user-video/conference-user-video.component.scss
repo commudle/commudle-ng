@@ -5,6 +5,42 @@
   position: relative;
   width: 100%;
 
+  .audio-level {
+    @apply com-absolute com-top-6 com-right-6 com-h-8 com-w-8 com-rounded-full com-bg-blue-600;
+
+    @keyframes sound {
+      0% {
+        height: 3px;
+      }
+      100% {
+        height: 24px;
+      }
+    }
+
+    .audio-level-bar {
+      animation: sound 0ms -800ms linear infinite alternate;
+      background: white;
+      bottom: 15%;
+      position: absolute;
+      width: 4px;
+
+      &:nth-child(1) {
+        animation-duration: 474ms;
+        left: calc(50% - 8px);
+      }
+
+      &:nth-child(2) {
+        animation-duration: 407ms;
+        left: 48%;
+      }
+
+      &:nth-child(3) {
+        animation-duration: 340ms;
+        left: calc(50% + 6px);
+      }
+    }
+  }
+
   &:hover {
     .video-controls {
       opacity: 1;
@@ -46,20 +82,9 @@
     }
 
     .user-avatar {
-      border-radius: $border-50;
-      height: 50px;
-      left: 50%;
-      overflow: hidden;
-      position: absolute;
-      top: 50%;
       transform: translate(-50%, -50%);
-      width: 50px;
-
-      img {
-        height: 100%;
-        object-fit: cover;
-        width: 100%;
-      }
+      @apply com-h-16 com-w-16 com-rounded-full com-object-cover;
+      @apply com-absolute com-left-1/2 com-top-1/2 com-overflow-hidden;
     }
   }
 

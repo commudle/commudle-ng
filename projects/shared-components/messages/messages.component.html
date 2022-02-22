@@ -1,16 +1,22 @@
-<div *ngIf="currentUser" class="messages-container">
+<div class="messages-container">
   <app-messages-list
     (getPreviousMessages)="getDiscussionMessages()"
     (sendDelete)="sendDelete($event)"
     (sendFlag)="sendFlag($event)"
     (sendReply)="sendReply($event)"
+    *ngIf="messages.length > 0; else noMessages"
     [allActions]="allActions"
     [currentUser]="currentUser"
     [messages]="messages"
     [permittedActions]="permittedActions"
     [showMessagesLoader]="showMessagesLoader"
   ></app-messages-list>
-  <div class="send-message">
+  <ng-template #noMessages>
+    <div class="no-messages">
+      <p>Be the first to post a message!</p>
+    </div>
+  </ng-template>
+  <div *ngIf="currentUser; else noUser" class="send-message">
     <emoji-mart
       (emojiSelect)="addEmoji($event)"
       [ngClass]="{ active: showEmojiPicker }"
@@ -40,4 +46,11 @@
       </nb-form-field>
     </form>
   </div>
+
+  <ng-template #noUser>
+    <button (click)="login()" fullWidth nbButton status="info">
+      <nb-icon icon="person-outline"></nb-icon>
+      Login to comment
+    </button>
+  </ng-template>
 </div>
