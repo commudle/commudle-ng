@@ -1,7 +1,4 @@
 <div class="user-video-container">
-  <div *ngIf="isSpeaker" class="audio-level">
-    <div *ngFor="let _ of [].constructor(3)" class="audio-level-bar"></div>
-  </div>
   <div
     *ngIf="
       !peer?.isLocal &&
@@ -58,6 +55,7 @@
     </button>
   </div>
   <div class="user-video">
+    <div *ngIf="isSpeaker" class="user-video-overlay"></div>
     <video
       #videoElement
       [autoplay]="true"
