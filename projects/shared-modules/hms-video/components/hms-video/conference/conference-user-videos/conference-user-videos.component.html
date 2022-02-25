@@ -18,7 +18,11 @@
   <div class="user-videos d-flex justify-content-center flex-wrap">
     <ng-container *ngFor="let peer of peers">
       <div class="user-video">
-        <app-conference-user-video [peer]="peer" [screenShare]="false"></app-conference-user-video>
+        <app-conference-user-video
+          [isSpeaker]="activeSpeaker?.id === peer.id"
+          [peer]="peer"
+          [screenShare]="false"
+        ></app-conference-user-video>
       </div>
     </ng-container>
   </div>

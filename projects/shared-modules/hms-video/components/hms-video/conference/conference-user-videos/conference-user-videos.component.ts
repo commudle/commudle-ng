@@ -1,4 +1,4 @@
-import { HMSPeer, selectPeers, selectPeerScreenSharing } from '@100mslive/hms-video-store';
+import { HMSPeer, selectDominantSpeaker, selectPeers, selectPeerScreenSharing } from '@100mslive/hms-video-store';
 import { Component, OnInit } from '@angular/core';
 import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 
@@ -10,6 +10,7 @@ import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 export class ConferenceUserVideosComponent implements OnInit {
   peers: HMSPeer[] = [];
   peerScreenShare: HMSPeer;
+  activeSpeaker: HMSPeer;
   showAlert = true;
 
   constructor() {}
@@ -17,6 +18,7 @@ export class ConferenceUserVideosComponent implements OnInit {
   ngOnInit() {
     hmsStore.subscribe(this.selectPeers, selectPeers);
     hmsStore.subscribe(this.selectPeerScreenSharing, selectPeerScreenSharing);
+    hmsStore.subscribe(this.selectDominantSpeaker, selectDominantSpeaker);
   }
 
   selectPeers = (peers: HMSPeer[]) => {
@@ -26,5 +28,9 @@ export class ConferenceUserVideosComponent implements OnInit {
 
   selectPeerScreenSharing = (peer: HMSPeer) => {
     this.peerScreenShare = peer;
+  };
+
+  selectDominantSpeaker = (peer: HMSPeer, _prev: HMSPeer) => {
+    this.activeSpeaker = peer;
   };
 }

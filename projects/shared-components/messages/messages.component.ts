@@ -49,7 +49,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
 
-  @ViewChild('messageInput') messageInput: ElementRef<HTMLInputElement>;
+  @ViewChild('messageInput') messageInputRef: ElementRef<HTMLInputElement>;
 
   subscriptions: Subscription[] = [];
 
@@ -179,8 +179,12 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
 
   addEmoji(event): void {
     this.messageForm.patchValue({
-      content: (this.messageForm.get('content').value || '').concat(`${event.emoji.native}`),
+      content: (this.messageForm.get('content').value || '').concat(event.emoji.native),
     });
-    this.messageInput.nativeElement.focus();
+    this.messageInputRef.nativeElement.focus();
+  }
+
+  login() {
+    window.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
   }
 }

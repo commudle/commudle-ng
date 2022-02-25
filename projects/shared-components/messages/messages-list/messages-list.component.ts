@@ -35,7 +35,7 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
   isNearBottom: boolean;
 
   @ViewChild('messagesList') messagesList: ElementRef<HTMLDivElement>;
-  @ViewChildren('message') messageElements: QueryList<any>;
+  @ViewChildren('messageElement') messageElements: QueryList<any>;
 
   constructor() {}
 

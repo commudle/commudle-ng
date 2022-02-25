@@ -55,6 +55,7 @@
     </button>
   </div>
   <div class="user-video">
+    <div *ngIf="isSpeaker" class="user-video-overlay"></div>
     <video
       #videoElement
       [autoplay]="true"
@@ -62,9 +63,13 @@
       [ngClass]="{ hidden: !isVideoEnabled && !screenShare, 'screen-share': screenShare }"
       playsinline
     ></video>
-    <div *ngIf="metaData && !isVideoEnabled && !screenShare" class="user-avatar">
-      <img [alt]="metaData.name" [src]="metaData.avatar" [title]="metaData.name" />
-    </div>
+    <img
+      *ngIf="metaData && !isVideoEnabled && !screenShare"
+      [alt]="metaData.name"
+      [src]="metaData.avatar"
+      [title]="metaData.name"
+      class="user-avatar"
+    />
   </div>
   <a *ngIf="metaData" [routerLink]="['/users', metaData?.username]" class="user-name" target="_blank">
     <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
