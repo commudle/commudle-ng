@@ -1,6 +1,17 @@
 .messages-container {
   height: 100%;
 
+  .no-messages {
+    align-items: center;
+    display: flex;
+    height: calc(100% - 40px);
+    justify-content: center;
+
+    p {
+      @apply com-text-2xl;
+    }
+  }
+
   .send-message {
     bottom: 0;
     position: sticky;

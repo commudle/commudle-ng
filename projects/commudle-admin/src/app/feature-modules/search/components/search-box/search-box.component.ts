@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -20,6 +20,8 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   @Input() overrideSearchStatus = false;
   @Input() showSuggestions = true;
   @Input() shape: 'round' | 'rectangle' | 'semi-round';
+
+  @HostBinding('class') hostClass = '';
 
   inputFormControl: FormControl;
   total = -1;
@@ -91,5 +93,17 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/search'], {
       queryParams: { q: this.inputFormControl.value?.name || this.inputFormControl.value },
     });
+  }
+
+  onFocus() {
+    if (this.showSuggestions) {
+      this.hostClass = 'full-width';
+    }
+  }
+
+  onBlur() {
+    if (this.showSuggestions) {
+      this.hostClass = '';
+    }
   }
 }

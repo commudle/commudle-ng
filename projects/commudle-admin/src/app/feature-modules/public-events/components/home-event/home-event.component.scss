@@ -22,6 +22,7 @@
       .home-event-discussion {
         nb-card-body {
           @apply com-p-0;
+          overflow: initial;
         }
       }
     }
