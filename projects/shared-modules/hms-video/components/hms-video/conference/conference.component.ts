@@ -163,6 +163,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
 
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
 
+      this.receiveNotifications();
       this.receiveChannelData();
     }
   };
@@ -430,7 +431,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
             case 1003:
             // ICE Connection Failed due to network issue
             case 4005:
-              if (window.confirm('Websocket disconnected due to network issues. Do you want to reconnect?')) {
+              if (window.confirm('Websocket disconnected due to network issues. Do you want to reload the page?')) {
                 window.location.reload();
               }
               break;
