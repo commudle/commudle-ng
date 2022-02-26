@@ -54,8 +54,7 @@
       <nb-icon icon="log-out"></nb-icon>
     </button>
   </div>
-  <div class="user-video">
-    <div *ngIf="isSpeaker" class="user-video-overlay"></div>
+  <div [ngClass]="{ speaker: isSpeaker }" class="user-video">
     <video
       #videoElement
       [autoplay]="true"
