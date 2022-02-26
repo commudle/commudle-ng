@@ -61,12 +61,14 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
 
   joinedAsHost: boolean;
 
+  isConnectedToRoom: boolean;
   isOnStage: boolean;
   enableHmsForStage: boolean;
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
   isRecording: boolean;
   isStreaming: boolean;
+  showReconnecting = false;
 
   selectedAudioInputDeviceId: string;
   selectedVideoDeviceId: string;
@@ -131,6 +133,8 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   subscribeToListeners = (status: boolean) => {
+    this.isConnectedToRoom = status;
+
     if (status) {
       hmsStore.subscribe((peers: HMSPeer[]) => {
         this.peers = peers;
@@ -424,6 +428,12 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
       }
 
       switch (notification.type) {
+        case HMSNotificationTypes.RECONNECTING:
+          this.showReconnecting = true;
+          break;
+        case HMSNotificationTypes.RECONNECTED:
+          this.showReconnecting = false;
+          break;
         case HMSNotificationTypes.ERROR:
           const data: HMSException = notification.data;
           switch (data.code) {
@@ -431,9 +441,7 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
             case 1003:
             // ICE Connection Failed due to network issue
             case 4005:
-              if (window.confirm('Websocket disconnected due to network issues. Do you want to reload the page?')) {
-                window.location.reload();
-              }
+              this.hmsVideoStateService.setState(EHmsStates.DISCONNECTED);
               break;
           }
           break;

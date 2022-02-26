@@ -26,5 +26,9 @@
     <nb-alert *ngSwitchCase="EHmsStates.LEFT" accent="info">You have left the session!</nb-alert>
     <!-- Session end -->
     <nb-alert *ngSwitchCase="EHmsStates.ENDED" accent="info">This session has completed!</nb-alert>
+    <!-- Disconnected -->
+    <nb-alert *ngSwitchCase="EHmsStates.DISCONNECTED" status="danger">
+      You have been disconnected from the session! Please refresh the page to reconnect.
+    </nb-alert>
   </div>
 </div>
