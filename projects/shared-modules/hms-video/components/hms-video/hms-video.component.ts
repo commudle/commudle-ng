@@ -112,4 +112,8 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
       }),
     );
   }
+
+  reload() {
+    window.location.reload();
+  }
 }
