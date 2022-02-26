@@ -16,6 +16,11 @@
       height: 40px;
     }
   }
+
+  .reconnecting {
+    transform: translateX(-50%);
+    @apply com-absolute com-flex com-flex-row com-items-center com-top-2 com-left-1/2;
+  }
 }
 
 @media all and (max-width: $tab-width) {

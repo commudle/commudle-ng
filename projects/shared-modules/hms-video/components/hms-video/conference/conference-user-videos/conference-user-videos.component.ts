@@ -9,6 +9,7 @@ import { hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 })
 export class ConferenceUserVideosComponent implements OnInit {
   peers: HMSPeer[] = [];
+  allPeers: HMSPeer[] = [];
   peerScreenShare: HMSPeer;
   activeSpeaker: HMSPeer;
   showAlert = true;
@@ -16,21 +17,19 @@ export class ConferenceUserVideosComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.subscribeToPeers();
+  }
+
+  subscribeToPeers() {
     hmsStore.subscribe(this.selectPeers, selectPeers);
-    hmsStore.subscribe(this.selectPeerScreenSharing, selectPeerScreenSharing);
-    hmsStore.subscribe(this.selectDominantSpeaker, selectDominantSpeaker);
+    hmsStore.subscribe((peer: HMSPeer) => (this.peerScreenShare = peer), selectPeerScreenSharing);
+    hmsStore.subscribe((peer: HMSPeer, _prev: HMSPeer) => (this.activeSpeaker = peer), selectDominantSpeaker);
   }
 
   selectPeers = (peers: HMSPeer[]) => {
     // Peers with video
     this.peers = peers.filter((peer: HMSPeer) => peer.videoTrack);
-  };
-
-  selectPeerScreenSharing = (peer: HMSPeer) => {
-    this.peerScreenShare = peer;
-  };
-
-  selectDominantSpeaker = (peer: HMSPeer, _prev: HMSPeer) => {
-    this.activeSpeaker = peer;
+    // All peers
+    this.allPeers = peers;
   };
 }
