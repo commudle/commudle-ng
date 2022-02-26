@@ -8,6 +8,11 @@
   .user-videos {
     height: 100%;
     width: 100%;
+
+    .user-video {
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 
   &.screen-share {

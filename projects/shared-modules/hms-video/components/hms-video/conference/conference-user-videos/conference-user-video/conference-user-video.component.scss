@@ -27,18 +27,15 @@
   }
 
   .user-video {
+    border: 2px solid $black;
+    border-radius: 10px;
     height: 100%;
+    overflow: hidden;
     position: relative;
     width: 100%;
 
-    .user-video-overlay {
-      box-shadow: inset 0 0 20px 2px #39ec89;
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 2;
+    &.speaker {
+      border: 2px solid #21a15d;
     }
 
     .hidden {

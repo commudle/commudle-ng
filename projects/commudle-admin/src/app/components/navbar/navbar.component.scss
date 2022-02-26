@@ -3,7 +3,7 @@
 }
 
 .home-navbar {
-  @apply com-container com-grid com-grid-cols-4 md:com-grid-cols-3 com-items-center com-gap-2;
+  @apply com-w-full com-grid com-grid-cols-4 md:com-grid-cols-3 com-items-center com-gap-2;
 
   div > button {
     @apply com-p-2 com-h-10;
