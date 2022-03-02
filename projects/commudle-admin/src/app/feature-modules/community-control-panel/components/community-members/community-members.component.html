@@ -1,56 +1,97 @@
 <div class="community-members">
-
   <form [formGroup]="searchForm">
     <div class="name-filter">
-
       <nb-form-field>
-        <nb-icon nbPrefix icon="search"></nb-icon>
+        <nb-icon icon="search" nbPrefix></nb-icon>
         <input
+          [disabled]="isLoading"
+          fieldSize="small"
+          formControlName="name"
+          fullWidth
           nbInput
           placeholder="Search by Name, Tagline or About Me..."
           type="text"
-          fullWidth
-          fieldSize="small"
-          formControlName="name"
-          [disabled]="isLoading"
         />
       </nb-form-field>
     </div>
   </form>
 
   <div class="pages">
-    <p class="clickable" (click)="getPageData(page - 1)" *ngIf="page>1">
+    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
       <nb-icon icon="arrow-ios-back"></nb-icon>
     </p>
-    <div *ngFor="let p of [page-2, page-1, page, page+1, page+2];">
-      <p *ngIf="p > 0 && (count * p < total)"  class="clickable" (click)="getPageData(p)" [ngClass]="{'selected-page': (this.page === p)}">
-        {{p}}
+    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
+      <p
+        (click)="getPageData(p)"
+        *ngIf="p > 0 && count * p < total"
+        [ngClass]="{ 'selected-page': this.page === p }"
+        class="clickable"
+      >
+        {{ p }}
       </p>
     </div>
 
-    <p class="clickable" (click)="getPageData(page + 1)" *ngIf="(count * page < total)">
+    <p (click)="getPageData(page + 1)" *ngIf="count * page < total" class="clickable">
       <nb-icon icon="arrow-ios-forward"></nb-icon>
     </p>
   </div>
-  <div class="members-list" *ngIf="!isLoading">
-    <div class="member" *ngFor="let userRole of userRolesUsers">
-      <app-badge *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER" [text]="'Organizer'" [fontSize]="'small'" [color]="'blue'"></app-badge>
-      <app-user-profile-horizontal [user]="userRole.user" [aboutMe]="true" [socialMediaLinks]="true"></app-user-profile-horizontal>
+  <div *ngIf="!isLoading" class="members-list">
+    <div *ngFor="let userRole of userRolesUsers" class="member">
+      <app-badge
+        *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
+        [color]="'blue'"
+        [fontSize]="'small'"
+        [text]="'Organizer'"
+      ></app-badge>
+      <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
+        <app-user-profile-horizontal
+          [aboutMe]="true"
+          [socialMediaLinks]="true"
+          [user]="userRole.user"
+        ></app-user-profile-horizontal>
+        <button (click)="openDialog(removeUserDialog, userRole.user)" nbButton outline size="tiny" status="danger">
+          Remove
+        </button>
+      </div>
     </div>
   </div>
-  <div class="pages" *ngIf="total > 25 && !isLoading">
-    <p class="clickable" (click)="getPageData(page - 1)" *ngIf="page>1">
+  <div *ngIf="total > 25 && !isLoading" class="pages">
+    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
       <nb-icon icon="arrow-ios-back"></nb-icon>
     </p>
-    <div *ngFor="let p of [page-2, page-1, page, page+1, page+2];">
-      <p *ngIf="p > 0 && (count * p < total)"  class="clickable" (click)="getPageData(p)" [ngClass]="{'selected-page': (this.page === p)}">
-        {{p}}
+    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
+      <p
+        (click)="getPageData(p)"
+        *ngIf="p > 0 && count * p < total"
+        [ngClass]="{ 'selected-page': this.page === p }"
+        class="clickable"
+      >
+        {{ p }}
       </p>
     </div>
 
-    <p class="clickable" (click)="getPageData(page + 1)">
+    <p (click)="getPageData(page + 1)" class="clickable">
       <nb-icon icon="arrow-ios-forward"></nb-icon>
     </p>
   </div>
-
 </div>
+
+<ng-template #removeUserDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      Confirmation
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        Are you sure you want to remove <em>{{ data.user.name }}</em> from the community?
+      </p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="removeUser(data.user.id); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
