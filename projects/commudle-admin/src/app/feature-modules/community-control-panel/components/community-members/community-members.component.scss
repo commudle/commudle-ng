@@ -1,11 +1,14 @@
 .community-members {
   padding: 1.5rem;
+
   .pages {
     display: flex;
     justify-content: center;
     margin: 1rem;
+
     p {
       margin: 0 0.5rem;
+
       nb-icon {
         font-size: 0.8rem;
       }
@@ -15,23 +18,21 @@
       color: blue;
     }
   }
+
   .members-list {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-around;
     padding: 1rem 0.5rem;
 
     .member {
-      width: 100%;
-      max-width: 80vw;
       margin: 0.5rem;
-      &:hover {
-        background-color: #d3d3d347;
-      }
+      max-width: 80vw;
+      width: 100%;
 
       @media screen and (min-width: 800px) {
-        width: 30%;
         max-width: 25vw;
+        width: 30%;
       }
     }
   }
