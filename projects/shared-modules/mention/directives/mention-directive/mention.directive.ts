@@ -93,6 +93,12 @@ export class MentionDirective {
             this.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
           }
 
+          /*
+          when pressing up or down arrow key the cursor in the text area should not move anywhere but the item selected should scroll,
+          to do that preventDefault was used but once it is activated the arrow keys are disabled permanently in the text area. This needs
+          some discussion.
+          */
+
           event.preventDefault();
 
           break;
