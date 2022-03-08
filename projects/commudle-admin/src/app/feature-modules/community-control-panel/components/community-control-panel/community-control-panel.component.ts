@@ -36,6 +36,10 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
       title: 'Edit Details',
       route: `./edit`,
     },
+    {
+      title: 'Blocked Users',
+      route: `./blocked-users`,
+    },
   ];
 
   constructor(

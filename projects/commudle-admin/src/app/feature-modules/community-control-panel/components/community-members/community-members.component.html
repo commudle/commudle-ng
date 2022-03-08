@@ -49,8 +49,15 @@
           [socialMediaLinks]="true"
           [user]="userRole.user"
         ></app-user-profile-horizontal>
-        <button (click)="openDialog(removeUserDialog, userRole.user)" nbButton outline size="tiny" status="danger">
-          Remove
+        <button
+          (click)="activeContextMenuUser = userRole.user"
+          [nbContextMenu]="contextMenuItems"
+          class="context-menu"
+          ghost
+          nbButton
+          nbContextMenuTag="community-member-context-menu"
+        >
+          <nb-icon icon="more-vertical"></nb-icon>
         </button>
       </div>
     </div>
@@ -92,6 +99,26 @@
     <nb-card-footer class="com-flex com-items-center com-justify-between">
       <button (click)="ref.close()" ghost nbButton status="danger">No</button>
       <button (click)="removeUser(data.user.id); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #blockUserDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      Confirmation
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        Are you sure you want to block <em>{{ data.user.name }}</em> from the community?
+      </p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="blockUser(data.user.id); ref.close()" nbButton status="success">Yes</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

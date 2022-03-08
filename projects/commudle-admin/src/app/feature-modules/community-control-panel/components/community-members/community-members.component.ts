@@ -1,12 +1,12 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbMenuService, NbToastrService } from '@nebular/theme';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
 import { IUser } from 'projects/shared-models/user.model';
 import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-community-members',
@@ -23,9 +23,22 @@ export class CommunityMembersComponent implements OnInit {
   isLoading = false;
   EUserRoles = EUserRoles;
 
+  contextMenuItems = [
+    {
+      title: 'Remove',
+    },
+    {
+      title: 'Block',
+    },
+  ];
+  activeContextMenuUser: IUser;
+
   searchForm = this.fb.group({
     name: [''],
   });
+
+  @ViewChild('removeUserDialog', { static: true }) removeUserDialog: TemplateRef<any>;
+  @ViewChild('blockUserDialog', { static: true }) blockUserDialog: TemplateRef<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,12 +46,14 @@ export class CommunityMembersComponent implements OnInit {
     private fb: FormBuilder,
     private dialogService: NbDialogService,
     private toastrService: NbToastrService,
+    private menuService: NbMenuService,
   ) {}
 
   ngOnInit() {
     this.communtyId = this.activatedRoute.parent.snapshot.params.community_id;
     this.getMembers();
     this.search();
+    this.handleContextMenu();
   }
 
   getMembers() {
@@ -81,9 +96,35 @@ export class CommunityMembersComponent implements OnInit {
     this.dialogService.open(template, { context: { user } });
   }
 
+  handleContextMenu(): void {
+    this.menuService
+      .onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'community-member-context-menu'),
+        map(({ item: title }) => title),
+      )
+      .subscribe((menuItem) => {
+        switch (menuItem.title) {
+          case 'Remove':
+            this.openDialog(this.removeUserDialog, this.activeContextMenuUser);
+            break;
+          case 'Block':
+            this.openDialog(this.blockUserDialog, this.activeContextMenuUser);
+            break;
+        }
+      });
+  }
+
   removeUser(userId) {
     this.userRolesUsersService.removeUser(userId, this.communtyId).subscribe(() => {
-      this.toastrService.success('User removed from community');
+      this.toastrService.success('User removed from community', 'Success');
+      this.getMembers();
+    });
+  }
+
+  blockUser(userId) {
+    this.userRolesUsersService.blockUser(userId, this.communtyId).subscribe(() => {
+      this.toastrService.success('User blocked from community', 'Success');
       this.getMembers();
     });
   }

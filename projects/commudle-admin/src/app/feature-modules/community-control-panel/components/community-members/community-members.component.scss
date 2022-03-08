@@ -30,6 +30,16 @@
       max-width: 80vw;
       width: 100%;
 
+      .context-menu {
+        @apply com-invisible;
+      }
+
+      &:hover {
+        .context-menu {
+          @apply com-visible;
+        }
+      }
+
       @media screen and (min-width: 800px) {
         max-width: 25vw;
         width: 30%;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
+import { CommunityBlockedUsersComponent } from './components/community-blocked-users/community-blocked-users.component';
 import { CommunityControlPanelComponent } from './components/community-control-panel/community-control-panel.component';
 import { CommunityCreateComponent } from './components/community-create/community-create.component';
 import { CommunityEditDetailsComponent } from './components/community-edit-details/community-edit-details.component';
@@ -46,6 +47,10 @@ const routes = [
       {
         path: 'team',
         component: CommunityTeamComponent,
+      },
+      {
+        path: 'blocked-users',
+        component: CommunityBlockedUsersComponent,
       },
     ],
   },

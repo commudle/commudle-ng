@@ -1,0 +1,8 @@
+<div class="com-mt-8 com-grid com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-4 com-gap-4">
+  <app-user-profile-horizontal
+    *ngFor="let userRole of userRolesUsers"
+    [aboutMe]="true"
+    [socialMediaLinks]="true"
+    [user]="userRole.user"
+  ></app-user-profile-horizontal>
+</div>
