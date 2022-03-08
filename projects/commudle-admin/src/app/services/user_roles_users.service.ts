@@ -49,6 +49,14 @@ export class UserRolesUsersService {
     );
   }
 
+  getCommunityBlockedUsers(communityId): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('community_id', communityId);
+    return this.http.get<IUserRolesUsers>(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_BLOCKED_USERS),
+      { params },
+    );
+  }
+
   createUserRolesUser(userRolesUserData): Observable<IUserRolesUser> {
     return this.http.post<IUserRolesUser>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
       user_roles_user: userRolesUserData,
@@ -124,6 +132,13 @@ export class UserRolesUsersService {
 
   removeUser(userId, communityId): Observable<boolean> {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.REMOVE_USER), {
+      user_id: userId,
+      community_id: communityId,
+    });
+  }
+
+  blockUser(userId, communityId): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.BLOCK_USER), {
       user_id: userId,
       community_id: communityId,
     });
