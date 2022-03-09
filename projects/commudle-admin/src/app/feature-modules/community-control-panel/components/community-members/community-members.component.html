@@ -86,14 +86,17 @@
 <ng-template #removeUserDialog let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-items-center com-justify-between">
-      Confirmation
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
       <button (click)="ref.close()" ghost nbButton size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
     <nb-card-body>
       <p>
-        Are you sure you want to remove <em>{{ data.user.name }}</em> from the community?
+        Are you sure you want to <strong>remove</strong> <em>{{ data.user.name }}</em> from the community?
       </p>
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">
@@ -106,14 +109,17 @@
 <ng-template #blockUserDialog let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-items-center com-justify-between">
-      Confirmation
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
       <button (click)="ref.close()" ghost nbButton size="small">
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
     <nb-card-body>
       <p>
-        Are you sure you want to block <em>{{ data.user.name }}</em> from the community?
+        Are you sure you want to <strong>remove & block</strong> <em>{{ data.user.name }}</em> from the community?
       </p>
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">
