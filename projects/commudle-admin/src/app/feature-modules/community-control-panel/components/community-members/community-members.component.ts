@@ -28,7 +28,7 @@ export class CommunityMembersComponent implements OnInit {
       title: 'Remove',
     },
     {
-      title: 'Block',
+      title: 'Remove & Block',
     },
   ];
   activeContextMenuUser: IUser;
