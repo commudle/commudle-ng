@@ -143,4 +143,11 @@ export class UserRolesUsersService {
       community_id: communityId,
     });
   }
+
+  unblockUser(userId, communityId): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.UNBLOCK_USER), {
+      user_id: userId,
+      community_id: communityId,
+    });
+  }
 }
