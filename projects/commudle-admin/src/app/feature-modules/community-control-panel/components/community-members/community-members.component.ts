@@ -14,7 +14,7 @@ import { debounceTime, filter, map, switchMap } from 'rxjs/operators';
   styleUrls: ['./community-members.component.scss'],
 })
 export class CommunityMembersComponent implements OnInit {
-  communtyId;
+  communityId;
   page = 1;
   count = 24;
   total = 0;
@@ -50,7 +50,7 @@ export class CommunityMembersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.communtyId = this.activatedRoute.parent.snapshot.params.community_id;
+    this.communityId = this.activatedRoute.parent.snapshot.params.community_id;
     this.getMembers();
     this.search();
     this.handleContextMenu();
@@ -59,7 +59,7 @@ export class CommunityMembersComponent implements OnInit {
   getMembers() {
     this.isLoading = true;
     this.userRolesUsersService
-      .getCommunityMembers(this.query, this.communtyId, this.count, this.page)
+      .getCommunityMembers(this.query, this.communityId, this.count, this.page)
       .subscribe((data) => {
         this.isLoading = false;
         this.userRolesUsers = data.user_roles_users;
@@ -76,7 +76,7 @@ export class CommunityMembersComponent implements OnInit {
           this.page = 1;
           this.isLoading = true;
           this.query = this.searchForm.get('name').value;
-          return this.userRolesUsersService.getCommunityMembers(this.query, this.communtyId, this.count, this.page);
+          return this.userRolesUsersService.getCommunityMembers(this.query, this.communityId, this.count, this.page);
         }),
       )
       .subscribe((data) => {
@@ -116,14 +116,14 @@ export class CommunityMembersComponent implements OnInit {
   }
 
   removeUser(userId) {
-    this.userRolesUsersService.removeUser(userId, this.communtyId).subscribe(() => {
+    this.userRolesUsersService.removeUser(userId, this.communityId).subscribe(() => {
       this.toastrService.success('User removed from community', 'Success');
       this.getMembers();
     });
   }
 
   blockUser(userId) {
-    this.userRolesUsersService.blockUser(userId, this.communtyId).subscribe(() => {
+    this.userRolesUsersService.blockUser(userId, this.communityId).subscribe(() => {
       this.toastrService.success('User blocked from community', 'Success');
       this.getMembers();
     });
