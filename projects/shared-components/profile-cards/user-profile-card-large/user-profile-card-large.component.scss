@@ -53,6 +53,22 @@ p {
       margin-top: $space-4;
       word-break: break-word;
     }
+
+    .about {
+      color: $black;
+      font-size: $fs-h6;
+      line-height: 16px;
+      margin-top: $space-8;
+      word-break: break-word;
+    }
+
+    .social {
+      a {
+        nb-icon {
+          font-size: $fs-h5;
+        }
+      }
+    }
   }
 }
 
