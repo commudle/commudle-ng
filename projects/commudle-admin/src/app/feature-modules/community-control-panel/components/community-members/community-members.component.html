@@ -35,7 +35,7 @@
       <nb-icon icon="arrow-ios-forward"></nb-icon>
     </p>
   </div>
-  <div *ngIf="!isLoading" class="members-list">
+  <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3">
     <div *ngFor="let userRole of userRolesUsers" class="member">
       <app-badge
         *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
@@ -44,11 +44,11 @@
         [text]="'Organizer'"
       ></app-badge>
       <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
-        <app-user-profile-horizontal
-          [aboutMe]="true"
-          [socialMediaLinks]="true"
+        <app-user-profile-card-large
+          [showAbout]="true"
+          [showSocialLinks]="true"
           [user]="userRole.user"
-        ></app-user-profile-horizontal>
+        ></app-user-profile-card-large>
         <button
           (click)="activeContextMenuUser = userRole.user"
           [nbContextMenu]="contextMenuItems"

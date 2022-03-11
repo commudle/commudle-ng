@@ -19,30 +19,14 @@
     }
   }
 
-  .members-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 1rem 0.5rem;
+  .member {
+    .context-menu {
+      @apply com-invisible;
+    }
 
-    .member {
-      margin: 0.5rem;
-      max-width: 80vw;
-      width: 100%;
-
+    &:hover {
       .context-menu {
-        @apply com-invisible;
-      }
-
-      &:hover {
-        .context-menu {
-          @apply com-visible;
-        }
-      }
-
-      @media screen and (min-width: 800px) {
-        max-width: 25vw;
-        width: 30%;
+        @apply com-visible;
       }
     }
   }

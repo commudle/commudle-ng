@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
@@ -13,8 +14,14 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() maxDesignationLength = 50;
   @Input() showFollowButton = false;
   @Input() alignFollowToRight = false;
+  @Input() showAbout = false;
+  @Input() showSocialLinks = false;
 
-  constructor() {}
+  constructor(private userChatsService: UserChatsService) {}
 
   ngOnInit(): void {}
+
+  openChatWithUser() {
+    this.userChatsService.changeFollowerId(this.user.id);
+  }
 }
