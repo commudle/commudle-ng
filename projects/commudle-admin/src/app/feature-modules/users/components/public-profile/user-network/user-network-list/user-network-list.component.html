@@ -1,5 +1,5 @@
 <div *ngIf="network.length > 0" class="user-network-list-container">
-  <nb-list>
+  <nb-list [nbSpinner]="isLoading">
     <nb-list-item *ngFor="let user of network">
       <!-- TODO : try fixing line clamp for username instead of using truncateText -->
       <app-user-profile-card-large

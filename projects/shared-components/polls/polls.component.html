@@ -1,6 +1,14 @@
-<div>
+<div [nbSpinner]="isLoading">
   <div>
-    <button *ngIf="permittedActions.includes(allActions.START)" nbButton fullWidth outline size="medium" (click)="newPoll()" status="success">
+    <button
+      *ngIf="permittedActions.includes(allActions.START)"
+      nbButton
+      fullWidth
+      outline
+      size="medium"
+      (click)="newPoll()"
+      status="success"
+    >
       <nb-icon icon="plus-circle"></nb-icon> New Poll
     </button>
   </div>
@@ -14,16 +22,14 @@
         (startSelfPoll)="startSelf($event)"
         (stopPoll)="stopPoll($event)"
         (deletePoll)="deletePoll($event)"
-        ></app-poll-list-item>
+      ></app-poll-list-item>
     </div>
   </div>
 </div>
 
-
 <ng-template #newPollTemplate let-data>
   <app-poll-create-form (newPoll)="create($event)"></app-poll-create-form>
 </ng-template>
-
 
 <ng-template #fillPollTemplate let-data>
   <app-poll-form [poll]="selectedPoll" (pollData)="submitPoll($event)"></app-poll-form>

@@ -28,6 +28,8 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  isLoading = false;
+
   constructor(
     private sDiscussionService: SDiscussionsService,
     private userChatMessagesChannel: UserChatMessagesChannel,
@@ -40,12 +42,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
     // Get current user data
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
 
-    // Get the current user's chats
-    this.subscriptions.push(
-      this.sDiscussionService.getPersonalChats().subscribe((data) => {
-        this.allPersonalChatUsers = data.discussion_followers;
-      }),
-    );
+    this.getChats();
 
     // TODO: Make this better
     // Calculate screen width to find the number of chat windows that are allowed simultaneously
@@ -74,6 +71,17 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  getChats() {
+    this.isLoading = true;
+    // Get the current user's chats
+    this.subscriptions.push(
+      this.sDiscussionService.getPersonalChats().subscribe((data) => {
+        this.allPersonalChatUsers = data.discussion_followers;
+        this.isLoading = false;
+      }),
+    );
   }
 
   createChat(followerId: number) {

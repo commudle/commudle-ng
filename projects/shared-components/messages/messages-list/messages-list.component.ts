@@ -25,6 +25,7 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
   @Input() allActions;
   @Input() permittedActions;
   @Input() showMessagesLoader;
+  @Input() isLoading;
   @Output() getPreviousMessages: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();

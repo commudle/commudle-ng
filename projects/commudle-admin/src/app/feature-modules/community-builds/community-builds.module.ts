@@ -10,6 +10,7 @@ import {
   NbInputModule,
   NbPopoverModule,
   NbSelectModule,
+  NbSpinnerModule,
 } from '@nebular/theme';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { RecommendationsModule } from 'projects/commudle-admin/src/app/feature-modules/recommendations/recommendations.module';
@@ -61,6 +62,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     NbIconModule,
     NbPopoverModule,
     NbCheckboxModule,
+    NbSpinnerModule,
   ],
 })
 export class CommunityBuildsModule {}

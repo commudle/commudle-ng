@@ -8,7 +8,7 @@ import {
   Output,
   QueryList,
   ViewChild,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import * as moment from 'moment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -17,15 +17,15 @@ import { IUserMessage } from 'projects/shared-models/user_message.model';
 @Component({
   selector: 'app-qna-list',
   templateUrl: './qna-list.component.html',
-  styleUrls: ['./qna-list.component.scss']
+  styleUrls: ['./qna-list.component.scss'],
 })
 export class QnaListComponent implements OnInit, AfterViewInit {
-
   @Input() messages: IUserMessage[] = [];
   @Input() currentUser: ICurrentUser;
   @Input() allActions;
   @Input() permittedActions;
   @Input() showMessagesLoader;
+  @Input() isLoading;
   @Output() getPreviousMessages: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendVote: EventEmitter<number> = new EventEmitter<number>();
@@ -39,15 +39,13 @@ export class QnaListComponent implements OnInit, AfterViewInit {
   @ViewChild('messagesList') messagesList: ElementRef<HTMLDivElement>;
   @ViewChildren('message') messageElements: QueryList<any>;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.messageContainer = this.messagesList.nativeElement;
-    this.messageElements.changes.subscribe(value => this.onMessageElementsChanged(value));
+    this.messageElements.changes.subscribe((value) => this.onMessageElementsChanged(value));
   }
 
   emitReply(messageId: number, content): void {
@@ -75,7 +73,7 @@ export class QnaListComponent implements OnInit, AfterViewInit {
   scrollToBottom(): void {
     this.messageContainer.scroll({
       top: this.messageContainer.scrollHeight,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 
@@ -89,5 +87,4 @@ export class QnaListComponent implements OnInit, AfterViewInit {
     const height = this.messageContainer.scrollHeight;
     return position > height - threshold;
   }
-
 }

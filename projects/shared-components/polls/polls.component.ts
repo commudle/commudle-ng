@@ -11,10 +11,9 @@ import { PollsChannel } from '../services/websockets/polls.channel';
 @Component({
   selector: 'app-polls',
   templateUrl: './polls.component.html',
-  styleUrls: ['./polls.component.scss']
+  styleUrls: ['./polls.component.scss'],
 })
 export class PollsComponent implements OnInit, OnDestroy {
-
   @ViewChild('newPollTemplate') newPollTemplate: TemplateRef<any>;
   @ViewChild('fillPollTemplate') fillPollTemplate: TemplateRef<any>;
 
@@ -31,15 +30,16 @@ export class PollsComponent implements OnInit, OnDestroy {
   windowRefCreatePoll;
   windowRefFillPoll;
 
+  isLoading = false;
+
   constructor(
     private pollsChannel: PollsChannel,
     private toastLogService: LibToastLogService,
     private authWatchService: LibAuthwatchService,
     private windowService: NbWindowService,
     private eventsService: EventsService,
-    private trackSlotsService: TrackSlotsService
-  ) {
-  }
+    private trackSlotsService: TrackSlotsService,
+  ) {}
 
   login() {
     if (!this.currentUser) {
@@ -49,7 +49,7 @@ export class PollsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authWatchService.currentUser$.subscribe(user => this.currentUser = user);
+    this.authWatchService.currentUser$.subscribe((user) => (this.currentUser = user));
 
     this.allActions = this.pollsChannel.ACTIONS;
     this.pollsChannel.subscribe(this.pollableType, this.pollableId);
@@ -65,140 +65,128 @@ export class PollsComponent implements OnInit, OnDestroy {
   }
 
   receiveData() {
-    this.pollsChannel.channelData$.subscribe(
-      data => {
-        if (data) {
-          switch (data.action) {
-            case (this.pollsChannel.ACTIONS.SET_PERMISSIONS): {
-              this.permittedActions = data.permitted_actions;
-              this.getPolls();
-              break;
+    this.pollsChannel.channelData$.subscribe((data) => {
+      if (data) {
+        switch (data.action) {
+          case this.pollsChannel.ACTIONS.SET_PERMISSIONS: {
+            this.permittedActions = data.permitted_actions;
+            this.getPolls();
+            break;
+          }
+          case this.pollsChannel.ACTIONS.CREATE: {
+            if (this.windowRefCreatePoll) {
+              this.windowRefCreatePoll.close();
             }
-            case (this.pollsChannel.ACTIONS.CREATE): {
-              if (this.windowRefCreatePoll) {
-                this.windowRefCreatePoll.close();
-              }
-              const pollExists = this.polls.findIndex(p => p.id === data.poll.id);
-              if (pollExists === -1) {
-                this.polls.unshift(data.poll);
-              }
-              break;
+            const pollExists = this.polls.findIndex((p) => p.id === data.poll.id);
+            if (pollExists === -1) {
+              this.polls.unshift(data.poll);
             }
-            case (this.pollsChannel.ACTIONS.START): {
-              const pollIndex = this.polls.findIndex(p => p.id === data.poll.id);
-              if (this.polls[pollIndex].status !== EPollStatuses.OPEN) {
-                this.polls[pollIndex].status = EPollStatuses.OPEN;
-                this.selectedPoll = data.poll;
-                if (this.currentUser && !this.polls[pollIndex].already_filled) {
-                  this.windowRefFillPoll = this.windowService.open(this.fillPollTemplate, { title: `Poll!` });
-                }
-              }
-
-              break;
-            }
-            case (this.pollsChannel.ACTIONS.START_SELF): {
-              const pollIndex = this.polls.findIndex(p => p.id === data.poll.id);
+            break;
+          }
+          case this.pollsChannel.ACTIONS.START: {
+            const pollIndex = this.polls.findIndex((p) => p.id === data.poll.id);
+            if (this.polls[pollIndex].status !== EPollStatuses.OPEN) {
               this.polls[pollIndex].status = EPollStatuses.OPEN;
               this.selectedPoll = data.poll;
               if (this.currentUser && !this.polls[pollIndex].already_filled) {
                 this.windowRefFillPoll = this.windowService.open(this.fillPollTemplate, { title: `Poll!` });
               }
-              break;
             }
-            case (this.pollsChannel.ACTIONS.STOP): {
-              this.polls[this.polls.findIndex(p => p.id === data.poll_id)].status = EPollStatuses.CLOSED;
-              if (this.windowRefFillPoll) {
-                this.windowRefFillPoll.close();
-              }
-              break;
+
+            break;
+          }
+          case this.pollsChannel.ACTIONS.START_SELF: {
+            const pollIndex = this.polls.findIndex((p) => p.id === data.poll.id);
+            this.polls[pollIndex].status = EPollStatuses.OPEN;
+            this.selectedPoll = data.poll;
+            if (this.currentUser && !this.polls[pollIndex].already_filled) {
+              this.windowRefFillPoll = this.windowService.open(this.fillPollTemplate, { title: `Poll!` });
             }
-            case (this.pollsChannel.ACTIONS.DELETE): {
-              this.polls.splice(this.polls.findIndex(p => p.id === data.poll_id), 1);
-              break;
-            }
-            case (this.pollsChannel.ACTIONS.FILL): {
-              this.polls[this.polls.findIndex(p => p.id === data.poll_id)].already_filled = true;
+            break;
+          }
+          case this.pollsChannel.ACTIONS.STOP: {
+            this.polls[this.polls.findIndex((p) => p.id === data.poll_id)].status = EPollStatuses.CLOSED;
+            if (this.windowRefFillPoll) {
               this.windowRefFillPoll.close();
-              break;
             }
-            case (this.pollsChannel.ACTIONS.FILL_COUNT): {
-              this.polls[this.polls.findIndex(p => p.id === data.poll_id)].total_responses = data.fill_count;
-              break;
-            }
-            case (this.pollsChannel.ACTIONS.ERROR): {
-              this.toastLogService.warningDialog(data.message, 2000);
-              break;
-            }
+            break;
+          }
+          case this.pollsChannel.ACTIONS.DELETE: {
+            this.polls.splice(
+              this.polls.findIndex((p) => p.id === data.poll_id),
+              1,
+            );
+            break;
+          }
+          case this.pollsChannel.ACTIONS.FILL: {
+            this.polls[this.polls.findIndex((p) => p.id === data.poll_id)].already_filled = true;
+            this.windowRefFillPoll.close();
+            break;
+          }
+          case this.pollsChannel.ACTIONS.FILL_COUNT: {
+            this.polls[this.polls.findIndex((p) => p.id === data.poll_id)].total_responses = data.fill_count;
+            break;
+          }
+          case this.pollsChannel.ACTIONS.ERROR: {
+            this.toastLogService.warningDialog(data.message, 2000);
+            break;
           }
         }
       }
-    );
+    });
   }
 
   getPolls() {
+    this.isLoading = true;
     if (this.pollableType === 'Event') {
-      this.eventsService.getPolls(this.pollableId).subscribe(value => this.polls = value.polls);
+      this.eventsService.getPolls(this.pollableId).subscribe((value) => {
+        this.polls = value.polls;
+        this.isLoading = false;
+      });
     } else {
-      this.trackSlotsService.getPolls(this.pollableId).subscribe(value => this.polls = value.polls);
+      this.trackSlotsService.getPolls(this.pollableId).subscribe((value) => {
+        this.polls = value.polls;
+        this.isLoading = false;
+      });
     }
   }
 
   create(pollData) {
-    this.pollsChannel.sendData(
-      this.pollsChannel.ACTIONS.CREATE,
-      {
-        poll: pollData,
-        pollable_type: this.pollableType,
-        pollable_id: this.pollableId
-      }
-    );
+    this.pollsChannel.sendData(this.pollsChannel.ACTIONS.CREATE, {
+      poll: pollData,
+      pollable_type: this.pollableType,
+      pollable_id: this.pollableId,
+    });
   }
 
   startPoll(pollId) {
-    this.pollsChannel.sendData(
-      this.pollsChannel.ACTIONS.START,
-      {
-        poll_id: pollId
-      }
-    );
+    this.pollsChannel.sendData(this.pollsChannel.ACTIONS.START, {
+      poll_id: pollId,
+    });
   }
 
   startSelf(pollId) {
-    this.pollsChannel.sendData(
-      this.pollsChannel.ACTIONS.START_SELF,
-      {
-        poll_id: pollId
-      }
-    );
+    this.pollsChannel.sendData(this.pollsChannel.ACTIONS.START_SELF, {
+      poll_id: pollId,
+    });
   }
 
-
   submitPoll(pollData) {
-    this.pollsChannel.sendData(
-      this.pollsChannel.ACTIONS.FILL,
-      {
-        poll_id: this.selectedPoll.id,
-        poll: pollData
-      }
-    );
+    this.pollsChannel.sendData(this.pollsChannel.ACTIONS.FILL, {
+      poll_id: this.selectedPoll.id,
+      poll: pollData,
+    });
   }
 
   stopPoll(pollId) {
-    this.pollsChannel.sendData(
-      this.pollsChannel.ACTIONS.STOP,
-      {
-        poll_id: pollId
-      }
-    );
+    this.pollsChannel.sendData(this.pollsChannel.ACTIONS.STOP, {
+      poll_id: pollId,
+    });
   }
 
   deletePoll(pollId) {
-    this.pollsChannel.sendData(
-      this.pollsChannel.ACTIONS.DELETE,
-      {
-        poll_id: pollId
-      }
-    );
+    this.pollsChannel.sendData(this.pollsChannel.ACTIONS.DELETE, {
+      poll_id: pollId,
+    });
   }
-
 }

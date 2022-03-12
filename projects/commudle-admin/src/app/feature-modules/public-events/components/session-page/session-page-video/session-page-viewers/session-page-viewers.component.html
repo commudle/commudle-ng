@@ -5,7 +5,7 @@
   </button>
 </nb-form-field>
 
-<nb-list class="session-page-viewers">
+<nb-list class="session-page-viewers" [nbSpinner]="isLoading">
   <nb-list-item *ngFor="let user of usersList | searchBy: searchQuery | orderBy: ['name']:['asc']">
     <app-user-profile-mini
       [designation]="true"

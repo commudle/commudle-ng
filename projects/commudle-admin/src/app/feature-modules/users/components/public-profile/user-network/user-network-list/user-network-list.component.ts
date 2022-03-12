@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class UserNetworkListComponent implements OnInit, OnDestroy {
   user: IUser;
   network: IUser[] = [];
+  isLoading = false;
 
   subscriptions: Subscription[] = [];
 
@@ -56,14 +57,22 @@ export class UserNetworkListComponent implements OnInit, OnDestroy {
   }
 
   getFollowers(): void {
+    this.isLoading = true;
     this.subscriptions.push(
-      this.appUsersService.getFollowers(this.user.username).subscribe((value) => (this.network = value)),
+      this.appUsersService.getFollowers(this.user.username).subscribe((value) => {
+        this.network = value;
+        this.isLoading = false;
+      }),
     );
   }
 
   getFollowing(): void {
+    this.isLoading = true;
     this.subscriptions.push(
-      this.appUsersService.getFollowees(this.user.username).subscribe((value) => (this.network = value)),
+      this.appUsersService.getFollowees(this.user.username).subscribe((value) => {
+        this.network = value;
+        this.isLoading = false;
+      }),
     );
   }
 }

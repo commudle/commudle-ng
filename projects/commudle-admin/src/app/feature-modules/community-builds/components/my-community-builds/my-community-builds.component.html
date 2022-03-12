@@ -26,7 +26,7 @@
       </div>
 
       <div class="community-builds">
-        <nb-card>
+        <nb-card [nbSpinner]="isLoading">
           <nb-card-body>
             <div class="community-build" *ngFor="let cb of cBuilds; let i = index">
               <app-build-list-item [cb]="cb" (deleteBuild)="destroyBuild($event)"></app-build-list-item>

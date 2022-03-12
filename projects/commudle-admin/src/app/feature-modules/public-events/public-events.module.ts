@@ -13,6 +13,7 @@ import {
   NbInputModule,
   NbListModule,
   NbPopoverModule,
+  NbSpinnerModule,
   NbTabsetModule,
   NbToggleModule,
   NbTooltipModule,
@@ -91,6 +92,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbToggleModule,
     FontAwesomeModule,
     NbFormFieldModule,
+    NbSpinnerModule,
   ],
 })
 export class PublicEventsModule {}

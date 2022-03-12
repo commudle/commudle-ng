@@ -1,4 +1,4 @@
-<div class="messages-list-container">
+<div class="messages-list-container" [nbSpinner]="isLoading">
   <button (click)="getPreviousMessages.emit()" *ngIf="showMessagesLoader" fullWidth ghost nbButton size="small">
     Load Previous Messages
   </button>

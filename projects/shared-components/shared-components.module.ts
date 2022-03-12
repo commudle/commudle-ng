@@ -20,6 +20,7 @@ import {
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
+  NbSpinnerModule,
   NbTagModule,
   NbTooltipModule,
   NbWindowModule,
@@ -139,6 +140,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     NbActionsModule,
     NbFormFieldModule,
     FontAwesomeModule,
+    NbSpinnerModule,
   ],
   exports: [
     WorkInProgressComponent,

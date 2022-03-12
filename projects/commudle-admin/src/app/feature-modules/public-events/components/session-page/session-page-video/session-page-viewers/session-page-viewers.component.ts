@@ -41,6 +41,8 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   faChalkboardTeacher = faChalkboardTeacher;
   faCommentDots = faCommentDots;
 
+  isLoading = false;
+
   private isBrowser: boolean = isPlatformBrowser(this.platformId);
 
   constructor(
@@ -100,18 +102,22 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   }
 
   getPastUsersList() {
+    this.isLoading = true;
     this.eventsService
       .embeddedVideoStreamPastVisitors(this.event.slug, this.embeddedVideoStream.id)
       .subscribe((data) => {
         this.usersList = data.users;
         this.userCount.emit(this.usersList.length);
+        this.isLoading = false;
       });
   }
 
   getCurrentUsersList() {
+    this.isLoading = true;
     this.eventsService.embeddedVideoStreamVisitors(this.event.slug, this.embeddedVideoStream.id).subscribe((data) => {
       this.usersList = data.users;
       this.userCount.emit(this.usersList.length);
+      this.isLoading = false;
     });
   }
 

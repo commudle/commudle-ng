@@ -14,6 +14,7 @@ export class ChatsListComponent implements OnInit {
   @Input() allPersonalChatUsers: IDiscussionFollower[];
   @Output() getChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
   @Output() moveUserToTop: EventEmitter<IDiscussionFollower[]> = new EventEmitter<IDiscussionFollower[]>();
+  @Input() isLoading: boolean;
 
   showLiveStatus = false;
   showChat = false;

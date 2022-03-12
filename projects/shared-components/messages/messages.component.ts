@@ -45,6 +45,8 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
 
   faGrin = faGrin;
 
+  isLoading = false;
+
   messageForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
@@ -132,6 +134,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
 
   getDiscussionMessages(): void {
     if (this.isLoadingMessages) {
+      this.isLoading = true;
       this.subscriptions.push(
         this.userMessagesService
           .pGetDiscussionChatMessages(this.discussion.id, this.page, this.count)
@@ -142,6 +145,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
             }
             this.messages.unshift(...value.user_messages.reverse());
             this.page++;
+            this.isLoading = false;
           }),
       );
     }

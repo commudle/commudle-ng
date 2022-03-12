@@ -54,6 +54,8 @@ export class QnaComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   faGrin = faGrin;
 
+  isLoading = false;
+
   constructor(
     private libAuthwatchService: LibAuthwatchService,
     private discussionQnaChannel: DiscussionQnAChannel,
@@ -141,6 +143,7 @@ export class QnaComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   getDiscussionMessages(): void {
     if (this.isLoadingMessages) {
+      this.isLoading = true;
       this.subscriptions.push(
         this.userMessagesService
           .pGetDiscussionChatMessages(this.discussion.id, this.page, this.count)
@@ -151,6 +154,7 @@ export class QnaComponent implements OnInit, OnDestroy, AfterContentChecked {
             }
             this.messages.unshift(...value.user_messages.reverse());
             this.page++;
+            this.isLoading = false;
           }),
       );
     }

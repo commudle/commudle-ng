@@ -26,7 +26,7 @@
       </div>
 
       <div class="labs" *ngIf="labs.length > 0">
-        <nb-card>
+        <nb-card [nbSpinner]="isLoading">
           <nb-card-body>
             <div class="lab" *ngFor="let lab of labs; let i = index">
               <app-lab-list-item [lab]="lab" (destroyLab)="destroyLab($event)"></app-lab-list-item>

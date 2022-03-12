@@ -20,6 +20,7 @@ export class MyLabsComponent implements OnInit, OnDestroy {
 
   labs: ILab[] = [];
   incompleteProfile = false;
+  isLoading = false;
 
   constructor(
     private labsService: LabsService,
@@ -47,8 +48,11 @@ export class MyLabsComponent implements OnInit, OnDestroy {
   }
 
   getAllLabs() {
+    this.isLoading = true;
     this.appUsersService.myLabs().subscribe((data) => {
       this.labs = data.labs;
+      this.labs = [];
+      this.isLoading = false;
     });
   }
 

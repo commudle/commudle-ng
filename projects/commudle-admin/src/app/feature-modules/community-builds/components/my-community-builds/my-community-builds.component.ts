@@ -16,6 +16,7 @@ export class MyCommunityBuildsComponent implements OnInit, OnDestroy {
   moment = moment;
   cBuilds: ICommunityBuild[] = [];
   incompleteProfile = false;
+  isLoading = false;
 
   constructor(
     private communityBuildsService: CommunityBuildsService,
@@ -42,8 +43,10 @@ export class MyCommunityBuildsComponent implements OnInit, OnDestroy {
   }
 
   getAllBuilds() {
+    this.isLoading = true;
     this.appUsersService.myCommunityBuilds().subscribe((data) => {
       this.cBuilds = data.community_builds;
+      this.isLoading = false;
     });
   }
 
