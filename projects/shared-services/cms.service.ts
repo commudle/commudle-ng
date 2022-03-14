@@ -33,6 +33,11 @@ export class CmsService {
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result[0]));
   }
 
+  getDataByType(type: string) {
+    const params = new HttpParams().set('query', `*[_type == "${type}"]`);
+    return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
+  }
+
   getHtmlFromBlock(value: any, field: string = 'content'): any {
     return blocksToHtml({
       blocks: value[field],

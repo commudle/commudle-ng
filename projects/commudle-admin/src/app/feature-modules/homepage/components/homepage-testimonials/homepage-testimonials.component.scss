@@ -42,4 +42,8 @@ p {
       }
     }
   }
+
+  .navigation {
+    @apply com-mt-12 com-flex com-justify-between;
+  }
 }
