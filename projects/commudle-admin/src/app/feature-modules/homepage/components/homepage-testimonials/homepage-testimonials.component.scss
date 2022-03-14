@@ -1,0 +1,45 @@
+p {
+  @apply com-m-0;
+}
+
+.homepage-testimonials {
+  @apply com-p-20 com-text-gray-800 com-bg-white com-rounded-lg com-shadow;
+
+  .quotes {
+    color: #0095fa;
+    @apply com-h-3 com-text-7xl com-font-bold;
+  }
+
+  .content {
+    @apply com-px-8 com-text-center com-text-gray-800 com-text-7xl com-font-semibold;
+  }
+
+  nb-actions {
+    @apply com-mt-20;
+
+    .user {
+      .avatar {
+        @apply com-h-16 com-w-16 com-mr-4 com-rounded-full com-object-cover com-object-center;
+      }
+
+      .details {
+        .name {
+          @apply com-text-xl com-text-gray-800 com-font-medium;
+        }
+
+        .username {
+          @apply com-mt-1 com-text-base com-text-gray-500;
+        }
+      }
+    }
+
+    .text {
+      @apply com-text-gray-800 com-text-xl com-font-medium;
+
+      .highlight {
+        color: #0095fa;
+        @apply com-p-1.5;
+      }
+    }
+  }
+}
