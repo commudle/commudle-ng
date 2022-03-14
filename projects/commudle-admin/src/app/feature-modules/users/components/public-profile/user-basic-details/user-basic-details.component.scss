@@ -171,6 +171,16 @@ p {
         margin-right: $space-4;
       }
     }
+
+    app-share-button {
+      ::ng-deep {
+        .share-button {
+          button {
+            background-color: rgba($neon-blue, 0.2);
+          }
+        }
+      }
+    }
   }
 
   .user-tags {

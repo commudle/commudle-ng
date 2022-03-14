@@ -107,6 +107,11 @@
           [community]="community"
           [event]="event"
         ></app-highlighted-links>
+        <app-share-button
+          [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+          [title]="event.name"
+          [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+        ></app-share-button>
         <nb-card *ngIf="event.start_time && event.end_time">
           <nb-card-body>
             <p>
