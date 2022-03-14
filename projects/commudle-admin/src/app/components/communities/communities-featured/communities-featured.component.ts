@@ -13,6 +13,7 @@ import { NavigatorShareService } from 'projects/shared-services/navigator-share.
 })
 export class CommunitiesFeaturedComponent implements OnInit {
   featuredCommunities: IFeaturedCommunity[] = [];
+  environment = environment;
 
   constructor(
     private featuredCommunitiesService: FeaturedCommunitiesService,

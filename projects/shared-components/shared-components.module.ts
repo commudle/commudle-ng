@@ -66,6 +66,7 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { ShareButtonComponent } from './share-button/share-button.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     QnaListComponent,
     QnaListItemComponent,
     UserFollowComponent,
+    ShareButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -166,6 +168,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     MessagesComponent,
     QnaComponent,
     UserFollowComponent,
+    ShareButtonComponent,
   ],
 })
 export class SharedComponentsModule {}
