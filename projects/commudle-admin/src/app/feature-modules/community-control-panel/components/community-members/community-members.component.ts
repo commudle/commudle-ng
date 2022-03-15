@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService, NbMenuService, NbToastrService } from '@nebular/theme';
 import { UserRolesUsersService } from 'projects/commudle-admin/src/app/services/user_roles_users.service';
@@ -37,6 +37,11 @@ export class CommunityMembersComponent implements OnInit {
     name: [''],
   });
 
+  selectedUserRoles: IUserRolesUser[] = [];
+  removeUserForm = this.fb.group({
+    user_roles_user_ids: this.fb.array([]),
+  });
+
   @ViewChild('removeUserDialog', { static: true }) removeUserDialog: TemplateRef<any>;
   @ViewChild('blockUserDialog', { static: true }) blockUserDialog: TemplateRef<any>;
 
@@ -48,6 +53,10 @@ export class CommunityMembersComponent implements OnInit {
     private toastrService: NbToastrService,
     private menuService: NbMenuService,
   ) {}
+
+  get userRolesUserIds(): FormArray {
+    return this.removeUserForm.get('user_roles_user_ids') as FormArray;
+  }
 
   ngOnInit() {
     this.communityId = this.activatedRoute.parent.snapshot.params.community_id;
@@ -106,20 +115,39 @@ export class CommunityMembersComponent implements OnInit {
       .subscribe((menuItem) => {
         switch (menuItem.title) {
           case 'Remove':
+            this.getUserRoles(this.activeContextMenuUser.id, this.communityId);
             this.openDialog(this.removeUserDialog, this.activeContextMenuUser);
             break;
-          case 'Block':
+          case 'Remove & Block':
             this.openDialog(this.blockUserDialog, this.activeContextMenuUser);
             break;
         }
       });
   }
 
-  removeUser(userId) {
-    this.userRolesUsersService.removeUser(userId, this.communityId).subscribe(() => {
+  removeUser() {
+    this.userRolesUsersService.removeUser(this.removeUserForm.value).subscribe(() => {
       this.toastrService.success('User removed from community', 'Success');
       this.getMembers();
     });
+  }
+
+  getUserRoles(userId, communityId) {
+    this.userRolesUsersService.getRoles(userId, communityId).subscribe((value) => {
+      this.selectedUserRoles = value.user_roles_users;
+      this.selectedUserRoles.forEach((userRole) => {
+        this.userRolesUserIds.push(this.fb.control(userRole.id));
+      });
+    });
+  }
+
+  toggleUserRole(userRoleId) {
+    const index = this.userRolesUserIds.controls.findIndex((control) => control.value === userRoleId);
+    if (index !== -1) {
+      this.userRolesUserIds.removeAt(index);
+    } else {
+      this.userRolesUserIds.push(this.fb.control(userRoleId));
+    }
   }
 
   blockUser(userId) {
