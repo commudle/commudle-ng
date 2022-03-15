@@ -6,6 +6,7 @@ import {
   NbButtonGroupModule,
   NbButtonModule,
   NbCardModule,
+  NbCheckboxModule,
   NbContextMenuModule,
   NbDialogModule,
   NbFormFieldModule,
@@ -74,6 +75,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     NbDialogModule.forChild(),
     NbButtonGroupModule,
     NbContextMenuModule,
+    NbCheckboxModule,
   ],
   entryComponents: [
     CommunityFormsListStatsComponent,

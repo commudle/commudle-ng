@@ -130,10 +130,9 @@ export class UserRolesUsersService {
     );
   }
 
-  removeUser(userId, communityId): Observable<boolean> {
+  removeUser(userRolesUserIds: number[]): Observable<boolean> {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.REMOVE_USER), {
-      user_id: userId,
-      community_id: communityId,
+      user_roles_user_ids: userRolesUserIds,
     });
   }
 
@@ -148,6 +147,13 @@ export class UserRolesUsersService {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.UNBLOCK_USER), {
       user_id: userId,
       community_id: communityId,
+    });
+  }
+
+  getRoles(userId, communityId): Observable<IUserRolesUsers> {
+    let params = new HttpParams().set('user_id', userId).set('community_id', communityId);
+    return this.http.get<IUserRolesUsers>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ROLES), {
+      params,
     });
   }
 }
