@@ -49,8 +49,12 @@ export class UserRolesUsersService {
     );
   }
 
-  getCommunityBlockedUsers(communityId): Observable<IUserRolesUsers> {
-    let params = new HttpParams().set('community_id', communityId);
+  getCommunityBlockedUsers(query, communityId, count, page): Observable<IUserRolesUsers> {
+    let params = new HttpParams()
+      .set('community_id', communityId)
+      .set('query', query)
+      .set('count', count)
+      .set('page', page);
     return this.http.get<IUserRolesUsers>(
       this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_BLOCKED_USERS),
       { params },
