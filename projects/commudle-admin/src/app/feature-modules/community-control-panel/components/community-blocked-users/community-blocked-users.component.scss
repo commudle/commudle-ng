@@ -1,0 +1,33 @@
+.community-members {
+  padding: 1.5rem;
+
+  .pages {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+
+    p {
+      margin: 0 0.5rem;
+
+      nb-icon {
+        font-size: 0.8rem;
+      }
+    }
+
+    .selected-page {
+      color: blue;
+    }
+  }
+
+  .member {
+    .context-menu {
+      @apply com-invisible;
+    }
+
+    &:hover {
+      .context-menu {
+        @apply com-visible;
+      }
+    }
+  }
+}
