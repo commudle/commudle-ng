@@ -23,6 +23,16 @@
               Send All Entry Passes
             </button>
 
+            <button
+              [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'scan-entry-pass']"
+              nbButton
+              outline
+              size="small"
+              status="primary"
+            >
+              Scan Entry Pass
+            </button>
+
             <button (click)="sendCSV()" nbButton outline size="small" status="info">
               <nb-icon icon="email-outline"></nb-icon>
               CSV

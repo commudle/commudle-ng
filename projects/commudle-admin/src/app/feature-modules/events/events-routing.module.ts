@@ -8,6 +8,7 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
 import { EventStatsComponent } from './components/event-stats/event-stats.component';
+import { EntryPassScanComponent } from './components/user-event-registrations/entry-pass-scan/entry-pass-scan.component';
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 
@@ -56,6 +57,10 @@ const routes = [
           {
             path: ':event_simple_registration_id/user-event-registrations',
             component: UserEventRegistrationsComponent,
+          },
+          {
+            path: 'scan-entry-pass',
+            component: EntryPassScanComponent,
           },
         ],
       },
