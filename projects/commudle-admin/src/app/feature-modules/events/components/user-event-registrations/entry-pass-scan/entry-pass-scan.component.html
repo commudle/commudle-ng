@@ -1,1 +1,27 @@
-<p>entry-pass-scan works!</p>
+<nb-card>
+  <nb-card-body>
+    <div class="camera-container">
+      <zxing-scanner 
+        #scanner
+        [(device)]="currentDevice"
+        (scanSuccess)="onCodeResult($event)"
+        (permissionResponse)="onHasPermission($event)"
+        (camerasFound)="onCamerasFound($event)"
+      ></zxing-scanner>
+    </div>
+    <div class="cameras-list">
+      <nb-form-field>
+        <nb-icon nbPrefix icon="alert-circle-outline"></nb-icon>
+        <nb-select 
+          placeholder="Select Camera" 
+          [(selected)]="currentDevice"
+          (selectedChange)="onDeviceSelectChange($event)"
+          status="info"
+        >
+          <nb-option value="">No Device Selected</nb-option>
+          <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">{{ device.label }}</nb-option>
+        </nb-select>
+      </nb-form-field>
+    </div>
+  </nb-card-body>
+</nb-card>
