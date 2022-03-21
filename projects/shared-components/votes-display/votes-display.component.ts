@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
@@ -20,6 +20,8 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() icon: string;
   @Input() size;
   @Input() canVote: boolean = true;
+
+  @Output() isBlocked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   uuid = uuidv4();
 
@@ -103,6 +105,10 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
             switch (data.action) {
               case this.voteChannel.ACTIONS.SET_PERMISSIONS: {
                 this.permittedActions = data.permitted_actions;
+                if (this.permittedActions.includes(this.voteChannel.ACTIONS.BLOCKED)) {
+                  this.isBlocked.emit(true);
+                  this.canVote = false;
+                }
                 break;
               }
               case this.voteChannel.ACTIONS.TOGGLE_VOTE: {
