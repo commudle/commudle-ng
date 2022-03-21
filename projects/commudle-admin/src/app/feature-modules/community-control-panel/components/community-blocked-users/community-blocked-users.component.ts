@@ -47,7 +47,7 @@ export class CommunityBlockedUsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.communityId = this.activatedRoute.parent.snapshot.params.community_id;
+    this.communityId = this.activatedRoute.parent.parent.snapshot.params.community_id;
     this.getMembers();
     this.search();
     this.handleContextMenu();

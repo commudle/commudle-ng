@@ -96,7 +96,7 @@
     </nb-card-header>
     <nb-card-body class="com-max-w-[350px]">
       <p>
-        Are you sure you want to <strong>remove</strong>&nbsp;<em>{{ data.user.name }}</em> from the community? (Select
+        Are you sure you want to <strong>remove</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community? (Select
         the roles you want to remove them from)
       </p>
       <div class="com-flex com-flex-col">
@@ -135,9 +135,9 @@
         <nb-icon icon="close"></nb-icon>
       </button>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body class="com-max-w-[350px]">
       <p>
-        Are you sure you want to <strong>remove & block</strong>&nbsp;<em>{{ data.user.name }}</em> from the community?
+        Are you sure you want to <strong>remove & block</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community?
       </p>
       <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
     </nb-card-body>

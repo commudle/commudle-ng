@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommunityMembersListComponent } from 'projects/commudle-admin/src/app/feature-modules/community-control-panel/components/community-members-list/community-members-list.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { CommunityBlockedUsersComponent } from './components/community-blocked-users/community-blocked-users.component';
 import { CommunityControlPanelComponent } from './components/community-control-panel/community-control-panel.component';
@@ -26,7 +27,6 @@ const routes = [
   {
     path: ':community_id',
     component: CommunityControlPanelComponent,
-
     children: [
       {
         path: '',
@@ -42,15 +42,21 @@ const routes = [
       },
       {
         path: 'members',
-        component: CommunityMembersComponent,
+        component: CommunityMembersListComponent,
+        children: [
+          {
+            path: '',
+            component: CommunityMembersComponent,
+          },
+          {
+            path: 'blocked',
+            component: CommunityBlockedUsersComponent,
+          },
+        ],
       },
       {
         path: 'team',
         component: CommunityTeamComponent,
-      },
-      {
-        path: 'blocked-users',
-        component: CommunityBlockedUsersComponent,
       },
     ],
   },

@@ -31,6 +31,7 @@ import { CommunityEventsListComponent } from './components/community-events-list
 import { CommunityFormsListActionsComponent } from './components/community-forms-list/community-forms-list-actions/community-forms-list-actions.component';
 import { CommunityFormsListStatsComponent } from './components/community-forms-list/community-forms-list-stats/community-forms-list-stats.component';
 import { CommunityFormsListComponent } from './components/community-forms-list/community-forms-list.component';
+import { CommunityMembersListComponent } from './components/community-members-list/community-members-list.component';
 import { CommunityMembersComponent } from './components/community-members/community-members.component';
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
@@ -50,6 +51,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     CommunityTeamComponent,
     CommunityMembersComponent,
     CommunityBlockedUsersComponent,
+    CommunityMembersListComponent,
   ],
   imports: [
     CommonModule,
