@@ -1,0 +1,6 @@
+<div class="share-button">
+  <button [ngClass]="{ 'round-button': round }" (click)="copyTextToClipboard()" nbButton shape="round" size="small">
+    <nb-icon icon="share"></nb-icon>
+    {{ showText ? 'Share' : '' }}
+  </button>
+</div>

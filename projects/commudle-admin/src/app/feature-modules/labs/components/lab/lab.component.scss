@@ -231,8 +231,16 @@
         font-size: $fs-24;
       }
 
-      .share-button {
-        margin: $space-24 0 0;
+      app-share-button {
+        ::ng-deep {
+          .share-button {
+            margin: $space-24 0 0;
+
+            button {
+              background-color: transparent !important;
+            }
+          }
+        }
       }
     }
 
