@@ -86,6 +86,9 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
           switch (value.action) {
             case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS:
               this.permittedActions = value.permitted_actions;
+              if (this.permittedActions.includes(this.discussionChatChannel.ACTIONS.BLOCKED)) {
+                this.messageForm.disable();
+              }
               break;
             case this.discussionChatChannel.ACTIONS.ADD:
               this.messages.push(value.user_message);

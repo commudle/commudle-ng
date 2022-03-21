@@ -25,6 +25,7 @@ export class MessageComponent implements OnInit {
 
   showReplyForm = false;
   showEmojiPicker = false;
+  isVotingBlocked = false;
 
   replyForm = this.fb.group({
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
