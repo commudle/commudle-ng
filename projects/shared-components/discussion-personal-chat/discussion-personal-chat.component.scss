@@ -1,5 +1,3 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 :host {
   height: 100%;
 
@@ -14,8 +12,7 @@
     }
 
     .messages {
-      height: 90%;
-      overflow-y: auto;
+      height: 100%;
 
       .message {
         margin-bottom: 1rem;
@@ -60,7 +57,7 @@
           .nbPrefix {
             align-items: center;
             display: flex;
-            margin-top: -5px;
+            margin-top: -2px;
 
             .emoji-button {
               padding: 0.1rem;

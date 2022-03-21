@@ -1,13 +1,13 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { IDiscussion } from 'projects/shared-models/discussion.model';
-import * as moment from 'moment';
-import { IUserMessage } from 'projects/shared-models/user_message.model';
-import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import * as moment from 'moment';
 import { UserMessagesService } from 'projects/commudle-admin/src/app/services/user-messages.service';
+import { NoWhitespaceValidator } from 'projects/shared-helper-modules/custom-validators.validator';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { IUserMessage } from 'projects/shared-models/user_message.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { DiscussionPersonalChatChannel } from '../services/websockets/dicussion-personal-chat.channel';
 
 @Component({
@@ -227,8 +227,8 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   selectEmoji(event) {
     let currentValue = this.chatMessageForm.get('content').value || '';
     this.chatMessageForm.patchValue({
-      content: currentValue.concat(`${event.emoji.native}  `),
+      content: currentValue.concat(event.emoji.native),
     });
-    this.inputElement.nativeElement.focus();
+    this.inputElement?.nativeElement.focus();
   }
 }
