@@ -9,12 +9,11 @@ import { NavigatorShareService } from 'projects/shared-services/navigator-share.
   styleUrls: ['./share-button.component.scss'],
 })
 export class ShareButtonComponent implements OnInit {
-  //Windows
   @Input() title: string = '';
   @Input() text: string = '';
   @Input() url: string = '';
 
-  //General
+  // Fallback content
   @Input() content: string = '';
 
   @Input() showText: boolean = true;
@@ -31,7 +30,7 @@ export class ShareButtonComponent implements OnInit {
   copyTextToClipboard(): void {
     if (!this.navigatorShareService.canShare()) {
       if (this.clipboard.copy(this.content)) {
-        this.libToastLogService.successDialog('Copied link successfully!');
+        this.libToastLogService.successDialog('Copied the message successfully!');
         return;
       }
     }

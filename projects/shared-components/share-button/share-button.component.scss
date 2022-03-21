@@ -1,11 +1,11 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.share-button {
-  button {
+.share-button-container {
+  button.share-button[nbButton] {
     background-color: rgba($neon-blue, 0.2);
     border: none;
     border-radius: $border-10;
-    color: $neon-blue !important;
+    color: $neon-blue;
     font-size: $fs-h6;
     font-weight: $fw-400;
     height: 32px;
@@ -16,15 +16,15 @@
     nb-icon {
       margin-right: $space-4;
     }
-  }
-}
 
-.round-button {
-  padding: 8px !important;
-  border-radius: 1.5rem !important;
-  margin: 0px !important;
+    &.round-button {
+      padding: 8px;
+      border-radius: 1.5rem;
+      margin: 0px;
 
-  nb-icon {
-    margin-right: 0 !important;
+      nb-icon {
+        margin-right: 0;
+      }
+    }
   }
 }
