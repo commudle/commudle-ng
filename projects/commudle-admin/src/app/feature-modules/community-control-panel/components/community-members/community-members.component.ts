@@ -126,7 +126,7 @@ export class CommunityMembersComponent implements OnInit {
   }
 
   removeUser() {
-    this.userRolesUsersService.removeUser(this.removeUserForm.value).subscribe(() => {
+    this.userRolesUsersService.removeUser(this.removeUserForm.value, this.communityId).subscribe(() => {
       this.toastrService.success('User removed from community', 'Success');
       this.getMembers();
     });
