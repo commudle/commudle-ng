@@ -134,9 +134,10 @@ export class UserRolesUsersService {
     );
   }
 
-  removeUser(userRolesUserIds: number[]): Observable<boolean> {
+  removeUser(userRolesUserIds: number[], communityId: number): Observable<boolean> {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.REMOVE_USER), {
       user_roles_user_ids: userRolesUserIds,
+      community_id: communityId,
     });
   }
 
