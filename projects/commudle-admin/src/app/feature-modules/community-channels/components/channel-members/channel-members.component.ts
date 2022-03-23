@@ -19,6 +19,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   EUserRoles = EUserRoles;
   subscriptions = [];
   channel: ICommunityChannel;
+  channelUsers: IUserRolesUser[] = [];
   allUsers: IUserRolesUser[] = [];
   page = 1;
   count = 20;
@@ -68,19 +69,17 @@ export class ChannelMembersComponent implements OnInit, OnDestroy {
   getMembers() {
     this.communityChannelsService.membersList(this.channel.id, this.page, this.count).subscribe(
       data => {
-        this.allUsers = this.allUsers.concat(data.user_roles_users);
+        this.channelUsers = this.channelUsers.concat(data.user_roles_users);
         this.page += 1;
-
         if (data.user_roles_users.length == data.count) {
           this.getMembers();
-        } else if (this.allUsers.length > 0) {
-          const cUser = this.allUsers.find(k => k.user.username === this.currentUser.username);
+        } else if (this.channelUsers.length > 0) {
+          const cUser = this.channelUsers.find(k => k.user.username === this.currentUser.username);
           if (cUser) {
             this.currentUserIsAdmin = (cUser.user_role.name === EUserRoles.COMMUNITY_CHANNEL_ADMIN);
           }
+          this.allUsers = this.channelUsers;
         }
-
-
       }
     )
   }
