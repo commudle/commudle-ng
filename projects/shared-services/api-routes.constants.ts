@@ -353,6 +353,12 @@ export const API_ROUTES = {
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
     GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
 
+    COMMUNITY_BLOCKED_USERS: 'api/v2/user_roles_users/communities/blocked_users',
+    REMOVE_USER: 'api/v2/user_roles_users/communities/remove_user',
+    BLOCK_USER: 'api/v2/user_roles_users/communities/block_user',
+    UNBLOCK_USER: 'api/v2/user_roles_users/communities/unblock_user',
+    ROLES: 'api/v2/user_roles_users/communities/roles',
+
     PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
     PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
     PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS: 'api/v2/user_roles_users/public_get_admin_community_group_users',

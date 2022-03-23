@@ -19,15 +19,20 @@
     </div>
   </div>
   <nb-actions *ngIf="currentUser" class="suffix" size="tiny">
-    <nb-action>
+    <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
       <app-votes-display
+        (isBlocked)="isVotingBlocked = $event"
         [votableId]="message.id"
         icon="heart-outline"
         size="small"
         votableType="UserMessage"
       ></app-votes-display>
     </nb-action>
-    <nb-action *ngIf="permittedActions.includes(allActions.REPLY) && canReply">
+    <nb-action
+      *ngIf="(permittedActions.includes(allActions.REPLY) && canReply) || permittedActions.includes(allActions.BLOCKED)"
+      [disabled]="permittedActions.includes(allActions.BLOCKED)"
+      [ngClass]="{ 'com-pointer-events-none': permittedActions.includes(allActions.BLOCKED) }"
+    >
       <nb-icon
         (click)="showReplyForm = !showReplyForm"
         class="clickable"
@@ -48,7 +53,11 @@
         nbTooltip="Delete this message"
       ></nb-icon>
     </nb-action>
-    <nb-action *ngIf="permittedActions.includes(allActions.FLAG)">
+    <nb-action
+      *ngIf="permittedActions.includes(allActions.FLAG) || permittedActions.includes(allActions.BLOCKED)"
+      [disabled]="permittedActions.includes(allActions.BLOCKED)"
+      [ngClass]="{ 'com-pointer-events-none': permittedActions.includes(allActions.BLOCKED) }"
+    >
       <p *ngIf="message.flags_count > 0">{{ message.flags_count }}&nbsp;</p>
       <nb-icon
         (click)="emitFlag(message.id)"

@@ -24,23 +24,40 @@
       set="twitter"
       title="Select an emoji"
     ></emoji-mart>
-    <form (submit)="sendMessage()" *ngIf="permittedActions.includes(allActions.ADD)" [formGroup]="messageForm">
+    <form
+      (submit)="sendMessage()"
+      *ngIf="permittedActions.includes(allActions.ADD) || permittedActions.includes(allActions.BLOCKED)"
+      [formGroup]="messageForm"
+    >
       <nb-form-field>
-        <button (click)="showEmojiPicker = !showEmojiPicker" class="emoji-picker" ghost nbButton nbPrefix type="button">
+        <button
+          (click)="showEmojiPicker = !showEmojiPicker"
+          [disabled]="permittedActions.includes(allActions.BLOCKED)"
+          class="emoji-picker"
+          ghost
+          nbButton
+          nbPrefix
+          type="button"
+        >
           <fa-icon [icon]="faGrin"></fa-icon>
         </button>
         <input
           #messageInput
+          [placeholder]="permittedActions.includes(allActions.BLOCKED) ? 'You are blocked' : 'Add a Comment'"
           appMention
           formControlName="content"
           fullWidth
           maxlength="200"
           minlength="1"
           nbInput
-          placeholder="Add a Comment"
           type="text"
         />
-        <button [disabled]="!messageForm.valid" ghost nbButton nbSuffix>
+        <button
+          [disabled]="!messageForm.valid || permittedActions.includes(allActions.BLOCKED)"
+          ghost
+          nbButton
+          nbSuffix
+        >
           <nb-icon icon="paper-plane"></nb-icon>
         </button>
       </nb-form-field>

@@ -18,6 +18,7 @@ export class DiscussionChatChannel {
     DELETE_ANY: 'delete_any',
     DELETE_SELF: 'delete_self',
     ERROR: 'error',
+    BLOCKED: 'blocked',
   };
 
   actionCable = actionCable;

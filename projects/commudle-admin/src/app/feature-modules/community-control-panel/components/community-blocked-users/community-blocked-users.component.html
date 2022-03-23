@@ -83,7 +83,7 @@
   </div>
 </div>
 
-<ng-template #removeUserDialog let-data let-ref="dialogRef">
+<ng-template #unblockUserDialog let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header class="com-flex com-items-center com-justify-between">
       <span class="com-flex com-items-center com-gap-2">
@@ -96,54 +96,13 @@
     </nb-card-header>
     <nb-card-body class="com-max-w-[350px]">
       <p>
-        Are you sure you want to <strong>remove</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community? (Select
-        the roles you want to remove them from)
-      </p>
-      <div class="com-flex com-flex-col">
-        <nb-checkbox
-          (checkedChange)="toggleUserRole(userRole.id)"
-          *ngFor="let userRole of selectedUserRoles"
-          [checked]="userRolesUserIds.value.includes(userRole.id)"
-        >
-          {{ userRole.parent_name }} ({{ userRole.user_role.name }})
-        </nb-checkbox>
-      </div>
-      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
-    </nb-card-body>
-    <nb-card-footer class="com-flex com-items-center com-justify-between">
-      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
-      <button
-        (click)="removeUser(); ref.close()"
-        [disabled]="!selectedUserRoles.length || !userRolesUserIds.value.length"
-        nbButton
-        status="success"
-      >
-        Yes
-      </button>
-    </nb-card-footer>
-  </nb-card>
-</ng-template>
-
-<ng-template #blockUserDialog let-data let-ref="dialogRef">
-  <nb-card>
-    <nb-card-header class="com-flex com-items-center com-justify-between">
-      <span class="com-flex com-items-center com-gap-2">
-        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
-        Confirmation
-      </span>
-      <button (click)="ref.close()" ghost nbButton size="small">
-        <nb-icon icon="close"></nb-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body class="com-max-w-[350px]">
-      <p>
-        Are you sure you want to <strong>remove & block</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community?
+        Are you sure you want to <strong>unblock</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community?
       </p>
       <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">
       <button (click)="ref.close()" ghost nbButton status="danger">No</button>
-      <button (click)="blockUser(data.user.id); ref.close()" nbButton status="success">Yes</button>
+      <button (click)="unblockUser(data.user.id); ref.close()" nbButton status="success">Yes</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

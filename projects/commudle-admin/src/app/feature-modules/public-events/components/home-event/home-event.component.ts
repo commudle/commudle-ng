@@ -10,6 +10,7 @@ import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { EEventStatuses } from 'projects/shared-models/enums/event_statuses.enum';
 import { IEvent } from 'projects/shared-models/event.model';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-home-event',
@@ -33,6 +34,8 @@ export class HomeEventComponent implements OnInit {
   hasOpenForms = false;
   hasInterestedMembers = false;
   hasSponsors = false;
+
+  environment = environment;
 
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
