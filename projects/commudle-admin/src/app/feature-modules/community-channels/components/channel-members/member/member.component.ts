@@ -1,5 +1,5 @@
 import {EUserRoles} from 'projects/shared-models/enums/user_roles.enum';
-import {Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {EUserRolesUserStatus, IUserRolesUser} from 'projects/shared-models/user_roles_user.model';
 import {LibAuthwatchService} from 'projects/shared-services/lib-authwatch.service';
 import {NB_WINDOW, NbMenuService, NbWindowService} from '@nebular/theme';
@@ -12,7 +12,7 @@ import {UserChatsService} from 'projects/commudle-admin/src/app/feature-modules/
   templateUrl: './member.component.html',
   styleUrls: ['./member.component.scss']
 })
-export class MemberComponent implements OnInit, OnDestroy {
+export class MemberComponent implements OnInit, OnDestroy, OnChanges {
   subscriptions = [];
   @Input() userRolesUser: IUserRolesUser;
   @Input() currentUserIsAdmin: boolean;
@@ -48,6 +48,9 @@ export class MemberComponent implements OnInit, OnDestroy {
     );
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+  }
+
   ngOnDestroy() {
     for (const subs of this.subscriptions) {
       subs.unsubscribe();
@@ -70,7 +73,6 @@ export class MemberComponent implements OnInit, OnDestroy {
         }
       );
     }
-
     if (this.currentUserIsAdmin) {
       (this.userRolesUser.user_role.name !== EUserRoles.COMMUNITY_CHANNEL_ADMIN)
         ? (this.contextMenuItems.push({title: 'Make Admin'}))
