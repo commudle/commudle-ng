@@ -11,21 +11,21 @@ export const environment = {
   // auth_cookie_name: 'dev_commudle_user_auth',
   // zoom_call_server_url: 'http://localhost:4000',
 
-  // app_url: 'https://t.commudle.com',
-  // base_url: 'https://t.commudle.com',
-  // action_cable_url: 'https://t.commudle.com/live',
-  // anycable_url: 'wss://wst.commudle.com/cable',
-  // auth_cookie_name: 'dev_commudle_user_auth',
-  // zoom_call_server_url: 'https://zoomt.commudle.com',
+  app_url: 'https://t.commudle.com',
+  base_url: 'https://t.commudle.com',
+  action_cable_url: 'https://t.commudle.com/live',
+  anycable_url: 'wss://wst.commudle.com/cable',
+  auth_cookie_name: 'dev_commudle_user_auth',
+  zoom_call_server_url: 'https://zoomt.commudle.com',
 
   session_cookie_name: 'cmdle_sess',
 
-  app_url: 'https://www.commudle.com',
-  base_url: 'https://json.commudle.com',
-  action_cable_url: 'https://json.commudle.com/live',
-  anycable_url: 'wss://ws.commudle.com/cable',
-  auth_cookie_name: 'commudle_user_auth',
-  zoom_call_server_url: 'https://zoom.commudle.com',
+  // app_url: 'https://www.commudle.com',
+  // base_url: 'https://json.commudle.com',
+  // action_cable_url: 'https://json.commudle.com/live',
+  // anycable_url: 'wss://ws.commudle.com/cable',
+  // auth_cookie_name: 'commudle_user_auth',
+  // zoom_call_server_url: 'https://zoom.commudle.com',
 };
 
 /*

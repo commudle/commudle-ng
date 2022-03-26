@@ -13,6 +13,9 @@ import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { NbWindowService } from '@nebular/theme';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+
 @Component({
   selector: 'app-user-event-registrations',
   templateUrl: './user-event-registrations.component.html',
@@ -44,6 +47,9 @@ export class UserEventRegistrationsComponent implements OnInit {
     name: [''],
   });
 
+  userRoles = []
+  EUserRoles = EUserRoles;
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -52,12 +58,14 @@ export class UserEventRegistrationsComponent implements OnInit {
     private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
     private toastLogService: LibToastLogService,
     private windowService: NbWindowService,
+    private appUsersService: AppUsersService
   ) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe((data) => {
       this.event = data.event;
       this.community = data.community;
+      this.getUserRoles();
     });
 
     // get all registration statuses
@@ -70,6 +78,12 @@ export class UserEventRegistrationsComponent implements OnInit {
     });
     this.updateFilter();
     // this.getResponses();
+  }
+
+  getUserRoles() {
+    this.appUsersService.getMyRoles('Kommunity', this.community.id).subscribe((res) => {
+      this.userRoles = res;
+    })
   }
 
   updateFilter() {

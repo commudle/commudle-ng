@@ -1,23 +1,59 @@
 nb-card{
   nb-card-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .camera-container{
-
+    .qr-code-scanner{
       display: flex;
-      justify-content: center;
-    
-      zxing-scanner{
-        ::ng-deep{
-          video {
-            width: 300px;
-            height: 300px;
-            object-fit: contain;
+      flex-direction: column;
+      align-items: center;
+      width: inherit;
+
+      .camera-container{
+
+        display: flex;
+        justify-content: center;
+      
+        zxing-scanner{
+          ::ng-deep{
+            video {
+              width: 300px;
+              height: 300px;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+
+      .cameras-list{
+        width: inherit;
+        margin-top: 20px;
+
+        nb-form-field{
+          width: inherit;
+        }
+      }
+
+      .user-details-container {
+
+        margin-top: 30px;
+        
+        .contact-details {
+          margin: 0;
+        }
+      
+        .social-links {
+          width: 50%;
+          display: flex;
+          flex-wrap: wrap;
+          font-size: 12px;
+          a {
+            color: black;
+            margin: 0 0.5rem;
           }
         }
       }
     }
   }
+}
+
+[hidden] {
+  display: none !important;
 }
