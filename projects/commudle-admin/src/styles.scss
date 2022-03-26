@@ -96,6 +96,16 @@ input {
       }
     }
   }
+
+  [nbButton].appearance-filled.status-basic {
+    background-color: nb-theme('color-basic-200');
+    border-color: nb-theme('color-basic-200');
+  }
+
+  [nbButton].shape-semi-round,
+  [nbButtonToggle].shape-semi-round {
+    border-radius: 10px;
+  }
 }
 
 .nb-theme-default nb-card {
