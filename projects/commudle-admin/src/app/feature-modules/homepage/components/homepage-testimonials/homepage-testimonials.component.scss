@@ -1,21 +1,29 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
 p {
   @apply com-m-0;
 }
 
 .homepage-testimonials {
-  @apply com-p-20 com-text-gray-800 com-bg-white com-rounded-lg com-shadow;
+  border-radius: $border-10;
+  @apply com-p-4 md:com-p-20 com-text-gray-900 com-bg-white com-shadow;
 
   .quotes {
-    color: #0095fa;
+    color: #0095ff;
     @apply com-h-3 com-text-7xl com-font-bold;
   }
 
   .content {
-    @apply com-px-8 com-text-center com-text-gray-800 com-text-7xl com-font-semibold;
+    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold;
   }
 
   nb-actions {
-    @apply com-mt-20;
+    @apply com-mt-12 md:com-mt-20 com-flex-col md:com-flex-row com-gap-4 md:com-gap-0;
+
+    .user,
+    .text {
+      @apply com-p-0 md:com-p-2 com-border-none md:com-border-r com-border-blue-100 com-text-center;
+    }
 
     .user {
       .avatar {
@@ -24,21 +32,21 @@ p {
 
       .details {
         .name {
-          @apply com-text-xl com-text-gray-800 com-font-medium;
+          @apply com-text-xl com-text-gray-900 com-font-medium;
         }
 
         .username {
-          @apply com-mt-1 com-text-base com-text-gray-500;
+          @apply com-mt-1 com-text-base com-text-gray-400;
         }
       }
     }
 
     .text {
-      @apply com-text-gray-800 com-text-xl com-font-medium;
+      @apply com-text-gray-900 com-text-xl com-font-medium;
 
       .highlight {
-        color: #0095fa;
-        @apply com-p-1.5;
+        color: #0095ff;
+        @apply com-p-1.5 com-contents;
       }
     }
   }

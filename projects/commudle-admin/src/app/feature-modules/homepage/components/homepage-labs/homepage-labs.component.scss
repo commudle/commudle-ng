@@ -5,17 +5,16 @@ a {
 }
 
 .heading {
-  @apply com-m-0 com-text-2xl md:com-text-3xl com-font-medium com-text-gray-900;
+  @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold;
 }
 
 .subheading {
-  @apply com-m-0 com-text-base com-leading-relaxed com-font-normal com-text-gray-500 com-mb-4;
+  @apply com-m-0 com-text-base com-leading-relaxed com-font-normal com-text-gray-400 com-mb-4;
 }
 
 .home-labs-list {
   nb-card {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
-    @apply com-mx-0 com-my-6 com-border-0;
+    @apply com-mx-0 com-my-6 com-border-0 com-shadow;
 
     .name {
       @apply com-mt-0 com-line-clamp-2 com-leading-6 com-h-12;
@@ -28,9 +27,9 @@ a {
 }
 
 .home-labs-view-all {
-  color: #0095fa;
+  color: #0095ff;
 }
 
 .home-write-tutorial {
-  background-color: #0095fa;
+  background-color: #0095ff;
 }
