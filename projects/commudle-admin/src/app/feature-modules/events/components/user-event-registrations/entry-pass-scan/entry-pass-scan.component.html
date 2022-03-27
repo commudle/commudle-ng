@@ -5,33 +5,28 @@
         <nb-card-body>
           <div class="qr-code-scanner" [hidden]="!hasDevices">
             <div class="camera-container">
-              <zxing-scanner 
-                #scanner
-                [(device)]="currentDevice"
-                (scanSuccess)="onCodeResult($event)"
-                (permissionResponse)="onHasPermission($event)"
-                (camerasFound)="onCamerasFound($event)"
-                [formats]="formatsEnabled"
-              ></zxing-scanner>
+              <zxing-scanner #scanner [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
+                (permissionResponse)="onHasPermission($event)" (camerasFound)="onCamerasFound($event)"
+                [formats]="formatsEnabled"></zxing-scanner>
               <audio #correctSound>
-                <source src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1FkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9255d1e05be35d9fb971bfb38d1a67d8c39c8b0f/success_sound.mp3" type="audio/mp3">
+                <source
+                  src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1FkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9255d1e05be35d9fb971bfb38d1a67d8c39c8b0f/success_sound.mp3"
+                  type="audio/mp3">
               </audio>
               <audio #incorrectSound>
-                <source src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1VkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--52910f934db167843387e03f3500aeff6be3a366/error_sound.mp3" type="audio/mp3">
+                <source
+                  src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1VkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--52910f934db167843387e03f3500aeff6be3a366/error_sound.mp3"
+                  type="audio/mp3">
               </audio>
             </div>
             <div class="cameras-list">
               <nb-form-field>
                 <nb-icon nbPrefix icon="alert-circle-outline"></nb-icon>
-                <nb-select 
-                  placeholder="Select Camera" 
-                  [(selected)]="currentDevice"
-                  (selectedChange)="onDeviceSelectChange($event)"
-                  status="info"
-                  [compareWith]="compareByDeviceId"
-                >
+                <nb-select placeholder="Select Camera" [(selected)]="currentDevice"
+                  (selectedChange)="onDeviceSelectChange($event)" status="info" [compareWith]="compareByDeviceId">
                   <nb-option value="">No Device Selected</nb-option>
-                  <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">{{ device.label }}</nb-option>
+                  <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">{{ device.label }}
+                  </nb-option>
                 </nb-select>
               </nb-form-field>
             </div>
@@ -55,14 +50,7 @@
                 </a>
               </div>
               <p *ngIf="eventPass.unique_code" class="entry-pass-code">Entry Pass: {{ eventPass.unique_code }}</p>
-              <button
-                *ngIf="eventPass"
-                (click)="toggleAttendance()"
-                nbButton
-                outline
-                fullWidth
-                status="success"
-              >
+              <button *ngIf="eventPass" (click)="toggleAttendance()" nbButton outline fullWidth status="success">
                 Mark Attendance
               </button>
             </div>

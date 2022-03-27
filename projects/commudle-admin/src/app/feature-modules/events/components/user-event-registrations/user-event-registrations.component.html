@@ -4,13 +4,8 @@
       <nb-card>
         <nb-card-body>
           <p>
-            <a
-              [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
-              class="padding-0 navigation-link"
-              ghost
-              nbButton
-              size="tiny"
-            >
+            <a [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
+              class="padding-0 navigation-link" ghost nbButton size="tiny">
               <nb-icon icon="arrow-ios-back"></nb-icon>
               Back
             </a>
@@ -26,11 +21,7 @@
             <button
               *ngIf="userRoles.length > 0 && (userRoles.includes(EUserRoles.COMMUNITY_ADMIN) || userRoles.includes(EUserRoles.EVENT_ORGANIZER) || userRoles.includes(EUserRoles.EVENT_VOLUNTEER) || userRoles.includes(EUserRoles.ORGANIZER))"
               [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'scan-entry-pass']"
-              nbButton
-              outline
-              size="small"
-              status="primary"
-            >
+              nbButton outline size="small" status="primary">
               Scan Entry Pass
             </button>
 
@@ -39,16 +30,9 @@
               CSV
             </button>
 
-            <nb-select
-              (selectedChange)="bulkStatusChangeConfirmation($event)"
-              *ngIf="event.editable"
-              [(ngModel)]="bulkStatus"
-              [ngModelOptions]="{ standalone: true }"
-              filled
-              placeholder="Bulk Status Change"
-              size="small"
-              status="info"
-            >
+            <nb-select (selectedChange)="bulkStatusChangeConfirmation($event)" *ngIf="event.editable"
+              [(ngModel)]="bulkStatus" [ngModelOptions]="{ standalone: true }" filled placeholder="Bulk Status Change"
+              size="small" status="info">
               <nb-option *ngFor="let rs of registrationStatuses" [value]="rs">
                 {{ rs.name | titlecase }}
               </nb-option>
@@ -60,25 +44,11 @@
       <nb-card class="data-table-responses">
         <nb-card-body>
           <div class="data-table-container">
-            <ngx-datatable
-              #table
-              (page)="setPage($event.offset)"
-              [columnMode]="ColumnMode.force"
-              [count]="totalEntries"
-              [externalPaging]="true"
-              [footerHeight]="50"
-              [headerHeight]="100"
-              [limit]="count"
-              [loadingIndicator]="isLoading"
-              [messages]="{ emptyMessage: emptyMessage }"
-              [offset]="page - 1"
-              [rows]="rows"
-              [scrollbarH]="true"
-              [scrollbarV]="true"
-              [virtualization]="false"
-              class="material expandable"
-              rowHeight="auto"
-            >
+            <ngx-datatable #table (page)="setPage($event.offset)" [columnMode]="ColumnMode.force" [count]="totalEntries"
+              [externalPaging]="true" [footerHeight]="50" [headerHeight]="100" [limit]="count"
+              [loadingIndicator]="isLoading" [messages]="{ emptyMessage: emptyMessage }" [offset]="page - 1"
+              [rows]="rows" [scrollbarH]="true" [scrollbarV]="true" [virtualization]="false" class="material expandable"
+              rowHeight="auto">
               <!-- complete table format -->
               <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
                 <ng-template let-column="column" ngx-datatable-header-template>
@@ -86,15 +56,8 @@
                     <p>User Details</p>
                     <form [formGroup]="searchForm">
                       <div class="name-filter">
-                        <input
-                          [disabled]="isLoading"
-                          fieldSize="tiny"
-                          formControlName="name"
-                          fullWidth
-                          nbInput
-                          placeholder="{{ isLoading ? 'Still Loading' : 'Filter by Name' }}"
-                          type="text"
-                        />
+                        <input [disabled]="isLoading" fieldSize="tiny" formControlName="name" fullWidth nbInput
+                          placeholder="{{ isLoading ? 'Still Loading' : 'Filter by Name' }}" type="text" />
                       </div>
                     </form>
 
@@ -111,14 +74,9 @@
 
                 <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
                   <div class="row-header user-details">
-                    <app-user-details
-                      (updateEntryPass)="updateEntryPass($event, row.id)"
-                      (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)"
-                      [community]="community"
-                      [event]="event"
-                      [registrationStatuses]="registrationStatuses"
-                      [userResponse]="row"
-                    >
+                    <app-user-details (updateEntryPass)="updateEntryPass($event, row.id)"
+                      (updatedRegistrationStatus)="updateRegistrationStatus($event, row.id)" [community]="community"
+                      [event]="event" [registrationStatuses]="registrationStatuses" [userResponse]="row">
                     </app-user-details>
                   </div>
                 </ng-template>

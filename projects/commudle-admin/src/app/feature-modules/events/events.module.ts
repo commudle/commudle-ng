@@ -130,4 +130,4 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     NbFormFieldModule,
   ],
 })
-export class EventsModule {}
+export class EventsModule { }

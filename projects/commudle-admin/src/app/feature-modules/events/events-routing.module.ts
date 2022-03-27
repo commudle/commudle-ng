@@ -73,4 +73,4 @@ const routes = [
   exports: [RouterModule],
   providers: [CommunityDetailsResolver, EventDetailsResolver],
 })
-export class EventsRoutingModule {}
+export class EventsRoutingModule { }

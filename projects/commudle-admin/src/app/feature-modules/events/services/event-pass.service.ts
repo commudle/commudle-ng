@@ -14,14 +14,14 @@ export class EventPassService {
     private apiRouteService: ApiRoutesService
   ) { }
 
-  getEntryPass(eventId: string, entryCode: string){
+  getEntryPass(eventId: string, entryCode: string) {
     let params = new HttpParams().set('event_id', eventId);
     params = params.set('unique_code', entryCode);
 
     return this.http.get<any>(this.apiRouteService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.SHOW), { params });
   }
 
-  toggleAttendance(entryPassId: number){
+  toggleAttendance(entryPassId: number) {
     const params = new HttpParams().set('event_entry_pass_id', entryPassId);
     return this.http.put<IEventPass>(this.apiRouteService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.TOGGLE_ATTENDANCE), { params });
   }
