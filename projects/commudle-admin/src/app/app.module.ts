@@ -50,6 +50,7 @@ import { ApiParserResponseInterceptor } from 'projects/shared-interceptors/api-p
 import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch-token.interceptor';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
@@ -63,6 +64,7 @@ import { CommunitiesListComponent } from './components/communities/communities-l
 import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeBuildsCardComponent } from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
 import { HomeBuildsComponent } from './components/home/components/home-builds/home-builds.component';
 import { HomeCommunitiesComponent } from './components/home/components/home-communities/home-communities.component';
@@ -77,6 +79,7 @@ import { FeaturesComponent } from './components/home/features/features.component
 import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarMenuComponent } from './components/navbar-menu/navbar-menu.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommunityComponent } from './components/organizer-communities-list/community/community.component';
 import { OrganizerCommunitiesListComponent } from './components/organizer-communities-list/organizer-communities-list.component';
 import { CircularProgressiveBarComponent } from './components/profile-status-bar/circular-progressive-bar/circular-progressive-bar.component';
@@ -93,6 +96,7 @@ import { NotificationsModule } from './feature-modules/notifications/notificatio
 import { PublicCommunityModule } from './feature-modules/public-community/public-community.module';
 import { RecommendationsModule } from './feature-modules/recommendations/recommendations.module';
 import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
+import { SearchModule } from './feature-modules/search/search.module';
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
@@ -137,6 +141,8 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     StepperComponent,
     ProfileStatusBarComponent,
     CircularProgressiveBarComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -163,6 +169,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     SharedDirectivesModule,
     NotificationsModule,
     RecommendationsModule,
+    SearchModule,
 
     // external service modules
     LibErrorHandlerModule,
@@ -214,6 +221,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     Title,
     CookieService,
     NbSidebarService,
+    IsBrowserService,
     PrismJsHighlightCodeService,
     {
       provide: APP_INITIALIZER,

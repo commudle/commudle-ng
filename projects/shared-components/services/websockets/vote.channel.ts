@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
-import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,7 @@ export class VoteChannel {
     SET_PERMISSIONS: 'set_permissions',
     TOGGLE_VOTE: 'toggle_vote',
     ERROR: 'error',
+    BLOCKED: 'blocked',
   };
 
   actionCable = actionCable;

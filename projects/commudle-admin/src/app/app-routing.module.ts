@@ -21,6 +21,10 @@ const routes = [
     component: HomeComponent,
   },
   {
+    path: 'home',
+    loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
+  },
+  {
     path: 'about-wip',
     component: AboutComponent,
   },
@@ -129,6 +133,10 @@ const routes = [
   {
     path: 'newsletters/:main_newsletter_id',
     component: MainNewsletterComponent,
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },
   {
     path: 'admin',

@@ -1,0 +1,97 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/text-styles';
+
+p {
+  margin: 0;
+}
+
+.communities-featured-list {
+  @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+
+  @screen lg {
+    @apply com-grid com-grid-cols-4 com-overflow-x-auto com-gap-6;
+  }
+
+  .featured-community-card {
+    aspect-ratio: 3/4;
+    background-color: $white;
+    border-radius: $border-10;
+    margin: 2px;
+    min-width: 260px;
+    overflow: hidden;
+    position: relative;
+    @apply com-shadow;
+
+    @screen lg {
+      min-width: inherit;
+    }
+
+    .featured-community-actions {
+      gap: $space-8;
+      position: absolute;
+      right: $space-12;
+      top: $space-12;
+
+      button {
+        nb-icon {
+          color: #0095ff;
+        }
+      }
+    }
+
+    .featured-community-image-container {
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      width: 100%;
+
+      .featured-community-image {
+        width: 100%;
+      }
+    }
+
+    .featured-community-about {
+      aspect-ratio: 3/2;
+      @apply com-p-3 md:com-p-4 com-flex com-flex-col com-justify-between;
+
+      .featured-community-name {
+        @apply com-m-0 com-text-base com-font-semibold com-line-clamp-1;
+      }
+
+      .featured-community-reason {
+        @apply com-text-sm com-line-clamp-2 md:com-line-clamp-3;
+      }
+
+      .featured-community-join-btn {
+        @apply com-flex com-justify-between com-items-center;
+
+        app-membership-toggle {
+          &::ng-deep {
+            button {
+              background: $white;
+              border: 1px solid $silver-sand;
+              border-radius: $border-10;
+              color: #0095ff;
+              font-size: $fs-h5;
+              font-weight: normal;
+              height: 32px;
+              line-height: 16px;
+              min-width: 152px;
+              padding: $space-8;
+              width: 152px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .communities-featured-list {
+    overflow-x: scroll;
+  }
+}
+
+.home-view-all-communities {
+  background-color: #0095ff;
+}

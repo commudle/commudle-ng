@@ -3,6 +3,7 @@ import { NotificationService } from 'projects/commudle-admin/src/app/feature-mod
 import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-notifications-list',
@@ -15,13 +16,16 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
   ENotificationStatus = ENotificationStatus;
 
   subscriptions = [];
+  moment = moment;
 
   constructor(
     private notificationService: NotificationService,
     private notificationStateService: NotificationStateService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.setNotificationTimeFormat();
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
@@ -33,5 +37,25 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
 
   closePopover() {
     this.notificationStateService.setCloseNotificationPopover(true);
+  }
+
+  setNotificationTimeFormat() {
+    moment.locale('en', {
+      relativeTime: {
+        past: '%s',
+        s: '1s',
+        ss: '%ss',
+        m: '1m',
+        mm: '%dm',
+        h: '1h',
+        hh: '%dh',
+        d: '1d',
+        dd: '%dd',
+        M: '1M',
+        MM: '%dM',
+        y: '1Y',
+        yy: '%dY',
+      },
+    });
   }
 }

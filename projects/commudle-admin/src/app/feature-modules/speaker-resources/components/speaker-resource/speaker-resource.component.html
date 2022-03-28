@@ -3,8 +3,8 @@
     <nb-card class="user-profile">
       <nb-card-body>
         <app-user-profile-card-large
-          [showFollowButton]="true"
           [alignFollowToRight]="true"
+          [showFollowButton]="true"
           [user]="speakerResource.user"
         >
         </app-user-profile-card-large>
@@ -47,11 +47,13 @@
         </div>
       </nb-card-body>
     </nb-card>
-    <div #discussionChatContainer>
-      <app-speaker-resource-discussion
-        *ngIf="discussionChat"
-        [discussion]="discussionChat"
-      ></app-speaker-resource-discussion>
+    <div #discussionChatContainer class="speaker-resource-discussion">
+      <nb-card *ngIf="discussionChat">
+        <nb-card-header>Discussion</nb-card-header>
+        <nb-card-body>
+          <app-messages [discussion]="discussionChat"></app-messages>
+        </nb-card-body>
+      </nb-card>
     </div>
   </div>
 </div>

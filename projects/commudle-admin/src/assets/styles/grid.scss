@@ -3,6 +3,7 @@
 /*
 HTML Emmet's
 1. div.base-layout>div.container
+2. div.base-layout.thin>div.container
  */
 .base-layout {
   @apply com-min-h-screen com-max-w-screen-xl com-mx-auto;

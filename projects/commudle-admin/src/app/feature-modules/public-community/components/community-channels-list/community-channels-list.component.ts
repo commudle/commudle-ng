@@ -14,6 +14,7 @@ export class CommunityChannelsListComponent implements OnInit, OnDestroy {
   community: ICommunity;
   channels: ICommunityChannel[] = [];
   subscriptions = [];
+  channelLoader = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,6 +23,7 @@ export class CommunityChannelsListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.channelLoader = true;
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
@@ -39,6 +41,7 @@ export class CommunityChannelsListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.communityChannelsService.index(this.community.id).subscribe((data) => {
         this.channels = data.community_channels;
+        this.channelLoader = false;
       }),
     );
   }

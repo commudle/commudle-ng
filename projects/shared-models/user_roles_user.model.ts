@@ -1,6 +1,6 @@
-import {IUser} from './user.model';
-import {IUserRole} from './user_role.model';
-import {ICommunity} from 'projects/shared-models/community.model';
+import { ICommunity } from './community.model';
+import { IUser } from './user.model';
+import { IUserRole } from './user_role.model';
 
 export interface IUserRolesUser {
   id: number;
@@ -9,14 +9,14 @@ export interface IUserRolesUser {
   active: boolean;
   parent_id: number;
   parent_type: string;
+  parent_name: string;
   status: EUserRolesUserStatus;
   community?: ICommunity;
 }
-
 
 export enum EUserRolesUserStatus {
   INVITED = 'invited',
   ACCEPTED = 'accepted',
   REMOVED = 'removed',
-  JOINED_BY_TOKEN = 'joined_by_token'
+  JOINED_BY_TOKEN = 'joined_by_token',
 }

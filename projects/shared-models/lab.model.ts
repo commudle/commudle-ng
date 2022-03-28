@@ -1,6 +1,6 @@
-import {IAttachedFile} from './attached-file.model';
-import {IUser} from './user.model';
-import {ILabStep} from './lab-step.model';
+import { IAttachedFile } from './attached-file.model';
+import { ILabStep } from './lab-step.model';
+import { IUser } from './user.model';
 
 export interface ILab {
   id: number;
@@ -23,12 +23,16 @@ export interface ILab {
   createdSince?: string;
 }
 
+export interface ILabSearch extends ILab {
+  type: string;
+}
+
 export enum EPublishStatus {
   draft = 'draft',
   submitted = 'submitted',
   published = 'published',
   flagged = 'flagged',
-  removed = 'removed'
+  removed = 'removed',
 }
 
 export enum EPublishStatusColors {
@@ -36,5 +40,5 @@ export enum EPublishStatusColors {
   submitted = '#0095fe',
   published = '#23d004',
   flagged = 'red',
-  removed = 'red'
+  removed = 'red',
 }

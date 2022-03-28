@@ -27,9 +27,16 @@
   }
 
   .user-video {
+    border: 2px solid $black;
+    border-radius: 10px;
     height: 100%;
+    overflow: hidden;
     position: relative;
     width: 100%;
+
+    &.speaker {
+      border: 2px solid #21a15d;
+    }
 
     .hidden {
       display: none;
@@ -39,6 +46,7 @@
       height: 100%;
       object-fit: cover;
       width: 100%;
+      z-index: 1;
     }
 
     .screen-share {
@@ -46,20 +54,9 @@
     }
 
     .user-avatar {
-      border-radius: $border-50;
-      height: 50px;
-      left: 50%;
-      overflow: hidden;
-      position: absolute;
-      top: 50%;
       transform: translate(-50%, -50%);
-      width: 50px;
-
-      img {
-        height: 100%;
-        object-fit: cover;
-        width: 100%;
-      }
+      @apply com-h-16 com-w-16 com-rounded-full com-object-cover;
+      @apply com-absolute com-left-1/2 com-top-1/2 com-overflow-hidden;
     }
   }
 
@@ -71,6 +68,11 @@
     left: 0;
     padding: $space-4;
     position: absolute;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba($black, 0.4);
+    }
 
     nb-icon {
       font-size: $fs-h5;

@@ -17,6 +17,7 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
+  eventLoader = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,6 +26,7 @@ export class EventsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.eventLoader = true;
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
       this.getEvents();
@@ -35,6 +37,7 @@ export class EventsComponent implements OnInit {
   getEvents() {
     this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
       this.events = data.events;
+      this.eventLoader = false;
     });
   }
 }

@@ -49,7 +49,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
     content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
   });
 
-  @ViewChild('messageInput') messageInput: ElementRef<HTMLInputElement>;
+  @ViewChild('messageInput') messageInputRef: ElementRef<HTMLInputElement>;
 
   subscriptions: Subscription[] = [];
 
@@ -86,6 +86,9 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
           switch (value.action) {
             case this.discussionChatChannel.ACTIONS.SET_PERMISSIONS:
               this.permittedActions = value.permitted_actions;
+              if (this.permittedActions.includes(this.discussionChatChannel.ACTIONS.BLOCKED)) {
+                this.messageForm.disable();
+              }
               break;
             case this.discussionChatChannel.ACTIONS.ADD:
               this.messages.push(value.user_message);
@@ -95,7 +98,8 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
               this.messages[this.findMessageIndex(value.parent_id)].user_messages.push(value.user_message);
               this.newMessage.emit();
               break;
-            case this.discussionChatChannel.ACTIONS.DELETE:
+            case this.discussionChatChannel.ACTIONS.DELETE_ANY:
+            case this.discussionChatChannel.ACTIONS.DELETE_SELF:
               if (value.parent_type === 'Discussion') {
                 this.messages.splice(this.findMessageIndex(value.user_message_id), 1);
               } else {
@@ -169,14 +173,21 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterContentChecked
     this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.FLAG, { user_message_id: messageId });
   }
 
-  sendDelete(messageId: number): void {
-    this.discussionChatChannel.sendData(this.discussionChatChannel.ACTIONS.DELETE, { user_message_id: messageId });
+  sendDelete({ messageId, isSelfMessage }): void {
+    const action = isSelfMessage
+      ? this.discussionChatChannel.ACTIONS.DELETE_SELF
+      : this.discussionChatChannel.ACTIONS.DELETE_ANY;
+    this.discussionChatChannel.sendData(action, { user_message_id: messageId });
   }
 
   addEmoji(event): void {
     this.messageForm.patchValue({
-      content: (this.messageForm.get('content').value || '').concat(`${event.emoji.native}`),
+      content: (this.messageForm.get('content').value || '').concat(event.emoji.native),
     });
-    this.messageInput.nativeElement.focus();
+    this.messageInputRef.nativeElement.focus();
+  }
+
+  login() {
+    window.location.href = `https://auther.commudle.com/?back_to=${encodeURIComponent(window.location.href)}`;
   }
 }

@@ -1,0 +1,28 @@
+.base-layout {
+  .container {
+    .one-column-layout {
+      .search-results {
+        nb-card-body {
+          nb-list {
+            @apply com-mt-4;
+
+            .search-result {
+              @apply com-px-0 com-border-0 com-cursor-pointer;
+
+              nb-user {
+                &::ng-deep {
+                  .info-container {
+                    .user-name,
+                    .user-title {
+                      @apply com-line-clamp-1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

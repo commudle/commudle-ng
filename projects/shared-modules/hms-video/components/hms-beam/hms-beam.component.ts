@@ -1,3 +1,4 @@
+import { HMSLogLevel } from '@100mslive/hms-video';
 import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -20,10 +21,11 @@ export class HmsBeamComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private isBrowserService: IsBrowserService,
     private footerService: FooterService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
+    hmsActions.setLogLevel(HMSLogLevel.VERBOSE);
+
     if (!this.isBrowser) {
       return;
     }
@@ -47,6 +49,6 @@ export class HmsBeamComponent implements OnInit {
       if (value) {
         hmsActions.unblockAudio();
       }
-    }, selectIsConnectedToRoom)
+    }, selectIsConnectedToRoom);
   }
 }

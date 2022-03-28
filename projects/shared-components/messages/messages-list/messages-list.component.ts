@@ -28,14 +28,14 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
   @Output() getPreviousMessages: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();
-  @Output() sendDelete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() sendDelete = new EventEmitter();
 
   moment = moment;
   messageContainer: HTMLDivElement;
   isNearBottom: boolean;
 
   @ViewChild('messagesList') messagesList: ElementRef<HTMLDivElement>;
-  @ViewChildren('message') messageElements: QueryList<any>;
+  @ViewChildren('messageElement') messageElements: QueryList<any>;
 
   constructor() {}
 
@@ -54,8 +54,8 @@ export class MessagesListComponent implements OnInit, AfterViewInit {
     this.sendFlag.emit(messagedId);
   }
 
-  emitDelete(messageId: number): void {
-    this.sendDelete.emit(messageId);
+  emitDelete({ messageId, isSelfMessage }): void {
+    this.sendDelete.emit({ messageId, isSelfMessage });
   }
 
   onMessageElementsChanged(value): void {

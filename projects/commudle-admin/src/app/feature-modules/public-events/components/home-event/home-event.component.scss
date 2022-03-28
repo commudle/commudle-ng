@@ -22,12 +22,24 @@
       .home-event-discussion {
         nb-card-body {
           @apply com-p-0;
+          overflow: initial;
         }
       }
     }
 
     app-messages {
       @apply com-block com-h-96;
+    }
+  }
+}
+
+app-share-button {
+  ::ng-deep {
+    .share-button-container {
+      button {
+        width: 95%;
+        background-color: white !important;
+      }
     }
   }
 }
