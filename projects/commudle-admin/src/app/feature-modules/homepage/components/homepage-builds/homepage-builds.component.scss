@@ -9,7 +9,7 @@ a {
 }
 
 .subheading {
-  @apply com-m-0 com-text-base com-leading-relaxed com-font-normal com-text-gray-400 com-mb-4;
+  @apply com-text-base md:com-text-xl com-leading-relaxed com-font-normal com-text-gray-400 com-mb-4 com-mt-1;
 }
 
 .home-builds-list {

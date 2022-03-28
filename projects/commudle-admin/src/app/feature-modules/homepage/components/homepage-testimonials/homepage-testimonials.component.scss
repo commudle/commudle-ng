@@ -18,11 +18,15 @@ p {
   }
 
   nb-actions {
-    @apply com-mt-12 md:com-mt-20 com-flex-col md:com-flex-row com-gap-4 md:com-gap-0;
+    @apply com-mt-12 md:com-mt-20 com-flex-col md:com-flex-row com-gap-2 md:com-gap-0;
 
     .user,
     .text {
-      @apply com-p-0 md:com-p-2 com-border-none md:com-border-r com-border-blue-100 com-text-center;
+      @apply com-p-0 md:com-p-2 com-text-center;
+
+      @media screen and (max-width: theme('screens.md')) {
+        @apply com-border-none;
+      }
     }
 
     .user {

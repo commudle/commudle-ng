@@ -2,7 +2,7 @@
   @apply com-w-full com-min-h-screen com-bg-white com-px-4 md:com-px-0;
 
   .homepage-section {
-    @apply com-container com-pt-12 md:com-pt-24;
+    @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24;
 
     .heading {
       max-width: 500px;

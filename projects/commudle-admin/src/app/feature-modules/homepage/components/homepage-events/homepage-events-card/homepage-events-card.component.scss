@@ -58,11 +58,8 @@
     margin: $space-12 $space-12 $space-8;
 
     .home-events-card-name {
-      color: $gunmetal;
-      font-weight: $fw-600;
-      height: 3rem;
-      line-height: 16px;
-      @apply com-text-base;
+      height: 3.5rem;
+      @apply com-text-lg com-text-gray-900;
 
       @screen md {
         max-width: 80%;
@@ -80,11 +77,9 @@
         }
 
         .home-events-card-community-name {
-          color: $text-low-emphasis;
-          font-size: $fs-card-secondary;
-          font-weight: $fw-500;
-          line-height: normal;
           margin: 0 $space-16 0 $space-8;
+          word-break: break-all;
+          @apply com-text-sm com-text-gray-400;
         }
       }
 
