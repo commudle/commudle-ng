@@ -2,7 +2,6 @@
   height: 100%;
 
   .discussion-chat-component {
-    //min-height: 100px;
     height: 100%;
     position: relative;
 
@@ -13,8 +12,7 @@
     }
 
     .messages {
-      height: 90%;
-      overflow-y: auto;
+      height: 100%;
 
       .message {
         margin-bottom: 1rem;
@@ -43,12 +41,53 @@
       width: 100%;
 
       form {
+        align-items: self-start;
         display: flex;
+        padding: 0.3rem;
 
-        button {
-          width: 20%;
-          max-width: 40px;
+        nb-form-field {
+          position: relative;
+          width: 100%;
+
+          input {
+            font-weight: 400;
+            resize: none;
+          }
+
+          .nbPrefix {
+            align-items: center;
+            display: flex;
+            margin-top: -2px;
+
+            .emoji-button {
+              padding: 0.1rem;
+            }
+
+            emoji-mart {
+              bottom: 50px;
+              left: 25px;
+              position: absolute;
+
+              ::ng-deep {
+                .emoji-mart-scroll {
+                  height: 250px;
+                }
+
+                .emoji-mart-bar {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+
+        > button {
+          align-items: center;
+          display: flex;
+          justify-content: center;
           margin-left: 5px;
+          max-width: 40px;
+          width: 20%;
         }
       }
     }

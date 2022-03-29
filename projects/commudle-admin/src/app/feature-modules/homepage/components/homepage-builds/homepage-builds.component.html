@@ -12,11 +12,11 @@
             <app-user-profile-card-small [user]="build.user"></app-user-profile-card-small>
             <div class="com-flex com-gap-2 com-text-sm com-text-gray-400">
               <span class="com-flex com-items-center com-gap-1">
-                <nb-icon icon="heart"></nb-icon>
+                <nb-icon icon="heart-outline"></nb-icon>
                 {{ build.votes_count }}
               </span>
               <span class="com-flex com-items-center com-gap-1">
-                <nb-icon icon="message-circle"></nb-icon>
+                <nb-icon icon="message-circle-outline"></nb-icon>
                 {{ build.chat_messages_count }}
               </span>
             </div>
@@ -35,9 +35,9 @@
 </div>
 
 <div class="com-flex com-gap-4 com-mt-6">
-  <a class="home-builds-view-all" ghost nbButton routerLink="/builds" shape="semi-round" status="info">View all</a>
   <a class="home-share-project" nbButton routerLink="/builds/create" shape="semi-round" status="info">
     Share your project
     <nb-icon icon="arrow-forward"></nb-icon>
   </a>
+  <a class="home-builds-view-all" ghost nbButton routerLink="/builds" shape="semi-round" status="info">View all</a>
 </div>

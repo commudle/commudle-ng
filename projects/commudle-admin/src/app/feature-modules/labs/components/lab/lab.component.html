@@ -122,11 +122,13 @@
         <nb-icon icon="message-circle-outline"></nb-icon>
         {{ messagesCount }}
       </div>
-      <div class="share-button">
-        <button (click)="copyTextToClipboard(lab)" nbButton shape="round" size="small">
-          <nb-icon icon="share"></nb-icon>
-        </button>
-      </div>
+      <app-share-button
+        [content]="environment.app_url + '/labs/' + lab.slug"
+        [title]="lab.name"
+        [url]="environment.app_url + '/labs/' + lab.slug"
+        [showText]="false"
+        [round]="true"
+      ></app-share-button>
     </div>
   </div>
 </div>

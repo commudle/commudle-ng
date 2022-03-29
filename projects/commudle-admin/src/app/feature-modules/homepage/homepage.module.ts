@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NbButtonModule, NbCardModule, NbIconModule, NbListModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbListModule } from '@nebular/theme';
 import { PublicCommunityModule } from 'projects/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { SearchModule } from 'projects/commudle-admin/src/app/feature-modules/search/search.module';
 import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
@@ -12,6 +12,7 @@ import { HomepageEventsComponent } from './components/homepage-events/homepage-e
 import { HomepageFeaturedCommunitiesComponent } from './components/homepage-featured-communities/homepage-featured-communities.component';
 import { HomepageFeaturesComponent } from './components/homepage-features/homepage-features.component';
 import { HomepageLabsComponent } from './components/homepage-labs/homepage-labs.component';
+import { HomepageTestimonialsComponent } from './components/homepage-testimonials/homepage-testimonials.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
 
@@ -24,6 +25,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     HomepageLabsComponent,
     HomepageFeaturesComponent,
     HomepageFeaturedCommunitiesComponent,
+    HomepageTestimonialsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     NbCardModule,
     NbIconModule,
     NbListModule,
+    NbActionsModule,
   ],
 })
 export class HomepageModule {}
