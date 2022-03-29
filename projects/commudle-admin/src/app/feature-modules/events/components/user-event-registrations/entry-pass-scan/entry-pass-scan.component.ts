@@ -1,17 +1,23 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { EventPassService } from 'projects/commudle-admin/src/app/feature-modules/events/services/event-pass.service';
+import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
+import { ICommunity } from 'projects/shared-models/community.model';
 import { IEventPass } from 'projects/shared-models/event-pass.model';
+import { IEvent } from 'projects/shared-models/event.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-entry-pass-scan',
   templateUrl: './entry-pass-scan.component.html',
   styleUrls: ['./entry-pass-scan.component.scss'],
 })
-export class EntryPassScanComponent implements OnInit {
+export class EntryPassScanComponent implements OnInit, OnDestroy {
 
   @ViewChild('scanner', { static: false }) scanner: ZXingScannerComponent;
   @ViewChild('correctSound') correctSound: ElementRef;
@@ -25,58 +31,85 @@ export class EntryPassScanComponent implements OnInit {
   hasPermission: boolean;
   qrResultString: string;
   eventPass: IEventPass = null;
-  event_id: string = null;
+  eventId: string = null;
+  event: IEvent;
+  community: ICommunity;
+  canMarkAttendance: boolean = false;
 
   formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.QR_CODE,
   ];
 
+  entryPassForm = this.fb.group({
+    entry_pass_code: ['', Validators.required],
+  });
+
+  subscriptions: Subscription[] = [];
+
   constructor(
     private eventPassService: EventPassService,
     private activatedRoute: ActivatedRoute,
     private toastService: LibToastLogService,
+    private eventEntryPassesService: EventEntryPassesService,
+    private fb: FormBuilder,
+    private seoService: SeoService,
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((res) => {
-      this.event_id = res.event_id;
-    })
+
+    this.subscriptions.push(
+      this.activatedRoute.params.subscribe((res) => {
+        this.eventId = res.event_id;
+      }),
+
+      this.activatedRoute.data.subscribe((val) => {
+        this.event = val.event;
+        this.community = val.community;
+      })
+    )
+
+    this.seoService.noIndex(true);
   }
 
-  isBoolean(val) {
-    return val === true || val === false;
+  ngOnDestroy(): void {
+    this.seoService.noIndex(false);
+
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   onCodeResult(resultString: string) {
-    this.eventPassService.getEntryPass(this.event_id, resultString).subscribe((data) => {
-      if (!this.isBoolean(data)) {
-        if(!data.attendance){
+    this.getEntryPass(this.eventId, resultString);
+  }
+
+  submitForm() {
+    this.getEntryPass(this.eventId, this.entryPassForm.value.entry_pass_code);
+  }
+
+  getEntryPass(eventId: string, uniqueCode: string) {
+    this.subscriptions.push(
+      this.eventPassService.getEntryPass(eventId, uniqueCode).subscribe((data) => {
+        if (data) {
           this.correctSound.nativeElement.play();
           this.eventPass = data;
+          this.canMarkAttendance = !data.attendance;
         }
-      }
-      else {
-        this.incorrectSound.nativeElement.play();
-        this.toastService.warningDialog('Entry Pass Not found')
-      }
-    })
+      })
+    )
   }
 
   toggleAttendance() {
-    this.eventPassService.toggleAttendance(870).subscribe((res) => {
-      if (res) {
-        this.toastService.successDialog('Attendance Marked')
-      }
-    })
+    this.subscriptions.push(
+      this.eventEntryPassesService.toggleAttendance(this.eventPass.id).subscribe((res) => {
+        if (res) {
+          this.toastService.successDialog('Attendance Marked')
+        }
+      })
+    )
   }
 
   onCamerasFound(devices: MediaDeviceInfo[]) { // checks whether user has camera devices or not
     this.availableDevices = devices;
     this.hasDevices = Boolean(devices && devices.length);
-  }
-
-  onHasPermission(has: boolean) { // to check whether user has provided permission to access camera or not
-    this.hasPermission = has;
   }
 
   onDeviceSelectChange(selected: string) { // when user changes the camera

@@ -1,4 +1,15 @@
+@import "./projects/commudle-admin/src/assets/styles/variables";
+
 nb-card {
+  nb-card-header {
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      cursor: pointer;
+    }
+  }
+
   nb-card-body {
     .qr-code-scanner {
       display: flex;
@@ -30,6 +41,35 @@ nb-card {
         }
       }
 
+      .divider {
+        width: 400px;
+        height: 12px;
+        border-bottom: 1px solid black;
+        text-align: center;
+        margin: 20px 0;
+
+        @media all and (max-width: $mobile-width) {
+          width: 330px;
+        }
+
+        span {
+          font-size: 18px;
+          background-color: white;
+          padding: 0 10px;
+        }
+      }
+
+      .entry-pass-form {
+        width: 300px;
+        margin-top: 10px;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+
       .user-details-container {
         margin-top: 30px;
 
@@ -50,8 +90,4 @@ nb-card {
       }
     }
   }
-}
-
-[hidden] {
-  display: none !important;
 }
