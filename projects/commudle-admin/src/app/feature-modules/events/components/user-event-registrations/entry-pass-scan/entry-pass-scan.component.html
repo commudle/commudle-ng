@@ -3,24 +3,25 @@
     <div class="one-column-layout">
       <nb-card>
         <nb-card-header>
-          <h2 [routerLink]="['/communities', community.slug, 'events', event.slug]" class="fs-h2">{{ event.name }}</h2>
+          <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="fs-h2">{{ event.name }}</a>
           <button
             [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
             nbButton
+            size="small"
             status="primary"
           >
             Admin Panel
           </button>
         </nb-card-header>
         <nb-card-body>
-          <div class="qr-code-scanner" [ngClass]="{ '!com-hidden': !hasDevices }">
+          <div [ngClass]="{ '!com-hidden': !hasDevices }" class="qr-code-scanner">
             <div class="camera-container">
               <zxing-scanner
                 #scanner
-                [(device)]="currentDevice"
-                (scanSuccess)="onCodeResult($event)"
-                (permissionResponse)="hasPermission = $event"
                 (camerasFound)="onCamerasFound($event)"
+                (permissionResponse)="hasPermission = $event"
+                (scanSuccess)="onCodeResult($event)"
+                [(device)]="currentDevice"
                 [formats]="formatsEnabled"
               ></zxing-scanner>
               <audio #correctSound>
@@ -38,17 +39,17 @@
             </div>
             <div class="cameras-list">
               <nb-form-field>
-                <nb-icon nbPrefix icon="alert-circle-outline"></nb-icon>
+                <nb-icon icon="alert-circle-outline" nbPrefix></nb-icon>
                 <nb-select
-                  placeholder="Select Camera"
-                  [(selected)]="currentDevice"
                   (selectedChange)="onDeviceSelectChange($event)"
-                  status="info"
+                  [(selected)]="currentDevice"
                   [compareWith]="compareByDeviceId"
+                  placeholder="Select Camera"
+                  status="info"
                 >
                   <nb-option value="">Turn off camera</nb-option>
-                  <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId"
-                    >{{ device.label }}
+                  <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">
+                    {{ device.label }}
                   </nb-option>
                 </nb-select>
               </nb-form-field>
@@ -59,7 +60,7 @@
             </div>
 
             <div class="entry-pass-form">
-              <form [formGroup]="entryPassForm" (ngSubmit)="submitForm()">
+              <form (ngSubmit)="submitForm()" [formGroup]="entryPassForm">
                 <input formControlName="entry_pass_code" fullWidth nbInput placeholder="Entry Pass Code" type="text" />
 
                 <div class="submit-button">
@@ -72,16 +73,16 @@
             <div *ngIf="eventPass" class="user-details-container">
               <app-user-profile-card-large
                 *ngIf="eventPass.user"
-                [user]="eventPass.user"
                 [showSocialLinks]="true"
+                [user]="eventPass.user"
               ></app-user-profile-card-large>
               <p *ngIf="eventPass.unique_code" class="entry-pass-code">Entry Pass: {{ eventPass.unique_code }}</p>
               <button
-                *ngIf="canMarkAttendance"
                 (click)="toggleAttendance()"
+                *ngIf="canMarkAttendance"
+                fullWidth
                 nbButton
                 outline
-                fullWidth
                 status="success"
               >
                 Mark Attendance

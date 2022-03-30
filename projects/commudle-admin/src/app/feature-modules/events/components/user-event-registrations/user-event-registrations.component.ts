@@ -1,20 +1,20 @@
-import { EventSimpleRegistrationsService } from 'projects/commudle-admin/src/app/services/event-simple-registrations.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { IEvent } from 'projects/shared-models/event.model';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { ActivatedRoute } from '@angular/router';
-import { RegistrationStatusesService } from '../../../../services/registration-statuses.service';
-import { IRegistrationStatus } from 'projects/shared-models/registration_status.model';
 import { FormBuilder } from '@angular/forms';
-import { ColumnMode, SortType } from '@swimlane/ngx-datatable';
-import { switchMap, debounceTime } from 'rxjs/operators';
-import { UserEventRegistrationsService } from '../../../../services/user-event-registrations.service';
-import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
+import { ActivatedRoute } from '@angular/router';
 import { NbWindowService } from '@nebular/theme';
+import { ColumnMode } from '@swimlane/ngx-datatable';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { EventSimpleRegistrationsService } from 'projects/commudle-admin/src/app/services/event-simple-registrations.service';
+import { RegistrationStatusesService } from 'projects/commudle-admin/src/app/services/registration-statuses.service';
+import { UserEventRegistrationsService } from 'projects/commudle-admin/src/app/services/user-event-registrations.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { EUserRoles } from 'projects/shared-models/enums/user_roles.enum';
+import { IEvent } from 'projects/shared-models/event.model';
+import { IRegistrationStatus } from 'projects/shared-models/registration_status.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-event-registrations',
@@ -34,7 +34,7 @@ export class UserEventRegistrationsComponent implements OnInit {
   isLoading = true;
   rows = [];
   ColumnMode = ColumnMode;
-  SortType = SortType;
+  // SortType = SortType;
   emptyMessage;
 
   page = 1;
@@ -47,7 +47,7 @@ export class UserEventRegistrationsComponent implements OnInit {
     name: [''],
   });
 
-  userRoles = []
+  userRoles = [];
   EUserRoles = EUserRoles;
 
   constructor(
@@ -58,7 +58,7 @@ export class UserEventRegistrationsComponent implements OnInit {
     private eventSimpleRegistrationsService: EventSimpleRegistrationsService,
     private toastLogService: LibToastLogService,
     private windowService: NbWindowService,
-    private appUsersService: AppUsersService
+    private appUsersService: AppUsersService,
   ) {}
 
   ngOnInit() {
@@ -83,7 +83,7 @@ export class UserEventRegistrationsComponent implements OnInit {
   getUserRoles() {
     this.appUsersService.getMyRoles('Kommunity', this.community.id).subscribe((res) => {
       this.userRoles = res;
-    })
+    });
   }
 
   updateFilter() {

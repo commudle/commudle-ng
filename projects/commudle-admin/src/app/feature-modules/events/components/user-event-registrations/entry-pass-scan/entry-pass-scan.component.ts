@@ -18,7 +18,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./entry-pass-scan.component.scss'],
 })
 export class EntryPassScanComponent implements OnInit, OnDestroy {
-
   @ViewChild('scanner', { static: false }) scanner: ZXingScannerComponent;
   @ViewChild('correctSound') correctSound: ElementRef;
   @ViewChild('incorrectSound') incorrectSound: ElementRef;
@@ -36,9 +35,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   community: ICommunity;
   canMarkAttendance: boolean = false;
 
-  formatsEnabled: BarcodeFormat[] = [
-    BarcodeFormat.QR_CODE,
-  ];
+  formatsEnabled: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
   entryPassForm = this.fb.group({
     entry_pass_code: ['', Validators.required],
@@ -53,10 +50,9 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     private eventEntryPassesService: EventEntryPassesService,
     private fb: FormBuilder,
     private seoService: SeoService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     this.subscriptions.push(
       this.activatedRoute.params.subscribe((res) => {
         this.eventId = res.event_id;
@@ -65,8 +61,8 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
       this.activatedRoute.data.subscribe((val) => {
         this.event = val.event;
         this.community = val.community;
-      })
-    )
+      }),
+    );
 
     this.seoService.noIndex(true);
   }
@@ -93,27 +89,29 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
           this.eventPass = data;
           this.canMarkAttendance = !data.attendance;
         }
-      })
-    )
+      }),
+    );
   }
 
   toggleAttendance() {
     this.subscriptions.push(
       this.eventEntryPassesService.toggleAttendance(this.eventPass.id).subscribe((res) => {
         if (res) {
-          this.toastService.successDialog('Attendance Marked')
+          this.toastService.successDialog('Attendance Marked');
         }
-      })
-    )
+      }),
+    );
   }
 
-  onCamerasFound(devices: MediaDeviceInfo[]) { // checks whether user has camera devices or not
+  onCamerasFound(devices: MediaDeviceInfo[]) {
+    // checks whether user has camera devices or not
     this.availableDevices = devices;
     this.hasDevices = Boolean(devices && devices.length);
   }
 
-  onDeviceSelectChange(selected: string) { // when user changes the camera
-    const device = this.availableDevices.find(x => x.deviceId === selected);
+  onDeviceSelectChange(selected: string) {
+    // when user changes the camera
+    const device = this.availableDevices.find((x) => x.deviceId === selected);
     this.currentDevice = device || null;
   }
 

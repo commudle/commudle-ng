@@ -1,20 +1,21 @@
-@import "./projects/commudle-admin/src/assets/styles/variables";
+@import './projects/commudle-admin/src/assets/styles/variables';
 
 nb-card {
   nb-card-header {
+    align-items: center;
     display: flex;
     justify-content: space-between;
 
-    h2 {
-      cursor: pointer;
+    a {
+      @apply com-text-xl md:com-text-2xl com-font-semibold;
     }
   }
 
   nb-card-body {
     .qr-code-scanner {
+      align-items: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
       width: inherit;
 
       .camera-container {
@@ -24,17 +25,17 @@ nb-card {
         zxing-scanner {
           ::ng-deep {
             video {
-              width: 300px;
               height: 300px;
               object-fit: contain;
+              width: 300px;
             }
           }
         }
       }
 
       .cameras-list {
-        width: inherit;
         margin-top: 20px;
+        width: inherit;
 
         nb-form-field {
           width: inherit;
@@ -42,26 +43,26 @@ nb-card {
       }
 
       .divider {
-        width: 400px;
-        height: 12px;
         border-bottom: 1px solid black;
-        text-align: center;
+        height: 12px;
         margin: 20px 0;
+        text-align: center;
+        width: 400px;
 
         @media all and (max-width: $mobile-width) {
           width: 330px;
         }
 
         span {
-          font-size: 18px;
           background-color: white;
+          font-size: 18px;
           padding: 0 10px;
         }
       }
 
       .entry-pass-form {
-        width: 300px;
         margin-top: 10px;
+        width: 300px;
 
         form {
           display: flex;
@@ -78,10 +79,11 @@ nb-card {
         }
 
         .social-links {
-          width: 50%;
           display: flex;
           flex-wrap: wrap;
           font-size: 12px;
+          width: 50%;
+
           a {
             color: black;
             margin: 0 0.5rem;
