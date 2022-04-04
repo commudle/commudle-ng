@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
-import { EventPassService } from 'projects/commudle-admin/src/app/feature-modules/events/services/event-pass.service';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { IEventPass } from 'projects/shared-models/event-pass.model';
@@ -30,7 +29,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   hasPermission: boolean;
   qrResultString: string;
   eventPass: IEventPass = null;
-  eventId: string = null;
+  // eventId: string = null;
   event: IEvent;
   community: ICommunity;
   canMarkAttendance: boolean = false;
@@ -44,7 +43,6 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private eventPassService: EventPassService,
     private activatedRoute: ActivatedRoute,
     private toastService: LibToastLogService,
     private eventEntryPassesService: EventEntryPassesService,
@@ -54,10 +52,6 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe((res) => {
-        this.eventId = res.event_id;
-      }),
-
       this.activatedRoute.data.subscribe((val) => {
         this.event = val.event;
         this.community = val.community;
@@ -74,16 +68,16 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   }
 
   onCodeResult(resultString: string) {
-    this.getEntryPass(this.eventId, resultString);
+    this.getEntryPass(this.event.id, resultString);
   }
 
   submitForm() {
-    this.getEntryPass(this.eventId, this.entryPassForm.value.entry_pass_code);
+    this.getEntryPass(this.event.id, this.entryPassForm.value.entry_pass_code);
   }
 
-  getEntryPass(eventId: string, uniqueCode: string) {
+  getEntryPass(eventId: number, uniqueCode: string) {
     this.subscriptions.push(
-      this.eventPassService.getEntryPass(eventId, uniqueCode).subscribe((data) => {
+      this.eventEntryPassesService.getEntryPass(eventId, uniqueCode).subscribe((data) => {
         if (data) {
           this.correctSound.nativeElement.play();
           this.eventPass = data;
