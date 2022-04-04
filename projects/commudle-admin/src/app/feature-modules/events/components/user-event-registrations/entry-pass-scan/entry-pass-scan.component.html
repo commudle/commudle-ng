@@ -1,0 +1,104 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card>
+        <nb-card-header>
+          <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="fs-h2">{{ event.name }}</a>
+          <button
+            [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
+            nbButton
+            size="small"
+            status="primary"
+          >
+            Admin Panel
+          </button>
+        </nb-card-header>
+        <nb-card-body>
+          <div [ngClass]="{ '!com-hidden': !hasDevices }" class="qr-code-scanner">
+            <div class="camera-container">
+              <zxing-scanner
+                #scanner
+                (camerasFound)="onCamerasFound($event)"
+                (permissionResponse)="hasPermission = $event"
+                (scanSuccess)="onCodeResult($event)"
+                [(device)]="currentDevice"
+                [formats]="formatsEnabled"
+              ></zxing-scanner>
+              <audio #correctSound>
+                <source
+                  src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1FkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9255d1e05be35d9fb971bfb38d1a67d8c39c8b0f/success_sound.mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+              <audio #incorrectSound>
+                <source
+                  src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1VkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--52910f934db167843387e03f3500aeff6be3a366/error_sound.mp3"
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
+            <div class="cameras-list">
+              <nb-form-field>
+                <nb-icon icon="alert-circle-outline" nbPrefix></nb-icon>
+                <nb-select
+                  (selectedChange)="onDeviceSelectChange($event)"
+                  [(selected)]="currentDevice"
+                  [compareWith]="compareByDeviceId"
+                  placeholder="Select Camera"
+                  status="info"
+                >
+                  <nb-option value="">Turn off camera</nb-option>
+                  <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">
+                    {{ device.label }}
+                  </nb-option>
+                </nb-select>
+              </nb-form-field>
+            </div>
+
+            <div class="divider">
+              <span>OR</span>
+            </div>
+
+            <div class="entry-pass-form">
+              <form (ngSubmit)="submitForm()" [formGroup]="entryPassForm">
+                <input formControlName="entry_pass_code" fullWidth nbInput placeholder="Entry Pass Code" type="text" />
+
+                <div class="submit-button">
+                  <button [disabled]="!entryPassForm.valid" fullWidth nbButton status="primary" type="submit">
+                    Get Entry Pass
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div *ngIf="eventPass" class="user-details-container">
+              <app-user-profile-card-large
+                *ngIf="eventPass.user"
+                [showSocialLinks]="true"
+                [user]="eventPass.user"
+              ></app-user-profile-card-large>
+              <p *ngIf="eventPass.unique_code" class="entry-pass-code">Entry Pass: {{ eventPass.unique_code }}</p>
+              <button
+                (click)="toggleAttendance()"
+                *ngIf="canMarkAttendance"
+                fullWidth
+                nbButton
+                outline
+                status="success"
+              >
+                Mark Attendance
+              </button>
+            </div>
+          </div>
+
+          <ng-container *ngIf="!hasDevices">
+            <h2 class="com-text-center">No cameras available!</h2>
+          </ng-container>
+
+          <ng-container *ngIf="!hasPermission">
+            <h2 class="com-text-center">You denied the camera permission, we can't scan anything without it!</h2>
+          </ng-container>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
