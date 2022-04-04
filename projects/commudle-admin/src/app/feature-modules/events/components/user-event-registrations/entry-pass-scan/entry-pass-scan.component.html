@@ -4,14 +4,15 @@
       <nb-card>
         <nb-card-header>
           <a [routerLink]="['/communities', community.slug, 'events', event.slug]" class="fs-h2">{{ event.name }}</a>
-          <button
-            [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]"
-            nbButton
-            size="small"
-            status="primary"
-          >
-            Admin Panel
-          </button>
+          <a [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug]">
+            <button
+              nbButton
+              size="small"
+              status="primary"
+              >
+              Admin Panel
+            </button>
+          </a>
         </nb-card-header>
         <nb-card-body>
           <div [ngClass]="{ '!com-hidden': !hasDevices }" class="qr-code-scanner">
@@ -42,12 +43,11 @@
                 <nb-icon icon="alert-circle-outline" nbPrefix></nb-icon>
                 <nb-select
                   (selectedChange)="onDeviceSelectChange($event)"
-                  [(selected)]="currentDevice"
+                  [selected]="currentDevice"
                   [compareWith]="compareByDeviceId"
                   placeholder="Select Camera"
                   status="info"
                 >
-                  <nb-option value="">Turn off camera</nb-option>
                   <nb-option *ngFor="let device of availableDevices" [value]="device.deviceId">
                     {{ device.label }}
                   </nb-option>
@@ -70,24 +70,6 @@
                 </div>
               </form>
             </div>
-            <div *ngIf="eventPass" class="user-details-container">
-              <app-user-profile-card-large
-                *ngIf="eventPass.user"
-                [showSocialLinks]="true"
-                [user]="eventPass.user"
-              ></app-user-profile-card-large>
-              <p *ngIf="eventPass.unique_code" class="entry-pass-code">Entry Pass: {{ eventPass.unique_code }}</p>
-              <button
-                (click)="toggleAttendance()"
-                *ngIf="canMarkAttendance"
-                fullWidth
-                nbButton
-                outline
-                status="success"
-              >
-                Mark Attendance
-              </button>
-            </div>
           </div>
 
           <ng-container *ngIf="!hasDevices">
@@ -102,3 +84,23 @@
     </div>
   </div>
 </div>
+
+<ng-template #userInfo>
+  <div *ngIf="eventPass" class="user-details-container">
+    <app-user-profile-card-large
+      *ngIf="eventPass.user"
+      [showSocialLinks]="true"
+      [user]="eventPass.user"
+    ></app-user-profile-card-large>
+    <p *ngIf="eventPass.unique_code" class="entry-pass-code com-text-center">Entry Pass: {{ eventPass.unique_code }}</p>
+    <button
+      (click)="toggleAttendance()"
+      fullWidth
+      nbButton
+      outline
+      status="success"
+    >
+      {{ attendanceStatus ? 'Unmark Attendance' : 'Mark Attendance' }}
+    </button>
+  </div>
+</ng-template>
