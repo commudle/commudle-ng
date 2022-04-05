@@ -73,3 +73,13 @@ nb-card {
     }
   }
 }
+
+::ng-deep {
+  .cdk-overlay-container {
+    .user-info {
+      nb-card-header {
+        display: none !important;
+      }
+    }
+  }
+}
