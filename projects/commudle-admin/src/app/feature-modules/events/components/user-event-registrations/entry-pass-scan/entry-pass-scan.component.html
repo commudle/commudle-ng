@@ -93,14 +93,16 @@
       [user]="eventPass.user"
     ></app-user-profile-card-large>
     <p *ngIf="eventPass.unique_code" class="entry-pass-code com-text-center">Entry Pass: {{ eventPass.unique_code }}</p>
-    <button
-      (click)="toggleAttendance()"
-      fullWidth
-      nbButton
-      outline
-      status="success"
-    >
-      {{ attendanceStatus ? 'Unmark Attendance' : 'Mark Attendance' }}
-    </button>
+    <div class="com-flex com-gap-3.5">
+      <button (click)="closeWindow()" nbButton status="success">
+        <nb-icon icon="checkmark-outline"></nb-icon>
+        Ok
+      </button>
+
+      <button [disabled]="attendanceStatus" (click)="toggleAttendance()" nbButton status="danger">
+        <nb-icon icon="close-outline"></nb-icon>
+        Not the right person ?
+      </button>
+    </div>  
   </div>
 </ng-template>

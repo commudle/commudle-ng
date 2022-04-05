@@ -33,7 +33,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   eventPass: IEventPass = null;
   event: IEvent;
   community: ICommunity;
-  attendanceStatus: boolean;
+  attendanceStatus: boolean = false;
 
   formatsEnabled: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
@@ -88,14 +88,12 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.eventEntryPassesService.getEntryPass(eventId, uniqueCode).subscribe((data) => {
 
-        this.attendanceStatus = data.attendance;
-
         if (data.attendance) {
           this.toastService.warningDialog('Attendance already marked')
         }
         this.correctSound.nativeElement.play();
         this.eventPass = data;
-        this.windowRef = this.windowService.open(this.userInfo);
+        this.windowRef = this.windowService.open(this.userInfo, { windowClass: 'user-info', });
 
         this.subscriptions.push(
           this.windowRef.onClose.subscribe(() => {
@@ -106,11 +104,18 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     );
   }
 
+  closeWindow() {
+    this.windowRef.close();
+  }
+
   toggleAttendance() {
+    this.attendanceStatus = true;
     this.subscriptions.push(
       this.eventEntryPassesService.toggleAttendance(this.eventPass.id).subscribe((res) => {
         if (res) {
           this.toastService.successDialog('Attendance Toggled');
+          this.attendanceStatus = false;
+          this.windowRef.close();
         }
       }),
     );
