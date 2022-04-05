@@ -81,7 +81,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
-    this.getEntryPass(35, this.entryPassForm.value.entry_pass_code);
+    this.getEntryPass(this.event.id, this.entryPassForm.value.entry_pass_code);
   }
 
   getEntryPass(eventId: number, uniqueCode: string) {
