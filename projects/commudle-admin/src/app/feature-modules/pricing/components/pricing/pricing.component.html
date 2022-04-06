@@ -19,11 +19,11 @@
     </div>
 
     <!-- Toggle -->
-    <div class="pricing-toggle">
-      <label>Monthly billing</label>
-      <nb-toggle></nb-toggle>
-      <label>Yearly billing</label>
-    </div>
+    <!--    <div class="pricing-toggle">-->
+    <!--      <label>Monthly billing</label>-->
+    <!--      <nb-toggle></nb-toggle>-->
+    <!--      <label>Yearly billing</label>-->
+    <!--    </div>-->
 
     <!-- Cards -->
     <div class="pricing-cards">
@@ -50,13 +50,13 @@
             <div class="name">Non Profit</div>
             <div class="pricing">
               <div class="com-mt-3 com-flex com-items-center">
-                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">$5</div>
-                <div class="com-ml-4">
-                  <div class="com-text-white com-text-sm">USD / mo</div>
-                  <div class="com-text-indigo-200 com-text-sm">Billed yearly ($56)</div>
-                </div>
+                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">Free</div>
+                <!--                <div class="com-ml-4">-->
+                <!--                  <div class="com-text-white com-text-sm">USD / mo</div>-->
+                <!--                  <div class="com-text-indigo-200 com-text-sm">Billed yearly ($56)</div>-->
+                <!--                </div>-->
               </div>
-              <a class="buy-btn">Buy Starter</a>
+              <a [routerLink]="['fill-form', 465]" class="buy-btn">Get Started</a>
             </div>
           </div>
           <ul class="features">
@@ -92,13 +92,13 @@
             <div class="name">Startup & Professional</div>
             <div class="pricing">
               <div class="com-mt-3 com-flex com-items-center">
-                <div class="com-text-indigo-600 com-text-4xl com-font-extrabold com-tracking-tight">$19</div>
+                <div class="com-text-indigo-600 com-text-4xl com-font-extrabold com-tracking-tight">$29</div>
                 <div class="com-ml-4">
-                  <div class="com-text-gray-700 com-text-sm">USD / mo</div>
-                  <div class="com-text-gray-500 com-text-sm">Billed yearly ($220)</div>
+                  <div class="com-text-gray-700 com-text-sm">community / mo</div>
+                  <!--                  <div class="com-text-gray-500 com-text-sm">Billed yearly ($220)</div>-->
                 </div>
               </div>
-              <a class="buy-btn">Buy Scale</a>
+              <a class="buy-btn">Buy this plan</a>
             </div>
           </div>
           <ul class="features">
@@ -109,7 +109,7 @@
 
             <li>
               <nb-icon icon="checkmark-outline"></nb-icon>
-              <span class="feature">Free video stage credits + pay as you go</span>
+              <span class="feature">Free video stage credits (pay as you go)</span>
             </li>
 
             <li>
@@ -134,13 +134,13 @@
             <div class="name">Enterprise</div>
             <div class="pricing">
               <div class="com-mt-3 com-flex com-items-center">
-                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">$12</div>
-                <div class="com-ml-4">
-                  <div class="com-text-white com-text-sm">USD / mo</div>
-                  <div class="com-text-indigo-200 com-text-sm">Billed yearly ($140)</div>
-                </div>
+                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">Contact us</div>
+                <!--                <div class="com-ml-4">-->
+                <!--                  <div class="com-text-white com-text-sm">USD / mo</div>-->
+                <!--                  <div class="com-text-indigo-200 com-text-sm">Billed yearly ($140)</div>-->
+                <!--                </div>-->
               </div>
-              <a class="buy-btn">Buy Growth</a>
+              <a class="buy-btn">Talk to an expert</a>
             </div>
           </div>
           <ul class="features">
@@ -175,44 +175,38 @@
   </div>
 
   <!-- Feature comparison (Desktop) -->
-  <div aria-labelledby="comparison-heading" class="com-hidden lg:com-block">
+  <div class="pricing-features">
     <div class="com-mt-24 com-max-w-7xl com-mx-auto com-px-8">
-      <div class="com-w-full com-border-t com-border-gray-200 com-flex com-items-stretch">
+      <div class="pricing-feature-headings">
         <div class="com--mt-px com-w-1/4 com-py-6 com-pr-4 com-flex com-items-end">
-          <div class="com-mt-auto com-text-sm com-font-bold com-text-gray-900">Catered for business</div>
+          <div class="com-mt-auto com-text-sm com-font-bold com-text-gray-900">All features</div>
         </div>
 
-        <div aria-hidden="true" class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
+        <div class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
           <div class="com-border-transparent com-py-6 com-border-t-2">
-            <div class="com-text-gray-900 com-text-sm com-font-bold">Starter</div>
-            <div class="com-mt-2 com-text-sm com-text-gray-500">
-              All your essential business finances, taken care of.
-            </div>
+            <div class="heading">Non Profit</div>
+            <div class="subheading">All your essential business finances, taken care of.</div>
           </div>
         </div>
 
-        <div aria-hidden="true" class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
+        <div class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
           <div class="com-border-indigo-600 com-py-6 com-border-t-2">
-            <div class="com-text-indigo-600 com-text-sm com-font-bold com-text-gray-900">Scale</div>
-            <div class="com-mt-2 com-text-sm com-text-gray-500">
-              The best financial services for your thriving business.
-            </div>
+            <div class="heading">Startup & Professional</div>
+            <div class="subheading">The best financial services for your thriving business.</div>
           </div>
         </div>
 
-        <div aria-hidden="true" class="com--mt-px com-pl-4 com-w-1/4">
+        <div class="com--mt-px com-pl-4 com-w-1/4">
           <div class="com-border-transparent com-py-6 com-border-t-2">
-            <div class="com-text-gray-900 com-text-sm com-font-bold">Growth</div>
-            <div class="com-mt-2 com-text-sm com-text-gray-500">
-              Convenient features to take your business to the next level.
-            </div>
+            <div class="heading">Enterprise</div>
+            <div class="subheading">Convenient features to take your business to the next level.</div>
           </div>
         </div>
       </div>
 
       <div class="com-relative">
         <!-- Fake card backgrounds -->
-        <div aria-hidden="true" class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
           <div class="com-w-1/4 com-pr-4"></div>
           <div class="com-w-1/4 com-px-4">
             <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
@@ -225,425 +219,136 @@
           </div>
         </div>
 
-        <table class="com-relative com-w-full">
-          <caption class="com-sr-only">
-            Business feature comparison
-          </caption>
-          <thead>
-            <tr class="com-text-left">
-              <th scope="col">
-                <span class="com-sr-only">Feature</span>
-              </th>
-
-              <th scope="col">
-                <span class="com-sr-only">Starter plan</span>
-              </th>
-
-              <th scope="col">
-                <span class="com-sr-only">Scale plan</span>
-              </th>
-
-              <th scope="col">
-                <span class="com-sr-only">Growth plan</span>
-              </th>
-            </tr>
-          </thead>
+        <table class="pricing-feature-table">
           <tbody class="com-divide-y com-divide-gray-100">
-            <tr key="Tax Savings">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Tax Savings
-              </th>
+            <tr key="Organization page">
+              <th class="heading" scope="row">Organization page</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Easy to use accounting">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Easy to use accounting
-              </th>
+            <tr key="Teammates">
+              <th class="heading" scope="row">Teammates</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <span class="dark">Unlimited</span>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
                 </span>
               </td>
             </tr>
 
-            <tr key="Multi-accounts">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Multi-accounts
-              </th>
+            <tr key="Members">
+              <th class="heading" scope="row">Members</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <span class="com-text-gray-900 com-text-sm com-font-medium">3 accounts</span>
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <span class="com-text-indigo-600 com-text-sm com-font-medium">Unlimited accounts</span>
+              <td class="description">
+                <span class="item">
+                  <span class="dark">Unlimited</span>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <span class="com-text-gray-900 com-text-sm com-font-medium">7 accounts</span>
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
                 </span>
               </td>
             </tr>
 
-            <tr key="Invoicing">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Invoicing
-              </th>
+            <tr key="Community survey forms">
+              <th class="heading" scope="row">Community survey forms</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <span class="com-text-gray-900 com-text-sm com-font-medium">3 invoices</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <span class="com-text-indigo-600 com-text-sm com-font-medium">Unlimited invoices</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <span class="com-text-gray-900 com-text-sm com-font-medium">10 invoices</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Exclusive offers">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Exclusive offers
-              </th>
+            <tr key="Community newsletters">
+              <th class="heading" scope="row">Community newsletters</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="6 months free advisor">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                6 months free advisor
-              </th>
+            <tr key="Export data">
+              <th class="heading" scope="row">Export data</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
-                </span>
-              </td>
-            </tr>
-
-            <tr key="Mobile and web access">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Mobile and web access
-              </th>
-
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
-                </span>
-              </td>
-
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
-                </span>
-              </td>
-
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
@@ -651,7 +356,7 @@
         </table>
 
         <!-- Fake card borders -->
-        <div aria-hidden="true" class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
           <div class="com-w-1/4 com-pr-4"></div>
           <div class="com-w-1/4 com-px-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -665,11 +370,11 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Other perks</div>
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Offline / Online events</div>
 
-      <div class="com-mt-6 com-relative">
+      <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
-        <div aria-hidden="true" class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
           <div class="com-w-1/4 com-pr-4"></div>
           <div class="com-w-1/4 com-px-4">
             <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
@@ -682,509 +387,400 @@
           </div>
         </div>
 
-        <table class="com-relative com-w-full">
-          <caption class="com-sr-only">
-            Perk comparison
-          </caption>
-          <thead>
-            <tr class="com-text-left">
-              <th scope="col">
-                <span class="com-sr-only">Perk</span>
-              </th>
-
-              <th scope="col">
-                <span class="com-sr-only">Starter plan</span>
-              </th>
-
-              <th scope="col">
-                <span class="com-sr-only">Scale plan</span>
-              </th>
-
-              <th scope="col">
-                <span class="com-sr-only">Growth plan</span>
-              </th>
-            </tr>
-          </thead>
+        <table class="pricing-feature-table">
           <tbody class="com-divide-y com-divide-gray-100">
-            <tr key="24/7 customer support">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                24/7 customer support
-              </th>
+            <tr key="Multiple locations & tracks">
+              <th class="heading" scope="row">Multiple locations & tracks</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Instant notifications">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Instant notifications
-              </th>
+            <tr key="Registration forms">
+              <th class="heading" scope="row">Registration forms</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Budgeting tools">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Budgeting tools
-              </th>
+            <tr key="RSVP emails">
+              <th class="heading" scope="row">RSVP emails</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Digital receipts">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Digital receipts
-              </th>
+            <tr key="QR code entry passes">
+              <th class="heading" scope="row">QR code entry passes</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Pots to separate money">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Pots to separate money
-              </th>
+            <tr key="Auto attendance using QR">
+              <th class="heading" scope="row">Auto attendance using QR</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Free bank transfers">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Free bank transfers
-              </th>
+            <tr key="Calendar invite">
+              <th class="heading" scope="row">Calendar invite</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
 
-            <tr key="Business debit card">
-              <th
-                class="com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600"
-                scope="row"
-              >
-                Business debit card
-              </th>
+            <tr key="Waitlist management">
+              <th class="heading" scope="row">Waitlist management</th>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-px-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/check -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-indigo-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">Yes</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
 
-              <td class="com-pl-4 com-relative com-w-1/4 com-py-0 com-text-center">
-                <span class="com-relative com-w-full com-h-full com-py-3">
-                  <!-- Heroicon name: solid/x -->
-                  <svg
-                    aria-hidden="true"
-                    class="com-mx-auto com-h-5 com-w-5 com-text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      fill-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span class="com-sr-only">No</span>
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Feedback forms">
+              <th class="heading" scope="row">Feedback forms</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Preserve speaker slides">
+              <th class="heading" scope="row">Preserve speaker slides</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Enlist/Highlight speakers">
+              <th class="heading" scope="row">Enlist/Highlight speakers</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Volunteers">
+              <th class="heading" scope="row">Volunteers</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Inter-community collaborations">
+              <th class="heading" scope="row">Inter-community collaborations</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Display sponsors">
+              <th class="heading" scope="row">Display sponsors</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Live chat">
+              <th class="heading" scope="row">Live chat</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="QnA with voting">
+              <th class="heading" scope="row">QnA with voting</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Live polls">
+              <th class="heading" scope="row">Live polls</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Auto mark uninvited attendees">
+              <th class="heading" scope="row">Auto mark uninvited attendees</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Custom emails">
+              <th class="heading" scope="row">Custom emails</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
                 </span>
               </td>
             </tr>
@@ -1192,7 +788,751 @@
         </table>
 
         <!-- Fake card borders -->
-        <div aria-hidden="true" class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Video integrations</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Inbuilt commudle stage">
+              <th class="heading" scope="row">Inbuilt commudle stage</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Streaming to youtube">
+              <th class="heading" scope="row">Streaming to youtube</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="External link to another platform">
+              <th class="heading" scope="row">External link to another platform</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Youtube live embed">
+              <th class="heading" scope="row">Youtube live embed</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Iframe embed">
+              <th class="heading" scope="row">Iframe embed</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Dashboards</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Event analytics">
+              <th class="heading" scope="row">Event analytics</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Community insights">
+              <th class="heading" scope="row">Community insights</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Community channels</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Public channels">
+              <th class="heading" scope="row">Public channels</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Private channels">
+              <th class="heading" scope="row">Private channels</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Protected channels">
+              <th class="heading" scope="row">Protected channels</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Knowledge sharing</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Labs">
+              <th class="heading" scope="row">Labs</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Builds">
+              <th class="heading" scope="row">Builds</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Developer profile</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Display commudle activites">
+              <th class="heading" scope="row">Display commudle activites</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="View speaker slides">
+              <th class="heading" scope="row">View speaker slides</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Showcase projects/publications">
+              <th class="heading" scope="row">Showcase projects/publications</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Blue tick (for experts)">
+              <th class="heading" scope="row">Blue tick (for experts)</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Star (for community organizers)">
+              <th class="heading" scope="row">Star (for community organizers)</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Customized badges">
+              <th class="heading" scope="row">Customized badges</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">More features</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Sponsored badges">
+              <th class="heading" scope="row">Sponsored badges</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored sessions">
+              <th class="heading" scope="row">Sponsored sessions</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored labs">
+              <th class="heading" scope="row">Sponsored labs</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored builds">
+              <th class="heading" scope="row">Sponsored builds</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored slot in newsletter">
+              <th class="heading" scope="row">Sponsored slot in newsletter</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored emailers through communities">
+              <th class="heading" scope="row">Sponsored sessions</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
           <div class="com-w-1/4 com-pr-4"></div>
           <div class="com-w-1/4 com-px-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -1210,7 +1550,7 @@
 
   <!-- Logo cloud -->
   <div class="pricing-logo-cloud">
-    <div class="com-grid com-grid-cols-2 com-gap-8 md:com-grid-cols-6 lg:com-grid-cols-5">
+    <div class="com-grid com-grid-cols-1 com-gap-8 md:com-grid-cols-3">
       <div class="logo">
         <img alt="Tuple" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" />
       </div>
@@ -1219,12 +1559,6 @@
       </div>
       <div class="logo">
         <img alt="StaticKit" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" />
-      </div>
-      <div class="logo">
-        <img alt="Transistor" src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg" />
-      </div>
-      <div class="logo">
-        <img alt="Workcation" src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg" />
       </div>
     </div>
   </div>
