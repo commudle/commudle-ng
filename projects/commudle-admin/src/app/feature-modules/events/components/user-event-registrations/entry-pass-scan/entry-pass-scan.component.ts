@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NbWindowService } from '@nebular/theme';
 import { BarcodeFormat } from '@zxing/library';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
@@ -20,6 +21,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   @ViewChild('scanner', { static: false }) scanner: ZXingScannerComponent;
   @ViewChild('correctSound') correctSound: ElementRef;
   @ViewChild('incorrectSound') incorrectSound: ElementRef;
+  @ViewChild('userInfo') userInfo: TemplateRef<any>;
 
   scannerEnabled: boolean = true;
 
@@ -29,10 +31,9 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   hasPermission: boolean;
   qrResultString: string;
   eventPass: IEventPass = null;
-  // eventId: string = null;
   event: IEvent;
   community: ICommunity;
-  canMarkAttendance: boolean = false;
+  attendanceStatus: boolean = false;
 
   formatsEnabled: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
@@ -42,12 +43,17 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  previousCode:string = null;
+
+  windowRef;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private toastService: LibToastLogService,
     private eventEntryPassesService: EventEntryPassesService,
     private fb: FormBuilder,
     private seoService: SeoService,
+    private windowService: NbWindowService,
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +74,10 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   }
 
   onCodeResult(resultString: string) {
-    this.getEntryPass(this.event.id, resultString);
+    if(resultString !== this.previousCode){
+      this.previousCode = resultString;
+      this.getEntryPass(this.event.id, resultString);
+    }
   }
 
   submitForm() {
@@ -78,20 +87,35 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   getEntryPass(eventId: number, uniqueCode: string) {
     this.subscriptions.push(
       this.eventEntryPassesService.getEntryPass(eventId, uniqueCode).subscribe((data) => {
-        if (data) {
-          this.correctSound.nativeElement.play();
-          this.eventPass = data;
-          this.canMarkAttendance = !data.attendance;
+
+        if (data.attendance) {
+          this.toastService.warningDialog('Attendance already marked')
         }
+        this.correctSound.nativeElement.play();
+        this.eventPass = data;
+        this.windowRef = this.windowService.open(this.userInfo, { windowClass: 'user-info', });
+
+        this.subscriptions.push(
+          this.windowRef.onClose.subscribe(() => {
+            this.previousCode = null;
+          })
+        )
       }),
     );
   }
 
+  closeWindow() {
+    this.windowRef.close();
+  }
+
   toggleAttendance() {
+    this.attendanceStatus = true;
     this.subscriptions.push(
       this.eventEntryPassesService.toggleAttendance(this.eventPass.id).subscribe((res) => {
         if (res) {
-          this.toastService.successDialog('Attendance Marked');
+          this.toastService.successDialog('Attendance Toggled');
+          this.attendanceStatus = false;
+          this.windowRef.close();
         }
       }),
     );
@@ -110,8 +134,6 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   }
 
   compareByDeviceId(optionValue, selectedValue): boolean {
-    if (selectedValue) {
-      return optionValue === selectedValue.deviceId;
-    }
+    return optionValue === selectedValue.deviceId;
   }
 }
