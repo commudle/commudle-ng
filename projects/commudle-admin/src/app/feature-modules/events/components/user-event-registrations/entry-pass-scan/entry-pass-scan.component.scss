@@ -20,7 +20,8 @@ nb-card {
 
       .camera-container {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        gap: 15px;
 
         zxing-scanner {
           ::ng-deep {

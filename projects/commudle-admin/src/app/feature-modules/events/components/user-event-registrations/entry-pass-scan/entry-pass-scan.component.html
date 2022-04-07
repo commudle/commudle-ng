@@ -25,6 +25,7 @@
                 [(device)]="currentDevice"
                 [formats]="formatsEnabled"
               ></zxing-scanner>
+              <button *ngIf="!scanner.enabled" (click)="resetScanner()" nbButton fullWidth status="primary">Reset Scanner</button>
               <audio #correctSound>
                 <source
                   src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1FkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9255d1e05be35d9fb971bfb38d1a67d8c39c8b0f/success_sound.mp3"
