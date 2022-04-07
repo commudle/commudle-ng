@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowRef, NbWindowService } from '@nebular/theme';
 import { BarcodeFormat } from '@zxing/library';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
@@ -23,10 +23,9 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   @ViewChild('incorrectSound') incorrectSound: ElementRef;
   @ViewChild('userInfo') userInfo: TemplateRef<any>;
 
-  scannerEnabled: boolean = true;
-
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
+  lastDevice: MediaDeviceInfo = null;
   hasDevices: boolean;
   hasPermission: boolean;
   qrResultString: string;
@@ -43,9 +42,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  previousCode:string = null;
-
-  windowRef;
+  windowRef: NbWindowRef;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -74,13 +71,14 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
   }
 
   onCodeResult(resultString: string) {
-    if(resultString !== this.previousCode){
-      this.previousCode = resultString;
-      this.getEntryPass(this.event.id, resultString);
-    }
+    this.lastDevice = this.scanner.device;
+    this.scanner.enable = false;
+    this.getEntryPass(this.event.id, resultString);
   }
 
   submitForm() {
+    this.lastDevice = this.scanner.device;
+    this.scanner.enable = false;
     this.getEntryPass(this.event.id, this.entryPassForm.value.entry_pass_code);
   }
 
@@ -94,10 +92,12 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
         this.correctSound.nativeElement.play();
         this.eventPass = data;
         this.windowRef = this.windowService.open(this.userInfo, { windowClass: 'user-info', });
-
+        
         this.subscriptions.push(
           this.windowRef.onClose.subscribe(() => {
-            this.previousCode = null;
+            this.scanner.device = this.lastDevice;
+            this.currentDevice = this.lastDevice;
+            this.scanner.enable = true;
           })
         )
       }),
@@ -135,5 +135,13 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
 
   compareByDeviceId(optionValue, selectedValue): boolean {
     return optionValue === selectedValue.deviceId;
+  }
+
+  resetScanner(){
+    if(!this.scanner.enabled){
+      this.scanner.device = this.lastDevice;
+      this.currentDevice = this.lastDevice;
+      this.scanner.enable = true;
+    }
   }
 }
