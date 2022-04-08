@@ -1,0 +1,19 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  nb-card-body {
+    overflow: hidden;
+
+    padding: 0;
+    .newsletter-card-container {
+      margin: 1rem;
+      .newsletter-card {
+        border: 0.5px solid $silver-sand;
+        border-radius: $border-8;
+        height: 360px;
+        width: 300px;
+        background-color: white;
+      }
+    }
+  }
+}
