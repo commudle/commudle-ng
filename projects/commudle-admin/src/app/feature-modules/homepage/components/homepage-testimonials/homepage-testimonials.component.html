@@ -1,0 +1,45 @@
+<div *ngIf="selectedTestimonial" class="homepage-testimonials">
+  <div class="quotes com-text-left">&ldquo;</div>
+  <p class="content">{{ selectedTestimonial.content }}</p>
+  <div class="quotes com-text-right">&rdquo;</div>
+  <nb-actions fullWidth size="giant">
+    <nb-action [routerLink]="['/users', selectedTestimonial.username]" class="user">
+      <img
+        [alt]="selectedTestimonial.name"
+        [title]="selectedTestimonial.name"
+        class="avatar"
+        src="{{ getImageUrl(selectedTestimonial.avatar) }}"
+      />
+      <div class="details">
+        <p class="name">{{ selectedTestimonial.name }}</p>
+        <p class="username">@{{ selectedTestimonial.username }}</p>
+      </div>
+    </nb-action>
+    <nb-action class="text">
+      Built <span class="highlight">{{ selectedTestimonial.projects }} projects</span> on Commudle
+    </nb-action>
+    <nb-action class="text">
+      Attended <span class="highlight">{{ selectedTestimonial.events }} events</span> on Commudle
+    </nb-action>
+  </nb-actions>
+  <div *ngIf="testimonials.length > 1" class="navigation">
+    <button
+      (click)="setTestimonial(-1)"
+      [disabled]="testimonials.indexOf(selectedTestimonial) === 0"
+      nbButton
+      shape="round"
+      size="small"
+    >
+      <nb-icon icon="arrow-left-outline"></nb-icon>
+    </button>
+    <button
+      (click)="setTestimonial(1)"
+      [disabled]="testimonials.indexOf(selectedTestimonial) === testimonials.length - 1"
+      nbButton
+      shape="round"
+      size="small"
+    >
+      <nb-icon icon="arrow-right-outline"></nb-icon>
+    </button>
+  </div>
+</div>

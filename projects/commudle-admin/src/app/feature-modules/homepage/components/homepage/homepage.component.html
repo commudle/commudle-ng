@@ -1,22 +1,20 @@
 <div class="homepage">
-  <div class="homepage-section com-container com-py-8 md:com-py-16">
+  <div class="homepage-section com-py-8 md:com-py-16">
     <div
       class="
-        com-flex com-flex-col-reverse
-        md:com-flex-row md:com-gap-16 md:com-flex-row
-        com-justify-center com-items-center
-        md:com-justify-start
+        com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center
+        md:com-flex-row md:com-gap-16 md:com-flex-row md:com-justify-start md:com-items-end
       "
     >
-      <div class="com-w-full md:com-py-24">
+      <div class="com-w-full com-pb-8">
         <h1 class="heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
-        <p class="subheading">Search for a technology to find interesting communities and developers</p>
+        <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
         <!--        <div class="com-mt-4 com-flex com-justify-center md:com-justify-start">-->
         <!--          <a class="com-w-full sm:com-w-auto" nbButton status="info">View courses</a>-->
         <!--        </div>-->
       </div>
-      <div class="com-w-2/3 md:com-w-full com-mb-4 md:com-ml-8">
+      <div class="com-w-2/3 md:com-w-full">
         <img
           alt="Homepage banner"
           class="com-pointer-events-none com-w-full"
@@ -40,6 +38,11 @@
     </div>
   </div>
 
+  <div class="homepage-section com-pb-12">
+    <h2 class="section-heading">Testimonials</h2>
+    <app-homepage-testimonials></app-homepage-testimonials>
+  </div>
+
   <div class="homepage-section com-pb-36">
     <h2 class="section-heading">Lead your own Developer Community</h2>
     <app-homepage-features></app-homepage-features>
@@ -57,9 +60,16 @@
     <div class="com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 md:com-text-4xl">
       <span class="com-block">Are you a startup?</span>
       <span class="com-block content">Build a Developer Community that Grows</span>
+      <a
+        class="homepage-get-started"
+        nbButton
+        routerLink="/fill-form/465"
+        shape="semi-round"
+        size="large"
+        status="info"
+      >
+        Get started
+      </a>
     </div>
-    <a class="homepage-get-started" nbButton routerLink="/fill-form/465" shape="semi-round" status="info">
-      Get started
-    </a>
   </div>
 </div>

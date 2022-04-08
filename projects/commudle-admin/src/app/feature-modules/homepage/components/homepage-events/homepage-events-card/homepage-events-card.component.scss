@@ -1,12 +1,13 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .home-events-card-container {
-  border: 0.5px solid $silver-sand;
+  //border: 0.5px solid $silver-sand;
   border-radius: $border-10;
   display: block;
   overflow: hidden;
   position: relative;
   text-decoration: none;
+  @apply com-shadow;
 
   .home-events-card-image {
     height: 156px;
@@ -33,9 +34,9 @@
 
   .home-events-card-date {
     background-color: $white;
-    border: 1px solid $neon-blue;
+    border: 1px solid #0095ff;
     border-radius: $border-8;
-    color: $neon-blue;
+    color: #0095ff;
     font-size: $fs-h4;
     font-weight: $fw-500;
     height: 58px;
@@ -57,11 +58,8 @@
     margin: $space-12 $space-12 $space-8;
 
     .home-events-card-name {
-      color: $gunmetal;
-      font-size: $fs-h5;
-      font-weight: $fw-600;
-      height: 2rem;
-      line-height: 16px;
+      height: 3.5rem;
+      @apply com-text-lg com-text-gray-900;
 
       @screen md {
         max-width: 80%;
@@ -79,16 +77,14 @@
         }
 
         .home-events-card-community-name {
-          color: $text-low-emphasis;
-          font-size: $fs-card-secondary;
-          font-weight: $fw-500;
-          line-height: normal;
           margin: 0 $space-16 0 $space-8;
+          word-break: break-all;
+          @apply com-text-sm com-text-gray-400;
         }
       }
 
       .home-events-card-register {
-        color: $neon-blue;
+        color: #0095ff;
         font-size: $fs-h5;
         font-weight: $fw-600;
         text-transform: uppercase;

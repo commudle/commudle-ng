@@ -2,7 +2,6 @@
 @import './projects/commudle-admin/src/assets/styles/text-styles';
 
 p {
-  color: $gunmetal;
   margin: 0;
 }
 
@@ -16,11 +15,12 @@ p {
   .featured-community-card {
     aspect-ratio: 3/4;
     background-color: $white;
-    border: 1px solid $silver-sand;
-    border-radius: $border-8;
+    border-radius: $border-10;
+    margin: 2px;
     min-width: 260px;
     overflow: hidden;
     position: relative;
+    @apply com-shadow;
 
     @screen lg {
       min-width: inherit;
@@ -33,10 +33,8 @@ p {
       top: $space-12;
 
       button {
-        background-color: $azureish-white;
-
         nb-icon {
-          color: $neon-blue;
+          color: #0095ff;
         }
       }
     }
@@ -56,12 +54,12 @@ p {
       @apply com-p-3 md:com-p-4 com-flex com-flex-col com-justify-between;
 
       .featured-community-name {
-        @apply com-m-0 com-text-xl com-font-semibold com-line-clamp-1;
+        @apply com-m-0 com-text-lg com-font-normal com-line-clamp-2;
       }
 
-      .featured-community-reason {
-        @apply com-text-base com-line-clamp-2 md:com-line-clamp-3;
-      }
+      //.featured-community-reason {
+      //  @apply com-text-sm com-line-clamp-2 md:com-line-clamp-3;
+      //}
 
       .featured-community-join-btn {
         @apply com-flex com-justify-between com-items-center;
@@ -71,8 +69,8 @@ p {
             button {
               background: $white;
               border: 1px solid $silver-sand;
-              border-radius: $border-4;
-              color: $neon-blue;
+              border-radius: $border-10;
+              color: #0095ff;
               font-size: $fs-h5;
               font-weight: normal;
               height: 32px;
@@ -95,5 +93,5 @@ p {
 }
 
 .home-view-all-communities {
-  background-color: #0095fa;
+  background-color: #0095ff;
 }

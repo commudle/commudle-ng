@@ -11,11 +11,11 @@
             <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
             <div class="com-flex com-gap-2 com-text-sm com-text-gray-400">
               <span class="com-flex com-items-center com-gap-1">
-                <nb-icon icon="heart"></nb-icon>
+                <nb-icon icon="heart-outline"></nb-icon>
                 {{ lab.votes_count }}
               </span>
               <span class="com-flex com-items-center com-gap-1">
-                <nb-icon icon="eye"></nb-icon>
+                <nb-icon icon="eye-outline"></nb-icon>
                 {{ lab.visits }}
               </span>
             </div>
@@ -34,9 +34,9 @@
 </div>
 
 <div class="com-flex com-gap-4 com-mt-6">
-  <a class="home-labs-view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="info">View all</a>
   <a class="home-write-tutorial" nbButton routerLink="/labs/create" shape="semi-round" status="info">
     Write a tutorial
     <nb-icon icon="arrow-forward"></nb-icon>
   </a>
+  <a class="home-labs-view-all" ghost nbButton routerLink="/labs" shape="semi-round" status="info">View all</a>
 </div>

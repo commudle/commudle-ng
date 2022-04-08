@@ -235,6 +235,7 @@ export const API_ROUTES = {
     TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
     TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
     AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance',
+    SHOW: 'api/v2/event_entry_passes/show',
   },
 
   // locations

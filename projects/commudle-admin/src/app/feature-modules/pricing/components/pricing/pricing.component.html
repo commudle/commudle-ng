@@ -1,27 +1,1624 @@
-<div class="pricing">
-  <div class="page-container">
-    <section class="header">
-      <h1>
-        Commudle is built by Developer Communities
-      </h1>
-      <p>And will be free for the passionate ones, always!</p>
+<div class="pricing-container">
+  <div class="com-relative com-bg-indigo-600">
+    <div
+      aria-hidden="true"
+      class="com-hidden com-absolute com-bg-gray-50 com-w-full com-h-6 com-bottom-0 lg:com-block"
+    ></div>
 
-      <p>
+    <!-- Header -->
+    <div class="pricing-header">
+      <div class="heading">
+        <span class="com-block lg:com-inline">Simple pricing,</span>
+        <span class="com-block lg:com-inline">no commitment.</span>
+      </div>
+      <div class="subheading">
         We have built everything you need to manage and grow your Community of Developers and Designers in one platform.
-        If you are running one Developer Community, planning to start one to give back and share with people who need you,
-        go ahead, we are with you!
-      </p>
+        If you are running one Developer Community, planning to start one to give back and share with people who need
+        you, go ahead, we are with you!
+      </div>
+    </div>
 
-      <p>
+    <!-- Toggle -->
+    <!--    <div class="pricing-toggle">-->
+    <!--      <label>Monthly billing</label>-->
+    <!--      <nb-toggle></nb-toggle>-->
+    <!--      <label>Yearly billing</label>-->
+    <!--    </div>-->
 
-      </p>
-    </section>
-    <section class="plans d-flex justify-content-start">
-      <app-commudle-features class="plan"></app-commudle-features>
-    </section>
+    <!-- Cards -->
+    <div class="pricing-cards">
+      <div
+        aria-hidden="true"
+        class="
+          com-hidden
+          com-absolute
+          com-top-4
+          com-bottom-6
+          com-left-8
+          com-right-8
+          com-inset-0
+          com-bg-indigo-700
+          com-rounded-tl-lg
+          com-rounded-tr-lg
+          lg:com-block
+        "
+      ></div>
 
-    <section>
-      <p>For any queries, feel free to send an email to <u>more@commudle.com</u></p>
-    </section>
+      <div class="com-relative com-space-y-6 lg:com-space-y-0 lg:com-grid lg:com-grid-cols-3">
+        <div class="pricing-card-light">
+          <div>
+            <div class="name">Non Profit</div>
+            <div class="pricing">
+              <div class="com-mt-3 com-flex com-items-center">
+                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">Free</div>
+                <!--                <div class="com-ml-4">-->
+                <!--                  <div class="com-text-white com-text-sm">USD / mo</div>-->
+                <!--                  <div class="com-text-indigo-200 com-text-sm">Billed yearly ($56)</div>-->
+                <!--                </div>-->
+              </div>
+              <a [routerLink]="['fill-form', 465]" class="buy-btn">Get Started</a>
+            </div>
+          </div>
+          <ul class="features">
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">1 Community</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Unlimited members</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Unlimited events</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Unlimited channels</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">All community features</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pricing-card-dark">
+          <div>
+            <div class="name">Startup & Professional</div>
+            <div class="pricing">
+              <div class="com-mt-3 com-flex com-items-center">
+                <div class="com-text-indigo-600 com-text-4xl com-font-extrabold com-tracking-tight">$29</div>
+                <div class="com-ml-4">
+                  <div class="com-text-gray-700 com-text-sm">community / mo</div>
+                  <!--                  <div class="com-text-gray-500 com-text-sm">Billed yearly ($220)</div>-->
+                </div>
+              </div>
+              <a class="buy-btn">Buy this plan</a>
+            </div>
+          </div>
+          <ul class="features">
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Everything in Non Profit plan</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Free video stage credits (pay as you go)</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Key account manager</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">3rd party integrations</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">API SDK</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pricing-card-light">
+          <div>
+            <div class="name">Enterprise</div>
+            <div class="pricing">
+              <div class="com-mt-3 com-flex com-items-center">
+                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">Contact us</div>
+                <!--                <div class="com-ml-4">-->
+                <!--                  <div class="com-text-white com-text-sm">USD / mo</div>-->
+                <!--                  <div class="com-text-indigo-200 com-text-sm">Billed yearly ($140)</div>-->
+                <!--                </div>-->
+              </div>
+              <a class="buy-btn">Talk to an expert</a>
+            </div>
+          </div>
+          <ul class="features">
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Everything in Startup plan</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Automated flows</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Dedicated Organization page</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Custom APIs</span>
+            </li>
+
+            <li>
+              <nb-icon icon="checkmark-outline"></nb-icon>
+              <span class="feature">Custom dashboards & reports</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature comparison (Desktop) -->
+  <div class="pricing-features">
+    <div class="com-mt-24 com-max-w-7xl com-mx-auto com-px-8">
+      <div class="pricing-feature-headings">
+        <div class="com--mt-px com-w-1/4 com-py-6 com-pr-4 com-flex com-items-end">
+          <div class="com-mt-auto com-text-sm com-font-bold com-text-gray-900">All features</div>
+        </div>
+
+        <div class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
+          <div class="com-border-transparent com-py-6 com-border-t-2">
+            <div class="heading">Non Profit</div>
+            <div class="subheading">All your essential business finances, taken care of.</div>
+          </div>
+        </div>
+
+        <div class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
+          <div class="com-border-indigo-600 com-py-6 com-border-t-2">
+            <div class="heading">Startup & Professional</div>
+            <div class="subheading">The best financial services for your thriving business.</div>
+          </div>
+        </div>
+
+        <div class="com--mt-px com-pl-4 com-w-1/4">
+          <div class="com-border-transparent com-py-6 com-border-t-2">
+            <div class="heading">Enterprise</div>
+            <div class="subheading">Convenient features to take your business to the next level.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-relative">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Organization page">
+              <th class="heading" scope="row">Organization page</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Teammates">
+              <th class="heading" scope="row">Teammates</th>
+
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <span class="dark">Unlimited</span>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Members">
+              <th class="heading" scope="row">Members</th>
+
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <span class="dark">Unlimited</span>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <span class="light">Unlimited</span>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Community survey forms">
+              <th class="heading" scope="row">Community survey forms</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Community newsletters">
+              <th class="heading" scope="row">Community newsletters</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Export data">
+              <th class="heading" scope="row">Export data</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Offline / Online events</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Multiple locations & tracks">
+              <th class="heading" scope="row">Multiple locations & tracks</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Registration forms">
+              <th class="heading" scope="row">Registration forms</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="RSVP emails">
+              <th class="heading" scope="row">RSVP emails</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="QR code entry passes">
+              <th class="heading" scope="row">QR code entry passes</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Auto attendance using QR">
+              <th class="heading" scope="row">Auto attendance using QR</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Calendar invite">
+              <th class="heading" scope="row">Calendar invite</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Waitlist management">
+              <th class="heading" scope="row">Waitlist management</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Feedback forms">
+              <th class="heading" scope="row">Feedback forms</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Preserve speaker slides">
+              <th class="heading" scope="row">Preserve speaker slides</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Enlist/Highlight speakers">
+              <th class="heading" scope="row">Enlist/Highlight speakers</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Volunteers">
+              <th class="heading" scope="row">Volunteers</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Inter-community collaborations">
+              <th class="heading" scope="row">Inter-community collaborations</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Display sponsors">
+              <th class="heading" scope="row">Display sponsors</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Live chat">
+              <th class="heading" scope="row">Live chat</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="QnA with voting">
+              <th class="heading" scope="row">QnA with voting</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Live polls">
+              <th class="heading" scope="row">Live polls</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Auto mark uninvited attendees">
+              <th class="heading" scope="row">Auto mark uninvited attendees</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Custom emails">
+              <th class="heading" scope="row">Custom emails</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Video integrations</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Inbuilt commudle stage">
+              <th class="heading" scope="row">Inbuilt commudle stage</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Streaming to youtube">
+              <th class="heading" scope="row">Streaming to youtube</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="External link to another platform">
+              <th class="heading" scope="row">External link to another platform</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Youtube live embed">
+              <th class="heading" scope="row">Youtube live embed</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Iframe embed">
+              <th class="heading" scope="row">Iframe embed</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Dashboards</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Event analytics">
+              <th class="heading" scope="row">Event analytics</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Community insights">
+              <th class="heading" scope="row">Community insights</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Community channels</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Public channels">
+              <th class="heading" scope="row">Public channels</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Private channels">
+              <th class="heading" scope="row">Private channels</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Protected channels">
+              <th class="heading" scope="row">Protected channels</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Knowledge sharing</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Labs">
+              <th class="heading" scope="row">Labs</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Builds">
+              <th class="heading" scope="row">Builds</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Developer profile</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Display commudle activites">
+              <th class="heading" scope="row">Display commudle activites</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="View speaker slides">
+              <th class="heading" scope="row">View speaker slides</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Showcase projects/publications">
+              <th class="heading" scope="row">Showcase projects/publications</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Blue tick (for experts)">
+              <th class="heading" scope="row">Blue tick (for experts)</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Star (for community organizers)">
+              <th class="heading" scope="row">Star (for community organizers)</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Customized badges">
+              <th class="heading" scope="row">Customized badges</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">More features</div>
+
+      <div class="com-relative com-mt-6">
+        <!-- Fake card backgrounds -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow-md"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-bg-white com-rounded-lg com-shadow"></div>
+          </div>
+        </div>
+
+        <table class="pricing-feature-table">
+          <tbody class="com-divide-y com-divide-gray-100">
+            <tr key="Sponsored badges">
+              <th class="heading" scope="row">Sponsored badges</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored sessions">
+              <th class="heading" scope="row">Sponsored sessions</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored labs">
+              <th class="heading" scope="row">Sponsored labs</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored builds">
+              <th class="heading" scope="row">Sponsored builds</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored slot in newsletter">
+              <th class="heading" scope="row">Sponsored slot in newsletter</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Sponsored emailers through communities">
+              <th class="heading" scope="row">Sponsored sessions</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Fake card borders -->
+        <div class="com-absolute com-inset-0 com-flex com-items-stretch com-pointer-events-none">
+          <div class="com-w-1/4 com-pr-4"></div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+          <div class="com-w-1/4 com-px-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-indigo-600 com-ring-opacity-100"></div>
+          </div>
+          <div class="com-w-1/4 com-pl-4">
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo cloud -->
+  <div class="pricing-logo-cloud">
+    <div class="com-grid com-grid-cols-1 com-gap-8 md:com-grid-cols-3">
+      <div class="logo">
+        <img alt="Tuple" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" />
+      </div>
+      <div class="logo">
+        <img alt="Mirage" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" />
+      </div>
+      <div class="logo">
+        <img alt="StaticKit" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" />
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="com-bg-gray-900">
+    <div class="pricing-faq">
+      <div class="com-max-w-2xl lg:com-mx-auto lg:com-text-center">
+        <div class="heading">Frequently asked questions</div>
+        <div class="subheading">
+          Ac euismod vel sit maecenas id pellentesque eu sed consectetur. Malesuada adipiscing sagittis vel nulla nec.
+          Urna, sed a lectus elementum blandit et.
+        </div>
+      </div>
+      <div class="com-mt-20">
+        <dl class="questions">
+          <div>
+            <dt class="question">What's the best thing about Switzerland?</dt>
+            <dd class="answer">
+              I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              cupiditate laboriosam fugiat.
+            </dd>
+          </div>
+          <div>
+            <dt class="question">What's the best thing about Switzerland?</dt>
+            <dd class="answer">
+              I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              cupiditate laboriosam fugiat.
+            </dd>
+          </div>
+          <div>
+            <dt class="question">What's the best thing about Switzerland?</dt>
+            <dd class="answer">
+              I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              cupiditate laboriosam fugiat.
+            </dd>
+          </div>
+          <div>
+            <dt class="question">What's the best thing about Switzerland?</dt>
+            <dd class="answer">
+              I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              cupiditate laboriosam fugiat.
+            </dd>
+          </div>
+          <div>
+            <dt class="question">What's the best thing about Switzerland?</dt>
+            <dd class="answer">
+              I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              cupiditate laboriosam fugiat.
+            </dd>
+          </div>
+          <div>
+            <dt class="question">What's the best thing about Switzerland?</dt>
+            <dd class="answer">
+              I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              cupiditate laboriosam fugiat.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   </div>
 </div>
