@@ -6,6 +6,13 @@ nb-card {
 
     padding: 0;
     .newsletter-card-container {
+
+      @media all and (max-width: $mobile-width) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       margin: 1rem;
       .newsletter-card {
         border: 0.5px solid $silver-sand;

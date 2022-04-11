@@ -36,6 +36,13 @@ export class MainNewslettersService {
         );
   }
 
+  //get all published newsletters
+  publishedNewsletters(): Observable<IMainNewsletters> {
+    return this.http.get<IMainNewsletters>(
+      this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.PUBLISHED_NEWSLETTERS)
+    );
+  }
+
   // update
   update(mainNewsletterData, mainNewsletterId): Observable<IMainNewsletter>{
     return this.http.put<IMainNewsletter>(

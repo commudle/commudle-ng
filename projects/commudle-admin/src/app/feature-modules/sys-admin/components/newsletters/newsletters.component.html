@@ -4,16 +4,16 @@
       <nb-card>
         <nb-card-header> Published Newsletters </nb-card-header>
         <nb-card-body>
-          <div class="newsletter-card-container com-flex com-flex-wrap com--m-4">
-            <div class="newsletter-card com-md:w-1/3">
+          <div *ngIf="newsletters.length > 0" class="newsletter-card-container com-flex com-flex-wrap com--m-4">
+            <div *ngFor="let newsletter of newsletters" class="newsletter-card com-md:w-1/3">
               <div
                 class="
-                  com-h-full com-border-2 com-border-gray-200 com-border-opacity-60 com-rounded-lg com-overflow-hidden
+                  com-flex com-flex-col com-justify-between com-h-full com-border-2 !com-border-gray-200 com-border-opacity-60 com-rounded-lg com-overflow-hidden
                 "
               >
                 <img
                   class="com-lg:h-48 com-md:h-36 com-w-full com-object-cover com-object-center"
-                  src="https://dummyimage.com/720x400"
+                  [src]="getFirstImageUrl(newsletter.content)"
                   alt="blog"
                 />
                 <div class="com-p-4">
@@ -23,18 +23,16 @@
                       !com-text-xs
                       com-title-font
                       !com-font-medium !com-text-gray-400
-                      com-mt-0.5 com-mb-0.5
+                      com-mt-1 com-mb-1
                     "
                   >
-                    CATEGORY
+                    {{ newsletter.created_at | date }}
                   </h2>
-                  <h1 class="com-title-font !com-text-lg !com-font-medium !com-text-gray-900 com-mt-1 com-mb-1">
-                    The Catalyzer
+                  <h1 class="com-title-font !com-text-lg !com-font-medium !com-text-gray-900 com-mt-1.5 com-mb-1.5">
+                    {{ newsletter.title }}
                   </h1>
-                  <p class="com-leading-relaxed com-mb-3">
-                    Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.
-                  </p>
                   <a
+                    [routerLink]="['/newsletters', newsletter.id]"
                     class="
                       !com-text-indigo-500
                       com-inline-flex com-items-center
