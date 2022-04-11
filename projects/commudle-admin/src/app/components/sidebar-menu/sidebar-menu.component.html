@@ -97,7 +97,7 @@
           <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
         </nb-accordion-item-body>
         <nb-accordion-item-body>
-          <a [routerLink]="['/sys-admin', 'newsletters']">Newsletters</a>
+          <a [routerLink]="['/sys-admin', 'newsletters']" *ngIf="isNewslettersAdmin">Newsletters</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

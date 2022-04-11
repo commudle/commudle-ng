@@ -3,13 +3,13 @@ import { IUser } from './user.model';
 export interface IMainNewsletter {
   id: number;
   user: IUser;
-  title: string;//
+  title: string;
   slug: string;
-  content: string;//
+  content: string;
   email_subject: string;
   sender?: string;
   created_at: Date;
-  published_at: Date;//
+  published_at: Date;
   status: EMainNewsletterStatuses,
   scheduled_for: Date;
   sent_at: Date;

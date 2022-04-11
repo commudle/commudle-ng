@@ -28,6 +28,7 @@ export class SidebarMenuComponent implements OnInit {
   isPageAdsAdmin = false;
   isBadgesAdmin = false;
   isFeaturedCommunitiesAdmin = false;
+  isNewslettersAdmin = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -66,6 +67,10 @@ export class SidebarMenuComponent implements OnInit {
 
         if (currentUser.user_roles.includes(EUserRoles.BADGES)) {
           this.isBadgesAdmin = true;
+        }
+
+        if(currentUser.user_roles.includes(EUserRoles.PUBLISHED_NEWSLETTERS)){
+          this.isNewslettersAdmin = true;
         }
 
         if (currentUser.user_roles.includes(EUserRoles.FEATURED_COMMUNITIES)) {
