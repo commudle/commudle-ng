@@ -290,7 +290,7 @@ export const API_ROUTES = {
     ADMIN: {
       INDEX: 'api/v2/main_newsletters/admin',
     },
-    PUBLISHED_NEWSLETTERS: 'api/v2/main_newsletters/published_newsletters'
+    PUBLIC_INDEX: 'api/v2/main_newsletters/public_index',
   },
 
   PAGE_ADS: {

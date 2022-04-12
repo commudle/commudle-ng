@@ -11,6 +11,7 @@ import { FeaturesComponent } from './components/home/features/features.component
 import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
+import { MainNewsletterList } from './feature-modules/main-newsletters/components/main-newsletter-list/main-newsletter-list.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
 import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
 import { InitResolver } from './resolvers/init.resolver';
@@ -133,6 +134,10 @@ const routes = [
   {
     path: 'newsletters/:main_newsletter_id',
     component: MainNewsletterComponent,
+  },
+  {
+    path: 'newsletter-list',
+    component: MainNewsletterList,
   },
   {
     path: 'search',

@@ -4,10 +4,10 @@ import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 
 @Component({
   selector: 'app-newsletters',
-  templateUrl: './newsletters.component.html',
-  styleUrls: ['./newsletters.component.scss']
+  templateUrl: './main-newsletter-list.component.html',
+  styleUrls: ['./main-newsletter-list.component.scss']
 })
-export class NewslettersComponent implements OnInit {
+export class MainNewsletterList implements OnInit {
 
   newsletters: IMainNewsletter[] = [];
 
@@ -28,7 +28,7 @@ export class NewslettersComponent implements OnInit {
   }
 
   getPublishedNewsletters() {
-    this.mainNewslettersService.publishedNewsletters().subscribe((data) => {
+    this.mainNewslettersService.publicIndex().subscribe((data) => {
       this.newsletters = data.main_newsletters;
     })
   }

@@ -37,9 +37,9 @@ export class MainNewslettersService {
   }
 
   //get all published newsletters
-  publishedNewsletters(): Observable<IMainNewsletters> {
+  publicIndex(): Observable<IMainNewsletters> {
     return this.http.get<IMainNewsletters>(
-      this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.PUBLISHED_NEWSLETTERS)
+      this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.PUBLIC_INDEX)
     );
   }
 

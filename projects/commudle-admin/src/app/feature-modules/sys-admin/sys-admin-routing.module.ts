@@ -12,7 +12,6 @@ import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
 import { LabsComponent } from './components/labs/labs.component';
-import { NewslettersComponent } from './components/newsletters/newsletters.component';
 import { SysAdminComponent } from './sys-admin.component';
 
 const routes = [
@@ -72,10 +71,6 @@ const routes = [
         path: 'labs',
         component: LabsComponent,
       },
-      {
-        path:'newsletters',
-        component: NewslettersComponent,
-      }
     ],
   },
 ];

@@ -11,5 +11,4 @@ export enum EUserRoles {
   PAGE_ADS = 'page_ads',
   BADGES = 'badges',
   FEATURED_COMMUNITIES = 'featured_communities',
-  PUBLISHED_NEWSLETTERS = 'published_newsletters',
 }

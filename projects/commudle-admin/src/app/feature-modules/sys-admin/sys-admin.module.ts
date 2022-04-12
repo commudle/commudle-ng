@@ -32,7 +32,6 @@ import { CommunityControlsComponent } from './components/community-controls/comm
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminRoutingModule } from './sys-admin-routing.module';
 import { SysAdminComponent } from './sys-admin.component';
-import { NewslettersComponent } from './components/newsletters/newsletters.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,6 @@ import { NewslettersComponent } from './components/newsletters/newsletters.compo
     AdminBadgesListComponent,
     AdminBadgesFormComponent,
     AdminBadgesAssignComponent,
-    NewslettersComponent,
   ],
   imports: [
     CommonModule,
