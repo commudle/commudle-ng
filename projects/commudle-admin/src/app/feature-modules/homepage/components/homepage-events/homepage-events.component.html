@@ -22,7 +22,7 @@
     </button>
   </div>
 </div>
-<div *appBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-[254px]">
+<div *appBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-[276px]">
   <ng-container *ngIf="!isLoading; else loading">
     <app-homepage-events-card
       *ngFor="let event of events | slice: eventsStartIdx:eventsStartIdx + 4"

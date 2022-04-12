@@ -3,17 +3,19 @@
   <p class="content">{{ selectedTestimonial.content }}</p>
   <div class="quotes com-text-right">&rdquo;</div>
   <nb-actions fullWidth size="giant">
-    <nb-action [routerLink]="['/users', selectedTestimonial.username]" class="user">
-      <img
-        [alt]="selectedTestimonial.name"
-        [title]="selectedTestimonial.name"
-        class="avatar"
-        src="{{ getImageUrl(selectedTestimonial.avatar) }}"
-      />
-      <div class="details">
-        <p class="name">{{ selectedTestimonial.name }}</p>
-        <p class="username">@{{ selectedTestimonial.username }}</p>
-      </div>
+    <nb-action class="user">
+      <a [routerLink]="['/users', selectedTestimonial.username]" class="com-flex com-items-center">
+        <img
+          [alt]="selectedTestimonial.name"
+          [title]="selectedTestimonial.name"
+          class="avatar"
+          src="{{ getImageUrl(selectedTestimonial.avatar) }}"
+        />
+        <div class="details">
+          <p class="name">{{ selectedTestimonial.name }}</p>
+          <p class="username">@{{ selectedTestimonial.username }}</p>
+        </div>
+      </a>
     </nb-action>
     <nb-action class="text">
       Built <span class="highlight">{{ selectedTestimonial.projects }} projects</span> on Commudle
