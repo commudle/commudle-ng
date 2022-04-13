@@ -14,7 +14,7 @@
                 <img
                   class="com-lg:h-48 com-md:h-36 com-w-full com-object-cover com-object-center"
                   [src]="getFirstImageUrl(newsletter.content)"
-                  alt="blog"
+                  alt="{{ newsletter.title }}"
                 />
                 <div class="com-p-4">
                   <h2
@@ -39,20 +39,10 @@
                       com-md:mb-2
                       com-lg:mb-0
                       !com-no-underline
+                      com-gap-x-1
                     "
                     >Learn More
-                    <svg
-                      class="com-w-4 com-h-4 com-ml-2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
+                    <nb-icon [icon]="'arrow-forward-outline'"></nb-icon>
                   </a>
                 </div>
               </div>

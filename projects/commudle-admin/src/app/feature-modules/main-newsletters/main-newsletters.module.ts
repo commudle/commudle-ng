@@ -15,7 +15,6 @@ import { CheckRedirectGuard } from 'projects/shared-services/check-redirect.guar
 import { MainNewsletterSchedulerComponent } from './components/main-newsletter-scheduler/main-newsletter-scheduler.component';
 import { MainNewsletterTestEmailerComponent } from './components/main-newsletter-test-emailer/main-newsletter-test-emailer.component';
 import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-email-stats/main-newsletter-email-stats.component';
-import { MainNewsletterList } from './components/main-newsletter-list/main-newsletter-list.component';
 
 
 @NgModule({
@@ -27,7 +26,6 @@ import { MainNewsletterList } from './components/main-newsletter-list/main-newsl
     MainNewsletterSchedulerComponent,
     MainNewsletterTestEmailerComponent,
     MainNewsletterEmailStatsComponent,
-    MainNewsletterList,
   ],
   exports: [
     MainNewsletterComponent

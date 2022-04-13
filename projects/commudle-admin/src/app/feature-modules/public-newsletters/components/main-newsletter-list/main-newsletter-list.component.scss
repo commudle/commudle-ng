@@ -1,4 +1,4 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+@import "./projects/commudle-admin/src/assets/styles/variables";
 
 nb-card {
   nb-card-body {
@@ -6,7 +6,6 @@ nb-card {
 
     padding: 0;
     .newsletter-card-container {
-
       @media all and (max-width: $mobile-width) {
         display: flex;
         flex-direction: column;

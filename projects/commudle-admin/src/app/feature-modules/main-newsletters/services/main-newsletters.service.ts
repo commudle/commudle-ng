@@ -36,13 +36,6 @@ export class MainNewslettersService {
         );
   }
 
-  //get all published newsletters
-  publicIndex(): Observable<IMainNewsletters> {
-    return this.http.get<IMainNewsletters>(
-      this.apiRoutesService.getRoute(API_ROUTES.MAIN_NEWSLETTERS.PUBLIC_INDEX)
-    );
-  }
-
   // update
   update(mainNewsletterData, mainNewsletterId): Observable<IMainNewsletter>{
     return this.http.put<IMainNewsletter>(

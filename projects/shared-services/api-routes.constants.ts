@@ -290,6 +290,9 @@ export const API_ROUTES = {
     ADMIN: {
       INDEX: 'api/v2/main_newsletters/admin',
     },
+  },
+
+  PUBLIC_NEWSLETTERS: {
     PUBLIC_INDEX: 'api/v2/main_newsletters/public_index',
   },
 

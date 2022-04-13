@@ -21,6 +21,13 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item>
+      <a [routerLink]="['/public-newsletters', 'newsletters-list']">
+        <fa-icon [icon]="faNewspaper"></fa-icon>
+        &nbsp; Newsletters
+      </a>
+    </nb-list-item>
+
     <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
         <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>
@@ -95,9 +102,6 @@
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isBadgesAdmin">
           <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
-        </nb-accordion-item-body>
-        <nb-accordion-item-body>
-          <a [routerLink]="['/newsletter-list']">Newsletters</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
