@@ -15,6 +15,10 @@
 
     .section-heading {
       @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-2xl md:com-text-4xl com-text-left com-font-semibold;
+
+      &.light {
+        @apply com-text-white;
+      }
     }
 
     .subheading {

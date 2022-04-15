@@ -1,0 +1,36 @@
+<ul class="homepage-experts">
+  <li *ngFor="let expert of experts" class="homepage-expert">
+    <div class="com-space-y-6 xl:com-space-y-10">
+      <img [alt]="expert.name" [src]="expert.avatar" [title]="expert.name" class="homepage-expert-image" />
+      <div class="homepage-expert-details">
+        <a [routerLink]="['/users', expert.username]" class="homepage-expert-about">
+          <div class="com-text-white">{{ expert.name }}</div>
+          <div class="com-text-indigo-400 com-line-clamp-1">{{ expert.designation }}</div>
+        </a>
+
+        <ul class="com-flex com-justify-center com-space-x-5">
+          <li *ngIf="expert.twitter">
+            <a
+              [href]="expert.twitter | completeurl: 'twitter'"
+              class="homepage-expert-social"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <nb-icon icon="twitter"></nb-icon>
+            </a>
+          </li>
+          <li *ngIf="expert.linkedin">
+            <a
+              [href]="expert.linkedin | completeurl: 'linkedin'"
+              class="homepage-expert-social"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <nb-icon icon="linkedin"></nb-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>

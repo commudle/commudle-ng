@@ -6,9 +6,11 @@ import { SearchModule } from 'projects/commudle-admin/src/app/feature-modules/se
 import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { HomepageBuildsComponent } from './components/homepage-builds/homepage-builds.component';
 import { HomepageEventsCardComponent } from './components/homepage-events/homepage-events-card/homepage-events-card.component';
 import { HomepageEventsComponent } from './components/homepage-events/homepage-events.component';
+import { HomepageExpertsComponent } from './components/homepage-experts/homepage-experts.component';
 import { HomepageFeaturedCommunitiesComponent } from './components/homepage-featured-communities/homepage-featured-communities.component';
 import { HomepageFeaturesComponent } from './components/homepage-features/homepage-features.component';
 import { HomepageLabsComponent } from './components/homepage-labs/homepage-labs.component';
@@ -26,6 +28,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     HomepageFeaturesComponent,
     HomepageFeaturedCommunitiesComponent,
     HomepageTestimonialsComponent,
+    HomepageExpertsComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     NbIconModule,
     NbListModule,
     NbActionsModule,
+    SharedPipesModule,
   ],
 })
 export class HomepageModule {}
