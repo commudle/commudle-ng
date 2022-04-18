@@ -1,0 +1,39 @@
+a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.heading {
+  @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold;
+}
+
+.subheading {
+  @apply com-text-base md:com-text-xl com-leading-relaxed com-font-normal com-text-gray-400 com-mb-4 com-mt-1;
+}
+
+.home-builds-list {
+  nb-card {
+    @apply com-mx-0 com-my-6 com-border-0 com-shadow;
+
+    .name {
+      @apply com-mt-0 com-mb-1 com-line-clamp-1;
+    }
+
+    .description {
+      @apply com-mt-0 com-text-gray-400 com-line-clamp-1;
+    }
+
+    nb-icon {
+      @apply com-text-sm;
+    }
+  }
+}
+
+.home-builds-view-all {
+  color: #0095ff;
+}
+
+.home-share-project {
+  background-color: #0095ff;
+}

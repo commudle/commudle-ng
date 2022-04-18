@@ -135,6 +135,11 @@
             </p>
           </nb-card-body>
         </nb-card>
+        <app-share-button
+          [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+          [title]="event.name"
+          [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+        ></app-share-button>
         <nb-card *ngIf="moment() >= moment(event.end_time) && !event.custom_agenda">
           <nb-card-body>
             <p class="text-info">

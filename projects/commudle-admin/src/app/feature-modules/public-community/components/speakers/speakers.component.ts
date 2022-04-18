@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class SpeakersComponent implements OnInit, OnDestroy {
   speakers: IUser[] = [];
   community: ICommunity;
+  speakerLoader = false;
 
   subscriptions: Subscription[] = [];
 
@@ -24,6 +25,7 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.speakerLoader = true;
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.community = data.community;
@@ -43,6 +45,7 @@ export class SpeakersComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.communitySpeakerService.speakers(this.community.id).subscribe((data) => {
         this.speakers = data.users;
+        this.speakerLoader = false;
       }),
     );
   }

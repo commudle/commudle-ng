@@ -9,15 +9,22 @@
               <nb-icon icon="people"></nb-icon>
             </button>
           </a>
-          <button
-            (click)="copyTextToClipboard(featuredCommunity)"
-            class="featured-community-share-btn"
-            nbButton
-            shape="round"
-            size="small"
-          >
-            <nb-icon icon="share"></nb-icon>
-          </button>
+          <app-share-button
+            [content]="
+              featuredCommunity.kommunity.name +
+              ' | ' +
+              featuredCommunity.reason +
+              ' | ' +
+              environment.app_url +
+              '/communities/' +
+              featuredCommunity.kommunity.slug
+            "
+            [title]="featuredCommunity.kommunity.name"
+            [text]="featuredCommunity.reason"
+            [url]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
+            [showText]="false"
+            [round]="true"
+          ></app-share-button>
         </div>
         <div
           [routerLink]="['/communities', featuredCommunity.kommunity.slug]"

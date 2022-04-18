@@ -1,37 +1,200 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+.pricing-container {
+  @apply com-bg-gray-50;
 
-.pricing {
-  background-color: white;
-  min-height: 100vh;
-  padding-bottom: $space-136;
+  .pricing-header {
+    @apply com-relative com-max-w-2xl com-mx-auto com-pt-16 com-px-4 com-text-center;
 
-  p,
-  a,
-  h1,
-  div {
-    color: $gunmetal;
+    @screen sm {
+      @apply com-pt-32 com-px-6;
+    }
+
+    @screen lg {
+      @apply com-max-w-7xl com-px-8;
+    }
+
+    .heading {
+      @apply com-text-4xl com-font-extrabold com-tracking-tight com-text-white sm:com-text-6xl;
+    }
+
+    .subheading {
+      @apply com-mt-4 com-text-xl com-text-indigo-100;
+    }
   }
 
-  .page-container {
-    .header {
-      padding-top: $space-72;
+  .pricing-toggle {
+    @apply com-relative com-mt-12 com-flex com-justify-center com-items-center com-gap-4 sm:com-mt-16;
 
-      h1 {
-        margin: 0;
+    label {
+      @apply com-text-indigo-100;
+    }
+  }
+
+  .pricing-cards {
+    @apply com-relative com-mt-8 com-max-w-2xl com-mx-auto com-px-4 com-pb-8;
+    @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
+
+    .pricing-card-light {
+      @apply com-bg-indigo-700 com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
+      @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
+
+      .name {
+        @apply com-text-white com-text-sm com-font-semibold com-uppercase com-tracking-wide;
       }
 
-      p {
-        font-size: $fs-tag;
-        line-height: 22px;
+      .pricing {
+        @apply com-flex com-flex-col com-items-start;
+        @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
+
+        .buy-btn {
+          text-decoration: none;
+          @apply com-bg-white com-text-indigo-600 hover:com-bg-indigo-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
+          @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
+        }
+      }
+
+      .features {
+        @apply com-border-indigo-500 com-divide-indigo-500 com-divide-opacity-75 com-mt-7 com-border-t com-divide-y com-pl-2;
+        @apply lg:com-border-t-0;
+
+        li {
+          @apply com-py-3 com-flex com-items-center;
+
+          nb-icon {
+            @apply com-text-indigo-200 com-w-5 com-h-5 com-flex-shrink-0;
+          }
+
+          .feature {
+            @apply com-text-white com-ml-4 com-text-sm com-font-medium;
+          }
+        }
       }
     }
 
-    .plans {
-      margin-top: $space-36;
+    .pricing-card-dark {
+      @apply com-bg-white com-ring-2 com-ring-indigo-700 com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
+      @apply lg:com-px-8 lg:com-pt-12;
+
+      .name {
+        @apply com-text-indigo-600 com-text-sm com-font-semibold com-uppercase com-tracking-wide;
+      }
+
+      .pricing {
+        @apply com-flex com-flex-col com-items-start;
+        @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
+
+        .buy-btn {
+          text-decoration: none;
+          @apply com-bg-indigo-600 com-text-white hover:com-bg-indigo-700 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
+          @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
+        }
+      }
+
+      .features {
+        @apply com-border-gray-200 com-divide-gray-200 com-mt-7 com-border-t com-divide-y com-pl-2;
+        @apply lg:com-border-t-0;
+
+        li {
+          @apply com-py-3 com-flex com-items-center;
+
+          nb-icon {
+            @apply com-text-indigo-500 com-w-5 com-h-5 com-flex-shrink-0;
+          }
+
+          .feature {
+            @apply com-text-gray-600 com-ml-4 com-text-sm com-font-medium;
+          }
+        }
+      }
+    }
+  }
+
+  .pricing-features {
+    .pricing-feature-headings {
+      @apply com-w-full com-border-t com-border-gray-200 com-flex com-items-stretch;
+
+      .heading {
+        @apply com-text-gray-900 com-text-sm com-font-bold;
+      }
+
+      .subheading {
+        @apply com-mt-2 com-text-sm com-text-gray-500;
+      }
     }
 
-    @media (max-width: $tab-width) {
-      padding: 0 $space-24;
+    .pricing-feature-table {
+      @apply com-relative com-w-full;
+
+      .heading {
+        @apply com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600;
+      }
+
+      .description {
+        @apply com-px-4 com-relative com-w-1/4 com-py-0 com-text-center;
+
+        .item {
+          @apply com-relative com-w-full com-h-full com-py-3;
+
+          nb-icon {
+            &.light {
+              @apply com-text-gray-400;
+            }
+
+            &.dark {
+              @apply com-text-indigo-600;
+            }
+          }
+
+          span {
+            &.light {
+              @apply com-text-gray-900 com-text-sm com-font-medium;
+            }
+
+            &.dark {
+              @apply com-text-indigo-600 com-text-sm com-font-medium;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pricing-logo-cloud {
+    @apply com-max-w-2xl com-mx-auto com-py-12 com-px-4;
+    @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
+
+    .logo {
+      @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
+
+      img {
+        @apply com-h-12;
+      }
+    }
+  }
+
+  .pricing-faq {
+    @apply com-max-w-2xl com-mx-auto com-py-16 com-px-4;
+    @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
+
+    .heading {
+      @apply com-text-3xl com-font-extrabold com-tracking-tight com-text-white;
+      @apply sm:com-text-4xl;
+    }
+
+    .subheading {
+      @apply com-mt-4 com-text-gray-400;
+    }
+
+    .questions {
+      @apply com-space-y-10;
+      @apply lg:com-space-y-0 lg:com-grid lg:com-grid-cols-2 lg:com-gap-x-8 lg:com-gap-y-10;
+
+      .question {
+        @apply com-font-semibold com-text-white;
+      }
+
+      .answer {
+        @apply com-mt-3 com-ml-0 com-text-gray-400;
+      }
     }
   }
 }

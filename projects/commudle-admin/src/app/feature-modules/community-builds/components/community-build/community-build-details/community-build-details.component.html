@@ -55,6 +55,12 @@
       ></app-votes-display>
       <span>Give a star to encourage!</span>
     </div>
+    <app-share-button
+      [content]="environment.app_url + '/builds/' + cBuild.slug"
+      [title]="cBuild.name"
+      [url]="environment.app_url + '/builds/' + cBuild.slug"
+      [showText]="true"
+    ></app-share-button>
   </nb-card-body>
 </nb-card>
 

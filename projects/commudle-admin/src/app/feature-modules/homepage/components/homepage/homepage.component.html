@@ -1,0 +1,75 @@
+<div class="homepage">
+  <div class="homepage-section com-py-8 md:com-py-16">
+    <div
+      class="
+        com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center
+        md:com-flex-row md:com-gap-16 md:com-flex-row md:com-justify-start md:com-items-end
+      "
+    >
+      <div class="com-w-full com-pb-8">
+        <h1 class="heading">Where <span>developers grow</span> together</h1>
+        <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
+        <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
+        <!--        <div class="com-mt-4 com-flex com-justify-center md:com-justify-start">-->
+        <!--          <a class="com-w-full sm:com-w-auto" nbButton status="info">View courses</a>-->
+        <!--        </div>-->
+      </div>
+      <div class="com-w-2/3 md:com-w-full">
+        <img
+          alt="Homepage banner"
+          class="com-pointer-events-none com-w-full"
+          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBblFjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--01057b5be393344ed188982aa64722b41ab5b509/Homepage-Banner.png"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="homepage-section com-pb-12">
+    <h2 class="section-heading">Join a community to learn and network</h2>
+    <app-homepage-featured-communities></app-homepage-featured-communities>
+  </div>
+
+  <div class="homepage-section com-pb-12">
+    <!--    <h2 class="section-heading">Learn from developers around you</h2>-->
+    <app-homepage-events></app-homepage-events>
+    <div class="com-mt-24 com-grid com-gap-16 com-grid-cols-1 md:com-grid-cols-2">
+      <app-homepage-builds></app-homepage-builds>
+      <app-homepage-labs></app-homepage-labs>
+    </div>
+  </div>
+
+  <div class="homepage-section com-pb-12">
+    <h2 class="section-heading">Testimonials</h2>
+    <app-homepage-testimonials></app-homepage-testimonials>
+  </div>
+
+  <div class="homepage-section com-pb-36">
+    <h2 class="section-heading">Lead your own Developer Community</h2>
+    <app-homepage-features></app-homepage-features>
+  </div>
+</div>
+
+<div class="homepage-callout">
+  <div
+    class="
+      com-max-w-7xl com-mx-auto com-py-12 com-px-4
+      sm:com-px-6
+      lg:com-py-24 lg:com-px-8 lg:com-flex lg:com-items-center lg:com-justify-between
+    "
+  >
+    <div class="com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 md:com-text-4xl">
+      <span class="com-block">Are you a startup?</span>
+      <span class="com-block content">Build a Developer Community that Grows</span>
+      <a
+        class="homepage-get-started"
+        nbButton
+        routerLink="/fill-form/465"
+        shape="semi-round"
+        size="large"
+        status="info"
+      >
+        Get started
+      </a>
+    </div>
+  </div>
+</div>

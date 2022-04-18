@@ -6,6 +6,7 @@ import { DiscussionsService } from 'projects/commudle-admin/src/app/services/dis
 import { CBuildTypeDisplay, EBuildType, ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-community-build-details',
@@ -24,6 +25,8 @@ export class CommunityBuildDetailsComponent implements OnInit {
   currImage = null;
 
   moment = moment;
+
+  environment = environment;
 
   @ViewChild('imageTemplate') imageTemplate: TemplateRef<any>;
 

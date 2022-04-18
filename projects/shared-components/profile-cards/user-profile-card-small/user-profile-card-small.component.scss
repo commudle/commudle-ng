@@ -12,10 +12,10 @@ a:active {
   background-color: $white;
 
   .avatar {
-    width: 16px;
-    height: 16px;
     border-radius: 50%;
+    height: 16px;
     overflow: hidden;
+    width: 16px;
 
     img {
       width: 100%;
@@ -23,16 +23,16 @@ a:active {
   }
 
   .name {
-    margin-left: $space-4;
-    padding-top: $space-2;
     font-size: $fs-h6;
     line-height: 14px;
-    color: $spanish-gray;
+    margin-left: $space-4;
+    padding-top: $space-2;
+    @apply com-text-gray-400;
 
     img {
+      height: 12px;
       margin-left: $space-4;
       width: 12px;
-      height: 12px;
     }
   }
 }

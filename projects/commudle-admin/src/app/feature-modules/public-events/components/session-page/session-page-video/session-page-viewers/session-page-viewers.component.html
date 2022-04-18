@@ -25,5 +25,17 @@
     >
       <fa-icon [icon]="faChalkboardTeacher"></fa-icon>
     </button>
+    <button
+      (click)="messageUser(user.id)"
+      *ngIf="currentUser?.id !== user.id"
+      class="message"
+      ghost
+      nbButton
+      nbTooltip="Message"
+      size="small"
+      status="info"
+    >
+      <fa-icon [icon]="faCommentDots"></fa-icon>
+    </button>
   </nb-list-item>
 </nb-list>

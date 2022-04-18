@@ -1,5 +1,5 @@
-import {IAttachedFile} from './attached-file.model';
-import {ITag} from './tag.model';
+import { IAttachedFile } from './attached-file.model';
+import { ITag } from './tag.model';
 
 export interface ICommunity {
   id: number;
@@ -19,4 +19,8 @@ export interface ICommunity {
   event_count: number;
   location: string;
   tags: ITag[];
+}
+
+export interface ICommunitySearch extends ICommunity {
+  type: string;
 }

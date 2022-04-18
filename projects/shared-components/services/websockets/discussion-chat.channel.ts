@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import * as actionCable from 'actioncable';
-import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
+import { APPLICATION_CABLE_CHANNELS } from 'projects/shared-services/application-cable-channels.constants';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DiscussionChatChannel {
   ACTIONS = {
@@ -16,8 +15,10 @@ export class DiscussionChatChannel {
     REPLY: 'reply',
     VOTE: 'vote',
     FLAG: 'flag',
-    DELETE: 'delete',
-    ERROR: 'error'
+    DELETE_ANY: 'delete_any',
+    DELETE_SELF: 'delete_self',
+    ERROR: 'error',
+    BLOCKED: 'blocked',
   };
 
   actionCable = actionCable;
@@ -33,41 +34,36 @@ export class DiscussionChatChannel {
 
   constructor(
     private actionCableConnection: ActionCableConnectionSocket,
-    private authWatchService: LibAuthwatchService
+    private authWatchService: LibAuthwatchService,
   ) {
-    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe(
-      connection => {
-        this.cableConnection = connection;
-      }
-    );
+    this.actionCableSubscription = this.actionCableConnection.acSocket$.subscribe((connection) => {
+      this.cableConnection = connection;
+    });
   }
-
 
   subscribe(discussionId) {
     if (this.cableConnection) {
-      this.subscription = this.cableConnection.subscriptions.create({
-        channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_CHAT_CHANNEL,
-        room: discussionId,
-        app_token: this.authWatchService.getAppToken()
-      }, {
-        received: (data) => {
-          this.channelData.next(data);
-        }
-      });
+      this.subscription = this.cableConnection.subscriptions.create(
+        {
+          channel: APPLICATION_CABLE_CHANNELS.DISCUSSION_CHAT_CHANNEL,
+          room: discussionId,
+          app_token: this.authWatchService.getAppToken(),
+        },
+        {
+          received: (data) => this.channelData.next(data),
+        },
+      );
     }
 
     return this.subscription;
   }
 
-
   sendData(action, data) {
     this.subscription.send({
       perform: action,
-      data
+      data,
     });
   }
-
-
 
   unsubscribe() {
     if (this.subscription) {
@@ -76,5 +72,4 @@ export class DiscussionChatChannel {
       this.channelData.next(null);
     }
   }
-
 }

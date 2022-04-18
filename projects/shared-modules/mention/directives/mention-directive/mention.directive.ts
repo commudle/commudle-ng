@@ -1,28 +1,29 @@
 import {
+  ComponentFactoryResolver,
+  ComponentRef,
   Directive,
   ElementRef,
   HostListener,
+  OnDestroy,
   ViewContainerRef,
-  ComponentFactoryResolver,
-  ComponentRef,
 } from '@angular/core';
 import { SuggestionBoxComponent } from 'projects/shared-modules/mention/components/suggestion-box/suggestion-box.component';
 import { MentionService } from 'projects/shared-modules/mention/service/mention.service';
-import { Subscription } from 'rxjs';
 import { getCaretCoordinates } from 'projects/shared-modules/mention/utils/textarea-caret-position';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[appMention]',
 })
-export class MentionDirective {
+export class MentionDirective implements OnDestroy {
   componentRef: ComponentRef<SuggestionBoxComponent>;
   triggerCharacter = null;
   nativeElement: HTMLTextAreaElement | HTMLInputElement;
   taggableEntities: any[] = [];
   selectedEntity: any;
   subscriptions: Subscription[] = [];
-  private coords: { top: number; left: number } = { top: 0, left: 0 };
   clickedOnBox: boolean = false;
+  private coords: { top: number; left: number } = { top: 0, left: 0 };
 
   constructor(
     private inputElementRef: ElementRef,
@@ -54,7 +55,7 @@ export class MentionDirective {
   }
 
   @HostListener('blur', ['$event']) //if text area gets out of focus remove autocomplete box
-  onOutOfFocus(event: any) {
+  onOutOfFocus() {
     if (!this.clickedOnBox && this.componentRef) {
       this.componentRef.destroy();
     }
@@ -93,8 +94,6 @@ export class MentionDirective {
             this.selectedEntity = this.taggableEntities[currentSelectedIndex - 1];
           }
 
-          event.preventDefault();
-
           break;
         }
         case 'ArrowDown': {
@@ -106,8 +105,6 @@ export class MentionDirective {
             this.componentRef.instance.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
             this.selectedEntity = this.taggableEntities[currentSelectedIndex + 1];
           }
-
-          event.preventDefault();
 
           break;
         }
@@ -130,8 +127,8 @@ export class MentionDirective {
     if (entityName.length >= currentWordTyped.value.slice(1).length) {
       let currentTextInputValue = this.nativeElement.value;
 
-      let newTextInputValue = '';
-      let newCursorPosition = 0;
+      let newTextInputValue: string;
+      let newCursorPosition: number;
 
       let addText: string = entityName;
 

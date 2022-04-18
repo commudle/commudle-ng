@@ -1,37 +1,6 @@
-<nb-layout class="home-navbar">
+<nb-layout class="home-layout">
   <nb-layout-header fixed>
-    <a [routerLink]="['/']" class="home-navbar-logo d-flex align-items-center clickable">
-      <img alt="Commudle" src="/assets/images/commudle-logo72.png" title="Commudle" />
-    </a>
-    <div class="home-navbar-container d-flex align-items-center">
-      <app-search-bar></app-search-bar>
-      <div class="home-navbar-menu d-flex align-items-center">
-        <app-navbar-menu [currentUser]="currentUser"></app-navbar-menu>
-
-        <div class="home-navbar-menu-user">
-          <img
-            *ngIf="currentUser"
-            [nbContextMenu]="userContextMenu"
-            alt="{{ currentUser.name }}"
-            class="menu-user-avatar"
-            src="{{ currentUser.avatar }}"
-          />
-          <div *ngIf="!currentUser" class="menu-user-options d-flex flex-row">
-            <button (click)="login()" class="menu-login" nbButton size="small">Login</button>
-            <button (click)="login()" class="menu-signup" nbButton size="small">Signup</button>
-            <button (click)="login()" class="menu-login-signup" nbButton size="small">Login/Signup</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div (click)="toggleSidebar()" class="home-sidebar text-right clickable">
-      <fa-icon [icon]="faBars"></fa-icon>
-      <nb-badge
-        *ngIf="sideBarState === 'collapsed' && sideBarNotifications === true"
-        [position]="'top end'"
-        status="danger"
-      ></nb-badge>
-    </div>
+    <app-navbar></app-navbar>
   </nb-layout-header>
 
   <nb-sidebar
@@ -48,67 +17,14 @@
 
   <nb-layout-column>
     <app-profile-status-bar *ngIf="currentUser && profileBarStatus"></app-profile-status-bar>
-    <router-outlet></router-outlet>
+    <div class="com-min-h-screen">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
   </nb-layout-column>
 
-  <nb-layout-footer *ngIf="footerStatus">
-    <div class="footer">
-      <div class="page-links d-flex flex-column">
-        <div [routerLink]="['/']" class="logo">
-          <img alt="Commudle" class="clickable" src="/assets/images/commudle-logo128.png" title="Commudle" />
-        </div>
-
-        <div class="links">
-          <div class="one">
-            <a [routerLink]="['/']">HOME</a>
-            <a [routerLink]="['/about']">ABOUT</a>
-            <a [routerLink]="['/features']">FEATURES</a>
-            <!-- <a [routerLink]="['/pricing']">PRICING</a> -->
-          </div>
-
-          <div class="two">
-            <a [routerLink]="['/communities']">ALL COMMUNITIES</a>
-            <a [routerLink]="['/labs']">LABS</a>
-            <a [routerLink]="['/builds']">BUILDS</a>
-          </div>
-
-          <div class="three">
-            <a [routerLink]="['/policies/privacy-policy']">PRIVACY POLICY</a>
-            <a [routerLink]="['/policies/terms-and-conditions']">TERMS & CONDITIONS</a>
-          </div>
-
-          <div class="four">
-            <a [routerLink]="['/about']">FAQ</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="social-links d-flex flex-column-reverse align-items-center">
-        <hr />
-
-        <div class="links">
-          <a href="https://twitter.com/commudle" target="_blank">
-            <nb-icon icon="twitter"></nb-icon>
-          </a>
-          <a href="https://linkedin.com/company/commudle" target="_blank">
-            <nb-icon icon="linkedin"></nb-icon>
-          </a>
-          <a href="https://facebook.com/commudle" target="_blank">
-            <nb-icon icon="facebook"></nb-icon>
-          </a>
-          <a href="https://github.com/commudle/commudle-ng" target="_blank">
-            <nb-icon icon="github"></nb-icon>
-          </a>
-        </div>
-
-        <div class="tech-stack text-center">
-          <p>Made with Angular, Ruby on Rails, Postgres, Redis and Love</p>
-        </div>
-      </div>
-
-      <div class="ellipse-large"></div>
-      <div class="ellipse-small"></div>
-    </div>
+  <nb-layout-footer *appBreakpoints="'<=md'" fixed>
+    <app-navbar-menu></app-navbar-menu>
   </nb-layout-footer>
 </nb-layout>
 

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/c
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,15 +21,18 @@ export class EditUserProfileComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private dialogService: NbDialogService,
     private updateProfileService: UpdateProfileService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
     this.openDialog();
+    this.seoService.noIndex(true);
     this.updateProfile();
   }
 
   ngOnDestroy(): void {
     this.dialogRef.close();
+    this.seoService.noIndex(false);
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 

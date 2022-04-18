@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+}
+
+.home-navbar {
+  @apply com-w-full com-grid com-grid-cols-4 md:com-grid-cols-3 com-items-center com-gap-2;
+
+  div > button {
+    @apply com-p-2 com-h-10;
+  }
+}
+
+.home-sidebar {
+  @apply com-w-12 com-h-12 com-flex com-justify-end com-items-center com-cursor-pointer;
+
+  fa-icon {
+    @apply com-text-xl;
+  }
+}

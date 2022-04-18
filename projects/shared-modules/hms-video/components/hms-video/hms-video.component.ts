@@ -29,6 +29,7 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
   selectedRole: EHmsRoles;
 
   channelSubscription;
+  isInitialConnection = true;
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -91,14 +92,18 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
 
     // Check if session has ended
     this.subscriptions.push(
-      this.hmsLiveChannel.channelData$[`${this.currentUser.id}`].subscribe((data: any) => {
+      this.hmsLiveChannel.channelData$[this.currentUser.id].subscribe((data: any) => {
         if (data) {
           switch (data.action) {
             case this.hmsLiveChannel.ACTIONS.SET_PERMISSIONS: {
-              if (data.room_ended) {
-                this.hmsVideoStateService.setState(EHmsStates.ENDED);
-              } else {
-                this.hmsVideoStateService.setState(EHmsStates.INIT);
+              if (this.isInitialConnection) {
+                if (data.room_ended) {
+                  this.hmsVideoStateService.setState(EHmsStates.ENDED);
+                } else {
+                  this.hmsVideoStateService.setState(EHmsStates.INIT);
+                }
+
+                this.isInitialConnection = false;
               }
               break;
             }
@@ -106,5 +111,9 @@ export class HmsVideoComponent implements OnInit, OnChanges, OnDestroy {
         }
       }),
     );
+  }
+
+  reload() {
+    window.location.reload();
   }
 }

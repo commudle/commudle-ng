@@ -4,4 +4,5 @@ export enum EHmsStates {
   ROOM = 'room',
   LEFT = 'left',
   ENDED = 'ended',
+  DISCONNECTED = 'disconnected',
 }

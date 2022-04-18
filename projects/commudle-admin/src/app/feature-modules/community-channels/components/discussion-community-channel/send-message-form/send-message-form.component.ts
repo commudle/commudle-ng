@@ -193,7 +193,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   selectEmoji(event) {
     let currentValue = this.sendUserMessageForm.get('content').value || '';
     this.sendUserMessageForm.patchValue({
-      content: currentValue.concat(`${event.emoji.native}  `),
+      content: currentValue.concat(`${event.emoji.native}`),
     });
     this.inputElement.nativeElement.focus();
   }
