@@ -135,7 +135,7 @@ const routes = [
     component: MainNewsletterComponent,
   },
   {
-    path: 'public-newsletters',
+    path: 'newsletters',
     loadChildren: () => import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
   },
   {

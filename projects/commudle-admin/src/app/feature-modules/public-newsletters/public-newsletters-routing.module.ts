@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'newsletters-list',
+        path: '',
         component: MainNewsletterList,
       }
     ]

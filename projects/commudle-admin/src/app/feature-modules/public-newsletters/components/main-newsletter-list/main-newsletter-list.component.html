@@ -2,7 +2,9 @@
   <div class="container">
     <div class="one-column-layout">
       <nb-card>
-        <nb-card-header> Published Newsletters </nb-card-header>
+        <nb-card-header>
+          <h1>Commudle IDE: Newsletters from the Community</h1>
+        </nb-card-header>
         <nb-card-body>
           <div *ngIf="newsletters.length > 0" class="newsletter-card-container com-flex com-flex-wrap com--m-4">
             <div *ngFor="let newsletter of newsletters" class="newsletter-card com-md:w-1/3">
@@ -13,7 +15,7 @@
               >
                 <img
                   class="com-lg:h-48 com-md:h-36 com-w-full com-object-cover com-object-center"
-                  [src]="getFirstImageUrl(newsletter.content)"
+                  src="{{ newsletter.header_image.url }}"
                   alt="{{ newsletter.title }}"
                 />
                 <div class="com-p-4">
@@ -28,9 +30,9 @@
                   >
                     {{ newsletter.created_at | date }}
                   </h2>
-                  <h1 class="com-title-font !com-text-lg !com-font-medium !com-text-gray-900 com-mt-1.5 com-mb-1.5">
+                  <h2 class="com-line-clamp-2 com-title-font !com-text-lg !com-font-medium !com-text-gray-900 com-mt-1.5 com-mb-1.5">
                     {{ newsletter.title }}
-                  </h1>
+                  </h2>
                   <a
                     [routerLink]="['/newsletters', newsletter.id]"
                     class="
@@ -41,7 +43,7 @@
                       !com-no-underline
                       com-gap-x-1
                     "
-                    >Learn More
+                    >Read More
                     <nb-icon [icon]="'arrow-forward-outline'"></nb-icon>
                   </a>
                 </div>
