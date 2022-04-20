@@ -1,36 +1,24 @@
 <ul class="homepage-experts">
-  <li *ngFor="let expert of experts" class="homepage-expert">
-    <div class="com-space-y-6 xl:com-space-y-10">
-      <img [alt]="expert.name" [src]="expert.avatar" [title]="expert.name" class="homepage-expert-image" />
-      <div class="homepage-expert-details">
-        <a [routerLink]="['/users', expert.username]" class="homepage-expert-about">
-          <div class="com-text-white">{{ expert.name }}</div>
-          <div class="com-text-indigo-400 com-line-clamp-1">{{ expert.designation }}</div>
-        </a>
-
-        <ul class="com-flex com-justify-center com-space-x-5">
-          <li *ngIf="expert.twitter">
-            <a
-              [href]="expert.twitter | completeurl: 'twitter'"
-              class="homepage-expert-social"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <nb-icon icon="twitter"></nb-icon>
-            </a>
-          </li>
-          <li *ngIf="expert.linkedin">
-            <a
-              [href]="expert.linkedin | completeurl: 'linkedin'"
-              class="homepage-expert-social"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <nb-icon icon="linkedin"></nb-icon>
-            </a>
-          </li>
-        </ul>
+  <li *ngFor="let expert of experts" class="com-shadow-lg com-rounded-lg com-overflow-hidden">
+    <a [routerLink]="['/users', expert.username]" class="com-space-y-4 com-block com-relative">
+      <div class="com-aspect-w-2 com-aspect-h-3">
+        <img [alt]="expert.name" [src]="expert.avatar" class="com-object-cover" />
       </div>
-    </div>
+
+      <div class="homepage-expert-overlay"></div>
+
+      <div class="com-z-20 com-p-2 com-absolute com-bottom-0 com-w-full">
+        <div class="com-flex com-justify-between com-items-end com-gap-4">
+          <div>
+            <h3 class="homepage-expert-name">
+              {{ expert.name }}
+              <img alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg" />
+            </h3>
+            <p class="homepage-expert-designation">{{ expert.designation }}</p>
+          </div>
+          <app-user-follow [showIcon]="false" [username]="expert.username"></app-user-follow>
+        </div>
+      </div>
+    </a>
   </li>
 </ul>

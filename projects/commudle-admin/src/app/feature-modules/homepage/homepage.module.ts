@@ -7,6 +7,7 @@ import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-m
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
+import { HomepageAboutComponent } from './components/homepage-about/homepage-about.component';
 import { HomepageBuildsComponent } from './components/homepage-builds/homepage-builds.component';
 import { HomepageEventsCardComponent } from './components/homepage-events/homepage-events-card/homepage-events-card.component';
 import { HomepageEventsComponent } from './components/homepage-events/homepage-events.component';
@@ -29,6 +30,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     HomepageFeaturedCommunitiesComponent,
     HomepageTestimonialsComponent,
     HomepageExpertsComponent,
+    HomepageAboutComponent,
   ],
   imports: [
     CommonModule,

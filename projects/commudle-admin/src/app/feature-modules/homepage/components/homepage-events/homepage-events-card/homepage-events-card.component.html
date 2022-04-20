@@ -10,22 +10,22 @@
   <div *ngIf="event.start_time" [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-card-date">
     {{ moment(event.start_time).format('MMM DD') }}
   </div>
-  <div class="home-events-card-details">
-    <div class="home-events-card-name com-line-clamp-2">
-      {{ event.name }}
-    </div>
-    <div class="home-events-card-host d-flex justify-content-space-between align-items-center">
-      <div class="home-events-card-community d-flex align-items-center">
-        <img
-          alt="{{ community.name }}"
-          class="home-events-card-community-logo"
-          src="{{ community.logo_path }}"
-          title="{{ community.name }}"
-        />
-        <div class="home-events-card-community-name com-line-clamp-1">{{ community.name }}</div>
-      </div>
-      <div *ngIf="event.start_time && moment(event.start_time) > moment()" class="home-events-card-register">
-        Register
+  <div class="com-aspect-w-16 com-aspect-h-9">
+    <div class="home-events-card-details">
+      <h3 class="home-events-card-name">{{ event.name }}</h3>
+      <div class="home-events-card-host d-flex justify-content-space-between align-items-center">
+        <div class="home-events-card-community d-flex align-items-center">
+          <img
+            alt="{{ community.name }}"
+            class="home-events-card-community-logo"
+            src="{{ community.logo_path }}"
+            title="{{ community.name }}"
+          />
+          <p class="home-events-card-community-name">{{ community.name }}</p>
+        </div>
+        <div *ngIf="event.start_time && moment(event.start_time) > moment()" class="home-events-card-register">
+          Register
+        </div>
       </div>
     </div>
   </div>
