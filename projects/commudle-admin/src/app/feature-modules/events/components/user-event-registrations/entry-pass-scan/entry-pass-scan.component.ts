@@ -100,7 +100,12 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
             this.scanner.enable = true;
           })
         )
-      }),
+      }, (err) => {
+        if(err){
+          this.incorrectSound.nativeElement.play();
+          this.resetScanner();
+        }
+      })
     );
   }
 

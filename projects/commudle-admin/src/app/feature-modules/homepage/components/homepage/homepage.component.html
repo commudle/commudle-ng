@@ -4,7 +4,7 @@
       class="com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center md:com-gap-16 md:com-flex-row"
     >
       <div class="com-w-full com-pb-8">
-        <h1 class="heading">Where <span>developers grow</span> together</h1>
+        <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
         <div class="com-mt-4 com-flex com-justify-center md:com-justify-start" *ngIf="homepageActions.length > 0">
@@ -36,7 +36,9 @@
   </div>
 
   <div class="homepage-section com-pb-12">
-    <h2 class="section-heading">Join a community to learn and network</h2>
+    <div class="section-heading">
+      <h2>Join a community to learn and network</h2>
+    </div>
     <app-homepage-featured-communities></app-homepage-featured-communities>
   </div>
 
@@ -50,7 +52,9 @@
   </div>
 
   <div class="homepage-section com-pb-12">
-    <h2 class="section-heading">Our experts</h2>
+    <div class="section-heading">
+      <h2>Experts</h2>
+    </div>
     <app-homepage-experts></app-homepage-experts>
   </div>
 
@@ -59,12 +63,17 @@
   </div>
 
   <div class="homepage-section com-pb-12">
-    <h2 class="section-heading">Testimonials</h2>
+    <div class="section-heading">
+      <h2>Testimonials</h2>
+      <h3 class="subheading">By DevRels, Non Profits, Communities, Developers, Experts & Mentors</h3>
+    </div>
     <app-homepage-testimonials></app-homepage-testimonials>
   </div>
 
   <div class="homepage-section com-pb-36">
-    <h2 class="section-heading">Lead your own Developer Community</h2>
+    <div class="section-heading">
+      <h2>Commudle drives Software Developers' Journey</h2>
+    </div>
     <app-homepage-features></app-homepage-features>
   </div>
 </div>
