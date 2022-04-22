@@ -17,7 +17,9 @@
 
   <nb-layout-column>
     <app-profile-status-bar *ngIf="currentUser && profileBarStatus"></app-profile-status-bar>
-    <router-outlet></router-outlet>
+    <div class="com-min-h-screen">
+      <router-outlet></router-outlet>
+    </div>
     <app-footer></app-footer>
   </nb-layout-column>
 

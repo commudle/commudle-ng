@@ -1,7 +1,7 @@
 <a
   *ngIf="community && event"
   [routerLink]="['/communities', community.slug, 'events', event.slug]"
-  class="home-events-card-container anim-shadow"
+  class="home-events-card-container"
 >
   <div class="home-events-card-image">
     <div [ngClass]="{ old: moment(event.start_time) < moment() }" class="home-events-card-image-overlay"></div>

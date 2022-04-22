@@ -13,6 +13,7 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbDatepickerModule,
+  NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbListModule,
@@ -55,6 +56,8 @@ import { UserEventRegistrationsComponent } from './components/user-event-registr
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EntryPassScanComponent } from './components/user-event-registrations/entry-pass-scan/entry-pass-scan.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -80,6 +83,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     EventSpeakersComponent,
     EventRecordingsComponent,
     EventDetailsComponent,
+    EntryPassScanComponent,
   ],
   imports: [
     CommonModule,
@@ -97,6 +101,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     FontAwesomeModule,
     NgxDatatableModule,
     LinkyModule,
+    ZXingScannerModule,
 
     //Nebular
     NbButtonModule,
@@ -121,6 +126,8 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     NbTimepickerModule,
     NbActionsModule,
     NbButtonGroupModule,
+    NbIconModule,
+    NbFormFieldModule,
   ],
 })
-export class EventsModule {}
+export class EventsModule { }

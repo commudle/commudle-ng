@@ -176,7 +176,7 @@
                 </a>
               </nb-alert>
             </div>
-            <div *ngIf="event.start_time && !event.custom_agenda">
+            <div *ngIf="event.start_time">
               <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
                 Public Session Page
                 <nb-icon icon="external-link"></nb-icon>

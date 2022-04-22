@@ -2,11 +2,18 @@
   @apply com-space-y-10 md:com-space-y-0 md:com-grid md:com-grid-cols-2 md:com-gap-x-8 md:com-gap-y-10;
 
   .homepage-feature-icon {
-    background-color: #0095fa;
-    @apply com-absolute com-flex com-items-center com-justify-center com-h-12 com-w-12 com-rounded-xl com-text-white;
+    @apply com-absolute com-flex com-items-center com-justify-center com-text-white;
+
+    svg {
+      stroke: #0095ff;
+    }
   }
 
   .homepage-feature-title {
-    @apply com-my-0 com-ml-16 com-text-lg com-leading-6 com-font-medium com-text-gray-900;
+    @apply com-my-0 com-ml-12 com-text-xl com-leading-6 com-font-medium com-text-gray-900;
+  }
+
+  .homepage-feature-description {
+    @apply com-mt-2 com-ml-12 com-text-base com-text-gray-400;
   }
 }

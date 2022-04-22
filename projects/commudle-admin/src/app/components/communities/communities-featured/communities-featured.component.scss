@@ -70,6 +70,16 @@ p {
               color: $neon-blue;
             }
           }
+
+          app-share-button {
+            ::ng-deep {
+              .share-button-container {
+                button {
+                  background-color: $azureish-white;
+                }
+              }
+            }
+          }
         }
 
         .featured-community-image-container {

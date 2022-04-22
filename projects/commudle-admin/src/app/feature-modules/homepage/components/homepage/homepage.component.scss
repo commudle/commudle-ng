@@ -2,19 +2,19 @@
   @apply com-w-full com-min-h-screen com-bg-white com-px-4 md:com-px-0;
 
   .homepage-section {
-    @apply com-container com-pt-12 md:com-pt-24;
-
-    .section-heading {
-      @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-2xl md:com-text-4xl com-text-left com-font-semibold;
-    }
+    @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24;
 
     .heading {
       max-width: 500px;
       @apply com-mb-6 com-mt-2 md:com-mt-6 com-text-3xl md:com-text-6xl com-text-center md:com-text-left com-font-bold com-leading-none;
 
       span {
-        color: #00c6ba;
+        color: #57c3b9;
       }
+    }
+
+    .section-heading {
+      @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-2xl md:com-text-4xl com-text-left com-font-semibold;
     }
 
     .subheading {
@@ -27,10 +27,11 @@
   @apply com-py-12 com-bg-blue-100;
 
   .content {
-    color: #0095fa;
+    color: #0095ff;
   }
 
   .homepage-get-started {
-    background-color: #0095fa;
+    background-color: #0095ff;
+    @apply com-mt-2;
   }
 }
