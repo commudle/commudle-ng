@@ -4,7 +4,7 @@
   .homepage-section {
     @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24;
 
-    .heading {
+    .page-heading {
       max-width: 500px;
       @apply com-mb-6 com-mt-2 md:com-mt-6 com-text-3xl md:com-text-6xl com-text-center md:com-text-left com-font-bold com-leading-none;
 
@@ -13,12 +13,17 @@
       }
     }
 
+
     .section-heading {
-      @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-2xl md:com-text-4xl com-text-left com-font-semibold;
+      @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-left;
+
+      h2 {
+        @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold;
+      }
     }
 
     .subheading {
-      @apply com-mt-3 com-mb-6 com-text-lg md:com-text-2xl com-text-center md:com-text-left com-text-gray-500 com-leading-tight;
+      @apply com-text-base md:com-text-xl com-leading-relaxed com-font-normal com-text-gray-500 com-mb-8 md:com-mb-12 com-mt-1;
     }
 
     app-search-box {
