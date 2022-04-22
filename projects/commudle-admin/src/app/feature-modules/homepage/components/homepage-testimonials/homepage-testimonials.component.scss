@@ -14,7 +14,7 @@ p {
   }
 
   .content {
-    min-height: 120px;
+    min-height: 125px;
     @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold com-line-clamp-2;
   }
 
@@ -34,29 +34,8 @@ p {
       }
     }
 
-    .user {
-      .avatar {
-        @apply com-h-16 com-w-16 com-mr-4 com-rounded-full com-object-cover com-object-center;
-      }
-
-      .details {
-        .name {
-          @apply com-text-xl com-text-gray-900 com-font-medium;
-        }
-
-        .username {
-          @apply com-mt-1 com-text-base com-text-gray-400;
-        }
-      }
-    }
-
     .text {
       @apply com-text-gray-900 com-text-xl com-font-medium;
-
-      .highlight {
-        color: #0095ff;
-        @apply com-p-1.5 com-contents;
-      }
     }
   }
 
