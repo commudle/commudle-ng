@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { ITestimonial } from 'projects/commudle-admin/src/app/feature-modules/homepage/models/testimonial.model';
+import { IUser } from 'projects/shared-models/user.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { CmsService } from 'projects/shared-services/cms.service';
 export class HomepageTestimonialsComponent implements OnInit {
   testimonials: ITestimonial[] = [];
   selectedTestimonial: ITestimonial;
+  user: IUser;
 
   constructor(private cmsService: CmsService) {}
 
@@ -23,6 +25,7 @@ export class HomepageTestimonialsComponent implements OnInit {
     this.cmsService.getDataByType('testimonials').subscribe((value: ITestimonial[]) => {
       this.testimonials = value;
       this.selectedTestimonial = this.testimonials[0];
+      this.setUser();
     });
   }
 
@@ -36,6 +39,16 @@ export class HomepageTestimonialsComponent implements OnInit {
         : index === 0
         ? this.testimonials[this.testimonials.length - 1]
         : this.testimonials[index - 1];
+    this.setUser();
+  }
+
+  setUser() {
+    this.user = {
+      name: this.selectedTestimonial.name,
+      username: this.selectedTestimonial.username,
+      designation: this.selectedTestimonial.designation,
+      avatar: this.getImageUrl(this.selectedTestimonial.avatar).toString(),
+    } as IUser;
   }
 
   getImageUrl(value: SanityImageObject): ImageUrlBuilder {
