@@ -10,12 +10,11 @@
   @apply com-shadow;
 
   .home-events-card-image {
-    height: 156px;
-    overflow: hidden;
+    @apply com-aspect-w-16 com-aspect-h-9 com-relative;
 
     .home-events-card-image-overlay {
       background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
-      height: 156px;
+      height: 100%;
       position: absolute;
       width: 100%;
 
@@ -25,10 +24,8 @@
     }
 
     img {
-      height: inherit;
       object-fit: cover;
       object-position: center;
-      width: 100%;
     }
   }
 
@@ -44,7 +41,7 @@
     position: absolute;
     right: 12px;
     text-align: center;
-    top: 120px;
+    top: 136px;
     width: 58px;
     word-break: break-word;
 
@@ -55,11 +52,11 @@
   }
 
   .home-events-card-details {
-    margin: $space-12 $space-12 $space-8;
+    @apply com-flex com-flex-col com-justify-between com-p-3;
 
     .home-events-card-name {
       height: 3.5rem;
-      @apply com-text-lg com-text-gray-900;
+      @apply com-my-0 com-font-normal com-text-lg com-text-gray-900 com-line-clamp-2;
 
       @screen md {
         max-width: 80%;
@@ -77,9 +74,8 @@
         }
 
         .home-events-card-community-name {
-          margin: 0 $space-16 0 $space-8;
           word-break: break-all;
-          @apply com-text-sm com-text-gray-400;
+          @apply com-text-sm com-text-gray-400 com-mx-2 com-my-0 com-line-clamp-1;
         }
       }
 

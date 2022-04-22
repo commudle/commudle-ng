@@ -1,0 +1,24 @@
+<ul class="homepage-experts">
+  <li *ngFor="let expert of experts" class="com-shadow-lg com-rounded-lg com-overflow-hidden">
+    <a [routerLink]="['/users', expert.username]" class="com-space-y-4 com-block com-relative">
+      <div class="com-aspect-w-2 com-aspect-h-3">
+        <img [alt]="expert.name" [src]="expert.avatar" class="com-object-cover" />
+      </div>
+
+      <div class="homepage-expert-overlay"></div>
+
+      <div class="com-z-20 com-p-2 com-absolute com-bottom-0 com-w-full">
+        <div class="com-flex com-justify-between com-items-end com-gap-4">
+          <div>
+            <h3 class="homepage-expert-name">
+              {{ expert.name }}
+              <img alt="Expert Tick" class="expert-icon" src="/assets/images/Expert-Tick.svg" />
+            </h3>
+            <p class="homepage-expert-designation">{{ expert.designation }}</p>
+          </div>
+          <app-user-follow [showIcon]="false" [username]="expert.username"></app-user-follow>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
