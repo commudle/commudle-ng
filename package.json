@@ -86,6 +86,7 @@
     "@compodoc/compodoc": "1.1.15",
     "@nguniversal/builders": "12.1.0",
     "@schematics/angular": "12.2.6",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/line-clamp": "0.2.1",
     "@tailwindcss/typography": "0.4.1",
     "@types/actioncable": "5.2.7",

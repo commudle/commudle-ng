@@ -14,11 +14,16 @@ p {
   }
 
   .content {
-    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold;
+    min-height: 120px;
+    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold com-line-clamp-2;
   }
 
   nb-actions {
     @apply com-mt-12 md:com-mt-20 com-flex-col md:com-flex-row com-gap-2 md:com-gap-0;
+
+    a {
+      text-decoration: none;
+    }
 
     .user,
     .text {

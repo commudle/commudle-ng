@@ -13,11 +13,11 @@
     }
 
     .heading {
-      @apply com-text-4xl com-font-extrabold com-tracking-tight com-text-white sm:com-text-6xl;
+      @apply com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
     }
 
     .subheading {
-      @apply com-mt-4 com-text-xl com-text-indigo-100;
+      @apply com-mt-4 com-text-xl com-text-gray-600;
     }
   }
 
@@ -25,7 +25,7 @@
     @apply com-relative com-mt-12 com-flex com-justify-center com-items-center com-gap-4 sm:com-mt-16;
 
     label {
-      @apply com-text-indigo-100;
+      @apply com-text-blue-100;
     }
   }
 
@@ -34,7 +34,7 @@
     @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
 
     .pricing-card-light {
-      @apply com-bg-indigo-700 com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
+      @apply com-bg-[#42aaff] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
       @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
 
       .name {
@@ -47,20 +47,20 @@
 
         .buy-btn {
           text-decoration: none;
-          @apply com-bg-white com-text-indigo-600 hover:com-bg-indigo-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
+          @apply com-bg-white com-text-[#42aaff] hover:com-bg-blue-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
 
       .features {
-        @apply com-border-indigo-500 com-divide-indigo-500 com-divide-opacity-75 com-mt-7 com-border-t com-divide-y com-pl-2;
+        @apply com-border-blue-500 com-divide-blue-500 com-divide-opacity-75 com-mt-7 com-border-t com-divide-y com-pl-2;
         @apply lg:com-border-t-0;
 
         li {
           @apply com-py-3 com-flex com-items-center;
 
           nb-icon {
-            @apply com-text-indigo-200 com-w-5 com-h-5 com-flex-shrink-0;
+            @apply com-text-blue-200 com-w-5 com-h-5 com-flex-shrink-0;
           }
 
           .feature {
@@ -71,11 +71,11 @@
     }
 
     .pricing-card-dark {
-      @apply com-bg-white com-ring-2 com-ring-indigo-700 com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
+      @apply com-bg-white com-ring-2 com-ring-[#42aaff] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
       @apply lg:com-px-8 lg:com-pt-12;
 
       .name {
-        @apply com-text-indigo-600 com-text-sm com-font-semibold com-uppercase com-tracking-wide;
+        @apply com-text-[#42aaff] com-text-sm com-font-semibold com-uppercase com-tracking-wide;
       }
 
       .pricing {
@@ -84,7 +84,7 @@
 
         .buy-btn {
           text-decoration: none;
-          @apply com-bg-indigo-600 com-text-white hover:com-bg-indigo-700 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
+          @apply com-bg-[#42aaff] com-text-white hover:com-bg-blue-500 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
@@ -97,7 +97,7 @@
           @apply com-py-3 com-flex com-items-center;
 
           nb-icon {
-            @apply com-text-indigo-500 com-w-5 com-h-5 com-flex-shrink-0;
+            @apply com-text-blue-500 com-w-5 com-h-5 com-flex-shrink-0;
           }
 
           .feature {
@@ -140,7 +140,7 @@
             }
 
             &.dark {
-              @apply com-text-indigo-600;
+              @apply com-text-blue-600;
             }
           }
 
@@ -150,7 +150,7 @@
             }
 
             &.dark {
-              @apply com-text-indigo-600 com-text-sm com-font-medium;
+              @apply com-text-blue-600 com-text-sm com-font-medium;
             }
           }
         }
