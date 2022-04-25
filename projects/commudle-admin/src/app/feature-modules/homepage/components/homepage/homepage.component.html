@@ -7,9 +7,18 @@
         <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
-        <!--        <div class="com-mt-4 com-flex com-justify-center md:com-justify-start">-->
-        <!--          <a class="com-w-full sm:com-w-auto" nbButton status="info">View courses</a>-->
-        <!--        </div>-->
+        <div class="com-mt-4 com-flex com-justify-center md:com-justify-start" *ngIf="homepageActions.length > 0">
+          <a
+            *ngFor="let action of homepageActions"
+            [href]="action.link"
+            class="com-w-full sm:com-w-auto"
+            nbButton
+            status="info"
+            size="small"
+          >
+            {{ action.title }}
+          </a>
+        </div>
         <img
           alt="Homepage arrow"
           class="com-ml-auto com-mt-8 com-hidden md:com-block com-max-w-xs"
