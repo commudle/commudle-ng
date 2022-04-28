@@ -11,8 +11,8 @@ export class PricingComponent implements OnInit {
 
   ngOnInit(): void {
     this.seoService.setTags(
-      'Pricing & Features',
-      'Plans for all Developer Communities, student, individual, non-profite and enterprise!',
+      'Pricing: Students, DevRels, Startups',
+      'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
