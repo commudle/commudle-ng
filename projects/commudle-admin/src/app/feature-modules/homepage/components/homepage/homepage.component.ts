@@ -19,14 +19,18 @@ export class HomepageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.seoService.noIndex(true);
     this.searchStatusService.setSearchStatus(false);
 
     this.getHomepageActions();
+
+    this.seoService.setTags(
+      'Commudle - Connect & Learn With Software Developers',
+      'A community platform for software developers to connect over online events, channels, share knowledge & find jobs. Join now to build your "Developer Network".',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   ngOnDestroy(): void {
-    this.seoService.noIndex(false);
     this.searchStatusService.setSearchStatus(true);
   }
 
