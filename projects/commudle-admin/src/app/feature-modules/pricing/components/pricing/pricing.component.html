@@ -10,14 +10,14 @@
       <!-- <div class="subheading">
         <strong>Boldly saying</strong>
       </div> -->
-      <div class="heading">
+      <h1 class="heading">
         <span class="com-block lg:com-inline"> We understand DevRel challenges <br /></span>
-      </div>
-      <div class="subheading">
+      </h1>
+      <h2 class="subheading">
         Reduce your cost by 5x and increase your efficiency by 10x.
         <br />
         With Commudle, drive all your Developer Community engagements at one place.
-      </div>
+      </h2>
     </div>
 
     <!-- Toggle -->
@@ -39,7 +39,7 @@
           com-left-8
           com-right-8
           com-inset-0
-          com-bg-[#42aaff]
+          com-bg-[#0095ff]
           com-rounded-lg
           lg:com-block
         "
@@ -48,16 +48,16 @@
       <div class="com-relative com-space-y-6 lg:com-space-y-0 lg:com-grid lg:com-grid-cols-3">
         <div class="pricing-card-light">
           <div>
-            <div class="name">Non Profit</div>
+            <p class="name">Non Profit</p>
             <div class="pricing">
               <div class="com-mt-3 com-flex com-items-center">
-                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">Free</div>
+                <p class="amount">Free</p>
                 <!--                <div class="com-ml-4">-->
                 <!--                  <div class="com-text-white com-text-sm">USD / mo</div>-->
                 <!--                  <div class="com-text-blue-200 com-text-sm">Billed yearly ($56)</div>-->
                 <!--                </div>-->
               </div>
-              <a [routerLink]="['fill-form', 465]" class="buy-btn">Get Started</a>
+              <a [routerLink]="['/fill-form', 1343]" class="buy-btn">Get Started</a>
             </div>
           </div>
           <ul class="features">
@@ -86,21 +86,20 @@
               <span class="feature">All community features</span>
             </li>
           </ul>
-          <p class="!com-text-white">*student communities, not for profit communities</p>
         </div>
 
         <div class="pricing-card-dark">
           <div>
-            <div class="name">Startup & Professional</div>
+            <p class="name">Startup & Professional</p>
             <div class="pricing">
               <div class="com-mt-3 com-flex com-items-center">
-                <div class="com-text-[#42aaff] com-text-4xl com-font-extrabold com-tracking-tight">$29</div>
+                <p class="amount">$29</p>
                 <div class="com-ml-4">
-                  <div class="com-text-gray-700 com-text-sm">/ community / month</div>
+                  <div class="com-text-gray-700 com-text-base">/ community / month</div>
                   <!--                  <div class="com-text-gray-500 com-text-sm">Billed yearly ($220)</div>-->
                 </div>
               </div>
-              <a class="buy-btn">Buy this plan</a>
+              <a [routerLink]="['/fill-form', 1344]" class="buy-btn">Get Started</a>
             </div>
           </div>
           <ul class="features">
@@ -133,16 +132,16 @@
 
         <div class="pricing-card-light">
           <div>
-            <div class="name">Enterprise</div>
+            <p class="name">Enterprise</p>
             <div class="pricing">
               <div class="com-mt-3 com-flex com-items-center">
-                <div class="com-text-white com-text-4xl com-font-extrabold com-tracking-tight">Contact us</div>
+                <p class="amount">Contact us</p>
                 <!--                <div class="com-ml-4">-->
                 <!--                  <div class="com-text-white com-text-sm">USD / mo</div>-->
                 <!--                  <div class="com-text-blue-200 com-text-sm">Billed yearly ($140)</div>-->
                 <!--                </div>-->
               </div>
-              <a class="buy-btn">Talk to an expert</a>
+              <a [routerLink]="['/fill-form', 1345]" class="buy-btn">Get Started</a>
             </div>
           </div>
           <ul class="features">
@@ -179,29 +178,29 @@
   <!-- Feature comparison (Desktop) -->
   <div class="pricing-features">
     <div class="com-mt-24 com-max-w-7xl com-mx-auto com-px-8">
-      <div class="pricing-feature-headings">
+      <div class="pricing-feature-headings sticky">
         <div class="com--mt-px com-w-1/4 com-py-6 com-pr-4 com-flex com-items-end">
-          <div class="com-mt-auto com-text-sm com-font-bold com-text-gray-900">All features</div>
+          <div class="com-mt-auto com-text-base com-font-bold com-text-gray-900">Features</div>
         </div>
 
-        <div class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
-          <div class="com-border-transparent com-py-6 com-border-t-2">
-            <div class="heading">Non Profit</div>
-            <div class="subheading">All your essential business finances, taken care of.</div>
+        <div class="com-px-4 com--mt-px com-w-1/4">
+          <div class="com-py-6">
+            <h3 class="title">Non Profit</h3>
+            <p class="subtitle">All your essential business finances, taken care of.</p>
           </div>
         </div>
 
-        <div class="com-pr-4 com--mt-px com-pl-4 com-w-1/4">
-          <div class="com-border-blue-600 com-py-6 com-border-t-2">
-            <div class="heading">Startup & Professional</div>
-            <div class="subheading">The best financial services for your thriving business.</div>
+        <div class="com-px-4 com--mt-px com-w-1/4">
+          <div class="com-py-6">
+            <h3 class="title">Startup & Professional</h3>
+            <p class="subtitle">The best financial services for your thriving business.</p>
           </div>
         </div>
 
         <div class="com--mt-px com-pl-4 com-w-1/4">
-          <div class="com-border-transparent com-py-6 com-border-t-2">
-            <div class="heading">Enterprise</div>
-            <div class="subheading">Convenient features to take your business to the next level.</div>
+          <div class="com-py-6">
+            <h3 class="title">Enterprise</h3>
+            <p class="subtitle">Convenient features to take your business to the next level.</p>
           </div>
         </div>
       </div>
@@ -222,7 +221,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Organization page">
               <th class="heading" scope="row">Organization page</th>
 
@@ -364,7 +363,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -372,7 +371,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Offline / Online events</div>
+      <div class="pricing-feature-subheadings">Offline / Online events</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -390,7 +389,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Multiple locations & tracks">
               <th class="heading" scope="row">Multiple locations & tracks</th>
 
@@ -796,7 +795,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -804,7 +803,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Video integrations</div>
+      <div class="pricing-feature-subheadings">Video integrations</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -822,7 +821,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Inbuilt commudle stage">
               <th class="heading" scope="row">Inbuilt commudle stage</th>
 
@@ -942,7 +941,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -950,7 +949,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Dashboards</div>
+      <div class="pricing-feature-subheadings">Dashboards</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -968,7 +967,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Event analytics">
               <th class="heading" scope="row">Event analytics</th>
 
@@ -1022,7 +1021,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -1030,7 +1029,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Community channels</div>
+      <div class="pricing-feature-subheadings">Community channels</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -1048,7 +1047,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Public channels">
               <th class="heading" scope="row">Public channels</th>
 
@@ -1124,7 +1123,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -1132,7 +1131,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Knowledge sharing</div>
+      <div class="pricing-feature-subheadings">Knowledge sharing</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -1150,7 +1149,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Labs">
               <th class="heading" scope="row">Labs</th>
 
@@ -1204,7 +1203,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -1212,7 +1211,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">Developer profile</div>
+      <div class="pricing-feature-subheadings">Developer profile</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -1230,7 +1229,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Display commudle activites">
               <th class="heading" scope="row">Display commudle activites</th>
 
@@ -1372,7 +1371,7 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
@@ -1380,7 +1379,7 @@
         </div>
       </div>
 
-      <div class="com-mt-10 com-text-sm com-font-bold com-text-gray-900">More features</div>
+      <div class="pricing-feature-subheadings">More features</div>
 
       <div class="com-relative com-mt-6">
         <!-- Fake card backgrounds -->
@@ -1398,7 +1397,7 @@
         </div>
 
         <table class="pricing-feature-table">
-          <tbody class="com-divide-y com-divide-gray-100">
+          <tbody>
             <tr key="Sponsored badges">
               <th class="heading" scope="row">Sponsored badges</th>
 
@@ -1540,10 +1539,34 @@
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
           </div>
           <div class="com-w-1/4 com-px-4">
-            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-blue-600 com-ring-opacity-100"></div>
+            <div class="com-w-full com-h-full com-rounded-lg com-ring-2 com-ring-[#0095ff]"></div>
           </div>
           <div class="com-w-1/4 com-pl-4">
             <div class="com-w-full com-h-full com-rounded-lg com-ring-1 com-ring-black com-ring-opacity-5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-feature-headings">
+        <div class="com--mt-px com-w-1/4 com-py-6 com-pr-4 com-flex com-items-end">
+          <div class="com-mt-auto com-text-base com-font-bold com-text-gray-900">Choose a plan</div>
+        </div>
+
+        <div class="com-px-4 com--mt-px com-w-1/4">
+          <div class="com-py-6">
+            <a [routerLink]="['/fill-form', 1343]" class="buy-btn light">Get Started</a>
+          </div>
+        </div>
+
+        <div class="com-px-4 com--mt-px com-w-1/4">
+          <div class="com-py-6">
+            <a [routerLink]="['/fill-form', 1344]" class="buy-btn dark">Buy this plan</a>
+          </div>
+        </div>
+
+        <div class="com--mt-px com-pl-4 com-w-1/4">
+          <div class="com-py-6">
+            <a [routerLink]="['/fill-form', 1345]" class="buy-btn light">Talk to an expert</a>
           </div>
         </div>
       </div>
@@ -1569,8 +1592,8 @@
   <div class="com-bg-gray-900">
     <div class="pricing-faq">
       <div class="com-max-w-2xl lg:com-mx-auto lg:com-text-center">
-        <div class="heading">Frequently asked questions</div>
-        <div class="subheading"></div>
+        <h2 class="heading">Frequently asked questions</h2>
+        <!--        <div class="subheading"></div>-->
       </div>
       <div class="com-mt-20">
         <dl class="questions">
@@ -1588,6 +1611,13 @@
             </dd>
           </div>
           <div>
+            <dt class="question">I'm looking to build a career in DevRel, how can Commudle be useful in that?</dt>
+            <dd class="answer">
+              As a DevRel, it's important to have an experience of building and growing your own Developer Community.
+              Some folks are at leading DevRel positions who started by building their own Community here.
+            </dd>
+          </div>
+          <div>
             <dt class="question">I want to display activities from Commudle on my website, is it possible?</dt>
             <dd class="answer">
               Yes! From Startup plan and upwards you get access to our API's which can be used to display summary of
@@ -1601,13 +1631,6 @@
           <div>
             <dt class="question">I lead a Design Community, is Commudle for me?</dt>
             <dd class="answer">Absolutely, a few Design Communities are already using Commudle.</dd>
-          </div>
-          <div>
-            <dt class="question">I'm looking to build a career in DevRel, how can Commudle be useful in that?</dt>
-            <dd class="answer">
-              As a DevRel, it's important to have an experience of building and growing your own Developer Community.
-              Some folks are at leading DevRel positions who started by building their own Community here.
-            </dd>
           </div>
         </dl>
       </div>
