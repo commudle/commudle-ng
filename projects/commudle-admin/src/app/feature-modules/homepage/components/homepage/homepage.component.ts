@@ -3,6 +3,7 @@ import { IHomepageAction } from 'projects/commudle-admin/src/app/feature-modules
 import { SearchStatusService } from 'projects/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -10,7 +11,23 @@ import { SeoService } from 'projects/shared-services/seo.service';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit, OnDestroy {
+  timer$ = timer(0, 3000);
+
   homepageActions: IHomepageAction[] = [];
+  homepageCallouts: { subtitle: string; title: string }[] = [
+    {
+      title: 'Are you a Student?',
+      subtitle: 'Start a Developer community for Free!',
+    },
+    {
+      title: 'Are you a DevRel?',
+      subtitle: 'Build your Developer Ecosystem',
+    },
+    {
+      title: 'Are you a Startup?',
+      subtitle: 'Build your brand with communities & network',
+    },
+  ];
 
   constructor(
     private seoService: SeoService,
