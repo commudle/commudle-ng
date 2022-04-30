@@ -1575,15 +1575,9 @@
 
   <!-- Logo cloud -->
   <div class="pricing-logo-cloud">
-    <div class="com-grid com-grid-cols-1 com-gap-8 md:com-grid-cols-3">
-      <div class="logo">
-        <img alt="Tuple" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" />
-      </div>
-      <div class="logo">
-        <img alt="Mirage" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" />
-      </div>
-      <div class="logo">
-        <img alt="StaticKit" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" />
+    <div class="com-grid com-grid-cols-1 com-gap-12 md:com-grid-cols-3">
+      <div *ngFor="let logo of logoCloud" class="logo">
+        <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
       </div>
     </div>
   </div>
