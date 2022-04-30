@@ -24,7 +24,7 @@
     <nb-list-item>
       <a [routerLink]="['/newsletters']">
         <fa-icon [icon]="faNewspaper"></fa-icon>
-        &nbsp; Newsletters
+        &nbsp;Newsletters
       </a>
     </nb-list-item>
 
@@ -90,7 +90,7 @@
     </nb-accordion>
   </div>
 
-  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin">
+  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin">
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Common Menu</nb-accordion-item-header>

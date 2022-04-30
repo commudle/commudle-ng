@@ -1,24 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { PublicNewslettersRoutingModule } from './public-newsletters-routing.module';
-import { MainNewsletterList } from './components/main-newsletter-list/main-newsletter-list.component';
-import { NbCardModule, NbIconModule } from '@nebular/theme';
+import { NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-
+import { NbCardModule, NbIconModule, NbSpinnerModule } from '@nebular/theme';
+import { NewsletterListComponent } from './components/newsletter-list/newsletter-list.component';
+import { PublicNewslettersRoutingModule } from './public-newsletters-routing.module';
 
 @NgModule({
-  declarations: [
-    MainNewsletterList,
-  ],
+  declarations: [NewsletterListComponent],
   imports: [
     CommonModule,
     PublicNewslettersRoutingModule,
-
-    //Nebular
     NbCardModule,
     NbIconModule,
     NbEvaIconsModule,
-  ]
+    NbSpinnerModule,
+  ],
 })
-export class PublicNewslettersModule { }
+export class PublicNewslettersModule {}

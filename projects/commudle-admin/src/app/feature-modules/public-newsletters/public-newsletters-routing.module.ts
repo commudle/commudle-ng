@@ -1,21 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { MainNewsletterList } from './components/main-newsletter-list/main-newsletter-list.component';
+import { RouterModule } from '@angular/router';
+import { NewsletterListComponent } from './components/newsletter-list/newsletter-list.component';
 
-const routes: Routes = [
+const routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        component: MainNewsletterList,
-      }
-    ]
-  }
+    component: NewsletterListComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PublicNewslettersRoutingModule { }
+export class PublicNewslettersRoutingModule {}
