@@ -21,6 +21,13 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item>
+      <a [routerLink]="['/newsletters']">
+        <fa-icon [icon]="faNewspaper"></fa-icon>
+        &nbsp; Newsletters
+      </a>
+    </nb-list-item>
+
     <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
         <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faFlask, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { NbSidebarService } from '@nebular/theme';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { CommunityGroupsService } from 'projects/commudle-admin/src/app/services/community-groups.service';
@@ -19,6 +19,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 })
 export class SidebarMenuComponent implements OnInit {
   faFlask = faFlask;
+  faNewspaper = faNewspaper;
   currentUser: ICurrentUser;
   managedCommunities: ICommunity[] = [];
   managedCommunityGroups: ICommunityGroup[] = [];

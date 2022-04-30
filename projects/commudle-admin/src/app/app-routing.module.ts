@@ -135,6 +135,10 @@ const routes = [
     component: MainNewsletterComponent,
   },
   {
+    path: 'newsletters',
+    loadChildren: () => import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
+  },
+  {
     path: 'search',
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },

@@ -1,0 +1,25 @@
+@import "./projects/commudle-admin/src/assets/styles/variables";
+
+nb-card {
+  nb-card-body {
+    overflow: hidden;
+
+    padding: 0;
+    .newsletter-card-container {
+      @media all and (max-width: $mobile-width) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      margin: 1rem;
+      .newsletter-card {
+        border: 0.5px solid $silver-sand;
+        border-radius: $border-8;
+        height: 240px;
+        width: 280px;
+        background-color: white;
+      }
+    }
+  }
+}
