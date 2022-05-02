@@ -119,6 +119,8 @@ p {
   }
 
   .pricing-features {
+    @apply com-overflow-x-auto;
+
     .pricing-feature-headings {
       @apply com-w-full com-flex com-items-stretch;
 
@@ -127,7 +129,7 @@ p {
       }
 
       .title {
-        @apply com-my-0 com-text-gray-900 com-text-base com-font-bold;
+        @apply com-my-0 com-text-gray-900 com-text-xl com-font-bold;
       }
 
       .subtitle {
@@ -158,6 +160,10 @@ p {
 
       .heading {
         @apply com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-base com-font-medium com-text-gray-600;
+
+        &.w-full {
+          @apply com-w-full;
+        }
       }
 
       .description {
@@ -167,6 +173,8 @@ p {
           @apply com-relative com-w-full com-h-full com-py-3;
 
           nb-icon {
+            @apply com-text-2xl;
+
             &.light {
               @apply com-text-gray-400;
             }
@@ -198,7 +206,7 @@ p {
       @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
 
       img {
-        @apply com-h-16;
+        @apply com-h-24;
       }
     }
   }
@@ -218,7 +226,7 @@ p {
 
     .questions {
       @apply com-space-y-10;
-      @apply lg:com-space-y-0 lg:com-grid lg:com-grid-cols-2 lg:com-gap-x-8 lg:com-gap-y-10;
+      @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
 
       .question {
         @apply com-font-semibold com-text-white com-text-base;
