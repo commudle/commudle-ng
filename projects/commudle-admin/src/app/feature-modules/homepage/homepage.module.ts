@@ -1,6 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbListModule } from '@nebular/theme';
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbIconModule,
+  NbListModule,
+  NbTooltipModule
+} from "@nebular/theme";
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
 import { PublicCommunityModule } from 'projects/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { SearchModule } from 'projects/commudle-admin/src/app/feature-modules/search/search.module';
 import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
@@ -18,6 +27,11 @@ import { HomepageLabsComponent } from './components/homepage-labs/homepage-labs.
 import { HomepageTestimonialsComponent } from './components/homepage-testimonials/homepage-testimonials.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
+
+// Note we need a separate function as it's required by the AOT compiler.
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -38,6 +52,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     SkeletonScreensModule,
     SharedComponentsModule,
     SharedDirectivesModule,
+    SharedPipesModule,
     PublicCommunityModule,
     SearchModule,
     NbButtonModule,
@@ -45,7 +60,8 @@ import { HomepageRoutingModule } from './homepage-routing.module';
     NbIconModule,
     NbListModule,
     NbActionsModule,
-    SharedPipesModule,
+    NbTooltipModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
 })
 export class HomepageModule {}

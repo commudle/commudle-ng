@@ -41,5 +41,9 @@ p {
 
   .navigation {
     @apply com-mt-12 com-flex com-justify-between;
+
+    .text {
+      @apply com-text-gray-900 com-text-base;
+    }
   }
 }

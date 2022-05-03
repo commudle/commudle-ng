@@ -1,6 +1,6 @@
 <div *ngIf="selectedTestimonial" class="homepage-testimonials">
   <div class="quotes com-text-left">&ldquo;</div>
-  <p class="content">{{ selectedTestimonial.shortContent }}</p>
+  <p [nbTooltip]="selectedTestimonial.longContent" class="content">{{ selectedTestimonial.shortContent }}</p>
   <div class="quotes com-text-right">&rdquo;</div>
   <nb-actions fullWidth size="giant">
     <nb-action *ngIf="user">
@@ -20,6 +20,7 @@
     >
       <nb-icon icon="arrow-left-outline"></nb-icon>
     </button>
+    <p class="text">{{ testimonials.indexOf(selectedTestimonial) + 1 }} / {{ testimonials.length }}</p>
     <button
       (click)="setTestimonial(1)"
       [disabled]="testimonials.indexOf(selectedTestimonial) === testimonials.length - 1"
