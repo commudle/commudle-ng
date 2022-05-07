@@ -351,6 +351,50 @@
                 </span>
               </td>
             </tr>
+
+            <tr key="API access">
+              <th class="heading" scope="row">API access</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
+
+            <tr key="Custom APIs">
+              <th class="heading" scope="row">Custom APIs</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -1009,6 +1053,28 @@
                 </span>
               </td>
             </tr>
+
+            <tr key="Custom stats">
+              <th class="heading" scope="row">Custom stats</th>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+
+              <td class="description">
+                <span class="item">
+                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                </span>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -1377,17 +1443,6 @@
         </div>
       </div>
 
-      <div class="pricing-feature-subheadings">More avenues</div>
-
-      <div class="com-relative com-mt-6">
-        <div class="pricing-feature-table">
-          <p class="heading w-full">
-            Sponsored badges, Sponsored sessions, Sponsored labs, Sponsored builds, Sponsored slot in newsletter,
-            Sponsored emailers through communities
-          </p>
-        </div>
-      </div>
-
       <div class="pricing-feature-headings">
         <div class="com--mt-px com-w-1/4 com-py-6 com-pr-4 com-flex com-items-end">
           <div class="com-mt-auto com-text-base com-font-bold com-text-gray-900">Choose a plan</div>
@@ -1411,12 +1466,31 @@
           </div>
         </div>
       </div>
+
+      <div class="pricing-feature-subheadings">More avenues</div>
+
+      <div class="com-relative com-mt-6">
+        <div class="pricing-feature-table">
+          <p class="heading w-full">
+            Sponsored badges, Sponsored sessions, Sponsored labs, Sponsored builds, Sponsored slot in newsletter,
+            Sponsored emailers through communities
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Logo cloud -->
   <div class="pricing-logo-cloud">
-    <div class="com-grid com-grid-cols-1 com-gap-16 md:com-grid-cols-3">
+    <p class="subheading">Communities already on Commudle</p>
+    <div
+      class="
+        com-grid com-grid-cols-1 com-gap-4
+        sm:com-grid-cols-2 sm:com-gap-6
+        md:com-grid-cols-3 md:com-gap-8
+        lg:com-grid-cols-4 lg:com-gap-10
+      "
+    >
       <div *ngFor="let logo of logoCloud" class="logo">
         <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
       </div>

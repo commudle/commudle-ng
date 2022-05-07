@@ -202,6 +202,10 @@ p {
     @apply com-max-w-2xl com-mx-auto com-py-12 com-px-4;
     @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
+    .subheading {
+      @apply com-text-center com-text-base com-mb-8 com-text-gray-400 com-font-medium com-tracking-wider com-uppercase;
+    }
+
     .logo {
       @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
 
