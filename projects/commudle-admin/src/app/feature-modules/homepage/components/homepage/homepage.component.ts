@@ -57,7 +57,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   getHomepageActions() {
     this.cmsService.getDataByType('homepageActions').subscribe((value: IHomepageAction[]) => {
-      this.homepageActions = value;
+      this.homepageActions = value.sort((a, b) => a.order - b.order);
     });
   }
 }

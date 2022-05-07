@@ -14,8 +14,8 @@ p {
   }
 
   .content {
-    min-height: 125px;
-    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold com-line-clamp-2;
+    min-height: 72px;
+    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-4xl com-font-medium com-line-clamp-2;
   }
 
   nb-actions {

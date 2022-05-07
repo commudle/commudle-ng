@@ -7,7 +7,10 @@
         <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
-        <div *ngIf="homepageActions.length > 0" class="com-mt-4 com-flex com-justify-center md:com-justify-start">
+        <div
+          *ngIf="homepageActions.length > 0"
+          class="com-mt-4 com-flex com-justify-center md:com-justify-start com-gap-3 com-flex-wrap"
+        >
           <a
             *ngFor="let action of homepageActions"
             [href]="action.link"
