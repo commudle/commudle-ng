@@ -1,10 +1,7 @@
 <nb-card class="fade-in" (mouseover)="onMouseEnter()" (mouseout)="onMouseLeave()">
   <nb-card-body>
-    <app-user-profile-card-large
-      *ngIf="user"
-      [user]="user"
-      [activateMiniProfileDirective]="false"
-    ></app-user-profile-card-large>
+    <app-user-profile-card-large *ngIf="user" [user]="user" [activateMiniProfileDirective]="false"
+      (componentClicked)="closePopup($event)"></app-user-profile-card-large>
     <div *ngIf="miniUser.tags.length > 0" class="user-tags">
       <nb-tag-list>
         <nb-tag *ngFor="let tag of miniUser.tags" [text]="tag.name"></nb-tag>
@@ -26,7 +23,7 @@
         <p>Communities</p>
       </div>
     </div>
-    <div class="buttons-container">
+    <div class="buttons-container" (click)="closePopup()">
       <app-user-follow [username]="miniUser.username"></app-user-follow>
       <button (click)="openChatWithUser()" class="anim-shadow" nbButton size="small">
         <nb-icon icon="paper-plane"></nb-icon>

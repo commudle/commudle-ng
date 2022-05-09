@@ -14,6 +14,7 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
   @Input() username: string;
   @Input() miniUser: IMiniUserProfile;
   @Output() popupHover = new EventEmitter();
+  @Output() closeMiniProfile = new EventEmitter();
 
   user: IUser;
 
@@ -43,5 +44,9 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
 
   onMouseLeave() {
     this.popupHover.emit(false);
+  }
+
+  closePopup() {
+    this.closeMiniProfile.emit(true);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IUser } from 'projects/shared-models/user.model';
 
 @Component({
@@ -14,8 +14,14 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() showFollowButton = false;
   @Input() alignFollowToRight = false;
   @Input() activateMiniProfileDirective = true;
+  @Output() componentClicked = new EventEmitter();
+  
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  profileClicked(){
+    this.componentClicked.emit(true);
+  }
 }

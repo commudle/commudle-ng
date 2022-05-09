@@ -55,7 +55,12 @@ export class MiniUserProfileDirective implements OnDestroy {
     const viewContainerRef = this._viewContainerRef;
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent<MiniUserProfileComponent>(componentFactory);
-    popupContainer.appendChild(this.componentRef.location.nativeElement);
+    if(popupContainer.childNodes.length === 0){
+      popupContainer.appendChild(this.componentRef.location.nativeElement);
+    }
+    else{
+      popupContainer.replaceChild(this.componentRef.location.nativeElement, popupContainer.childNodes[0]);
+    }
 
     this.subscriptions.push(
       this.componentRef.instance.popupHover.subscribe((data) => {
@@ -64,6 +69,12 @@ export class MiniUserProfileDirective implements OnDestroy {
           this.destroyComponent();
         }
       }),
+      this.componentRef.instance.closeMiniProfile.subscribe((data) => {
+        if(data){
+          this.cursorOnPopover = false;
+          this.destroyComponent();
+        }
+      })
     );
     this.componentRef.instance.username = this.username;
     this.componentRef.instance.miniUser = this.miniUser;

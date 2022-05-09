@@ -1,23 +1,12 @@
 <div [ngClass]="{ 'com-flex': alignFollowToRight }">
-  <a [routerLink]="['/users', user.username]">
+  <a [routerLink]="['/users', user.username]" (click)="profileClicked()">
     <div class="user-profile-large d-flex align-items-center">
-      <img
-        appMiniUserProfile
-        [username]="user.username"
-        [activateMiniProfileDirective]="activateMiniProfileDirective"
-        class="avatar"
-        alt="{{ user.name }}"
-        src="{{ user.avatar }}"
-        title="{{ user.name }}"
-      />
+      <img appMiniUserProfile [username]="user.username" [activateMiniProfileDirective]="activateMiniProfileDirective"
+        class="avatar" alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
       <div class="details">
         <div class="name d-flex align-items-center">
-          <p
-            appMiniUserProfile
-            [username]="user.username"
-            [activateMiniProfileDirective]="activateMiniProfileDirective"
-            class="com-line-clamp-1"
-          >
+          <p appMiniUserProfile [username]="user.username" [activateMiniProfileDirective]="activateMiniProfileDirective"
+            class="com-line-clamp-1">
             {{ user.name }}
           </p>
           <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
