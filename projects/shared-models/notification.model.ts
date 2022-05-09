@@ -14,6 +14,8 @@ export interface INotification {
   id: string;
   notification_message: string;
   notification_message_type: ENotificationMessageType;
+  parent: string;
+  parent_type: string;
   sender: IUser;
   sender_type: ENotificationSenderType;
   status: ENotificationStatus;

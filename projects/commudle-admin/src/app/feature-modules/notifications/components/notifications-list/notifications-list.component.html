@@ -1,35 +1,22 @@
 <nb-list>
   <nb-list-item (click)="closePopover()" *ngFor="let notification of notifications">
-    <nb-badge
-      *ngIf="notification.status === ENotificationStatus.UNREAD"
-      dotMode="true"
-      position="left center"
-      status="primary"
-    ></nb-badge>
-    <a
-      (click)="changeStatus(ENotificationStatus.INTERACTED, notification)"
-      [routerLink]="['/users', notification.sender.username]"
-    >
+    <nb-badge *ngIf="notification.status === ENotificationStatus.UNREAD" dotMode="true" position="left center"
+      status="primary"></nb-badge>
+    <!-- TODO: Change routerLink based on different entities (whether to redirect to user page or lab page or build page)-->
+    <a (click)="changeStatus(ENotificationStatus.INTERACTED, notification)">
       <div class="avatar com-rounded-[50%] com-h-[56px] com-w-[56px]">
-        <img
-          alt="{{ notification.sender.name }}"
-          src="{{ notification.sender.avatar }}"
-          title="{{ notification.sender.name }}"
-        />
+        <img alt="{{ notification.sender.name }}" src="{{ notification.sender.avatar }}"
+          title="{{ notification.sender.name }}" />
       </div>
       <div class="content">
         <p class="notification-text">
-          <strong>{{ notification.sender.name }}</strong> started following you.
+          {{ notification.notification_message }}
         </p>
         <p class="fs-p4 notification-time">{{ moment(notification.created_at).fromNow() }}</p>
       </div>
     </a>
-    <nb-icon
-      (click)="changeStatus(ENotificationStatus.READ, notification); $event.stopPropagation()"
-      *ngIf="notification.status === ENotificationStatus.UNREAD"
-      icon="checkmark-outline"
-      status="basic"
-      title="Mark as read"
-    ></nb-icon>
+    <nb-icon (click)="changeStatus(ENotificationStatus.READ, notification); $event.stopPropagation()"
+      *ngIf="notification.status === ENotificationStatus.UNREAD" icon="checkmark-outline" status="basic"
+      title="Mark as read"></nb-icon>
   </nb-list-item>
 </nb-list>
