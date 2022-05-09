@@ -1,15 +1,5 @@
-import { IBadge } from './badge.model';
-import { ITag } from './tag.model';
+import { IUser } from "./user.model";
 
-export interface IMiniUserProfile {
-  id: number;
-  username: string;
-  name: string;
-  avatar: string;
-  is_expert: boolean;
-  designation: string;
-  followers_count: number;
+export interface IMiniUserProfile extends IUser{
   communities_count: number;
-  tags: ITag[];
-  badges: IBadge[];
 }

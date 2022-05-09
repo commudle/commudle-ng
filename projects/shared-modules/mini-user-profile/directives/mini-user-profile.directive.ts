@@ -12,7 +12,7 @@ import { MiniUserProfileComponent } from 'projects/shared-modules/mini-user-prof
 import { Subscription } from 'rxjs';
 import { MiniUserProfileService } from 'projects/shared-modules/mini-user-profile/services/mini-user-profile.service';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
-import { debounce } from 'projects/shared-modules/mini-user-profile/helper/debounce';
+import { debounce } from 'projects/shared-modules/mini-user-profile/helpers/debounce';
 @Directive({
   selector: '[appMiniUserProfile]',
 })
@@ -41,20 +41,7 @@ export class MiniUserProfileDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   onMouseOver() {
-    if (this.activateMiniProfileDirective) {
-      this.subscriptions.push(
-        this.miniUserProfileService.getUserMiniProfile(this.username).subscribe((response) => {
-          if (response) {
-            this.miniUser = response;
-            this.loadComponent();
-            window.requestAnimationFrame(() => {
-              this.getElementCoordinates();
-              this.positionElement();
-            });
-          }
-        }),
-      );
-    }
+    this.createComponent();
   }
 
   @HostListener('mouseleave')
@@ -81,6 +68,23 @@ export class MiniUserProfileDirective implements OnDestroy {
     this.componentRef.instance.username = this.username;
     this.componentRef.instance.miniUser = this.miniUser;
     this.positionElement();
+  }
+
+  createComponent() {
+    if (this.activateMiniProfileDirective) {
+      this.subscriptions.push(
+        this.miniUserProfileService.getUserMiniProfile(this.username).subscribe((response) => {
+          if (response) {
+            this.miniUser = response;
+            this.loadComponent();
+            window.requestAnimationFrame(() => {
+              this.getElementCoordinates();
+              this.positionElement();
+            });
+          }
+        }),
+      );
+    }
   }
 
   @debounce(50)
