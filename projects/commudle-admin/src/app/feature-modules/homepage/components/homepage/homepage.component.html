@@ -14,10 +14,10 @@
           <a
             *ngFor="let action of homepageActions"
             [href]="action.link"
-            class="com-w-full sm:com-w-auto"
+            class="homepage-action"
             nbButton
-            outline
-            status="info"
+            size="large"
+            status="success"
           >
             {{ action.title }}
           </a>

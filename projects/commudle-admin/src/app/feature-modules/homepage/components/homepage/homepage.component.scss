@@ -13,6 +13,17 @@
       }
     }
 
+    .homepage-action {
+      background-color: #57c3b9;
+      border-color: #57c3b9;
+      @apply com-w-full sm:com-w-auto com-rounded-xl;
+
+      &:hover {
+        background-color: rgba(87, 195, 185, 0.8);
+        border-color: rgba(87, 195, 185, 0.8);
+      }
+    }
+
     .homepage-arrow {
       @apply com-ml-auto com-mt-8 com-hidden md:com-block com-max-w-xs com-min-h-[140px];
     }
