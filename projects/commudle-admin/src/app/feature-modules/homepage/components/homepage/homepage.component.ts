@@ -30,7 +30,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     },
   ];
   options: AnimationOptions = {
-    path: 'https://assets1.lottiefiles.com/packages/lf20_rcptkgiq/json file/data.json',
+    path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
   };
 
   constructor(
