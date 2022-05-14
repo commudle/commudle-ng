@@ -2,7 +2,7 @@ import { Router as router } from '@angular/router';
 import { ISearchResult } from 'projects/shared-models/search.model';
 
 export function groupResults(value: ISearchResult[]): {} {
-  return value.reduce((r, a) => {
+  return value.filter(Boolean).reduce((r, a) => {
     r[a.type] = [...(r[a.type] || []), a];
     return r;
   }, {});
