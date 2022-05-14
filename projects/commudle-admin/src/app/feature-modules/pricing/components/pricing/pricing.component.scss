@@ -29,7 +29,7 @@ p {
     @apply com-relative com-mt-12 com-flex com-justify-center com-items-center com-gap-4 sm:com-mt-16;
 
     label {
-      @apply com-text-[#0095ff];
+      @apply com-text-[#57c3b9];
     }
   }
 
@@ -38,7 +38,7 @@ p {
     @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
 
     .pricing-card-light {
-      @apply com-bg-[#0095ff] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
+      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
       @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
 
       .name {
@@ -55,7 +55,7 @@ p {
 
         .buy-btn {
           text-decoration: none;
-          @apply com-bg-white com-text-[#0095ff] hover:com-bg-blue-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+          @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
@@ -78,11 +78,11 @@ p {
     }
 
     .pricing-card-dark {
-      @apply com-bg-white com-ring-2 com-ring-[#0095ff] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
+      @apply com-bg-white com-ring-2 com-ring-[#3aa49a] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
       @apply lg:com-px-8 lg:com-pt-12;
 
       .name {
-        @apply com-text-[#0095ff] com-text-base com-font-semibold com-uppercase com-tracking-wide;
+        @apply com-text-[#3aa49a] com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
 
       .pricing {
@@ -90,12 +90,12 @@ p {
         @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
 
         .amount {
-          @apply com-text-[#0095ff] com-text-4xl com-font-extrabold com-tracking-tight;
+          @apply com-text-[#3aa49a] com-text-4xl com-font-extrabold com-tracking-tight;
         }
 
         .buy-btn {
           text-decoration: none;
-          @apply com-bg-[#0095ff] com-text-white hover:com-bg-blue-500 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+          @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
@@ -107,7 +107,7 @@ p {
           @apply com-py-3 com-flex com-items-center;
 
           nb-icon {
-            @apply com-text-[#0095ff] com-w-5 com-h-5 com-flex-shrink-0;
+            @apply com-text-[#3aa49a] com-w-5 com-h-5 com-flex-shrink-0;
           }
 
           .feature {
@@ -142,11 +142,11 @@ p {
         @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
 
         &.light {
-          @apply com-bg-white com-text-[#0095ff] hover:com-bg-blue-50;
+          @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50;
         }
 
         &.dark {
-          @apply com-bg-[#0095ff] com-text-white hover:com-bg-blue-500;
+          @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500;
         }
       }
     }
@@ -180,7 +180,7 @@ p {
             }
 
             &.dark {
-              @apply com-text-[#0095ff];
+              @apply com-text-[#57c3b9];
             }
           }
 
@@ -190,7 +190,7 @@ p {
             }
 
             &.dark {
-              @apply com-text-[#0095ff] com-text-base com-font-medium;
+              @apply com-text-[#57c3b9] com-text-base com-font-medium;
             }
           }
         }
