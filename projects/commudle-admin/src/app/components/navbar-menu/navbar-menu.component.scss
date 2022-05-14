@@ -7,7 +7,7 @@ nb-actions {
     @apply com-p-0 md:com-border-none;
 
     a {
-      @apply com-flex com-flex-col com-items-center com-px-2 md:com-px-4 com-border-none;
+      @apply com-flex com-flex-col com-items-center com-px-2 md:com-px-4 com-border-none md:com-w-24;
 
       fa-icon {
         @apply com-text-lg md:com-text-xl com-text-gray-300;

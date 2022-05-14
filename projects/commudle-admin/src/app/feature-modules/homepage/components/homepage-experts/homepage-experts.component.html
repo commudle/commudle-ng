@@ -1,7 +1,7 @@
 <ul class="homepage-experts">
   <li *ngFor="let expert of experts" class="com-shadow-lg com-rounded-lg com-overflow-hidden">
     <a [routerLink]="['/users', expert.username]" class="com-space-y-4 com-block com-relative">
-      <div class="com-aspect-w-2 com-aspect-h-3">
+      <div class="com-aspect-w-1 com-aspect-h-1">
         <img [alt]="expert.name" [src]="expert.avatar" class="com-object-cover" />
       </div>
 
@@ -22,3 +22,8 @@
     </a>
   </li>
 </ul>
+
+<a class="home-become-expert com-mt-6" nbButton routerLink="/fill-form/1093" shape="semi-round" status="info">
+  Get a blue tick
+  <nb-icon icon="arrow-forward"></nb-icon>
+</a>
