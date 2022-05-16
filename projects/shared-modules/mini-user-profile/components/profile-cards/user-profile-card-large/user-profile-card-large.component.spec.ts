@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { UserProfileCardLargeComponent } from 'projects/shared-components/profile-cards/user-profile-card-large/user-profile-card-large.component';
+import { UserProfileCardLargeComponent } from './user-profile-card-large.component';
 
 describe('UserProfileCardLargeComponent', () => {
   let component: UserProfileCardLargeComponent;
@@ -8,9 +7,8 @@ describe('UserProfileCardLargeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserProfileCardLargeComponent]
-    })
-      .compileComponents();
+      declarations: [UserProfileCardLargeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

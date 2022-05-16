@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { IUser } from 'projects/shared-models/user.model';
 
@@ -16,6 +16,8 @@ export class UserProfileCardLargeComponent implements OnInit {
   @Input() alignFollowToRight = false;
   @Input() showAbout = false;
   @Input() showSocialLinks = false;
+  @Input() activateMiniProfileDirective = true;
+  @Output() componentClicked = new EventEmitter();
 
   constructor(private userChatsService: UserChatsService) {}
 
@@ -23,5 +25,9 @@ export class UserProfileCardLargeComponent implements OnInit {
 
   openChatWithUser() {
     this.userChatsService.changeFollowerId(this.user.id);
+  }
+
+  profileClicked() {
+    this.componentClicked.emit(true);
   }
 }

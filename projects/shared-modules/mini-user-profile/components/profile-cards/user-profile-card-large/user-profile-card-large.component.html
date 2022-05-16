@@ -1,16 +1,26 @@
 <div [ngClass]="{ 'com-flex': alignFollowToRight }">
-  <a [routerLink]="['/users', user.username]">
+  <a (click)="profileClicked()" [routerLink]="['/users', user.username]">
     <div class="user-profile-large d-flex align-items-center">
       <img
+        [activateMiniProfileDirective]="activateMiniProfileDirective"
+        [alt]="user.name"
         [ngClass]="{ 'com-self-start': showAbout && user.about_me }"
-        alt="{{ user.name }}"
+        [src]="user.avatar"
+        [title]="user.name"
+        [username]="user.username"
+        appMiniUserProfile
         class="avatar"
-        src="{{ user.avatar }}"
-        title="{{ user.name }}"
       />
       <div class="details">
         <div class="name d-flex align-items-center">
-          <p class="com-line-clamp-1">{{ user.name }}</p>
+          <p
+            [activateMiniProfileDirective]="activateMiniProfileDirective"
+            [username]="user.username"
+            appMiniUserProfile
+            class="com-line-clamp-1"
+          >
+            {{ user.name }}
+          </p>
           <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
         </div>
         <p class="username com-line-clamp-1">@{{ user.username | truncatetext: maxUserNameLength }}</p>

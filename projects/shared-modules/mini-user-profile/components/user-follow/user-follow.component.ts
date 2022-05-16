@@ -56,7 +56,7 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
 
   toggleFollow(ref?: NbDialogRef<any>) {
     this.subscriptions.push(
-      this.appUsersService.toggleFollow(this.username).subscribe((value) => {
+      this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
         if (ref) {
           ref.close();
