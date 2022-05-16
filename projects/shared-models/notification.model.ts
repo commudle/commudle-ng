@@ -1,20 +1,23 @@
+import { ENotificationEntityTypes } from 'projects/shared-models/enums/notification_entity_types.enum';
+import { ENotificationMessageTypes } from 'projects/shared-models/enums/notification_message_types.enum';
+import { ENotificationParentTypes } from 'projects/shared-models/enums/notification_parent_types.enum';
+import { ENotificationSenderTypes } from 'projects/shared-models/enums/notification_sender_types.enum';
+import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { ICommunityBuild } from './community-build.model';
-import { ENotificationEntityType } from './enums/notification_entity_type.enum';
-import { ENotificationMessageType } from './enums/notification_message_type.enum';
-import { ENotificationSenderType } from './enums/notification_sender_type.enum';
-import { ENotificationStatus } from './enums/notification_status.enum';
 import { ILab } from './lab.model';
 import { IUser } from './user.model';
 import { IUserMessage } from './user_message.model';
 
 export interface INotification {
-  created_at: Date;
-  entity: IUser | ILab | ICommunityBuild | IUserMessage;
-  entity_type: ENotificationEntityType;
-  id: string;
-  notification_message: string;
-  notification_message_type: ENotificationMessageType;
+  id: number;
+  status: ENotificationStatuses;
   sender: IUser;
-  sender_type: ENotificationSenderType;
-  status: ENotificationStatus;
+  sender_type: ENotificationSenderTypes;
+  entity: IUser | ILab | ICommunityBuild | IUserMessage;
+  entity_type: ENotificationEntityTypes;
+  parent: ILab | ICommunityBuild;
+  parent_type: ENotificationParentTypes;
+  notification_message: string;
+  notification_message_type: ENotificationMessageTypes;
+  created_at: string;
 }

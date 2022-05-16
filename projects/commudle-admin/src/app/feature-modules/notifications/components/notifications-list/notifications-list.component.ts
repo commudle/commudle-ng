@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
-import { INotification } from 'projects/shared-models/notification.model';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import * as moment from 'moment';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
+import { INotification } from 'projects/shared-models/notification.model';
 
 @Component({
   selector: 'app-notifications-list',
@@ -13,7 +13,7 @@ import * as moment from 'moment';
 export class NotificationsListComponent implements OnInit, OnDestroy {
   @Input() notifications: INotification[];
 
-  ENotificationStatus = ENotificationStatus;
+  ENotificationStatuses = ENotificationStatuses;
 
   subscriptions = [];
   moment = moment;
@@ -31,7 +31,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  changeStatus(status: ENotificationStatus, notification: INotification) {
+  changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
   }
 

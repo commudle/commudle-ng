@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
-import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
+import { NotificationMessageGeneration } from 'projects/commudle-admin/src/app/feature-modules/notifications/utils/notification-message-generation.util';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 
 @Component({
   selector: 'app-notifications-popover',
@@ -16,12 +16,9 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
 
   page = 1;
   count = 10;
-
-  ENotificationStatus = ENotificationStatus;
+  isLoading = false;
 
   subscriptions: Subscription[] = [];
-
-  isLoading = false;
 
   constructor(
     private notificationChannel: NotificationChannel,
@@ -37,16 +34,18 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.notificationStateService.setNotificationPopoverState(false);
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   getNotifications() {
     this.isLoading = true;
     this.subscriptions.push(
       this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
-        this.notifications = value.notifications.reverse();
+        let notifications = value.notifications.reverse();
+        notifications.forEach((notification) => {
+          notification.notification_message = new NotificationMessageGeneration(notification).generateMessage();
+        });
+        this.notifications = this.notifications.concat(notifications);
         this.isLoading = false;
       }),
     );
@@ -58,6 +57,9 @@ export class NotificationsPopoverComponent implements OnInit, OnDestroy {
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              data.notification.notification_message = new NotificationMessageGeneration(
+                data.notification,
+              ).generateMessage();
               this.notifications.unshift(data.notification);
               break;
             }

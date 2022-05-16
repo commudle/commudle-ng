@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
+import { NotificationMessageGeneration } from 'projects/commudle-admin/src/app/feature-modules/notifications/utils/notification-message-generation.util';
 import { INotification } from 'projects/shared-models/notification.model';
-import { Subscription } from 'rxjs';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notifications-page',
@@ -47,7 +48,11 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
-          this.notifications = this.notifications.concat(value.notifications.reverse());
+          let notifications = value.notifications.reverse();
+          notifications.forEach((notification) => {
+            notification.notification_message = new NotificationMessageGeneration(notification).generateMessage();
+          });
+          this.notifications = this.notifications.concat(notifications);
           this.page += 1;
           this.total = value.total;
           this.isLoading = false;
@@ -65,7 +70,20 @@ export class NotificationsPageComponent implements OnInit, OnDestroy {
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              data.notification.notification_message = new NotificationMessageGeneration(
+                data.notification,
+              ).generateMessage();
               this.notifications.unshift(data.notification);
+              break;
+            }
+            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+              const idx = this.notifications.findIndex(
+                (notification) => notification.id === data.notification_queue_id,
+              );
+              if (idx != -1) {
+                this.notifications[idx].status = data.status;
+              }
+              break;
             }
           }
         }
