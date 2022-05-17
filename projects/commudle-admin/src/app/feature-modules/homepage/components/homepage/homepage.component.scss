@@ -1,6 +1,14 @@
 .homepage {
   @apply com-w-full com-min-h-screen com-bg-white com-px-4 md:com-px-0;
 
+  .linear-gradient-top {
+    background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
+  }
+
+  .linear-gradient-bottom {
+    background: linear-gradient(180deg, #c7dcff 0%, #ffffff 100%);
+  }
+
   .homepage-section {
     @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24;
 
