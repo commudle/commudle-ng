@@ -1,0 +1,24 @@
+svg {
+  height: auto;
+  width: auto;
+  g {
+    transform-origin: 60px 60px;
+    transform: rotate(-90deg);
+
+    .progress-meter {
+      stroke: #2aa5ff38;
+      fill: none;
+    }
+
+    .progress-value {
+      fill: none;
+      stroke: #2aa5ff;
+      transition: all;
+    }
+  }
+
+  text {
+    text-anchor: middle;
+    stroke: black;
+  }
+}

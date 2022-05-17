@@ -33,8 +33,8 @@
               "projects/commudle-admin/src/manifest.webmanifest"
             ],
             "styles": [
-              "projects/commudle-admin/src/styles.scss",
-              "node_modules/@fortawesome/fontawesome-svg-core/styles.css"
+              "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
+              "projects/commudle-admin/src/styles.scss"
             ],
             "scripts": [],
             "serviceWorker": true,
@@ -50,8 +50,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "16kb",
+                  "maximumError": "32kb"
                 }
               ],
               "fileReplacements": [

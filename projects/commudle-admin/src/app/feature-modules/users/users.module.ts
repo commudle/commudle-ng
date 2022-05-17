@@ -23,9 +23,13 @@ import {
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { PublicProfileComponent } from './components/public-profile/public-profile.component';
+import { BasicInfoComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-info/basic-info.component';
 import { BasicUserProfileComponent } from './components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component';
+import { SocialLinksComponent } from './components/public-profile/user-basic-details/basic-user-profile/social-links/social-links.component';
+import { UsernameComponent } from './components/public-profile/user-basic-details/basic-user-profile/username/username.component';
 import { EditUserProfileComponent } from './components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component';
 import { EmailPreferencesComponent } from './components/public-profile/user-basic-details/email-preferences/email-preferences.component';
 import { UserBasicDetailsComponent } from './components/public-profile/user-basic-details/user-basic-details.component';
@@ -76,6 +80,9 @@ import { UsersRoutingModule } from './users-routing.module';
     EditUserProfileComponent,
     EmailPreferencesComponent,
     CapitalizeAndRemoveUnderscorePipe,
+    UsernameComponent,
+    BasicInfoComponent,
+    SocialLinksComponent,
   ],
   imports: [
     CommonModule,
@@ -84,9 +91,9 @@ import { UsersRoutingModule } from './users-routing.module';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedComponentsModule,
     DragDropModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,
@@ -105,7 +112,8 @@ import { UsersRoutingModule } from './users-routing.module';
     NbAlertModule,
     NbRouteTabsetModule,
     NbToggleModule,
+    SharedComponentsModule,
   ],
-  exports: [BasicUserProfileComponent],
+  exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
 })
 export class UsersModule {}

@@ -51,3 +51,10 @@ div {
   top: 50%;
   transform: translate(0, -50%);
 }
+
+:host.left.center {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}

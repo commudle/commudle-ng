@@ -1,22 +1,24 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.home-events-card {
+.home-events-card-container {
   border: 0.5px solid $silver-sand;
   //width: 256px;
+  display: block;
   position: relative;
+  text-decoration: none;
 
   .home-events-attending {
-    position: absolute;
-    height: 20px;
-    top: 8px;
-    right: 0;
-    border-radius: $border-5 0 0 $border-5;
     background-color: $neon-blue;
+    border-radius: $border-5 0 0 $border-5;
     color: $white;
-    padding: $space-4;
     font-size: $fs-card-secondary;
     font-weight: $fw-500;
+    height: 20px;
     line-height: 12px;
+    padding: $space-4;
+    position: absolute;
+    right: 0;
+    top: 8px;
     z-index: 2;
 
     nb-icon {
@@ -24,15 +26,15 @@
     }
   }
 
-  .home-events-image {
+  .home-events-card-image {
     height: 156px;
     overflow: hidden;
 
-    .home-events-image-overlay {
-      position: absolute;
-      height: 156px;
-      width: 100%;
+    .home-events-card-image-overlay {
       background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+      height: 156px;
+      position: absolute;
+      width: 100%;
 
       &.old {
         background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
@@ -40,28 +42,28 @@
     }
 
     img {
-      width: 100%;
       height: inherit;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
+      width: 100%;
     }
   }
 
-  .home-events-date {
-    position: absolute;
-    height: 58px;
-    width: 58px;
-    top: 120px;
-    right: 12px;
-    border-radius: $border-8;
-    border: 1px solid $neon-blue;
+  .home-events-card-date {
     background-color: $white;
+    border: 1px solid $neon-blue;
+    border-radius: $border-8;
     color: $neon-blue;
-    padding: $space-8 $space-12;
     font-size: $fs-h4;
     font-weight: $fw-500;
-    word-break: break-word;
+    height: 58px;
+    padding: $space-8;
+    position: absolute;
+    right: 12px;
     text-align: center;
+    top: 120px;
+    width: 58px;
+    word-break: break-word;
 
     &.old {
       border-color: $cadet;
@@ -69,57 +71,49 @@
     }
   }
 
-  .home-events-details {
+  .home-events-card-details {
     margin: $space-12 $space-12 $space-8;
 
-    .home-events-name {
-      max-width: 171px;
-      height: 2rem;
+    .home-events-card-name {
+      color: $gunmetal;
       font-size: $fs-h5;
       font-weight: $fw-600;
+      height: 2rem;
       line-height: 16px;
-      color: $gunmetal;
+      max-width: 171px;
     }
 
-    .home-events-host {
+    .home-events-card-host {
       margin-top: $space-16;
 
-      .home-events-community {
-        .home-events-community-logo {
-          min-height: 1.75rem;
-          max-height: 1.75rem;
-          min-width: 1.75rem;
-          max-width: 1.75rem;
-          overflow: hidden;
-          border-radius: 50%;
+      .home-events-card-community {
+        .home-events-card-community-logo {
           border: 0.5px solid $platinum;
-
-          img {
-            width: 100%;
-          }
+          @apply com-h-7 com-w-7;
+          @apply com-rounded-full com-object-contain com-object-center com-align-middle;
         }
 
-        .home-events-community-name {
-          margin: 0 $space-16 0 $space-8;
-          font-size: $fs-card-secondary;
-          line-height: normal;
+        .home-events-card-community-name {
           color: $text-low-emphasis;
+          font-size: $fs-card-secondary;
           font-weight: $fw-500;
+          line-height: normal;
+          margin: 0 $space-16 0 $space-8;
         }
       }
 
-      .home-events-register {
+      .home-events-card-register {
+        color: $neon-blue;
         font-size: $fs-h5;
         font-weight: $fw-600;
         text-transform: uppercase;
-        color: $neon-blue;
       }
     }
   }
 }
 
 @media all and (max-width: $pc-width) {
-  .home-events-card {
+  .home-events-card-container {
     width: 185px;
   }
 
@@ -127,10 +121,10 @@
     display: none;
   }
 
-  .home-events-image {
+  .home-events-card-image {
     height: 88px;
 
-    .home-events-image-overlay {
+    .home-events-card-image-overlay {
       height: 88px;
     }
 
@@ -139,14 +133,14 @@
     }
   }
 
-  .home-events-details {
+  .home-events-card-details {
     margin: $space-24 $space-8 $space-8 !important;
 
-    .home-events-name {
+    .home-events-card-name {
       max-width: 100% !important;
     }
 
-    .home-events-host {
+    .home-events-card-host {
       display: none;
     }
   }

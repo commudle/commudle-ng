@@ -235,6 +235,7 @@ export const API_ROUTES = {
     TOGGLE_ATTENDANCE: 'api/v2/event_entry_passes/toggle_attendance',
     TOGGLE_UNINVITED: 'api/v2/event_entry_passes/toggle_uninvited',
     AUTO_ONLINE_ATTENDANCE: 'api/v2/event_entry_passes/auto_online_attendance',
+    SHOW: 'api/v2/event_entry_passes/show',
   },
 
   // locations
@@ -291,6 +292,10 @@ export const API_ROUTES = {
     },
   },
 
+  PUBLIC_NEWSLETTERS: {
+    PUBLIC_INDEX: 'api/v2/main_newsletters/public_index',
+  },
+
   PAGE_ADS: {
     INDEX: 'api/v2/pa',
     SHOW: 'api/v2/pa/show',
@@ -338,6 +343,10 @@ export const API_ROUTES = {
   // communication_mailers
   SEND_COMMUNITY_EMAILS: 'api/v2/communication_mailers/community_emails',
 
+  SEARCH: {
+    INDEX: 'api/v2/search',
+  },
+
   // user_roles_users
   USER_ROLES_USERS: {
     GET_ADMIN_COMMUNITY_USERS_BY_ROLE: 'api/v2/user_roles_users/get_admin_community_users_by_role',
@@ -348,6 +357,12 @@ export const API_ROUTES = {
     RESEND_INVITATION: 'api/v2/user_roles_users/resend_invitation',
     ACTIVATE_COMMUNITY_ROLE: 'api/v2/user_roles_users/activate_community_role',
     GET_EVENT_VOLUNTEERS: 'api/v2/user_roles_users/get_event_volunteers',
+
+    COMMUNITY_BLOCKED_USERS: 'api/v2/user_roles_users/communities/blocked_users',
+    REMOVE_USER: 'api/v2/user_roles_users/communities/remove_user',
+    BLOCK_USER: 'api/v2/user_roles_users/communities/block_user',
+    UNBLOCK_USER: 'api/v2/user_roles_users/communities/unblock_user',
+    ROLES: 'api/v2/user_roles_users/communities/roles',
 
     PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE: 'api/v2/user_roles_users/public_get_community_leaders_by_role',
     PUBLIC_GET_COMMUNITY_MEMBERS: 'api/v2/user_roles_users/public_community_members',
@@ -403,6 +418,7 @@ export const API_ROUTES = {
     FOLLOWERS: 'api/v2/users/followers',
     FOLLOWEES: 'api/v2/users/followees',
     EMAIL_UNSUBSCRIBE_GROUPS: 'api/v2/users/email_unsubscribe_groups',
+    MINI_PROFILE: 'api/v2/users/profile',
   },
 
   SPEAKER_RESOURCES: {
@@ -548,5 +564,16 @@ export const API_ROUTES = {
   MENTIONS: {
     USERS: 'api/v2/mentions/user_entities',
     OTHERS: 'api/v2/mentions/other_entities',
+  },
+
+  NOTIFICATIONS: {
+    INDEX: 'api/v2/notifications',
+    UPDATE_STATUS: 'api/v2/notifications/update_status',
+  },
+
+  RECOMMENDATIONS: {
+    LABS: 'api/v2/disco_recommendations/labs',
+    COMMUNITY_BUILDS: 'api/v2/disco_recommendations/community_builds',
+    COMMUNITIES: 'api/v2/disco_recommendations/communities',
   },
 };

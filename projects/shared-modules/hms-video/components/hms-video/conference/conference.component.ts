@@ -1,4 +1,7 @@
 import {
+  HMSException,
+  HMSNotification,
+  HMSNotificationTypes,
   HMSPeer,
   selectIsConnectedToRoom,
   selectIsLocalAudioEnabled,
@@ -15,6 +18,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -32,7 +36,7 @@ import { HmsStageService } from 'projects/shared-modules/hms-video/services/hms-
 import { HmsVideoStateService } from 'projects/shared-modules/hms-video/services/hms-video-state.service';
 import { LocalMediaService } from 'projects/shared-modules/hms-video/services/local-media.service';
 import { HmsLiveChannel } from 'projects/shared-modules/hms-video/services/websockets/hms-live.channel';
-import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { hmsActions, hmsNotifications, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { combineLatest, Subscription } from 'rxjs';
 import { ConferenceSettingsComponent } from './conference-settings/conference-settings.component';
@@ -42,7 +46,7 @@ import { ConferenceSettingsComponent } from './conference-settings/conference-se
   templateUrl: './conference.component.html',
   styleUrls: ['./conference.component.scss'],
 })
-export class ConferenceComponent implements OnInit, OnDestroy {
+export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   @Input() serverClient: IHmsClient;
   @Input() currentUser: ICurrentUser;
   @Input() selectedRole: EHmsRoles;
@@ -57,12 +61,14 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
   joinedAsHost: boolean;
 
+  isConnectedToRoom: boolean;
   isOnStage: boolean;
   enableHmsForStage: boolean;
   isScreenSharing: boolean;
   isLocalScreenSharing: boolean;
   isRecording: boolean;
   isStreaming: boolean;
+  showReconnecting = false;
 
   selectedAudioInputDeviceId: string;
   selectedVideoDeviceId: string;
@@ -72,6 +78,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   @ViewChild('screenShareContainer', { static: false }) screenShareContainer: ElementRef<HTMLDivElement>;
 
   subscriptions: Subscription[] = [];
+  notificationUnsubscription;
 
   constructor(
     private hmsVideoStateService: HmsVideoStateService,
@@ -109,6 +116,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
     this.leaveRoom();
 
     this.subscriptions.forEach((value: Subscription) => value.unsubscribe());
+    this.notificationUnsubscription();
   }
 
   joinSession(): void {
@@ -125,6 +133,8 @@ export class ConferenceComponent implements OnInit, OnDestroy {
   }
 
   subscribeToListeners = (status: boolean) => {
+    this.isConnectedToRoom = status;
+
     if (status) {
       hmsStore.subscribe((peers: HMSPeer[]) => {
         this.peers = peers;
@@ -157,6 +167,7 @@ export class ConferenceComponent implements OnInit, OnDestroy {
 
       hmsStore.subscribe(this.handleRoleChangeRequest, selectRoleChangeRequest);
 
+      this.receiveNotifications();
       this.receiveChannelData();
     }
   };
@@ -174,6 +185,8 @@ export class ConferenceComponent implements OnInit, OnDestroy {
       hmsActions.setVideoSettings({ deviceId: this.selectedVideoDeviceId });
       hmsActions.setLocalAudioEnabled(this.isAudioEnabled);
       hmsActions.setLocalVideoEnabled(this.isVideoEnabled);
+
+      this.subscribeToMediaDevices();
     } else {
       this.subscriptions.push(
         combineLatest(
@@ -406,5 +419,33 @@ export class ConferenceComponent implements OnInit, OnDestroy {
         }
       }),
     );
+  }
+
+  receiveNotifications(): void {
+    this.notificationUnsubscription = hmsNotifications.onNotification((notification: HMSNotification) => {
+      if (!notification) {
+        return;
+      }
+
+      switch (notification.type) {
+        case HMSNotificationTypes.RECONNECTING:
+          this.showReconnecting = true;
+          break;
+        case HMSNotificationTypes.RECONNECTED:
+          this.showReconnecting = false;
+          break;
+        case HMSNotificationTypes.ERROR:
+          const data: HMSException = notification.data;
+          switch (data.code) {
+            // Websocket disconnected - Happens due to network issues
+            case 1003:
+            // ICE Connection Failed due to network issue
+            case 4005:
+              this.hmsVideoStateService.setState(EHmsStates.DISCONNECTED);
+              break;
+          }
+          break;
+      }
+    });
   }
 }

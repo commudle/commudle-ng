@@ -30,6 +30,7 @@
       (setStep)="setStep($event)"
       [discussionChat]="discussionChat"
       [hideInteractions]="window.innerWidth > 768"
+      [hideRecommendedLabs]="window.innerWidth < 768"
       [hideRelatedLabs]="window.innerWidth < 768"
       [hideSteps]="window.innerWidth < 768"
       [lab]="lab"
@@ -43,7 +44,7 @@
       <nb-card>
         <nb-card-body>
           <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
-            <p class="lab-title">{{ lab.name }}</p>
+            <h1 class="lab-title">{{ lab.name }}</h1>
             <div class="lab-detail d-flex justify-content-space-between">
               <div class="user-profile d-flex justify-content-start align-items-center">
                 <div class="avatar">
@@ -121,6 +122,13 @@
         <nb-icon icon="message-circle-outline"></nb-icon>
         {{ messagesCount }}
       </div>
+      <app-share-button
+        [content]="environment.app_url + '/labs/' + lab.slug"
+        [title]="lab.name"
+        [url]="environment.app_url + '/labs/' + lab.slug"
+        [showText]="false"
+        [round]="true"
+      ></app-share-button>
     </div>
   </div>
 </div>

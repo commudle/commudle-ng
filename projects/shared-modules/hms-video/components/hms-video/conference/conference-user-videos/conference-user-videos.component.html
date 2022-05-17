@@ -18,8 +18,24 @@
   <div class="user-videos d-flex justify-content-center flex-wrap">
     <ng-container *ngFor="let peer of peers">
       <div class="user-video">
-        <app-conference-user-video [peer]="peer" [screenShare]="false"></app-conference-user-video>
+        <app-conference-user-video
+          [isSpeaker]="activeSpeaker?.id === peer.id"
+          [peer]="peer"
+          [screenShare]="false"
+        ></app-conference-user-video>
       </div>
     </ng-container>
   </div>
 </div>
+
+<nb-alert
+  (close)="showAlert = false"
+  *ngIf="allPeers.length > 0 && peers.length === 0 && showAlert"
+  class="no-users"
+  closable
+>
+  <span>
+    <nb-icon icon="people-outline"></nb-icon>
+    Welcome! The hosts will be joining shortly.
+  </span>
+</nb-alert>

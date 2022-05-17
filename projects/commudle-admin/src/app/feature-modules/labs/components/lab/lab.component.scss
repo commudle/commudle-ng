@@ -230,6 +230,18 @@
         color: $neon-blue;
         font-size: $fs-24;
       }
+
+      app-share-button {
+        ::ng-deep {
+          .share-button-container {
+            margin: $space-24 0 0;
+
+            button {
+              background-color: transparent !important;
+            }
+          }
+        }
+      }
     }
 
     @media (min-width: $tab-width) {

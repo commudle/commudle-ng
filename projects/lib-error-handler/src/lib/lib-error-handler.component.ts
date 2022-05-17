@@ -1,29 +1,25 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { LibErrorHandlerService } from './lib-error-handler.service';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
+import { SeoService } from 'projects/shared-services/seo.service';
+import { LibErrorHandlerService } from './lib-error-handler.service';
 
 @Component({
   selector: 'lib-lib-error-handler',
   templateUrl: './lib-error-handler.component.html',
-  styleUrls: ['./lib-error-handler.component.scss']
+  styleUrls: ['./lib-error-handler.component.scss'],
 })
 export class LibErrorHandlerComponent implements OnInit, OnDestroy, OnChanges {
-
   errorCode: string;
   errorMessage: string;
 
   constructor(
     private errorHandlerService: LibErrorHandlerService,
     private router: Router,
-    private meta: Meta
-  ) { }
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex'
-    });
+    this.seoService.noIndex(true);
   }
 
   ngOnChanges() {
@@ -32,12 +28,10 @@ export class LibErrorHandlerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
+    this.seoService.noIndex(false);
   }
-
 
   goToHome() {
     this.router.navigate(['/']);
   }
-
 }

@@ -1,52 +1,57 @@
-<div class="create-lab page-padding">
+<div class="base-layout create-lab">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card>
+        <nb-card-body>
+          <div class="form-container">
+            <h1 class="header">
+              <fa-icon [icon]="faFlask" size="1x"></fa-icon>
+              Let's begin with a Title!
+            </h1>
+            <p class="text-h1-description">
+              A Lab makes it easy for you to write a tutorial, divide it into steps. And it surely makes it easy for
+              your readers to grasp your content.
+              <br />
+              Example:
+              <span class="text-highlight-yellow">&nbsp; How to make a resume with HTML &nbsp;</span> OR
+              <span class="text-highlight-yellow">&nbsp; How to make a Flutter app! &nbsp;</span>
+              <br />
+              <br />
+              What's your Lab about? You can change the title anytime later.
+            </p>
 
-  <div class="page-container">
-    <nb-card>
-      <nb-card-body>
+            <form class="community-edit-details-form" [formGroup]="labForm" (ngSubmit)="createLab()">
+              <div>
+                <input
+                  nbInput
+                  fullWidth
+                  fieldSize="giant"
+                  status="primary"
+                  formControlName="name"
+                  type="text"
+                  maxlength="100"
+                  placeholder="Type title here (max 100 characters)"
+                />
 
-        <div class="form-container">
-          <h1 class="header">
-            <fa-icon [icon]="faFlask" size="1x"></fa-icon>
-            Let's begin with a Title!
-          </h1>
-          <p class="text-h1-description">
-            A Lab makes it easy for you to write a tutorial, divide it into steps. And it surely makes it easy for your readers to grasp your content.
-            <br>
-            Example:
-            <span class="text-highlight-yellow">&nbsp; How to make a resume with HTML &nbsp;</span> OR <span class="text-highlight-yellow">&nbsp; How to make a Flutter app! &nbsp;</span>
-            <br>
-            <br>
-            What's your Lab about? You can change the title anytime later.
-          </p>
+                <span
+                  *ngIf="
+                    labForm['controls'].name.touched &&
+                    labForm['controls'].name.invalid &&
+                    labForm['controls'].name.errors.required
+                  "
+                  class="validation-error-text"
+                >
+                  Required Field
+                </span>
+              </div>
 
-          <form class="community-edit-details-form" [formGroup]="labForm" (ngSubmit)="createLab()">
-            <div>
-
-              <input
-                nbInput
-                fullWidth
-                fieldSize="giant"
-                status= "primary"
-                formControlName="name"
-                type="text"
-                maxlength="100"
-                placeholder="Type title here (max 100 characters)">
-
-              <span *ngIf="labForm['controls'].name.touched && labForm['controls'].name.invalid && labForm['controls'].name.errors.required" class="validation-error-text">
-                Required Field
-              </span>
-            </div>
-
-            <div class="submit-button">
-              <button nbButton [disabled]="!labForm.valid" type="submit" status="primary">
-                Let's Start!
-              </button>
-            </div>
-
-          </form>
-        </div>
-      </nb-card-body>
-    </nb-card>
+              <div class="submit-button">
+                <button nbButton [disabled]="!labForm.valid" type="submit" status="primary">Let's Start!</button>
+              </div>
+            </form>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
-
 </div>

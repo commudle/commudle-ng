@@ -1,57 +1,28 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
-.home-navbar-menu-options {
-  padding-left: $space-8;
-  padding-top: $space-8;
-  text-align: center;
-
-  a {
-    border: none;
-    color: $gunmetal;
-    padding: 0 $space-16 $space-6 $space-16;
-    text-align: center;
-    text-decoration: none;
-
-    .icon {
-      height: 1.5rem;
-      margin: auto;
-      width: 1.5rem;
-
-      fa-icon {
-        color: rgba($azure, 0.4);
-        font-size: $fs-20;
-        margin: 0;
-        width: 100%;
-      }
-    }
-
-    .home-navbar-menu-option {
-      font-size: $fs-12;
-      font-weight: $fw-400;
-      line-height: 14px;
-    }
-  }
-
-  .active {
-    border-bottom: 3px solid rgba($azure, 0.9);
-
-    .icon {
-      fa-icon {
-        color: rgba($azure, 0.9);
-      }
-    }
-  }
+a {
+  text-decoration: none;
 }
 
-@media all and (max-width: $tab-width) {
-  .home-navbar-menu-options {
-    background-color: $white;
-    bottom: 0;
-    box-shadow: 0 4.9px 17.6px rgba(0, 0, 0, 0.05), 0 16.5px 59px rgba(0, 0, 0, 0.08), 0 74px 264px rgba(0, 0, 0, 0.13);
-    justify-content: space-around;
-    left: 0;
-    padding: $space-12 $space-8 0 $space-8 !important;
-    position: fixed;
-    width: 100vw;
+nb-actions {
+  nb-action {
+    @apply com-p-0 md:com-border-none;
+
+    a {
+      @apply com-flex com-flex-col com-items-center com-px-2 md:com-px-4 com-border-none md:com-w-24;
+
+      fa-icon {
+        @apply com-text-lg md:com-text-xl com-text-gray-300;
+      }
+
+      &.active {
+        fa-icon,
+        span {
+          @apply com-text-blue-600 com-font-medium;
+        }
+      }
+
+      span {
+        @apply com-font-normal com-text-gray-500;
+      }
+    }
   }
 }

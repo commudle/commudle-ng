@@ -1,0 +1,106 @@
+<nb-card>
+  <nb-card-body>
+    <nb-stepper orientation="horizontal" disableStepNavigation class="user-profile-completion-stepper">
+      <nb-step [label]="stepOne">
+        <ng-template #stepOne>
+          <label class="step-one-heading">Username & Skills</label>
+        </ng-template>
+        <div class="content">
+          <app-username (usernameValidation)="checkUsername($event)" [showSaveButton]="false"></app-username>
+          <div>
+            <div class="tag-dialog-info">
+              <nb-icon icon="info-outline"></nb-icon>
+              Add {{ maxTags }} of your skills which you want other developers to see!
+            </div>
+            <nb-tag-list (tagRemove)="onTagRemove($event)">
+              <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
+              <input
+                (tagAdd)="onTagAdd($event)"
+                [separatorKeys]="[13, 188]"
+                (keypress)="restrictComma($event)"
+                fullWidth
+                nbTagInput
+                placeholder="Type a tag and press enter or comma"
+                type="text"
+              />
+            </nb-tag-list>
+          </div>
+          <img
+            alt="Skills"
+            src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGdaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b373211d40f97d30372232728c78d825bbff51fe/userflow-skills.gif"
+            title="Skills"
+            class="skills-gif"
+          />
+        </div>
+        <div class="navigation-buttons next-button-only">
+          <button
+            [disabled]="!validUsername || tagsDialog.length === 0"
+            nbButton
+            nbStepperNext
+            status="success"
+            (click)="submitStepOne()"
+          >
+            Next
+          </button>
+        </div>
+      </nb-step>
+
+      <nb-step [label]="stepTwo">
+        <ng-template #stepTwo>
+          <label>Basic profile</label>
+        </ng-template>
+        <div class="content">
+          <app-basic-info (basicInfoFormValidity)="checkBasicDetailsValidity($event)"></app-basic-info>
+        </div>
+        <div class="navigation-buttons both-buttons">
+          <button nbButton nbStepperPrevious status="basic">Prev</button>
+          <button
+            [disabled]="!validBasicDetailsStatus"
+            nbButton
+            nbStepperNext
+            status="success"
+            (click)="submitStepTwo()"
+          >
+            Next
+          </button>
+        </div>
+      </nb-step>
+
+      <nb-step [label]="stepThree">
+        <ng-template #stepThree>
+          <label>Social Links</label>
+        </ng-template>
+        <div class="content">
+          <app-social-links (socialLinksFormValidity)="checkSocialLinksValidity($event)"></app-social-links>
+        </div>
+        <div class="navigation-buttons both-buttons">
+          <button nbButton nbStepperPrevious status="basic">Prev</button>
+          <button
+            [disabled]="!validSocialLinksStatus"
+            nbButton
+            nbStepperNext
+            status="success"
+            (click)="submitStepThree()"
+          >
+            Next
+          </button>
+        </div>
+      </nb-step>
+
+      <nb-step [hidden]="true">
+        <div class="content">
+          <h3 class="text-center">Thank you for completing your profile!</h3>
+          <img
+            alt="Completed"
+            src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcGNaIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--33ad326a4cad4e6d33e037188dd68e9ccedc0ee5/userflow-done.gif"
+            title="Completed"
+            class="completed-gif"
+          />
+        </div>
+        <div class="navigation-buttons next-button-only">
+          <button nbButton status="success" (click)="closeStepper()">Close</button>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

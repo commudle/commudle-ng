@@ -71,7 +71,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
     this.showHelperText = false;
   }
 
-  emitMessage() {
+  emitMessage(event) {
     if (!this.editableMessage) {
       if (this.sendUserMessageForm.valid && this.uploadedFiles.length > 0) {
         this.emitAttachmentMessage();
@@ -89,6 +89,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
       }
     }
 
+    event.preventDefault();
     this.sendUserMessageForm.reset();
     this.uploadedAttachmentFiles = [];
     this.uploadedFiles = [];
@@ -192,7 +193,7 @@ export class SendMessageFormComponent implements OnInit, AfterViewInit {
   selectEmoji(event) {
     let currentValue = this.sendUserMessageForm.get('content').value || '';
     this.sendUserMessageForm.patchValue({
-      content: currentValue.concat(`${event.emoji.native}  `),
+      content: currentValue.concat(`${event.emoji.native}`),
     });
     this.inputElement.nativeElement.focus();
   }

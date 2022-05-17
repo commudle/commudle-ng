@@ -6,8 +6,8 @@
 
   .messages-list {
     height: 100%;
-    padding-right: $space-8;
     overflow: auto;
+    padding-right: $space-8;
 
     &.compressed {
       height: calc(100% - 32px);
@@ -23,10 +23,10 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: darken($light-purple, 5%);
-      border-radius: $border-10;
-      border: 3px solid transparent;
       background-clip: content-box;
+      background-color: darken($light-purple, 5%);
+      border: 3px solid transparent;
+      border-radius: $border-10;
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -35,8 +35,8 @@
   }
 
   .new-message-btn {
+    bottom: 52px;
     position: absolute;
     right: 16px;
-    bottom: 52px;
   }
 }

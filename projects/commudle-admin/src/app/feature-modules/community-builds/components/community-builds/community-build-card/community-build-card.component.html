@@ -3,9 +3,10 @@
     [alt]="communityBuild.name"
     [src]="communityBuild.images[0]?.url || '/assets/images/commudle-logo192.png'"
     [title]="communityBuild.name"
+    class="community-build-card-image"
   />
-  <div class="details">
-    <div class="prefix">
+  <div class="community-build-card-details">
+    <div class="community-build-card-prefix">
       <app-badge
         [color]="CBuildTypeDisplay[communityBuild.build_type].color"
         [fontSize]="'small'"
@@ -14,19 +15,19 @@
       ></app-badge>
       <p class="fs-p4">{{ communityBuild.created_at | date }}</p>
     </div>
-    <div class="section">
-      <h5 class="title fs-h5">{{ communityBuild.name }}</h5>
-      <p class="content fs-p2">{{ getDescription() }}</p>
+    <div class="community-build-card-content">
+      <h5 class="community-build-card-title fs-h5">{{ communityBuild.name }}</h5>
+      <p class="community-build-card-description fs-p2">{{ getDescription() }}</p>
     </div>
-    <div class="suffix">
+    <div class="community-build-card-suffix">
       <app-user-profile-card-medium [user]="communityBuild.user"></app-user-profile-card-medium>
-      <div class="interactions">
+      <div class="community-build-card-interactions">
         <app-votes-display
           [icon]="'star'"
           [votableId]="communityBuild.id"
           [votableType]="'CommunityBuild'"
         ></app-votes-display>
-        <div class="comments">
+        <div class="community-build-card-comments">
           <p class="fs-p3">{{ communityBuild.chat_messages_count || 0 }}</p>
           <nb-icon icon="message-circle-outline"></nb-icon>
         </div>

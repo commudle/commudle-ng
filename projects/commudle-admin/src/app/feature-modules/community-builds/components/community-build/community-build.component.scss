@@ -1,16 +1,5 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
-.community-build {
-  width: 100%;
-  max-width: $tab-width;
-
-  .page-navigation-actions {
-    a {
-      margin: 0 1rem 5px 0;
-    }
-
-    a.new-build-button {
-      padding: 3px;
-    }
+.community-build-container {
+  p {
+    margin-bottom: 0;
   }
 }

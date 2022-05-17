@@ -1,0 +1,25 @@
+.row {
+  margin-bottom: 0.75rem;
+}
+
+.uploaded-profile {
+  height: 150px;
+  max-width: 300px;
+  overflow: hidden;
+  background: #d3d3d36b;
+  margin: 0 auto;
+  position: relative;
+}
+
+.uploaded-profile-image {
+  height: 150px;
+  max-width: 300px;
+  overflow: hidden;
+  // background: #d3d3d36b;
+  margin: 0 auto;
+  text-align: center;
+
+  img {
+    height: 100%;
+  }
+}

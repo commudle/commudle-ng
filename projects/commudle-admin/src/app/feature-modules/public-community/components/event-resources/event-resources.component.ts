@@ -14,13 +14,13 @@ export class EventResourcesComponent implements OnInit {
   // constructor(
   //   private activatedRoute: ActivatedRoute,
   //   private speakerResourcesService: SpeakerResourcesService,
-  //   private meta: Meta,
-  //   private title: Title,
+  //   private seoService : SeoService,
+  //   
   //   private sanitizer: DomSanitizer
   // ) { }
   //
   // setMeta() {
-  //   this.title.setTitle(`Past Event Sessions | ${this.community.name}`);
+  //   this.seoService.setTitle(`Past Event Sessions | ${this.community.name}`);
   //   this.meta.updateTag({ name: 'og:title', content: `Past Event Sessions | ${this.community.name}` });
   //   this.meta.updateTag({ name: 'twitter:title', content: `Past Expert Sessions | ${this.community.name}` });
   // }

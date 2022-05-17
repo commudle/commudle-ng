@@ -1,13 +1,13 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { EPublishStatus, ILab } from 'projects/shared-models/lab.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-edit-lab',
@@ -79,13 +79,34 @@ export class EditLabComponent implements OnInit, OnDestroy {
     private toastLogService: LibToastLogService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: object,
-    private meta: Meta,
-    private title: Title,
+    private seoService: SeoService,
     private dialogService: NbDialogService,
   ) {}
 
   get steps() {
     return this.labForm.get('lab_steps') as FormArray;
+  }
+
+  ngOnInit() {
+    this.labForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      lab_steps: this.fb.array([]),
+      publish_status: [],
+    });
+
+    this.activatedRoute.params.subscribe((data) => {
+      this.labId = data.lab_id;
+      this.getLab();
+    });
+  }
+
+  ngOnDestroy() {
+    this.seoService.noIndex(false);
+
+    if (this.autoSaveInterval) {
+      clearInterval(this.autoSaveInterval);
+    }
   }
 
   initStep(): FormGroup {
@@ -105,75 +126,14 @@ export class EditLabComponent implements OnInit, OnDestroy {
     (this.labForm.get('lab_steps') as FormArray).removeAt(stepIndex);
   }
 
-  ngOnInit() {
-    this.labForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      lab_steps: this.fb.array([]),
-      publish_status: [],
-    });
-
-    this.activatedRoute.params.subscribe((data) => {
-      this.labId = data.lab_id;
-      this.getLab();
-    });
-  }
-
-  ngOnDestroy() {
-    this.meta.removeTag("name='robots'");
-    if (this.autoSaveInterval) {
-      clearInterval(this.autoSaveInterval);
-    }
-  }
-
   setMeta() {
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex',
-    });
-    this.meta.updateTag({
-      name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, ''),
-    });
-    this.title.setTitle(`Edit ${this.lab.name} | By ${this.lab.user.name}`);
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `Edit ${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, ''),
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `Edit ${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, ''),
-    });
+    this.seoService.noIndex(true);
+
+    this.seoService.setTags(
+      `Edit ${this.lab.name} | By ${this.lab.user.name}`,
+      this.lab.description.replace(/<[^>]*>/g, ''),
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   getLab() {

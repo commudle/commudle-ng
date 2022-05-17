@@ -1,13 +1,14 @@
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MainNewslettersService } from 'projects/commudle-admin/src/app/feature-modules/main-newsletters/services/main-newsletters.service';
 import { IMainNewsletter } from 'projects/shared-models/main-newsletter.model';
 import { CanComponentDeactivate } from 'projects/shared-services/check-redirect.guard';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Observable } from 'rxjs';
-import { MainNewslettersService } from './../../services/main-newsletters.service';
 
 @Component({
   selector: 'app-main-newsletter-form',
@@ -96,8 +97,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   };
 
   constructor(
-    private title: Title,
-    private meta: Meta,
+    private seoService: SeoService,
     private mainNewsLettersService: MainNewslettersService,
     private fb: FormBuilder,
     private toastLogService: LibToastLogService,
@@ -139,7 +139,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngOnDestroy(): void {
-    this.meta.removeTag("name='robots'");
+    this.seoService.noIndex(false);
 
     for (let sub of this.subscriptions) {
       sub.unsubscribe();
@@ -192,10 +192,7 @@ export class MainNewsletterFormComponent implements OnInit, OnDestroy, AfterView
   }
 
   setMeta() {
-    this.title.setTitle(`Create Newsletter`);
-    this.meta.updateTag({
-      name: 'robots',
-      content: 'noindex',
-    });
+    this.seoService.setTitle(`Create Newsletter`);
+    this.seoService.noIndex(true);
   }
 }

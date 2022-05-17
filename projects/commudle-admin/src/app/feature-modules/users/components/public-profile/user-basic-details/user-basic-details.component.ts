@@ -4,6 +4,7 @@ import { UserChatsService } from 'projects/commudle-admin/src/app/feature-module
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -28,6 +29,8 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
   // The original tags
   tags: string[] = [];
   maxTags = 5;
+
+  environment = environment;
 
   constructor(
     private dialogService: NbDialogService,
@@ -88,6 +91,12 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     }
     // Reset the input
     input.nativeElement.value = '';
+  }
+
+  restrictComma(event) {
+    if (event.code === 'Comma') {
+      event.preventDefault();
+    }
   }
 
   // Open a chat with the particular user

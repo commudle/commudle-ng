@@ -21,12 +21,21 @@ const routes = [
     component: HomeComponent,
   },
   {
+    path: 'home',
+    loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
+  },
+  {
     path: 'about-wip',
     component: AboutComponent,
   },
   {
     path: 'about',
     component: AboutOldComponent,
+  },
+  {
+    path: 'notifications',
+    loadChildren: () =>
+      import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
   {
     path: 'features',
@@ -126,6 +135,14 @@ const routes = [
     component: MainNewsletterComponent,
   },
   {
+    path: 'newsletters',
+    loadChildren: () => import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
+  },
+  {
     path: 'admin',
     children: [
       // {
@@ -179,7 +196,8 @@ const routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled',
+      initialNavigation: 'enabledBlocking',
+      // TODO: modify the below to use the new option
       relativeLinkResolution: 'legacy',
     }),
   ],

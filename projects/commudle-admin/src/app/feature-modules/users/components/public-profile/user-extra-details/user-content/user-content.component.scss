@@ -2,7 +2,6 @@
 
 .user-content {
   nb-card {
-    border: none;
     margin: $space-16 0 0;
 
     nb-card-body {
@@ -18,18 +17,18 @@
   nb-route-tabset {
     &::ng-deep {
       .route-tabset {
-        padding-top: $space-8;
         border-bottom: 1px solid $silver-sand;
+        padding-top: $space-8;
 
         .route-tab {
           .tab-link {
-            font-style: italic;
-            font-size: $fs-h4;
-            line-height: 19px;
-            font-weight: $fw-400;
             color: rgba($gunmetal, 0.6);
-            text-transform: capitalize;
+            font-size: $fs-h4;
+            font-style: italic;
+            font-weight: $fw-400;
+            line-height: 19px;
             padding-bottom: $space-8;
+            text-transform: capitalize;
           }
 
           &.active {
@@ -39,15 +38,16 @@
               font-weight: $fw-500;
 
               &::before {
-                height: 2px;
-                bottom: -1px;
-                border-radius: 0;
                 background-color: $brilliant-azure;
+                border-radius: 0;
+                bottom: -1px;
+                height: 2px;
               }
             }
           }
         }
       }
+
       .user-contributions,
       .user-social {
         padding: $space-32;

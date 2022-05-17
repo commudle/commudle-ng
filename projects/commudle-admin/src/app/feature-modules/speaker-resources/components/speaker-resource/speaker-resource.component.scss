@@ -2,11 +2,9 @@
 
 .speaker-resources {
   .left-column {
-    width: 280px;
+    width: 370px;
 
     .user-profile {
-      border: none;
-
       nb-card-body {
         padding: $space-16;
       }
@@ -17,8 +15,6 @@
     width: min(856px, 100vw);
 
     .details {
-      border: none;
-
       nb-card-body {
         .title {
           font-size: $fs-h1;
@@ -35,7 +31,7 @@
 
         .content {
           margin-top: $space-16;
-          word-break: break-word;
+          white-space: pre-wrap;
 
           .embedded-content {
             margin-top: $space-8;
@@ -48,6 +44,17 @@
           .discussion {
             margin-left: $space-8;
           }
+        }
+      }
+    }
+
+    .speaker-resource-discussion {
+      nb-card-body {
+        overflow: initial;
+        padding: 0;
+
+        app-messages {
+          @apply com-block com-h-96;
         }
       }
     }

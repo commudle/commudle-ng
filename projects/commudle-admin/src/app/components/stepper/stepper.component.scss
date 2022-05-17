@@ -1,0 +1,106 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  height: 95vh;
+  width: 800px;
+
+  @media all and (max-width: $tab-width) {
+    width: 95vw;
+  }
+
+  nb-card-body {
+    padding: 1rem;
+    overflow: hidden;
+
+    .user-profile-completion-stepper {
+      height: 100%;
+
+      &::ng-deep {
+        .header {
+          .connector-past {
+            background-color: #00d68f;
+          }
+
+          .step {
+            .label-index {
+              border-color: #00d68f;
+            }
+
+            &.completed {
+              .label-index {
+                background-color: #00d68f;
+                border-color: #00d68f;
+              }
+            }
+          }
+        }
+
+        .step-content {
+          padding: 0;
+          height: inherit;
+
+          .content {
+            overflow-x: hidden;
+            height: calc(100% - 56px - 68px);
+
+            .skills-gif,
+            .completed-gif {
+              display: block;
+              margin: 1rem auto 0;
+              max-height: 60%;
+            }
+
+            .skills-gif {
+              @media all and (max-width: $mobile-width) {
+                display: none;
+              }
+            }
+
+            // Custom scrollbar
+            &::-webkit-scrollbar {
+              width: 12px;
+            }
+
+            &::-webkit-scrollbar-track {
+              background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background-color: darken($light-purple, 5%);
+              border-radius: $border-10;
+              border: 3px solid transparent;
+              background-clip: content-box;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+              background-color: darken($light-purple, 8%);
+            }
+          }
+        }
+      }
+    }
+
+    .navigation-buttons {
+      padding-top: 1rem;
+
+      &.both-buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &.next-button-only {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      &.prev-button-only {
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+.step-one-heading {
+  margin-left: 25px;
+}

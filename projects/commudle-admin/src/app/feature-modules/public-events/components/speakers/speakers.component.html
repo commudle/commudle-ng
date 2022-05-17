@@ -1,18 +1,24 @@
-<div *ngIf="speakers.length > 0 || simpleAgendaSpeakers.length > 0">
-  <nb-card>
-    <nb-card-header>
-      <h6>
-        <nb-icon icon="award" status="info"></nb-icon>
-        Speakers
-      </h6>
-    </nb-card-header>
-    <nb-card-body>
-      <div *ngFor="let speaker of speakers" class="speaker">
-        <app-user-profile-card-large [maxDesignationLength]="45" [user]="speaker.user"></app-user-profile-card-large>
-      </div>
-      <div *ngFor="let speaker of simpleAgendaSpeakers" class="speaker">
-        <app-user-profile-card-large [maxDesignationLength]="45" [user]="speaker.user"></app-user-profile-card-large>
-      </div>
-    </nb-card-body>
-  </nb-card>
-</div>
+<nb-card *ngIf="speakers.length > 0 || simpleAgendaSpeakers.length > 0">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="people-outline" status="success"></nb-icon>
+      Speakers
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngFor="let speaker of speakers" class="speaker">
+      <app-user-profile-card-large
+        [alignFollowToRight]="true"
+        [showFollowButton]="true"
+        [user]="speaker.user"
+      ></app-user-profile-card-large>
+    </div>
+    <div *ngFor="let speaker of simpleAgendaSpeakers" class="speaker">
+      <app-user-profile-card-large
+        [alignFollowToRight]="true"
+        [showFollowButton]="true"
+        [user]="speaker.user"
+      ></app-user-profile-card-large>
+    </div>
+  </nb-card-body>
+</nb-card>

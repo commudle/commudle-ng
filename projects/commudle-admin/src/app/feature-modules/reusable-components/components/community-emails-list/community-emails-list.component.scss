@@ -1,18 +1,19 @@
 .community-emails {
-  height: 90%;
   nb-card {
-    height: 100%;
+    height: 450px;
 
     nb-card-header {
       background: #ececec;
-      font-weight: 300;
       font-size: 1.2rem;
+      font-weight: 300;
     }
+
     nb-list {
       nb-list-item {
         .email {
-          >div {
+          > div {
             display: flex;
+
             p {
               margin: 0 1.5rem 0 0;
             }

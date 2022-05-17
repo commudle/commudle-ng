@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   AfterViewChecked,
@@ -9,15 +10,19 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { NbDialogService, NbSidebarService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { DiscussionsService } from 'projects/commudle-admin/src/app/services/discussions.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 import { ILab } from 'projects/shared-models/lab.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -38,6 +43,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   discussionChat: IDiscussion;
   messagesCount: number;
   window: Window = window;
+  environment = environment;
 
   @ViewChild('introCon') private iContent: ElementRef;
   @ViewChild('dialog') private dialog: any;
@@ -48,8 +54,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(DOCUMENT) private doc: Document,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
     private router: Router,
@@ -58,34 +62,37 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private dialogService: NbDialogService,
     private footerService: FooterService,
     private nbSidebarService: NbSidebarService,
+    private navigatorShareService: NavigatorShareService,
+    private libToastLogService: LibToastLogService,
+    private clipboard: Clipboard,
+    private seoService: SeoService,
   ) {}
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn't
   // defined on the server side, we need isBrowser
   ngOnInit() {
-    if (this.isBrowser) {
-      this.routeSubscriptions.push(
-        this.activatedRoute.params.subscribe((data) => {
-          this.getLab(data.lab_id);
-          this.setStep(-1);
-        }),
-      );
+    this.routeSubscriptions.push(
+      this.activatedRoute.params.subscribe((data) => {
+        this.getLab(data.lab_id);
+        this.setStep(-1);
+      }),
+    );
 
-      // Listen for url changes
-      this.router.events.subscribe((event: NavigationStart) => {
-        if (event.navigationTrigger === 'popstate') {
-          // Get step id from url
-          const stepId = parseInt(event.url.split('/').pop(), 10);
-          if (isNaN(stepId)) {
-            // Navigation between a step and overview
-            this.setStep(-1);
-          } else {
-            // Navigation between steps
-            this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
-          }
+    // TODO check the validity of this code, why are we using navigationTrigger on this
+    // Listen for url changes
+    this.router.events.subscribe((event: NavigationStart) => {
+      if (event.navigationTrigger === 'popstate') {
+        // Get step id from url
+        const stepId = parseInt(event.url.split('/').pop(), 10);
+        if (isNaN(stepId)) {
+          // Navigation between a step and overview
+          this.setStep(-1);
+        } else {
+          // Navigation between steps
+          this.selectedLabStep = this.lab.lab_steps.findIndex((k) => k.id === stepId);
         }
-      });
-    }
+      }
+    });
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
@@ -129,54 +136,19 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.prismJsHighlightCodeService.highlightAll();
   }
 
-  setMeta() {
-    this.title.setTitle(`${this.lab.name} | By ${this.lab.user.name}`);
-    this.meta.updateTag({
-      name: 'description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `${
-        this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png'
-      }`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: `${this.lab.name} | By ${this.lab.user.name}`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content: this.lab.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    });
+  scrollToTop() {
+    if (this.isBrowser) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  setMeta() {
+    this.seoService.setTags(
+      `${this.lab.name} | By ${this.lab.user.name}`,
+      this.lab.description.replace(/<[^>]*>/g, '').substring(0, 160),
+      this.lab.header_image ? this.lab.header_image.url : 'https://commudle.com/assets/images/commudle-logo192.png',
+      'article',
+    );
   }
 
   getLab(labId) {
@@ -219,6 +191,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.lastVisitedStepId = null;
     this.selectedLabStep = index;
     this.highlightCodeSnippets();
+    if (this.selectedLabStep === -1 && this.lab) {
+      this.setMeta();
+    }
   }
 
   changeStep(count) {
@@ -228,6 +203,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.highlightCodeSnippets();
     if (this.selectedLabStep === -1) {
       this.router.navigate(['/labs', this.lab.slug]);
+      this.setMeta();
     }
   }
 
@@ -245,5 +221,23 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toggleDetails() {
     this.nbSidebarService.toggle(false, 'labMenu');
+  }
+
+  copyTextToClipboard(lab: ILab): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(`${environment.app_url}/labs/${lab.slug}`)) {
+        this.libToastLogService.successDialog('Copied Lab successfully!');
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({
+        title: `${lab.name}`,
+        url: `${environment.app_url}/labs/${lab.slug}`,
+      })
+      .then(() => {
+        this.libToastLogService.successDialog('Shared successfully!');
+      });
   }
 }

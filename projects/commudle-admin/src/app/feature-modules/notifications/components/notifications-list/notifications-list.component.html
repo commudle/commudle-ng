@@ -1,0 +1,28 @@
+<nb-list>
+  <nb-list-item (click)="closePopover()" *ngFor="let notification of notifications">
+    <nb-badge
+      *ngIf="notification.status === ENotificationStatuses.UNREAD"
+      dotMode="true"
+      position="center left"
+      status="primary"
+    ></nb-badge>
+    <a (click)="changeStatus(ENotificationStatuses.INTERACTED, notification, true)">
+      <div class="avatar com-rounded-[50%] com-h-[56px] com-w-[56px]">
+        <img [alt]="notification.sender.name" [src]="notification.sender.avatar" [title]="notification.sender.name" />
+      </div>
+      <div class="content">
+        <p class="notification-text">
+          {{ notification.notification_message }}
+        </p>
+        <p class="fs-p4 notification-time">{{ moment(notification.created_at).fromNow() }}</p>
+      </div>
+    </a>
+    <nb-icon
+      (click)="changeStatus(ENotificationStatuses.READ, notification); $event.stopPropagation()"
+      *ngIf="notification.status === ENotificationStatuses.UNREAD"
+      icon="checkmark-outline"
+      status="basic"
+      title="Mark as read"
+    ></nb-icon>
+  </nb-list-item>
+</nb-list>

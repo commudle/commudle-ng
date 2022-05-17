@@ -1,9 +1,6 @@
 <div>
   <div class="user-details-container">
-    <h6>{{ user.name }}</h6>
-    <div class="user-avatar">
-      <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}">
-    </div>
+    <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
     <p class="contact-details">
       <small>{{ user.email }}</small>
     </p>
@@ -25,8 +22,12 @@
   <div class="registration-status-details">
     <div class="registration-status-list">
       <div (click)="event.editable && updateRegistrationStatus(rs.id)" *ngFor="let rs of registrationStatuses">
-        <p *ngIf="rs.name != 'shortlisted'"
-           [ngClass]="{'selected-status': rs.id == userResponse.registration_status.id, 'disabled': !event.editable}">{{ rs.name }}</p>
+        <p
+          *ngIf="rs.name != 'shortlisted'"
+          [ngClass]="{ 'selected-status': rs.id == userResponse.registration_status.id, disabled: !event.editable }"
+        >
+          {{ rs.name }}
+        </p>
       </div>
     </div>
     <div *ngIf="userResponse.registration_status.name == 'confirmed' && userResponse.entry_pass != null">
@@ -37,19 +38,25 @@
         <button (click)="generateEntryPass()" *ngIf="userResponse.entry_pass == null" nbButton size="tiny">
           Generate Entry Pass
         </button>
-        <div *ngIf="(userResponse.entry_pass != null)" class="confirmed-status-actions">
-          <button (click)="openEntryPassEmailWindow()" nbButton size="tiny">
-            Send Entry Pass Email
-          </button>
+        <div *ngIf="userResponse.entry_pass != null" class="confirmed-status-actions">
+          <button (click)="openEntryPassEmailWindow()" nbButton size="tiny">Send Entry Pass Email</button>
           <div>
-            <button (click)="toggleUninvited()"
-                    [ngClass]="{'active-uninvited': userResponse.entry_pass.uninvited == true}" nbButton size="tiny"
-                    status="link">
+            <button
+              (click)="toggleUninvited()"
+              [ngClass]="{ 'active-uninvited': userResponse.entry_pass.uninvited == true }"
+              nbButton
+              size="tiny"
+              status="link"
+            >
               Uninvited
             </button>
-            <button (click)="toggleAttendance()"
-                    [ngClass]="{'active-attendance': userResponse.entry_pass.attendance == true}" nbButton size="tiny"
-                    status="link">
+            <button
+              (click)="toggleAttendance()"
+              [ngClass]="{ 'active-attendance': userResponse.entry_pass.attendance == true }"
+              nbButton
+              size="tiny"
+              status="link"
+            >
               Attendance
             </button>
           </div>

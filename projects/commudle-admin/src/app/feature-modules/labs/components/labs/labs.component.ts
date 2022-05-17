@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ILabs } from 'projects/shared-models/labs.model';
 import { ITag } from 'projects/shared-models/tag.model';
 import { ITags } from 'projects/shared-models/tags.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-labs',
@@ -22,56 +22,19 @@ export class LabsComponent implements OnInit {
   searchedTags: string[] = [];
   searchedLabs: ILab[] = [];
 
-  constructor(private meta: Meta, private title: Title, private labsService: LabsService) {}
+  isLoading = false;
+
+  constructor(private labsService: LabsService, private seoService: SeoService) {}
 
   ngOnInit() {
-    this.setMeta();
-
     this.getPopularTags();
     this.getLabsByTags();
-  }
 
-  setMeta() {
-    this.title.setTitle('Labs | Learn Something New!');
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
-    });
-    this.meta.updateTag({
-      name: 'og:image',
-      content: `https://commudle.com/assets/images/commudle-logo192.png`,
-    });
-    this.meta.updateTag({
-      name: 'og:image:secure_url',
-      content: `https://commudle.com/assets/images/commudle-logo192.png`,
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: 'Labs | Learn Something New!',
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
-    });
-    this.meta.updateTag({
-      name: 'og:type',
-      content: 'website',
-    });
-    this.meta.updateTag({
-      name: 'twitter:image',
-      content: `https://commudle.com/assets/images/commudle-logo192.png`,
-    });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: 'Labs | Learn Something New!',
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content:
-        'The best way to learn, is step by step. We introduce Labs, a place where you will find tutorials created by everyone who learnt something new and wants to make it easy for others to learn too!',
-    });
+    this.seoService.setTags(
+      'Labs - Step By Step Tutorials',
+      'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+      `https://commudle.com/assets/images/commudle-logo192.png`,
+    );
   }
 
   getPopularTags() {
@@ -97,11 +60,13 @@ export class LabsComponent implements OnInit {
   }
 
   getLabsByTags(replace: boolean = false): void {
+    this.isLoading = true;
     this.labsService.searchLabsByTags(this.searchedTags, this.page, this.count).subscribe((value: ILabs) => {
       this.searchedLabs = replace ? value.labs : this.searchedLabs.concat(value.labs);
       this.total = value.total;
       this.count = value.count;
       this.page++;
+      this.isLoading = false;
     });
   }
 }

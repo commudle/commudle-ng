@@ -1,14 +1,12 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.home-events {
-  border: none;
-
+.home-events-container {
   nb-card-header {
+    border-bottom: none;
+    color: $gunmetal;
     font-size: $fs-h2;
     font-weight: $fw-600;
-    color: $gunmetal;
     padding: $space-32 $space-16 $space-4;
-    border-bottom: none;
   }
 
   nb-card-body {
@@ -27,21 +25,21 @@
       display: none;
     }
 
-    .home-events-controller {
+    .home-events-navigation {
       padding-top: $space-16;
 
       button {
         background-color: $neon-blue;
-        color: $white;
         border: none;
         border-radius: $border-5;
+        color: $white;
       }
     }
   }
 }
 
 @media all and (max-width: $pc-width) {
-  .home-events {
+  .home-events-container {
     nb-card-body {
       .home-events-cards {
         display: none;
@@ -57,7 +55,7 @@
         }
       }
 
-      .home-events-controller {
+      .home-events-navigation {
         display: none;
       }
     }

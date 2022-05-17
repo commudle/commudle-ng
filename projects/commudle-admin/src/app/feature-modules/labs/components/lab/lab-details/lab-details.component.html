@@ -10,7 +10,9 @@
         [routerLink]="['/labs', lab.slug]"
         class="clickable"
       >
-        <a [routerLink]="['/labs', lab.slug]">Overview</a>
+        <a [routerLink]="['/labs', lab.slug]">
+          <h2 class="lab-step-title">Overview</h2>
+        </a>
       </nb-list-item>
       <nb-list-item
         (click)="onSetStep(i)"
@@ -21,7 +23,7 @@
       >
         <div>
           <a [routerLink]="['steps', lab.lab_steps[i].id]">
-            <div>{{ step.name }}</div>
+            <h2 class="lab-step-title">{{ i + 1 }}. {{ step.name }}</h2>
             <app-badge
               *ngIf="showContinue && i !== lab.lab_steps.length - 1 && lab.lab_steps[i].id === lab.last_visited_step_id"
               [color]="'blue'"
@@ -34,7 +36,7 @@
     </nb-list>
   </nb-card>
   <nb-card *ngIf="similarLabs.length > 0 && !hideRelatedLabs" class="related-labs">
-    <nb-card-header> RELATED POSTS</nb-card-header>
+    <nb-card-header>Related Labs</nb-card-header>
     <nb-card-body>
       <div *ngFor="let lab of similarLabs" [routerLink]="['/labs', lab.slug]" class="details clickable">
         <p class="name">{{ lab.name }}</p>
@@ -42,11 +44,19 @@
       </div>
     </nb-card-body>
   </nb-card>
+  <ng-container *ngIf="!hideRecommendedLabs">
+    <app-recommended-labs></app-recommended-labs>
+  </ng-container>
   <div *ngIf="!hideInteractions" class="interactions d-flex flex-row justify-content-space-around">
     <app-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></app-votes-display>
     <div (click)="onScrollToChat()" *ngIf="discussionChat" class="message-count clickable">
       <nb-icon icon="message-circle-outline"></nb-icon>
       {{ messagesCount }}
+    </div>
+    <div class="share-button">
+      <button (click)="copyTextToClipboard(lab)" nbButton shape="round" size="small">
+        <nb-icon icon="share"></nb-icon>
+      </button>
     </div>
   </div>
 </div>

@@ -5,7 +5,11 @@ a {
   text-decoration: none;
 }
 
-.community-list-card {
+p {
+  margin: 0;
+}
+
+.community-list-card-container {
   border: 0.5px solid $silver-sand;
   border-radius: $border-8;
   height: 296px;
@@ -17,33 +21,26 @@ a {
     width: inherit;
   }
 
-  .prefix {
-    .image {
+  .community-list-card-prefix {
+    @apply com-items-center;
+    .community-list-card-logo {
       border: 0.5px solid $silver-sand;
-      border-radius: 50%;
-      height: 48px;
-      min-width: 48px;
-      overflow: hidden;
-      width: 48px;
-
-      img {
-        height: inherit;
-        object-fit: contain;
-        width: 100%;
-      }
+      @apply com-h-12 com-w-12;
+      @apply com-rounded-full com-object-contain com-object-center;
     }
 
-    .details {
+    .community-list-card-details {
       margin-left: $space-8;
 
-      .name {
+      .community-list-card-name {
+        @apply com-m-0;
         color: $gunmetal;
         font-size: $fs-h5;
         font-weight: $fw-600;
         line-height: 16px;
       }
 
-      .member-count {
+      .community-list-card-members {
         color: #777777;
         font-size: $fs-h6;
         font-style: italic;
@@ -52,13 +49,13 @@ a {
     }
   }
 
-  .tags {
+  .community-list-card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: $space-8;
     margin-top: $space-16;
 
-    .tag {
+    .community-list-card-tag {
       background-color: $azureish-white;
       border-radius: $border-5;
       color: $gunmetal;
@@ -68,26 +65,26 @@ a {
     }
   }
 
-  .about {
+  .community-list-card-about {
     color: rgba($gunmetal, 0.85);
     font-size: $fs-h6;
     line-height: 14px;
     margin-top: $space-16;
   }
 
-  .suffix {
+  .community-list-card-suffix {
     bottom: 16px;
     position: absolute;
     right: 16px;
 
-    .members {
+    .community-list-card-member-avatars {
       display: inline-flex;
       flex-direction: row-reverse;
       height: 20px;
       margin-right: $space-36;
       width: 32px;
 
-      .avatar {
+      .community-list-card-member-avatar {
         border: 1px solid $white;
         border-radius: $border-50;
         overflow: hidden;
@@ -105,7 +102,7 @@ a {
       }
     }
 
-    .join-community {
+    .community-join-btn {
       app-membership-toggle {
         &::ng-deep {
           button {

@@ -1,10 +1,10 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 p {
-  margin: 0;
+  color: $gunmetal;
   font-size: $fs-13;
   line-height: 15px;
-  color: $gunmetal;
+  margin: 0;
 }
 
 .message-container {
@@ -14,28 +14,19 @@ p {
     width: 100%;
 
     .avatar {
-      max-width: 32px;
-      min-width: 32px;
-      max-height: 32px;
-      overflow: hidden;
-      border-radius: $border-50;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
+      @apply com-h-8 com-w-8 com-rounded-full com-object-cover com-object-center;
     }
 
     .user-container {
-      width: 100%;
       margin-left: $space-8;
+      width: 100%;
 
       .user {
         .name {
           a {
-            text-decoration: none;
             color: inherit;
             font-weight: $fw-600;
+            text-decoration: none;
 
             &:hover {
               text-decoration: underline;
@@ -44,9 +35,13 @@ p {
         }
 
         .expert-icon {
+          height: 12px;
           margin-left: $space-4;
           width: 12px;
-          height: 12px;
+        }
+
+        .time {
+          @apply com-ml-2 com-text-xs com-text-gray-500;
         }
       }
 
@@ -64,8 +59,8 @@ p {
       &::ng-deep {
         .votes {
           p {
-            height: 18px;
             font-size: $fs-h6;
+            height: 18px;
 
             .count {
               color: $spanish-gray;
@@ -84,10 +79,10 @@ p {
       padding: 0 $space-8;
 
       p {
-        margin-top: $space-1;
+        color: $spanish-gray;
         font-size: $fs-h6;
         line-height: 14px;
-        color: $spanish-gray;
+        margin-top: $space-1;
       }
 
       nb-icon {
@@ -104,9 +99,18 @@ p {
 
       emoji-mart {
         display: none;
+        width: clamp(250px, 100%, 360px);
 
         &.active {
           display: initial;
+        }
+      }
+
+      form {
+        nb-form-field {
+          .emoji-picker {
+            @apply com-p-2.5;
+          }
         }
       }
     }

@@ -1,7 +1,13 @@
 <div *ngIf="network.length > 0" class="user-network-list-container">
   <nb-list>
     <nb-list-item *ngFor="let user of network">
-      <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+      <!-- TODO : try fixing line clamp for username instead of using truncateText -->
+      <app-user-profile-card-large
+        [user]="user"
+        [showFollowButton]="true"
+        [alignFollowToRight]="true"
+        [maxUserNameLength]="20"
+      ></app-user-profile-card-large>
     </nb-list-item>
   </nb-list>
 </div>

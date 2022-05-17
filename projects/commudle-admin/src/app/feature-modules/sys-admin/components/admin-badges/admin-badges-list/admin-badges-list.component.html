@@ -7,7 +7,7 @@
         Create Badge
       </button>
       <button [routerLink]="['/sys-admin', 'badges', 'assign']" ghost nbButton shape="round" size="small">
-        <nb-icon icon="plus"></nb-icon>
+        <nb-icon icon="person-add"></nb-icon>
         Assign Badge
       </button>
     </div>
@@ -23,7 +23,7 @@
               <nb-tag [text]="badge.badge_type" size="tiny" status="info"></nb-tag>
             </p>
             <div *ngIf="badge.image" class="badge-image">
-              <img [src]="badge.image.url | safeUrl" alt="{{ badge.name }}" />
+              <img [src]="badge.image.url | safeUrl" alt="{{ badge.name }}" title="{{ badge.name }}" />
             </div>
           </div>
           <div class="controls d-flex">

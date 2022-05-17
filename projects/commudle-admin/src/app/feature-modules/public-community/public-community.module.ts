@@ -13,12 +13,13 @@ import {
   NbOptionModule,
   NbPopoverModule,
   NbSelectModule,
+  NbSpinnerModule,
   NbTabsetModule,
   NbTooltipModule,
 } from '@nebular/theme';
 import { LinkyModule } from 'ngx-linky';
-import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AboutComponent } from './components/about/about.component';
 import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
@@ -48,10 +49,10 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     PublicCommunityRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
     LinkyModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,
@@ -67,6 +68,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     NbSelectModule,
     NbOptionModule,
     NbDialogModule.forChild(),
+    NbSpinnerModule,
   ],
 })
 export class PublicCommunityModule {}

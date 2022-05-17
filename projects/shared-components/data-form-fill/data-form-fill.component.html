@@ -1,6 +1,6 @@
 <div *ngIf="dataForm && formCreated">
   <div *ngIf="dataForm.description" class="form-description">
-    <p [innerHTML]="dataForm.description | linky:{sanitizeHtml: true}"></p>
+    <p [innerHTML]="dataForm.description | linky: { sanitizeHtml: true }"></p>
   </div>
   <form (ngSubmit)="submitForm()" [formGroup]="dataFormEntityResponseForm">
     <div *ngFor="let question of dataForm.questions; let i = index" class="question">
@@ -10,15 +10,15 @@
         </p>
         <p>
           <span class="title">
-            {{question.title}}<span *ngIf="question.required" class="required-question">*</span>
+            {{ question.title }}<span *ngIf="question.required" class="required-question">*</span>
           </span>
           <br />
-          <small *ngIf="question.description" class="description"> {{question.description}} </small>
+          <small *ngIf="question.description" class="description"> {{ question.description }} </small>
         </p>
       </div>
       <div *ngIf="question.question_type_id == EQuestionTypes.SHORT_ANSWER" class="answer">
         <input
-          formControlName="{{question.id}}"
+          formControlName="{{ question.id }}"
           fullWidth
           nbInput
           placeholder="Short Answer"
@@ -26,7 +26,11 @@
           type="text"
         />
         <span
-          *ngIf="dataFormEntityResponseForm['controls'][question.id].touched && dataFormEntityResponseForm['controls'][question.id].invalid && dataFormEntityResponseForm['controls'][question.id].errors.required"
+          *ngIf="
+            dataFormEntityResponseForm['controls'][question.id].touched &&
+            dataFormEntityResponseForm['controls'][question.id].invalid &&
+            dataFormEntityResponseForm['controls'][question.id].errors.required
+          "
           class="validation-error-text"
         >
           Required Field
@@ -34,7 +38,7 @@
       </div>
       <div *ngIf="question.question_type_id == EQuestionTypes.NUMBER" class="answer">
         <input
-          formControlName="{{question.id}}"
+          formControlName="{{ question.id }}"
           fullWidth
           nbInput
           placeholder="Enter a Number"
@@ -42,7 +46,11 @@
           type="number"
         />
         <span
-          *ngIf="dataFormEntityResponseForm['controls'][question.id].touched && dataFormEntityResponseForm['controls'][question.id].invalid && dataFormEntityResponseForm['controls'][question.id].errors.required"
+          *ngIf="
+            dataFormEntityResponseForm['controls'][question.id].touched &&
+            dataFormEntityResponseForm['controls'][question.id].invalid &&
+            dataFormEntityResponseForm['controls'][question.id].errors.required
+          "
           class="validation-error-text"
         >
           Required Field
@@ -50,14 +58,18 @@
       </div>
       <div *ngIf="question.question_type_id == EQuestionTypes.LONG_ANSWER" class="answer">
         <textarea
-          formControlName="{{question.id}}"
+          formControlName="{{ question.id }}"
           fullWidth
           nbInput
           placeholder="You can write a detailed answer!"
           status="primary"
         ></textarea>
         <span
-          *ngIf="dataFormEntityResponseForm['controls'][question.id].touched && dataFormEntityResponseForm['controls'][question.id].invalid && dataFormEntityResponseForm['controls'][question.id].errors.required"
+          *ngIf="
+            dataFormEntityResponseForm['controls'][question.id].touched &&
+            dataFormEntityResponseForm['controls'][question.id].invalid &&
+            dataFormEntityResponseForm['controls'][question.id].errors.required
+          "
           class="validation-error-text"
         >
           Required Field
@@ -65,23 +77,28 @@
       </div>
 
       <div *ngIf="question.question_type_id == EQuestionTypes.SINGLE_CHOICE" class="answer">
-        <nb-radio-group class="options" formControlName="{{question.id}}" name="{{question.id}}">
-          <nb-radio *ngFor="let option of question.question_choices" [value]="option.id"> {{option.title}} </nb-radio>
+        <nb-radio-group class="options" formControlName="{{ question.id }}" name="{{ question.id }}">
+          <nb-radio *ngFor="let option of question.question_choices" [value]="option.id"> {{ option.title }} </nb-radio>
         </nb-radio-group>
       </div>
 
       <div
         *ngIf="question.question_type_id == EQuestionTypes.MULTIPLE_CHOICE"
-        class="checkboxes"
         class="answer"
-        formGroupName="{{question.id}}"
+        formGroupName="{{ question.id }}"
       >
         <span *ngIf="dataFormEntityResponseForm['controls'][question.id].errors" class="validation-error-text">
-          {{dataFormEntityResponseForm['controls'][question.id][question.question_choices[0].id].errors}}
+          {{ dataFormEntityResponseForm['controls'][question.id][question.question_choices[0].id].errors }}
         </span>
-        <nb-checkbox *ngFor="let option of question.question_choices" formControlName="{{option.id}}" status="basic">
-          {{option.title}}
-        </nb-checkbox>
+        <div class="checkboxes">
+          <nb-checkbox
+            *ngFor="let option of question.question_choices"
+            formControlName="{{ option.id }}"
+            status="basic"
+          >
+            {{ option.title }}
+          </nb-checkbox>
+        </div>
       </div>
     </div>
     <nb-alert accent="warning"

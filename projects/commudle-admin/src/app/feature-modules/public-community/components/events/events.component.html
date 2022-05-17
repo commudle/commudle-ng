@@ -1,12 +1,12 @@
-<nb-card>
+<nb-card [nbSpinner]="eventLoader">
   <nb-card-body>
-    <div *ngIf="events.length > 0" class="events d-flex flex-wrap justify-content-center">
+    <div class="events d-flex flex-wrap justify-content-center">
       <a
         *ngFor="let event of events"
         [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]"
-        class="clickable"
+        class="event-clickable"
       >
-        <nb-card [ngClass]="{'upcoming' : moment(event.end_time) > moment() && event.header_image_path}" class="event">
+        <nb-card [ngClass]="{ upcoming: moment(event.end_time) > moment() && event.header_image_path }" class="event">
           <nb-badge
             *ngIf="moment(event.start_time) > moment()"
             position="top left"
@@ -24,9 +24,9 @@
               </span>
               <img
                 *ngIf="event.header_image_path"
-                alt="{{event.name}}"
-                src="{{event.header_image_path}}"
-                title="{{event.name}}"
+                alt="{{ event.name }}"
+                src="{{ event.header_image_path }}"
+                title="{{ event.name }}"
               />
               <nb-icon *ngIf="!event.header_image_path" icon="link" status="primary"></nb-icon>
             </div>
@@ -39,28 +39,31 @@
                   status="success"
                 ></nb-icon>
                 <span class="event-name">
-                  {{event.name}}
-                  <span *ngIf="event.kommunity_id != community.id" class="collaboration">(Collaboration)</span>
+                  {{ event.name }}
+                  <span *ngIf="event.kommunity_id !== community.id" class="collaboration">(Collaboration)</span>
                 </span>
               </h5>
               <div>
                 <div
                   *ngIf="event.start_time && event.end_time"
-                  [ngClass]="{'timings' : moment(event.end_time) > moment(), 'past-timings': moment(event.end_time) <= moment()}"
+                  [ngClass]="{
+                    timings: moment(event.end_time) > moment(),
+                    'past-timings': moment(event.end_time) <= moment()
+                  }"
                 >
                   <p>
                     <nb-icon class="time" icon="clock-outline"></nb-icon>
-                    <span>{{moment(event.start_time).format('dddd Do MMM, YYYY h:mm A')}}</span>
+                    <span>{{ moment(event.start_time).format('dddd Do MMM, YYYY h:mm A') }}</span>
                     to
-                    <span *ngIf="event.end_time.getDate != event.start_time.getDate">
-                      {{moment(event.end_time).format('dddd Do MMM, YYYY h:mm A')}}
+                    <span *ngIf="event.end_time.getDate !== event.start_time.getDate">
+                      {{ moment(event.end_time).format('dddd Do MMM, YYYY h:mm A') }}
                     </span>
                     <span *ngIf="event.end_time.getDate === event.start_time.getDate">
-                      {{moment(event.end_time).format('h:mm A')}}
+                      {{ moment(event.end_time).format('h:mm A') }}
                     </span>
                     <span *ngIf="event.timezone">
                       <nb-icon icon="globe"></nb-icon>
-                      {{momentTimezone.tz(event.timezone).format('z')}}
+                      {{ momentTimezone.tz(event.timezone).format('z') }}
                     </span>
                   </p>
                 </div>

@@ -1,26 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbUserModule } from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbLayoutModule,
+  NbUserModule,
+} from '@nebular/theme';
+import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
-import { SpeakerResourceDiscussionMessageComponent } from './components/speaker-resource-discussion/speaker-resource-discussion-message/speaker-resource-discussion-message.component';
-import { SpeakerResourceDiscussionComponent } from './components/speaker-resource-discussion/speaker-resource-discussion.component';
 import { SpeakerResourceComponent } from './components/speaker-resource/speaker-resource.component';
 import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.module';
 
-
 @NgModule({
-  declarations: [
-    SpeakerResourceComponent,
-    SpeakerResourceDiscussionComponent,
-    SpeakerResourceDiscussionMessageComponent
-
-  ],
+  declarations: [SpeakerResourceComponent],
   imports: [
     CommonModule,
     SpeakerResourcesRoutingModule,
     ReactiveFormsModule,
     SharedComponentsModule,
+    LinkyModule,
 
     // Nebular
     NbCardModule,
@@ -29,8 +31,7 @@ import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.modul
     NbFormFieldModule,
     NbUserModule,
     NbButtonModule,
-    NbInputModule
-  ]
+    NbInputModule,
+  ],
 })
-export class SpeakerResourcesModule {
-}
+export class SpeakerResourcesModule {}

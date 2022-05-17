@@ -1,133 +1,122 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.home-communities {
-  border: 0;
+.home-communities-container {
+  padding: $space-16;
 
   nb-card-header {
+    border-bottom: none;
+    color: $gunmetal;
     font-size: $fs-h2;
     font-weight: $fw-600;
-    color: $gunmetal;
     padding: $space-16 0 $space-8;
-    border-bottom: none;
 
-    p.sub-header {
-      font-size: $fs-card-list-title;
+    p.home-communities-sub-header {
       color: $spanish-gray;
+      font-size: $fs-card-list-title;
       line-height: normal;
       margin: $space-4 0 0;
     }
   }
 
-  .home-communities-list {
+  .home-communities-body {
     padding: 0;
 
-    nb-list {
+    .home-communities-list {
       nb-list-item {
-        padding: $space-16 0;
-        margin-bottom: $space-8;
-        display: flex;
-        justify-content: space-between;
         align-items: center;
         border: none;
+        display: flex;
+        justify-content: space-between;
+        padding: $space-16 0;
 
         app-skeleton-text {
           width: 100%;
         }
 
-        .home-community {
+        .home-community-card {
           margin-right: $space-8;
 
           .home-community-image {
-            min-height: 2.5rem;
-            max-height: 2.5rem;
-            min-width: 2.5rem;
-            max-width: 2.5rem;
-            overflow: hidden;
-            border-radius: 50%;
             border: 0.5px solid $platinum;
-            margin-right: $space-8;
-
-            img {
-              width: 100%;
-            }
+            @apply com-mr-2;
+            @apply com-h-10 com-w-10;
+            @apply com-rounded-full com-object-contain com-object-center com-align-middle;
           }
 
           .home-community-details {
             .home-community-name {
+              color: $gunmetal;
               font-size: $fs-card-list-title;
               font-weight: $fw-600;
-              color: $gunmetal;
             }
 
-            .home-community-member-count {
-              margin-top: $space-4;
+            .home-community-members {
+              color: $spanish-gray;
               font-size: $fs-h5;
               line-height: 14px;
-              color: $spanish-gray;
+              margin-top: $space-4;
             }
           }
         }
 
-        .home-communities-join {
-          min-width: 70px;
-          padding: $space-4 $space-12;
-          font-weight: $fw-400;
-          text-transform: capitalize;
-          color: $white;
+        .home-community-join-btn {
           background-color: $neon-blue;
           border: none;
+          color: $white;
+          font-weight: $fw-400;
+          min-width: 70px;
+          padding: $space-4 $space-12;
+          text-transform: capitalize;
         }
 
-        .home-communities-join.active {
-          color: $neon-blue;
+        .home-community-join-btn.active {
           background-color: $white;
           border: 0.5px solid $neon-blue;
+          color: $neon-blue;
         }
       }
     }
 
-    .home-communities-all {
-      padding: $space-8 $space-28 $space-24;
-
-      a {
-        font-size: $fs-h5;
-        color: rgba($neon-blue, 0.95);
-      }
+    .home-community-all {
+      color: rgba($neon-blue, 0.95);
+      display: block;
+      font-size: $fs-h5;
+      padding: $space-12 0 $space-8;
     }
   }
 }
 
 @media all and (max-width: $tab-width) {
   .home-communities {
-    .home-communities-list {
-      nb-list {
+    .home-communities-body {
+      .home-communities-list {
         flex-direction: row;
 
         nb-list-item {
-          .home-community {
+          .home-community-card {
             flex-direction: column;
             max-width: 6rem;
 
             .home-community-image {
-              min-height: 6rem;
-              max-height: 6rem;
-              min-width: 6rem;
-              max-width: 6rem;
-              border-radius: 0;
               border: none;
+              border-radius: 0;
               margin-right: 0;
+              max-height: 6rem;
+              max-width: 6rem;
+              min-height: 6rem;
+              min-width: 6rem;
             }
 
             .home-community-details {
               .home-community-name {
                 margin-top: $space-8;
                 max-width: 6rem;
-                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                white-space: nowrap;
               }
 
-              .home-community-member-count {
+              .home-community-members {
                 display: none;
               }
             }
@@ -137,19 +126,19 @@
             width: 80vw;
           }
 
-          .home-communities-join {
+          .home-community-join-btn {
             display: none;
           }
         }
       }
 
-      .home-communities-all {
+      .home-community-all {
         display: none;
       }
     }
   }
 }
 
-.home-communities-dialog {
+.home-community-dialog {
   width: min(100vw, 500px);
 }

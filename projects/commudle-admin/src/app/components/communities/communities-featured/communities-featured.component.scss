@@ -6,8 +6,7 @@ p {
   margin: 0;
 }
 
-.communities-featured {
-  border: none;
+.communities-featured-container {
   margin-bottom: $space-32;
   overflow: hidden;
   position: relative;
@@ -34,12 +33,12 @@ p {
   nb-card-body {
     padding: $space-32 $space-20 $space-24;
 
-    .heading {
+    .communities-featured-heading {
       @include card-header-text;
       margin: 0 0 $space-44;
     }
 
-    .featured-communities-list {
+    .communities-featured-list {
       @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
 
       @screen lg {
@@ -58,7 +57,7 @@ p {
           min-width: inherit;
         }
 
-        .actions {
+        .featured-community-actions {
           gap: $space-8;
           position: absolute;
           right: $space-12;
@@ -71,26 +70,37 @@ p {
               color: $neon-blue;
             }
           }
+
+          app-share-button {
+            ::ng-deep {
+              .share-button-container {
+                button {
+                  background-color: $azureish-white;
+                }
+              }
+            }
+          }
         }
 
-        .image {
+        .featured-community-image-container {
           height: 156px;
           overflow: hidden;
           width: 100%;
 
-          img {
+          .featured-community-image {
             width: 100%;
           }
         }
 
-        .content {
+        .featured-community-about {
           padding: $space-16;
 
-          .name {
+          .featured-community-name {
+            @apply com-m-0;
             @include card-title-text;
           }
 
-          .reason {
+          .featured-community-reason {
             @include card-content-text;
             margin-top: $space-8;
           }
@@ -101,9 +111,9 @@ p {
 }
 
 @media all and (max-width: $tab-width) {
-  .communities-featured {
+  .communities-featured-container {
     nb-card-body {
-      .featured-communities-list {
+      .communities-featured-list {
         overflow-x: scroll;
       }
     }

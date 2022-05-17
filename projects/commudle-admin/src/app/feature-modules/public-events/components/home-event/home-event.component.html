@@ -1,153 +1,163 @@
-<div class="page-container page-padding">
-  <div *ngIf="event && community" class="event">
-    <div class="header">
-      <div class="community-details">
-        <app-community-badge [background]="'bg-white'" [community]="community"></app-community-badge>
-      </div>
-      <!-- this will either be an image or just a plain background with the name of the event -->
-      <div *ngIf="!event.header_image_path" class="filler">
-        <div class="event-details">
-          <h1 class="name">{{ event.name }}</h1>
-        </div>
-      </div>
-      <div *ngIf="event.header_image_path" class="image">
-        <img alt="{{ event.name }}" src="{{ event.header_image_path }}" title="{{ event.name }}">
-      </div>
+<div *ngIf="event && community" class="base-layout com-my-8">
+  <div class="container">
+    <app-community-badge [background]="'bg-white'" [community]="community"></app-community-badge>
+
+    <div class="com-px-2 com-my-4">
+      <h2 *ngIf="!event.header_image_path" class="fs-h2">{{ event.name }}</h2>
+      <img
+        *ngIf="event.header_image_path"
+        alt="{{ event.name }}"
+        class="com-w-full"
+        src="{{ event.header_image_path }}"
+        title="{{ event.name }}"
+      />
     </div>
 
-    <div class="page-menu">
-      <nb-card>
-        <nb-card-body>
-          <div class="menu-items">
-            <a (click)="scroll(description)">
-              <nb-icon icon="info-outline"></nb-icon>
-              <span>Details</span>
-            </a>
-            <a (click)="scroll(updates)" *ngIf="hasUpdates">
-              <nb-icon icon="star-outline" status="warning"></nb-icon>
-              <span>Updates</span>
-            </a>
-            <a (click)="scroll(agenda)" *ngIf="hasAgenda">
-              <nb-icon icon="pin-outline" status="primary"></nb-icon>
-              <span>Schedule</span>
-            </a>
-            <a (click)="scroll(speakers)" *ngIf="hasSpeakers">
-              <nb-icon icon="award" status="info"></nb-icon>
-              <span>Speakers</span>
-            </a>
-            <a (click)="scroll(eventChat)" *ngIf="discussionChat">
-              <nb-icon icon="message-square-outline"></nb-icon>
-              <span>Comments</span>
-            </a>
-            <a (click)="scroll(sponsors)" *ngIf="hasSponsors">
-              <nb-icon icon="briefcase-outline"></nb-icon>
-              <span>Sponsors</span>
-            </a>
-            <a (click)="scroll(collaborationCommunities)" *ngIf="hasCollaborationCommunities">
-              <nb-icon icon="people" status="basic"></nb-icon>
-              <span>Collaborations</span>
-            </a>
-            <a (click)="scroll(volunteers)" *ngIf="hasVolunteers">
-              <nb-icon icon="people-outline" status="basic"></nb-icon>
-              <span>Volunteers</span>
-            </a>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
+    <nb-card class="home-event-menu">
+      <nb-card-body>
+        <nb-actions>
+          <nb-action (click)="scroll(updatesSectionRef)" *ngIf="hasUpdates" class="clickable">
+            <nb-icon icon="star-outline" status="warning"></nb-icon>
+            <span>Updates</span>
+          </nb-action>
+          <nb-action (click)="scroll(descriptionSectionRef)" class="clickable">
+            <nb-icon icon="info-outline" status="info"></nb-icon>
+            <span>Details</span>
+          </nb-action>
+          <nb-action (click)="scroll(agendaSectionRef)" *ngIf="hasAgenda" class="clickable">
+            <nb-icon icon="calendar-outline" status="primary"></nb-icon>
+            <span>Agenda</span>
+          </nb-action>
+          <nb-action (click)="scroll(speakersSectionRef)" *ngIf="hasSpeakers" class="clickable">
+            <nb-icon icon="people-outline" status="success"></nb-icon>
+            <span>Speakers</span>
+          </nb-action>
+          <nb-action (click)="scroll(sponsorsSectionRef)" *ngIf="hasSponsors" class="clickable">
+            <nb-icon icon="briefcase-outline" status="danger"></nb-icon>
+            <span>Sponsors</span>
+          </nb-action>
+          <nb-action
+            (click)="scroll(collaborationCommunitiesSectionRef)"
+            *ngIf="hasCollaborationCommunities"
+            class="clickable"
+          >
+            <nb-icon icon="pricetags-outline" status="warning"></nb-icon>
+            <span>Collaborations</span>
+          </nb-action>
+          <nb-action (click)="scroll(commentsSectionRef)" *ngIf="discussionChat" class="clickable">
+            <nb-icon icon="message-circle-outline" status="info"></nb-icon>
+            <span>Comments</span>
+          </nb-action>
+          <nb-action (click)="scroll(volunteersSectionRef)" *ngIf="hasVolunteers" class="clickable">
+            <nb-icon icon="headphones-outline" status="basic"></nb-icon>
+            <span>Volunteers</span>
+          </nb-action>
+        </nb-actions>
+      </nb-card-body>
+    </nb-card>
 
-    <div class="event-components d-flex flex-column">
-      <div [ngClass]="{'hidden': !(hasOpenForms || hasInterestedMembers || event.start_time)}" class="highlighted-info">
-        <!-- links to forms + event slides + people who went -->
-        <!-- this will show the link to the forms if the event is live -->
-        <!-- else this will just show the links to event slides -->
-        <app-highlighted-links (hasOpenForms)="hasOpenForms = $event"
-                               *ngIf="event.editable || event.event_status.name == EEventStatuses.OPEN"
-                               [community]="community" [event]="event"></app-highlighted-links>
-        <div *ngIf="event.start_time && event.end_time" class="timings">
-          <p>
-            <nb-icon icon="clock-outline"></nb-icon>
-            <span>
-              {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('dddd') }}
-            </span>
-            <br>
-            <small>
-              <strong>
-                {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('Do MMM, YYYY h:mm A') }}
-              </strong>
-              to
-              <strong *ngIf="event.end_time.getDate != event.start_time.getDate">
-                {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('dddd Do MMM, YYYY h:mm A') }}
-              </strong>
-              <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
-                {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('h:mm A') }}
-              </strong>
-              <span *ngIf="event.timezone">
-                <br>
-                <nb-icon icon="globe"></nb-icon>
-                {{ momentTimezone.tz(event.timezone).format('z') }}
-              </span>
-            </small>
-          </p>
+    <div class="two-column-layout wide mobile-reverse">
+      <div class="main-column">
+        <app-live-sessions [community]="community" [event]="event"></app-live-sessions>
+        <div #updatesSection>
+          <app-event-updates
+            (hasUpdates)="hasUpdates = $event"
+            [community]="community"
+            [event]="event"
+          ></app-event-updates>
         </div>
-        <div *ngIf="(moment() >= moment(event.end_time)) && !event.custom_agenda" class="past-session-link">
-          <p class="title text-info">
-            <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']">
-              <small>
-                <nb-icon icon="monitor-outline"></nb-icon>
-              </small>
-              <br>
-              Click here to view event session
-            </a>
-          </p>
-        </div>
-        <div class="attendees">
-          <app-attending-members (hasInterestedMembers)="hasInterestedMembers = $event" [community]="community"
-                                 [event]="event"></app-attending-members>
-        </div>
-      </div>
-      <div [ngClass]="{'full-width-column': hasOpenForms || hasInterestedMembers}" class="info">
-        <div class="live-sessions">
-          <app-live-sessions [community]="community" [event]="event"></app-live-sessions>
-        </div>
-        <div #updates class="updates">
-          <!-- the priority of this depends on the status
-            of the event, it should be at the top if the event is yet to go live  -->
-          <app-event-updates (hasUpdates)="hasUpdates = $event" [community]="community"
-                             [event]="event"></app-event-updates>
-        </div>
-        <div #description class="description">
+        <div #descriptionSection>
           <app-event-description [community]="community" [event]="event"></app-event-description>
         </div>
-        <div #agenda class="agenda">
+        <div #agendaSection>
           <app-agenda (hasAgenda)="hasAgenda = $event" [community]="community" [event]="event"></app-agenda>
         </div>
-        <div #speakers class="all-speakers">
+        <div #speakersSection>
           <app-speakers (hasSpeakers)="hasSpeakers = $event" [community]="community" [event]="event"></app-speakers>
         </div>
-        <div #sponsors class="sponsors">
+        <div #sponsorsSection>
           <app-sponsors (hasSponsors)="hasSponsors = $event" [event]="event"></app-sponsors>
         </div>
-        <div #collaborationCommunities class="partner-communities">
-          <app-collaboration-communities (hasCollaborationCommunities)="hasCollaborationCommunities = $event"
-                                         [community]="community" [event]="event"></app-collaboration-communities>
+        <div #collaborationCommunitiesSection>
+          <app-collaboration-communities
+            (hasCollaborationCommunities)="hasCollaborationCommunities = $event"
+            [community]="community"
+            [event]="event"
+          ></app-collaboration-communities>
         </div>
-        <div #eventChat class="event-chat">
-          <!-- this is a unique case where we are giving a card as a wrapper because the chat component should be able to fit on any surface -->
-          <nb-card *ngIf="discussionChat">
+        <div #commentsSection>
+          <nb-card *ngIf="discussionChat" class="home-event-discussion">
             <nb-card-header>
-              <nb-icon icon="message-square-outline"></nb-icon>
+              <nb-icon icon="message-circle-outline" status="info"></nb-icon>
               Comments
             </nb-card-header>
             <nb-card-body>
-              <app-discussion-chat [discussion]="discussionChat"></app-discussion-chat>
+              <app-messages [discussion]="discussionChat"></app-messages>
             </nb-card-body>
           </nb-card>
         </div>
-        <div #volunteers class="volunteers">
+        <div #volunteersSection>
           <app-team (hasVolunteers)="hasVolunteers = $event" [community]="community" [event]="event"></app-team>
         </div>
-        <div class="tags"></div>
+      </div>
+      <div class="right-column">
+        <app-highlighted-links
+          (hasOpenForms)="hasOpenForms = $event"
+          *ngIf="event.editable || event.event_status.name === EEventStatuses.OPEN"
+          [community]="community"
+          [event]="event"
+        ></app-highlighted-links>
+        <nb-card *ngIf="event.start_time && event.end_time">
+          <nb-card-body>
+            <p>
+              <nb-icon icon="clock-outline"></nb-icon>
+              <span>
+                {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('dddd') }}
+              </span>
+              <br />
+              <small>
+                <strong>
+                  {{ momentTimezone.tz(moment.utc(event.start_time), event.timezone).format('Do MMM, YYYY h:mm A') }}
+                </strong>
+                to
+                <strong *ngIf="event.end_time.getDate !== event.start_time.getDate">
+                  {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('dddd Do MMM, YYYY h:mm A') }}
+                </strong>
+                <strong *ngIf="event.end_time.getDate === event.start_time.getDate">
+                  {{ momentTimezone.tz(moment.utc(event.end_time), event.timezone).format('h:mm A') }}
+                </strong>
+                <span *ngIf="event.timezone">
+                  <br />
+                  <nb-icon icon="globe"></nb-icon>
+                  {{ momentTimezone.tz(event.timezone).format('z') }}
+                </span>
+              </small>
+            </p>
+          </nb-card-body>
+        </nb-card>
+        <app-share-button
+          [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+          [title]="event.name"
+          [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
+        ></app-share-button>
+        <nb-card *ngIf="moment() >= moment(event.end_time) && !event.custom_agenda">
+          <nb-card-body>
+            <p class="text-info">
+              <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']">
+                <small>
+                  <nb-icon icon="monitor-outline"></nb-icon>
+                </small>
+                <br />
+                Click here to view event session
+              </a>
+            </p>
+          </nb-card-body>
+        </nb-card>
+        <app-attending-members
+          (hasInterestedMembers)="hasInterestedMembers = $event"
+          [community]="community"
+          [event]="event"
+        ></app-attending-members>
       </div>
     </div>
   </div>

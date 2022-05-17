@@ -1,0 +1,15 @@
+<svg width="55" height="60" viewBox="0 0 120 120">
+  <g>
+    <circle [attr.r]="radius" cx="60" cy="60" stroke-width="12" class="progress-meter" />
+    <circle
+      [style.strokeDasharray]="circumference"
+      [style.strokeDashoffset]="dashoffset"
+      [attr.r]="radius"
+      cx="60"
+      cy="60"
+      stroke-width="12"
+      class="progress-value"
+    />
+  </g>
+  <text class="com-text-2xl" x="60" y="60" alignment-baseline="middle">{{ value }}%</text>
+</svg>

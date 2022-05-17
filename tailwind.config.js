@@ -12,8 +12,10 @@ module.exports = {
         24: 'repeat(24, minmax(0, 1fr))',
       },
       gridColumn: {
+        'span-18': 'span 18 / span 18',
         'span-19': 'span 19 / span 19',
         'span-20': 'span 20 / span 20',
+        'span-22': 'span 22 / span 22',
       },
     },
     container: {
@@ -23,7 +25,11 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/line-clamp'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
   corePlugins: {
     preflight: false,
   },

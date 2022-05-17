@@ -1,3 +1,9 @@
+.survey-header {
+  h4 {
+    margin: 0;
+  }
+}
+
 .survey {
   nb-card-body {
     display: flex;
@@ -12,15 +18,16 @@
     }
 
     .details {
+      align-items: center;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-evenly;
-      align-items: center;
     }
 
     @media screen and (min-width: 800px) {
       flex-direction: row;
+
       .name {
         width: 40%;
       }

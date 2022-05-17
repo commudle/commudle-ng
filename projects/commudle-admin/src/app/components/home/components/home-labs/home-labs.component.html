@@ -1,47 +1,20 @@
-<nb-card class="home-labs">
-  <nb-card-header [routerLink]="['/labs']" class="clickable">
+<nb-card class="home-labs-container">
+  <nb-card-header [routerLink]="['/labs']" class="home-labs-header clickable">
     Labs
-    <p class="sub-header">Learn from people like you</p>
+    <p class="home-labs-sub-header">Learn from people like you</p>
   </nb-card-header>
-  <nb-card-body>
-    <div class="labs-list">
-      <ul *ngIf="labs.length === 0">
-        <li *ngFor="let _ of [].constructor(4)">
-          <app-skeleton-text [rows]="2"></app-skeleton-text>
-        </li>
-      </ul>
-      <ul *ngIf="labs.length > 0">
-        <li *ngFor="let lab of labs" class="clickable">
-          <p class="name">
-            <a [routerLink]="['/labs', lab.slug]" class="com-line-clamp-2">{{ lab.name }}</a>
-          </p>
-          <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
-        </li>
-      </ul>
-    </div>
-    <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-link clickable">
-      <a>View all</a>
-    </p>
-
-    <!--  MOBILE  -->
-    <div *ngIf="labs.length === 0" class="home-labs-mobile">
-      <app-skeleton-text [rows]="3"></app-skeleton-text>
-    </div>
-    <div *ngIf="labs.length > 0" class="home-labs-mobile">
-      <div class="home-labs-mobile-image">
-        <img
-          alt="{{ labs[0].name }}"
-          src="{{ labs[0].header_image?.i350 || '/assets/images/Lab-Default.png' }}"
-          title="{{ labs[0].name }}"
-        />
-      </div>
-      <div class="home-labs-mobile-details">
-        <div class="home-labs-mobile-name">{{ labs[0].name }}</div>
-        <div class="home-labs-mobile-author">{{ labs[0].user.name }}</div>
-      </div>
-    </div>
-    <p *ngIf="labs.length > 0" [routerLink]="['/labs']" class="all-labs-mobile-link clickable text-center">
-      <a>View all</a>
-    </p>
+  <nb-card-body class="home-labs-body">
+    <nb-list *ngIf="labs.length === 0" class="home-labs-list">
+      <nb-list-item *ngFor="let _ of [].constructor(4)">
+        <app-skeleton-text [rows]="2"></app-skeleton-text>
+      </nb-list-item>
+    </nb-list>
+    <nb-list *ngIf="labs.length > 0" class="home-labs-list">
+      <nb-list-item *ngFor="let lab of labs">
+        <a [routerLink]="['/labs', lab.slug]" class="home-lab-name com-line-clamp-2">{{ lab.name }}</a>
+        <app-user-profile-card-small [user]="lab.user"></app-user-profile-card-small>
+      </nb-list-item>
+    </nb-list>
+    <a *ngIf="labs.length > 0" [routerLink]="['/labs']" class="home-labs-all text-center">View all</a>
   </nb-card-body>
 </nb-card>

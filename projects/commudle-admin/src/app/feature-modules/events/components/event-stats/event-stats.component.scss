@@ -1,16 +1,21 @@
 .event-stats {
+  a {
+    width: max-content;
+  }
+
   .page-header {
     h3 {
       font-weight: 300;
       margin-bottom: 0;
+
       nb-icon {
         font-size: 2rem;
       }
+
       small {
         font-size: 1rem;
       }
     }
-
   }
 
   nb-card.stat-card.visitors {
@@ -18,23 +23,25 @@
       h3 {
         font-weight: 300;
         margin: 0;
+
         small {
           font-size: 1rem;
         }
       }
     }
+
     nb-card-body {
       height: 300px;
-     .chart-container {
-      position: relative;
-      width: 100%;
-      height: 300px;
-     }
 
-     .notification p {
-       margin: 0;
-     }
+      .chart-container {
+        height: 300px;
+        position: relative;
+        width: 100%;
+      }
 
+      .notification p {
+        margin: 0;
+      }
     }
   }
 
@@ -43,54 +50,61 @@
       h3 {
         font-weight: 300;
         margin: 0;
+
         small {
           font-size: 1rem;
         }
       }
     }
+
     nb-card-body.simple-registration {
       .number-group {
-        display: flex;
         background: #e5f6ef;
-        padding: 0.5rem;
+        display: flex;
         margin-bottom: 0.5rem;
+        padding: 0.5rem;
+
         .total {
-          padding-right: 1rem;
           margin: 0;
+          padding-right: 1rem;
         }
 
         .gender {
           margin: 0 1rem 0 0;
           width: 75px;
+
           .label {
             display: inline-block;
             margin-right: 10px;
           }
         }
       }
-
     }
 
     nb-card-body.custom-registration {
       .form-group {
         margin-bottom: 2rem;
+
         h5.form-name {
-          margin: 0;
           font-weight: 300;
+          margin: 0;
         }
+
         .number-group {
-          display: flex;
           background: #e5f6ef;
-          padding: 0.5rem;
+          display: flex;
           margin-bottom: 0.5rem;
+          padding: 0.5rem;
+
           .total {
-            padding-right: 1rem;
             margin: 0;
+            padding-right: 1rem;
           }
 
           .gender {
             margin: 0 1rem 0 0;
             width: 75px;
+
             .label {
               display: inline-block;
               margin-right: 10px;
@@ -98,7 +112,6 @@
           }
         }
       }
-
     }
   }
 
@@ -114,11 +127,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
+
       .chart-container {
-        text-align: center;
-        position: relative;
-        width: 330px;
         padding: 1rem 0;
+        position: relative;
+        text-align: center;
+        width: 330px;
+
         p {
           font-size: 1.2rem;
           margin: 0;
@@ -127,6 +142,7 @@
 
       .numbers {
         text-align: center;
+
         span {
           font-size: 1.3rem;
         }
@@ -139,6 +155,7 @@
       h3 {
         font-weight: 300;
         margin: 0;
+
         nb-icon {
           font-size: 2rem;
         }
@@ -150,9 +167,10 @@
         nb-list-item {
           p {
             margin: 0;
-            word-break: break-all;
             padding: 0 5px;
+            word-break: break-all;
           }
+
           .type {
             width: 20%;
           }
@@ -174,6 +192,7 @@
       h3 {
         font-weight: 300;
         margin: 0;
+
         nb-icon {
           font-size: 2rem;
         }
@@ -191,6 +210,7 @@
             padding: 0 5px;
             word-break: break-all;
           }
+
           .question {
             width: 30%;
           }

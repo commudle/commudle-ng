@@ -7,7 +7,9 @@
 
   <div class="user-details text-center">
     <div class="name">
-      {{ user.name }}
+      <h1>
+        {{ user.name }}
+      </h1>
       <img
         *ngIf="user.is_expert"
         alt="Expert Tick"
@@ -24,7 +26,10 @@
     </div>
   </div>
 
-  <div class="user-interactions d-flex justify-content-center">
+  <div
+    class="user-interactions d-flex justify-content-center"
+    [ngClass]="{ 'share-btn-newline': currentUser?.id !== user.id }"
+  >
     <div *ngIf="currentUser?.id === user.id">
       <a [routerLink]="[{ outlets: { p: ['settings', 'basic-details'] } }]">
         <button class="anim-shadow" nbButton size="small">
@@ -40,6 +45,11 @@
       </button>
     </div>
     <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
+    <app-share-button
+      [content]="environment.app_url + '/users/' + user.username"
+      [title]="user.name + ' ' + user.designation"
+      [url]="environment.app_url + '/users/' + user.username"
+    ></app-share-button>
   </div>
 
   <hr *ngIf="user.location || user.about_me" />
@@ -82,11 +92,19 @@
     <nb-card-body class="text-center">
       <div class="tag-dialog-info">
         <nb-icon icon="info-outline"></nb-icon>
-        Maximum {{ maxTags }} tags can be added. Tags reflect your fields of interest.
+        Add {{ maxTags }} of your skills which you want other developers to see!
       </div>
       <nb-tag-list (tagRemove)="onTagRemove($event)">
         <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
-        <input (tagAdd)="onTagAdd($event)" fullWidth nbTagInput placeholder="type a tag and press enter" type="text" />
+        <input
+          (tagAdd)="onTagAdd($event)"
+          fullWidth
+          nbTagInput
+          placeholder="Type a tag and press enter or comma"
+          type="text"
+          [separatorKeys]="[13, 188]"
+          (keypress)="restrictComma($event)"
+        />
       </nb-tag-list>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">

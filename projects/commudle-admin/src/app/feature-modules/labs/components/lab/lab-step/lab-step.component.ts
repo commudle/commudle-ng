@@ -1,32 +1,39 @@
 import { isPlatformBrowser } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ActivatedRoute, Params } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { LabsService } from 'projects/commudle-admin/src/app/feature-modules/labs/services/labs.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ILabStep } from 'projects/shared-models/lab-step.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { PrismJsHighlightCodeService } from 'projects/shared-services/prismjs-highlight-code.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
-
 
 @Component({
   selector: 'app-lab-step',
   templateUrl: './lab-step.component.html',
-  styleUrls: ['./lab-step.component.scss']
+  styleUrls: ['./lab-step.component.scss'],
 })
-
 export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
-
   public src;
 
-  @Input() step: ILabStep;
+  step: ILabStep;
+  currentUser: ICurrentUser;
+  stepDescription: SafeHtml;
+  triggerDialogB = false;
 
   subscriptions: Subscription[] = [];
-  currentUser: ICurrentUser;
-  stepDescription;
-  triggerDialogB = false;
 
   @ViewChild('content') private content: ElementRef;
   @ViewChild('dialog') private dialog: any;
@@ -40,37 +47,38 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
     private sanitizer: DomSanitizer,
     private prismJsHighlightCodeService: PrismJsHighlightCodeService,
     private activatedRoute: ActivatedRoute,
-    private dialogService: NbDialogService
-  ) {
-  }
+    private dialogService: NbDialogService,
+    private seoService: SeoService,
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe(
-        data => {
-          this.currentUser = data;
-        }
-      )
+      this.authWatchService.currentUser$.subscribe((data: ICurrentUser) => {
+        this.currentUser = data;
+      }),
     );
 
     this.subscriptions.push(
-      this.activatedRoute.params.subscribe(data => {
-        this.labsService.pGetStep(data.step_id).subscribe(
-          stepData => {
-            this.step = stepData;
-            this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
-            this.triggerDialogB = false;
-            this.addLabStepVisit();
-          }
-        );
-      })
+      this.activatedRoute.params.subscribe((data: Params) => {
+        this.labsService.pGetStep(data.step_id).subscribe((stepData: ILabStep) => {
+          this.step = stepData;
+
+          this.seoService.setTags(
+            `${this.step.name}`,
+            this.step.description.replace(/<[^>]*>/g, '').substring(0, 160),
+            'https://commudle.com/assets/images/commudle-logo192.png',
+          );
+
+          this.stepDescription = this.sanitizer.bypassSecurityTrustHtml(this.step.description);
+          this.triggerDialogB = false;
+          this.addLabStepVisit();
+        });
+      }),
     );
   }
 
   ngOnDestroy(): void {
-    // Called once, before the instance is destroyed.
-    // Add 'implements OnDestroy' to the class.
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
   ngAfterViewChecked() {
@@ -81,10 +89,14 @@ export class LabStepComponent implements OnInit, OnDestroy, AfterViewChecked {
           for (const img of imagesList) {
             const g0 = img;
             g0.classList.add('clickable');
-            g0.addEventListener('click', () => {
-              this.src = g0.src;
-              this.dialogService.open(this.dialog);
-            }, false);
+            g0.addEventListener(
+              'click',
+              () => {
+                this.src = g0.src;
+                this.dialogService.open(this.dialog);
+              },
+              false,
+            );
           }
           this.triggerDialogB = true;
         }

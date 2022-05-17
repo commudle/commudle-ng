@@ -1,0 +1,35 @@
+a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.heading {
+  @apply com-m-0 com-text-2xl md:com-text-4xl com-font-semibold;
+}
+
+.subheading {
+  @apply com-text-base md:com-text-xl com-leading-relaxed com-font-normal com-text-gray-500 com-mb-8 md:com-mb-12 com-mt-1;
+}
+
+.home-labs-list {
+  nb-card {
+    @apply com-mx-0 com-my-6 com-border-0 com-shadow;
+
+    .name {
+      @apply com-mt-0 com-line-clamp-2 com-leading-6 com-h-12;
+    }
+
+    nb-icon {
+      @apply com-text-sm;
+    }
+  }
+}
+
+.home-labs-view-all {
+  color: #0095ff;
+}
+
+.home-write-tutorial {
+  background-color: #0095ff;
+}

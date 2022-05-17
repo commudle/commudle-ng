@@ -8,6 +8,11 @@
   .user-videos {
     height: 100%;
     width: 100%;
+
+    .user-video {
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 
   &.screen-share {
@@ -86,4 +91,11 @@
       width: 25%;
     }
   }
+}
+
+.no-users {
+  left: 50%;
+  position: absolute;
+  top: $space-16;
+  transform: translateX(-50%);
 }
