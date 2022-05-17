@@ -6,8 +6,7 @@
       position="center left"
       status="primary"
     ></nb-badge>
-    <!-- TODO: Change routerLink based on different entities (whether to redirect to user page or lab page or build page)-->
-    <a (click)="changeStatus(ENotificationStatuses.INTERACTED, notification)">
+    <a (click)="changeStatus(ENotificationStatuses.INTERACTED, notification, true)">
       <div class="avatar com-rounded-[50%] com-h-[56px] com-w-[56px]">
         <img [alt]="notification.sender.name" [src]="notification.sender.avatar" [title]="notification.sender.name" />
       </div>
