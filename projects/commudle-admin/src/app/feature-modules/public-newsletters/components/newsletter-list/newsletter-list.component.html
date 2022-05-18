@@ -1,0 +1,34 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card [nbSpinner]="newsletters.length === 0" class="newsletter-list-container">
+        <nb-card-header>
+          <h1>Commudle IDE: Newsletters from the Community</h1>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="newsletter-cards">
+            <div *ngFor="let newsletter of newsletters" class="newsletter-card">
+              <img
+                [alt]="newsletter.title"
+                [src]="newsletter.header_image.url"
+                class="com-h-36 com-w-full com-object-cover com-object-center"
+              />
+              <div class="com-p-4">
+                <p class="date">
+                  {{ newsletter.created_at | date }}
+                </p>
+                <h2 class="name">
+                  {{ newsletter.title }}
+                </h2>
+                <a [routerLink]="['/newsletters', newsletter.id]" class="read-more">
+                  Read More
+                  <nb-icon icon="arrow-forward-outline"></nb-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

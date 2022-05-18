@@ -9,4 +9,5 @@ export interface ITestimonial {
   shortContent: string;
   longContent: string;
   contributions: Array<{ content: string }>;
+  order: number;
 }

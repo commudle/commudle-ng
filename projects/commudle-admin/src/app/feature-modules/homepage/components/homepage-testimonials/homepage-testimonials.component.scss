@@ -14,32 +14,26 @@ p {
   }
 
   .content {
-    min-height: 125px;
-    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold com-line-clamp-2;
+    @apply com-px-4 md:com-px-8 com-pt-6 md:com-pt-0 com-text-center com-text-gray-900 com-text-2xl md:com-text-4xl com-font-medium com-line-clamp-4 md:com-line-clamp-2;
   }
 
   nb-actions {
     @apply com-mt-12 md:com-mt-20 com-flex-col md:com-flex-row com-gap-2 md:com-gap-0;
 
-    a {
-      text-decoration: none;
-    }
-
-    .user,
     .text {
-      @apply com-p-0 md:com-p-2 com-text-center;
+      @apply com-h-8 md:com-h-16 com-p-0 md:com-p-2 com-text-center com-text-gray-900 com-text-base md:com-text-xl com-font-medium;
 
       @media screen and (max-width: theme('screens.md')) {
         @apply com-border-none;
       }
     }
-
-    .text {
-      @apply com-text-gray-900 com-text-xl com-font-medium;
-    }
   }
 
   .navigation {
     @apply com-mt-12 com-flex com-justify-between;
+
+    .text {
+      @apply com-text-gray-900 com-text-base;
+    }
   }
 }

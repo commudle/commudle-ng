@@ -1,3 +1,4 @@
+import { IAttachedFile } from './attached-file.model';
 import { IUser } from './user.model';
 
 export interface IMainNewsletter {
@@ -14,6 +15,7 @@ export interface IMainNewsletter {
   scheduled_for: Date;
   sent_at: Date;
   recipient_type: EMainNewsletterRecipientTypes;
+  header_image: IAttachedFile;
 }
 
 

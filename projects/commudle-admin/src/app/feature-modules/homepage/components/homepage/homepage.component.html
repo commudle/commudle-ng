@@ -3,57 +3,77 @@
     <div
       class="com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center md:com-gap-16 md:com-flex-row"
     >
-      <div class="com-w-full com-pb-8">
+      <div class="com-w-full md:com-min-h-[600px] com-relative">
         <h1 class="page-heading">Where <span>developers grow</span> together</h1>
         <app-search-box [overrideSearchStatus]="true" shape="semi-round"></app-search-box>
         <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
-        <div *ngIf="homepageActions.length > 0" class="com-mt-4 com-flex com-justify-center md:com-justify-start">
+        <div *ngIf="homepageActions.length > 0" class="homepage-actions">
           <a
             *ngFor="let action of homepageActions"
             [href]="action.link"
-            class="com-w-full sm:com-w-auto"
+            class="homepage-action"
             nbButton
-            size="small"
-            status="info"
+            size="large"
+            status="success"
           >
             {{ action.title }}
           </a>
         </div>
         <img
           alt="Homepage arrow"
-          class="com-ml-auto com-mt-8 com-hidden md:com-block com-max-w-xs"
+          class="homepage-arrow"
           src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDRlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9a2418dd47ce429fb718225399df102b528a9e46/homepage-arrow.svg"
         />
       </div>
       <div class="com-w-2/3 md:com-w-full">
-        <img
-          alt="Homepage banner"
-          class="com-pointer-events-none com-w-full"
-          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDhlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6337586adfde8227b0e0181ec785cf3dbacc42bf/homepage-carousel-1.svg"
-        />
+        <!--        <img-->
+        <!--          alt="Homepage banner"-->
+        <!--          class="com-pointer-events-none com-w-full"-->
+        <!--          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDhlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19&#45;&#45;6337586adfde8227b0e0181ec785cf3dbacc42bf/homepage-carousel-1.svg"-->
+        <!--        />-->
+        <ng-lottie [options]="options" containerClass="com-w-full"></ng-lottie>
       </div>
     </div>
   </div>
 
-  <div class="homepage-section com-pb-12">
-    <div class="section-heading">
-      <h2>Join a community to learn and network</h2>
+  <div class="linear-gradient-top com-relative">
+    <div class="homepage-section com-pb-12">
+      <img
+        alt="Group people icon"
+        class="com-mb-6"
+        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmdlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9eac6568bba870ab1b04bfd92cc1afff93e14a0f/Group_people_icon.png"
+        title="Group people icon"
+      />
+      <div class="section-heading">
+        <h2>Join a community to learn and network</h2>
+      </div>
+      <app-homepage-featured-communities></app-homepage-featured-communities>
     </div>
-    <app-homepage-featured-communities></app-homepage-featured-communities>
+
+    <img
+      alt="Code icon"
+      class="com-absolute com--bottom-28 com-right-1/4"
+      src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmtlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--144725875bfc2cc6150f46566be338502cba3581/Code_icon.png"
+      title="Code icon"
+    />
   </div>
 
-  <div class="homepage-section com-pb-12">
-    <!--    <h2 class="section-heading">Learn from developers around you</h2>-->
-    <app-homepage-events></app-homepage-events>
-    <div class="com-mt-24 md:com-mt-40 com-grid com-gap-16 com-grid-cols-1 md:com-grid-cols-2">
-      <app-homepage-builds></app-homepage-builds>
-      <app-homepage-labs></app-homepage-labs>
+  <div class="linear-gradient-bottom">
+    <div class="homepage-section com-pb-12">
+      <!--    <h2 class="section-heading">Learn from developers around you</h2>-->
+      <app-homepage-events></app-homepage-events>
     </div>
+  </div>
+
+  <div class="homepage-section com-pb-12 com-grid com-gap-16 com-grid-cols-1 md:com-grid-cols-2">
+    <app-homepage-builds></app-homepage-builds>
+    <app-homepage-labs></app-homepage-labs>
   </div>
 
   <div class="homepage-section com-pb-12">
     <div class="section-heading">
       <h2>Experts</h2>
+      <h3 class="subheading">Techies with experience, and a blue tick</h3>
     </div>
     <app-homepage-experts></app-homepage-experts>
   </div>
@@ -89,14 +109,7 @@
     <div class="com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 md:com-text-4xl">
       <span class="com-block">{{ homepageCallouts[(timer$ | async) % homepageCallouts.length].title }}</span>
       <span class="com-block content">{{ homepageCallouts[(timer$ | async) % homepageCallouts.length].subtitle }}</span>
-      <a
-        class="homepage-get-started"
-        nbButton
-        routerLink="/fill-form/465"
-        shape="semi-round"
-        size="giant"
-        status="info"
-      >
+      <a class="homepage-get-started" nbButton routerLink="/pricing" shape="semi-round" size="giant" status="info">
         Get started
       </a>
     </div>

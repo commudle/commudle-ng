@@ -23,7 +23,7 @@ export class HomepageTestimonialsComponent implements OnInit {
 
   getTestimonials() {
     this.cmsService.getDataByType('testimonials').subscribe((value: ITestimonial[]) => {
-      this.testimonials = value;
+      this.testimonials = value.sort((a, b) => a.order - b.order);
       this.selectedTestimonial = this.testimonials[0];
       this.setUser();
     });

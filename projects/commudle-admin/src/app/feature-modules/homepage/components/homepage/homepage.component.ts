@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AnimationOptions } from 'ngx-lottie';
 import { IHomepageAction } from 'projects/commudle-admin/src/app/feature-modules/homepage/models/homepage-action.model';
 import { SearchStatusService } from 'projects/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { CmsService } from 'projects/shared-services/cms.service';
@@ -28,6 +29,9 @@ export class HomepageComponent implements OnInit, OnDestroy {
       subtitle: 'Build your brand with communities & network',
     },
   ];
+  options: AnimationOptions = {
+    path: 'https://assets7.lottiefiles.com/packages/lf20_3lol1shu/json files/json file.json',
+  };
 
   constructor(
     private seoService: SeoService,
@@ -53,7 +57,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   getHomepageActions() {
     this.cmsService.getDataByType('homepageActions').subscribe((value: IHomepageAction[]) => {
-      this.homepageActions = value;
+      this.homepageActions = value.sort((a, b) => a.order - b.order);
     });
   }
 }

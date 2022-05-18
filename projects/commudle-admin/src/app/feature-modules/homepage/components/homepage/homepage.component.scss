@@ -1,6 +1,14 @@
 .homepage {
   @apply com-w-full com-min-h-screen com-bg-white com-px-4 md:com-px-0;
 
+  .linear-gradient-top {
+    background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
+  }
+
+  .linear-gradient-bottom {
+    background: linear-gradient(180deg, #c7dcff 0%, #ffffff 100%);
+  }
+
   .homepage-section {
     @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24;
 
@@ -13,6 +21,25 @@
       }
     }
 
+    .homepage-actions {
+      @apply md:com-absolute com-mt-4 md:com-mt-12 com-flex com-justify-center md:com-justify-start com-gap-3 com-flex-wrap com-z-10;
+
+      .homepage-action {
+        background-color: #57c3b9;
+        border-color: #57c3b9;
+        @apply com-w-full sm:com-w-auto com-rounded-xl;
+
+        &:hover {
+          background-color: rgba(87, 195, 185, 0.8);
+          border-color: rgba(87, 195, 185, 0.8);
+        }
+      }
+    }
+
+    .homepage-arrow {
+      @apply com-ml-auto com-mt-8 com-hidden md:com-block com-max-w-xs com-min-h-[140px];
+      @apply com-absolute com-bottom-16 com--right-16;
+    }
 
     .section-heading {
       @apply com-mt-0 com-mb-8 md:com-mb-12 com-text-left;

@@ -292,6 +292,10 @@ export const API_ROUTES = {
     },
   },
 
+  PUBLIC_NEWSLETTERS: {
+    PUBLIC_INDEX: 'api/v2/main_newsletters/public_index',
+  },
+
   PAGE_ADS: {
     INDEX: 'api/v2/pa',
     SHOW: 'api/v2/pa/show',

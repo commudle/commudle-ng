@@ -1,4 +1,4 @@
-<footer class="com-bg-white" *ngIf="showFooter">
+<footer *ngIf="showFooter" class="com-bg-white">
   <div class="com-container com-mx-auto com-py-12 com-px-4">
     <div class="xl:com-grid xl:com-grid-cols-3 xl:com-gap-8">
       <div class="com-space-y-8 xl:com-col-span-1">
@@ -46,6 +46,7 @@
           </div>
           <div class="com-mt-12 md:com-mt-0">
             <ul>
+              <li><a [routerLink]="['/newsletters']">Newsletters</a></li>
               <li><a [routerLink]="['/about']">FAQ</a></li>
             </ul>
           </div>
