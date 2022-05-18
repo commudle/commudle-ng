@@ -199,7 +199,7 @@ p {
   }
 
   .pricing-quotes {
-    @apply com-py-12 com-bg-gray-50 com-overflow-hidden md:com-py-20 lg:com-py-24 com-my-12 md:com-my-16 lg:com-my-20;
+    @apply com-bg-gray-50 com-overflow-hidden com-py-8 md:com-py-12 lg:com-py-16 com-mt-8 md:com-mt-12 lg:com-mt-16;
 
     .quote {
       @apply com-max-w-3xl com-mx-auto com-text-center com-text-2xl com-leading-9 com-font-medium com-text-gray-900;
@@ -215,6 +215,7 @@ p {
     }
 
     .logo {
+      text-decoration: none;
       @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
 
       img {
