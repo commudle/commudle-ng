@@ -37,10 +37,10 @@ const routes = [
     loadChildren: () =>
       import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
   },
-  {
-    path: 'features',
-    component: FeaturesComponent,
-  },
+  // {
+  //   path: 'features',
+  //   component: FeaturesComponent,
+  // },
   {
     path: 'users',
     loadChildren: () => import('./feature-modules/users/users.module').then((m) => m.UsersModule),
