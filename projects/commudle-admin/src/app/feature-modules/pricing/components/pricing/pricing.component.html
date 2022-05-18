@@ -418,7 +418,7 @@
 
               <td class="description">
                 <span class="item">
-                  <nb-icon class="dark" icon="checkmark-outline"></nb-icon>
+                  <nb-icon class="light" icon="close-outline"></nb-icon>
                 </span>
               </td>
 
@@ -1569,9 +1569,9 @@
         lg:com-grid-cols-4 lg:com-gap-10
       "
     >
-      <div *ngFor="let logo of logoCloud" class="logo">
+      <a *ngFor="let logo of logoCloud" [routerLink]="['/communities', logo.slug]" class="logo">
         <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
-      </div>
+      </a>
     </div>
   </div>
 
