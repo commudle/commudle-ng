@@ -1,5 +1,5 @@
 .homepage {
-  @apply com-w-full com-min-h-screen com-bg-white com-px-4 md:com-px-0;
+  @apply com-w-full com-min-h-screen com-bg-white;
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
@@ -10,7 +10,7 @@
   }
 
   .homepage-section {
-    @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24;
+    @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24 com-px-4 md:com-px-0;
 
     .page-heading {
       max-width: 500px;
