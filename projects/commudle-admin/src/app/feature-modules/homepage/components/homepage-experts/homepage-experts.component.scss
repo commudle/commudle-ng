@@ -9,31 +9,35 @@ ul {
 }
 
 .homepage-experts {
-  @apply com-space-y-12;
-  @apply sm:com-grid sm:com-grid-cols-2 sm:com-gap-x-6 sm:com-gap-y-12 sm:com-space-y-0;
+  @apply com-flex com-overflow-x-scroll com-gap-4;
+  @apply md:com-overflow-x-auto md:com-grid md:com-grid-cols-2 md:com-gap-x-6 md:com-gap-y-12 md:com-space-y-0;
   @apply lg:com-grid-cols-4 lg:com-gap-x-8;
 
-  .homepage-expert-overlay {
-    @apply com-z-10 com-bg-gradient-to-t com-from-gray-800 com-via-transparent com-w-full com-h-full com-absolute com-left-0 com-top-0 com-m-0;
-  }
+  li {
+    @apply com-flex-shrink-0 com-w-80 md:com-w-auto;
 
-  .homepage-expert-name {
-    @apply com-text-lg com-font-semibold com-text-white com-my-0;
-
-    .expert-icon {
-      @apply com-h-4 com-w-4 com-ml-2;
+    .homepage-expert-overlay {
+      @apply com-z-10 com-bg-gradient-to-t com-from-gray-800 com-via-transparent com-w-full com-h-full com-absolute com-left-0 com-top-0 com-m-0;
     }
-  }
 
-  .homepage-expert-designation {
-    @apply com-text-sm com-text-gray-300 com-my-0 com-line-clamp-2;
-  }
+    .homepage-expert-name {
+      @apply com-text-lg com-font-semibold com-text-white com-my-0;
 
-  app-user-follow {
-    &::ng-deep {
-      .user-follow {
-        button {
-          @apply com-bg-gray-50 hover:com-bg-gray-100 focus:com-bg-gray-100;
+      .expert-icon {
+        @apply com-h-4 com-w-4 com-ml-2;
+      }
+    }
+
+    .homepage-expert-designation {
+      @apply com-text-sm com-text-gray-300 com-my-0 com-line-clamp-2;
+    }
+
+    app-user-follow {
+      &::ng-deep {
+        .user-follow {
+          button {
+            @apply com-bg-gray-50 hover:com-bg-gray-100 focus:com-bg-gray-100;
+          }
         }
       }
     }
