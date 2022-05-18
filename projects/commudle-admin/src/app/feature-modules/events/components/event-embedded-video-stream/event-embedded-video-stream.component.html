@@ -25,13 +25,13 @@
               <br />
             </div>
           </nb-option>
-          <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">ZOOM (embedded into browser)</nb-option>
           <nb-option [value]="EEmbeddedVideoStreamSources.EXTERNAL_LINK">
             External Link (to platforms like Google Meet)
           </nb-option>
           <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">YouTube Live Embed (URL)</nb-option>
           <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">IFrame (Paste the code of any Iframe)</nb-option>
           <nb-option disabled>Meet using Jitsi</nb-option>
+          <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM" disabled>ZOOM (embedded into browser)</nb-option>
         </nb-select>
       </div>
       <div>

@@ -133,9 +133,6 @@
         <div>
           <nb-select (selectedChange)="updateZoomValidators()" formControlName="source" fullWidth placeholder="Source*"
                      size="small" status="primary">
-            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM">
-              Zoom
-            </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.YOUTUBE">
               YouTube (URL)
             </nb-option>
@@ -144,6 +141,9 @@
             </nb-option>
             <nb-option [value]="EEmbeddedVideoStreamSources.OTHER">
               Other (Embedded Iframe)
+            </nb-option>
+            <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM" disabled>
+              Zoom
             </nb-option>
           </nb-select>
         </div>
