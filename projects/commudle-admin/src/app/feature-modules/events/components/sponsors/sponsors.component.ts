@@ -92,7 +92,7 @@ export class SponsorsComponent implements OnInit {
         this.windowRef.close();
         this.removeLogo();
         this.sponsorForm.reset();
-        this.toastLogService.successDialog(`${data.sponsor.name}`, 3000);
+        this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
       }
     );
   }
