@@ -20,6 +20,7 @@ import {
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
@@ -74,6 +75,10 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
+
+    // external
+    FontAwesomeModule,
 
     // Nebular
     NbCardModule,
@@ -89,7 +94,6 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbActionsModule,
     NbUserModule,
     NbToggleModule,
-    FontAwesomeModule,
     NbFormFieldModule,
   ],
 })
