@@ -7,25 +7,16 @@
   overflow: hidden;
   position: relative;
   text-decoration: none;
-  @apply com-shadow;
+  @apply com-shadow com-w-80 md:com-w-auto;
 
-  .home-events-card-image {
-    @apply com-aspect-w-16 com-aspect-h-9 com-relative;
+  .home-events-card-image-overlay {
+    background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+    height: 100%;
+    position: absolute;
+    width: 100%;
 
-    .home-events-card-image-overlay {
-      background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
-      height: 100%;
-      position: absolute;
-      width: 100%;
-
-      &.old {
-        background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
-      }
-    }
-
-    img {
-      object-fit: cover;
-      object-position: center;
+    &.old {
+      background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
     }
   }
 
@@ -41,9 +32,10 @@
     position: absolute;
     right: 12px;
     text-align: center;
-    top: 136px;
+    top: 38%;
     width: 58px;
     word-break: break-word;
+    z-index: 1;
 
     &.old {
       border-color: $cadet;
@@ -52,15 +44,11 @@
   }
 
   .home-events-card-details {
-    @apply com-flex com-flex-col com-justify-between com-p-3;
+    @apply com-flex com-flex-col com-justify-between com-p-3 com-bg-white;
 
     .home-events-card-name {
       height: 3.5rem;
       @apply com-my-0 com-font-normal com-text-lg com-text-gray-900 com-line-clamp-2;
-
-      @screen md {
-        max-width: 80%;
-      }
     }
 
     .home-events-card-host {
@@ -85,36 +73,6 @@
         font-weight: $fw-600;
         text-transform: uppercase;
       }
-    }
-  }
-}
-
-@media all and (max-width: $pc-width) {
-  .home-events-card-container {
-    width: 230px;
-  }
-
-  .home-events-attending {
-    display: none;
-  }
-
-  .home-events-card-image {
-    height: 88px;
-
-    .home-events-card-image-overlay {
-      height: 88px;
-    }
-
-    img {
-      object-position: center !important;
-    }
-  }
-
-  .home-events-card-details {
-    margin: $space-24 $space-8 $space-8 !important;
-
-    .home-events-card-name {
-      max-width: 100% !important;
     }
   }
 }
