@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { IMiniUserProfile } from 'projects/shared-models/mini-user-profile.model';
@@ -20,12 +21,23 @@ export class MiniUserProfileComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private userChatsService: UserChatsService, private appUsersService: AppUsersService) {}
+  constructor(
+    private userChatsService: UserChatsService,
+    private appUsersService: AppUsersService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.appUsersService.getProfile(this.username).subscribe((response) => {
         this.user = response;
+      }),
+    );
+
+    // on route change, close the mini profile
+    this.subscriptions.push(
+      this.router.events.subscribe(() => {
+        this.closeMiniProfile.emit(true);
       }),
     );
   }
