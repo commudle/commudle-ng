@@ -7,7 +7,6 @@ import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
-import { FeaturesComponent } from './components/home/features/features.component';
 import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
@@ -17,11 +16,11 @@ import { InitResolver } from './resolvers/init.resolver';
 
 const routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./feature-modules/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   {
@@ -136,7 +135,8 @@ const routes = [
   },
   {
     path: 'newsletters',
-    loadChildren: () => import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
+    loadChildren: () =>
+      import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
   },
   {
     path: 'search',

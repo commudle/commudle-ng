@@ -12,6 +12,7 @@ import {
 } from '@nebular/theme';
 import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SpeakerResourceComponent } from './components/speaker-resource/speaker-resource.component';
 import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.module';
 
@@ -22,6 +23,7 @@ import { SpeakerResourcesRoutingModule } from './speaker-resources-routing.modul
     SpeakerResourcesRoutingModule,
     ReactiveFormsModule,
     SharedComponentsModule,
+    MiniUserProfileModule,
     LinkyModule,
 
     // Nebular
