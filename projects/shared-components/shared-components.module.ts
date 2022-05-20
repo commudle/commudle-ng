@@ -29,10 +29,10 @@ import { LinkyModule } from 'ngx-linky';
 import { MessageComponent } from 'projects/shared-components/messages/messages-list/message/message.component';
 import { MessagesListComponent } from 'projects/shared-components/messages/messages-list/messages-list.component';
 import { MessagesComponent } from 'projects/shared-components/messages/messages.component';
-import { UserFollowComponent } from 'projects/shared-components/user-follow/user-follow.component';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { HmsVideoModule } from 'projects/shared-modules/hms-video/hms-video.module';
 import { MentionModule } from 'projects/shared-modules/mention/mention.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { BadgeComponent } from './badge/badge.component';
 import { CommunityBadgeComponent } from './community-badge/community-badge.component';
@@ -50,12 +50,10 @@ import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-fo
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
 import { PollListItemComponent } from './polls/poll-list-item/poll-list-item.component';
 import { PollsComponent } from './polls/polls.component';
-import { UserProfileCardLargeComponent } from './profile-cards/user-profile-card-large/user-profile-card-large.component';
-import { UserProfileCardMediumComponent } from './profile-cards/user-profile-card-medium/user-profile-card-medium.component';
-import { UserProfileCardSmallComponent } from './profile-cards/user-profile-card-small/user-profile-card-small.component';
 import { QnaListItemComponent } from './qna/qna-list/qna-list-item/qna-list-item.component';
 import { QnaListComponent } from './qna/qna-list/qna-list.component';
 import { QnaComponent } from './qna/qna.component';
+import { ShareButtonComponent } from './share-button/share-button.component';
 import { TagComponent } from './tag/tag.component';
 import { UserLiveStatusComponent } from './user-live-status/user-live-status.component';
 import { UserObjectVisitPixelComponent } from './user-object-visit-pixel/user-object-visit-pixel.component';
@@ -66,7 +64,6 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
-import { ShareButtonComponent } from './share-button/share-button.component';
 
 @NgModule({
   declarations: [
@@ -96,16 +93,12 @@ import { ShareButtonComponent } from './share-button/share-button.component';
     UserLiveStatusComponent,
     TagComponent,
     FlagsDisplayComponent,
-    UserProfileCardLargeComponent,
-    UserProfileCardMediumComponent,
-    UserProfileCardSmallComponent,
     MessagesComponent,
     MessagesListComponent,
     MessageComponent,
     QnaComponent,
     QnaListComponent,
     QnaListItemComponent,
-    UserFollowComponent,
     ShareButtonComponent,
   ],
   imports: [
@@ -121,6 +114,7 @@ import { ShareButtonComponent } from './share-button/share-button.component';
     LinkyModule,
     SharedDirectivesModule,
     MentionModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbButtonModule,
@@ -162,12 +156,8 @@ import { ShareButtonComponent } from './share-button/share-button.component';
     UserLiveStatusComponent,
     TagComponent,
     FlagsDisplayComponent,
-    UserProfileCardLargeComponent,
-    UserProfileCardMediumComponent,
-    UserProfileCardSmallComponent,
     MessagesComponent,
     QnaComponent,
-    UserFollowComponent,
     ShareButtonComponent,
   ],
 })

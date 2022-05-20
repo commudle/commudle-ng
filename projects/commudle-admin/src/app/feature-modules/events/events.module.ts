@@ -28,9 +28,11 @@ import {
 } from '@nebular/theme';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { LinkyModule } from 'ngx-linky';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { AppSharedComponentsModule } from '../../app-shared-components/app-shared-components.module';
 import { ReusableComponentsModule } from '../reusable-components/reusable-components.module';
 import { CollaboratingCommunitiesComponent } from './components/collaborating-communities/collaborating-communities.component';
@@ -39,6 +41,7 @@ import { EditEventComponent } from './components/edit-event/edit-event.component
 import { EventCommentsComponent } from './components/event-comments/event-comments.component';
 import { EventDashboardComponent } from './components/event-dashboard/event-dashboard.component';
 import { FormGroupsComponent } from './components/event-dashboard/form-groups/form-groups.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventEmbeddedVideoStreamComponent } from './components/event-embedded-video-stream/event-embedded-video-stream.component';
 import { EventFormResponsesComponent } from './components/event-form-responses/event-form-responses.component';
 import { UserDetailsCellComponent } from './components/event-form-responses/user-details-cell/user-details-cell.component';
@@ -51,13 +54,11 @@ import { EventStatsComponent } from './components/event-stats/event-stats.compon
 import { EventStatusComponent } from './components/event-status/event-status.component';
 import { EventUpdatesComponent } from './components/event-updates/event-updates.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
+import { EntryPassScanComponent } from './components/user-event-registrations/entry-pass-scan/entry-pass-scan.component';
 import { UserDetailsComponent } from './components/user-event-registrations/user-details/user-details.component';
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
-import { EventDetailsComponent } from './components/event-details/event-details.component';
-import { EntryPassScanComponent } from './components/user-event-registrations/entry-pass-scan/entry-pass-scan.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -92,10 +93,11 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     ReactiveFormsModule,
     EditorModule,
     AppSharedComponentsModule,
-    SharedComponentsModule,
     YouTubePlayerModule,
     ReusableComponentsModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
+    SharedComponentsModule,
 
     // External
     FontAwesomeModule,
@@ -130,4 +132,4 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     NbFormFieldModule,
   ],
 })
-export class EventsModule { }
+export class EventsModule {}

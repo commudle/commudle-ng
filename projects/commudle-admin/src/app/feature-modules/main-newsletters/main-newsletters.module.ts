@@ -25,7 +25,7 @@ import { MainNewsletterEmailStatsComponent } from './components/main-newsletter-
     MainNewsletterFormComponent,
     MainNewsletterSchedulerComponent,
     MainNewsletterTestEmailerComponent,
-    MainNewsletterEmailStatsComponent
+    MainNewsletterEmailStatsComponent,
   ],
   exports: [
     MainNewsletterComponent

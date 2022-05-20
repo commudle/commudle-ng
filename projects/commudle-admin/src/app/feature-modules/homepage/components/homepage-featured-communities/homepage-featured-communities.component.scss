@@ -54,12 +54,12 @@ p {
       @apply com-p-3 md:com-p-4 com-flex com-flex-col com-justify-between;
 
       .featured-community-name {
-        @apply com-m-0 com-text-base com-font-semibold com-line-clamp-1;
+        @apply com-m-0 com-text-lg com-font-normal com-line-clamp-2;
       }
 
-      .featured-community-reason {
-        @apply com-text-sm com-line-clamp-2 md:com-line-clamp-3;
-      }
+      //.featured-community-reason {
+      //  @apply com-text-sm com-line-clamp-2 md:com-line-clamp-3;
+      //}
 
       .featured-community-join-btn {
         @apply com-flex com-justify-between com-items-center;

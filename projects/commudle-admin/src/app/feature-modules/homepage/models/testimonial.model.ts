@@ -3,9 +3,11 @@ import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 export interface ITestimonial {
   id: number;
   name: string;
+  designation: string;
   username: string;
   avatar: SanityImageObject;
-  content: string;
-  projects: number;
-  events: number;
+  shortContent: string;
+  longContent: string;
+  contributions: Array<{ content: string }>;
+  order: number;
 }

@@ -1,37 +1,253 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+p {
+  @apply com-my-0;
+}
 
-.pricing {
-  background-color: white;
-  min-height: 100vh;
-  padding-bottom: $space-136;
+.pricing-container {
+  @apply com-bg-gray-50;
 
-  p,
-  a,
-  h1,
-  div {
-    color: $gunmetal;
+  .pricing-header {
+    @apply com-relative com-max-w-2xl com-mx-auto com-pt-16 com-px-4 com-text-center;
+
+    @screen sm {
+      @apply com-pt-32 com-px-6;
+    }
+
+    @screen lg {
+      @apply com-max-w-7xl com-px-8;
+    }
+
+    .heading {
+      @apply com-my-0 com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
+    }
+
+    .subheading {
+      @apply com-mt-4 com-mb-0 com-text-xl com-text-gray-600 com-font-normal;
+    }
   }
 
-  .page-container {
-    .header {
-      padding-top: $space-72;
+  .pricing-toggle {
+    @apply com-relative com-mt-12 com-flex com-justify-center com-items-center com-gap-4 sm:com-mt-16;
 
-      h1 {
-        margin: 0;
+    label {
+      @apply com-text-[#57c3b9];
+    }
+  }
+
+  .pricing-cards {
+    @apply com-relative com-mt-8 com-max-w-2xl com-mx-auto com-px-4 com-pb-8;
+    @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
+
+    .pricing-card-light {
+      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
+      @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
+
+      .name {
+        @apply com-text-white com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
 
-      p {
-        font-size: $fs-tag;
-        line-height: 22px;
+      .pricing {
+        @apply com-flex com-flex-col com-items-start;
+        @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
+
+        .amount {
+          @apply com-text-white com-text-4xl com-font-extrabold com-tracking-tight;
+        }
+
+        .buy-btn {
+          text-decoration: none;
+          @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+          @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
+        }
+      }
+
+      .features {
+        @apply com-mt-7 com-pl-2;
+
+        li {
+          @apply com-py-3 com-flex com-items-center;
+
+          nb-icon {
+            @apply com-text-white com-w-5 com-h-5 com-flex-shrink-0;
+          }
+
+          .feature {
+            @apply com-text-white com-ml-4 com-text-base com-font-medium;
+          }
+        }
       }
     }
 
-    .plans {
-      margin-top: $space-36;
+    .pricing-card-dark {
+      @apply com-bg-white com-ring-2 com-ring-[#3aa49a] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
+      @apply lg:com-px-8 lg:com-pt-12;
+
+      .name {
+        @apply com-text-[#3aa49a] com-text-base com-font-semibold com-uppercase com-tracking-wide;
+      }
+
+      .pricing {
+        @apply com-flex com-flex-col com-items-start;
+        @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
+
+        .amount {
+          @apply com-text-[#3aa49a] com-text-4xl com-font-extrabold com-tracking-tight;
+        }
+
+        .buy-btn {
+          text-decoration: none;
+          @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+          @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
+        }
+      }
+
+      .features {
+        @apply com-mt-7 com-pl-2;
+
+        li {
+          @apply com-py-3 com-flex com-items-center;
+
+          nb-icon {
+            @apply com-text-[#3aa49a] com-w-5 com-h-5 com-flex-shrink-0;
+          }
+
+          .feature {
+            @apply com-text-gray-600 com-ml-4 com-text-base com-font-medium;
+          }
+        }
+      }
+    }
+  }
+
+  .pricing-features {
+    @apply com-overflow-x-auto;
+
+    .pricing-feature-headings {
+      @apply com-w-full com-flex com-items-stretch;
+
+      &.sticky {
+        @apply com-sticky com-top-16 com-bg-gray-50 com-z-10;
+      }
+
+      .title {
+        @apply com-my-0 com-text-gray-900 com-text-xl com-font-bold;
+      }
+
+      .subtitle {
+        @apply com-mt-2 com-text-base com-text-gray-500 com-font-medium;
+      }
+
+      .buy-btn {
+        text-decoration: none;
+        @apply com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+        @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
+
+        &.light {
+          @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50;
+        }
+
+        &.dark {
+          @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500;
+        }
+      }
     }
 
-    @media (max-width: $tab-width) {
-      padding: 0 $space-24;
+    .pricing-feature-subheadings {
+      @apply com-mt-10 com-text-base com-font-bold com-text-gray-900;
+    }
+
+    .pricing-feature-table {
+      @apply com-relative com-w-full com-my-1;
+
+      .heading {
+        @apply com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-base com-font-medium com-text-gray-600;
+
+        &.w-full {
+          @apply com-w-full;
+        }
+      }
+
+      .description {
+        @apply com-px-4 com-relative com-w-1/4 com-py-0 com-text-center;
+
+        .item {
+          @apply com-relative com-w-full com-h-full com-py-3;
+
+          nb-icon {
+            @apply com-text-2xl;
+
+            &.light {
+              @apply com-text-gray-400;
+            }
+
+            &.dark {
+              @apply com-text-[#57c3b9];
+            }
+          }
+
+          span {
+            &.light {
+              @apply com-text-gray-900 com-text-base com-font-medium;
+            }
+
+            &.dark {
+              @apply com-text-[#57c3b9] com-text-base com-font-medium;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .pricing-quotes {
+    @apply com-bg-gray-50 com-overflow-hidden com-py-8 md:com-py-12 lg:com-py-16 com-mt-8 md:com-mt-12 lg:com-mt-16;
+
+    .quote {
+      @apply com-max-w-3xl com-mx-auto com-text-center com-text-2xl com-leading-9 com-font-medium com-text-gray-900;
+    }
+  }
+
+  .pricing-logo-cloud {
+    @apply com-max-w-2xl com-mx-auto com-py-12 com-px-4;
+    @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
+
+    .subheading {
+      @apply com-text-center com-text-base com-mb-8 com-text-gray-400 com-font-medium com-tracking-wider com-uppercase;
+    }
+
+    .logo {
+      text-decoration: none;
+      @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
+
+      img {
+        @apply com-h-24;
+      }
+    }
+  }
+
+  .pricing-faq {
+    @apply com-max-w-2xl com-mx-auto com-py-16 com-px-4;
+    @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
+
+    .heading {
+      @apply com-my-0 com-text-3xl com-font-extrabold com-tracking-tight com-text-white;
+      @apply sm:com-text-4xl;
+    }
+
+    .subheading {
+      @apply com-mt-4 com-text-gray-400;
+    }
+
+    .questions {
+      @apply com-space-y-10;
+      @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
+
+      .question {
+        @apply com-font-semibold com-text-white com-text-base;
+      }
+
+      .answer {
+        @apply com-mt-3 com-ml-0 com-text-gray-400 com-text-base;
+      }
     }
   }
 }

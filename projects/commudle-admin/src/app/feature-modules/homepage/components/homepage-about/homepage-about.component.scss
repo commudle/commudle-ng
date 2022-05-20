@@ -1,0 +1,37 @@
+p {
+  @apply com-my-0;
+}
+
+.homepage-about-container {
+  @apply com-mx-auto com-px-4 com-text-center sm:com-px-6 lg:com-px-8;
+
+  .prefix-heading {
+    color: #0095ff;
+    @apply com-text-base com-font-semibold com-tracking-wider com-uppercase;
+  }
+
+  .heading {
+    @apply com-mt-2 com-mb-0 com-text-3xl com-font-extrabold com-text-gray-900 com-tracking-tight md:com-text-4xl;
+  }
+
+  .subheading {
+    @apply com-mt-5 com-mb-0 com-max-w-prose com-mx-auto com-text-xl com-text-gray-500 com-font-normal;
+  }
+
+  .feature {
+    @apply com-flow-root com-bg-gray-50 com-rounded-lg com-px-6 com-pb-8;
+
+    .icon {
+      background-color: #0095ff;
+      @apply com-inline-flex com-items-center com-justify-center com-p-3 com-rounded-md com-shadow-lg;
+    }
+
+    .name {
+      @apply com-mt-8 com-text-lg com-font-medium com-text-gray-900 com-tracking-tight;
+    }
+
+    .description {
+      @apply com-mt-5 com-text-base com-text-gray-500;
+    }
+  }
+}

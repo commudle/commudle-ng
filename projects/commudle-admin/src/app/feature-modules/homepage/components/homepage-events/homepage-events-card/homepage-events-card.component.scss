@@ -7,28 +7,16 @@
   overflow: hidden;
   position: relative;
   text-decoration: none;
-  @apply com-shadow;
+  @apply com-shadow com-w-80 md:com-w-auto;
 
-  .home-events-card-image {
-    height: 156px;
-    overflow: hidden;
+  .home-events-card-image-overlay {
+    background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
+    height: 100%;
+    position: absolute;
+    width: 100%;
 
-    .home-events-card-image-overlay {
-      background: linear-gradient(360deg, rgba(13, 28, 46, 0.29) 0%, rgba(17, 51, 79, 0.1827) 100%);
-      height: 156px;
-      position: absolute;
-      width: 100%;
-
-      &.old {
-        background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
-      }
-    }
-
-    img {
-      height: inherit;
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
+    &.old {
+      background: linear-gradient(360deg, rgb(13 28 46 / 45%) 0%, rgb(17 51 79 / 30%) 100%);
     }
   }
 
@@ -40,13 +28,14 @@
     font-size: $fs-h4;
     font-weight: $fw-500;
     height: 58px;
-    padding: $space-8 $space-12;
+    padding: $space-8;
     position: absolute;
     right: 12px;
     text-align: center;
-    top: 120px;
+    top: 38%;
     width: 58px;
     word-break: break-word;
+    z-index: 1;
 
     &.old {
       border-color: $cadet;
@@ -55,18 +44,11 @@
   }
 
   .home-events-card-details {
-    margin: $space-12 $space-12 $space-8;
+    @apply com-flex com-flex-col com-justify-between com-p-3 com-bg-white;
 
     .home-events-card-name {
-      color: $gunmetal;
-      font-weight: $fw-600;
-      height: 3rem;
-      line-height: 16px;
-      @apply com-text-base;
-
-      @screen md {
-        max-width: 80%;
-      }
+      height: 3.5rem;
+      @apply com-my-0 com-font-normal com-text-lg com-text-gray-900 com-line-clamp-2;
     }
 
     .home-events-card-host {
@@ -80,11 +62,8 @@
         }
 
         .home-events-card-community-name {
-          color: $text-low-emphasis;
-          font-size: $fs-card-secondary;
-          font-weight: $fw-500;
-          line-height: normal;
-          margin: 0 $space-16 0 $space-8;
+          word-break: break-all;
+          @apply com-text-sm com-text-gray-400 com-mx-2 com-my-0 com-line-clamp-1;
         }
       }
 
@@ -94,36 +73,6 @@
         font-weight: $fw-600;
         text-transform: uppercase;
       }
-    }
-  }
-}
-
-@media all and (max-width: $pc-width) {
-  .home-events-card-container {
-    width: 230px;
-  }
-
-  .home-events-attending {
-    display: none;
-  }
-
-  .home-events-card-image {
-    height: 88px;
-
-    .home-events-card-image-overlay {
-      height: 88px;
-    }
-
-    img {
-      object-position: center !important;
-    }
-  }
-
-  .home-events-card-details {
-    margin: $space-24 $space-8 $space-8 !important;
-
-    .home-events-card-name {
-      max-width: 100% !important;
     }
   }
 }

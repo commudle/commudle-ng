@@ -292,6 +292,10 @@ export const API_ROUTES = {
     },
   },
 
+  PUBLIC_NEWSLETTERS: {
+    PUBLIC_INDEX: 'api/v2/main_newsletters/public_index',
+  },
+
   PAGE_ADS: {
     INDEX: 'api/v2/pa',
     SHOW: 'api/v2/pa/show',
@@ -414,6 +418,7 @@ export const API_ROUTES = {
     FOLLOWERS: 'api/v2/users/followers',
     FOLLOWEES: 'api/v2/users/followees',
     EMAIL_UNSUBSCRIBE_GROUPS: 'api/v2/users/email_unsubscribe_groups',
+    MINI_PROFILE: 'api/v2/users/profile',
   },
 
   SPEAKER_RESOURCES: {

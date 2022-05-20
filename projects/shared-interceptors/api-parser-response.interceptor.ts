@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LibErrorHandlerService } from 'projects/lib-error-handler/src/public-api';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
@@ -30,7 +30,7 @@ export class ApiParserResponseInterceptor implements HttpInterceptor {
           // show a dialog/redirect, based on error code
           this.errorHandleService.handleError(error.status, error.error.message);
         }
-        return of(error);
+        return throwError(error);
       }),
     );
   }

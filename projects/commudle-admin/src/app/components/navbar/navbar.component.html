@@ -1,9 +1,17 @@
 <div class="com-flex com-justify-between com-items-center com-gap-2 com-container com-max-w-screen-xl com-px-2">
   <a [routerLink]="['/']">
     <img
+      *appBreakpoints="'<=md'"
       alt="Commudle"
-      class="com-d-block com-w-8 com-h-8 md:com-w-12 md:com-h-12 com-object-contain"
+      class="com-d-block com-w-8 com-h-8 com-object-contain"
       src="/assets/images/commudle-logo72.png"
+      title="Commudle"
+    />
+    <img
+      *appBreakpoints="'>md'"
+      alt="Commudle"
+      class="com-d-block com-w-auto com-h-8 com-object-contain"
+      src="/assets/images/commudle-logo-full.png"
       title="Commudle"
     />
   </a>
@@ -22,8 +30,8 @@
         class="com-w-9 com-h-9 md:com-w-11 md:com-h-11 com-object-cover com-rounded-full com-self-end"
       />
       <ng-template #guest>
-        <button *appBreakpoints="'>lg'" (click)="login()" nbButton outline size="small">Login / Signup</button>
-        <button *appBreakpoints="'<=lg'" (click)="login()" nbButton outline size="small" title="Login / Signup">
+        <button (click)="login()" *appBreakpoints="'>lg'" nbButton outline size="small">Login / Signup</button>
+        <button (click)="login()" *appBreakpoints="'<=lg'" nbButton outline size="small" title="Login / Signup">
           <nb-icon icon="log-in-outline"></nb-icon>
         </button>
       </ng-template>

@@ -1,9 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
-import { INotification } from 'projects/shared-models/notification.model';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { ENotificationEntityTypes } from 'projects/shared-models/enums/notification_entity_types.enum';
+import { ENotificationMessageTypes } from 'projects/shared-models/enums/notification_message_types.enum';
+import { ENotificationParentTypes } from 'projects/shared-models/enums/notification_parent_types.enum';
+import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
+import { INotification } from 'projects/shared-models/notification.model';
 
 @Component({
   selector: 'app-notifications-list',
@@ -13,7 +17,7 @@ import * as moment from 'moment';
 export class NotificationsListComponent implements OnInit, OnDestroy {
   @Input() notifications: INotification[];
 
-  ENotificationStatus = ENotificationStatus;
+  ENotificationStatuses = ENotificationStatuses;
 
   subscriptions = [];
   moment = moment;
@@ -21,6 +25,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
   constructor(
     private notificationService: NotificationService,
     private notificationStateService: NotificationStateService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +36,12 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  changeStatus(status: ENotificationStatus, notification: INotification) {
+  changeStatus(status: ENotificationStatuses, notification: INotification, redirect: boolean = false) {
     this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
+
+    if (redirect) {
+      this.redirectTo(notification);
+    }
   }
 
   closePopover() {
@@ -57,5 +66,41 @@ export class NotificationsListComponent implements OnInit, OnDestroy {
         yy: '%dY',
       },
     });
+  }
+
+  redirectTo(notification: INotification) {
+    switch (notification.notification_message_type) {
+      case ENotificationMessageTypes.FOLLOW_CREATED:
+        this.router.navigate(['/users', notification.sender.username]);
+        break;
+      case ENotificationMessageTypes.VOTE_CREATED:
+        switch (notification.entity_type) {
+          case ENotificationEntityTypes.LAB:
+            if ('slug' in notification.entity) {
+              this.router.navigate(['/labs', notification.entity.slug]);
+            }
+            break;
+          case ENotificationEntityTypes.COMMUNITY_BUILD:
+            if ('slug' in notification.entity) {
+              this.router.navigate(['/builds', notification.entity.slug]);
+            }
+            break;
+        }
+        break;
+      case ENotificationMessageTypes.MESSAGE_CREATED:
+        switch (notification.parent_type) {
+          case ENotificationParentTypes.LAB:
+            if ('slug' in notification.parent) {
+              this.router.navigate(['/labs', notification.parent.slug]);
+            }
+            break;
+          case ENotificationParentTypes.COMMUNITY_BUILD:
+            if ('slug' in notification.parent) {
+              this.router.navigate(['/builds', notification.parent.slug]);
+            }
+            break;
+        }
+        break;
+    }
   }
 }
