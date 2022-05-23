@@ -1,5 +1,5 @@
 .homepage {
-  @apply com-w-full com-min-h-screen com-bg-white;
+  @apply com-w-full com-min-h-screen com-bg-white com-overflow-hidden;
 
   .linear-gradient-top {
     background: linear-gradient(180deg, #ffffff 0%, #c7dcff 100%);
