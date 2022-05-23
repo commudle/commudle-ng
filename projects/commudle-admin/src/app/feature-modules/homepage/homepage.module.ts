@@ -8,7 +8,6 @@ import {
   NbListModule,
   NbTooltipModule,
 } from '@nebular/theme';
-import { LottieModule } from 'ngx-lottie';
 import { PublicCommunityModule } from 'projects/commudle-admin/src/app/feature-modules/public-community/public-community.module';
 import { SearchModule } from 'projects/commudle-admin/src/app/feature-modules/search/search.module';
 import { SkeletonScreensModule } from 'projects/commudle-admin/src/app/feature-modules/skeleton-screens/skeleton-screens.module';
@@ -27,11 +26,6 @@ import { HomepageLabsComponent } from './components/homepage-labs/homepage-labs.
 import { HomepageTestimonialsComponent } from './components/homepage-testimonials/homepage-testimonials.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
-
-// Note we need a separate function as it's required by the AOT compiler.
-export function playerFactory() {
-  return import(/* webpackChunkName: 'lottie-web' */ 'lottie-web/build/player/lottie_svg');
-}
 
 @NgModule({
   declarations: [
@@ -56,7 +50,6 @@ export function playerFactory() {
     PublicCommunityModule,
     SearchModule,
     MiniUserProfileModule,
-    LottieModule.forRoot({ player: playerFactory }),
 
     NbButtonModule,
     NbCardModule,

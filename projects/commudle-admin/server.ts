@@ -80,11 +80,6 @@ export function app(): express.Express {
     res.sendFile(join(distFolder, 'index.html'));
   });
 
-  // for homepage (/ route)
-  server.get('/', (req, res) => {
-    res.sendFile(join(distFolder, 'index.html'));
-  });
-
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
