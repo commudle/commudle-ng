@@ -138,10 +138,12 @@ export class MiniUserProfileDirective implements OnDestroy {
     } else {
       this.coords.top = nativeElementRect.bottom - offsetBottom;
     }
+
+    this.coords.top += window.pageYOffset;
   }
 
   positionElement() {
-    this.componentRef.location.nativeElement.firstChild.style.position = 'fixed';
+    this.componentRef.location.nativeElement.firstChild.style.position = 'absolute';
     this.componentRef.location.nativeElement.firstChild.style.left = this.coords.left + 'px';
     this.componentRef.location.nativeElement.firstChild.style.top = this.coords.top + 'px';
   }
