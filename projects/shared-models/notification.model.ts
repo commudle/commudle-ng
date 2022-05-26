@@ -12,12 +12,18 @@ export interface INotification {
   id: number;
   status: ENotificationStatuses;
   sender: IUser;
+  notification_message: INotificationMessage[];
+  notification_message_type: ENotificationMessageTypes;
+  created_at: string;
+}
+
+export interface INotificationMessage {
+  type: 'link' | 'text';
+  value: string;
+  sender: IUser;
   sender_type: ENotificationSenderTypes;
-  entity: IUser | ILab | ICommunityBuild | IUserMessage;
+  entity: ILab | ICommunityBuild | IUserMessage;
   entity_type: ENotificationEntityTypes;
   parent: ILab | ICommunityBuild;
   parent_type: ENotificationParentTypes;
-  notification_message: string;
-  notification_message_type: ENotificationMessageTypes;
-  created_at: string;
 }

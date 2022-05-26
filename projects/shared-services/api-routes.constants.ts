@@ -568,6 +568,8 @@ export const API_ROUTES = {
 
   NOTIFICATIONS: {
     INDEX: 'api/v2/notifications',
+    MARK_ALL_AS_READ: 'api/v2/notifications/mark_all_as_read',
+    UNREAD_COUNT: 'api/v2/notifications/unread_count',
     UPDATE_STATUS: 'api/v2/notifications/update_status',
   },
 

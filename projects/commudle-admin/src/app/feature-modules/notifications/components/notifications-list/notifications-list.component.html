@@ -1,28 +1,38 @@
-<nb-list>
-  <nb-list-item (click)="closePopover()" *ngFor="let notification of notifications">
-    <nb-badge
-      *ngIf="notification.status === ENotificationStatuses.UNREAD"
-      dotMode="true"
-      position="center left"
-      status="primary"
-    ></nb-badge>
-    <a (click)="changeStatus(ENotificationStatuses.INTERACTED, notification, true)">
-      <div class="avatar com-rounded-[50%] com-h-[56px] com-w-[56px]">
-        <img [alt]="notification.sender.name" [src]="notification.sender.avatar" [title]="notification.sender.name" />
-      </div>
-      <div class="content">
-        <p class="notification-text">
-          {{ notification.notification_message }}
-        </p>
-        <p class="fs-p4 notification-time">{{ moment(notification.created_at).fromNow() }}</p>
-      </div>
-    </a>
-    <nb-icon
-      (click)="changeStatus(ENotificationStatuses.READ, notification); $event.stopPropagation()"
-      *ngIf="notification.status === ENotificationStatuses.UNREAD"
-      icon="checkmark-outline"
-      status="basic"
-      title="Mark as read"
-    ></nb-icon>
+<nb-list
+  (scrolled)="getNotifications()"
+  [infiniteScrollDisabled]="!(canLoadMore && total)"
+  appInfiniteScroll
+  class="notification-list"
+>
+  <nb-list-item
+    *ngFor="let notification of notifications"
+    [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
+  >
+    <div class="com-flex com-items-center">
+      <nb-user [picture]="notification.sender.avatar" onlyPicture></nb-user>
+      <app-notifications-list-item
+        (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
+        [notificationMessage]="notification.notification_message"
+      ></app-notifications-list-item>
+    </div>
+    <div class="com-flex com-items-center">
+      <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
+      <button
+        (click)="changeStatus(ENotificationStatuses.READ, notification)"
+        *ngIf="notification.status === ENotificationStatuses.UNREAD"
+        class="mark-as-read"
+        nbButton
+        nbTooltip="Mark as read"
+        size="small"
+      >
+        <nb-icon icon="checkmark-outline"></nb-icon>
+      </button>
+    </div>
   </nb-list-item>
 </nb-list>
+
+<div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+  <div class="spinner">
+    <div *ngFor="let _ of [].constructor(5)"></div>
+  </div>
+</div>
