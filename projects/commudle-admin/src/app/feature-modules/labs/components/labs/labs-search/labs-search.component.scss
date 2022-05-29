@@ -17,9 +17,11 @@
         border-radius: 0;
         height: $space-48;
         max-width: 100%;
+        font-size: 14px;
 
         &::placeholder {
           color: rgba($gunmetal, 0.7);
+          font-size: 14px;
         }
       }
 
