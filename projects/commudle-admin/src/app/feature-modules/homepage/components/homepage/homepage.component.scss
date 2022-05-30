@@ -9,6 +9,17 @@
     background: linear-gradient(180deg, #c7dcff 0%, #ffffff 100%);
   }
 
+  .linear-gradient {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #cde0ff 34.06%,
+      rgba(150, 189, 255, 0.539364) 58.79%,
+      rgba(190, 214, 255, 0.243146) 87.66%,
+      rgba(255, 255, 255, 0) 107.92%
+    );
+  }
+
   .homepage-section {
     @apply com-max-w-screen-xl com-container com-pt-12 md:com-pt-24 com-px-4 md:com-px-0;
 
