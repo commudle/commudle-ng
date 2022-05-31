@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageObject } from '@sanity/image-url/lib/types/types';
 import { ICMSAbout } from 'projects/commudle-admin/src/app/components/about/models/about-cms.model';
@@ -12,8 +11,6 @@ import { SeoService } from 'projects/shared-services/seo.service';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit, OnDestroy {
-  faChevronRight = faChevronRight;
-
   ICmsAbout: ICMSAbout;
 
   constructor(private cmsService: CmsService, private seoService: SeoService) {}
