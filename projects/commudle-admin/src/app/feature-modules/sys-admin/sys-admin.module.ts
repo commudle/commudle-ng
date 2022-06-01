@@ -17,6 +17,7 @@ import {
 } from '@nebular/theme';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AdminBadgesAssignComponent } from './components/admin-badges/admin-badges-assign/admin-badges-assign.component';
 import { AdminBadgesFormComponent } from './components/admin-badges/admin-badges-form/admin-badges-form.component';
@@ -57,6 +58,7 @@ import { SysAdminComponent } from './sys-admin.component';
     ReactiveFormsModule,
     SharedDirectivesModule,
     SharedPipesModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,

@@ -1,42 +1,49 @@
 <div>
   <div *ngIf="volunteers.length > 0">
     <div class="volunteers">
-      <div class="user-profile" *ngFor="let org of volunteers; let i=index;">
-
+      <div *ngFor="let org of volunteers; let i = index" class="user-profile">
         <div class="user-details">
-          <app-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></app-user-profile-horizontal>
+          <app-user-profile-horizontal [socialMediaLinks]="true" [user]="org.user"></app-user-profile-horizontal>
         </div>
         <div class="actions">
-          <a class="clickable" *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
+          <a (click)="resendInvitationMail(org)" *ngIf="org.status === EUserRolesUserStatus.INVITED" class="clickable">
             <small>Resend Invite</small>
           </a>
-          <br>
-          <a class="clickable" (click)="remove(org, i)">
+          <br />
+          <a (click)="remove(org, i)" class="clickable">
             <small>Remove</small>
           </a>
         </div>
-
       </div>
     </div>
-
   </div>
 
   <div *ngIf="event.editable">
-    <h6>
-      Add a Volunteer
-    </h6>
+    <h6>Add a Volunteer</h6>
     <p>
-      <small>
-        *Volunteers can only access the attendance page (which is applicable only for offline events)
-      </small>
+      <small> *Volunteers can only access the attendance page (which is applicable only for offline events) </small>
     </p>
-    <form class="user-roles-user-form" [formGroup]="userRolesUserForm" (ngSubmit)="createUserRolesUser()" >
+    <form (ngSubmit)="createUserRolesUser()" [formGroup]="userRolesUserForm" class="user-roles-user-form">
       <div>
         <label fullWidth>
           Email*
-          <input type="email" nbInput fullWidth formControlName="email" placeholder="Google/Gmail Email" fieldSize="tiny">
+          <input
+            fieldSize="tiny"
+            formControlName="email"
+            fullWidth
+            nbInput
+            placeholder="Google/Gmail Email"
+            type="email"
+          />
         </label>
-        <span *ngIf="userRolesUserForm['controls'].email.touched && userRolesUserForm['controls'].email.invalid && userRolesUserForm['controls'].email.errors.required " class="validation-error-text">
+        <span
+          *ngIf="
+            userRolesUserForm['controls'].email.touched &&
+            userRolesUserForm['controls'].email.invalid &&
+            userRolesUserForm['controls'].email.errors.required
+          "
+          class="validation-error-text"
+        >
           Required Field
         </span>
       </div>
@@ -44,17 +51,16 @@
       <div class="save-button-bottom">
         <button
           [disabled]="!userRolesUserForm.valid"
-          type="submit"
+          fullWidth
           nbButton
-          fullWidth outline
-          status="primary"
           outline
           size="tiny"
-          >
+          status="primary"
+          type="submit"
+        >
           Save
         </button>
       </div>
-
     </form>
   </div>
 </div>
