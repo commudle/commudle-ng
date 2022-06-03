@@ -13,13 +13,12 @@
 
     .lab-content {
       .lab-header-quote {
-        font-size: 1.1rem;
-        line-height: 1.5rem;
+        @apply com-text-xl;
       }
 
       .lab-header-heading {
-        font-size: 1.75rem;
         margin: $space-16 0 $space-12;
+        @apply com-text-4xl;
 
         span {
           color: $neon-blue;
@@ -31,10 +30,9 @@
     .lab-content-search {
       .lab-search-tags {
         color: $neon-blue;
-        font-size: 1.75rem;
         font-weight: 600;
-        line-height: 2rem;
         margin-bottom: $space-8;
+        @apply com-text-4xl;
       }
     }
   }
