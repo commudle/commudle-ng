@@ -54,14 +54,14 @@
                 background-color: $azureish-white;
                 border: none;
                 border-radius: $border-5;
-                font-size: $fs-h5;
                 font-weight: $fw-500;
                 text-transform: lowercase;
+                @apply com-text-sm;
 
                 nb-icon {
                   color: rgba($gunmetal, 0.5);
-                  font-size: 1.2rem;
                   margin-left: $space-8;
+                  @apply com-text-xl;
                 }
               }
             }
@@ -78,10 +78,10 @@
         p {
           align-self: center;
           color: rgba($gunmetal, 0.6);
-          font-size: 1rem;
           margin: 0;
           padding: 0 $space-16;
           width: 100%;
+          @apply com-text-base;
         }
 
         ul {
