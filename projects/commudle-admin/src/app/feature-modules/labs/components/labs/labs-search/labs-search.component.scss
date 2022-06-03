@@ -17,9 +17,11 @@
         border-radius: 0;
         height: $space-48;
         max-width: 100%;
+        @apply com-text-sm;
 
         &::placeholder {
           color: rgba($gunmetal, 0.7);
+          @apply com-text-sm;
         }
       }
 
@@ -91,6 +93,7 @@
           .labs-tag-search-result {
             padding: 0.4 * $space-16 $space-16;
             transition: all 0.2s ease-in-out;
+            @apply com-text-sm;
 
             &:hover {
               background-color: darken($white, 3%);
@@ -155,6 +158,7 @@
       background-color: $neon-blue;
       color: white;
       margin: 0 $space-8;
+      @apply com-text-sm;
 
       &:hover {
         background-color: $white;
