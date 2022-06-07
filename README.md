@@ -35,7 +35,7 @@ experiences of Community Organizers.
 
 ## Build for production
 
-- Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Run `sh prod.sh` to build the project. The build artifacts will be stored in the `prod-server.zip` file.
 
 ## Design Framework / UI Kit
 
