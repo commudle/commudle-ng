@@ -1,14 +1,11 @@
 import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NbWindowRef, NbWindowService } from '@nebular/theme';
-import { BarcodeFormat } from '@zxing/library';
+import { NbCardComponent, NbDialogService, NbToastrService } from '@nebular/theme';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
 import { ICommunity } from 'projects/shared-models/community.model';
-import { IEventPass } from 'projects/shared-models/event-pass.model';
 import { IEvent } from 'projects/shared-models/event.model';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { IEventEntryPass } from 'projects/shared-models/event_entry_pass.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
@@ -18,135 +15,138 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./entry-pass-scan.component.scss'],
 })
 export class EntryPassScanComponent implements OnInit, OnDestroy {
-  @ViewChild('scanner', { static: false }) scanner: ZXingScannerComponent;
-  @ViewChild('correctSound') correctSound: ElementRef;
-  @ViewChild('incorrectSound') incorrectSound: ElementRef;
-  @ViewChild('userInfo') userInfo: TemplateRef<any>;
-
-  availableDevices: MediaDeviceInfo[];
-  currentDevice: MediaDeviceInfo = null;
-  lastDevice: MediaDeviceInfo = null;
-  hasDevices: boolean;
-  hasPermission: boolean;
-  qrResultString: string;
-  eventPass: IEventPass = null;
   event: IEvent;
   community: ICommunity;
-  attendanceStatus: boolean = false;
+  entryPass: IEventEntryPass;
 
-  formatsEnabled: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
+  hasDevices: boolean;
+  hasPermission: boolean;
+  isScannerEnabled: boolean = true;
+  isLoadingEntryPass: boolean = false;
+  selectedDevice: MediaDeviceInfo;
+  availableDevices: MediaDeviceInfo[] = [];
+  isWindowOpen: boolean = false;
 
-  entryPassForm = this.fb.group({
-    entry_pass_code: ['', Validators.required],
-  });
+  @ViewChild('scannerComponent', { static: false }) scanner: ZXingScannerComponent;
+  @ViewChild('entryPassWindow') entryPassWindow: TemplateRef<NbCardComponent>;
+  @ViewChild('correctSound') correctSound: ElementRef<HTMLAudioElement>;
+  @ViewChild('incorrectSound') incorrectSound: ElementRef<HTMLAudioElement>;
 
   subscriptions: Subscription[] = [];
 
-  windowRef: NbWindowRef;
-
   constructor(
     private activatedRoute: ActivatedRoute,
-    private toastService: LibToastLogService,
-    private eventEntryPassesService: EventEntryPassesService,
-    private fb: FormBuilder,
     private seoService: SeoService,
-    private windowService: NbWindowService,
+    private eventEntryPassesService: EventEntryPassesService,
+    private nbToastrService: NbToastrService,
+    private nbDialogService: NbDialogService,
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.activatedRoute.data.subscribe((val) => {
-        this.event = val.event;
-        this.community = val.community;
-      }),
-    );
+    this.getRouteData();
 
     this.seoService.noIndex(true);
   }
 
   ngOnDestroy(): void {
-    this.seoService.noIndex(false);
-
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+
+    this.seoService.noIndex(false);
   }
 
-  onCodeResult(resultString: string) {
-    this.lastDevice = this.scanner.device;
-    this.scanner.enable = false;
-    this.getEntryPass(this.event.id, resultString);
+  getRouteData(): void {
+    this.activatedRoute.data.subscribe((value) => {
+      this.event = value.event;
+      this.community = value.community;
+    });
   }
 
-  submitForm() {
-    this.lastDevice = this.scanner.device;
-    this.scanner.enable = false;
-    this.getEntryPass(this.event.id, this.entryPassForm.value.entry_pass_code);
-  }
-
-  getEntryPass(eventId: number, uniqueCode: string) {
-    this.subscriptions.push(
-      this.eventEntryPassesService.getEntryPass(eventId, uniqueCode).subscribe((data) => {
-
-        if (data.attendance) {
-          this.toastService.warningDialog('Attendance already marked')
+  getEntryPass(entryCode: string): void {
+    this.isLoadingEntryPass = true;
+    this.eventEntryPassesService.getEntryPass(this.event.id, entryCode).subscribe(
+      (entryPass) => {
+        this.entryPass = entryPass;
+        if (entryPass.attendance) {
+          this.correctSound.nativeElement.play();
+          this.nbToastrService.success('Attendance Marked', 'Success');
         }
-        this.correctSound.nativeElement.play();
-        this.eventPass = data;
-        this.windowRef = this.windowService.open(this.userInfo, { windowClass: 'user-info', });
-        
-        this.subscriptions.push(
-          this.windowRef.onClose.subscribe(() => {
-            this.scanner.device = this.lastDevice;
-            this.currentDevice = this.lastDevice;
-            this.scanner.enable = true;
-          })
-        )
-      }, (err) => {
-        if(err){
-          this.incorrectSound.nativeElement.play();
-          this.resetScanner();
-        }
-      })
+        this.openWindow();
+        // TODO: Switching off the scanner is continuously triggering the onScanSuccess event.
+        // this.scanner.reset();
+        // this.disableScanner();
+      },
+      (error) => {
+        console.error('Error: ', error);
+        this.incorrectSound.nativeElement.play();
+      },
+      () => {
+        this.isLoadingEntryPass = false;
+      },
     );
   }
 
-  closeWindow() {
-    this.windowRef.close();
-  }
-
-  toggleAttendance() {
-    this.attendanceStatus = true;
+  unmarkAttendance() {
     this.subscriptions.push(
-      this.eventEntryPassesService.toggleAttendance(this.eventPass.id).subscribe((res) => {
-        if (res) {
-          this.toastService.successDialog('Attendance Toggled');
-          this.attendanceStatus = false;
-          this.windowRef.close();
+      this.eventEntryPassesService.toggleAttendance(this.entryPass.id).subscribe((value) => {
+        if (value) {
+          this.nbToastrService.success('Attendance Unmarked', 'Success');
+          this.enableScanner();
         }
       }),
     );
   }
 
-  onCamerasFound(devices: MediaDeviceInfo[]) {
-    // checks whether user has camera devices or not
-    this.availableDevices = devices;
-    this.hasDevices = Boolean(devices && devices.length);
+  onScanSuccess(value: string): void {
+    if (!this.isWindowOpen) {
+      this.getEntryPass(value);
+    }
   }
 
-  onDeviceSelectChange(selected: string) {
-    // when user changes the camera
-    const device = this.availableDevices.find((x) => x.deviceId === selected);
-    this.currentDevice = device || null;
+  onCamerasFound(cameras: MediaDeviceInfo[]): void {
+    this.availableDevices = cameras;
   }
 
-  compareByDeviceId(optionValue, selectedValue): boolean {
-    return optionValue === selectedValue.deviceId;
+  onHasDevices(response: boolean): void {
+    this.hasDevices = response;
   }
 
-  resetScanner(){
-    if(!this.scanner.enabled){
-      this.scanner.device = this.lastDevice;
-      this.currentDevice = this.lastDevice;
-      this.scanner.enable = true;
+  onPermissionResponse(response: boolean): void {
+    this.hasPermission = response;
+  }
+
+  onSelectedChange(deviceId: string): void {
+    this.selectedDevice = this.availableDevices.find((device) => device.deviceId === deviceId);
+  }
+
+  enableScanner() {
+    this.isScannerEnabled = true;
+  }
+
+  disableScanner() {
+    this.isScannerEnabled = false;
+  }
+
+  openWindow() {
+    this.isWindowOpen = true;
+    this.nbDialogService.open(this.entryPassWindow, {
+      closeOnEsc: false,
+      closeOnBackdropClick: false,
+    });
+  }
+
+  handleOk() {
+    this.enableScanner();
+    this.isWindowOpen = false;
+  }
+
+  handleCancel() {
+    this.unmarkAttendance();
+    this.isWindowOpen = false;
+  }
+
+  onSubmit(value: string) {
+    if (value?.length) {
+      this.getEntryPass(value);
     }
   }
 }
