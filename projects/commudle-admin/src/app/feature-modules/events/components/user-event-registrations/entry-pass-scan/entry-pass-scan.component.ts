@@ -143,4 +143,10 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     this.unmarkAttendance();
     this.isWindowOpen = false;
   }
+
+  onSubmit(value: string) {
+    if (value?.length) {
+      this.getEntryPass(value);
+    }
+  }
 }

@@ -83,7 +83,7 @@
           <p class="divider">OR</p>
 
           <div class="manual-entry-pass">
-            <form (ngSubmit)="manualEntryPassInput.value?.length && getEntryPass(manualEntryPassInput.value)">
+            <form (ngSubmit)="onSubmit(manualEntryPassInput.value); manualEntryPassInput.value = ''">
               <nb-form-field>
                 <input
                   #manualEntryPassInput
