@@ -66,10 +66,15 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     this.eventEntryPassesService.getEntryPass(this.event.id, entryCode).subscribe(
       (entryPass) => {
         this.entryPass = entryPass;
-        if (entryPass.attendance) {
+
+        if (this.entryPass.attendance) {
           this.correctSound.nativeElement.play();
-          this.nbToastrService.success('Attendance Marked', 'Success');
+          this.nbToastrService.success(
+            this.entryPass.is_first_time_attendance ? 'Attendance marked' : 'Attendance already marked',
+            'Success',
+          );
         }
+
         this.openWindow();
         // TODO: Switching off the scanner is continuously triggering the onScanSuccess event.
         // this.scanner.reset();

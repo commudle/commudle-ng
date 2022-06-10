@@ -60,9 +60,11 @@
               (permissionResponse)="onPermissionResponse($event)"
               (scanSuccess)="onScanSuccess($event)"
               [(device)]="selectedDevice"
+              [autofocusEnabled]="true"
               [delayBetweenScanSuccess]="5000"
               [enable]="isScannerEnabled"
               [timeBetweenScans]="5000"
+              [tryHarder]="true"
               previewFitMode="contain"
             ></zxing-scanner>
 
