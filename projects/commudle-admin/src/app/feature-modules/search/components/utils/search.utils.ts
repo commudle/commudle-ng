@@ -31,6 +31,35 @@ export function navigate(option: ISearchResult): void {
   }
 }
 
+// function to return route for routerlink in html
+
+export function getRoute(option: ISearchResult): string[] {
+  let searchUrl = [''];
+  switch (option.type) {
+    case 'Lab':
+      searchUrl = ['/labs', option['slug']];
+      return searchUrl;
+    case 'User':
+      searchUrl = ['/users', option['username']];
+      return searchUrl;
+    case 'Lab':
+      searchUrl = ['/labs', option['slug']];
+      return searchUrl;
+    case 'Community':
+      searchUrl = ['/communities', option['slug']];
+      return searchUrl;
+    case 'Community Build':
+      searchUrl = ['/builds', option['slug']];
+      return searchUrl;
+    case 'Event':
+      searchUrl = ['/communities', option['kommunity_slug'], 'events', option['slug']];
+      return searchUrl;
+    case 'all':
+      (searchUrl = ['/search']), { queryParams: { q: option['query'] } };
+      return searchUrl;
+  }
+}
+
 export function getPicture(option: ISearchResult): string {
   switch (option.type) {
     case 'User':
