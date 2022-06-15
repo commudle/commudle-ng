@@ -69,7 +69,7 @@
   </nb-actions>
   <div *ngIf="canReply" class="replies">
     <app-message
-      (sendDelete)="emitDelete(message.id, message.user.id === currentUser.id)"
+      (sendDelete)="emitDelete(reply.id, reply.user.id === currentUser.id)"
       (sendFlag)="emitFlag($event)"
       *ngFor="let reply of message.user_messages"
       [allActions]="allActions"

@@ -25,10 +25,9 @@ p {
     color: $black;
 
     .name {
-      color: $neon-blue;
       font-size: $fs-h6;
-      font-weight: $fw-700;
       line-height: 14px;
+      @apply com-text-black;
 
       img {
         height: 10px;

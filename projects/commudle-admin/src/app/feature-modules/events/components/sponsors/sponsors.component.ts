@@ -70,7 +70,7 @@ export class SponsorsComponent implements OnInit {
       data => {
         this.sponsors.push(data);
         this.windowRef.close();
-        this.toastLogService.successDialog(`{{data.name}} added`, 3000);
+        this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
       }
     );
   }
@@ -92,7 +92,7 @@ export class SponsorsComponent implements OnInit {
         this.windowRef.close();
         this.removeLogo();
         this.sponsorForm.reset();
-        this.toastLogService.successDialog(`{{data.name}} added`, 3000);
+        this.toastLogService.successDialog(`${data.sponsor.name} added`, 3000);
       }
     );
   }

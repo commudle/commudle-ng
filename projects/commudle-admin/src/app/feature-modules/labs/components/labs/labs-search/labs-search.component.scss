@@ -17,9 +17,11 @@
         border-radius: 0;
         height: $space-48;
         max-width: 100%;
+        @apply com-text-sm;
 
         &::placeholder {
           color: rgba($gunmetal, 0.7);
+          @apply com-text-sm;
         }
       }
 
@@ -52,14 +54,14 @@
                 background-color: $azureish-white;
                 border: none;
                 border-radius: $border-5;
-                font-size: $fs-h5;
                 font-weight: $fw-500;
                 text-transform: lowercase;
+                @apply com-text-sm;
 
                 nb-icon {
                   color: rgba($gunmetal, 0.5);
-                  font-size: 1.2rem;
                   margin-left: $space-8;
+                  @apply com-text-xl;
                 }
               }
             }
@@ -76,10 +78,10 @@
         p {
           align-self: center;
           color: rgba($gunmetal, 0.6);
-          font-size: 1rem;
           margin: 0;
           padding: 0 $space-16;
           width: 100%;
+          @apply com-text-base;
         }
 
         ul {
@@ -91,6 +93,7 @@
           .labs-tag-search-result {
             padding: 0.4 * $space-16 $space-16;
             transition: all 0.2s ease-in-out;
+            @apply com-text-sm;
 
             &:hover {
               background-color: darken($white, 3%);
@@ -155,6 +158,7 @@
       background-color: $neon-blue;
       color: white;
       margin: 0 $space-8;
+      @apply com-text-sm;
 
       &:hover {
         background-color: $white;
