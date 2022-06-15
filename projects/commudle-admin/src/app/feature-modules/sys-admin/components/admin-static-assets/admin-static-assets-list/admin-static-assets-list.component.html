@@ -15,25 +15,16 @@
           <div class="assets-details">
             <p class="title">
               {{ asset.name }}
+              ({{ asset.id }})
             </p>
-            <!-- <p class="">
-              <a href="{{ asset.file.url }}"> Click to open </a>
-            </p> -->
-            <!-- <div *ngIf="asset.file" class="asset-image">
+            <div *ngIf="asset.file" class="asset-image">
               <img [src]="asset.file.url | safeUrl" alt="{{ asset.name }}" title="{{ asset.name }}" />
-            </div> -->
-            <!-- <div *ngIf="asset.file" class="asset-link">
-              <button nbButton outline size="tiny" status="info">
-                <a href="{{ asset.file.url }}" target="_blank"> View </a>
-              </button>
-            </div> -->
+            </div>
           </div>
           <div class="controls d-flex">
             <div *ngIf="asset.file">
               <a href="{{ asset.file.url }}" nbButton outline status="primary" size="small" target="_blank"> Link </a>
             </div>
-            <!-- <button nbButton outline size="tiny" status="info">Edit</button>
-            <button nbButton outline size="tiny" status="danger">Delete</button> -->
           </div>
         </nb-list-item>
       </nb-list>
