@@ -20,6 +20,7 @@ import {
   NbPopoverModule,
   NbRadioModule,
   NbSelectModule,
+  NbSpinnerModule,
   NbTabsetModule,
   NbTimepickerModule,
   NbToggleModule,
@@ -130,6 +131,7 @@ import { EventsRoutingModule } from './events-routing.module';
     NbButtonGroupModule,
     NbIconModule,
     NbFormFieldModule,
+    NbSpinnerModule,
   ],
 })
 export class EventsModule {}
