@@ -15,16 +15,17 @@
         Asset*
         <input
           #inputFile
+          (change)="addImage($event)"
           formControlName="asset"
-          accept="image/svg+xml, image/jpeg, image/png, image/gif"
+          accept="image/svg+xml, image/png, image/jpg, image/gif, application/pdf, audio/mp3, video/mp4 "
           fullWidth
           nbInput
           type="file"
           required
         />
       </label>
-      <div *ngIf="fileSrc" class="file-container">
-        <img [src]="fileSrc | safeUrl" alt="{{ fileUploaded.file?.name || fileUploaded.name }}" />
+      <div *ngIf="imageSrc" class="file-container">
+        <img [src]="imageSrc | safeUrl" alt="{{ uploadedImage.file?.name || uploadedImage.name }}" />
       </div>
       <button fullWidth ghost nbButton status="primary" type="submit">Save</button>
     </form>
