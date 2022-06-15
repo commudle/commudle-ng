@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "nodemon index.js"
   },
   "license": "ISC",
