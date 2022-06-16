@@ -13,16 +13,7 @@
       </label>
       <label>
         Asset*
-        <input
-          #inputFile
-          (change)="addImage($event)"
-          formControlName="asset"
-          accept="image/svg+xml, image/png, image/jpg, image/gif, application/pdf, audio/mp3, video/mp4 "
-          fullWidth
-          nbInput
-          type="file"
-          required
-        />
+        <input #inputFile (change)="addImage($event)" formControlName="asset" fullWidth nbInput type="file" required />
       </label>
       <div *ngIf="imageSrc" class="file-container">
         <img [src]="imageSrc | safeUrl" alt="{{ uploadedImage.file?.name || uploadedImage.name }}" />

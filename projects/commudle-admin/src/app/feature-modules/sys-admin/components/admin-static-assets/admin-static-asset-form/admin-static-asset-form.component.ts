@@ -34,7 +34,6 @@ export class AdminStaticAssetFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(' works ');
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((params) => {
         this.getAssets(+params.AssetId || 0);
@@ -94,11 +93,9 @@ export class AdminStaticAssetFormComponent implements OnInit {
 
   submitForm(): void {
     this.createAsset();
-    console.log('asset submit');
   }
 
   createAsset(): void {
-    console.log('create works');
     this.subscriptions.push(
       this.adminStaticAssetsService.createAsset(this.buildFormData()).subscribe(() => {
         this.router.navigate(['/sys-admin', 'static-assets']).then(
