@@ -20,7 +20,7 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
 
   userRolesUserForm = this.fb.group({
     email: ['', Validators.required],
-    user_role_name: [''],
+    user_role_name: [EUserRoles.ORGANIZER],
   });
 
   constructor(

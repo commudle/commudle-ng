@@ -65,36 +65,6 @@
         </span>
       </div>
 
-      <div class="data-form-type-select">
-        <label>
-          Role Type*
-          <br />
-          <nb-select
-            [ngModel]="EUserRoles.ORGANIZER"
-            placeholder="Select One"
-            formControlName="user_role_name"
-            status="primary"
-            size="tiny"
-            hero
-          >
-            <!-- <nb-option [value]="EUserRoles.ORGANIZER"> Community Organizer </nb-option>
-            <nb-option [value]="EUserRoles.EVENT_ORGANIZER"> Event Organizer </nb-option> -->
-          </nb-select>
-        </label>
-        <div>
-          <span
-            *ngIf="
-              userRolesUserForm['controls'].user_role_name.touched &&
-              userRolesUserForm['controls'].user_role_name.invalid &&
-              userRolesUserForm['controls'].user_role_name.errors.required
-            "
-            class="validation-error-text"
-          >
-            Required Field
-          </span>
-        </div>
-      </div>
-
       <div class="save-button-bottom">
         <button
           [disabled]="!userRolesUserForm.valid"
