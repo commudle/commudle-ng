@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
-import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { Injectable } from '@angular/core';
 import { IEventEntryPass } from 'projects/shared-models/event_entry_pass.model';
+import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
+import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +11,11 @@ import { IEventEntryPass } from 'projects/shared-models/event_entry_pass.model';
 export class EventEntryPassesService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getEntryPass(eventId: number, entryCode: string) {
+  getEntryPass(eventId: number, entryCode: string): Observable<IEventEntryPass> {
     let params = new HttpParams().set('event_id', eventId).set('unique_code', entryCode);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.SHOW), { params });
+    return this.http.get<IEventEntryPass>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_ENTRY_PASSES.SHOW), {
+      params,
+    });
   }
 
   // this creates an entry pass for custom form registrations
