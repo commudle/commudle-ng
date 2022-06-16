@@ -46,7 +46,6 @@ export class AdminStaticAssetFormComponent implements OnInit {
     if (AssetId >= 0) {
       this.subscriptions.push(
         this.adminStaticAssetsService.getAssetById(AssetId).subscribe((value) => {
-          // console.log(value, 'prefile works under value');
           this.asset = value;
           this.prefillAsset();
         }),
@@ -55,13 +54,9 @@ export class AdminStaticAssetFormComponent implements OnInit {
   }
 
   prefillAsset(): void {
-    // console.log(' prefill works');
-    // console.log(this.asset.name);
-
     this.assetForm.patchValue({
       name: this.asset.name,
     });
-    // console.log(this.asset.name);
 
     if (this.asset.file) {
       this.uploadedImage = this.asset.file;
@@ -90,11 +85,9 @@ export class AdminStaticAssetFormComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = () => {
           this.imageSrc = reader.result as string;
-          // console.log(this.imageSrc, 'onload');
         };
         reader.readAsDataURL(inputImage);
         this.imageUploaded = true;
-        // console.log(this.imageUploaded, 'readAsDataURL');
       }
     }
   }
@@ -119,24 +112,15 @@ export class AdminStaticAssetFormComponent implements OnInit {
   }
 
   buildFormData(): FormData {
-    console.log('build works');
-
     const formData: FormData = new FormData();
     const assetFormValue = this.assetForm.value;
 
     Object.keys(assetFormValue).forEach((key) => {
-      // console.log(assetFormValue);
-
       if (assetFormValue[key] != null) {
         formData.append(`static_asset[${key}]`, assetFormValue[key]);
-        // console.log(assetFormValue);
       }
     });
-
-    Object.keys(this.uploadedImage).forEach((value) => {
-      console.log(value);
-      formData.append(`static_asset[file][${value}]`, this.uploadedImage[value]);
-    });
+    formData.append(`static_asset[file]`, this.uploadedImage.file);
     return formData;
   }
 }
