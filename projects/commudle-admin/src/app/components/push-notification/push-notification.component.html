@@ -1,4 +1,4 @@
-<div *ngIf="!isSubscribed" class="com-fixed com-left-4 com-bottom-8">
+<div *ngIf="showPopup" class="com-fixed com-left-4 com-bottom-8">
   <div
     class="
       com-flex com-items-center com-w-full com-max-w-xs com-p-4 com-text-gray-500 com-bg-white com-rounded-lg com-shadow
@@ -6,17 +6,8 @@
   >
     <p class="com-text-sm">We'd like to show you notifications for the latest news and updates.</p>
     <div class="com-flex com-items-center com-ml-auto com-space-x-2">
-      <button
-        (click)="subscribeToPushNotifications()"
-        [nbSpinner]="isSubscribing"
-        ghost
-        nbButton
-        shape="semi-round"
-        size="small"
-      >
-        Allow
-      </button>
-      <button (click)="cancelPushNotifications()" ghost nbButton shape="semi-round" size="small">
+      <button (click)="acceptPushNotifications()" ghost nbButton shape="semi-round" size="small">Allow</button>
+      <button (click)="rejectPushNotifications()" ghost nbButton shape="semi-round" size="small">
         <nb-icon icon="close-outline"></nb-icon>
       </button>
     </div>
