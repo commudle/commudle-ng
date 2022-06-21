@@ -42,9 +42,6 @@ export function getRoute(option: ISearchResult): string[] {
     case 'User':
       searchUrl = ['/users', option['username']];
       return searchUrl;
-    case 'Lab':
-      searchUrl = ['/labs', option['slug']];
-      return searchUrl;
     case 'Community':
       searchUrl = ['/communities', option['slug']];
       return searchUrl;
