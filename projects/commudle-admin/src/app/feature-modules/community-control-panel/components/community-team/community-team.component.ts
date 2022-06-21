@@ -72,7 +72,6 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
     newUserRolesUser.parent_id = this.communityId;
     // let role = data.user_role.name;
     this.userRolesUsersService.createUserRolesUser(newUserRolesUser).subscribe((data) => {
-      console.log(data.user_role.name);
       this.organizers.push(data);
 
       this.userRolesUserForm.reset();
