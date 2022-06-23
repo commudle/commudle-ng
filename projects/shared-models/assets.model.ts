@@ -1,13 +1,13 @@
 import { IAttachedFile } from './attached-file.model';
 
-export interface assets {
-  static_assets: static_assets[];
+export interface IStaticAssets {
+  static_assets: IStaticAsset[];
   page: number;
   count: number;
   total: number;
 }
 
-export interface static_assets {
+export interface IStaticAsset {
   id: number;
   name: string;
   user_id: number;

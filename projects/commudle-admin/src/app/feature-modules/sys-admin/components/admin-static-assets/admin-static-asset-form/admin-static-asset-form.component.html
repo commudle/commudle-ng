@@ -13,10 +13,10 @@
       </label>
       <label>
         Asset*
-        <input #inputFile (change)="addImage($event)" formControlName="asset" fullWidth nbInput type="file" required />
+        <input #inputFile (change)="addFile($event)" formControlName="asset" fullWidth nbInput type="file" required />
       </label>
-      <div *ngIf="imageSrc" class="file-container">
-        <img [src]="imageSrc | safeUrl" alt="{{ uploadedFile.file?.name || uploadedFile.name }}" />
+      <div *ngIf="fileSrc" class="file-container">
+        <img [src]="fileSrc | safeUrl" alt="{{ uploadedFile.file?.name || uploadedFile.name }}" />
       </div>
       <button fullWidth ghost nbButton status="primary" type="submit">Save</button>
     </form>

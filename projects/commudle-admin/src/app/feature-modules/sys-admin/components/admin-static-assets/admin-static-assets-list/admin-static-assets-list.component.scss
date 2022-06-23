@@ -38,7 +38,6 @@
           }
 
           .controls {
-            // gap: $space-16;
             @apply com-gap-4;
 
             @media screen and (max-width: $tab-width) {

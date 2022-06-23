@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminStaticAssetsService } from '../../../services/admin-static-assets.service';
 import { IAttachedFile } from 'projects/shared-models/attached-file.model';
-import { static_assets } from 'projects/shared-models/assets.model';
+import { IStaticAsset } from 'projects/shared-models/assets.model';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';
 
@@ -13,17 +13,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-static-asset-form.component.scss'],
 })
 export class AdminStaticAssetFormComponent implements OnInit {
-  asset: static_assets;
+  asset: IStaticAsset;
   assetForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     asset: ['', Validators.required],
   });
-  uploadedImage: IAttachedFile;
-  imageUploaded = false;
+  uploadedFile: IAttachedFile;
+  fileUploaded = false;
   subscriptions: Subscription[] = [];
-  imageSrc: string;
+  fileSrc: string;
 
-  @ViewChild('inputImage') inputImage: ElementRef;
+  @ViewChild('inputfile') inputfile: ElementRef;
 
   constructor(
     private adminStaticAssetsService: AdminStaticAssetsService,
@@ -58,35 +58,35 @@ export class AdminStaticAssetFormComponent implements OnInit {
     });
 
     if (this.asset.file) {
-      this.uploadedImage = this.asset.file;
-      this.imageSrc = this.asset.file.url;
-      this.imageUploaded = true;
+      this.uploadedFile = this.asset.file;
+      this.fileSrc = this.asset.file.url;
+      this.fileUploaded = true;
     }
   }
 
-  addImage(event: Event): void {
+  addFile(event: Event): void {
     const fileList: FileList = (event.target as HTMLInputElement).files;
-    const inputImage: File = fileList.length ? fileList[0] : null;
+    const inputfile: File = fileList.length ? fileList[0] : null;
 
-    if (inputImage?.size > 2425190) {
+    if (inputfile?.size > 2425190) {
       this.libToastLogService.warningDialog('Files should be less than 2MB', 3000);
     } else {
-      if (inputImage) {
+      if (inputfile) {
         const iAttachedFile: IAttachedFile = {
           id: null,
-          file: inputImage,
+          file: inputfile,
           url: null,
           name: null,
           type: null,
         };
 
-        this.uploadedImage = iAttachedFile;
+        this.uploadedFile = iAttachedFile;
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSrc = reader.result as string;
+          this.fileSrc = reader.result as string;
         };
-        reader.readAsDataURL(inputImage);
-        this.imageUploaded = true;
+        reader.readAsDataURL(inputfile);
+        this.fileUploaded = true;
       }
     }
   }
@@ -117,7 +117,7 @@ export class AdminStaticAssetFormComponent implements OnInit {
         formData.append(`static_asset[${key}]`, assetFormValue[key]);
       }
     });
-    formData.append(`static_asset[file]`, this.uploadedImage.file);
+    formData.append(`static_asset[file]`, this.uploadedFile.file);
     return formData;
   }
 }
