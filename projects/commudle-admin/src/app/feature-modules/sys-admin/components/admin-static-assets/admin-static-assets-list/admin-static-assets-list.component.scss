@@ -3,51 +3,46 @@
 .admin-assets-list {
   nb-card-header {
     @media screen and (max-width: $tab-width) {
-      flex-direction: column;
+      @apply com-flex-col;
     }
   }
 
   nb-card-body {
-    padding: 0;
+    @apply com-p-0;
 
     .assets-list-container {
       nb-list {
         nb-list-item {
           &:first-of-type {
-            border-top: none;
+            @apply com-border-0;
           }
 
           &:last-of-type {
-            border-bottom: none;
+            @apply com-border-b-0;
           }
 
           .assets-details {
-            width: 100%;
+            @apply com-w-full;
 
             @media screen and (max-width: $tab-width) {
-              align-items: center;
-              display: flex;
-              flex-direction: column;
+              @apply com-items-center com-flex com-flex-col;
             }
 
             .title {
-              font-size: $fs-20;
-              font-weight: $fw-600;
+              @apply com-text-xl com-font-semibold;
 
               @media screen and (max-width: $tab-width) {
-                align-items: center;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
+                @apply com-items-center com-flex com-flex-col com-gap-[10px];
               }
             }
           }
 
           .controls {
-            gap: $space-16;
+            // gap: $space-16;
+            @apply com-gap-4;
 
             @media screen and (max-width: $tab-width) {
-              margin: 20px;
+              @apply com-m-5;
             }
           }
         }
@@ -62,7 +57,7 @@
       .assets-list-container {
         nb-list {
           nb-list-item {
-            flex-direction: column;
+            @apply com-flex-col;
           }
         }
       }
@@ -70,5 +65,5 @@
   }
 }
 .asset-image img {
-  height: 200px;
+  @apply com-h-[200px];
 }

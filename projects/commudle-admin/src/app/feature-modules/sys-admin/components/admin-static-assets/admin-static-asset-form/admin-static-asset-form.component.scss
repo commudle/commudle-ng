@@ -1,10 +1,12 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+// @import './projects/commudle-admin/src/assets/styles/variables';
 
 .file-container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  @apply com-items-center com-flex com-justify-center;
 }
 .file-container img {
   height: 200px;
+  @apply com-h-[200px];
+}
+.card-header {
+  @apply com-flex com-justify-between com-items-center;
 }

@@ -1,12 +1,12 @@
 <nb-card class="admin-asset-form">
-  <nb-card-header class="d-flex justify-content-space-between align-items-center">
+  <nb-card-header class="card-header">
     Static Assets
     <button [routerLink]="['/sys-admin', 'static-assets']" ghost nbButton shape="round" size="small">
       Show All Assets
     </button>
   </nb-card-header>
   <nb-card-body>
-    <form (submit)="submitForm()" [formGroup]="assetForm" class="form-fields d-flex flex-column">
+    <form (submit)="submitForm()" [formGroup]="assetForm">
       <label>
         Name*
         <input formControlName="name" fullWidth nbInput type="text" required />
@@ -16,7 +16,7 @@
         <input #inputFile (change)="addImage($event)" formControlName="asset" fullWidth nbInput type="file" required />
       </label>
       <div *ngIf="imageSrc" class="file-container">
-        <img [src]="imageSrc | safeUrl" alt="{{ uploadedImage.file?.name || uploadedImage.name }}" />
+        <img [src]="imageSrc | safeUrl" alt="{{ uploadedFile.file?.name || uploadedFile.name }}" />
       </div>
       <button fullWidth ghost nbButton status="primary" type="submit">Save</button>
     </form>
