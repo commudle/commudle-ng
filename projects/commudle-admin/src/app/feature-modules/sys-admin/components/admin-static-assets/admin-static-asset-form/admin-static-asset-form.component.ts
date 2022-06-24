@@ -117,7 +117,7 @@ export class AdminStaticAssetFormComponent implements OnInit {
         formData.append(`static_asset[${key}]`, assetFormValue[key]);
       }
     });
-    formData.append(`static_asset[file]`, this.uploadedFile.file);
+    formData.append(`static_asset[file]`, this.uploadedFile['file']);
     return formData;
   }
 }
