@@ -67,7 +67,7 @@ const routes = [
             component: AdminStaticAssetsListComponent,
           },
           {
-            path: 'form',
+            path: 'new',
             component: AdminStaticAssetFormComponent,
           },
         ],
