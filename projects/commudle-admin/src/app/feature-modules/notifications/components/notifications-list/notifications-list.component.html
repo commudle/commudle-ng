@@ -10,24 +10,24 @@
   >
     <div class="com-flex com-items-center">
       <nb-user [picture]="notification.sender.avatar" onlyPicture></nb-user>
-      <app-notifications-list-item
-        (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
-        [notificationMessage]="notification.notification_message"
-      ></app-notifications-list-item>
+      <div>
+        <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
+        <app-notifications-list-item
+          (notificationClicked)="changeStatus(ENotificationStatuses.INTERACTED, notification)"
+          [notificationMessage]="notification.notification_message"
+        ></app-notifications-list-item>
+      </div>
     </div>
-    <div class="com-flex com-items-center">
-      <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
-      <button
-        (click)="changeStatus(ENotificationStatuses.READ, notification)"
-        *ngIf="notification.status === ENotificationStatuses.UNREAD"
-        class="mark-as-read"
-        nbButton
-        nbTooltip="Mark as read"
-        size="small"
-      >
-        <nb-icon icon="checkmark-outline"></nb-icon>
-      </button>
-    </div>
+    <button
+      (click)="changeStatus(ENotificationStatuses.READ, notification)"
+      *ngIf="notification.status === ENotificationStatuses.UNREAD"
+      class="mark-as-read"
+      nbButton
+      nbTooltip="Mark as read"
+      size="small"
+    >
+      <nb-icon icon="checkmark-outline"></nb-icon>
+    </button>
   </nb-list-item>
 </nb-list>
 
