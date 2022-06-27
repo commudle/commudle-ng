@@ -49,7 +49,7 @@
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
           <a [routerLink]="['/admin', 'orgs', cGroup.slug]">
-            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
+            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo?.url }}" size="tiny"></nb-user>
             <span class="org-badge">
               <app-badge
                 [color]="'#001FFF'"

@@ -42,6 +42,7 @@ import {
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CookieService } from 'ngx-cookie-service';
+import { PushNotificationComponent } from 'projects/commudle-admin/src/app/components/push-notification/push-notification.component';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
@@ -144,6 +145,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     CircularProgressiveBarComponent,
     NavbarComponent,
     FooterComponent,
+    PushNotificationComponent,
   ],
   imports: [
     AppRoutingModule,

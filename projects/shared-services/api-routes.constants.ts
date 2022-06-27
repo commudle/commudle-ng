@@ -578,4 +578,8 @@ export const API_ROUTES = {
     COMMUNITY_BUILDS: 'api/v2/disco_recommendations/community_builds',
     COMMUNITIES: 'api/v2/disco_recommendations/communities',
   },
+
+  PUSH_NOTIFICATION_SUBSCRIPTIONS: {
+    CREATE: 'api/v2/push_notification_subscriptions',
+  },
 };
