@@ -147,6 +147,7 @@ export const API_ROUTES = {
     EMBEDDED_VIDEO_STREAM_VISITORS: 'api/v2/events/embedded_video_stream_visitors',
     INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
     RECORDINGS: 'api/v2/events/recordings',
+    ATTENDED_MEMBERS: 'api/v2/events/attended_members',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
       VOLUNTEERS: 'api/v2/events/public/volunteers',
