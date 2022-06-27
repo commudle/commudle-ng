@@ -1,216 +1,120 @@
-.about {
-  background-color: white;
+ul {
+  @apply com-p-0;
 
-  p {
-    color: #6b747b;
+  li {
+    @apply com-list-none;
   }
+}
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+h1,
+h2,
+p {
+  @apply com-m-0;
+}
 
-  .header {
-    //background: linear-gradient(rgba(197, 234, 249, 1), rgba(255, 255, 255, 1));
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    a {
-      background-color: #594cda;
-      border: 1px solid #594cda;
-      border-radius: 32px;
-      color: #ffffff;
-      display: inline-block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 0;
-      margin: 0 0.25rem 1.25rem;
-      padding: 1.625rem 2.75rem 1.625rem 2.75rem;
-      transition: all 0.2s;
+.about-page {
+  @apply com-w-full com-min-h-screen com-bg-white com-overflow-hidden;
+
+  .about-page-section {
+    @apply com-max-w-screen-xl com-container com-px-4 com-py-24;
+
+    .page-heading {
+      @apply com-mb-6 com-text-4xl com-font-extrabold com-leading-none com-tracking-normal com-text-gray-900 md:com-text-6xl md:com-tracking-tight;
     }
 
-    .primary-btn {
-      &:hover {
-        background-color: transparent;
-        border: 1px solid #594cda;
-        color: #594cda;
+    .page-subheading {
+      @apply com-px-0 com-mb-6 com-text-lg com-text-gray-600 md:com-text-xl lg:com-px-24;
+    }
+
+    &.stats-section {
+      .count {
+        @apply com-mr-2 com-text-3xl com-font-bold md:com-text-4xl com-text-blue-600;
       }
-    }
-
-    .secondary-btn {
-      background-color: #eb427e;
-      border: 1px solid #eb427e;
-
-      &:hover {
-        background: transparent;
-        border: 1px solid #eb427e;
-        color: #eb427e;
-      }
-    }
-  }
-
-  .content {
-    p {
-      @apply com-mb-4 com-text-gray-800 com-text-3xl com-leading-10 lg:com-max-w-5xl lg:com-mx-auto;
-    }
-  }
-
-  .features {
-    .card {
-      background-color: #f1f9fc;
-
-      h4 {
-        @apply com-my-1.5 com-font-bold;
-      }
-    }
-  }
-
-  .testimonials {
-    background-color: #f1f9fc;
-
-    .content {
-      @apply com-italic com-mb-3 com-mt-0;
-    }
-
-    .author {
-      @apply com-font-semibold com-m-0;
-      color: #252c38;
-    }
-  }
-
-  .pricing {
-    @apply com-relative com-pt-32 com-bg-cover com-text-center;
-    background: linear-gradient(rgba(50, 60, 70, 0.9), rgba(50, 60, 70, 0.9)),
-      url(https://inovatik.com/pavo-tw/images/pricing-background.jpg) center center no-repeat;
-
-    h2 {
-      @apply com-mb-2.5 com-mt-0 com-text-white lg:com-max-w-xl lg:com-mx-auto;
-    }
-
-    .subtitle {
-      @apply com-mb-16 com-mt-0 com-text-white lg:com-max-w-3xl lg:com-mx-auto;
-    }
-
-    .card {
-      @apply com-relative com-rounded-lg com-mb-24 com-pt-12 com-px-7 com-pb-9 lg:com-px-9 com-bg-white;
-      border: 1px solid #bcc4ca;
 
       .title {
-        @apply com-mb-4 com-mt-0 com-text-2xl com-font-bold com-text-center;
-        color: #eb427e;
-      }
-
-      .price {
-        .currency {
-          @apply com-mr-1.5 com-text-3xl;
-          color: #252c38;
-          vertical-align: 80%;
-        }
-
-        .value {
-          @apply com-text-7xl com-font-semibold com-text-center;
-          color: #252c38;
-        }
-      }
-
-      .frequency {
-        @apply com-mb-6 com-mt-0 com-text-sm com-text-center;
+        @apply com-mb-2 com-font-bold md:com-text-lg;
       }
 
       .description {
-        @apply com-mb-5 com-mt-0 com-text-left;
+        @apply com-text-gray-700;
       }
+    }
 
-      .list {
-        li {
-          fa-icon {
-            @apply com-self-center;
-            color: #594cda;
-          }
+    &.features-section {
+      .grid {
+        @apply com-grid com-items-center com-grid-cols-1 com-mb-24 com-gap-y-10 com-gap-x-10 md:com-grid-cols-2 md:com-gap-y-32 md:com-gap-x-24;
 
-          p {
-            @apply com-inline-block com-my-0 com-ml-1.5 com-flex-1;
-          }
+        .title {
+          @apply com-mb-4 com-text-2xl com-font-extrabold com-tracking-tight com-text-center com-text-black md:com-leading-tight sm:com-text-left md:com-text-4xl;
         }
-      }
 
-      a {
-        background-color: #594cda;
-        border: 1px solid #594cda;
-        border-radius: 32px;
-        bottom: -1.5rem;
-        color: #ffffff;
-        display: inline-block;
-        font-size: 0.875rem;
-        font-weight: 600;
-        left: 50%;
-        line-height: 0;
-        padding: 1.375rem 2.25rem;
-        position: absolute;
-        text-align: center;
-        transform: translateX(-50%);
-        transition: all 0.2s;
-        width: max-content;
-
-        &:hover {
-          background-color: #ffffff;
-          border: 1px solid #594cda;
-          color: #594cda;
+        .description {
+          @apply com-mb-5 com-text-base com-text-center com-text-gray-600 sm:com-text-left md:com-text-lg;
         }
       }
     }
-  }
 
-  .download {
-    @apply com-text-center com-bg-cover;
-    background: url(https://inovatik.com/pavo-tw/images/conclusion-background.jpg) center center no-repeat;
+    &.cta-section {
+      .title {
+        @apply com-text-3xl com-font-bold sm:com-text-4xl com-text-white;
+      }
 
-    @screen lg {
-      @apply com-text-left;
-    }
-
-    p {
-      @apply com-mb-9 com-text-gray-800 com-text-3xl com-leading-10;
-    }
-
-    a {
-      background-color: #594cda;
-      border: 1px solid #594cda;
-      border-radius: 32px;
-      color: #ffffff;
-      display: inline-block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      line-height: 0;
-      margin: 0 0.25rem 1.25rem;
-      padding: 1.625rem 2.75rem 1.625rem 2.75rem;
-      transition: all 0.2s;
-    }
-
-    .primary-btn {
-      &:hover {
-        background-color: transparent;
-        border: 1px solid #594cda;
-        color: #594cda;
+      .description {
+        @apply com-text-sm com-text-white com-my-2;
       }
     }
 
-    .secondary-btn {
-      background-color: #eb427e;
-      border: 1px solid #eb427e;
+    &.teams-section {
+      .title {
+        @apply com-text-3xl com-font-extrabold com-tracking-tight sm:com-text-4xl;
+      }
 
-      &:hover {
-        background: transparent;
-        border: 1px solid #eb427e;
-        color: #eb427e;
+      .description {
+        @apply com-text-xl com-text-gray-500;
+      }
+
+      .grid {
+        @apply com-mx-auto com-my-16 sm:com-grid sm:com-grid-cols-2 sm:com-gap-16 sm:com-my-0 lg:com-grid-cols-3 lg:com-max-w-5xl;
+      }
+
+      .name {
+        @apply com-text-lg com-leading-6 com-font-medium;
+      }
+
+      .designation {
+        @apply com-text-sm com-text-blue-500;
+      }
+
+      .social-link {
+        @apply com-text-gray-400 hover:com-text-gray-500;
       }
     }
-  }
 
-  .footer {
-    @apply com-pt-24 com-pb-12 com-text-center;
-    //background: linear-gradient(rgba(255, 255, 255, 1), rgba(197, 234, 249, 1));
+    &.features-list-section {
+      .grid {
+        @apply com-grid com-items-center com-grid-cols-1 com-gap-y-10 com-gap-x-10 lg:com-grid-cols-2 lg:com-gap-y-32 lg:com-gap-x-24;
 
-    .email {
-      @apply com-text-indigo-600 hover:com-text-gray-500;
+        .title {
+          @apply com-mb-3 com-text-3xl com-font-extrabold com-leading-tight com-tracking-tight com-text-center com-text-black sm:com-text-left md:com-text-4xl;
+        }
+
+        .description {
+          @apply com-mb-6 com-text-lg com-text-center com-text-gray-600 sm:com-text-left md:com-text-xl;
+        }
+
+        .features-list {
+          @apply com-flex com-flex-col com-flex-grow com-my-5;
+
+          .item {
+            @apply com-text-lg com-text-gray-700;
+          }
+        }
+      }
     }
   }
 }

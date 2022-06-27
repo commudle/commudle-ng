@@ -1,156 +1,184 @@
-<div class="about">
-  <header class="header com-py-28 com-text-center md:com-pt-32 lg:com-text-left xl:com-py-36">
-    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8 lg:com-grid lg:com-grid-cols-2 lg:com-gap-x-8">
-      <div class="com-mb-16 lg:com-mt-32 xl:com-mt-40 xl:com-mr-12">
-        <h1 class="fs-h1 com-mb-5">{{ ICmsAbout?.header?.details?.title }}</h1>
-        <p class="fs-p1 com-mb-8">
-          {{ ICmsAbout?.header?.details?.text }}
-        </p>
-        <a class="primary-btn" href="{{ ICmsAbout?.header?.links[0]?.url }}">{{ ICmsAbout?.header?.links[0]?.text }}</a>
-        <a class="secondary-btn" href="{{ ICmsAbout?.header?.links[1]?.url }}">
-          {{ ICmsAbout?.header?.links[1]?.text }}
-        </a>
-      </div>
-      <div class="xl:com-text-right">
-        <img
-          alt="alternative"
-          class="com-inline com-w-full"
-          src="{{ getImageUrl(ICmsAbout?.header?.details?.image) }}"
-        />
-      </div>
+<div class="about-page">
+  <section class="about-page-section">
+    <div class="com-w-full com-mx-auto com-text-left md:com-w-11/12 xl:com-w-9/12 md:com-text-center">
+      <h1 class="page-heading">
+        All your
+        <span
+          class="
+            com-block
+            com-w-full
+            com-text-transparent
+            com-bg-clip-text
+            com-bg-gradient-to-r
+            com-from-green-400
+            com-to-purple-500
+            lg:com-inline
+          "
+        >
+          community needs
+        </span>
+        in one single place.
+      </h1>
+      <p class="page-subheading">{{ ICmsAbout?.description }}</p>
     </div>
-  </header>
-
-  <div class="content com-pt-4 com-pb-14 com-text-center">
-    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8 xl:com-px-4">
-      <p>{{ ICmsAbout?.tagline }}</p>
+    <div class="com-w-full com-mx-auto com-mt-20 com-text-center md:com-w-10/12">
+      <img
+        alt="Landing image"
+        class="com-w-full com-rounded-lg com-shadow-2xl"
+        src="{{ getImageUrl(ICmsAbout?.landingImage) }}"
+        title="Landing image"
+      />
     </div>
-  </div>
+  </section>
 
-  <div class="features com-pt-16 com-pb-20 com-text-center">
-    <div
-      class="
-        com-container com-max-w-screen-xl com-px-4
-        sm:com-px-8
-        xl:com-px-4
-        com-grid com-grid-cols-1 com-gap-12
-        md:com-grid-cols-2
-        lg:com-grid-cols-3
-      "
-    >
-      <div
-        *ngFor="let feature of ICmsAbout?.features"
-        class="card com-pt-12 com-px-4 com-pb-8 com-rounded-2xl lg:com-px-12"
-      >
-        <img alt="alternative" class="com-w-20 com-h-20 com-mx-auto com-mb-4" src="{{ getImageUrl(feature.image) }}" />
-        <h4 class="fs-h4 com-font-bold">{{ feature.title }}</h4>
-        <p class="fs-h2">{{ feature.text }}</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="testimonials com-py-32 com-bg-gray-100">
-    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8">
-      <h2 class="fs-h2 com-mb-12 com-text-center com-lg:max-w-xl com-lg:mx-auto">What do users think about Pavo</h2>
-      <div class="com-max-w-screen-lg com-mx-auto com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-16">
-        <div *ngFor="let testimonial of ICmsAbout?.testimonials" class="com-text-center">
-          <img
-            alt="alternative"
-            class="com-h-20 com-w-20 com-mb-5 com-mx-auto com-rounded-full"
-            src="{{ getImageUrl(testimonial.image) }}"
-          />
-          <p class="content fs-p2">{{ testimonial.text }}</p>
-          <p class="author fs-p2">{{ testimonial.title }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pricing">
-    <div class="com-absolute com-bottom-0 com-h-40 com-w-full com-bg-white"></div>
-    <div class="com-container com-max-w-screen-xl com-px-4 com-pb-px sm:com-px-8">
-      <h2 class="fs-h2">Pricing options for all budgets</h2>
-      <p class="subtitle fs-p2">
-        Our pricing plans are setup in such a way that any user can start enjoying Pavo without worrying so much about
-        costs. They are flexible and work for any type of industry
-      </p>
-      <div class="com-max-w-screen-lg com-mx-auto com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-9">
-        <div *ngFor="let price of ICmsAbout?.pricing" class="card">
-          <p class="title">{{ price.title }}</p>
-          <div class="price">
-            <span class="currency">$</span><span class="value">{{ price.amount }}</span>
+  <section class="about-page-section stats-section">
+    <div class="com-grid com-gap-10 com-row-gap-8 lg:com-grid-cols-3">
+      <div *ngFor="let stat of ICmsAbout?.stats">
+        <div class="com-flex">
+          <h2 class="count">{{ stat.count }}</h2>
+          <div class="com-flex com-items-center com-justify-center com-rounded-full com-bg-blue-200 com-w-7 com-h-7">
+            <svg class="com-text-blue-600 com-w-7 com-h-7" stroke="currentColor" viewBox="0 0 52 52">
+              <polygon
+                fill="none"
+                points="29 13 14 29 25 29 23 39 38 23 27 23"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+              ></polygon>
+            </svg>
           </div>
-          <p class="frequency">Monthly</p>
-          <p class="description fs-p2">{{ price.description.text }}</p>
-          <ul class="list com-m-0 com-mb-7 com-p-0 com-space-y-2 com-text-left">
-            <li *ngFor="let point of price.description.points" class="com-flex">
-              <fa-icon [icon]="faChevronRight" size="xs"></fa-icon>
-              <p class="fs-p2">{{ point }}</p>
-            </li>
-          </ul>
-          <a href="{{ price.link.url }}">{{ price.link.text }}</a>
+        </div>
+        <p class="title">{{ stat.title }}</p>
+        <p class="description">{{ stat.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-page-section features-section">
+    <div
+      *ngFor="let feature of ICmsAbout?.features; let odd = odd"
+      [ngClass]="{ 'com-flex-col-reverse': odd }"
+      class="grid"
+    >
+      <div [ngClass]="{ 'com-order-none md:com-order-2': odd }">
+        <h2 class="title">{{ feature.title }}</h2>
+        <p class="description">{{ feature.description }}</p>
+        <a [href]="feature.button?.url" nbButton shape="semi-round">{{ feature.button?.text }}</a>
+      </div>
+      <div class="com-w-full com-h-full">
+        <img
+          [alt]="feature.title"
+          [title]="feature.title"
+          class="com-w-full com-h-full com-object-cover"
+          src="{{ getImageUrl(feature.image) }}"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="about-page-section cta-section">
+    <div class="com-grid com-grid-cols-1 com-gap-4 sm:com-grid-cols-2 lg:com-grid-cols-4">
+      <div class="com-p-8 com-text-center com-bg-indigo-600 sm:com-col-span-2 sm:com-p-16 lg:com-py-24">
+        <div class="com-max-w-lg com-mx-auto com-my-8">
+          <h2 class="title">Lorem ipsum dolor sit, amet consectetur adipisicing.</h2>
+
+          <p class="description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio unde maiores natus placeat earum, atque
+            necessitatibus sunt. Ducimus inventore qui unde, corporis itaque rerum illum tempore quod? Quae, quam
+            quaerat.
+          </p>
+
+          <button nbButton shape="semi-round">
+            Come and see
+            <nb-icon icon="arrow-forward"></nb-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="com-relative com-h-64 lg:com-order-first lg:com-h-full">
+        <img
+          alt="Sunset with palm trees"
+          class="com-absolute com-inset-0 com-object-cover com-w-full com-h-full"
+          src="https://images.unsplash.com/photo-1625239185060-88135bd3519b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80"
+        />
+      </div>
+
+      <div class="com-relative com-h-64 lg:com-h-full">
+        <img
+          alt="Man in a hat and yellow jumper"
+          class="com-absolute com-inset-0 com-object-cover com-w-full com-h-full"
+          src="https://images.unsplash.com/photo-1625175619292-ff5e5b2dfaf1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="about-page-section com-text-center teams-section">
+    <div class="com-my-12">
+      <div class="com-my-5 sm:com-mx-auto sm:com-max-w-xl sm:com-my-4 lg:com-max-w-5xl">
+        <h2 class="title">Meet our team</h2>
+        <p class="description">
+          Ornare sagittis, suspendisse in hendrerit quis. Sed dui aliquet lectus sit pretium egestas vel mattis neque.
+        </p>
+      </div>
+      <ul class="grid">
+        <li *ngFor="let member of ICmsAbout?.team">
+          <div class="com-my-6">
+            <img
+              [alt]="member.name"
+              [title]="member.name"
+              class="com-mx-auto com-h-40 com-w-40 com-rounded-full xl:com-w-56 xl:com-h-56"
+              src="{{ getImageUrl(member.image) }}"
+            />
+            <div class="com-my-2">
+              <div class="com-my-1">
+                <p class="name">{{ member.name }}</p>
+                <p class="designation">{{ member.designation }}</p>
+              </div>
+              <ul class="com-flex com-justify-center com-mx-5">
+                <li>
+                  <a [href]="member.social.twitter" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="twitter"></nb-icon>
+                  </a>
+                </li>
+                <li>
+                  <a [href]="member.social.linkedin" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="linkedin"></nb-icon>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-page-section features-list-section">
+    <div class="grid">
+      <div>
+        <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
+        <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
+        <a [href]="ICmsAbout?.featuresList?.content?.button?.url" nbButton shape="semi-round">
+          {{ ICmsAbout?.featuresList?.content?.button?.text }}
+        </a>
+      </div>
+      <div class="features-list">
+        <div *ngFor="let item of ICmsAbout?.featuresList?.list" class="com-flex com-items-start">
+          <svg
+            class="com-flex-none com-w-5 com-h-5 com-mt-1 com-mr-2 com-text-primary"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+          <p class="item">{{ item }}</p>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="download com-pt-20 com-pb-32">
-    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8 lg:com-grid lg:com-grid-cols-2">
-      <div class="com-mb-16 lg:com-mb-0">
-        <img
-          alt="alternative"
-          class="com-inline com-w-full"
-          src="https://inovatik.com/pavo-tw/images/conclusion-smartphone.png"
-        />
-      </div>
-      <div class="lg:com-mt-24 xl:com-mt-44 xl:com-ml-12">
-        <p>{{ ICmsAbout?.download?.details?.text }}</p>
-        <a class="primary-btn" href="{{ ICmsAbout?.header?.links[0]?.url }}">{{ ICmsAbout?.header?.links[0]?.text }}</a>
-        <a class="secondary-btn" href="{{ ICmsAbout?.header?.links[1]?.url }}">
-          {{ ICmsAbout?.header?.links[1]?.text }}
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="com-container com-max-w-screen-xl com-px-4 sm:com-px-8">
-      <h3 class="fs-h3 com-mb-8 lg:com-max-w-3xl lg:com-mx-auto">
-        {{ ICmsAbout?.contact?.content }}
-        <a [href]="'mailto:' + ICmsAbout?.contact?.email" class="email">{{ ICmsAbout?.contact?.email }}</a>
-      </h3>
-      <!--      <div class="social-container">-->
-      <!--        <span class="fa-stack">-->
-      <!--          <a href="#your-link">-->
-      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-      <!--            <i class="fab fa-facebook-f fa-stack-1x"></i>-->
-      <!--          </a>-->
-      <!--        </span>-->
-      <!--        <span class="fa-stack">-->
-      <!--          <a href="#your-link">-->
-      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-      <!--            <i class="fab fa-twitter fa-stack-1x"></i>-->
-      <!--          </a>-->
-      <!--        </span>-->
-      <!--        <span class="fa-stack">-->
-      <!--          <a href="#your-link">-->
-      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-      <!--            <i class="fab fa-pinterest-p fa-stack-1x"></i>-->
-      <!--          </a>-->
-      <!--        </span>-->
-      <!--        <span class="fa-stack">-->
-      <!--          <a href="#your-link">-->
-      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-      <!--            <i class="fab fa-instagram fa-stack-1x"></i>-->
-      <!--          </a>-->
-      <!--        </span>-->
-      <!--        <span class="fa-stack">-->
-      <!--          <a href="#your-link">-->
-      <!--            <i class="fas fa-circle fa-stack-2x"></i>-->
-      <!--            <i class="fab fa-youtube fa-stack-1x"></i>-->
-      <!--          </a>-->
-      <!--        </span>-->
-      <!--      </div>-->
-    </div>
-  </div>
+  </section>
 </div>
