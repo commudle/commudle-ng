@@ -17,6 +17,14 @@ export class NotificationService {
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
   }
 
+  getUnreadNotificationsCount(): Observable<number> {
+    return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT));
+  }
+
+  markAllAsRead(): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.MARK_ALL_AS_READ), {});
+  }
+
   updateNotificationStatus(status: ENotificationStatuses, id: number): Observable<boolean> {
     const params = new HttpParams().set('notification_queue_id', id);
     return this.http.post<boolean>(
