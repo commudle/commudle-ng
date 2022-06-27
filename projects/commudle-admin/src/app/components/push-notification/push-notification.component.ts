@@ -53,7 +53,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
   }
 
   setPushNotificationCookie(): void {
-    this.cookieService.set(this.pushNotificationCookieName, 'false');
+    this.cookieService.set(this.pushNotificationCookieName, 'false', 5);
   }
 
   removePushNotificationCookie(): void {
