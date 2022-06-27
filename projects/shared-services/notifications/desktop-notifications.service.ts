@@ -8,15 +8,15 @@ export class DesktopNotificationsService {
   constructor() {}
 
   showNotification(title: string, message: string) {
-    this.getPermission().then((permission: 'default' | 'denied' | 'granted') => {
-      if (permission === 'granted' && !document.hasFocus()) {
-        const notification: Notification = this.createNotification(title, message);
-
-        notification.onclick = () => {
-          window.open(environment.app_url, '_blank');
-        };
-      }
-    });
+    // this.getPermission().then((permission: 'default' | 'denied' | 'granted') => {
+    //   if (permission === 'granted' && !document.hasFocus()) {
+    //     const notification: Notification = this.createNotification(title, message);
+    //
+    //     notification.onclick = () => {
+    //       window.open(environment.app_url, '_blank');
+    //     };
+    //   }
+    // });
   }
 
   getPermission() {
