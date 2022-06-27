@@ -35,10 +35,14 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.receiveData();
-    this.getUnreadNotificationsCount();
+    this.authwatchService.currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
 
-    this.authwatchService.currentUser$.subscribe((currentUser) => (this.currentUser = currentUser));
+      if (currentUser) {
+        this.receiveData();
+        this.getUnreadNotificationsCount();
+      }
+    });
   }
 
   ngOnDestroy(): void {
