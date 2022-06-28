@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class PushNotificationComponent implements OnInit, OnDestroy {
   showPopup = false;
+  isLoading = false;
 
   subscriptions: Subscription[] = [];
 
@@ -64,7 +65,9 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.swPush.subscription.subscribe((subscription: PushSubscription | null) => {
         if (subscription === null) {
-          this.showPopup = !this.isPushNotificationCookieSet();
+          setTimeout(() => {
+            this.showPopup = !this.isPushNotificationCookieSet();
+          }, 5000);
         } else {
           this.createSubscription({
             endpoint: subscription.endpoint,
@@ -78,6 +81,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
   }
 
   acceptPushNotifications(): void {
+    this.isLoading = true;
     this.swPush.requestSubscription({ serverPublicKey: environment.vapid_public_key }).catch(() => {
       this.nbToastrService.danger('Could not subscribe to notifications', 'Error');
       this.createSubscription({ endpoint: '', p256dh: '', auth: '' }, 'rejected_by_browser');
@@ -89,6 +93,7 @@ export class PushNotificationComponent implements OnInit, OnDestroy {
       this.pushNotificationsService.createSubscription(subscription, reason).subscribe((value) => {
         if (value) {
           this.showPopup = false;
+          this.isLoading = false;
         }
       }),
     );

@@ -16,10 +16,20 @@
   >
     <p class="com-text-sm">Keep up to date with your developer network by allowing notifications from Commudle!</p>
     <div class="com-flex com-items-center com-ml-4 com-space-x-2">
-      <button (click)="acceptPushNotifications()" nbButton outline shape="semi-round" size="small" status="success">
+      <button
+        (click)="acceptPushNotifications()"
+        [nbSpinner]="isLoading"
+        nbButton
+        outline
+        shape="semi-round"
+        size="small"
+        status="success"
+      >
         Allow
       </button>
-      <button (click)="rejectPushNotifications()" ghost nbButton shape="semi-round" size="small">Cancel</button>
+      <button (click)="rejectPushNotifications()" [disabled]="isLoading" ghost nbButton shape="semi-round" size="small">
+        Cancel
+      </button>
     </div>
   </div>
 </div>
