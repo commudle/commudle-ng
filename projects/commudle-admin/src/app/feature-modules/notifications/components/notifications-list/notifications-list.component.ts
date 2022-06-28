@@ -58,7 +58,6 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
-          console.log(value);
           this.notifications = this.notifications.concat(value.notifications);
           this.page += 1;
           this.total = value.total;
