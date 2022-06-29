@@ -147,6 +147,7 @@ export const API_ROUTES = {
     EMBEDDED_VIDEO_STREAM_VISITORS: 'api/v2/events/embedded_video_stream_visitors',
     INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
     RECORDINGS: 'api/v2/events/recordings',
+    ATTENDED_MEMBERS: 'api/v2/events/attended_members',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
       VOLUNTEERS: 'api/v2/events/public/volunteers',
@@ -568,6 +569,8 @@ export const API_ROUTES = {
 
   NOTIFICATIONS: {
     INDEX: 'api/v2/notifications',
+    MARK_ALL_AS_READ: 'api/v2/notifications/mark_all_as_read',
+    UNREAD_COUNT: 'api/v2/notifications/unread_count',
     UPDATE_STATUS: 'api/v2/notifications/update_status',
   },
 
@@ -575,5 +578,9 @@ export const API_ROUTES = {
     LABS: 'api/v2/disco_recommendations/labs',
     COMMUNITY_BUILDS: 'api/v2/disco_recommendations/community_builds',
     COMMUNITIES: 'api/v2/disco_recommendations/communities',
+  },
+
+  PUSH_NOTIFICATION_SUBSCRIPTIONS: {
+    CREATE: 'api/v2/push_notification_subscriptions',
   },
 };

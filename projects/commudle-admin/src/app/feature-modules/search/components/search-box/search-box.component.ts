@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   getPicture,
+  getRoute,
   groupResults,
   navigate,
 } from 'projects/commudle-admin/src/app/feature-modules/search/components/utils/search.utils';
@@ -29,6 +30,8 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   searchLoader = false;
   searchStatus = true;
 
+  // use getRoute
+  getRoute = getRoute;
   navigate = navigate;
   getPicture = getPicture;
 

@@ -1,106 +1,96 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { ENotificationEntityTypes } from 'projects/shared-models/enums/notification_entity_types.enum';
-import { ENotificationMessageTypes } from 'projects/shared-models/enums/notification_message_types.enum';
-import { ENotificationParentTypes } from 'projects/shared-models/enums/notification_parent_types.enum';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'projects/shared-models/notification.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notifications-list',
   templateUrl: './notifications-list.component.html',
   styleUrls: ['./notifications-list.component.scss'],
 })
-export class NotificationsListComponent implements OnInit, OnDestroy {
-  @Input() notifications: INotification[];
+export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() markAllAsRead: boolean;
+  @Output() closePopover: EventEmitter<any> = new EventEmitter();
+
+  notifications: INotification[] = [];
+
+  page = 1;
+  count = 10;
+  total: number;
+  isLoading = false;
+  canLoadMore = true;
 
   ENotificationStatuses = ENotificationStatuses;
-
-  subscriptions = [];
   moment = moment;
 
-  constructor(
-    private notificationService: NotificationService,
-    private notificationStateService: NotificationStateService,
-    private router: Router,
-  ) {}
+  subscriptions: Subscription[] = [];
+
+  constructor(private notificationService: NotificationService, private notificationChannel: NotificationChannel) {}
 
   ngOnInit(): void {
-    this.setNotificationTimeFormat();
+    this.getNotifications();
+    this.receiveData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.markAllAsRead) {
+      this.notifications.forEach((notification) => (notification.status = ENotificationStatuses.READ));
+    }
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  changeStatus(status: ENotificationStatuses, notification: INotification, redirect: boolean = false) {
+  changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
 
-    if (redirect) {
-      this.redirectTo(notification);
+    if (status === ENotificationStatuses.INTERACTED) {
+      this.closePopover.emit();
     }
   }
 
-  closePopover() {
-    this.notificationStateService.setCloseNotificationPopover(true);
-  }
-
-  setNotificationTimeFormat() {
-    moment.locale('en', {
-      relativeTime: {
-        past: '%s',
-        s: '1s',
-        ss: '%ss',
-        m: '1m',
-        mm: '%dm',
-        h: '1h',
-        hh: '%dh',
-        d: '1d',
-        dd: '%dd',
-        M: '1M',
-        MM: '%dM',
-        y: '1Y',
-        yy: '%dY',
-      },
-    });
-  }
-
-  redirectTo(notification: INotification) {
-    switch (notification.notification_message_type) {
-      case ENotificationMessageTypes.FOLLOW_CREATED:
-        this.router.navigate(['/users', notification.sender.username]);
-        break;
-      case ENotificationMessageTypes.VOTE_CREATED:
-        switch (notification.entity_type) {
-          case ENotificationEntityTypes.LAB:
-            if ('slug' in notification.entity) {
-              this.router.navigate(['/labs', notification.entity.slug]);
-            }
-            break;
-          case ENotificationEntityTypes.COMMUNITY_BUILD:
-            if ('slug' in notification.entity) {
-              this.router.navigate(['/builds', notification.entity.slug]);
-            }
-            break;
-        }
-        break;
-      case ENotificationMessageTypes.MESSAGE_CREATED:
-        switch (notification.parent_type) {
-          case ENotificationParentTypes.LAB:
-            if ('slug' in notification.parent) {
-              this.router.navigate(['/labs', notification.parent.slug]);
-            }
-            break;
-          case ENotificationParentTypes.COMMUNITY_BUILD:
-            if ('slug' in notification.parent) {
-              this.router.navigate(['/builds', notification.parent.slug]);
-            }
-            break;
-        }
-        break;
+  getNotifications() {
+    if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
+      this.isLoading = true;
+      this.subscriptions.push(
+        this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
+          this.notifications = this.notifications.concat(value.notifications);
+          this.page += 1;
+          this.total = value.total;
+          this.isLoading = false;
+          if (this.notifications.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        }),
+      );
     }
+  }
+
+  receiveData() {
+    this.subscriptions.push(
+      this.notificationChannel.notificationData$.subscribe((data) => {
+        if (data) {
+          switch (data.action) {
+            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              this.notifications.unshift(data.notification);
+              break;
+            }
+            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+              const idx = this.notifications.findIndex(
+                (notification) => notification.id === data.notification_queue_id,
+              );
+              if (idx != -1) {
+                this.notifications[idx].status = data.status;
+              }
+              break;
+            }
+          }
+        }
+      }),
+    );
   }
 }

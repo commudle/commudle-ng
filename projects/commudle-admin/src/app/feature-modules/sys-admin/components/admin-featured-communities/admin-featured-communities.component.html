@@ -62,34 +62,36 @@
       </button>
     </nb-card-header>
     <nb-card-body>
-      <input
-        (input)="onInputChange($event)"
-        [disabled]="selectedCommunity"
-        [nbAutocomplete]="autoComplete"
-        [value]="selectedCommunity?.name"
-        fullWidth
-        nbInput
-        placeholder="Search for communities"
-        type="text"
-      />
-      <nb-autocomplete #autoComplete (selectedChange)="onSelectionChange($event)">
-        <nb-option *ngFor="let community of communities" [value]="community">
-          <div style="margin-right: 8px; width: 50px; height: 50px; overflow: hidden; border-radius: 50%">
-            <img
-              alt="{{ community.name }}"
-              src="{{ community.logo_path }}"
-              style="width: 100%; height: 100%; object-fit: cover"
-              title="{{ community.name }}"
-            />
-          </div>
-          {{ community.name }}
-        </nb-option>
-      </nb-autocomplete>
-      <div *ngIf="selectedCommunity" class="d-flex justify-content-space-between">
-        <app-community-badge [community]="selectedCommunity"></app-community-badge>
-        <button (click)="onSelectionDelete()" ghost nbButton size="small" status="danger">Delete</button>
-      </div>
-      <input [(ngModel)]="reason" fullWidth maxlength="50" nbInput placeholder="Enter the reason" type="text" />
+      <form>
+        <input
+          (input)="onInputChange($event)"
+          [disabled]="selectedCommunity"
+          [nbAutocomplete]="autoComplete"
+          [value]="selectedCommunity?.name"
+          fullWidth
+          nbInput
+          placeholder="Search for communities"
+          type="text"
+        />
+        <nb-autocomplete #autoComplete (selectedChange)="onSelectionChange($event)">
+          <nb-option *ngFor="let community of communities" [value]="community">
+            <div style="margin-right: 8px; width: 50px; height: 50px; overflow: hidden; border-radius: 50%">
+              <img
+                alt="{{ community.name }}"
+                src="{{ community.logo_path }}"
+                style="width: 100%; height: 100%; object-fit: cover"
+                title="{{ community.name }}"
+              />
+            </div>
+            {{ community.name }}
+          </nb-option>
+        </nb-autocomplete>
+        <div *ngIf="selectedCommunity" class="d-flex justify-content-space-between">
+          <app-community-badge [community]="selectedCommunity"></app-community-badge>
+          <button (click)="onSelectionDelete()" ghost nbButton size="small" status="danger">Delete</button>
+        </div>
+        <input [(ngModel)]="reason" fullWidth maxlength="50" nbInput placeholder="Enter the reason" type="text" />
+      </form>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-space-between">
       <button (click)="ref.close()" ghost nbButton status="danger">Cancel</button>

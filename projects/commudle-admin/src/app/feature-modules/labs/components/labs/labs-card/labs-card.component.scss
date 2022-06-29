@@ -38,16 +38,12 @@ a:active {
 
     .labs-card-content-prefix {
       .labs-card-title {
-        color: $neon-blue;
-        font-size: $fs-card-title;
-        line-height: 23px;
+        @apply com-text-xl com-text-black com-font-normal;
       }
 
       .labs-card-date {
         color: rgba($gunmetal, 0.5);
-        font-size: $fs-card-secondary;
-        font-style: italic;
-        font-weight: normal;
+        @apply com-text-xs com-font-normal com-italic;
       }
     }
 

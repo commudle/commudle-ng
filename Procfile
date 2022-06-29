@@ -1,1 +1,0 @@
-web: node dist/commudle-admin/server/main.js
