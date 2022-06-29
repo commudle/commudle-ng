@@ -56,26 +56,19 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
           this.pioneerAnalyticsService.startAnalytics(this.currentUser.id);
         }
       }
+      console.log(this.cookieAccepted);
     });
-
-    if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
-      setTimeout(() => {
-        this.windowService.open(CookieConsentComponent, {
-          title: "Let's Share Cookies!",
-          initialState: NbWindowState.MAXIMIZED,
-          windowClass: 'cookie-consent',
-        });
-      }, 3000);
-    }
 
     if (this.cookieConsentService.isCookieConsentAccepted()) {
       this.cookieAccepted = true;
+      console.log(this.cookieAccepted);
     }
   }
 
   ngAfterViewChecked(): void {
     this.profileStatusBarService.profileBarStatus$.subscribe((value) => (this.profileBarStatus = value));
     this.cdr.detectChanges();
+    this.cookieConsentService.isCookieConsentAccepted();
   }
 
   ngOnDestroy(): void {
