@@ -20,6 +20,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { CommunityControlPanelRoutingModule } from './community-control-panel-routing.module';
 import { CommunityBlockedUsersComponent } from './components/community-blocked-users/community-blocked-users.component';
 import { CommunityControlPanelComponent } from './components/community-control-panel/community-control-panel.component';
@@ -63,6 +64,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     Ng2SmartTableModule,
     FontAwesomeModule,
     SharedDirectivesModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,

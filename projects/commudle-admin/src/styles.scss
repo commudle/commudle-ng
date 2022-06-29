@@ -95,6 +95,15 @@ input {
         }
       }
     }
+
+    nav.fixed {
+      padding: 0 !important;
+      height: inherit;
+
+      @screen md {
+        padding: 1rem !important;
+      }
+    }
   }
 
   [nbButton].appearance-filled.status-basic {

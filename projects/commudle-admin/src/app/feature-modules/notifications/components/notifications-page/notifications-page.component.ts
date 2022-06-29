@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NbToastrService } from '@nebular/theme';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
-import { INotification } from 'projects/shared-models/notification.model';
-import { Subscription } from 'rxjs';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
@@ -12,64 +9,34 @@ import { SeoService } from 'projects/shared-services/seo.service';
   styleUrls: ['./notifications-page.component.scss'],
 })
 export class NotificationsPageComponent implements OnInit, OnDestroy {
-  notifications: INotification[] = [];
-
-  page = 1;
-  count = 10;
-  total: number;
-  isLoading = false;
-  canLoadMore = true;
-
-  subscriptions: Subscription[] = [];
+  trackMarkAllAsRead = false;
 
   constructor(
-    private notificationChannel: NotificationChannel,
     private notificationService: NotificationService,
-    private notificationStateService: NotificationStateService,
     private seoService: SeoService,
+    private nbToastrService: NbToastrService,
   ) {}
 
   ngOnInit(): void {
-    this.notificationStateService.setNotificationPageState(true);
-    this.getNotifications();
-    this.receiveData();
     this.seoService.noIndex(true);
+    this.seoService.setTags(
+      'Notifications',
+      'View all notifications',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 
   ngOnDestroy(): void {
     this.seoService.noIndex(false);
-    this.notificationStateService.setNotificationPageState(false);
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  getNotifications() {
-    if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
-      this.isLoading = true;
-      this.subscriptions.push(
-        this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
-          this.notifications = this.notifications.concat(value.notifications.reverse());
-          this.page += 1;
-          this.total = value.total;
-          this.isLoading = false;
-          if (this.notifications.length >= this.total) {
-            this.canLoadMore = false;
-          }
-        }),
-      );
-    }
-  }
+  markAllAsRead() {
+    this.notificationService.markAllAsRead().subscribe((res) => {
+      if (res) {
+        this.nbToastrService.success('All notifications marked as read', 'Success');
 
-  receiveData() {
-    this.subscriptions.push(
-      this.notificationChannel.notificationData$.subscribe((data) => {
-        if (data) {
-          switch (data.action) {
-            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              this.notifications.unshift(data.notification);
-            }
-          }
-        }
-      }),
-    );
+        this.trackMarkAllAsRead = !this.trackMarkAllAsRead;
+      }
+    });
   }
 }

@@ -19,6 +19,7 @@ export interface ICommunity {
   event_count: number;
   location: string;
   tags: ITag[];
+  is_visible: boolean;
 }
 
 export interface ICommunitySearch extends ICommunity {

@@ -21,6 +21,13 @@
       </a>
     </nb-list-item>
 
+    <nb-list-item>
+      <a [routerLink]="['/newsletters']">
+        <fa-icon [icon]="faNewspaper"></fa-icon>
+        &nbsp;Newsletters
+      </a>
+    </nb-list-item>
+
     <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
         <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>
@@ -42,7 +49,7 @@
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
           <a [routerLink]="['/admin', 'orgs', cGroup.slug]">
-            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
+            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo?.url }}" size="tiny"></nb-user>
             <span class="org-badge">
               <app-badge
                 [color]="'#001FFF'"
@@ -83,7 +90,7 @@
     </nb-accordion>
   </div>
 
-  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin">
+  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin">
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Common Menu</nb-accordion-item-header>

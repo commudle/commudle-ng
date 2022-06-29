@@ -15,5 +15,6 @@ export class HomeComponent implements OnInit {
       'A community platform for software developers to connect over online events, channels, share knowledge & find jobs. Join now to build your "Developer Network".',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+    this.seoService.noIndex(true);
   }
 }

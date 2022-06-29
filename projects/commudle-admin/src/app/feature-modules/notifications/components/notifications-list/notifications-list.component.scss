@@ -1,61 +1,27 @@
-nb-list {
+.notification-list {
   nb-list-item {
-    position: relative;
+    @apply com-justify-between;
+
+    &.active {
+      @apply com-bg-gray-100;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .mark-as-read {
+      @apply com-hidden;
+    }
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-      cursor: pointer;
-
-      nb-icon {
-        visibility: visible;
+      .mark-as-read {
+        @apply com-block;
       }
     }
-
-    nb-badge {
-      margin-left: 10px;
-    }
-
-    a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
-
-      .avatar {
-        overflow: hidden;
-
-        img {
-          display: block;
-          height: inherit;
-          object-fit: cover;
-          object-position: center top;
-          width: 100%;
-        }
-      }
-
-      .content {
-        margin: 0 12px;
-
-        .notification-text,
-        .notification-time {
-          display: inline;
-        }
-      }
-    }
-
-    nb-icon {
-      position: absolute;
-      right: 20px;
-      border-radius: 6px;
-      font-size: 30px;
-      padding: 2px;
-      visibility: hidden;
-
-      &:hover {
-        background-color: #d0d7de;
-      }
-    }
-
-    border: 0;
   }
 }

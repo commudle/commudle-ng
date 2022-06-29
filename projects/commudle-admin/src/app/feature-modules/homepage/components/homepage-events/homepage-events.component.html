@@ -1,6 +1,6 @@
-<div class="com-flex com-gap-4 com-justify-between com-items-center com-mb-8">
-  <h2 class="heading">Learn from live sessions by developers around you</h2>
-  <div class="com-flex">
+<div class="com-flex com-gap-4 com-justify-between com-items-center com-mb-8 md:com-mb-12">
+  <h2 class="heading">Live sessions with developers around you</h2>
+  <div *appBreakpoints="'>md'" class="com-flex">
     <button
       (click)="updateEventsIdx(-4)"
       [disabled]="eventsStartIdx === 0"
@@ -22,7 +22,7 @@
     </button>
   </div>
 </div>
-<div *appBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-[254px]">
+<div *appBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-full md:com-min-h-[340px]">
   <ng-container *ngIf="!isLoading; else loading">
     <app-homepage-events-card
       *ngFor="let event of events | slice: eventsStartIdx:eventsStartIdx + 4"

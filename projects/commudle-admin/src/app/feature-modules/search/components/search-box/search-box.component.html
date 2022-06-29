@@ -14,7 +14,7 @@
     class="main-search-bar"
     fullWidth
     nbInput
-    placeholder="Find developers, communities, projects or tutorials"
+    placeholder="Search react, gdg, design, tutorials"
     type="text"
   />
 </nb-form-field>
@@ -23,7 +23,7 @@
 
 <nb-autocomplete
   #autoComplete
-  (selectedChange)="navigate($event); searchInput.blur()"
+  (selectedChange)="searchInput.blur()"
   [handleDisplayFn]="handleDisplay"
   optionsListClass="search-autocomplete"
 >
@@ -38,7 +38,9 @@
   <nb-option *ngIf="total === 0 && !searchLoader" class="search-placeholder">No results found</nb-option>
   <nb-option-group *ngFor="let group of groupedResults | keyvalue" [title]="group.key" class="search-results-group">
     <nb-option *ngFor="let option of group.value" [value]="option">
-      <nb-user [name]="option.name" [picture]="getPicture(option)" [showTitle]="false"></nb-user>
+      <a [routerLink]="getRoute(option)" class="navigate">
+        <nb-user [name]="option.name" [picture]="getPicture(option)" [showTitle]="false"></nb-user>
+      </a>
     </nb-option>
   </nb-option-group>
   <nb-option

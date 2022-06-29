@@ -14,48 +14,26 @@ p {
   }
 
   .content {
-    @apply com-px-4 md:com-px-8 com-text-center com-text-gray-900 com-text-2xl md:com-text-6xl com-font-semibold;
+    @apply com-px-4 md:com-px-8 com-pt-6 md:com-pt-0 com-text-center com-text-gray-900 com-text-2xl md:com-text-4xl com-font-medium com-line-clamp-4 md:com-line-clamp-2;
   }
 
   nb-actions {
     @apply com-mt-12 md:com-mt-20 com-flex-col md:com-flex-row com-gap-2 md:com-gap-0;
 
-    .user,
     .text {
-      @apply com-p-0 md:com-p-2 com-text-center;
+      @apply com-h-8 md:com-h-16 com-p-0 md:com-p-2 com-text-center com-text-gray-900 com-text-base md:com-text-xl com-font-medium;
 
       @media screen and (max-width: theme('screens.md')) {
         @apply com-border-none;
-      }
-    }
-
-    .user {
-      .avatar {
-        @apply com-h-16 com-w-16 com-mr-4 com-rounded-full com-object-cover com-object-center;
-      }
-
-      .details {
-        .name {
-          @apply com-text-xl com-text-gray-900 com-font-medium;
-        }
-
-        .username {
-          @apply com-mt-1 com-text-base com-text-gray-400;
-        }
-      }
-    }
-
-    .text {
-      @apply com-text-gray-900 com-text-xl com-font-medium;
-
-      .highlight {
-        color: #0095ff;
-        @apply com-p-1.5 com-contents;
       }
     }
   }
 
   .navigation {
     @apply com-mt-12 com-flex com-justify-between;
+
+    .text {
+      @apply com-text-gray-900 com-text-base;
+    }
   }
 }

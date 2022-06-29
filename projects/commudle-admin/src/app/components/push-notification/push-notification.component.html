@@ -1,0 +1,35 @@
+<div *ngIf="showPopup" class="com-fixed com-left-4 com-top-20 com-z-50">
+  <div
+    class="
+      com-flex
+      com-flex-col
+      com-items-center
+      com-w-full
+      com-max-w-xs
+      com-p-4
+      com-text-gray-500
+      com-bg-white
+      com-rounded-lg
+      com-shadow-md
+      md:com-max-w-sm md:com-flex-row
+    "
+  >
+    <p class="com-text-sm">Keep up to date with your developer network by allowing notifications from Commudle!</p>
+    <div class="com-flex com-items-center com-ml-4 com-space-x-2">
+      <button
+        (click)="acceptPushNotifications()"
+        [nbSpinner]="isLoading"
+        nbButton
+        outline
+        shape="semi-round"
+        size="small"
+        status="success"
+      >
+        Allow
+      </button>
+      <button (click)="rejectPushNotifications()" [disabled]="isLoading" ghost nbButton shape="semi-round" size="small">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

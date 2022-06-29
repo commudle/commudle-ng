@@ -1,61 +1,96 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
-import { ENotificationStatus } from 'projects/shared-models/enums/notification_status.enum';
-import { INotification } from 'projects/shared-models/notification.model';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
+import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
+import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
+import { INotification } from 'projects/shared-models/notification.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notifications-list',
   templateUrl: './notifications-list.component.html',
   styleUrls: ['./notifications-list.component.scss'],
 })
-export class NotificationsListComponent implements OnInit, OnDestroy {
-  @Input() notifications: INotification[];
+export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() markAllAsRead: boolean;
+  @Output() closePopover: EventEmitter<any> = new EventEmitter();
 
-  ENotificationStatus = ENotificationStatus;
+  notifications: INotification[] = [];
 
-  subscriptions = [];
+  page = 1;
+  count = 10;
+  total: number;
+  isLoading = false;
+  canLoadMore = true;
+
+  ENotificationStatuses = ENotificationStatuses;
   moment = moment;
 
-  constructor(
-    private notificationService: NotificationService,
-    private notificationStateService: NotificationStateService,
-  ) {}
+  subscriptions: Subscription[] = [];
+
+  constructor(private notificationService: NotificationService, private notificationChannel: NotificationChannel) {}
 
   ngOnInit(): void {
-    this.setNotificationTimeFormat();
+    this.getNotifications();
+    this.receiveData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.markAllAsRead) {
+      this.notifications.forEach((notification) => (notification.status = ENotificationStatuses.READ));
+    }
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
-  changeStatus(status: ENotificationStatus, notification: INotification) {
+  changeStatus(status: ENotificationStatuses, notification: INotification) {
     this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
+
+    if (status === ENotificationStatuses.INTERACTED) {
+      this.closePopover.emit();
+    }
   }
 
-  closePopover() {
-    this.notificationStateService.setCloseNotificationPopover(true);
+  getNotifications() {
+    if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
+      this.isLoading = true;
+      this.subscriptions.push(
+        this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
+          this.notifications = this.notifications.concat(value.notifications);
+          this.page += 1;
+          this.total = value.total;
+          this.isLoading = false;
+          if (this.notifications.length >= this.total) {
+            this.canLoadMore = false;
+          }
+        }),
+      );
+    }
   }
 
-  setNotificationTimeFormat() {
-    moment.locale('en', {
-      relativeTime: {
-        past: '%s',
-        s: '1s',
-        ss: '%ss',
-        m: '1m',
-        mm: '%dm',
-        h: '1h',
-        hh: '%dh',
-        d: '1d',
-        dd: '%dd',
-        M: '1M',
-        MM: '%dM',
-        y: '1Y',
-        yy: '%dY',
-      },
-    });
+  receiveData() {
+    this.subscriptions.push(
+      this.notificationChannel.notificationData$.subscribe((data) => {
+        if (data) {
+          switch (data.action) {
+            case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
+              this.notifications.unshift(data.notification);
+              break;
+            }
+            case this.notificationChannel.ACTIONS.STATUS_UPDATE: {
+              const idx = this.notifications.findIndex(
+                (notification) => notification.id === data.notification_queue_id,
+              );
+              if (idx != -1) {
+                this.notifications[idx].status = data.status;
+              }
+              break;
+            }
+          }
+        }
+      }),
+    );
   }
 }

@@ -16,6 +16,7 @@
   </nb-sidebar>
 
   <nb-layout-column>
+    <div id="mini-user-profile-container"></div>
     <app-profile-status-bar *ngIf="currentUser && profileBarStatus"></app-profile-status-bar>
     <div class="com-min-h-screen">
       <router-outlet></router-outlet>
@@ -31,3 +32,4 @@
 <app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>
+<app-push-notification></app-push-notification>

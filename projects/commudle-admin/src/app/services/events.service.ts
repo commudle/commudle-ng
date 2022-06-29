@@ -86,10 +86,9 @@ export class EventsService {
 
   embeddedVideoStreamVisitors(eventId, embeddedVideoStreamId): Observable<IUsers> {
     const params = new HttpParams().set('event_id', eventId).set('embedded_video_stream_id', embeddedVideoStreamId);
-    return this.http.get<IUsers>(
-      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.EMBEDDED_VIDEO_STREAM_VISITORS),
-      { params },
-    );
+    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.EMBEDDED_VIDEO_STREAM_VISITORS), {
+      params,
+    });
   }
 
   inviteGuestToWebinarStage(userId, hmsRoomId): Observable<any> {
@@ -133,5 +132,13 @@ export class EventsService {
   getRecordings(eventId: number): Observable<IHmsRecording[]> {
     const params = new HttpParams().set('event_id', String(eventId));
     return this.http.get<IHmsRecording[]>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.RECORDINGS), { params });
+  }
+
+  getAttendedMembers(eventId: number, page: number, count: number): Observable<IUsers> {
+    const params = new HttpParams()
+      .set('event_id', String(eventId))
+      .set('page', String(page))
+      .set('count', String(count));
+    return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.ATTENDED_MEMBERS), { params });
   }
 }

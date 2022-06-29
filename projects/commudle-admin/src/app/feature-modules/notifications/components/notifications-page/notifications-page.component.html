@@ -1,20 +1,16 @@
 <div class="base-layout thin com-mb-8">
   <div class="container">
     <div class="one-column-layout">
-      <nb-card>
+      <nb-card class="notifications-container">
         <nb-card-header>
           <h6>Notifications</h6>
+          <button (click)="markAllAsRead()" ghost nbButton size="small">
+            Mark all as read
+            <nb-icon icon="checkmark-circle-outline"></nb-icon>
+          </button>
         </nb-card-header>
         <nb-card-body>
-          <div (scrolled)="getNotifications()" [infiniteScrollDisabled]="!(canLoadMore && total)" appInfiniteScroll>
-            <h4 *ngIf="notifications.length === 0" class="com-text-center">No Notifications Yet</h4>
-            <app-notifications-list [notifications]="notifications"></app-notifications-list>
-          </div>
-          <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
-            <div class="spinner">
-              <div *ngFor="let _ of [].constructor(5)"></div>
-            </div>
-          </div>
+          <app-notifications-list [markAllAsRead]="trackMarkAllAsRead"></app-notifications-list>
         </nb-card-body>
       </nb-card>
     </div>

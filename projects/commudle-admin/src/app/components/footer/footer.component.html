@@ -1,4 +1,4 @@
-<footer class="com-bg-white" *ngIf="showFooter">
+<footer *ngIf="showFooter" class="com-bg-white">
   <div class="com-container com-mx-auto com-py-12 com-px-4">
     <div class="xl:com-grid xl:com-grid-cols-3 xl:com-gap-8">
       <div class="com-space-y-8 xl:com-col-span-1">
@@ -25,7 +25,8 @@
             <ul>
               <li><a [routerLink]="['/']">Home</a></li>
               <li><a [routerLink]="['/about']">About</a></li>
-              <li><a [routerLink]="['/features']">Features</a></li>
+              <li><a [routerLink]="['/pricing']">Pricing</a></li>
+              <!-- <li><a [routerLink]="['/features']">Features</a></li> -->
             </ul>
           </div>
           <div class="com-mt-12 md:com-mt-0">
@@ -33,6 +34,7 @@
               <li><a [routerLink]="['/communities']">Communities</a></li>
               <li><a [routerLink]="['/labs']">Labs</a></li>
               <li><a [routerLink]="['/builds']">Builds</a></li>
+              <li><a [routerLink]="['/newsletters']">Newsletters</a></li>
             </ul>
           </div>
         </div>
@@ -44,9 +46,7 @@
             </ul>
           </div>
           <div class="com-mt-12 md:com-mt-0">
-            <ul>
-              <li><a [routerLink]="['/about']">FAQ</a></li>
-            </ul>
+            <ul></ul>
           </div>
         </div>
       </div>

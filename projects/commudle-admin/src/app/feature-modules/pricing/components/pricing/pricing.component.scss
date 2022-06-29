@@ -1,3 +1,7 @@
+p {
+  @apply com-my-0;
+}
+
 .pricing-container {
   @apply com-bg-gray-50;
 
@@ -13,11 +17,11 @@
     }
 
     .heading {
-      @apply com-text-4xl com-font-extrabold com-tracking-tight com-text-white sm:com-text-6xl;
+      @apply com-my-0 com-text-4xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
     }
 
     .subheading {
-      @apply com-mt-4 com-text-xl com-text-indigo-100;
+      @apply com-mt-4 com-mb-0 com-text-xl com-text-gray-600 com-font-normal;
     }
   }
 
@@ -25,7 +29,7 @@
     @apply com-relative com-mt-12 com-flex com-justify-center com-items-center com-gap-4 sm:com-mt-16;
 
     label {
-      @apply com-text-indigo-100;
+      @apply com-text-[#57c3b9];
     }
   }
 
@@ -34,74 +38,80 @@
     @apply sm:com-mt-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8 lg:com-pb-0;
 
     .pricing-card-light {
-      @apply com-bg-indigo-700 com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
+      @apply com-bg-[#3aa49a] com-pt-6 com-px-6 com-pb-4 com-rounded-lg;
       @apply lg:com-bg-transparent lg:com-px-8 lg:com-pt-12;
 
       .name {
-        @apply com-text-white com-text-sm com-font-semibold com-uppercase com-tracking-wide;
+        @apply com-text-white com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
 
       .pricing {
         @apply com-flex com-flex-col com-items-start;
         @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
 
+        .amount {
+          @apply com-text-white com-text-4xl com-font-extrabold com-tracking-tight;
+        }
+
         .buy-btn {
           text-decoration: none;
-          @apply com-bg-white com-text-indigo-600 hover:com-bg-indigo-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
+          @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
 
       .features {
-        @apply com-border-indigo-500 com-divide-indigo-500 com-divide-opacity-75 com-mt-7 com-border-t com-divide-y com-pl-2;
-        @apply lg:com-border-t-0;
+        @apply com-mt-7 com-pl-2;
 
         li {
           @apply com-py-3 com-flex com-items-center;
 
           nb-icon {
-            @apply com-text-indigo-200 com-w-5 com-h-5 com-flex-shrink-0;
+            @apply com-text-white com-w-5 com-h-5 com-flex-shrink-0;
           }
 
           .feature {
-            @apply com-text-white com-ml-4 com-text-sm com-font-medium;
+            @apply com-text-white com-ml-4 com-text-base com-font-medium;
           }
         }
       }
     }
 
     .pricing-card-dark {
-      @apply com-bg-white com-ring-2 com-ring-indigo-700 com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
+      @apply com-bg-white com-ring-2 com-ring-[#3aa49a] com-shadow-md com-pt-6 com-px-6 com-pb-3 com-rounded-lg;
       @apply lg:com-px-8 lg:com-pt-12;
 
       .name {
-        @apply com-text-indigo-600 com-text-sm com-font-semibold com-uppercase com-tracking-wide;
+        @apply com-text-[#3aa49a] com-text-base com-font-semibold com-uppercase com-tracking-wide;
       }
 
       .pricing {
         @apply com-flex com-flex-col com-items-start;
         @apply sm:com-flex-row sm:com-items-center sm:com-justify-between lg:com-flex-col lg:com-items-start;
 
+        .amount {
+          @apply com-text-[#3aa49a] com-text-4xl com-font-extrabold com-tracking-tight;
+        }
+
         .buy-btn {
           text-decoration: none;
-          @apply com-bg-indigo-600 com-text-white hover:com-bg-indigo-700 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-border com-border-transparent com-rounded-md com-shadow-sm com-text-center com-text-sm com-font-medium;
+          @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500 com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
           @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
         }
       }
 
       .features {
-        @apply com-border-gray-200 com-divide-gray-200 com-mt-7 com-border-t com-divide-y com-pl-2;
-        @apply lg:com-border-t-0;
+        @apply com-mt-7 com-pl-2;
 
         li {
           @apply com-py-3 com-flex com-items-center;
 
           nb-icon {
-            @apply com-text-indigo-500 com-w-5 com-h-5 com-flex-shrink-0;
+            @apply com-text-[#3aa49a] com-w-5 com-h-5 com-flex-shrink-0;
           }
 
           .feature {
-            @apply com-text-gray-600 com-ml-4 com-text-sm com-font-medium;
+            @apply com-text-gray-600 com-ml-4 com-text-base com-font-medium;
           }
         }
       }
@@ -109,23 +119,51 @@
   }
 
   .pricing-features {
-    .pricing-feature-headings {
-      @apply com-w-full com-border-t com-border-gray-200 com-flex com-items-stretch;
+    @apply com-overflow-x-auto;
 
-      .heading {
-        @apply com-text-gray-900 com-text-sm com-font-bold;
+    .pricing-feature-headings {
+      @apply com-w-full com-flex com-items-stretch;
+
+      &.sticky {
+        @apply com-sticky com-top-16 com-bg-gray-50 com-z-10;
       }
 
-      .subheading {
-        @apply com-mt-2 com-text-sm com-text-gray-500;
+      .title {
+        @apply com-my-0 com-text-gray-900 com-text-xl com-font-bold;
+      }
+
+      .subtitle {
+        @apply com-mt-2 com-text-base com-text-gray-500 com-font-medium;
+      }
+
+      .buy-btn {
+        text-decoration: none;
+        @apply com-mt-6 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
+        @apply sm:com-mt-0 sm:com-w-auto lg:com-mt-6 lg:com-w-full;
+
+        &.light {
+          @apply com-bg-white com-text-[#3aa49a] hover:com-bg-green-50;
+        }
+
+        &.dark {
+          @apply com-bg-[#3aa49a] com-text-white hover:com-bg-green-500;
+        }
       }
     }
 
+    .pricing-feature-subheadings {
+      @apply com-mt-10 com-text-base com-font-bold com-text-gray-900;
+    }
+
     .pricing-feature-table {
-      @apply com-relative com-w-full;
+      @apply com-relative com-w-full com-my-1;
 
       .heading {
-        @apply com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-sm com-font-medium com-text-gray-600;
+        @apply com-w-1/4 com-py-3 com-pr-4 com-text-left com-text-base com-font-medium com-text-gray-600;
+
+        &.w-full {
+          @apply com-w-full;
+        }
       }
 
       .description {
@@ -135,22 +173,24 @@
           @apply com-relative com-w-full com-h-full com-py-3;
 
           nb-icon {
+            @apply com-text-2xl;
+
             &.light {
               @apply com-text-gray-400;
             }
 
             &.dark {
-              @apply com-text-indigo-600;
+              @apply com-text-[#57c3b9];
             }
           }
 
           span {
             &.light {
-              @apply com-text-gray-900 com-text-sm com-font-medium;
+              @apply com-text-gray-900 com-text-base com-font-medium;
             }
 
             &.dark {
-              @apply com-text-indigo-600 com-text-sm com-font-medium;
+              @apply com-text-[#57c3b9] com-text-base com-font-medium;
             }
           }
         }
@@ -158,15 +198,28 @@
     }
   }
 
+  .pricing-quotes {
+    @apply com-bg-gray-50 com-overflow-hidden com-py-8 md:com-py-12 lg:com-py-16 com-mt-8 md:com-mt-12 lg:com-mt-16;
+
+    .quote {
+      @apply com-max-w-3xl com-mx-auto com-text-center com-text-2xl com-leading-9 com-font-medium com-text-gray-900;
+    }
+  }
+
   .pricing-logo-cloud {
     @apply com-max-w-2xl com-mx-auto com-py-12 com-px-4;
     @apply sm:com-px-6 lg:com-max-w-7xl lg:com-py-32 lg:com-px-8;
 
+    .subheading {
+      @apply com-text-center com-text-base com-mb-8 com-text-gray-400 com-font-medium com-tracking-wider com-uppercase;
+    }
+
     .logo {
+      text-decoration: none;
       @apply com-col-span-1 com-flex com-justify-center md:com-col-span-2 lg:com-col-span-1;
 
       img {
-        @apply com-h-12;
+        @apply com-h-24;
       }
     }
   }
@@ -176,7 +229,7 @@
     @apply sm:com-py-24 sm:com-px-6 lg:com-max-w-7xl lg:com-px-8;
 
     .heading {
-      @apply com-text-3xl com-font-extrabold com-tracking-tight com-text-white;
+      @apply com-my-0 com-text-3xl com-font-extrabold com-tracking-tight com-text-white;
       @apply sm:com-text-4xl;
     }
 
@@ -186,14 +239,14 @@
 
     .questions {
       @apply com-space-y-10;
-      @apply lg:com-space-y-0 lg:com-grid lg:com-grid-cols-2 lg:com-gap-x-8 lg:com-gap-y-10;
+      @apply lg:com-space-y-0 lg:com-grid lg:com-gap-x-8 lg:com-gap-y-10;
 
       .question {
-        @apply com-font-semibold com-text-white;
+        @apply com-font-semibold com-text-white com-text-base;
       }
 
       .answer {
-        @apply com-mt-3 com-ml-0 com-text-gray-400;
+        @apply com-mt-3 com-ml-0 com-text-gray-400 com-text-base;
       }
     }
   }

@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { faBell, faFlask, faLightbulb, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faFlask, faLightbulb, faUser, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { NbPopoverDirective } from '@nebular/theme';
-import { NotificationsPopoverComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/notifications-popover/notifications-popover.component';
-import { NotificationStateService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification-state.service';
-import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification-channel';
+import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { combineLatest, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar-menu',
@@ -20,53 +19,38 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   faFlask = faFlask;
   faUserFriends = faUserFriends;
   faBell = faBell;
+  faUser = faUser;
 
   notificationCount = 0;
   notificationIconHighlight = false;
-  notificationsPopoverComponent = NotificationsPopoverComponent;
-  @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   subscriptions: Subscription[] = [];
 
+  @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
+
   constructor(
+    private notificationService: NotificationService,
     private notificationChannel: NotificationChannel,
-    private notificationStateService: NotificationStateService,
     private authwatchService: LibAuthwatchService,
   ) {}
 
   ngOnInit(): void {
-    this.receiveData();
-
     this.authwatchService.currentUser$.subscribe((currentUser) => {
       this.currentUser = currentUser;
+
+      if (currentUser) {
+        this.receiveData();
+        this.getUnreadNotificationsCount();
+      }
     });
-
-    this.subscriptions.push(
-      this.notificationStateService.closeNotificationPopover$.subscribe((value) => {
-        if (value) {
-          this.popovers.forEach((popover) => {
-            if (popover.context === 'notificationsPopover') {
-              popover.hide();
-            }
-          });
-
-          this.notificationStateService.setCloseNotificationPopover(false);
-        }
-      }),
-    );
-
-    this.subscriptions.push(
-      combineLatest(
-        this.notificationStateService.notificationPageState$,
-        this.notificationStateService.notificationPopoverState$,
-      ).subscribe(([notificationPageState, notificationPopoverState]) => {
-        this.notificationIconHighlight = notificationPageState || notificationPopoverState;
-      }),
-    );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  getUnreadNotificationsCount() {
+    this.notificationService.getUnreadNotificationsCount().subscribe((count) => (this.notificationCount = count));
   }
 
   receiveData() {
@@ -83,9 +67,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
     );
   }
 
-  resetCount() {
-    if (this.notificationCount > 0) {
-      this.notificationCount = 0;
-    }
+  closePopover() {
+    this.popovers.find((popover) => popover.context === 'notificationsPopover').hide();
   }
 }

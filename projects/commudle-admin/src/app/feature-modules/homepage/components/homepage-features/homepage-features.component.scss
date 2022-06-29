@@ -10,7 +10,11 @@
   }
 
   .homepage-feature-title {
-    @apply com-my-0 com-ml-12 com-text-xl com-leading-6 com-font-medium com-text-gray-900;
+    @apply com-my-0 com-ml-12 com-text-xl com-leading-6 com-font-medium com-text-gray-900 com-flex com-gap-2;
+
+    .expert-icon {
+      @apply com-w-5;
+    }
   }
 
   .homepage-feature-description {

@@ -42,12 +42,14 @@ import {
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CookieService } from 'ngx-cookie-service';
+import { PushNotificationComponent } from 'projects/commudle-admin/src/app/components/push-notification/push-notification.component';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { LibErrorHandlerModule } from 'projects/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { ApiParserResponseInterceptor } from 'projects/shared-interceptors/api-parser-response.interceptor';
 import { AuthTokenInterceptor } from 'projects/shared-interceptors/lib-authwatch-token.interceptor';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
@@ -143,6 +145,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     CircularProgressiveBarComponent,
     NavbarComponent,
     FooterComponent,
+    PushNotificationComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -170,6 +173,7 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     NotificationsModule,
     RecommendationsModule,
     SearchModule,
+    MiniUserProfileModule,
 
     // external service modules
     LibErrorHandlerModule,

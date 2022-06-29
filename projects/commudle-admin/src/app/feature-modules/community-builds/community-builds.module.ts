@@ -16,6 +16,7 @@ import { RecommendationsModule } from 'projects/commudle-admin/src/app/feature-m
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { InfiniteScrollModule } from 'projects/shared-modules/infinite-scroll/infinite-scroll.module';
+import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
 import { PageAdsModule } from 'projects/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { CommunityBuildsRoutingModule } from './community-builds-routing.module';
@@ -52,6 +53,7 @@ import { TeammateInviteConfirmationComponent } from './components/teammate-invit
     PageAdsModule,
     InfiniteScrollModule,
     RecommendationsModule,
+    MiniUserProfileModule,
 
     // Nebular
     NbCardModule,

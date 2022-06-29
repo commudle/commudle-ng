@@ -10,6 +10,7 @@ export const environment = {
   // anycable_url: 'ws://localhost:3334/cable',
   // auth_cookie_name: 'dev_commudle_user_auth',
   // zoom_call_server_url: 'http://localhost:4000',
+  // vapid_public_key: 'BB5xVItCcvm8oybyS98PqOf7lEFlr4P0JEYnZuLHpQxUtht9pIO4ebaVye6a2iNnM7fG67zlCLEgqVJxm7j3LyA=',
 
   // app_url: 'https://t.commudle.com',
   // base_url: 'https://t.commudle.com',
@@ -17,6 +18,7 @@ export const environment = {
   // anycable_url: 'wss://wst.commudle.com/cable',
   // auth_cookie_name: 'dev_commudle_user_auth',
   // zoom_call_server_url: 'https://zoomt.commudle.com',
+  // vapid_public_key: 'BB5xVItCcvm8oybyS98PqOf7lEFlr4P0JEYnZuLHpQxUtht9pIO4ebaVye6a2iNnM7fG67zlCLEgqVJxm7j3LyA=',
 
   session_cookie_name: 'cmdle_sess',
 
@@ -26,6 +28,7 @@ export const environment = {
   anycable_url: 'wss://ws.commudle.com/cable',
   auth_cookie_name: 'commudle_user_auth',
   zoom_call_server_url: 'https://zoom.commudle.com',
+  vapid_public_key: 'BKK5b61SLimEeIdVcYTGqp-zOkSVooNfKF6JX-_-N2eDza_tzZldncoCHdZtl8xHQ-cX20Vo7lBGo_p5n7hVG4g=',
 };
 
 /*

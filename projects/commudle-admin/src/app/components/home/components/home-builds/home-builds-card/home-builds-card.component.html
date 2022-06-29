@@ -21,12 +21,16 @@
       </span>
     </div>
     <div [routerLink]="['/users', build.user.username]" class="home-builds-card-author d-flex align-items-center">
-      <div class="home-builds-card-author-name com-line-clamp-1">{{ build.user.name }}</div>
+      <div [username]="build.user.username" appMiniUserProfile class="home-builds-card-author-name com-line-clamp-1">
+        {{ build.user.name }}
+      </div>
       <img
-        alt="{{ build.user.name }}"
+        [alt]="build.user.name"
+        [src]="build.user.avatar"
+        [title]="build.user.name"
+        [username]="build.user.username"
+        appMiniUserProfile
         class="home-builds-card-author-image"
-        src="{{ build.user.avatar }}"
-        title="{{ build.user.name }}"
       />
     </div>
   </div>
