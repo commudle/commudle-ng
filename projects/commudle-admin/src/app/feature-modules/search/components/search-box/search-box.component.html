@@ -23,7 +23,7 @@
 
 <nb-autocomplete
   #autoComplete
-  (selectedChange)="searchInput.blur()"
+  (selectedChange)="navigate($event); searchInput.blur()"
   [handleDisplayFn]="handleDisplay"
   optionsListClass="search-autocomplete"
 >
