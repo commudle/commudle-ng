@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class AdminStaticAssetsService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  getAsset(page?: number, count?: number): Observable<IStaticAssets> {
+  getAssets(page?: number, count?: number): Observable<IStaticAssets> {
     let params = new HttpParams();
     return this.http.get<IStaticAssets>(this.apiRoutesService.getRoute(API_ROUTES.STATIC_ASSETS.SHOW), { params });
   }
@@ -21,8 +21,8 @@ export class AdminStaticAssetsService {
     return this.http.post<IStaticAssets>(this.apiRoutesService.getRoute(API_ROUTES.STATIC_ASSETS.CREATE), formData);
   }
 
-  getAssetById(AssetId: number): Observable<IStaticAsset> {
-    const params = new HttpParams().set('asset_id', String(AssetId));
+  getAssetById(assetId: number): Observable<IStaticAsset> {
+    const params = new HttpParams().set('asset_id', String(assetId));
 
     return this.http.get<IStaticAsset>(this.apiRoutesService.getRoute(API_ROUTES.STATIC_ASSETS.SHOW), { params });
   }

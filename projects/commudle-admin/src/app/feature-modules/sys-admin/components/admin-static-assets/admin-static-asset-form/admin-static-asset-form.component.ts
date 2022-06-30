@@ -36,15 +36,15 @@ export class AdminStaticAssetFormComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((params) => {
-        this.getAssets(+params.AssetId || 0);
+        this.getAsset(+params.assetId || 0);
       }),
     );
   }
 
-  getAssets(AssetId: number): void {
-    if (AssetId >= 0) {
+  getAsset(assetId: number): void {
+    if (assetId >= 0) {
       this.subscriptions.push(
-        this.adminStaticAssetsService.getAssetById(AssetId).subscribe((value) => {
+        this.adminStaticAssetsService.getAssetById(assetId).subscribe((value) => {
           this.asset = value;
           this.prefillAsset();
         }),

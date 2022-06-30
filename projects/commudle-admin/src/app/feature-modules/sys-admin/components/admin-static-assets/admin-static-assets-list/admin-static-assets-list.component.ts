@@ -23,7 +23,7 @@ export class AdminStaticAssetsListComponent implements OnInit {
   getAsset(): void {
     if (this.assets.length !== this.total) {
       this.subscriptions.push(
-        this.adminStaticAssetsService.getAsset(this.page, this.count).subscribe((value) => {
+        this.adminStaticAssetsService.getAssets(this.page, this.count).subscribe((value) => {
           this.assets = this.assets.concat(value.static_assets);
           this.page = +value.page;
           this.total = +value.total;
