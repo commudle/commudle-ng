@@ -29,7 +29,7 @@
   </nb-layout-footer>
 </nb-layout>
 
-<app-chats-container *ngIf="currentUser && cookieAccepted"></app-chats-container>
-<app-cookie-consent *ngIf="!cookieAccepted" (close)="cookieAccepted = true"></app-cookie-consent>
+<app-chats-container *ngIf="currentUser"></app-chats-container>
+<app-cookie-consent></app-cookie-consent>
 <app-user-visit-tracker></app-user-visit-tracker>
 <app-sw-update></app-sw-update>

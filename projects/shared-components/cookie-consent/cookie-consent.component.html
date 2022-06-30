@@ -1,4 +1,4 @@
-<div class="card">
+<div *ngIf="!cookieConstent" class="card">
   <div class="content">
     <div class="top-section">
       <h3 class="heading">Cookies</h3>
@@ -9,7 +9,7 @@
       </p>
     </div>
     <div class="bottom-section">
-      <button (click)="acceptCookieConsent()" class="button">Accept</button>
+      <button (click)="acceptCookieConsent()" class="button" nbButton status="primary">Accept</button>
       <!-- <button nbButton status="basic" ghost (click)="disagreeCookieConsent()">Disagree</button> -->
     </div>
   </div>
