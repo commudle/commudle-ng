@@ -315,7 +315,10 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/badges',
     DELETE: 'api/v2/badges',
   },
-
+  STATIC_ASSETS: {
+    SHOW: 'api/v2/static_assets',
+    CREATE: 'api/v2/static_assets',
+  },
   USER_BADGES: {
     INDEX: 'api/v2/user_badges',
     CREATE: 'api/v2/user_badges',
