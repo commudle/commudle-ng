@@ -18,7 +18,6 @@ module.exports = {
         'span-22': 'span 22 / span 22',
       },
     },
-
     container: {
       center: true,
     },
