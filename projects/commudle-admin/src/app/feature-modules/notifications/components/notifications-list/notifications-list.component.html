@@ -8,7 +8,11 @@
     ></nb-badge>
     <a (click)="changeStatus(ENotificationStatuses.INTERACTED, notification, true)">
       <div class="avatar com-rounded-[50%] com-h-[56px] com-w-[56px]">
-        <img [alt]="notification.sender.name" [src]="notification.sender.avatar" [title]="notification.sender.name" />
+        <img
+          [alt]="notification.sender.name"
+          [src]="notification.sender.photo.i64"
+          [title]="notification.sender.name"
+        />
       </div>
       <div class="content">
         <p class="notification-text">

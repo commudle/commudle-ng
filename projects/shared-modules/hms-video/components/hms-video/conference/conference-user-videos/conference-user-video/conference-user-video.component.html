@@ -65,7 +65,7 @@
     <img
       *ngIf="metaData && !isVideoEnabled && !screenShare"
       [alt]="metaData.name"
-      [src]="metaData.avatar"
+      [src]="metaData.photo.i64"
       [title]="metaData.name"
       class="user-avatar"
     />
