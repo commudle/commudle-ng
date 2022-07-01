@@ -21,9 +21,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   sideBarState: NbSidebarState = 'collapsed';
   currentUser: ICurrentUser;
   cookieAccepted = false;
-
   profileBarStatus = true;
-
   isBrowser = this.isBrowserService.isBrowser();
 
   constructor(
