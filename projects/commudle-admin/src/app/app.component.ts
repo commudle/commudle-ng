@@ -9,6 +9,7 @@ import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.serv
 import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
 import { NotificationChannel } from './feature-modules/notifications/services/websockets/notification-channel';
+import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 
 @Component({
@@ -19,6 +20,8 @@ import { ProfileStatusBarService } from './services/profile-status-bar.service';
 export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   sideBarState: NbSidebarState = 'collapsed';
   currentUser: ICurrentUser;
+  cookieAccepted = false;
+
   profileBarStatus = true;
 
   isBrowser = this.isBrowserService.isBrowser();
@@ -28,6 +31,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private actionCableConnectionSocket: ActionCableConnectionSocket,
     private sidebarService: NbSidebarService,
+    private cookieConsentService: CookieConsentService,
     private cdr: ChangeDetectorRef,
     private notificationsService: NotificationsService,
     private pioneerAnalyticsService: PioneerAnalyticsService,
@@ -52,6 +56,10 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
         }
       }
     });
+
+    if (this.cookieConsentService.isCookieConsentAccepted()) {
+      this.cookieAccepted = true;
+    }
   }
 
   ngAfterViewChecked(): void {

@@ -18,9 +18,7 @@ module.exports = {
         'span-22': 'span 22 / span 22',
       },
     },
-    fontFamily: {
-      'inter': 'Inter',
-    },
+
     container: {
       center: true,
     },
