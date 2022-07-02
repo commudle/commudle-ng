@@ -11,7 +11,7 @@
         <a [routerLink]="['/users', expert.username]" class="home-expert d-flex align-items-center">
           <img
             [alt]="expert.name"
-            [src]="expert.avatar"
+            [src]="expert.photo.i32"
             [title]="expert.name"
             [username]="expert.username"
             appMiniUserProfile
