@@ -1,0 +1,43 @@
+<!--<nav>-->
+<!--  <ul>-->
+<!--    <li>-->
+<!--      <button (click)="onPrevious()" [disabled]="current === 1">Previous</button>-->
+<!--    </li>-->
+<!--    <li *ngFor="let page of pages; index as i">-->
+<!--      <a (click)="onGoTo(page)" *ngIf="page !== -1; else more" [class.current]="page === current" class="internal">-->
+<!--        {{ page }}-->
+<!--      </a>-->
+<!--      <ng-template #more>-->
+<!--        <a class="more"> ... </a>-->
+<!--      </ng-template>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <button (click)="onNext()" [disabled]="current === total">Next</button>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</nav>-->
+
+<nav class="navigation-controls">
+  <div class="com--mt-px com-w-0 com-flex-1 com-flex">
+    <a (click)="onPrevious()" [disabled]="current === 1" ghost nbButton size="small">
+      <nb-icon icon="arrow-ios-back"></nb-icon>
+      Previous
+    </a>
+  </div>
+  <div class="pages">
+    <ng-container *ngFor="let page of pages; index as i">
+      <a (click)="onGoTo(page)" *ngIf="page !== -1; else more" [class.active]="page === current" class="page">
+        {{ page }}
+      </a>
+      <ng-template #more>
+        <span class="more"> ... </span>
+      </ng-template>
+    </ng-container>
+  </div>
+  <div class="com--mt-px com-w-0 com-flex-1 com-flex com-justify-end">
+    <a (click)="onNext()" [disabled]="current === total" ghost nbButton size="small">
+      Next
+      <nb-icon icon="arrow-ios-forward"></nb-icon>
+    </a>
+  </div>
+</nav>

@@ -16,7 +16,8 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
   isVisible: boolean = true;
 
   page = 1;
-  count = 24;
+  count = 18;
+  total = 0;
   canLoadMore = true;
 
   subscriptions: Subscription[] = [];
@@ -45,13 +46,9 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
       this.canLoadMore = false;
       this.subscriptions.push(
         this.eventsService.getAttendedMembers(this.event.id, this.page, this.count).subscribe((data) => {
-          this.members = [...this.members, ...data.users];
-          if (this.members.length >= data.total) {
-            this.canLoadMore = false;
-          } else {
-            this.page += 1;
-            this.canLoadMore = true;
-          }
+          this.members = data.users;
+          this.canLoadMore = this.members.length < data.total;
+          this.total = data.total;
         }),
       );
     }

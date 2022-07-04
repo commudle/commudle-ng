@@ -14,9 +14,18 @@
             </ng-container>
           </div>
 
-          <div *ngIf="canLoadMore" class="load-more">
-            <button (click)="getMembers()" nbButton outline size="small" status="info">Load More...</button>
-          </div>
+          <!--          <div *ngIf="canLoadMore" class="load-more">-->
+          <!--            <button (click)="getMembers()" nbButton outline size="small" status="info">Load More...</button>-->
+          <!--          </div>-->
+          <app-pagination
+            (goTo)="page = $event; getMembers()"
+            (next)="page = $event; getMembers()"
+            (previous)="page = $event; getMembers()"
+            *ngIf="total > 0"
+            [current]="page"
+            [total]="count"
+            class="com-mt-8"
+          ></app-pagination>
         </nb-card-body>
       </nb-card>
     </div>
