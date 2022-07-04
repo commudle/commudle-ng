@@ -6,7 +6,11 @@
           <p class="header-text">People who attended the event with you!</p>
           <div class="users com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3">
             <ng-container *ngFor="let member of members">
-              <app-user-profile-card-large [showFollowButton]="true" [user]="member"></app-user-profile-card-large>
+              <app-user-profile-card-large
+                [showFollowButton]="true"
+                [truncateDesignation]="false"
+                [user]="member"
+              ></app-user-profile-card-large>
             </ng-container>
           </div>
 
