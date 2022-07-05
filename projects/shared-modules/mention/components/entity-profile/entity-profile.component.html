@@ -1,6 +1,6 @@
 <div class="user {{ size }}">
   <div class="profile-picture {{ size }}" [ngSwitch]="entity.type">
-    <img *ngSwitchCase="'users'" alt="{{ entity.name }}" src="{{ entity.avatar }}" title="{{ entity.name }}" />
+    <img *ngSwitchCase="'users'" alt="{{ entity.name }}" src="{{ entity.photo.i64 }}" title="{{ entity.name }}" />
     <img
       *ngSwitchCase="'builds'"
       alt="{{ entity.name }}"
