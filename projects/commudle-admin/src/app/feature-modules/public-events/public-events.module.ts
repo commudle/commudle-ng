@@ -13,6 +13,7 @@ import {
   NbInputModule,
   NbListModule,
   NbPopoverModule,
+  NbSpinnerModule,
   NbTabsetModule,
   NbToggleModule,
   NbTooltipModule,
@@ -24,6 +25,7 @@ import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile
 import { SharedPipesModule } from 'projects/shared-pipes/pipes.module';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { EventLocationTracksComponent } from './components/agenda/event-location-tracks/event-location-tracks.component';
+import { AttendedMembersComponent } from './components/attended-members/attended-members.component';
 import { AttendingMembersComponent } from './components/attending-members/attending-members.component';
 import { AutoAttendanceComponent } from './components/auto-attendance/auto-attendance.component';
 import { CollaborationCommunitiesComponent } from './components/collaboration-communities/collaboration-communities.component';
@@ -66,6 +68,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     SessionPageQnaComponent,
     SessionPagePollComponent,
     SessionPageViewersComponent,
+    AttendedMembersComponent,
   ],
   imports: [
     CommonModule,
@@ -95,6 +98,7 @@ import { PublicEventsRoutingModule } from './public-events-routing.module';
     NbUserModule,
     NbToggleModule,
     NbFormFieldModule,
+    NbSpinnerModule,
   ],
 })
 export class PublicEventsModule {}

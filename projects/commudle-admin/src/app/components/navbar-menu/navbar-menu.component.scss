@@ -1,10 +1,20 @@
+:host {
+  @media screen and (max-width: theme('screens.md')) {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100vw;
+  }
+}
+
 a {
   text-decoration: none;
 }
 
 nb-actions {
+  @apply com-h-full;
+
   nb-action {
-    @apply com-p-0 md:com-border-none;
+    @apply com-px-2 com-py-4 md:com-p-0 md:com-border-none;
 
     a {
       @apply com-flex com-flex-col com-items-center com-px-2 md:com-px-4 com-border-none md:com-w-24;

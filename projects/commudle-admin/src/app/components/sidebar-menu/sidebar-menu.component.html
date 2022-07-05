@@ -49,7 +49,7 @@
 
         <nb-accordion-item-body *ngFor="let cGroup of managedCommunityGroups">
           <a [routerLink]="['/admin', 'orgs', cGroup.slug]">
-            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo.url }}" size="tiny"></nb-user>
+            <nb-user name="{{ cGroup.name }}" picture="{{ cGroup.logo?.url }}" size="tiny"></nb-user>
             <span class="org-badge">
               <app-badge
                 [color]="'#001FFF'"
@@ -90,7 +90,7 @@
     </nb-accordion>
   </div>
 
-  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin">
+  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin || isAssetsAdmin">
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Common Menu</nb-accordion-item-header>
@@ -102,6 +102,9 @@
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isBadgesAdmin">
           <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body *ngIf="isAssetsAdmin">
+          <a [routerLink]="['/sys-admin', 'static-assets']">Static Assets</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

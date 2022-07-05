@@ -1,0 +1,23 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+.attended-members {
+  margin: $space-32 0 $space-16;
+
+  nb-card-body {
+    padding: $space-40;
+
+    .header-text {
+      color: $gunmetal;
+      font-size: $fs-26;
+      font-weight: $fw-600;
+      line-height: 30px;
+      margin: 0 0 $space-24;
+      max-width: fit-content;
+    }
+
+    .load-more {
+      margin-top: $space-32;
+      text-align: center;
+    }
+  }
+}

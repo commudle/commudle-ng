@@ -4,9 +4,8 @@
   .labs-popular-tags {
     .labs-popular-tag {
       color: $gunmetal;
-      font-size: $fs-h3;
       font-weight: $fw-400;
-      text-transform: lowercase;
+      @apply com-text-xl com-lowercase;
     }
   }
 

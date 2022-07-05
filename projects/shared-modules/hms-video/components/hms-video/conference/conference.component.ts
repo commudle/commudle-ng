@@ -368,8 +368,16 @@ export class ConferenceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   getMeetingUrl(): string {
-    // Remove 'session' from url and add 'beam'
-    return location.href.slice(0, -7) + 'beam';
+    // if 'admin/' is present in url then remove it, then remove 'session' and add 'beam' at the end
+    let meetingUrl = location.href.replace('admin/', '');
+    if (meetingUrl.endsWith('session')) {
+      meetingUrl = meetingUrl.replace('session', 'beam');
+    } else {
+      meetingUrl = meetingUrl + '/beam';
+      // replace 'event-dashboard' with 'events'
+      meetingUrl = meetingUrl.replace('event-dashboard', 'events');
+    }
+    return meetingUrl;
   }
 
   leaveRoom(): void {

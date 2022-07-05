@@ -1,86 +1,118 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
+p {
+  @apply com-m-0;
+}
 
-nb-card {
+.entry-pass-scan-container {
   nb-card-header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+    @apply com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4;
 
-    a {
-      @apply com-text-xl md:com-text-2xl com-font-semibold;
+    .actions {
+      @apply com-flex com-gap-2;
     }
   }
 
   nb-card-body {
-    .qr-code-scanner {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      width: inherit;
+    .scanner-controls {
+      @apply com-flex com-flex-col-reverse md:com-flex-row com-items-center com-justify-between com-gap-4 com-mb-4;
 
-      .camera-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-
-        zxing-scanner {
-          ::ng-deep {
-            video {
-              height: 300px;
-              object-fit: contain;
-              width: 300px;
-            }
-          }
-        }
-      }
-
-      .cameras-list {
-        margin-top: 20px;
-        width: inherit;
-
-        nb-form-field {
-          width: inherit;
-        }
-      }
-
-      .divider {
-        border-bottom: 1px solid black;
-        height: 12px;
-        margin: 20px 0;
-        text-align: center;
-        width: 400px;
-
-        @media all and (max-width: $mobile-width) {
-          width: 330px;
-        }
-
-        span {
-          background-color: white;
-          font-size: 18px;
-          padding: 0 10px;
-        }
-      }
-
-      .entry-pass-form {
-        margin-top: 10px;
-        width: 300px;
-
-        form {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
+      .camera-controls {
+        @apply com-flex com-items-center com-gap-2;
       }
     }
-  }
-}
 
-::ng-deep {
-  .cdk-overlay-container {
-    .user-info {
-      nb-card-header {
-        display: none !important;
+    .scanner {
+      @apply com-relative;
+
+      nb-alert {
+        @apply com-p-6 com-absolute com-top-4 com-left-1/2 com--translate-x-1/2 com-w-72;
       }
     }
+
+    .divider {
+      @apply com-flex com-items-center com-my-12 com-mx-auto com-w-72;
+
+      &:before,
+      &:after {
+        background: black;
+        box-shadow: 0 0.5px 0 black; // Chrome
+        content: '';
+        flex: 1;
+        height: 1px;
+        margin: 0 1em;
+      }
+    }
+
+    .manual-entry-pass {
+      @apply com-mx-auto com-w-max;
+    }
   }
+
+  //nb-card-body {
+  //  .qr-code-scanner {
+  //    align-items: center;
+  //    display: flex;
+  //    flex-direction: column;
+  //    width: inherit;
+  //
+  //    .camera-container {
+  //      display: flex;
+  //      flex-direction: column;
+  //      gap: 15px;
+  //
+  //      zxing-scanner {
+  //        ::ng-deep {
+  //          video {
+  //            height: 300px;
+  //            object-fit: contain;
+  //            width: 300px;
+  //          }
+  //        }
+  //      }
+  //    }
+  //
+  //    .cameras-list {
+  //      margin-top: 20px;
+  //      width: inherit;
+  //
+  //      nb-form-field {
+  //        width: inherit;
+  //      }
+  //    }
+  //
+  //    .divider {
+  //      border-bottom: 1px solid black;
+  //      height: 12px;
+  //      margin: 20px 0;
+  //      max-width: 400px;
+  //      text-align: center;
+  //
+  //      span {
+  //        background-color: white;
+  //        font-size: 18px;
+  //        padding: 0 10px;
+  //      }
+  //    }
+  //
+  //    .entry-pass-form {
+  //      margin-top: 10px;
+  //      width: 300px;
+  //
+  //      form {
+  //        display: flex;
+  //        flex-direction: column;
+  //        gap: 10px;
+  //      }
+  //    }
+  //  }
+  //}
 }
+
+//::ng-deep {
+//  .cdk-overlay-container {
+//    .user-info {
+//      nb-card-header {
+//        display: none !important;
+//      }
+//    }
+//  }
+//}

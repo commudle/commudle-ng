@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AttendedMembersComponent } from 'projects/commudle-admin/src/app/feature-modules/public-events/components/attended-members/attended-members.component';
 import { CommunityDetailsResolver } from 'projects/commudle-admin/src/app/resolvers/community-details.resolver';
 import { PublicEventDetailsResolver } from 'projects/commudle-admin/src/app/resolvers/public-event-details.resolver';
 import { HmsBeamComponent } from 'projects/shared-modules/hms-video/components/hms-beam/hms-beam.component';
@@ -27,6 +28,10 @@ const routes = [
       {
         path: 'beam',
         component: HmsBeamComponent,
+      },
+      {
+        path: 'attended-members',
+        component: AttendedMembersComponent,
       },
     ],
   },
