@@ -1,16 +1,60 @@
-<div [style.width.px]="chatsWindowWidth" class="chat-window">
-  <nb-card>
-    <nb-card-header (click)="toggleChatsWindowHeight()" class="clickable">
-      <div class="window-options">
+<!-- <div [style.width.px]="chatsWindowWidth" class="chat-window">
+    <nb-card>
+      <nb-card-header (click)="toggleChatsWindowHeight()" class="clickable">
+        <div class="window-options">
+          <app-user-profile-mini [size]="'small'" [user]="discussionFollower.user"></app-user-profile-mini>
+          <div>
+            <button ghost nbButton>
+              <nb-icon icon="more-vertical" pack="eva"></nb-icon>
+            </button>
+            <button ng-click="toggleChatsWindowHeight()" ghost nbButton class="clickable">
+              <nb-icon icon="chevron-down-outline" pack="eva"></nb-icon>
+            </button>
+            <button (click)="closeChat()" ghost nbButton>
+              <nb-icon icon="close" pack="eva"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body
+        [style.height.vh]="chatsWindowHeight"
+        [style.maxHeight.vh]="chatsWindowHeight"
+        [style.minHeight.vh]="chatsWindowHeight"
+      >
+        <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
+      </nb-card-body>
+    </nb-card>
+  </div> -->
+
+<div [style.width.px]="chatsWindowWidth" class="com-bg-gray-50 com-ml-1 com-mb-1">
+  <!-- Header -->
+  <header class="">
+    <div
+      class="com-flex com-items-center com-justify-between com-py-3 com-border-b-2 com-border-gray-200"
+      (click)="toggleChatsWindowHeight()"
+    >
+      <div class="com-relative com-flex com-items-center com-space-x-4">
         <app-user-profile-mini [size]="'small'" [user]="discussionFollower.user"></app-user-profile-mini>
+      </div>
+      <div class="com-flex com-items-center">
+        <button ghost nbButton>
+          <nb-icon icon="more-vertical" pack="eva"></nb-icon>
+        </button>
+        <button ng-click="toggleChatsWindowHeight()" ghost nbButton>
+          <nb-icon icon="chevron-down-outline" pack="eva"></nb-icon>
+        </button>
         <button (click)="closeChat()" ghost nbButton>
           <nb-icon icon="close" pack="eva"></nb-icon>
         </button>
       </div>
-    </nb-card-header>
-    <nb-card-body [style.height.vh]="chatsWindowHeight" [style.maxHeight.vh]="chatsWindowHeight"
-                  [style.minHeight.vh]="chatsWindowHeight">
-      <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
-    </nb-card-body>
-  </nb-card>
+    </div>
+  </header>
+  <div
+    class=""
+    [style.height.vh]="chatsWindowHeight"
+    [style.maxHeight.vh]="chatsWindowHeight"
+    [style.minHeight.vh]="chatsWindowHeight"
+  >
+    <app-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></app-discussion-personal-chat>
+  </div>
 </div>
