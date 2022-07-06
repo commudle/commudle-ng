@@ -31,7 +31,7 @@
               "projects/commudle-admin/src/favicon.ico",
               "projects/commudle-admin/src/assets",
               "projects/commudle-admin/src/manifest.webmanifest",
-              "projects/commudle-admin/src/robotsfile.txt",
+              "projects/commudle-admin/src/robots.txt",
               "projects/commudle-admin/src/sitemap.xml"
             ],
             "styles": [
