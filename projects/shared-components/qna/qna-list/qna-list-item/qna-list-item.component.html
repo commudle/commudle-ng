@@ -1,6 +1,11 @@
 <div *ngIf="message" class="message-container">
   <div class="prefix d-flex align-items-start">
-    <img alt="{{ message.user.name }}" class="avatar" src="{{ message.user.avatar }}" title="{{ message.user.name }}" />
+    <img
+      alt="{{ message.user.name }}"
+      class="avatar"
+      src="{{ message.user.photo.i32 }}"
+      title="{{ message.user.name }}"
+    />
     <div class="user-container">
       <div class="user d-flex align-items-center">
         <p class="name">

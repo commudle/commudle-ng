@@ -1,7 +1,7 @@
 <div [ngClass]="{ normal: !user.is_expert }" class="user-personal-details">
   <div [ngClass]="{ normal: !user.is_expert }" class="profile-photo-container">
     <div class="profile-photo">
-      <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
+      <img alt="{{ user.name }}" src="{{ user.photo.i160 }}" title="{{ user.name }}" />
     </div>
   </div>
 
