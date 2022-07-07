@@ -1,0 +1,74 @@
+<nb-card *ngIf="userWorkHistories.length > 0 || currentUser?.id === user.id" class="user-work-history">
+  <nb-card-header>Work History</nb-card-header>
+  <nb-card-body>
+    <button
+      (click)="onOpenCreateDialog(userWorkHistoryDialog)"
+      class="user-work-history-add"
+      fullWidth
+      ghost
+      nbButton
+      status="info"
+    >
+      <nb-icon icon="plus-circle"></nb-icon>
+      Add Work History
+    </button>
+    <ng-container *ngFor="let userWorkHistory of userWorkHistories">
+      <app-user-work-history-card
+        (updateUserWorkHistory)="onOpenEditDialog(userWorkHistoryDialog, userWorkHistory)"
+        [userWorkHistory]="userWorkHistory"
+        [user]="user"
+      ></app-user-work-history-card>
+    </ng-container>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #userWorkHistoryDialog let-data>
+  <nb-card class="com-max-h-[30rem] com-max-w-sm">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      {{ isEditing ? 'Edit Work History' : 'Add Work History' }}
+      <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="userWorkHistoryForm" class="com-flex com-flex-col com-space-y-3">
+        <label>
+          Job Title*
+          <input formControlName="job_title" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Company*
+          <input formControlName="company" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Location*
+          <input formControlName="location" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Start Date*
+          <input formControlName="start_date" fullWidth nbInput type="date" />
+        </label>
+        <label>
+          End Date
+          <input formControlName="end_date" fullWidth nbInput type="date" />
+        </label>
+        <nb-toggle formControlName="is_working">Is Working</nb-toggle>
+        <label>
+          Description
+          <textarea formControlName="description" fullWidth nbInput type="text"></textarea>
+        </label>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
+      <button
+        (click)="isEditing ? updateWorkHistory(data.userWorkHistory.id) : createWorkHistory()"
+        [disabled]="userWorkHistoryForm.invalid"
+        nbButton
+        status="success"
+      >
+        {{ isEditing ? 'Update' : 'Create' }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

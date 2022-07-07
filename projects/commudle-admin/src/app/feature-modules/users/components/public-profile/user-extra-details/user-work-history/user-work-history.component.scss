@@ -1,0 +1,11 @@
+.user-work-history {
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
+  }
+
+  nb-card-body {
+    .user-work-history-add {
+      @apply com-mb-2 com-font-normal;
+    }
+  }
+}

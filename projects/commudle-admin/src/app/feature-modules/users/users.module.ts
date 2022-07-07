@@ -48,6 +48,8 @@ import { UserFeedPostsComponent } from './components/public-profile/user-extra-d
 import { UserFeedComponent } from './components/public-profile/user-extra-details/user-feed/user-feed.component';
 import { UserSocialCardComponent } from './components/public-profile/user-extra-details/user-social/user-social-card/user-social-card.component';
 import { UserSocialComponent } from './components/public-profile/user-extra-details/user-social/user-social.component';
+import { UserWorkHistoryCardComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history-card/user-work-history-card.component';
+import { UserWorkHistoryComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 import { CapitalizeAndRemoveUnderscorePipe } from './pipes/capitalize-and-remove-underscore.pipe';
@@ -81,6 +83,8 @@ import { UsersRoutingModule } from './users-routing.module';
     UsernameComponent,
     BasicInfoComponent,
     SocialLinksComponent,
+    UserWorkHistoryComponent,
+    UserWorkHistoryCardComponent,
   ],
   imports: [
     CommonModule,

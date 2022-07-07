@@ -1,0 +1,58 @@
+<nb-card class="user-work-history-card">
+  <nb-card-body>
+    <div class="heading">
+      <div class="job">
+        <p class="job-title">{{ userWorkHistory.job_title }}</p>
+        <p class="company">{{ userWorkHistory.company }}</p>
+      </div>
+      <p class="date">
+        <nb-icon icon="calendar"></nb-icon>
+        {{ userWorkHistory.start_date | date: 'MMM yyyy' }} -
+        <span *ngIf="userWorkHistory.is_working; else endDate">Present</span>
+        <ng-template #endDate>{{ userWorkHistory.end_date | date: 'MMM yyyy' }}</ng-template>
+      </p>
+      <p class="location">
+        <nb-icon icon="pin"></nb-icon>
+        {{ userWorkHistory.location }}
+      </p>
+    </div>
+    <p class="description">{{ userWorkHistory.description }}</p>
+    <div *ngIf="currentUser?.id === user.id" class="com-flex com-mt-4">
+      <button (click)="updateUserWorkHistory.emit()" fullWidth ghost nbButton status="warning">
+        <nb-icon icon="edit-outline"></nb-icon>
+        Edit Work History
+      </button>
+      <button (click)="onDialogOpen(deleteWorkHistoryDialog)" fullWidth ghost nbButton status="danger">
+        <nb-icon icon="trash-outline"></nb-icon>
+        Delete Work History
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #deleteWorkHistoryDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure you want to <strong>delete</strong>
+        &nbsp;
+        <em>{{ userWorkHistory.job_title }}</em>
+        ?
+      </p>
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="deleteUserWorkHistory(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -586,4 +586,11 @@ export const API_ROUTES = {
   PUSH_NOTIFICATION_SUBSCRIPTIONS: {
     CREATE: 'api/v2/push_notification_subscriptions',
   },
+
+  USER_WORK_HISTORY: {
+    INDEX: 'api/v2/user_work_histories',
+    CREATE: 'api/v2/user_work_histories',
+    UPDATE: 'api/v2/user_work_histories',
+    DESTROY: 'api/v2/user_work_histories',
+  },
 };
