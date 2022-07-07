@@ -1,0 +1,61 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+}
+
+.user-labs-card {
+  border: 1px solid $maya-blue;
+  border-radius: $border-12;
+  margin: 0;
+  width: 280px;
+
+  nb-card-header {
+    border-bottom: 1px solid $maya-blue;
+    height: 134px;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+
+    img {
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+    }
+  }
+
+  nb-card-body {
+    padding: $space-12 $space-16 $space-16;
+
+    .user-labs-card-name {
+      color: $neon-blue;
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .user-labs-card-description {
+      color: $cadet;
+      font-size: $fs-h7;
+      font-weight: $fw-500;
+      line-height: 12px;
+      margin-top: $space-4;
+    }
+
+    .user-labs-card-interactions {
+      color: $gunmetal;
+      font-size: $fs-h6;
+      line-height: 14px;
+      margin-top: $space-24;
+
+      nb-icon {
+        color: $neon-blue;
+        font-size: $fs-h4;
+      }
+    }
+  }
+}

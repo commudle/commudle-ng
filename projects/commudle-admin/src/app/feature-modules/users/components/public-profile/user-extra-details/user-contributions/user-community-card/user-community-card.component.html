@@ -1,0 +1,14 @@
+<nb-card [routerLink]="['/communities', community.community.slug]" class="user-communities-card clickable">
+  <nb-card-body class="d-flex flex-row align-items-center">
+    <div class="user-communities-logo d-flex align-items-center">
+      <img [alt]="community.community.name" [src]="community.community.logo_path" [title]="community.community.name" />
+    </div>
+    <div class="d-flex flex-column">
+      <p class="user-communities-name">
+        {{ community.community.name | truncatetext: 10 }}
+        <span>({{ community.user_role.name }})</span>
+      </p>
+      <p class="user-communities-members">{{ community.community.member_count }} Members</p>
+    </div>
+  </nb-card-body>
+</nb-card>

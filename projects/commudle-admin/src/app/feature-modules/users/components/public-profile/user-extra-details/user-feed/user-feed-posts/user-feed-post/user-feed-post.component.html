@@ -1,0 +1,49 @@
+<div class="user-feed-post">
+  <div class="user-feed-post-prefix">
+    <div class="user-feed-post-details d-flex justify-content-space-between">
+      <nb-user [name]="user.name" [picture]="user.avatar" [title]="user.designation"></nb-user>
+      <span></span>
+      <button
+        (click)="openDialog(confirmationDialog)"
+        *ngIf="currentUser && currentUser.id === user.id"
+        ghost
+        nbButton
+        size="small"
+        status="danger"
+      >
+        Delete
+      </button>
+    </div>
+    <div class="user-feed-post-content">{{ post.content }}</div>
+    <div class="user-feed-post-tags d-flex">
+      <div *ngFor="let tag of post.tags" class="user-feed-post-tag">{{ tag.name }}</div>
+    </div>
+  </div>
+  <div *ngIf="post.images.length > 0" class="user-feed-post-images d-flex">
+    <img *ngFor="let image of post.images" [src]="image.url" alt="Image" height="200" title="Image" />
+  </div>
+  <div class="user-feed-post-suffix">
+    <div class="user-feed-post-votes">
+      <nb-icon icon="heart"></nb-icon>
+      {{ post.votes_count }}
+    </div>
+  </div>
+</div>
+
+<ng-template #confirmationDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="d-flex align-items-center justify-content-space-between">
+      Confirmation
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div>Are you sure you want to delete this post?</div>
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="ref.close()" nbButton status="danger">Cancel</button>
+      <button (click)="onDeletePost(ref)" ghost nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

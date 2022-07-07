@@ -1,0 +1,88 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+}
+
+.user-build-card {
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+  padding: $space-24 $space-16;
+  width: 264px;
+
+  .user-build-card-prefix {
+    .user-build-card-tags {
+      gap: $space-4;
+
+      .user-build-card-tag {
+        background-color: $lavender;
+        border-radius: $border-20;
+        color: $neon-blue;
+        font-size: $fs-h6;
+        padding: 0 $space-8;
+      }
+    }
+  }
+
+  .user-build-card-content {
+    margin: $space-8 0;
+
+    .user-build-card-name {
+      color: $gunmetal;
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+      line-height: 16px;
+    }
+
+    .user-build-card-description {
+      color: rgba($spanish-gray, 0.7);
+      font-size: $fs-h7;
+      font-style: italic;
+      line-height: 12px;
+      margin-top: $space-4;
+    }
+  }
+
+  .user-build-card-suffix {
+    .user-build-card-interactions {
+      color: $gunmetal;
+      font-size: $fs-h6;
+
+      nb-icon {
+        color: $silver-sand;
+        font-size: $fs-h4;
+      }
+    }
+
+    .user-build-card-author {
+      height: 16px;
+
+      .user-build-card-author-name {
+        color: $gunmetal;
+        display: none;
+        font-size: $fs-h7;
+        line-height: 12px;
+        padding-right: $space-4;
+      }
+
+      img {
+        border-radius: 50%;
+        height: 100%;
+      }
+    }
+  }
+
+  &:hover {
+    .user-build-card-suffix {
+      .user-build-card-author {
+        background-color: $lavender;
+        border-radius: $border-8;
+        padding-left: $space-8;
+
+        .user-build-card-author-name {
+          display: block;
+        }
+      }
+    }
+  }
+}

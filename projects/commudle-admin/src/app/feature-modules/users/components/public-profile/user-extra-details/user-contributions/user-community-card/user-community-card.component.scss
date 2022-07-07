@@ -1,0 +1,54 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+}
+
+.user-communities-card {
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+  margin: 0;
+  width: 264px;
+
+  nb-card-body {
+    padding: $space-16;
+
+    .user-communities-logo {
+      border: 0.5px solid $platinum;
+      border-radius: 50%;
+      margin-right: $space-8;
+      max-height: 2.5rem;
+      max-width: 2.5rem;
+      min-height: 2.5rem;
+      min-width: 2.5rem;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .user-communities-name {
+      color: $gunmetal;
+      font-size: $fs-h5;
+      font-weight: $fw-600;
+
+      span {
+        color: $neon-blue;
+        font-size: $fs-h6;
+        font-style: italic;
+        font-weight: $fw-400;
+        line-height: 14px;
+        text-transform: capitalize;
+      }
+    }
+
+    .user-communities-members {
+      color: $spanish-gray;
+      font-size: $fs-h6;
+      font-style: italic;
+      line-height: 14px;
+      margin-top: $space-4;
+    }
+  }
+}

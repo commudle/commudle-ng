@@ -1,0 +1,45 @@
+@import './projects/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+}
+
+.user-past-event-card {
+  border: 1px solid $platinum;
+  border-radius: $border-5;
+  margin: 0;
+  width: 264px;
+
+  nb-card-body {
+    padding: $space-16;
+
+    nb-actions {
+      nb-action {
+        flex-direction: column;
+        font-weight: $fw-400;
+        height: max-content;
+        padding: 0 $space-8;
+
+        .user-past-event-date {
+          color: $neon-blue;
+          font-size: $fs-h6;
+        }
+
+        .user-past-event-title {
+          align-self: flex-start;
+          color: $gunmetal;
+          font-size: $fs-h5;
+          font-weight: $fw-600;
+        }
+
+        .user-past-event-description {
+          align-self: flex-start;
+          color: $spanish-gray;
+          font-size: $fs-h6;
+          line-height: 12px;
+          margin: $space-4 0 0;
+        }
+      }
+    }
+  }
+}
