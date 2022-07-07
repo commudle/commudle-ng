@@ -15,5 +15,6 @@ export interface IAttachedFile {
   i96?: string;
   i160?: string;
   i128?: string;
+  i320?: string;
   i350?: string;
 }
