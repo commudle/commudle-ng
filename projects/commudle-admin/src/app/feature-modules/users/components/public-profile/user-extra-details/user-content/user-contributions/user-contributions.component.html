@@ -1,36 +1,9 @@
-<div class="user-contributions">
-  <div *ngIf="pastEvents && pastEvents.length > 0" class="section">
-    <p class="header">My Talks at Events ({{pastEvents.length}})</p>
-    <div #content class="content">
-      <app-user-past-event-card *ngFor="let pastEvent of pastEvents" [pastEvent]="pastEvent"></app-user-past-event-card>
-    </div>
-    <div #navigation class="navigation active">
-      <button (click)="scrollElement($event, -1)" nbButton shape="round">
-        <nb-icon icon="arrow-back"></nb-icon>
-      </button>
-      <button (click)="scrollElement($event, 1)" nbButton shape="round">
-        <nb-icon icon="arrow-forward"></nb-icon>
-      </button>
-    </div>
-  </div>
-
-  <div *ngIf="labs && labs.length > 0" class="section">
-    <p class="header">Labs ({{labs.length}})</p>
-    <div #content class="content">
-      <app-user-lab-card *ngFor="let lab of labs" [lab]="lab"></app-user-lab-card>
-    </div>
-    <div #navigation class="navigation active">
-      <button (click)="scrollElement($event, -1)" nbButton shape="round">
-        <nb-icon icon="arrow-back"></nb-icon>
-      </button>
-      <button (click)="scrollElement($event, 1)" nbButton shape="round">
-        <nb-icon icon="arrow-forward"></nb-icon>
-      </button>
-    </div>
-  </div>
-
-  <div *ngIf="builds && builds.length > 0" class="section">
-    <p class="header">Builds ({{builds.length}})</p>
+<nb-card *ngIf="builds?.length > 0" class="section">
+  <nb-card-header>
+    Builds
+    <span *ngIf="builds.length > 4">({{ builds.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
     <div #content class="content">
       <app-user-build-card *ngFor="let build of builds" [build]="build"></app-user-build-card>
     </div>
@@ -42,10 +15,35 @@
         <nb-icon icon="arrow-forward"></nb-icon>
       </button>
     </div>
-  </div>
+  </nb-card-body>
+</nb-card>
 
-  <div *ngIf="communities && communities.length > 0" class="section">
-    <p class="header">Communities ({{communities.length}})</p>
+<nb-card *ngIf="pastEvents?.length > 0" class="section">
+  <nb-card-header>
+    Talks at Events
+    <span *ngIf="pastEvents.length > 4">({{ pastEvents.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div #content class="content">
+      <app-user-past-event-card *ngFor="let pastEvent of pastEvents" [pastEvent]="pastEvent"></app-user-past-event-card>
+    </div>
+    <div #navigation class="navigation active">
+      <button (click)="scrollElement($event, -1)" nbButton shape="round">
+        <nb-icon icon="arrow-back"></nb-icon>
+      </button>
+      <button (click)="scrollElement($event, 1)" nbButton shape="round">
+        <nb-icon icon="arrow-forward"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="communities?.length > 0" class="section">
+  <nb-card-header>
+    Communities
+    <span *ngIf="communities.length > 4">({{ communities.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
     <div #content class="content">
       <app-user-community-card *ngFor="let community of communities" [community]="community"></app-user-community-card>
     </div>
@@ -57,6 +55,25 @@
         <nb-icon icon="arrow-forward"></nb-icon>
       </button>
     </div>
-  </div>
+  </nb-card-body>
+</nb-card>
 
-</div>
+<nb-card *ngIf="labs?.length > 0" class="section">
+  <nb-card-header>
+    Labs
+    <span *ngIf="labs.length > 4">({{ labs.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div #content class="content">
+      <app-user-lab-card *ngFor="let lab of labs" [lab]="lab"></app-user-lab-card>
+    </div>
+    <div #navigation class="navigation active">
+      <button (click)="scrollElement($event, -1)" nbButton shape="round">
+        <nb-icon icon="arrow-back"></nb-icon>
+      </button>
+      <button (click)="scrollElement($event, 1)" nbButton shape="round">
+        <nb-icon icon="arrow-forward"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

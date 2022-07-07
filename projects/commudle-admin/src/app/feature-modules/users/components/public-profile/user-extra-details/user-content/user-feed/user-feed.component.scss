@@ -1,15 +1,11 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .user-feed {
-  padding: $space-24;
-
-  .user-feed-posts-container {
-    margin-top: $space-16;
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
   }
-}
 
-@media all and (max-width: $tab-width) {
-  .user-feed {
-    padding: $space-16;
+  .user-feed-input-container {
+    margin-bottom: $space-16;
   }
 }

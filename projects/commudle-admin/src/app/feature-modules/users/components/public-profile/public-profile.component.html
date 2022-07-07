@@ -1,14 +1,13 @@
-<div *ngIf="user" class="base-layout com-my-8">
+<div class="base-layout">
   <div class="container">
-    <div class="two-column-layout com-gap-4">
-      <div class="left-column">
-        <app-user-basic-details [currentUser]="currentUser" [user]="user"></app-user-basic-details>
-        <app-user-basic-social [user]="user"></app-user-basic-social>
-      </div>
+    <div *ngIf="user" class="two-column-layout">
       <div class="main-column">
+        <app-user-cover-photo (coverImageUpdate)="getUser()" [user]="user"></app-user-cover-photo>
+        <app-user-basic-details (updateProfile)="getUser()" [user]="user"></app-user-basic-details>
         <router-outlet></router-outlet>
         <router-outlet name="p"></router-outlet>
       </div>
+      <div *appBreakpoints="'>md'" class="right-column"></div>
     </div>
   </div>
 </div>

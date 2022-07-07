@@ -1,12 +1,19 @@
-import { AfterViewChecked, Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  AfterViewChecked,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  QueryList,
+  SimpleChanges,
+  ViewChildren,
+} from '@angular/core';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ILab } from 'projects/shared-models/lab.model';
 import { ISpeakerResource } from 'projects/shared-models/speaker_resource.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { IUserRolesUser } from 'projects/shared-models/user_roles_user.model';
-import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,8 +21,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-contributions.component.html',
   styleUrls: ['./user-contributions.component.scss'],
 })
-export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewChecked {
-  user: IUser;
+export class UserContributionsComponent implements OnChanges, OnDestroy, AfterViewChecked {
+  @Input() user: IUser;
 
   labs: ILab[] = [];
   communities: IUserRolesUser[] = [];
@@ -27,14 +34,15 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
   @ViewChildren('content') sections: QueryList<any>;
   @ViewChildren('navigation') navigations: QueryList<any>;
 
-  constructor(
-    private appUsersService: AppUsersService,
-    private activatedRoute: ActivatedRoute,
-    private seoService: SeoService,
-  ) {}
+  constructor(private appUsersService: AppUsersService) {}
 
-  ngOnInit(): void {
-    this.subscriptions.push(this.activatedRoute.parent.params.subscribe((data) => this.getUserData(data.username)));
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user) {
+      this.getPastEvents();
+      this.getCommunities();
+      this.getLabs();
+      this.getBuilds();
+    }
   }
 
   ngOnDestroy(): void {
@@ -49,20 +57,6 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
     });
   }
 
-  getUserData(username: string): void {
-    this.subscriptions.push(
-      this.appUsersService.getProfile(username).subscribe((data) => {
-        this.user = data;
-        this.setMeta();
-        this.getPastEvents();
-        this.getCommunities();
-        this.getLabs();
-        this.getBuilds();
-      }),
-    );
-  }
-
-  // Get the user's past events
   getPastEvents(): void {
     this.subscriptions.push(
       this.appUsersService.speakerResources(this.user.username).subscribe((value) => {
@@ -71,40 +65,29 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
     );
   }
 
-  // Get the user's communities
   getCommunities(): void {
     this.subscriptions.push(
       this.appUsersService.communities(this.user.username).subscribe((value) => {
-        this.communities = value.user_roles_users;
         // TODO: If some community is undefined then remove it, is that required?
-        this.communities.forEach((community) => {
-          if (!community.community) {
-            this.communities.splice(this.communities.indexOf(community), 1);
-          }
-        });
+        this.communities = value.user_roles_users.filter((community) => community.community);
       }),
     );
   }
 
-  // Get the user's labs
   getLabs(): void {
     this.subscriptions.push(
-      this.appUsersService.labs(this.user.username).subscribe((value) => {
-        this.labs = value.labs;
-      }),
+      this.appUsersService.labs(this.user.username).subscribe((value) => (this.labs = value.labs)),
     );
   }
 
-  // Get the user's builds
   getBuilds(): void {
     this.subscriptions.push(
-      this.appUsersService.communityBuilds(this.user.username).subscribe((value) => {
-        this.builds = value.community_builds;
-      }),
+      this.appUsersService
+        .communityBuilds(this.user.username)
+        .subscribe((value) => (this.builds = value.community_builds)),
     );
   }
 
-  // Check if the given element is scrollable
   isScrollable(element: HTMLDivElement) {
     return element.offsetWidth < element.scrollWidth;
   }
@@ -116,13 +99,5 @@ export class UserContributionsComponent implements OnInit, OnDestroy, AfterViewC
       left: element.scrollLeft + direction * 294,
       behavior: 'smooth',
     });
-  }
-
-  setMeta(): void {
-    let titleText = this.user.name;
-    if (this.user.designation) {
-      titleText = titleText.concat(` - ${this.user.designation.substring(0, 60)}`);
-    }
-    this.seoService.setTitle(titleText);
   }
 }

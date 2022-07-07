@@ -1,47 +1,47 @@
-<nb-card class="user-basic-social">
-  <nb-card-body
-    [ngClass]="{ compressed: socialLinks.length > 3, expanded: socialLinks.length < 3 }"
-    class="user-social d-flex flex-wrap justify-content-center"
-  >
-    <a *ngIf="isValid(user.personal_website)" href="{{ user.personal_website | completeurl }}" target="_blank">
-      <nb-icon icon="globe" status="primary"></nb-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.personal_website) }}</span>
-    </a>
-    <a *ngIf="isValid(user.linkedin)" href="{{ user.linkedin | completeurl: 'linkedin' }}" target="_blank">
-      <nb-icon icon="linkedin" status="primary"></nb-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.linkedin, 'linkedin') }}</span>
-    </a>
-    <a *ngIf="isValid(user.twitter)" href="{{ user.twitter | completeurl: 'twitter' }}" target="_blank">
-      <nb-icon icon="twitter" status="primary"></nb-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.twitter, 'twitter') }}</span>
-    </a>
-    <a *ngIf="isValid(user.github)" href="{{ user.github | completeurl: 'github' }}" target="_blank">
-      <nb-icon icon="github" status="primary"></nb-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.github, 'github') }}</span>
-    </a>
-    <a *ngIf="isValid(user.youtube)" href="{{ user.youtube | completeurl: 'youtube' }}" target="_blank">
-      <fa-icon [icon]="faYoutube"></fa-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.youtube, 'youtube') }}</span>
-    </a>
-    <a *ngIf="isValid(user.medium)" href="{{ user.medium | completeurl: 'medium' }}" target="_blank">
-      <fa-icon [icon]="faMediumM" status="primary"></fa-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.medium, 'medium') }}</span>
-    </a>
-    <a *ngIf="isValid(user.dribbble)" href="{{ user.dribbble | completeurl: 'dribbble' }}" target="_blank">
-      <fa-icon [icon]="faDribbble"></fa-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.dribbble, 'dribbble') }}</span>
-    </a>
-    <a *ngIf="isValid(user.behance)" href="{{ user.behance | completeurl: 'behance' }}" target="_blank">
-      <nb-icon icon="behance" status="primary"></nb-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.behance, 'behance') }}</span>
-    </a>
-    <a *ngIf="isValid(user.gitlab)" href="{{ user.gitlab | completeurl: 'gitlab' }}" target="_blank">
-      <fa-icon [icon]="faGitlab"></fa-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.gitlab, 'gitlab') }}</span>
-    </a>
-    <a *ngIf="isValid(user.facebook)" href="{{ user.facebook | completeurl: 'facebook' }}" target="_blank">
-      <nb-icon icon="facebook" status="primary"></nb-icon>
-      <span *ngIf="socialLinks.length < 3">{{ getCompressedUrl(user.facebook, 'facebook') }}</span>
-    </a>
+<nb-card class="user-basic-social-container">
+  <nb-card-header>About</nb-card-header>
+  <nb-card-body>
+    <div *ngIf="user.about_me" class="about">
+      <span *ngIf="showFullAbout; else showLess">{{ user.about_me }}</span>
+      <ng-template #showLess>
+        <span>{{ user.about_me | truncatetext: 300 }}</span>
+      </ng-template>
+      &nbsp;
+      <a (click)="showFullAbout = !showFullAbout" *ngIf="user.about_me.length > 140" class="clickable">
+        {{ showFullAbout ? 'Read less' : 'Read more' }}
+      </a>
+    </div>
+    <div class="user-social">
+      <a *ngIf="isValid(user.personal_website)" href="{{ user.personal_website | completeurl }}" target="_blank">
+        <nb-icon icon="globe" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="isValid(user.linkedin)" href="{{ user.linkedin | completeurl: 'linkedin' }}" target="_blank">
+        <nb-icon icon="linkedin" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="isValid(user.twitter)" href="{{ user.twitter | completeurl: 'twitter' }}" target="_blank">
+        <nb-icon icon="twitter" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="isValid(user.github)" href="{{ user.github | completeurl: 'github' }}" target="_blank">
+        <nb-icon icon="github" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="isValid(user.youtube)" href="{{ user.youtube | completeurl: 'youtube' }}" target="_blank">
+        <fa-icon [icon]="faYoutube"></fa-icon>
+      </a>
+      <a *ngIf="isValid(user.medium)" href="{{ user.medium | completeurl: 'medium' }}" target="_blank">
+        <fa-icon [icon]="faMediumM"></fa-icon>
+      </a>
+      <a *ngIf="isValid(user.dribbble)" href="{{ user.dribbble | completeurl: 'dribbble' }}" target="_blank">
+        <fa-icon [icon]="faDribbble"></fa-icon>
+      </a>
+      <a *ngIf="isValid(user.behance)" href="{{ user.behance | completeurl: 'behance' }}" target="_blank">
+        <nb-icon icon="behance" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="isValid(user.gitlab)" href="{{ user.gitlab | completeurl: 'gitlab' }}" target="_blank">
+        <fa-icon [icon]="faGitlab"></fa-icon>
+      </a>
+      <a *ngIf="isValid(user.facebook)" href="{{ user.facebook | completeurl: 'facebook' }}" target="_blank">
+        <nb-icon icon="facebook" status="primary"></nb-icon>
+      </a>
+    </div>
   </nb-card-body>
 </nb-card>

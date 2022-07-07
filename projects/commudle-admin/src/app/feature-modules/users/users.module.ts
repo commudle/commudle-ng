@@ -94,6 +94,7 @@ import { UsersRoutingModule } from './users-routing.module';
     DragDropModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
+    SharedComponentsModule,
 
     // Nebular
     NbCardModule,
@@ -112,7 +113,6 @@ import { UsersRoutingModule } from './users-routing.module';
     NbAlertModule,
     NbRouteTabsetModule,
     NbToggleModule,
-    SharedComponentsModule,
   ],
   exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
 })

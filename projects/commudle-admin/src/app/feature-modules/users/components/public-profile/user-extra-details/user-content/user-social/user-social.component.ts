@@ -1,7 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { LinkPreviewService } from 'projects/commudle-admin/src/app/services/link-preview.service';
@@ -11,7 +10,6 @@ import { ILinkPreview } from 'projects/shared-models/link-preview.model';
 import { ISocialResource } from 'projects/shared-models/social_resource.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { SeoService } from 'projects/shared-services/seo.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -20,10 +18,10 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './user-social.component.html',
   styleUrls: ['./user-social.component.scss'],
 })
-export class UserSocialComponent implements OnInit, OnDestroy {
-  user: IUser;
+export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() user: IUser;
+
   currentUser: ICurrentUser;
-  subscriptions: Subscription[] = [];
 
   socialResources: ISocialResource[];
   isLoading = false;
@@ -55,6 +53,8 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   @ViewChild('addLinkDialog') addLinkDialog: TemplateRef<any>;
   addLinkDialogRef: NbDialogRef<any>;
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
@@ -63,17 +63,9 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     private linkPreviewService: LinkPreviewService,
     private socialResourceService: SocialResourceService,
     private authWatchService: LibAuthwatchService,
-    private activatedRoute: ActivatedRoute,
-    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe(() => {
-        // Get user's data
-        this.getUserData();
-      }),
-    );
     // Get logged in user
     this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
     // Subscribe to search
@@ -87,26 +79,22 @@ export class UserSocialComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user) {
+      this.getSocialResources();
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
     this.socialLinkChangedSubscription.unsubscribe();
   }
 
-  // Get user's data
-  getUserData() {
-    this.appUsersService.getProfile(this.activatedRoute.snapshot.parent.params.username).subscribe((data) => {
-      this.user = data;
-      this.seoService.setTitle(`More links by @${this.user.username}`);
-      // Get user's social resources
-      this.getSocialResources();
-    });
-  }
-
   getSocialResources(): void {
     this.subscriptions.push(
-      this.appUsersService.socialResources(this.user.username).subscribe((value) => {
-        this.socialResources = value.social_resources;
-      }),
+      this.appUsersService
+        .socialResources(this.user.username)
+        .subscribe((value) => (this.socialResources = value.social_resources)),
     );
   }
 
@@ -128,12 +116,14 @@ export class UserSocialComponent implements OnInit, OnDestroy {
   getLinkPreview(url: string): void {
     this.isLoading = true;
     if (url !== '') {
-      this.linkPreviewService.getPreview(url).subscribe((value) => {
-        this.linkPreview = value;
-        this.createForm(url);
-        this.isLoading = false;
-        this.showLinkPreview = true;
-      });
+      this.subscriptions.push(
+        this.linkPreviewService.getPreview(url).subscribe((value) => {
+          this.linkPreview = value;
+          this.createForm(url);
+          this.isLoading = false;
+          this.showLinkPreview = true;
+        }),
+      );
     } else {
       this.socialResourcesForm.reset();
       this.showLinkPreview = false;
@@ -165,29 +155,33 @@ export class UserSocialComponent implements OnInit, OnDestroy {
 
   addSocialResource(): void {
     if (this.socialResourcesForm.valid && this.tags.length > 0) {
-      this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(() => {
-        this.nbToastrService.success('Social resource successfully added!', 'Success');
-        // Close dialog
-        this.addLinkDialogRef.close();
-        this.showLinkPreview = false;
-        // Reset all fields
-        this.socialResourcesForm.reset();
-        this.socialResourcesForm.updateValueAndValidity();
-        this.socialLink = '';
-        this.tags = [];
-        // Update the social resources
-        this.getSocialResources();
-      });
+      this.subscriptions.push(
+        this.socialResourceService.create(this.socialResourcesForm.value, this.tags).subscribe(() => {
+          this.nbToastrService.success('Social resource successfully added!', 'Success');
+          // Close dialog
+          this.addLinkDialogRef.close();
+          this.showLinkPreview = false;
+          // Reset all fields
+          this.socialResourcesForm.reset();
+          this.socialResourcesForm.updateValueAndValidity();
+          this.socialLink = '';
+          this.tags = [];
+          // Update the social resources
+          this.getSocialResources();
+        }),
+      );
     } else {
       this.nbToastrService.danger('Error occurred while adding social resource!', 'Failed');
     }
   }
 
   deleteSocialResource(socialResourceId: number): void {
-    this.socialResourceService.destroy(socialResourceId).subscribe(() => {
-      this.nbToastrService.success('Social resource successfully removed!', 'Success');
-      this.getSocialResources();
-    });
+    this.subscriptions.push(
+      this.socialResourceService.destroy(socialResourceId).subscribe(() => {
+        this.nbToastrService.success('Social resource successfully removed!', 'Success');
+        this.getSocialResources();
+      }),
+    );
   }
 
   toggleEditView() {
@@ -212,12 +206,14 @@ export class UserSocialComponent implements OnInit, OnDestroy {
         display_order: length - index - 1,
       });
     }
-    this.socialResourceService.updateDisplayOrder(displayOrder).subscribe((value) => {
-      if (value) {
-        this.nbToastrService.success('Social resources order updated!', 'Success');
-      } else {
-        this.nbToastrService.danger('Social resources order not updated!', 'Failed');
-      }
-    });
+    this.subscriptions.push(
+      this.socialResourceService.updateDisplayOrder(displayOrder).subscribe((value) => {
+        if (value) {
+          this.nbToastrService.success('Social resources order updated!', 'Success');
+        } else {
+          this.nbToastrService.danger('Social resources order not updated!', 'Failed');
+        }
+      }),
+    );
   }
 }

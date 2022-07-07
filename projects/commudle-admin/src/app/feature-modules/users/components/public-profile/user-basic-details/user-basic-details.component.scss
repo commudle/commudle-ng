@@ -1,241 +1,62 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
+h1,
 p {
   margin: 0;
 }
 
-.user-personal-details {
-  background-color: $white;
-  border-radius: $border-10;
-  overflow: hidden;
-  padding: $space-16;
-  position: relative;
-
-  &.normal {
-    margin-top: $space-110;
-    overflow: initial;
-
-    &:before {
-      content: none;
-    }
-  }
-
-  &:before {
-    background: linear-gradient(180deg, $brilliant-azure 0%, $neon-blue 100%);
-    content: '';
-    height: 184px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-
-  .profile-photo-container {
-    background-color: $white;
-    border-radius: 50%;
-    display: table;
-    height: 160px;
-    margin: $space-70 auto $space-8;
-    padding: $space-4;
-    position: relative;
-    width: 160px;
-
-    &.normal {
-      border: 1.5px solid $mercury;
-      height: 188px;
-      margin: -$space-130 auto $space-20;
-      padding: 0;
-      width: 188px;
-    }
-
-    .profile-photo {
-      border-radius: 50%;
-      height: 188px;
-      width: 188px;
-      overflow: hidden;
-
-      img {
-        display: block;
-        height: inherit;
-        object-fit: cover;
-        object-position: center top;
-        width: 100%;
-      }
-    }
-  }
-
-  .user-details {
-    color: $gunmetal;
-
-    .heading {
-      font-size: $fs-h4;
-      font-weight: $fw-500;
-      line-height: 19px;
-      margin: $space-16 0 $space-4;
-    }
-
-    .name {
-      @apply com-flex com-justify-center;
-      h1 {
-        @apply com-my-0 com-mr-0;
-        margin-left: 26px;
-        font-size: $fs-20;
-        font-weight: $fw-600;
-        line-height: 23px;
-      }
-
-      .expert-icon {
-        width: 18px;
-        height: 18px;
-        margin: $space-2 0 0 $space-8;
-      }
-    }
-
-    .username {
-      color: rgba($gunmetal, 0.85);
-      font-size: $fs-h5;
-      line-height: 16px;
-      margin-bottom: $space-12;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .designation {
-      font-size: $fs-h4;
-      font-weight: $fw-500;
-      line-height: 19px;
-      margin-bottom: $space-4;
-      word-break: break-word;
-    }
-
-    .network {
-      margin-bottom: $space-48;
-
-      a {
-        color: $cadet;
-        font-size: $fs-h5;
-        font-style: italic;
-        margin: 0 $space-4;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-
-    .location {
-      color: $cadet;
-      font-size: $fs-h5;
-      font-style: italic;
-      line-height: 16px;
-    }
-
-    .about {
-      color: rgba($gunmetal, 0.85);
-      font-size: $fs-h5;
-      line-height: 16px;
-      margin: $space-16 0;
-      white-space: pre-line;
-    }
-  }
-
-  hr {
-    background-color: $chinese-silver;
-    border: 0;
-    height: 1px;
-    margin: $space-12 auto;
-  }
-
-  .user-interactions {
-    margin: $space-16 0;
-
-    a {
-      text-decoration: none;
-    }
-
-    button {
-      background-color: rgba($neon-blue, 0.2);
-      border: none;
-      border-radius: $border-10;
-      color: $neon-blue;
-      font-size: $fs-h6;
-      font-weight: $fw-400;
-      height: 32px;
-      margin: 0 $space-8;
-      padding: $space-8;
-      text-transform: none;
-
-      nb-icon {
-        margin-right: $space-4;
-      }
-    }
-
-    app-share-button {
-      ::ng-deep {
-        .share-button-container {
-          button {
-            background-color: rgba($neon-blue, 0.2);
-          }
-        }
-      }
-    }
-  }
-
-  .user-tags {
-    .heading {
-      color: $gunmetal;
-      font-size: $fs-h4;
-      font-weight: $fw-500;
-      margin: $space-16 0;
-    }
-
-    nb-tag-list {
-      nb-tag {
-        background-color: $azureish-white;
-        border: none;
-        border-radius: $border-10;
-        color: $gunmetal;
-        font-size: $fs-h5;
-        font-weight: $fw-500;
-        padding: $space-2 $space-8;
-
-        &.tags-add {
-          cursor: pointer;
-        }
-      }
-    }
-  }
-}
-
-.tag-dialog {
+.user-details-container {
   nb-card-body {
-    .tag-dialog-info {
-      margin-bottom: $space-16;
+    .user-avatar {
+      @apply com-block com-h-24 com-w-24 md:com-h-40 md:com-w-40 com-rounded-full com-object-cover com-object-center;
+    }
+
+    .user-info {
+      @apply com-w-full;
+
+      .name {
+        @apply com-flex com-items-baseline com-gap-1.5;
+
+        .expert-icon {
+          @apply com-h-3 com-w-3 md:com-h-6 md:com-w-6;
+        }
+
+        h1 {
+          @apply com-text-2xl md:com-text-4xl com-font-semibold;
+        }
+      }
+
+      .username {
+        @apply com-text-base com-text-gray-400 com-mt-1;
+      }
+
+      .designation {
+        @apply com-flex com-items-center com-gap-2 com-mt-6;
+
+        p,
+        nb-icon {
+          @apply com-text-base md:com-text-lg;
+        }
+
+        nb-icon {
+          @apply com-text-[#42aaff];
+        }
+      }
+
+      .location {
+        @apply com-flex com-items-center com-gap-2 com-mt-2;
+
+        p,
+        nb-icon {
+          @apply com-text-base md:com-text-lg;
+        }
+
+        nb-icon {
+          @apply com-text-[#42aaff];
+        }
+      }
+
+      .network {
+        @apply com-mt-4 com-flex com-flex-col md:com-flex-row com-items-center com-justify-between;
+      }
     }
   }
-
-  nb-card-footer {
-    button {
-      text-transform: capitalize;
-    }
-  }
-}
-
-.profile-dialog {
-  nb-card-body {
-    padding: 0;
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .user-personal-details {
-    border-radius: 0;
-  }
-}
-
-.share-btn-newline {
-  flex-wrap: wrap;
-  row-gap: 7px;
 }

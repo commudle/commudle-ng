@@ -1,12 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IPost } from 'projects/shared-models/post.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import { SeoService } from 'projects/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,10 +12,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-feed.component.html',
   styleUrls: ['./user-feed.component.scss'],
 })
-export class UserFeedComponent implements OnInit, OnDestroy {
-  user: IUser;
-  currentUser: ICurrentUser;
+export class UserFeedComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() user: IUser;
 
+  currentUser: ICurrentUser;
   posts: IPost[];
 
   subscriptions: Subscription[] = [];
@@ -25,48 +23,26 @@ export class UserFeedComponent implements OnInit, OnDestroy {
   constructor(
     private appUsersService: AppUsersService,
     private nbToastrService: NbToastrService,
-    private activatedRoute: ActivatedRoute,
     private authWatchService: LibAuthwatchService,
-    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
-    // Get user's data
-    this.subscriptions.push(
-      this.activatedRoute.parent.params.subscribe((data) => {
-        this.getUserData(data.username);
-      }),
-    );
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
+  }
 
-    // Get logged in user
-    this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe((data) => {
-        this.currentUser = data;
-      }),
-    );
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user) {
+      this.getPosts();
+    }
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
   }
 
-  // Get user's data
-  getUserData(username: string) {
-    this.subscriptions.push(
-      this.appUsersService.getProfile(username).subscribe((data) => {
-        this.user = data;
-        this.seoService.setTitle(`Updates from @${this.user.username}`);
-        this.getPosts();
-      }),
-    );
-  }
-
   getPosts() {
-    // Get the user's posts
     this.subscriptions.push(
-      this.appUsersService.posts(this.user.username).subscribe((value) => {
-        this.posts = value.posts;
-      }),
+      this.appUsersService.posts(this.user.username).subscribe((value) => (this.posts = value.posts)),
     );
   }
 

@@ -3,7 +3,8 @@
 .user-cover-photo {
   background-color: $white;
   border-radius: $border-10;
-  height: 187px;
+  height: 222px;
+  margin: $space-16 $space-8;
   overflow: hidden;
   position: relative;
 
@@ -18,10 +19,10 @@
     overflow: hidden;
 
     img {
-      width: 100%;
       height: inherit;
       object-fit: cover;
       object-position: center;
+      width: 100%;
     }
   }
 

@@ -1,6 +1,7 @@
-<div *ngIf="user">
-  <app-user-cover-photo (coverImageUpdate)="getUserData()" [currentUser]="currentUser"
-                        [user]="user"></app-user-cover-photo>
-  <app-user-badges (showBadges)="toggleBadges($event)" *ngIf="showBadges" [user]="user"></app-user-badges>
-  <app-user-content [currentUser]="currentUser" [user]="user"></app-user-content>
-</div>
+<ng-container *ngIf="user">
+  <app-user-basic-social [user]="user"></app-user-basic-social>
+  <app-user-badges [user]="user"></app-user-badges>
+  <app-user-contributions [user]="user"></app-user-contributions>
+  <app-user-social [user]="user"></app-user-social>
+  <app-user-feed [user]="user"></app-user-feed>
+</ng-container>

@@ -5,12 +5,8 @@ p {
 }
 
 .user-social {
-  .header {
-    margin-bottom: $space-24;
-    font-size: $fs-24;
-    font-weight: $fw-600;
-    line-height: 28px;
-    color: $gunmetal;
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
   }
 
   .user-social-add {
