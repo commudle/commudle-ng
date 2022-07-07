@@ -27,12 +27,15 @@ import { AdminFeaturedCommunitiesComponent } from './components/admin-featured-c
 import { AdminPageAdsFormComponent } from './components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component';
 import { AdminPageAdsListComponent } from './components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component';
 import { AdminPageAdsComponent } from './components/admin-page-ads/admin-page-ads.component';
+import { AdminStaticAssetsListComponent } from './components/admin-static-assets/admin-static-assets-list/admin-static-assets-list.component';
+import { AdminStaticAssetsComponent } from './components/admin-static-assets/admin-static-assets.component';
 import { AdminSurveysComponent } from './components/admin-surveys/admin-surveys.component';
 import { CommunityBuildsComponent } from './components/community-builds/community-builds.component';
 import { CommunityControlsComponent } from './components/community-controls/community-controls.component';
 import { LabsComponent } from './components/labs/labs.component';
 import { SysAdminRoutingModule } from './sys-admin-routing.module';
 import { SysAdminComponent } from './sys-admin.component';
+import { AdminStaticAssetFormComponent } from './components/admin-static-assets/admin-static-asset-form/admin-static-asset-form.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { SysAdminComponent } from './sys-admin.component';
     AdminBadgesListComponent,
     AdminBadgesFormComponent,
     AdminBadgesAssignComponent,
+    AdminStaticAssetsComponent,
+    AdminStaticAssetsListComponent,
+    AdminStaticAssetFormComponent,
   ],
   imports: [
     CommonModule,

@@ -30,7 +30,7 @@
 
     <nb-list-item *ngIf="currentUser">
       <a [routerLink]="['/users', currentUser.username]" class="profile-edit-link">
-        <nb-user name="My Profile" picture="{{ currentUser.avatar }}" size="tiny"></nb-user>
+        <nb-user name="My Profile" picture="{{ currentUser.photo.i64 }}" size="tiny"></nb-user>
         <span *ngIf="!currentUser.profile_completed" class="incomplete-badge">
           <app-badge [color]="'red'" [fontSize]="'small'" [text]="'Incomplete'"></app-badge>
         </span>
@@ -90,7 +90,7 @@
     </nb-accordion>
   </div>
 
-  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin">
+  <div *ngIf="isPageAdsAdmin || isFeaturedCommunitiesAdmin || isBadgesAdmin || isAssetsAdmin">
     <nb-accordion class="sidebar-common-menu">
       <nb-accordion-item [expanded]="true">
         <nb-accordion-item-header>Common Menu</nb-accordion-item-header>
@@ -102,6 +102,9 @@
         </nb-accordion-item-body>
         <nb-accordion-item-body *ngIf="isBadgesAdmin">
           <a [routerLink]="['/sys-admin', 'badges']">Badges</a>
+        </nb-accordion-item-body>
+        <nb-accordion-item-body *ngIf="isAssetsAdmin">
+          <a [routerLink]="['/sys-admin', 'static-assets']">Static Assets</a>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

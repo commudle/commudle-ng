@@ -7,7 +7,7 @@
     <form (submit)="submitForm()" [formGroup]="badgeForm" class="form-fields d-flex flex-column">
       <label>
         Name*
-        <input formControlName="name" fullWidth nbInput type="text" />
+        <input formControlName="name" fullWidth nbInput type="text" required />
       </label>
       <label>
         Badge Type*

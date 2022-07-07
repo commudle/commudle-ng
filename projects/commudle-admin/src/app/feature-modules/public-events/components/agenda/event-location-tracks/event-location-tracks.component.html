@@ -7,15 +7,16 @@
   </div>
 
   <div class="track-container">
-    <nb-card *ngFor="let elt of eventLocation.event_location_tracks; let elti = index;">
+    <nb-card *ngFor="let elt of eventLocation.event_location_tracks; let elti = index">
       <nb-card-header>
         <nb-icon icon="arrowhead-right-outline"></nb-icon>&nbsp;
-        <p class="track-name">{{ elt.name }}</p>&nbsp;
+        <p class="track-name">{{ elt.name }}</p>
+        &nbsp;
         <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
       </nb-card-header>
       <nb-card-body>
         <nb-list>
-          <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index;">
+          <nb-list-item *ngFor="let slot of sortTrackSlots(elt.track_slots); let tsi = index">
             <div class="session-time">
               <p>{{ moment(slot.start_time).format('HH:mm') }}</p>
               <p>{{ moment(slot.end_time).format('HH:mm') }}</p>
@@ -23,8 +24,11 @@
             <div class="session-details">
               <div class="session-title">
                 <div *ngIf="slot.tags_list">
-                  <app-badge *ngFor="let tag of slot.tags_list.split(',')"
-                             [fontSize]="'small'" [text]="tag"></app-badge>
+                  <app-badge
+                    *ngFor="let tag of slot.tags_list.split(',')"
+                    [fontSize]="'small'"
+                    [text]="tag"
+                  ></app-badge>
                 </div>
                 <p>{{ slot.session_title }}</p>
                 <div *ngIf="slot.user" class="session-speaker">
@@ -40,7 +44,7 @@
             </div>
 
             <!--              <nb-action *ngIf="slot.user" style="min-width: max-content">-->
-            <!--                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.avatar }}" showTitle="false"-->
+            <!--                <nb-user name="{{ slot.user.name }}" picture="{{ slot.user.photo.i64 }}" showTitle="false"-->
             <!--                         size="small"></nb-user>-->
             <!--              </nb-action>-->
             <!--              <nb-action *ngIf="slot.user_vote != null && event.editable">-->
@@ -50,12 +54,14 @@
             <!--                </div>-->
             <!--              </nb-action>-->
             <div class="link">
-              <a [queryParams]="{track_slot_id: slot.id}"
-                 [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
+              <a
+                [queryParams]="{ track_slot_id: slot.id }"
+                [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+                target="_blank"
+              >
                 <nb-icon icon="external-link" status="primary"></nb-icon>
               </a>
             </div>
-
           </nb-list-item>
         </nb-list>
       </nb-card-body>

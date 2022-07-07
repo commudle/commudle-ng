@@ -28,6 +28,7 @@ export interface IUser {
   badges: IBadge[];
   followers_count: number;
   followees_count: number;
+  photo: IAttachedFile;
 }
 
 export interface IUserSearch extends IUser {

@@ -4,7 +4,7 @@
     <div class="users">
       <div *ngFor="let user of users" class="user" nbTooltip="{{ user.name }}">
         <div class="profile-picture">
-          <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
+          <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
         </div>
       </div>
       <p *ngIf="totalCount - users.length > 0">... + {{ totalCount - users.length }} More</p>

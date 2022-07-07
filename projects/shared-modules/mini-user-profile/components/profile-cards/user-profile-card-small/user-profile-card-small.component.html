@@ -1,7 +1,7 @@
 <a [routerLink]="['/users', user.username]">
   <div class="user-profile-small d-flex align-items-center">
     <div class="avatar">
-      <img [alt]="user.name" [src]="user.avatar" [title]="user.name" [username]="user.username" appMiniUserProfile />
+      <img [alt]="user.name" [src]="user.photo.i32" [title]="user.name" [username]="user.username" appMiniUserProfile />
     </div>
     <div [username]="user.username" appMiniUserProfile class="name d-flex align-items-center">
       {{ user.name | truncatetext: maxNameLength }}
