@@ -75,6 +75,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     });
     // Close the dialog
     this.editTagDialog.close();
+    this.updateProfile.emit();
   }
 
   // Function to remove a tag

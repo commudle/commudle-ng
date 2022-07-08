@@ -1,64 +1,15 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 p {
   margin: 0;
 }
 
-.section {
+nb-card {
   position: relative;
-
-  &:hover {
-    .navigation.active {
-      visibility: visible;
-    }
-  }
 
   nb-card-header {
     @apply com-text-lg com-font-medium;
   }
 
-  .content {
-    display: flex;
-    gap: $space-32;
-    overflow: hidden;
-  }
-
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    visibility: hidden;
-    width: 100%;
-
-    &:not(.active) {
-      display: none;
-    }
-
-    button {
-      background-color: $cyber-yellow;
-      border: none;
-      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25);
-      margin: 0 $space-4;
-      pointer-events: auto;
-
-      &:focus {
-        box-shadow: none;
-      }
-
-      nb-icon {
-        color: $white;
-        pointer-events: none;
-      }
-    }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .section {
-    .content {
-      overflow: auto;
-    }
+  .grid {
+    @apply com-grid com-grid-cols-1 sm:com-grid-cols-2 md:com-grid-cols-3 lg:com-grid-cols-4 com-gap-3;
   }
 }

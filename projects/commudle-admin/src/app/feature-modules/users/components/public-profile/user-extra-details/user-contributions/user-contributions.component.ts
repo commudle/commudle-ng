@@ -1,13 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  QueryList,
-  SimpleChanges,
-  ViewChildren,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
@@ -22,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-contributions.component.html',
   styleUrls: ['./user-contributions.component.scss'],
 })
-export class UserContributionsComponent implements OnChanges, OnDestroy, AfterViewChecked {
+export class UserContributionsComponent implements OnChanges, OnDestroy {
   @Input() user: IUser;
 
   labs: ILab[] = [];
@@ -31,9 +22,6 @@ export class UserContributionsComponent implements OnChanges, OnDestroy, AfterVi
   pastEvents: ISpeakerResource[] = [];
 
   subscriptions: Subscription[] = [];
-
-  @ViewChildren('content') sections: QueryList<any>;
-  @ViewChildren('navigation') navigations: QueryList<any>;
 
   constructor(private appUsersService: AppUsersService, public userProfileMenuService: UserProfileMenuService) {}
 
@@ -48,14 +36,6 @@ export class UserContributionsComponent implements OnChanges, OnDestroy, AfterVi
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((value) => value.unsubscribe());
-  }
-
-  ngAfterViewChecked(): void {
-    this.sections.forEach((section, idx) => {
-      if (!this.isScrollable(section.nativeElement)) {
-        this.navigations.toArray()[idx].nativeElement.classList.remove('active');
-      }
-    });
   }
 
   getPastEvents(): void {
@@ -93,18 +73,5 @@ export class UserContributionsComponent implements OnChanges, OnDestroy, AfterVi
         this.userProfileMenuService.addMenuItem('builds', this.builds.length > 0);
       }),
     );
-  }
-
-  isScrollable(element: HTMLDivElement) {
-    return element.offsetWidth < element.scrollWidth;
-  }
-
-  scrollElement(event: MouseEvent, direction: number) {
-    // @ts-ignore
-    const element = event.srcElement.parentElement.previousSibling;
-    element.scrollTo({
-      left: element.scrollLeft + direction * 294,
-      behavior: 'smooth',
-    });
   }
 }

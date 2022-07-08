@@ -1,79 +1,47 @@
-<nb-card *ngIf="builds?.length > 0" class="section" id="builds">
+<nb-card *ngIf="builds?.length > 0" id="builds">
   <nb-card-header>
     Builds
     <span *ngIf="builds.length > 4">({{ builds.length }})</span>
   </nb-card-header>
   <nb-card-body>
-    <div #content class="content">
+    <div class="grid">
       <app-user-build-card *ngFor="let build of builds" [build]="build"></app-user-build-card>
-    </div>
-    <div #navigation class="navigation active">
-      <button (click)="scrollElement($event, -1)" nbButton shape="round">
-        <nb-icon icon="arrow-back"></nb-icon>
-      </button>
-      <button (click)="scrollElement($event, 1)" nbButton shape="round">
-        <nb-icon icon="arrow-forward"></nb-icon>
-      </button>
     </div>
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="pastEvents?.length > 0" class="section" id="talks-at-events">
+<nb-card *ngIf="pastEvents?.length > 0" id="talks-at-events">
   <nb-card-header>
     Talks at Events
     <span *ngIf="pastEvents.length > 4">({{ pastEvents.length }})</span>
   </nb-card-header>
   <nb-card-body>
-    <div #content class="content">
+    <div class="grid">
       <app-user-past-event-card *ngFor="let pastEvent of pastEvents" [pastEvent]="pastEvent"></app-user-past-event-card>
-    </div>
-    <div #navigation class="navigation active">
-      <button (click)="scrollElement($event, -1)" nbButton shape="round">
-        <nb-icon icon="arrow-back"></nb-icon>
-      </button>
-      <button (click)="scrollElement($event, 1)" nbButton shape="round">
-        <nb-icon icon="arrow-forward"></nb-icon>
-      </button>
     </div>
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="communities?.length > 0" class="section" id="communities">
+<nb-card *ngIf="communities?.length > 0" id="communities">
   <nb-card-header>
     Communities
     <span *ngIf="communities.length > 4">({{ communities.length }})</span>
   </nb-card-header>
   <nb-card-body>
-    <div #content class="content">
+    <div class="grid">
       <app-user-community-card *ngFor="let community of communities" [community]="community"></app-user-community-card>
-    </div>
-    <div #navigation class="navigation active">
-      <button (click)="scrollElement($event, -1)" nbButton shape="round">
-        <nb-icon icon="arrow-back"></nb-icon>
-      </button>
-      <button (click)="scrollElement($event, 1)" nbButton shape="round">
-        <nb-icon icon="arrow-forward"></nb-icon>
-      </button>
     </div>
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="labs?.length > 0" class="section" id="labs">
+<nb-card *ngIf="labs?.length > 0" id="labs">
   <nb-card-header>
     Labs
     <span *ngIf="labs.length > 4">({{ labs.length }})</span>
   </nb-card-header>
   <nb-card-body>
-    <div #content class="content">
+    <div class="grid">
       <app-user-lab-card *ngFor="let lab of labs" [lab]="lab"></app-user-lab-card>
-    </div>
-    <div #navigation class="navigation active">
-      <button (click)="scrollElement($event, -1)" nbButton shape="round">
-        <nb-icon icon="arrow-back"></nb-icon>
-      </button>
-      <button (click)="scrollElement($event, 1)" nbButton shape="round">
-        <nb-icon icon="arrow-forward"></nb-icon>
-      </button>
     </div>
   </nb-card-body>
 </nb-card>
