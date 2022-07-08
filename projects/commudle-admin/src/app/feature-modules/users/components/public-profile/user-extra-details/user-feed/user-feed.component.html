@@ -1,4 +1,4 @@
-<nb-card *ngIf="(user?.is_expert && currentUser?.id === user.id) || posts?.length > 0" class="user-feed">
+<nb-card *ngIf="(user?.is_expert && currentUser?.id === user.id) || posts?.length > 0" class="user-feed" id="feed">
   <nb-card-header>Feed</nb-card-header>
   <nb-card-body>
     <div *ngIf="currentUser?.id === user.id" class="user-feed-input-container">

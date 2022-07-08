@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IPost } from 'projects/shared-models/post.model';
@@ -24,6 +25,7 @@ export class UserFeedComponent implements OnInit, OnChanges, OnDestroy {
     private appUsersService: AppUsersService,
     private nbToastrService: NbToastrService,
     private authWatchService: LibAuthwatchService,
+    public userProfileMenuService: UserProfileMenuService,
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,10 @@ export class UserFeedComponent implements OnInit, OnChanges, OnDestroy {
 
   getPosts() {
     this.subscriptions.push(
-      this.appUsersService.posts(this.user.username).subscribe((value) => (this.posts = value.posts)),
+      this.appUsersService.posts(this.user.username).subscribe((value) => {
+        this.posts = value.posts;
+        this.userProfileMenuService.addMenuItem('feed', this.posts.length > 0);
+      }),
     );
   }
 

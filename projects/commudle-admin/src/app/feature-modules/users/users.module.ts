@@ -21,6 +21,7 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -117,5 +118,6 @@ import { UsersRoutingModule } from './users-routing.module';
     NbToggleModule,
   ],
   exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
+  providers: [UserProfileMenuService],
 })
 export class UsersModule {}

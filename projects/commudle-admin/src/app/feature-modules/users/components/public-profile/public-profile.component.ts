@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
+import {
+  UserProfileMenuItems,
+  UserProfileMenuService,
+} from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { IUser } from 'projects/shared-models/user.model';
@@ -14,6 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class PublicProfileComponent implements OnInit, OnDestroy {
   user: IUser;
+  activeMenuItems: UserProfileMenuItems | {};
 
   subscriptions: Subscription[] = [];
 
@@ -22,6 +27,7 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     private usersService: AppUsersService,
     private footerService: FooterService,
     private updateProfileService: UpdateProfileService,
+    public userProfileMenuService: UserProfileMenuService,
     private seoService: SeoService,
   ) {}
 
@@ -35,6 +41,18 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
         if (value) {
           this.getUser();
         }
+      }),
+    );
+
+    this.subscriptions.push(
+      this.userProfileMenuService.activeMenuItems$.subscribe((value) => {
+        // remove keys with active: false
+        this.activeMenuItems = Object.keys(value).reduce((acc, key) => {
+          if (value[key].active) {
+            acc[key] = value[key];
+          }
+          return acc;
+        }, {});
       }),
     );
   }

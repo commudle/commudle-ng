@@ -4,6 +4,17 @@
       <div class="main-column">
         <app-user-cover-photo (coverImageUpdate)="getUser()" [user]="user"></app-user-cover-photo>
         <app-user-basic-details (updateProfile)="getUser()" [user]="user"></app-user-basic-details>
+        <nb-card *ngIf="(activeMenuItems | numkeys) > 0" class="user-profile-menu">
+          <nb-card-body>
+            <nb-actions size="medium">
+              <nb-action *ngFor="let item of activeMenuItems | keyvalue">
+                <a fragment="{{ item.value.link }}" routerLink=".">
+                  {{ item.value.name }}
+                </a>
+              </nb-action>
+            </nb-actions>
+          </nb-card-body>
+        </nb-card>
         <router-outlet></router-outlet>
         <router-outlet name="p"></router-outlet>
       </div>

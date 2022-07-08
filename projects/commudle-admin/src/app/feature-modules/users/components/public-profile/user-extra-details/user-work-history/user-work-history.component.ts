@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { UserWorkHistoryService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-work-history.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
@@ -66,6 +67,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
     private fb: FormBuilder,
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
+    public userProfileMenuService: UserProfileMenuService,
   ) {}
 
   ngOnInit(): void {
@@ -86,6 +88,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.push(
       this.userWorkHistoryService.getWorkHistories(this.user.id).subscribe((data) => {
         this.userWorkHistories = data;
+        this.userProfileMenuService.addMenuItem('workHistory', this.userWorkHistories.length > 0);
       }),
     );
   }

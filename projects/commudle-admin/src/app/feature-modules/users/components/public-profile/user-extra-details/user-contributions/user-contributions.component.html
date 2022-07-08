@@ -1,4 +1,4 @@
-<nb-card *ngIf="builds?.length > 0" class="section">
+<nb-card *ngIf="builds?.length > 0" class="section" id="builds">
   <nb-card-header>
     Builds
     <span *ngIf="builds.length > 4">({{ builds.length }})</span>
@@ -18,7 +18,7 @@
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="pastEvents?.length > 0" class="section">
+<nb-card *ngIf="pastEvents?.length > 0" class="section" id="talks-at-events">
   <nb-card-header>
     Talks at Events
     <span *ngIf="pastEvents.length > 4">({{ pastEvents.length }})</span>
@@ -38,7 +38,7 @@
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="communities?.length > 0" class="section">
+<nb-card *ngIf="communities?.length > 0" class="section" id="communities">
   <nb-card-header>
     Communities
     <span *ngIf="communities.length > 4">({{ communities.length }})</span>
@@ -58,7 +58,7 @@
   </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="labs?.length > 0" class="section">
+<nb-card *ngIf="labs?.length > 0" class="section" id="labs">
   <nb-card-header>
     Labs
     <span *ngIf="labs.length > 4">({{ labs.length }})</span>

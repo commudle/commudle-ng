@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { LinkPreviewService } from 'projects/commudle-admin/src/app/services/link-preview.service';
 import { SocialResourceService } from 'projects/commudle-admin/src/app/services/social-resource.service';
@@ -63,6 +64,7 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
     private linkPreviewService: LinkPreviewService,
     private socialResourceService: SocialResourceService,
     private authWatchService: LibAuthwatchService,
+    public userProfileMenuService: UserProfileMenuService,
   ) {}
 
   ngOnInit(): void {
@@ -92,9 +94,10 @@ export class UserSocialComponent implements OnInit, OnChanges, OnDestroy {
 
   getSocialResources(): void {
     this.subscriptions.push(
-      this.appUsersService
-        .socialResources(this.user.username)
-        .subscribe((value) => (this.socialResources = value.social_resources)),
+      this.appUsersService.socialResources(this.user.username).subscribe((value) => {
+        this.socialResources = value.social_resources;
+        this.userProfileMenuService.addMenuItem('content', this.socialResources.length > 0);
+      }),
     );
   }
 

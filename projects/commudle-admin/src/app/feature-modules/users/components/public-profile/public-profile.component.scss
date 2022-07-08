@@ -1,0 +1,12 @@
+.user-profile-menu {
+  @apply com-sticky com-top-[68px];
+
+  nb-card-body {
+    @apply com-px-2;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}

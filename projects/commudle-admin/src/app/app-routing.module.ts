@@ -11,7 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
-import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
+import { RedirectToMyProfileGuard } from './feature-modules/users/guards/redirect-to-my-profile.guard';
 import { InitResolver } from './resolvers/init.resolver';
 
 const routes = [
@@ -199,6 +199,9 @@ const routes = [
       initialNavigation: 'enabledBlocking',
       // TODO: modify the below to use the new option
       relativeLinkResolution: 'legacy',
+      anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      scrollOffset: [0, 68],
     }),
   ],
   exports: [RouterModule],

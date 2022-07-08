@@ -8,6 +8,7 @@ import {
   SimpleChanges,
   ViewChildren,
 } from '@angular/core';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 import { ILab } from 'projects/shared-models/lab.model';
@@ -34,7 +35,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy, AfterVi
   @ViewChildren('content') sections: QueryList<any>;
   @ViewChildren('navigation') navigations: QueryList<any>;
 
-  constructor(private appUsersService: AppUsersService) {}
+  constructor(private appUsersService: AppUsersService, public userProfileMenuService: UserProfileMenuService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.user) {
@@ -61,6 +62,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy, AfterVi
     this.subscriptions.push(
       this.appUsersService.speakerResources(this.user.username).subscribe((value) => {
         this.pastEvents = value.speaker_resources;
+        this.userProfileMenuService.addMenuItem('talksAtEvents', this.pastEvents.length > 0);
       }),
     );
   }
@@ -70,21 +72,26 @@ export class UserContributionsComponent implements OnChanges, OnDestroy, AfterVi
       this.appUsersService.communities(this.user.username).subscribe((value) => {
         // TODO: If some community is undefined then remove it, is that required?
         this.communities = value.user_roles_users.filter((community) => community.community);
+        this.userProfileMenuService.addMenuItem('communities', this.communities.length > 0);
       }),
     );
   }
 
   getLabs(): void {
     this.subscriptions.push(
-      this.appUsersService.labs(this.user.username).subscribe((value) => (this.labs = value.labs)),
+      this.appUsersService.labs(this.user.username).subscribe((value) => {
+        this.labs = value.labs;
+        this.userProfileMenuService.addMenuItem('labs', this.labs.length > 0);
+      }),
     );
   }
 
   getBuilds(): void {
     this.subscriptions.push(
-      this.appUsersService
-        .communityBuilds(this.user.username)
-        .subscribe((value) => (this.builds = value.community_builds)),
+      this.appUsersService.communityBuilds(this.user.username).subscribe((value) => {
+        this.builds = value.community_builds;
+        this.userProfileMenuService.addMenuItem('builds', this.builds.length > 0);
+      }),
     );
   }
 

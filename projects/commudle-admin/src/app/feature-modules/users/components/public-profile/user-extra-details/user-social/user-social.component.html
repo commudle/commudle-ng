@@ -1,4 +1,4 @@
-<nb-card *ngIf="socialResources?.length > 0 || currentUser?.id === user.id" class="user-social">
+<nb-card *ngIf="socialResources?.length > 0 || currentUser?.id === user.id" class="user-social" id="content">
   <nb-card-header>Content</nb-card-header>
   <nb-card-body>
     <ng-container *ngIf="currentUser?.id === user.id">

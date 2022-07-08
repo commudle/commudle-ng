@@ -1,4 +1,8 @@
-<nb-card *ngIf="userWorkHistories.length > 0 || currentUser?.id === user.id" class="user-work-history">
+<nb-card
+  *ngIf="userWorkHistories.length > 0 || currentUser?.id === user.id"
+  class="user-work-history"
+  id="work-history"
+>
   <nb-card-header>Work History</nb-card-header>
   <nb-card-body>
     <button
