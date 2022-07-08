@@ -4,13 +4,15 @@ p {
 }
 
 .user-details-container {
+  @apply com-mt-0 com-rounded-tl-none com-rounded-tr-none;
+
   nb-card-body {
     .user-avatar {
       @apply com-block com-h-24 com-w-24 md:com-h-40 md:com-w-40 com-rounded-full com-object-cover com-object-center;
     }
 
     .user-info {
-      @apply com-w-full;
+      @apply com-w-full com-mt-8;
 
       .name {
         @apply com-flex com-items-baseline com-gap-1.5;
@@ -28,8 +30,16 @@ p {
         @apply com-text-base com-text-gray-400 com-mt-1;
       }
 
+      .network {
+        @apply com-flex com-mt-4;
+
+        a[nbButton] {
+          @apply com-text-sm;
+        }
+      }
+
       .designation {
-        @apply com-flex com-items-center com-gap-2 com-mt-6;
+        @apply com-text-base com-flex com-items-center com-gap-2 com-mt-4;
 
         p,
         nb-icon {
@@ -42,7 +52,7 @@ p {
       }
 
       .location {
-        @apply com-flex com-items-center com-gap-2 com-mt-2;
+        @apply com-text-base com-flex com-items-center com-gap-2 com-mt-1;
 
         p,
         nb-icon {
@@ -54,8 +64,12 @@ p {
         }
       }
 
-      .network {
-        @apply com-mt-4 com-flex com-flex-col md:com-flex-row com-items-center com-justify-between;
+      .tags {
+        @apply com-mt-6;
+
+        nb-tag {
+          @apply com-text-sm com-text-blue-700 com-bg-blue-100 com-font-medium;
+        }
       }
     }
   }
