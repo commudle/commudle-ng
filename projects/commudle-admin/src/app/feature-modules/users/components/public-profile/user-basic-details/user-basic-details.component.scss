@@ -31,10 +31,16 @@ p {
       }
 
       .network {
-        @apply com-flex com-mt-4;
+        @apply com-flex com-mt-4 com-gap-2;
 
-        a[nbButton] {
-          @apply com-text-sm;
+        a {
+          @apply com-text-sm hover:com-underline;
+          color: inherit;
+          text-decoration: none;
+
+          span {
+            @apply com-font-semibold;
+          }
         }
       }
 
@@ -68,7 +74,7 @@ p {
         @apply com-mt-6;
 
         nb-tag {
-          @apply com-text-sm com-text-blue-700 com-bg-blue-100 com-font-medium;
+          @apply com-text-sm com-font-medium com-border-none;
         }
       }
     }

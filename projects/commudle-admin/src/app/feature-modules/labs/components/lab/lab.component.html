@@ -124,10 +124,12 @@
       </div>
       <app-share-button
         [content]="environment.app_url + '/labs/' + lab.slug"
+        [ghost]="true"
+        [round]="true"
+        [showText]="false"
         [title]="lab.name"
         [url]="environment.app_url + '/labs/' + lab.slug"
-        [showText]="false"
-        [round]="true"
+        class="com-mt-4"
       ></app-share-button>
     </div>
   </div>

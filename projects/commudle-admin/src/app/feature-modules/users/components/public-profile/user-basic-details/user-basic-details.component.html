@@ -13,17 +13,12 @@
             title="Expert Tick"
           />
         </div>
-        <div class="com-space-x-2">
-          <app-user-follow
-            (userFollowed)="updateProfile.emit()"
-            [username]="user.username"
-            class="com-inline-block"
-          ></app-user-follow>
+        <div class="com-flex com-space-x-2">
+          <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
           <app-share-button
             [content]="environment.app_url + '/users/' + user.username"
             [title]="user.name + ' ' + user.designation"
             [url]="environment.app_url + '/users/' + user.username"
-            class="com-inline-block"
           ></app-share-button>
           <a
             *ngIf="currentUser?.id === user.id; else message"
@@ -44,14 +39,6 @@
         </div>
       </div>
       <p class="username">@{{ user.username }}</p>
-      <div class="network">
-        <a ghost nbButton routerLink="followers" shape="semi-round" size="tiny">
-          {{ user.followers_count || 0 }} Followers
-        </a>
-        <a ghost nbButton routerLink="following" shape="semi-round" size="tiny">
-          {{ user.followees_count || 0 }} Following
-        </a>
-      </div>
       <div *ngIf="user.designation" class="designation">
         <nb-icon icon="briefcase-outline"></nb-icon>
         <p>{{ user.designation }}</p>
@@ -60,12 +47,21 @@
         <nb-icon icon="pin"></nb-icon>
         <p>{{ user.location }}</p>
       </div>
+      <div class="network">
+        <a routerLink="followers">
+          <span>{{ user.followers_count || 0 }}</span> Followers
+        </a>
+        <a routerLink="following">
+          <span>{{ user.followees_count || 0 }}</span> Following
+        </a>
+      </div>
       <nb-tag-list *ngIf="user.tags.length > 0" class="tags">
-        <nb-tag *ngFor="let tag of user.tags" [text]="tag.name"></nb-tag>
+        <nb-tag *ngFor="let tag of user.tags" [text]="tag.name" appearance="outline" status="info"></nb-tag>
         <nb-tag
           (click)="onTagDialogOpen()"
           *ngIf="currentUser?.id === user.id"
           class="com-cursor-pointer"
+          status="info"
           text="+"
         ></nb-tag>
       </nb-tag-list>
