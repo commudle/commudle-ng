@@ -1,11 +1,11 @@
 <button
   (click)="copyTextToClipboard()"
+  [appearance]="appearance"
   [shape]="round ? 'round' : 'semi-round'"
   class="share-button"
   nbButton
   size="small"
   status="info"
-  [ghost]="ghost"
 >
   <nb-icon icon="share"></nb-icon>
   <span *ngIf="showText">Share</span>

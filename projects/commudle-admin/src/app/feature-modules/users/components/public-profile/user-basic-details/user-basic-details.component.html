@@ -19,6 +19,7 @@
             [content]="environment.app_url + '/users/' + user.username"
             [title]="user.name + ' ' + user.designation"
             [url]="environment.app_url + '/users/' + user.username"
+            appearance="outline"
           ></app-share-button>
           <a
             *ngIf="currentUser?.id === user.id; else message"

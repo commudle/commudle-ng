@@ -18,7 +18,7 @@ export class ShareButtonComponent implements OnInit {
 
   @Input() showText: boolean = true;
   @Input() round: boolean = false;
-  @Input() ghost: boolean = false;
+  @Input() appearance: 'outline' | 'filled' | 'ghost' = 'filled';
 
   constructor(
     private navigatorShareService: NavigatorShareService,
