@@ -24,7 +24,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
       job_title: ['', Validators.required],
       company: ['', Validators.required],
       location: ['', Validators.required],
-      start_date: [new Date().toISOString().split('T')[0], Validators.required],
+      start_date: [new Date().toISOString().substring(0, 7), Validators.required],
       end_date: [''],
       is_working: [true, Validators.required],
       description: [''],

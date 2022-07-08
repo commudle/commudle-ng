@@ -2,7 +2,37 @@
   <nb-card-body>
     <div class="heading">
       <div class="job">
-        <p class="job-title">{{ userWorkHistory.job_title }}</p>
+        <div class="com-flex com-items-center com-gap-3 com-flex-wrap">
+          <p class="job-title">{{ userWorkHistory.job_title }}</p>
+          <div *ngIf="currentUser?.id === user.id" class="com-flex">
+            <button
+              (click)="updateUserWorkHistory.emit()"
+              fullWidth
+              ghost
+              nbButton
+              nbTooltip="Edit"
+              nbTooltipStatus="warning"
+              shape="round"
+              size="small"
+              status="warning"
+            >
+              <nb-icon icon="edit"></nb-icon>
+            </button>
+            <button
+              (click)="onDialogOpen(deleteWorkHistoryDialog)"
+              fullWidth
+              ghost
+              nbButton
+              nbTooltip="Delete"
+              nbTooltipStatus="danger"
+              shape="round"
+              size="small"
+              status="danger"
+            >
+              <nb-icon icon="trash"></nb-icon>
+            </button>
+          </div>
+        </div>
         <p class="company">{{ userWorkHistory.company }}</p>
       </div>
       <p class="date">
@@ -17,16 +47,6 @@
       </p>
     </div>
     <p class="description">{{ userWorkHistory.description }}</p>
-    <div *ngIf="currentUser?.id === user.id" class="com-flex com-mt-4">
-      <button (click)="updateUserWorkHistory.emit()" fullWidth ghost nbButton status="warning">
-        <nb-icon icon="edit-outline"></nb-icon>
-        Edit Work History
-      </button>
-      <button (click)="onDialogOpen(deleteWorkHistoryDialog)" fullWidth ghost nbButton status="danger">
-        <nb-icon icon="trash-outline"></nb-icon>
-        Delete Work History
-      </button>
-    </div>
   </nb-card-body>
 </nb-card>
 
@@ -44,10 +64,10 @@
     <nb-card-body class="com-max-w-[350px]">
       <p>
         Are you sure you want to <strong>delete</strong>
-        &nbsp;
-        <em>{{ userWorkHistory.job_title }}</em>
+        <em> {{ userWorkHistory.job_title }} @ {{ userWorkHistory.company }}</em>
         ?
       </p>
+      <br />
       <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
     </nb-card-body>
     <nb-card-footer class="com-flex com-items-center com-justify-between">

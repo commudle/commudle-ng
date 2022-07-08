@@ -27,7 +27,7 @@
 </nb-card>
 
 <ng-template #userWorkHistoryDialog let-data>
-  <nb-card class="com-max-h-[30rem] com-max-w-sm">
+  <nb-card class="com-max-h-[40rem]" style="width: clamp(20rem, 28rem, 28rem)">
     <nb-card-header class="com-flex com-justify-between com-items-center">
       {{ isEditing ? 'Edit Work History' : 'Add Work History' }}
       <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
@@ -50,16 +50,16 @@
         </label>
         <label>
           Start Date*
-          <input formControlName="start_date" fullWidth nbInput type="date" />
+          <input formControlName="start_date" fullWidth nbInput type="month" />
         </label>
         <label>
           End Date
-          <input formControlName="end_date" fullWidth nbInput type="date" />
+          <input formControlName="end_date" fullWidth nbInput type="month" />
         </label>
-        <nb-toggle formControlName="is_working">Is Working</nb-toggle>
+        <nb-toggle formControlName="is_working">I'm currently working here</nb-toggle>
         <label>
           Description
-          <textarea formControlName="description" fullWidth nbInput type="text"></textarea>
+          <textarea formControlName="description" fullWidth nbInput rows="5" type="text"></textarea>
         </label>
       </form>
     </nb-card-body>
