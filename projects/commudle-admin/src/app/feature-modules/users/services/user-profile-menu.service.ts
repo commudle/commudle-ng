@@ -12,7 +12,10 @@ export type MenuItemNames =
   | 'content'
   | 'feed';
 
-export type UserProfileMenuItems = Record<MenuItemNames, { name: string; icon: string; link: string; active: boolean }>;
+export type UserProfileMenuItems = Record<
+  MenuItemNames,
+  { name: string; icon: string; icon_status: string; link: string; active: boolean }
+>;
 
 @Injectable({
   providedIn: 'root',
@@ -21,55 +24,64 @@ export class UserProfileMenuService {
   userProfileMenuItems: UserProfileMenuItems = {
     about: {
       name: 'About',
-      icon: 'fa-user',
+      icon: 'alert-circle',
+      icon_status: 'primary',
       link: 'about',
       active: false,
     },
     badges: {
       name: 'Badges',
-      icon: 'fa-certificate',
+      icon: 'award',
+      icon_status: 'warning',
       link: 'badges',
       active: false,
     },
     builds: {
       name: 'Builds',
-      icon: 'fa-cogs',
+      icon: 'bulb',
+      icon_status: 'success',
       link: 'builds',
       active: false,
     },
     talksAtEvents: {
       name: 'Talks at Events',
-      icon: 'fa-microphone',
+      icon: 'calendar',
+      icon_status: 'info',
       link: 'talks-at-events',
       active: false,
     },
     communities: {
       name: 'Communities',
-      icon: 'fa-users',
+      icon: 'people',
+      icon_status: 'warning',
       link: 'communities',
       active: false,
     },
     labs: {
       name: 'Labs',
-      icon: 'fa-flask',
+      icon: 'book-open',
+      icon_status: 'danger',
       link: 'labs',
       active: false,
     },
     workHistory: {
       name: 'Work History',
-      icon: 'fa-briefcase',
+      icon: 'briefcase',
+      icon_status: 'success',
       link: 'work-history',
       active: false,
     },
     content: {
       name: 'Content',
-      icon: 'fa-file-text',
+      icon: 'file-text',
+      icon_status: 'info',
       link: 'content',
       active: false,
     },
     feed: {
       name: 'Feed',
-      icon: 'fa-rss',
+      icon: 'cast',
+      icon_status: 'primary',
       link: 'feed',
       active: false,
     },

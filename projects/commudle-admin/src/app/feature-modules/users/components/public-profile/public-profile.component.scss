@@ -1,12 +1,17 @@
 .user-profile-menu {
-  @apply com-sticky com-top-[68px];
+  @apply com-sticky com-top-[68px] com-z-10;
 
   nb-card-body {
     @apply com-px-2;
 
-    a {
+    .item {
+      @apply com-flex com-items-center com-gap-2 md:com-text-base;
       color: inherit;
       text-decoration: none;
+
+      nb-icon {
+        @apply md:com-text-xl;
+      }
     }
   }
 }

@@ -6,9 +6,10 @@
         <app-user-basic-details (updateProfile)="getUser()" [user]="user"></app-user-basic-details>
         <nb-card *ngIf="(activeMenuItems | numkeys) > 0" class="user-profile-menu">
           <nb-card-body>
-            <nb-actions size="medium">
+            <nb-actions>
               <nb-action *ngFor="let item of activeMenuItems | keyvalue: originalOrder">
-                <a fragment="{{ item.value.link }}" routerLink=".">
+                <a class="item" fragment="{{ item.value.link }}" routerLink=".">
+                  <nb-icon [icon]="item.value.icon" [status]="item.value.icon_status"></nb-icon>
                   {{ item.value.name }}
                 </a>
               </nb-action>

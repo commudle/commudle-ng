@@ -1,5 +1,8 @@
 <nb-card class="user-basic-social-container" id="about">
-  <nb-card-header>About</nb-card-header>
+  <nb-card-header>
+    <nb-icon icon="alert-circle" status="primary"></nb-icon>
+    About
+  </nb-card-header>
   <nb-card-body>
     <div *ngIf="user.about_me" class="about">
       <span *ngIf="showFullAbout; else showLess">{{ user.about_me }}</span>

@@ -1,5 +1,6 @@
 <nb-card *ngIf="builds?.length > 0" id="builds">
   <nb-card-header>
+    <nb-icon icon="bulb" status="success"></nb-icon>
     Builds
     <span *ngIf="builds.length > 4">({{ builds.length }})</span>
   </nb-card-header>
@@ -12,6 +13,7 @@
 
 <nb-card *ngIf="pastEvents?.length > 0" id="talks-at-events">
   <nb-card-header>
+    <nb-icon icon="calendar" status="info"></nb-icon>
     Talks at Events
     <span *ngIf="pastEvents.length > 4">({{ pastEvents.length }})</span>
   </nb-card-header>
@@ -24,6 +26,7 @@
 
 <nb-card *ngIf="communities?.length > 0" id="communities">
   <nb-card-header>
+    <nb-icon icon="people" status="warning"></nb-icon>
     Communities
     <span *ngIf="communities.length > 4">({{ communities.length }})</span>
   </nb-card-header>
@@ -36,6 +39,7 @@
 
 <nb-card *ngIf="labs?.length > 0" id="labs">
   <nb-card-header>
+    <nb-icon icon="book-open" status="danger"></nb-icon>
     Labs
     <span *ngIf="labs.length > 4">({{ labs.length }})</span>
   </nb-card-header>

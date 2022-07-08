@@ -1,5 +1,8 @@
 <nb-card *ngIf="socialResources?.length > 0 || currentUser?.id === user.id" class="user-social" id="content">
-  <nb-card-header>Content</nb-card-header>
+  <nb-card-header>
+    <nb-icon icon="file-text" status="info"></nb-icon>
+    Content
+  </nb-card-header>
   <nb-card-body>
     <ng-container *ngIf="currentUser?.id === user.id">
       <div class="user-social-add d-flex">
