@@ -1,3 +1,4 @@
+import { KeyValue } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateProfileService } from 'projects/commudle-admin/src/app/feature-modules/users/services/update-profile.service';
@@ -79,4 +80,8 @@ export class PublicProfileComponent implements OnInit, OnDestroy {
     }
     this.seoService.setTags(title, this.user.about_me, this.user.avatar);
   }
+
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
+    return 0;
+  };
 }

@@ -7,7 +7,7 @@
         <nb-card *ngIf="(activeMenuItems | numkeys) > 0" class="user-profile-menu">
           <nb-card-body>
             <nb-actions size="medium">
-              <nb-action *ngFor="let item of activeMenuItems | keyvalue">
+              <nb-action *ngFor="let item of activeMenuItems | keyvalue: originalOrder">
                 <a fragment="{{ item.value.link }}" routerLink=".">
                   {{ item.value.name }}
                 </a>
