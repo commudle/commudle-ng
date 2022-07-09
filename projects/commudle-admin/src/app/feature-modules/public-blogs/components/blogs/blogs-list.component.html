@@ -1,0 +1,37 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="blog-container">
+        <nb-card-header>
+          <h1>Commudle Blogs</h1>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="blog-cards">
+            <div *ngFor="let blog of blogs" class="blog-card">
+              <img
+                [alt]="blog.title"
+                [src]="imageUrl(blog.headerImage).width(200).url()"
+                class="com-h-36 com-w-full com-object-cover com-object-center"
+              />
+              <div class="com-p-4">
+                <h2 class="name">
+                  {{ blog.title }}
+                </h2>
+                <p class="date">
+                  {{ blog.publishedAt | date }}
+                </p>
+                <p class="com-line-clamp-3">
+                  {{ blog.body }}
+                </p>
+                <a [routerLink]="['/blogs', blog.id]" class="read-more">
+                  Read More
+                  <nb-icon icon="arrow-forward-outline"></nb-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
