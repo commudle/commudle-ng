@@ -20,3 +20,26 @@
     </nb-card-body>
   </div>
 </nb-card>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": " {{ blog.title }} ",
+    "description": " {{ blog.description }} "
+    "image": "{{ blog.headerImage }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{blog.username}}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "commudle",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.commudle.com/assets/images/commudle-logo128.png "
+      }
+    },
+    "datePublished": "{{ blog.publishedAt }}"
+  }
+</script>
