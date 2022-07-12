@@ -24,12 +24,9 @@ export class CmsService {
     useCdn: true, // `false` if you want to ensure fresh data
   });
   imageUrlBuilder: ImageUrlBuilder = builder(this.client);
-
   private cmsUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
 
   constructor(private httpClient: HttpClient) {}
-
-  // urlFor = (source: any) => builder(this.client).image(source);
 
   getDataBySlug(slug: string) {
     const params = new HttpParams().set('query', `*[slug.current == "${slug}"]`);
@@ -52,16 +49,19 @@ export class CmsService {
   getImageUrl(source: SanityImageSource): ImageUrlBuilder {
     return this.imageUrlBuilder.image(source);
   }
-
   async getBlogs(): Promise<Blog[]> {
     return await this.client.fetch(
       `*[_type == "blog"]{
       _id,
+      slug,
       title,
-      author,
+      name,
+      designation,
+      username,
       publishedAt,
       headerImage,
-      tags,
+      description,
+      avatar,
       body
 }`,
     );

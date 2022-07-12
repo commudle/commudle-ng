@@ -1,9 +1,13 @@
 export interface Blog {
-  _id: String;
-  title: String;
-  author: String;
+  _id: string;
+  slug: [];
+  title: string;
+  name: string;
+  designation: string;
+  username: string;
   publishedAt: Date;
   headerImage: {};
-  tags: String;
+  description: string;
   body: Text;
+  avatar: {};
 }
