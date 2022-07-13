@@ -7,15 +7,28 @@
     </nb-card-header>
     <nb-card-body>
       <div>
-        <div class="profile">
-          <app-user-profile-card-large [user]="user"></app-user-profile-card-large>
+        <div class="profile" [routerLink]="['/users', blog.username]">
+          <div class="com-flex com-items-center com-pt-5 md:com-pt-10">
+            <div>
+              <img
+                src="{{ user.photo.i64 }}"
+                class="com-h-16 com-w-16 com-rounded-full com-border-2 com-border-grey-70 com-shadow"
+                alt="{{ user.photo.i64 }}"
+              />
+            </div>
+            <div class="com-pl-5">
+              <span class="com-block com-font-body com-text-xl com-font-bold">{{ user.name }}</span>
+              <span class="com-block com-text-xs">@{{ user.username }}</span>
+              <span class="com-text-xs">{{ user.designation }}</span>
+            </div>
+          </div>
         </div>
         <img
           [alt]="blog.title"
           [src]="imageUrl(blog.headerImage).url()"
           class="com-h-80 com-w-full com-object-cover com-object-center"
         />
-        <div [innerHTML]="richText"></div>
+        <div [innerHTML]="richText" class="text"></div>
       </div>
     </nb-card-body>
   </div>
@@ -25,20 +38,17 @@
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": " {{ blog.title }} ",
-    "description": " {{ blog.description }} "
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.commudle.com/blogs"
+    },
+    "headline": "{{blog.post}}",
+    "description": " {{ meta_description }} "
     "image": "{{ blog.headerImage }}",
     "author": {
       "@type": "Person",
-      "name": "{{blog.username}}"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "commudle",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.commudle.com/assets/images/commudle-logo128.png "
-      }
+      "name": "{{blog.username}}",
+      "url": "https://www.commudle.com/users/{{blog.username}}"
     },
     "datePublished": "{{ blog.publishedAt }}"
   }

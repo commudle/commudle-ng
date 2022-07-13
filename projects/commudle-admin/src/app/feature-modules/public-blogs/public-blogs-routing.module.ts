@@ -9,7 +9,7 @@ const routes: Routes = [
     component: BlogsListComponent,
   },
   {
-    path: ':name',
+    path: ':id',
     component: BlogComponent,
   },
 ];

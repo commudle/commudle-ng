@@ -1,9 +1,3 @@
-<meta name="title" content="Relating with Developers & Communities" />
-<meta
-  name="description"
-  content="Blogs in the form of experiences and knowledge, authored by Developers, Designers, Community Managers and DevRels"
-/>
-
 <div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
@@ -31,9 +25,9 @@
                 <p class="date">
                   {{ blog.publishedAt | date }}
                 </p>
-                <p class="com-line-clamp-3">
-                  {{ blog.description }}
-                </p>
+                <div class="com-line-clamp-3">
+                  {{ blog.content[0]['children'][0]['text'] }}
+                </div>
                 <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
                   Read More
                   <nb-icon icon="arrow-forward-outline"></nb-icon>

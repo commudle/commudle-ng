@@ -6,7 +6,7 @@ nb-card {
 
   nb-card-body {
     .profile {
-      @apply com-pb-7;
+      @apply com-pb-7 com-cursor-pointer;
     }
   }
 }
