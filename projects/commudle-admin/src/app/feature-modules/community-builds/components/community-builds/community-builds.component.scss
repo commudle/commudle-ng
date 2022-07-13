@@ -1,6 +1,7 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .community-builds-container {
+  @apply com-mb-8;
   .container {
     nb-card {
       @apply com-mb-4;
@@ -9,6 +10,7 @@
         @apply com-p-5;
 
         .loading-spinner {
+          @apply com-my-4 com-text-center;
           .spinner {
             height: 40px;
 
@@ -56,8 +58,14 @@
       nb-card-body {
         .community-builds-title {
           nb-icon {
-            @apply com-text-5xl;
+            @apply com-text-4xl;
           }
+        }
+        .community-builds-subtitle {
+          @apply com-text-xl com-font-normal;
+        }
+        .community-build-create-btn {
+          @apply com-text-sm;
         }
       }
     }
