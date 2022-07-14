@@ -9,11 +9,16 @@
           <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
         </p>
         <p>
-          <span class="title">
-            {{ question.title }}<span *ngIf="question.required" class="required-question">*</span>
+          <span class="title" [innerHTML]="question.title | linky: { sanitizeHtml: true }">
+            <span *ngIf="question.required" class="required-question">*</span>
           </span>
           <br />
-          <small *ngIf="question.description" class="description"> {{ question.description }} </small>
+          <small
+            *ngIf="question.description"
+            class="description"
+            [innerHTML]="question.description | linky: { sanitizeHtml: true }"
+          >
+          </small>
         </p>
       </div>
       <div *ngIf="question.question_type_id == EQuestionTypes.SHORT_ANSWER" class="answer">
