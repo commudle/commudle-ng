@@ -11,9 +11,9 @@
           <div class="com-flex com-items-center com-pt-5 md:com-pt-10">
             <div>
               <img
-                src="{{ user.photo.i64 }}"
+                [src]="user.photo.i64"
                 class="com-h-16 com-w-16 com-rounded-full com-border-2 com-border-grey-70 com-shadow"
-                alt="{{ user.photo.i64 }}"
+                [alt]="user.name"
               />
             </div>
             <div class="com-pl-5">

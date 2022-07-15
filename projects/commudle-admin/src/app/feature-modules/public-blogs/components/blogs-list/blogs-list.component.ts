@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IBlog } from '../../Models/blogs.model';
+import { IBlog } from '../../models/blogs.model';
 import { CmsService } from 'projects/shared-services/cms.service';
-import { ActivatedRoute } from '@angular/router';
 import { SeoService } from 'projects/shared-services/seo.service';
-import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blogs',
@@ -11,7 +9,7 @@ import { Meta } from '@angular/platform-browser';
   styleUrls: ['./blogs-list.component.scss'],
 })
 export class BlogsListComponent implements OnInit {
-  constructor(private sanityService: CmsService, private seoService: SeoService, private meta: Meta) {}
+  constructor(private sanityService: CmsService, private seoService: SeoService) {}
 
   blogs: IBlog[] = [];
   richText: any;
@@ -32,12 +30,7 @@ export class BlogsListComponent implements OnInit {
 
   setMeta(): void {
     this.seoService.setTags(
-      'title',
       'Relating with Developers & Communities',
-      'https://commudle.com/assets/images/commudle-logo192.png',
-    );
-    this.seoService.setTags(
-      'description',
       'Blogs in the form of experiences and knowledge, authored by Developers, Designers, Community Managers and DevRels',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );

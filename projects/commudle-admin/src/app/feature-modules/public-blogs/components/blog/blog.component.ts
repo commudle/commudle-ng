@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IUser } from 'projects/shared-models/user.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { Subscription } from 'rxjs';
-import { IBlog } from '../../Models/blogs.model';
+import { IBlog } from '../../models/blogs.model';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 
@@ -16,7 +16,7 @@ export class BlogComponent implements OnInit {
   blog: IBlog;
   richText: any;
   user: IUser;
-  meta_description: string;
+  blogDescription: string;
 
   subscriptions: Subscription[] = [];
 
@@ -37,12 +37,10 @@ export class BlogComponent implements OnInit {
 
   getData() {
     const slug: string = this.activatedRoute.snapshot.params.id;
-    console.log(slug);
     this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
       this.blog = value;
       this.richText = this.cmsService.getHtmlFromBlock(value);
-      let strippedHtml = this.richText.replace(/<[^>]+>/g, '');
-      this.meta_description = strippedHtml.substr(0, 160);
+      this.blogDescription = this.richText.replace(/<[^>]+>/g, '').substr(0, 160);
       this.setUser();
       this.setMeta();
     });
@@ -53,7 +51,8 @@ export class BlogComponent implements OnInit {
       this.appUsersService.getProfile(this.blog.username).subscribe((data) => (this.user = data)),
     );
   }
+  //set meta
   setMeta(): void {
-    this.seoService.setTags(this.blog.title, this.meta_description, this.imageUrl(this.blog.headerImage).url());
+    this.seoService.setTags(this.blog.title, this.blogDescription, this.imageUrl(this.blog.headerImage).url());
   }
 }
