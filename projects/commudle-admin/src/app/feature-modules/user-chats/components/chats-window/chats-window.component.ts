@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserChatMessagesChannel } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-messages.channel';
 import { SDiscussionsService } from 'projects/shared-components/services/s-discussions.service';
+import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/dicussion-personal-chat.channel';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
 
@@ -17,12 +18,14 @@ export class ChatsWindowComponent implements OnInit {
   // Predefined constants
   chatsWindowHeight = 50;
   chatsWindowWidth = 350;
+  blocked = false;
 
   discussion: IDiscussion;
 
   constructor(
     private sDiscussionService: SDiscussionsService,
     private userChatMessagesChannel: UserChatMessagesChannel,
+    private discussionChatChannel: DiscussionPersonalChatChannel,
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +55,10 @@ export class ChatsWindowComponent implements OnInit {
 
   closeChat() {
     this.removeChat.emit(this.discussionFollower);
+  }
+
+  blockChat() {
+    this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
+    this.blocked = true;
   }
 }

@@ -1,9 +1,9 @@
-<!-- <div class="discussion-chat-component">
+<div class="discussion-chat-component">
   <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
     <div>
-      <button class="block-chat" nbButton size="tiny" status="basic" outline *ngIf="discussion" (click)="blockChat()">
+      <!-- <button class="block-chat" nbButton size="tiny" status="basic" outline *ngIf="discussion" (click)="blockChat()">
         {{ blocked ? 'Unblock' : 'Block' }}
-      </button>
+      </button> -->
 
       <div class="message" *ngFor="let um of messages">
         <app-user-personal-chat-message
@@ -62,75 +62,5 @@
     <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
       Post a Message
     </button>
-  </div>
-</div> -->
-
-<div id="" class="com-space-y-4 com-p-3 com-overflow-y-scroll">
-  <div class="com-flex com-flex-col">
-    <!-- message -->
-    <div class="com-h-[380px]">
-      <div class="" *ngFor="let um of messages">
-        <app-user-personal-chat-message
-          [message]="um"
-          [canReply]="!blocked"
-          [permittedActions]="permittedActions"
-          [allActions]="allActions"
-          [currentUser]="currentUser"
-          (sendReply)="sendReply($event, um.id)"
-          (sendVote)="sendVote($event)"
-          (sendDelete)="delete($event)"
-          (sendFlag)="sendFlag($event)"
-        ></app-user-personal-chat-message>
-      </div>
-    </div>
-    <!-- Type area -->
-    <div class="">
-      <div class="send-message-form">
-        <form
-          *ngIf="currentUser && !blocked"
-          [formGroup]="chatMessageForm"
-          (ngSubmit)="sendMessage()"
-          class="com-absolute com-bottom-1 com-pr com-flex"
-        >
-          <nb-form-field class="com-w-5/6">
-            <div class="nbPrefix" nbPrefix>
-              <a (click)="toggleEmojiForm()" class="emoji-button" ghost nbButton>😃</a>
-              <emoji-mart
-                (emojiSelect)="selectEmoji($event)"
-                *ngIf="showEmojiForm"
-                class="emoji-mart"
-                set="twitter"
-                title="Select an emoji!"
-                perLine="7"
-              ></emoji-mart>
-            </div>
-            <input
-              #inputElement
-              formControlName="content"
-              fullWidth
-              nbInput
-              placeholder="Send a message (max 200 characters)"
-              type="text"
-            />
-          </nb-form-field>
-          <div class="com-bg-white com-w-1/6">
-            <button
-              [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)"
-              fullwidth
-              nbButton
-              status="info"
-              type="submit"
-              class=""
-            >
-              <nb-icon icon="corner-down-left-outline"></nb-icon>
-            </button>
-          </div>
-        </form>
-
-        <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
-          Post a Message
-        </button>
-      </div>
-    </div>
   </div>
 </div>

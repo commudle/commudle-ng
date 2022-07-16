@@ -1,9 +1,11 @@
 :host {
-  height: 100%;
+  // height: 100%;
+  @apply com-h-full;
 
   .discussion-chat-component {
-    height: 100%;
-    position: relative;
+    // height: 100%;
+    // position: relative;
+    @apply com-h-full com-relative;
 
     .block-chat {
       position: absolute;
@@ -12,69 +14,82 @@
     }
 
     .messages {
-      height: 100%;
+      // height: 100%;
+      @apply com-h-full;
 
       .message {
-        margin-bottom: 1rem;
-        border: 1px dotted lightgrey;
-        border-radius: 5px;
-        padding: 5px;
+        // margin-bottom: 1rem;
+        // border: 1px dotted lightgrey;
+        // border-radius: 5px;
+        // padding: 5px;
+        @apply com-mb-4 com-border-[1px] com-border-dotted com-border-gray-300 com-rounded-md com-p-1;
       }
 
       .filler-message {
-        position: absolute;
-        top: 50%;
-        left: 50%;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
         transform: translate(-50%, -50%);
-        width: 80%;
-        text-align: center;
+        // width: 80%;
+        // text-align: center;
+        @apply com-absolute com-top-1/2 com-left-1/2 com-w-[80%] com-text-center;
 
         h4 {
-          color: darkgrey;
+          // color: darkgrey;
+          @apply com-text-gray-400;
         }
       }
     }
 
     .send-message-form {
-      position: sticky;
-      bottom: 0.5rem;
-      width: 100%;
+      // position: sticky;
+      // bottom: 0rem;
+      // width: 100%;
+      @apply com-bg-white com-sticky com-bottom-0 com-w-full;
 
       form {
         align-items: self-start;
-        display: flex;
-        padding: 0.3rem;
+        // display: flex;
+        // padding: 0.3rem;
+        @apply com-flex com-p-1;
 
         nb-form-field {
-          position: relative;
-          width: 100%;
+          // position: relative;
+          // width: 100%;
+          @apply com-relative com-w-full;
 
           input {
-            font-weight: 400;
-            resize: none;
+            // font-weight: 400;
+            // resize: none;
+            @apply com-font-normal com-resize-none;
           }
 
           .nbPrefix {
-            align-items: center;
-            display: flex;
-            margin-top: -2px;
+            // align-items: center;
+            // display: flex;
+            // margin-top: -2px;
+            @apply com-items-center com-flex com-mt-[-2px];
 
             .emoji-button {
-              padding: 0.1rem;
+              // padding: 0.1rem;
+              @apply com-p-[0.1rem];
             }
 
             emoji-mart {
-              bottom: 50px;
-              left: 25px;
-              position: absolute;
+              // bottom: 50px;
+              // left: 25px;
+              // position: absolute;
+              @apply com-bottom-12 com-left-6 com-absolute;
 
               ::ng-deep {
                 .emoji-mart-scroll {
-                  height: 250px;
+                  // height: 250px;
+                  @apply com-h-64;
                 }
 
                 .emoji-mart-bar {
-                  display: none;
+                  // display: none;
+                  @apply com-hidden;
                 }
               }
             }
@@ -82,12 +97,13 @@
         }
 
         > button {
-          align-items: center;
-          display: flex;
-          justify-content: center;
-          margin-left: 5px;
-          max-width: 40px;
-          width: 20%;
+          // align-items: center;
+          // display: flex;
+          // justify-content: center;
+          // margin-left: 5px;
+          // max-width: 40px;
+          // width: 20%;
+          @apply com-items-center com-flex com-justify-center com-ml-1 com-max-w-[40px] com-w-[20%];
         }
       }
     }

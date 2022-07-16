@@ -1,36 +1,43 @@
-// @import './projects/commudle-admin/src/assets/styles/variables';
+@import './projects/commudle-admin/src/assets/styles/variables';
 
-// .chat-window {
-//   @apply com-ml-1;
+.chat-window {
+  margin-left: $space-5;
 
-//   nb-card {
-//     @apply com-m-0 ;
+  nb-card {
+    height: 100%;
+    margin: 0;
 
-//     nb-card-header {
-//       @apply com-py-1 com-px-[6px];
+    nb-card-header {
+      padding: $space-4 $space-6;
 
-//       .window-options {
-//         @apply com-flex com-justify-between;
-//       }
-//     }
+      .window-options {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
 
-//     nb-card-body {
-//       transition: all 0.2s ease-in-out;
-//       @apply com-p-0;
-//     }
-//   }
-// }
+    nb-card-body {
+      transition: all 0.2s ease-in-out;
+      padding: 0;
+      display: grid;
+    }
+  }
+}
 
-// @media all and (max-width: $tab-width) {
-//   .chat-window {
-//     @apply com-mb-14;
-//   }
-// }
+@media all and (max-width: $tab-width) {
+  .chat-window {
+    margin-bottom: $space-56;
+  }
+}
 
-// .window{
-//   @apply com-h-[50vh] com-bg-gray-100;
-// }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: auto;
+  // background-color: white;
+  @apply com--mt-3;
+}
 
-div {
-  font-family: Inter;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
