@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from 'projects/shared-models/user.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { Subscription } from 'rxjs';
-import { IBlog } from '../../models/blogs.model';
+import { IBlog } from 'projects/commudle-admin/src/app/feature-modules/public-blogs/models/blogs.model';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 
@@ -12,9 +12,10 @@ import { SeoService } from 'projects/shared-services/seo.service';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
+  @Input() activateMiniProfileDirective = true;
   blog: IBlog;
-  richText: any;
+  richText: string;
   user: IUser;
   blogDescription: string;
 
@@ -29,6 +30,10 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   imageUrl(source: any) {
