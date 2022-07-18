@@ -9,7 +9,7 @@
     [ngClass]="{ active: notification.status === ENotificationStatuses.UNREAD }"
   >
     <div class="com-flex com-items-center">
-      <nb-user [picture]="notification.sender.avatar" onlyPicture></nb-user>
+      <nb-user [picture]="notification.sender.photo.i64" onlyPicture></nb-user>
       <div>
         <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small>
         <app-notifications-list-item

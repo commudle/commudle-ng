@@ -47,7 +47,9 @@ export class HomepageTestimonialsComponent implements OnInit {
       name: this.selectedTestimonial.name,
       username: this.selectedTestimonial.username,
       designation: this.selectedTestimonial.designation,
-      avatar: this.getImageUrl(this.selectedTestimonial.avatar).toString(),
+      photo: {
+        i64: this.getImageUrl(this.selectedTestimonial.avatar).toString(),
+      },
     } as IUser;
   }
 
