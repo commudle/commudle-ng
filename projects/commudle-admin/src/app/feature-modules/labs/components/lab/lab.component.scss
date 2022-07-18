@@ -1,93 +1,76 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .lab {
-  background: $light-purple;
-  padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
-  width: 100%;
+  @apply com-w-full com-pt-9 com-pb-3;
 
   .body {
-    margin: 0 auto;
-    max-width: 1152px;
+    @apply com-max-w-6xl com-my-0 com-mx-auto;
 
     nb-sidebar,
     .toggle-details {
-      display: none;
+      @apply com-hidden;
     }
 
     .content {
-      width: 100%;
+      @apply com-w-full;
 
       nb-card {
-        border: none;
-        margin: 0 $space-16 $space-16;
-        min-height: 80vh;
+        @apply com-min-h-[80vh] com-border-none com-mt-0 com-mx-4 com-mb-4;
 
         nb-card-body {
-          padding: $space-64;
+          @apply com-p-16;
 
           .introduction {
             .lab-title {
-              color: $gunmetal;
-              font-size: $fs-35;
-              font-weight: $fw-500;
-              line-height: 2.75rem;
-              margin: 0 0 $space-20;
-              text-transform: capitalize;
+              @apply com-text-[#2f2e41] com-text-4xl com-font-medium com-leading-[2.75rem] com-mt-0 com-mx-0 com-mb-5 com-capitalize;
             }
 
             .lab-detail {
-              margin-bottom: $space-48;
+              @apply com-mb-12;
 
               .user-profile {
                 .avatar {
-                  border-radius: 50%;
-                  height: 24px;
-                  overflow: hidden;
-                  width: 24px;
+                  @apply com-rounded-[50%] com-h-6 com-overflow-hidden com-w-6;
 
                   img {
-                    width: 100%;
+                    @apply com-w-full;
                   }
                 }
 
                 .details {
-                  font-style: italic;
                   height: max-content;
                   width: max-content;
+                  @apply com-italic;
 
                   p {
-                    color: $spanish-gray;
-                    font-size: $fs-h5;
-                    margin: 0 $space-16 0 $space-8;
+                    @apply com-text-sm com-text-[#979797] com-mt-0 com-mx-4 com-mb-2;
                   }
 
                   a,
                   a:hover,
                   a:focus,
                   a:active {
-                    text-decoration: none;
+                    @apply com-no-underline;
                   }
 
                   .name {
-                    color: $neon-blue;
-                    text-transform: capitalize;
+                    @apply com-capitalize com-text-[#536eff];
                   }
 
                   .date {
                     font-style: normal;
-                    margin-left: $space-4;
+                    @apply com-ml-1;
                   }
 
                   .expert-icon {
-                    height: 12px;
-                    margin-left: $space-4;
-                    width: 12px;
+                    @apply com-h-3 com-ml-1 com-w-3;
                   }
                 }
               }
 
               .tags {
-                margin-left: $space-64;
+                // margin-left: $space-64;
+                @apply com-ml-16;
 
                 &::ng-deep {
                   .nb-tag-list-tags-wrapper {
