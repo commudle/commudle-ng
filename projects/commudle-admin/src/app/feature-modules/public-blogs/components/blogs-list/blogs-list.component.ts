@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBlog } from '../../models/blogs.model';
+import { IBlog } from 'projects/commudle-admin/src/app/feature-modules/public-blogs/models/blogs.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 
@@ -9,13 +9,13 @@ import { SeoService } from 'projects/shared-services/seo.service';
   styleUrls: ['./blogs-list.component.scss'],
 })
 export class BlogsListComponent implements OnInit {
-  constructor(private sanityService: CmsService, private seoService: SeoService) {}
+  constructor(private cmsService: CmsService, private seoService: SeoService) {}
 
-  blogs: IBlog[] = [];
+  blogs: IBlog;
   richText: any;
 
   imageUrl(source: any) {
-    return this.sanityService.getImageUrl(source);
+    return this.cmsService.getImageUrl(source);
   }
 
   ngOnInit(): void {
@@ -23,9 +23,10 @@ export class BlogsListComponent implements OnInit {
     this.setMeta();
   }
 
-  async getBlogs(): Promise<IBlog[]> {
-    this.blogs = await this.sanityService.getBlogs();
-    return this.blogs;
+  getBlogs() {
+    this.cmsService.getDataByType('blog').subscribe((value: IBlog) => {
+      this.blogs = value;
+    });
   }
 
   setMeta(): void {
