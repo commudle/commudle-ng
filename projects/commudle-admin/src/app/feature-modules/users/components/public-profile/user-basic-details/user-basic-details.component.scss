@@ -8,7 +8,7 @@ p {
 
   nb-card-body {
     .user-avatar {
-      @apply com-block com-h-24 com-w-24 md:com-h-40 md:com-w-40 com-rounded-full com-object-cover com-object-center;
+      @apply com-block com-h-24 com-w-24 md:com-h-40 md:com-w-40 com-rounded-full com-object-cover com-object-center com-mx-auto md:com-ml-0;
     }
 
     .user-info {

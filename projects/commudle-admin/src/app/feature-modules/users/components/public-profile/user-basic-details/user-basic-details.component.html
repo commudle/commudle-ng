@@ -3,15 +3,18 @@
     <img [alt]="user.name" [src]="user.avatar" [title]="user.name" class="user-avatar" />
     <div class="user-info">
       <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
-        <div class="name">
-          <h1>{{ user.name }}</h1>
-          <img
-            *ngIf="user.is_expert"
-            alt="Expert Tick"
-            class="expert-icon"
-            src="/assets/images/Expert-Tick.svg"
-            title="Expert Tick"
-          />
+        <div class="com-text-center md:com-text-left">
+          <div class="name">
+            <h1>{{ user.name }}</h1>
+            <img
+              *ngIf="user.is_expert"
+              alt="Expert Tick"
+              class="expert-icon"
+              src="/assets/images/Expert-Tick.svg"
+              title="Expert Tick"
+            />
+          </div>
+          <p class="username">@{{ user.username }}</p>
         </div>
         <div class="com-flex com-space-x-2">
           <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
@@ -24,6 +27,7 @@
           <a
             *ngIf="currentUser?.id === user.id; else message"
             [routerLink]="[{ outlets: { p: ['settings', 'basic-details'] } }]"
+            ghost
             nbButton
             shape="semi-round"
             size="small"
@@ -39,7 +43,6 @@
           </ng-template>
         </div>
       </div>
-      <p class="username">@{{ user.username }}</p>
       <div *ngIf="user.designation" class="designation">
         <nb-icon icon="briefcase-outline"></nb-icon>
         <p>{{ user.designation }}</p>
