@@ -1,23 +1,19 @@
-<div [routerLink]="['/builds', build.slug]" class="user-build-card clickable">
-  <div class="user-build-card-prefix">
-    <div class="user-build-card-tags d-flex">
-      <div *ngFor="let tag of build.tags.slice(0, 2)" class="user-build-card-tag">{{ tag }}</div>
+<nb-card [routerLink]="['/builds', build.slug]" class="user-build">
+  <nb-card-body>
+    <nb-tag-list *ngIf="build.tags.length > 0" class="user-build-tags">
+      <nb-tag *ngFor="let tag of build.tags" [text]="tag" size="tiny"></nb-tag>
+    </nb-tag-list>
+    <h4 class="user-build-name">{{ build.name }}</h4>
+    <p class="user-build-description">{{ build.description }}</p>
+    <div class="user-build-interactions">
+      <span>
+        <nb-icon icon="message-circle"></nb-icon>
+        {{ build.chat_messages_count }}
+      </span>
+      <span>
+        <nb-icon icon="heart"></nb-icon>
+        {{ build.votes_count }}
+      </span>
     </div>
-  </div>
-  <div class="user-build-card-content">
-    <p class="user-build-card-name">{{ build.name | truncatetext: 35 }}</p>
-    <p class="user-build-card-description">{{ getDescription() }}</p>
-  </div>
-  <div class="user-build-card-suffix d-flex justify-content-space-between align-items-center">
-    <div class="user-build-card-interactions">
-      <nb-icon icon="heart"></nb-icon>
-      {{ build.votes_count }}&nbsp;
-      <nb-icon icon="message-circle"></nb-icon>
-      {{ build.chat_messages_count }}
-    </div>
-    <div class="user-build-card-author d-flex align-items-center">
-      <p class="user-build-card-author-name">{{ build.user.name }}</p>
-      <img [alt]="build.user.name" [src]="build.user.avatar" [title]="build.user.name" />
-    </div>
-  </div>
-</div>
+  </nb-card-body>
+</nb-card>

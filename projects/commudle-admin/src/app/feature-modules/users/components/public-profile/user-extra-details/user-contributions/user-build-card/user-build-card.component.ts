@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ICommunityBuild } from 'projects/shared-models/community-build.model';
 
 @Component({
@@ -6,22 +6,23 @@ import { ICommunityBuild } from 'projects/shared-models/community-build.model';
   templateUrl: './user-build-card.component.html',
   styleUrls: ['./user-build-card.component.scss'],
 })
-export class UserBuildCardComponent implements OnInit {
+export class UserBuildCardComponent implements OnChanges {
   @Input() build: ICommunityBuild;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.build) {
+      this.setDescription();
+    }
+  }
 
-  getDescription() {
+  setDescription() {
     // Decode HTML
     const txt = document.createElement('textarea');
     txt.innerHTML = this.build.description;
     const htmlContent = txt.value;
-    // Remove HTML tags, take the first 100 characters and add '...'
-    return htmlContent
-      .replace(/<[^>]+>/g, '')
-      .substr(0, 80)
-      .concat('...');
+    // Remove HTML tags and assign to the build description
+    this.build.description = htmlContent.replace(/<[^>]+>/g, '');
   }
 }

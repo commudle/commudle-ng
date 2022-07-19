@@ -1,59 +1,35 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
-p {
-  margin: 0;
+p,
+h4 {
+  @apply com-m-0;
 }
 
-.user-labs-card {
-  border: 1px solid $maya-blue;
-  border-radius: $border-12;
-  margin: 0;
-
-  nb-card-header {
-    border-bottom: 1px solid $maya-blue;
-    height: 134px;
-    line-height: 0;
-    overflow: hidden;
-    padding: 0;
-
-    img {
-      height: inherit;
-      object-fit: cover;
-      object-position: center;
-      width: 100%;
-    }
-  }
+.user-lab {
+  @apply com-m-0 com-overflow-hidden com-cursor-pointer;
 
   nb-card-body {
-    padding: $space-12 $space-16 $space-16;
+    @apply com-p-0 com-flex com-flex-col;
 
-    .user-labs-card-name {
-      color: $neon-blue;
-      font-size: $fs-h5;
-      font-weight: $fw-600;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .user-lab-cover-image {
+      @apply com-h-36 com-w-full com-object-cover com-object-center;
     }
 
-    .user-labs-card-description {
-      color: $cadet;
-      font-size: $fs-h7;
-      font-weight: $fw-500;
-      line-height: 12px;
-      margin-top: $space-4;
+    .user-lab-name {
+      @apply com-text-sm com-font-semibold com-line-clamp-1;
     }
 
-    .user-labs-card-interactions {
-      color: $gunmetal;
-      font-size: $fs-h6;
-      line-height: 14px;
-      margin-top: $space-24;
+    .user-lab-description {
+      @apply com-mt-1 com-text-xs com-text-gray-500 com-line-clamp-4;
+    }
 
-      nb-icon {
-        color: $neon-blue;
-        font-size: $fs-h4;
+    .user-lab-interactions {
+      @apply com-text-xs com-mt-3 com-space-x-3 com-text-blue-700;
+
+      span {
+        @apply com-inline-flex com-gap-1 com-items-center;
+
+        nb-icon {
+          @apply com-text-sm com-text-blue-500;
+        }
       }
     }
   }

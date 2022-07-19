@@ -1,14 +1,13 @@
-<nb-card [routerLink]="['/speaker-resources', pastEvent.id]" class="user-past-event-card clickable">
+<nb-card [routerLink]="['/speaker-resources', pastEvent.id]" class="user-past-event-card">
   <nb-card-body>
-    <nb-actions>
-      <nb-action>
-        <p class="user-past-event-date">{{ pastEvent.event.start_time | date: 'MMM d' }}</p>
-        <p class="user-past-event-date">{{ pastEvent.event.start_time | date: 'YYYY' }}</p>
-      </nb-action>
-      <nb-action>
-        <p class="user-past-event-title">{{ pastEvent.title || '' | truncatetext: 18 }}</p>
-        <p class="user-past-event-description">{{ pastEvent.event.name || '' | truncatetext: 21 }}</p>
-      </nb-action>
-    </nb-actions>
+    <p class="date">
+      <span class="date-month">{{ pastEvent.event.start_time | date: 'MMM' }}</span>
+      <span class="date-day">{{ pastEvent.event.start_time | date: 'dd' }}</span>
+      <span class="date-year">{{ pastEvent.event.start_time | date: 'yyyy' }}</span>
+    </p>
+    <div class="content">
+      <h4 class="title">{{ pastEvent.event.name }}</h4>
+      <p class="description">{{ pastEvent.title }}</p>
+    </div>
   </nb-card-body>
 </nb-card>

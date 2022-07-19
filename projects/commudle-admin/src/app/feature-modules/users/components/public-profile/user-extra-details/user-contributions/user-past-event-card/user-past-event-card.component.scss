@@ -1,43 +1,31 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
-p {
+p,
+h4 {
   margin: 0;
 }
 
 .user-past-event-card {
-  border: 1px solid $platinum;
-  border-radius: $border-5;
-  margin: 0;
+  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
 
   nb-card-body {
-    padding: $space-16;
+    @apply com-p-0 com-flex;
 
-    nb-actions {
-      nb-action {
-        flex-direction: column;
-        font-weight: $fw-400;
-        height: max-content;
-        padding: 0 $space-8;
+    .date {
+      @apply com-p-2 com-bg-blue-500 com-flex com-flex-col com-justify-center com-items-center com-w-14 com-text-xs com-text-blue-100 com-flex-shrink-0;
 
-        .user-past-event-date {
-          color: $neon-blue;
-          font-size: $fs-h6;
-        }
+      .date-day {
+        @apply com-text-base com-font-semibold com-text-white;
+      }
+    }
 
-        .user-past-event-title {
-          align-self: flex-start;
-          color: $gunmetal;
-          font-size: $fs-h5;
-          font-weight: $fw-600;
-        }
+    .content {
+      @apply com-my-auto com-p-2;
 
-        .user-past-event-description {
-          align-self: flex-start;
-          color: $spanish-gray;
-          font-size: $fs-h6;
-          line-height: 12px;
-          margin: $space-4 0 0;
-        }
+      .title {
+        @apply com-text-sm com-font-semibold com-line-clamp-1;
+      }
+
+      .description {
+        @apply com-mt-1 com-text-xs com-text-gray-500 com-line-clamp-2;
       }
     }
   }

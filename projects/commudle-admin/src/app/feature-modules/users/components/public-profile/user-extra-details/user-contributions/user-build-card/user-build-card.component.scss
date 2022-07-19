@@ -1,87 +1,122 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
-p {
-  margin: 0;
+p,
+h4 {
+  @apply com-m-0;
 }
 
-.user-build-card {
-  border: 1px solid $platinum;
-  border-radius: $border-5;
-  padding: $space-24 $space-16;
+.user-build {
+  @apply com-m-0 com-h-full com-overflow-hidden com-cursor-pointer;
 
-  .user-build-card-prefix {
-    .user-build-card-tags {
-      gap: $space-4;
+  nb-card-body {
+    @apply com-p-2 com-flex com-flex-col;
 
-      .user-build-card-tag {
-        background-color: $lavender;
-        border-radius: $border-20;
-        color: $neon-blue;
-        font-size: $fs-h6;
-        padding: 0 $space-8;
-      }
-    }
-  }
+    .user-build-tags {
+      @apply com-mb-2 com-max-h-7 com-overflow-hidden;
 
-  .user-build-card-content {
-    margin: $space-8 0;
-
-    .user-build-card-name {
-      color: $gunmetal;
-      font-size: $fs-h5;
-      font-weight: $fw-600;
-      line-height: 16px;
-    }
-
-    .user-build-card-description {
-      color: rgba($spanish-gray, 0.7);
-      font-size: $fs-h7;
-      font-style: italic;
-      line-height: 12px;
-      margin-top: $space-4;
-    }
-  }
-
-  .user-build-card-suffix {
-    .user-build-card-interactions {
-      color: $gunmetal;
-      font-size: $fs-h6;
-
-      nb-icon {
-        color: $silver-sand;
-        font-size: $fs-h4;
+      nb-tag {
+        @apply com-font-medium;
       }
     }
 
-    .user-build-card-author {
-      height: 16px;
-
-      .user-build-card-author-name {
-        color: $gunmetal;
-        display: none;
-        font-size: $fs-h7;
-        line-height: 12px;
-        padding-right: $space-4;
-      }
-
-      img {
-        border-radius: 50%;
-        height: 100%;
-      }
+    .user-build-name {
+      @apply com-text-sm com-font-semibold com-line-clamp-1;
     }
-  }
 
-  &:hover {
-    .user-build-card-suffix {
-      .user-build-card-author {
-        background-color: $lavender;
-        border-radius: $border-8;
-        padding-left: $space-8;
+    .user-build-description {
+      @apply com-mt-1 com-mb-3 com-text-xs com-text-gray-500 com-line-clamp-4;
+    }
 
-        .user-build-card-author-name {
-          display: block;
+    .user-build-interactions {
+      @apply com-text-xs com-mt-auto com-space-x-3 com-text-blue-700;
+
+      span {
+        @apply com-inline-flex com-gap-1 com-items-center;
+
+        nb-icon {
+          @apply com-text-sm com-text-blue-500;
         }
       }
     }
   }
 }
+
+//.user-build-card {
+//  border: 1px solid $platinum;
+//  border-radius: $border-5;
+//  padding: $space-24 $space-16;
+//
+//  .user-build-card-prefix {
+//    .user-build-card-tags {
+//      gap: $space-4;
+//
+//      .user-build-card-tag {
+//        background-color: $lavender;
+//        border-radius: $border-20;
+//        color: $neon-blue;
+//        font-size: $fs-h6;
+//        padding: 0 $space-8;
+//      }
+//    }
+//  }
+//
+//  .user-build-card-content {
+//    margin: $space-8 0;
+//
+//    .user-build-card-name {
+//      color: $gunmetal;
+//      font-size: $fs-h5;
+//      font-weight: $fw-600;
+//      line-height: 16px;
+//    }
+//
+//    .user-build-card-description {
+//      color: rgba($spanish-gray, 0.7);
+//      font-size: $fs-h7;
+//      font-style: italic;
+//      line-height: 12px;
+//      margin-top: $space-4;
+//    }
+//  }
+//
+//  .user-build-card-suffix {
+//    .user-build-card-interactions {
+//      color: $gunmetal;
+//      font-size: $fs-h6;
+//
+//      nb-icon {
+//        color: $silver-sand;
+//        font-size: $fs-h4;
+//      }
+//    }
+//
+//    .user-build-card-author {
+//      height: 16px;
+//
+//      .user-build-card-author-name {
+//        color: $gunmetal;
+//        display: none;
+//        font-size: $fs-h7;
+//        line-height: 12px;
+//        padding-right: $space-4;
+//      }
+//
+//      img {
+//        border-radius: 50%;
+//        height: 100%;
+//      }
+//    }
+//  }
+//
+//  &:hover {
+//    .user-build-card-suffix {
+//      .user-build-card-author {
+//        background-color: $lavender;
+//        border-radius: $border-8;
+//        padding-left: $space-8;
+//
+//        .user-build-card-author-name {
+//          display: block;
+//        }
+//      }
+//    }
+//  }
+//}

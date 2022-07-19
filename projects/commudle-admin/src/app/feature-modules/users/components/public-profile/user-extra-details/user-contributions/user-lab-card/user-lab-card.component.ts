@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ILab } from 'projects/shared-models/lab.model';
 
 @Component({
@@ -6,22 +6,23 @@ import { ILab } from 'projects/shared-models/lab.model';
   templateUrl: './user-lab-card.component.html',
   styleUrls: ['./user-lab-card.component.scss'],
 })
-export class UserLabCardComponent implements OnInit {
+export class UserLabCardComponent implements OnChanges {
   @Input() lab: ILab;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.lab) {
+      this.setDescription();
+    }
+  }
 
-  getDescription() {
+  setDescription() {
     // Decode HTML
     const txt = document.createElement('textarea');
     txt.innerHTML = this.lab.description;
     const htmlContent = txt.value;
-    // Remove HTML tags, take the first 100 characters and add '...'
-    return htmlContent
-      .replace(/<[^>]+>/g, '')
-      .substr(0, 120)
-      .concat('...');
+    // Remove HTML tags and assign to the lab description
+    this.lab.description = htmlContent.replace(/<[^>]+>/g, '');
   }
 }
