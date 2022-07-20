@@ -31,8 +31,8 @@ export class LabsComponent implements OnInit {
     this.getLabsByTags();
 
     this.seoService.setTags(
-      'Labs - Step By Step Tutorials',
-      'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create small apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
+      'Create Your Codelabs | Guided Tutorials From Software Developers',
+      'Labs are guided hands-on tutorials published by software developers. They teach you algorithms, help you create  apps & projects and cover topics including Web, Flutter, Android, iOS, Data Structures, ML & AI.',
       `https://commudle.com/assets/images/commudle-logo192.png`,
     );
   }
