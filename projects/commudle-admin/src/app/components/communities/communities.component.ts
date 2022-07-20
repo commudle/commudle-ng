@@ -11,8 +11,8 @@ export class CommunitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.seoService.setTags(
-      'All Communities',
-      'Find a community you want to join, network & learn with software developers and build recognition with your "Developer Profile" as you contribute to communities.',
+      'Host & Build Your Own Thriving Dev Community',
+      'Commudle is the best platform for dev communities and forums. Connect with more than 40,000 developers & their communities from diverse backgrounds who constantly share & learn and stay up to date. Sign up now!',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
