@@ -1,43 +1,28 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .chat-window {
-  margin-left: $space-5;
+  @apply com-ml-[5px];
 
   nb-card {
-    height: 100%;
-    margin: 0;
+    @apply com-h-full com-m-0;
 
     nb-card-header {
-      padding: $space-4 $space-6;
+      @apply com-px-1 com-py-[6px];
 
       .window-options {
-        display: flex;
-        justify-content: space-between;
+        @apply com-flex com-justify-between;
       }
     }
 
     nb-card-body {
       transition: all 0.2s ease-in-out;
-      padding: 0;
-      display: grid;
+      @apply com-grid com-p-0;
     }
   }
 }
 
-@media all and (max-width: $tab-width) {
+@media all and (max-width: 768px) {
   .chat-window {
-    margin-bottom: $space-56;
+    @apply com-mb-14;
   }
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: auto;
-  // background-color: white;
-  @apply com--mt-3;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }
