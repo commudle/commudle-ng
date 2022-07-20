@@ -4,6 +4,7 @@ import { SDiscussionsService } from 'projects/shared-components/services/s-discu
 import { DiscussionPersonalChatChannel } from 'projects/shared-components/services/websockets/dicussion-personal-chat.channel';
 import { IDiscussionFollower } from 'projects/shared-models/discussion-follower.model';
 import { IDiscussion } from 'projects/shared-models/discussion.model';
+import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-chats-window',
@@ -15,6 +16,7 @@ export class ChatsWindowComponent implements OnInit {
   @Output() removeFromUnread: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
   @Output() removeChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
 
+  items = [{ title: 'Block' }];
   // Predefined constants
   chatsWindowHeight = 50;
   chatsWindowWidth = 350;
@@ -26,6 +28,7 @@ export class ChatsWindowComponent implements OnInit {
     private sDiscussionService: SDiscussionsService,
     private userChatMessagesChannel: UserChatMessagesChannel,
     private discussionChatChannel: DiscussionPersonalChatChannel,
+    private nbMenuService: NbMenuService,
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +38,7 @@ export class ChatsWindowComponent implements OnInit {
     if (this.discussionFollower['minimized']) {
       this.toggleChatsWindowHeight();
     }
+    this.nbMenuService.onItemClick().subscribe(() => this.blockChat());
   }
 
   // Toggle chats window height
@@ -59,6 +63,5 @@ export class ChatsWindowComponent implements OnInit {
 
   blockChat() {
     this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.TOGGLE_BLOCK, {});
-    this.blocked = true;
   }
 }
