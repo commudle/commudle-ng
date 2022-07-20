@@ -21,7 +21,7 @@ export class CommunityBuildsComponent implements OnInit {
 
   ngOnInit() {
     this.seoService.setTags(
-      'Builds - Projects Shared by Developers',
+      'Builds - Projects & Side Hustle Sharing Platform for Developers ',
       'Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers. Share a project to get recognition & inspire others.',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );

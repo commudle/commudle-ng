@@ -1,0 +1,42 @@
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="blog-container">
+        <nb-card-header>
+          <h1>Relating with Developers & Communities</h1>
+          <p>
+            Read and connect with developers, devrels & community managers from their experiences in building
+            communities, helping folks to learn new technologies. From diverse backgrounds, people come together and
+            share how they have built their careers, found opportunities and empowered people around them.
+          </p>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="blog-cards">
+            <div *ngFor="let blog of blogs" class="blog-card">
+              <img
+                [alt]="blog.title"
+                [src]="imageUrl(blog.headerImage).width(500).url()"
+                class="com-h-36 com-w-full com-object-cover com-object-center"
+              />
+              <div class="com-p-4">
+                <h2 class="name">
+                  {{ blog.title }}
+                </h2>
+                <p class="date">
+                  {{ blog.publishedAt | date }}
+                </p>
+                <div class="com-line-clamp-3">
+                  {{ blog.content[0]['children'][0]['text'] }}
+                </div>
+                <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
+                  Read More
+                  <nb-icon icon="arrow-forward-outline"></nb-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
