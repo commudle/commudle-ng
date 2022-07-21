@@ -1,0 +1,92 @@
+import { Clipboard } from '@angular/cdk/clipboard';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { IUserResume } from 'projects/shared-models/user_resume.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
+import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
+import { Subscription } from 'rxjs';
+
+@Component({
+  selector: 'app-user-resume-card',
+  templateUrl: './user-resume-card.component.html',
+  styleUrls: ['./user-resume-card.component.scss'],
+})
+export class UserResumeCardComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() user: IUser;
+  @Input() userResume: IUserResume;
+
+  @Output() updateUserResume: EventEmitter<any> = new EventEmitter<any>();
+  @Output() reloadUserResume: EventEmitter<any> = new EventEmitter<any>();
+
+  currentUser: ICurrentUser;
+  resumeLink: string;
+
+  subscriptions: Subscription[] = [];
+
+  constructor(
+    private authWatchService: LibAuthwatchService,
+    private userResumeService: UserResumeService,
+    private nbDialogService: NbDialogService,
+    private nbToastrService: NbToastrService,
+    private navigatorShareService: NavigatorShareService,
+    private clipboard: Clipboard,
+    private router: Router,
+  ) {}
+
+  ngOnInit(): void {
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.userResume) {
+      this.resumeLink = `${environment.app_url + this.router.url}/(p:resume/${this.userResume.uuid})`;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  deleteUserResume() {
+    this.subscriptions.push(
+      this.userResumeService.deleteResume(this.userResume.uuid).subscribe((value) => {
+        if (value) {
+          this.nbToastrService.success('Resume deleted successfully', 'Success');
+          this.reloadUserResume.emit();
+        }
+      }),
+    );
+  }
+
+  onDialogOpen(templateRef: TemplateRef<any>) {
+    this.nbDialogService.open(templateRef, { closeOnEsc: false, closeOnBackdropClick: false });
+  }
+
+  copyTextToClipboard(): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(this.resumeLink)) {
+        this.nbToastrService.success('Copied resume link to clipboard!', 'Success');
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({ title: 'Hey, check out my resume!', url: this.resumeLink })
+      .then(() => this.nbToastrService.success('Shared resume link!', 'Success'));
+  }
+}

@@ -17,6 +17,7 @@ export class UserWorkHistoryCardComponent implements OnInit, OnDestroy {
   @Input() userWorkHistory: IUserWorkHistory;
 
   @Output() updateUserWorkHistory: EventEmitter<any> = new EventEmitter<any>();
+  @Output() reloadUserWorkHistory: EventEmitter<any> = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
 
@@ -41,7 +42,8 @@ export class UserWorkHistoryCardComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.userWorkHistoryService.deleteWorkHistory(this.userWorkHistory.id).subscribe((value) => {
         if (value) {
-          this.nbToastrService.success('Work history deleted successfully');
+          this.nbToastrService.success('Work history deleted successfully', 'Success');
+          this.reloadUserWorkHistory.emit();
         }
       }),
     );

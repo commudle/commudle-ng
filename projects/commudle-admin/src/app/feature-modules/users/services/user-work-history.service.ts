@@ -18,7 +18,7 @@ export class UserWorkHistoryService {
     });
   }
 
-  createWorkHistory(workHistory: Omit<IUserWorkHistory, 'id' | 'user'>): Observable<IUserWorkHistory> {
+  createWorkHistory(workHistory: Omit<IUserWorkHistory, 'id'>): Observable<IUserWorkHistory> {
     return this.http.post<IUserWorkHistory>(this.apiRoutesService.getRoute(API_ROUTES.USER_WORK_HISTORY.CREATE), {
       user_work_history: workHistory,
     });
@@ -26,7 +26,7 @@ export class UserWorkHistoryService {
 
   updateWorkHistory(
     userWorkHistoryId: number,
-    workHistory: Omit<IUserWorkHistory, 'id' | 'user'>,
+    workHistory: Omit<IUserWorkHistory, 'id'>,
   ): Observable<IUserWorkHistory> {
     let params = new HttpParams().set('user_work_history_id', String(userWorkHistoryId));
     return this.http.put<IUserWorkHistory>(

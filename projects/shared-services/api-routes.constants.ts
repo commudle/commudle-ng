@@ -593,4 +593,12 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/user_work_histories',
     DESTROY: 'api/v2/user_work_histories',
   },
+
+  USER_RESUME: {
+    INDEX: 'api/v2/user_resumes',
+    SHOW: 'api/v2/user_resumes/show',
+    CREATE: 'api/v2/user_resumes',
+    UPDATE: 'api/v2/user_resumes',
+    DESTROY: 'api/v2/user_resumes',
+  },
 };

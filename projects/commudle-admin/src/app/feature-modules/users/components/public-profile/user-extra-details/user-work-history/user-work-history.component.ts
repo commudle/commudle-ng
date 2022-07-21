@@ -2,9 +2,12 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, Template
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService, NbToastrService } from '@nebular/theme';
 import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
+import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
 import { UserWorkHistoryService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-work-history.service';
+import { IAttachedFile } from 'projects/shared-models/attached-file.model';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { IUserResume } from 'projects/shared-models/user_resume.model';
 import { IUserWorkHistory } from 'projects/shared-models/user_work_history.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { Subscription } from 'rxjs';
@@ -18,6 +21,7 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
   @Input() user: IUser;
 
   currentUser: ICurrentUser;
+
   userWorkHistories: IUserWorkHistory[] = [];
   userWorkHistoryForm = this.fb.group(
     {
@@ -55,28 +59,40 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
       ],
     },
   );
-  isEditing: boolean = false;
 
-  userWorkHistoryDialogRef: NbDialogRef<any>;
+  userResumes: IUserResume[] = [];
+  userResumeForm = this.fb.group({
+    name: ['', Validators.required],
+  });
+  uploadedResume: IAttachedFile;
+  uploadedResumeSrc: string | ArrayBuffer;
+
+  isEditing: boolean = false;
+  dialogRef: NbDialogRef<any>;
 
   subscriptions: Subscription[] = [];
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private userWorkHistoryService: UserWorkHistoryService,
+    private userResumeService: UserResumeService,
     private fb: FormBuilder,
     private nbDialogService: NbDialogService,
     private nbToastrService: NbToastrService,
     public userProfileMenuService: UserProfileMenuService,
   ) {}
 
-  ngOnInit(): void {
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
+
     if (changes.user) {
       this.getUserWorkHistories();
+
+      if (this.user?.id === this.currentUser?.id) {
+        this.getUserResumes();
+      }
     }
   }
 
@@ -93,12 +109,26 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
     );
   }
 
+  getUserResumes() {
+    this.subscriptions.push(this.userResumeService.getResumes().subscribe((data) => (this.userResumes = data)));
+  }
+
   createWorkHistory() {
     this.subscriptions.push(
       this.userWorkHistoryService.createWorkHistory(this.userWorkHistoryForm.value).subscribe(() => {
-        this.nbToastrService.success('Success', 'Work history created successfully');
+        this.nbToastrService.success('Work history created successfully', 'Success');
         this.onCloseDialog();
         this.getUserWorkHistories();
+      }),
+    );
+  }
+
+  createResume() {
+    this.subscriptions.push(
+      this.userResumeService.createResume(this.getResumeFormData()).subscribe(() => {
+        this.nbToastrService.success('Resume uploaded successfully', 'Success');
+        this.onCloseDialog();
+        this.getUserResumes();
       }),
     );
   }
@@ -106,32 +136,93 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
   updateWorkHistory(userWorkHistoryId: number) {
     this.subscriptions.push(
       this.userWorkHistoryService.updateWorkHistory(userWorkHistoryId, this.userWorkHistoryForm.value).subscribe(() => {
-        this.nbToastrService.success('Success', 'Work history updated successfully');
+        this.nbToastrService.success('Work history updated successfully', 'Success');
         this.onCloseDialog();
         this.getUserWorkHistories();
       }),
     );
   }
 
-  onOpenCreateDialog(templateRef: TemplateRef<any>) {
-    this.userWorkHistoryDialogRef = this.nbDialogService.open(templateRef, {
+  updateResume(userResumeUuid: string) {
+    this.subscriptions.push(
+      this.userResumeService.updateResume(userResumeUuid, this.getResumeFormData()).subscribe(() => {
+        this.nbToastrService.success('Resume updated successfully', 'Success');
+        this.onCloseDialog();
+        this.getUserResumes();
+      }),
+    );
+  }
+
+  onOpenDialog(templateRef: TemplateRef<any>, data?: any) {
+    this.dialogRef = this.nbDialogService.open(templateRef, {
       closeOnEsc: false,
       closeOnBackdropClick: false,
+      context: data,
     });
   }
 
-  onOpenEditDialog(templateRef: TemplateRef<any>, userWorkHistory: IUserWorkHistory) {
+  onOpenEditUserWorkHistoryDialog(templateRef: TemplateRef<any>, userWorkHistory: IUserWorkHistory) {
     this.isEditing = true;
     this.userWorkHistoryForm.patchValue(userWorkHistory);
-    this.userWorkHistoryDialogRef = this.nbDialogService.open(templateRef, {
-      closeOnEsc: false,
-      closeOnBackdropClick: false,
-      context: { userWorkHistory },
-    });
+    this.onOpenDialog(templateRef, userWorkHistory);
+  }
+
+  onOpenEditUserResumeDialog(templateRef: TemplateRef<any>, userResume: IUserResume) {
+    this.isEditing = true;
+    this.userResumeForm.patchValue(userResume);
+    this.uploadedResume = userResume.resume;
+    this.uploadedResumeSrc = userResume.resume.url;
+    this.onOpenDialog(templateRef, userResume);
   }
 
   onCloseDialog() {
     this.userWorkHistoryForm.reset();
-    this.userWorkHistoryDialogRef.close();
+    this.userResumeForm.reset();
+    this.dialogRef.close();
+    this.isEditing = false;
+    this.uploadedResume = null;
+    this.uploadedResumeSrc = null;
+  }
+
+  onFileChange(event) {
+    if (event.target.files && event.target.files.length) {
+      if (event.target.files[0].type !== 'application/pdf') {
+        this.nbToastrService.warning('File must be a pdf', 'Warning');
+        return;
+      }
+
+      if (event.target.files[0].size > 5000000) {
+        this.nbToastrService.warning('File must be less than 5mb', 'Warning');
+        return;
+      }
+
+      const file = event.target.files[0];
+      this.uploadedResume = {
+        id: null,
+        file: file,
+        url: null,
+        name: null,
+        type: null,
+      };
+
+      const reader = new FileReader();
+      reader.onload = () => (this.uploadedResumeSrc = reader.result);
+      reader.readAsDataURL(file);
+    }
+  }
+
+  getResumeFormData(): FormData {
+    const formData = new FormData();
+    const resumeValue = this.userResumeForm.value;
+
+    Object.keys(resumeValue).forEach((key) => {
+      formData.append(`user_resume[${key}]`, resumeValue[key]);
+    });
+
+    Object.keys(this.uploadedResume).forEach((key) => {
+      formData.append(`user_resume[resume][${key}]`, this.uploadedResume[key]);
+    });
+
+    return formData;
   }
 }
