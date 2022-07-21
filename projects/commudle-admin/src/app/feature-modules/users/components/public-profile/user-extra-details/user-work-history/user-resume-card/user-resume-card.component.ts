@@ -10,10 +10,8 @@ import {
   SimpleChanges,
   TemplateRef,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { UserResumeService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-resume.service';
-import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { IUserResume } from 'projects/shared-models/user_resume.model';
@@ -45,7 +43,6 @@ export class UserResumeCardComponent implements OnInit, OnChanges, OnDestroy {
     private nbToastrService: NbToastrService,
     private navigatorShareService: NavigatorShareService,
     private clipboard: Clipboard,
-    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +51,7 @@ export class UserResumeCardComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.userResume) {
-      this.resumeLink = `${environment.app_url + this.router.url}/(p:resume/${this.userResume.uuid})`;
+      this.resumeLink = `${window.location.href}/(p:resume/${this.userResume.uuid})`;
     }
   }
 

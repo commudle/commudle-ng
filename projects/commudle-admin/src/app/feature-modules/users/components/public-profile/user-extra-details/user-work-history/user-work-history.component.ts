@@ -176,8 +176,18 @@ export class UserWorkHistoryComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onCloseDialog() {
-    this.userWorkHistoryForm.reset();
-    this.userResumeForm.reset();
+    this.userWorkHistoryForm.patchValue({
+      job_title: '',
+      company: '',
+      location: '',
+      start_date: new Date().toISOString().substring(0, 7),
+      end_date: '',
+      is_working: true,
+      description: '',
+    });
+    this.userResumeForm.patchValue({
+      name: '',
+    });
     this.dialogRef.close();
     this.isEditing = false;
     this.uploadedResume = null;
