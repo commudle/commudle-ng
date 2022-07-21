@@ -8,7 +8,7 @@
       *ngFor="let badge of badges"
       [alt]="badge.name"
       [nbTooltip]="badge.name"
-      [src]="badge.image.url"
+      [src]="badge.image?.url"
       [title]="badge.name"
       class="com-max-w-[150px]"
     />
