@@ -2,7 +2,7 @@
   <div class="message">
     <div>
       <a [routerLink]="['/users', message.user.username]" target="_blank">
-        <nb-user [picture]="message.user.avatar" onlyPicture="true"></nb-user>
+        <nb-user [picture]="message.user.photo.i64" onlyPicture="true"></nb-user>
       </a>
     </div>
     <div class="content-controls">
@@ -78,7 +78,7 @@
   <div *ngIf="canReply" class="replies-container">
     <div *ngFor="let rep of message.user_messages" class="reply-message">
       <app-lab-discussion-message
-        (sendDelete)="emitDelete($event)"
+        (sendDelete)="emitDelete($event, message.user.id === currentUser.id)"
         (sendFlag)="emitFlag($event)"
         [allActions]="allActions"
         [canReply]="false"

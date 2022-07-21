@@ -1,0 +1,12 @@
+nb-card {
+  @apply com-pb-8;
+  button {
+    @apply com-my-3 com-mb-5;
+  }
+
+  nb-card-body {
+    .profile {
+      @apply com-pb-7 com-cursor-pointer;
+    }
+  }
+}

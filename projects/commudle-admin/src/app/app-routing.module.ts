@@ -139,6 +139,10 @@ const routes = [
       import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
   },
   {
+    path: 'blogs',
+    loadChildren: () => import('./feature-modules/public-blogs/public-blogs.module').then((m) => m.PublicBlogsModule),
+  },
+  {
     path: 'search',
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },
