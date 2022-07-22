@@ -69,58 +69,50 @@
               }
 
               .tags {
-                // margin-left: $space-64;
                 @apply com-ml-16;
 
                 &::ng-deep {
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
-                      background-color: $azureish-white;
-                      border: none;
-                      border-radius: $border-5;
-                      color: $gunmetal;
-                      font-size: $fs-h7;
-                      font-weight: $fw-400;
-                      line-height: 12px;
-                      padding: $space-4 $space-12;
-                      text-transform: lowercase;
+                      @apply com-border-0 com-rounded-[5px] com-bg-[#dae0ff] com-text-[#2f2e41] com-text-[10px] com-leading-3 com-lowercase com-py-1 com-px-3 com-font-normal;
                     }
                   }
                 }
               }
             }
 
-            @media all and (max-width: $tab-width) {
+            @media all and (max-width: 768px) {
               .lab-detail {
-                flex-direction: column;
+                @apply com-flex-col;
 
                 .user-profile {
-                  align-items: center;
+                  @apply com-items-center;
 
                   .details {
-                    width: auto;
+                    @apply com-w-auto;
                   }
                 }
 
                 .tags {
-                  margin: $space-16 0 0;
+                  @apply com-mt-4 com-mx-0 com-mb-0;
                 }
               }
             }
 
             .header-image {
               img {
-                width: 100%;
+                @apply com-w-full;
               }
             }
 
             .intro-content {
-              width: 100%;
+              @apply com-w-full;
 
               ::ng-deep {
                 img {
                   height: auto;
                   max-width: 100%;
+                  @apply com-max-w-full com-h-auto;
                 }
 
                 code {
@@ -136,8 +128,7 @@
                 p,
                 li {
                   color: $raisin-black;
-                  font-size: 1.1rem;
-                  line-height: 1.5rem;
+                  @apply com-text-[1.1rem] com-leading-6;
                 }
               }
             }
@@ -145,14 +136,12 @@
         }
 
         nb-card-footer {
-          background-color: $light-purple;
-          border: none;
-          padding: $space-24 0 0;
+          @apply com-bg-[#eeeeff] com-border-0 com-pt-6 com-px-0 com-pb-0;
         }
 
-        @media all and (max-width: $tab-width) {
+        @media all and (max-width: 768px) {
           nb-card-body {
-            padding: $space-20;
+            @apply com-p-5;
 
             .introduction {
               .lab-title {
@@ -227,7 +216,7 @@
       }
     }
 
-    @media (min-width: $tab-width) {
+    @media (min-width: 768px) {
       .content {
         max-width: 744px;
       }
@@ -255,7 +244,7 @@
   }
 }
 
-@media all and (max-width: $tab-width) {
+@media all and (max-width: 768px) {
   .lab {
     padding: $space-16 0 0;
 
@@ -342,10 +331,10 @@
 
 .image {
   @media screen and (min-width: $max-page-width) {
-    width: 70vw;
+    @apply com-w-[70vw];
   }
 
-  @media screen and (max-width: $tab-width) {
-    width: 80vw;
+  @media screen and (max-width: 768px) {
+    @apply com-w-[80vw];
   }
 }
