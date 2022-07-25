@@ -1,60 +1,45 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
-$title: #2f2e41;
-$content: #231f20;
-
-$spacing: 16px;
-
 .lab-step {
   .step-title {
-    font-size: 2.25rem;
-    line-height: 2.75rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    color: $title;
-    margin: 0 0 1.25 * $spacing;
+    margin: 0 0 1.25 * 16px;
+    @apply com-text-4xl com-font-medium com-capitalize com-text-[#2f2e41];
   }
 
-  @media all and (max-width: $tab-width) {
+  @media all and (max-width: 768px) {
     .step-title {
-      font-size: 1.75rem;
-      line-height: 1.75rem;
+      @apply com-text-[28px] com-leading-[28px];
     }
   }
 
   .content {
     ::ng-deep {
       img {
-        max-width: 100%;
-        height: auto;
+        @apply com-max-w-full com-h-auto;
       }
 
       code {
-        white-space: pre-wrap;
+        @apply com-whitespace-pre-wrap;
       }
 
       @for $index from 1 through 6 {
         h#{$index} {
-          color: $title;
+          @apply com-text-[#2f2e41];
         }
       }
 
       p,
       li {
-        color: $content;
-        font-size: 1.1rem;
-        line-height: 1.5rem;
+        @apply com-text-base com-text-[#231f20];
       }
     }
   }
 }
 
 .image {
-  @media screen and (min-width: $max-page-width) {
-    width: 70vw;
+  @media screen and (min-width: 1440px) {
+    @apply com-w-[70vw];
   }
 
-  @media screen and (max-width: $tab-width) {
-    width: 80vw;
+  @media screen and (max-width: 768px) {
+    @apply com-w-[80vw];
   }
 }
