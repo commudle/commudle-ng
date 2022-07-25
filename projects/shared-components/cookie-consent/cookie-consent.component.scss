@@ -1,5 +1,5 @@
 .card {
-  @apply com-fixed com-bottom-[70px] com-right-2 sm:com-bottom-2 com-left-2 sm:com-left-auto com-max-w-2xl com-bg-[#FED335] com-rounded-3xl com-z-50 com-text-justify;
+  @apply com-fixed com-bottom-[70px] com-right-2 sm:com-bottom-2 com-left-2 sm:com-left-auto com-max-w-xl com-bg-[#FED335] com-rounded-3xl com-z-50 com-text-justify;
 
   .content {
     @apply com-flex com-flex-wrap com-items-center com-mx-2;
@@ -8,11 +8,11 @@
       @apply com-w-full com-px-4 com-mb-0;
 
       .heading {
-        @apply com-mb-4 com-font-extrabold com-text-3xl com-leading-loose;
+        @apply com-my-2 com-font-extrabold com-text-3xl com-leading-loose;
       }
 
       .paragraph {
-        @apply com-text-base com-leading-6;
+        @apply com-text-sm com-leading-6;
       }
     }
 
