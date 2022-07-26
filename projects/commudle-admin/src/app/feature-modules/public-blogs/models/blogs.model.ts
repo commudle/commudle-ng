@@ -7,5 +7,6 @@ export interface IBlog {
   username: string;
   publishedAt: Date;
   headerImage: SanityImageObject;
+  meta_description: string;
   content: [];
 }
