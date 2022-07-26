@@ -17,7 +17,6 @@ export class BlogComponent implements OnInit, OnDestroy {
   blog: IBlog;
   richText: string;
   user: IUser;
-  blogDescription: string;
 
   subscriptions: Subscription[] = [];
 
@@ -45,19 +44,16 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
       this.blog = value;
       this.richText = this.cmsService.getHtmlFromBlock(value);
-      this.blogDescription = this.richText.replace(/<[^>]+>/g, '').substr(0, 160);
       this.setUser();
       this.setMeta();
     });
   }
   setUser() {
-    // Get user's data
     this.subscriptions.push(
       this.appUsersService.getProfile(this.blog.username).subscribe((data) => (this.user = data)),
     );
   }
-  //set meta
   setMeta(): void {
-    this.seoService.setTags(this.blog.title, this.blogDescription, this.imageUrl(this.blog.headerImage).url());
+    this.seoService.setTags(this.blog.title, this.blog.meta_description, this.imageUrl(this.blog.headerImage).url());
   }
 }
