@@ -269,7 +269,7 @@ nb-option-list.search-autocomplete {
     nb-option.search-placeholder {
       @apply com-h-full com-items-center com-justify-center;
 
-      @variants focus, hover {
+      @layer utilities {
         cursor: auto;
         background-color: inherit;
       }
