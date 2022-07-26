@@ -2,42 +2,38 @@
 
 .communities-list-container {
   margin-top: 0;
+  @apply com-mt-0;
 
   nb-card-body {
-    padding: $space-24 $space-32;
+    @apply com-py-6 com-px-8;
 
     .communities-list-prefix {
-      margin-bottom: $space-16;
+      @apply com-mb-4;
 
       .communities-list-heading {
-        color: $gunmetal;
-        font-size: $fs-26;
-        font-weight: $fw-600;
-        line-height: 30px;
+        @apply com-text-[#2f2e41] com-text-[26px] com-font-semibold com-leading-[30px];
       }
 
       .communities-list-navigation {
-        min-width: max-content;
+        @apply com-min-w-max;
 
         button {
-          background: rgba($neon-blue, 0.3);
-          height: 28px;
-          width: 40px;
+          @apply com-bg-blue-200 com-h-7 com-w-10;
 
           nb-icon {
-            color: $neon-blue;
+            @apply com-text-[#536eff];
           }
 
           &:nth-of-type(1) {
-            margin-right: $space-8;
+            @apply com-mr-2;
           }
 
           &.communities-list-left-btn {
-            border-radius: $border-8 0 0 $border-8;
+            @apply com-rounded-l-lg;
           }
 
           &.communities-list-right-btn {
-            border-radius: 0 $border-8 $border-8 0;
+            @apply com-rounded-r-lg;
           }
         }
       }
@@ -45,7 +41,7 @@
 
     .communities-list-search {
       gap: $space-8 $space-32;
-      margin: $space-44 0 $space-24;
+      @apply com-mt-11 com-mx-0 com-mb-6 com-gap-y-2 com-gap-x-8;
 
       .communities-list-search-tags {
         gap: $space-8 $space-20;

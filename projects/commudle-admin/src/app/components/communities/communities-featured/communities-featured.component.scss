@@ -1,41 +1,15 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-@import './projects/commudle-admin/src/assets/styles/text-styles';
-
 p {
-  color: $gunmetal;
-  margin: 0;
+  @apply com-m-0 com-text-[#2f2e41];
 }
 
 .communities-featured-container {
-  margin-bottom: $space-32;
-  overflow: hidden;
-  position: relative;
-
-  //&:before {
-  //  content: '';
-  //  position: absolute;
-  //  width: 366px;
-  //  height: 100%;
-  //  background: linear-gradient(59.68deg, #dae0ff 6.11%, rgba(241, 243, 255, 0.05) 71.61%);
-  //  animation: shimmer 8s linear infinite;
-  //  transform: skew(45deg);
-  //}
-  //
-  //@keyframes shimmer {
-  //  0% {
-  //    left: calc(-366px * 1.707);
-  //  }
-  //  100% {
-  //    left: calc(100% + 336px * 0.707);
-  //  }
-  //}
+  @apply com-mb-8 com-overflow-hidden com-relative;
 
   nb-card-body {
-    padding: $space-32 $space-20 $space-24;
+    @apply com-pt-8 com-px-5 com-pb-6;
 
     .communities-featured-heading {
-      @include card-header-text;
-      margin: 0 0 $space-44;
+      @apply com-text-xl com-mt-0 com-mx-0 com-mb-11;
     }
 
     .communities-featured-list {
@@ -46,28 +20,20 @@ p {
       }
 
       .featured-community-card {
-        background-color: $white;
-        border: 1px solid $silver-sand;
-        border-radius: $border-8;
-        min-width: 260px;
-        overflow: hidden;
-        position: relative;
+        @apply com-bg-white com-border-[1px] com-border-solid com-border-[#c4c4c4] com-rounded-lg com-min-w-[260px] com-overflow-hidden com-relative;
 
         @screen lg {
           min-width: inherit;
         }
 
         .featured-community-actions {
-          gap: $space-8;
-          position: absolute;
-          right: $space-12;
-          top: $space-12;
+          @apply com-gap-2 com-absolute com-right-3 com-top-3;
 
           button {
-            background-color: $azureish-white;
+            @apply com-bg-[#dae0ff];
 
             nb-icon {
-              color: $neon-blue;
+              @apply com-text-[#536eff];
             }
           }
 
@@ -75,7 +41,7 @@ p {
             ::ng-deep {
               .share-button-container {
                 button {
-                  background-color: $azureish-white;
+                  @apply com-bg-[#dae0ff];
                 }
               }
             }
@@ -83,26 +49,22 @@ p {
         }
 
         .featured-community-image-container {
-          height: 156px;
-          overflow: hidden;
-          width: 100%;
+          @apply com-h-[156px] com-overflow-hidden com-w-full;
 
           .featured-community-image {
-            width: 100%;
+            @apply com-w-full;
           }
         }
 
         .featured-community-about {
-          padding: $space-16;
+          @apply com-p-4;
 
           .featured-community-name {
-            @apply com-m-0;
-            @include card-title-text;
+            @apply com-m-0 com-text-sm com-font-semibold com-text-[#2f2e41];
           }
 
           .featured-community-reason {
-            @include card-content-text;
-            margin-top: $space-8;
+            @apply com-mt-2 com-text-sm com-text-[#2f2e41];
           }
         }
       }
@@ -110,11 +72,11 @@ p {
   }
 }
 
-@media all and (max-width: $tab-width) {
+@media all and (max-width: 768px) {
   .communities-featured-container {
     nb-card-body {
       .communities-featured-list {
-        overflow-x: scroll;
+        @apply com-overflow-x-scroll;
       }
     }
   }
