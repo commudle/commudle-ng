@@ -1,7 +1,4 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .communities-list-container {
-  margin-top: 0;
   @apply com-mt-0;
 
   nb-card-body {
@@ -11,7 +8,7 @@
       @apply com-mb-4;
 
       .communities-list-heading {
-        @apply com-text-[#2f2e41] com-text-[26px] com-font-semibold com-leading-[30px];
+        @apply com-text-[#2f2e41] com-text-2xl com-font-semibold com-leading-[30px];
       }
 
       .communities-list-navigation {
@@ -40,21 +37,16 @@
     }
 
     .communities-list-search {
-      gap: $space-8 $space-32;
       @apply com-mt-11 com-mx-0 com-mb-6 com-gap-y-2 com-gap-x-8;
 
       .communities-list-search-tags {
-        gap: $space-8 $space-20;
+        @apply com-gap-y-2 com-gap-x-5;
 
         .communities-list-search-tag {
-          border-bottom: 2px solid $white;
-          color: rgba($gunmetal, 0.85);
-          font-size: $fs-h5;
-          line-height: 16px;
-          padding: $space-8 $space-6;
+          @apply com-border-b-2 com-border-solid com-border-white com-text-sm com-py-2 com-px-[6px] com-text-[#2f2e41]/[0.85];
 
           &.active {
-            border-bottom: 2px solid $gunmetal;
+            @apply com-border-b-2 com-border-solid com-border-[#2f2e41];
           }
         }
       }
@@ -63,32 +55,20 @@
         nb-form-field {
           &::ng-deep {
             .nb-form-field-prefix-medium {
-              height: 24px;
-              margin-right: -$space-32;
-              width: 32px;
+              @apply com-h-6 -com-mr-8 com-w-8;
             }
 
             .nb-form-field-suffix-medium {
-              height: 24px;
-              margin-left: -$space-32;
-              width: 32px;
+              @apply com-h-6 -com-mr-8 com-w-8;
             }
           }
 
           nb-icon {
-            color: rgba($gunmetal, 0.85);
-            height: 16px;
-            width: 16px;
+            @apply com-h-4 com-w-4 com-text-[#2f2e41]/[0.85];
           }
 
           .communities-list-search-input {
-            background: #edf1f7;
-            border: none;
-            border-radius: $space-4;
-            font-size: $fs-h6;
-            height: 24px;
-            padding: $space-8 $space-32;
-            width: 140px;
+            @apply com-bg-[#edf1f7] com-border-0 com-rounded-[4px] com-text-xs com-h-6 com-py-2 com-px-8 com-w-[140px];
           }
         }
       }
