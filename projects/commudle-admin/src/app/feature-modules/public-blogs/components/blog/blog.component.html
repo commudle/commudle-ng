@@ -25,12 +25,14 @@
             </div>
           </div>
         </div>
-        <img
-          [alt]="blog.title"
-          [src]="imageUrl(blog.headerImage).url()"
-          class="com-h-80 com-w-full com-object-cover com-object-center"
-        />
-        <div [innerHTML]="richText" class="!com-prose !com-prose-sm !com-max-w-full"></div>
+        <div class="com-w-full com-aspect-[16/9]">
+          <img
+            [alt]="blog.title"
+            [src]="imageUrl(blog.headerImage).url()"
+            class="com-w-full com-object-cover com-object-center"
+          />
+        </div>
+        <div [innerHTML]="richText" class="!com-prose !com-prose-sm !com-max-w-full content"></div>
       </div>
     </nb-card-body>
   </nb-card>
