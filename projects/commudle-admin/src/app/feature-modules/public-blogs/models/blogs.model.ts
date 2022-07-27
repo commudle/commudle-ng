@@ -1,9 +1,12 @@
+import { SanityImageObject } from '@sanity/image-url/lib/types/types';
+
 export interface IBlog {
   _id: string;
-  slug: [];
+  slug: string;
   title: string;
   username: string;
   publishedAt: Date;
-  headerImage: {};
+  headerImage: SanityImageObject;
+  meta_description: string;
   content: [];
 }

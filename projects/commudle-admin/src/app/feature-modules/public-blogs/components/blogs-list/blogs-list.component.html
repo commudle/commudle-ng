@@ -13,11 +13,9 @@
         <nb-card-body>
           <div class="blog-cards">
             <div *ngFor="let blog of blogs" class="blog-card">
-              <img
-                [alt]="blog.title"
-                [src]="imageUrl(blog.headerImage).width(500).url()"
-                class="com-h-36 com-w-full com-object-cover com-object-center"
-              />
+              <div class="com-w-full com-aspect-[16/9]">
+                <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
+              </div>
               <div class="com-p-4">
                 <h2 class="name">
                   {{ blog.title }}
@@ -26,7 +24,7 @@
                   {{ blog.publishedAt | date }}
                 </p>
                 <div class="com-line-clamp-3">
-                  {{ blog.content[0]['children'][0]['text'] }}
+                  {{ blog.meta_description }}
                 </div>
                 <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
                   Read More
