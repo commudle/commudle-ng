@@ -2,7 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { IBlog } from 'projects/commudle-admin/src/app/feature-modules/public-blogs/models/blogs.model';
 import { map } from 'rxjs/operators';
 
 const sanityClient = require('@sanity/client');
@@ -48,9 +47,5 @@ export class CmsService {
 
   getImageUrl(source: SanityImageSource): ImageUrlBuilder {
     return this.imageUrlBuilder.image(source);
-  }
-
-  async getBlogs(): Promise<IBlog[]> {
-    return await this.client.fetch(`*[_type == "blog"]`);
   }
 }
