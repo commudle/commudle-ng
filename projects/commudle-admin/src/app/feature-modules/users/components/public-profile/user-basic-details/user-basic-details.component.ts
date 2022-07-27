@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef,
 import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent, NbToastrService } from '@nebular/theme';
 import { UserChatsService } from 'projects/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
-import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 
 @Component({
   selector: 'app-user-basic-details',
@@ -13,16 +14,10 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
 })
 export class UserBasicDetailsComponent implements OnInit, OnChanges {
   @Input() user: IUser;
-  @Input() currentUser: ICurrentUser;
 
   @Output() updateProfile: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('editTags') editTags: TemplateRef<any>;
-
-  editTagDialog: NbDialogRef<any>;
-
-  // About
-  showFullAbout = false;
+  currentUser: ICurrentUser;
 
   // The updated tags
   tagsDialog: string[] = [];
@@ -32,14 +27,21 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
 
   environment = environment;
 
+  editTagDialog: NbDialogRef<any>;
+
+  @ViewChild('editTags') editTags: TemplateRef<any>;
+
   constructor(
+    private authWatchService: LibAuthwatchService,
     private dialogService: NbDialogService,
     private appUsersService: AppUsersService,
     private userChatsService: UserChatsService,
     private toastrService: NbToastrService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data));
+  }
 
   ngOnChanges() {
     this.getUserTags();
@@ -73,6 +75,7 @@ export class UserBasicDetailsComponent implements OnInit, OnChanges {
     });
     // Close the dialog
     this.editTagDialog.close();
+    this.updateProfile.emit();
   }
 
   // Function to remove a tag

@@ -1,0 +1,36 @@
+p {
+  @apply com-m-0;
+}
+
+.user-work-history-card {
+  nb-card-body {
+    .heading {
+      @apply com-grid com-grid-cols-1 md:com-grid-cols-5 com-gap-2;
+
+      .job {
+        @apply md:com-col-span-3;
+
+        .job-title {
+          @apply com-text-xl com-font-semibold;
+        }
+
+        .company {
+          @apply com-text-base com-text-gray-500;
+        }
+      }
+
+      .date,
+      .location {
+        @apply com-text-sm com-text-gray-700 com-text-right;
+
+        nb-icon {
+          @apply com-text-[#42aaff];
+        }
+      }
+    }
+
+    .description {
+      @apply com-mt-3 com-text-base com-text-gray-800 com-whitespace-pre-wrap;
+    }
+  }
+}

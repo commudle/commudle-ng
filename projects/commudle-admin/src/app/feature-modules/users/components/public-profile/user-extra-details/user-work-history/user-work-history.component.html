@@ -1,0 +1,140 @@
+<nb-card
+  *ngIf="userWorkHistories.length > 0 || currentUser?.id === user.id"
+  class="user-work-history"
+  id="work-history"
+>
+  <nb-card-header>
+    <nb-icon icon="briefcase" status="success"></nb-icon>
+    Work History
+  </nb-card-header>
+  <nb-card-body>
+    <div class="com-flex com-flex-col md:com-flex-row">
+      <button (click)="onOpenDialog(userWorkHistoryDialog)" fullWidth ghost nbButton status="info">
+        <nb-icon icon="plus-circle"></nb-icon>
+        Add Work History
+      </button>
+      <button
+        (click)="onOpenDialog(userResumeDialog)"
+        [disabled]="userResumes.length >= 3"
+        fullWidth
+        ghost
+        nbButton
+        status="success"
+      >
+        <nb-icon icon="plus-circle"></nb-icon>
+        Add Resume/Portfolio
+      </button>
+    </div>
+    <div
+      *ngIf="currentUser?.id === user?.id && userResumes.length > 0"
+      class="com-grid com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3 com-gap-2"
+    >
+      <app-user-resume-card
+        (reloadUserResume)="getUserResumes()"
+        (updateUserResume)="onOpenEditUserResumeDialog(userResumeDialog, userResume)"
+        *ngFor="let userResume of userResumes"
+        [userResume]="userResume"
+        [user]="user"
+      ></app-user-resume-card>
+    </div>
+    <ng-container *ngFor="let userWorkHistory of userWorkHistories">
+      <app-user-work-history-card
+        (reloadUserWorkHistory)="getUserWorkHistories()"
+        (updateUserWorkHistory)="onOpenEditUserWorkHistoryDialog(userWorkHistoryDialog, userWorkHistory)"
+        [userWorkHistory]="userWorkHistory"
+        [user]="user"
+      ></app-user-work-history-card>
+    </ng-container>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #userWorkHistoryDialog let-data>
+  <nb-card class="!com-m-0 com-max-h-[100vh]" style="width: clamp(20rem, 36rem, 100vw)">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      {{ isEditing ? 'Edit Work History' : 'Add Work History' }}
+      <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="userWorkHistoryForm" class="com-flex com-flex-col com-space-y-3">
+        <label>
+          Job Title*
+          <input formControlName="job_title" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Company*
+          <input formControlName="company" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Location*
+          <input formControlName="location" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          Start Date*
+          <input formControlName="start_date" fullWidth nbInput type="month" />
+        </label>
+        <label>
+          End Date
+          <input formControlName="end_date" fullWidth nbInput type="month" />
+        </label>
+        <nb-toggle formControlName="is_working">I'm currently working here</nb-toggle>
+        <label>
+          Description
+          <textarea formControlName="description" fullWidth nbInput rows="5" type="text"></textarea>
+        </label>
+      </form>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
+      <button
+        (click)="isEditing ? updateWorkHistory(data.id) : createWorkHistory()"
+        [disabled]="userWorkHistoryForm.invalid"
+        nbButton
+        status="success"
+      >
+        {{ isEditing ? 'Update' : 'Create' }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #userResumeDialog let-data>
+  <nb-card class="!com-m-0 com-max-w-[100vw] com-max-h-[100vh]">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      {{ isEditing ? 'Edit Resume/Portfolio' : 'Add Resume/Portfolio' }}
+      <button (click)="onCloseDialog()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="userResumeForm" class="com-flex com-flex-col com-space-y-3">
+        <label>
+          Name*
+          <input formControlName="name" fullWidth nbInput type="text" />
+        </label>
+        <label>
+          File* (PDF, max size: 5MB)
+          <input (change)="onFileChange($event)" accept="application/pdf" fullWidth nbInput type="file" />
+        </label>
+      </form>
+      <object
+        *ngIf="uploadedResumeSrc"
+        [data]="uploadedResumeSrc | safe: 'resourceUrl'"
+        class="com-mt-6 com-min-w-full md:com-min-w-[50vw] com-min-h-[70vh]"
+        type="application/pdf"
+      ></object>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="onCloseDialog()" ghost nbButton size="small" status="danger">Cancel</button>
+      <button
+        (click)="isEditing ? updateResume(data.uuid) : createResume()"
+        [disabled]="userResumeForm.invalid || !uploadedResumeSrc"
+        nbButton
+        status="success"
+      >
+        {{ isEditing ? 'Update' : 'Create' }}
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
