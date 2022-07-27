@@ -43,7 +43,7 @@
         @apply com-gap-y-2 com-gap-x-5;
 
         .communities-list-search-tag {
-          @apply com-border-b-2 com-border-solid com-border-white com-text-sm com-py-2 com-px-[6px] com-text-[#2f2e41]/[0.85];
+          @apply com-border-b-2 com-border-solid com-border-white com-text-sm com-py-2 com-leading-4 com-px-[6px] com-text-[#2f2e41]/[0.85];
 
           &.active {
             @apply com-border-b-2 com-border-solid com-border-[#2f2e41];
@@ -68,7 +68,7 @@
           }
 
           .communities-list-search-input {
-            @apply com-bg-[#edf1f7] com-border-0 com-rounded-[4px] com-text-xs com-h-6 com-py-2 com-px-8 com-w-[140px];
+            @apply com-bg-[#edf1f7] com-border-0 com-rounded-[4px] com-text-[12px] com-h-6 com-py-2 com-px-8 com-w-[140px];
           }
         }
       }

@@ -1,8 +1,6 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 a {
   color: inherit;
-  @apply com-no-underline;
+  text-decoration: none;
 }
 
 p {
@@ -41,7 +39,7 @@ p {
   @apply com-flex com-flex-wrap com-gap-2 com-mt-4;
 
   .community-list-card-tag {
-    @apply com-bg-[#dae0ff] com-rounded-[5px] com-text-[#2f2e41] com-text-xs com-py-1 com-px-[10px];
+    @apply com-bg-[#dae0ff] com-rounded-[5px] com-text-[#2f2e41] com-text-xs com-py-1 com-px-[10px] com-leading-3;
   }
 }
 
