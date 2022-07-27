@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CookieConsentService } from 'projects/commudle-admin/src/app/services/cookie-consent.service';
 // import { CookieService } from 'ngx-cookie-service';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
@@ -11,6 +11,7 @@ import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 export class CookieConsentComponent implements OnInit {
   cookieConstent = false;
   isBrowser = this.isBrowserService.isBrowser();
+
   constructor(
     private cookieConsentService: CookieConsentService,
     // private cookieService: CookieService,

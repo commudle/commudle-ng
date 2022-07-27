@@ -11,7 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
-import { RedirectToMyProfileGuard } from './feature-modules/users/services/guards/redirect-to-my-profile.guard';
+import { RedirectToMyProfileGuard } from './feature-modules/users/guards/redirect-to-my-profile.guard';
 import { InitResolver } from './resolvers/init.resolver';
 
 const routes = [
@@ -139,6 +139,10 @@ const routes = [
       import('./feature-modules/public-newsletters/public-newsletters.module').then((m) => m.PublicNewslettersModule),
   },
   {
+    path: 'blogs',
+    loadChildren: () => import('./feature-modules/public-blogs/public-blogs.module').then((m) => m.PublicBlogsModule),
+  },
+  {
     path: 'search',
     loadChildren: () => import('./feature-modules/search/search.module').then((m) => m.SearchModule),
   },
@@ -199,6 +203,9 @@ const routes = [
       initialNavigation: 'enabledBlocking',
       // TODO: modify the below to use the new option
       relativeLinkResolution: 'legacy',
+      anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      scrollOffset: [0, 68],
     }),
   ],
   exports: [RouterModule],
