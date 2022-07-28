@@ -9,19 +9,19 @@
           <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
         </p>
         <p>
-          <span class="title" [innerHTML]="question.title | linky: { sanitizeHtml: true }">
+          <span [innerHTML]="question.title | linky: { sanitizeHtml: true }" class="title">
             <span *ngIf="question.required" class="required-question">*</span>
           </span>
           <br />
           <small
             *ngIf="question.description"
-            class="description"
             [innerHTML]="question.description | linky: { sanitizeHtml: true }"
+            class="description"
           >
           </small>
         </p>
       </div>
-      <div *ngIf="question.question_type_id == EQuestionTypes.SHORT_ANSWER" class="answer">
+      <div *ngIf="question.question_type_id === EQuestionTypes.SHORT_ANSWER" class="answer">
         <input
           formControlName="{{ question.id }}"
           fullWidth
@@ -41,7 +41,7 @@
           Required Field
         </span>
       </div>
-      <div *ngIf="question.question_type_id == EQuestionTypes.NUMBER" class="answer">
+      <div *ngIf="question.question_type_id === EQuestionTypes.NUMBER" class="answer">
         <input
           formControlName="{{ question.id }}"
           fullWidth
@@ -61,7 +61,7 @@
           Required Field
         </span>
       </div>
-      <div *ngIf="question.question_type_id == EQuestionTypes.LONG_ANSWER" class="answer">
+      <div *ngIf="question.question_type_id === EQuestionTypes.LONG_ANSWER" class="answer">
         <textarea
           formControlName="{{ question.id }}"
           fullWidth
@@ -81,14 +81,14 @@
         </span>
       </div>
 
-      <div *ngIf="question.question_type_id == EQuestionTypes.SINGLE_CHOICE" class="answer">
+      <div *ngIf="question.question_type_id === EQuestionTypes.SINGLE_CHOICE" class="answer">
         <nb-radio-group class="options" formControlName="{{ question.id }}" name="{{ question.id }}">
           <nb-radio *ngFor="let option of question.question_choices" [value]="option.id"> {{ option.title }} </nb-radio>
         </nb-radio-group>
       </div>
 
       <div
-        *ngIf="question.question_type_id == EQuestionTypes.MULTIPLE_CHOICE"
+        *ngIf="question.question_type_id === EQuestionTypes.MULTIPLE_CHOICE"
         class="answer"
         formGroupName="{{ question.id }}"
       >

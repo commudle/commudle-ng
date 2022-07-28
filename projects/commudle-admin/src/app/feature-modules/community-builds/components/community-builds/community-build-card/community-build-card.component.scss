@@ -3,8 +3,7 @@ p {
 }
 
 .community-build-card {
-  @apply com-p-4 com-flex com-flex-col md:com-flex-row com-no-underline com-rounded-lg com-overflow-hidden com-transition-shadow hover:com-shadow-lg;
-  border: 0.5px solid #c4c4c4;
+  @apply com-p-4 com-flex com-flex-col com-border-[0.5px] com-border-solid com-border-[#c4c4c4] md:com-flex-row com-no-underline com-rounded-lg com-overflow-hidden com-transition-shadow hover:com-shadow-lg;
 
   .community-build-card-image {
     @apply com-w-full com-h-40 com-object-cover;

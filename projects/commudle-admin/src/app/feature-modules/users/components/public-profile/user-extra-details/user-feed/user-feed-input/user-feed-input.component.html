@@ -1,0 +1,38 @@
+<div class="user-feed-input">
+  <nb-form-field [formGroup]="postData">
+    <nb-icon icon="edit-2" nbPrefix></nb-icon>
+    <textarea
+      #messageInput
+      (input)="handleInputSize()"
+      formControlName="content"
+      fullWidth
+      maxlength="800"
+      nbInput
+      placeholder="Share your thoughts"
+      rows="1"
+      type="text"
+    ></textarea>
+    <button (click)="submitPost()" [disabled]="!postData.valid" ghost nbButton nbSuffix status="primary">
+      <nb-icon icon="paper-plane"></nb-icon>
+    </button>
+  </nb-form-field>
+  <div class="user-feed-input-suffix">
+    <button (click)="showImageUpload = !showImageUpload" ghost nbButton>
+      <nb-icon icon="camera"></nb-icon>
+      <span *ngIf="imagePreviews.length > 0">{{ imagePreviews.length }}</span>
+      &nbsp;Photos
+    </button>
+  </div>
+  <div *ngIf="showImageUpload" class="user-feed-input-images">
+    <p>You can add a maximum of 3 images each having a maximum size of 2MB</p>
+    <input (change)="detectFiles($event)" accept="image/*" fullWidth multiple nbInput type="file" />
+    <div class="user-feed-input-image d-flex">
+      <div *ngFor="let image of imagePreviews; let i = index" class="image-container">
+        <button (click)="deleteImage(i)" nbButton shape="round" size="tiny">
+          <nb-icon icon="close"></nb-icon>
+        </button>
+        <img [src]="image" alt="Preview" height="150" title="Preview" />
+      </div>
+    </div>
+  </div>
+</div>

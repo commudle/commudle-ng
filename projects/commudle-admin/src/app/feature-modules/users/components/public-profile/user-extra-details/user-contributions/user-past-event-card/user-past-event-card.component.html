@@ -1,0 +1,13 @@
+<nb-card [routerLink]="['/speaker-resources', pastEvent.id]" class="user-past-event-card">
+  <nb-card-body>
+    <p class="date">
+      <span class="date-month">{{ pastEvent.event.start_time | date: 'MMM' }}</span>
+      <span class="date-day">{{ pastEvent.event.start_time | date: 'dd' }}</span>
+      <span class="date-year">{{ pastEvent.event.start_time | date: 'yyyy' }}</span>
+    </p>
+    <div class="content">
+      <h4 class="title">{{ pastEvent.event.name }}</h4>
+      <p class="description">{{ pastEvent.title }}</p>
+    </div>
+  </nb-card-body>
+</nb-card>
