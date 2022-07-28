@@ -1,11 +1,9 @@
 .chats-list-container {
-  // position: relative;
   @apply com-relative;
 
   .chats-list {
-    border: none;
     box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
-    @apply com-hidden com-m-0 com-absolute com-w-[300px] com-overflow-hidden com-right-3 com-bottom-[76px];
+    @apply com-hidden com-border-0 com-m-0 com-absolute com-w-[300px] com-overflow-hidden com-right-3 com-bottom-[76px];
 
     &.active {
       @apply com-flex;
@@ -25,7 +23,7 @@
     @apply com-absolute com-w-10 com-h-10 com-right-3 com-p-2 com-bottom-6;
 
     nb-icon {
-      margin-left: 0 !important;
+      @apply com-ml-0 #{!important};
     }
   }
 }
