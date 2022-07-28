@@ -12,7 +12,7 @@
         </nb-card-header>
         <nb-card-body>
           <div class="blog-cards">
-            <div *ngFor="let blog of blogs" class="blog-card">
+            <div *ngFor="let blog of blogs" class="blog-card" [routerLink]="['/blogs', blog.slug.current]">
               <div class="com-w-full com-aspect-[16/9]">
                 <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
               </div>
