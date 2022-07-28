@@ -1,33 +1,25 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .home-component {
   .page-header {
-    flex-direction: row;
-    justify-content: flex-start;
-    margin: $space-32 0 $space-64 0;
+    @apply com-flex-row com-content-start com-mx-0 com-mt-8 com-mb-16;
 
     .logo {
       @apply com-mr-20 com-h-40 com-w-40 lg:com-h-52 lg:com-w-52 com-object-contain;
     }
 
     .details {
-      width: 100%;
+      @apply com-w-full;
 
       h1 {
-        color: $gunmetal;
-        font-size: $fs-32;
-        font-weight: $fw-600;
-        line-height: 38px;
-        margin: $space-28 0 $space-8 0;
+        @apply com-text-4xl com-font-semibold com-text-[#2f2e41] com-mx-0 com-mt-7 com-mb-2;
       }
 
       .membership {
         .member-count {
-          margin: 0 0 $space-78 0;
+          @apply com-mx-0 com-mt-0 com-mb-[78px];
 
           a {
-            color: $gunmetal;
             text-decoration: none;
+            @apply com-text-[#2f2e41];
           }
         }
 
@@ -35,30 +27,25 @@
           .membership-toggle {
             ::ng-deep {
               button {
-                background-color: $neon-blue;
-                color: $white;
-                font-size: $fs-14;
-                font-weight: $fw-400;
-                padding: $space-8;
                 text-transform: none;
+                @apply com-p-2 com-font-normal com-text-[14px] com-text-white com-bg-[#536eff];
               }
 
               nb-select {
                 button {
                   background-color: initial;
                   color: initial;
-                  padding: $space-4;
+                  @apply com-p-1;
                 }
               }
             }
           }
 
           .community-social-links {
-            align-self: center;
-            gap: $space-24;
+            @apply com-self-center com-gap-6;
 
             nb-icon {
-              color: $neon-blue;
+              @apply com-text-[#536eff];
             }
 
             a {
@@ -69,25 +56,22 @@
       }
     }
 
-    @media screen and (max-width: $tab-width) {
-      align-self: flex-start;
+    @media screen and (max-width: 768px) {
+      @apply com-self-start;
 
       .details {
         .membership {
-          flex-direction: column;
+          @apply com-flex-col;
 
           .social-links-container {
-            flex-direction: column;
-            gap: $space-24;
-            justify-content: space-between;
-            width: fit-content;
+            @apply com-w-fit com-content-between com-gap-6 com-flex-col;
 
             .community-social-links {
-              justify-content: space-between;
+              @apply com-content-between;
 
               a {
                 nb-icon {
-                  font-size: $fs-24;
+                  @apply com-text-[24px];
                 }
               }
             }
@@ -98,33 +82,30 @@
   }
 
   .router-outlet {
-    width: 100%;
+    @apply com-w-full;
   }
 
-  @media all and (max-width: $mobile-width) {
-    margin: auto 0;
+  @media all and (max-width: 576px) {
+    @apply com-mx-0 com-my-auto;
 
     .page-header {
-      align-self: center;
-      flex-direction: column;
+      @apply com-items-center com-flex-col;
 
       .logo {
-        margin: 0 auto;
+        @apply com-my-0 com-mx-auto;
       }
 
       .details {
-        text-align: center;
+        @apply com-items-center;
 
         .membership {
-          align-items: center;
+          @apply com-items-center;
 
           .social-links-container {
-            flex-direction: column;
-            gap: $space-24;
-            width: fit-content;
+            @apply com-w-fit com-gap-6 com-flex-col;
 
             .community-social-links {
-              justify-content: space-between;
+              @apply com-justify-between;
             }
           }
         }
@@ -134,66 +115,58 @@
 }
 
 .page-menu {
-  width: 100%;
+  @apply com-w-full;
 
   nb-card {
-    margin: 0;
+    @apply com-m-0;
 
     nb-card-body {
-      padding: $space-20 $space-20 0 $space-20;
+      @apply com-pt-5 com-px-5 com-pb-0;
 
-      @media all and (max-width: $tab-width) {
-        padding-left: 0;
-        padding-right: 0;
+      @media all and (max-width: 768px) {
+        @apply com-mx-0;
       }
     }
   }
 
   .menu-items {
     a {
-      color: $gunmetal;
-      cursor: pointer;
-      font-size: $fs-14;
-      height: fit-content;
-      line-height: 16px;
-      margin: 0;
-      padding: 0 $space-24 $space-17 $space-24;
       text-decoration: none;
+      @apply com-text-[#2f2e41] com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-[17px] com-cursor-pointer;
 
       nb-icon {
-        color: rgba(47, 46, 65, 0.5);
+        @apply com-text-[#2f2e4180];
       }
 
       .title {
-        align-self: center;
-        margin-left: $space-8;
+        @apply com-self-center com-ml-2;
       }
 
       span {
-        display: none;
+        @apply com-hidden;
       }
     }
 
     nb-icon {
-      font-size: $fs-24;
+      @apply com-text-2xl;
     }
 
     .active {
-      border-bottom: 3px solid $blue-jeans;
+      @apply com-border-0 com-border-b-[3px] com-border-solid com-border-[#29a5ff];
 
       nb-icon,
       .title {
-        color: $blue-jeans;
+        @apply com-text-[#29a5ff];
       }
     }
   }
 
-  @media screen and (min-width: $tab-width) {
+  @media screen and (min-width: 768px) {
     nb-card {
       .menu-items {
         a {
           span {
-            display: inline;
+            @apply com-inline;
           }
         }
       }

@@ -1,101 +1,73 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 nb-card {
-  margin: $space-32 0 $space-16;
+  @apply com-mt-8 com-mx-0 com-mb-4;
 
   nb-card-body {
-    padding: 0;
+    @apply com-p-0;
 
     .channels {
-      background-color: $white;
-      border-radius: $border-10;
-      gap: $space-32;
-      padding: $space-32;
+      @apply com-bg-white com-rounded-[10px] com-gap-8 com-p-8;
 
       a {
-        position: relative;
         text-decoration: none;
+        @apply com-relative;
       }
 
       nb-card {
-        border: 1px solid $silver-sand;
-        height: 128px;
-        margin: 0;
-        overflow: hidden;
+        @apply com-border-[1px] com-border-solid com-border-[#c4c4c4] com-h-32 com-m-0 com-overflow-hidden;
       }
 
       .channel-clickable {
-        width: 100%;
+        @apply com-w-full;
 
         .channel {
-          width: 100%;
+          @apply com-w-full;
 
           &:hover {
-            box-shadow: 0 2px 5px 1px $lightgrey;
+            box-shadow: 0 2px 5px 1px lightgrey;
           }
 
           nb-card-body {
             .header-image {
-              margin-right: $space-24;
-              min-width: 220px;
-              width: 220px;
+              @apply com-mr-6 com-w-[220px] com-min-w-[220px];
 
               img {
-                height: 100%;
-                object-fit: cover;
-                width: 100%;
+                @apply com-w-full com-h-full com-object-cover;
               }
             }
 
             .details {
               h5 {
-                color: $gunmetal;
-                font-size: $fs-18;
-                font-weight: $fw-600;
-                line-height: 21px;
-                margin: $space-12 0 $space-8 0;
+                @apply com-text-[#2f2e41] com-text-[18px] com-font-semibold com-leading-[21px] com-mt-3 com-mx-0 com-mb-2;
               }
 
               .member-count {
-                line-height: 0.75rem;
+                @apply com-leading-3;
               }
 
               .complete-description {
-                white-space: pre-wrap;
+                @apply com-whitespace-pre-wrap;
               }
             }
 
             .enter-channel-btn-container {
-              position: absolute;
-              right: 7px;
-              top: 7px;
+              @apply com-absolute com-right-[7px] com-top-[7px];
 
-              @media all and (max-width: $mobile-width) {
-                bottom: 0;
-                padding: 7px;
-                position: absolute;
+              @media all and (max-width: 576px) {
                 right: unset;
                 top: unset;
-                width: 100%;
+                @apply com-bottom-0 com-p-[7px] com-absolute com-w-full;
               }
 
               .enter-channel-btn {
-                background-color: rgba($neon-blue, 0.2);
-                border: none;
-                border-radius: $border-10;
-                color: $neon-blue;
-                font-size: $fs-h6;
-                font-weight: $fw-400;
-                height: 32px;
-                padding: $space-8;
                 text-transform: none;
+                @apply com-bg-[#536eff]/[0.2] com-border-0 com-rounded-[10px] com-text-[#536eff] com-text-[12px] com-font-normal com-h-8 com-p-2;
 
                 &:hover {
-                  background-color: rgba($neon-blue, 0.2);
+                  @apply com-bg-[#536eff]/[0.2];
                 }
 
                 nb-icon {
-                  margin-right: $space-4;
+                  @apply com-mr-1;
                 }
               }
             }
@@ -103,31 +75,25 @@ nb-card {
         }
       }
 
-      @media all and (max-width: $mobile-width) {
-        padding: $space-40 $space-20 $space-20 $space-20;
+      @media all and (max-width: 576px) {
+        @apply com-pt-10 com-px-5 com-pb-5;
 
         .channel-clickable {
           .channel {
-            height: 307px;
-            width: 318px;
+            @apply com-h-[307px] com-w-[318px];
 
             nb-card-body {
-              flex-direction: column;
+              @apply com-flex-col;
 
               .details {
-                align-items: center;
-                display: flex;
-                flex-direction: column;
-                padding: $space-10;
+                @apply com-items-center com-flex com-flex-col com-p-[10px];
               }
 
               .header-image {
-                height: 120px;
-                margin: 0;
-                width: 100%;
+                @apply com-m-0 com-h-[120px] com-w-full;
 
                 img {
-                  object-fit: contain;
+                  @apply com-object-contain;
                 }
               }
             }
@@ -137,8 +103,7 @@ nb-card {
     }
 
     .visit-all-channels {
-      display: flex;
-      justify-content: center;
+      @apply com-flex com-justify-center;
     }
   }
 }

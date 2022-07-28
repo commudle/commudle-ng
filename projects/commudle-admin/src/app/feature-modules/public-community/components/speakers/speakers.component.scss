@@ -1,11 +1,5 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .speakers-container {
   nb-card {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: $space-32 0 $space-16;
-    padding: $space-56 $space-20;
+    @apply com-flex com-flex-row com-flex-wrap com-mt-8 com-mx-0 com-mb-4 com-py-14 com-px-5;
   }
 }
