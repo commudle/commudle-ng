@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from 'projects/shared-models/user.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { Subscription } from 'rxjs';
-import { IBlog } from '../../models/blogs.model';
+import { IBlog } from 'projects/commudle-admin/src/app/feature-modules/public-blogs/models/blogs.model';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { SeoService } from 'projects/shared-services/seo.service';
 
@@ -12,11 +12,11 @@ import { SeoService } from 'projects/shared-services/seo.service';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, OnDestroy {
+  @Input() activateMiniProfileDirective = true;
   blog: IBlog;
-  richText: any;
+  richText: string;
   user: IUser;
-  blogDescription: string;
 
   subscriptions: Subscription[] = [];
 
@@ -31,6 +31,10 @@ export class BlogComponent implements OnInit {
     this.getData();
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
   imageUrl(source: any) {
     return this.cmsService.getImageUrl(source);
   }
@@ -40,19 +44,16 @@ export class BlogComponent implements OnInit {
     this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
       this.blog = value;
       this.richText = this.cmsService.getHtmlFromBlock(value);
-      this.blogDescription = this.richText.replace(/<[^>]+>/g, '').substr(0, 160);
       this.setUser();
       this.setMeta();
     });
   }
   setUser() {
-    // Get user's data
     this.subscriptions.push(
       this.appUsersService.getProfile(this.blog.username).subscribe((data) => (this.user = data)),
     );
   }
-  //set meta
   setMeta(): void {
-    this.seoService.setTags(this.blog.title, this.blogDescription, this.imageUrl(this.blog.headerImage).url());
+    this.seoService.setTags(this.blog.title, this.blog.meta_description, this.imageUrl(this.blog.headerImage).url());
   }
 }

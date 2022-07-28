@@ -1,12 +1,32 @@
 nb-card {
   @apply com-pb-8;
   button {
-    @apply com-my-3 com-mb-5;
+    @apply com-mt-3 com-mb-5;
   }
 
   nb-card-body {
     .profile {
       @apply com-pb-7 com-cursor-pointer;
+    }
+  }
+}
+
+.content {
+  ::ng-deep {
+    p {
+      font-size: initial;
+      color: initial;
+    }
+    a {
+      color: blue !important;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: unset !important;
     }
   }
 }
