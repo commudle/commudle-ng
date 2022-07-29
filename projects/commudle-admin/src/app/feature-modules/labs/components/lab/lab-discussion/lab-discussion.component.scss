@@ -1,5 +1,3 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .discussion {
   @apply com-rounded-none com-m-4;
 
@@ -12,7 +10,7 @@
 
     .discussion-chat-component {
       .send-message-form {
-        margin-bottom: 1.5 * $space-16;
+        margin-bottom: 1.5 * 16px;
 
         nb-form-field {
           textarea {

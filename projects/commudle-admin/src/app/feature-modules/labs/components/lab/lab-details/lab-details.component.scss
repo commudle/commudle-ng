@@ -22,7 +22,7 @@
         }
 
         .lab-step-title {
-          @apply com-text-sm com-m-0 com-font-normal com-text-[#536eff];
+          @apply com-text-sm com-m-0 com-font-normal com-text-[#42aaff];
         }
 
         app-badge {
@@ -31,7 +31,7 @@
       }
 
       .active {
-        @apply com-bg-[#536eff];
+        @apply com-bg-[#42aaff];
 
         .lab-step-title {
           @apply com-text-white;
@@ -45,7 +45,7 @@
 
     a {
       text-decoration: none;
-      @apply com-text-[#536eff];
+      @apply com-text-[#42aaff];
     }
   }
 
@@ -54,7 +54,7 @@
 
     nb-card-header {
       border-bottom: none;
-      @apply com-text-[#536eff] com-text-base com-p-4 com-font-normal;
+      @apply com-text-[#42aaff] com-text-base com-p-4 com-font-normal;
     }
 
     nb-card-body {
@@ -69,7 +69,7 @@
         }
 
         .type {
-          @apply com-text-[#536eff] com-text-xs com-m-0;
+          @apply com-text-[#42aaff] com-text-xs com-m-0;
         }
 
         &:hover {
@@ -90,14 +90,14 @@
           @apply com-text-2xl;
 
           span {
-            @apply com-text-[#536eff];
+            @apply com-text-[#42aaff];
           }
 
           nb-icon {
             @apply com-text-2xl;
 
             &:not(.voted-heart) {
-              @apply com-text-[#536eff];
+              @apply com-text-[#42aaff];
             }
           }
         }
@@ -105,11 +105,11 @@
     }
 
     .message-count {
-      @apply com-text-[#536eff] com-text-2xl;
+      @apply com-text-[#42aaff] com-text-2xl;
     }
 
     nb-icon {
-      @apply com-text-[#536eff] com-text-2xl;
+      @apply com-text-[#42aaff] com-text-2xl;
     }
   }
 }
