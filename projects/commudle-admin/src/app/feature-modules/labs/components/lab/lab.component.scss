@@ -50,7 +50,7 @@
                   }
 
                   .name {
-                    @apply com-capitalize com-text-[#42aaff];
+                    @apply com-capitalize com-text-[#2590EB];
                   }
 
                   .date {
@@ -160,7 +160,7 @@
         &::ng-deep {
           .votes {
             p {
-              @apply com-text-2xl com-text-[#42aaff];
+              @apply com-text-2xl com-text-[#2590EB];
             }
 
             span {
@@ -168,7 +168,7 @@
                 @apply com-text-2xl com-mr-1;
 
                 &:not(.voted-heart) {
-                  @apply com-text-[#42aaff];
+                  @apply com-text-[#2590EB];
                 }
               }
             }
@@ -177,11 +177,11 @@
       }
 
       .discussion {
-        @apply com-text-[#42aaff] com-text-2xl com-mt-6 com-mx-0 com-mb-0;
+        @apply com-text-[#2590EB] com-text-2xl com-mt-6 com-mx-0 com-mb-0;
       }
 
       nb-icon {
-        @apply com-text-2xl com-text-[#42aaff];
+        @apply com-text-2xl com-text-[#2590EB];
       }
 
       app-share-button {
@@ -210,7 +210,7 @@
 
   .steps-navigation {
     button {
-      @apply com-bg-[#42aaff] com-text-white com-text-[14px] com-font-medium com-capitalize com-rounded-[10px];
+      @apply com-bg-[#2590EB] com-text-white com-text-[14px] com-font-medium com-capitalize com-rounded-[10px];
     }
   }
 
@@ -228,7 +228,7 @@
       @apply com-flex-col;
 
       .toggle-details {
-        @apply com-z-[3] com-bg-[#42aaff] com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-[10px] com-rounded-tr-[10px];
+        @apply com-z-[3] com-bg-[#2590EB] com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-[10px] com-rounded-tr-[10px];
       }
 
       .desktop-lab-details {

@@ -22,7 +22,7 @@
         }
 
         .lab-step-title {
-          @apply com-text-sm com-m-0 com-font-normal com-text-[#42aaff];
+          @apply com-text-sm com-m-0 com-font-normal com-text-[#2590EB];
         }
 
         app-badge {
@@ -31,7 +31,7 @@
       }
 
       .active {
-        @apply com-bg-[#42aaff];
+        @apply com-bg-[#2590EB];
 
         .lab-step-title {
           @apply com-text-white;
@@ -40,12 +40,12 @@
     }
 
     nb-list-item:not(:last-child) {
-      border-bottom: 2px solid rgba(83, 110, 255, 0.35);
+      border-bottom: 2px solid rgba(37, 144, 235, 0.349);
     }
 
     a {
       text-decoration: none;
-      @apply com-text-[#42aaff];
+      @apply com-text-[#2590EB];
     }
   }
 
@@ -54,7 +54,7 @@
 
     nb-card-header {
       border-bottom: none;
-      @apply com-text-[#42aaff] com-text-base com-p-4 com-font-normal;
+      @apply com-text-[#2590EB] com-text-base com-p-4 com-font-normal;
     }
 
     nb-card-body {
@@ -69,7 +69,7 @@
         }
 
         .type {
-          @apply com-text-[#42aaff] com-text-xs com-m-0;
+          @apply com-text-[#2590EB] com-text-xs com-m-0;
         }
 
         &:hover {
@@ -90,14 +90,14 @@
           @apply com-text-2xl;
 
           span {
-            @apply com-text-[#42aaff];
+            @apply com-text-[#2590EB];
           }
 
           nb-icon {
             @apply com-text-2xl;
 
             &:not(.voted-heart) {
-              @apply com-text-[#42aaff];
+              @apply com-text-[#2590EB];
             }
           }
         }
@@ -105,11 +105,11 @@
     }
 
     .message-count {
-      @apply com-text-[#42aaff] com-text-2xl;
+      @apply com-text-[#2590EB] com-text-2xl;
     }
 
     nb-icon {
-      @apply com-text-[#42aaff] com-text-2xl;
+      @apply com-text-[#2590EB] com-text-2xl;
     }
   }
 }
