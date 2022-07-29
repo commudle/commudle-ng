@@ -1,0 +1,89 @@
+<nb-card class="user-resume-card">
+  <nb-card-body>
+    <p class="name">{{ userResume.name }}</p>
+    <p class="date">Last updated: {{ userResume.updated_at | date }}</p>
+    <nb-actions class="actions" fullWidth>
+      <nb-action>
+        <button
+          (click)="updateUserResume.emit()"
+          ghost
+          nbButton
+          nbTooltip="Edit"
+          nbTooltipStatus="warning"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="edit" status="warning"></nb-icon>
+        </button>
+      </nb-action>
+      <nb-action>
+        <button
+          (click)="onDialogOpen(deleteResumeDialog)"
+          ghost
+          nbButton
+          nbTooltip="Delete"
+          nbTooltipStatus="danger"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="trash" status="danger"></nb-icon>
+        </button>
+      </nb-action>
+      <nb-action>
+        <button
+          (click)="copyTextToClipboard()"
+          ghost
+          nbButton
+          nbTooltip="Share"
+          nbTooltipStatus="primary"
+          shape="round"
+          size="small"
+        >
+          <nb-icon icon="share" status="primary"></nb-icon>
+        </button>
+      </nb-action>
+      <nb-action>
+        <a
+          [href]="resumeLink"
+          ghost
+          nbButton
+          nbTooltip="Preview"
+          nbTooltipStatus="success"
+          rel="noopener noreferrer"
+          shape="round"
+          size="small"
+          target="_blank"
+        >
+          <nb-icon icon="eye" status="success"></nb-icon>
+        </a>
+      </nb-action>
+    </nb-actions>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #deleteResumeDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure you want to <strong>delete</strong>
+        <em> {{ userResume.name }}</em>
+        ?
+      </p>
+      <br />
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="deleteUserResume(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

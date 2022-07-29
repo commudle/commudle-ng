@@ -1,5 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
+import { NbSidebarService, NbSidebarState } from '@nebular/theme';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
