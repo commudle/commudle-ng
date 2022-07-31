@@ -74,7 +74,7 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
     this.userRolesUsersService.createUserRolesUser(newUserRolesUser).subscribe((data) => {
       this.organizers.push(data);
 
-      this.userRolesUserForm.reset();
+      this.userRolesUserForm.reset({ user_role_name: EUserRoles.ORGANIZER });
       this.toastLogService.successDialog('Invitation Sent!');
     });
   }

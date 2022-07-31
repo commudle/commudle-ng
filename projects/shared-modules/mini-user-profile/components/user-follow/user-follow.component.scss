@@ -1,32 +1,13 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .user-follow {
   .follow-btn {
-    background-color: rgba($neon-blue, 0.2);
-    border: none;
-    border-radius: $border-10;
-    color: $neon-blue;
-    font-size: $fs-h6;
-    font-weight: $fw-400;
-    height: 32px;
-    padding: $space-8;
-    text-transform: none;
-
-    &:hover {
-      background-color: rgba($neon-blue, 0.2);
-    }
+    @apply com-text-xs com-h-8 com-p-2;
 
     nb-icon {
-      margin-right: $space-4;
+      @apply com-mr-1;
     }
 
     &.fixed-width {
       width: 74px;
-    }
-
-    &.active {
-      background-color: $white;
-      border: 1px solid rgba($neon-blue, 0.2);
     }
   }
 }
