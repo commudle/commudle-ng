@@ -135,7 +135,7 @@
                 <p class="name">{{ member.name }}</p>
                 <p class="designation">{{ member.designation }}</p>
               </div>
-              <ul class="com-flex com-justify-center com-mx-5">
+              <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
                 <li>
                   <a [href]="member.social.twitter" rel="noopener" target="_blank">
                     <nb-icon class="social-link" icon="twitter"></nb-icon>
@@ -143,6 +143,9 @@
                 </li>
                 <li>
                   <a [href]="member.social.linkedin" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="linkedin"></nb-icon>
+                  </a>
+                  <a [href]="member.social.commudle" rel="noopener" target="_blank">
                     <nb-icon class="social-link" icon="linkedin"></nb-icon>
                   </a>
                 </li>
@@ -156,10 +159,15 @@
 
   <section class="about-page-section features-list-section">
     <div class="grid">
-      <div>
+      <div *ngIf="ICmsAbout">
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
-        <a [href]="ICmsAbout?.featuresList?.content?.button?.url" nbButton shape="semi-round">
+        <a
+          *ngIf="ICmsAbout.featuresList.content.button !== null"
+          [href]="ICmsAbout?.featuresList?.content?.button?.url"
+          nbButton
+          shape="semi-round"
+        >
           {{ ICmsAbout?.featuresList?.content?.button?.text }}
         </a>
       </div>

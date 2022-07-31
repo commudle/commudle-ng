@@ -44,5 +44,6 @@ interface ICMSAboutTeam {
   social: {
     twitter: string;
     linkedin: string;
+    commudle: string;
   };
 }
