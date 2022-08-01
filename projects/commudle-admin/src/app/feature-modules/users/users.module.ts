@@ -47,10 +47,11 @@ import { UserFeedInputComponent } from './components/public-profile/user-extra-d
 import { UserFeedPostComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-posts/user-feed-post/user-feed-post.component';
 import { UserFeedPostsComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-posts/user-feed-posts.component';
 import { UserFeedComponent } from './components/public-profile/user-extra-details/user-feed/user-feed.component';
+import { UserResumeCardComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-card/user-resume-card.component';
+import { UserResumePreviewComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-preview/user-resume-preview.component';
+import { UserResumeComponent } from './components/public-profile/user-extra-details/user-resume/user-resume.component';
 import { UserSocialCardComponent } from './components/public-profile/user-extra-details/user-social/user-social-card/user-social-card.component';
 import { UserSocialComponent } from './components/public-profile/user-extra-details/user-social/user-social.component';
-import { UserResumeCardComponent } from './components/public-profile/user-extra-details/user-work-history/user-resume-card/user-resume-card.component';
-import { UserResumePreviewComponent } from './components/public-profile/user-extra-details/user-work-history/user-resume-preview/user-resume-preview.component';
 import { UserWorkHistoryCardComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history-card/user-work-history-card.component';
 import { UserWorkHistoryComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
@@ -88,6 +89,7 @@ import { UsersRoutingModule } from './users-routing.module';
     SocialLinksComponent,
     UserWorkHistoryComponent,
     UserWorkHistoryCardComponent,
+    UserResumeComponent,
     UserResumeCardComponent,
     UserResumePreviewComponent,
   ],
