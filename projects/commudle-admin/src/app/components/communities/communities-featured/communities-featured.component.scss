@@ -47,24 +47,26 @@ p {
             }
           }
         }
+        a {
+          text-decoration: none;
+          .featured-community-image-container {
+            @apply com-h-[156px] com-overflow-hidden com-w-full;
 
-        .featured-community-image-container {
-          @apply com-h-[156px] com-overflow-hidden com-w-full;
-
-          .featured-community-image {
-            @apply com-w-full;
-          }
-        }
-
-        .featured-community-about {
-          @apply com-p-4;
-
-          .featured-community-name {
-            @apply com-m-0 com-text-sm com-font-semibold com-text-[#2f2e41];
+            .featured-community-image {
+              @apply com-w-full;
+            }
           }
 
-          .featured-community-reason {
-            @apply com-mt-2 com-text-sm com-text-[#2f2e41];
+          .featured-community-about {
+            @apply com-p-4;
+
+            .featured-community-name {
+              @apply com-m-0 com-text-sm com-font-semibold com-text-[#2f2e41];
+            }
+
+            .featured-community-reason {
+              @apply com-mt-2 com-text-sm com-text-[#2f2e41];
+            }
           }
         }
       }
