@@ -136,17 +136,65 @@
                 <p class="designation">{{ member.designation }}</p>
               </div>
               <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
-                <li>
+                <li *ngIf="member.social.twitter">
                   <a [href]="member.social.twitter" rel="noopener" target="_blank">
                     <nb-icon class="social-link" icon="twitter"></nb-icon>
                   </a>
                 </li>
-                <li>
-                  <a [href]="member.social.linkedin" rel="noopener" target="_blank">
-                    <nb-icon class="social-link" icon="linkedin"></nb-icon>
-                  </a>
+                <li *ngIf="member.social.commudle">
                   <a [href]="member.social.commudle" rel="noopener" target="_blank">
-                    <nb-icon class="social-link" icon="linkedin"></nb-icon>
+                    <img
+                      alt="Commudle"
+                      title="Commudle"
+                      class="social-link com-h-5"
+                      src="/assets/images/commudle-logo128.png"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-page-section com-text-center advisor-section">
+    <div class="com-my-12">
+      <div class="com-my-5 sm:com-mx-auto sm:com-max-w-xl sm:com-my-4 lg:com-max-w-5xl">
+        <h2 class="title">Meet our Advisor</h2>
+        <p class="description">
+          Ornare sagittis, suspendisse in hendrerit quis. Sed dui aliquet lectus sit pretium egestas vel mattis neque.
+        </p>
+      </div>
+      <ul class="grid">
+        <li *ngFor="let member of ICmsAbout?.advisor">
+          <div class="com-my-6">
+            <img
+              [alt]="member.name"
+              [title]="member.name"
+              class="com-mx-auto com-h-32 com-w-32 com-rounded-full xl:com-w-48 xl:com-h-48"
+              src="{{ getImageUrl(member.image) }}"
+            />
+            <div class="com-my-2">
+              <div class="com-my-1">
+                <p class="name">{{ member.name }}</p>
+                <p class="designation">{{ member.designation }}</p>
+              </div>
+              <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
+                <li *ngIf="member.social.twitter">
+                  <a [href]="member.social.twitter" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="twitter"></nb-icon>
+                  </a>
+                </li>
+                <li *ngIf="member.social.commudle">
+                  <a [href]="member.social.commudle" rel="noopener" target="_blank">
+                    <img
+                      alt="Commudle"
+                      title="Commudle"
+                      class="social-link com-h-5"
+                      src="/assets/images/commudle-logo128.png"
+                    />
                   </a>
                 </li>
               </ul>
