@@ -1,7 +1,7 @@
 <div class="user">
   <app-user-live-status *ngIf="showLiveStatus" [userId]="user.id"></app-user-live-status>
   <div class="profile-picture {{ size }}">
-    <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
+    <img alt="{{ user.name }}" src="{{ user.avatar }}" title="{{ user.name }}" />
   </div>
   <div class="profile-info">
     <p class="name {{ size }}">
