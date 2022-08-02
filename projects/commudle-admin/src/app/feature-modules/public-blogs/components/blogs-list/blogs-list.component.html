@@ -12,24 +12,26 @@
         </nb-card-header>
         <nb-card-body>
           <div class="blog-cards">
-            <div *ngFor="let blog of blogs" class="blog-card" [routerLink]="['/blogs', blog.slug.current]">
-              <div class="com-w-full com-aspect-[16/9]">
-                <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
-              </div>
-              <div class="com-p-4">
-                <h2 class="name">
-                  {{ blog.title }}
-                </h2>
-                <p class="date">
-                  {{ blog.publishedAt | date }}
-                </p>
-                <div class="com-line-clamp-3">
-                  {{ blog.meta_description }}
+            <div *ngFor="let blog of blogs">
+              <div class="blog-card" [routerLink]="['/blogs', blog.slug.current]" *ngIf="blog.published === true">
+                <div class="com-w-full com-aspect-[16/9]">
+                  <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
                 </div>
-                <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
-                  Read More
-                  <nb-icon icon="arrow-forward-outline"></nb-icon>
-                </a>
+                <div class="com-p-4">
+                  <h2 class="name">
+                    {{ blog.title }}
+                  </h2>
+                  <p class="date">
+                    {{ blog.publishedAt | date }}
+                  </p>
+                  <div class="com-line-clamp-3">
+                    {{ blog.meta_description }}
+                  </div>
+                  <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
+                    Read More
+                    <nb-icon icon="arrow-forward-outline"></nb-icon>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

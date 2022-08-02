@@ -9,4 +9,5 @@ export interface IBlog {
   headerImage: SanityImageObject;
   meta_description: string;
   content: [];
+  published: boolean;
 }
