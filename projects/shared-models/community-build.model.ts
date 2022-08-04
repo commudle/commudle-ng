@@ -31,7 +31,8 @@ export enum EBuildType {
   // product = 'product',
   // slides = 'slides',
   course = 'course',
-  // other = 'other'
+  // other = 'other',
+  startup = 'startup',
 }
 
 export enum EPublishStatus {
@@ -53,6 +54,10 @@ export enum EPublishStatusColors {
 export const CBuildTypeDisplay = {
   project: {
     color: '#4e74ff',
+    icon: 'flash',
+  },
+  startup: {
+    color: '#FFFF00',
     icon: 'flash',
   },
   product: {
