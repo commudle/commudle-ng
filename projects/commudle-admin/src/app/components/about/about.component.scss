@@ -95,6 +95,32 @@ a {
       }
     }
 
+    &.advisor-section {
+      .title {
+        @apply com-text-3xl com-font-extrabold com-tracking-tight sm:com-text-4xl;
+      }
+
+      .description {
+        @apply com-text-xl com-text-gray-500;
+      }
+
+      .grid {
+        @apply com-mx-auto com-my-16 sm:com-grid sm:com-grid-cols-2 sm:com-gap-16 sm:com-my-0 lg:com-grid-cols-4 lg:com-max-w-5xl;
+      }
+
+      .name {
+        @apply com-text-lg com-leading-6 com-font-medium;
+      }
+
+      .designation {
+        @apply com-text-sm com-text-blue-500;
+      }
+
+      .social-link {
+        @apply com-text-gray-400 hover:com-text-gray-500;
+      }
+    }
+
     &.features-list-section {
       .grid {
         @apply com-grid com-items-center com-grid-cols-1 com-gap-y-10 com-gap-x-10 lg:com-grid-cols-2 lg:com-gap-y-32 lg:com-gap-x-24;
