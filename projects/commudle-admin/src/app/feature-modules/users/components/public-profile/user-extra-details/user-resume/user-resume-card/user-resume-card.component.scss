@@ -3,6 +3,8 @@ p {
 }
 
 .user-resume-card {
+  @apply com-m-0;
+
   nb-card-body {
     .name {
       @apply com-text-base com-line-clamp-1 com-font-semibold com-mb-2;

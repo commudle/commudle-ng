@@ -1,8 +1,14 @@
+:host {
+  @apply com-block;
+}
+
 p {
   @apply com-m-0;
 }
 
 .user-work-history-card {
+  @apply com-m-0;
+
   nb-card-body {
     .heading {
       @apply com-grid com-grid-cols-1 md:com-grid-cols-5 com-gap-2;

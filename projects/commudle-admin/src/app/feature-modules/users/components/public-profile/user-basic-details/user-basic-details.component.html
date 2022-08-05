@@ -27,7 +27,7 @@
           <a
             *ngIf="currentUser?.id === user.id; else message"
             [routerLink]="[{ outlets: { p: ['settings', 'basic-details'] } }]"
-            ghost
+            outline
             nbButton
             shape="semi-round"
             size="small"
