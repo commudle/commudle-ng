@@ -54,6 +54,10 @@ export class BlogComponent implements OnInit, OnDestroy {
     );
   }
   setMeta(): void {
-    this.seoService.setTags(this.blog.title, this.blog.meta_description, this.imageUrl(this.blog.headerImage).url());
+    this.seoService.setTags(
+      this.blog.title + ' -commudle',
+      this.blog.meta_description,
+      this.imageUrl(this.blog.headerImage).url(),
+    );
   }
 }

@@ -17,7 +17,7 @@
       @apply lg:com-grid-cols-3 lg:com-gap-8;
 
       .blog-card {
-        @apply com-flex com-flex-col com-justify-between com-h-full com-border com-border-gray-200 com-border-solid com-border-opacity-60 com-rounded-lg com-overflow-hidden;
+        @apply com-flex com-flex-col com-h-full com-border com-border-gray-200 com-border-solid com-border-opacity-60 com-rounded-lg com-overflow-hidden;
 
         .date {
           @apply com-tracking-widest com-text-xs com-font-medium com-text-gray-400 com-my-1;
