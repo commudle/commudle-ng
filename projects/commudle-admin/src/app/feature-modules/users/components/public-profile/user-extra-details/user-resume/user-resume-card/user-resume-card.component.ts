@@ -51,7 +51,7 @@ export class UserResumeCardComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.userResume) {
-      this.resumeLink = `${window.location.href}/(p:resume/${this.userResume.uuid})`;
+      this.resumeLink = `${window.location.href.split('#')[0]}/(p:resume/${this.userResume.uuid})`;
     }
   }
 
