@@ -40,7 +40,7 @@
     "@fortawesome/free-brands-svg-icons": "5.15.3",
     "@fortawesome/free-regular-svg-icons": "5.15.3",
     "@fortawesome/free-solid-svg-icons": "5.15.3",
-    "@nebular/eva-icons": "8.0.0",
+    "@nebular/eva-icons": "9.0.3",
     "@nebular/theme": "9.0.3",
     "@nguniversal/express-engine": "12.1.0",
     "@sanity/block-content-to-html": "2.0.0",
