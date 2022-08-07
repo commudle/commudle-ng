@@ -133,5 +133,6 @@ import { EventsRoutingModule } from './events-routing.module';
     NbFormFieldModule,
     NbSpinnerModule,
   ],
+  exports: [UserDetailsComponent],
 })
 export class EventsModule {}

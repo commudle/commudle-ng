@@ -1,0 +1,15 @@
+<nb-card [routerLink]="['/communities', community.community.slug]" class="user-communities-card">
+  <nb-card-body>
+    <img
+      [alt]="community.community.name"
+      [src]="community.community.logo_path"
+      [title]="community.community.name"
+      class="user-communities-logo"
+    />
+    <div class="com-flex com-flex-col">
+      <h4 class="user-communities-name">{{ community.community.name }}</h4>
+      <p class="user-communities-role">{{ community.user_role.name | titlecase }}</p>
+      <p class="user-communities-members">{{ community.community.member_count }} members</p>
+    </div>
+  </nb-card-body>
+</nb-card>

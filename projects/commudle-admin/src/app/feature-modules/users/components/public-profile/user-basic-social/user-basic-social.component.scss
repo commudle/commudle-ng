@@ -1,60 +1,35 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
-.user-basic-social {
-  margin: $space-16 0 0;
+.user-basic-social-container {
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
+  }
 
-  .user-social {
-    gap: $space-24;
-    padding: $space-32;
-
-    a {
-      align-items: center;
-      background-color: $water;
-      border-radius: $border-16;
-      color: initial;
-      display: flex;
-      height: 32px;
-      justify-content: center;
-      padding: $space-4;
-      text-decoration: none;
-      width: 32px;
-
-      nb-icon,
-      fa-icon {
-        color: $neon-blue;
-      }
+  nb-card-body {
+    .about {
+      @apply com-mb-6 com-text-base;
     }
 
-    &.compressed {
-      gap: $space-16;
-    }
-
-    &.expanded {
-      justify-content: normal;
-      padding: $space-32 $space-16;
+    .user-social {
+      @apply com-flex com-flex-wrap com-gap-5;
 
       a {
-        width: 100%;
+        align-items: center;
+        background-color: $water;
+        border-radius: $border-16;
+        color: initial;
+        display: flex;
+        height: 32px;
+        justify-content: center;
+        padding: $space-4;
+        text-decoration: none;
+        width: 32px;
 
-        nb-icon {
-          margin-right: $space-6;
-        }
-
-        span {
+        nb-icon,
+        fa-icon {
           color: $neon-blue;
-          margin-right: $space-12;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          width: calc(calc(264px - 32px) - 54px);
         }
       }
     }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .user-basic-social {
-    border-radius: 0;
   }
 }

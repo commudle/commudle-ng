@@ -36,7 +36,7 @@
     <div class="community-build-content">
       <div *ngIf="embedCode" [innerHTML]="embedCode" class="community-build-embed"></div>
       <ng-container *ngIf="cBuild.link && !embedCode">
-        <p class="fs-h2 community-build-link">
+        <p class="community-build-link">
           Visit the {{ cBuild.build_type }}:
           <a [href]="cBuild.link | completeurl" rel="noreferrer" target="_blank">
             {{ cBuild.link }}

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, TemplateRef } from '@angular/core';
-import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { IUser } from 'projects/shared-models/user.model';
@@ -54,23 +54,16 @@ export class UserFollowComponent implements OnChanges, OnDestroy {
     }
   }
 
-  toggleFollow(ref?: NbDialogRef<any>) {
+  toggleFollow() {
     this.subscriptions.push(
       this.appUsersService.toggleFollow(this.username).subscribe(() => {
         this.checkFollowing();
-        if (ref) {
-          ref.close();
-        }
         this.userFollowed.emit();
       }),
     );
   }
 
   openDialog(ref: TemplateRef<any>) {
-    if (this.isFollowing) {
-      this.toggleFollow();
-    } else {
-      this.nbDialogService.open(ref);
-    }
+    this.nbDialogService.open(ref);
   }
 }

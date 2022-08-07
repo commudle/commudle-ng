@@ -5,6 +5,7 @@ import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-mod
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-notifications-list',
@@ -58,7 +59,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
       this.isLoading = true;
       this.subscriptions.push(
         this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
-          this.notifications = this.notifications.concat(value.notifications);
+          this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
           this.page += 1;
           this.total = value.total;
           this.isLoading = false;
@@ -76,7 +77,10 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
         if (data) {
           switch (data.action) {
             case this.notificationChannel.ACTIONS.NEW_NOTIFICATION: {
-              this.notifications.unshift(data.notification);
+              // add only if it's not already in the list
+              if (!this.notifications.find((notification) => notification.id === data.notification.id)) {
+                this.notifications.unshift(data.notification);
+              }
               break;
             }
             case this.notificationChannel.ACTIONS.STATUS_UPDATE: {

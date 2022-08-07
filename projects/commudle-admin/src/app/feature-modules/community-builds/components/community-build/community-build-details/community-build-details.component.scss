@@ -1,13 +1,11 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 p {
-  margin: 0;
+  @apply com-m-0;
 }
 
 .community-build-discussion {
   nb-card-body {
     overflow: initial;
-    padding: 0;
+    @apply com-p-0;
 
     app-messages {
       @apply com-block com-h-96;
@@ -17,35 +15,24 @@ p {
 
 .community-build-details {
   .community-build-name {
-    margin: $space-20 0;
+    @apply com-my-5 com-mx-0;
   }
 
   .community-build-tags {
     &::ng-deep {
       .nb-tag-list-tags-wrapper {
         nb-tag {
-          background-color: $azureish-white;
-          border: none;
-          border-radius: $border-5;
-          color: $gunmetal;
-          font-size: $fs-h6;
-          font-weight: $fw-400;
-          line-height: 12px;
-          padding: $space-4 $space-12;
-          text-transform: lowercase;
+          @apply com-bg-[#dae0ff] com-border-none com-rounded-[5px] com-text-[#2f2e41] com-text-xs com-font-normal com-leading-3 com-py-1 com-px-3 com-lowercase;
         }
       }
     }
   }
 
   .community-build-content {
-    margin: $space-20 0;
+    @apply com-my-5 com-mx-0;
 
     .community-build-embed {
-      display: flex;
-      justify-content: center;
-      max-width: 100%;
-      overflow: auto;
+      @apply com-flex com-justify-center com-max-w-full com-overflow-auto;
 
       iframe {
         width: 100% !important;
@@ -53,64 +40,47 @@ p {
     }
 
     .community-build-link {
-      margin: $space-8 0;
+      @apply com-my-2 com-mx-0;
     }
   }
 
   .commudle-build-images {
-    background: #d3d3d33b;
-    margin-top: 1.5rem;
-    overflow-x: auto;
+    @apply com-bg-[#d3d3d33b] com-mt-6 com-overflow-x-auto;
 
     .commudle-build-images-stripe {
-      display: flex;
-      flex-wrap: nowrap;
-      width: fit-content;
+      @apply com-flex com-flex-nowrap com-w-fit;
 
       .commudle-build-image {
-        align-items: center;
-        border: 1px solid lightgrey;
-        display: flex;
-        height: 280px;
-        margin: 0 0.5rem;
-        overflow: hidden;
-        width: 280px;
+        @apply com-items-center com-border-[1px] com-border-solid com-border-[#d3d3d3] com-flex com-h-[280px] com-my-0 com-mx-2 com-overflow-hidden com-w-[280px];
 
         img {
-          width: 100%;
+          @apply com-w-full;
         }
       }
     }
   }
 
   app-share-button {
-    position: absolute;
-    right: 15px;
-    bottom: 10px;
+    @apply com-absolute com-right-[15px] com-bottom-[10px];
   }
 }
 
 .image-window {
-  max-width: 100vw;
-  overflow: hidden;
+  @apply com-max-w-[100vw] com-overflow-hidden;
 
   .controls {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    @apply com-flex com-justify-between com-my-4;
 
     button {
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
+      @apply com-mx-2;
     }
 
     nb-icon {
-      vertical-align: top;
+      @apply com-align-top;
     }
   }
 
   img {
-    width: 100%;
+    @apply com-w-full;
   }
 }
