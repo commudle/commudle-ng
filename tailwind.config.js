@@ -15,6 +15,15 @@ module.exports = {
         'span-20': 'span 20 / span 20',
         'span-22': 'span 22 / span 22',
       },
+      spacing: {
+        c72: '72px',
+      },
+      colors: {
+        'c-gunmetal': '#2f2e41',
+      },
+      borderWidth: {
+        1: '1px',
+      },
     },
     container: {
       center: true,

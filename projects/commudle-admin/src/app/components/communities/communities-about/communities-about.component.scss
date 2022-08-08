@@ -1,5 +1,5 @@
 p {
-  @apply com-m-0 com-text-[#2f2e41];
+  @apply com-m-0 com-text-c-gunmetal;
 }
 
 a {
@@ -9,7 +9,8 @@ a {
 
 .communities-about-container {
   nb-card-body {
-    @apply com-pt-10 com-pr-0 com-pb-10 com-pl-16;
+    @apply com-flex-col-reverse com-p-4;
+    @apply md:com-py-10 md:com-pr-0 md:com-pl-16 md:com-flex-row;
 
     .communities-about-content {
       .communities-about-header {
@@ -21,39 +22,28 @@ a {
       }
 
       .communities-about-navigation {
-        @apply com-gap-4 com-mt-[72px];
+        @apply com-gap-4 com-mt-c72;
 
         button {
-          @apply com-border-[1px] com-border-solid com-border-[#2f2e41] com-text-sm com-p-2 com-capitalize;
+          @apply com-border-1 com-border-solid com-border-c-gunmetal com-text-sm com-p-2 com-capitalize;
         }
 
         .community-create-btn {
-          @apply com-text-white com-bg-[#2f2e41];
+          @apply com-text-white com-bg-c-gunmetal;
         }
 
         .communities-explore {
-          @apply com-bg-white com-text-[#2f2e41];
+          @apply com-bg-white com-text-c-gunmetal;
         }
       }
     }
 
     .communities-about-image {
-      @apply com-h-[212px] -com-mt-4 com-w-[296px];
+      @apply com-mt-0 com-mb-6 com-h-[212px] com-w-[296px];
+      @apply md:-com-mt-4 md:com-mb-0;
 
       img {
         @apply com-w-full;
-      }
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .communities-about-container {
-    nb-card-body {
-      @apply com-flex-col-reverse com-p-4;
-
-      .communities-about-image {
-        @apply com-mt-0 com-mb-6;
       }
     }
   }
