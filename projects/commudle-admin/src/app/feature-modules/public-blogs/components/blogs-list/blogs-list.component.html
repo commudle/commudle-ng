@@ -18,14 +18,16 @@
                   <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
                 </div>
                 <div class="com-p-4">
-                  <h2 class="name">
-                    {{ blog.title }}
-                  </h2>
-                  <p class="date">
-                    {{ blog.publishedAt | date }}
-                  </p>
-                  <div class="com-line-clamp-3">
-                    {{ blog.meta_description }}
+                  <div class="com-h-36">
+                    <h2 class="name">
+                      {{ blog.title }}
+                    </h2>
+                    <p class="date">
+                      {{ blog.publishedAt | date }}
+                    </p>
+                    <div class="com-line-clamp-3">
+                      {{ blog.meta_description }}
+                    </div>
                   </div>
                   <a [routerLink]="['/blogs', blog.slug.current]" class="read-more">
                     Read More
