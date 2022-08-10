@@ -20,6 +20,8 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
+  isLoading = false;
+
   constructor(
     private cmsService: CmsService,
     private activatedRoute: ActivatedRoute,
@@ -40,6 +42,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   getData() {
+    this.isLoading = true;
     const slug: string = this.activatedRoute.snapshot.params.id;
     this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
       this.blog = value;
@@ -47,6 +50,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       this.setUser();
       this.setMeta();
     });
+    this.isLoading = false;
   }
   setUser() {
     this.subscriptions.push(
@@ -54,6 +58,10 @@ export class BlogComponent implements OnInit, OnDestroy {
     );
   }
   setMeta(): void {
-    this.seoService.setTags(this.blog.title, this.blog.meta_description, this.imageUrl(this.blog.headerImage).url());
+    this.seoService.setTags(
+      this.blog.title + ' -commudle',
+      this.blog.meta_description,
+      this.imageUrl(this.blog.headerImage).url(),
+    );
   }
 }

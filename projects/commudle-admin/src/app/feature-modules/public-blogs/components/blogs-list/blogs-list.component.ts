@@ -14,6 +14,8 @@ export class BlogsListComponent implements OnInit {
   blogs: IBlog;
   richText: any;
 
+  isLoading = false;
+
   imageUrl(source: any) {
     return this.cmsService.getImageUrl(source);
   }
@@ -24,9 +26,11 @@ export class BlogsListComponent implements OnInit {
   }
 
   getBlogs() {
+    this.isLoading = true;
     this.cmsService.getDataByType('blog').subscribe((value: IBlog) => {
       this.blogs = value;
     });
+    this.isLoading = false;
   }
 
   setMeta(): void {
