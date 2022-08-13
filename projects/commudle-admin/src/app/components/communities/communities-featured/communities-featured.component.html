@@ -10,15 +10,7 @@
             </button>
           </a>
           <app-share-button
-            [content]="
-              featuredCommunity.kommunity.name +
-              ' | ' +
-              featuredCommunity.reason +
-              ' | ' +
-              environment.app_url +
-              '/communities/' +
-              featuredCommunity.kommunity.slug
-            "
+            [content]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
             [title]="featuredCommunity.kommunity.name"
             [text]="featuredCommunity.reason"
             [url]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
