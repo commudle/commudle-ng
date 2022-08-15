@@ -601,4 +601,12 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/user_resumes',
     DESTROY: 'api/v2/user_resumes',
   },
+
+  JOBS: {
+    INDEX: 'api/v2/jobs',
+    SHOW: 'api/v2/jobs/show',
+    CREATE: 'api/v2/jobs',
+    UPDATE: 'api/v2/jobs',
+    DESTROY: 'api/v2/jobs',
+  },
 };

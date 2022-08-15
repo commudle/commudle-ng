@@ -115,6 +115,12 @@ input {
   [nbButtonToggle].shape-semi-round {
     border-radius: 10px;
   }
+
+  nb-select {
+    .select-button {
+      min-width: auto;
+    }
+  }
 }
 
 .nb-theme-default nb-card {

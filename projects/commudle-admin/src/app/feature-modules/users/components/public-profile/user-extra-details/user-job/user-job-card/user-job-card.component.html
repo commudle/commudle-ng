@@ -1,0 +1,88 @@
+<nb-card class="user-job-card">
+  <nb-card-body>
+    <p class="position">{{ job.position }}</p>
+    <nb-tag-list class="tags">
+      <nb-tag [text]="job.category | titlecase" appearance="outline" size="tiny" status="info"></nb-tag>
+      <nb-tag
+        [text]="job.job_type | capitalizeAndRemoveUnderscore"
+        appearance="outline"
+        size="tiny"
+        status="info"
+      ></nb-tag>
+      <nb-tag
+        appearance="outline"
+        size="tiny"
+        status="info"
+        text="Min. {{ job.experience }} year{{ job.experience > 1 ? 's' : '' }} experience"
+      ></nb-tag>
+    </nb-tag-list>
+    <div class="com-flex com-items-center com-gap-1.5 com-my-4">
+      <nb-icon icon="pin" status="primary"></nb-icon>
+      <p class="location">
+        {{ job.location_type === EJobLocationType.REMOTE ? 'Remote' : job.location }}
+      </p>
+    </div>
+    <div class="com-grid com-grid-cols-5 com-gap-2">
+      <button
+        *ngIf="user.id !== currentUser?.id; else editButton"
+        class="com-col-span-2"
+        fullWidth
+        nbButton
+        size="small"
+        status="info"
+      >
+        <nb-icon icon="checkmark-circle"></nb-icon>
+        Apply
+      </button>
+      <ng-template #editButton>
+        <button (click)="updateJob.emit()" class="com-col-span-2" fullWidth nbButton size="small" status="info">
+          <nb-icon icon="edit"></nb-icon>
+          Edit
+        </button>
+      </ng-template>
+      <button class="com-col-span-2" fullWidth ghost nbButton size="small" status="info">
+        <nb-icon icon="eye"></nb-icon>
+        View
+      </button>
+      <button
+        (click)="onDialogOpen(deleteJobDialog)"
+        *ngIf="user.id === currentUser?.id"
+        class="com-col-span-1"
+        fullWidth
+        ghost
+        nbButton
+        size="small"
+        status="danger"
+      >
+        <nb-icon icon="trash"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #deleteJobDialog let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure you want to <strong>delete</strong>
+        <em> {{ job.position }} @ {{ job.company }}</em>
+        ?
+      </p>
+      <br />
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="deleteJob(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
