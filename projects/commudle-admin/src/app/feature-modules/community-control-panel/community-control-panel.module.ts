@@ -65,7 +65,6 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     FontAwesomeModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
-
     // Nebular
     NbCardModule,
     NbInputModule,
@@ -80,11 +79,6 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     NbButtonGroupModule,
     NbContextMenuModule,
     NbCheckboxModule,
-  ],
-  entryComponents: [
-    CommunityFormsListStatsComponent,
-    CommunityFormsListActionsComponent,
-    // EmailerComponent
   ],
 })
 export class CommunityGroupsModule {}

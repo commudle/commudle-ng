@@ -54,6 +54,7 @@ export class UserResumePreviewComponent implements OnInit, OnDestroy {
       this.activatedRoute.params.subscribe((params) => {
         this.userResumeService.getResume(params.uuid).subscribe((resume) => {
           this.userResume = resume;
+          console.log(this.userResume);
         });
       }),
     );

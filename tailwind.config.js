@@ -33,6 +33,7 @@ module.exports = {
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar-hide'),
   ],
   corePlugins: {
     preflight: false,

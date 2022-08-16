@@ -5,7 +5,7 @@
         <app-user-cover-photo (coverImageUpdate)="getUser()" [user]="user"></app-user-cover-photo>
         <app-user-basic-details (updateProfile)="getUser()" [user]="user"></app-user-basic-details>
         <nb-card *ngIf="(activeMenuItems | numkeys) > 0" class="user-profile-menu">
-          <nb-card-body>
+          <nb-card-body class="com-scrollbar-hide">
             <nb-actions>
               <nb-action *ngFor="let item of activeMenuItems | keyvalue: originalOrder">
                 <a class="item" fragment="{{ item.value.link }}" routerLink=".">
