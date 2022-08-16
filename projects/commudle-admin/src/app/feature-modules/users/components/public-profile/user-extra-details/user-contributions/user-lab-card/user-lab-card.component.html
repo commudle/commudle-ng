@@ -1,0 +1,24 @@
+<nb-card [routerLink]="['/labs', lab.slug]" class="user-lab">
+  <nb-card-body>
+    <img
+      [alt]="lab.name"
+      [src]="lab.header_image?.medium || '/assets/images/Lab-Default.png'"
+      [title]="lab.name"
+      class="user-lab-cover-image"
+    />
+    <div class="com-p-2">
+      <h4 class="user-lab-name">{{ lab.name }}</h4>
+      <p class="user-lab-description">{{ lab.description }}</p>
+      <div class="user-lab-interactions">
+        <span>
+          <nb-icon icon="eye"></nb-icon>
+          {{ lab.total_visitors }}
+        </span>
+        <span>
+          <nb-icon icon="heart"></nb-icon>
+          {{ lab.votes_count }}
+        </span>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

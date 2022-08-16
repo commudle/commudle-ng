@@ -1,5 +1,6 @@
-import { IBadge } from "./badge.model";
-import { ITag } from "./tag.model";
+import { IAttachedFile } from './attached-file.model';
+import { IBadge } from './badge.model';
+import { ITag } from './tag.model';
 
 export interface ICurrentUser {
   id: number;
@@ -28,5 +29,5 @@ export interface ICurrentUser {
   tags: ITag[];
   is_expert: boolean;
   badges: IBadge[];
-
+  photo: IAttachedFile;
 }

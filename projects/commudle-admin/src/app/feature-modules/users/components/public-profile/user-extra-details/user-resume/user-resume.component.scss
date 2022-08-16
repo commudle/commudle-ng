@@ -1,0 +1,9 @@
+.user-resume {
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
+  }
+
+  nb-card-body {
+    @apply com-space-y-2;
+  }
+}

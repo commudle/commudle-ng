@@ -12,10 +12,12 @@
 
   nb-card-body {
     .blog-cards {
-      @apply com-grid sm:com-grid-cols-2 lg:com-grid-cols-3 com-gap-4 lg:com-gap-8;
+      @apply com-grid com-gap-4 com-cursor-pointer;
+      @apply sm:com-grid-cols-2;
+      @apply lg:com-grid-cols-3 lg:com-gap-8;
 
       .blog-card {
-        @apply com-flex com-flex-col com-justify-between com-h-full com-border com-border-gray-200 com-border-solid com-border-opacity-60 com-rounded-lg com-overflow-hidden;
+        @apply com-flex com-flex-col com-h-full com-border com-border-gray-200 com-border-solid com-border-opacity-60 com-rounded-lg com-overflow-hidden;
 
         .date {
           @apply com-tracking-widest com-text-xs com-font-medium com-text-gray-400 com-my-1;
@@ -26,8 +28,52 @@
         }
 
         .read-more {
-          @apply com-text-blue-500 com-inline-flex com-items-center md:com-mb-2 lg:com-mb-0 com-gap-x-1 com-no-underline;
+          @apply com-text-blue-500 com-inline-flex com-items-center com-no-underline com-mt-4;
+          @apply md:com-mb-2;
+          @apply lg:com-mb-0 com-gap-x-1;
         }
+      }
+    }
+  }
+}
+
+.loading-spinner {
+  .spinner {
+    height: 40px;
+
+    & > div {
+      animation: stretch-delay 1.2s infinite ease-in-out;
+      background-color: #5c6972;
+      display: inline-block;
+      height: 100%;
+      margin: 0 1px;
+      width: 4px;
+
+      &:nth-child(2) {
+        animation-delay: -1.1s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: -1s;
+      }
+
+      &:nth-child(4) {
+        animation-delay: -0.9s;
+      }
+
+      &:nth-child(5) {
+        animation-delay: -0.8s;
+      }
+    }
+
+    @keyframes stretch-delay {
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.4);
+      }
+      20% {
+        transform: scaleY(1);
       }
     }
   }
