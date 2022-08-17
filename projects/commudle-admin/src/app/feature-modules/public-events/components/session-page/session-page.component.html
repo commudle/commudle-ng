@@ -28,6 +28,31 @@
       [startTime]="startTime"
       [trackSlot]="trackSlot"
     ></app-session-page-details>
+    <div
+      *ngIf="
+        !['commudle', 'youtube'].includes(embeddedVideoStream?.source) ||
+        (!trackSlot?.embedded_video_stream && !embeddedVideoStream)
+      "
+    >
+      <div #interactionWindow class="session-page-window remove-overflow session-chat">
+        <div class="actions d-flex align-items-center justify-content-space-between">
+          <p class="heading">Chat with other Viewers</p>
+        </div>
+        <app-session-page-chat (newMessage)="(newMessage)" [chat]="chat"></app-session-page-chat>
+      </div>
+      <!-- <div #interactionWindow class="session-page-window">
+        <div class="actions d-flex align-items-center justify-content-space-between">
+          <p class="heading">Ask a Question</p>
+        </div>
+        <app-session-page-qna (newQna)="(none)" [qna]="discussion"></app-session-page-qna>
+      </div> -->
+      <!-- <div #interactionWindow class="session-page-window">
+        <div class="actions d-flex align-items-center justify-content-space-between">
+          <p class="heading">Participate in Polls</p>
+        </div>
+        <app-session-page-poll [pollableId]="pollableId" [pollableType]="pollableType"></app-session-page-poll>
+      </div> -->
+    </div>
     <app-auto-attendance
       *ngIf="moment().isBetween(moment(event?.start_time), moment(event?.end_time))"
       [eventId]="event.id"

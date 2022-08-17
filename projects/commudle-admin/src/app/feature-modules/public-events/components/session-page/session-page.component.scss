@@ -2,8 +2,26 @@
 
 .session-page-container {
   height: calc(100vh - 56px - 12px);
+  @apply com-w-3/4 com-ml-6;
 
   .session-page {
     padding-top: $space-8;
+
+    .session-page-window {
+      position: absolute;
+      width: 400px;
+      right: 10px;
+      top: 60px;
+      bottom: 44px;
+      margin: $space-16 $space-8;
+      background-color: $white;
+      border-radius: $border-4;
+      overflow: hidden;
+      @apply com-px-2;
+    }
+
+    .heading {
+      @apply com-pl-3;
+    }
   }
 }
