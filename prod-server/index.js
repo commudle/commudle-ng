@@ -7,7 +7,11 @@ const port = process.env.PORT || 8080;
 const distFolder = join(process.cwd(), 'dist/commudle-admin/browser');
 const PRERENDER_URL = process.env.PRERENDER_URL || 'https://prerender.commudle.com';
 
-app.use(prerender.set('prerenderServiceUrl', PRERENDER_URL));
+
+app.use(prerender.set('prerenderServiceUrl', PRERENDER_URL).set('beforeRender', (req, done) => {
+  req.query.is_bot = true;
+  done();
+}));
 
 app.get(
   '*.*',
@@ -21,6 +25,7 @@ app.get('/health-check', (req, res) => {
 });
 
 app.get('*', (req, res) => {
+  console.log(req.query, '********************');
   res.sendFile(join(distFolder, 'index.html'));
 });
 
