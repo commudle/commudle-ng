@@ -6,6 +6,8 @@ module.exports = {
       colors: {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure':'#2aa5ff',
+        'Caribbean-Green': '#00d68f',
+        'inherit': 'inherit'
       },
       lineClamp: {
         14: '14',
@@ -21,6 +23,11 @@ module.exports = {
       },
       spacing: {
         5: '5px',
+        800: '800px',
+        '95vh': '95vh',
+        '95vw': '95vw',
+
+
       },
     },
     container: {
