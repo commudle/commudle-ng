@@ -3,6 +3,10 @@ module.exports = {
   content: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
   theme: {
     extend: {
+      colors: {
+        'Spiro-Disco': '#1ac7e340',
+        'Brilliant-Azure':'#2aa5ff',
+      },
       lineClamp: {
         14: '14',
       },
@@ -14,6 +18,9 @@ module.exports = {
         'span-19': 'span 19 / span 19',
         'span-20': 'span 20 / span 20',
         'span-22': 'span 22 / span 22',
+      },
+      spacing: {
+        5: '5px',
       },
     },
     container: {
