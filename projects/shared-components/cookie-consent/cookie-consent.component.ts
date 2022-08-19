@@ -1,3 +1,4 @@
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CookieConsentService } from 'projects/commudle-admin/src/app/services/cookie-consent.service';
 // import { CookieService } from 'ngx-cookie-service';
@@ -16,12 +17,15 @@ export class CookieConsentComponent implements OnInit {
     private cookieConsentService: CookieConsentService,
     // private cookieService: CookieService,
     private isBrowserService: IsBrowserService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       setTimeout(() => {
-        this.cookieConstent = true;
+        if (this.activatedRoute.snapshot.queryParams['bot']) {
+          this.cookieConstent = true;
+        }
       }, 3000);
     }
   }
