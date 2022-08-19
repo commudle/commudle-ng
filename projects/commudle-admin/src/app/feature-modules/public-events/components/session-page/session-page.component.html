@@ -38,20 +38,58 @@
         <div class="actions d-flex align-items-center justify-content-space-between">
           <p class="heading">Chat with other Viewers</p>
         </div>
-        <app-session-page-chat (newMessage)="(newMessage)" [chat]="chat"></app-session-page-chat>
+        <app-session-page-chat
+          (newMessage)="newMessage = getInteractionWindowStatus(1)"
+          [chat]="chat"
+        ></app-session-page-chat>
       </div>
-      <!-- <div #interactionWindow class="session-page-window">
+      <div #interactionWindow class="session-page-window">
         <div class="actions d-flex align-items-center justify-content-space-between">
           <p class="heading">Ask a Question</p>
         </div>
-        <app-session-page-qna (newQna)="(none)" [qna]="discussion"></app-session-page-qna>
-      </div> -->
-      <!-- <div #interactionWindow class="session-page-window">
+        <app-session-page-qna
+          (newQna)="newQna = getInteractionWindowStatus(2)"
+          [qna]="discussion"
+        ></app-session-page-qna>
+      </div>
+      <div #interactionWindow class="session-page-window">
         <div class="actions d-flex align-items-center justify-content-space-between">
           <p class="heading">Participate in Polls</p>
         </div>
         <app-session-page-poll [pollableId]="pollableId" [pollableType]="pollableType"></app-session-page-poll>
-      </div> -->
+      </div>
+      <div class="user-interactions">
+        <button
+          (click)="toggleInteractionWindow(1)"
+          [ngClass]="{ active: !getInteractionWindowStatus(1) }"
+          nbButton
+          nbTooltip="Messages"
+          shape="round"
+        >
+          <nb-badge [dotMode]="true" [ngClass]="{ notification: newMessage }" status="info"></nb-badge>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </button>
+        <button
+          (click)="toggleInteractionWindow(2)"
+          [ngClass]="{ active: !getInteractionWindowStatus(2) }"
+          nbButton
+          nbTooltip="QnA"
+          shape="round"
+        >
+          <nb-badge [dotMode]="true" [ngClass]="{ notification: newQna }" status="info"></nb-badge>
+          Q
+        </button>
+        <button
+          (click)="toggleInteractionWindow(3)"
+          [ngClass]="{ active: !getInteractionWindowStatus(3) }"
+          nbButton
+          nbTooltip="Polls"
+          shape="round"
+        >
+          <nb-badge [dotMode]="true" [ngClass]="{ notification: newPoll }" status="info"></nb-badge>
+          <nb-icon icon="bar-chart"></nb-icon>
+        </button>
+      </div>
     </div>
     <app-auto-attendance
       *ngIf="moment().isBetween(moment(event?.start_time), moment(event?.end_time))"

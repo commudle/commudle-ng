@@ -1,6 +1,6 @@
 import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { isPlatformBrowser, Location } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { CookieService } from 'ngx-cookie-service';
@@ -58,6 +58,11 @@ export class SessionPageComponent implements OnInit, OnDestroy {
   userRoles = [];
   subscriptions: Subscription[] = [];
   EUserRoles = EUserRoles;
+
+  newMessage = false;
+  newQna = false;
+  newPoll = false;
+  @ViewChildren('interactionWindow') interactionWindows: QueryList<ElementRef>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -207,5 +212,26 @@ export class SessionPageComponent implements OnInit, OnDestroy {
       hmsActions.leave();
     }
     return true;
+  }
+  toggleInteractionWindow(windowNum: number): void {
+    this.interactionWindows.forEach((item: ElementRef, index: number) => {
+      item.nativeElement.style.display =
+        windowNum === index ? (item.nativeElement.style.display === 'block' ? 'none' : 'block') : 'none';
+    });
+    switch (windowNum) {
+      case 1:
+        this.newMessage = false;
+        break;
+      case 2:
+        this.newQna = false;
+        break;
+      case 3:
+        this.newPoll = false;
+        break;
+    }
+  }
+
+  getInteractionWindowStatus(windowNum: number): boolean {
+    return this.interactionWindows.toArray()[windowNum].nativeElement.style.display === 'none';
   }
 }
