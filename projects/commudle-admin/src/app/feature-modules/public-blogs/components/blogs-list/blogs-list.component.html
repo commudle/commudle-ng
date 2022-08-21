@@ -41,8 +41,10 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
-              <div class="spinner"></div>
+            <div *ngIf="isLoading" class="loading-spinner">
+              <div class="spinner">
+                <div *ngFor="let _ of [].constructor(5)"></div>
+              </div>
             </div>
           </div>
         </nb-card-body>
