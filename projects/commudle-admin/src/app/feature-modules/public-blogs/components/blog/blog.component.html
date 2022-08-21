@@ -3,7 +3,12 @@
     <div class="one-column-layout">
       <nb-card *ngIf="blog">
         <nb-card-header>
-          <button routerLink="/blogs" nbButton><nb-icon icon="arrow-back"></nb-icon>back</button>
+          <div class="com-flex com-justify-between">
+            <button routerLink="/blogs" nbButton><nb-icon icon="arrow-back"></nb-icon>back</button>
+            <button (click)="copyTextToClipboard(blog.title, blog.slug.current)" nbButton>
+              <nb-icon icon="share"></nb-icon>Share
+            </button>
+          </div>
           <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
             <div class="spinner"></div>
           </div>
