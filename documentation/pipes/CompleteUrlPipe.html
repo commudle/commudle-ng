@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content pipe">
                    <div class="content-data">
+
 
 
 
@@ -69,7 +70,7 @@
 
         <section>
             <h3>Metadata</h3>
-            <table class="table table-sm table-hover">
+            <table class="table table-sm table-hover metadata">
                 <tbody>
                     <tr>
                         <td class="col-md-3">Name</td>
@@ -104,8 +105,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">projects/shared-pipes/complete-url.pipe.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="5"
+                            class="link-to-prism">projects/shared-pipes/complete-url.pipe.ts:5</a></div>
                 </td>
             </tr>
 
@@ -181,39 +182,36 @@
 
 @Pipe({ name: &#x27;completeurl&#x27; })
 export class CompleteUrlPipe implements PipeTransform {
-
   transform(url: string, urlType: string &#x3D; &#x27;&#x27;) {
-    if (!(/(http(s?)):\/\//i.test(url))) {
+    if (!/(http(s?)):\/\//i.test(url)) {
       switch (urlType) {
         case &#x27;&#x27;:
-          return &#x60;http://${url}&#x60;;
+          return &#x60;https://${url}&#x60;;
         case &#x27;twitter&#x27;:
           if (url.includes(&#x27;twitter&#x27;) || url.includes(&#x27;t.co&#x27;)) {
-            return &#x60;http://${url}&#x60;;
+            return &#x60;https://${url}&#x60;;
           } else {
-            return &#x60;http://twitter.com/${url}&#x60;;
+            return &#x60;https://twitter.com/${url}&#x60;;
           }
         // case &#x27;linkedin&#x27;:
         //   if (url.includes(&#x27;linkedin&#x27;)) {
-        //     return &#x60;http://${url}&#x60;;
+        //     return &#x60;https://${url}&#x60;;
         //   } else {
-        //     return &#x60;http://linkedin.com/${url}&#x60;;
+        //     return &#x60;https://linkedin.com/${url}&#x60;;
         //   }
         // case &#x27;github&#x27;:
         //   if (url.includes(&#x27;github&#x27;)) {
-        //     return &#x60;http://${url}&#x60;;
+        //     return &#x60;https://${url}&#x60;;
         //   } else {
-        //     return &#x60;http://github.com/${url}&#x60;;
+        //     return &#x60;https://github.com/${url}&#x60;;
         //   }
         default:
           if (url.includes(urlType)) {
-            return &#x60;http://${url}&#x60;;
+            return &#x60;https://${url}&#x60;;
           } else {
-            return &#x60;http://${urlType}.com/${url}&#x60;;
+            return &#x60;https://${urlType}.com/${url}&#x60;;
           }
-
       }
-
     }
     return url;
   }
@@ -222,6 +220,7 @@ export class CompleteUrlPipe implements PipeTransform {
     </div>
 
 </div>
+
 
 
 
@@ -244,6 +243,15 @@ export class CompleteUrlPipe implements PipeTransform {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
