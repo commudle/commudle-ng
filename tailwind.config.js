@@ -3,6 +3,12 @@ module.exports = {
   content: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
   theme: {
     extend: {
+      colors: {
+        'Spiro-Disco': '#1ac7e340',
+        'Brilliant-Azure': '#2aa5ff',
+        'Caribbean-Green': '#00d68f',
+        inherit: 'inherit',
+      },
       lineClamp: {
         14: '14',
       },
@@ -14,6 +20,14 @@ module.exports = {
         'span-19': 'span 19 / span 19',
         'span-20': 'span 20 / span 20',
         'span-22': 'span 22 / span 22',
+      },
+      spacing: {
+        5: '5px',
+        20: '20px',
+        630: '630px',
+        800: '800px',
+        '95vh': '95vh',
+        '95vw': '95vw',
       },
     },
     container: {
