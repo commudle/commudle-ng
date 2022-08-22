@@ -1,79 +1,60 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 nb-card {
-  height: 95vh;
-  width: 800px;
-
-  @media all and (max-width: $tab-width) {
-    width: 95vw;
-  }
+  @apply com-w-95vw md:com-w-800 com-h-95vh;
 
   nb-card-body {
-    padding: 1rem;
-    overflow: hidden;
+    @apply com-p-4 com-overflow-hidden;
 
     .user-profile-completion-stepper {
-      height: 100%;
+      @apply com-h-full;
 
       &::ng-deep {
         .header {
           .connector-past {
-            background-color: #00d68f;
+            @apply com-bg-Caribbean-Green;
           }
 
           .step {
             .label-index {
-              border-color: #00d68f;
+              @apply com-border-Caribbean-Green;
             }
 
             &.completed {
               .label-index {
-                background-color: #00d68f;
-                border-color: #00d68f;
+                @apply com-bg-Caribbean-Green com-border-Caribbean-Green;
               }
             }
           }
         }
 
         .step-content {
-          padding: 0;
           height: inherit;
+          @apply com-p-0;
 
           .content {
-            overflow-x: hidden;
-            height: calc(100% - 56px - 68px);
+            height: calc(95% - 56px - 68px);
+            @apply com-overflow-x-hidden;
 
             .skills-gif,
             .completed-gif {
-              display: block;
-              margin: 1rem auto 0;
-              max-height: 60%;
+              @apply com-block com-mt-4 com-mx-auto com-mb-0 com-max-h-[60%];
             }
 
             .skills-gif {
-              @media all and (max-width: $mobile-width) {
-                display: none;
-              }
+              @apply com-hidden;
+              @apply md:com-block;
             }
 
             // Custom scrollbar
             &::-webkit-scrollbar {
-              width: 12px;
+              @apply com-w-3;
             }
 
             &::-webkit-scrollbar-track {
-              background-color: transparent;
+              @apply com-bg-transparent;
             }
 
             &::-webkit-scrollbar-thumb {
-              background-color: darken($light-purple, 5%);
-              border-radius: $border-10;
-              border: 3px solid transparent;
-              background-clip: content-box;
-            }
-
-            &::-webkit-scrollbar-thumb:hover {
-              background-color: darken($light-purple, 8%);
+              @apply com-bg-gray-300 hover:com-bg-gray-400 com-bg-clip-content com-rounded-xl com-border-2 com-border-solid com-border-transparent;
             }
           }
         }
@@ -81,26 +62,23 @@ nb-card {
     }
 
     .navigation-buttons {
-      padding-top: 1rem;
+      @apply com-pt-4;
 
       &.both-buttons {
-        display: flex;
-        justify-content: space-between;
+        @apply com-flex com-justify-between com-relative com-bottom-2;
       }
 
       &.next-button-only {
-        display: flex;
-        justify-content: flex-end;
+        @apply com-flex com-justify-end;
       }
 
       &.prev-button-only {
-        display: flex;
-        justify-content: flex-start;
+        @apply com-flex com-justify-start;
       }
     }
   }
 }
 
 .step-one-heading {
-  margin-left: 25px;
+  @apply com-ml-6;
 }

@@ -1,5 +1,8 @@
 <nb-card>
   <nb-card-body>
+    <div class="com-flex com-justify-end">
+      <button nbButton ghost (click)="closeStepper()" class="!com-p-2 com-mb-3">X</button>
+    </div>
     <nb-stepper orientation="horizontal" disableStepNavigation class="user-profile-completion-stepper">
       <nb-step [label]="stepOne">
         <ng-template #stepOne>

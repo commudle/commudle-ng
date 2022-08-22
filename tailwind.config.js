@@ -3,6 +3,13 @@ module.exports = {
   content: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
   theme: {
     extend: {
+      colors: {
+        'Spiro-Disco': '#1ac7e340',
+        'Brilliant-Azure': '#2aa5ff',
+        'Caribbean-Green': '#00d68f',
+        gunmetal: '#2f2e41',
+        'Silver-Sand': '#c4c4c4',
+      },
       lineClamp: {
         14: '14',
       },
@@ -16,13 +23,19 @@ module.exports = {
         'span-22': 'span 22 / span 22',
       },
       spacing: {
-        c72: '72px',
-      },
-      colors: {
-        'c-gunmetal': '#2f2e41',
+        '5px': '5px',
+        '20px': '20px',
+        '72px': '72px',
+        '212px': '212px',
+        '260px': '260px',
+        '296px': '296px',
+        '630px': '630px',
+        '800px': '800px',
+        '95vh': '95vh',
+        '95vw': '95vw',
       },
       borderWidth: {
-        1: '1px',
+        DEFAULT: '1px',
       },
     },
     container: {
