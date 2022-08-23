@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { Component, Input, OnInit } from '@angular/core';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { NavigatorShareService } from 'projects/shared-services/navigator-share.service';
 
@@ -18,6 +18,7 @@ export class ShareButtonComponent implements OnInit {
 
   @Input() showText: boolean = true;
   @Input() round: boolean = false;
+  @Input() appearance: 'outline' | 'filled' | 'ghost' = 'filled';
 
   constructor(
     private navigatorShareService: NavigatorShareService,

@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Interceptors</li>
   <li >AuthTokenInterceptor</li>
@@ -58,7 +59,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/shared-services/lib-authwatch-token.interceptor.ts</code>
+            <code>projects/shared-interceptors/lib-authwatch-token.interceptor.ts</code>
         </p>
 
 
@@ -118,7 +119,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-services/lib-authwatch-token.interceptor.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">projects/shared-interceptors/lib-authwatch-token.interceptor.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -181,8 +182,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">projects/shared-services/lib-authwatch-token.interceptor.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">projects/shared-interceptors/lib-authwatch-token.interceptor.ts:11</a></div>
                 </td>
             </tr>
 
@@ -268,7 +269,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/shared-services/lib-authwatch-token.interceptor.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">projects/shared-interceptors/lib-authwatch-token.interceptor.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -281,29 +282,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-} from &#x27;@angular/common/http&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { environment } from &#x27;projects/commudle-admin/src/environments/environment&#x27;;
+import { LibAuthwatchService } from &#x27;projects/shared-services/lib-authwatch.service&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { LibAuthwatchService } from &#x27;./lib-authwatch.service&#x27;;
-
 
 @Injectable()
 export class AuthTokenInterceptor implements HttpInterceptor {
-
   constructor(public authService: LibAuthwatchService) {}
 
   intercept(request: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {
-
-    request &#x3D; request.clone({
-      setHeaders: {
-        Authorization: &#x60;Bearer ${this.authService.getAuthCookie()}&#x60;
-      }
-    });
+    if (request.url.startsWith(environment.base_url)) {
+      request &#x3D; request.clone({
+        setHeaders: {
+          Authorization: &#x60;Bearer ${this.authService.getAuthCookie()}&#x60;,
+        },
+      });
+    }
 
     return next.handle(request);
   }
@@ -311,6 +307,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
 </code></pre>
     </div>
 </div>
+
 
 
 
@@ -335,6 +332,15 @@ export class AuthTokenInterceptor implements HttpInterceptor {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

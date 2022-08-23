@@ -1,8 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   prefix: 'com-',
-  mode: 'jit',
-  purge: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
   theme: {
     extend: {
       lineClamp: {
@@ -22,13 +21,11 @@ module.exports = {
       center: true,
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar-hide'),
   ],
   corePlugins: {
     preflight: false,

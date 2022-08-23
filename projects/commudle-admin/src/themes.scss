@@ -1,6 +1,6 @@
-@import '~@nebular/theme/styles/theming';
-@import '~@nebular/theme/styles/themes/default';
-@import './projects/commudle-admin/src/assets/styles/variables';
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/default';
 
 $nb-themes: nb-register-theme(
   (
@@ -14,11 +14,12 @@ $nb-themes: nb-register-theme(
     footer-shadow: 0 -0.5rem 1rem 0 rgba(44, 51, 73, 0.1),
     font-family-primary: unquote('Inter, sans-serif'),
     font-family-secondary: font-family-primary,
-    card-border-radius: $border-10,
+    card-border-radius: 10px,
     button-outline-text-transform: capitalize,
     button-filled-text-transform: capitalize,
     button-ghost-text-transform: capitalize,
     button-hero-text-transform: capitalize,
+    text-button-font-weight: 500,
     text-paragraph-font-size: 0.875rem,
   ),
   default,

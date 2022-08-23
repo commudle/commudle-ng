@@ -23,7 +23,6 @@ export class CmsService {
     useCdn: true, // `false` if you want to ensure fresh data
   });
   imageUrlBuilder: ImageUrlBuilder = builder(this.client);
-
   private cmsUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
 
   constructor(private httpClient: HttpClient) {}

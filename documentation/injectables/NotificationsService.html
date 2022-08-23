@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
 
 
 
@@ -128,12 +129,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(tabTitleNotificationsService: <a href="../injectables/TabTitleNotificationsService.html" target="_self">TabTitleNotificationsService</a>, userChatNotificationsChannel: <a href="../injectables/UserChatNotificationsChannel.html" target="_self">UserChatNotificationsChannel</a>, communityChannelNotificationsChannel: <a href="../injectables/CommunityChannelNotificationsChannel.html" target="_self">CommunityChannelNotificationsChannel</a>, sessionPageNotificationsService: <a href="../injectables/SessionPageNotificationsService.html" target="_self">SessionPageNotificationsService</a>)</code>
+<code>constructor(tabTitleNotificationsService: <a href="../injectables/TabTitleNotificationsService.html" target="_self">TabTitleNotificationsService</a>, desktopNotificationsService: <a href="../injectables/DesktopNotificationsService.html" target="_self">DesktopNotificationsService</a>, userChatNotificationsChannel: <a href="../injectables/UserChatNotificationsChannel.html" target="_self">UserChatNotificationsChannel</a>, communityChannelNotificationsChannel: <a href="../injectables/CommunityChannelNotificationsChannel.html" target="_self">CommunityChannelNotificationsChannel</a>, sessionPageNotificationsService: <a href="../injectables/SessionPageNotificationsService.html" target="_self">SessionPageNotificationsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -155,6 +156,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/TabTitleNotificationsService.html" target="_self" >TabTitleNotificationsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>desktopNotificationsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DesktopNotificationsService.html" target="_self" >DesktopNotificationsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -234,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -273,8 +286,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -312,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -349,8 +362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -386,8 +399,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -434,7 +447,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/shared-services/notifications/notifications.service.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -451,8 +464,9 @@
 import { CommunityChannelNotificationsChannel } from &#x27;projects/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel&#x27;;
 import { UserChatNotificationsChannel } from &#x27;projects/commudle-admin/src/app/feature-modules/user-chats/services/websockets/user-chat-notifications.channel&#x27;;
 import { IDiscussionFollower } from &#x27;projects/shared-models/discussion-follower.model&#x27;;
+import { DesktopNotificationsService } from &#x27;projects/shared-services/notifications/desktop-notifications.service&#x27;;
+import { SessionPageNotificationsService } from &#x27;projects/shared-services/session-page-notifications.service&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
-import { SessionPageNotificationsService } from &#x27;../session-page-notifications.service&#x27;;
 import { TabTitleNotificationsService } from &#x27;./tab-title-notifications.service&#x27;;
 
 @Injectable({
@@ -463,6 +477,7 @@ export class NotificationsService {
 
   constructor(
     private tabTitleNotificationsService: TabTitleNotificationsService,
+    private desktopNotificationsService: DesktopNotificationsService,
     private userChatNotificationsChannel: UserChatNotificationsChannel,
     private communityChannelNotificationsChannel: CommunityChannelNotificationsChannel,
     private sessionPageNotificationsService: SessionPageNotificationsService,
@@ -483,6 +498,10 @@ export class NotificationsService {
       this.userChatNotificationsChannel.newMessagesCounter$.subscribe((value: IDiscussionFollower[]) &#x3D;&gt; {
         if (value.length &gt; 0) {
           this.tabTitleNotificationsService.blinkTitle(&#x60;New personal message from ${value[0].user.name}!&#x60;);
+          this.desktopNotificationsService.showNotification(
+            &#x27;New personal message&#x27;,
+            &#x60;You have a new personal message from ${value[0].user.name}!&#x60;,
+          );
         }
       }),
     );
@@ -493,6 +512,10 @@ export class NotificationsService {
       this.communityChannelNotificationsChannel.hasNotifications$.subscribe((value: boolean) &#x3D;&gt; {
         if (value) {
           this.tabTitleNotificationsService.blinkTitle(&#x60;New channel message!&#x60;);
+          this.desktopNotificationsService.showNotification(
+            &#x27;New channel message&#x27;,
+            &#x60;You have a new message in a channel you are following!&#x60;,
+          );
         }
       }),
     );
@@ -503,11 +526,19 @@ export class NotificationsService {
       this.sessionPageNotificationsService.newChat$.subscribe((value: boolean) &#x3D;&gt; {
         if (value) {
           this.tabTitleNotificationsService.blinkTitle(&#x60;New chat on session page!&#x60;);
+          this.desktopNotificationsService.showNotification(
+            &#x27;New chat on session page&#x27;,
+            &#x60;You have a new chat on the session you are attending!&#x60;,
+          );
         }
       }),
       this.sessionPageNotificationsService.newQna$.subscribe((value: boolean) &#x3D;&gt; {
         if (value) {
           this.tabTitleNotificationsService.blinkTitle(&#x60;New Q&amp;A on session page!&#x60;);
+          this.desktopNotificationsService.showNotification(
+            &#x27;New Q&amp;A on session page&#x27;,
+            &#x60;You have a new Q&amp;A on the session you are attending!&#x60;,
+          );
         }
       }),
     );
@@ -517,6 +548,7 @@ export class NotificationsService {
     </div>
 
 </div>
+
 
 
 
@@ -542,6 +574,15 @@ export class NotificationsService {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

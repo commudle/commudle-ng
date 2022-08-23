@@ -1,7 +1,6 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { NbSidebarService, NbSidebarState, NbWindowService, NbWindowState } from '@nebular/theme';
+import { NbSidebarService, NbSidebarState } from '@nebular/theme';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
-import { CookieConsentComponent } from 'projects/shared-components/cookie-consent/cookie-consent.component';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { ActionCableConnectionSocket } from 'projects/shared-services/action-cable-connection.socket';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
@@ -22,7 +21,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   currentUser: ICurrentUser;
   cookieAccepted = false;
   profileBarStatus = true;
-
   isBrowser = this.isBrowserService.isBrowser();
 
   constructor(
@@ -30,7 +28,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private actionCableConnectionSocket: ActionCableConnectionSocket,
     private sidebarService: NbSidebarService,
-    private windowService: NbWindowService,
     private cookieConsentService: CookieConsentService,
     private cdr: ChangeDetectorRef,
     private notificationsService: NotificationsService,
@@ -55,16 +52,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
         }
       }
     });
-
-    if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
-      setTimeout(() => {
-        this.windowService.open(CookieConsentComponent, {
-          title: "Let's Share Cookies!",
-          initialState: NbWindowState.MAXIMIZED,
-          windowClass: 'cookie-consent',
-        });
-      }, 3000);
-    }
 
     if (this.cookieConsentService.isCookieConsentAccepted()) {
       this.cookieAccepted = true;

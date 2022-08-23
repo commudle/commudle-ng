@@ -7,6 +7,7 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { SearchByPipe } from './search-by.pipe';
 import { TextToLinksPipe } from './text-to-links.pipe';
 import { TruncateTextPipe } from './truncate-text.pipe';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     SafeUrlPipe,
     SearchByPipe,
     OrderByPipe,
+    SafePipe,
   ],
   imports: [],
   exports: [
@@ -29,6 +31,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     SafeUrlPipe,
     SearchByPipe,
     OrderByPipe,
+    SafePipe,
   ],
 })
 export class SharedPipesModule {}

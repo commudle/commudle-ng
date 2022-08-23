@@ -11,6 +11,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "projects/commudle-admin",
@@ -20,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/commudle-admin/browser",
+            "outputPath": "dist/commudle-admin",
             "index": "projects/commudle-admin/src/index.html",
             "main": "projects/commudle-admin/src/main.ts",
             "polyfills": "projects/commudle-admin/src/polyfills.ts",
@@ -30,7 +33,9 @@
             "assets": [
               "projects/commudle-admin/src/favicon.ico",
               "projects/commudle-admin/src/assets",
-              "projects/commudle-admin/src/manifest.webmanifest"
+              "projects/commudle-admin/src/manifest.webmanifest",
+              "projects/commudle-admin/src/robots.txt",
+              "projects/commudle-admin/src/sitemap.xml"
             ],
             "styles": [
               "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
@@ -113,63 +118,6 @@
             "styles": ["projects/commudle-admin/src/styles.scss"],
             "scripts": []
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/commudle-admin/server",
-            "main": "projects/commudle-admin/server.ts",
-            "tsConfig": "projects/commudle-admin/tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "projects/commudle-admin/src/environments/environment.ts",
-                  "with": "projects/commudle-admin/src/environments/environment.prod.ts"
-                }
-              ]
-            },
-            "development": {
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "commudle-admin:build:development",
-              "serverTarget": "commudle-admin:server:development"
-            },
-            "production": {
-              "browserTarget": "commudle-admin:build:production",
-              "serverTarget": "commudle-admin:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "routes": ["/"]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "commudle-admin:build:production",
-              "serverTarget": "commudle-admin:server:production"
-            },
-            "development": {
-              "browserTarget": "commudle-admin:build:development",
-              "serverTarget": "commudle-admin:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     },
