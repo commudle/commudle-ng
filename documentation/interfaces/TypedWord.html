@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content interface">
                    <div class="content-data">
+
 
 
 
@@ -215,33 +216,40 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, HostListener, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  ViewContainerRef,
+} from &#x27;@angular/core&#x27;;
 import { SuggestionBoxComponent } from &#x27;projects/shared-modules/mention/components/suggestion-box/suggestion-box.component&#x27;;
 import { MentionService } from &#x27;projects/shared-modules/mention/service/mention.service&#x27;;
-import { Subscription } from &#x27;rxjs&#x27;;
 import { getCaretCoordinates } from &#x27;projects/shared-modules/mention/utils/textarea-caret-position&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
 
 @Directive({
-  selector: &#x27;[appMention]&#x27;
+  selector: &#x27;[appMention]&#x27;,
 })
-export class MentionDirective {
-
+export class MentionDirective implements OnDestroy {
   componentRef: ComponentRef&lt;SuggestionBoxComponent&gt;;
   triggerCharacter &#x3D; null;
   nativeElement: HTMLTextAreaElement | HTMLInputElement;
   taggableEntities: any[] &#x3D; [];
   selectedEntity: any;
   subscriptions: Subscription[] &#x3D; [];
-  private coords: { top: number, left: number } &#x3D; { top: 0, left: 0 };
   clickedOnBox: boolean &#x3D; false;
+  private coords: { top: number; left: number } &#x3D; { top: 0, left: 0 };
 
   constructor(
     private inputElementRef: ElementRef,
     public _viewContainerRef: ViewContainerRef,
     private _componentResolver: ComponentFactoryResolver,
-    private mentionService: MentionService
+    private mentionService: MentionService,
   ) {
-    this.nativeElement &#x3D; inputElementRef.nativeElement;
+    this.nativeElement &#x3D; this.inputElementRef.nativeElement;
   }
 
   ngOnDestroy(): void {
@@ -258,14 +266,14 @@ export class MentionDirective {
   onItemClicked(entity: any) {
     this.autoComplete(entity);
     this.nativeElement.focus();
-    this.selectedEntity &#x3D; &quot;&quot;;
+    this.selectedEntity &#x3D; &#x27;&#x27;;
     if (this.componentRef) {
       this.componentRef.destroy();
     }
   }
 
   @HostListener(&#x27;blur&#x27;, [&#x27;$event&#x27;]) //if text area gets out of focus remove autocomplete box
-  onOutOfFocus(event: any) {
+  onOutOfFocus() {
     if (!this.clickedOnBox &amp;&amp; this.componentRef) {
       this.componentRef.destroy();
     }
@@ -274,42 +282,35 @@ export class MentionDirective {
 
   @HostListener(&#x27;keydown&#x27;, [&#x27;$event&#x27;])
   currentKey(event: KeyboardEvent) {
-
     if (this.componentRef) {
-
       switch (event.key) {
         case &#x27;Enter&#x27;: {
           if (this.selectedEntity) {
-
             event.preventDefault();
             event.stopPropagation();
             event.stopImmediatePropagation();
 
             this.autoComplete(this.selectedEntity);
             this.nativeElement.focus();
-            this.componentRef.destroy()
-            this.selectedEntity &#x3D; &quot;&quot;;// alert here
-          }
+            this.componentRef.destroy();
+            this.selectedEntity &#x3D; &#x27;&#x27;; // alert here
 
-          if (this.nativeElement instanceof HTMLTextAreaElement) {
-            return false;
+            if (this.nativeElement instanceof HTMLTextAreaElement) {
+              return false;
+            }
           }
 
           break;
         }
         case &#x27;ArrowUp&#x27;: {
-
           let currentSelectedIndex &#x3D; this.taggableEntities.indexOf(this.selectedEntity);
           if (currentSelectedIndex &#x3D;&#x3D;&#x3D; 0) {
             this.componentRef.instance.selectedEntity &#x3D; this.taggableEntities[this.taggableEntities.length - 1];
             this.selectedEntity &#x3D; this.taggableEntities[this.taggableEntities.length - 1];
-          }
-          else {
+          } else {
             this.componentRef.instance.selectedEntity &#x3D; this.taggableEntities[currentSelectedIndex - 1];
             this.selectedEntity &#x3D; this.taggableEntities[currentSelectedIndex - 1];
           }
-
-          event.preventDefault();
 
           break;
         }
@@ -318,42 +319,34 @@ export class MentionDirective {
           if (currentSelectedIndex &#x3D;&#x3D;&#x3D; this.taggableEntities.length - 1) {
             this.componentRef.instance.selectedEntity &#x3D; this.taggableEntities[0];
             this.selectedEntity &#x3D; this.taggableEntities[0];
-          }
-          else {
+          } else {
             this.componentRef.instance.selectedEntity &#x3D; this.taggableEntities[currentSelectedIndex + 1];
             this.selectedEntity &#x3D; this.taggableEntities[currentSelectedIndex + 1];
           }
-
-          event.preventDefault();
 
           break;
         }
       }
 
       setTimeout(() &#x3D;&gt; this.scrollSelectedIntoView(), 1);
-
     }
-
   }
 
   autoComplete(entity: any) {
-
     let currentWordTyped &#x3D; this.getCurrentWord();
 
     let entityName: string;
     if (entity.type &#x3D;&#x3D;&#x3D; &#x27;users&#x27;) {
       entityName &#x3D; this.triggerCharacter + entity.username;
-    }
-    else {
+    } else {
       entityName &#x3D; entity.name;
     }
 
     if (entityName.length &gt;&#x3D; currentWordTyped.value.slice(1).length) {
-
       let currentTextInputValue &#x3D; this.nativeElement.value;
 
-      let newTextInputValue &#x3D; &quot;&quot;;
-      let newCursorPosition &#x3D; 0;
+      let newTextInputValue: string;
+      let newCursorPosition: number;
 
       let addText: string &#x3D; entityName;
 
@@ -390,36 +383,37 @@ export class MentionDirective {
       //updates angular binding
       const event &#x3D; new Event(&#x27;input&#x27;, {
         bubbles: true,
-        cancelable: false
+        cancelable: false,
       });
-      this.nativeElement.dispatchEvent(event)
+      this.nativeElement.dispatchEvent(event);
     }
-
   }
 
   newTextInput(text: string, currentTextInputValue: string, currentWordTyped: TypedWord): string {
-    return currentTextInputValue.slice(0, currentWordTyped.startIndex) + text + &quot; &quot; + currentTextInputValue.slice(currentWordTyped.endIndex + 1);
+    return (
+      currentTextInputValue.slice(0, currentWordTyped.startIndex) +
+      text +
+      &#x27; &#x27; +
+      currentTextInputValue.slice(currentWordTyped.endIndex + 1)
+    );
   }
 
   @HostListener(&#x27;input&#x27;, [&#x27;$event&#x27;])
   currentString() {
-
     let wordBeingTyped &#x3D; this.getCurrentWord().value.toLowerCase();
 
     this.setTriggerCharacter(wordBeingTyped);
 
     if (wordBeingTyped.startsWith(this.triggerCharacter)) {
-
       const query &#x3D; wordBeingTyped.slice(1);
 
       if (query.length) {
         switch (this.triggerCharacter) {
-
           case &#x27;@&#x27;: {
             this.subscriptions.push(
               this.mentionService.getUsers(query).subscribe((data: any) &#x3D;&gt; {
                 this.displayComponent(data);
-              })
+              }),
             );
             break;
           }
@@ -428,42 +422,36 @@ export class MentionDirective {
             this.subscriptions.push(
               this.mentionService.getOthers(query).subscribe((data: any) &#x3D;&gt; {
                 this.displayComponent(data);
-              })
+              }),
             );
             break;
           }
 
           default: {
-            return this.taggableEntities &#x3D; []
+            return (this.taggableEntities &#x3D; []);
           }
-
         }
       }
-
-    }
-    else {
-
+    } else {
       setTimeout(() &#x3D;&gt; {
         if (this.componentRef) {
-          this.componentRef.destroy()
+          this.componentRef.destroy();
         }
-      }, 500)
+      }, 500);
 
       if (this.selectedEntity) {
-        this.selectedEntity &#x3D; &quot;&quot;;
+        this.selectedEntity &#x3D; &#x27;&#x27;;
       }
     }
-
   }
 
   displayComponent(data: any) {
-
     const results: any[] &#x3D; [];
 
     for (const entity in data) {
       for (const index in data[entity]) {
-        data[entity][index][&quot;type&quot;] &#x3D; entity;
-        results.push(data[entity][index])
+        data[entity][index][&#x27;type&#x27;] &#x3D; entity;
+        results.push(data[entity][index]);
       }
     }
 
@@ -471,19 +459,18 @@ export class MentionDirective {
 
     if (this.taggableEntities.length) {
       this.loadComponent();
-      window.requestAnimationFrame(() &#x3D;&gt; this.checkBounds())
+      window.requestAnimationFrame(() &#x3D;&gt; this.checkBounds());
       this.componentRef.instance.taggableEntities &#x3D; this.taggableEntities;
-    }
-    else {
+    } else {
       if (this.componentRef) {
         this.componentRef.destroy();
       }
     }
-
   }
 
   checkBounds() {
-    let left &#x3D; this.coords.left, top &#x3D; this.coords.top;
+    let left &#x3D; this.coords.left,
+      top &#x3D; this.coords.top;
     const boundsHorizontal &#x3D; this.componentRef.location.nativeElement.firstChild.getBoundingClientRect();
     const boundsVertical &#x3D; this.componentRef.location.nativeElement.firstChild.firstChild.getBoundingClientRect();
     const navbarHeight &#x3D; 56;
@@ -508,9 +495,7 @@ export class MentionDirective {
   }
 
   setTriggerCharacter(word: string) {
-
     switch (word.charAt(0)) {
-
       case &#x27;@&#x27;: {
         this.triggerCharacter &#x3D; &#x27;@&#x27;;
         break;
@@ -524,33 +509,36 @@ export class MentionDirective {
       default: {
         this.triggerCharacter &#x3D; null;
       }
-
     }
-
   }
 
   getCurrentWord(): TypedWord {
-
     let cursorLocation &#x3D; this.nativeElement.selectionStart;
+
     let text &#x3D; this.nativeElement.value;
 
-    let word: string &#x3D; &quot;&quot;;
+    let word: string &#x3D; &#x27;&#x27;;
 
     let i: number;
     for (i &#x3D; cursorLocation - 1; i &gt;&#x3D; 0 &amp;&amp; text[i] !&#x3D;&#x3D; &#x27; &#x27;; i--) {
       word +&#x3D; text[i];
     }
 
-    word &#x3D; word.split(&quot;&quot;).reverse().join(&quot;&quot;);
+    word &#x3D; word.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);
 
     let startIndex &#x3D; i + 1; //&#x27;@&#x27; position
     let endIndex &#x3D; cursorLocation - 1; // last character position
 
+    if (word.includes(&#x27;\n&#x27;)) {
+      //word contains new line character
+      word &#x3D; word.trim();
+    }
+
     return {
       value: word,
       startIndex,
-      endIndex
-    }
+      endIndex,
+    };
   }
 
   scrollSelectedIntoView() {
@@ -568,10 +556,9 @@ export class MentionDirective {
     let eBottom &#x3D; eTop + listItem.clientHeight;
 
     if (eTop &lt; cTop) {
-      container.scrollTop -&#x3D; (cTop - eTop) + extraBottom;
-    }
-    else if (eBottom &gt; cBottom) {
-      container.scrollTop +&#x3D; (eBottom - cBottom) + extraTop;
+      container.scrollTop -&#x3D; cTop - eTop + extraBottom;
+    } else if (eBottom &gt; cBottom) {
+      container.scrollTop +&#x3D; eBottom - cBottom + extraTop;
     }
   }
 
@@ -592,28 +579,26 @@ export class MentionDirective {
     this.subscriptions.push(
       this.componentRef.instance.itemClick.subscribe(() &#x3D;&gt; {
         this.clickedOnBox &#x3D; true;
-      })
+      }),
     );
 
     this.subscriptions.push(
       this.componentRef.instance.selectedItemEvent.subscribe((data: any) &#x3D;&gt; {
-        if (data.eventType &#x3D;&#x3D;&#x3D; &quot;click&quot;) {
+        if (data.eventType &#x3D;&#x3D;&#x3D; &#x27;click&#x27;) {
           this.onItemClicked(data.entity);
-        }
-        else if (data.eventType &#x3D;&#x3D;&#x3D; &quot;hover&quot;) {
+        } else if (data.eventType &#x3D;&#x3D;&#x3D; &#x27;hover&#x27;) {
           this.onItemHover(data.entity);
         }
-      })
-    )
+      }),
+    );
   }
 
   positionElement(left: number, top: number, dropUp: boolean &#x3D; true, lineHeight: number &#x3D; 0) {
     top +&#x3D; dropUp ? 0 : lineHeight;
-    this.componentRef.location.nativeElement.firstChild.style.position &#x3D; &quot;absolute&quot;;
+    this.componentRef.location.nativeElement.firstChild.style.position &#x3D; &#x27;absolute&#x27;;
     this.componentRef.location.nativeElement.firstChild.style.left &#x3D; left + &#x27;px&#x27;;
     this.componentRef.location.nativeElement.firstChild.style.top &#x3D; top + &#x27;px&#x27;;
   }
-
 }
 
 interface TypedWord {
@@ -624,6 +609,7 @@ interface TypedWord {
 </code></pre>
     </div>
 </div>
+
 
 
 
@@ -644,6 +630,15 @@ interface TypedWord {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -81,7 +81,7 @@
 
 <section>
     <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover metadata">
         <tbody>
 
 
@@ -135,37 +135,55 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#agendaSectionRef" >agendaSectionRef</a>
+                            </li>
+                            <li>
+                                <a href="#collaborationsSectionRef" >collaborationsSectionRef</a>
+                            </li>
+                            <li>
                                 <a href="#community" >community</a>
+                            </li>
+                            <li>
+                                <a href="#detailsSectionRef" >detailsSectionRef</a>
                             </li>
                             <li>
                                 <a href="#EEventStatuses" >EEventStatuses</a>
                             </li>
                             <li>
+                                <a href="#emailsSectionRef" >emailsSectionRef</a>
+                            </li>
+                            <li>
                                 <a href="#event" >event</a>
                             </li>
                             <li>
-                                <a href="#eventGuideTemplate" >eventGuideTemplate</a>
+                                <a href="#eventGuideSectionRef" >eventGuideSectionRef</a>
                             </li>
                             <li>
                                 <a href="#eventHeaderImageForm" >eventHeaderImageForm</a>
                             </li>
                             <li>
-                                <a href="#faClock" >faClock</a>
-                            </li>
-                            <li>
-                                <a href="#faEdit" >faEdit</a>
-                            </li>
-                            <li>
-                                <a href="#faInfoCircle" >faInfoCircle</a>
-                            </li>
-                            <li>
                                 <a href="#moment" >moment</a>
+                            </li>
+                            <li>
+                                <a href="#registrationsSectionRef" >registrationsSectionRef</a>
+                            </li>
+                            <li>
+                                <a href="#sponsorsSectionRef" >sponsorsSectionRef</a>
+                            </li>
+                            <li>
+                                <a href="#statusSectionRef" >statusSectionRef</a>
+                            </li>
+                            <li>
+                                <a href="#updatesSectionRef" >updatesSectionRef</a>
                             </li>
                             <li>
                                 <a href="#uploadedHeaderImage" >uploadedHeaderImage</a>
                             </li>
                             <li>
                                 <a href="#uploadedHeaderImageFile" >uploadedHeaderImageFile</a>
+                            </li>
+                            <li>
+                                <a href="#volunteersSectionRef" >volunteersSectionRef</a>
                             </li>
                         </ul>
                     </td>
@@ -204,9 +222,6 @@
                                 <a href="#updateEventHeader" >updateEventHeader</a>
                             </li>
                             <li>
-                                <a href="#updateEventStatus" >updateEventStatus</a>
-                            </li>
-                            <li>
                                 <a href="#updateRegistrationType" >updateRegistrationType</a>
                             </li>
                         </ul>
@@ -227,12 +242,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, titleService: <a href="https://angular.io/api/platform-browser/Title" target="_blank">Title</a>, eventsService: <a href="../injectables/EventsService.html" target="_self">EventsService</a>, toastLogService: <a href="../injectables/LibToastLogService.html" target="_self">LibToastLogService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, sidebarService: NbSidebarService, windowService: NbWindowService, meta: <a href="https://angular.io/api/platform-browser/Meta" target="_blank">Meta</a>, title: <a href="https://angular.io/api/platform-browser/Title" target="_blank">Title</a>)</code>
+<code>constructor(activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, eventsService: <a href="../injectables/EventsService.html" target="_self">EventsService</a>, toastLogService: <a href="../injectables/LibToastLogService.html" target="_self">LibToastLogService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, windowService: NbWindowService, seoService: <a href="../injectables/SeoService.html" target="_self">SeoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -254,18 +269,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>titleService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/platform-browser/Title" target="_blank" >Title</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -310,18 +313,6 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>sidebarService</td>
-                                                  
-                                                        <td>
-                                                                    <code>NbSidebarService</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
                                                         <td>windowService</td>
                                                   
                                                         <td>
@@ -334,22 +325,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>meta</td>
+                                                        <td>seoService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/platform-browser/Meta" target="_blank" >Meta</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>title</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/platform-browser/Title" target="_blank" >Title</a></code>
+                                                                        <code><a href="../injectables/SeoService.html" target="_self" >SeoService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -395,8 +374,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:108</a></div>
                 </td>
             </tr>
 
@@ -432,8 +411,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:79</a></div>
                 </td>
             </tr>
 
@@ -501,8 +480,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:63</a></div>
                 </td>
             </tr>
 
@@ -538,8 +517,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:52</a></div>
                 </td>
             </tr>
 
@@ -575,8 +554,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:117</a></div>
                 </td>
             </tr>
 
@@ -605,15 +584,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>scroll(el: HTMLElement)</code>
+<code>scroll(element: ElementRef<HTMLDivElement>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:104</a></div>
                 </td>
             </tr>
 
@@ -634,9 +613,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>el</td>
+                                    <td>element</td>
                                     <td>
-                                            <code>HTMLElement</code>
+                                            <code>ElementRef&lt;HTMLDivElement&gt;</code>
                                     </td>
 
                                     <td>
@@ -681,8 +660,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:73</a></div>
                 </td>
             </tr>
 
@@ -746,8 +725,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:95</a></div>
                 </td>
             </tr>
 
@@ -758,75 +737,6 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateEventStatus"></a>
-                    <span class="name">
-                        <span ><b>updateEventStatus</b></span>
-                        <a href="#updateEventStatus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>updateEventStatus($event: <a href="../interfaces/IEventStatus.html" target="_self">IEventStatus</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:76</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>$event</td>
-                                    <td>
-                                                <code><a href="../interfaces/IEventStatus.html" target="_self" >IEventStatus</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -852,8 +762,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:67</a></div>
                 </td>
             </tr>
 
@@ -907,6 +817,76 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="agendaSectionRef"></a>
+                    <span class="name">
+                        <span ><b>agendaSectionRef</b></span>
+                        <a href="#agendaSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;agendaSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="collaborationsSectionRef"></a>
+                    <span class="name">
+                        <span ><b>collaborationsSectionRef</b></span>
+                        <a href="#collaborationsSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;collaborationsSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="community"></a>
                     <span class="name">
                         <span ><b>community</b></span>
@@ -922,7 +902,42 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="detailsSectionRef"></a>
+                    <span class="name">
+                        <span ><b>detailsSectionRef</b></span>
+                        <a href="#detailsSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;detailsSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -947,7 +962,42 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emailsSectionRef"></a>
+                    <span class="name">
+                        <span ><b>emailsSectionRef</b></span>
+                        <a href="#emailsSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;emailsSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -973,7 +1023,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -984,10 +1034,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="eventGuideTemplate"></a>
+                    <a name="eventGuideSectionRef"></a>
                     <span class="name">
-                        <span ><b>eventGuideTemplate</b></span>
-                        <a href="#eventGuideTemplate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>eventGuideSectionRef</b></span>
+                        <a href="#eventGuideSectionRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1002,13 +1052,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ViewChild(&#x27;eventGuideTemplate&#x27;)<br />
+                            @ViewChild(&#x27;eventGuideSection&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -1031,81 +1081,6 @@
                         <i>Default value : </i><code>this.fb.group({
     header_image: [&#x27;&#x27;, Validators.required],
   })</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:37</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faClock"></a>
-                    <span class="name">
-                        <span ><b>faClock</b></span>
-                        <a href="#faClock"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faClock</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:26</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faEdit"></a>
-                    <span class="name">
-                        <span ><b>faEdit</b></span>
-                        <a href="#faEdit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faEdit</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:27</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="faInfoCircle"></a>
-                    <span class="name">
-                        <span ><b>faInfoCircle</b></span>
-                        <a href="#faInfoCircle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>faInfoCircle</code>
                     </td>
                 </tr>
                     <tr>
@@ -1135,7 +1110,147 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrationsSectionRef"></a>
+                    <span class="name">
+                        <span ><b>registrationsSectionRef</b></span>
+                        <a href="#registrationsSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;registrationsSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sponsorsSectionRef"></a>
+                    <span class="name">
+                        <span ><b>sponsorsSectionRef</b></span>
+                        <a href="#sponsorsSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;sponsorsSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="statusSectionRef"></a>
+                    <span class="name">
+                        <span ><b>statusSectionRef</b></span>
+                        <a href="#statusSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;statusSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatesSectionRef"></a>
+                    <span class="name">
+                        <span ><b>updatesSectionRef</b></span>
+                        <a href="#updatesSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;updatesSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -1155,7 +1270,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -1181,7 +1296,42 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="volunteersSectionRef"></a>
+                    <span class="name">
+                        <span ><b>volunteersSectionRef</b></span>
+                        <a href="#volunteersSectionRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;volunteersSection&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/events/components/event-dashboard/event-dashboard.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -1194,106 +1344,85 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NbSidebarService, NbWindowService } from &#x27;@nebular/theme&#x27;;
-import { Component, OnInit, ViewChild, TemplateRef, OnDestroy } from &#x27;@angular/core&#x27;;
-import { IEvent } from &#x27;projects/shared-models/event.model&#x27;;
-import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-import { ICommunity } from &#x27;projects/shared-models/community.model&#x27;;
-import { faClock, faEdit, faInfoCircle } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
-import * as moment from &#x27;moment&#x27;;
-import { Meta, Title } from &#x27;@angular/platform-browser&#x27;;
-import { IEventStatus } from &#x27;projects/shared-models/event_status.model&#x27;;
-import { EEventStatuses } from &#x27;projects/shared-models/enums/event_statuses.enum&#x27;;
-import { EventsService } from &#x27;projects/commudle-admin/src/app/services/events.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from &#x27;@angular/core&#x27;;
 import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { NbWindowService } from &#x27;@nebular/theme&#x27;;
+import * as moment from &#x27;moment&#x27;;
+import { EventsService } from &#x27;projects/commudle-admin/src/app/services/events.service&#x27;;
+import { ICommunity } from &#x27;projects/shared-models/community.model&#x27;;
+import { EEventStatuses } from &#x27;projects/shared-models/enums/event_statuses.enum&#x27;;
+import { IEvent } from &#x27;projects/shared-models/event.model&#x27;;
 import { LibToastLogService } from &#x27;projects/shared-services/lib-toastlog.service&#x27;;
+import { SeoService } from &#x27;projects/shared-services/seo.service&#x27;;
 
 @Component({
   selector: &#x27;app-event-dashboard&#x27;,
   templateUrl: &#x27;./event-dashboard.component.html&#x27;,
-  styleUrls: [&#x27;./event-dashboard.component.scss&#x27;]
+  styleUrls: [&#x27;./event-dashboard.component.scss&#x27;],
 })
 export class EventDashboardComponent implements OnInit, OnDestroy {
-  @ViewChild(&#x27;eventGuideTemplate&#x27;) eventGuideTemplate: TemplateRef&lt;any&gt;;
+  event: IEvent;
+  community: ICommunity;
 
   moment &#x3D; moment;
   EEventStatuses &#x3D; EEventStatuses;
 
-  faClock &#x3D; faClock;
-  faEdit &#x3D; faEdit;
-  faInfoCircle &#x3D; faInfoCircle;
-
-  event: IEvent;
-  community: ICommunity;
-
   uploadedHeaderImageFile: File;
   uploadedHeaderImage;
-
 
   eventHeaderImageForm &#x3D; this.fb.group({
     header_image: [&#x27;&#x27;, Validators.required],
   });
 
+  @ViewChild(&#x27;statusSection&#x27;) statusSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;detailsSection&#x27;) detailsSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;updatesSection&#x27;) updatesSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;registrationsSection&#x27;) registrationsSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;agendaSection&#x27;) agendaSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;collaborationsSection&#x27;) collaborationsSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;volunteersSection&#x27;) volunteersSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;sponsorsSection&#x27;) sponsorsSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;emailsSection&#x27;) emailsSectionRef: ElementRef&lt;HTMLDivElement&gt;;
+  @ViewChild(&#x27;eventGuideSection&#x27;) eventGuideSectionRef: TemplateRef&lt;any&gt;;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private titleService: Title,
     private eventsService: EventsService,
     private toastLogService: LibToastLogService,
     private fb: FormBuilder,
-    private sidebarService: NbSidebarService,
     private windowService: NbWindowService,
-    private meta: Meta,
-    private title: Title
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
-    this.meta.updateTag({
-      name: &#x27;robots&#x27;,
-      content: &#x27;noindex&#x27;
-    });
+    this.seoService.noIndex(true);
 
-    this.sidebarService.collapse(&#x27;mainMenu&#x27;);
-    this.activatedRoute.data.subscribe(data &#x3D;&gt; {
-      this.event &#x3D; data.event;
+    this.activatedRoute.data.subscribe((value) &#x3D;&gt; {
+      this.event &#x3D; value.event;
 
-      this.title.setTitle(&#x60;Dashboard : ${this.event.name}&#x60;);
-
-      this.community &#x3D; data.community;
-      this.titleService.setTitle(&#x60;${this.event.name} Dashboard | ${this.community.name}&#x60;);
+      this.community &#x3D; value.community;
+      this.seoService.setTitle(&#x60;${this.event.name} Dashboard | ${this.community.name}&#x60;);
     });
   }
 
   ngOnDestroy() {
-    this.meta.removeTag(&quot;name&#x3D;&#x27;robots&#x27;&quot;);
-  }
-
-
-  updateEventStatus($event: IEventStatus) {
-    this.event.event_status &#x3D; $event;
+    this.seoService.noIndex(false);
   }
 
   updateRegistrationType(value) {
-    this.eventsService.updateCustomRegistration(this.event.id, value).subscribe(
-      data &#x3D;&gt; {
-        this.event &#x3D; data;
-      }
-    );
+    this.eventsService.updateCustomRegistration(this.event.id, value).subscribe((data) &#x3D;&gt; {
+      this.event &#x3D; data;
+    });
   }
 
   updateAgendaType(value) {
-    this.eventsService.updateCustomAgenda(this.event.id, value).subscribe(
-      data &#x3D;&gt; {
-        this.event &#x3D; data;
-      }
-    );
+    this.eventsService.updateCustomAgenda(this.event.id, value).subscribe((data) &#x3D;&gt; {
+      this.event &#x3D; data;
+    });
   }
 
-
-
-
   displaySelectedHeaderImage(event: any) {
-
     if (event.target.files &amp;&amp; event.target.files[0]) {
       const file &#x3D; event.target.files[0];
       if (file.size &gt; 2425190) {
@@ -1302,560 +1431,437 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
       }
       this.uploadedHeaderImageFile &#x3D; file;
       const reader &#x3D; new FileReader();
-      reader.onload &#x3D; (e: any) &#x3D;&gt; {
-        this.uploadedHeaderImage &#x3D; reader.result;
-      };
+      reader.onload &#x3D; () &#x3D;&gt; (this.uploadedHeaderImage &#x3D; reader.result);
 
       reader.readAsDataURL(file);
       this.updateEventHeader();
     }
-
   }
 
   updateEventHeader() {
     const formData: any &#x3D; new FormData();
     formData.append(&#x27;header_image&#x27;, this.uploadedHeaderImageFile);
-    this.eventsService.updateHeaderImage(this.event.id, formData).subscribe(
-      data &#x3D;&gt; {
-        this.event &#x3D; data;
-        this.toastLogService.successDialog(&#x27;Updated!&#x27;);
-      }
-    );
-  }
-
-  scroll(el: HTMLElement) {
-    el.scrollIntoView({block: &quot;start&quot;, behavior: &quot;smooth&quot;});
-  }
-
-  deleteEventHeader() {
-    this.eventsService.deleteHeaderImage(this.event.id).subscribe(
-      data &#x3D;&gt; {
-        this.uploadedHeaderImage &#x3D; null;
-        this.uploadedHeaderImageFile &#x3D; null;
-        this.event &#x3D; data;
-        this.toastLogService.successDialog(&#x27;Deleted&#x27;);
-      }
-    );
-  }
-
-  openGuide() {
-    this.windowService.open(this.eventGuideTemplate, {
-      title: &quot;It&#x27;s simple!&quot;
+    this.eventsService.updateHeaderImage(this.event.id, formData).subscribe((data) &#x3D;&gt; {
+      this.event &#x3D; data;
+      this.toastLogService.successDialog(&#x27;Updated!&#x27;);
     });
   }
 
+  scroll(element: ElementRef&lt;HTMLDivElement&gt;) {
+    element.nativeElement.scrollIntoView({ block: &#x27;start&#x27;, behavior: &#x27;smooth&#x27;, inline: &#x27;nearest&#x27; });
+  }
+
+  deleteEventHeader() {
+    this.eventsService.deleteHeaderImage(this.event.id).subscribe((data) &#x3D;&gt; {
+      this.uploadedHeaderImage &#x3D; null;
+      this.uploadedHeaderImageFile &#x3D; null;
+      this.event &#x3D; data;
+      this.toastLogService.successDialog(&#x27;Deleted&#x27;);
+    });
+  }
+
+  openGuide() {
+    this.windowService.open(this.eventGuideSectionRef, { title: &quot;It&#x27;s simple!&quot; });
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;event-page d-flex flex-column page-padding&quot;&gt;
-  &lt;div class&#x3D;&quot;page-header&quot;&gt;
-    &lt;p&gt;
-      &lt;a [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug]&quot; class&#x3D;&quot;padding-0&quot; ghost nbButton size&#x3D;&quot;tiny&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;base-layout com-my-8&quot;&gt;
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;one-column-layout&quot;&gt;
+      &lt;a [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug]&quot; ghost nbButton size&#x3D;&quot;small&quot;&gt;
         &lt;nb-icon icon&#x3D;&quot;arrow-ios-back&quot;&gt;&lt;/nb-icon&gt;
         Back
       &lt;/a&gt;
-    &lt;/p&gt;
-    &lt;nb-card&gt;
-      &lt;nb-card-body&gt;
-        &lt;p class&#x3D;&quot;text-basic&quot;&gt;
-          &lt;small&gt;Dashboard&lt;/small&gt;
-        &lt;/p&gt;
-        &lt;h1 class&#x3D;&quot;lh-fw&quot;&gt;{{ event.name }}&lt;/h1&gt;
-        &lt;p&gt;Welcome to the dashboard, here you can customize your event!&lt;/p&gt;
-        &lt;div class&#x3D;&quot;links&quot;&gt;
-          &lt;a
-            [routerLink]&#x3D;&quot;[&#x27;/communities&#x27;, community.slug, &#x27;events&#x27;, event.slug]&quot;
-            nbButton
-            size&#x3D;&quot;small&quot;
-            status&#x3D;&quot;info&quot;
-            target&#x3D;&quot;_blank&quot;
-          &gt;
-            Public Event Page
-            &lt;nb-icon icon&#x3D;&quot;external-link d-flex&quot;&gt;&lt;/nb-icon&gt;
-          &lt;/a&gt;
-          &lt;a [routerLink]&#x3D;&quot;[&#x27;stats&#x27;]&quot; nbButton size&#x3D;&quot;small&quot; status&#x3D;&quot;success&quot; target&#x3D;&quot;_blank&quot;&gt;
-            &lt;nb-icon icon&#x3D;&quot;trending-up-outline&quot;&gt;&lt;/nb-icon&gt;
-            Stats&lt;sup&gt;Beta&lt;/sup&gt; &amp;nbsp;
-            &lt;nb-icon icon&#x3D;&quot;external-link&quot;&gt;&lt;/nb-icon&gt;
-          &lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/nb-card-body&gt;
-    &lt;/nb-card&gt;
-  &lt;/div&gt;
-  &lt;div class&#x3D;&quot;event-dashboard d-flex flex-row-reverse&quot;&gt;
-    &lt;div class&#x3D;&quot;page-column&quot;&gt;
-      &lt;div #eventInfo class&#x3D;&quot;item-group&quot;&gt;
-        &lt;p class&#x3D;&quot;item-group-title&quot;&gt;Event Info&lt;/p&gt;
-        &lt;div&gt;
-          &lt;app-event-status (updatedEventStatus)&#x3D;&quot;updateEventStatus($event)&quot; [event]&#x3D;&quot;event&quot;&gt;&lt;/app-event-status&gt;
-          &lt;div #eventBasicDetails&gt;
-            &lt;nb-card&gt;
-              &lt;nb-card-header&gt; Basic Details&lt;/nb-card-header&gt;
-              &lt;nb-card-body&gt;
-                &lt;div class&#x3D;&quot;event-header-image&quot;&gt;
-                  &lt;form [formGroup]&#x3D;&quot;eventHeaderImageForm&quot;&gt;
-                    &lt;div class&#x3D;&quot;row&quot;&gt;
-                      &lt;div&gt;
-                        &lt;div&gt;
-                          &lt;div
-                            *ngIf&#x3D;&quot;uploadedHeaderImage || event.header_image_path&quot;
-                            class&#x3D;&quot;uploaded-header-image d-flex justify-content-center align-items-center&quot;
-                          &gt;
-                            &lt;img
-                              alt&#x3D;&quot;Profile Picture&quot;
-                              src&#x3D;&quot;{{uploadedHeaderImage || event.header_image_path}}&quot;
-                              title&#x3D;&quot;Profile Picture&quot;
-                            /&gt;
-                          &lt;/div&gt;
-                          &lt;button
-                            (click)&#x3D;&quot;deleteEventHeader()&quot;
-                            *ngIf&#x3D;&quot;event.editable &amp;&amp; (uploadedHeaderImage || event.header_image_path)&quot;
-                            class&#x3D;&quot;delete-header-image-button&quot;
-                            nbButton
-                            outline
-                            size&#x3D;&quot;tiny&quot;
-                            status&#x3D;&quot;danger&quot;
-                          &gt;
-                            Delete
-                          &lt;/button&gt;
-                        &lt;/div&gt;
-                        &lt;label class&#x3D;&quot;clickable&quot;&gt;
-                          &lt;div
-                            *ngIf&#x3D;&quot;!(uploadedHeaderImage || event.header_image_path) &amp;&amp; event.editable&quot;
-                            class&#x3D;&quot;
-                              uploaded-header-image
-                              filler
-                              d-flex
-                              flex-column
-                              align-items-center
-                              justify-content-center
-                            &quot;
-                          &gt;
-                            &lt;p&gt;
-                              Click To Add Header Image
-                              &lt;small&gt;(optional)&lt;/small&gt;
-                            &lt;/p&gt;
-                            &lt;p&gt;
-                              &lt;small&gt; (1000 x 350) &lt;/small&gt;
-                            &lt;/p&gt;
-                          &lt;/div&gt;
-                          &lt;input
-                            (change)&#x3D;&quot;displaySelectedHeaderImage($event)&quot;
-                            *ngIf&#x3D;&quot;event.editable&quot;
-                            accept&#x3D;&quot;image/*&quot;
-                            formControlName&#x3D;&quot;header_image&quot;
-                            fullWidth
-                            nbInput
-                            type&#x3D;&quot;file&quot;
-                          /&gt;
-                        &lt;/label&gt;
-                      &lt;/div&gt;
-                    &lt;/div&gt;
-                  &lt;/form&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;event-details d-flex flex-column&quot;&gt;
-                  &lt;div class&#x3D;&quot;name-links&quot;&gt;
-                    &lt;h3 class&#x3D;&quot;lh-fw&quot;&gt;{{ event.name }}&lt;/h3&gt;
-                    &lt;div class&#x3D;&quot;event-timings&quot;&gt;
-                      &lt;div *ngIf&#x3D;&quot;event.start_time&quot;&gt;
-                        &lt;fa-icon [icon]&#x3D;&quot;faClock&quot;&gt;&lt;/fa-icon&gt;
-                        &lt;p&gt;
-                          {{moment(event.start_time).format(&quot;dddd Do MMM, YYYY h:mm A&quot;)}} to
-                          {{moment(event.end_time).format(&quot;dddd Do MMM, YYYY h:mm A&quot;)}}
-                          {{moment(event.end_time).format(&quot;z&quot;)}}
-                        &lt;/p&gt;
-                      &lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;details&quot;&gt;
-                      &lt;div class&#x3D;&quot;event-description&quot;&gt;
-                        &lt;fa-icon [icon]&#x3D;&quot;faInfoCircle&quot;&gt;&lt;/fa-icon&gt;&amp;nbsp;
-                        &lt;div [innerHTML]&#x3D;&quot;event.description&quot;&gt;&lt;/div&gt;
-                      &lt;/div&gt;
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                  &lt;div&gt;
-                    &lt;a
-                      *ngIf&#x3D;&quot;event.editable&quot;
-                      [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug, &#x27;event-dashboard&#x27;, event.slug, &#x27;edit&#x27;]&quot;
-                      class&#x3D;&quot;padding-0 edit-button&quot;
-                      ghost
-                      nbButton
-                      size&#x3D;&quot;small&quot;
-                      status&#x3D;&quot;primary&quot;
-                    &gt;
-                      &lt;fa-icon [icon]&#x3D;&quot;faEdit&quot;&gt;&lt;/fa-icon&gt;
-                      &amp;nbsp; Edit Basic Details
-                    &lt;/a&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/nb-card-body&gt;
-            &lt;/nb-card&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
 
-      &lt;div #eventManager class&#x3D;&quot;item-group&quot;&gt;
-        &lt;p class&#x3D;&quot;item-group-title&quot;&gt;Event Manager&lt;/p&gt;
-
-        &lt;div #eventUpdates&gt;
-          &lt;nb-card *ngIf&#x3D;&quot;event.event_status.name !&#x3D; EEventStatuses.DRAFT&quot;&gt;
-            &lt;nb-card-header&gt;Updates / Timeline&lt;/nb-card-header&gt;
-            &lt;nb-card-body&gt;
-              &lt;app-event-updates [event]&#x3D;&quot;event&quot;&gt;&lt;/app-event-updates&gt;
-            &lt;/nb-card-body&gt;
-          &lt;/nb-card&gt;
-        &lt;/div&gt;
-
-        &lt;div #eventRegistrations&gt;
-          &lt;nb-card&gt;
-            &lt;nb-card-header&gt;Registrations&lt;/nb-card-header&gt;
-            &lt;nb-card-body&gt;
-              &lt;div *ngIf&#x3D;&quot;event.editable&quot; class&#x3D;&quot;advanced-option-switch d-flex align-items-center&quot;&gt;
-                &lt;p&gt;One Click Registration&lt;/p&gt;
-                &lt;nb-toggle
-                  (checkedChange)&#x3D;&quot;updateRegistrationType($event)&quot;
-                  [checked]&#x3D;&quot;event.custom_registration&quot;
-                  status&#x3D;&quot;primary&quot;
-                &gt;&lt;/nb-toggle&gt;
-                &lt;p&gt;Registration Forms&lt;/p&gt;
-              &lt;/div&gt;
-              &lt;app-form-groups
-                *ngIf&#x3D;&quot;event.custom_registration&quot;
-                [community]&#x3D;&quot;community&quot;
-                [event]&#x3D;&quot;event&quot;
-              &gt;&lt;/app-form-groups&gt;
-              &lt;app-event-simple-registration
-                *ngIf&#x3D;&quot;!event.custom_registration&quot;
-                [community]&#x3D;&quot;community&quot;
-                [event]&#x3D;&quot;event&quot;
-              &gt;&lt;/app-event-simple-registration&gt;
-            &lt;/nb-card-body&gt;
-          &lt;/nb-card&gt;
-        &lt;/div&gt;
-
-        &lt;div #eventSchedule&gt;
-          &lt;nb-card&gt;
-            &lt;nb-card-header&gt; Schedule&lt;/nb-card-header&gt;
-            &lt;nb-card-body&gt;
-              &lt;div *ngIf&#x3D;&quot;event.editable&quot; class&#x3D;&quot;advanced-option-switch d-flex align-items-center&quot;&gt;
-                &lt;p&gt;
-                  Simple Hosting
-                  &lt;br /&gt;
-                  (online only)
-                &lt;/p&gt;
-                &lt;nb-toggle
-                  (checkedChange)&#x3D;&quot;updateAgendaType($event)&quot;
-                  [checked]&#x3D;&quot;event.custom_agenda&quot;
-                  [disabled]&#x3D;&quot;!event.custom_registration || !event.start_time&quot;
-                  status&#x3D;&quot;primary&quot;
-                &gt;
-                &lt;/nb-toggle&gt;
-                &lt;p&gt;
-                  Custom Schedule
-                  &lt;br /&gt;
-                  (online/offline with Multiple Tracks)
-                &lt;/p&gt;
-              &lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;!event.start_time&quot;&gt;
-                &lt;nb-alert accent&#x3D;&quot;info&quot;&gt;
-                  &lt;a
-                    [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;,community.slug,&#x27;event-dashboard&#x27;,event.slug,&#x27;edit&#x27;]&quot;
-                    ghost
-                    nbButton
-                    status&#x3D;&quot;info&quot;
-                  &gt;
-                    Click Here to Enable the schedule options by adding date and time to this event.
-                  &lt;/a&gt;
-                &lt;/nb-alert&gt;
-              &lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;event.start_time&quot;&gt;
-                &lt;p *ngIf&#x3D;&quot;!event.custom_agenda&quot;&gt;
-                  &lt;a [routerLink]&#x3D;&quot;[&#x27;/communities&#x27;,community.slug,&#x27;events&#x27;,event.slug,&#x27;session&#x27;]&quot; target&#x3D;&quot;_blank&quot;&gt;
-                    Public Session Page
-                    &lt;nb-icon icon&#x3D;&quot;external-link&quot;&gt;&lt;/nb-icon&gt;
-                  &lt;/a&gt;
-                &lt;/p&gt;
-                &lt;p *ngIf&#x3D;&quot;event.custom_registration&quot;&gt;
-                  &lt;small&gt;*Speakers can be selected by using Speaker Form in the registrations section above!&lt;/small&gt;
-                &lt;/p&gt;
-                &lt;app-event-locations
-                  *ngIf&#x3D;&quot;event.custom_agenda&quot;
-                  [community]&#x3D;&quot;community&quot;
-                  [event]&#x3D;&quot;event&quot;
-                &gt;&lt;/app-event-locations&gt;
-                &lt;app-event-speakers
-                  *ngIf&#x3D;&quot;!event.custom_agenda &amp;&amp; !event.custom_registration&quot;
-                  [event]&#x3D;&quot;event&quot;
-                &gt;&lt;/app-event-speakers&gt;
-                &lt;app-event-embedded-video-stream-v2
-                  *ngIf&#x3D;&quot;!event.custom_agenda&quot;
-                  [community]&#x3D;&quot;community&quot;
-                  [event]&#x3D;&quot;event&quot;
-                &gt;&lt;/app-event-embedded-video-stream-v2&gt;
-              &lt;/div&gt;
-            &lt;/nb-card-body&gt;
-          &lt;/nb-card&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-
-      &lt;div #eventCollaborations class&#x3D;&quot;item-group&quot;&gt;
-        &lt;p class&#x3D;&quot;item-group-title&quot;&gt;Extended Team&lt;/p&gt;
-
-        &lt;div #eventCommunityCollaborations&gt;
-          &lt;nb-accordion&gt;
-            &lt;nb-accordion-item&gt;
-              &lt;nb-accordion-item-header&gt; Collaborating Communities&lt;/nb-accordion-item-header&gt;
-              &lt;nb-accordion-item-body&gt;
-                &lt;app-collaborating-communities [community]&#x3D;&quot;community&quot; [event]&#x3D;&quot;event&quot;&gt;&lt;/app-collaborating-communities&gt;
-              &lt;/nb-accordion-item-body&gt;
-            &lt;/nb-accordion-item&gt;
-          &lt;/nb-accordion&gt;
-          &lt;nb-accordion&gt;
-            &lt;nb-accordion-item&gt;
-              &lt;nb-accordion-item-header&gt;Volunteers&lt;/nb-accordion-item-header&gt;
-              &lt;nb-accordion-item-body&gt;
-                &lt;app-volunteers [event]&#x3D;&quot;event&quot;&gt;&lt;/app-volunteers&gt;
-              &lt;/nb-accordion-item-body&gt;
-            &lt;/nb-accordion-item&gt;
-          &lt;/nb-accordion&gt;
-
-          &lt;nb-accordion&gt;
-            &lt;nb-accordion-item&gt;
-              &lt;nb-accordion-item-header&gt; Sponsors &amp; Partners&lt;/nb-accordion-item-header&gt;
-              &lt;nb-accordion-item-body&gt;
-                &lt;app-sponsors [event]&#x3D;&quot;event&quot;&gt;&lt;/app-sponsors&gt;
-              &lt;/nb-accordion-item-body&gt;
-            &lt;/nb-accordion-item&gt;
-          &lt;/nb-accordion&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-
-      &lt;app-event-recordings [event]&#x3D;&quot;event&quot;&gt;&lt;/app-event-recordings&gt;
-
-      &lt;div #communityEmails class&#x3D;&quot;community-emails&quot;&gt;
-        &lt;app-community-emails-list [communityId]&#x3D;&quot;event.kommunity_id&quot;&gt;&lt;/app-community-emails-list&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;side-menu responsive&quot;&gt;
       &lt;nb-card&gt;
         &lt;nb-card-body&gt;
-          &lt;div class&#x3D;&quot;menu-items d-flex flex-row&quot;&gt;
-            &lt;div
-              (click)&#x3D;&quot;scroll(eventInfo)&quot;
-              class&#x3D;&quot;item&quot;
-              nbTooltip&#x3D;&quot;Status, Header Image, Basic Details&quot;
-              nbTooltipPlacement&#x3D;&quot;end&quot;
+          &lt;h2 class&#x3D;&quot;fs-h2&quot;&gt;{{ event.name }}&lt;/h2&gt;
+          &lt;p&gt;Welcome to the dashboard, here you can customize your event!&lt;/p&gt;
+          &lt;div class&#x3D;&quot;com-flex com-gap-4&quot;&gt;
+            &lt;a
+              [routerLink]&#x3D;&quot;[&#x27;/communities&#x27;, community.slug, &#x27;events&#x27;, event.slug]&quot;
+              nbButton
+              size&#x3D;&quot;small&quot;
+              status&#x3D;&quot;info&quot;
+              target&#x3D;&quot;_blank&quot;
             &gt;
-              &lt;a class&#x3D;&quot;d-flex&quot;&gt;
-                &lt;nb-icon icon&#x3D;&quot;info-outline&quot;&gt;&lt;/nb-icon&gt;
-                &lt;span&gt;
-                  Event Info
-                  &lt;br /&gt;
-                  &lt;small&gt;Status - Basic Details&lt;/small&gt;
-                &lt;/span&gt;
-              &lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div
-              (click)&#x3D;&quot;scroll(eventManager)&quot;
-              class&#x3D;&quot;item&quot;
-              nbTooltip&#x3D;&quot;Registrations, Agenda, Updates&quot;
-              nbTooltipPlacement&#x3D;&quot;end&quot;
-            &gt;
-              &lt;a&gt;
-                &lt;nb-icon icon&#x3D;&quot;calendar-outline&quot;&gt;&lt;/nb-icon&gt;
-                &lt;span&gt;
-                  Event Manager
-                  &lt;br /&gt;
-                  &lt;small&gt;Registrations - Agenda - Updates&lt;/small&gt;
-                &lt;/span&gt;
-              &lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div
-              (click)&#x3D;&quot;scroll(eventCollaborations)&quot;
-              class&#x3D;&quot;item&quot;
-              nbTooltip&#x3D;&quot;Collaboration, Volunteers&quot;
-              nbTooltipPlacement&#x3D;&quot;end&quot;
-            &gt;
-              &lt;a&gt;
-                &lt;nb-icon icon&#x3D;&quot;people-outline&quot;&gt;&lt;/nb-icon&gt;
-                &lt;span&gt;
-                  Extended Team
-                  &lt;br /&gt;
-                  &lt;small&gt;Collaborations - Volunteers - Sponsors&lt;/small&gt;
-                &lt;/span&gt;
-              &lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div (click)&#x3D;&quot;scroll(communityEmails)&quot; class&#x3D;&quot;item&quot;&gt;
-              &lt;a&gt;
-                &lt;nb-icon icon&#x3D;&quot;email-outline&quot;&gt;&lt;/nb-icon&gt;
-                &lt;span&gt; Emails Sent &lt;/span&gt;
-              &lt;/a&gt;
-            &lt;/div&gt;
-            &lt;div (click)&#x3D;&quot;openGuide()&quot; class&#x3D;&quot;item&quot;&gt;
-              &lt;a&gt;
-                &lt;nb-icon icon&#x3D;&quot;question-mark-circle&quot;&gt;&lt;/nb-icon&gt;
-                &lt;span&gt; Event Guide &lt;/span&gt;
-              &lt;/a&gt;
-            &lt;/div&gt;
+              Public Event Page
+              &lt;nb-icon icon&#x3D;&quot;external-link&quot;&gt;&lt;/nb-icon&gt;
+            &lt;/a&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;stats&#x27;]&quot; nbButton size&#x3D;&quot;small&quot; status&#x3D;&quot;success&quot; target&#x3D;&quot;_blank&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;trending-up-outline&quot;&gt;&lt;/nb-icon&gt;
+              Stats&lt;sup&gt;Beta&lt;/sup&gt; &amp;nbsp;
+              &lt;nb-icon icon&#x3D;&quot;external-link&quot;&gt;&lt;/nb-icon&gt;
+            &lt;/a&gt;
           &lt;/div&gt;
         &lt;/nb-card-body&gt;
       &lt;/nb-card&gt;
+
+      &lt;nb-card class&#x3D;&quot;event-dashboard-menu&quot;&gt;
+        &lt;nb-card-body&gt;
+          &lt;nb-actions&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(statusSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;clipboard-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Status&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(detailsSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;info-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Details&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action
+              (click)&#x3D;&quot;scroll(updatesSectionRef)&quot;
+              *ngIf&#x3D;&quot;event.event_status.name !&#x3D;&#x3D; EEventStatuses.DRAFT&quot;
+              class&#x3D;&quot;clickable&quot;
+            &gt;
+              &lt;nb-icon icon&#x3D;&quot;star-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Updates&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(registrationsSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;edit-2-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Registrations&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(agendaSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;calendar-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Agenda&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(collaborationsSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;pricetags-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Collaborations&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(volunteersSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;headphones-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Volunteers&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(sponsorsSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;briefcase-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Sponsors&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;scroll(emailsSectionRef)&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;email-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Emails&lt;/span&gt;
+            &lt;/nb-action&gt;
+            &lt;nb-action (click)&#x3D;&quot;openGuide()&quot; class&#x3D;&quot;clickable&quot;&gt;
+              &lt;nb-icon icon&#x3D;&quot;question-mark-circle-outline&quot;&gt;&lt;/nb-icon&gt;
+              &lt;span&gt;Guide&lt;/span&gt;
+            &lt;/nb-action&gt;
+          &lt;/nb-actions&gt;
+        &lt;/nb-card-body&gt;
+      &lt;/nb-card&gt;
+
+      &lt;div #statusSection&gt;
+        &lt;app-event-status (updatedEventStatus)&#x3D;&quot;event.event_status &#x3D; $event&quot; [event]&#x3D;&quot;event&quot;&gt;&lt;/app-event-status&gt;
+      &lt;/div&gt;
+      &lt;div #detailsSection&gt;
+        &lt;app-event-details
+          (deleteHeaderImage)&#x3D;&quot;deleteEventHeader()&quot;
+          (updateHeaderImage)&#x3D;&quot;displaySelectedHeaderImage($event)&quot;
+          [community]&#x3D;&quot;community&quot;
+          [event]&#x3D;&quot;event&quot;
+        &gt;&lt;/app-event-details&gt;
+      &lt;/div&gt;
+      &lt;div #updatesSection *ngIf&#x3D;&quot;event.event_status.name !&#x3D;&#x3D; EEventStatuses.DRAFT&quot;&gt;
+        &lt;nb-card&gt;
+          &lt;nb-card-header&gt;
+            &lt;h6&gt;
+              &lt;nb-icon icon&#x3D;&quot;star-outline&quot;&gt;&lt;/nb-icon&gt;
+              Updates
+            &lt;/h6&gt;
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;app-event-updates [event]&#x3D;&quot;event&quot;&gt;&lt;/app-event-updates&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/div&gt;
+      &lt;div #registrationsSection&gt;
+        &lt;nb-card&gt;
+          &lt;nb-card-header&gt;
+            &lt;h6&gt;
+              &lt;nb-icon icon&#x3D;&quot;edit-2-outline&quot;&gt;&lt;/nb-icon&gt;
+              Registrations
+            &lt;/h6&gt;
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;div *ngIf&#x3D;&quot;event.editable&quot; class&#x3D;&quot;com-flex com-gap-4&quot;&gt;
+              &lt;p&gt;One Click Registration&lt;/p&gt;
+              &lt;nb-toggle
+                (checkedChange)&#x3D;&quot;updateRegistrationType($event)&quot;
+                [checked]&#x3D;&quot;event.custom_registration&quot;
+                status&#x3D;&quot;primary&quot;
+              &gt;&lt;/nb-toggle&gt;
+              &lt;p&gt;Registration Forms&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;app-form-groups
+              *ngIf&#x3D;&quot;event.custom_registration&quot;
+              [community]&#x3D;&quot;community&quot;
+              [event]&#x3D;&quot;event&quot;
+            &gt;&lt;/app-form-groups&gt;
+            &lt;app-event-simple-registration
+              *ngIf&#x3D;&quot;!event.custom_registration&quot;
+              [community]&#x3D;&quot;community&quot;
+              [event]&#x3D;&quot;event&quot;
+            &gt;&lt;/app-event-simple-registration&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/div&gt;
+      &lt;div #agendaSection&gt;
+        &lt;nb-card&gt;
+          &lt;nb-card-header&gt;
+            &lt;h6&gt;
+              &lt;nb-icon icon&#x3D;&quot;calendar-outline&quot;&gt;&lt;/nb-icon&gt;
+              Agenda
+            &lt;/h6&gt;
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;div *ngIf&#x3D;&quot;event.editable&quot; class&#x3D;&quot;com-flex com-gap-4&quot;&gt;
+              &lt;p&gt;
+                Simple Hosting
+                &lt;br /&gt;
+                (online only)
+              &lt;/p&gt;
+              &lt;nb-toggle
+                (checkedChange)&#x3D;&quot;updateAgendaType($event)&quot;
+                [checked]&#x3D;&quot;event.custom_agenda&quot;
+                [disabled]&#x3D;&quot;!event.custom_registration || !event.start_time&quot;
+                status&#x3D;&quot;primary&quot;
+              &gt;
+              &lt;/nb-toggle&gt;
+              &lt;p&gt;
+                Custom Schedule
+                &lt;br /&gt;
+                (online/offline with Multiple Tracks)
+              &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!event.start_time&quot;&gt;
+              &lt;nb-alert accent&#x3D;&quot;info&quot;&gt;
+                &lt;a
+                  [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug, &#x27;event-dashboard&#x27;, event.slug, &#x27;edit&#x27;]&quot;
+                  ghost
+                  nbButton
+                  status&#x3D;&quot;info&quot;
+                &gt;
+                  Click Here to Enable the schedule options by adding date and time to this event.
+                &lt;/a&gt;
+              &lt;/nb-alert&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;event.start_time&quot;&gt;
+              &lt;a [routerLink]&#x3D;&quot;[&#x27;/communities&#x27;, community.slug, &#x27;events&#x27;, event.slug, &#x27;session&#x27;]&quot; target&#x3D;&quot;_blank&quot;&gt;
+                Public Session Page
+                &lt;nb-icon icon&#x3D;&quot;external-link&quot;&gt;&lt;/nb-icon&gt;
+              &lt;/a&gt;
+              &lt;p *ngIf&#x3D;&quot;event.custom_registration&quot;&gt;
+                &lt;small&gt;*Speakers can be selected by using Speaker Form in the registrations section above!&lt;/small&gt;
+              &lt;/p&gt;
+              &lt;app-event-locations
+                *ngIf&#x3D;&quot;event.custom_agenda&quot;
+                [community]&#x3D;&quot;community&quot;
+                [event]&#x3D;&quot;event&quot;
+              &gt;&lt;/app-event-locations&gt;
+              &lt;app-event-speakers
+                *ngIf&#x3D;&quot;!event.custom_agenda &amp;&amp; !event.custom_registration&quot;
+                [event]&#x3D;&quot;event&quot;
+              &gt;&lt;/app-event-speakers&gt;
+              &lt;app-event-embedded-video-stream
+                *ngIf&#x3D;&quot;!event.custom_agenda&quot;
+                [community]&#x3D;&quot;community&quot;
+                [event]&#x3D;&quot;event&quot;
+              &gt;&lt;/app-event-embedded-video-stream&gt;
+            &lt;/div&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/div&gt;
+      &lt;div #collaborationsSection&gt;
+        &lt;nb-card&gt;
+          &lt;nb-card-header&gt;
+            &lt;h6&gt;
+              &lt;nb-icon icon&#x3D;&quot;pricetags-outline&quot;&gt;&lt;/nb-icon&gt;
+              Collaborations
+            &lt;/h6&gt;
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;app-collaborating-communities [community]&#x3D;&quot;community&quot; [event]&#x3D;&quot;event&quot;&gt;&lt;/app-collaborating-communities&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/div&gt;
+      &lt;div #volunteersSection&gt;
+        &lt;nb-card&gt;
+          &lt;nb-card-header&gt;
+            &lt;h6&gt;
+              &lt;nb-icon icon&#x3D;&quot;headphones-outline&quot;&gt;&lt;/nb-icon&gt;
+              Volunteers
+            &lt;/h6&gt;
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;app-volunteers [event]&#x3D;&quot;event&quot;&gt;&lt;/app-volunteers&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/div&gt;
+      &lt;div #sponsorsSection&gt;
+        &lt;nb-card&gt;
+          &lt;nb-card-header&gt;
+            &lt;h6&gt;
+              &lt;nb-icon icon&#x3D;&quot;briefcase-outline&quot;&gt;&lt;/nb-icon&gt;
+              Sponsors
+            &lt;/h6&gt;
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;app-sponsors [event]&#x3D;&quot;event&quot;&gt;&lt;/app-sponsors&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/div&gt;
+      &lt;!-- TODO: Enable recordings --&gt;
+      &lt;!--      &lt;div&gt;--&gt;
+      &lt;!--        &lt;app-event-recordings [event]&#x3D;&quot;event&quot;&gt;&lt;/app-event-recordings&gt;--&gt;
+      &lt;!--      &lt;/div&gt;--&gt;
+      &lt;div #emailsSection&gt;
+        &lt;app-community-emails-list [communityId]&#x3D;&quot;event.kommunity_id&quot;&gt;&lt;/app-community-emails-list&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;ng-template #eventGuideTemplate&gt;
-    &lt;nb-accordion&gt;
-      &lt;nb-accordion-item&gt;
-        &lt;nb-accordion-item-header&gt;Status&lt;/nb-accordion-item-header&gt;
-        &lt;nb-accordion-item-body&gt;
-          &lt;ul&gt;
-            &lt;li&gt;
-              &lt;p&gt;&lt;strong&gt;Draft&lt;/strong&gt;: Only the organizers and people who have the link can see the event&lt;/p&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;&lt;strong&gt;Open&lt;/strong&gt;: The event is visible on the community page&lt;/p&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;Completed&lt;/strong&gt;: It has completed! Will be visible as a completed event to all the members
-              &lt;/p&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;Canceled&lt;/strong&gt;: It&#x27;s like deleting the event, it removes the event from the community page
-              &lt;/p&gt;
-            &lt;/li&gt;
-          &lt;/ul&gt;
-          &lt;p&gt;* &lt;small&gt;Event can be edited upto 5 days after completion&lt;/small&gt;&lt;/p&gt;
-        &lt;/nb-accordion-item-body&gt;
-      &lt;/nb-accordion-item&gt;
-      &lt;nb-accordion-item&gt;
-        &lt;nb-accordion-item-header&gt;Registration Type&lt;/nb-accordion-item-header&gt;
-        &lt;nb-accordion-item-body&gt;
-          &lt;ul&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;One Click Registration&lt;/strong&gt;
-              &lt;/p&gt;
-              &lt;p&gt;
-                &lt;small&gt; Members can register for the event in a single click &lt;/small&gt;
-                &lt;br /&gt;
-                &lt;small&gt;
-                  You can view their registrations from the &#x27;View Registrations&#x27; link and send them unique entry passes
-                &lt;/small&gt;
-              &lt;/p&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt; Registration Forms [Higher attendance percentage!] &lt;/strong&gt;
-              &lt;/p&gt;
-              &lt;p&gt;
-                &lt;small&gt;
-                  Use the forms you created on
-                  &lt;strong&gt;
-                    &lt;a [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug]&quot;&gt;{{community.name}}&lt;/a&gt;
-                  &lt;/strong&gt;
-                  page
-                &lt;/small&gt;
-              &lt;/p&gt;
-              &lt;ul&gt;
-                &lt;li&gt;
-                  &lt;p&gt;&lt;strong&gt;STEP 1&lt;/strong&gt;: Roll out forms&lt;/p&gt;
-                  &lt;p&gt;
-                    &lt;small&gt; Form Type: &lt;strong&gt;Attendee&lt;/strong&gt; For people who will be attending the event &lt;/small&gt;
-                    &lt;br /&gt;
-                    &lt;small&gt; Form Type: &lt;strong&gt;Speaker&lt;/strong&gt; Use this for call for papers &lt;/small&gt;
-                  &lt;/p&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                  &lt;p&gt;&lt;strong&gt;STEP 2&lt;/strong&gt;: Shortlist &amp; Send RSVP Emails&lt;/p&gt;
-                  &lt;p&gt;
-                    &lt;small&gt;Click on &#x27;View Responses&#x27;&lt;/small&gt;
-                    &lt;small&gt;
-                      &lt;strong&gt;Attendee&lt;/strong&gt; Shortlist to send RSVP, once they confirm, the status changes to
-                      &#x27;Confirmed&#x27;
-                    &lt;/small&gt;
-                    &lt;br /&gt;
-                    &lt;small&gt;
-                      &lt;strong&gt;Speaker&lt;/strong&gt; Shortlist to send RSVP, once they confirm, the status changes to
-                      &#x27;Confirmed&#x27;, the email also contains a link to add the slides they will be using for sharing with
-                      the community later on
-                    &lt;/small&gt;
-                  &lt;/p&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                  &lt;p&gt;&lt;strong&gt;STEP 3&lt;/strong&gt;: Event Day!&lt;/p&gt;
-                  &lt;p&gt;
-                    &lt;small&gt;Mark the attendance!&lt;/small&gt;
-                  &lt;/p&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                  &lt;p&gt;&lt;strong&gt;STEP 4&lt;/strong&gt;: Feedbacks&lt;/p&gt;
-                  &lt;p&gt;
-                    &lt;small&gt;Send feedback forms in 1 click, to those who attended&lt;/small&gt;
-                  &lt;/p&gt;
-                &lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/nb-accordion-item-body&gt;
-      &lt;/nb-accordion-item&gt;
-      &lt;nb-accordion-item&gt;
-        &lt;nb-accordion-item-header&gt;Agenda or Schedule&lt;/nb-accordion-item-header&gt;
-        &lt;nb-accordion-item-body&gt;
-          &lt;ul&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;Simple Hosting (online only)&lt;/strong&gt;
-                &lt;br /&gt;
-                Choose between
-                &lt;strong&gt;Youtube Streaming&lt;/strong&gt;, and &lt;strong&gt;any other Embed&lt;/strong&gt;. [ZOOM integration coming
-                soon!]
-              &lt;/p&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;Multiple Locations / Tracks / Sessions&lt;/strong&gt;
-                &lt;br /&gt;
-                This option is when you have a more organized event
-              &lt;/p&gt;
-              &lt;ul&gt;
-                &lt;li&gt;
-                  &lt;p&gt;You can create multiple locations (either offline or online)&lt;/p&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                  &lt;p&gt;Each location can have multiple tracks&lt;/p&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                  &lt;p&gt;Each Track can have multiple slots&lt;/p&gt;
-                &lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;Completed&lt;/strong&gt;: It has completed! Will be visible as a completed event to all the members
-              &lt;/p&gt;
-            &lt;/li&gt;
-            &lt;li&gt;
-              &lt;p&gt;
-                &lt;strong&gt;Canceled&lt;/strong&gt;: It&#x27;s like deleting the event, it removes the event from the community page
-              &lt;/p&gt;
-            &lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/nb-accordion-item-body&gt;
-      &lt;/nb-accordion-item&gt;
-      &lt;nb-accordion-item&gt;
-        &lt;nb-accordion-item-header&gt; Collaborating Communities&lt;/nb-accordion-item-header&gt;
-        &lt;nb-accordion-item-body&gt;
-          &lt;p&gt;Just search from all the communities on Commudle and create collaborations!&lt;/p&gt;
-        &lt;/nb-accordion-item-body&gt;
-      &lt;/nb-accordion-item&gt;
-    &lt;/nb-accordion&gt;
-  &lt;/ng-template&gt;
 &lt;/div&gt;
+
+&lt;ng-template #eventGuideSection&gt;
+  &lt;nb-accordion&gt;
+    &lt;nb-accordion-item&gt;
+      &lt;nb-accordion-item-header&gt;Status&lt;/nb-accordion-item-header&gt;
+      &lt;nb-accordion-item-body&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;Draft&lt;/strong&gt;: Only the organizers and people who have the link can see the event&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;Open&lt;/strong&gt;: The event is visible on the community page&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;Completed&lt;/strong&gt;: It has completed! Will be visible as a completed event to all the members&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;Canceled&lt;/strong&gt;: It&#x27;s like deleting the event, it removes the event from the community page&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;* &lt;small&gt;Event can be edited upto 5 days after completion&lt;/small&gt;&lt;/p&gt;
+      &lt;/nb-accordion-item-body&gt;
+    &lt;/nb-accordion-item&gt;
+    &lt;nb-accordion-item&gt;
+      &lt;nb-accordion-item-header&gt;Registration Type&lt;/nb-accordion-item-header&gt;
+      &lt;nb-accordion-item-body&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;
+              &lt;strong&gt;One Click Registration&lt;/strong&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+              &lt;small&gt; Members can register for the event in a single click &lt;/small&gt;
+              &lt;br /&gt;
+              &lt;small&gt;
+                You can view their registrations from the &#x27;View Registrations&#x27; link and send them unique entry passes
+              &lt;/small&gt;
+            &lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;
+              &lt;strong&gt; Registration Forms [Higher attendance percentage!] &lt;/strong&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+              &lt;small&gt;
+                Use the forms you created on
+                &lt;strong&gt;
+                  &lt;a [routerLink]&#x3D;&quot;[&#x27;/admin/communities&#x27;, community.slug]&quot;&gt;{{ community.name }}&lt;/a&gt;
+                &lt;/strong&gt;
+                page
+              &lt;/small&gt;
+            &lt;/p&gt;
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;strong&gt;STEP 1&lt;/strong&gt;: Roll out forms&lt;/p&gt;
+                &lt;p&gt;
+                  &lt;small&gt; Form Type: &lt;strong&gt;Attendee&lt;/strong&gt; For people who will be attending the event &lt;/small&gt;
+                  &lt;br /&gt;
+                  &lt;small&gt; Form Type: &lt;strong&gt;Speaker&lt;/strong&gt; Use this for call for papers &lt;/small&gt;
+                &lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;strong&gt;STEP 2&lt;/strong&gt;: Shortlist &amp; Send RSVP Emails&lt;/p&gt;
+                &lt;p&gt;
+                  &lt;small&gt;Click on &#x27;View Responses&#x27;&lt;/small&gt;
+                  &lt;small&gt;
+                    &lt;strong&gt;Attendee&lt;/strong&gt; Shortlist to send RSVP, once they confirm, the status changes to
+                    &#x27;Confirmed&#x27;
+                  &lt;/small&gt;
+                  &lt;br /&gt;
+                  &lt;small&gt;
+                    &lt;strong&gt;Speaker&lt;/strong&gt; Shortlist to send RSVP, once they confirm, the status changes to
+                    &#x27;Confirmed&#x27;, the email also contains a link to add the slides they will be using for sharing with
+                    the community later on
+                  &lt;/small&gt;
+                &lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;strong&gt;STEP 3&lt;/strong&gt;: Event Day!&lt;/p&gt;
+                &lt;p&gt;
+                  &lt;small&gt;Mark the attendance!&lt;/small&gt;
+                &lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;strong&gt;STEP 4&lt;/strong&gt;: Feedbacks&lt;/p&gt;
+                &lt;p&gt;
+                  &lt;small&gt;Send feedback forms in 1 click, to those who attended&lt;/small&gt;
+                &lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nb-accordion-item-body&gt;
+    &lt;/nb-accordion-item&gt;
+    &lt;nb-accordion-item&gt;
+      &lt;nb-accordion-item-header&gt;Agenda or Schedule&lt;/nb-accordion-item-header&gt;
+      &lt;nb-accordion-item-body&gt;
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;
+              &lt;strong&gt;Simple Hosting (online only)&lt;/strong&gt;
+              &lt;br /&gt;
+              Choose between
+              &lt;strong&gt;Youtube Streaming&lt;/strong&gt;, and &lt;strong&gt;any other Embed&lt;/strong&gt;. [ZOOM integration coming soon!]
+            &lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;
+              &lt;strong&gt;Multiple Locations / Tracks / Sessions&lt;/strong&gt;
+              &lt;br /&gt;
+              This option is when you have a more organized event
+            &lt;/p&gt;
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;You can create multiple locations (either offline or online)&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Each location can have multiple tracks&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Each Track can have multiple slots&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;Completed&lt;/strong&gt;: It has completed! Will be visible as a completed event to all the members&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;strong&gt;Canceled&lt;/strong&gt;: It&#x27;s like deleting the event, it removes the event from the community page&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nb-accordion-item-body&gt;
+    &lt;/nb-accordion-item&gt;
+    &lt;nb-accordion-item&gt;
+      &lt;nb-accordion-item-header&gt; Collaborating Communities&lt;/nb-accordion-item-header&gt;
+      &lt;nb-accordion-item-body&gt;
+        &lt;p&gt;Just search from all the communities on Commudle and create collaborations!&lt;/p&gt;
+      &lt;/nb-accordion-item-body&gt;
+    &lt;/nb-accordion-item&gt;
+  &lt;/nb-accordion&gt;
+&lt;/ng-template&gt;
 </code></pre>
     </div>
 
@@ -1863,306 +1869,33 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
                 <p class="comment">
                     <code>./event-dashboard.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;./projects/commudle-admin/src/assets/styles/variables&#x27;;
+                <pre class="line-numbers"><code class="language-scss">a {
+  width: max-content;
+}
 
-.event-page {
-  justify-content: center;
-
-  .page-header {
-    margin-bottom: $space-8;
-
-    p {
-      margin: 0;
-    }
-
-    nb-card {
-      margin: 0;
-
-      p {
-        margin: 5px;
-      }
-
-      h1 {
-        margin: 0;
-
-        small {
-          font-size: 1rem;
-        }
-      }
-
-      .links {
-        display: flex;
-        flex-wrap: wrap;
-
-        a {
-          margin: 1rem 1rem 5px 0;
-
-          nb-icon {
-            font-size: 0.5rem;
-          }
-        }
-      }
-    }
-  }
-
-  .event-dashboard {
-    margin-top: $space-8;
-
-    .side-menu.responsive {
-      background-color: $white;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 2;
-      box-shadow: 2px -5px 15px -7px lightgrey;
-
-      nb-card {
-        margin-bottom: 0;
+.base-layout {
+  .container {
+    .one-column-layout {
+      .event-dashboard-menu {
+        @apply com-sticky com-top-14 com-z-10;
 
         nb-card-body {
-          padding: 5px;
-        }
-      }
+          @apply com-px-0;
 
-      .menu-items {
-        overflow-x: auto;
+          nb-actions {
+            nb-action {
+              @apply com-px-3;
 
-        .item {
-          padding: 0 5px;
+              nb-icon {
+                @apply com-text-xl;
+              }
 
-          a {
-            height: 100%;
-            width: fit-content;
-            text-decoration: none;
-            padding: 0.5rem 0.5rem;
-            text-transform: uppercase;
-            font-size: 12px;
-            white-space: nowrap;
-
-            nb-icon {
-              margin-right: 5px;
-            }
-
-            small {
-              display: none;
-            }
-          }
-        }
-
-        .item.external-links {
-          button {
-            margin: 0 5px;
-          }
-        }
-      }
-
-      @media screen and (min-width: 800px) {
-        max-width: 100vw;
-        position: sticky;
-        height: fit-content;
-        top: 5.2rem;
-        box-shadow: none;
-        margin-right: $space-8;
-        width: 25%;
-
-        nb-card {
-          border: none;
-          margin: 0;
-
-          nb-card-body {
-            border: none;
-          }
-        }
-        .menu-items {
-          flex-direction: column;
-
-          .item {
-            text-align: left;
-            cursor: pointer;
-
-            :hover {
-              text-decoration: underline !important;
-            }
-
-            a {
-              height: 100%;
-              text-decoration: none;
-              padding: 0.5rem 0.5rem;
-              text-transform: uppercase;
-              font-size: 0.85rem;
-              color: rgb(34, 43, 69);
-              width: 100%;
-
-              small {
-                display: block;
+              span {
+                @apply com-text-base com-ml-2 com-font-semibold;
               }
             }
           }
-
-          .item.external-links {
-            flex-direction: column;
-
-            button {
-              margin: 5px 0;
-            }
-          }
         }
-      }
-    }
-
-    .page-column {
-      width: 100%;
-      @media screen and (min-width: 800px) {
-        width: 75%;
-      }
-
-      .item-group {
-        margin-bottom: 3.5rem;
-        margin-left: $space-8;
-
-        &gt; div {
-          nb-card {
-            margin-left: 0;
-            margin-right: 0;
-          }
-
-          &gt; div {
-            nb-card {
-              margin-left: 0;
-              margin-right: 0;
-            }
-          }
-        }
-
-        .item-group-title {
-          margin: 0;
-          display: flex;
-          padding-right: 5px;
-          text-transform: uppercase;
-          font-size: 1rem;
-          color: grey;
-        }
-
-        .item-group-title:after {
-          border-bottom: 2px solid grey;
-          content: &#x27;&#x27;;
-          flex: 1 1;
-          margin: auto 0 auto 0.5rem;
-        }
-      }
-
-      nb-card {
-        margin-bottom: 0.5rem;
-
-        nb-card-header {
-          font-weight: 300;
-          font-size: 1rem;
-          padding: 0 1rem;
-          color: grey;
-        }
-      }
-
-      .event-details {
-        margin-top: 1.5rem;
-
-        h3 {
-          margin-top: 0;
-          margin-bottom: 0.5rem;
-        }
-
-        .edit-button {
-          margin: 1rem 0 0;
-        }
-      }
-
-      .advanced-option-switch {
-        margin-bottom: 1rem;
-
-        p {
-          margin: 0 0.5rem;
-        }
-      }
-
-      .event-timings {
-        fa-icon {
-          color: grey;
-        }
-
-        &gt; div {
-          display: flex;
-
-          p {
-            margin: 0 1rem 0.5rem;
-          }
-        }
-      }
-
-      .event-description {
-        background-color: #f9f9f9;
-        display: flex;
-
-        fa-icon {
-          margin-top: 1rem;
-          margin-right: 0.5rem;
-          color: grey;
-        }
-
-        min-height: 200px;
-      }
-
-      fa-icon {
-        vertical-align: text-top;
-      }
-
-      .event-header-image {
-        form {
-          margin: 0 auto;
-          max-width: 100%;
-          width: 800px;
-
-          input {
-            display: none;
-          }
-
-          .uploaded-header-image {
-            overflow: hidden;
-
-            img {
-              max-width: 100%;
-            }
-          }
-
-          .uploaded-header-image.filler {
-            background-color: #c5c5c538;
-            height: 300px;
-            width: 100%;
-
-            p {
-              margin: 0;
-              font-size: 1.5rem;
-              color: grey;
-            }
-          }
-
-          .delete-header-image-button {
-            display: block;
-            margin: 0 auto;
-          }
-        }
-      }
-
-      nb-accordion {
-        margin: 0.5rem 0;
-
-        nb-accordion-item-body {
-          background: #f4f7ff73;
-        }
-      }
-
-      .community-emails {
-        height: 450px;
-        overflow-y: auto;
       }
     }
   }
@@ -2195,12 +1928,14 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="event-page d-flex flex-column page-padding">  <div class="page-header">    <p>      <a [routerLink]="[\'/admin/communities\', community.slug]" class="padding-0" ghost nbButton size="tiny">        <nb-icon icon="arrow-ios-back"></nb-icon>        Back      </a>    </p>    <nb-card>      <nb-card-body>        <p class="text-basic">          <small>Dashboard</small>        </p>        <h1 class="lh-fw">{{ event.name }}</h1>        <p>Welcome to the dashboard, here you can customize your event!</p>        <div class="links">          <a            [routerLink]="[\'/communities\', community.slug, \'events\', event.slug]"            nbButton            size="small"            status="info"            target="_blank"          >            Public Event Page            <nb-icon icon="external-link d-flex"></nb-icon>          </a>          <a [routerLink]="[\'stats\']" nbButton size="small" status="success" target="_blank">            <nb-icon icon="trending-up-outline"></nb-icon>            Stats<sup>Beta</sup> &nbsp;            <nb-icon icon="external-link"></nb-icon>          </a>        </div>      </nb-card-body>    </nb-card>  </div>  <div class="event-dashboard d-flex flex-row-reverse">    <div class="page-column">      <div #eventInfo class="item-group">        <p class="item-group-title">Event Info</p>        <div>          <app-event-status (updatedEventStatus)="updateEventStatus($event)" [event]="event"></app-event-status>          <div #eventBasicDetails>            <nb-card>              <nb-card-header> Basic Details</nb-card-header>              <nb-card-body>                <div class="event-header-image">                  <form [formGroup]="eventHeaderImageForm">                    <div class="row">                      <div>                        <div>                          <div                            *ngIf="uploadedHeaderImage || event.header_image_path"                            class="uploaded-header-image d-flex justify-content-center align-items-center"                          >                            <img                              alt="Profile Picture"                              src="{{uploadedHeaderImage || event.header_image_path}}"                              title="Profile Picture"                            />                          </div>                          <button                            (click)="deleteEventHeader()"                            *ngIf="event.editable && (uploadedHeaderImage || event.header_image_path)"                            class="delete-header-image-button"                            nbButton                            outline                            size="tiny"                            status="danger"                          >                            Delete                          </button>                        </div>                        <label class="clickable">                          <div                            *ngIf="!(uploadedHeaderImage || event.header_image_path) && event.editable"                            class="                              uploaded-header-image                              filler                              d-flex                              flex-column                              align-items-center                              justify-content-center                            "                          >                            <p>                              Click To Add Header Image                              <small>(optional)</small>                            </p>                            <p>                              <small> (1000 x 350) </small>                            </p>                          </div>                          <input                            (change)="displaySelectedHeaderImage($event)"                            *ngIf="event.editable"                            accept="image/*"                            formControlName="header_image"                            fullWidth                            nbInput                            type="file"                          />                        </label>                      </div>                    </div>                  </form>                </div>                <div class="event-details d-flex flex-column">                  <div class="name-links">                    <h3 class="lh-fw">{{ event.name }}</h3>                    <div class="event-timings">                      <div *ngIf="event.start_time">                        <fa-icon [icon]="faClock"></fa-icon>                        <p>                          {{moment(event.start_time).format("dddd Do MMM, YYYY h:mm A")}} to                          {{moment(event.end_time).format("dddd Do MMM, YYYY h:mm A")}}                          {{moment(event.end_time).format("z")}}                        </p>                      </div>                    </div>                    <div class="details">                      <div class="event-description">                        <fa-icon [icon]="faInfoCircle"></fa-icon>&nbsp;                        <div [innerHTML]="event.description"></div>                      </div>                    </div>                  </div>                  <div>                    <a                      *ngIf="event.editable"                      [routerLink]="[\'/admin/communities\', community.slug, \'event-dashboard\', event.slug, \'edit\']"                      class="padding-0 edit-button"                      ghost                      nbButton                      size="small"                      status="primary"                    >                      <fa-icon [icon]="faEdit"></fa-icon>                      &nbsp; Edit Basic Details                    </a>                  </div>                </div>              </nb-card-body>            </nb-card>          </div>        </div>      </div>      <div #eventManager class="item-group">        <p class="item-group-title">Event Manager</p>        <div #eventUpdates>          <nb-card *ngIf="event.event_status.name != EEventStatuses.DRAFT">            <nb-card-header>Updates / Timeline</nb-card-header>            <nb-card-body>              <app-event-updates [event]="event"></app-event-updates>            </nb-card-body>          </nb-card>        </div>        <div #eventRegistrations>          <nb-card>            <nb-card-header>Registrations</nb-card-header>            <nb-card-body>              <div *ngIf="event.editable" class="advanced-option-switch d-flex align-items-center">                <p>One Click Registration</p>                <nb-toggle                  (checkedChange)="updateRegistrationType($event)"                  [checked]="event.custom_registration"                  status="primary"                ></nb-toggle>                <p>Registration Forms</p>              </div>              <app-form-groups                *ngIf="event.custom_registration"                [community]="community"                [event]="event"              ></app-form-groups>              <app-event-simple-registration                *ngIf="!event.custom_registration"                [community]="community"                [event]="event"              ></app-event-simple-registration>            </nb-card-body>          </nb-card>        </div>        <div #eventSchedule>          <nb-card>            <nb-card-header> Schedule</nb-card-header>            <nb-card-body>              <div *ngIf="event.editable" class="advanced-option-switch d-flex align-items-center">                <p>                  Simple Hosting                  <br />                  (online only)                </p>                <nb-toggle                  (checkedChange)="updateAgendaType($event)"                  [checked]="event.custom_agenda"                  [disabled]="!event.custom_registration || !event.start_time"                  status="primary"                >                </nb-toggle>                <p>                  Custom Schedule                  <br />                  (online/offline with Multiple Tracks)                </p>              </div>              <div *ngIf="!event.start_time">                <nb-alert accent="info">                  <a                    [routerLink]="[\'/admin/communities\',community.slug,\'event-dashboard\',event.slug,\'edit\']"                    ghost                    nbButton                    status="info"                  >                    Click Here to Enable the schedule options by adding date and time to this event.                  </a>                </nb-alert>              </div>              <div *ngIf="event.start_time">                <p *ngIf="!event.custom_agenda">                  <a [routerLink]="[\'/communities\',community.slug,\'events\',event.slug,\'session\']" target="_blank">                    Public Session Page                    <nb-icon icon="external-link"></nb-icon>                  </a>                </p>                <p *ngIf="event.custom_registration">                  <small>*Speakers can be selected by using Speaker Form in the registrations section above!</small>                </p>                <app-event-locations                  *ngIf="event.custom_agenda"                  [community]="community"                  [event]="event"                ></app-event-locations>                <app-event-speakers                  *ngIf="!event.custom_agenda && !event.custom_registration"                  [event]="event"                ></app-event-speakers>                <app-event-embedded-video-stream-v2                  *ngIf="!event.custom_agenda"                  [community]="community"                  [event]="event"                ></app-event-embedded-video-stream-v2>              </div>            </nb-card-body>          </nb-card>        </div>      </div>      <div #eventCollaborations class="item-group">        <p class="item-group-title">Extended Team</p>        <div #eventCommunityCollaborations>          <nb-accordion>            <nb-accordion-item>              <nb-accordion-item-header> Collaborating Communities</nb-accordion-item-header>              <nb-accordion-item-body>                <app-collaborating-communities [community]="community" [event]="event"></app-collaborating-communities>              </nb-accordion-item-body>            </nb-accordion-item>          </nb-accordion>          <nb-accordion>            <nb-accordion-item>              <nb-accordion-item-header>Volunteers</nb-accordion-item-header>              <nb-accordion-item-body>                <app-volunteers [event]="event"></app-volunteers>              </nb-accordion-item-body>            </nb-accordion-item>          </nb-accordion>          <nb-accordion>            <nb-accordion-item>              <nb-accordion-item-header> Sponsors & Partners</nb-accordion-item-header>              <nb-accordion-item-body>                <app-sponsors [event]="event"></app-sponsors>              </nb-accordion-item-body>            </nb-accordion-item>          </nb-accordion>        </div>      </div>      <app-event-recordings [event]="event"></app-event-recordings>      <div #communityEmails class="community-emails">        <app-community-emails-list [communityId]="event.kommunity_id"></app-community-emails-list>      </div>    </div>    <div class="side-menu responsive">      <nb-card>        <nb-card-body>          <div class="menu-items d-flex flex-row">            <div              (click)="scroll(eventInfo)"              class="item"              nbTooltip="Status, Header Image, Basic Details"              nbTooltipPlacement="end"            >              <a class="d-flex">                <nb-icon icon="info-outline"></nb-icon>                <span>                  Event Info                  <br />                  <small>Status - Basic Details</small>                </span>              </a>            </div>            <div              (click)="scroll(eventManager)"              class="item"              nbTooltip="Registrations, Agenda, Updates"              nbTooltipPlacement="end"            >              <a>                <nb-icon icon="calendar-outline"></nb-icon>                <span>                  Event Manager                  <br />                  <small>Registrations - Agenda - Updates</small>                </span>              </a>            </div>            <div              (click)="scroll(eventCollaborations)"              class="item"              nbTooltip="Collaboration, Volunteers"              nbTooltipPlacement="end"            >              <a>                <nb-icon icon="people-outline"></nb-icon>                <span>                  Extended Team                  <br />                  <small>Collaborations - Volunteers - Sponsors</small>                </span>              </a>            </div>            <div (click)="scroll(communityEmails)" class="item">              <a>                <nb-icon icon="email-outline"></nb-icon>                <span> Emails Sent </span>              </a>            </div>            <div (click)="openGuide()" class="item">              <a>                <nb-icon icon="question-mark-circle"></nb-icon>                <span> Event Guide </span>              </a>            </div>          </div>        </nb-card-body>      </nb-card>    </div>  </div>  <ng-template #eventGuideTemplate>    <nb-accordion>      <nb-accordion-item>        <nb-accordion-item-header>Status</nb-accordion-item-header>        <nb-accordion-item-body>          <ul>            <li>              <p><strong>Draft</strong>: Only the organizers and people who have the link can see the event</p>            </li>            <li>              <p><strong>Open</strong>: The event is visible on the community page</p>            </li>            <li>              <p>                <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members              </p>            </li>            <li>              <p>                <strong>Canceled</strong>: It\'s like deleting the event, it removes the event from the community page              </p>            </li>          </ul>          <p>* <small>Event can be edited upto 5 days after completion</small></p>        </nb-accordion-item-body>      </nb-accordion-item>      <nb-accordion-item>        <nb-accordion-item-header>Registration Type</nb-accordion-item-header>        <nb-accordion-item-body>          <ul>            <li>              <p>                <strong>One Click Registration</strong>              </p>              <p>                <small> Members can register for the event in a single click </small>                <br />                <small>                  You can view their registrations from the \'View Registrations\' link and send them unique entry passes                </small>              </p>            </li>            <li>              <p>                <strong> Registration Forms [Higher attendance percentage!] </strong>              </p>              <p>                <small>                  Use the forms you created on                  <strong>                    <a [routerLink]="[\'/admin/communities\', community.slug]">{{community.name}}</a>                  </strong>                  page                </small>              </p>              <ul>                <li>                  <p><strong>STEP 1</strong>: Roll out forms</p>                  <p>                    <small> Form Type: <strong>Attendee</strong> For people who will be attending the event </small>                    <br />                    <small> Form Type: <strong>Speaker</strong> Use this for call for papers </small>                  </p>                </li>                <li>                  <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>                  <p>                    <small>Click on \'View Responses\'</small>                    <small>                      <strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to                      \'Confirmed\'                    </small>                    <br />                    <small>                      <strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to                      \'Confirmed\', the email also contains a link to add the slides they will be using for sharing with                      the community later on                    </small>                  </p>                </li>                <li>                  <p><strong>STEP 3</strong>: Event Day!</p>                  <p>                    <small>Mark the attendance!</small>                  </p>                </li>                <li>                  <p><strong>STEP 4</strong>: Feedbacks</p>                  <p>                    <small>Send feedback forms in 1 click, to those who attended</small>                  </p>                </li>              </ul>            </li>          </ul>        </nb-accordion-item-body>      </nb-accordion-item>      <nb-accordion-item>        <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>        <nb-accordion-item-body>          <ul>            <li>              <p>                <strong>Simple Hosting (online only)</strong>                <br />                Choose between                <strong>Youtube Streaming</strong>, and <strong>any other Embed</strong>. [ZOOM integration coming                soon!]              </p>            </li>            <li>              <p>                <strong>Multiple Locations / Tracks / Sessions</strong>                <br />                This option is when you have a more organized event              </p>              <ul>                <li>                  <p>You can create multiple locations (either offline or online)</p>                </li>                <li>                  <p>Each location can have multiple tracks</p>                </li>                <li>                  <p>Each Track can have multiple slots</p>                </li>              </ul>            </li>            <li>              <p>                <strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members              </p>            </li>            <li>              <p>                <strong>Canceled</strong>: It\'s like deleting the event, it removes the event from the community page              </p>            </li>          </ul>        </nb-accordion-item-body>      </nb-accordion-item>      <nb-accordion-item>        <nb-accordion-item-header> Collaborating Communities</nb-accordion-item-header>        <nb-accordion-item-body>          <p>Just search from all the communities on Commudle and create collaborations!</p>        </nb-accordion-item-body>      </nb-accordion-item>    </nb-accordion>  </ng-template></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
+        var COMPONENT_TEMPLATE = '<div><div class="base-layout com-my-8">  <div class="container">    <div class="one-column-layout">      <a [routerLink]="[\'/admin/communities\', community.slug]" ghost nbButton size="small">        <nb-icon icon="arrow-ios-back"></nb-icon>        Back      </a>      <nb-card>        <nb-card-body>          <h2 class="fs-h2">{{ event.name }}</h2>          <p>Welcome to the dashboard, here you can customize your event!</p>          <div class="com-flex com-gap-4">            <a              [routerLink]="[\'/communities\', community.slug, \'events\', event.slug]"              nbButton              size="small"              status="info"              target="_blank"            >              Public Event Page              <nb-icon icon="external-link"></nb-icon>            </a>            <a [routerLink]="[\'stats\']" nbButton size="small" status="success" target="_blank">              <nb-icon icon="trending-up-outline"></nb-icon>              Stats<sup>Beta</sup> &nbsp;              <nb-icon icon="external-link"></nb-icon>            </a>          </div>        </nb-card-body>      </nb-card>      <nb-card class="event-dashboard-menu">        <nb-card-body>          <nb-actions>            <nb-action (click)="scroll(statusSectionRef)" class="clickable">              <nb-icon icon="clipboard-outline"></nb-icon>              <span>Status</span>            </nb-action>            <nb-action (click)="scroll(detailsSectionRef)" class="clickable">              <nb-icon icon="info-outline"></nb-icon>              <span>Details</span>            </nb-action>            <nb-action              (click)="scroll(updatesSectionRef)"              *ngIf="event.event_status.name !== EEventStatuses.DRAFT"              class="clickable"            >              <nb-icon icon="star-outline"></nb-icon>              <span>Updates</span>            </nb-action>            <nb-action (click)="scroll(registrationsSectionRef)" class="clickable">              <nb-icon icon="edit-2-outline"></nb-icon>              <span>Registrations</span>            </nb-action>            <nb-action (click)="scroll(agendaSectionRef)" class="clickable">              <nb-icon icon="calendar-outline"></nb-icon>              <span>Agenda</span>            </nb-action>            <nb-action (click)="scroll(collaborationsSectionRef)" class="clickable">              <nb-icon icon="pricetags-outline"></nb-icon>              <span>Collaborations</span>            </nb-action>            <nb-action (click)="scroll(volunteersSectionRef)" class="clickable">              <nb-icon icon="headphones-outline"></nb-icon>              <span>Volunteers</span>            </nb-action>            <nb-action (click)="scroll(sponsorsSectionRef)" class="clickable">              <nb-icon icon="briefcase-outline"></nb-icon>              <span>Sponsors</span>            </nb-action>            <nb-action (click)="scroll(emailsSectionRef)" class="clickable">              <nb-icon icon="email-outline"></nb-icon>              <span>Emails</span>            </nb-action>            <nb-action (click)="openGuide()" class="clickable">              <nb-icon icon="question-mark-circle-outline"></nb-icon>              <span>Guide</span>            </nb-action>          </nb-actions>        </nb-card-body>      </nb-card>      <div #statusSection>        <app-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></app-event-status>      </div>      <div #detailsSection>        <app-event-details          (deleteHeaderImage)="deleteEventHeader()"          (updateHeaderImage)="displaySelectedHeaderImage($event)"          [community]="community"          [event]="event"        ></app-event-details>      </div>      <div #updatesSection *ngIf="event.event_status.name !== EEventStatuses.DRAFT">        <nb-card>          <nb-card-header>            <h6>              <nb-icon icon="star-outline"></nb-icon>              Updates            </h6>          </nb-card-header>          <nb-card-body>            <app-event-updates [event]="event"></app-event-updates>          </nb-card-body>        </nb-card>      </div>      <div #registrationsSection>        <nb-card>          <nb-card-header>            <h6>              <nb-icon icon="edit-2-outline"></nb-icon>              Registrations            </h6>          </nb-card-header>          <nb-card-body>            <div *ngIf="event.editable" class="com-flex com-gap-4">              <p>One Click Registration</p>              <nb-toggle                (checkedChange)="updateRegistrationType($event)"                [checked]="event.custom_registration"                status="primary"              ></nb-toggle>              <p>Registration Forms</p>            </div>            <app-form-groups              *ngIf="event.custom_registration"              [community]="community"              [event]="event"            ></app-form-groups>            <app-event-simple-registration              *ngIf="!event.custom_registration"              [community]="community"              [event]="event"            ></app-event-simple-registration>          </nb-card-body>        </nb-card>      </div>      <div #agendaSection>        <nb-card>          <nb-card-header>            <h6>              <nb-icon icon="calendar-outline"></nb-icon>              Agenda            </h6>          </nb-card-header>          <nb-card-body>            <div *ngIf="event.editable" class="com-flex com-gap-4">              <p>                Simple Hosting                <br />                (online only)              </p>              <nb-toggle                (checkedChange)="updateAgendaType($event)"                [checked]="event.custom_agenda"                [disabled]="!event.custom_registration || !event.start_time"                status="primary"              >              </nb-toggle>              <p>                Custom Schedule                <br />                (online/offline with Multiple Tracks)              </p>            </div>            <div *ngIf="!event.start_time">              <nb-alert accent="info">                <a                  [routerLink]="[\'/admin/communities\', community.slug, \'event-dashboard\', event.slug, \'edit\']"                  ghost                  nbButton                  status="info"                >                  Click Here to Enable the schedule options by adding date and time to this event.                </a>              </nb-alert>            </div>            <div *ngIf="event.start_time">              <a [routerLink]="[\'/communities\', community.slug, \'events\', event.slug, \'session\']" target="_blank">                Public Session Page                <nb-icon icon="external-link"></nb-icon>              </a>              <p *ngIf="event.custom_registration">                <small>*Speakers can be selected by using Speaker Form in the registrations section above!</small>              </p>              <app-event-locations                *ngIf="event.custom_agenda"                [community]="community"                [event]="event"              ></app-event-locations>              <app-event-speakers                *ngIf="!event.custom_agenda && !event.custom_registration"                [event]="event"              ></app-event-speakers>              <app-event-embedded-video-stream                *ngIf="!event.custom_agenda"                [community]="community"                [event]="event"              ></app-event-embedded-video-stream>            </div>          </nb-card-body>        </nb-card>      </div>      <div #collaborationsSection>        <nb-card>          <nb-card-header>            <h6>              <nb-icon icon="pricetags-outline"></nb-icon>              Collaborations            </h6>          </nb-card-header>          <nb-card-body>            <app-collaborating-communities [community]="community" [event]="event"></app-collaborating-communities>          </nb-card-body>        </nb-card>      </div>      <div #volunteersSection>        <nb-card>          <nb-card-header>            <h6>              <nb-icon icon="headphones-outline"></nb-icon>              Volunteers            </h6>          </nb-card-header>          <nb-card-body>            <app-volunteers [event]="event"></app-volunteers>          </nb-card-body>        </nb-card>      </div>      <div #sponsorsSection>        <nb-card>          <nb-card-header>            <h6>              <nb-icon icon="briefcase-outline"></nb-icon>              Sponsors            </h6>          </nb-card-header>          <nb-card-body>            <app-sponsors [event]="event"></app-sponsors>          </nb-card-body>        </nb-card>      </div>      <!-- TODO: Enable recordings -->      <!--      <div>-->      <!--        <app-event-recordings [event]="event"></app-event-recordings>-->      <!--      </div>-->      <div #emailsSection>        <app-community-emails-list [communityId]="event.kommunity_id"></app-community-emails-list>      </div>    </div>  </div></div><ng-template #eventGuideSection>  <nb-accordion>    <nb-accordion-item>      <nb-accordion-item-header>Status</nb-accordion-item-header>      <nb-accordion-item-body>        <ul>          <li>            <p><strong>Draft</strong>: Only the organizers and people who have the link can see the event</p>          </li>          <li>            <p><strong>Open</strong>: The event is visible on the community page</p>          </li>          <li>            <p><strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members</p>          </li>          <li>            <p><strong>Canceled</strong>: It\'s like deleting the event, it removes the event from the community page</p>          </li>        </ul>        <p>* <small>Event can be edited upto 5 days after completion</small></p>      </nb-accordion-item-body>    </nb-accordion-item>    <nb-accordion-item>      <nb-accordion-item-header>Registration Type</nb-accordion-item-header>      <nb-accordion-item-body>        <ul>          <li>            <p>              <strong>One Click Registration</strong>            </p>            <p>              <small> Members can register for the event in a single click </small>              <br />              <small>                You can view their registrations from the \'View Registrations\' link and send them unique entry passes              </small>            </p>          </li>          <li>            <p>              <strong> Registration Forms [Higher attendance percentage!] </strong>            </p>            <p>              <small>                Use the forms you created on                <strong>                  <a [routerLink]="[\'/admin/communities\', community.slug]">{{ community.name }}</a>                </strong>                page              </small>            </p>            <ul>              <li>                <p><strong>STEP 1</strong>: Roll out forms</p>                <p>                  <small> Form Type: <strong>Attendee</strong> For people who will be attending the event </small>                  <br />                  <small> Form Type: <strong>Speaker</strong> Use this for call for papers </small>                </p>              </li>              <li>                <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>                <p>                  <small>Click on \'View Responses\'</small>                  <small>                    <strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to                    \'Confirmed\'                  </small>                  <br />                  <small>                    <strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to                    \'Confirmed\', the email also contains a link to add the slides they will be using for sharing with                    the community later on                  </small>                </p>              </li>              <li>                <p><strong>STEP 3</strong>: Event Day!</p>                <p>                  <small>Mark the attendance!</small>                </p>              </li>              <li>                <p><strong>STEP 4</strong>: Feedbacks</p>                <p>                  <small>Send feedback forms in 1 click, to those who attended</small>                </p>              </li>            </ul>          </li>        </ul>      </nb-accordion-item-body>    </nb-accordion-item>    <nb-accordion-item>      <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>      <nb-accordion-item-body>        <ul>          <li>            <p>              <strong>Simple Hosting (online only)</strong>              <br />              Choose between              <strong>Youtube Streaming</strong>, and <strong>any other Embed</strong>. [ZOOM integration coming soon!]            </p>          </li>          <li>            <p>              <strong>Multiple Locations / Tracks / Sessions</strong>              <br />              This option is when you have a more organized event            </p>            <ul>              <li>                <p>You can create multiple locations (either offline or online)</p>              </li>              <li>                <p>Each location can have multiple tracks</p>              </li>              <li>                <p>Each Track can have multiple slots</p>              </li>            </ul>          </li>          <li>            <p><strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members</p>          </li>          <li>            <p><strong>Canceled</strong>: It\'s like deleting the event, it removes the event from the community page</p>          </li>        </ul>      </nb-accordion-item-body>    </nb-accordion-item>    <nb-accordion-item>      <nb-accordion-item-header> Collaborating Communities</nb-accordion-item-header>      <nb-accordion-item-body>        <p>Just search from all the communities on Commudle and create collaborations!</p>      </nb-accordion-item-body>    </nb-accordion-item>  </nb-accordion></ng-template></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutOldComponent', 'selector': 'app-about-old'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminStaticAssetFormComponent', 'selector': 'app-admin-static-asset-form'},{'name': 'AdminStaticAssetsComponent', 'selector': 'app-admin-static-assets'},{'name': 'AdminStaticAssetsListComponent', 'selector': 'app-admin-static-assets-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendedMembersComponent', 'selector': 'app-attended-members'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicInfoComponent', 'selector': 'app-basic-info'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogsListComponent', 'selector': 'app-blogs'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CircularProgressiveBarComponent', 'selector': 'app-circular-progressive-bar'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBlockedUsersComponent', 'selector': 'app-community-blocked-users'},{'name': 'CommunityBuildCardComponent', 'selector': 'app-community-build-card'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardChannelListComponent', 'selector': 'app-community-channels-dashboard-channel-list'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityMembersListComponent', 'selector': 'app-community-members-list'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EditUserProfileComponent', 'selector': 'app-edit-user-profile'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailPreferencesComponent', 'selector': 'app-email-preferences'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'EntryPassScanComponent', 'selector': 'app-entry-pass-scan'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventDetailsComponent', 'selector': 'app-event-details'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomepageAboutComponent', 'selector': 'app-homepage-about'},{'name': 'HomepageBuildsComponent', 'selector': 'app-homepage-builds'},{'name': 'HomepageComponent', 'selector': 'app-homepage'},{'name': 'HomepageEventsCardComponent', 'selector': 'app-homepage-events-card'},{'name': 'HomepageEventsComponent', 'selector': 'app-homepage-events'},{'name': 'HomepageExpertsComponent', 'selector': 'app-homepage-experts'},{'name': 'HomepageFeaturedCommunitiesComponent', 'selector': 'app-homepage-featured-communities'},{'name': 'HomepageFeaturesComponent', 'selector': 'app-homepage-features'},{'name': 'HomepageLabsComponent', 'selector': 'app-homepage-labs'},{'name': 'HomepageTestimonialsComponent', 'selector': 'app-homepage-testimonials'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsCardComponent', 'selector': 'app-labs-card'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsHeaderComponent', 'selector': 'app-labs-header'},{'name': 'LabsSearchComponent', 'selector': 'app-labs-search'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MiniUserProfileComponent', 'selector': 'app-mini-user-profile'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'NewsletterListComponent', 'selector': 'app-newsletter-list'},{'name': 'NotificationsListComponent', 'selector': 'app-notifications-list'},{'name': 'NotificationsListItemComponent', 'selector': 'app-notifications-list-item'},{'name': 'NotificationsPageComponent', 'selector': 'app-notifications-page'},{'name': 'NotificationsPopoverComponent', 'selector': 'app-notifications-popover'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'ProfileStatusBarComponent', 'selector': 'app-profile-status-bar'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicPageGuidelinesComponent', 'selector': 'app-public-page-guidelines'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'PushNotificationComponent', 'selector': 'app-push-notification'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'RecommendedBuildsComponent', 'selector': 'app-recommended-builds'},{'name': 'RecommendedCommunitiesComponent', 'selector': 'app-recommended-communities'},{'name': 'RecommendedLabsComponent', 'selector': 'app-recommended-labs'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBoxComponent', 'selector': 'app-search-box'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'ShareButtonComponent', 'selector': 'app-share-button'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SocialLinksComponent', 'selector': 'app-social-links'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'StepperComponent', 'selector': 'app-stepper'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UsernameComponent', 'selector': 'app-username'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserResumeCardComponent', 'selector': 'app-user-resume-card'},{'name': 'UserResumeComponent', 'selector': 'app-user-resume'},{'name': 'UserResumePreviewComponent', 'selector': 'app-user-resume-preview'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'UserWorkHistoryCardComponent', 'selector': 'app-user-work-history-card'},{'name': 'UserWorkHistoryComponent', 'selector': 'app-user-work-history'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'BreakpointsDirective', 'selector': '[appBreakpoints]'},{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'InfiniteScrollDirective', 'selector': '[appInfiniteScroll]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'},{'name': 'MiniUserProfileDirective', 'selector': '[appMiniUserProfile]'}];
     var ACTUAL_COMPONENT = {'name': 'EventDashboardComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 
@@ -2229,6 +1964,15 @@ export class EventDashboardComponent implements OnInit, OnDestroy {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
