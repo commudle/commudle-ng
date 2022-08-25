@@ -42,13 +42,11 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   imageUrl(source: any) {
-    // this.ImageLoading = true;
     this.ImageLoading = false;
     return this.cmsService.getImageUrl(source);
   }
 
   getData() {
-    // this.isLoading = true;
     const slug: string = this.activatedRoute.snapshot.params.id;
     this.cmsService.getDataBySlug(slug).subscribe((value: IBlog) => {
       this.blog = value;
