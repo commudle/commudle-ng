@@ -21,12 +21,6 @@
 
         .blog-actions {
           @apply com-absolute com-top-2 com-right-2;
-
-          button {
-            nb-icon {
-              @apply com-text-blue-500;
-            }
-          }
         }
 
         .date {
@@ -45,4 +39,8 @@
       }
     }
   }
+}
+
+app-loading-spinner {
+  @apply com-flex com-justify-center;
 }
