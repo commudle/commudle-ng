@@ -1,10 +1,10 @@
-.loading-spinner {
+.loading {
   .spinner {
     height: 40px;
 
     & > div {
       animation: stretch-delay 1.2s infinite ease-in-out;
-      background-color: $cadet;
+      background-color: #5c6972;
       display: inline-block;
       height: 100%;
       margin: 0 1px;
