@@ -33,7 +33,7 @@ export class CmsService {
   }
 
   getDataByType(type: string) {
-    const params = new HttpParams().set('query', `*[_type == "${type}"]`);
+    const params = new HttpParams().set('query', `*[_type == "${type}"] | order(publishedAt desc)`);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 
