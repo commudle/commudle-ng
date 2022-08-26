@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieConsentService } from 'projects/commudle-admin/src/app/services/cookie-consent.service';
 // import { CookieService } from 'ngx-cookie-service';
 import { IsBrowserService } from 'projects/shared-services/is-browser.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 
 @Component({
   selector: 'app-cookie-consent',
@@ -17,14 +18,14 @@ export class CookieConsentComponent implements OnInit {
     private cookieConsentService: CookieConsentService,
     // private cookieService: CookieService,
     private isBrowserService: IsBrowserService,
-    private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
     if (this.isBrowser && !this.cookieConsentService.isCookieConsentAccepted()) {
       setTimeout(() => {
-        if (this.activatedRoute.snapshot.queryParams['bot']) {
-          this.cookieConstent = true;
+        if (this.seoService.isBot) {
+          this.cookieConstent = false;
         }
       }, 3000);
     }

@@ -61,18 +61,45 @@ export class BlogComponent implements OnInit, OnDestroy {
     });
     this.isLoading = false;
   }
+
   setUser() {
     this.subscriptions.push(
-      this.appUsersService.getProfile(this.blog.username).subscribe((data) => (this.user = data)),
+      this.appUsersService.getProfile(this.blog.username).subscribe((data) => {
+        this.user = data;
+        this.setSchema();
+      }),
     );
   }
+
+  setSchema() {
+    console.log('here');
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${environment.app_url}/blogs/${this.blog.slug}`,
+      },
+      headline: this.blog.title,
+      description: this.blog.meta_description,
+      image: this.imageUrl(this.blog.headerImage).url(),
+      author: {
+        type: 'Person',
+        name: this.user.name,
+        url: `${environment.app_url}/users/${this.blog.username}`,
+      },
+      datePublished: this.blog.publishedAt,
+    });
+  }
+
   setMeta(): void {
     this.seoService.setTags(
-      this.blog.title + ' -commudle',
+      this.blog.title + ' - Commudle',
       this.blog.meta_description,
       this.imageUrl(this.blog.headerImage).url(),
     );
   }
+
   copyTextToClipboard(title, slug): void {
     if (!this.navigatorShareService.canShare()) {
       if (this.clipboard.copy(`${environment.app_url}/blogs/${slug}`)) {

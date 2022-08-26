@@ -1,4 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, NavigationStart } from '@angular/router';
 import { NbSidebarService, NbSidebarState } from '@nebular/theme';
 import { environment } from 'projects/commudle-admin/src/environments/environment';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private profileStatusBarService: ProfileStatusBarService,
     private isBrowserService: IsBrowserService,
     private seoService: SeoService,
+    private router: Router,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
@@ -59,6 +61,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     if (this.cookieConsentService.isCookieConsentAccepted()) {
       this.cookieAccepted = true;
     }
+
+    this.removeSchemaOnRouteChange();
   }
 
   ngAfterViewChecked(): void {
@@ -74,5 +78,16 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     if (this.sideBarState === 'expanded') {
       this.sidebarService.collapse('mainMenu');
     }
+  }
+
+  /**
+   * remove the ld+json on route change
+   */
+  removeSchemaOnRouteChange(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.seoService.removeSchema();
+      }
+    });
   }
 }
