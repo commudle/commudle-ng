@@ -8,6 +8,7 @@ import { IsBrowserService } from 'projects/shared-services/is-browser.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { NotificationsService } from 'projects/shared-services/notifications/notifications.service';
 import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analytics.service';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   cookieAccepted = false;
   profileBarStatus = true;
   isBrowser = this.isBrowserService.isBrowser();
+  canonicalUrl: string = null;
 
   constructor(
     private apiRoutes: ApiRoutesService,
@@ -34,12 +36,14 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private pioneerAnalyticsService: PioneerAnalyticsService,
     private profileStatusBarService: ProfileStatusBarService,
     private isBrowserService: IsBrowserService,
+    private seoService: SeoService,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
   }
 
   ngOnInit(): void {
+    this.seoService.setCanonical();
     this.authWatchService.currentUser$.subscribe((currentUser: ICurrentUser) => {
       this.currentUser = currentUser;
 
@@ -52,7 +56,6 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
         }
       }
     });
-
     if (this.cookieConsentService.isCookieConsentAccepted()) {
       this.cookieAccepted = true;
     }

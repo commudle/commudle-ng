@@ -1,11 +1,32 @@
-import { Injectable } from '@angular/core';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
+import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
+import { DOCUMENT, Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SeoService {
-  constructor(private meta: Meta, private title: Title) {}
+  constructor(
+    private meta: Meta,
+    private title: Title,
+    private location: Location,
+    @Inject(DOCUMENT) private document: any,
+  ) {}
+
+  setCanonical() {
+    const head = this.document.getElementsByTagName('head')[0];
+    let element: HTMLLinkElement = this.document.querySelector(`link[rel='canonical']`) || null;
+    if (element == null) {
+      element = this.document.createElement('link') as HTMLLinkElement;
+      element.setAttribute('rel', 'canonical');
+      head.appendChild(element);
+    }
+    this.location.onUrlChange((url, state) => {
+      element.setAttribute('href', `${environment.app_url}${url}`);
+    });
+  }
 
   setTitle(title: string) {
     this.title.setTitle(title);
@@ -43,5 +64,9 @@ export class SeoService {
     } else {
       this.removeTag('robots');
     }
+  }
+
+  setSchema(value: any) {
+
   }
 }
