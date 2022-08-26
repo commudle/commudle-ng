@@ -17,6 +17,15 @@ export class NotificationService {
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
   }
 
+  getCommunityNotifications(id, page, count): Observable<INotifications> {
+    const params = new HttpParams().set('id', id).set('page', page).set('count', count);
+    console.log('works api');
+
+    return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX_BY_COMMUNITY), {
+      params,
+    });
+  }
+
   getUnreadNotificationsCount(): Observable<number> {
     return this.http.get<number>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.UNREAD_COUNT));
   }

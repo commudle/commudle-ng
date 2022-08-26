@@ -22,6 +22,7 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         this.seoService.noIndex(true);
       }
     });
+    console.log(this.community.id);
   }
 
   ngOnDestroy(): void {

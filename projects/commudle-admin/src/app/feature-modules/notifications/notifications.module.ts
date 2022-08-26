@@ -15,6 +15,7 @@ import { NotificationsListComponent } from './components/notifications-list/noti
 import { NotificationsPageComponent } from './components/notifications-page/notifications-page.component';
 import { NotificationsPopoverComponent } from './components/notifications-popover/notifications-popover.component';
 import { NotificationRoutingModule } from './notification-routing.module';
+import { CommunityNotificationComponent } from 'projects/commudle-admin/src/app/feature-modules/notifications/components/community-notification/community-notification.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NotificationRoutingModule } from './notification-routing.module';
     NotificationsPageComponent,
     NotificationsListComponent,
     NotificationsListItemComponent,
+    CommunityNotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,6 @@ import { NotificationRoutingModule } from './notification-routing.module';
     NbButtonModule,
     NbTooltipModule,
   ],
-  exports: [NotificationsPopoverComponent, NotificationsPageComponent],
+  exports: [NotificationsPopoverComponent, NotificationsPageComponent, CommunityNotificationComponent],
 })
 export class NotificationsModule {}

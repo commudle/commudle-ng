@@ -1,0 +1,17 @@
+<nb-list>
+  <nb-list-item *ngFor="let notification of notifications">
+    <div class="com-flex com-items-center">
+      <!-- <nb-user [picture]="notification.sender.photo.i64" onlyPicture></nb-user> -->
+      <div>
+        <!-- <small class="com-mr-1 com-text-gray-500">{{ moment(notification.created_at).fromNow() }}</small> -->
+        <!-- <app-notifications-list-item
+          [notificationMessage]="notification.notification_message"
+        ></app-notifications-list-item> -->
+
+        <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+          <div class="spinner">
+            <div *ngFor="let _ of [].constructor(5)"></div>
+          </div>
+        </div>
+      </div></div></nb-list-item
+></nb-list>
