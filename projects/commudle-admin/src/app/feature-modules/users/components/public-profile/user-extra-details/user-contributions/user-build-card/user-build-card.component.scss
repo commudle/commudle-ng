@@ -9,20 +9,19 @@ h4 {
   nb-card-body {
     @apply com-p-2 com-flex com-flex-col;
 
-    .user-build-tags {
-      @apply com-mb-2 com-max-h-7 com-overflow-hidden;
-
-      nb-tag {
-        @apply com-font-medium;
-      }
-    }
-
     .user-build-name {
       @apply com-text-sm com-font-semibold com-line-clamp-1;
     }
 
     .user-build-description {
-      @apply com-mt-1 com-mb-3 com-text-xs com-text-gray-500 com-line-clamp-4;
+      @apply com-mt-1 com-mb-3 com-text-xs com-text-gray-500 com-line-clamp-4 com-h-16;
+    }
+    .user-build-tags {
+      @apply com-mb-2 com-max-h-12 com-overflow-hidden com-justify-end;
+
+      nb-tag {
+        @apply com-font-medium;
+      }
     }
 
     .user-build-interactions {

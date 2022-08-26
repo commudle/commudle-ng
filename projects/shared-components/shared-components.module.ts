@@ -65,6 +65,7 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     QnaListItemComponent,
     ShareButtonComponent,
     PaginationComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -162,6 +164,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     QnaComponent,
     ShareButtonComponent,
     PaginationComponent,
+    LoadingSpinnerComponent,
   ],
 })
 export class SharedComponentsModule {}

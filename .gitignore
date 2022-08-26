@@ -22,7 +22,7 @@ chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-.idea/
+/.idea
 .project
 .classpath
 .c9/
@@ -51,9 +51,37 @@ dist.zip
 .eslintcache
 report*
 
+/.angular/cache
+/.sass-cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
 # System files
 .DS_Store
 Thumbs.db
 
 # Firebase
-.firebase/
+/.firebase
+.firebasesrc
+/projects/commudle-admin/.serverless
+
+report*
+functions/
+
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+# Scripts
+ssr-deployment-prod.sh
+ssr-deployment-staging.sh
+
+

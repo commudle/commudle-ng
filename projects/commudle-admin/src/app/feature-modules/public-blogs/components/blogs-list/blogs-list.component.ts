@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IBlog } from 'projects/commudle-admin/src/app/feature-modules/public-blogs/models/blogs.model';
 import { CmsService } from 'projects/shared-services/cms.service';
 import { SeoService } from 'projects/shared-services/seo.service';
+import { environment } from 'projects/commudle-admin/src/environments/environment';
 
 @Component({
   selector: 'app-blogs',
@@ -14,7 +15,9 @@ export class BlogsListComponent implements OnInit {
   blogs: IBlog;
   richText: any;
 
-  isLoading = false;
+  isLoading = true;
+
+  environment = environment;
 
   imageUrl(source: any) {
     return this.cmsService.getImageUrl(source);
@@ -26,11 +29,10 @@ export class BlogsListComponent implements OnInit {
   }
 
   getBlogs() {
-    this.isLoading = true;
     this.cmsService.getDataByType('blog').subscribe((value: IBlog) => {
       this.blogs = value;
+      this.isLoading = false;
     });
-    this.isLoading = false;
   }
 
   setMeta(): void {
