@@ -6,6 +6,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbButtonModule, NbCardModule, NbIconModule, NbSpinnerModule } from '@nebular/theme';
 import { BlogComponent } from './components/blog/blog.component';
 import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
+import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 @NgModule({
   declarations: [BlogsListComponent, BlogComponent],
   imports: [
@@ -17,6 +18,7 @@ import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile
     NbSpinnerModule,
     NbButtonModule,
     MiniUserProfileModule,
+    SharedComponentsModule,
   ],
 })
 export class PublicBlogsModule {}
