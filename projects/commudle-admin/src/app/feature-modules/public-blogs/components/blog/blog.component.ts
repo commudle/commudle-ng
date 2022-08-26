@@ -94,23 +94,4 @@ export class BlogComponent implements OnInit, OnDestroy {
       this.imageUrl(this.blog.headerImage).url(),
     );
   }
-
-  copyTextToClipboard(title, slug): void {
-    if (!this.navigatorShareService.canShare()) {
-      if (this.clipboard.copy(`${environment.app_url}/blogs/${slug}`)) {
-        this.libToastLogService.successDialog('Copied the message successfully!');
-      }
-      return;
-    }
-    this.navigatorShareService
-      .share({
-        title: `${title}`,
-        text: `${title}`,
-        url: `${environment.app_url}/blogs/${slug}`,
-      })
-      .then(() => {
-        this.libToastLogService.successDialog('Shared successfully!');
-      });
-  }
-
 }
