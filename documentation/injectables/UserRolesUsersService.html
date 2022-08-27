@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
 
 
 
@@ -81,10 +82,16 @@
                                 <a href="#addEventVolunteer" >addEventVolunteer</a>
                             </li>
                             <li>
+                                <a href="#blockUser" >blockUser</a>
+                            </li>
+                            <li>
                                 <a href="#confirmCommunityRole" >confirmCommunityRole</a>
                             </li>
                             <li>
                                 <a href="#createUserRolesUser" >createUserRolesUser</a>
+                            </li>
+                            <li>
+                                <a href="#getCommunityBlockedUsers" >getCommunityBlockedUsers</a>
                             </li>
                             <li>
                                 <a href="#getCommunityGroupLeaders" >getCommunityGroupLeaders</a>
@@ -97,6 +104,9 @@
                             </li>
                             <li>
                                 <a href="#getEventVolunteers" >getEventVolunteers</a>
+                            </li>
+                            <li>
+                                <a href="#getRoles" >getRoles</a>
                             </li>
                             <li>
                                 <a href="#pCheckMembership" >pCheckMembership</a>
@@ -114,10 +124,16 @@
                                 <a href="#pToggleMembership" >pToggleMembership</a>
                             </li>
                             <li>
+                                <a href="#removeUser" >removeUser</a>
+                            </li>
+                            <li>
                                 <a href="#removeUserRolesUser" >removeUserRolesUser</a>
                             </li>
                             <li>
                                 <a href="#resendInvitation" >resendInvitation</a>
+                            </li>
+                            <li>
+                                <a href="#unblockUser" >unblockUser</a>
                             </li>
                         </ul>
                     </td>
@@ -142,7 +158,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -217,8 +233,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -275,6 +291,80 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="blockUser"></a>
+                    <span class="name">
+                        <span ><b>blockUser</b></span>
+                        <a href="#blockUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>blockUser(userId, communityId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>communityId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="confirmCommunityRole"></a>
                     <span class="name">
                         <span ><b>confirmCommunityRole</b></span>
@@ -291,8 +381,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:91</a></div>
                 </td>
             </tr>
 
@@ -356,8 +446,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -405,6 +495,98 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getCommunityBlockedUsers"></a>
+                    <span class="name">
+                        <span ><b>getCommunityBlockedUsers</b></span>
+                        <a href="#getCommunityBlockedUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCommunityBlockedUsers(query, communityId, count, page)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>query</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>communityId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>count</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>page</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;IUserRolesUsers&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getCommunityGroupLeaders"></a>
                     <span class="name">
                         <span ><b>getCommunityGroupLeaders</b></span>
@@ -421,8 +603,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -486,8 +668,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -578,8 +760,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:16</a></div>
                 </td>
             </tr>
 
@@ -652,8 +834,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -701,6 +883,80 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getRoles"></a>
+                    <span class="name">
+                        <span ><b>getRoles</b></span>
+                        <a href="#getRoles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRoles(userId, communityId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>communityId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;IUserRolesUsers&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="pCheckMembership"></a>
                     <span class="name">
                         <span ><b>pCheckMembership</b></span>
@@ -717,8 +973,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:121</a></div>
                 </td>
             </tr>
 
@@ -782,8 +1038,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:105</a></div>
                 </td>
             </tr>
 
@@ -847,8 +1103,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -921,8 +1177,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:113</a></div>
                 </td>
             </tr>
 
@@ -1004,8 +1260,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:128</a></div>
                 </td>
             </tr>
 
@@ -1053,6 +1309,87 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="removeUser"></a>
+                    <span class="name">
+                        <span ><b>removeUser</b></span>
+                        <a href="#removeUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeUser(userRolesUserIds: number[], communityId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userRolesUserIds</td>
+                                    <td>
+                                            <code>number[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>communityId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="removeUserRolesUser"></a>
                     <span class="name">
                         <span ><b>removeUserRolesUser</b></span>
@@ -1069,8 +1406,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -1134,8 +1471,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -1179,146 +1516,255 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unblockUser"></a>
+                    <span class="name">
+                        <span ><b>unblockUser</b></span>
+                        <a href="#unblockUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unblockUser(userId, communityId)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">projects/commudle-admin/src/app/services/user_roles_users.service.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>communityId</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
-import { API_ROUTES } from &#x27;projects/shared-services/api-routes.constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 import { IUserRolesUser } from &#x27;projects/shared-models/user_roles_user.model&#x27;;
 import { IUserRolesUsers } from &#x27;projects/shared-models/user_roles_users.model&#x27;;
 import { IUsers } from &#x27;projects/shared-models/users.model&#x27;;
-
+import { API_ROUTES } from &#x27;projects/shared-services/api-routes.constants&#x27;;
+import { ApiRoutesService } from &#x27;projects/shared-services/api-routes.service&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
 export class UserRolesUsersService {
-
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getCommunityUsersByRole(communityId, userRoleName): Observable&lt;IUserRolesUsers&gt; {
     let params &#x3D; new HttpParams().set(&#x27;community_id&#x27;, communityId).set(&#x27;user_role_name&#x27;, userRoleName);
     return this.http.get&lt;IUserRolesUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_ADMIN_COMMUNITY_USERS_BY_ROLE), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_ADMIN_COMMUNITY_USERS_BY_ROLE),
+      { params },
     );
   }
-
 
   getEventVolunteers(eventId): Observable&lt;IUserRolesUsers&gt; {
     let params &#x3D; new HttpParams().set(&#x27;event_id&#x27;, eventId);
     return this.http.get&lt;IUserRolesUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_EVENT_VOLUNTEERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_EVENT_VOLUNTEERS),
+      { params },
     );
   }
-
 
   getCommunityGroupLeaders(communityGroupId): Observable&lt;IUserRolesUsers&gt; {
     let params &#x3D; new HttpParams().set(&#x27;community_group_id&#x27;, communityGroupId);
     return this.http.get&lt;IUserRolesUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_ADMIN_COMMUNITY_GROUP_USERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.GET_ADMIN_COMMUNITY_GROUP_USERS),
+      { params },
     );
   }
 
   getCommunityMembers(query, communityId, count, page): Observable&lt;IUserRolesUsers&gt; {
-    let params &#x3D; new HttpParams().set(&#x27;community_id&#x27;, communityId).set(&#x27;query&#x27;, query).set(&#x27;count&#x27;, count).set(&#x27;page&#x27;, page);
+    let params &#x3D; new HttpParams()
+      .set(&#x27;community_id&#x27;, communityId)
+      .set(&#x27;query&#x27;, query)
+      .set(&#x27;count&#x27;, count)
+      .set(&#x27;page&#x27;, page);
     return this.http.get&lt;IUserRolesUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_MEMBERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_MEMBERS),
+      { params },
     );
   }
 
+  getCommunityBlockedUsers(query, communityId, count, page): Observable&lt;IUserRolesUsers&gt; {
+    let params &#x3D; new HttpParams()
+      .set(&#x27;community_id&#x27;, communityId)
+      .set(&#x27;query&#x27;, query)
+      .set(&#x27;count&#x27;, count)
+      .set(&#x27;page&#x27;, page);
+    return this.http.get&lt;IUserRolesUsers&gt;(
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.COMMUNITY_BLOCKED_USERS),
+      { params },
+    );
+  }
 
   createUserRolesUser(userRolesUserData): Observable&lt;IUserRolesUser&gt; {
-    return this.http.post&lt;IUserRolesUser&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
-        user_roles_user: userRolesUserData
-      }
-    );
+    return this.http.post&lt;IUserRolesUser&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
+      user_roles_user: userRolesUserData,
+    });
   }
 
   addEventVolunteer(email, eventId): Observable&lt;IUserRolesUser&gt; {
-    return this.http.post&lt;IUserRolesUser&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
-        email, event_id: eventId
-      }
-    );
+    return this.http.post&lt;IUserRolesUser&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.CREATE), {
+      email,
+      event_id: eventId,
+    });
   }
 
   removeUserRolesUser(userRolesUserId): Observable&lt;any&gt; {
     let params &#x3D; new HttpParams().set(&#x27;user_roles_user_id&#x27;, userRolesUserId);
 
-    return this.http.delete&lt;any&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.DELETE), { params }
-    );
-
+    return this.http.delete&lt;any&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.DELETE), { params });
   }
 
   resendInvitation(userRolesUserId): Observable&lt;any&gt; {
     let params &#x3D; new HttpParams().set(&#x27;user_roles_user_id&#x27;, userRolesUserId);
 
-    return this.http.get&lt;any&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.RESEND_INVITATION), { params }
-    );
+    return this.http.get&lt;any&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.RESEND_INVITATION), {
+      params,
+    });
   }
 
   confirmCommunityRole(token): Observable&lt;any&gt; {
-    return this.http.put&lt;any&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ACTIVATE_COMMUNITY_ROLE),
-      { token }
-    );
+    return this.http.put&lt;any&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ACTIVATE_COMMUNITY_ROLE), {
+      token,
+    });
   }
-
 
   pGetCommunityLeadersByRole(communityId, userRoleName): Observable&lt;IUsers&gt; {
     let params &#x3D; new HttpParams().set(&#x27;community_id&#x27;, communityId).set(&#x27;user_role_name&#x27;, userRoleName);
     return this.http.get&lt;IUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_LEADERS_BY_ROLE),
+      { params },
     );
   }
 
   pGetCommunityGroupLeaders(communityGroupId): Observable&lt;IUserRolesUsers&gt; {
     let params &#x3D; new HttpParams().set(&#x27;community_group_id&#x27;, communityGroupId);
     return this.http.get&lt;IUserRolesUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_ADMIN_COMMUNITY_GROUP_USERS),
+      { params },
     );
   }
-
 
   pGetCommunityMembers(communityId, page, count): Observable&lt;IUsers&gt; {
     let params &#x3D; new HttpParams().set(&#x27;community_id&#x27;, communityId).set(&#x27;page&#x27;, page).set(&#x27;count&#x27;, count);
     return this.http.get&lt;IUsers&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_MEMBERS), { params }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_GET_COMMUNITY_MEMBERS),
+      { params },
     );
   }
 
   pCheckMembership(communityId): Observable&lt;boolean&gt; {
     let params &#x3D; new HttpParams().set(&#x27;community_id&#x27;, communityId);
-    return this.http.get&lt;boolean&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_CHECK_MEMBERSHIP), { params }
-    );
+    return this.http.get&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_CHECK_MEMBERSHIP), {
+      params,
+    });
   }
 
   pToggleMembership(communityId): Observable&lt;boolean&gt; {
     return this.http.post&lt;boolean&gt;(
-      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_TOGGLE_MEMBERSHIP), {
-        community_id: communityId
-      }
+      this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.PUBLIC_TOGGLE_MEMBERSHIP),
+      {
+        community_id: communityId,
+      },
     );
+  }
+
+  removeUser(userRolesUserIds: number[], communityId: number): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.REMOVE_USER), {
+      user_roles_user_ids: userRolesUserIds,
+      community_id: communityId,
+    });
+  }
+
+  blockUser(userId, communityId): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.BLOCK_USER), {
+      user_id: userId,
+      community_id: communityId,
+    });
+  }
+
+  unblockUser(userId, communityId): Observable&lt;boolean&gt; {
+    return this.http.post&lt;boolean&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.UNBLOCK_USER), {
+      user_id: userId,
+      community_id: communityId,
+    });
+  }
+
+  getRoles(userId, communityId): Observable&lt;IUserRolesUsers&gt; {
+    let params &#x3D; new HttpParams().set(&#x27;user_id&#x27;, userId).set(&#x27;community_id&#x27;, communityId);
+    return this.http.get&lt;IUserRolesUsers&gt;(this.apiRoutesService.getRoute(API_ROUTES.USER_ROLES_USERS.ROLES), {
+      params,
+    });
   }
 }
 </code></pre>
     </div>
 
 </div>
+
 
 
 
@@ -1344,6 +1790,15 @@ export class UserRolesUsersService {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

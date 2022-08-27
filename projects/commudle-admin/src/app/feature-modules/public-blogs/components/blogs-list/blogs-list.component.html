@@ -13,12 +13,22 @@
         <nb-card-body>
           <div class="blog-cards">
             <div *ngFor="let blog of blogs">
-              <div class="blog-card" [routerLink]="['/blogs', blog.slug.current]">
-                <div class="com-w-full com-aspect-[16/9]">
+              <div class="blog-card">
+                <div class="blog-actions">
+                  <app-share-button
+                    [content]="environment.app_url + '/blogs/' + blog.slug.current"
+                    [title]="blog.title"
+                    [text]="blog.title"
+                    [url]="environment.app_url + '/blogs/' + blog.slug.current"
+                    [showText]="false"
+                    [round]="true"
+                  ></app-share-button>
+                </div>
+                <div class="com-w-full com-aspect-[16/9]" [routerLink]="['/blogs', blog.slug.current]">
                   <img [alt]="blog.title" [src]="imageUrl(blog.headerImage).url()" class="com-w-full" />
                 </div>
                 <div class="com-p-4">
-                  <div class="com-h-36">
+                  <div class="com-h-36" [routerLink]="['/blogs', blog.slug.current]">
                     <h2 class="name">
                       {{ blog.title }}
                     </h2>
@@ -36,10 +46,8 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
-              <div class="spinner"></div>
-            </div>
           </div>
+          <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
         </nb-card-body>
       </nb-card>
     </div>

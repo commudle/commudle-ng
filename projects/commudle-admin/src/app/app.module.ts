@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule, BrowserTransferStateModule, Title } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -148,9 +148,14 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     PushNotificationComponent,
   ],
   imports: [
+    BrowserModule,
     AppRoutingModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    BrowserTransferStateModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
@@ -245,11 +250,6 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
       useClass: ApiParserResponseInterceptor,
       multi: true,
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: BrowserStateInterceptor,
-    //   multi: true,
-    // },
   ],
   bootstrap: [AppComponent],
 })

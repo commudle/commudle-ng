@@ -23,6 +23,7 @@ p {
 
   .community-list-card-prefix {
     @apply com-items-center;
+
     .community-list-card-logo {
       border: 0.5px solid $silver-sand;
       @apply com-h-12 com-w-12;
@@ -45,6 +46,7 @@ p {
         font-size: $fs-h6;
         font-style: italic;
         line-height: 14px;
+        @apply com-mt-1;
       }
     }
   }
@@ -54,6 +56,8 @@ p {
     flex-wrap: wrap;
     gap: $space-8;
     margin-top: $space-16;
+    max-height: 76px;
+    overflow: hidden;
 
     .community-list-card-tag {
       background-color: $azureish-white;

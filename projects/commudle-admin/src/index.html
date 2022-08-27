@@ -1,69 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Google Tag Manager -->
-  <script>
-    const host = window.location.hostname;
-    if (!["localhost", "test.commudle.com"].includes(host)) {
-      window.dataLayer = window.dataLayer || [];
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-KD65MLP');
-    }
-  </script>
-  <!-- End Google Tag Manager -->
-  <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control">
-  <meta content="no-cache" http-equiv="Pragma">
-  <meta content="0" http-equiv="Expires">
-  <meta charset="utf-8">
-  <title>Commudle</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="og:image" content="https://commudle.com/assets/images/commudle-logo192.png">
-  <meta name="og:image:secure_url" content="https://commudle.com/assets/images/commudle-logo192.png">
-  <meta name="twitter:site" content="@commudlers">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KD65MLP"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-  <script type="text/javascript">
-    if (host !== "localhost") {
-      (function(){var pioneerAnalytics=window.pioneerAnalytics=window.pioneerAnalytics||[];if(pioneerAnalytics.initialize)return;if(pioneerAnalytics.invoked){if(window.console&&console.error){console.error("Pioneer snippet included twice.")}return}pioneerAnalytics.invoked=true;pioneerAnalytics.debugMode=false;pioneerAnalytics.methods=["page","identify","active","reset","debug","trackSubmit","trackClick","trackLink","trackForm","pageview","group","track","ready","alias","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","initialize"];pioneerAnalytics.requestQueue=[];pioneerAnalytics.factory=function(method){return function(){var args=Array.prototype.slice.call(arguments);args.unshift(method);pioneerAnalytics.push(args);return pioneerAnalytics}};for(var i=0;i<pioneerAnalytics.methods.length;i++){var key=pioneerAnalytics.methods[i];pioneerAnalytics[key]=pioneerAnalytics.factory(key)}pioneerAnalytics.load=function(key,options){var script=document.createElement("script");script.type="text/javascript";script.async=true;script.src="https://assets.pioneer.app/pioneer-analytics.min.js";var first=document.getElementsByTagName("script")[0];first.parentNode.insertBefore(script,first);pioneerAnalytics._loadOptions=options};pioneerAnalytics.SNIPPET_VERSION=1;
-        pioneerAnalytics._writeKey="4e3f3076a017c23780ddef932949ce7c";
-        pioneerAnalytics.load(pioneerAnalytics._writeKey);
-        pioneerAnalytics.page()
-      })();
-    }
-  </script>
-  <app-root></app-root>
-  <script defer src="https://www.youtube.com/iframe_api"></script>
-<!-- <script src="https://meet.jit.si/external_api.js"></script> -->
-<!-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-69174626-3"></script> -->
-<!-- <script>
-  const host = window.location.hostname;
-  if (host !== "localhost") {
-    window.dataLayer = window.dataLayer || [];
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      const host = window.location.hostname;
+      if (!['localhost', 'test.commudle.com'].includes(host)) {
+        window.dataLayer = window.dataLayer || [];
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KD65MLP');
+      }
+    </script>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    <!-- End Google Tag Manager -->
+    <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="Pragma" />
+    <meta content="0" http-equiv="Expires" />
+    <meta charset="utf-8" />
+    <title>Commudle</title>
+    <base href="/" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="https://commudle.com/assets/images/commudle-logo192.png" name="og:image" />
+    <meta content="https://commudle.com/assets/images/commudle-logo192.png" name="og:image:secure_url" />
+    <meta content="@commudlers" name="twitter:site" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="manifest.webmanifest" rel="manifest" />
+    <meta content="#1976d2" name="theme-color" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
 
-    gtag('js', new Date());
-
-    gtag('config', 'UA-69174626-3');
-  }
-
-</script> -->
-</body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        height="0"
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KD65MLP"
+        style="display: none; visibility: hidden"
+        width="0"
+      ></iframe>
+    </noscript>
+    <script defer src="https://www.youtube.com/iframe_api"></script>
+  </body>
 </html>

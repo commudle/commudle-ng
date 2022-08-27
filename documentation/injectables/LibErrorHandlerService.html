@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
 
 
 
@@ -120,7 +121,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -207,8 +208,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -286,7 +287,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -312,7 +313,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/lib-error-handler/src/lib/lib-error-handler.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -325,51 +326,47 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
-import { NbToastrService } from &#x27;@nebular/theme&#x27;;
-import { DOCUMENT } from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { Inject, Injectable } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { NbToastrService } from &#x27;@nebular/theme&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
 export class LibErrorHandlerService {
-
   errorCode: string;
   errorMessage: string;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private toastrService: NbToastrService,
-    private router: Router
-  ) { }
-
+    private router: Router,
+  ) {}
 
   handleError(errorCode, errorMessage) {
     this.errorCode &#x3D; errorCode;
     this.errorMessage &#x3D; errorMessage;
     switch (errorCode) {
       case 401:
-        this.document.location.href &#x3D; &#x60;https://auther.commudle.com/?back_to&#x3D;${encodeURIComponent(window.location.href)}&#x60;;
+        this.document.location.href &#x3D; &#x60;https://auther.commudle.com/?back_to&#x3D;${encodeURIComponent(
+          window.location.href,
+        )}&#x60;;
         break;
       case 403:
         // redirect to unauthorized page
-        this.router.navigate([&#x27;/error&#x27;]);
+        this.router.navigate([&#x60;/error/?ref&#x3D;${encodeURIComponent(window.location.href)}&#x60;]);
         break;
       case 404:
-        this.router.navigate([&#x27;/404&#x27;]);
+        this.router.navigate([&#x60;/404/?ref&#x3D;${encodeURIComponent(window.location.href)}&#x60;]);
         break;
       default:
         // show a toastr
-        this.toastrService.show(
-          errorCode,
-          errorMessage,
-          {
-            icon: &#x27;&#x27;,
-            status: &#x27;danger&#x27;,
-            duration: 0
-          }
-        );
+        this.toastrService.show(errorCode, errorMessage, {
+          icon: &#x27;&#x27;,
+          status: &#x27;danger&#x27;,
+          duration: 0,
+        });
         break;
     }
   }
@@ -378,6 +375,7 @@ export class LibErrorHandlerService {
     </div>
 
 </div>
+
 
 
 
@@ -403,6 +401,15 @@ export class LibErrorHandlerService {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

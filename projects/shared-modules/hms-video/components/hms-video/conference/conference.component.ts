@@ -3,6 +3,7 @@ import {
   HMSNotification,
   HMSNotificationTypes,
   HMSPeer,
+  HMSRoleChangeRequest,
   selectIsConnectedToRoom,
   selectIsLocalAudioEnabled,
   selectIsLocalScreenShared,
@@ -12,7 +13,6 @@ import {
   selectPeers,
   selectRoleChangeRequest,
 } from '@100mslive/hms-video-store';
-import { HMSRoleChangeRequest } from '@100mslive/hms-video-store/src/core/selectors/derivedSelectors';
 import {
   Component,
   ElementRef,
