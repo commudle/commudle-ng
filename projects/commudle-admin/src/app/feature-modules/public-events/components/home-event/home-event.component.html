@@ -67,7 +67,7 @@
           ></app-event-updates>
         </div>
         <div #descriptionSection>
-          <app-event-description [community]="community" [event]="event"></app-event-description>
+          <app-event-description [community]="community" [event]="event" [share]="true"></app-event-description>
         </div>
         <div #agendaSection>
           <app-agenda (hasAgenda)="hasAgenda = $event" [community]="community" [event]="event"></app-agenda>
@@ -135,11 +135,6 @@
             </p>
           </nb-card-body>
         </nb-card>
-        <app-share-button
-          [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-          [title]="event.name"
-          [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-        ></app-share-button>
         <nb-card *ngIf="moment() >= moment(event.end_time) && !event.custom_agenda">
           <nb-card-body>
             <p class="text-info">
