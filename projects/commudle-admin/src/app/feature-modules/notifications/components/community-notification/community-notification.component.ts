@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
+import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 
 @Component({
   selector: 'app-community-notification',
@@ -20,6 +22,9 @@ export class CommunityNotificationComponent implements OnInit {
 
   canLoadMore = true;
 
+  moment = moment;
+  ENotificationStatuses = ENotificationStatuses;
+
   notifications: INotification[] = [];
 
   subscriptions: Subscription[] = [];
@@ -29,6 +34,10 @@ export class CommunityNotificationComponent implements OnInit {
   ngOnInit(): void {
     console.log('id is' + this.id);
     this.getNotifications();
+  }
+
+  changeStatus(status: ENotificationStatuses, notification: INotification) {
+    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
   }
 
   getNotifications() {

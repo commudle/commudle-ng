@@ -18,9 +18,7 @@ export class NotificationService {
   }
 
   getCommunityNotifications(id, page, count): Observable<INotifications> {
-    const params = new HttpParams().set('id', id).set('page', page).set('count', count);
-    console.log('works api');
-
+    const params = new HttpParams().set('community_id', id).set('page', page).set('count', count);
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX_BY_COMMUNITY), {
       params,
     });
