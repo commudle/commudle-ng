@@ -7,7 +7,7 @@
     <app-share-button
       *ngIf="share"
       [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-      [title]="event.name"
+      [title]="'Meet me at ' + event.name"
       [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
     ></app-share-button>
   </nb-card-header>
