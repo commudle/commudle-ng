@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommunityNotificationComponent } from './community-notification.component';
+import { CommunityNotificationsComponent } from './community-notifications.component';
 
 describe('CommunityNotificationComponent', () => {
-  let component: CommunityNotificationComponent;
-  let fixture: ComponentFixture<CommunityNotificationComponent>;
+  let component: CommunityNotificationsComponent;
+  let fixture: ComponentFixture<CommunityNotificationsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CommunityNotificationComponent],
+      declarations: [CommunityNotificationsComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommunityNotificationComponent);
+    fixture = TestBed.createComponent(CommunityNotificationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

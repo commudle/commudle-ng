@@ -6,11 +6,11 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
+  selector: 'app-notifications',
+  templateUrl: './notifications.component.html',
+  styleUrls: ['./notifications.component.scss'],
 })
-export class NotificationComponent implements OnInit {
+export class NotificationsComponent implements OnInit {
   community: ICommunity;
 
   subscriptions: Subscription[] = [];

@@ -7,11 +7,11 @@ import * as moment from 'moment';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 
 @Component({
-  selector: 'app-community-notification',
-  templateUrl: './community-notification.component.html',
-  styleUrls: ['./community-notification.component.scss'],
+  selector: 'app-community-notifications',
+  templateUrl: './community-notifications.component.html',
+  styleUrls: ['./community-notifications.component.scss'],
 })
-export class CommunityNotificationComponent implements OnInit {
+export class CommunityNotificationsComponent implements OnInit {
   @Input() id = 0;
 
   isLoading = false;

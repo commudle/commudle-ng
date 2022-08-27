@@ -30,7 +30,7 @@ import { MembershipToggleComponent } from './components/membership-toggle/member
 import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker-card.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
 import { PublicCommunityRoutingModule } from './public-community-routing.module';
-import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 
 @NgModule({
@@ -44,7 +44,7 @@ import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-mod
     CommunityChannelsListComponent,
     SpeakersComponent,
     SpeakerCardComponent,
-    NotificationComponent,
+    NotificationsComponent,
   ],
   exports: [MembershipToggleComponent],
   imports: [

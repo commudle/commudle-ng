@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommunityAdminNotificationsComponent } from 'projects/commudle-admin/src/app/feature-modules/community-control-panel/components/community-admin-notifications/community-admin-notifications.component';
 import { CommunityMembersListComponent } from 'projects/commudle-admin/src/app/feature-modules/community-control-panel/components/community-members-list/community-members-list.component';
 import { CommunityDetailsResolver } from '../../resolvers/community-details.resolver';
 import { CommunityBlockedUsersComponent } from './components/community-blocked-users/community-blocked-users.component';
@@ -31,6 +32,10 @@ const routes = [
       {
         path: '',
         component: CommunityEventsListComponent,
+      },
+      {
+        path: 'notification',
+        component: CommunityAdminNotificationsComponent,
       },
       {
         path: 'forms',
