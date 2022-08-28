@@ -8,6 +8,7 @@
       <ul class="events-list">
         <li *ngFor="let event of events">
           <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+            <nb-icon icon="calendar-outline"></nb-icon>
             {{ event.name }}
           </a>
         </li>

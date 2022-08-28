@@ -14,6 +14,16 @@
 
     li {
       @apply com-list-none;
+
+      a {
+        text-decoration: none;
+        @apply com-flex com-items-center com-gap-1;
+      }
+
+      a,
+      nb-icon {
+        @apply com-text-sm;
+      }
     }
   }
 

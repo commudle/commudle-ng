@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
+import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
 import { Subject, Subscription } from 'rxjs';
@@ -24,7 +25,11 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private eventsService: EventsService,
+    private footerService: FooterService,
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -40,10 +45,14 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
         this.search();
       }),
     );
+
+    this.footerService.changeFooterStatus(false);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+
+    this.footerService.changeFooterStatus(true);
   }
 
   getMembers(): void {
