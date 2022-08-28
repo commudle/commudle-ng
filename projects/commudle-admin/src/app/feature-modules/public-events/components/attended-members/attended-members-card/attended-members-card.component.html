@@ -3,7 +3,7 @@
 
   <div class="md:com-justify-self-center">
     <ng-container *ngIf="events.length !== 0">
-      <p class="heading">Together you both attended:</p>
+      <p class="heading">You should connect with {{ user.name }}, you have attended events together!</p>
 
       <ul class="events-list">
         <li *ngFor="let event of events">
