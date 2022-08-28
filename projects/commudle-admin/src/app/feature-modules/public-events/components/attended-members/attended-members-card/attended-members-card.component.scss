@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.attended-members-card {
+  @apply com-grid com-gap-4 com-grid-cols-1 md:com-grid-cols-3;
+
+  .heading {
+    @apply com-text-base com-font-medium com-mt-0 com-mb-2;
+  }
+
+  .events-list {
+    @apply com-p-0 com-m-0;
+
+    li {
+      @apply com-list-none;
+    }
+  }
+
+  .actions {
+    @apply com-flex com-items-center com-gap-2 md:com-justify-self-end;
+  }
+}

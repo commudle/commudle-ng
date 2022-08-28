@@ -1,0 +1,25 @@
+<div class="attended-members-card">
+  <app-user-profile-card-large [truncateDesignation]="false" [user]="user"></app-user-profile-card-large>
+
+  <div class="md:com-justify-self-center">
+    <ng-container *ngIf="events.length !== 0">
+      <p class="heading">Together you both attended:</p>
+
+      <ul class="events-list">
+        <li *ngFor="let event of events">
+          <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+            {{ event.name }}
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <div class="actions">
+    <app-user-follow [username]="user.username" appearance="outline"></app-user-follow>
+    <button (click)="openChatWithUser()" ghost nbButton shape="semi-round" size="small" status="info">
+      <nb-icon icon="paper-plane"></nb-icon>
+      Message
+    </button>
+  </div>
+</div>
