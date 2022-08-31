@@ -1,9 +1,13 @@
 <div class="attended-members-card">
   <app-user-profile-card-large [truncateDesignation]="false" [user]="user"></app-user-profile-card-large>
 
-  <div class="md:com-justify-self-center">
+  <div class="md:com-order-2 md:com-col-span-2">
     <ng-container *ngIf="events.length !== 0">
-      <p class="heading">You should connect with {{ user.name }}, you have attended events together!</p>
+      <p class="heading">
+        Connect with {{ user.name }}, you have attended
+        <span *ngIf="events.length > 1">{{ events.length }}</span>
+        events together!
+      </p>
 
       <ul class="events-list">
         <li *ngFor="let event of events">
