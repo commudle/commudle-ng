@@ -52,7 +52,7 @@
     "lodash": "4.17.21",
     "lottie-web": "5.9.6",
     "moment": "2.29.4",
-    "moment-timezone": "0.5.34",
+    "moment-timezone": "0.5.35",
     "ng2-completer": "9.0.1",
     "ng2-smart-table": "1.7.2",
     "ngx-cookie-service": "13.2.1",
