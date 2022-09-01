@@ -17,11 +17,11 @@ p {
         @apply md:com-col-span-3;
 
         .job-title {
-          @apply com-text-xl com-font-semibold com-w-52 md:com-w-max;
+          @apply com-text-xl com-font-semibold com-w-48 md:com-w-max;
         }
 
         .button {
-          @apply com-absolute md:com-flex md:com-static -com-right-6 com-top-0;
+          @apply md:com-flex;
         }
 
         .company {
