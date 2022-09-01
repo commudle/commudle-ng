@@ -97,10 +97,12 @@
                   <nb-icon icon="hash" status="success"></nb-icon>
                   <span class="title">Channels</span>
                 </a>
-                <a [routerLink]="['notification']" class="d-flex" routerLinkActive="active">
-                  <nb-icon icon="bell-outline" status="success"></nb-icon>
-                  <span class="title">Notification</span>
-                </a>
+                <div *ngIf="isOrganizer">
+                  <a [routerLink]="['notification']" class="d-flex" routerLinkActive="active">
+                    <nb-icon icon="bell-outline" status="success"></nb-icon>
+                    <span class="title">Notification</span>
+                  </a>
+                </div>
               </div>
             </nb-card-body>
           </nb-card>

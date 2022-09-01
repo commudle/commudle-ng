@@ -5,12 +5,16 @@ import { ICommunity } from 'projects/shared-models/community.model';
 import { IUsers } from 'projects/shared-models/users.model';
 import { API_ROUTES } from 'projects/shared-services/api-routes.constants';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommunitiesService {
+  private userManagedCommunities = new BehaviorSubject<ICommunity[]>([]);
+  public userManagedCommunities$: Observable<ICommunity[]> = this.userManagedCommunities.asObservable();
+  userManagedCommunitiesList: any[];
+
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   create(communityData: any, communityGroupId = null): Observable<ICommunity> {
@@ -27,14 +31,15 @@ export class CommunitiesService {
 
   getRoleCommunities(role: string): Observable<ICommunities> {
     const params = new HttpParams().set('role', role);
-    return this.http.get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.USER_ROLE_COMMUNITIES), {
-      params,
-    });
-    // .pipe(
-    //   tap((data: ICommunities) => {
-    //     this.organizerCommunities.next(data.communities);
-    //   })
-    // );
+    return this.http
+      .get<ICommunities>(this.apiRoutesService.getRoute(API_ROUTES.COMMUNITIES.USER_ROLE_COMMUNITIES), {
+        params,
+      })
+      .pipe(
+        tap((data: ICommunities) => {
+          this.userManagedCommunities.next([...this.userManagedCommunities.getValue(), ...data.communities]);
+        }),
+      );
   }
 
   // get the details of a community

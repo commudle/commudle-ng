@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { SeoService } from 'projects/shared-services/seo.service';
 
@@ -10,8 +11,14 @@ import { SeoService } from 'projects/shared-services/seo.service';
 })
 export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
+  managedCommunities: ICommunity[] = [];
+  isOrganizer = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private seoService: SeoService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private seoService: SeoService,
+    private communitiesService: CommunitiesService,
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe((data) => {
@@ -22,7 +29,13 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
         this.seoService.noIndex(true);
       }
     });
-    console.log(this.community.id);
+    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+      this.managedCommunities = data;
+    });
+    let organizerMatch = this.managedCommunities.find((cSlug) => cSlug.slug === this.community.slug);
+    if (organizerMatch !== undefined) {
+      this.isOrganizer = true;
+    }
   }
 
   ngOnDestroy(): void {
