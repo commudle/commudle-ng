@@ -2,7 +2,4 @@
   p {
     @apply com-p-0 com-m-0;
   }
-  p:nth-child(odd) {
-    @apply com-bg-gray-100;
-  }
 }
