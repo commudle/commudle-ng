@@ -218,6 +218,7 @@ export const API_ROUTES = {
   // registration_statuses
   GET_REGISTRATION_STATUSES: 'api/v2/registration_statuses',
 
+  //community_engagement-data
   GET_USER_COMMUNITY_ENGAGEMENT_DATA: 'api/v2/stats/user_communities/user_community_engagement',
 
   // data_form_entity_response_groups
