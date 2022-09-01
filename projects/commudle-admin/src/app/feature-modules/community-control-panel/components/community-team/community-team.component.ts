@@ -33,8 +33,6 @@ export class CommunityTeamComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
-      console.log(this.communityId);
-
       this.getRoles();
     });
   }

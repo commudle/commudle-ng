@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommunitiesService } from 'projects/commudle-admin/src/app/services/communities.service';
 import { ICommunity } from 'projects/shared-models/community.model';
-import _ from 'lodash';
 
 @Component({
   selector: 'app-community-admin-notifications',
@@ -18,7 +17,6 @@ export class CommunityAdminNotificationsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(() => {
       this.communityId = this.activatedRoute.parent.snapshot.params['community_id'];
-      console.log(this.communityId);
     });
     this.communitiesService.getCommunityDetails(this.communityId).subscribe((data) => {
       this.community = data;

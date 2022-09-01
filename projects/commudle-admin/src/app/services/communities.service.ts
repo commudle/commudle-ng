@@ -13,7 +13,6 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 export class CommunitiesService {
   private userManagedCommunities = new BehaviorSubject<ICommunity[]>([]);
   public userManagedCommunities$: Observable<ICommunity[]> = this.userManagedCommunities.asObservable();
-  userManagedCommunitiesList: any[];
 
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
