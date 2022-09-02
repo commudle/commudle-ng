@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 import { INotification } from 'projects/shared-models/notification.model';
@@ -29,7 +29,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationService: NotificationService, private notificationChannel: NotificationChannel) {}
+  constructor(private notificationsService: NotificationsService, private notificationChannel: NotificationChannel) {}
 
   ngOnInit(): void {
     this.getNotifications();
@@ -47,7 +47,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
+    this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
 
     if (status === ENotificationStatuses.INTERACTED) {
       this.closePopover.emit();
@@ -58,7 +58,7 @@ export class NotificationsListComponent implements OnInit, OnDestroy, OnChanges 
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationService.getAllNotifications(this.page, this.count).subscribe((value) => {
+        this.notificationsService.getAllNotifications(this.page, this.count).subscribe((value) => {
           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
           this.page += 1;
           this.total = value.total;

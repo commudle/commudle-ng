@@ -24,7 +24,9 @@
           <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
         </div>
         <p class="username com-line-clamp-1">@{{ user.username | truncatetext: maxUserNameLength }}</p>
-        <p class="designation com-line-clamp-1">{{ user.designation || '--' }}</p>
+        <p [ngClass]="{ 'com-line-clamp-1': truncateDesignation }" class="designation">
+          {{ user.designation || '--' }}
+        </p>
         <div *ngIf="showSocialLinks" class="social com-mt-2 com-flex com-gap-3">
           <a *ngIf="user.linkedin" [href]="user.linkedin | completeurl: 'linkedin'" target="_blank">
             <nb-icon icon="linkedin" status="primary"></nb-icon>

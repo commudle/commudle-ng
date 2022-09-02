@@ -40,6 +40,16 @@
               Scan Entry Pass
             </button>
 
+            <button
+              [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
+              nbButton
+              outline
+              size="small"
+              status="primary"
+            >
+              View attended members
+            </button>
+
             <button (click)="sendCSV()" nbButton outline size="small" status="info">
               <nb-icon icon="email-outline"></nb-icon>
               CSV
