@@ -17,7 +17,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
   templateUrl: './home-event.component.html',
   styleUrls: ['./home-event.component.scss'],
 })
-export class HomeEventComponent implements OnInit {
+export class HomeEventComponent implements OnInit, ngOnDestroy {
   moment = moment;
   momentTimezone = momentTimezone;
   EEventStatuses = EEventStatuses;
@@ -38,6 +38,9 @@ export class HomeEventComponent implements OnInit {
   environment = environment;
 
   managedCommunities: ICommunity[] = [];
+
+  subscriptions = [];
+
   isOrganizer = false;
 
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
@@ -62,6 +65,10 @@ export class HomeEventComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.getEvent(params.event_id);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   scroll(element: ElementRef<HTMLDivElement>) {
@@ -90,11 +97,13 @@ export class HomeEventComponent implements OnInit {
   }
 
   isOrganizerCheck(community) {
-    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      if (data.find((cSlug) => cSlug.slug === community) !== undefined) {
-        this.isOrganizer = true;
-      }
-    });
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === community) !== undefined) {
+          this.isOrganizer = true;
+        }
+      }),
+    );
   }
 
   getDiscussionChat() {
