@@ -101,6 +101,16 @@
         </div>
       </div>
       <div class="right-column">
+        <div class="com-mt-5 com-ml-3" *ngIf="isOrganizer">
+          <a
+            nbButton
+            status="danger"
+            [routerLink]="['/admin', 'communities', community.slug, 'event-dashboard', event.slug]"
+          >
+            Event Admin Panel
+            <nb-icon icon="edit-outline"></nb-icon>
+          </a>
+        </div>
         <app-highlighted-links
           (hasOpenForms)="hasOpenForms = $event"
           *ngIf="event.editable || event.event_status.name === EEventStatuses.OPEN"
