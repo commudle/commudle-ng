@@ -91,12 +91,10 @@ export class HomeEventComponent implements OnInit {
 
   isOrganizerCheck(community) {
     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      this.managedCommunities = data;
+      if (data.find((cSlug) => cSlug.slug === community) !== undefined) {
+        this.isOrganizer = true;
+      }
     });
-    let organizerMatch = this.managedCommunities.find((cSlug) => cSlug.slug === community);
-    if (organizerMatch !== undefined) {
-      this.isOrganizer = true;
-    }
   }
 
   getDiscussionChat() {
