@@ -45,6 +45,7 @@ import { FormResponsesComponent } from './form-responses/form-responses.componen
 import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
 import { UserDetailsCellComponent } from './form-responses/responses-table/user-details-cell/user-details-cell.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
+import { PaginationComponent } from './pagination/pagination.component';
 import { PollResultComponent } from './poll-result/poll-result.component';
 import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-form.component';
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
@@ -101,6 +102,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     QnaListComponent,
     QnaListItemComponent,
     ShareButtonComponent,
+    PaginationComponent,
     LoadingSpinnerComponent,
   ],
   imports: [
@@ -161,6 +163,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     MessagesComponent,
     QnaComponent,
     ShareButtonComponent,
+    PaginationComponent,
     LoadingSpinnerComponent,
   ],
 })

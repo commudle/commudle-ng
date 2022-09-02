@@ -1,18 +1,39 @@
 <div class="base-layout">
   <div class="container">
     <div class="one-column-layout">
-      <nb-card [nbSpinner]="members.length === 0" class="attended-members">
+      <nb-card class="attended-members">
         <nb-card-body>
-          <p class="header-text">People who attended the event with you!</p>
-          <div class="users com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3">
-            <ng-container *ngFor="let member of members">
-              <app-user-profile-card-large [user]="member"></app-user-profile-card-large>
-            </ng-container>
-          </div>
+          <ng-container *ngIf="!isLoading; else loading">
+            <p class="header-text">
+              <nb-icon icon="people"></nb-icon>
+              People at {{ event.name }}
+            </p>
 
-          <div *ngIf="canLoadMore" class="load-more">
-            <button (click)="getMembers()" nbButton outline size="small" status="info">Load More...</button>
-          </div>
+            <input
+              (ngModelChange)="queryChanged.next($event)"
+              [ngModel]="query"
+              fullWidth
+              nbInput
+              placeholder="Search for people by name..."
+              shape="semi-round"
+              type="text"
+            />
+
+            <app-attended-members-card *ngFor="let member of members" [user]="member"></app-attended-members-card>
+
+            <app-pagination
+              (goTo)="page = $event; getMembers()"
+              (next)="page = $event; getMembers()"
+              (previous)="page = $event; getMembers()"
+              *ngIf="total > 0"
+              [current]="page"
+              [total]="count"
+            ></app-pagination>
+          </ng-container>
+
+          <ng-template #loading>
+            <app-loading-spinner></app-loading-spinner>
+          </ng-template>
         </nb-card-body>
       </nb-card>
     </div>

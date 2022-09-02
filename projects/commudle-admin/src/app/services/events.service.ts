@@ -134,11 +134,17 @@ export class EventsService {
     return this.http.get<IHmsRecording[]>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.RECORDINGS), { params });
   }
 
-  getAttendedMembers(eventId: number, page: number, count: number): Observable<IUsers> {
+  getAttendedMembers(query: string, eventId: number, page: number, count: number): Observable<IUsers> {
     const params = new HttpParams()
+      .set('q', query)
       .set('event_id', String(eventId))
       .set('page', String(page))
       .set('count', String(count));
     return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.ATTENDED_MEMBERS), { params });
+  }
+
+  getCommonEvents(userId: number): Observable<IEvent[]> {
+    const params = new HttpParams().set('user_id', String(userId));
+    return this.http.get<IEvent[]>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.COMMON_EVENTS), { params });
   }
 }
