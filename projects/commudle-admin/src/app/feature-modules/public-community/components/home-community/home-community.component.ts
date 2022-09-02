@@ -11,7 +11,6 @@ import { SeoService } from 'projects/shared-services/seo.service';
 })
 export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
-  // managedCommunities: ICommunity[] = [];
   isOrganizer = false;
 
   constructor(
