@@ -9,12 +9,19 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NotificationService {
+export class NotificationsService {
   constructor(private apiRoutesService: ApiRoutesService, private http: HttpClient) {}
 
   getAllNotifications(page, count): Observable<INotifications> {
     const params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX), { params });
+  }
+
+  getCommunityNotifications(id, page, count): Observable<INotifications> {
+    const params = new HttpParams().set('community_id', id).set('page', page).set('count', count);
+    return this.http.get<INotifications>(this.apiRoutesService.getRoute(API_ROUTES.NOTIFICATIONS.INDEX_BY_COMMUNITY), {
+      params,
+    });
   }
 
   getUnreadNotificationsCount(): Observable<number> {

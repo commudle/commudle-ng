@@ -1,0 +1,26 @@
+<table *ngIf="engagementData" class="data">
+  <tr>
+    <td>Channel Messages:</td>
+    <td>{{ engagementData.community_channel_messages_count }}</td>
+  </tr>
+  <tr>
+    <td>Event Registrations:</td>
+    <td>{{ engagementData.event_registrations_count }}</td>
+  </tr>
+  <tr>
+    <td>Entry Passes Sent:</td>
+    <td>{{ engagementData.entry_passes_count }}</td>
+  </tr>
+  <tr>
+    <td>Entry Attended:</td>
+    <td>{{ engagementData.entry_passes_attended_count }}</td>
+  </tr>
+  <tr>
+    <td>Uninvited Attended:</td>
+    <td>{{ engagementData.event_registrations_count }}</td>
+  </tr>
+  <tr>
+    <td>Overall Event Attendance Rate:</td>
+    <td maxlength="4">{{ engagementData.overall_event_attendance_rate }}</td>
+  </tr>
+</table>

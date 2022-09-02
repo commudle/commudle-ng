@@ -37,10 +37,13 @@ export class CommunityBuildDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.cBuild.video_iframe);
+
     this.getDiscussionChat();
     this.teammates = this.cBuild.user_roles_users;
-    if (this.cBuild.link.startsWith('<iframe') && this.cBuild.link.endsWith('</iframe>')) {
-      this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.link);
+    if (this.cBuild.video_iframe.startsWith('<iframe') && this.cBuild.video_iframe.endsWith('</iframe>')) {
+      this.embedCode = this.sanitizer.bypassSecurityTrustHtml(this.cBuild.video_iframe);
+      console.log(this.embedCode);
     } else {
       this.embedCode = null;
     }

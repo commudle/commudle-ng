@@ -70,6 +70,7 @@ Thumbs.db
 /.firebase
 .firebasesrc
 /projects/commudle-admin/.serverless
+firebase-debug.log
 
 report*
 functions/
