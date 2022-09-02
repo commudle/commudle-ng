@@ -8,9 +8,8 @@ describe('NgxNebularWrapperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgxNebularWrapperComponent ]
-    })
-    .compileComponents();
+      declarations: [NgxNebularWrapperComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,16 +1,9 @@
 import { NgModule } from '@angular/core';
 import { NgxNebularWrapperComponent } from './ngx-nebular-wrapper.component';
 
-
-
 @NgModule({
-  declarations: [
-    NgxNebularWrapperComponent
-  ],
-  imports: [
-  ],
-  exports: [
-    NgxNebularWrapperComponent
-  ]
+  declarations: [NgxNebularWrapperComponent],
+  imports: [],
+  exports: [NgxNebularWrapperComponent],
 })
-export class NgxNebularWrapperModule { }
+export class NgxNebularWrapperModule {}
