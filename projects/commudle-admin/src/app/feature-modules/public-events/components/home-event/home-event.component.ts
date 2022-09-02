@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
@@ -17,7 +17,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
   templateUrl: './home-event.component.html',
   styleUrls: ['./home-event.component.scss'],
 })
-export class HomeEventComponent implements OnInit, ngOnDestroy {
+export class HomeEventComponent implements OnInit, OnDestroy {
   moment = moment;
   momentTimezone = momentTimezone;
   EEventStatuses = EEventStatuses;
