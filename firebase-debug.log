@@ -1,0 +1,172 @@
+[debug] [2022-08-26T14:29:43.062Z] ----------------------------------------------------------------------
+[debug] [2022-08-26T14:29:43.063Z] Command:      /Users/Arpan/.nvm/versions/node/v14.15.5/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-08-26T14:29:43.063Z] CLI Version:  3.9.1
+[debug] [2022-08-26T14:29:43.063Z] Platform:     darwin
+[debug] [2022-08-26T14:29:43.063Z] Node Version: v14.15.5
+[debug] [2022-08-26T14:29:43.064Z] Time:         Fri Aug 26 2022 19:59:43 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:29:43.064Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-26T14:29:43.073Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-26T14:29:43.074Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:29:43.075Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:29:43.075Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 19:59:43 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:29:43.341Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:29:43.356Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 19:59:43 GMT+0530 (India Standard Time)
+[info] 
+[warn] ⚠  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] ⚠  Please run firebase login --reauth
+[info] 
+[debug] [2022-08-26T14:29:43.640Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2022-08-26T14:29:43.640Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:29:43.641Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:29:43.641Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 19:59:43 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:29:43.852Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:29:43.868Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 19:59:43 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:29:44.356Z] Error: connect ECONNREFUSED 104.197.85.31:443
+[error] 
+[error] Error: Server Error. connect ECONNREFUSED 104.197.85.31:443
+[debug] [2022-08-26T14:30:03.815Z] ----------------------------------------------------------------------
+[debug] [2022-08-26T14:30:03.816Z] Command:      /Users/Arpan/.nvm/versions/node/v14.15.5/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-08-26T14:30:03.816Z] CLI Version:  3.9.1
+[debug] [2022-08-26T14:30:03.816Z] Platform:     darwin
+[debug] [2022-08-26T14:30:03.816Z] Node Version: v14.15.5
+[debug] [2022-08-26T14:30:03.817Z] Time:         Fri Aug 26 2022 20:00:03 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:03.817Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-26T14:30:03.825Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-26T14:30:03.827Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:30:03.828Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:30:03.828Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 20:00:03 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:04.071Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:30:04.084Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 20:00:04 GMT+0530 (India Standard Time)
+[info] 
+[warn] ⚠  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] ⚠  Please run firebase login --reauth
+[info] 
+[debug] [2022-08-26T14:30:04.401Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2022-08-26T14:30:04.402Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:30:04.402Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:30:04.402Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 20:00:04 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:04.663Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:30:04.675Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 20:00:04 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:05.154Z] Error: connect ECONNREFUSED 104.197.85.31:443
+[error] 
+[error] Error: Server Error. connect ECONNREFUSED 104.197.85.31:443
+[debug] [2022-08-26T14:30:06.542Z] ----------------------------------------------------------------------
+[debug] [2022-08-26T14:30:06.543Z] Command:      /Users/Arpan/.nvm/versions/node/v14.15.5/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-08-26T14:30:06.543Z] CLI Version:  3.9.1
+[debug] [2022-08-26T14:30:06.543Z] Platform:     darwin
+[debug] [2022-08-26T14:30:06.543Z] Node Version: v14.15.5
+[debug] [2022-08-26T14:30:06.544Z] Time:         Fri Aug 26 2022 20:00:06 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:06.544Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-26T14:30:06.553Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-26T14:30:06.553Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:30:06.554Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:30:06.554Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 20:00:06 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:06.830Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:30:06.845Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 20:00:06 GMT+0530 (India Standard Time)
+[info] 
+[warn] ⚠  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] ⚠  Please run firebase login --reauth
+[info] 
+[debug] [2022-08-26T14:30:07.166Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2022-08-26T14:30:07.166Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:30:07.166Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:30:07.166Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 20:00:07 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:07.396Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:30:07.409Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 20:00:07 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:07.903Z] Error: connect ECONNREFUSED 104.197.85.31:443
+[error] 
+[error] Error: Server Error. connect ECONNREFUSED 104.197.85.31:443
+[debug] [2022-08-26T14:30:09.212Z] ----------------------------------------------------------------------
+[debug] [2022-08-26T14:30:09.213Z] Command:      /Users/Arpan/.nvm/versions/node/v14.15.5/bin/node /usr/local/bin/firebase deploy
+[debug] [2022-08-26T14:30:09.214Z] CLI Version:  3.9.1
+[debug] [2022-08-26T14:30:09.214Z] Platform:     darwin
+[debug] [2022-08-26T14:30:09.214Z] Node Version: v14.15.5
+[debug] [2022-08-26T14:30:09.215Z] Time:         Fri Aug 26 2022 20:00:09 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:09.215Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-26T14:30:09.224Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-26T14:30:09.224Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:30:09.226Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:30:09.226Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 20:00:09 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:09.469Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:30:09.484Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 20:00:09 GMT+0530 (India Standard Time)
+[info] 
+[warn] ⚠  Your CLI authentication needs to be updated to take advantage of new features.
+[warn] ⚠  Please run firebase login --reauth
+[info] 
+[debug] [2022-08-26T14:30:09.778Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2022-08-26T14:30:09.778Z] > authorizing via signed-in user
+[debug] [2022-08-26T14:30:09.778Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-08-26T14:30:09.778Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token {
+  refresh_token: '1//0gB_-ENz-9Y1JCgYIARAAGBASNwF-L9IrlfcZCbBKGS-xod7quwxl_hgtV86T6PHXA2rw0aQOVPdXvSZi1oSr3WFx8ULbLA2kFDE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid'
+} 
+ Fri Aug 26 2022 20:00:09 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:10.025Z] <<< HTTP RESPONSE 200
+[debug] [2022-08-26T14:30:10.039Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/commudle-eacee  
+ Fri Aug 26 2022 20:00:10 GMT+0530 (India Standard Time)
+[debug] [2022-08-26T14:30:10.540Z] Error: connect ECONNREFUSED 104.197.85.31:443
+[error] 
+[error] Error: Server Error. connect ECONNREFUSED 104.197.85.31:443
