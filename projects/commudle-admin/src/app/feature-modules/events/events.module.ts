@@ -60,6 +60,7 @@ import { UserDetailsComponent } from './components/user-event-registrations/user
 import { UserEventRegistrationsComponent } from './components/user-event-registrations/user-event-registrations.component';
 import { VolunteersComponent } from './components/volunteers/volunteers.component';
 import { EventsRoutingModule } from './events-routing.module';
+import { UserEngagementDataComponent } from './components/event-form-responses/user-engagement-data/user-engagement-data.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { EventsRoutingModule } from './events-routing.module';
     EventRecordingsComponent,
     EventDetailsComponent,
     EntryPassScanComponent,
+    UserEngagementDataComponent,
   ],
   imports: [
     CommonModule,

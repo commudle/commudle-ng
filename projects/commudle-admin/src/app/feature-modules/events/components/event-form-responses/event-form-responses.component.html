@@ -96,7 +96,20 @@
                 </ng-template>
               </ngx-datatable-row-detail>
               <!-- responsive row format -->
+              <ngx-datatable-column [width]="300">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                  <div class="">
+                    <p>Engagement Data with {{ community.name }}</p>
+                  </div>
+                </ng-template>
 
+                <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+                  <app-user-engagement-data
+                    [userResponse]="row"
+                    [communityId]="community.id"
+                  ></app-user-engagement-data>
+                </ng-template>
+              </ngx-datatable-column>
               <!-- complete table format -->
               <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
                 <ng-template let-column="column" ngx-datatable-header-template>
