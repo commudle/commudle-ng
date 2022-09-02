@@ -5,7 +5,15 @@
         <div class="page-header d-flex flex-column">
           <img alt="{{ community.name }}" class="logo" src="{{ community.logo_path }}" title="{{ community.name }}" />
           <div class="details">
-            <h1>{{ community.name }}</h1>
+            <div class="com-flex com-justify-between com-items-center">
+              <h1>{{ community.name }}</h1>
+              <div class="com-text-3xl" *ngIf="isOrganizer">
+                <a nbButton status="danger" [routerLink]="['/admin', 'communities', community.slug]">
+                  Go to Admin Panel
+                  <nb-icon icon="edit-outline"></nb-icon>
+                </a>
+              </div>
+            </div>
             <div class="membership d-flex flex-column">
               <p class="member-count">
                 <a [routerLink]="['members']">
