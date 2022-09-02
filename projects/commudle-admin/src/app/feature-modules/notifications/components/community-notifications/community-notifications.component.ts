@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import _ from 'lodash';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { INotification } from 'projects/shared-models/notification.model';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
@@ -29,21 +29,21 @@ export class CommunityNotificationsComponent implements OnInit {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private notificationService: NotificationService) {}
+  constructor(private notificationsService: NotificationsService) {}
 
   ngOnInit(): void {
     this.getNotifications();
   }
 
   changeStatus(status: ENotificationStatuses, notification: INotification) {
-    this.subscriptions.push(this.notificationService.updateNotificationStatus(status, notification.id).subscribe());
+    this.subscriptions.push(this.notificationsService.updateNotificationStatus(status, notification.id).subscribe());
   }
 
   getNotifications() {
     if (!this.isLoading && (!this.total || this.notifications.length < this.total)) {
       this.isLoading = true;
       this.subscriptions.push(
-        this.notificationService.getCommunityNotifications(this.id, this.page, this.count).subscribe((value) => {
+        this.notificationsService.getCommunityNotifications(this.id, this.page, this.count).subscribe((value) => {
           this.notifications = _.uniqBy(this.notifications.concat(value.notifications), 'id');
           this.page += 1;
           this.total = value.total;

@@ -11,7 +11,7 @@ import { SeoService } from 'projects/shared-services/seo.service';
 })
 export class HomeCommunityComponent implements OnInit, OnDestroy {
   community: ICommunity;
-  managedCommunities: ICommunity[] = [];
+  // managedCommunities: ICommunity[] = [];
   isOrganizer = false;
 
   constructor(
@@ -30,12 +30,10 @@ export class HomeCommunityComponent implements OnInit, OnDestroy {
       }
     });
     this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
-      this.managedCommunities = data;
+      if (data.find((cSlug) => cSlug.slug === this.community.slug) !== undefined) {
+        this.isOrganizer = true;
+      }
     });
-    let organizerMatch = this.managedCommunities.find((cSlug) => cSlug.slug === this.community.slug);
-    if (organizerMatch !== undefined) {
-      this.isOrganizer = true;
-    }
   }
 
   ngOnDestroy(): void {

@@ -42,7 +42,7 @@ const routes = [
         component: SpeakersComponent,
       },
       {
-        path: 'notification',
+        path: 'notifications',
         component: NotificationsComponent,
       },
     ],

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NotificationService {
+export class NotificationsService {
   constructor(private apiRoutesService: ApiRoutesService, private http: HttpClient) {}
 
   getAllNotifications(page, count): Observable<INotifications> {
