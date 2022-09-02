@@ -37,6 +37,9 @@ export class HomeEventComponent implements OnInit {
 
   environment = environment;
 
+  managedCommunities: ICommunity[] = [];
+  isOrganizer = false;
+
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('agendaSection', { static: false }) agendaSectionRef: ElementRef<HTMLDivElement>;
@@ -76,12 +79,24 @@ export class HomeEventComponent implements OnInit {
   getCommunity(communityId) {
     this.communitiesService.getCommunityDetails(communityId).subscribe((community) => {
       this.community = community;
+      this.isOrganizerCheck(this.community.slug);
+
       this.seoService.setTags(
         `${this.event.name} | ${this.community.name}`,
         this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
         this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
       );
     });
+  }
+
+  isOrganizerCheck(community) {
+    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+      this.managedCommunities = data;
+    });
+    let organizerMatch = this.managedCommunities.find((cSlug) => cSlug.slug === community);
+    if (organizerMatch !== undefined) {
+      this.isOrganizer = true;
+    }
   }
 
   getDiscussionChat() {
