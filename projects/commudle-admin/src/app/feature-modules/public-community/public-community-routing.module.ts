@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NotificationsComponent } from 'projects/commudle-admin/src/app/feature-modules/public-community/components/notifications/notifications.component';
+import { PublicCommunityNotificationsComponent } from 'projects/commudle-admin/src/app/feature-modules/public-community/components/public-community-notifications/publiccommunity-notifications.component';
 import { CommunityDetailsResolver } from 'projects/commudle-admin/src/app/resolvers/community-details.resolver';
 import { AboutComponent } from './components/about/about.component';
 import { CommunityChannelsListComponent } from './components/community-channels-list/community-channels-list.component';
@@ -42,8 +42,8 @@ const routes = [
         component: SpeakersComponent,
       },
       {
-        path: 'notifications',
-        component: NotificationsComponent,
+        path: 'public-community-notification',
+        component: PublicCommunityNotificationsComponent,
       },
     ],
   },
