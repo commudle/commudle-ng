@@ -5,7 +5,7 @@
         [activateMiniProfileDirective]="activateMiniProfileDirective"
         [alt]="user.name"
         [ngClass]="{ 'com-self-start': showAbout && user.about_me }"
-        [src]="user.photo.i64"
+        [src]="user.photo?.i64"
         [title]="user.name"
         [username]="user.username"
         appMiniUserProfile
