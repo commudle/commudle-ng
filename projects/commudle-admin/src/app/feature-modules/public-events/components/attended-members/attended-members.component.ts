@@ -4,6 +4,7 @@ import { EventsService } from 'projects/commudle-admin/src/app/services/events.s
 import { FooterService } from 'projects/commudle-admin/src/app/services/footer.service';
 import { IEvent } from 'projects/shared-models/event.model';
 import { IUser } from 'projects/shared-models/user.model';
+import { SeoService } from 'projects/shared-services/seo.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -29,12 +30,20 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private footerService: FooterService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.event = data.event;
+
+        this.seoService.setTags(
+          `Members who attended ${this.event.name}`,
+          `Connect with the community members who attended ${this.event.name} with you`,
+          'https://commudle.com/assets/images/commudle-logo192.png',
+        );
+
         this.getMembers();
       }),
     );
