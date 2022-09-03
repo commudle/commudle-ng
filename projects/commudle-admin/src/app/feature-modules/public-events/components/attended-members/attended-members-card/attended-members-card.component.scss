@@ -10,7 +10,11 @@
   }
 
   .events-list {
-    @apply com-p-0 com-m-0;
+    @apply com-p-0 com-m-0 com-h-10 com-overflow-hidden;
+
+    &.show-more {
+      @apply com-h-auto;
+    }
 
     li {
       @apply com-list-none;
