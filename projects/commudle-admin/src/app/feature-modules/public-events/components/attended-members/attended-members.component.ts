@@ -21,7 +21,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
   page = 1;
   count = 10;
   total = 0;
-  query: string;
+  query: string = '';
   queryChanged: Subject<string> = new Subject<string>();
 
   subscriptions: Subscription[] = [];
@@ -67,7 +67,7 @@ export class AttendedMembersComponent implements OnInit, OnDestroy {
   getMembers(): void {
     this.isLoading = true;
     this.subscriptions.push(
-      this.eventsService.getAttendedMembers('', this.event.id, this.page, this.count).subscribe((data) => {
+      this.eventsService.getAttendedMembers(this.query, this.event.id, this.page, this.count).subscribe((data) => {
         this.members = data.users;
         this.total = data.total;
         this.isLoading = false;

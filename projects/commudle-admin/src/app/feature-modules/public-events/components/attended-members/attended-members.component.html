@@ -10,7 +10,6 @@
 
           <input
             (ngModelChange)="queryChanged.next($event)"
-            *ngIf="members.length > 1"
             [ngModel]="query"
             fullWidth
             nbInput
@@ -27,8 +26,9 @@
               (next)="page = $event; getMembers()"
               (previous)="page = $event; getMembers()"
               *ngIf="total > 0"
+              [count]="count"
               [current]="page"
-              [total]="count"
+              [total]="total"
             ></app-pagination>
           </ng-container>
 
