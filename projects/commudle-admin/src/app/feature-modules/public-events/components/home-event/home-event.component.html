@@ -145,13 +145,6 @@
             </p>
           </nb-card-body>
         </nb-card>
-        <!-- <app-share-button
-          [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-          [fullWidth]="true"
-          [title]="event.name"
-          [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-          class="com-mx-2"
-        ></app-share-button> -->
         <button
           [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
           class="com-mx-2"
