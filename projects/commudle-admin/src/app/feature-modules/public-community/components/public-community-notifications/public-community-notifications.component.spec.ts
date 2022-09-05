@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PublicCommunityNotificationsComponent } from './publiccommunity-notifications.component';
+import { PublicCommunityNotificationsComponent } from './public-community-notifications.component';
 
 describe('NotificationComponent', () => {
   let component: PublicCommunityNotificationsComponent;

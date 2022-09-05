@@ -30,7 +30,7 @@ import { MembershipToggleComponent } from './components/membership-toggle/member
 import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker-card.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
 import { PublicCommunityRoutingModule } from './public-community-routing.module';
-import { PublicCommunityNotificationsComponent } from './components/public-community-notifications/publiccommunity-notifications.component';
+import { PublicCommunityNotificationsComponent } from './components/public-community-notifications/public-community-notifications.component';
 import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 
 @NgModule({
