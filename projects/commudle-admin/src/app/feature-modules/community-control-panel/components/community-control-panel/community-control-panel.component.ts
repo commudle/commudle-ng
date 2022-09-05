@@ -21,7 +21,7 @@ export class CommunityControlPanelComponent implements OnInit, OnDestroy {
       route: `./`,
     },
     // {
-    //   title: 'Notifications',
+    //   title: 'Activity',
     //   route: `./notifications`,
     // },
     {
