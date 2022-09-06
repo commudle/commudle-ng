@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgxNebularWrapperComponent } from './ngx-nebular-wrapper.component';
 
+/**
+ * nebular needs to be installed in the main app's package.json also because we have listed it as a peer dependency
+ */
 @NgModule({
-  declarations: [NgxNebularWrapperComponent],
+  declarations: [],
   imports: [],
-  exports: [NgxNebularWrapperComponent],
+  exports: [],
+  providers: [],
 })
 export class NgxNebularWrapperModule {}

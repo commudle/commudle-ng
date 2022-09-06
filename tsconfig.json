@@ -12,11 +12,15 @@
         "dist/lib-error-handler/lib-error-handler",
         "dist/lib-error-handler"
       ],
-      "ngx-design-system-wrapper": [
-        "dist/ngx-design-system-wrapper/ngx-design-system-wrapper",
-        "dist/ngx-design-system-wrapper"
-      ],
       "ngx-nebular-wrapper": [
+        "dist/ngx-nebular-wrapper/ngx-nebular-wrapper",
+        "dist/ngx-nebular-wrapper"
+      ],
+      "@com-nebular/theme": [
+        "dist/ngx-nebular-wrapper/ngx-nebular-wrapper",
+        "dist/ngx-nebular-wrapper"
+      ],
+      "@com-nebular/eva-icons": [
         "dist/ngx-nebular-wrapper/ngx-nebular-wrapper",
         "dist/ngx-nebular-wrapper"
       ]
