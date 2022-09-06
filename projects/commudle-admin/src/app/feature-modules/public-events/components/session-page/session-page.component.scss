@@ -1,97 +1,9 @@
 @import './projects/commudle-admin/src/assets/styles/variables';
 
 .session-page-container {
-  // height: calc(100vh - 56px - 12px);
-  // @apply com-w-3/4 com-ml-6;
-  @apply com-h-full;
+  height: calc(100vh - 56px - 12px);
 
   .session-page {
     padding-top: $space-8;
-
-    .session-page-window {
-      display: none;
-      position: absolute;
-      // // left: 5px;
-      // // right: 5px;
-      // bottom: 44px;
-      // // margin: $space-16 $space-8;
-      background-color: $white;
-      // border-radius: $border-4;
-      overflow: hidden;
-      // @apply com-px-2 com-w-full com-top-56 com-ml-1 com-bottom-14;
-      @apply com-mx-2 -com-mt-9 com-h-3/5 com-w-[99%];
-
-      &.remove-overflow {
-        overflow: unset;
-      }
-
-      &.open {
-        display: block;
-      }
-
-      .actions {
-        padding: $space-8;
-        box-shadow: rgba(17, 17, 26, 0.1) 0 0 16px;
-
-        .heading {
-          margin: 0;
-          font-weight: $fw-500;
-          color: $gunmetal;
-        }
-      }
-    }
-
-    .heading {
-      @apply com-pl-3;
-    }
-  }
-  .user-interactions {
-    position: absolute;
-    // right: 140px;
-    left: 50%;
-    bottom: 20px;
-    // top: 50%;
-    // @apply com-flex com-justify-center;
-
-    button {
-      position: relative;
-      border: none;
-      height: 44px;
-      width: 44px;
-      margin: 0 $space-4;
-      padding: $space-12;
-      font-size: $fs-20;
-      font-weight: $fw-400;
-      color: black;
-      background-color: white;
-      transition: all 0.2s ease-in-out;
-
-      &.active {
-        &::before {
-          content: '';
-          position: absolute;
-          bottom: 40px;
-          border-top: 12px solid $white;
-          border-left: 12px solid transparent;
-          border-right: 12px solid transparent;
-        }
-      }
-
-      &:hover {
-        background-color: rgba($spanish-gray, 0.4);
-      }
-
-      nb-badge {
-        display: none;
-
-        &.notification {
-          display: initial;
-        }
-      }
-
-      nb-icon {
-        margin: 0;
-      }
-    }
   }
 }

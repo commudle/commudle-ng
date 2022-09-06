@@ -70,7 +70,10 @@ export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewIn
   }
 
   ngAfterViewInit(): void {
-    if (['commudle', 'youtube'].includes(this.embeddedVideoStream.source)) {
+    if (
+      this.embeddedVideoStream === undefined ||
+      ['commudle', 'youtube', 'external_link'].includes(this.embeddedVideoStream.source)
+    ) {
       this.toggleInteractionWindow(0);
       this.cdr.detectChanges();
     }
@@ -107,6 +110,8 @@ export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewIn
   }
 
   getInteractionWindowStatus(windowNum: number): boolean {
-    return this.interactionWindows.toArray()[windowNum].nativeElement.style.display === 'none';
+    if (this.interactionWindows) {
+      return this.interactionWindows.toArray()[windowNum].nativeElement.style.display === 'none';
+    }
   }
 }
