@@ -35,7 +35,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   usersListSubscription: Subscription;
   usersList: IUser[] = [];
   currentUser: ICurrentUser;
-  pingInterval: NodeJS.Timeout;
+  pingInterval;
   searchQuery: string;
 
   faChalkboardTeacher = faChalkboardTeacher;

@@ -18,7 +18,7 @@ export class BasicInfoComponent implements OnInit {
 
   basicInfoForm = this.fb.group({
     name: ['', Validators.required],
-    about_me: ['', [Validators.required, Validators.maxLength(500)]],
+    about_me: ['', [Validators.required, Validators.maxLength(1000)]],
     designation: ['', [Validators.required, Validators.maxLength(100)]],
     location: [''],
     gender: [''],

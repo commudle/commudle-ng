@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,8 @@
                <!-- START CONTENT -->
                <div class="content miscellaneous-enumerations">
                    <div class="content-data">
+
+
 
 
 
@@ -99,6 +101,21 @@
                         </li>
                         <li>
                             <a href="#EMainNewsletterStatuses" title="projects/shared-models/main-newsletter.model.ts" ><b>EMainNewsletterStatuses</b>&nbsp;&nbsp;&nbsp;(projects/.../main-newsletter.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ENotificationEntityTypes" title="projects/shared-models/enums/notification_entity_types.enum.ts" ><b>ENotificationEntityTypes</b>&nbsp;&nbsp;&nbsp;(projects/.../notification_entity_types.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ENotificationMessageTypes" title="projects/shared-models/enums/notification_message_types.enum.ts" ><b>ENotificationMessageTypes</b>&nbsp;&nbsp;&nbsp;(projects/.../notification_message_types.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ENotificationParentTypes" title="projects/shared-models/enums/notification_parent_types.enum.ts" ><b>ENotificationParentTypes</b>&nbsp;&nbsp;&nbsp;(projects/.../notification_parent_types.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ENotificationSenderTypes" title="projects/shared-models/enums/notification_sender_types.enum.ts" ><b>ENotificationSenderTypes</b>&nbsp;&nbsp;&nbsp;(projects/.../notification_sender_types.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ENotificationStatuses" title="projects/shared-models/enums/notification_statuses.enum.ts" ><b>ENotificationStatuses</b>&nbsp;&nbsp;&nbsp;(projects/.../notification_statuses.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#EPollStatuses" title="projects/shared-models/poll.model.ts" ><b>EPollStatuses</b>&nbsp;&nbsp;&nbsp;(projects/.../poll.model.ts)</a>
@@ -231,42 +248,12 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;product
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>product</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;slides
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>slides</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
                                 &nbsp;course
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>course</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;other
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>other</code>
                             </td>
                         </tr>
             </tbody>
@@ -916,6 +903,16 @@
                                 <i>Value : </i><code>ended</code>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;DISCONNECTED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>disconnected</code>
+                            </td>
+                        </tr>
             </tbody>
         </table>
 </section>
@@ -997,6 +994,191 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>admin_communication</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>projects/shared-models/enums/notification_entity_types.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ENotificationEntityTypes"></a>
+                        <span class="name "><b>ENotificationEntityTypes</b><a href="#ENotificationEntityTypes"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;LAB
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>Lab</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;COMMUNITY_BUILD
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CommunityBuild</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;USER_MESSAGE
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>UserMessage</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>projects/shared-models/enums/notification_message_types.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ENotificationMessageTypes"></a>
+                        <span class="name "><b>ENotificationMessageTypes</b><a href="#ENotificationMessageTypes"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;FOLLOW_CREATED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>follow_created</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;VOTE_CREATED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>vote_created</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;MESSAGE_CREATED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>message_created</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>projects/shared-models/enums/notification_parent_types.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ENotificationParentTypes"></a>
+                        <span class="name "><b>ENotificationParentTypes</b><a href="#ENotificationParentTypes"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;LAB
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>Lab</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;COMMUNITY_BUILD
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CommunityBuild</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>projects/shared-models/enums/notification_sender_types.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ENotificationSenderTypes"></a>
+                        <span class="name "><b>ENotificationSenderTypes</b><a href="#ENotificationSenderTypes"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;USER
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>User</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>projects/shared-models/enums/notification_statuses.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ENotificationStatuses"></a>
+                        <span class="name "><b>ENotificationStatuses</b><a href="#ENotificationStatuses"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;UNREAD
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>unread</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;READ
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>read</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;INTERACTED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>interacted</code>
                             </td>
                         </tr>
             </tbody>
@@ -1477,6 +1659,16 @@
                                 <i>Value : </i><code>featured_communities</code>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;STATIC_ASSETS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>static_assets</code>
+                            </td>
+                        </tr>
             </tbody>
         </table>
 </section>
@@ -1675,6 +1867,15 @@
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

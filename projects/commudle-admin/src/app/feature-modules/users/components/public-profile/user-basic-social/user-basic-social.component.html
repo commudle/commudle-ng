@@ -7,10 +7,10 @@
     <div *ngIf="user.about_me" class="about">
       <span *ngIf="showFullAbout; else showLess">{{ user.about_me }}</span>
       <ng-template #showLess>
-        <span>{{ user.about_me | truncatetext: 300 }}</span>
+        <span>{{ user.about_me | truncatetext: 350 }}</span>
       </ng-template>
       &nbsp;
-      <a (click)="showFullAbout = !showFullAbout" *ngIf="user.about_me.length > 140" class="clickable">
+      <a (click)="showFullAbout = !showFullAbout" *ngIf="user.about_me.length > 350" class="clickable">
         {{ showFullAbout ? 'Read less' : 'Read more' }}
       </a>
     </div>

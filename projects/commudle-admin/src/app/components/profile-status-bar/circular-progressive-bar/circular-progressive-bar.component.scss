@@ -1,24 +1,20 @@
 svg {
-  height: auto;
-  width: auto;
+  @apply com-h-auto com-w-auto;
   g {
     transform-origin: 60px 60px;
-    transform: rotate(-90deg);
+    @apply -com-rotate-90;
 
     .progress-meter {
-      stroke: #2aa5ff38;
-      fill: none;
+      @apply com-fill-[none] com-stroke-Brilliant-Azure/20;
     }
 
     .progress-value {
-      fill: none;
-      stroke: #2aa5ff;
-      transition: all;
+      @apply com-fill-[none] com-stroke-Brilliant-Azure com-transition-all;
     }
   }
 
   text {
     text-anchor: middle;
-    stroke: black;
+    @apply com-stroke-black;
   }
 }

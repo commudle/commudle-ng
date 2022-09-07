@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { faBell, faFlask, faLightbulb, faUser, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { NbPopoverDirective } from '@nebular/theme';
-import { NotificationService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notification.service';
+import { NotificationsService } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/notifications.service';
 import { NotificationChannel } from 'projects/commudle-admin/src/app/feature-modules/notifications/services/websockets/notification.channel';
 import { ICurrentUser } from 'projects/shared-models/current_user.model';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
@@ -29,7 +29,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   @ViewChildren(NbPopoverDirective) popovers: QueryList<NbPopoverDirective>;
 
   constructor(
-    private notificationService: NotificationService,
+    private notificationsService: NotificationsService,
     private notificationChannel: NotificationChannel,
     private authwatchService: LibAuthwatchService,
   ) {}
@@ -50,7 +50,7 @@ export class NavbarMenuComponent implements OnInit, OnDestroy {
   }
 
   getUnreadNotificationsCount() {
-    this.notificationService.getUnreadNotificationsCount().subscribe((count) => (this.notificationCount = count));
+    this.notificationsService.getUnreadNotificationsCount().subscribe((count) => (this.notificationCount = count));
   }
 
   receiveData() {
