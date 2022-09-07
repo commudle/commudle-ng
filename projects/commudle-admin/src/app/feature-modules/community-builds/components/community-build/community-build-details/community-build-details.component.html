@@ -22,6 +22,11 @@
     <div class="community-build-tags">
       <app-tag [tags]="cBuild.tags"></app-tag>
     </div>
+    <div class="com-w-80 com-mt-7 com-overflow-hidden com-h-max">
+      <div *ngIf="embedCode" class="com-aspect-[16/10] com-overflow-hidden">
+        <div [innerHTML]="embedCode" class="community-build-embed"></div>
+      </div>
+    </div>
     <div *ngIf="cBuild.images.length > 0" class="commudle-build-images">
       <div class="commudle-build-images-stripe">
         <div
@@ -34,11 +39,19 @@
       </div>
     </div>
     <div class="community-build-content">
-      <div *ngIf="embedCode" [innerHTML]="embedCode" class="community-build-embed"></div>
-      <ng-container *ngIf="cBuild.link && !embedCode">
+      <ng-container *ngIf="cBuild.link">
         <p class="community-build-link">
-          Visit the {{ cBuild.build_type }}:
+          Link to open source:
           <a [href]="cBuild.link | completeurl" rel="noreferrer" target="_blank">
+            {{ cBuild.link }}
+            <nb-icon icon="external-link"></nb-icon>
+          </a>
+        </p>
+      </ng-container>
+      <ng-container *ngIf="cBuild.live_app_link">
+        <p class="community-build-link">
+          Link to Live Project:
+          <a [href]="cBuild.live_app_link | completeurl" rel="noreferrer" target="_blank">
             {{ cBuild.link }}
             <nb-icon icon="external-link"></nb-icon>
           </a>

@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
 
 
 
@@ -79,9 +80,6 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#getClientToken" >getClientToken</a>
-                            </li>
-                            <li>
-                                <a href="#getClientTokenV2" >getClientTokenV2</a>
                             </li>
                         </ul>
                     </td>
@@ -226,71 +224,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getClientTokenV2"></a>
-                    <span class="name">
-                        <span ><b>getClientTokenV2</b></span>
-                        <a href="#getClientTokenV2"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getClientTokenV2(roomId)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/hms-api.service.ts:20</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>roomId</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/IHmsClient.html" target="_self" >Observable&lt;IHmsClient&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 
     </div>
@@ -315,17 +248,12 @@ export class HmsApiService {
 
     return this.http.get&lt;IHmsClient&gt;(this.apiRoutesService.getRoute(API_ROUTES.HMS_CLIENT.CLIENT_TOKEN), { params });
   }
-
-  getClientTokenV2(roomId): Observable&lt;IHmsClient&gt; {
-    const params &#x3D; new HttpParams().set(&#x27;hms_room_id&#x27;, roomId);
-
-    return this.http.get&lt;IHmsClient&gt;(this.apiRoutesService.getRoute(API_ROUTES.HMS_CLIENT.CLIENT_TOKEN_V2), { params });
-  }
 }
 </code></pre>
     </div>
 
 </div>
+
 
 
 
@@ -351,6 +279,15 @@ export class HmsApiService {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

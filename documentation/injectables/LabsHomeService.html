@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -30,6 +30,7 @@
                <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
 
 
 
@@ -136,7 +137,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -199,8 +200,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:29</a></div>
                 </td>
             </tr>
 
@@ -314,8 +315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -407,8 +408,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:21</a></div>
                 </td>
             </tr>
 
@@ -511,7 +512,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -543,7 +544,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -575,7 +576,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -607,7 +608,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/services/labs-home.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -620,17 +621,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable} from &#x27;@angular/core&#x27;;
-import {BehaviorSubject, Observable} from &#x27;rxjs&#x27;;
-import {LabsService} from &#x27;projects/commudle-admin/src/app/feature-modules/labs/services/labs.service&#x27;;
-import {ITag} from &#x27;projects/shared-models/tag.model&#x27;;
-import {ILab} from &#x27;projects/shared-models/lab.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { LabsService } from &#x27;projects/commudle-admin/src/app/feature-modules/labs/services/labs.service&#x27;;
+import { ILab } from &#x27;projects/shared-models/lab.model&#x27;;
+import { ITag } from &#x27;projects/shared-models/tag.model&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
 export class LabsHomeService {
-
   // behaviour subject for list of searched tag names --&gt; subscribed to by search bar (initialize by empty array of ITag)
   private tagSearch: BehaviorSubject&lt;ITag[]&gt; &#x3D; new BehaviorSubject&lt;ITag[]&gt;([]);
   public tagSearch$: Observable&lt;ITag[]&gt; &#x3D; this.tagSearch.asObservable();
@@ -639,13 +639,10 @@ export class LabsHomeService {
   private labSearch: BehaviorSubject&lt;ILab[]&gt; &#x3D; new BehaviorSubject&lt;ILab[]&gt;([]);
   public labSearch$: Observable&lt;ILab[]&gt; &#x3D; this.labSearch.asObservable();
 
-  constructor(
-    private labsService: LabsService
-  ) {
-  }
+  constructor(private labsService: LabsService) {}
 
   getTagSearchResults(value: string[], page?: number, count?: number) {
-    this.labsService.searchTags(value, page, count).subscribe(data &#x3D;&gt; this.tagSearch.next(data.tags));
+    this.labsService.searchTags(value, page, count).subscribe((data) &#x3D;&gt; this.tagSearch.next(data.tags));
   }
 
   getLabSearchResults(value: string[], page?: number, count?: number) {
@@ -653,10 +650,10 @@ export class LabsHomeService {
   }
 
   getLabsByTags(value: string[], page: number, count: number, initialize: boolean &#x3D; false) {
-    this.labsService.searchLabsByTags(value, page, count).subscribe(data &#x3D;&gt; {
+    this.labsService.searchLabsByTags(value, page, count).subscribe((data) &#x3D;&gt; {
       if (data.labs.length &gt; 0) {
         this.labSearch.next((initialize ? [] : this.labSearch.getValue()).concat(data.labs));
-        this.getLabsByTags(value, page + 1, count);
+        // this.getLabsByTags(value, page + 1, count);
       }
     });
   }
@@ -665,6 +662,7 @@ export class LabsHomeService {
     </div>
 
 </div>
+
 
 
 
@@ -690,6 +688,15 @@ export class LabsHomeService {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

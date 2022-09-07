@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -77,30 +77,43 @@ import { RouterModule } from &#x27;@angular/router&#x27;;
 import { Error404PageComponent, LibErrorHandlerComponent } from &#x27;projects/lib-error-handler/src/public-api&#x27;;
 import { EUserRoles } from &#x27;projects/shared-models/enums/user_roles.enum&#x27;;
 import { AuthGuard } from &#x27;projects/shared-services/lib-authwatch.guard&#x27;;
+import { AboutOldComponent } from &#x27;./components/about-old/about-old.component&#x27;;
+import { AboutComponent } from &#x27;./components/about/about.component&#x27;;
 import { CommunitiesComponent } from &#x27;./components/communities/communities.component&#x27;;
 import { FillDataFormComponent } from &#x27;./components/fill-data-form/fill-data-form.component&#x27;;
-import { AboutComponent } from &#x27;./components/home/about/about.component&#x27;;
-import { FeaturesComponent } from &#x27;./components/home/features/features.component&#x27;;
 import { HomeComponent } from &#x27;./components/home/home.component&#x27;;
 import { LogoutComponent } from &#x27;./components/logout/logout.component&#x27;;
 import { SpeakerResourceFormComponent } from &#x27;./components/speaker-resource-form/speaker-resource-form.component&#x27;;
 import { MainNewsletterComponent } from &#x27;./feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component&#x27;;
-import { RedirectToMyProfileGuard } from &#x27;./feature-modules/users/services/guards/redirect-to-my-profile.guard&#x27;;
+import { RedirectToMyProfileGuard } from &#x27;./feature-modules/users/guards/redirect-to-my-profile.guard&#x27;;
 import { InitResolver } from &#x27;./resolvers/init.resolver&#x27;;
 
 const routes &#x3D; [
   {
-    path: &#x27;&#x27;,
+    path: &#x27;home&#x27;,
     component: HomeComponent,
   },
   {
-    path: &#x27;about&#x27;,
+    path: &#x27;&#x27;,
+    loadChildren: () &#x3D;&gt; import(&#x27;./feature-modules/homepage/homepage.module&#x27;).then((m) &#x3D;&gt; m.HomepageModule),
+  },
+  {
+    path: &#x27;about-wip&#x27;,
     component: AboutComponent,
   },
   {
-    path: &#x27;features&#x27;,
-    component: FeaturesComponent,
+    path: &#x27;about&#x27;,
+    component: AboutOldComponent,
   },
+  {
+    path: &#x27;notifications&#x27;,
+    loadChildren: () &#x3D;&gt;
+      import(&#x27;./feature-modules/notifications/notifications.module&#x27;).then((m) &#x3D;&gt; m.NotificationsModule),
+  },
+  // {
+  //   path: &#x27;features&#x27;,
+  //   component: FeaturesComponent,
+  // },
   {
     path: &#x27;users&#x27;,
     loadChildren: () &#x3D;&gt; import(&#x27;./feature-modules/users/users.module&#x27;).then((m) &#x3D;&gt; m.UsersModule),
@@ -195,6 +208,19 @@ const routes &#x3D; [
     component: MainNewsletterComponent,
   },
   {
+    path: &#x27;newsletters&#x27;,
+    loadChildren: () &#x3D;&gt;
+      import(&#x27;./feature-modules/public-newsletters/public-newsletters.module&#x27;).then((m) &#x3D;&gt; m.PublicNewslettersModule),
+  },
+  {
+    path: &#x27;blogs&#x27;,
+    loadChildren: () &#x3D;&gt; import(&#x27;./feature-modules/public-blogs/public-blogs.module&#x27;).then((m) &#x3D;&gt; m.PublicBlogsModule),
+  },
+  {
+    path: &#x27;search&#x27;,
+    loadChildren: () &#x3D;&gt; import(&#x27;./feature-modules/search/search.module&#x27;).then((m) &#x3D;&gt; m.SearchModule),
+  },
+  {
     path: &#x27;admin&#x27;,
     children: [
       // {
@@ -235,7 +261,10 @@ const routes &#x3D; [
       },
     ],
   },
-
+  {
+    path: &#x27;public&#x27;,
+    loadChildren: () &#x3D;&gt; import(&#x27;./feature-modules/public-pages/public-pages.module&#x27;).then((m) &#x3D;&gt; m.PublicPagesModule),
+  },
   { path: &#x27;logout&#x27;, component: LogoutComponent },
   { path: &#x27;error&#x27;, component: LibErrorHandlerComponent },
   { path: &#x27;404&#x27;, component: Error404PageComponent },
@@ -245,8 +274,11 @@ const routes &#x3D; [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: &#x27;enabled&#x27;,
+      // TODO: modify the below to use the new option
       relativeLinkResolution: &#x27;legacy&#x27;,
+      anchorScrolling: &#x27;enabled&#x27;,
+      scrollPositionRestoration: &#x27;enabled&#x27;,
+      scrollOffset: [0, 68],
     }),
   ],
   exports: [RouterModule],
@@ -275,6 +307,8 @@ export class AppRoutingModule {}
 
 
 
+
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -288,6 +322,15 @@ export class AppRoutingModule {}
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -17,7 +17,11 @@ p {
         @apply md:com-col-span-3;
 
         .job-title {
-          @apply com-text-xl com-font-semibold;
+          @apply com-text-xl com-font-semibold com-w-48 md:com-w-max;
+        }
+
+        .button {
+          @apply md:com-flex;
         }
 
         .company {
@@ -27,7 +31,7 @@ p {
 
       .date,
       .location {
-        @apply com-text-sm com-text-gray-700 com-text-right;
+        @apply com-text-sm com-text-gray-700 md:com-text-right;
 
         nb-icon {
           @apply com-text-[#42aaff];
