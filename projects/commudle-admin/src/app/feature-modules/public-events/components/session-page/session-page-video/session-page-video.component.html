@@ -1,8 +1,9 @@
 <nb-card
-  [ngClass]="{
-    fullscreen: isFullScreen,
-    'internal-link': !embeddedVideoStream || ['commudle', 'youtube'].includes(embeddedVideoStream.source)
-  }"
+  [ngClass]="
+    !embeddedVideoStream || ['commudle', 'youtube'].includes(embeddedVideoStream.source)
+      ? 'internal-link'
+      : 'external-link'
+  "
   class="session-page-video"
 >
   <nb-card-body>
@@ -63,6 +64,7 @@
         <nb-icon icon="info-outline"></nb-icon>
       </button>
       <button
+        *ngIf="embeddedVideoStream"
         (click)="toggleInteractionWindow(1)"
         [ngClass]="{ active: !getInteractionWindowStatus(1) }"
         nbButton
@@ -103,7 +105,12 @@
         <nb-icon icon="bar-chart"></nb-icon>
       </button>
     </div>
-    <div #interactionWindow class="session-page-window" [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }">
+    <div
+      #interactionWindow
+      class="session-page-window"
+      [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }"
+      *ngIf="!embeddedVideoStream || ['commudle', 'youtube'].includes(embeddedVideoStream.source)"
+    >
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Session Details</p>
         <button (click)="toggleInteractionWindow(0)" ghost nbButton shape="round" size="small">
@@ -128,6 +135,7 @@
         </button>
       </div>
       <app-session-page-viewers
+        *ngIf="this.embeddedVideoStream"
         (userCount)="userCount = $event"
         [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"
         [embeddedVideoStream]="embeddedVideoStream"

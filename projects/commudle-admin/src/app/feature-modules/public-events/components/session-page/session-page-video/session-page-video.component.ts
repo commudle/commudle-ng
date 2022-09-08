@@ -70,10 +70,7 @@ export class SessionPageVideoComponent implements OnInit, OnChanges, AfterViewIn
   }
 
   ngAfterViewInit(): void {
-    if (
-      this.embeddedVideoStream === undefined ||
-      ['commudle', 'youtube', 'external_link'].includes(this.embeddedVideoStream.source)
-    ) {
+    if (this.embeddedVideoStream === undefined || ['commudle', 'youtube'].includes(this.embeddedVideoStream.source)) {
       this.toggleInteractionWindow(0);
       this.cdr.detectChanges();
     }

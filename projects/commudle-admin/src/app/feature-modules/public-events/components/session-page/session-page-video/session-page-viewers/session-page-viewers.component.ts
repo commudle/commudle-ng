@@ -54,7 +54,7 @@ export class SessionPageViewersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (this.isBrowser && this.embeddedVideoStream) {
+    if (this.isBrowser) {
       this.channelName = `${this.embeddedVideoStream.id}_EmbeddedVideoStream_${this.uuid}`;
       if (this.event.event_status.name === EEventStatuses.COMPLETED) {
         this.getPastUsersList();
