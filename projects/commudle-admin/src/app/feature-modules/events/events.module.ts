@@ -26,7 +26,7 @@ import {
   NbToggleModule,
   NbTooltipModule,
   NbWindowModule,
-} from '@nebular/theme';
+} from '@com-nebular';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';

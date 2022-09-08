@@ -7,7 +7,7 @@ import { faLink, faMapPin, faPen, faTrash, faPlusCircle } from '@fortawesome/fre
 import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { EEmbeddedVideoStreamSources } from 'projects/shared-models/enums/embedded_video_stream_sources.enum';
 import { DomSanitizer } from '@angular/platform-browser';

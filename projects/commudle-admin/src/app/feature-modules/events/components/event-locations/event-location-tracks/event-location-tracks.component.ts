@@ -3,7 +3,7 @@ import { IEventLocationTrack } from 'projects/shared-models/event-location-track
 import * as moment from 'moment';
 import { ITrackSlot } from 'projects/shared-models/track-slot.model';
 import { faClock, faInfo, faPlusCircle, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EventLocationTracksService } from 'projects/commudle-admin/src/app/services/event-location-tracks.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';

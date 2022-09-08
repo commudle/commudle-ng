@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import * as moment from 'moment';
 import { EventsService } from 'projects/commudle-admin/src/app/services/events.service';
 import { ICommunity } from 'projects/shared-models/community.model';

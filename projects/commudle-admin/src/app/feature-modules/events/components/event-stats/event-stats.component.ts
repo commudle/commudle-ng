@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import { Chart } from 'chart.js';
 import { StatsEventsService } from 'projects/commudle-admin/src/app/services/stats/stats-events.service';
 import { MessagesComponent } from 'projects/shared-components/messages/messages.component';

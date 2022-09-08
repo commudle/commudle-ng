@@ -1,0 +1,15 @@
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
+@forward 'global/breakpoints';
+@use 'global/styles';
+@use 'global/components';
+@use 'global/overrides';
+
+@mixin nb-theme-global() {
+  @include components.nb-theme-components();
+  @include overrides.nb-theme-overrides();
+}

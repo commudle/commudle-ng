@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import { ColumnMode, SortType } from '@swimlane/ngx-datatable';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';

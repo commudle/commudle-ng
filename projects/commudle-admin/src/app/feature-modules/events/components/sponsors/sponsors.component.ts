@@ -1,7 +1,7 @@
 import { EventSponsorsService } from './../../../../services/event-sponsors.service';
 import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import { IEventSponsor } from 'projects/shared-models/event_sponsor.model';
 import { ISponsors } from 'projects/shared-models/sponsors.model';
 import { ISponsor } from 'projects/shared-models/sponsor.model';

@@ -1,0 +1,14 @@
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
+@forward 'theming-variables' show $nb-enable-css-custom-properties, $nb-enabled-themes, $nb-themes, $nb-custom-statuses,
+  $layout-window-mode-max-width, $tabset-tab-text-hide-breakpoint, $route-tabset-tab-text-hide-breakpoint;
+@forward 'core/mixins';
+@forward 'core/functions';
+@forward 'core/variants';
+@forward 'core/theming/register' show nb-register-theme;
+@forward 'core/theming/install';
+@forward 'core/theming/get-value';

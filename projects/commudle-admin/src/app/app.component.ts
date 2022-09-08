@@ -12,6 +12,7 @@ import { PioneerAnalyticsService } from 'projects/shared-services/pioneer-analyt
 import { SeoService } from 'projects/shared-services/seo.service';
 import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
+import * as ComNebular from '@nebular/theme';
 
 @Component({
   selector: 'app-root',

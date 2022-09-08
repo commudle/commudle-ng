@@ -5,7 +5,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbEvaIconsModule } from '@com-nebular';
 import {
   NbAccordionModule,
   NbActionsModule,
@@ -38,7 +38,7 @@ import {
   NbTooltipModule,
   NbUserModule,
   NbWindowModule,
-} from '@nebular/theme';
+} from '@com-nebular';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CookieService } from 'ngx-cookie-service';

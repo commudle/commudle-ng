@@ -12,18 +12,10 @@
         "dist/lib-error-handler/lib-error-handler",
         "dist/lib-error-handler"
       ],
-      "ngx-nebular-wrapper": [
+      "@com-nebular": [
         "dist/ngx-nebular-wrapper/ngx-nebular-wrapper",
         "dist/ngx-nebular-wrapper"
       ],
-      "@com-nebular/theme": [
-        "dist/ngx-nebular-wrapper/ngx-nebular-wrapper",
-        "dist/ngx-nebular-wrapper"
-      ],
-      "@com-nebular/eva-icons": [
-        "dist/ngx-nebular-wrapper/ngx-nebular-wrapper",
-        "dist/ngx-nebular-wrapper"
-      ]
     },
     "allowSyntheticDefaultImports": true,
     "declaration": false,

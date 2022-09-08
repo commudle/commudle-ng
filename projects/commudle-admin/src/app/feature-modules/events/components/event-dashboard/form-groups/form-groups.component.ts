@@ -10,7 +10,7 @@ import { DataFormEntitiesService } from 'projects/commudle-admin/src/app/service
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 import { faCopy, faEnvelope, faTimesCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService } from '@com-nebular';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { ERegistationTypes } from 'projects/shared-models/enums/registration_types.enum';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';

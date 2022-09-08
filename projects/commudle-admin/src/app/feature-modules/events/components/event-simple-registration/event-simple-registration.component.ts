@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IEvent } from 'projects/shared-models/event.model';
 import { EventSimpleRegistrationsService } from 'projects/commudle-admin/src/app/services/event-simple-registrations.service';
-import { IEventSimpleRegistration, EEventSimpleRegistrationStatuses } from 'projects/shared-models/event_simple_registration.model';
-import { NbWindowService } from '@nebular/theme';
+import {
+  IEventSimpleRegistration,
+  EEventSimpleRegistrationStatuses,
+} from 'projects/shared-models/event_simple_registration.model';
+import { NbWindowService } from '@com-nebular';
 import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
 import { ICommunity } from 'projects/shared-models/community.model';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
