@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   prefix: 'com-',
   content: ['./dist/**/*.html', './projects/**/*.{html,scss,ts}'],
@@ -7,7 +8,8 @@ module.exports = {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
-        inherit: 'inherit',
+        gunmetal: '#2f2e41',
+        'Silver-Sand': '#c4c4c4',
       },
       lineClamp: {
         14: '14',
@@ -24,10 +26,18 @@ module.exports = {
       spacing: {
         '5px': '5px',
         '20px': '20px',
+        '68px': '68px',
+        '72px': '72px',
+        '212px': '212px',
+        '260px': '260px',
+        '296px': '296px',
         '630px': '630px',
         '800px': '800px',
         '95vh': '95vh',
         '95vw': '95vw',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
       },
     },
     container: {
