@@ -2,14 +2,13 @@
   display: flex;
   flex-wrap: wrap;
 
-  >div {
+  > div {
     margin-right: 1rem;
   }
 
   .save-button-bottom {
     margin-top: 18px;
   }
-
 }
 
 .volunteers {
@@ -18,11 +17,11 @@
   .user-profile {
     border: 0.5px solid lightgrey;
     padding: 5px;
-    width: 100%;
     justify-content: center;
     display: flex;
 
     margin: 1rem;
+    @apply com-w-full  md:com-w-80;
     @media screen and (min-width: 1000px) {
       align-items: center;
       justify-content: space-between;
