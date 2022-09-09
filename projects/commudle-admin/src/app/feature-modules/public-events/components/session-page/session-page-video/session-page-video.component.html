@@ -1,6 +1,6 @@
 <nb-card
   [ngClass]="
-    !embeddedVideoStream || ['commudle', 'youtube'].includes(embeddedVideoStream.source)
+    !embeddedVideoStream || ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source)
       ? 'internal-link'
       : 'external-link'
   "
@@ -50,7 +50,7 @@
       [ngClass]="{ 'user-interactions-video ': !embeddedVideoStream }"
       *ngIf="
         !embeddedVideoStream ||
-        (currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source) && interactionWindows)
+        (currentUser && ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows)
       "
       class="user-interactions"
     >
@@ -109,7 +109,10 @@
       #interactionWindow
       class="session-page-window"
       [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }"
-      *ngIf="!embeddedVideoStream || ['commudle', 'youtube'].includes(embeddedVideoStream.source)"
+      *ngIf="
+        !embeddedVideoStream ||
+        (currentUser && ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows)
+      "
     >
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Session Details</p>
