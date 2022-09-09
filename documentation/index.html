@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 	   <link rel="stylesheet" href="./styles/style.css">
-        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="./styles/dark.css">
     </head>
     <body>
 
@@ -66,13 +66,15 @@ in.</li>
 </ul>
 <h2 id="build-for-production">Build for production</h2>
 <ul>
-<li>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory.</li>
+<li>Run <code>sh prod.sh</code> to build the project. The build artifacts will be stored in the <code>prod-server.zip</code> file.</li>
 </ul>
 <h2 id="design-framework--ui-kit">Design Framework / UI Kit</h2>
 <ul>
 <li>We are using <a href="https://akveo.github.io/nebular/">Nebular</a> which uses <a href="https://eva.design/">Eva Design System</a> in
 commudle-admin</li>
 </ul>
+
+
 
 
 
@@ -105,6 +107,15 @@ commudle-admin</li>
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;

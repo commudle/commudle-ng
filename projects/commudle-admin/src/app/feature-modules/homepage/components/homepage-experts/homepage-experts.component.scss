@@ -31,16 +31,6 @@ ul {
     .homepage-expert-designation {
       @apply com-text-sm com-text-gray-300 com-my-0 com-line-clamp-2;
     }
-
-    app-user-follow {
-      &::ng-deep {
-        .user-follow {
-          button {
-            @apply com-bg-gray-50 hover:com-bg-gray-100 focus:com-bg-gray-100;
-          }
-        }
-      }
-    }
   }
 }
 

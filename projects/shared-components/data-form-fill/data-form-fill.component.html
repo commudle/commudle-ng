@@ -3,7 +3,7 @@
     <p [innerHTML]="dataForm.description | linky: { sanitizeHtml: true }"></p>
   </div>
   <form (ngSubmit)="submitForm()" [formGroup]="dataFormEntityResponseForm">
-    <div *ngFor="let question of dataForm.questions; let i = index" class="question">
+    <div *ngFor="let question of enabledQuestions; let i = index" class="question">
       <div class="detail">
         <p>
           <nb-icon icon="arrow-ios-forward-outline"></nb-icon>

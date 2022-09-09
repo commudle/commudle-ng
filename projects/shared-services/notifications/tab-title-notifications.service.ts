@@ -12,13 +12,13 @@ export class TabTitleNotificationsService {
   constructor(private title: Title) {}
 
   blinkTitle(value: string): void {
-    if (document.hasFocus()) {
-      return;
-    }
-
-    this.newTitle = value;
-    window.onblur = () => this.enableNotification();
-    window.onfocus = () => this.disableNotification();
+    // if (document.hasFocus()) {
+    //   return;
+    // }
+    //
+    // this.newTitle = value;
+    // window.onblur = () => this.enableNotification();
+    // window.onfocus = () => this.disableNotification();
   }
 
   enableNotification(interval: number = 3000): void {

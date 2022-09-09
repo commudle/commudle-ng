@@ -6,10 +6,15 @@
     </nb-card-body>
   </nb-card>
 
-  <nb-card [nbSpinner]="organizers.length === 0" class="lg:com-col-span-1">
+  <nb-card class="lg:com-col-span-1">
     <nb-card-body>
       <h3 class="heading">Community Leaders</h3>
       <div class="organizers com-grid com-grid-cols-1 com-gap-4">
+        <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+          <div class="spinner">
+            <div *ngFor="let _ of [].constructor(5)"></div>
+          </div>
+        </div>
         <ng-container *ngFor="let organizer of organizers">
           <app-user-profile-card-large [user]="organizer"></app-user-profile-card-large>
         </ng-container>

@@ -42,6 +42,9 @@ export class SidebarMenuComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentUser();
     this.closeSidebar();
+    this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+      this.managedCommunities = data;
+    });
   }
 
   getCurrentUser(): void {
@@ -88,9 +91,7 @@ export class SidebarMenuComponent implements OnInit {
   getManagingCommunities(userRoles: string[]): void {
     this.managedCommunities = [];
     for (const role of userRoles) {
-      this.communitiesService.getRoleCommunities(role).subscribe((data: ICommunities) => {
-        this.managedCommunities = [...this.managedCommunities, ...data.communities];
-      });
+      this.communitiesService.getRoleCommunities(role).subscribe(() => {});
     }
   }
 

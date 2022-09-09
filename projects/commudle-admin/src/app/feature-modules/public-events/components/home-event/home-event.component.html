@@ -67,7 +67,7 @@
           ></app-event-updates>
         </div>
         <div #descriptionSection>
-          <app-event-description [community]="community" [event]="event"></app-event-description>
+          <app-event-description [community]="community" [event]="event" [share]="true"></app-event-description>
         </div>
         <div #agendaSection>
           <app-agenda (hasAgenda)="hasAgenda = $event" [community]="community" [event]="event"></app-agenda>
@@ -101,6 +101,16 @@
         </div>
       </div>
       <div class="right-column">
+        <div class="com-mt-5 com-ml-3" *ngIf="isOrganizer">
+          <a
+            nbButton
+            status="danger"
+            [routerLink]="['/admin', 'communities', community.slug, 'event-dashboard', event.slug]"
+          >
+            Event Admin Panel
+            <nb-icon icon="edit-outline"></nb-icon>
+          </a>
+        </div>
         <app-highlighted-links
           (hasOpenForms)="hasOpenForms = $event"
           *ngIf="event.editable || event.event_status.name === EEventStatuses.OPEN"
@@ -135,11 +145,19 @@
             </p>
           </nb-card-body>
         </nb-card>
-        <app-share-button
-          [content]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-          [title]="event.name"
-          [url]="environment.app_url + '/communities/' + event.kommunity_slug + '/events/' + event.slug"
-        ></app-share-button>
+        <button
+          [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
+          class="com-mx-2"
+          fullWidth
+          nbButton
+          outline
+          shape="semi-round"
+          size="small"
+          status="primary"
+          style="width: calc(100% - 16px)"
+        >
+          View attended members
+        </button>
         <nb-card *ngIf="moment() >= moment(event.end_time) && !event.custom_agenda">
           <nb-card-body>
             <p class="text-info">

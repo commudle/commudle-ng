@@ -8,7 +8,7 @@ module.exports = {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
-        gunmetal: '#2f2e41',
+        'gunmetal': '#2f2e41',
         'Silver-Sand': '#c4c4c4',
       },
       lineClamp: {
@@ -31,7 +31,6 @@ module.exports = {
         '212px': '212px',
         '260px': '260px',
         '296px': '296px',
-        '630px': '630px',
         '800px': '800px',
         '95vh': '95vh',
         '95vw': '95vw',

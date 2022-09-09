@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiRoutesService } from 'projects/shared-services/api-routes.service';
 import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
-import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
 
 @Injectable()

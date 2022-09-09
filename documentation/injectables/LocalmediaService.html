@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -37,9 +37,10 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >LocalmediaService</li>
+  <li >LocalMediaService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/shared-modules/hms-video/services/localmedia.service.ts</code>
+            <code>projects/shared-modules/hms-video/services/local-media.service.ts</code>
         </p>
 
 
@@ -78,35 +79,35 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#camera" >camera</a>
+                                <a href="#audioInputDeviceId" >audioInputDeviceId</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#camera$" >camera$</a>
+                                <a href="#audioInputDeviceId$" >audioInputDeviceId$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#mic" >mic</a>
+                                <a href="#isAudioEnabled" >isAudioEnabled</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#mic$" >mic$</a>
+                                <a href="#isAudioEnabled$" >isAudioEnabled$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#selectedAudioDevice" >selectedAudioDevice</a>
+                                <a href="#isVideoEnabled" >isVideoEnabled</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#selectedAudioDevice$" >selectedAudioDevice$</a>
+                                <a href="#isVideoEnabled$" >isVideoEnabled$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#selectedVideoDevice" >selectedVideoDevice</a>
+                                <a href="#videoDeviceId" >videoDeviceId</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#selectedVideoDevice$" >selectedVideoDevice$</a>
+                                <a href="#videoDeviceId$" >videoDeviceId$</a>
                             </li>
                         </ul>
                     </td>
@@ -121,25 +122,40 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getDevices" >getDevices</a>
+                                <a href="#getAudioInputDeviceId" >getAudioInputDeviceId</a>
                             </li>
                             <li>
-                                <a href="#getLocalStream" >getLocalStream</a>
+                                <a href="#getAudioInputDevices" >getAudioInputDevices</a>
                             </li>
                             <li>
-                                <a href="#getMediaPermission" >getMediaPermission</a>
+                                <a href="#getIsAudioEnabled" >getIsAudioEnabled</a>
                             </li>
                             <li>
-                                <a href="#updateAudioDevice" >updateAudioDevice</a>
+                                <a href="#getIsVideoEnabled" >getIsVideoEnabled</a>
                             </li>
                             <li>
-                                <a href="#updateCamera" >updateCamera</a>
+                                <a href="#getMediaPermissions" >getMediaPermissions</a>
                             </li>
                             <li>
-                                <a href="#updateMic" >updateMic</a>
+                                <a href="#getVideoDeviceId" >getVideoDeviceId</a>
                             </li>
                             <li>
-                                <a href="#updateVideoDevice" >updateVideoDevice</a>
+                                <a href="#getVideoDevices" >getVideoDevices</a>
+                            </li>
+                            <li>
+                                <a href="#getVideoStream" >getVideoStream</a>
+                            </li>
+                            <li>
+                                <a href="#setAudioInputDeviceId" >setAudioInputDeviceId</a>
+                            </li>
+                            <li>
+                                <a href="#setIsAudioEnabled" >setIsAudioEnabled</a>
+                            </li>
+                            <li>
+                                <a href="#setIsVideoEnabled" >setIsVideoEnabled</a>
+                            </li>
+                            <li>
+                                <a href="#setVideoDeviceId" >setVideoDeviceId</a>
                             </li>
                         </ul>
                     </td>
@@ -164,7 +180,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -181,24 +197,61 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getDevices"></a>
+                    <a name="getAudioInputDeviceId"></a>
                     <span class="name">
-                        <span ><b>getDevices</b></span>
-                        <a href="#getDevices"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getAudioInputDeviceId</b></span>
+                        <a href="#getAudioInputDeviceId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getDevices()</code>
+<code>getAudioInputDeviceId()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAudioInputDevices"></a>
+                    <span class="name">
+                        <span ><b>getAudioInputDevices</b></span>
+                        <a href="#getAudioInputDevices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAudioInputDevices()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:43</a></div>
                 </td>
             </tr>
 
@@ -218,89 +271,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getLocalStream"></a>
+                    <a name="getIsAudioEnabled"></a>
                     <span class="name">
-                        <span ><b>getLocalStream</b></span>
-                        <a href="#getLocalStream"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getIsAudioEnabled</b></span>
+                        <a href="#getIsAudioEnabled"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getLocalStream(constraints)</code>
+<code>getIsAudioEnabled()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:31</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>constraints</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getMediaPermission"></a>
-                    <span class="name">
-                        <span ><b>getMediaPermission</b></span>
-                        <a href="#getMediaPermission"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getMediaPermission()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:71</a></div>
                 </td>
             </tr>
 
@@ -309,7 +297,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                 </td>
@@ -320,16 +308,53 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateAudioDevice"></a>
+                    <a name="getIsVideoEnabled"></a>
                     <span class="name">
-                        <span ><b>updateAudioDevice</b></span>
-                        <a href="#updateAudioDevice"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getIsVideoEnabled</b></span>
+                        <a href="#getIsVideoEnabled"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateAudioDevice(device)</code>
+<code>getIsVideoEnabled()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMediaPermissions"></a>
+                    <span class="name">
+                        <span ><b>getMediaPermissions</b></span>
+                        <a href="#getMediaPermissions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMediaPermissions(name: PermissionName)</code>
                 </td>
             </tr>
 
@@ -337,7 +362,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:35</a></div>
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -352,12 +377,228 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>device</td>
+                                    <td>name</td>
+                                    <td>
+                                            <code>PermissionName</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;PermissionState&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getVideoDeviceId"></a>
+                    <span class="name">
+                        <span ><b>getVideoDeviceId</b></span>
+                        <a href="#getVideoDeviceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getVideoDeviceId()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getVideoDevices"></a>
+                    <span class="name">
+                        <span ><b>getVideoDevices</b></span>
+                        <a href="#getVideoDevices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getVideoDevices()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;MediaDeviceInfo[]&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getVideoStream"></a>
+                    <span class="name">
+                        <span ><b>getVideoStream</b></span>
+                        <a href="#getVideoStream"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getVideoStream(videoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>videoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;MediaStream&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setAudioInputDeviceId"></a>
+                    <span class="name">
+                        <span ><b>setAudioInputDeviceId</b></span>
+                        <a href="#setAudioInputDeviceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setAudioInputDeviceId(deviceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>deviceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -385,24 +626,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateCamera"></a>
+                    <a name="setIsAudioEnabled"></a>
                     <span class="name">
-                        <span ><b>updateCamera</b></span>
-                        <a href="#updateCamera"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>setIsAudioEnabled</b></span>
+                        <a href="#setIsAudioEnabled"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateCamera(value)</code>
+<code>setIsAudioEnabled(isAudioEnabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -417,12 +658,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>value</td>
+                                    <td>isAudioEnabled</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -450,24 +695,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateMic"></a>
+                    <a name="setIsVideoEnabled"></a>
                     <span class="name">
-                        <span ><b>updateMic</b></span>
-                        <a href="#updateMic"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>setIsVideoEnabled</b></span>
+                        <a href="#setIsVideoEnabled"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateMic(value)</code>
+<code>setIsVideoEnabled(isVideoEnabled: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -482,12 +727,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>value</td>
+                                    <td>isVideoEnabled</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -515,24 +764,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateVideoDevice"></a>
+                    <a name="setVideoDeviceId"></a>
                     <span class="name">
-                        <span ><b>updateVideoDevice</b></span>
-                        <a href="#updateVideoDevice"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>setVideoDeviceId</b></span>
+                        <a href="#setVideoDeviceId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateVideoDevice(device)</code>
+<code>setVideoDeviceId(deviceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -547,12 +796,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>device</td>
+                                    <td>deviceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -586,11 +839,69 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="camera"></a>
+                    <a name="audioInputDeviceId"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>camera</b></span>
-                        <a href="#camera"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>audioInputDeviceId</b></span>
+                        <a href="#audioInputDeviceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;string&gt;(&#x27;default&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="audioInputDeviceId$"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>audioInputDeviceId$</b></span>
+                        <a href="#audioInputDeviceId$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.audioInputDeviceId.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:9</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAudioEnabled"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isAudioEnabled</b></span>
+                        <a href="#isAudioEnabled"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -602,12 +913,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject(true)</code>
+                        <i>Default value : </i><code>new BehaviorSubject&lt;boolean&gt;(true)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -618,22 +929,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="camera$"></a>
+                    <a name="isAudioEnabled$"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>camera$</b></span>
-                        <a href="#camera$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isAudioEnabled$</b></span>
+                        <a href="#isAudioEnabled$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this.camera.asObservable()</code>
+                        <i>Default value : </i><code>this.isAudioEnabled.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -644,11 +955,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="mic"></a>
+                    <a name="isVideoEnabled"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>mic</b></span>
-                        <a href="#mic"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isVideoEnabled</b></span>
+                        <a href="#isVideoEnabled"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -660,12 +971,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject(true)</code>
+                        <i>Default value : </i><code>new BehaviorSubject&lt;boolean&gt;(true)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -676,22 +987,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="mic$"></a>
+                    <a name="isVideoEnabled$"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>mic$</b></span>
-                        <a href="#mic$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isVideoEnabled$</b></span>
+                        <a href="#isVideoEnabled$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this.mic.asObservable()</code>
+                        <i>Default value : </i><code>this.isVideoEnabled.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -702,28 +1013,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="selectedAudioDevice"></a>
+                    <a name="videoDeviceId"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>selectedAudioDevice</b></span>
-                        <a href="#selectedAudioDevice"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>videoDeviceId</b></span>
+                        <a href="#videoDeviceId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>BehaviorSubject&lt;any&gt;</code>
+                        <i>Type : </i>    <code>BehaviorSubject&lt;string&gt;</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject(null)</code>
+                        <i>Default value : </i><code>new BehaviorSubject&lt;string&gt;(&#x27;default&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -734,80 +1045,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="selectedAudioDevice$"></a>
+                    <a name="videoDeviceId$"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>selectedAudioDevice$</b></span>
-                        <a href="#selectedAudioDevice$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>videoDeviceId$</b></span>
+                        <a href="#videoDeviceId$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this.selectedAudioDevice.asObservable()</code>
+                        <i>Default value : </i><code>this.videoDeviceId.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:10</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="selectedVideoDevice"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>selectedVideoDevice</b></span>
-                        <a href="#selectedVideoDevice"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>BehaviorSubject&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject(null)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:12</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="selectedVideoDevice$"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>selectedVideoDevice$</b></span>
-                        <a href="#selectedVideoDevice$"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.selectedVideoDevice.asObservable()</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/shared-modules/hms-video/services/localmedia.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/shared-modules/hms-video/services/local-media.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -822,58 +1075,87 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { BehaviorSubject, from, Observable } from &#x27;rxjs&#x27;;
-import { mergeMap } from &#x27;rxjs/operators&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+  providedIn: &#x27;root&#x27;,
 })
-export class LocalmediaService {
-  private selectedAudioDevice: BehaviorSubject&lt;any&gt; &#x3D; new BehaviorSubject(null);
-  public selectedAudioDevice$ &#x3D; this.selectedAudioDevice.asObservable();
+export class LocalMediaService {
+  private audioInputDeviceId: BehaviorSubject&lt;string&gt; &#x3D; new BehaviorSubject&lt;string&gt;(&#x27;default&#x27;);
+  public audioInputDeviceId$ &#x3D; this.audioInputDeviceId.asObservable();
+  private videoDeviceId: BehaviorSubject&lt;string&gt; &#x3D; new BehaviorSubject&lt;string&gt;(&#x27;default&#x27;);
+  public videoDeviceId$ &#x3D; this.videoDeviceId.asObservable();
+  private isAudioEnabled: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(true);
+  public isAudioEnabled$ &#x3D; this.isAudioEnabled.asObservable();
+  private isVideoEnabled: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(true);
+  public isVideoEnabled$ &#x3D; this.isVideoEnabled.asObservable();
 
-  private selectedVideoDevice: BehaviorSubject&lt;any&gt; &#x3D; new BehaviorSubject(null);
-  public selectedVideoDevice$ &#x3D; this.selectedVideoDevice.asObservable();
+  constructor() {}
 
-  private camera: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject(true);
-  public camera$ &#x3D; this.camera.asObservable();
-
-  private mic: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject(true);
-  public mic$ &#x3D; this.mic.asObservable();
-
-  constructor() { }
-
-  getMediaPermission(): Observable&lt;any&gt; {
-    return from(navigator.mediaDevices.getUserMedia({audio: true, video: true}));
+  setAudioInputDeviceId(deviceId: string): void {
+    this.audioInputDeviceId.next(deviceId);
   }
 
-  getDevices(): Observable&lt;MediaDeviceInfo[]&gt; {
-    return from(navigator.mediaDevices.enumerateDevices())
+  setVideoDeviceId(deviceId: string): void {
+    this.videoDeviceId.next(deviceId);
   }
 
-  getLocalStream(constraints) {
-    return from(navigator.mediaDevices.getUserMedia(constraints));
+  setIsAudioEnabled(isAudioEnabled: boolean): void {
+    this.isAudioEnabled.next(isAudioEnabled);
   }
 
-  updateAudioDevice(device) {
-    this.selectedAudioDevice.next(device);
+  setIsVideoEnabled(isVideoEnabled: boolean): void {
+    this.isVideoEnabled.next(isVideoEnabled);
   }
 
-  updateVideoDevice(device) {
-    this.selectedVideoDevice.next(device);
+  getMediaPermissions(name: PermissionName): Observable&lt;PermissionState&gt; {
+    return from(
+      navigator.permissions.query({ name }).then((permission: PermissionStatus) &#x3D;&gt; {
+        return permission.state;
+      }),
+    );
   }
 
-  updateCamera(value) {
-    this.camera.next(value)
+  getAudioInputDevices(): Observable&lt;MediaDeviceInfo[]&gt; {
+    return from(
+      navigator.mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) &#x3D;&gt; {
+        return devices.filter((device: MediaDeviceInfo) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;audioinput&#x27; &amp;&amp; device.label !&#x3D;&#x3D; &#x27;&#x27;);
+      }),
+    );
   }
 
-  updateMic(value) {
-    this.mic.next(value);
+  getVideoDevices(): Observable&lt;MediaDeviceInfo[]&gt; {
+    return from(
+      navigator.mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) &#x3D;&gt; {
+        return devices.filter((device: MediaDeviceInfo) &#x3D;&gt; device.kind &#x3D;&#x3D;&#x3D; &#x27;videoinput&#x27; &amp;&amp; device.label !&#x3D;&#x3D; &#x27;&#x27;);
+      }),
+    );
+  }
+
+  getVideoStream(videoId: string): Observable&lt;MediaStream&gt; {
+    return from(navigator.mediaDevices.getUserMedia({ video: { deviceId: videoId } }));
+  }
+
+  getVideoDeviceId(): string {
+    return this.videoDeviceId.getValue();
+  }
+
+  getAudioInputDeviceId(): string {
+    return this.audioInputDeviceId.getValue();
+  }
+
+  getIsAudioEnabled(): boolean {
+    return this.isAudioEnabled.getValue();
+  }
+
+  getIsVideoEnabled(): boolean {
+    return this.isVideoEnabled.getValue();
   }
 }
 </code></pre>
     </div>
 
 </div>
+
 
 
 
@@ -900,10 +1182,19 @@ export class LocalmediaService {
            </div>
        </div>
 
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'LocalmediaService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'LocalMediaService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
