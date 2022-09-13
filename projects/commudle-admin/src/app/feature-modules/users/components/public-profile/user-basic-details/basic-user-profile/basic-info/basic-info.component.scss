@@ -1,25 +1,15 @@
 .row {
-  margin-bottom: 0.75rem;
+  @apply com-mb-3;
 }
 
 .uploaded-profile {
-  height: 150px;
-  max-width: 300px;
-  overflow: hidden;
-  background: #d3d3d36b;
-  margin: 0 auto;
-  position: relative;
+  @apply com-h-36 com-max-w-xs com-overflow-hidden com-relative com-my-0 com-mx-auto com-bg-gray-300;
 }
 
 .uploaded-profile-image {
-  height: 150px;
-  max-width: 300px;
-  overflow: hidden;
-  // background: #d3d3d36b;
-  margin: 0 auto;
-  text-align: center;
+  @apply com-h-36 com-max-w-xs com-overflow-hidden com-my-0 com-mx-auto com-text-center;
 
   img {
-    height: 100%;
+    @apply com-h-full;
   }
 }

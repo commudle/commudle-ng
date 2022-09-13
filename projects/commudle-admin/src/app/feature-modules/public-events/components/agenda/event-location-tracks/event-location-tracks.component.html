@@ -34,12 +34,12 @@
                 <div *ngIf="slot.user" class="session-speaker">
                   <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
                 </div>
-                <div *ngIf="slot.user_vote != null && event.editable">
+                <!-- <div *ngIf="slot.user_vote != null && event.editable">
                   <div (click)="toggleVote(slot.id, tsi, elti)" class="clickable">
                     <nb-icon *ngIf="slot.user_vote == true" icon="heart" status="info"></nb-icon>
                     <nb-icon *ngIf="!slot.user_vote" icon="heart-outline" status="basic"></nb-icon>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
 

@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -74,7 +74,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
+import { CommunityMembersListComponent } from &#x27;projects/commudle-admin/src/app/feature-modules/community-control-panel/components/community-members-list/community-members-list.component&#x27;;
 import { CommunityDetailsResolver } from &#x27;../../resolvers/community-details.resolver&#x27;;
+import { CommunityBlockedUsersComponent } from &#x27;./components/community-blocked-users/community-blocked-users.component&#x27;;
 import { CommunityControlPanelComponent } from &#x27;./components/community-control-panel/community-control-panel.component&#x27;;
 import { CommunityCreateComponent } from &#x27;./components/community-create/community-create.component&#x27;;
 import { CommunityEditDetailsComponent } from &#x27;./components/community-edit-details/community-edit-details.component&#x27;;
@@ -99,7 +101,6 @@ const routes &#x3D; [
   {
     path: &#x27;:community_id&#x27;,
     component: CommunityControlPanelComponent,
-
     children: [
       {
         path: &#x27;&#x27;,
@@ -115,7 +116,17 @@ const routes &#x3D; [
       },
       {
         path: &#x27;members&#x27;,
-        component: CommunityMembersComponent,
+        component: CommunityMembersListComponent,
+        children: [
+          {
+            path: &#x27;&#x27;,
+            component: CommunityMembersComponent,
+          },
+          {
+            path: &#x27;blocked&#x27;,
+            component: CommunityBlockedUsersComponent,
+          },
+        ],
       },
       {
         path: &#x27;team&#x27;,
@@ -148,6 +159,8 @@ export class CommunityControlPanelRoutingModule {}
 
 
 
+
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -161,6 +174,15 @@ export class CommunityControlPanelRoutingModule {}
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

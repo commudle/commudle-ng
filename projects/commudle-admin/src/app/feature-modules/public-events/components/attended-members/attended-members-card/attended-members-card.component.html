@@ -1,0 +1,50 @@
+<div class="attended-members-card">
+  <app-user-profile-card-large [truncateDesignation]="false" [user]="user"></app-user-profile-card-large>
+
+  <div class="md:com-order-2 md:com-col-span-2">
+    <ng-container *ngIf="events.length !== 0">
+      <p class="heading">
+        Connect with {{ user.name }}, you have attended
+        <span *ngIf="events.length > 1">{{ events.length }}</span>
+        events together!
+      </p>
+
+      <ul #eventsList [ngClass]="{ 'show-more': showMore }" class="events-list">
+        <li *ngFor="let event of events">
+          <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]">
+            <nb-icon icon="calendar-outline"></nb-icon>
+            {{ event.name }}
+          </a>
+        </li>
+      </ul>
+
+      <button
+        (click)="showMore = !showMore"
+        *ngIf="eventsList.scrollHeight > 43"
+        class="mt-1"
+        fullWidth
+        ghost
+        nbButton
+        size="tiny"
+        status="info"
+      >
+        <ng-container *ngIf="!showMore">
+          <nb-icon icon="arrow-ios-downward-outline"></nb-icon>
+          Show more
+        </ng-container>
+        <ng-container *ngIf="showMore">
+          <nb-icon icon="arrow-ios-upward-outline"></nb-icon>
+          Show less
+        </ng-container>
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="actions">
+    <app-user-follow [username]="user.username" appearance="outline"></app-user-follow>
+    <button (click)="openChatWithUser()" ghost nbButton shape="semi-round" size="small" status="info">
+      <nb-icon icon="paper-plane"></nb-icon>
+      Message
+    </button>
+  </div>
+</div>

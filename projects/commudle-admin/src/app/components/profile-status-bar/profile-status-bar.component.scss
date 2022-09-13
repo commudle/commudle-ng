@@ -1,35 +1,19 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .profile-status-bar-container {
-  background: #1ac7e340;
-  height: 65px;
+  @apply com-mt-2 com-bg-Spiro-Disco com-h-[68px];
+  @apply md:com-mt-0;
 
   .profile-status-bar-content {
     app-circular-progressive-bar {
-      margin: 0 5px;
-      position: relative;
-      top: 2px;
+      @apply com-my-0 com-mx-1 com-relative com-top-1;
     }
 
     p {
-      font-weight: 500;
-      font-size: medium;
+      @apply com-font-medium com-text-base com-hidden;
+      @apply sm:com-block;
     }
 
     button {
-      margin: 5px;
+      @apply com-m-5;
     }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .profile-status-bar-container {
-    margin-top: 9px;
-  }
-}
-
-@media all and (max-width: $mobile-width) {
-  p {
-    display: none;
   }
 }
