@@ -8,7 +8,7 @@ p {
 }
 
 .community-list-card-container {
-  @apply com-border-[0.5px] com-border-solid com-border-[#c4c4c4] com-rounded-lg com-h-[296px] com-p-4 com-relative com-w-[260px];
+  @apply com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-h-296px com-p-4 com-relative com-w-260px;
 
   @screen lg {
     width: inherit;
@@ -18,18 +18,18 @@ p {
     @apply com-items-center;
 
     .community-list-card-logo {
-      @apply com-h-12 com-w-12 com-border-[0.5px] com-border-solid com-border-[#c4c4c4] com-rounded-full com-object-contain com-object-center;
+      @apply com-h-12 com-w-12 com-border-[0.5px] com-border-solid com-border-Silver-Sand com-rounded-full com-object-contain com-object-center;
     }
 
     .community-list-card-details {
       @apply com-ml-2;
 
       .community-list-card-name {
-        @apply com-m-0 com-text-[#2f2e41] com-text-sm com-font-semibold com-leading-4;
+        @apply com-m-0 com-text-gunmetal com-text-sm com-font-semibold com-leading-4;
       }
 
       .community-list-card-members {
-        @apply com-text-[#777777] com-text-xs com-italic com-leading-[14px];
+        @apply com-text-Sonic-Silver com-text-xs com-italic;
       }
     }
   }
@@ -39,12 +39,12 @@ p {
   @apply com-flex com-flex-wrap com-gap-2 com-mt-4;
 
   .community-list-card-tag {
-    @apply com-bg-[#dae0ff] com-rounded-[5px] com-text-[#2f2e41] com-text-xs com-py-1 com-px-[10px] com-leading-3;
+    @apply com-bg-Azureish-White com-rounded-md com-text-gunmetal com-text-xs com-py-1 com-px-3 com-leading-3;
   }
 }
 
 .community-list-card-about {
-  @apply com-text-[#2f2e41]/[0.85] com-text-xs com-leading-[14px] com-mt-4;
+  @apply com-text-gunmetal/80 com-text-xs com-mt-4;
 }
 
 .community-list-card-suffix {
@@ -54,10 +54,10 @@ p {
     @apply com-inline-flex com-flex-row-reverse com-h-5 com-mr-9 com-w-8;
 
     .community-list-card-member-avatar {
-      @apply com-border-[1px] com-border-solid com-border-white com-rounded-[50px] com-overflow-hidden com-relative com-w-5;
+      @apply com-border com-border-solid com-border-white com-rounded-[50px] com-overflow-hidden com-relative com-w-5;
 
       &:not(:last-child) {
-        @apply -com-ml-[30px];
+        @apply -com-ml-30px;
       }
 
       img {
@@ -70,7 +70,7 @@ p {
     app-membership-toggle {
       &::ng-deep {
         button {
-          @apply com-bg-white com-border-[1px] com-border-solid com-border-[#c4c4c4] com-text-[#536eff] com-text-sm com-h-8 com-min-w-[152px] com-p-2 com-capitalize com-w-[152px];
+          @apply com-bg-white com-border com-border-solid com-border-Silver-Sand com-text-Very-Light-Blue com-text-sm com-h-8 com-min-w-[152px] com-p-2 com-capitalize com-w-152px;
         }
       }
     }

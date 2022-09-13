@@ -1,5 +1,5 @@
 p {
-  @apply com-m-0 com-text-[#2f2e41];
+  @apply com-m-0 com-text-gunmetal;
 }
 
 .communities-featured-container {
@@ -20,7 +20,7 @@ p {
       }
 
       .featured-community-card {
-        @apply com-bg-white com-border-[1px] com-border-solid com-border-[#c4c4c4] com-rounded-lg com-min-w-[260px] com-overflow-hidden com-relative;
+        @apply com-bg-white com-border com-border-solid com-border-Silver-Sand com-rounded-lg com-min-w-[260px] com-overflow-hidden com-relative;
 
         @screen lg {
           min-width: inherit;
@@ -30,10 +30,10 @@ p {
           @apply com-gap-2 com-absolute com-right-3 com-top-3;
 
           button {
-            @apply com-bg-[#dae0ff];
+            @apply com-bg-Azureish-White;
 
             nb-icon {
-              @apply com-text-[#536eff];
+              @apply com-text-Very-Light-Blue;
             }
           }
 
@@ -41,7 +41,7 @@ p {
             ::ng-deep {
               .share-button-container {
                 button {
-                  @apply com-bg-[#dae0ff];
+                  @apply com-bg-Azureish-White;
                 }
               }
             }
@@ -50,7 +50,7 @@ p {
         a {
           text-decoration: none;
           .featured-community-image-container {
-            @apply com-h-[156px] com-overflow-hidden com-w-full;
+            @apply com-h-156px com-overflow-hidden com-w-full;
 
             .featured-community-image {
               @apply com-w-full;
@@ -61,24 +61,14 @@ p {
             @apply com-p-4;
 
             .featured-community-name {
-              @apply com-m-0 com-text-sm com-font-semibold com-text-[#2f2e41];
+              @apply com-m-0 com-text-sm com-font-semibold com-text-gunmetal;
             }
 
             .featured-community-reason {
-              @apply com-mt-2 com-text-sm com-text-[#2f2e41];
+              @apply com-mt-2 com-text-sm com-text-gunmetal;
             }
           }
         }
-      }
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .communities-featured-container {
-    nb-card-body {
-      .communities-featured-list {
-        @apply com-overflow-x-scroll;
       }
     }
   }

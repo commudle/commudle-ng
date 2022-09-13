@@ -1,5 +1,5 @@
 p {
-  @apply com-m-0 com-text-c-gunmetal;
+  @apply com-m-0 com-text-gunmetal;
 }
 
 a {
@@ -22,24 +22,24 @@ a {
       }
 
       .communities-about-navigation {
-        @apply com-gap-4 com-mt-c72;
+        @apply com-gap-4 com-mt-72px;
 
         button {
-          @apply com-border-1 com-border-solid com-border-c-gunmetal com-text-sm com-p-2 com-capitalize;
+          @apply com-border com-border-solid com-border-gunmetal com-text-sm com-p-2 com-capitalize;
         }
 
         .community-create-btn {
-          @apply com-text-white com-bg-c-gunmetal;
+          @apply com-text-white com-bg-gunmetal;
         }
 
         .communities-explore {
-          @apply com-bg-white com-text-c-gunmetal;
+          @apply com-bg-white com-text-gunmetal;
         }
       }
     }
 
     .communities-about-image {
-      @apply com-mt-0 com-mb-6 com-h-[212px] com-w-[296px];
+      @apply com-mt-0 com-mb-6 com-h-212px com-w-296px;
       @apply md:-com-mt-4 md:com-mb-0;
 
       img {
