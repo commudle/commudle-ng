@@ -10,14 +10,7 @@
           size="small"
           status="primary"
         >
-          <nb-option
-            *ngIf="
-              [
-                1, 74, 113, 116, 118, 119, 121, 124, 125, 126, 127, 128, 130, 131, 132, 133, 142, 144, 145, 146
-              ].includes(community.id)
-            "
-            [value]="EEmbeddedVideoStreamSources.COMMUDLE"
-          >
+          <nb-option [value]="EEmbeddedVideoStreamSources.COMMUDLE">
             <div>
               Commudle Stage
               <br />

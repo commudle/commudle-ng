@@ -36,6 +36,8 @@ import { CommunityMembersListComponent } from './components/community-members-li
 import { CommunityMembersComponent } from './components/community-members/community-members.component';
 import { CommunityStatsComponent } from './components/community-stats/community-stats.component';
 import { CommunityTeamComponent } from './components/community-team/community-team.component';
+import { CommunityAdminNotificationsComponent } from './components/community-admin-notifications/community-admin-notifications.component';
+import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     CommunityMembersComponent,
     CommunityBlockedUsersComponent,
     CommunityMembersListComponent,
+    CommunityAdminNotificationsComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +68,6 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     FontAwesomeModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
-
     // Nebular
     NbCardModule,
     NbInputModule,
@@ -80,11 +82,7 @@ import { CommunityTeamComponent } from './components/community-team/community-te
     NbButtonGroupModule,
     NbContextMenuModule,
     NbCheckboxModule,
-  ],
-  entryComponents: [
-    CommunityFormsListStatsComponent,
-    CommunityFormsListActionsComponent,
-    // EmailerComponent
+    NotificationsModule,
   ],
 })
 export class CommunityGroupsModule {}

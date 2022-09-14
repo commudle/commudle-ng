@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -74,12 +74,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
-import { AuthGuard } from &#x27;projects/shared-services/lib-authwatch.guard&#x27;;
 import { PublicProfileComponent } from &#x27;./components/public-profile/public-profile.component&#x27;;
-import { UserContributionsComponent } from &#x27;./components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component&#x27;;
-import { UserFeedComponent } from &#x27;./components/public-profile/user-extra-details/user-content/user-feed/user-feed.component&#x27;;
-import { UserSocialComponent } from &#x27;./components/public-profile/user-extra-details/user-content/user-social/user-social.component&#x27;;
+import { BasicUserProfileComponent } from &#x27;./components/public-profile/user-basic-details/basic-user-profile/basic-user-profile.component&#x27;;
+import { EditUserProfileComponent } from &#x27;./components/public-profile/user-basic-details/edit-user-profile/edit-user-profile.component&#x27;;
+import { EmailPreferencesComponent } from &#x27;./components/public-profile/user-basic-details/email-preferences/email-preferences.component&#x27;;
 import { UserExtraDetailsComponent } from &#x27;./components/public-profile/user-extra-details/user-extra-details.component&#x27;;
+import { UserResumePreviewComponent } from &#x27;./components/public-profile/user-extra-details/user-resume/user-resume-preview/user-resume-preview.component&#x27;;
 import { UserNetworkListComponent } from &#x27;./components/public-profile/user-network/user-network-list/user-network-list.component&#x27;;
 import { UserNetworkComponent } from &#x27;./components/public-profile/user-network/user-network.component&#x27;;
 
@@ -89,26 +89,28 @@ const routes &#x3D; [
     component: PublicProfileComponent,
     children: [
       {
-        path: &#x27;&#x27;,
-        component: UserExtraDetailsComponent,
+        path: &#x27;settings&#x27;,
+        outlet: &#x27;p&#x27;,
+        component: EditUserProfileComponent,
         children: [
           {
-            path: &#x27;&#x27;,
-            component: UserContributionsComponent
+            path: &#x27;basic-details&#x27;,
+            component: BasicUserProfileComponent,
           },
           {
-            path: &#x27;contributions&#x27;,
-            component: UserContributionsComponent
+            path: &#x27;email-preferences&#x27;,
+            component: EmailPreferencesComponent,
           },
-          {
-            path: &#x27;social&#x27;,
-            component: UserSocialComponent
-          },
-          {
-            path: &#x27;feed&#x27;,
-            component: UserFeedComponent
-          }
-        ]
+        ],
+      },
+      {
+        path: &#x27;resume/:uuid&#x27;,
+        outlet: &#x27;p&#x27;,
+        component: UserResumePreviewComponent,
+      },
+      {
+        path: &#x27;&#x27;,
+        component: UserExtraDetailsComponent,
       },
       {
         path: &#x27;&#x27;,
@@ -124,19 +126,22 @@ const routes &#x3D; [
           },
         ],
       },
+      { path: &#x27;**&#x27;, redirectTo: &#x27;&#x27; },
     ],
   },
+  { path: &#x27;&#x27;, redirectTo: &#x27;/&#x27;, pathMatch: &#x27;prefix&#x27; },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UsersRoutingModule {
-}
+export class UsersRoutingModule {}
 </code></pre>
     </div>
 </div>
+
+
 
 
 
@@ -165,6 +170,15 @@ export class UsersRoutingModule {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -82,6 +82,9 @@ import { AdminFeaturedCommunitiesComponent } from &#x27;./components/admin-featu
 import { AdminPageAdsFormComponent } from &#x27;./components/admin-page-ads/admin-page-ads-form/admin-page-ads-form.component&#x27;;
 import { AdminPageAdsListComponent } from &#x27;./components/admin-page-ads/admin-page-ads-list/admin-page-ads-list.component&#x27;;
 import { AdminPageAdsComponent } from &#x27;./components/admin-page-ads/admin-page-ads.component&#x27;;
+import { AdminStaticAssetsListComponent } from &#x27;./components/admin-static-assets/admin-static-assets-list/admin-static-assets-list.component&#x27;;
+import { AdminStaticAssetsComponent } from &#x27;./components/admin-static-assets/admin-static-assets.component&#x27;;
+import { AdminStaticAssetFormComponent } from &#x27;./components/admin-static-assets/admin-static-asset-form/admin-static-asset-form.component&#x27;;
 import { AdminSurveysComponent } from &#x27;./components/admin-surveys/admin-surveys.component&#x27;;
 import { CommunityBuildsComponent } from &#x27;./components/community-builds/community-builds.component&#x27;;
 import { CommunityControlsComponent } from &#x27;./components/community-controls/community-controls.component&#x27;;
@@ -130,6 +133,20 @@ const routes &#x3D; [
         ],
       },
       {
+        path: &#x27;static-assets&#x27;,
+        component: AdminStaticAssetsComponent,
+        children: [
+          {
+            path: &#x27;&#x27;,
+            component: AdminStaticAssetsListComponent,
+          },
+          {
+            path: &#x27;new&#x27;,
+            component: AdminStaticAssetFormComponent,
+          },
+        ],
+      },
+      {
         path: &#x27;admin-surveys&#x27;,
         component: AdminSurveysComponent,
       },
@@ -172,6 +189,8 @@ export class SysAdminRoutingModule {}
 
 
 
+
+
                    </div><div class="search-results">
     <div class="has-results">
         <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
@@ -185,6 +204,15 @@ export class SysAdminRoutingModule {}
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

@@ -2,7 +2,7 @@
   <section class="about-page-section">
     <div class="com-w-full com-mx-auto com-text-left md:com-w-11/12 xl:com-w-9/12 md:com-text-center">
       <h1 class="page-heading">
-        All your
+        We're building a diverse
         <span
           class="
             com-block
@@ -15,9 +15,8 @@
             lg:com-inline
           "
         >
-          community needs
+          Developer Ecosystem
         </span>
-        in one single place.
       </h1>
       <p class="page-subheading">{{ ICmsAbout?.description }}</p>
     </div>
@@ -135,15 +134,63 @@
                 <p class="name">{{ member.name }}</p>
                 <p class="designation">{{ member.designation }}</p>
               </div>
-              <ul class="com-flex com-justify-center com-mx-5">
-                <li>
+              <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
+                <li *ngIf="member.social.twitter">
                   <a [href]="member.social.twitter" rel="noopener" target="_blank">
                     <nb-icon class="social-link" icon="twitter"></nb-icon>
                   </a>
                 </li>
-                <li>
-                  <a [href]="member.social.linkedin" rel="noopener" target="_blank">
-                    <nb-icon class="social-link" icon="linkedin"></nb-icon>
+                <li *ngIf="member.social.commudle">
+                  <a [href]="member.social.commudle" rel="noopener" target="_blank">
+                    <img
+                      alt="Commudle"
+                      title="Commudle"
+                      class="social-link com-h-5"
+                      src="/assets/images/commudle-logo128.png"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-page-section com-text-center advisor-section">
+    <div class="com-my-12">
+      <div class="com-my-5 sm:com-mx-auto sm:com-max-w-xl sm:com-my-4 lg:com-max-w-5xl">
+        <h2 class="title">Our Advisors</h2>
+      </div>
+      <ul class="grid">
+        <li *ngFor="let member of ICmsAbout?.advisor">
+          <div class="com-my-6">
+            <img
+              [alt]="member.name"
+              [title]="member.name"
+              class="com-mx-auto com-h-32 com-w-32 com-rounded-full xl:com-w-48 xl:com-h-48"
+              src="{{ getImageUrl(member.image) }}"
+            />
+            <div class="com-my-2">
+              <div class="com-my-1">
+                <p class="name">{{ member.name }}</p>
+                <p class="designation">{{ member.designation }}</p>
+              </div>
+              <ul class="com-flex com-justify-center com-mx-5" *ngIf="member.social">
+                <li *ngIf="member.social.twitter">
+                  <a [href]="member.social.twitter" rel="noopener" target="_blank">
+                    <nb-icon class="social-link" icon="twitter"></nb-icon>
+                  </a>
+                </li>
+                <li *ngIf="member.social.commudle">
+                  <a [href]="member.social.commudle" rel="noopener" target="_blank">
+                    <img
+                      alt="Commudle"
+                      title="Commudle"
+                      class="social-link com-h-5"
+                      src="/assets/images/commudle-logo128.png"
+                    />
                   </a>
                 </li>
               </ul>
@@ -156,10 +203,15 @@
 
   <section class="about-page-section features-list-section">
     <div class="grid">
-      <div>
+      <div *ngIf="ICmsAbout">
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
-        <a [href]="ICmsAbout?.featuresList?.content?.button?.url" nbButton shape="semi-round">
+        <a
+          *ngIf="ICmsAbout.featuresList.content.button !== null"
+          [href]="ICmsAbout?.featuresList?.content?.button?.url"
+          nbButton
+          shape="semi-round"
+        >
           {{ ICmsAbout?.featuresList?.content?.button?.text }}
         </a>
       </div>

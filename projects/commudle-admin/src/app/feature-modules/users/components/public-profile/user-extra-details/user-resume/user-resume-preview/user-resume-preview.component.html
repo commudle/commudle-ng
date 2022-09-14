@@ -1,0 +1,28 @@
+<ng-template #previewResume let-ref="dialogRef">
+  <nb-card style="width: calc(100vw - 16px); height: calc(100vh - 32px)">
+    <nb-card-header class="com-flex com-justify-between com-items-center com-gap-2">
+      Viewing Resume - {{ userResume?.name }}
+      <button (click)="ref.close()" ghost nbButton shape="round" size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <ng-container *ngIf="userResume; else loading">
+        <label class="com-block com-text-sm com-mb-6">Last updated: {{ userResume.updated_at | date }}</label>
+        <object
+          [data]="userResume.resume.url | safe: 'resourceUrl'"
+          style="height: calc(100vh - 180px)"
+          type="application/pdf"
+          width="100%"
+        ></object>
+      </ng-container>
+      <ng-template #loading>
+        <div class="loading-spinner com-text-center">
+          <div class="spinner">
+            <div *ngFor="let _ of [].constructor(5)"></div>
+          </div>
+        </div>
+      </ng-template>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

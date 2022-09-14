@@ -1,0 +1,65 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      <nb-card *ngIf="blog">
+        <nb-card-header>
+          <button routerLink="/blogs" nbButton><nb-icon icon="arrow-back"></nb-icon>back</button>
+          <div class="com-flex com-flex-row com-justify-between">
+            <h1 class="blog-title">{{ blog.title }}</h1>
+            <app-share-button
+              [content]="environment.app_url + '/blogs/' + blog.slug.current"
+              [title]="blog.title"
+              [text]="blog.title"
+              [url]="environment.app_url + '/blogs/' + blog.slug.current"
+              [showText]="true"
+              [round]="false"
+            ></app-share-button>
+          </div>
+          <p>{{ blog.publishedAt | date }}</p>
+        </nb-card-header>
+        <nb-card-body>
+          <div>
+            <div class="profile" [routerLink]="['/users', blog.username]">
+              <div class="com-flex com-items-center" *ngIf="user">
+                <img
+                  [activateMiniProfileDirective]="activateMiniProfileDirective"
+                  [alt]="user.name"
+                  [src]="user.avatar"
+                  [title]="user.name"
+                  [username]="user.username"
+                  appMiniUserProfile
+                  class="com-h-16 com-w-16 com-rounded-full com-border-2"
+                />
+                <div class="com-pl-5">
+                  <div class="com-text-xl com-font-bold">{{ user.name }}</div>
+                  <div>@{{ user.username }}</div>
+                  <div>{{ user.designation }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="com-w-full com-aspect-[16/9]">
+              <app-loading-spinner *ngIf="ImageLoading"></app-loading-spinner>
+              <img
+                [alt]="blog.title"
+                [src]="imageUrl(blog.headerImage).url()"
+                class="com-w-full com-object-cover com-object-center"
+              />
+            </div>
+            <article>
+              <div [innerHTML]="richText" class="!com-prose !com-prose-sm !com-max-w-full content"></div>
+            </article>
+          </div>
+          <app-share-button
+            [content]="environment.app_url + '/blogs/' + blog.slug.current"
+            [title]="blog.title"
+            [text]="blog.title"
+            [url]="environment.app_url + '/blogs/' + blog.slug.current"
+            [showText]="true"
+            [round]="false"
+          ></app-share-button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+p,
+h4 {
+  margin: 0;
+}
+
+.user-past-event-card {
+  @apply com-h-full com-m-0 com-overflow-hidden com-cursor-pointer;
+
+  nb-card-body {
+    @apply com-p-0 com-flex;
+
+    .date {
+      @apply com-p-2 com-bg-blue-500 com-flex com-flex-col com-justify-center com-items-center com-w-14 com-text-xs com-text-blue-100 com-flex-shrink-0;
+
+      .date-day {
+        @apply com-text-base com-font-semibold com-text-white;
+      }
+    }
+
+    .content {
+      @apply com-my-auto com-p-2;
+
+      .title {
+        @apply com-text-sm com-font-semibold com-line-clamp-1;
+      }
+
+      .description {
+        @apply com-mt-1 com-text-xs com-text-gray-500 com-line-clamp-2;
+      }
+    }
+  }
+}

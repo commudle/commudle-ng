@@ -134,7 +134,7 @@
 
             <div class="field">
               <label>
-                Link*
+                Link to Open Source Code
                 <!-- <span
                   *ngIf="communityBuildForm.get('build_type').value === EBuildType.slides"
                   [nbPopover]="googleSlidesEmbed"
@@ -149,23 +149,57 @@
                   nbInput
                   size="large"
                   type="url"
-                  placeholder="URL of open sourced code or live deployed project"
+                  placeholder="Link to Open Source Code"
+                />
+              </label>
+            </div>
+
+            <div class="field">
+              <label>
+                Link to live project
+                <input
+                  formControlName="live_app_link"
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="url"
+                  placeholder="Link to live project"
                 />
               </label>
               <span
                 *ngIf="
                   communityBuildForm.get('link').touched &&
                   communityBuildForm.get('link').invalid &&
-                  communityBuildForm.get('link').errors.required
+                  communityBuildForm.get('link').errors.required &&
+                  communityBuildForm.get('live-project').touched &&
+                  communityBuildForm.get('live-project').invalid &&
+                  communityBuildForm.get('live-project').errors.required
                 "
                 class="validation-error-text"
               >
-                Required Field
+                live project or link to open source one is required
               </span>
             </div>
 
-            <div *ngIf="embeddedLink" [innerHTML]="embeddedLink" class="embedded-slides"></div>
+            <div class="field">
+              <label>
+                Video Demo (Iframe 320px X 200px)
+                <input
+                  formControlName="video_iframe"
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="url"
+                  placeholder=" Video Demo (Iframe)"
+                />
+              </label>
+            </div>
 
+            <div class="com-w-80 com-mt-7 com-overflow-hidden com-h-max">
+              <div *ngIf="embeddedLink" class="com-aspect-[16/10] com-overflow-hidden">
+                <div [innerHTML]="embeddedLink"></div>
+              </div>
+            </div>
             <div class="field">
               <label> How is it useful for others?* </label>
               <editor

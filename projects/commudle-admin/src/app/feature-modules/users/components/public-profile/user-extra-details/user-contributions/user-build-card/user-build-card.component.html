@@ -1,0 +1,19 @@
+<nb-card [routerLink]="['/builds', build.slug]" class="user-build">
+  <nb-card-body>
+    <h4 class="user-build-name">{{ build.name }}</h4>
+    <p class="user-build-description">{{ build.description }}</p>
+    <nb-tag-list *ngIf="build.tags.length > 0" class="user-build-tags com-items-start">
+      <nb-tag *ngFor="let tag of build.tags | slice: 0:4" [text]="tag" size="tiny"></nb-tag>
+    </nb-tag-list>
+    <div class="user-build-interactions">
+      <span>
+        <nb-icon icon="message-circle"></nb-icon>
+        {{ build.chat_messages_count }}
+      </span>
+      <span>
+        <nb-icon icon="heart"></nb-icon>
+        {{ build.votes_count }}
+      </span>
+    </div>
+  </nb-card-body>
+</nb-card>

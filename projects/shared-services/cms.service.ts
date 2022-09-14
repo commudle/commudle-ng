@@ -23,7 +23,6 @@ export class CmsService {
     useCdn: true, // `false` if you want to ensure fresh data
   });
   imageUrlBuilder: ImageUrlBuilder = builder(this.client);
-
   private cmsUrl = `https://${this.projectId}.apicdn.sanity.io/v${this.apiVersion}/data/query/${this.dataset}`;
 
   constructor(private httpClient: HttpClient) {}
@@ -34,7 +33,7 @@ export class CmsService {
   }
 
   getDataByType(type: string) {
-    const params = new HttpParams().set('query', `*[_type == "${type}"]`);
+    const params = new HttpParams().set('query', `*[_type == "${type}"] | order(publishedAt desc)`);
     return this.httpClient.get(this.cmsUrl, { params }).pipe(map((data: any) => data.result));
   }
 

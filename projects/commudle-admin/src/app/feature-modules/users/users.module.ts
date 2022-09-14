@@ -21,6 +21,7 @@ import {
   NbTooltipModule,
   NbUserModule,
 } from '@nebular/theme';
+import { UserProfileMenuService } from 'projects/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { SharedComponentsModule } from 'projects/shared-components/shared-components.module';
 import { SharedDirectivesModule } from 'projects/shared-directives/shared-directives.module';
 import { MiniUserProfileModule } from 'projects/shared-modules/mini-user-profile/mini-user-profile.module';
@@ -35,20 +36,24 @@ import { EmailPreferencesComponent } from './components/public-profile/user-basi
 import { UserBasicDetailsComponent } from './components/public-profile/user-basic-details/user-basic-details.component';
 import { UserBasicSocialComponent } from './components/public-profile/user-basic-social/user-basic-social.component';
 import { UserBadgesComponent } from './components/public-profile/user-extra-details/user-badges/user-badges.component';
-import { UserContentComponent } from './components/public-profile/user-extra-details/user-content/user-content.component';
-import { UserBuildCardComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-build-card/user-build-card.component';
-import { UserCommunityCardComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-community-card/user-community-card.component';
-import { UserContributionsComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-contributions.component';
-import { UserLabCardComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-lab-card/user-lab-card.component';
-import { UserPastEventCardComponent } from './components/public-profile/user-extra-details/user-content/user-contributions/user-past-event-card/user-past-event-card.component';
-import { UserFeedInputComponent } from './components/public-profile/user-extra-details/user-content/user-feed/user-feed-input/user-feed-input.component';
-import { UserFeedPostComponent } from './components/public-profile/user-extra-details/user-content/user-feed/user-feed-posts/user-feed-post/user-feed-post.component';
-import { UserFeedPostsComponent } from './components/public-profile/user-extra-details/user-content/user-feed/user-feed-posts/user-feed-posts.component';
-import { UserFeedComponent } from './components/public-profile/user-extra-details/user-content/user-feed/user-feed.component';
-import { UserSocialCardComponent } from './components/public-profile/user-extra-details/user-content/user-social/user-social-card/user-social-card.component';
-import { UserSocialComponent } from './components/public-profile/user-extra-details/user-content/user-social/user-social.component';
+import { UserBuildCardComponent } from './components/public-profile/user-extra-details/user-contributions/user-build-card/user-build-card.component';
+import { UserCommunityCardComponent } from './components/public-profile/user-extra-details/user-contributions/user-community-card/user-community-card.component';
+import { UserContributionsComponent } from './components/public-profile/user-extra-details/user-contributions/user-contributions.component';
+import { UserLabCardComponent } from './components/public-profile/user-extra-details/user-contributions/user-lab-card/user-lab-card.component';
+import { UserPastEventCardComponent } from './components/public-profile/user-extra-details/user-contributions/user-past-event-card/user-past-event-card.component';
 import { UserCoverPhotoComponent } from './components/public-profile/user-extra-details/user-cover-photo/user-cover-photo.component';
 import { UserExtraDetailsComponent } from './components/public-profile/user-extra-details/user-extra-details.component';
+import { UserFeedInputComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-input/user-feed-input.component';
+import { UserFeedPostComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-posts/user-feed-post/user-feed-post.component';
+import { UserFeedPostsComponent } from './components/public-profile/user-extra-details/user-feed/user-feed-posts/user-feed-posts.component';
+import { UserFeedComponent } from './components/public-profile/user-extra-details/user-feed/user-feed.component';
+import { UserResumeCardComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-card/user-resume-card.component';
+import { UserResumePreviewComponent } from './components/public-profile/user-extra-details/user-resume/user-resume-preview/user-resume-preview.component';
+import { UserResumeComponent } from './components/public-profile/user-extra-details/user-resume/user-resume.component';
+import { UserSocialCardComponent } from './components/public-profile/user-extra-details/user-social/user-social-card/user-social-card.component';
+import { UserSocialComponent } from './components/public-profile/user-extra-details/user-social/user-social.component';
+import { UserWorkHistoryCardComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history-card/user-work-history-card.component';
+import { UserWorkHistoryComponent } from './components/public-profile/user-extra-details/user-work-history/user-work-history.component';
 import { UserNetworkListComponent } from './components/public-profile/user-network/user-network-list/user-network-list.component';
 import { UserNetworkComponent } from './components/public-profile/user-network/user-network.component';
 import { CapitalizeAndRemoveUnderscorePipe } from './pipes/capitalize-and-remove-underscore.pipe';
@@ -57,7 +62,6 @@ import { UsersRoutingModule } from './users-routing.module';
 @NgModule({
   declarations: [
     PublicProfileComponent,
-    UserContentComponent,
     UserCoverPhotoComponent,
     UserBasicDetailsComponent,
     UserExtraDetailsComponent,
@@ -83,6 +87,11 @@ import { UsersRoutingModule } from './users-routing.module';
     UsernameComponent,
     BasicInfoComponent,
     SocialLinksComponent,
+    UserWorkHistoryComponent,
+    UserWorkHistoryCardComponent,
+    UserResumeComponent,
+    UserResumeCardComponent,
+    UserResumePreviewComponent,
   ],
   imports: [
     CommonModule,
@@ -94,6 +103,7 @@ import { UsersRoutingModule } from './users-routing.module';
     DragDropModule,
     SharedDirectivesModule,
     MiniUserProfileModule,
+    SharedComponentsModule,
 
     // Nebular
     NbCardModule,
@@ -112,8 +122,8 @@ import { UsersRoutingModule } from './users-routing.module';
     NbAlertModule,
     NbRouteTabsetModule,
     NbToggleModule,
-    SharedComponentsModule,
   ],
   exports: [BasicUserProfileComponent, UsernameComponent, BasicInfoComponent, SocialLinksComponent],
+  providers: [UserProfileMenuService],
 })
 export class UsersModule {}

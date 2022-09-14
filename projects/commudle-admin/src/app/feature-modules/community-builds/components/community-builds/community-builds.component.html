@@ -1,16 +1,18 @@
-<div class="community-builds-container base-layout com-mb-8">
+<div class="community-builds-container base-layout">
   <div class="container">
     <div *appBreakpoints="'>lg'" class="two-column-layout thin">
       <div class="main-column">
         <nb-card class="community-builds-header">
           <nb-card-body>
-            <h1 class="fs-h1 community-builds-title">
+            <h1 class="community-builds-title">
               <nb-icon icon="bulb-outline" status="warning"></nb-icon>
               Builds
             </h1>
-            Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software developers.
-            Share a project to get recognition & inspire others.
-            <h4 class="fs-h4 community-builds-subtitle">
+            <h4 class="community-builds-subtitle">
+              Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software
+              developers. Share a project to get recognition & inspire others.
+            </h4>
+            <h4 class="community-builds-subtitle">
               Share those side
               <strong>Projects</strong>
               which you coded and inspire thousands of software developers. The best ones get featured.
@@ -40,7 +42,7 @@
                 [communityBuild]="communityBuild"
               ></app-community-build-card>
             </div>
-            <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+            <div *ngIf="isLoading" class="loading-spinner">
               <div class="spinner">
                 <div *ngFor="let _ of [].constructor(5)"></div>
               </div>

@@ -18,7 +18,7 @@
     </a>
   </nb-action>
   <nb-action (click)="this.notificationCount = 0" *ngIf="currentUser">
-    <a *appBreakpoints="'<=md'" routerLink="notifications" routerLinkActive="active">
+    <a *appBreakpoints="'<=md'" [routerLink]="['/notifications']" routerLinkActive="active">
       <nb-badge *ngIf="notificationCount > 0" [text]="notificationCount.toString()" status="danger"></nb-badge>
       <fa-icon [icon]="faBell"></fa-icon>
       <span>Notifications</span>

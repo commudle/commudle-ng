@@ -1,0 +1,23 @@
+p {
+  @apply com-m-0;
+}
+
+.user-resume-card {
+  @apply com-m-0;
+
+  nb-card-body {
+    .name {
+      @apply com-text-base com-line-clamp-1 com-font-semibold com-mb-2;
+    }
+
+    .date {
+      @apply com-text-sm com-text-gray-500 com-mb-6;
+    }
+
+    .actions {
+      nb-action {
+        @apply com-px-3;
+      }
+    }
+  }
+}

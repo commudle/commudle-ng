@@ -39,10 +39,13 @@ export class LocalPreviewComponent implements OnInit, OnDestroy {
   }
 
   getMediaPermissions(): void {
+    const microphone = 'microphone' as PermissionName;
+    const camera = 'camera' as PermissionName;
+
     this.subscriptions.push(
       combineLatest(
-        this.localMediaService.getMediaPermissions('camera'),
-        this.localMediaService.getMediaPermissions('microphone'),
+        this.localMediaService.getMediaPermissions(camera),
+        this.localMediaService.getMediaPermissions(microphone),
       ).subscribe(([cameraPermissions, microphonePermissions]) => {
         if (cameraPermissions === 'granted' && microphonePermissions === 'granted') {
           this.getMediaDevices();
