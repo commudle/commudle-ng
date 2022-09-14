@@ -7,7 +7,7 @@ nb-card {
 }
 
 .events {
-  @apply com-bg-white com-rounded-[10px] com-gap-8 com-p-8;
+  @apply com-bg-white com-rounded-xl com-gap-8 com-p-8;
 
   a {
     text-decoration: none;
@@ -15,35 +15,38 @@ nb-card {
   }
 
   nb-card {
-    @apply com-border-[1px] com-border-solid com-border-[#c4c4c4] com-m-0 com-overflow-hidden;
+    @apply com-border com-border-solid com-border-Silver-Sand com-m-0 com-overflow-hidden;
   }
 
   .event-clickable {
     @apply com-w-full;
 
     .event {
-      @apply com-w-full;
-
-      &:hover {
-        box-shadow: 0 2px 5px 1px #d4d4d4;
-      }
+      @apply com-w-318px hover:com-shadow-Card;
+      @apply md:com-w-full;
 
       nb-card-body {
+        @apply com-flex-col;
+        @apply md:com-flex-row;
+
         .header-image {
-          @apply com-w-[220px] com-overflow-hidden com-min-w-[220px] com-h-[128px] com-mr-6;
+          @apply com-m-0 com-w-full com-overflow-hidden com-min-w-[220px] com-h-32;
+          @apply md:com-mr-6 md:com-w-220px;
 
           img {
             @apply com-w-full com-h-full com-object-cover com-object-left-top;
           }
 
           nb-icon {
-            @apply com-text-[32px];
+            @apply com-text-3xl;
           }
         }
 
         .details {
+          @apply com-p-10px;
+          @apply md:com-p-0;
           h5 {
-            @apply com-items-start com-text-[#2f2e41] com-text-[18px] com-font-semibold com-leading-[21px] com-mt-6 com-mx-0 com-mb-2;
+            @apply com-items-start com-text-gunmetal com-text-lg com-font-semibold com-leading-21px com-mt-6 com-mx-0 com-mb-2;
 
             nb-icon {
               @apply com-mr-2 com-min-w-[16px];
@@ -52,7 +55,7 @@ nb-card {
 
           .timings {
             p {
-              @apply com-m-0 com-text-[14px] com-leading-4 com-text-[#2f2e41];
+              @apply com-m-0 com-text-sm com-leading-4 com-text-gunmetal;
 
               nb-icon {
                 &.time {
@@ -64,10 +67,10 @@ nb-card {
 
           .past-timings {
             p {
-              @apply com-m-0 com-text-[14px] com-leading-4 com-text-[#2f2e41];
+              @apply com-m-0 com-text-sm com-leading-4 com-text-gunmetal;
 
               nb-icon {
-                @apply com-text-[14px] com-leading-4;
+                @apply com-text-sm com-leading-4;
 
                 &.time {
                   @apply com-mr-2;
@@ -78,7 +81,7 @@ nb-card {
 
           .event-name {
             .collaboration {
-              @apply com-text-[14px];
+              @apply com-text-sm;
             }
           }
         }
@@ -99,48 +102,26 @@ nb-card {
           }
 
           nb-icon {
-            @apply com-text-[3rem];
+            @apply com-text-5xl;
           }
         }
 
         .details {
           h5 {
-            line-height: 2rem !important;
-            @apply com-text-center com-items-center com-flex-col com-text-[2rem] com-font-normal com-mt-0 com-mx-0 com-mb-2;
+            @apply com-leading-8 #{!important};
+            @apply com-text-center com-items-center com-flex-col com-text-3xl com-font-normal com-mt-0 com-mx-0 com-mb-2;
           }
 
           .timings {
             @apply com-text-center;
 
             p {
-              @apply com-text-lg com-text-[#808080];
+              @apply com-text-gray-500 com-text-lg;
 
               nb-icon {
                 @apply com-text-lg;
               }
             }
-          }
-        }
-      }
-    }
-  }
-
-  @media all and (max-width: 768px) {
-    @apply com-pt-5 com-px-5 com-mb-5;
-
-    .event-clickable {
-      .event {
-        @apply com-w-[318px];
-
-        nb-card-body {
-          @apply com-flex-col;
-
-          .details {
-            @apply com-p-[10px];
-          }
-
-          .header-image {
-            @apply com-m-0 com-w-full;
           }
         }
       }

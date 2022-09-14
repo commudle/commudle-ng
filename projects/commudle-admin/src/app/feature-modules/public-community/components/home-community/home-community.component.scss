@@ -1,34 +1,41 @@
 .home-component {
   .page-header {
-    @apply com-flex-row com-content-start com-mx-0 com-mt-8 com-mb-16;
+    @apply com-flex-col com-content-start com-mx-0 com-mt-8 com-mb-16;
+    @apply md:com-flex-row;
 
     .logo {
-      @apply com-mr-20 com-h-40 com-w-40 lg:com-h-52 lg:com-w-52 com-object-contain;
+      @apply com-my-0 com-mx-auto com-h-40 com-w-40  com-object-contain;
+      @apply md:com-mr-20;
+      @apply lg:com-h-52 lg:com-w-52;
     }
 
     .details {
       @apply com-w-full;
 
       h1 {
-        @apply com-text-4xl com-font-semibold com-text-[#2f2e41] com-mx-0 com-mt-7 com-mb-2;
+        @apply com-text-4xl com-font-semibold com-text-gunmetal com-mx-auto com-mt-7 com-mb-2;
+        @apply md:com-mx-0;
       }
 
       .membership {
+        @apply com-items-center md:com-items-stretch;
+
         .member-count {
-          @apply com-mx-0 com-mt-0 com-mb-[78px];
+          @apply com-mx-0 com-mt-0 com-mb-78px;
 
           a {
-            text-decoration: none;
-            @apply com-text-[#2f2e41];
+            @apply com-text-gunmetal com-no-underline;
           }
         }
 
         .social-links-container {
+          @apply com-w-fit  com-gap-6 com-flex-col;
+          @apply md:com-flex-row md:com-w-full;
+
           .membership-toggle {
             ::ng-deep {
               button {
-                text-transform: none;
-                @apply com-p-2 com-font-normal com-text-[14px] com-text-white com-bg-[#536eff];
+                @apply com-p-2 com-font-normal com-text-sm com-text-white com-bg-Very-Light-Blue com-normal-case;
               }
 
               nb-select {
@@ -45,35 +52,11 @@
             @apply com-self-center com-gap-6;
 
             nb-icon {
-              @apply com-text-[#536eff];
+              @apply com-text-Very-Light-Blue;
             }
 
             a {
-              text-decoration: none;
-            }
-          }
-        }
-      }
-    }
-
-    @media screen and (max-width: 768px) {
-      @apply com-self-start;
-
-      .details {
-        .membership {
-          @apply com-flex-col;
-
-          .social-links-container {
-            @apply com-w-fit com-content-between com-gap-6 com-flex-col;
-
-            .community-social-links {
-              @apply com-content-between;
-
-              a {
-                nb-icon {
-                  @apply com-text-[24px];
-                }
-              }
+              @apply com-no-underline;
             }
           }
         }
@@ -83,34 +66,6 @@
 
   .router-outlet {
     @apply com-w-full;
-  }
-
-  @media all and (max-width: 576px) {
-    @apply com-mx-0 com-my-auto;
-
-    .page-header {
-      @apply com-items-center com-flex-col;
-
-      .logo {
-        @apply com-my-0 com-mx-auto;
-      }
-
-      .details {
-        @apply com-items-center;
-
-        .membership {
-          @apply com-items-center;
-
-          .social-links-container {
-            @apply com-w-fit com-gap-6 com-flex-col;
-
-            .community-social-links {
-              @apply com-justify-between;
-            }
-          }
-        }
-      }
-    }
   }
 }
 
@@ -122,20 +77,15 @@
 
     nb-card-body {
       @apply com-pt-5 com-px-5 com-pb-0;
-
-      @media all and (max-width: 768px) {
-        @apply com-mx-0;
-      }
     }
   }
 
   .menu-items {
     a {
-      text-decoration: none;
-      @apply com-text-[#2f2e41] com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-[17px] com-cursor-pointer;
+      @apply com-text-gunmetal com-text-sm com-leading-4 com-h-fit com-m-0 com-pt-0 com-px-6 com-pb-17px com-cursor-pointer com-no-underline;
 
       nb-icon {
-        @apply com-text-[#2f2e4180];
+        @apply com-text-gunmetal/80;
       }
 
       .title {
@@ -144,6 +94,7 @@
 
       span {
         @apply com-hidden;
+        @apply md:com-inline;
       }
     }
 
@@ -152,23 +103,11 @@
     }
 
     .active {
-      @apply com-border-0 com-border-b-[3px] com-border-solid com-border-[#29a5ff];
+      @apply com-border-0 com-border-b-3 com-border-solid com-border-Blue-Jeans;
 
       nb-icon,
       .title {
-        @apply com-text-[#29a5ff];
-      }
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    nb-card {
-      .menu-items {
-        a {
-          span {
-            @apply com-inline;
-          }
-        }
+        @apply com-text-Blue-Jeans;
       }
     }
   }

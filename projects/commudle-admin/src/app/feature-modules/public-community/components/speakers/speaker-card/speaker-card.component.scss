@@ -1,9 +1,6 @@
 nb-card {
-  @apply com-border-[1px] com-border-solid com-border-[#c4c4c4] com-overflow-hidden com-w-[260px] com-h-[306px] com-transition-all com-duration-500;
-
-  &:hover {
-    box-shadow: 0 5px 15px #dae0ff;
-  }
+  @apply com-border com-border-solid com-border-Silver-Sand com-overflow-hidden com-w-260px com-h-307px com-transition-all com-duration-500 com-cursor-pointer;
+  @apply hover:com-shadow-Card;
 
   nb-card-body {
     @apply com-p-0;
@@ -12,7 +9,7 @@ nb-card {
       @apply com-overflow-hidden;
 
       .banner {
-        @apply com-h-[72px] com-overflow-hidden com-w-full com-bg-[#dae0ff];
+        @apply com-h-72px com-overflow-hidden com-w-full com-bg-Azureish-White;
 
         img {
           @apply com-h-full com-object-cover com-w-full;
@@ -28,7 +25,7 @@ nb-card {
       }
 
       .user-image {
-        @apply com-border-[3px] com-border-solid com-border-white com-rounded-[50px] com-h-[86px] com-ml-[10px] com-mt-6 com-overflow-hidden com-w-[86px] com-bg-[#d3d3d3];
+        @apply com-border-3 com-border-solid com-border-white com-rounded-full com-h-86px com-ml-10px com-mt-6 com-overflow-hidden com-w-86px com-bg-Azureish-White;
 
         img {
           @apply com-h-full com-object-cover com-w-full;
@@ -40,7 +37,7 @@ nb-card {
       }
 
       .user-details {
-        @apply com-h-[169px] com-mt-[9px] com-mx-4 com-mb-4;
+        @apply com-h-169px com-mt-9px com-mx-4 com-mb-4;
 
         a {
           text-decoration: none;
@@ -48,19 +45,19 @@ nb-card {
 
         .text-details {
           p {
-            @apply com-m-0 com-text-[#2f2e41];
+            @apply com-m-0 com-text-gunmetal;
           }
 
           .user-name {
-            @apply com-mb-2 com-text-lg com-font-semibold com-leading-[21px];
+            @apply com-mb-2 com-text-lg com-font-semibold com-leading-21px;
 
             .expert-icon {
-              @apply com-w-[14px] com-ml-1 com-h-[14px] com-align-middle;
+              @apply com-w-14px com-ml-1 com-h-14px com-align-middle;
             }
           }
 
           .designation {
-            @apply com-text-sm com-leading-4 com-font-normal com-text-[#2f2e41];
+            @apply com-text-sm com-leading-4 com-font-normal com-text-gunmetal;
           }
         }
 
@@ -68,7 +65,7 @@ nb-card {
           @apply com-overflow-hidden com-max-h-20 com-gap-2;
 
           .user-card-tag {
-            @apply com-p-2 com-text-xs com-text-[#2f2e41] com-rounded-lg com-bg-[#dae0ff];
+            @apply com-p-2 com-text-xs com-text-gunmetal com-rounded-lg com-bg-Azureish-White;
           }
         }
       }

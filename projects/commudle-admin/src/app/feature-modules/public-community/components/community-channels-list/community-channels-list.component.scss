@@ -5,7 +5,7 @@ nb-card {
     @apply com-p-0;
 
     .channels {
-      @apply com-bg-white com-rounded-[10px] com-gap-8 com-p-8;
+      @apply com-bg-white com-rounded-xl com-gap-8 com-p-8;
 
       a {
         text-decoration: none;
@@ -13,31 +13,35 @@ nb-card {
       }
 
       nb-card {
-        @apply com-border-[1px] com-border-solid com-border-[#c4c4c4] com-h-32 com-m-0 com-overflow-hidden;
+        @apply com-border com-border-solid com-border-Silver-Sand com-h-32 com-m-0 com-overflow-hidden;
       }
 
       .channel-clickable {
         @apply com-w-full;
 
         .channel {
-          @apply com-w-full;
-
-          &:hover {
-            box-shadow: 0 2px 5px 1px lightgrey;
-          }
+          @apply com-h-307px com-w-318px hover:com-shadow-Card;
+          @apply sm:com-w-full sm:com-h-32;
 
           nb-card-body {
+            @apply com-flex-col;
+            @apply sm:com-flex-row;
+
             .header-image {
-              @apply com-mr-6 com-w-[220px] com-min-w-[220px];
+              @apply com-m-0 com-h-120px com-w-full;
+              @apply sm:com-mr-6 sm:com-w-220px sm:com-min-w-[220px];
 
               img {
-                @apply com-w-full com-h-full com-object-cover;
+                @apply com-w-full com-h-full com-object-contain;
+                @apply sm:com-object-cover;
               }
             }
 
             .details {
+              @apply com-items-center com-flex com-flex-col com-p-10px;
+              @apply sm:com-items-start sm:com-p-0;
               h5 {
-                @apply com-text-[#2f2e41] com-text-[18px] com-font-semibold com-leading-[21px] com-mt-3 com-mx-0 com-mb-2;
+                @apply com-text-gunmetal com-text-lg com-font-semibold com-leading-21px com-mt-3 com-mx-0 com-mb-2;
               }
 
               .member-count {
@@ -50,50 +54,23 @@ nb-card {
             }
 
             .enter-channel-btn-container {
-              @apply com-absolute com-right-[7px] com-top-[7px];
+              @apply com-absolute com-right-7px com-top-7px;
 
               @media all and (max-width: 576px) {
                 right: unset;
                 top: unset;
-                @apply com-bottom-0 com-p-[7px] com-absolute com-w-full;
+                @apply com-bottom-0 com-p-7px com-absolute com-w-full;
               }
 
               .enter-channel-btn {
-                text-transform: none;
-                @apply com-bg-[#536eff]/[0.2] com-border-0 com-rounded-[10px] com-text-[#536eff] com-text-[12px] com-font-normal com-h-8 com-p-2;
+                @apply com-bg-Very-Light-Blue/30 com-border-0 com-rounded-xl com-text-Very-Light-Blue com-text-xs com-font-normal com-h-8 com-p-2 com-no-underline;
 
                 &:hover {
-                  @apply com-bg-[#536eff]/[0.2];
+                  @apply com-bg-Very-Light-Blue/20;
                 }
 
                 nb-icon {
                   @apply com-mr-1;
-                }
-              }
-            }
-          }
-        }
-      }
-
-      @media all and (max-width: 576px) {
-        @apply com-pt-10 com-px-5 com-pb-5;
-
-        .channel-clickable {
-          .channel {
-            @apply com-h-[307px] com-w-[318px];
-
-            nb-card-body {
-              @apply com-flex-col;
-
-              .details {
-                @apply com-items-center com-flex com-flex-col com-p-[10px];
-              }
-
-              .header-image {
-                @apply com-m-0 com-h-[120px] com-w-full;
-
-                img {
-                  @apply com-object-contain;
                 }
               }
             }

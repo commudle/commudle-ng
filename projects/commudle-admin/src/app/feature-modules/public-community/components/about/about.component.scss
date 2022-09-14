@@ -1,5 +1,5 @@
 p {
-  @apply com-m-0 com-text-[#2f2e41];
+  @apply com-m-0 com-text-gunmetal;
 }
 
 .community-about {
@@ -9,7 +9,8 @@ p {
     @apply com-h-max com-mt-4 com-mx-0 com-mb-0;
 
     nb-card-body {
-      @apply com-py-10 com-px-8;
+      @apply com-p-4;
+      @apply md:com-py-10 md:com-px-8;
 
       .heading {
         @apply com-m-0 com-text-2xl com-font-semibold com-mb-8;
@@ -24,19 +25,9 @@ p {
           p,
           span {
             font-family: inter;
-            @apply com-text-[#2f2e41] com-text-base com-leading-5;
+            @apply com-text-gunmetal com-text-base com-leading-5;
           }
         }
-      }
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .community-about {
-    .about {
-      nb-card-body {
-        @apply com-p-4;
       }
     }
   }
