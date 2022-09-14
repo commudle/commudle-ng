@@ -12,9 +12,9 @@
     </div>
   </a>
   <a [routerLink]="['/communities', community.slug]" class="community-list-card-tags">
-    <div *ngFor="let tag of community.tags" class="community-list-card-tag">{{ tag.name }}</div>
+    <div *ngFor="let tag of community.tags | slice: 0:5" class="community-list-card-tag">{{ tag.name }}</div>
   </a>
-  <div *ngIf="community.mini_description" class="community-list-card-about com-line-clamp-4">
+  <div *ngIf="community.mini_description" class="community-list-card-about com-line-clamp-3">
     {{ community.mini_description }}
   </div>
   <div class="community-list-card-suffix d-flex align-items-center">

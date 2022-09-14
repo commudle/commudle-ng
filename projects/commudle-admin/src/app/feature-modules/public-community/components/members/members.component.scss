@@ -1,23 +1,15 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .community-members {
-  margin: $space-32 0 $space-16;
+  @apply com-mt-8 com-mx-0 com-mb-4;
 
   nb-card-body {
-    padding: $space-40;
+    @apply com-p-10;
 
     .header-text {
-      color: $gunmetal;
-      font-size: $fs-26;
-      font-weight: $fw-600;
-      line-height: 30px;
-      margin: 0 0 $space-24;
-      max-width: fit-content;
+      @apply com-max-w-fit com-mt-0 com-mx-0 com-mb-6 com-text-2xl com-font-semibold com-text-gunmetal;
     }
 
     .load-more {
-      margin-top: $space-32;
-      text-align: center;
+      @apply com-text-center com-mt-8;
     }
   }
 }
