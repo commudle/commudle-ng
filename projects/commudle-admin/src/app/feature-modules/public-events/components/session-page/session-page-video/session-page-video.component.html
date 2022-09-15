@@ -1,20 +1,20 @@
 <nb-card
   [ngClass]="{
     fullscreen: isFullScreen,
-    'internal-link': ['commudle', 'youtube'].includes(embeddedVideoStream.source),
-    'external-link': ['external_link', 'jitsi'].includes(embeddedVideoStream.source)
+    'internal-link': !embeddedVideoStream || ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source),
+    'external-link': !(!embeddedVideoStream || ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source))
   }"
   class="session-page-video"
 >
   <nb-card-body>
-    <div class="session-page-info d-flex align-items-center">
+    <div *ngIf="embeddedVideoStream" class="session-page-info d-flex align-items-center">
       <div *ngIf="isBeamActive" class="ring-container">
         <div class="ring"></div>
         <div class="circle"></div>
       </div>
       <button
         (click)="toggleFullScreen()"
-        *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source)"
+        *ngIf="currentUser && ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source)"
         class="fullscreen-btn"
         nbButton
         shape="round"
@@ -22,7 +22,7 @@
         <nb-icon [icon]="isFullScreen ? 'collapse' : 'expand'"></nb-icon>
       </button>
     </div>
-    <div #videoStream [ngClass]="{ compressed: compressVideoStream }" class="video-stream">
+    <div *ngIf="embeddedVideoStream" #videoStream [ngClass]="{ compressed: compressVideoStream }" class="video-stream">
       <app-video-stream
         (beamStatus)="isBeamActive = $event"
         [currentUser]="currentUser"
@@ -46,7 +46,13 @@
       ></app-video-stream>
     </div>
     <div
-      *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source) && interactionWindows"
+      class="user-interactions"
+      [ngClass]="{ 'user-interactions-video ': !embeddedVideoStream }"
+      *ngIf="
+        currentUser &&
+        (!embeddedVideoStream ||
+          (['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows))
+      "
       class="user-interactions"
     >
       <button
@@ -59,6 +65,7 @@
         <nb-icon icon="info-outline"></nb-icon>
       </button>
       <button
+        *ngIf="embeddedVideoStream"
         (click)="toggleInteractionWindow(1)"
         [ngClass]="{ active: !getInteractionWindowStatus(1) }"
         nbButton
@@ -99,7 +106,16 @@
         <nb-icon icon="bar-chart"></nb-icon>
       </button>
     </div>
-    <div #interactionWindow class="session-page-window">
+    <div
+      #interactionWindow
+      class="session-page-window"
+      [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }"
+      *ngIf="
+        currentUser &&
+        (!embeddedVideoStream ||
+          (['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows))
+      "
+    >
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Session Details</p>
         <button (click)="toggleInteractionWindow(0)" ghost nbButton shape="round" size="small">
@@ -116,7 +132,7 @@
         [trackSlot]="trackSlot"
       ></app-session-page-details>
     </div>
-    <div #interactionWindow class="session-page-window">
+    <div #interactionWindow class="session-page-window" [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }">
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">People attending the Session</p>
         <button (click)="toggleInteractionWindow(1)" ghost nbButton shape="round" size="small">
@@ -124,6 +140,7 @@
         </button>
       </div>
       <app-session-page-viewers
+        *ngIf="this.embeddedVideoStream"
         (userCount)="userCount = $event"
         [activeEvent]="moment().isBetween(moment(startTime), moment(endTime))"
         [embeddedVideoStream]="embeddedVideoStream"
@@ -131,7 +148,11 @@
         [isAdmin]="userRoles.includes(EUserRoles.ORGANIZER) || userRoles.includes(EUserRoles.EVENT_VOLUNTEER)"
       ></app-session-page-viewers>
     </div>
-    <div #interactionWindow class="session-page-window remove-overflow">
+    <div
+      #interactionWindow
+      class="session-page-window remove-overflow"
+      [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }"
+    >
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Chat with other Viewers</p>
         <button (click)="toggleInteractionWindow(2)" ghost nbButton shape="round" size="small">
@@ -143,7 +164,7 @@
         [chat]="chat"
       ></app-session-page-chat>
     </div>
-    <div #interactionWindow class="session-page-window">
+    <div #interactionWindow class="session-page-window" [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }">
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Ask a Question</p>
         <button (click)="toggleInteractionWindow(3)" ghost nbButton shape="round" size="small">
@@ -152,7 +173,7 @@
       </div>
       <app-session-page-qna (newQna)="newQna = getInteractionWindowStatus(3)" [qna]="qna"></app-session-page-qna>
     </div>
-    <div #interactionWindow class="session-page-window">
+    <div #interactionWindow class="session-page-window" [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }">
       <div class="actions d-flex align-items-center justify-content-space-between">
         <p class="heading">Participate in Polls</p>
         <button (click)="toggleInteractionWindow(4)" ghost nbButton shape="round" size="small">

@@ -70,7 +70,7 @@
 }
 
 .page-menu {
-  @apply com-w-full;
+  @apply com-w-full com-sticky com-top-16 com-z-20;
 
   nb-card {
     @apply com-m-0;

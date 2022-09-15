@@ -1,7 +1,8 @@
 <div class="session-page-container">
   <div class="session-page">
+    <!-- !['commudle', 'youtube'].includes(embeddedVideoStream?.source) ||
+    (!trackSlot?.embedded_video_stream && !embeddedVideoStream) -->
     <app-session-page-video
-      *ngIf="embeddedVideoStream"
       [chat]="chat"
       [community]="community"
       [currentUser]="currentUser"
@@ -16,18 +17,6 @@
       [trackSlot]="trackSlot"
       [userRoles]="userRoles"
     ></app-session-page-video>
-    <app-session-page-details
-      *ngIf="
-        !['commudle', 'youtube'].includes(embeddedVideoStream?.source) ||
-        (!trackSlot?.embedded_video_stream && !embeddedVideoStream)
-      "
-      [community]="community"
-      [endTime]="endTime"
-      [event]="event"
-      [speaker]="speaker"
-      [startTime]="startTime"
-      [trackSlot]="trackSlot"
-    ></app-session-page-details>
     <app-auto-attendance
       *ngIf="moment().isBetween(moment(event?.start_time), moment(event?.end_time))"
       [eventId]="event.id"
