@@ -14,6 +14,7 @@ export class AttendedMembersCardComponent implements OnInit {
   @Input() user: IUser;
 
   events: IEvent[] = [];
+  showMore = false;
 
   constructor(
     private eventsService: EventsService,

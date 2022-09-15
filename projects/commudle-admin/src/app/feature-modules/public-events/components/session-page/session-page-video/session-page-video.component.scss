@@ -98,6 +98,9 @@
         }
       }
     }
+    .user-interactions-video {
+      @apply md:com-right-1/2 #{!important};
+    }
 
     .user-interactions {
       position: absolute;
@@ -146,6 +149,9 @@
       }
     }
 
+    .not-embedded-video {
+      @apply com-right-0  md:com-right-[45%] com-top-0 #{!important};
+    }
     .session-page-window {
       display: none;
       position: absolute;

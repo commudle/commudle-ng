@@ -1,72 +1,43 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 nb-card {
-  border: 1px solid $silver-sand;
-  height: 306px;
-  margin: $space-24;
-  overflow: hidden;
-  transition: all 0.5s ease;
-  width: 260px;
-
-  &:hover {
-    box-shadow: 0 5px 15px $azureish-white;
-  }
+  @apply com-border com-border-solid com-border-Silver-Sand com-overflow-hidden com-w-260px com-h-307px com-transition-all com-duration-500 com-cursor-pointer;
+  @apply hover:com-shadow-Card;
 
   nb-card-body {
-    padding: 0;
+    @apply com-p-0;
 
     .user-card {
-      overflow: hidden;
+      @apply com-overflow-hidden;
 
       .banner {
-        background: $azureish-white;
-        height: 72px;
-        overflow: hidden;
-        width: 100%;
+        @apply com-h-72px com-overflow-hidden com-w-full com-bg-Azureish-White;
 
         img {
-          height: 100%;
-          object-fit: cover;
-          width: 100%;
+          @apply com-h-full com-object-cover com-w-full;
         }
       }
 
       .banner-image {
-        display: grid;
+        @apply com-grid;
 
         div {
-          grid-column-start: 1;
-          grid-row-start: 1;
+          @apply com-col-start-1 com-row-start-1;
         }
       }
 
       .user-image {
-        background: $lightgrey;
-        border: $border-3 solid $white;
-        border-radius: $border-50;
-        height: 86px;
-        margin-left: $space-10;
-        margin-top: $space-24;
-        overflow: hidden;
-        width: 86px;
+        @apply com-border-3 com-border-solid com-border-white com-rounded-full com-h-86px com-ml-10px com-mt-6 com-overflow-hidden com-w-86px com-bg-Azureish-White;
 
         img {
-          height: 100%;
-          object-fit: cover;
-          width: 100%;
+          @apply com-h-full com-object-cover com-w-full;
         }
       }
 
       app-user-follow {
-        position: absolute;
-        right: 8px;
-        top: 80px;
+        @apply com-absolute com-right-2 com-top-20;
       }
 
       .user-details {
-        height: 169px;
-        margin: $space-9 $space-16 $space-16;
-        padding-top: $space-7;
+        @apply com-h-169px com-mt-9px com-mx-4 com-mb-4;
 
         a {
           text-decoration: none;
@@ -74,43 +45,27 @@ nb-card {
 
         .text-details {
           p {
-            color: $gunmetal;
-            margin: 0;
+            @apply com-m-0 com-text-gunmetal;
           }
 
           .user-name {
-            font-size: $fs-card-title;
-            font-weight: $fw-600;
-            line-height: 21px;
-            margin-bottom: $space-8;
+            @apply com-mb-2 com-text-lg com-font-semibold com-leading-21px;
 
             .expert-icon {
-              height: 14px;
-              margin-left: $space-4;
-              vertical-align: middle;
-              width: 14px;
+              @apply com-w-14px com-ml-1 com-h-14px com-align-middle;
             }
           }
 
           .designation {
-            color: $gunmetal;
-            font-size: $fs-14;
-            font-weight: $fw-400;
-            line-height: 16px;
+            @apply com-text-sm com-leading-4 com-font-normal com-text-gunmetal;
           }
         }
 
         .user-card-tags {
-          gap: $space-8;
-          max-height: 80px;
-          overflow: hidden;
+          @apply com-overflow-hidden com-max-h-20 com-gap-2;
 
           .user-card-tag {
-            background-color: $azureish-white;
-            border-radius: $border-8;
-            color: $gunmetal;
-            font-size: $fs-card-secondary;
-            padding: $space-8;
+            @apply com-p-2 com-text-xs com-text-gunmetal com-rounded-lg com-bg-Azureish-White;
           }
         }
       }

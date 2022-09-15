@@ -1,4 +1,3 @@
 .confirmation-dialog {
-  width: 500px;
-  max-width: 100vw;
+  @apply com-w-500px com-max-w-[100vw];
 }
