@@ -1,9 +1,9 @@
 <nb-card
-  [ngClass]="
-    !embeddedVideoStream || ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source)
-      ? 'internal-link'
-      : 'external-link'
-  "
+  [ngClass]="{
+    fullscreen: isFullScreen,
+    'internal-link': !embeddedVideoStream || ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source),
+    'external-link': !(!embeddedVideoStream || ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source))
+  }"
   class="session-page-video"
 >
   <nb-card-body>
@@ -14,7 +14,7 @@
       </div>
       <button
         (click)="toggleFullScreen()"
-        *ngIf="currentUser && ['commudle', 'youtube'].includes(embeddedVideoStream.source)"
+        *ngIf="currentUser && ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source)"
         class="fullscreen-btn"
         nbButton
         shape="round"
@@ -49,8 +49,9 @@
       class="user-interactions"
       [ngClass]="{ 'user-interactions-video ': !embeddedVideoStream }"
       *ngIf="
-        !embeddedVideoStream ||
-        (currentUser && ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows)
+        currentUser &&
+        (!embeddedVideoStream ||
+          (['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows))
       "
       class="user-interactions"
     >
@@ -110,8 +111,9 @@
       class="session-page-window"
       [ngClass]="{ 'not-embedded-video': !embeddedVideoStream }"
       *ngIf="
-        !embeddedVideoStream ||
-        (currentUser && ['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows)
+        currentUser &&
+        (!embeddedVideoStream ||
+          (['commudle', 'youtube', 'other'].includes(embeddedVideoStream.source) && interactionWindows))
       "
     >
       <div class="actions d-flex align-items-center justify-content-space-between">
