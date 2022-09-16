@@ -20,7 +20,7 @@
 
           .introduction {
             .lab-title {
-              @apply com-text-[#2f2e41] com-text-4xl com-font-medium com-leading-[2.75rem] com-mt-0 com-mx-0 com-mb-5 com-capitalize;
+              @apply com-text-gunmetal com-text-4xl com-font-medium com-mt-0 com-mx-0 com-mb-5 com-capitalize;
             }
 
             .lab-detail {
@@ -28,7 +28,7 @@
 
               .user-profile {
                 .avatar {
-                  @apply com-rounded-[50%] com-h-6 com-overflow-hidden com-w-6;
+                  @apply com-rounded-3xl com-h-6 com-overflow-hidden com-w-6;
 
                   img {
                     @apply com-w-full;
@@ -39,7 +39,7 @@
                   @apply com-italic com-h-max com-w-max;
 
                   p {
-                    @apply com-text-sm com-text-[#979797] com-mt-0 com-mx-4 com-mb-2;
+                    @apply com-text-sm com-text-Spanish-Gray com-mt-0 com-mx-4 com-mb-2;
                   }
 
                   a,
@@ -50,7 +50,7 @@
                   }
 
                   .name {
-                    @apply com-capitalize com-text-[#2590EB];
+                    @apply com-capitalize com-text-Blue-Jeans;
                   }
 
                   .date {
@@ -70,7 +70,7 @@
                 &::ng-deep {
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
-                      @apply com-border-0 com-rounded-[5px] com-bg-[#dae0ff] com-text-[#2f2e41] com-text-[10px] com-leading-3 com-lowercase com-py-1 com-px-3 com-font-normal;
+                      @apply com-border-0 com-rounded-md com-bg-Azureish-White com-text-gunmetal com-text-xs com-leading-3 com-lowercase com-py-1 com-px-3 com-font-normal;
                     }
                   }
                 }
@@ -115,13 +115,13 @@
 
                 @for $index from 1 through 6 {
                   h#{$index} {
-                    @apply com-text-[#2f2e41];
+                    @apply com-text-gunmetal;
                   }
                 }
 
                 p,
                 li {
-                  @apply com-text-base com-text-[#231f20];
+                  @apply com-text-base com-text-Raisin-Black;
                 }
               }
             }
@@ -129,7 +129,7 @@
         }
 
         nb-card-footer {
-          @apply com-bg-[#eeeeff] com-border-0 com-pt-6 com-px-0 com-pb-0;
+          @apply com-border-0 com-pt-6 com-px-0 com-pb-0;
         }
 
         @media all and (max-width: 768px) {
@@ -138,7 +138,7 @@
 
             .introduction {
               .lab-title {
-                @apply com-text-[1.75rem] com-leading-7;
+                @apply com-text-2xl;
               }
             }
           }
@@ -160,7 +160,7 @@
         &::ng-deep {
           .votes {
             p {
-              @apply com-text-2xl com-text-[#2590EB];
+              @apply com-text-2xl com-text-Blue-Jeans;
             }
 
             span {
@@ -168,7 +168,7 @@
                 @apply com-text-2xl com-mr-1;
 
                 &:not(.voted-heart) {
-                  @apply com-text-[#2590EB];
+                  @apply com-text-Blue-Jeans;
                 }
               }
             }
@@ -177,11 +177,11 @@
       }
 
       .discussion {
-        @apply com-text-[#2590EB] com-text-2xl com-mt-6 com-mx-0 com-mb-0;
+        @apply com-text-Blue-Jeans com-text-2xl com-mt-6 com-mx-0 com-mb-0;
       }
 
       nb-icon {
-        @apply com-text-2xl com-text-[#2590EB];
+        @apply com-text-2xl com-text-Blue-Jeans;
       }
 
       app-share-button {
@@ -190,7 +190,7 @@
             @apply com-mt-6 com-mx-0 com-mb-0;
 
             button {
-              background-color: transparent !important;
+              @apply com-bg-transparent #{!important};
             }
           }
         }
@@ -210,7 +210,7 @@
 
   .steps-navigation {
     button {
-      @apply com-bg-[#2590EB] com-text-white com-text-[14px] com-font-medium com-capitalize com-rounded-[10px];
+      @apply com-bg-Blue-Jeans com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
     }
   }
 
@@ -228,7 +228,7 @@
       @apply com-flex-col;
 
       .toggle-details {
-        @apply com-z-[3] com-bg-[#2590EB] com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-[10px] com-rounded-tr-[10px];
+        @apply com-z-[3] com-bg-Blue-Jeans com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
       }
 
       .desktop-lab-details {
@@ -257,7 +257,7 @@
           .main-container {
             backdrop-filter: blur(20px);
             height: calc(100vh - 3.5rem);
-            @apply com-p-4 com-right-0 com-top-[56px] com-z-[3] com-w-[80vw];
+            @apply com-p-4 com-right-0 com-top-56px com-z-[3] com-w-80vw;
 
             .scrollable {
               @apply com-p-0;
@@ -292,10 +292,10 @@
 
 .image {
   @media screen and (min-width: 1440px) {
-    @apply com-w-[70vw];
+    @apply com-w-70vw;
   }
 
   @media screen and (max-width: 768px) {
-    @apply com-w-[80vw];
+    @apply com-w-80vw;
   }
 }

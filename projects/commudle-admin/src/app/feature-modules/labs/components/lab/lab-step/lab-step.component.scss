@@ -1,13 +1,8 @@
 .lab-step {
   .step-title {
     margin: 0 0 1.25 * 16px;
-    @apply com-text-4xl com-font-medium com-capitalize com-text-[#2f2e41];
-  }
-
-  @media all and (max-width: 768px) {
-    .step-title {
-      @apply com-text-[28px] com-leading-[28px];
-    }
+    @apply com-text-2xl com-font-medium com-capitalize com-text-gunmetal;
+    @apply md:com-text-4xl com-leading-7;
   }
 
   .content {
@@ -22,13 +17,13 @@
 
       @for $index from 1 through 6 {
         h#{$index} {
-          @apply com-text-[#2f2e41];
+          @apply com-text-gunmetal;
         }
       }
 
       p,
       li {
-        @apply com-text-base com-text-[#231f20];
+        @apply com-text-base com-text-Raisin-Black;
       }
     }
   }

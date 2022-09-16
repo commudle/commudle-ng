@@ -2,7 +2,7 @@
   @apply com-rounded-none com-m-4;
 
   nb-card-header {
-    @apply com-text-[#2f2e41] com-font-medium com-text-base;
+    @apply com-text-gunmetal com-font-medium com-text-base;
   }
 
   nb-card-body {
@@ -17,7 +17,7 @@
             @apply com-py-2 com-pr-20 com-pl-10 com-resize-none;
 
             &::placeholder {
-              @apply com-pt-[2px];
+              @apply com-pt-1;
             }
           }
 
@@ -27,7 +27,7 @@
             }
 
             .nb-form-field-suffix-medium {
-              @apply com-mb-auto -com-ml-[4.35rem];
+              @apply com-mb-auto -com-ml-16;
 
               button {
                 @apply com-capitalize;
@@ -45,5 +45,5 @@
 }
 
 .tagging-info {
-  @apply com-text-xs com-font-normal com-leading-[10px] com-ml-[10px];
+  @apply com-text-xs com-font-normal com-leading-3 com-ml-10px;
 }

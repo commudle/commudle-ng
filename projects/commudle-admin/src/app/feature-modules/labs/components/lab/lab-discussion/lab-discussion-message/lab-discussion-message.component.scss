@@ -9,15 +9,15 @@
       a:hover,
       a:focus,
       a:active {
-        text-decoration: none;
+        @apply com-no-underline;
       }
 
       .name {
-        @apply com-font-semibold com-text-sm com-text-[#2f2e41];
+        @apply com-font-semibold com-text-sm com-text-gunmetal;
       }
 
       .username {
-        @apply com-ml-2 com-text-xs com-text-[#2f2e41]/[0.85];
+        @apply com-ml-2 com-text-xs com-text-gunmetal/80;
       }
 
       .expert-icon {
@@ -25,27 +25,27 @@
       }
 
       .date {
-        @apply com-text-sm com-leading-4 com-text-[#979797];
+        @apply com-text-sm com-leading-4 com-text-Sonic-Silver;
       }
     }
 
     .content {
       word-break: break-word;
-      @apply com-mt-1 com-whitespace-pre-wrap com-text-sm com-leading-4 com-text-[#231f20];
+      @apply com-mt-1 com-whitespace-pre-wrap com-text-sm com-leading-4 com-text-gunmetal;
     }
 
     .details-flag {
       @apply com-items-start com-flex com-justify-start;
 
       nb-icon {
-        @apply com-text-[#8080808c] com-text-base;
+        @apply com-text-Sonic-Silver com-text-base;
       }
 
       > div {
         @apply com-mr-[10px];
 
         p {
-          @apply com-text-[#808080] com-mt-[5px] com-mx-0 com-mb-0;
+          @apply com-text-Sonic-Silver com-mt-5px com-mx-0 com-mb-0;
         }
       }
     }
@@ -66,7 +66,7 @@
         @apply com-resize-none com-py-2 com-pr-20 com-pl-10;
 
         &::placeholder {
-          @apply com-pt-[20px];
+          @apply com-pt-20px;
         }
       }
 
@@ -76,7 +76,7 @@
         }
 
         .nb-form-field-suffix-medium {
-          @apply com-mt-0 com-mr-0 com-mb-auto -com-ml-[4.35rem];
+          @apply com-mt-0 com-mr-0 com-mb-auto -com-ml-16;
 
           button {
             @apply com-capitalize;

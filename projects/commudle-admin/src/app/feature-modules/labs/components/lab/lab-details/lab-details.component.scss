@@ -1,20 +1,19 @@
 .menu {
-  @apply com-h-fit com-sticky com-top-[72px] com-w-[264px];
+  @apply com-h-fit com-sticky com-top-72px com-w-264px;
 
   nb-card {
     @apply com-w-full;
   }
 
   .user {
-    @apply com-bg-white com-p-4 com-rounded-[10px];
+    @apply com-bg-white com-p-4 com-rounded-xl;
   }
 
   .steps {
     @apply com-mt-4 com-mx-0 com-mb-0;
 
     nb-list {
-      border: none;
-      @apply com-rounded-[10px];
+      @apply com-border-0 com-rounded-xl;
 
       nb-list-item {
         a {
@@ -22,16 +21,16 @@
         }
 
         .lab-step-title {
-          @apply com-text-sm com-m-0 com-font-normal com-text-[#2590EB];
+          @apply com-text-sm com-m-0 com-font-normal com-text-Blue-Jeans;
         }
 
         app-badge {
-          @apply com-relative com-top-[10px];
+          @apply com-relative com-top-10px;
         }
       }
 
       .active {
-        @apply com-bg-[#2590EB];
+        @apply com-bg-Blue-Jeans;
 
         .lab-step-title {
           @apply com-text-white;
@@ -40,12 +39,11 @@
     }
 
     nb-list-item:not(:last-child) {
-      border-bottom: 2px solid rgba(37, 144, 235, 0.349);
+      @apply com-border-0 com-border-b-2 com-border-solid com-border-Blue-Jeans/20;
     }
 
     a {
-      text-decoration: none;
-      @apply com-text-[#2590EB];
+      @apply com-text-Blue-Jeans com-no-underline;
     }
   }
 
@@ -53,8 +51,7 @@
     @apply com-mt-4 com-mx-0 com-mb-0 com-hidden;
 
     nb-card-header {
-      border-bottom: none;
-      @apply com-text-[#2590EB] com-text-base com-p-4 com-font-normal;
+      @apply com-text-Blue-Jeans com-text-base com-p-4 com-font-normal com-border-b-0;
     }
 
     nb-card-body {
@@ -69,11 +66,11 @@
         }
 
         .type {
-          @apply com-text-[#2590EB] com-text-xs com-m-0;
+          @apply com-text-Blue-Jeans com-text-xs com-m-0;
         }
 
         &:hover {
-          @apply com-bg-[#0000000d];
+          @apply com-bg-black/80;
         }
       }
     }
@@ -90,14 +87,14 @@
           @apply com-text-2xl;
 
           span {
-            @apply com-text-[#2590EB];
+            @apply com-text-Blue-Jeans;
           }
 
           nb-icon {
             @apply com-text-2xl;
 
             &:not(.voted-heart) {
-              @apply com-text-[#2590EB];
+              @apply com-text-Blue-Jeans;
             }
           }
         }
@@ -105,11 +102,11 @@
     }
 
     .message-count {
-      @apply com-text-[#2590EB] com-text-2xl;
+      @apply com-text-Blue-Jeans com-text-2xl;
     }
 
     nb-icon {
-      @apply com-text-[#2590EB] com-text-2xl;
+      @apply com-text-Blue-Jeans com-text-2xl;
     }
   }
 }
