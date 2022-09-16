@@ -1,18 +1,34 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ENotificationParentTypes } from 'projects/shared-models/enums/notification_parent_types.enum';
 import { ENotificationSenderTypes } from 'projects/shared-models/enums/notification_sender_types.enum';
 import { INotificationMessage } from 'projects/shared-models/notification.model';
+import { ENotificationStatuses } from 'projects/shared-models/enums/notification_statuses.enum';
 
 @Component({
   selector: 'app-notifications-list-item',
   templateUrl: './notifications-list-item.component.html',
   styleUrls: ['./notifications-list-item.component.scss'],
 })
-export class NotificationsListItemComponent implements OnInit, OnChanges {
+export class NotificationsListItemComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() notificationMessage: INotificationMessage[] = [];
 
   @Output() notificationClicked: EventEmitter<any> = new EventEmitter();
+
+  @ViewChild('myDiv') divView: ElementRef;
+
+  @Output() markClick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private router: Router) {}
 
@@ -22,6 +38,24 @@ export class NotificationsListItemComponent implements OnInit, OnChanges {
     if (changes.notificationMessage) {
       this.replaceLinkValue();
     }
+  }
+
+  ngAfterViewInit() {
+    const threshold = 1; // how much % of the element is in view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              this.markClick.emit(); // emit the function to mark message as read
+            }, 5000); // time for 5 Sec
+            observer.disconnect(); // disconnect if you want to stop observing else it will rerun every time its back in view.
+          }
+        });
+      },
+      { threshold },
+    );
+    observer.observe(this.divView.nativeElement); //observe the native element
   }
 
   // handlebar replacement value using path
