@@ -26,9 +26,9 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
 
   @Output() notificationClicked: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('myDiv') divView: ElementRef;
+  @ViewChild('viewPort') viewPort: ElementRef;
 
-  @Output() markClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() markRead: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private router: Router) {}
 
@@ -47,7 +47,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
-              this.markClick.emit(); // emit the function to mark message as read
+              this.markRead.emit(); // emit the function to mark message as read
             }, 5000); // time for 5 Sec
             observer.disconnect(); // disconnect if you want to stop observing else it will rerun every time its back in view.
           }
@@ -55,7 +55,7 @@ export class NotificationsListItemComponent implements OnInit, OnChanges, AfterV
       },
       { threshold },
     );
-    observer.observe(this.divView.nativeElement); //observe the native element
+    observer.observe(this.viewPort.nativeElement); //observe the native element
   }
 
   // handlebar replacement value using path

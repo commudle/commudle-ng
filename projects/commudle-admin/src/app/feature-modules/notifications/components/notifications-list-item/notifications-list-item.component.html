@@ -1,4 +1,4 @@
-<p #myDiv>
+<p #viewPort>
   <ng-container *ngFor="let message of notificationMessage" [ngSwitch]="message.type">
     <a (click)="redirectTo(message)" *ngSwitchCase="'link'" class="com-cursor-pointer">{{ message.value }}</a>
     <span *ngSwitchCase="'text'"> {{ message.value }} </span>
