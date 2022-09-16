@@ -1,94 +1,81 @@
-<div [ngClass]="{ normal: !user.is_expert }" class="user-personal-details">
-  <div [ngClass]="{ normal: !user.is_expert }" class="profile-photo-container">
-    <div class="profile-photo">
-      <img alt="{{ user.name }}" src="{{ user.photo.i320 }}" title="{{ user.name }}" />
+<nb-card class="user-details-container">
+  <nb-card-body>
+    <img [alt]="user.name" [src]="user.avatar" [title]="user.name" class="user-avatar" />
+    <div class="user-info">
+      <div class="com-flex com-flex-col md:com-flex-row com-items-center com-justify-between com-gap-4">
+        <div class="com-text-center md:com-text-left">
+          <div class="name">
+            <h1>{{ user.name }}</h1>
+            <img
+              *ngIf="user.is_expert"
+              alt="Expert Tick"
+              class="expert-icon"
+              src="/assets/images/Expert-Tick.svg"
+              title="Expert Tick"
+            />
+          </div>
+          <p class="username">@{{ user.username }}</p>
+        </div>
+        <div class="com-flex com-space-x-2">
+          <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
+          <app-share-button
+            [content]="environment.app_url + '/users/' + user.username"
+            [title]="user.name + ' ' + user.designation"
+            [url]="environment.app_url + '/users/' + user.username"
+            appearance="outline"
+          ></app-share-button>
+          <a
+            *ngIf="currentUser?.id === user.id; else message"
+            [routerLink]="[{ outlets: { p: ['settings', 'basic-details'] } }]"
+            outline
+            nbButton
+            shape="semi-round"
+            size="small"
+          >
+            <nb-icon icon="edit-outline"></nb-icon>
+            Edit Profile
+          </a>
+          <ng-template #message>
+            <button (click)="openChatWithUser()" nbButton shape="semi-round" size="small" status="info">
+              <nb-icon icon="paper-plane"></nb-icon>
+              Message
+            </button>
+          </ng-template>
+        </div>
+      </div>
+      <div *ngIf="user.designation" class="designation">
+        <nb-icon icon="briefcase-outline"></nb-icon>
+        <p>{{ user.designation }}</p>
+      </div>
+      <div *ngIf="user.location" class="location">
+        <nb-icon icon="pin"></nb-icon>
+        <p>{{ user.location }}</p>
+      </div>
+      <div class="network">
+        <a routerLink="followers">
+          <span>{{ user.followers_count || 0 }}</span> Followers
+        </a>
+        <a routerLink="following">
+          <span>{{ user.followees_count || 0 }}</span> Following
+        </a>
+      </div>
+      <nb-tag-list *ngIf="user.tags.length > 0" class="tags">
+        <nb-tag *ngFor="let tag of user.tags" [text]="tag.name" appearance="outline" status="info"></nb-tag>
+        <nb-tag
+          (click)="onTagDialogOpen()"
+          *ngIf="currentUser?.id === user.id"
+          class="com-cursor-pointer"
+          status="info"
+          text="+"
+        ></nb-tag>
+      </nb-tag-list>
     </div>
-  </div>
-
-  <div class="user-details text-center">
-    <div class="name">
-      <h1>
-        {{ user.name }}
-      </h1>
-      <img
-        *ngIf="user.is_expert"
-        alt="Expert Tick"
-        class="expert-icon"
-        src="/assets/images/Expert-Tick.svg"
-        title="Expert Tick"
-      />
-    </div>
-    <p class="username">@{{ user.username }}</p>
-    <p *ngIf="user.designation" class="designation">{{ user.designation }}</p>
-    <div class="network">
-      <a routerLink="followers">{{ user.followers_count || 0 }} Followers</a>
-      <a routerLink="following">{{ user.followees_count || 0 }} Following</a>
-    </div>
-  </div>
-
-  <div
-    class="user-interactions d-flex justify-content-center"
-    [ngClass]="{ 'share-btn-newline': currentUser?.id !== user.id }"
-  >
-    <div *ngIf="currentUser?.id === user.id">
-      <a [routerLink]="[{ outlets: { p: ['settings', 'basic-details'] } }]">
-        <button class="anim-shadow" nbButton size="small">
-          <nb-icon icon="edit"></nb-icon>
-          Edit bio
-        </button>
-      </a>
-    </div>
-    <div *ngIf="currentUser?.id !== user.id">
-      <button (click)="openChatWithUser()" class="anim-shadow" nbButton size="small">
-        <nb-icon icon="paper-plane"></nb-icon>
-        Message
-      </button>
-    </div>
-    <app-user-follow (userFollowed)="updateProfile.emit()" [username]="user.username"></app-user-follow>
-    <app-share-button
-      [content]="environment.app_url + '/users/' + user.username"
-      [title]="user.name + ' ' + user.designation"
-      [url]="environment.app_url + '/users/' + user.username"
-    ></app-share-button>
-  </div>
-
-  <hr *ngIf="user.location || user.about_me" />
-
-  <div *ngIf="user.location || user.about_me" class="user-details">
-    <p class="heading">About me</p>
-    <div *ngIf="user.location" class="location">
-      <nb-icon icon="pin"></nb-icon>
-      {{ user.location }}
-    </div>
-    <div *ngIf="user.about_me" class="about">
-      <span *ngIf="!showFullAbout">{{ user.about_me | truncatetext: 140 }}</span>
-      <span *ngIf="showFullAbout">{{ user.about_me }}</span
-      >&nbsp;
-      <a (click)="showFullAbout = !showFullAbout" *ngIf="user.about_me.length > 140" class="clickable">
-        {{ showFullAbout ? 'Read less' : 'Read more' }}
-      </a>
-    </div>
-  </div>
-
-  <hr />
-
-  <div class="user-tags">
-    <div class="heading">Skills</div>
-    <nb-tag-list>
-      <nb-tag *ngFor="let tag of tags" [text]="tag"></nb-tag>
-      <nb-tag
-        (click)="onTagDialogOpen()"
-        *ngIf="currentUser?.id === user.id"
-        [text]="'+'"
-        class="tags-add anim-shadow"
-      ></nb-tag>
-    </nb-tag-list>
-  </div>
-</div>
+  </nb-card-body>
+</nb-card>
 
 <ng-template #editTags let-ref="dialogRef">
   <nb-card class="tag-dialog">
-    <nb-card-header class="text-center"> Add tags which define you</nb-card-header>
+    <nb-card-header class="text-center">Add tags which define you</nb-card-header>
     <nb-card-body class="text-center">
       <div class="tag-dialog-info">
         <nb-icon icon="info-outline"></nb-icon>
@@ -97,13 +84,13 @@
       <nb-tag-list (tagRemove)="onTagRemove($event)">
         <nb-tag *ngFor="let tag of tagsDialog" [text]="tag" removable></nb-tag>
         <input
+          (keypress)="restrictComma($event)"
           (tagAdd)="onTagAdd($event)"
+          [separatorKeys]="[13, 188]"
           fullWidth
           nbTagInput
           placeholder="Type a tag and press enter or comma"
           type="text"
-          [separatorKeys]="[13, 188]"
-          (keypress)="restrictComma($event)"
         />
       </nb-tag-list>
     </nb-card-body>

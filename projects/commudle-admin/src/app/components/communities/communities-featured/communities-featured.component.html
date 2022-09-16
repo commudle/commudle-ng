@@ -10,15 +10,7 @@
             </button>
           </a>
           <app-share-button
-            [content]="
-              featuredCommunity.kommunity.name +
-              ' | ' +
-              featuredCommunity.reason +
-              ' | ' +
-              environment.app_url +
-              '/communities/' +
-              featuredCommunity.kommunity.slug
-            "
+            [content]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
             [title]="featuredCommunity.kommunity.name"
             [text]="featuredCommunity.reason"
             [url]="environment.app_url + '/communities/' + featuredCommunity.kommunity.slug"
@@ -26,24 +18,20 @@
             [round]="true"
           ></app-share-button>
         </div>
-        <div
-          [routerLink]="['/communities', featuredCommunity.kommunity.slug]"
-          class="clickable featured-community-image-container"
-        >
-          <img
-            alt="{{ featuredCommunity.kommunity.name }}"
-            class="featured-community-image"
-            src="{{ featuredCommunity.kommunity.logo_image?.url }}"
-            title="{{ featuredCommunity.kommunity.name }}"
-          />
-        </div>
-        <div
-          [routerLink]="['/communities', featuredCommunity.kommunity.slug]"
-          class="clickable featured-community-about"
-        >
-          <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
-          <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
-        </div>
+        <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]">
+          <div class="clickable featured-community-image-container">
+            <img
+              alt="{{ featuredCommunity.kommunity.name }}"
+              class="featured-community-image"
+              src="{{ featuredCommunity.kommunity.logo_image?.url }}"
+              title="{{ featuredCommunity.kommunity.name }}"
+            />
+          </div>
+          <div class="clickable featured-community-about">
+            <h3 class="featured-community-name">{{ featuredCommunity.kommunity.name }}</h3>
+            <p class="featured-community-reason">{{ featuredCommunity.reason }}</p>
+          </div>
+        </a>
       </div>
     </div>
   </nb-card-body>

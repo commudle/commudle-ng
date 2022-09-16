@@ -1,8 +1,16 @@
-<nb-card class="user-badges">
-  <nb-card-body>
-    <div class="badge-list d-flex flex-wrap">
-      <img *ngFor="let badge of badges" alt="{{badge.name}}" nbTooltip="{{badge.name}}" src="{{badge.image.url}}"
-           title="{{badge.name}}">
-    </div>
+<nb-card *ngIf="badges.length > 0" class="user-badges" id="badges">
+  <nb-card-header>
+    <nb-icon icon="award" status="warning"></nb-icon>
+    Badges
+  </nb-card-header>
+  <nb-card-body class="com-space-x-4">
+    <img
+      *ngFor="let badge of badges"
+      [alt]="badge.name"
+      [nbTooltip]="badge.name"
+      [src]="badge.image?.url"
+      [title]="badge.name"
+      class="com-max-w-[150px]"
+    />
   </nb-card-body>
 </nb-card>

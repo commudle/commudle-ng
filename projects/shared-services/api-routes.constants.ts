@@ -148,6 +148,7 @@ export const API_ROUTES = {
     INVITE_GUEST_TO_WEBINAR_STAGE: 'api/v2/events/invite_guest_to_webinar_stage',
     RECORDINGS: 'api/v2/events/recordings',
     ATTENDED_MEMBERS: 'api/v2/events/attended_members',
+    COMMON_EVENTS: 'api/v2/events/common_events',
     PUBLIC: {
       GET: 'api/v2/events/public/show',
       VOLUNTEERS: 'api/v2/events/public/volunteers',
@@ -217,6 +218,9 @@ export const API_ROUTES = {
 
   // registration_statuses
   GET_REGISTRATION_STATUSES: 'api/v2/registration_statuses',
+
+  //community_engagement_data
+  GET_USER_COMMUNITY_ENGAGEMENT_DATA: 'api/v2/stats/user_communities/user_community_engagement',
 
   // data_form_entity_response_groups
   DATA_FORM_ENTITY_RESPONSE_GROUPS: {
@@ -575,6 +579,7 @@ export const API_ROUTES = {
     MARK_ALL_AS_READ: 'api/v2/notifications/mark_all_as_read',
     UNREAD_COUNT: 'api/v2/notifications/unread_count',
     UPDATE_STATUS: 'api/v2/notifications/update_status',
+    INDEX_BY_COMMUNITY: 'api/v2/notifications/index_by_community',
   },
 
   RECOMMENDATIONS: {
@@ -585,5 +590,20 @@ export const API_ROUTES = {
 
   PUSH_NOTIFICATION_SUBSCRIPTIONS: {
     CREATE: 'api/v2/push_notification_subscriptions',
+  },
+
+  USER_WORK_HISTORY: {
+    INDEX: 'api/v2/user_work_histories',
+    CREATE: 'api/v2/user_work_histories',
+    UPDATE: 'api/v2/user_work_histories',
+    DESTROY: 'api/v2/user_work_histories',
+  },
+
+  USER_RESUME: {
+    INDEX: 'api/v2/user_resumes',
+    SHOW: 'api/v2/user_resumes/show',
+    CREATE: 'api/v2/user_resumes',
+    UPDATE: 'api/v2/user_resumes',
+    DESTROY: 'api/v2/user_resumes',
   },
 };

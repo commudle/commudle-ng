@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
 
@@ -82,7 +82,7 @@
 
 <section>
     <h3>Metadata</h3>
-    <table class="table table-sm table-hover">
+    <table class="table table-sm table-hover metadata">
         <tbody>
 
 
@@ -143,6 +143,9 @@
                                 <a href="#discussionChat" >discussionChat</a>
                             </li>
                             <li>
+                                <a href="#environment" >environment</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#iContent" >iContent</a>
                             </li>
@@ -195,6 +198,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#changeStep" >changeStep</a>
+                            </li>
+                            <li>
+                                <a href="#copyTextToClipboard" >copyTextToClipboard</a>
                             </li>
                             <li>
                                 <a href="#getDiscussionChat" >getDiscussionChat</a>
@@ -250,12 +256,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(platformId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>, doc: Document, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, meta: <a href="https://angular.io/api/platform-browser/Meta" target="_blank">Meta</a>, title: <a href="https://angular.io/api/platform-browser/Title" target="_blank">Title</a>, labsService: <a href="../injectables/LabsService.html" target="_self">LabsService</a>, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, discussionsService: <a href="../injectables/DiscussionsService.html" target="_self">DiscussionsService</a>, prismJsHighlightCodeService: <a href="../injectables/PrismJsHighlightCodeService.html" target="_self">PrismJsHighlightCodeService</a>, dialogService: NbDialogService, footerService: <a href="../injectables/FooterService.html" target="_self">FooterService</a>, nbSidebarService: NbSidebarService)</code>
+<code>constructor(platformId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>, doc: Document, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, labsService: <a href="../injectables/LabsService.html" target="_self">LabsService</a>, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, discussionsService: <a href="../injectables/DiscussionsService.html" target="_self">DiscussionsService</a>, prismJsHighlightCodeService: <a href="../injectables/PrismJsHighlightCodeService.html" target="_self">PrismJsHighlightCodeService</a>, dialogService: NbDialogService, footerService: <a href="../injectables/FooterService.html" target="_self">FooterService</a>, nbSidebarService: NbSidebarService, navigatorShareService: <a href="../injectables/NavigatorShareService.html" target="_self">NavigatorShareService</a>, libToastLogService: <a href="../injectables/LibToastLogService.html" target="_self">LibToastLogService</a>, clipboard: Clipboard, seoService: <a href="../injectables/SeoService.html" target="_self">SeoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:51</a></div>
                             </td>
                         </tr>
 
@@ -301,30 +307,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>meta</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/platform-browser/Meta" target="_blank" >Meta</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>title</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/platform-browser/Title" target="_blank" >Title</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -428,6 +410,54 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>navigatorShareService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NavigatorShareService.html" target="_self" >NavigatorShareService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>libToastLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LibToastLogService.html" target="_self" >LibToastLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>clipboard</td>
+                                                  
+                                                        <td>
+                                                                    <code>Clipboard</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>seoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SeoService.html" target="_self" >SeoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -466,8 +496,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="224"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:224</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:199</a></div>
                 </td>
             </tr>
 
@@ -515,6 +545,75 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="copyTextToClipboard"></a>
+                    <span class="name">
+                        <span ><b>copyTextToClipboard</b></span>
+                        <a href="#copyTextToClipboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>copyTextToClipboard(lab: <a href="../interfaces/ILab.html" target="_self">ILab</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:226</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>lab</td>
+                                    <td>
+                                                <code><a href="../interfaces/ILab.html" target="_self" >ILab</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getDiscussionChat"></a>
                     <span class="name">
                         <span ><b>getDiscussionChat</b></span>
@@ -531,8 +630,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="234"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:234</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:210</a></div>
                 </td>
             </tr>
 
@@ -568,8 +667,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="182"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:182</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:154</a></div>
                 </td>
             </tr>
 
@@ -633,8 +732,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="242"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:242</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:218</a></div>
                 </td>
             </tr>
 
@@ -702,8 +801,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:135</a></div>
                 </td>
             </tr>
 
@@ -739,8 +838,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:103</a></div>
                 </td>
             </tr>
 
@@ -776,8 +875,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:121</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:128</a></div>
                 </td>
             </tr>
 
@@ -813,8 +912,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:73</a></div>
                 </td>
             </tr>
 
@@ -850,8 +949,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="238"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:238</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:214</a></div>
                 </td>
             </tr>
 
@@ -919,8 +1018,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:139</a></div>
                 </td>
             </tr>
 
@@ -956,8 +1055,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:145</a></div>
                 </td>
             </tr>
 
@@ -993,8 +1092,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="217"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:217</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:189</a></div>
                 </td>
             </tr>
 
@@ -1058,8 +1157,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="246"
-                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:246</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:222</a></div>
                 </td>
             </tr>
 
@@ -1110,7 +1209,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -1136,7 +1235,32 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -1172,7 +1296,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -1204,7 +1328,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -1230,7 +1354,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -1250,7 +1374,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -1276,7 +1400,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1302,7 +1426,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -1333,7 +1457,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -1358,7 +1482,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -1389,7 +1513,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -1410,7 +1534,7 @@
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -1435,7 +1559,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -1466,7 +1590,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/commudle-admin/src/app/feature-modules/labs/components/lab/lab.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -1479,7 +1603,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, isPlatformBrowser } from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Clipboard } from &#x27;@angular/cdk/clipboard&#x27;;
+import { DOCUMENT, isPlatformBrowser } from &#x27;@angular/common&#x27;;
 import {
   AfterViewChecked,
   Component,
@@ -1490,15 +1615,19 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from &#x27;@angular/core&#x27;;
-import { DomSanitizer, Meta, Title } from &#x27;@angular/platform-browser&#x27;;
+import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
 import { ActivatedRoute, NavigationStart, Router } from &#x27;@angular/router&#x27;;
 import { NbDialogService, NbSidebarService } from &#x27;@nebular/theme&#x27;;
 import { LabsService } from &#x27;projects/commudle-admin/src/app/feature-modules/labs/services/labs.service&#x27;;
 import { DiscussionsService } from &#x27;projects/commudle-admin/src/app/services/discussions.service&#x27;;
 import { FooterService } from &#x27;projects/commudle-admin/src/app/services/footer.service&#x27;;
+import { environment } from &#x27;projects/commudle-admin/src/environments/environment&#x27;;
 import { IDiscussion } from &#x27;projects/shared-models/discussion.model&#x27;;
 import { ILab } from &#x27;projects/shared-models/lab.model&#x27;;
+import { LibToastLogService } from &#x27;projects/shared-services/lib-toastlog.service&#x27;;
+import { NavigatorShareService } from &#x27;projects/shared-services/navigator-share.service&#x27;;
 import { PrismJsHighlightCodeService } from &#x27;projects/shared-services/prismjs-highlight-code.service&#x27;;
+import { SeoService } from &#x27;projects/shared-services/seo.service&#x27;;
 import { Subscription } from &#x27;rxjs&#x27;;
 
 @Component({
@@ -1519,6 +1648,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
   discussionChat: IDiscussion;
   messagesCount: number;
   window: Window &#x3D; window;
+  environment &#x3D; environment;
 
   @ViewChild(&#x27;introCon&#x27;) private iContent: ElementRef;
   @ViewChild(&#x27;dialog&#x27;) private dialog: any;
@@ -1529,8 +1659,6 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(DOCUMENT) private doc: Document,
     private activatedRoute: ActivatedRoute,
-    private meta: Meta,
-    private title: Title,
     private labsService: LabsService,
     private sanitizer: DomSanitizer,
     private router: Router,
@@ -1539,34 +1667,37 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     private dialogService: NbDialogService,
     private footerService: FooterService,
     private nbSidebarService: NbSidebarService,
+    private navigatorShareService: NavigatorShareService,
+    private libToastLogService: LibToastLogService,
+    private clipboard: Clipboard,
+    private seoService: SeoService,
   ) {}
 
   // we are calling setStep function and that in turn is calling window.scrollTo() function and since window isn&#x27;t
   // defined on the server side, we need isBrowser
   ngOnInit() {
-    if (this.isBrowser) {
-      this.routeSubscriptions.push(
-        this.activatedRoute.params.subscribe((data) &#x3D;&gt; {
-          this.getLab(data.lab_id);
-          this.setStep(-1);
-        }),
-      );
+    this.routeSubscriptions.push(
+      this.activatedRoute.params.subscribe((data) &#x3D;&gt; {
+        this.getLab(data.lab_id);
+        this.setStep(-1);
+      }),
+    );
 
-      // Listen for url changes
-      this.router.events.subscribe((event: NavigationStart) &#x3D;&gt; {
-        if (event.navigationTrigger &#x3D;&#x3D;&#x3D; &#x27;popstate&#x27;) {
-          // Get step id from url
-          const stepId &#x3D; parseInt(event.url.split(&#x27;/&#x27;).pop(), 10);
-          if (isNaN(stepId)) {
-            // Navigation between a step and overview
-            this.setStep(-1);
-          } else {
-            // Navigation between steps
-            this.selectedLabStep &#x3D; this.lab.lab_steps.findIndex((k) &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; stepId);
-          }
+    // TODO check the validity of this code, why are we using navigationTrigger on this
+    // Listen for url changes
+    this.router.events.subscribe((event: NavigationStart) &#x3D;&gt; {
+      if (event.navigationTrigger &#x3D;&#x3D;&#x3D; &#x27;popstate&#x27;) {
+        // Get step id from url
+        const stepId &#x3D; parseInt(event.url.split(&#x27;/&#x27;).pop(), 10);
+        if (isNaN(stepId)) {
+          // Navigation between a step and overview
+          this.setStep(-1);
+        } else {
+          // Navigation between steps
+          this.selectedLabStep &#x3D; this.lab.lab_steps.findIndex((k) &#x3D;&gt; k.id &#x3D;&#x3D;&#x3D; stepId);
         }
-      });
-    }
+      }
+    });
 
     // Hide Footer
     this.footerService.changeFooterStatus(false);
@@ -1610,54 +1741,19 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.prismJsHighlightCodeService.highlightAll();
   }
 
-  setMeta() {
-    this.title.setTitle(&#x60;${this.lab.name} | By ${this.lab.user.name}&#x60;);
-    this.meta.updateTag({
-      name: &#x27;description&#x27;,
-      content: this.lab.description.replace(/&lt;[^&gt;]*&gt;/g, &#x27;&#x27;).substring(0, 200),
-    });
-    this.meta.updateTag({
-      name: &#x27;og:image&#x27;,
-      content: &#x60;${
-        this.lab.header_image ? this.lab.header_image.url : &#x27;https://commudle.com/assets/images/commudle-logo192.png&#x27;
-      }&#x60;,
-    });
-    this.meta.updateTag({
-      name: &#x27;og:image:secure_url&#x27;,
-      content: &#x60;${
-        this.lab.header_image ? this.lab.header_image.url : &#x27;https://commudle.com/assets/images/commudle-logo192.png&#x27;
-      }&#x60;,
-    });
-    this.meta.updateTag({
-      name: &#x27;og:title&#x27;,
-      content: &#x60;${this.lab.name} | By ${this.lab.user.name}&#x60;,
-    });
-    this.meta.updateTag({
-      name: &#x27;og:description&#x27;,
-      content: this.lab.description.replace(/&lt;[^&gt;]*&gt;/g, &#x27;&#x27;).substring(0, 200),
-    });
-    this.meta.updateTag({
-      name: &#x27;og:type&#x27;,
-      content: &#x27;article&#x27;,
-    });
-    this.meta.updateTag({
-      name: &#x27;twitter:image&#x27;,
-      content: &#x60;${
-        this.lab.header_image ? this.lab.header_image.url : &#x27;https://commudle.com/assets/images/commudle-logo192.png&#x27;
-      }&#x60;,
-    });
-    this.meta.updateTag({
-      name: &#x27;twitter:title&#x27;,
-      content: &#x60;${this.lab.name} | By ${this.lab.user.name}&#x60;,
-    });
-    this.meta.updateTag({
-      name: &#x27;twitter:description&#x27;,
-      content: this.lab.description.replace(/&lt;[^&gt;]*&gt;/g, &#x27;&#x27;).substring(0, 200),
-    });
+  scrollToTop() {
+    if (this.isBrowser) {
+      window.scrollTo({ top: 0, behavior: &#x27;smooth&#x27; });
+    }
   }
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: &#x27;smooth&#x27; });
+  setMeta() {
+    this.seoService.setTags(
+      &#x60;${this.lab.name} | By ${this.lab.user.name}&#x60;,
+      this.lab.description.replace(/&lt;[^&gt;]*&gt;/g, &#x27;&#x27;).substring(0, 160),
+      this.lab.header_image ? this.lab.header_image.url : &#x27;https://commudle.com/assets/images/commudle-logo192.png&#x27;,
+      &#x27;article&#x27;,
+    );
   }
 
   getLab(labId) {
@@ -1700,6 +1796,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.lastVisitedStepId &#x3D; null;
     this.selectedLabStep &#x3D; index;
     this.highlightCodeSnippets();
+    if (this.selectedLabStep &#x3D;&#x3D;&#x3D; -1 &amp;&amp; this.lab) {
+      this.setMeta();
+    }
   }
 
   changeStep(count) {
@@ -1709,6 +1808,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.highlightCodeSnippets();
     if (this.selectedLabStep &#x3D;&#x3D;&#x3D; -1) {
       this.router.navigate([&#x27;/labs&#x27;, this.lab.slug]);
+      this.setMeta();
     }
   }
 
@@ -1726,6 +1826,24 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toggleDetails() {
     this.nbSidebarService.toggle(false, &#x27;labMenu&#x27;);
+  }
+
+  copyTextToClipboard(lab: ILab): void {
+    if (!this.navigatorShareService.canShare()) {
+      if (this.clipboard.copy(&#x60;${environment.app_url}/labs/${lab.slug}&#x60;)) {
+        this.libToastLogService.successDialog(&#x27;Copied Lab successfully!&#x27;);
+      }
+      return;
+    }
+
+    this.navigatorShareService
+      .share({
+        title: &#x60;${lab.name}&#x60;,
+        url: &#x60;${environment.app_url}/labs/${lab.slug}&#x60;,
+      })
+      .then(() &#x3D;&gt; {
+        this.libToastLogService.successDialog(&#x27;Shared successfully!&#x27;);
+      });
   }
 }
 </code></pre>
@@ -1764,6 +1882,7 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       (setStep)&#x3D;&quot;setStep($event)&quot;
       [discussionChat]&#x3D;&quot;discussionChat&quot;
       [hideInteractions]&#x3D;&quot;window.innerWidth &gt; 768&quot;
+      [hideRecommendedLabs]&#x3D;&quot;window.innerWidth &lt; 768&quot;
       [hideRelatedLabs]&#x3D;&quot;window.innerWidth &lt; 768&quot;
       [hideSteps]&#x3D;&quot;window.innerWidth &lt; 768&quot;
       [lab]&#x3D;&quot;lab&quot;
@@ -1777,12 +1896,12 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       &lt;nb-card&gt;
         &lt;nb-card-body&gt;
           &lt;div *ngIf&#x3D;&quot;selectedLabStep &#x3D;&#x3D;&#x3D; -1&quot; class&#x3D;&quot;introduction d-flex flex-column&quot;&gt;
-            &lt;p class&#x3D;&quot;lab-title&quot;&gt;{{ lab.name }}&lt;/p&gt;
+            &lt;h1 class&#x3D;&quot;lab-title&quot;&gt;{{ lab.name }}&lt;/h1&gt;
             &lt;div class&#x3D;&quot;lab-detail d-flex justify-content-space-between&quot;&gt;
               &lt;div class&#x3D;&quot;user-profile d-flex justify-content-start align-items-center&quot;&gt;
                 &lt;div class&#x3D;&quot;avatar&quot;&gt;
                   &lt;a [routerLink]&#x3D;&quot;[&#x27;/users&#x27;, lab.user.username]&quot; target&#x3D;&quot;_blank&quot;&gt;
-                    &lt;img alt&#x3D;&quot;{{ lab.user.name }}&quot; src&#x3D;&quot;{{ lab.user.avatar }}&quot; title&#x3D;&quot;{{ lab.user.name }}&quot; /&gt;
+                    &lt;img alt&#x3D;&quot;{{ lab.user.name }}&quot; src&#x3D;&quot;{{ lab.user.photo.i32 }}&quot; title&#x3D;&quot;{{ lab.user.name }}&quot; /&gt;
                   &lt;/a&gt;
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;details d-flex align-items-center&quot;&gt;
@@ -1855,6 +1974,15 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         &lt;nb-icon icon&#x3D;&quot;message-circle-outline&quot;&gt;&lt;/nb-icon&gt;
         {{ messagesCount }}
       &lt;/div&gt;
+      &lt;app-share-button
+        [content]&#x3D;&quot;environment.app_url + &#x27;/labs/&#x27; + lab.slug&quot;
+        [round]&#x3D;&quot;true&quot;
+        [showText]&#x3D;&quot;false&quot;
+        [title]&#x3D;&quot;lab.name&quot;
+        [url]&#x3D;&quot;environment.app_url + &#x27;/labs/&#x27; + lab.slug&quot;
+        appearance&#x3D;&quot;ghost&quot;
+        class&#x3D;&quot;com-mt-4&quot;
+      &gt;&lt;/app-share-button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -1894,12 +2022,12 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
           .introduction {
             .lab-title {
+              color: $gunmetal;
               font-size: $fs-35;
               font-weight: $fw-500;
               line-height: 2.75rem;
-              color: $gunmetal;
-              text-transform: capitalize;
               margin: 0 0 $space-20;
+              text-transform: capitalize;
             }
 
             .lab-detail {
@@ -1907,10 +2035,10 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
               .user-profile {
                 .avatar {
-                  height: 24px;
-                  width: 24px;
                   border-radius: 50%;
+                  height: 24px;
                   overflow: hidden;
+                  width: 24px;
 
                   img {
                     width: 100%;
@@ -1923,8 +2051,8 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
                   width: max-content;
 
                   p {
-                    font-size: $fs-h5;
                     color: $spanish-gray;
+                    font-size: $fs-h5;
                     margin: 0 $space-16 0 $space-8;
                   }
 
@@ -1936,19 +2064,19 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
                   }
 
                   .name {
-                    text-transform: capitalize;
                     color: $neon-blue;
+                    text-transform: capitalize;
                   }
 
                   .date {
-                    margin-left: $space-4;
                     font-style: normal;
+                    margin-left: $space-4;
                   }
 
                   .expert-icon {
+                    height: 12px;
                     margin-left: $space-4;
                     width: 12px;
-                    height: 12px;
                   }
                 }
               }
@@ -1959,15 +2087,15 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
                 &amp;::ng-deep {
                   .nb-tag-list-tags-wrapper {
                     nb-tag {
-                      padding: $space-4 $space-12;
-                      font-size: $fs-h7;
-                      font-weight: $fw-400;
-                      line-height: 12px;
-                      text-transform: lowercase;
-                      color: $gunmetal;
                       background-color: $azureish-white;
                       border: none;
                       border-radius: $border-5;
+                      color: $gunmetal;
+                      font-size: $fs-h7;
+                      font-weight: $fw-400;
+                      line-height: 12px;
+                      padding: $space-4 $space-12;
+                      text-transform: lowercase;
                     }
                   }
                 }
@@ -2003,8 +2131,8 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
               ::ng-deep {
                 img {
-                  max-width: 100%;
                   height: auto;
+                  max-width: 100%;
                 }
 
                 code {
@@ -2029,9 +2157,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
 
         nb-card-footer {
-          padding: $space-24 0 0;
           background-color: $light-purple;
           border: none;
+          padding: $space-24 0 0;
         }
 
         @media all and (max-width: $tab-width) {
@@ -2047,9 +2175,9 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
           }
 
           nb-card-footer {
-            position: sticky;
             bottom: $space-64;
             padding: $space-8 0;
+            position: sticky;
           }
         }
       }
@@ -2057,28 +2185,30 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     .interactions {
       display: none;
-      width: max-content;
       height: fit-content;
       margin-left: $space-16;
       position: sticky;
       top: 50vh;
+      width: max-content;
 
       app-votes-display {
         direction: rtl;
 
         &amp;::ng-deep {
-          p {
-            font-size: 1.5rem;
-
-            span {
+          .votes {
+            p {
               color: $neon-blue;
+              font-size: 1.5rem;
             }
 
-            nb-icon {
-              font-size: 1.5rem;
+            span {
+              nb-icon {
+                font-size: 1.5rem;
+                margin-right: $space-4;
 
-              &amp;:not(.voted-heart) {
-                color: $neon-blue;
+                &amp;:not(.voted-heart) {
+                  color: $neon-blue;
+                }
               }
             }
           }
@@ -2086,14 +2216,26 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       }
 
       .discussion {
-        margin: $space-24 0 0;
-        font-size: $fs-24;
         color: $neon-blue;
+        font-size: $fs-24;
+        margin: $space-24 0 0;
       }
 
       nb-icon {
-        font-size: $fs-24;
         color: $neon-blue;
+        font-size: $fs-24;
+      }
+
+      app-share-button {
+        ::ng-deep {
+          .share-button-container {
+            margin: $space-24 0 0;
+
+            button {
+              background-color: transparent !important;
+            }
+          }
+        }
       }
     }
 
@@ -2110,12 +2252,12 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   .steps-navigation {
     button {
+      background-color: $neon-blue;
+      border-radius: $border-10;
+      color: $white;
       font-size: $fs-18;
       font-weight: $fw-500;
       text-transform: capitalize;
-      color: $white;
-      background-color: $neon-blue;
-      border-radius: $border-10;
     }
   }
 
@@ -2134,25 +2276,25 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
       justify-content: normal;
 
       .toggle-details {
+        background-color: $neon-blue;
+        border-bottom-right-radius: $border-10;
+        border-top-right-radius: $border-10;
+        color: white;
         display: block;
+        font-size: 2.25rem;
+        left: 0;
+        padding: $space-4;
         position: fixed;
         top: $space-96;
-        left: 0;
-        font-size: 2.25rem;
-        padding: $space-4;
-        color: white;
-        background-color: $neon-blue;
         z-index: 3;
-        border-top-right-radius: $border-10;
-        border-bottom-right-radius: $border-10;
       }
 
       .desktop-lab-details {
         &amp;::ng-deep {
           .menu {
+            height: initial;
             position: initial;
             top: initial;
-            height: initial;
             width: 100%;
 
             nb-card {
@@ -2171,22 +2313,22 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 
         &amp;::ng-deep {
           .main-container {
-            z-index: 3;
-            top: $space-56;
-            right: 0;
-            width: 80vw;
+            backdrop-filter: blur(20px);
             height: calc(100vh - 3.5rem);
             padding: $space-16;
-            backdrop-filter: blur(20px);
+            right: 0;
+            top: $space-56;
+            width: 80vw;
+            z-index: 3;
 
             .scrollable {
               padding: 0;
 
               app-lab-details {
                 .menu {
+                  height: initial;
                   position: initial;
                   top: initial;
-                  height: initial;
                   width: 100%;
 
                   nb-card {
@@ -2247,12 +2389,14 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-template #dialog let-data let-ref="dialogRef">  <nb-card class="image-popup">    <nb-card-header style="align-self: flex-end">      <nb-icon (click)="ref.close()" icon="close"></nb-icon>    </nb-card-header>    <nb-card-body>      <img [src]="src" alt="Image" class="Image" />    </nb-card-body>  </nb-card></ng-template><div *ngIf="lab" class="lab page-padding">  <div class="body d-flex justify-content-center">    <nb-icon (click)="toggleDetails()" class="toggle-details" icon="bookmark"></nb-icon>    <nb-sidebar right state="collapsed" tag="labMenu">      <app-lab-details        (scrollToChat)="scroll(discussionChatContainer)"        (setStep)="setStep($event)"        [discussionChat]="discussionChat"        [hideInteractions]="true"        [hideUser]="true"        [lab]="lab"        [messagesCount]="messagesCount"        [selectedLabStep]="selectedLabStep"        [similarLabs]="similarLabs"      ></app-lab-details>    </nb-sidebar>    <app-lab-details      (scrollToChat)="scroll(discussionChatContainer)"      (setStep)="setStep($event)"      [discussionChat]="discussionChat"      [hideInteractions]="window.innerWidth > 768"      [hideRelatedLabs]="window.innerWidth < 768"      [hideSteps]="window.innerWidth < 768"      [lab]="lab"      [messagesCount]="messagesCount"      [selectedLabStep]="selectedLabStep"      [similarLabs]="similarLabs"      class="desktop-lab-details"    ></app-lab-details>    <div class="content">      <app-user-object-visit-pixel [parentId]="lab.id" [parentType]="\'Lab\'"></app-user-object-visit-pixel>      <nb-card>        <nb-card-body>          <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">            <p class="lab-title">{{ lab.name }}</p>            <div class="lab-detail d-flex justify-content-space-between">              <div class="user-profile d-flex justify-content-start align-items-center">                <div class="avatar">                  <a [routerLink]="[\'/users\', lab.user.username]" target="_blank">                    <img alt="{{ lab.user.name }}" src="{{ lab.user.avatar }}" title="{{ lab.user.name }}" />                  </a>                </div>                <div class="details d-flex align-items-center">                  <p class="d-flex align-items-center">                    created by&nbsp;                    <a [routerLink]="[\'/users\', lab.user.username]" class="name" target="_blank">{{ lab.user.name }}</a>                    <img                      *ngIf="lab.user.is_expert"                      alt="Expert Tick"                      class="expert-icon"                      src="/assets/images/Expert-Tick.svg"                      title="Expert Tick"                    />&nbsp;                    <span class="date">{{ lab.created_at | date }}</span>                  </p>                </div>              </div>              <div class="tags">                <app-tag [tags]="lab.tags"></app-tag>              </div>            </div>            <div *ngIf="lab.header_image" class="header-image">              <img alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}" />            </div>            <div #introCon [innerHTML]="labDescription" class="intro-content"></div>          </div>          <div>            <router-outlet></router-outlet>          </div>        </nb-card-body>        <nb-card-footer>          <div class="steps-navigation d-flex justify-content-space-between">            <button              (click)="changeStep(-1)"              *ngIf="selectedLabStep !== -1"              [routerLink]="selectedLabStep === 0 ? [] : [\'steps\', this.lab.lab_steps[selectedLabStep - 1].id]"              nbButton            >              <span>                <nb-icon icon="arrow-back"></nb-icon>                Prev              </span>            </button>            <span></span>            <button              (click)="changeStep(1)"              *ngIf="selectedLabStep < lab.lab_steps.length - 1"              [routerLink]="[\'steps\', this.lab.lab_steps[selectedLabStep + 1].id]"              nbButton            >              <span>                Next                <nb-icon icon="arrow-forward"></nb-icon>              </span>            </button>          </div>        </nb-card-footer>      </nb-card>      <div #discussionChatContainer class="lab-discussion">        <app-lab-discussion          (messagesCount)="getMessagesCount($event)"          *ngIf="discussionChat"          [discussion]="discussionChat"        ></app-lab-discussion>      </div>    </div>    <div class="interactions">      <app-votes-display [icon]="\'heart-outline\'" [votableId]="lab.id" [votableType]="\'Lab\'"></app-votes-display>      <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">        <nb-icon icon="message-circle-outline"></nb-icon>        {{ messagesCount }}      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunitiesPromotionsComponent', 'selector': 'app-communities-promotions'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildHListItemComponent', 'selector': 'app-community-build-h-list-item'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'ConferenceV2Component', 'selector': 'app-conference-v2'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionChatComponent', 'selector': 'app-discussion-chat'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'DiscussionQnAComponent', 'selector': 'app-discussion-qna'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventEmbeddedVideoStreamV2Component', 'selector': 'app-event-embedded-video-stream-v2'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FeedItemDiscussionComponent', 'selector': 'app-feed-item-discussion'},{'name': 'FeedItemDiscussionMessageComponent', 'selector': 'app-feed-item-discussion-message'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HeaderBannerComponent', 'selector': 'app-header-banner'},{'name': 'HeaderTextComponent', 'selector': 'app-header-text'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HmsVideoV2Component', 'selector': 'app-hms-video-v2'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabDisplayCardComponent', 'selector': 'app-lab-display-card'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LocalPreviewV2Component', 'selector': 'app-local-preview-v2'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'QnaUserMessageComponent', 'selector': 'app-qna-user-message'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SelectRoleV2Component', 'selector': 'app-select-role-v2'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceDiscussionComponent', 'selector': 'app-speaker-resource-discussion'},{'name': 'SpeakerResourceDiscussionMessageComponent', 'selector': 'app-speaker-resource-discussion-message'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakerSessionPageComponent', 'selector': 'app-speaker-session-page'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContentComponent', 'selector': 'app-user-content'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UserMessageComponent', 'selector': 'app-user-message'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UsersListComponent', 'selector': 'app-users-list'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVideoComponent', 'selector': 'app-user-video'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VideoStreamV2Component', 'selector': 'app-video-stream-v2'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
-    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'}];
+        var COMPONENT_TEMPLATE = '<div><ng-template #dialog let-data let-ref="dialogRef">  <nb-card class="image-popup">    <nb-card-header style="align-self: flex-end">      <nb-icon (click)="ref.close()" icon="close"></nb-icon>    </nb-card-header>    <nb-card-body>      <img [src]="src" alt="Image" class="Image" />    </nb-card-body>  </nb-card></ng-template><div *ngIf="lab" class="lab page-padding">  <div class="body d-flex justify-content-center">    <nb-icon (click)="toggleDetails()" class="toggle-details" icon="bookmark"></nb-icon>    <nb-sidebar right state="collapsed" tag="labMenu">      <app-lab-details        (scrollToChat)="scroll(discussionChatContainer)"        (setStep)="setStep($event)"        [discussionChat]="discussionChat"        [hideInteractions]="true"        [hideUser]="true"        [lab]="lab"        [messagesCount]="messagesCount"        [selectedLabStep]="selectedLabStep"        [similarLabs]="similarLabs"      ></app-lab-details>    </nb-sidebar>    <app-lab-details      (scrollToChat)="scroll(discussionChatContainer)"      (setStep)="setStep($event)"      [discussionChat]="discussionChat"      [hideInteractions]="window.innerWidth > 768"      [hideRecommendedLabs]="window.innerWidth < 768"      [hideRelatedLabs]="window.innerWidth < 768"      [hideSteps]="window.innerWidth < 768"      [lab]="lab"      [messagesCount]="messagesCount"      [selectedLabStep]="selectedLabStep"      [similarLabs]="similarLabs"      class="desktop-lab-details"    ></app-lab-details>    <div class="content">      <app-user-object-visit-pixel [parentId]="lab.id" [parentType]="\'Lab\'"></app-user-object-visit-pixel>      <nb-card>        <nb-card-body>          <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">            <h1 class="lab-title">{{ lab.name }}</h1>            <div class="lab-detail d-flex justify-content-space-between">              <div class="user-profile d-flex justify-content-start align-items-center">                <div class="avatar">                  <a [routerLink]="[\'/users\', lab.user.username]" target="_blank">                    <img alt="{{ lab.user.name }}" src="{{ lab.user.photo.i32 }}" title="{{ lab.user.name }}" />                  </a>                </div>                <div class="details d-flex align-items-center">                  <p class="d-flex align-items-center">                    created by&nbsp;                    <a [routerLink]="[\'/users\', lab.user.username]" class="name" target="_blank">{{ lab.user.name }}</a>                    <img                      *ngIf="lab.user.is_expert"                      alt="Expert Tick"                      class="expert-icon"                      src="/assets/images/Expert-Tick.svg"                      title="Expert Tick"                    />&nbsp;                    <span class="date">{{ lab.created_at | date }}</span>                  </p>                </div>              </div>              <div class="tags">                <app-tag [tags]="lab.tags"></app-tag>              </div>            </div>            <div *ngIf="lab.header_image" class="header-image">              <img alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}" />            </div>            <div #introCon [innerHTML]="labDescription" class="intro-content"></div>          </div>          <div>            <router-outlet></router-outlet>          </div>        </nb-card-body>        <nb-card-footer>          <div class="steps-navigation d-flex justify-content-space-between">            <button              (click)="changeStep(-1)"              *ngIf="selectedLabStep !== -1"              [routerLink]="selectedLabStep === 0 ? [] : [\'steps\', this.lab.lab_steps[selectedLabStep - 1].id]"              nbButton            >              <span>                <nb-icon icon="arrow-back"></nb-icon>                Prev              </span>            </button>            <span></span>            <button              (click)="changeStep(1)"              *ngIf="selectedLabStep < lab.lab_steps.length - 1"              [routerLink]="[\'steps\', this.lab.lab_steps[selectedLabStep + 1].id]"              nbButton            >              <span>                Next                <nb-icon icon="arrow-forward"></nb-icon>              </span>            </button>          </div>        </nb-card-footer>      </nb-card>      <div #discussionChatContainer class="lab-discussion">        <app-lab-discussion          (messagesCount)="getMessagesCount($event)"          *ngIf="discussionChat"          [discussion]="discussionChat"        ></app-lab-discussion>      </div>    </div>    <div class="interactions">      <app-votes-display [icon]="\'heart-outline\'" [votableId]="lab.id" [votableType]="\'Lab\'"></app-votes-display>      <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">        <nb-icon icon="message-circle-outline"></nb-icon>        {{ messagesCount }}      </div>      <app-share-button        [content]="environment.app_url + \'/labs/\' + lab.slug"        [round]="true"        [showText]="false"        [title]="lab.name"        [url]="environment.app_url + \'/labs/\' + lab.slug"        appearance="ghost"        class="com-mt-4"      ></app-share-button>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AboutOldComponent', 'selector': 'app-about-old'},{'name': 'AdminBadgesAssignComponent', 'selector': 'app-admin-badges-assign'},{'name': 'AdminBadgesComponent', 'selector': 'app-admin-badges'},{'name': 'AdminBadgesFormComponent', 'selector': 'app-admin-badges-form'},{'name': 'AdminBadgesListComponent', 'selector': 'app-admin-badges-list'},{'name': 'AdminFeaturedCommunitiesComponent', 'selector': 'app-admin-featured-communities'},{'name': 'AdminPageAdsComponent', 'selector': 'app-admin-pa-slots'},{'name': 'AdminPageAdsFormComponent', 'selector': 'app-admin-pa-slots-form'},{'name': 'AdminPageAdsListComponent', 'selector': 'app-admin-pa-slots-list'},{'name': 'AdminStaticAssetFormComponent', 'selector': 'app-admin-static-asset-form'},{'name': 'AdminStaticAssetsComponent', 'selector': 'app-admin-static-assets'},{'name': 'AdminStaticAssetsListComponent', 'selector': 'app-admin-static-assets-list'},{'name': 'AdminSurveysComponent', 'selector': 'app-admin-surveys'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveChannelComponent', 'selector': 'app-archive-channel'},{'name': 'AttendedMembersComponent', 'selector': 'app-attended-members'},{'name': 'AttendingMembersComponent', 'selector': 'app-attending-members'},{'name': 'AutoAttendanceComponent', 'selector': 'app-auto-attendance'},{'name': 'BadgeComponent', 'selector': 'app-badge'},{'name': 'BasicInfoComponent', 'selector': 'app-basic-info'},{'name': 'BasicUserProfileComponent', 'selector': 'app-basic-user-profile'},{'name': 'BlogComponent', 'selector': 'app-blog'},{'name': 'BlogsListComponent', 'selector': 'app-blogs'},{'name': 'BuildListItemComponent', 'selector': 'app-build-list-item'},{'name': 'ChannelMembersComponent', 'selector': 'app-channel-members'},{'name': 'ChannelSettingsComponent', 'selector': 'app-channel-settings'},{'name': 'ChatsContainerComponent', 'selector': 'app-chats-container'},{'name': 'ChatsListComponent', 'selector': 'app-chats-list'},{'name': 'ChatsWindowComponent', 'selector': 'app-chats-window'},{'name': 'CircularProgressiveBarComponent', 'selector': 'app-circular-progressive-bar'},{'name': 'CollaboratingCommunitiesComponent', 'selector': 'app-collaborating-communities'},{'name': 'CollaborationCommunitiesComponent', 'selector': 'app-collaboration-communities'},{'name': 'CollaborationCommunityComponent', 'selector': 'app-collaboration-community'},{'name': 'CommudleFeaturesComponent', 'selector': 'app-commudle-features'},{'name': 'CommunitiesAboutComponent', 'selector': 'app-communities-about'},{'name': 'CommunitiesComponent', 'selector': 'app-communities'},{'name': 'CommunitiesFeaturedComponent', 'selector': 'app-communities-featured'},{'name': 'CommunitiesListCardComponent', 'selector': 'app-communities-list-card'},{'name': 'CommunitiesListComponent', 'selector': 'app-communities-list'},{'name': 'CommunitiesPostsComponent', 'selector': 'app-communities-posts'},{'name': 'CommunityBadgeComponent', 'selector': 'app-community-badge'},{'name': 'CommunityBlockedUsersComponent', 'selector': 'app-community-blocked-users'},{'name': 'CommunityBuildCardComponent', 'selector': 'app-community-build-card'},{'name': 'CommunityBuildComponent', 'selector': 'app-community-build'},{'name': 'CommunityBuildDetailsComponent', 'selector': 'app-community-build-details'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityBuildsComponent', 'selector': 'app-community-builds'},{'name': 'CommunityChannelComponent', 'selector': 'app-community-channel'},{'name': 'CommunityChannelFormComponent', 'selector': 'app-community-channel-form'},{'name': 'CommunityChannelListComponent', 'selector': 'app-community-channel-list'},{'name': 'CommunityChannelMessageComponent', 'selector': 'app-community-channel-message'},{'name': 'CommunityChannelsDashboardChannelListComponent', 'selector': 'app-community-channels-dashboard-channel-list'},{'name': 'CommunityChannelsDashboardComponent', 'selector': 'app-community-channels-dashboard'},{'name': 'CommunityChannelsListComponent', 'selector': 'app-community-channels-list'},{'name': 'CommunityComponent', 'selector': 'app-community'},{'name': 'CommunityControlPanelComponent', 'selector': 'app-community-control-panel'},{'name': 'CommunityControlsComponent', 'selector': 'app-community-controls'},{'name': 'CommunityCreateComponent', 'selector': 'app-community-create'},{'name': 'CommunityEditDetailsComponent', 'selector': 'app-community-edit-details'},{'name': 'CommunityEmailsListComponent', 'selector': 'app-community-emails-list'},{'name': 'CommunityEventsListActionsComponent', 'selector': 'app-community-events-list-actions'},{'name': 'CommunityEventsListComponent', 'selector': 'app-community-events-list'},{'name': 'CommunityEventsListDateComponent', 'selector': 'app-community-events-list-date'},{'name': 'CommunityFormsListActionsComponent', 'selector': 'app-community-forms-list-actions'},{'name': 'CommunityFormsListComponent', 'selector': 'app-community-forms-list'},{'name': 'CommunityFormsListStatsComponent', 'selector': 'app-community-forms-list-stats'},{'name': 'CommunityGroupAboutComponent', 'selector': 'app-community-group-about'},{'name': 'CommunityGroupCommunitiesComponent', 'selector': 'app-community-group-communities'},{'name': 'CommunityGroupFormComponent', 'selector': 'app-community-group-form'},{'name': 'CommunityGroupHomeComponent', 'selector': 'app-community-group-home'},{'name': 'CommunityGroupTeamComponent', 'selector': 'app-community-group-team'},{'name': 'CommunityListComponent', 'selector': 'app-community-list'},{'name': 'CommunityMembersComponent', 'selector': 'app-community-members'},{'name': 'CommunityMembersListComponent', 'selector': 'app-community-members-list'},{'name': 'CommunityStatsComponent', 'selector': 'app-community-stats'},{'name': 'CommunityTeamComponent', 'selector': 'app-community-team'},{'name': 'ConferenceComponent', 'selector': 'app-conference'},{'name': 'ConferenceSettingsComponent', 'selector': 'app-conference-settings'},{'name': 'ConferenceUserVideoComponent', 'selector': 'app-conference-user-video'},{'name': 'ConferenceUserVideosComponent', 'selector': 'app-conference-user-videos'},{'name': 'CookieConsentComponent', 'selector': 'app-cookie-consent'},{'name': 'CreateCommunityBuildComponent', 'selector': 'app-create-community-build'},{'name': 'CreateDataFormComponent', 'selector': 'app-create-data-form'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateLabComponent', 'selector': 'app-create-lab'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataFormFillComponent', 'selector': 'app-data-form-fill'},{'name': 'DiscussionCommunityChannelComponent', 'selector': 'app-discussion-community-channel'},{'name': 'DiscussionPersonalChatComponent', 'selector': 'app-discussion-personal-chat'},{'name': 'EditChannelComponent', 'selector': 'app-edit-channel'},{'name': 'EditDataFormComponent', 'selector': 'app-edit-data-form'},{'name': 'EditEventComponent', 'selector': 'app-edit-event'},{'name': 'EditLabComponent', 'selector': 'app-edit-lab'},{'name': 'EditUserProfileComponent', 'selector': 'app-edit-user-profile'},{'name': 'EmailerComponent', 'selector': 'app-emailer'},{'name': 'EmailJoinComponent', 'selector': 'app-email-join'},{'name': 'EmailPreferencesComponent', 'selector': 'app-email-preferences'},{'name': 'EmailUnsubscribeComponent', 'selector': 'app-email-unsubscribe'},{'name': 'EntityProfileComponent', 'selector': 'app-entity-profile'},{'name': 'EntryPassScanComponent', 'selector': 'app-entry-pass-scan'},{'name': 'Error404PageComponent', 'selector': 'lib-error404-page'},{'name': 'EventCommentsComponent', 'selector': 'app-event-comments'},{'name': 'EventDashboardComponent', 'selector': 'app-event-dashboard'},{'name': 'EventDescriptionComponent', 'selector': 'app-event-description'},{'name': 'EventDetailsComponent', 'selector': 'app-event-details'},{'name': 'EventEmbeddedVideoStreamComponent', 'selector': 'app-event-embedded-video-stream'},{'name': 'EventFormResponsesComponent', 'selector': 'app-event-form-responses'},{'name': 'EventLocationsComponent', 'selector': 'app-event-locations'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventLocationTracksComponent', 'selector': 'app-event-location-tracks'},{'name': 'EventRecordingsComponent', 'selector': 'app-event-recordings'},{'name': 'EventResourcesComponent', 'selector': 'app-event-resources'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'EventSimpleRegistrationComponent', 'selector': 'app-event-simple-registration'},{'name': 'EventSpeakersComponent', 'selector': 'app-event-speakers'},{'name': 'EventStatsComponent', 'selector': 'app-event-stats'},{'name': 'EventStatusComponent', 'selector': 'app-event-status'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'EventUpdatesComponent', 'selector': 'app-event-updates'},{'name': 'ExternalFeedComponent', 'selector': 'app-external-feed'},{'name': 'ExternalFeedHListItemComponent', 'selector': 'app-external-feed-hlist-item'},{'name': 'FeaturesComponent', 'selector': 'app-features'},{'name': 'FeedItemComponent', 'selector': 'app-feed-item'},{'name': 'FeedItemDetailsComponent', 'selector': 'app-feed-item-details'},{'name': 'FillDataFormComponent', 'selector': 'app-fill-data-form'},{'name': 'FlagsDisplayComponent', 'selector': 'app-flags-display'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'FormGroupsComponent', 'selector': 'app-form-groups'},{'name': 'FormResponsesComponent', 'selector': 'app-form-responses'},{'name': 'HighlightedLinksComponent', 'selector': 'app-highlighted-links'},{'name': 'HmsBeamComponent', 'selector': 'app-hms-beam'},{'name': 'HmsVideoComponent', 'selector': 'app-hms-video'},{'name': 'HomeBuildsCardComponent', 'selector': 'app-home-builds-card'},{'name': 'HomeBuildsComponent', 'selector': 'app-home-builds'},{'name': 'HomeCommunitiesComponent', 'selector': 'app-home-communities'},{'name': 'HomeCommunityComponent', 'selector': 'app-home-community'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HomeEventComponent', 'selector': 'app-home-event'},{'name': 'HomeEventsCardComponent', 'selector': 'app-home-events-card'},{'name': 'HomeEventsComponent', 'selector': 'app-home-events'},{'name': 'HomeExpertsComponent', 'selector': 'app-home-experts'},{'name': 'HomeExternalFeedLinksComponent', 'selector': 'app-home-external-feed-links'},{'name': 'HomeHeadBannerComponent', 'selector': 'app-home-head-banner'},{'name': 'HomeLabsComponent', 'selector': 'app-home-labs'},{'name': 'HomepageAboutComponent', 'selector': 'app-homepage-about'},{'name': 'HomepageBuildsComponent', 'selector': 'app-homepage-builds'},{'name': 'HomepageComponent', 'selector': 'app-homepage'},{'name': 'HomepageEventsCardComponent', 'selector': 'app-homepage-events-card'},{'name': 'HomepageEventsComponent', 'selector': 'app-homepage-events'},{'name': 'HomepageExpertsComponent', 'selector': 'app-homepage-experts'},{'name': 'HomepageFeaturedCommunitiesComponent', 'selector': 'app-homepage-featured-communities'},{'name': 'HomepageFeaturesComponent', 'selector': 'app-homepage-features'},{'name': 'HomepageLabsComponent', 'selector': 'app-homepage-labs'},{'name': 'HomepageTestimonialsComponent', 'selector': 'app-homepage-testimonials'},{'name': 'HomePromotionsComponent', 'selector': 'app-home-promotions'},{'name': 'IndexComponent', 'selector': 'app-index'},{'name': 'InviteFormComponent', 'selector': 'app-invite-form'},{'name': 'JoinByTokenComponent', 'selector': 'app-join-by-token'},{'name': 'LabCardComponent', 'selector': 'app-lab-card'},{'name': 'LabComponent', 'selector': 'app-lab'},{'name': 'LabDetailsComponent', 'selector': 'app-lab-details'},{'name': 'LabDiscussionComponent', 'selector': 'app-lab-discussion'},{'name': 'LabDiscussionMessageComponent', 'selector': 'app-lab-discussion-message'},{'name': 'LabListItemComponent', 'selector': 'app-lab-list-item'},{'name': 'LabsCardComponent', 'selector': 'app-labs-card'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsComponent', 'selector': 'app-labs'},{'name': 'LabsHeaderComponent', 'selector': 'app-labs-header'},{'name': 'LabsSearchComponent', 'selector': 'app-labs-search'},{'name': 'LabStepComponent', 'selector': 'app-lab-step'},{'name': 'LibErrorHandlerComponent', 'selector': 'lib-lib-error-handler'},{'name': 'LiveSessionsComponent', 'selector': 'app-live-sessions'},{'name': 'LocalPreviewComponent', 'selector': 'app-local-preview'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'MainNewsletterComponent', 'selector': 'app-main-newsletter'},{'name': 'MainNewsletterEmailStatsComponent', 'selector': 'app-main-newsletter-email-stats'},{'name': 'MainNewsletterFormComponent', 'selector': 'app-main-newsletter-form'},{'name': 'MainNewsletterListItemComponent', 'selector': 'app-main-newsletter-list-item'},{'name': 'MainNewsletterSchedulerComponent', 'selector': 'app-main-newsletter-scheduler'},{'name': 'MainNewsletterTestEmailerComponent', 'selector': 'app-main-newsletter-test-emailer'},{'name': 'MemberComponent', 'selector': 'app-member'},{'name': 'MembersComponent', 'selector': 'app-members'},{'name': 'MembershipToggleComponent', 'selector': 'app-membership-toggle'},{'name': 'MessageComponent', 'selector': 'app-message'},{'name': 'MessagesComponent', 'selector': 'app-messages'},{'name': 'MessagesListComponent', 'selector': 'app-messages-list'},{'name': 'MiniUserProfileComponent', 'selector': 'app-mini-user-profile'},{'name': 'MyCommunityBuildsComponent', 'selector': 'app-my-community-builds'},{'name': 'MyLabsComponent', 'selector': 'app-my-labs'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NavbarMenuComponent', 'selector': 'app-navbar-menu'},{'name': 'NewCommunityChannelComponent', 'selector': 'app-new-community-channel'},{'name': 'NewDataFormComponent', 'selector': 'app-new-data-form'},{'name': 'NewsletterListComponent', 'selector': 'app-newsletter-list'},{'name': 'NotificationsListComponent', 'selector': 'app-notifications-list'},{'name': 'NotificationsListItemComponent', 'selector': 'app-notifications-list-item'},{'name': 'NotificationsPageComponent', 'selector': 'app-notifications-page'},{'name': 'NotificationsPopoverComponent', 'selector': 'app-notifications-popover'},{'name': 'OrganizerCommunitiesListComponent', 'selector': 'app-organizer-communities-list'},{'name': 'PageAdsComponent', 'selector': 'app-pa-slots'},{'name': 'PollCreateFormComponent', 'selector': 'app-poll-create-form'},{'name': 'PollFormComponent', 'selector': 'app-poll-form'},{'name': 'PollListItemComponent', 'selector': 'app-poll-list-item'},{'name': 'PollResultComponent', 'selector': 'app-poll-result'},{'name': 'PollsComponent', 'selector': 'app-polls'},{'name': 'PricingComponent', 'selector': 'app-pricing'},{'name': 'PrivacyPolicyComponent', 'selector': 'app-privacy-policy'},{'name': 'ProfileStatusBarComponent', 'selector': 'app-profile-status-bar'},{'name': 'PublicCommunityGroupsComponent', 'selector': 'app-public-community-groups'},{'name': 'PublicPageGuidelinesComponent', 'selector': 'app-public-page-guidelines'},{'name': 'PublicProfileComponent', 'selector': 'app-public-profile'},{'name': 'PushNotificationComponent', 'selector': 'app-push-notification'},{'name': 'QnaComponent', 'selector': 'app-qna'},{'name': 'QnaListComponent', 'selector': 'app-qna-list'},{'name': 'QnaListItemComponent', 'selector': 'app-qna-list-item'},{'name': 'RecommendedBuildsComponent', 'selector': 'app-recommended-builds'},{'name': 'RecommendedCommunitiesComponent', 'selector': 'app-recommended-communities'},{'name': 'RecommendedLabsComponent', 'selector': 'app-recommended-labs'},{'name': 'ResponsesTableComponent', 'selector': 'app-responses-table'},{'name': 'RsvpComponent', 'selector': 'app-rsvp'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SearchBoxComponent', 'selector': 'app-search-box'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SelectRoleComponent', 'selector': 'app-select-role'},{'name': 'SendMessageFormComponent', 'selector': 'app-send-message-form'},{'name': 'SessionPageChatComponent', 'selector': 'app-session-page-chat'},{'name': 'SessionPageComponent', 'selector': 'app-session-page'},{'name': 'SessionPageDetailsComponent', 'selector': 'app-session-page-details'},{'name': 'SessionPagePollComponent', 'selector': 'app-session-page-poll'},{'name': 'SessionPageQnaComponent', 'selector': 'app-session-page-qna'},{'name': 'SessionPageVideoComponent', 'selector': 'app-session-page-video'},{'name': 'SessionPageViewersComponent', 'selector': 'app-session-page-viewers'},{'name': 'ShareButtonComponent', 'selector': 'app-share-button'},{'name': 'SidebarMenuComponent', 'selector': 'app-sidebar-menu'},{'name': 'SkeletonTextComponent', 'selector': 'app-skeleton-text'},{'name': 'SocialLinksComponent', 'selector': 'app-social-links'},{'name': 'SpeakerCardComponent', 'selector': 'app-speaker-card'},{'name': 'SpeakerResourceComponent', 'selector': 'app-speaker-resource'},{'name': 'SpeakerResourceFormComponent', 'selector': 'app-speaker-resource-form'},{'name': 'SpeakerResourcePreviewComponent', 'selector': 'app-speaker-resource-preview'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SpeakersComponent', 'selector': 'app-speakers'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'SponsorsComponent', 'selector': 'app-sponsors'},{'name': 'StepperComponent', 'selector': 'app-stepper'},{'name': 'SuggestionBoxComponent', 'selector': 'app-suggestion-box'},{'name': 'SwUpdateComponent', 'selector': 'app-sw-update'},{'name': 'SysAdminComponent', 'selector': 'app-sys-admin'},{'name': 'TagComponent', 'selector': 'app-tag'},{'name': 'TeamComponent', 'selector': 'app-team'},{'name': 'TeammateInviteConfirmationComponent', 'selector': 'app-teammate-invite-confirmation'},{'name': 'TermsAndConditionsComponent', 'selector': 'app-terms-and-conditions'},{'name': 'UserBadgesComponent', 'selector': 'app-user-badges'},{'name': 'UserBasicDetailsComponent', 'selector': 'app-user-basic-details'},{'name': 'UserBasicSocialComponent', 'selector': 'app-user-basic-social'},{'name': 'UserBuildCardComponent', 'selector': 'app-user-build-card'},{'name': 'UserCommunityCardComponent', 'selector': 'app-user-community-card'},{'name': 'UserContributionsComponent', 'selector': 'app-user-contributions'},{'name': 'UserCoverPhotoComponent', 'selector': 'app-user-cover-photo'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsCellComponent', 'selector': 'app-user-details-cell'},{'name': 'UserDetailsComponent', 'selector': 'app-user-details'},{'name': 'UserEventRegistrationsComponent', 'selector': 'app-user-event-registrations'},{'name': 'UserExtraDetailsComponent', 'selector': 'app-user-extra-details'},{'name': 'UserFeedComponent', 'selector': 'app-user-feed'},{'name': 'UserFeedInputComponent', 'selector': 'app-user-feed-input'},{'name': 'UserFeedPostComponent', 'selector': 'app-user-feed-post'},{'name': 'UserFeedPostsComponent', 'selector': 'app-user-feed-posts'},{'name': 'UserFollowComponent', 'selector': 'app-user-follow'},{'name': 'UserLabCardComponent', 'selector': 'app-user-lab-card'},{'name': 'UserLiveStatusComponent', 'selector': 'app-user-live-status'},{'name': 'UsernameComponent', 'selector': 'app-username'},{'name': 'UserNetworkComponent', 'selector': 'app-user-network'},{'name': 'UserNetworkListComponent', 'selector': 'app-user-network-list'},{'name': 'UserObjectVisitPixelComponent', 'selector': 'app-user-object-visit-pixel'},{'name': 'UserPastEventCardComponent', 'selector': 'app-user-past-event-card'},{'name': 'UserPersonalChatMessageComponent', 'selector': 'app-user-personal-chat-message'},{'name': 'UserProfileCardLargeComponent', 'selector': 'app-user-profile-card-large'},{'name': 'UserProfileCardMediumComponent', 'selector': 'app-user-profile-card-medium'},{'name': 'UserProfileCardSmallComponent', 'selector': 'app-user-profile-card-small'},{'name': 'UserProfileHorizontalComponent', 'selector': 'app-user-profile-horizontal'},{'name': 'UserProfileMiniComponent', 'selector': 'app-user-profile-mini'},{'name': 'UserResumeCardComponent', 'selector': 'app-user-resume-card'},{'name': 'UserResumeComponent', 'selector': 'app-user-resume'},{'name': 'UserResumePreviewComponent', 'selector': 'app-user-resume-preview'},{'name': 'UserRoleConfirmationComponent', 'selector': 'app-user-role-confirmation'},{'name': 'UserSocialCardComponent', 'selector': 'app-user-social-card'},{'name': 'UserSocialComponent', 'selector': 'app-user-social'},{'name': 'UserVisitTrackerComponent', 'selector': 'app-user-visit-tracker'},{'name': 'UserWorkHistoryCardComponent', 'selector': 'app-user-work-history-card'},{'name': 'UserWorkHistoryComponent', 'selector': 'app-user-work-history'},{'name': 'VideoStreamComponent', 'selector': 'app-video-stream'},{'name': 'VolunteersComponent', 'selector': 'app-volunteers'},{'name': 'VotersComponent', 'selector': 'app-voters'},{'name': 'VotesDisplayComponent', 'selector': 'app-votes-display'},{'name': 'WorkInProgressComponent', 'selector': 'app-work-in-progress'}];
+    var DIRECTIVES = [{'name': 'BreakpointsDirective', 'selector': '[appBreakpoints]'},{'name': 'ClickOutsideDirective', 'selector': '[appClickOutside]'},{'name': 'HighlightLinksDirective', 'selector': '[appHighlightLinks]'},{'name': 'InfiniteScrollDirective', 'selector': '[appInfiniteScroll]'},{'name': 'LazyLoadImagesDirective', 'selector': 'img'},{'name': 'MentionDirective', 'selector': '[appMention]'},{'name': 'MiniUserProfileDirective', 'selector': '[appMiniUserProfile]'}];
     var ACTUAL_COMPONENT = {'name': 'LabComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 
@@ -2281,6 +2425,15 @@ export class LabComponent implements OnInit, OnDestroy, AfterViewChecked {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

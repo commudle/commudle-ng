@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 	   <link rel="stylesheet" href="./styles/style.css">
-        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="./styles/dark.css">
     </head>
     <body>
 
@@ -55,6 +55,30 @@ requests.</p>
 <li>Bug Fix: <code>fix-branchname</code>
 In the above examples, replace <code>branchname</code> with the name of your branch.</li>
 </ul>
+<h4 id="git-commit">Git Commit</h4>
+<ul>
+<li><code>chmod ug+x .husky/*</code></li>
+<li><code>git add CONTRIBUTING.md</code></li>
+<li><code>git commit &amp;nbsp; -m &quot;docs(contributing): update contributing.md for git commit&quot;</code></li>
+</ul>
+<p>In general the commit pattern mostly looks like this:</p>
+<ul>
+<li>type(scope?): subject  #scope is optional; multiple scopes are supported (current delimiter options: &quot;/&quot;, &quot;&quot; and &quot;,&quot;)</li>
+</ul>
+<p>Common types according to <a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional#type-enum">commitlint-config-conventional</a> (based on the Angular convention) can be:</p>
+<ul>
+<li>build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)</li>
+<li>chore: Changes to the build process or auxiliary tools and libraries such as documentation generation</li>
+<li>ci: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)</li>
+<li>docs: Documentation only changes</li>
+<li>feat: A new feature</li>
+<li>fix: A bug fix</li>
+<li>perf: A code change that improves performance</li>
+<li>refactor: A code change that neither fixes a bug nor adds a feature</li>
+<li>revert:Commit reverts a previous commit</li>
+<li>style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)</li>
+<li>test: Adding missing tests or correcting existing tests</li>
+</ul>
 <h4 id="extra-guidelines">Extra Guidelines</h4>
 <ul>
 <li>Comment on the issue by introducing yourself and asking to solve it</li>
@@ -66,6 +90,8 @@ you, both are on the same line of thought</li>
 </ul>
 <p>By contributing, you agree that your contributions will be licensed under its MIT License.</p>
 <p><img src="https://commudle.com/assets/images/commudle-logo152.png" alt="Commudle Logo" class="img-responsive"></p>
+
+
 
 
 
@@ -98,6 +124,15 @@ you, both are on the same line of thought</li>
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;

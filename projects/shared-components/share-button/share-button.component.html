@@ -1,13 +1,13 @@
-<div class="share-button-container">
-  <button
-    class="share-button"
-    [ngClass]="{ 'round-button': round }"
-    (click)="copyTextToClipboard()"
-    nbButton
-    shape="round"
-    size="small"
-  >
-    <nb-icon icon="share"></nb-icon>
-    {{ showText ? 'Share' : '' }}
-  </button>
-</div>
+<button
+  (click)="copyTextToClipboard()"
+  [appearance]="appearance"
+  [fullWidth]="fullWidth"
+  [shape]="round ? 'round' : 'semi-round'"
+  class="shr-btn"
+  nbButton
+  size="small"
+  status="info"
+>
+  <nb-icon icon="share"></nb-icon>
+  <span *ngIf="showText">Share</span>
+</button>

@@ -30,6 +30,8 @@ import { MembershipToggleComponent } from './components/membership-toggle/member
 import { SpeakerCardComponent } from './components/speakers/speaker-card/speaker-card.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
 import { PublicCommunityRoutingModule } from './public-community-routing.module';
+import { PublicCommunityNotificationsComponent } from './components/public-community-notifications/public-community-notifications.component';
+import { NotificationsModule } from 'projects/commudle-admin/src/app/feature-modules/notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     CommunityChannelsListComponent,
     SpeakersComponent,
     SpeakerCardComponent,
+    PublicCommunityNotificationsComponent,
   ],
   exports: [MembershipToggleComponent],
   imports: [
@@ -69,6 +72,7 @@ import { PublicCommunityRoutingModule } from './public-community-routing.module'
     NbOptionModule,
     NbDialogModule.forChild(),
     NbSpinnerModule,
+    NotificationsModule,
   ],
 })
 export class PublicCommunityModule {}

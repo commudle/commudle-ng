@@ -1,17 +1,5 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .user-badges {
-  margin: $space-16 0;
-
-  nb-card-body {
-    padding: $space-32;
-
-    .badge-list {
-      gap: $space-16;
-
-      img {
-        max-width: 100px;
-      }
-    }
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
   }
 }

@@ -1,24 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges } from '@angular/core';
-import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
-import { IUser } from 'projects/shared-models/user.model';
-import { IRegistrationStatus } from 'projects/shared-models/registration_status.model';
-import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
-import { IRegistrationType } from 'projects/shared-models/registration_type.model';
-import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
-import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
-import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
 import { NbWindowService } from '@nebular/theme';
-import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
-import { ICommunity } from 'projects/shared-models/community.model';
-import { IEvent } from 'projects/shared-models/event.model';
 import { EmailerComponent } from 'projects/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
+import { DataFormEntityResponseGroupsService } from 'projects/commudle-admin/src/app/services/data-form-entity-response-groups.service';
+import { EventEntryPassesService } from 'projects/commudle-admin/src/app/services/event-entry-passes.service';
+import { ICommunity } from 'projects/shared-models/community.model';
+import { IDataFormEntityResponseGroup } from 'projects/shared-models/data_form_entity_response_group.model';
+import { EemailTypes } from 'projects/shared-models/enums/email_types.enum';
+import { IEvent } from 'projects/shared-models/event.model';
+import { IRegistrationStatus } from 'projects/shared-models/registration_status.model';
+import { IRegistrationType } from 'projects/shared-models/registration_type.model';
+import { IUser } from 'projects/shared-models/user.model';
+import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
 
 @Component({
   selector: 'app-user-details-cell',
   templateUrl: './user-details-cell.component.html',
   styleUrls: ['./user-details-cell.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush, //Not require yet
 })
 export class UserDetailsCellComponent implements OnInit, OnChanges {
   faGithub = faGithub;

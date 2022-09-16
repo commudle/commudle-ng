@@ -2,7 +2,7 @@
   <div *ngIf="volunteers.length > 0">
     <div class="volunteers">
       <div *ngFor="let org of volunteers; let i = index" class="user-profile">
-        <div class="user-details">
+        <div class="user-details com-w-3/4">
           <app-user-profile-horizontal [socialMediaLinks]="true" [user]="org.user"></app-user-profile-horizontal>
         </div>
         <div class="actions">

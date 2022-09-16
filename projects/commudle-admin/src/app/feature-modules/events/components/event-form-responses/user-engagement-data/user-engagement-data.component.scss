@@ -1,0 +1,5 @@
+.data {
+  tr:nth-child(odd) {
+    @apply com-bg-gray-100;
+  }
+}

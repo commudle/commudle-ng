@@ -69,7 +69,7 @@ export class VoteChannel {
       perform: action,
       data,
     });
-    this.pioneerAnalyticsService.trackAction();
+    // this.pioneerAnalyticsService.trackAction();
   }
 
   unsubscribe(votableType, votableId, uuid) {

@@ -45,6 +45,7 @@ import { FormResponsesComponent } from './form-responses/form-responses.componen
 import { ResponsesTableComponent } from './form-responses/responses-table/responses-table.component';
 import { UserDetailsCellComponent } from './form-responses/responses-table/user-details-cell/user-details-cell.component';
 import { NewDataFormComponent } from './new-data-form/new-data-form.component';
+import { PaginationComponent } from './pagination/pagination.component';
 import { PollResultComponent } from './poll-result/poll-result.component';
 import { PollCreateFormComponent } from './polls/poll-create-form/poll-create-form.component';
 import { PollFormComponent } from './polls/poll-form/poll-form.component';
@@ -64,6 +65,7 @@ import { VideoStreamComponent } from './video-stream/video-stream.component';
 import { VotersComponent } from './votes-display/voters/voters.component';
 import { VotesDisplayComponent } from './votes-display/votes-display.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +102,8 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     QnaListComponent,
     QnaListItemComponent,
     ShareButtonComponent,
+    PaginationComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -159,6 +163,8 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
     MessagesComponent,
     QnaComponent,
     ShareButtonComponent,
+    PaginationComponent,
+    LoadingSpinnerComponent,
   ],
 })
 export class SharedComponentsModule {}

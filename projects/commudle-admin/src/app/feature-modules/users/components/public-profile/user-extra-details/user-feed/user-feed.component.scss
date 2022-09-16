@@ -1,0 +1,9 @@
+.user-feed {
+  nb-card-header {
+    @apply com-text-lg com-font-medium;
+  }
+
+  .user-feed-input-container {
+    @apply com-mb-4;
+  }
+}

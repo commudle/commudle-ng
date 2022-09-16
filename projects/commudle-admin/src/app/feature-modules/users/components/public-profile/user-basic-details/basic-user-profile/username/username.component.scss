@@ -1,16 +1,15 @@
 .username {
-  margin-bottom: 1rem;
+  @apply com-mb-4;
 
   .field-error {
-    margin: 0;
+    @apply com-m-0;
   }
 
   form {
-    display: flex;
-    flex-wrap: wrap;
+    @apply com-flex com-flex-wrap;
 
     button {
-      margin: 1.2rem 1rem 0;
+      @apply com-mt-20 com-mx-4 com-mb-0;
     }
   }
 }
