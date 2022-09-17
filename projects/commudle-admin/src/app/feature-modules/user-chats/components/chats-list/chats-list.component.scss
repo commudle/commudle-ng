@@ -2,8 +2,8 @@
   @apply com-relative;
 
   .chats-list {
-    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
-    @apply com-hidden com-border-0 com-m-0 com-absolute com-w-[300px] com-overflow-hidden com-right-3 com-bottom-[76px];
+    @apply com-hidden com-border-0 com-m-0 com-absolute com-w-300px com-overflow-hidden com-right-3 com-bottom-32 com-shadow-Chat-box;
+    @apply md:com-bottom-24;
 
     &.active {
       @apply com-flex;
@@ -19,23 +19,11 @@
   }
 
   .chats-list-toggle {
-    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
-    @apply com-absolute com-w-10 com-h-10 com-right-3 com-p-2 com-bottom-6;
+    @apply com-absolute com-w-10 com-h-10 com-right-3 com-p-2 com-bottom-20;
+    @apply md:com-bottom-6 com-shadow-Chat-box;
 
     nb-icon {
       @apply com-ml-0 #{!important};
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .chats-list-container {
-    .chats-list {
-      @apply com-bottom-32;
-    }
-
-    .chats-list-toggle {
-      @apply com-bottom-[76px];
     }
   }
 }

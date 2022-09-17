@@ -1,13 +1,11 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 .chat-window {
-  @apply com-ml-[5px];
+  @apply com-mb-68px md:com-mb-0 md:com-ml-5px;
 
   nb-card {
     @apply com-h-full com-m-0;
 
     nb-card-header {
-      @apply com-px-1 com-py-[6px];
+      @apply com-px-1 com-py-6px;
 
       .window-options {
         @apply com-flex com-justify-between;
@@ -18,11 +16,5 @@
       transition: all 0.2s ease-in-out;
       @apply com-grid com-p-0;
     }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .chat-window {
-    @apply com-mb-14;
   }
 }

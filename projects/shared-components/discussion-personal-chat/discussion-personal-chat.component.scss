@@ -8,12 +8,12 @@
       @apply com-h-full;
 
       .message {
-        @apply com-border-0 com-border-b-[1px] com-border-solid com-border-gray-300  com-p-1;
+        @apply com-border-0 com-border-b com-border-solid com-border-gray-300  com-p-1;
       }
 
       .filler-message {
         transform: translate(-50%, -50%);
-        @apply com-absolute com-top-1/2 com-left-1/2 com-w-[80%] com-text-center;
+        @apply com-absolute com-top-1/2 com-left-1/2 com-w-4/5 com-text-center;
 
         h4 {
           @apply com-text-gray-400;
@@ -36,7 +36,7 @@
           }
 
           .nbPrefix {
-            @apply com-items-center com-flex com-mt-[-2px];
+            @apply com-items-center com-flex -com-mt-2px;
 
             .emoji-button {
               @apply com-p-[0.1rem];
@@ -59,7 +59,7 @@
         }
 
         > button {
-          @apply com-items-center com-flex com-justify-center com-ml-1 com-max-w-[40px] com-w-[20%];
+          @apply com-items-center com-flex com-justify-center com-ml-1 com-max-w-[40px] com-w-1/5;
         }
       }
     }

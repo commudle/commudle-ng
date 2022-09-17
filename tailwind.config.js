@@ -30,6 +30,7 @@ module.exports = {
       },
       spacing: {
         /* Adding custom spacing to the tailwind config. */
+        '2px': '2px',
         '5px': '5px',
         '6px': '6px',
         '7px': '7px',
@@ -41,6 +42,7 @@ module.exports = {
         '30px': '30px',
         '68px': '68px',
         '72px': '72px',
+        '76px': '76px',
         '78px': '78px',
         '86px': '86px',
         '120px': '120px',
@@ -52,6 +54,7 @@ module.exports = {
         '220px': '220px',
         '260px': '260px',
         '296px': '296px',
+        '300px': '300px',
         '307px': '307px',
         '318px': '318px',
         '500px': '500px',
@@ -75,6 +78,7 @@ module.exports = {
       boxShadow: {
         /* Adding a box shadow to the element. */
         Card: '0 5px 15px #dae0ff',
+        'Chat-box': '0 7px 29px 0 #64646f33 '
       },
     },
     container: {

@@ -10,7 +10,7 @@
           [currentUser]="currentUser"
           (sendReply)="sendReply($event, um.id)"
           (sendVote)="sendVote($event)"
-          (sendDelete)="emitDelete($event)"
+          (sendDelete)="delete($event)"
           (sendFlag)="sendFlag($event)"
         ></app-message>
       </div>
