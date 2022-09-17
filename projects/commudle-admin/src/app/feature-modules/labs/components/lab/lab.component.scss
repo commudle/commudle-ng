@@ -1,16 +1,19 @@
 .lab {
-  @apply com-w-full com-pt-9 com-pb-3;
+  @apply com-w-full com-pt-4 com-px-0 com-pb-0;
+  @apply md:com-pt-9 md:com-pb-3;
 
   .body {
-    @apply com-max-w-6xl com-my-0 com-mx-auto;
+    @apply com-max-w-6xl com-my-0 com-mx-auto com-flex-col;
+    @apply md:com-flex-row;
 
     nb-sidebar,
     .toggle-details {
-      @apply com-hidden;
+      @apply com-z-[3] com-bg-Ultramarine-Blue com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
+      @apply md:com-hidden;
     }
 
     .content {
-      @apply com-w-full;
+      @apply com-w-full md:com-max-w-[744px];
 
       nb-card {
         @apply com-min-h-[80vh] com-border-none com-mt-0 com-mx-4 com-mb-4;
@@ -50,7 +53,7 @@
                   }
 
                   .name {
-                    @apply com-capitalize com-text-Blue-Jeans;
+                    @apply com-capitalize com-text-Ultramarine-Blue;
                   }
 
                   .date {
@@ -129,7 +132,7 @@
         }
 
         nb-card-footer {
-          @apply com-border-0 com-pt-6 com-px-0 com-pb-0;
+          @apply com-bg-[#EDF1F7] com-border-0 com-pt-6 com-px-0 com-pb-0;
         }
 
         @media all and (max-width: 768px) {
@@ -152,7 +155,7 @@
 
     .interactions {
       height: fit-content;
-      @apply com-hidden com-ml-4 com-sticky com-w-max com-top-[50vh];
+      @apply com-hidden com-ml-4 com-sticky com-w-max com-top-[50vh] md:com-block;
 
       app-votes-display {
         direction: rtl;
@@ -160,7 +163,7 @@
         &::ng-deep {
           .votes {
             p {
-              @apply com-text-2xl com-text-Blue-Jeans;
+              @apply com-text-2xl com-text-Ultramarine-Blue;
             }
 
             span {
@@ -168,7 +171,7 @@
                 @apply com-text-2xl com-mr-1;
 
                 &:not(.voted-heart) {
-                  @apply com-text-Blue-Jeans;
+                  @apply com-text-Ultramarine-Blue;
                 }
               }
             }
@@ -177,11 +180,11 @@
       }
 
       .discussion {
-        @apply com-text-Blue-Jeans com-text-2xl com-mt-6 com-mx-0 com-mb-0;
+        @apply com-text-Ultramarine-Blue com-text-2xl com-mt-6 com-mx-0 com-mb-0;
       }
 
       nb-icon {
-        @apply com-text-2xl com-text-Blue-Jeans;
+        @apply com-text-2xl com-text-Ultramarine-Blue;
       }
 
       app-share-button {
@@ -196,21 +199,11 @@
         }
       }
     }
-
-    @media (min-width: 768px) {
-      .content {
-        @apply com-max-w-[744px];
-      }
-
-      .interactions {
-        @apply com-block;
-      }
-    }
   }
 
   .steps-navigation {
     button {
-      @apply com-bg-Blue-Jeans com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
+      @apply com-bg-Ultramarine-Blue com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
     }
   }
 
@@ -221,16 +214,7 @@
 
 @media all and (max-width: 768px) {
   .lab {
-    @apply com-pt-4 com-px-0 com-pb-0;
-
     .body {
-      justify-content: normal;
-      @apply com-flex-col;
-
-      .toggle-details {
-        @apply com-z-[3] com-bg-Blue-Jeans com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
-      }
-
       .desktop-lab-details {
         &::ng-deep {
           .menu {

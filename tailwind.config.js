@@ -9,7 +9,7 @@ module.exports = {
         'Spiro-Disco': '#1ac7e340',
         'Brilliant-Azure': '#2aa5ff',
         'Caribbean-Green': '#00d68f',
-        'gunmetal': '#2f2e41',
+        gunmetal: '#2f2e41',
         'Silver-Sand': '#c4c4c4',
         'Azureish-White': '#dae0ff',
         'Very-Light-Blue': '#536eff',
@@ -17,6 +17,7 @@ module.exports = {
         'Blue-Jeans': ' #29a5ff',
         'Raisin-Black': '#231f20',
         'Spanish-Gray': '#979797',
+        'Ultramarine-Blue': '#3366FF',
       },
       lineClamp: {
         14: '14',
