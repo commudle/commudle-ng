@@ -4,7 +4,7 @@ const prerender = require('prerender-node');
 const { join } = require('path');
 
 const port = process.env.PORT || 8080;
-const distFolder = join(process.cwd(), 'dist/commudle-admin/browser');
+const distFolder = join(process.cwd(), 'dist/commudle-admin');
 const PRERENDER_URL = process.env.PRERENDER_URL || 'https://prerender.commudle.com';
 
 app.use(prerender.set('prerenderServiceUrl', PRERENDER_URL));

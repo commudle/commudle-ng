@@ -1,86 +1,65 @@
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 nb-card {
-  margin: $space-32 0 $space-16;
+  @apply com-mt-8 com-mx-0 com-mb-4;
 
   nb-card-body {
-    padding: 0;
+    @apply com-p-0;
   }
 }
 
 .events {
-  background-color: $white;
-  border-radius: $border-10;
-  gap: $space-32;
-  padding: $space-32;
+  @apply com-bg-white com-rounded-xl com-gap-8 com-p-8;
 
   a {
-    position: relative;
     text-decoration: none;
+    @apply com-relative;
   }
 
   nb-card {
-    border: 1px solid $silver-sand;
-    margin: 0;
-    overflow: hidden;
+    @apply com-border com-border-solid com-border-Silver-Sand com-m-0 com-overflow-hidden;
   }
 
   .event-clickable {
-    width: 100%;
+    @apply com-w-full;
 
     .event {
-      width: 100%;
-
-      &:hover {
-        box-shadow: 0 2px 5px 1px $lightgrey;
-      }
+      @apply com-w-318px hover:com-shadow-Card;
+      @apply md:com-w-full;
 
       nb-card-body {
+        @apply com-flex-col;
+        @apply md:com-flex-row;
+
         .header-image {
-          height: 128px;
-          margin-right: $space-24;
-          min-width: 220px;
-          overflow: hidden;
-          width: 220px;
+          @apply com-m-0 com-w-full com-overflow-hidden com-min-w-[220px] com-h-32;
+          @apply md:com-mr-6 md:com-w-220px;
 
           img {
-            height: 100%;
-            object-fit: cover;
-            object-position: top left;
-            width: 100%;
+            @apply com-w-full com-h-full com-object-cover com-object-left-top;
           }
 
           nb-icon {
-            font-size: $fs-32;
+            @apply com-text-3xl;
           }
         }
 
         .details {
+          @apply com-p-10px;
+          @apply md:com-p-0;
           h5 {
-            align-items: flex-start;
-            color: $gunmetal;
-            display: flex;
-            font-size: $fs-18;
-            font-weight: $fw-600;
-            line-height: 21px;
-            margin: $space-24 0 $space-8 0;
+            @apply com-items-start com-text-gunmetal com-text-lg com-font-semibold com-leading-21px com-mt-6 com-mx-0 com-mb-2;
 
             nb-icon {
-              margin-right: $space-8;
-              min-width: 16px;
+              @apply com-mr-2 com-min-w-[16px];
             }
           }
 
           .timings {
             p {
-              color: $gunmetal;
-              font-size: $fs-14;
-              line-height: 16px;
-              margin: 0;
+              @apply com-m-0 com-text-sm com-leading-4 com-text-gunmetal;
 
               nb-icon {
                 &.time {
-                  margin-right: $space-8;
+                  @apply com-mr-2;
                 }
               }
             }
@@ -88,17 +67,13 @@ nb-card {
 
           .past-timings {
             p {
-              color: $gunmetal;
-              font-size: $fs-14;
-              line-height: 16px;
-              margin: 0;
+              @apply com-m-0 com-text-sm com-leading-4 com-text-gunmetal;
 
               nb-icon {
-                font-size: $fs-14;
-                line-height: 16px;
+                @apply com-text-sm com-leading-4;
 
                 &.time {
-                  margin-right: $space-8;
+                  @apply com-mr-2;
                 }
               }
             }
@@ -106,7 +81,7 @@ nb-card {
 
           .event-name {
             .collaboration {
-              font-size: $fs-14;
+              @apply com-text-sm;
             }
           }
         }
@@ -114,72 +89,39 @@ nb-card {
     }
 
     .event.upcoming {
-      margin: 0 0 1rem;
+      @apply com-mt-0 com-mb-4 com-mx-0;
 
       nb-card-body {
-        align-items: center;
-        flex-direction: column;
-        padding: 0 0 $space-24;
+        @apply com-pt-0 com-pb-6 com-px-0 com-flex-col com-text-center;
 
         .header-image {
-          height: 100%;
-          margin: 0 0 $space-24;
-          width: 100%;
+          @apply com-w-full com-h-full com-mt-0 com-mb-6 com-mx-0;
 
           img {
-            width: 100%;
+            @apply com-w-full;
           }
 
           nb-icon {
-            font-size: 3rem;
+            @apply com-text-5xl;
           }
         }
 
         .details {
           h5 {
-            align-items: center;
-            flex-direction: column;
-            font-size: 2rem;
-            font-weight: 400;
-            line-height: 2rem !important;
-            margin: 0 0 0.5rem;
-            text-align: center;
+            @apply com-leading-8 #{!important};
+            @apply com-text-center com-items-center com-flex-col com-text-3xl com-font-normal com-mt-0 com-mx-0 com-mb-2;
           }
 
           .timings {
-            text-align: center;
+            @apply com-text-center;
 
             p {
-              color: grey;
-              font-size: 1.2rem;
+              @apply com-text-gray-500 com-text-lg;
 
               nb-icon {
-                font-size: 1.2rem;
+                @apply com-text-lg;
               }
             }
-          }
-        }
-      }
-    }
-  }
-
-  @media all and (max-width: $mobile-width) {
-    padding: $space-40 $space-20 $space-20 $space-20;
-
-    .event-clickable {
-      .event {
-        width: 318px;
-
-        nb-card-body {
-          flex-direction: column;
-
-          .details {
-            padding: $space-10;
-          }
-
-          .header-image {
-            margin: 0;
-            width: 100%;
           }
         }
       }

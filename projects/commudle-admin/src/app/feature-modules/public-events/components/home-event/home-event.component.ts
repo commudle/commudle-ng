@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
@@ -17,7 +17,7 @@ import { environment } from 'projects/commudle-admin/src/environments/environmen
   templateUrl: './home-event.component.html',
   styleUrls: ['./home-event.component.scss'],
 })
-export class HomeEventComponent implements OnInit {
+export class HomeEventComponent implements OnInit, OnDestroy {
   moment = moment;
   momentTimezone = momentTimezone;
   EEventStatuses = EEventStatuses;
@@ -36,6 +36,12 @@ export class HomeEventComponent implements OnInit {
   hasSponsors = false;
 
   environment = environment;
+
+  managedCommunities: ICommunity[] = [];
+
+  subscriptions = [];
+
+  isOrganizer = false;
 
   @ViewChild('updatesSection', { static: false }) updatesSectionRef: ElementRef<HTMLDivElement>;
   @ViewChild('descriptionSection', { static: false }) descriptionSectionRef: ElementRef<HTMLDivElement>;
@@ -61,6 +67,10 @@ export class HomeEventComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
   scroll(element: ElementRef<HTMLDivElement>) {
     element.nativeElement.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
   }
@@ -76,12 +86,24 @@ export class HomeEventComponent implements OnInit {
   getCommunity(communityId) {
     this.communitiesService.getCommunityDetails(communityId).subscribe((community) => {
       this.community = community;
+      this.isOrganizerCheck(this.community.slug);
+
       this.seoService.setTags(
         `${this.event.name} | ${this.community.name}`,
         this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
         this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
       );
     });
+  }
+
+  isOrganizerCheck(community) {
+    this.subscriptions.push(
+      this.communitiesService.userManagedCommunities$.subscribe((data: ICommunity[]) => {
+        if (data.find((cSlug) => cSlug.slug === community) !== undefined) {
+          this.isOrganizer = true;
+        }
+      }),
+    );
   }
 
   getDiscussionChat() {

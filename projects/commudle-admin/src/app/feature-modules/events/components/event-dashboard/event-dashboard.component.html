@@ -26,6 +26,15 @@
               Stats<sup>Beta</sup> &nbsp;
               <nb-icon icon="external-link"></nb-icon>
             </a>
+            <button
+              [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
+              nbButton
+              outline
+              size="small"
+              status="primary"
+            >
+              View attended members
+            </button>
           </div>
         </nb-card-body>
       </nb-card>

@@ -1,79 +1,49 @@
-@import './projects/commudle-admin/src/assets/styles/text-styles';
-@import './projects/commudle-admin/src/assets/styles/variables';
-
 p {
-  color: $gunmetal;
-  margin: 0;
+  @apply com-m-0 com-text-gunmetal;
 }
 
 a {
   color: initial;
-  text-decoration: none;
+  @apply com-no-underline;
 }
 
 .communities-about-container {
   nb-card-body {
-    padding: $space-40 0 $space-40 $space-64;
+    @apply com-flex-col-reverse com-p-4;
+    @apply md:com-py-10 md:com-pr-0 md:com-pl-16 md:com-flex-row;
 
     .communities-about-content {
       .communities-about-header {
-        font-size: $fs-40;
-        font-weight: $fw-600;
-        line-height: 47px;
-        @apply com-m-0;
+        @apply com-m-0 com-text-4xl com-font-semibold;
       }
 
       .communities-about-subheader {
-        font-size: $fs-18;
-        line-height: 21px;
+        @apply com-text-lg;
       }
 
       .communities-about-navigation {
-        gap: $space-16;
-        margin-top: $space-72;
+        @apply com-gap-4 com-mt-72px;
 
         button {
-          border: 1px solid $gunmetal;
-          font-size: $fs-h5;
-          font-weight: normal;
-          line-height: 16px;
-          padding: $space-8;
-          text-transform: capitalize;
+          @apply com-border com-border-solid com-border-gunmetal com-text-sm com-p-2 com-capitalize;
         }
 
         .community-create-btn {
-          background-color: $gunmetal;
-          color: $white;
+          @apply com-text-white com-bg-gunmetal;
         }
 
         .communities-explore {
-          background-color: $white;
-          color: $gunmetal;
+          @apply com-bg-white com-text-gunmetal;
         }
       }
     }
 
     .communities-about-image {
-      height: 212px;
-      margin-top: -$space-16;
-      width: 296px;
+      @apply com-mt-0 com-mb-6 com-h-212px com-w-296px;
+      @apply md:-com-mt-4 md:com-mb-0;
 
       img {
-        width: 100%;
-      }
-    }
-  }
-}
-
-@media all and (max-width: $tab-width) {
-  .communities-about-container {
-    nb-card-body {
-      flex-direction: column-reverse;
-      padding: $space-16;
-
-      .communities-about-image {
-        margin-bottom: $space-24;
-        margin-top: 0;
+        @apply com-w-full;
       }
     }
   }

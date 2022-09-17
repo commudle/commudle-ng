@@ -21,10 +21,14 @@ export class NotificationsService {
     private sessionPageNotificationsService: SessionPageNotificationsService,
   ) {}
 
+  /**
+   * subscribes to all the notifications from backend for displaying in the tab title
+   * Disabled for now till we are able to sync it with push notifications
+   */
   subscribeToNotifications(): void {
-    this.showPersonalChatNotification();
-    this.showChannelNotification();
-    this.showSessionPageNotification();
+    // this.showPersonalChatNotification();
+    // this.showChannelNotification();
+    // this.showSessionPageNotification();
   }
 
   unsubscribeFromNotifications(): void {

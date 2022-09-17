@@ -20,6 +20,8 @@ export interface ICommunityBuild {
   images: IAttachedFile[];
   tags: string[];
   user_roles_users: IUserRolesUser[];
+  video_iframe: string;
+  live_app_link: string;
 }
 
 export interface ICommunityBuildSearch extends ICommunityBuild {
