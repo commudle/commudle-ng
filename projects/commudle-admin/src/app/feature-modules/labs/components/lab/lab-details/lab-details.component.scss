@@ -21,7 +21,7 @@
         }
 
         .lab-step-title {
-          @apply com-text-sm com-m-0 com-font-normal com-text-Ultramarine-Blue;
+          @apply com-text-sm com-m-0 com-font-normal com-text-Azure;
         }
 
         app-badge {
@@ -37,11 +37,11 @@
     }
 
     nb-list-item:not(:last-child) {
-      @apply com-border-0 com-border-b-2 com-border-solid com-border-Ultramarine-Blue/20;
+      @apply com-border-0 com-border-b-2 com-border-solid com-border-Azure/20;
     }
 
     a {
-      @apply com-text-Ultramarine-Blue com-no-underline;
+      @apply com-text-Azure com-no-underline;
     }
   }
 
@@ -49,7 +49,7 @@
     @apply com-mt-4 com-mx-0 com-mb-0 com-hidden;
 
     nb-card-header {
-      @apply com-text-Ultramarine-Blue com-text-base com-p-4 com-font-normal com-border-b-0;
+      @apply com-text-Azure com-text-base com-p-4 com-font-normal com-border-b-0;
     }
 
     nb-card-body {
@@ -64,7 +64,7 @@
         }
 
         .type {
-          @apply com-text-Ultramarine-Blue com-text-xs com-m-0;
+          @apply com-text-Azure com-text-xs com-m-0;
         }
 
         &:hover {
@@ -85,14 +85,14 @@
           @apply com-text-2xl;
 
           span {
-            @apply com-text-Ultramarine-Blue;
+            @apply com-text-Azure;
           }
 
           nb-icon {
             @apply com-text-2xl;
 
             &:not(.voted-heart) {
-              @apply com-text-Ultramarine-Blue;
+              @apply com-text-Azure;
             }
           }
         }
@@ -100,11 +100,11 @@
     }
 
     .message-count {
-      @apply com-text-Ultramarine-Blue com-text-2xl;
+      @apply com-text-Azure com-text-2xl;
     }
 
     nb-icon {
-      @apply com-text-Ultramarine-Blue com-text-2xl;
+      @apply com-text-Azure com-text-2xl;
     }
   }
 }

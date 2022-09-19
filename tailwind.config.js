@@ -18,6 +18,7 @@ module.exports = {
         'Raisin-Black': '#231f20',
         'Spanish-Gray': '#979797',
         'Ultramarine-Blue': '#3366FF',
+        'Azure': '#0095ff'
       },
       lineClamp: {
         14: '14',

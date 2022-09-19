@@ -8,7 +8,7 @@
 
     nb-sidebar,
     .toggle-details {
-      @apply com-z-[3] com-bg-Ultramarine-Blue com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
+      @apply com-z-[3] com-bg-Azure com-block com-text-white com-text-4xl com-left-0 com-p-1 com-fixed com-top-24 com-rounded-br-xl com-rounded-tr-xl;
       @apply md:com-hidden;
     }
 
@@ -53,7 +53,7 @@
                   }
 
                   .name {
-                    @apply com-capitalize com-text-Ultramarine-Blue;
+                    @apply com-capitalize com-text-Azure;
                   }
 
                   .date {
@@ -163,7 +163,7 @@
         &::ng-deep {
           .votes {
             p {
-              @apply com-text-2xl com-text-Ultramarine-Blue;
+              @apply com-text-2xl com-text-Azure;
             }
 
             span {
@@ -171,7 +171,7 @@
                 @apply com-text-2xl com-mr-1;
 
                 &:not(.voted-heart) {
-                  @apply com-text-Ultramarine-Blue;
+                  @apply com-text-Azure;
                 }
               }
             }
@@ -180,11 +180,11 @@
       }
 
       .discussion {
-        @apply com-text-Ultramarine-Blue com-text-2xl com-mt-6 com-mx-0 com-mb-0;
+        @apply com-text-Azure com-text-2xl com-mt-6 com-mx-0 com-mb-0;
       }
 
       nb-icon {
-        @apply com-text-2xl com-text-Ultramarine-Blue;
+        @apply com-text-2xl com-text-Azure;
       }
 
       app-share-button {
@@ -203,7 +203,7 @@
 
   .steps-navigation {
     button {
-      @apply com-bg-Ultramarine-Blue com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
+      @apply com-bg-Azure com-text-white com-text-sm com-font-medium com-capitalize com-rounded-xl;
     }
   }
 
