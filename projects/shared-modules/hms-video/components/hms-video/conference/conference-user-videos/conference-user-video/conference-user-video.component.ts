@@ -22,7 +22,10 @@ import {
 } from '@angular/core';
 import { EHmsRoles } from 'projects/shared-modules/hms-video/enums/hms-roles.enum';
 import { hmsActions, hmsStore } from 'projects/shared-modules/hms-video/stores/hms.store';
+import { ICurrentUser } from 'projects/shared-models/current_user.model';
+import { LibAuthwatchService } from 'projects/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'projects/shared-services/lib-toastlog.service';
+import { AppUsersService } from 'projects/commudle-admin/src/app/services/app-users.service';
 
 @Component({
   selector: 'app-conference-user-video',
@@ -47,14 +50,27 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
   isAudioEnabled: boolean;
   isVideoEnabled: boolean;
 
+  currentUser: ICurrentUser;
+  isFollowing = false;
+
   EHmsRoles = EHmsRoles;
 
   @ViewChild('videoElement') videoElement: ElementRef<HTMLVideoElement>;
 
-  constructor(private toastLogService: LibToastLogService) {}
+  constructor(
+    private toastLogService: LibToastLogService,
+    private authWatchService: LibAuthwatchService,
+    private appUsersService: AppUsersService,
+  ) {}
 
   ngOnInit(): void {
     hmsStore.subscribe((peer: HMSPeer) => (this.localPeer = peer), selectLocalPeer);
+
+    //collect current user information
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
+      this.currentUser = currentUser;
+      this.checkFollowing();
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -88,6 +104,23 @@ export class ConferenceUserVideoComponent implements OnInit, OnChanges, AfterVie
 
   ngOnDestroy() {
     clearInterval(this.interval);
+  }
+
+  //toggle between following
+  toggleFollow(username: string) {
+    this.appUsersService.toggleFollow(username).subscribe(() => {
+      this.checkFollowing();
+    });
+
+    if (this.isFollowing === false) {
+      this.toastLogService.successDialog(`Now you are following to ${this.metaData.name}`);
+    }
+  }
+  //for checking current user is following or not
+  checkFollowing() {
+    if (this.currentUser && this.metaData) {
+      this.appUsersService.check_followee(this.metaData.username).subscribe((value) => (this.isFollowing = value));
+    }
   }
 
   renderTrack = (track: HMSTrack) => {
