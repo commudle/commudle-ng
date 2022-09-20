@@ -21,7 +21,7 @@ a {
   @apply com-w-full com-min-h-screen com-bg-white com-overflow-hidden;
 
   .about-page-section {
-    @apply com-max-w-screen-xl com-container com-px-4 com-py-24;
+    @apply com-max-w-screen-xl com-container com-px-4 com-pt-14 md:com-pt-24;
 
     .page-heading {
       @apply com-mb-6 com-text-4xl com-font-extrabold com-leading-none com-tracking-normal com-text-gray-900 md:com-text-6xl md:com-tracking-tight;

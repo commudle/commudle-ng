@@ -14,7 +14,7 @@
     <div class="com-w-100vw com-mt-20 -com-ml-4 com-text-center md:-com-ml-336px">
       <img
         alt="Landing image"
-        class="com-w-full com-rounded-lg"
+        class="com-w-full com-rounded-lg -com-mt-14 md:com-mt-0"
         src="{{ getImageUrl(ICmsAbout?.landingImage) }}"
         title="Landing image"
       />
@@ -198,7 +198,7 @@
         <h2 class="title">{{ ICmsAbout?.featuresList?.content?.title }}</h2>
         <p class="description">{{ ICmsAbout?.featuresList?.content?.description }}</p>
         <a
-          *ngIf="ICmsAbout.featuresList.content.button !== null"
+          *ngIf="ICmsAbout.featuresList.content.button !== undefined"
           [href]="ICmsAbout?.featuresList?.content?.button?.url"
           nbButton
           shape="semi-round"
