@@ -1,0 +1,15 @@
+{
+  "name": "commudle-prerender",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "pm2-runtime start ecosystem.config.js --env production"
+  },
+  "dependencies": {
+    "express": "4.18.1",
+    "pm2": "5.2.0",
+    "prerender-node": "3.5.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

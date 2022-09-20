@@ -1,0 +1,58 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.discussion {
+  border-radius: 0;
+  margin: $space-16;
+
+  nb-card-header {
+    color: $gunmetal;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  nb-card-body {
+    overflow: unset;
+
+    .discussion-chat-component {
+      .send-message-form {
+        margin-bottom: 1.5 * $space-16;
+
+        nb-form-field {
+          textarea {
+            padding: $space-8 $space-80 $space-8 $space-40;
+            resize: none;
+
+            &::placeholder {
+              padding-top: 2px;
+            }
+          }
+
+          &::ng-deep {
+            .nb-form-field-prefix-medium {
+              margin-bottom: auto;
+            }
+
+            .nb-form-field-suffix-medium {
+              margin: 0 0 auto -4.35rem;
+
+              button {
+                text-transform: capitalize;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .messages {
+      height: max-content;
+    }
+  }
+}
+
+.tagging-info {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 10px;
+  margin-left: 10px;
+}

@@ -1,0 +1,41 @@
+<div
+  [ngClass]="{
+    'screen-share': peerScreenShare,
+    one: peers.length === 1,
+    two: peers.length === 2,
+    three: [3, 4].includes(peers.length),
+    four: [5, 6].includes(peers.length),
+    five: [7, 8, 9].includes(peers.length),
+    six: [10, 11, 12].includes(peers.length),
+    seven: [13, 14, 15, 16].includes(peers.length),
+    default: peers.length > 9
+  }"
+  class="user-streams d-flex flex-row-reverse"
+>
+  <div *ngIf="peerScreenShare" class="user-screen-share d-flex justify-content-center">
+    <commudle-conference-user-video [peer]="peerScreenShare" [screenShare]="true"></commudle-conference-user-video>
+  </div>
+  <div class="user-videos d-flex justify-content-center flex-wrap">
+    <ng-container *ngFor="let peer of peers">
+      <div class="user-video">
+        <commudle-conference-user-video
+          [isSpeaker]="activeSpeaker?.id === peer.id"
+          [peer]="peer"
+          [screenShare]="false"
+        ></commudle-conference-user-video>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<nb-alert
+  (close)="showAlert = false"
+  *ngIf="allPeers.length > 0 && peers.length === 0 && showAlert"
+  class="no-users"
+  closable
+>
+  <span>
+    <nb-icon icon="people-outline"></nb-icon>
+    Welcome! The hosts will be joining shortly.
+  </span>
+</nb-alert>

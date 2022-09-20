@@ -1,0 +1,56 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.chats-list-container {
+  position: relative;
+
+  .chats-list {
+    display: none;
+    border: none;
+    margin: 0;
+    position: absolute;
+    right: $space-12;
+    bottom: $space-76;
+    width: 300px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+
+    &.active {
+      display: flex;
+    }
+
+    nb-card-header {
+      padding: $space-16;
+    }
+
+    nb-card-body {
+      padding: 0;
+      max-height: 60vh;
+    }
+  }
+
+  .chats-list-toggle {
+    position: absolute;
+    right: $space-12;
+    bottom: $space-24;
+    padding: $space-8;
+    width: 40px;
+    height: 40px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+
+    nb-icon {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .chats-list-container {
+    .chats-list {
+      bottom: $space-128;
+    }
+
+    .chats-list-toggle {
+      bottom: $space-76;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.home-external-feed-links {
+  nb-card-header {
+    font-size: $fs-h2;
+    font-weight: $fw-600;
+    color: $gunmetal;
+    padding: $space-16 $space-16 $space-8;
+    border-bottom: none;
+
+    p.sub-header {
+      font-size: $fs-card-list-title;
+      color: $spanish-gray;
+      line-height: normal;
+      margin: $space-4 0 0;
+    }
+  }
+
+  .home-external-feed-links-list {
+    padding: $space-16 $space-16 $space-8;
+
+    nb-list {
+      nb-list-item {
+        padding: $space-16 0;
+        margin-bottom: $space-8;
+        border: none;
+
+        commudle-skeleton-text {
+          width: 100%;
+        }
+
+        .home-external-feed-link {
+          margin-right: $space-8;
+
+          .home-external-feed-link-details {
+            .home-external-feed-link-title {
+              font-size: $fs-card-list-title;
+              font-weight: $fw-600;
+              color: $gunmetal;
+            }
+
+            .home-external-feed-link-source {
+              margin-top: $space-4;
+              font-size: $fs-14;
+              line-height: 14px;
+              color: $spanish-gray;
+            }
+          }
+        }
+      }
+    }
+
+    .home-external-feed-link-all {
+      padding: $space-8 $space-28 $space-24;
+
+      a {
+        font-size: $fs-h5;
+        color: rgba($neon-blue, 0.95);
+      }
+    }
+  }
+}

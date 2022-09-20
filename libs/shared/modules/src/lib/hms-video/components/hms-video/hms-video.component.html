@@ -1,0 +1,38 @@
+<div class="hms-video">
+  <div
+    [nbSpinner]="!serverClient || !currentUser || !hmsState"
+    [ngSwitch]="hmsState"
+    class="state-container"
+    nbSpinnerStatus="primary"
+  >
+    <!-- Select role -->
+    <commudle-select-role
+      (selectedRole)="selectedRole = $event"
+      *ngSwitchCase="EHmsStates.INIT"
+      [serverClient]="serverClient"
+    ></commudle-select-role>
+    <!-- Preview video and audio -->
+    <commudle-local-preview *ngSwitchCase="EHmsStates.PREVIEW"></commudle-local-preview>
+    <!-- Join room -->
+    <commudle-conference
+      (beamStatus)="beamStatus.emit($event)"
+      *ngSwitchCase="EHmsStates.ROOM"
+      [currentUser]="currentUser"
+      [embeddedVideoStream]="embeddedVideoStream"
+      [selectedRole]="selectedRole"
+      [serverClient]="serverClient"
+    ></commudle-conference>
+    <!-- Left session -->
+    <nb-alert *ngSwitchCase="EHmsStates.LEFT" accent="info">You have left the session!</nb-alert>
+    <!-- Session end -->
+    <nb-alert *ngSwitchCase="EHmsStates.ENDED" accent="info">This session has completed!</nb-alert>
+    <!-- Disconnected -->
+    <nb-alert *ngSwitchCase="EHmsStates.DISCONNECTED" accent="info">
+      You have been disconnected from the session! Please refresh the page to reconnect.
+      <button (click)="reload()" class="com-w-max com-ml-auto" nbButton size="small" status="info">
+        <nb-icon icon="refresh-outline"></nb-icon>
+        Refresh
+      </button>
+    </nb-alert>
+  </div>
+</div>

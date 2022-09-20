@@ -1,0 +1,51 @@
+<nb-card *ngIf="builds?.length > 0" id="builds">
+  <nb-card-header>
+    <nb-icon icon="bulb" status="success"></nb-icon>
+    Builds
+    <span *ngIf="builds.length > 4">({{ builds.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="grid">
+      <commudle-user-build-card *ngFor="let build of builds" [build]="build"></commudle-user-build-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="pastEvents?.length > 0" id="talks-at-events">
+  <nb-card-header>
+    <nb-icon icon="calendar" status="info"></nb-icon>
+    Talks at Events
+    <span *ngIf="pastEvents.length > 4">({{ pastEvents.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="grid">
+      <commudle-user-past-event-card *ngFor="let pastEvent of pastEvents" [pastEvent]="pastEvent"></commudle-user-past-event-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="communities?.length > 0" id="communities">
+  <nb-card-header>
+    <nb-icon icon="people" status="warning"></nb-icon>
+    Communities
+    <span *ngIf="communities.length > 4">({{ communities.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="grid">
+      <commudle-user-community-card *ngFor="let community of communities" [community]="community"></commudle-user-community-card>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="labs?.length > 0" id="labs">
+  <nb-card-header>
+    <nb-icon icon="book-open" status="danger"></nb-icon>
+    Labs
+    <span *ngIf="labs.length > 4">({{ labs.length }})</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="grid">
+      <commudle-user-lab-card *ngFor="let lab of labs" [lab]="lab"></commudle-user-lab-card>
+    </div>
+  </nb-card-body>
+</nb-card>

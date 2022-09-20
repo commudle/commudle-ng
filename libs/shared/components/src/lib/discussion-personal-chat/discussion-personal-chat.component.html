@@ -1,0 +1,66 @@
+<div class="discussion-chat-component">
+  <div #messagesContainer (scroll)="loadPreviousMessages()" class="messages">
+    <div>
+      <button (click)="blockChat()" *ngIf="discussion" class="block-chat" nbButton outline size="tiny" status="basic">
+        {{ blocked ? 'Unblock' : 'Block' }}
+      </button>
+
+      <div *ngFor="let um of messages" class="message">
+        <commudle-user-personal-chat-message
+          (sendDelete)="delete($event)"
+          (sendFlag)="sendFlag($event)"
+          (sendReply)="sendReply($event, um.id)"
+          (sendVote)="sendVote($event)"
+          [allActions]="allActions"
+          [canReply]="!blocked"
+          [currentUser]="currentUser"
+          [message]="um"
+          [permittedActions]="permittedActions"
+        ></commudle-user-personal-chat-message>
+      </div>
+
+      <div *ngIf="messages.length === 0" class="filler-message">
+        <h4>Be the first one to message!</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="send-message-form">
+    <form (ngSubmit)="sendMessage()" *ngIf="currentUser && !blocked" [formGroup]="chatMessageForm">
+      <nb-form-field>
+        <div class="nbPrefix" nbPrefix>
+          <a (click)="toggleEmojiForm()" class="emoji-button" ghost nbButton>😃</a>
+          <emoji-mart
+            (emojiSelect)="selectEmoji($event)"
+            *ngIf="showEmojiForm"
+            [perLine]="7"
+            class="emoji-mart"
+            set="twitter"
+            title="Select an emoji!"
+          ></emoji-mart>
+        </div>
+        <input
+          #inputElement
+          formControlName="content"
+          fullWidth
+          nbInput
+          placeholder="Send a message (max 200 characters)"
+          type="text"
+        />
+      </nb-form-field>
+      <button
+        [disabled]="!chatMessageForm.valid || !permittedActions.includes(allActions.ADD)"
+        fullWidth
+        nbButton
+        status="info"
+        type="submit"
+      >
+        <nb-icon icon="corner-down-left-outline"></nb-icon>
+      </button>
+    </form>
+
+    <button (click)="login()" *ngIf="!currentUser" class="login-button" fullWidth nbButton status="primary">
+      Post a Message
+    </button>
+  </div>
+</div>

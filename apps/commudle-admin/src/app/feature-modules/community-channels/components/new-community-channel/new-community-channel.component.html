@@ -1,0 +1,13 @@
+<ng-template #newCommunityChannelFormTemplate>
+  <nb-card>
+    <nb-card-header>
+      <span >New Channel for {{community.name}}</span>
+    </nb-card-header>
+    <nb-card-body>
+      <commudle-community-channel-form
+      [presetGroupName]="groupName"
+      (saved)="closeForm()"
+      ></commudle-community-channel-form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

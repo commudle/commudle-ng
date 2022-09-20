@@ -1,0 +1,79 @@
+<div class="community-channel-list">
+  <div *ngIf="selectedCommunity" class="community">
+    <commudle-community-badge [community]="selectedCommunity"></commudle-community-badge>
+  </div>
+  <p *ngIf="currentUser && communityRoles.includes(EUserRoles.ORGANIZER)">
+    <a [routerLink]="[{ outlets: { p: ['new-channel'] } }]" ghost nbButton size="tiny">
+      <nb-icon icon="plus"></nb-icon>
+      New Channel
+    </a>
+  </p>
+
+  <div *ngFor="let chGroup of groupedChannels | keyvalue" class="channel-group">
+    <div class="group-name">
+      <p>{{ (chGroup.key | uppercase) || 'GENERAL' }}</p>
+      <p>
+        <a
+          [queryParams]="{ group_name: chGroup.key }"
+          [routerLink]="[{ outlets: { p: ['new-channel'] } }]"
+          ghost
+          nbButton
+          size="tiny"
+        >
+          <nb-icon icon="plus"></nb-icon>
+        </a>
+      </p>
+    </div>
+    <div class="channels">
+      <ul>
+        <li *ngFor="let channel of chGroup.value">
+          <div [routerLink]="[channel.id]" class="details">
+            <div *ngIf="channel.logo" class="logo">
+              <img alt="{{ channel.name }}" src="{{ channel.logo.url }}" title="{{ channel.name }}" />
+            </div>
+            <p class="name">
+              <a [routerLink]="[channel.id]" routerLinkActive="selected-channel">
+                <span *ngIf="channel.is_private" class="icon">
+                  <nb-icon alt="Private Channel" icon="lock" title="Private Channel"></nb-icon>
+                </span>
+                <span *ngIf="channel.is_readonly" class="icon">
+                  <nb-icon alt="Readonly Channel" icon="eye" title="Read-only Channel"></nb-icon>
+                </span>
+                {{ channel.name }}
+              </a>
+              <commudle-badge
+                *ngIf="
+                  channelNotifications.includes(channel.id) && (!selectedChannel || selectedChannel.id !== channel.id)
+                "
+                [color]="'red'"
+                [dotMode]="true"
+                [position]="'top right'"
+              ></commudle-badge>
+            </p>
+          </div>
+          <p *ngIf="currentUser" class="settings">
+            <a
+              *ngIf="
+                (!channel.is_private &&
+                  channelsRoles[channel.id] &&
+                  channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) ||
+                (channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
+              "
+              [routerLink]="[{ outlets: { p: ['settings', channel.id, 'invite'] } }]"
+            >
+              <nb-icon icon="person-add"></nb-icon>
+            </a>
+            <a
+              *ngIf="
+                channelsRoles[channel.id] && channelsRoles[channel.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+              "
+              [routerLink]="[{ outlets: { p: ['settings', channel.id, 'edit'] } }]"
+            >
+              <nb-icon icon="settings"></nb-icon>
+            </a>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

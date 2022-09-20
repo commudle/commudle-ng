@@ -1,0 +1,108 @@
+<div class="community-members">
+  <form [formGroup]="searchForm">
+    <div class="name-filter">
+      <nb-form-field>
+        <nb-icon icon="search" nbPrefix></nb-icon>
+        <input
+          [disabled]="isLoading"
+          fieldSize="small"
+          formControlName="name"
+          fullWidth
+          nbInput
+          placeholder="Search by Name, Tagline or About Me..."
+          type="text"
+        />
+      </nb-form-field>
+    </div>
+  </form>
+
+  <div class="pages">
+    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
+      <nb-icon icon="arrow-ios-back"></nb-icon>
+    </p>
+    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
+      <p
+        (click)="getPageData(p)"
+        *ngIf="p > 0 && count * p < total"
+        [ngClass]="{ 'selected-page': this.page === p }"
+        class="clickable"
+      >
+        {{ p }}
+      </p>
+    </div>
+
+    <p (click)="getPageData(page + 1)" *ngIf="count * page < total" class="clickable">
+      <nb-icon icon="arrow-ios-forward"></nb-icon>
+    </p>
+  </div>
+  <div *ngIf="!isLoading" class="com-grid com-gap-6 com-grid-cols-1 sm:com-grid-cols-2 lg:com-grid-cols-3">
+    <div *ngFor="let userRole of userRolesUsers" class="member">
+      <commudle-badge
+        *ngIf="userRole.user_role.name === EUserRoles.ORGANIZER"
+        [color]="'blue'"
+        [fontSize]="'small'"
+        [text]="'Organizer'"
+      ></commudle-badge>
+      <div class="com-flex com-flex-row com-items-center com-gap-4 com-justify-between">
+        <commudle-user-profile-card-large
+          [showAbout]="true"
+          [showSocialLinks]="true"
+          [user]="userRole.user"
+        ></commudle-user-profile-card-large>
+        <button
+          (click)="activeContextMenuUser = userRole.user"
+          [nbContextMenu]="contextMenuItems"
+          class="context-menu"
+          ghost
+          nbButton
+          nbContextMenuTag="community-member-context-menu"
+        >
+          <nb-icon icon="more-vertical"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="total > 25 && !isLoading" class="pages">
+    <p (click)="getPageData(page - 1)" *ngIf="page > 1" class="clickable">
+      <nb-icon icon="arrow-ios-back"></nb-icon>
+    </p>
+    <div *ngFor="let p of [page - 2, page - 1, page, page + 1, page + 2]">
+      <p
+        (click)="getPageData(p)"
+        *ngIf="p > 0 && count * p < total"
+        [ngClass]="{ 'selected-page': this.page === p }"
+        class="clickable"
+      >
+        {{ p }}
+      </p>
+    </div>
+
+    <p (click)="getPageData(page + 1)" class="clickable">
+      <nb-icon icon="arrow-ios-forward"></nb-icon>
+    </p>
+  </div>
+</div>
+
+<ng-template #unblockUserDialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header class="com-flex com-items-center com-justify-between">
+      <span class="com-flex com-items-center com-gap-2">
+        <nb-icon icon="alert-triangle" status="warning"></nb-icon>
+        Confirmation
+      </span>
+      <button (click)="ref.close()" ghost nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body class="com-max-w-[350px]">
+      <p>
+        Are you sure you want to <strong>unblock</strong>&nbsp;<em>{{ data.user?.name }}</em> from the community?
+      </p>
+      <p><strong>Note:</strong>&nbsp;This action cannot be undone.</p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-items-center com-justify-between">
+      <button (click)="ref.close()" ghost nbButton status="danger">No</button>
+      <button (click)="unblockUser(data.user.id); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

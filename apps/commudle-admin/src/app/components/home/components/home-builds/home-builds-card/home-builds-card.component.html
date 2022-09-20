@@ -1,0 +1,37 @@
+<div [routerLink]="['/builds', build.slug]" class="home-builds-card clickable">
+  <div class="home-builds-card-prefix d-flex justify-content-space-between">
+    <div class="home-builds-card-tags d-flex flex-wrap">
+      <div *ngFor="let tag of build.tags.slice(0, 2)" class="home-builds-card-tag">{{ tag['name'] }}</div>
+    </div>
+    <div class="home-builds-card-attachments"></div>
+  </div>
+  <div class="home-builds-card-content">
+    <div class="home-builds-card-name com-line-clamp-2">{{ build.name }}</div>
+    <div class="home-builds-card-description com-line-clamp-2">{{ getDescription() }}</div>
+  </div>
+  <div class="home-builds-card-suffix d-flex justify-content-space-between align-items-center">
+    <div class="home-builds-card-interactions">
+      <span class="home-builds-card-interactions-votes">
+        <nb-icon icon="heart"></nb-icon>
+        {{ build.votes_count }}&nbsp;
+      </span>
+      <span class="home-builds-card-interactions-comments">
+        <nb-icon icon="message-circle"></nb-icon>
+        {{ build.chat_messages_count }}
+      </span>
+    </div>
+    <div [routerLink]="['/users', build.user.username]" class="home-builds-card-author d-flex align-items-center">
+      <div [username]="build.user.username" commudleMiniUserProfile class="home-builds-card-author-name com-line-clamp-1">
+        {{ build.user.name }}
+      </div>
+      <img
+        [alt]="build.user.name"
+        [src]="build.user.photo.i32"
+        [title]="build.user.name"
+        [username]="build.user.username"
+        commudleMiniUserProfile
+        class="home-builds-card-author-image"
+      />
+    </div>
+  </div>
+</div>

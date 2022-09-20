@@ -1,0 +1,43 @@
+<h2 class="heading">Show your projects</h2>
+<h3 class="subheading">Get inspired by amazing projects, find your startup idea</h3>
+
+<div class="home-builds-list">
+  <ng-container *ngIf="builds.length > 0; else loading">
+    <a *ngFor="let build of builds" [routerLink]="['/builds', build.slug]">
+      <nb-card>
+        <nb-card-body>
+          <p class="fs-p1 name">{{ build.name }}</p>
+          <p class="fs-p3 description">{{ getDescription(build) }}</p>
+          <div class="com-flex com-justify-between com-items-center com-gap-2">
+            <commudle-user-profile-card-small [user]="build.user"></commudle-user-profile-card-small>
+            <div class="com-flex com-gap-2 com-text-sm com-text-gray-400">
+              <span class="com-flex com-items-center com-gap-1">
+                <nb-icon icon="heart-outline"></nb-icon>
+                {{ build.votes_count }}
+              </span>
+              <span class="com-flex com-items-center com-gap-1">
+                <nb-icon icon="message-circle-outline"></nb-icon>
+                {{ build.chat_messages_count }}
+              </span>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </a>
+  </ng-container>
+  <ng-template #loading>
+    <nb-card *ngFor="let _ of [].constructor(3)">
+      <nb-card-body>
+        <commudle-skeleton-text [rows]="3"></commudle-skeleton-text>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
+</div>
+
+<div class="com-flex com-gap-4 com-mt-6">
+  <a class="home-share-project" nbButton routerLink="/builds/create" shape="semi-round" status="info">
+    Share your project
+    <nb-icon icon="arrow-forward"></nb-icon>
+  </a>
+  <a class="home-builds-view-all" ghost nbButton routerLink="/builds" shape="semi-round" status="info">View all</a>
+</div>

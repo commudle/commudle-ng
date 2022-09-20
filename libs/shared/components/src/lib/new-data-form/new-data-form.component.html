@@ -1,0 +1,151 @@
+<div class="data-form-container">
+  <form [formGroup]="createDataForm" class="create-data-form">
+    <div formGroupName="data_form">
+      <nb-card *ngIf="showNameField">
+        <nb-card-body>
+          <div role="group">
+            <div>
+              <label fullWidth>
+                Name*
+                <input formControlName="name" fullWidth nbInput type="text"/>
+              </label>
+            </div>
+          </div>
+
+          <div role="group">
+            <div>
+              <label fullWidth>
+                Description
+                <textarea
+                  formControlName="description"
+                  fullWidth
+                  nbInput
+                  placeholder="Description (optional)"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card class="data-form-question-choices-container">
+        <nb-card-body>
+          <div
+            *ngFor="
+              let question of createDataForm['controls'].data_form['controls'].questions['controls'];
+              let i = index
+            "
+            formArrayName="questions"
+          >
+            <div [formGroupName]="i" class="question-container">
+              <div>
+                <button (click)="removeQuestionButtonClick(i)" nbButton outline size="small" status="danger">
+                  <nb-icon icon="trash-outline"></nb-icon>
+                </button>
+                <label>
+                  {{ i + 1 }}. Question*
+                  <input formControlName="title" fullWidth nbInput placeholder="Title*" required type="text"/>
+                </label>
+                <span
+                  *ngIf="
+                    question.get('title').touched &&
+                    question.get('title').invalid &&
+                    question.get('title').errors.required
+                  "
+                  class="validation-error-text"
+                >
+                  Required Field
+                </span>
+              </div>
+
+              <div class="question-settings">
+                <label>
+                  Question Type
+                  <nb-select
+                    (selectedChange)="questionTypeChange($event, i)"
+                    formControlName="question_type_id"
+                    hero
+                    placeholder="Question Type*"
+                    required
+                    size="tiny"
+                    status="primary"
+                  >
+                    <nb-option *ngFor="let qt of questionTypes" [value]="qt.id">
+                      {{ qt.name }}
+                    </nb-option>
+                  </nb-select>
+                </label>
+
+                <nb-checkbox *ngIf="showQuestionRequiredField" formControlName="required" status="primary"
+                >Required
+                </nb-checkbox
+                >
+              </div>
+
+              <div *ngIf="showQuestionDescriptionField">
+                <textarea
+                  formControlName="description"
+                  fullWidth
+                  nbInput
+                  placeholder="Description (optional)"
+                ></textarea>
+              </div>
+
+              <div *ngIf="[4, 5].includes(question.get('question_type_id').value)">
+                <div
+                  *ngFor="let choice of question['controls'].question_choices['controls']; let chi = index"
+                  class="choices-container"
+                  formArrayName="question_choices"
+                >
+                  <div>
+                    <div [formGroupName]="chi">
+                      <input formControlName="title" nbInput placeholder="Enter Text*" required type="text"/>
+                      <span
+                        *ngIf="
+                          choice.get('title').touched &&
+                          choice.get('title').invalid &&
+                          choice.get('title').errors.required
+                        "
+                        class="validation-error-text"
+                      >
+                        Required Field
+                      </span>
+                    </div>
+                    <button (click)="removeQuestionChoiceButtonClick(i, chi)" nbButton size="tiny" status="danger">
+                      <nb-icon icon="trash-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+                <button (click)="addQuestionChoiceButtonClick(i)" hero nbButton size="tiny" status="primary">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                  &nbsp; Add Choice
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!maxQuestionCount || maxQuestionCount > totalQuestions">
+            <button (click)="addQuestionButtonClick()" nbButton size="medium" status="primary">
+              <nb-icon icon="plus-outline"></nb-icon>
+              &nbsp; Add Question
+            </button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <div>
+        <button
+          (click)="saveDataForm()"
+          [disabled]="!createDataForm.valid"
+          fullWidth
+          nbButton
+          size="medium"
+          status="primary"
+          type="submit"
+        >
+          {{ submitButtonText() }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

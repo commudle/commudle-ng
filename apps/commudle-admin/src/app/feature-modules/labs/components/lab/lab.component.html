@@ -1,0 +1,136 @@
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="image-popup">
+    <nb-card-header style="align-self: flex-end">
+      <nb-icon (click)="ref.close()" icon="close"></nb-icon>
+    </nb-card-header>
+    <nb-card-body>
+      <img [src]="src" alt="Image" class="Image" />
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<div *ngIf="lab" class="lab page-padding">
+  <div class="body d-flex justify-content-center">
+    <nb-icon (click)="toggleDetails()" class="toggle-details" icon="bookmark"></nb-icon>
+    <nb-sidebar right state="collapsed" tag="labMenu">
+      <commudle-lab-details
+        (scrollToChat)="scroll(discussionChatContainer)"
+        (setStep)="setStep($event)"
+        [discussionChat]="discussionChat"
+        [hideInteractions]="true"
+        [hideUser]="true"
+        [lab]="lab"
+        [messagesCount]="messagesCount"
+        [selectedLabStep]="selectedLabStep"
+        [similarLabs]="similarLabs"
+      ></commudle-lab-details>
+    </nb-sidebar>
+    <commudle-lab-details
+      (scrollToChat)="scroll(discussionChatContainer)"
+      (setStep)="setStep($event)"
+      [discussionChat]="discussionChat"
+      [hideInteractions]="window.innerWidth > 768"
+      [hideRecommendedLabs]="window.innerWidth < 768"
+      [hideRelatedLabs]="window.innerWidth < 768"
+      [hideSteps]="window.innerWidth < 768"
+      [lab]="lab"
+      [messagesCount]="messagesCount"
+      [selectedLabStep]="selectedLabStep"
+      [similarLabs]="similarLabs"
+      class="desktop-lab-details"
+    ></commudle-lab-details>
+    <div class="content">
+      <commudle-user-object-visit-pixel [parentId]="lab.id" [parentType]="'Lab'"></commudle-user-object-visit-pixel>
+      <nb-card>
+        <nb-card-body>
+          <div *ngIf="selectedLabStep === -1" class="introduction d-flex flex-column">
+            <h1 class="lab-title">{{ lab.name }}</h1>
+            <div class="lab-detail d-flex justify-content-space-between">
+              <div class="user-profile d-flex justify-content-start align-items-center">
+                <div class="avatar">
+                  <a [routerLink]="['/users', lab.user.username]" target="_blank">
+                    <img alt="{{ lab.user.name }}" src="{{ lab.user.photo.i32 }}" title="{{ lab.user.name }}" />
+                  </a>
+                </div>
+                <div class="details d-flex align-items-center">
+                  <p class="d-flex align-items-center">
+                    created by&nbsp;
+                    <a [routerLink]="['/users', lab.user.username]" class="name" target="_blank">{{ lab.user.name }}</a>
+                    <img
+                      *ngIf="lab.user.is_expert"
+                      alt="Expert Tick"
+                      class="expert-icon"
+                      src="/assets/images/Expert-Tick.svg"
+                      title="Expert Tick"
+                    />&nbsp;
+                    <span class="date">{{ lab.created_at | date }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="tags">
+                <commudle-tag [tags]="lab.tags"></commudle-tag>
+              </div>
+            </div>
+            <div *ngIf="lab.header_image" class="header-image">
+              <img alt="{{ lab.name }}" src="{{ lab.header_image.url }}" title="{{ lab.name }}" />
+            </div>
+            <div #introCon [innerHTML]="labDescription" class="intro-content"></div>
+          </div>
+          <div>
+            <router-outlet></router-outlet>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <div class="steps-navigation d-flex justify-content-space-between">
+            <button
+              (click)="changeStep(-1)"
+              *ngIf="selectedLabStep !== -1"
+              [routerLink]="selectedLabStep === 0 ? [] : ['steps', this.lab.lab_steps[selectedLabStep - 1].id]"
+              nbButton
+            >
+              <span>
+                <nb-icon icon="arrow-back"></nb-icon>
+                Prev
+              </span>
+            </button>
+            <span></span>
+            <button
+              (click)="changeStep(1)"
+              *ngIf="selectedLabStep < lab.lab_steps.length - 1"
+              [routerLink]="['steps', this.lab.lab_steps[selectedLabStep + 1].id]"
+              nbButton
+            >
+              <span>
+                Next
+                <nb-icon icon="arrow-forward"></nb-icon>
+              </span>
+            </button>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+      <div #discussionChatContainer class="lab-discussion">
+        <commudle-lab-discussion
+          (messagesCount)="getMessagesCount($event)"
+          *ngIf="discussionChat"
+          [discussion]="discussionChat"
+        ></commudle-lab-discussion>
+      </div>
+    </div>
+    <div class="interactions">
+      <commudle-votes-display [icon]="'heart-outline'" [votableId]="lab.id" [votableType]="'Lab'"></commudle-votes-display>
+      <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+        <nb-icon icon="message-circle-outline"></nb-icon>
+        {{ messagesCount }}
+      </div>
+      <commudle-share-button
+        [content]="environment.app_url + '/labs/' + lab.slug"
+        [round]="true"
+        [showText]="false"
+        [title]="lab.name"
+        [url]="environment.app_url + '/labs/' + lab.slug"
+        appearance="ghost"
+        class="com-mt-4"
+      ></commudle-share-button>
+    </div>
+  </div>
+</div>

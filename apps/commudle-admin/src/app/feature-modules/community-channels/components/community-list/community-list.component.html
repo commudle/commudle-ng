@@ -1,0 +1,10 @@
+<div class="community-list">
+  <div *ngFor="let comm of communities" [routerLink]="['/communities', comm.slug, 'channels']"
+       class="community clickable" nbTooltip="{{comm.name}}" nbTooltipPlacement="right" nbTooltipStatus="primary"
+       routerLinkActive="selected">
+    <img alt="{{comm.name}}" src="{{comm.logo_path}}" title="{{comm.name}}">
+    <commudle-badge
+      *ngIf="channelNotifications.includes(comm.slug) && (!selectedCommunity || selectedCommunity.slug !== comm.slug)"
+      [color]="'red'" [dotMode]="true" [position]="'top right'"></commudle-badge>
+  </div>
+</div>

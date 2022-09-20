@@ -1,0 +1,51 @@
+.event-speakers {
+  margin-bottom: 1rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    button {
+      margin-top: 0.5rem
+    }
+
+    @media (min-width: 800px) {
+      flex-direction: row;
+
+      button {
+        margin-top: 1.2rem;
+      }
+    }
+  }
+
+  .speakers-list {
+    margin-top: 1rem;
+    .speaker {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      padding: 0.5rem;
+      border: 1px solid #aeaeae;
+      border-radius: 5px;
+      commudle-user-profile-horizontal {
+        width: fit-content;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        a {
+          margin: 0.5rem;
+          text-decoration: none;
+        }
+      }
+
+
+      @media (min-width: 800px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}

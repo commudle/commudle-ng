@@ -1,0 +1,30 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div *commudleBreakpoints="'>lg'" class="three-column-layout">
+      <div>
+        <commudle-home-labs></commudle-home-labs>
+        <commudle-home-communities></commudle-home-communities>
+      </div>
+      <div>
+        <commudle-home-head-banner></commudle-home-head-banner>
+        <commudle-home-events></commudle-home-events>
+        <commudle-home-external-feed-links></commudle-home-external-feed-links>
+      </div>
+      <div>
+        <commudle-home-promotions></commudle-home-promotions>
+        <commudle-home-experts></commudle-home-experts>
+        <commudle-home-builds></commudle-home-builds>
+      </div>
+    </div>
+    <div *commudleBreakpoints="'<=lg'" class="one-column-layout">
+      <commudle-home-head-banner></commudle-home-head-banner>
+      <commudle-home-events></commudle-home-events>
+      <commudle-home-promotions></commudle-home-promotions>
+      <commudle-home-experts></commudle-home-experts>
+      <commudle-home-labs></commudle-home-labs>
+      <commudle-home-communities></commudle-home-communities>
+      <commudle-home-builds></commudle-home-builds>
+      <commudle-home-external-feed-links></commudle-home-external-feed-links>
+    </div>
+  </div>
+</div>

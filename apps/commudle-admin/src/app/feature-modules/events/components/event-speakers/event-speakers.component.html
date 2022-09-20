@@ -1,0 +1,50 @@
+<div class="event-speakers">
+  <form [formGroup]="speakerForm" (ngSubmit)="addSpeaker()">
+    <div class="field">
+      <label fullWidth>
+        Add Speaker
+        <input
+          type="email"
+          nbInput
+          fullWidth
+          formControlName="email"
+          fieldSize="small"
+          placeholder="Speaker's Email *"
+        >
+      </label>
+    </div>
+    <button [disabled]="!speakerForm.valid" nbButton type="submit" status="primary" size="small" outline>
+      <nb-icon icon="email"></nb-icon>
+      Send Request
+    </button>
+  </form>
+
+  <div class="speakers-list">
+    <div class="speaker" *ngFor="let speaker of speakers; let i = index;">
+      <commudle-user-profile-horizontal [user]="speaker.user" [socialMediaLinks]="true"></commudle-user-profile-horizontal>
+
+      <div class="actions" *ngIf="event.editable">
+        <a target="_blank" *ngIf="!speaker.speaker_resource" class="text-info" [routerLink]="['/speaker-resource-form']" [queryParams]="{token: speaker.rsvp_token, event_id: event.slug}">
+          <nb-icon icon="clipboard-outline"></nb-icon>
+          Add session details
+        </a>
+        <a target="_blank" *ngIf="speaker.speaker_resource" class="clickable text-info" [routerLink]="['/speaker-resource-form']" [queryParams]="{token: speaker.rsvp_token, event_id: event.slug}">
+          <nb-icon icon="clipboard-outline"></nb-icon>
+          <span *ngIf="speaker.speaker_resource">Edit Session Details/Slides</span>
+        </a>
+        <a (click)="resendRequest(speaker.id)" class="clickable text-info">
+          <nb-icon icon="email"></nb-icon>
+          Resend Invitation
+          <br>
+          <small>
+            {{speaker.user.email}}
+          </small>
+        </a>
+        <a (click)="removeSpeaker(speaker.id, i)" class="clickable text-danger">
+          <nb-icon icon="close-circle-outline" status="danger"></nb-icon>
+          Remove
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

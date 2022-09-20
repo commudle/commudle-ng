@@ -1,0 +1,51 @@
+nb-card {
+  @apply com-pb-8;
+  button {
+    @apply com-mt-3 com-mb-5;
+  }
+
+  nb-card-body {
+    .profile {
+      @apply com-pb-7 com-cursor-pointer;
+    }
+  }
+}
+
+.content {
+  ::ng-deep {
+    p {
+      font-size: initial;
+      color: initial;
+    }
+    a {
+      color: blue !important;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: unset !important;
+    }
+    img {
+      @apply com-max-w-full;
+    }
+  }
+}
+
+commudle-loading-spinner {
+  ::ng-deep {
+    .spinner {
+      @apply com-flex com-justify-center com-mt-28;
+    }
+  }
+}
+
+commudle-share-button {
+  ::ng-deep {
+    button {
+      @apply com-text-base #{!important};
+    }
+  }
+}

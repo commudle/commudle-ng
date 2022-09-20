@@ -1,0 +1,403 @@
+<div class="base-layout com-my-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <a [routerLink]="['/admin/communities', community.slug]" ghost nbButton size="small">
+        <nb-icon icon="arrow-ios-back"></nb-icon>
+        Back
+      </a>
+
+      <nb-card>
+        <nb-card-body>
+          <h2 class="fs-h2">{{ event.name }}</h2>
+          <p>Welcome to the dashboard, here you can customize your event!</p>
+          <div class="com-flex com-gap-4">
+            <a
+              [routerLink]="['/communities', community.slug, 'events', event.slug]"
+              nbButton
+              size="small"
+              status="info"
+              target="_blank"
+            >
+              Public Event Page
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+            <a [routerLink]="['stats']" nbButton size="small" status="success" target="_blank">
+              <nb-icon icon="trending-up-outline"></nb-icon>
+              Stats<sup>Beta</sup> &nbsp;
+              <nb-icon icon="external-link"></nb-icon>
+            </a>
+            <button
+              [routerLink]="['/communities', community.slug, 'events', event.slug, 'attended-members']"
+              nbButton
+              outline
+              size="small"
+              status="primary"
+            >
+              View attended members
+            </button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card class="event-dashboard-menu">
+        <nb-card-body>
+          <nb-actions>
+            <nb-action (click)="scroll(statusSectionRef)" class="clickable">
+              <nb-icon icon="clipboard-outline"></nb-icon>
+              <span>Status</span>
+            </nb-action>
+            <nb-action (click)="scroll(detailsSectionRef)" class="clickable">
+              <nb-icon icon="info-outline"></nb-icon>
+              <span>Details</span>
+            </nb-action>
+            <nb-action
+              (click)="scroll(updatesSectionRef)"
+              *ngIf="event.event_status.name !== EEventStatuses.DRAFT"
+              class="clickable"
+            >
+              <nb-icon icon="star-outline"></nb-icon>
+              <span>Updates</span>
+            </nb-action>
+            <nb-action (click)="scroll(registrationsSectionRef)" class="clickable">
+              <nb-icon icon="edit-2-outline"></nb-icon>
+              <span>Registrations</span>
+            </nb-action>
+            <nb-action (click)="scroll(agendaSectionRef)" class="clickable">
+              <nb-icon icon="calendar-outline"></nb-icon>
+              <span>Agenda</span>
+            </nb-action>
+            <nb-action (click)="scroll(collaborationsSectionRef)" class="clickable">
+              <nb-icon icon="pricetags-outline"></nb-icon>
+              <span>Collaborations</span>
+            </nb-action>
+            <nb-action (click)="scroll(volunteersSectionRef)" class="clickable">
+              <nb-icon icon="headphones-outline"></nb-icon>
+              <span>Volunteers</span>
+            </nb-action>
+            <nb-action (click)="scroll(sponsorsSectionRef)" class="clickable">
+              <nb-icon icon="briefcase-outline"></nb-icon>
+              <span>Sponsors</span>
+            </nb-action>
+            <nb-action (click)="scroll(emailsSectionRef)" class="clickable">
+              <nb-icon icon="email-outline"></nb-icon>
+              <span>Emails</span>
+            </nb-action>
+            <nb-action (click)="openGuide()" class="clickable">
+              <nb-icon icon="question-mark-circle-outline"></nb-icon>
+              <span>Guide</span>
+            </nb-action>
+          </nb-actions>
+        </nb-card-body>
+      </nb-card>
+
+      <div #statusSection>
+        <commudle-event-status (updatedEventStatus)="event.event_status = $event" [event]="event"></commudle-event-status>
+      </div>
+      <div #detailsSection>
+        <commudle-event-details
+          (deleteHeaderImage)="deleteEventHeader()"
+          (updateHeaderImage)="displaySelectedHeaderImage($event)"
+          [community]="community"
+          [event]="event"
+        ></commudle-event-details>
+      </div>
+      <div #updatesSection *ngIf="event.event_status.name !== EEventStatuses.DRAFT">
+        <nb-card>
+          <nb-card-header>
+            <h6>
+              <nb-icon icon="star-outline"></nb-icon>
+              Updates
+            </h6>
+          </nb-card-header>
+          <nb-card-body>
+            <commudle-event-updates [event]="event"></commudle-event-updates>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div #registrationsSection>
+        <nb-card>
+          <nb-card-header>
+            <h6>
+              <nb-icon icon="edit-2-outline"></nb-icon>
+              Registrations
+            </h6>
+          </nb-card-header>
+          <nb-card-body>
+            <div *ngIf="event.editable" class="com-flex com-gap-4">
+              <p>One Click Registration</p>
+              <nb-toggle
+                (checkedChange)="updateRegistrationType($event)"
+                [checked]="event.custom_registration"
+                status="primary"
+              ></nb-toggle>
+              <p>Registration Forms</p>
+            </div>
+            <commudle-form-groups
+              *ngIf="event.custom_registration"
+              [community]="community"
+              [event]="event"
+            ></commudle-form-groups>
+            <commudle-event-simple-registration
+              *ngIf="!event.custom_registration"
+              [community]="community"
+              [event]="event"
+            ></commudle-event-simple-registration>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div #agendaSection>
+        <nb-card>
+          <nb-card-header>
+            <h6>
+              <nb-icon icon="calendar-outline"></nb-icon>
+              Agenda
+            </h6>
+          </nb-card-header>
+          <nb-card-body>
+            <div *ngIf="event.editable" class="com-flex com-gap-4">
+              <p>
+                Simple Hosting
+                <br />
+                (online only)
+              </p>
+              <nb-toggle
+                (checkedChange)="updateAgendaType($event)"
+                [checked]="event.custom_agenda"
+                [disabled]="!event.custom_registration || !event.start_time"
+                status="primary"
+              >
+              </nb-toggle>
+              <p>
+                Custom Schedule
+                <br />
+                (online/offline with Multiple Tracks)
+              </p>
+            </div>
+            <div *ngIf="!event.start_time">
+              <nb-alert accent="info">
+                <a
+                  [routerLink]="['/admin/communities', community.slug, 'event-dashboard', event.slug, 'edit']"
+                  ghost
+                  nbButton
+                  status="info"
+                >
+                  Click Here to Enable the schedule options by adding date and time to this event.
+                </a>
+              </nb-alert>
+            </div>
+            <div *ngIf="event.start_time">
+              <a [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']" target="_blank">
+                Public Session Page
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+              <p *ngIf="event.custom_registration">
+                <small>*Speakers can be selected by using Speaker Form in the registrations section above!</small>
+              </p>
+              <commudle-event-locations
+                *ngIf="event.custom_agenda"
+                [community]="community"
+                [event]="event"
+              ></commudle-event-locations>
+              <commudle-event-speakers
+                *ngIf="!event.custom_agenda && !event.custom_registration"
+                [event]="event"
+              ></commudle-event-speakers>
+              <commudle-event-embedded-video-stream
+                *ngIf="!event.custom_agenda"
+                [community]="community"
+                [event]="event"
+              ></commudle-event-embedded-video-stream>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div #collaborationsSection>
+        <nb-card>
+          <nb-card-header>
+            <h6>
+              <nb-icon icon="pricetags-outline"></nb-icon>
+              Collaborations
+            </h6>
+          </nb-card-header>
+          <nb-card-body>
+            <commudle-collaborating-communities [community]="community" [event]="event"></commudle-collaborating-communities>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div #volunteersSection>
+        <nb-card>
+          <nb-card-header>
+            <h6>
+              <nb-icon icon="headphones-outline"></nb-icon>
+              Volunteers
+            </h6>
+          </nb-card-header>
+          <nb-card-body>
+            <commudle-volunteers [event]="event"></commudle-volunteers>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div #sponsorsSection>
+        <nb-card>
+          <nb-card-header>
+            <h6>
+              <nb-icon icon="briefcase-outline"></nb-icon>
+              Sponsors
+            </h6>
+          </nb-card-header>
+          <nb-card-body>
+            <commudle-sponsors [event]="event"></commudle-sponsors>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <!-- TODO: Enable recordings -->
+      <!--      <div>-->
+      <!--        <commudle-event-recordings [event]="event"></commudle-event-recordings>-->
+      <!--      </div>-->
+      <div #emailsSection>
+        <commudle-community-emails-list [communityId]="event.kommunity_id"></commudle-community-emails-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #eventGuideSection>
+  <nb-accordion>
+    <nb-accordion-item>
+      <nb-accordion-item-header>Status</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ul>
+          <li>
+            <p><strong>Draft</strong>: Only the organizers and people who have the link can see the event</p>
+          </li>
+          <li>
+            <p><strong>Open</strong>: The event is visible on the community page</p>
+          </li>
+          <li>
+            <p><strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members</p>
+          </li>
+          <li>
+            <p><strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page</p>
+          </li>
+        </ul>
+        <p>* <small>Event can be edited upto 5 days after completion</small></p>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+    <nb-accordion-item>
+      <nb-accordion-item-header>Registration Type</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ul>
+          <li>
+            <p>
+              <strong>One Click Registration</strong>
+            </p>
+            <p>
+              <small> Members can register for the event in a single click </small>
+              <br />
+              <small>
+                You can view their registrations from the 'View Registrations' link and send them unique entry passes
+              </small>
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong> Registration Forms [Higher attendance percentage!] </strong>
+            </p>
+            <p>
+              <small>
+                Use the forms you created on
+                <strong>
+                  <a [routerLink]="['/admin/communities', community.slug]">{{ community.name }}</a>
+                </strong>
+                page
+              </small>
+            </p>
+            <ul>
+              <li>
+                <p><strong>STEP 1</strong>: Roll out forms</p>
+                <p>
+                  <small> Form Type: <strong>Attendee</strong> For people who will be attending the event </small>
+                  <br />
+                  <small> Form Type: <strong>Speaker</strong> Use this for call for papers </small>
+                </p>
+              </li>
+              <li>
+                <p><strong>STEP 2</strong>: Shortlist & Send RSVP Emails</p>
+                <p>
+                  <small>Click on 'View Responses'</small>
+                  <small>
+                    <strong>Attendee</strong> Shortlist to send RSVP, once they confirm, the status changes to
+                    'Confirmed'
+                  </small>
+                  <br />
+                  <small>
+                    <strong>Speaker</strong> Shortlist to send RSVP, once they confirm, the status changes to
+                    'Confirmed', the email also contains a link to add the slides they will be using for sharing with
+                    the community later on
+                  </small>
+                </p>
+              </li>
+              <li>
+                <p><strong>STEP 3</strong>: Event Day!</p>
+                <p>
+                  <small>Mark the attendance!</small>
+                </p>
+              </li>
+              <li>
+                <p><strong>STEP 4</strong>: Feedbacks</p>
+                <p>
+                  <small>Send feedback forms in 1 click, to those who attended</small>
+                </p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+    <nb-accordion-item>
+      <nb-accordion-item-header>Agenda or Schedule</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ul>
+          <li>
+            <p>
+              <strong>Simple Hosting (online only)</strong>
+              <br />
+              Choose between
+              <strong>Youtube Streaming</strong>, and <strong>any other Embed</strong>. [ZOOM integration coming soon!]
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Multiple Locations / Tracks / Sessions</strong>
+              <br />
+              This option is when you have a more organized event
+            </p>
+            <ul>
+              <li>
+                <p>You can create multiple locations (either offline or online)</p>
+              </li>
+              <li>
+                <p>Each location can have multiple tracks</p>
+              </li>
+              <li>
+                <p>Each Track can have multiple slots</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p><strong>Completed</strong>: It has completed! Will be visible as a completed event to all the members</p>
+          </li>
+          <li>
+            <p><strong>Canceled</strong>: It's like deleting the event, it removes the event from the community page</p>
+          </li>
+        </ul>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+    <nb-accordion-item>
+      <nb-accordion-item-header> Collaborating Communities</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <p>Just search from all the communities on Commudle and create collaborations!</p>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</ng-template>

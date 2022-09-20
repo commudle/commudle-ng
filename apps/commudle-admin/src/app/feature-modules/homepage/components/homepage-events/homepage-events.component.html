@@ -1,0 +1,43 @@
+<div class="com-flex com-gap-4 com-justify-between com-items-center com-mb-8 md:com-mb-12">
+  <h2 class="heading">Live sessions with developers around you</h2>
+  <div *commudleBreakpoints="'>md'" class="com-flex">
+    <button
+      (click)="updateEventsIdx(-4)"
+      [disabled]="eventsStartIdx === 0"
+      class="com-mr-2"
+      nbButton
+      shape="round"
+      size="small"
+    >
+      <nb-icon icon="arrow-left-outline"></nb-icon>
+    </button>
+    <button
+      (click)="updateEventsIdx(4)"
+      [disabled]="eventsStartIdx + 4 === maxEventsCount"
+      nbButton
+      shape="round"
+      size="small"
+    >
+      <nb-icon icon="arrow-right-outline"></nb-icon>
+    </button>
+  </div>
+</div>
+<div *commudleBreakpoints="'>md'" class="com-grid com-grid-cols-4 com-gap-6 com-min-h-full md:com-min-h-[340px]">
+  <ng-container *ngIf="!isLoading; else loading">
+    <commudle-homepage-events-card
+      *ngFor="let event of events | slice: eventsStartIdx:eventsStartIdx + 4"
+      [event]="event"
+    ></commudle-homepage-events-card>
+  </ng-container>
+  <ng-template #loading>
+    <commudle-skeleton-text *ngFor="let _ of [].constructor(4)" [rows]="4"></commudle-skeleton-text>
+  </ng-template>
+</div>
+<div *commudleBreakpoints="'<=md'" class="com-flex com-gap-6 com-overflow-x-auto com-min-h-[222px]">
+  <ng-container *ngIf="!isLoading; else loading">
+    <commudle-homepage-events-card *ngFor="let event of events" [event]="event"></commudle-homepage-events-card>
+  </ng-container>
+  <ng-template #loading>
+    <commudle-skeleton-text [rows]="4" class="com-w-full"></commudle-skeleton-text>
+  </ng-template>
+</div>

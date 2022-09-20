@@ -1,0 +1,31 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.chat-window {
+  margin-left: $space-5;
+
+  nb-card {
+    height: 100%;
+    margin: 0;
+
+    nb-card-header {
+      padding: $space-4 $space-6;
+
+      .window-options {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    nb-card-body {
+      transition: all 0.2s ease-in-out;
+      padding: 0;
+      display: grid;
+    }
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .chat-window {
+    margin-bottom: $space-56;
+  }
+}

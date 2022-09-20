@@ -1,0 +1,9 @@
+<div class="team">
+  <nb-card>
+    <nb-card-body>
+      <div class="member" *ngFor="let member of team">
+        <commudle-user-profile-horizontal [user]="member.user" [socialMediaLinks]="true"></commudle-user-profile-horizontal>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

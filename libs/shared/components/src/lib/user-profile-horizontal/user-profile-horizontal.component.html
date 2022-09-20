@@ -1,0 +1,31 @@
+<div class="user">
+  <commudle-user-live-status *ngIf="showLiveStatus" [userId]="user.id"></commudle-user-live-status>
+  <div class="profile-picture {{ size }}">
+    <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
+  </div>
+  <div class="profile-info">
+    <p class="name {{ size }}">
+      <a [routerLink]="['/users', user.username]" class="clickable"> {{ user.name }} </a>
+    </p>
+    <p *ngIf="aboutMe" class="designation {{ size }}">{{ user.designation }}</p>
+    <p *ngIf="!aboutMe" class="designation {{ size }}">{{ user.designation }}</p>
+    <div *ngIf="socialMediaLinks" class="user-social-links {{ size }}">
+      <a *ngIf="user.linkedin" href="{{ user.linkedin | completeurl: 'linkedin' }}" target="_blank">
+        <nb-icon icon="linkedin" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="user.twitter" href="{{ user.twitter | completeurl: 'twitter' }}" target="_blank">
+        <nb-icon icon="twitter" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="user.github" href="{{ user.github | completeurl: 'github' }}" target="_blank">
+        <nb-icon icon="github" status="primary"></nb-icon>
+      </a>
+      <a *ngIf="user.personal_website" href="{{ user.personal_website | completeurl }}" target="_blank">
+        <nb-icon icon="info" status="primary"></nb-icon>
+      </a>
+      <a (click)="openChatWithUser()" class="clickable">
+        <nb-icon icon="message-circle-outline" status="basic"></nb-icon>
+      </a>
+    </div>
+    <div *ngIf="aboutMe" class="about-me {{ size }}">{{ user.about_me }}</div>
+  </div>
+</div>

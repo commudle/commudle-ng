@@ -1,0 +1,119 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  border: 1px solid $silver-sand;
+  height: 306px;
+  margin: $space-24;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  width: 260px;
+
+  &:hover {
+    box-shadow: 0 5px 15px $azureish-white;
+  }
+
+  nb-card-body {
+    padding: 0;
+
+    .user-card {
+      overflow: hidden;
+
+      .banner {
+        background: $azureish-white;
+        height: 72px;
+        overflow: hidden;
+        width: 100%;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      .banner-image {
+        display: grid;
+
+        div {
+          grid-column-start: 1;
+          grid-row-start: 1;
+        }
+      }
+
+      .user-image {
+        background: $lightgrey;
+        border: $border-3 solid $white;
+        border-radius: $border-50;
+        height: 86px;
+        margin-left: $space-10;
+        margin-top: $space-24;
+        overflow: hidden;
+        width: 86px;
+
+        img {
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      commudle-user-follow {
+        position: absolute;
+        right: 8px;
+        top: 80px;
+      }
+
+      .user-details {
+        height: 169px;
+        margin: $space-9 $space-16 $space-16;
+        padding-top: $space-7;
+
+        a {
+          text-decoration: none;
+        }
+
+        .text-details {
+          p {
+            color: $gunmetal;
+            margin: 0;
+          }
+
+          .user-name {
+            font-size: $fs-card-title;
+            font-weight: $fw-600;
+            line-height: 21px;
+            margin-bottom: $space-8;
+
+            .expert-icon {
+              height: 14px;
+              margin-left: $space-4;
+              vertical-align: middle;
+              width: 14px;
+            }
+          }
+
+          .designation {
+            color: $gunmetal;
+            font-size: $fs-14;
+            font-weight: $fw-400;
+            line-height: 16px;
+          }
+        }
+
+        .user-card-tags {
+          gap: $space-8;
+          max-height: 80px;
+          overflow: hidden;
+
+          .user-card-tag {
+            background-color: $azureish-white;
+            border-radius: $border-8;
+            color: $gunmetal;
+            font-size: $fs-card-secondary;
+            padding: $space-8;
+          }
+        }
+      }
+    }
+  }
+}

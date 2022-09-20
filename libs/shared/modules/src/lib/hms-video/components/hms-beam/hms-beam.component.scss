@@ -1,0 +1,16 @@
+.hms-beam-container {
+  background-color: black;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1050;
+
+  commudle-conference-user-videos {
+    &::ng-deep {
+      .user-streams {
+        height: 100%;
+      }
+    }
+  }
+}

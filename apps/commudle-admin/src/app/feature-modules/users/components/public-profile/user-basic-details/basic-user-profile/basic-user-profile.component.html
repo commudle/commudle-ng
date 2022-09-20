@@ -1,0 +1,17 @@
+<div *ngIf="currentUser" [ngClass]="{ 'page-padding': pagePadding }" class="page-padding basic-details-container">
+  <commudle-username></commudle-username>
+  <commudle-basic-info></commudle-basic-info>
+  <commudle-social-links></commudle-social-links>
+  <div class="submit-button">
+    <button
+      [disabled]="!userProfileManagerService.userProfileForm.valid"
+      fullWidth
+      nbButton
+      size="medium"
+      status="primary"
+      (click)="updateUserDetails()"
+    >
+      Save
+    </button>
+  </div>
+</div>

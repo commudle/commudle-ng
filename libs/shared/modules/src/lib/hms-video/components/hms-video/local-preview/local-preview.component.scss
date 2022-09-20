@@ -1,0 +1,50 @@
+@import '../apps/commudle-admin/src/assets/styles/variables';
+
+.local-preview {
+  left: 50%;
+  max-width: 320px;
+  position: absolute;
+  transform: translateX(-50%);
+
+  nb-card-body {
+    .preview,
+    nb-select {
+      margin: $space-8 0;
+    }
+
+    .preview {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      width: 100%;
+
+      .video-container {
+        background-color: black;
+        height: 100%;
+        width: 100%;
+
+        video {
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      .controls {
+        bottom: $space-8;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+
+        button {
+          height: 32px;
+          margin: 0 $space-4;
+          width: 32px;
+        }
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,16 @@
+<div [style.width.px]="chatsWindowWidth" class="chat-window">
+  <nb-card>
+    <nb-card-header (click)="toggleChatsWindowHeight()" class="clickable">
+      <div class="window-options">
+        <commudle-user-profile-mini [size]="'small'" [user]="discussionFollower.user"></commudle-user-profile-mini>
+        <button (click)="closeChat()" ghost nbButton>
+          <nb-icon icon="close" pack="eva"></nb-icon>
+        </button>
+      </div>
+    </nb-card-header>
+    <nb-card-body [style.height.vh]="chatsWindowHeight" [style.maxHeight.vh]="chatsWindowHeight"
+                  [style.minHeight.vh]="chatsWindowHeight">
+      <commudle-discussion-personal-chat *ngIf="discussion" [discussion]="discussion"></commudle-discussion-personal-chat>
+    </nb-card-body>
+  </nb-card>
+</div>

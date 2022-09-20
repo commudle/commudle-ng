@@ -1,0 +1,65 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <h4>Labs</h4>
+      <nb-card class="labs">
+        <nb-card-body>
+          <nb-tabset>
+            <nb-tab
+              *ngFor="let pStatus of ELabPublishStatus | keyvalue"
+              tabTitle="{{ pStatus.value }}({{ labs[pStatus.value].length }})"
+            >
+              <div *ngFor="let lab of labs[pStatus.value]" class="lab">
+                <div class="content">
+                  <p>
+                    <small>
+                      {{ lab.createdSince }}
+                    </small>
+                  </p>
+
+                  <h5>
+                    {{ lab.name }}
+                    <a [routerLink]="['/labs', lab.slug]" target="_blank">
+                      <nb-icon icon="external-link" status="primary"></nb-icon>
+                    </a>
+                  </h5>
+                  <p>{{ lab.user.name }} &lt;{{ lab.user.email }}&gt;</p>
+                </div>
+
+                <div class="stats">
+                  <div>
+                    <!--                    <commudle-votes-display [icon]="'star'" [votableId]="lab.id" [votableType]="'Lab'"></commudle-votes-display>-->
+                  </div>
+                  <div class="tags">
+                    <commudle-badge *ngFor="let t of lab.tags" [text]="t"></commudle-badge>
+                  </div>
+                </div>
+                <div class="actions">
+                  <div class="status-update">
+                    <nb-select
+                      (selectedChange)="updatePublishStatus($event, lab.id)"
+                      [selected]="lab.publish_status"
+                      placeholder="Select Status"
+                      size="small"
+                      status="primary"
+                    >
+                      <nb-option *ngFor="let ps of publishStatuses" [value]="ELabPublishStatus[ps]">
+                        {{ ELabPublishStatus[ps] }}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+                  <div>
+                    <button [routerLink]="['/labs', lab.slug, 'edit']" nbButton outline size="tiny" status="info">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </nb-tab>
+          </nb-tabset>
+        </nb-card-body>
+      </nb-card>
+      <button *ngIf="loading" [nbSpinner]="loading" class="com-mx-2" nbButton>Load More</button>
+    </div>
+  </div>
+</div>

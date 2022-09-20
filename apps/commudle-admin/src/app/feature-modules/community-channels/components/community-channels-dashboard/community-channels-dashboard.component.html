@@ -1,0 +1,12 @@
+<div class="community-channels-dashboard page-padding">
+  <div [ngClass]="{'show': showCommunityList}" class="community-list">
+    <commudle-community-list [selectedCommunity]="selectedCommunity"></commudle-community-list>
+  </div>
+  <div [ngClass]="{'show': showCommunityList}" class="community-channel-list">
+    <commudle-community-channel-list></commudle-community-channel-list>
+  </div>
+  <div class="community-channel-discussion">
+    <router-outlet></router-outlet>
+    <router-outlet *ngIf="channelsQueried" name="p"></router-outlet>
+  </div>
+</div>

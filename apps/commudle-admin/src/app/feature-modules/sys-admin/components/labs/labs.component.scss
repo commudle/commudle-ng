@@ -1,0 +1,58 @@
+.base-layout {
+  h4 {
+    @apply com-mx-4 com-mb-4;
+  }
+}
+
+.labs {
+  .lab {
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+
+    .content {
+      > h5,
+      > p {
+        margin: 0;
+      }
+    }
+
+    .creator {
+      max-width: 100%;
+    }
+
+    .stats {
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+
+        commudle-badge {
+          margin: 3px;
+        }
+      }
+    }
+
+    .actions {
+      > div {
+        margin: 0.5rem 0;
+      }
+    }
+
+    @media (min-width: 800px) {
+      flex-direction: row;
+
+      .content {
+        width: 60%;
+      }
+
+      .creator {
+        width: 15%;
+      }
+
+      .stats {
+        width: 10%;
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+.event-location-tracks {
+  max-width: 719px;
+
+  .track-container {
+    nb-action {
+      display: flex;
+      flex-wrap: wrap;
+
+      nb-icon {
+        font-size: 1.3rem;
+      }
+    }
+
+    nb-card-header {
+      padding: 0.5rem;
+      background-color: #FFAA00;
+
+      .track-name {
+        display: inline-block;
+        margin: 0;
+        font-size: 1.1rem;
+      }
+    }
+
+    nb-card-body {
+      padding: 0;
+
+      nb-list {
+        nb-list-item {
+          display: flex;
+
+          .session-time {
+            width: 60px;
+            padding-right: 1rem;
+            border-right: 3px solid lightgrey;
+
+            p {
+              margin: 0;
+              text-align: right;
+            }
+
+            p:nth-of-type(1) {
+              font-size: 1.2rem;
+            }
+
+            p:nth-of-type(2) {
+              margin-top: 0.2rem;
+              font-size: 0.9rem;
+            }
+          }
+
+          .session-details {
+            width: 80%;
+            padding-left: 0.5rem;
+
+            .session-title {
+              p:nth-of-type(1) {
+                font-size: 1.2rem;
+                font-weight: normal;
+                margin: 0 0 0.3rem;
+              }
+
+              commudle-badge {
+                margin-right: 0.3rem;
+                margin-bottom: 0.3rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+    // @media all and (max-width: 767px) {
+    //   .track-name {
+    //     font-size: 1.1rem;
+    //   }
+    // }
+
+    // .session-time {
+    //   p {
+    //     margin: 0;
+    //     text-align: right;
+    //   }
+
+    //   p:nth-of-type(1) {
+    //     font-size: 1.2rem;
+    //   }
+
+    //   p:nth-of-type(2) {
+    //     margin-top: 0.2rem;
+    //     font-size: 0.9rem;
+    //   }
+
+    //   @media all and (max-width: 767px) {
+    //     p:nth-of-type(1) {
+    //       font-size: 1rem;
+    //     }
+
+    //     p:nth-of-type(2) {
+    //       font-size: 0.8rem;
+    //     }
+    //   }
+    // }
+
+    // .session-title {
+    //   min-width: max-content;
+
+    //   p:nth-of-type(1) {
+    //     font-size: 1.2rem;
+    //     font-weight: normal;
+    //     width: 500px;
+    //     margin: 0 0 0.3rem;
+    //   }
+
+    //   commudle-badge {
+    //     margin-right: 0.3rem;
+    //     margin-bottom: 0.3rem;
+    //   }
+    // }
+
+    // @media all and (max-width: 767px) {
+    //   .session-title {
+    //     p:nth-of-type(1) {
+    //       font-size: 1rem;
+    //     }
+    //   }
+    // }
+  }
+}

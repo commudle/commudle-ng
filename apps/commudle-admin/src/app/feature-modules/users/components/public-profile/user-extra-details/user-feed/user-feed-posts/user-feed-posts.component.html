@@ -1,0 +1,9 @@
+<div class="user-feed-posts d-flex flex-column">
+  <commudle-user-feed-post
+    (deletePost)="onDeletePost($event)"
+    *ngFor="let post of posts"
+    [currentUser]="currentUser"
+    [post]="post"
+    [user]="user"
+  ></commudle-user-feed-post>
+</div>

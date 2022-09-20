@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <button *ngIf="permittedActions.includes(allActions.START)" nbButton fullWidth outline size="medium" (click)="newPoll()" status="success">
+      <nb-icon icon="plus-circle"></nb-icon> New Poll
+    </button>
+  </div>
+  <div class="polls" *ngIf="polls.length > 0">
+    <div class="poll" *ngFor="let poll of polls">
+      <commudle-poll-list-item
+        [poll]="poll"
+        [deletable]="permittedActions.includes(allActions.DELETE)"
+        [editable]="permittedActions.includes(allActions.START) && permittedActions.includes(allActions.STOP)"
+        (startPoll)="startPoll($event)"
+        (startSelfPoll)="startSelf($event)"
+        (stopPoll)="stopPoll($event)"
+        (deletePoll)="deletePoll($event)"
+        ></commudle-poll-list-item>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #newPollTemplate let-data>
+  <commudle-poll-create-form (newPoll)="create($event)"></commudle-poll-create-form>
+</ng-template>
+
+
+<ng-template #fillPollTemplate let-data>
+  <commudle-poll-form [poll]="selectedPoll" (pollData)="submitPoll($event)"></commudle-poll-form>
+</ng-template>

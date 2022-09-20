@@ -1,0 +1,93 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+p {
+  margin: 0;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-experts-container {
+  nb-card-header {
+    border-bottom: none;
+    color: $gunmetal;
+    font-size: $fs-h2;
+    font-weight: $fw-600;
+    padding: $space-28 $space-16 $space-24;
+  }
+
+  nb-card-body {
+    padding: 0;
+
+    .home-experts-list {
+      nb-list-item {
+        align-items: center;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $space-8;
+        padding: 0 $space-16 $space-16;
+
+        commudle-skeleton-text {
+          width: 100%;
+        }
+
+        .home-expert {
+          margin-right: $space-8;
+          width: 100%;
+
+          .home-expert-avatar {
+            @apply com-h-8 com-w-8;
+            @apply com-rounded-full com-object-cover com-object-center;
+            @apply com-mr-2;
+          }
+
+          .home-expert-details {
+            .home-expert-name {
+              p {
+                color: $gunmetal;
+                font-size: $fs-h5;
+                font-weight: $fw-600;
+                line-height: 16px;
+              }
+
+              img {
+                height: 14px;
+                margin-left: $space-4;
+                width: 14px;
+              }
+            }
+
+            .home-expert-designation {
+              color: $taupe-gray;
+              font-size: $fs-h7;
+              font-style: italic;
+              line-height: 12px;
+            }
+
+            .home-expert-followers {
+              color: $neon-blue;
+              font-size: $fs-h7;
+              font-style: italic;
+              line-height: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .home-experts-all {
+      padding: $space-4 $space-16 $space-16;
+
+      a {
+        color: rgba($neon-blue, 0.95);
+        font-size: $fs-h5;
+      }
+    }
+  }
+}

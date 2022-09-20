@@ -1,0 +1,368 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.lab {
+  background: $light-purple;
+  padding: $page-padding-top $page-horizontal-padding $page-padding-bottom;
+  width: 100%;
+
+  .body {
+    margin: 0 auto;
+    max-width: 1152px;
+
+    nb-sidebar,
+    .toggle-details {
+      display: none;
+    }
+
+    .content {
+      width: 100%;
+
+      nb-card {
+        border: none;
+        margin: 0 $space-16 $space-16;
+        min-height: 80vh;
+
+        nb-card-body {
+          padding: $space-64;
+
+          .introduction {
+            .lab-title {
+              color: $gunmetal;
+              font-size: $fs-35;
+              font-weight: $fw-500;
+              line-height: 2.75rem;
+              margin: 0 0 $space-20;
+              text-transform: capitalize;
+            }
+
+            .lab-detail {
+              margin-bottom: $space-48;
+
+              .user-profile {
+                .avatar {
+                  border-radius: 50%;
+                  height: 24px;
+                  overflow: hidden;
+                  width: 24px;
+
+                  img {
+                    width: 100%;
+                  }
+                }
+
+                .details {
+                  font-style: italic;
+                  height: max-content;
+                  width: max-content;
+
+                  p {
+                    color: $spanish-gray;
+                    font-size: $fs-h5;
+                    margin: 0 $space-16 0 $space-8;
+                  }
+
+                  a,
+                  a:hover,
+                  a:focus,
+                  a:active {
+                    text-decoration: none;
+                  }
+
+                  .name {
+                    color: $neon-blue;
+                    text-transform: capitalize;
+                  }
+
+                  .date {
+                    font-style: normal;
+                    margin-left: $space-4;
+                  }
+
+                  .expert-icon {
+                    height: 12px;
+                    margin-left: $space-4;
+                    width: 12px;
+                  }
+                }
+              }
+
+              .tags {
+                margin-left: $space-64;
+
+                &::ng-deep {
+                  .nb-tag-list-tags-wrapper {
+                    nb-tag {
+                      background-color: $azureish-white;
+                      border: none;
+                      border-radius: $border-5;
+                      color: $gunmetal;
+                      font-size: $fs-h7;
+                      font-weight: $fw-400;
+                      line-height: 12px;
+                      padding: $space-4 $space-12;
+                      text-transform: lowercase;
+                    }
+                  }
+                }
+              }
+            }
+
+            @media all and (max-width: $tab-width) {
+              .lab-detail {
+                flex-direction: column;
+
+                .user-profile {
+                  align-items: center;
+
+                  .details {
+                    width: auto;
+                  }
+                }
+
+                .tags {
+                  margin: $space-16 0 0;
+                }
+              }
+            }
+
+            .header-image {
+              img {
+                width: 100%;
+              }
+            }
+
+            .intro-content {
+              width: 100%;
+
+              ::ng-deep {
+                img {
+                  height: auto;
+                  max-width: 100%;
+                }
+
+                code {
+                  white-space: pre-wrap;
+                }
+
+                @for $index from 1 through 6 {
+                  h#{$index} {
+                    color: $gunmetal;
+                  }
+                }
+
+                p,
+                li {
+                  color: $raisin-black;
+                  font-size: 1.1rem;
+                  line-height: 1.5rem;
+                }
+              }
+            }
+          }
+        }
+
+        nb-card-footer {
+          background-color: $light-purple;
+          border: none;
+          padding: $space-24 0 0;
+        }
+
+        @media all and (max-width: $tab-width) {
+          nb-card-body {
+            padding: $space-20;
+
+            .introduction {
+              .lab-title {
+                font-size: 1.75rem;
+                line-height: 1.75rem;
+              }
+            }
+          }
+
+          nb-card-footer {
+            bottom: $space-64;
+            padding: $space-8 0;
+            position: sticky;
+          }
+        }
+      }
+    }
+
+    .interactions {
+      display: none;
+      height: fit-content;
+      margin-left: $space-16;
+      position: sticky;
+      top: 50vh;
+      width: max-content;
+
+      commudle-votes-display {
+        direction: rtl;
+
+        &::ng-deep {
+          .votes {
+            p {
+              color: $neon-blue;
+              font-size: 1.5rem;
+            }
+
+            span {
+              nb-icon {
+                font-size: 1.5rem;
+                margin-right: $space-4;
+
+                &:not(.voted-heart) {
+                  color: $neon-blue;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .discussion {
+        color: $neon-blue;
+        font-size: $fs-24;
+        margin: $space-24 0 0;
+      }
+
+      nb-icon {
+        color: $neon-blue;
+        font-size: $fs-24;
+      }
+
+      commudle-share-button {
+        ::ng-deep {
+          .share-button-container {
+            margin: $space-24 0 0;
+
+            button {
+              background-color: transparent !important;
+            }
+          }
+        }
+      }
+    }
+
+    @media (min-width: $tab-width) {
+      .content {
+        max-width: 744px;
+      }
+
+      .interactions {
+        display: block;
+      }
+    }
+  }
+
+  .steps-navigation {
+    button {
+      background-color: $neon-blue;
+      border-radius: $border-10;
+      color: $white;
+      font-size: $fs-18;
+      font-weight: $fw-500;
+      text-transform: capitalize;
+    }
+  }
+
+  .lab-discussion {
+    margin: $space-32 0 0;
+    padding: 0 0 $space-64;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .lab {
+    padding: $space-16 0 0;
+
+    .body {
+      flex-direction: column;
+      justify-content: normal;
+
+      .toggle-details {
+        background-color: $neon-blue;
+        border-bottom-right-radius: $border-10;
+        border-top-right-radius: $border-10;
+        color: white;
+        display: block;
+        font-size: 2.25rem;
+        left: 0;
+        padding: $space-4;
+        position: fixed;
+        top: $space-96;
+        z-index: 3;
+      }
+
+      .desktop-lab-details {
+        &::ng-deep {
+          .menu {
+            height: initial;
+            position: initial;
+            top: initial;
+            width: 100%;
+
+            nb-card {
+              width: initial;
+            }
+
+            .user {
+              margin: 0 $space-16 $space-16;
+            }
+          }
+        }
+      }
+
+      nb-sidebar.right.expanded {
+        display: inherit;
+
+        &::ng-deep {
+          .main-container {
+            backdrop-filter: blur(20px);
+            height: calc(100vh - 3.5rem);
+            padding: $space-16;
+            right: 0;
+            top: $space-56;
+            width: 80vw;
+            z-index: 3;
+
+            .scrollable {
+              padding: 0;
+
+              commudle-lab-details {
+                .menu {
+                  height: initial;
+                  position: initial;
+                  top: initial;
+                  width: 100%;
+
+                  nb-card {
+                    width: initial;
+                  }
+
+                  .user {
+                    margin: 0 $space-16 $space-16;
+                  }
+
+                  .related-labs {
+                    margin: $space-16 0 $space-56;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.image {
+  @media screen and (min-width: $max-page-width) {
+    width: 70vw;
+  }
+
+  @media screen and (max-width: $tab-width) {
+    width: 80vw;
+  }
+}

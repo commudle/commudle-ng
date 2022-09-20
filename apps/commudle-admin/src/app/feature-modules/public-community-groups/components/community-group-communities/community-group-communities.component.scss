@@ -1,0 +1,45 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.chapter-count {
+  margin: 0;
+}
+
+.chapters {
+  .community {
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 100%;
+    border: 1px solid lightgrey;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    .logo {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+    h4 {
+      margin: 0;
+      padding: 5px;
+      background: #4e74ff;
+      color: white;
+      border-radius: 5px;
+    }
+
+    &:hover {
+      box-shadow: 0px 2px 5px 1px lightgrey;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    gap: $space-16 3.5%;
+    .community {
+      width: 300px;
+    }
+  }
+}

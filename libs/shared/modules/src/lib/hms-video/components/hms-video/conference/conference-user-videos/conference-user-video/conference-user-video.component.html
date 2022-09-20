@@ -1,0 +1,77 @@
+<div class="user-video-container">
+  <div
+    *ngIf="
+      !peer?.isLocal &&
+      (localPeer?.roleName === EHmsRoles.HOST || localPeer?.roleName === EHmsRoles.HOST_VIEWER) &&
+      !screenShare
+    "
+    class="video-controls d-flex"
+  >
+    <button
+      (click)="mutePeerAudio()"
+      [disabled]="!isAudioEnabled"
+      [nbTooltipTrigger]="nbTrigger.HOVER"
+      ghost
+      nbButton
+      nbTooltip="Mute this person's audio"
+      shape="round"
+      size="small"
+    >
+      <nb-icon [icon]="isAudioEnabled ? 'mic' : 'mic-off'"></nb-icon>
+    </button>
+    <button
+      (click)="mutePeerVideo()"
+      [disabled]="!isVideoEnabled"
+      [nbTooltipTrigger]="nbTrigger.HOVER"
+      ghost
+      nbButton
+      nbTooltip="Mute this person's video"
+      shape="round"
+      size="small"
+    >
+      <nb-icon [icon]="isVideoEnabled ? 'video' : 'video-off'"></nb-icon>
+    </button>
+    <button
+      (click)="changeRole()"
+      [nbTooltipTrigger]="nbTrigger.HOVER"
+      ghost
+      nbButton
+      nbTooltip="Remove from stage"
+      shape="round"
+      size="small"
+    >
+      <nb-icon icon="minus-circle"></nb-icon>
+    </button>
+    <button
+      (click)="removeFromSession()"
+      [nbTooltipTrigger]="nbTrigger.HOVER"
+      ghost
+      nbButton
+      nbTooltip="Remove from session"
+      shape="round"
+      size="small"
+    >
+      <nb-icon icon="log-out"></nb-icon>
+    </button>
+  </div>
+  <div [ngClass]="{ speaker: isSpeaker }" class="user-video">
+    <video
+      #videoElement
+      [autoplay]="true"
+      [muted]="peer?.isLocal"
+      [ngClass]="{ hidden: !isVideoEnabled && !screenShare, 'screen-share': screenShare }"
+      playsinline
+    ></video>
+    <img
+      *ngIf="metaData && !isVideoEnabled && !screenShare"
+      [alt]="metaData.name"
+      [src]="metaData.avatar"
+      [title]="metaData.name"
+      class="user-avatar"
+    />
+  </div>
+  <a *ngIf="metaData" [routerLink]="['/users', metaData?.username]" class="user-name" target="_blank">
+    <nb-icon *ngIf="!isAudioEnabled" icon="mic-off" status="danger"></nb-icon>
+    {{ displayText }}
+  </a>
+</div>

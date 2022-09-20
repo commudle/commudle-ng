@@ -1,0 +1,109 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.communities-list-container {
+  margin-top: 0;
+
+  nb-card-body {
+    padding: $space-24 $space-32;
+
+    .communities-list-prefix {
+      margin-bottom: $space-16;
+
+      .communities-list-heading {
+        color: $gunmetal;
+        font-size: $fs-26;
+        font-weight: $fw-600;
+        line-height: 30px;
+      }
+
+      .communities-list-navigation {
+        min-width: max-content;
+
+        button {
+          background: rgba($neon-blue, 0.3);
+          height: 28px;
+          width: 40px;
+
+          nb-icon {
+            color: $neon-blue;
+          }
+
+          &:nth-of-type(1) {
+            margin-right: $space-8;
+          }
+
+          &.communities-list-left-btn {
+            border-radius: $border-8 0 0 $border-8;
+          }
+
+          &.communities-list-right-btn {
+            border-radius: 0 $border-8 $border-8 0;
+          }
+        }
+      }
+    }
+
+    .communities-list-search {
+      gap: $space-8 $space-32;
+      margin: $space-44 0 $space-24;
+
+      .communities-list-search-tags {
+        gap: $space-8 $space-20;
+
+        .communities-list-search-tag {
+          border-bottom: 2px solid $white;
+          color: rgba($gunmetal, 0.85);
+          font-size: $fs-h5;
+          line-height: 16px;
+          padding: $space-8 $space-6;
+
+          &.active {
+            border-bottom: 2px solid $gunmetal;
+          }
+        }
+      }
+
+      .communities-list-search-bar {
+        nb-form-field {
+          &::ng-deep {
+            .nb-form-field-prefix-medium {
+              height: 24px;
+              margin-right: -$space-32;
+              width: 32px;
+            }
+
+            .nb-form-field-suffix-medium {
+              height: 24px;
+              margin-left: -$space-32;
+              width: 32px;
+            }
+          }
+
+          nb-icon {
+            color: rgba($gunmetal, 0.85);
+            height: 16px;
+            width: 16px;
+          }
+
+          .communities-list-search-input {
+            background: #edf1f7;
+            border: none;
+            border-radius: $space-4;
+            font-size: $fs-h6;
+            height: 24px;
+            padding: $space-8 $space-32;
+            width: 140px;
+          }
+        }
+      }
+    }
+
+    .communities-list-cards {
+      @apply com-flex com-flex-nowrap com-overflow-x-scroll com-gap-4;
+
+      @screen lg {
+        @apply com-grid com-grid-cols-3 com-overflow-x-auto com-gap-4;
+      }
+    }
+  }
+}

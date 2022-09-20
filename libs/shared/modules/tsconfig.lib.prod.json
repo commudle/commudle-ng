@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "declarationMap": false
+  },
+  "angularCompilerOptions": {
+    // TODO: Change this to 'partial' once the circular dependency issue is fixed
+    "compilationMode": "full"
+  }
+}

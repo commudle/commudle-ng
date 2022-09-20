@@ -1,0 +1,10 @@
+<div class="chats-container">
+  <div class="chats-list">
+    <commudle-chats-list (getChat)="openChat($event)" (moveUserToTop)="liveUpdates($event)"
+                    [allPersonalChatUsers]="allPersonalChatUsers" [currentUser]="currentUser"></commudle-chats-list>
+  </div>
+  <div [style.right.px]="chatsWindowsRight" class="chats-windows">
+    <commudle-chats-window (removeChat)="closeChat($event)" (removeFromUnread)="removeFromUnread($event)"
+                      *ngFor="let follower of discussionFollowers" [discussionFollower]="follower"></commudle-chats-window>
+  </div>
+</div>

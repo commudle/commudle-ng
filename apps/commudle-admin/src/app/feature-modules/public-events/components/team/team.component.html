@@ -1,0 +1,13 @@
+<nb-card *ngIf="volunteers.length > 0">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="headphones-outline" status="basic"></nb-icon>
+      Volunteers
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="volunteers">
+      <commudle-user-profile-card-large *ngFor="let user of volunteers" [user]="user"></commudle-user-profile-card-large>
+    </div>
+  </nb-card-body>
+</nb-card>

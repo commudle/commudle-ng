@@ -1,0 +1,40 @@
+<div class="base-layout thin com-mb-8">
+  <div class="container">
+    <div class="one-column-layout">
+      <commudle-search-box [overrideSearchStatus]="true" [showSuggestions]="false" class="com-mt-6"></commudle-search-box>
+      <nb-card [nbSpinner]="searchLoader" class="search-results">
+        <nb-card-header>
+          You searched for <strong>{{ query }}</strong>
+        </nb-card-header>
+        <nb-card-body *ngIf="total > 0">
+          <p class="fs-p3 com-mt-0">{{ total }} Results Found</p>
+          <nb-tag-list>
+            <nb-tag
+              (click)="onFilterChange(filter)"
+              *ngFor="let filter of filters"
+              [status]="selectedFilters.includes(filter) ? 'primary' : 'basic'"
+              [text]="filter"
+              class="com-cursor-pointer"
+            ></nb-tag>
+          </nb-tag-list>
+          <nb-list>
+            <nb-list-item (click)="navigate(option)" *ngFor="let option of getResults()" class="search-result">
+              <nb-user [name]="option.name" [picture]="getPicture(option)" [title]="getTitle(option)"></nb-user>
+            </nb-list-item>
+          </nb-list>
+          <button
+            (click)="getSearchData()"
+            *ngIf="total !== results.length"
+            [nbSpinner]="loadMoreLoader"
+            fullWidth
+            ghost
+            nbButton
+            status="primary"
+          >
+            Load More
+          </button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

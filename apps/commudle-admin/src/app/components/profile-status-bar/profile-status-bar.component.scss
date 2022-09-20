@@ -1,0 +1,19 @@
+.profile-status-bar-container {
+  @apply com-mt-2 com-bg-Spiro-Disco com-h-[68px];
+  @apply md:com-mt-0;
+
+  .profile-status-bar-content {
+    commudle-circular-progressive-bar {
+      @apply com-my-0 com-mx-1 com-relative com-top-1;
+    }
+
+    p {
+      @apply com-font-medium com-text-base com-hidden;
+      @apply sm:com-block;
+    }
+
+    button {
+      @apply com-m-5;
+    }
+  }
+}

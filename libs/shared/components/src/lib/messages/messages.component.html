@@ -1,0 +1,73 @@
+<div class="messages-container">
+  <commudle-messages-list
+    (getPreviousMessages)="getDiscussionMessages()"
+    (sendDelete)="sendDelete($event)"
+    (sendFlag)="sendFlag($event)"
+    (sendReply)="sendReply($event)"
+    *ngIf="messages.length > 0; else noMessages"
+    [allActions]="allActions"
+    [currentUser]="currentUser"
+    [messages]="messages"
+    [permittedActions]="permittedActions"
+    [showMessagesLoader]="showMessagesLoader"
+  ></commudle-messages-list>
+  <ng-template #noMessages>
+    <div class="no-messages">
+      <p>Be the first to post a message!</p>
+    </div>
+  </ng-template>
+  <div *ngIf="currentUser; else noUser" class="send-message">
+    <emoji-mart
+      (emojiSelect)="addEmoji($event)"
+      [ngClass]="{ active: showEmojiPicker }"
+      [style]="{ width: '100%' }"
+      set="twitter"
+      title="Select an emoji"
+    ></emoji-mart>
+    <form
+      (submit)="sendMessage()"
+      *ngIf="permittedActions.includes(allActions.ADD) || permittedActions.includes(allActions.BLOCKED)"
+      [formGroup]="messageForm"
+    >
+      <nb-form-field>
+        <button
+          (click)="showEmojiPicker = !showEmojiPicker"
+          [disabled]="permittedActions.includes(allActions.BLOCKED)"
+          class="emoji-picker"
+          ghost
+          nbButton
+          nbPrefix
+          type="button"
+        >
+          <fa-icon [icon]="faGrin"></fa-icon>
+        </button>
+        <input
+          #messageInput
+          [placeholder]="permittedActions.includes(allActions.BLOCKED) ? 'You are blocked' : 'Add a Comment'"
+          commudleMention
+          formControlName="content"
+          fullWidth
+          maxlength="200"
+          minlength="1"
+          nbInput
+          type="text"
+        />
+        <button
+          [disabled]="!messageForm.valid || permittedActions.includes(allActions.BLOCKED)"
+          ghost
+          nbButton
+          nbSuffix
+        >
+          <nb-icon icon="paper-plane"></nb-icon>
+        </button>
+      </nb-form-field>
+    </form>
+  </div>
+
+  <ng-template #noUser>
+    <button (click)="login()" fullWidth nbButton status="info">
+      <nb-icon icon="person-outline"></nb-icon>
+      Login to comment
+    </button>
+  </ng-template>
+</div>

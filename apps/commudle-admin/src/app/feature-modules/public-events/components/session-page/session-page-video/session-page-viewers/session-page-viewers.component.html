@@ -1,0 +1,41 @@
+<nb-form-field>
+  <input [(ngModel)]="searchQuery" fieldSize="small" fullWidth nbInput placeholder="Search for a viewer" type="text" />
+  <button (click)="refreshUsersList()" ghost nbButton nbSuffix nbTooltip="Refresh the viewers list">
+    <nb-icon icon="refresh"></nb-icon>
+  </button>
+</nb-form-field>
+
+<nb-list class="session-page-viewers">
+  <nb-list-item *ngFor="let user of usersList | searchBy: searchQuery | orderBy: ['name']:['asc']">
+    <commudle-user-profile-mini
+      [designation]="true"
+      [showLiveStatus]="true"
+      [user]="user"
+      size="small"
+    ></commudle-user-profile-mini>
+    <button
+      (click)="inviteToStage(user.id)"
+      *ngIf="embeddedVideoStream.hms_room_id && isAdmin && currentUser?.id !== user.id"
+      class="invite-to-stage"
+      ghost
+      nbButton
+      nbTooltip="Invite to stage"
+      size="small"
+      status="info"
+    >
+      <fa-icon [icon]="faChalkboardTeacher"></fa-icon>
+    </button>
+    <button
+      (click)="messageUser(user.id)"
+      *ngIf="currentUser?.id !== user.id"
+      class="message"
+      ghost
+      nbButton
+      nbTooltip="Message"
+      size="small"
+      status="info"
+    >
+      <fa-icon [icon]="faCommentDots"></fa-icon>
+    </button>
+  </nb-list-item>
+</nb-list>

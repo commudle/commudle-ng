@@ -1,0 +1,40 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/resolvers",
+  "sourceRoot": "libs/shared/resolvers/src",
+  "prefix": "commudle",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/shared/resolvers"],
+      "options": {
+        "project": "libs/shared/resolvers/ng-package.json",
+        "tailwindConfig": "libs/shared/resolvers/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/resolvers/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/resolvers/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/resolvers"],
+      "options": {
+        "jestConfig": "libs/shared/resolvers/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/shared/resolvers/src/**/*.ts", "libs/shared/resolvers/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

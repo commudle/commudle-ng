@@ -1,0 +1,39 @@
+{
+  "projectType": "library",
+  "root": "libs/ngx-datatable",
+  "sourceRoot": "libs/ngx-datatable/src",
+  "prefix": "commudle",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngx-datatable"],
+      "options": {
+        "project": "libs/ngx-datatable/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-datatable/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-datatable/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngx-datatable"],
+      "options": {
+        "jestConfig": "libs/ngx-datatable/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/ngx-datatable/src/**/*.ts", "libs/ngx-datatable/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

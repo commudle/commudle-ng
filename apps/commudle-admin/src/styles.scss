@@ -1,0 +1,326 @@
+@use 'themes' as *;
+@use '@nebular/theme/styles/globals' as *;
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+//@import 'libs/ngx-datatable/src/lib/index.css';
+@import 'libs/ngx-datatable/src/lib/themes/material.scss';
+//@import 'libs/ngx-datatable/src/lib/assets/icons.css';
+
+@import '~prismjs/plugins/toolbar/prism-toolbar.css';
+@import '~prismjs/themes/prism-okaidia';
+@import '~@ctrl/ngx-emoji-mart/picker';
+
+@include nb-install() {
+  @include nb-theme-global();
+}
+
+@import './assets/styles/variables.scss';
+@import './assets/styles/common-classes.scss';
+@import './assets/styles/grid';
+@import './assets/styles/typography';
+
+/* You can add global styles to this file, and also import other style files */
+
+fa-icon svg {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+}
+
+.validation-error-text,
+.error-text {
+  color: red !important;
+}
+
+input {
+  background-color: white;
+}
+
+.timepicker-overlay {
+  z-index: 1100 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 1100 !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.navigation-link {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.fontw-300 {
+  font-weight: 300 !important;
+}
+
+.margin0 {
+  margin: 0 !important;
+}
+
+.menu-active {
+  color: #2296ff !important;
+  font-weight: bold;
+}
+
+// Override Nebular
+
+.nb-theme-default {
+  nb-layout-footer {
+    &.fixed {
+      background-color: $white;
+      bottom: 0;
+      height: nb-theme('header-height');
+      left: 0;
+      position: fixed;
+      right: 0;
+      z-index: 1040;
+
+      @at-root {
+        .home-layout .layout-container .content .columns {
+          padding-bottom: nb-theme('header-height');
+
+          @screen md {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+
+    nav.fixed {
+      height: inherit;
+      padding: 0 !important;
+
+      @screen md {
+        padding: 1rem !important;
+      }
+    }
+  }
+
+  [nbButton].appearance-filled.status-basic {
+    background-color: nb-theme('color-basic-200');
+    border-color: nb-theme('color-basic-200');
+  }
+
+  [nbButton].shape-semi-round,
+  [nbButtonToggle].shape-semi-round {
+    border-radius: 10px;
+  }
+}
+
+.nb-theme-default nb-card {
+  margin: 16px 8px;
+}
+
+.nb-theme-default [nbInput].size-giant,
+.nb-theme-default [nbInput].size-tiny,
+.nb-theme-default [nbInput].size-small,
+.nb-theme-default [nbInput].size-medium,
+.nb-theme-default [nbInput] {
+  font-weight: 300;
+}
+
+nb-window {
+  max-height: 100%;
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+nb-window.full-screen-width {
+  width: 100vw;
+}
+
+nb-window.full-screen-height {
+  nb-card {
+    height: 100vh;
+
+    nb-card-body {
+      height: 90vh;
+    }
+  }
+}
+
+.lh-fw {
+  font-weight: 300 !important;
+}
+
+// nb-tabset {
+//   ::ng-deep {
+//     ul.tabset {
+//       overflow-x: auto !important;
+//       padding: 5px !important;
+//     }
+//   }
+// }
+
+// responsive page menu
+.page-menu.responsive {
+  background-color: white;
+  box-shadow: 2px -5px 15px -7px lightgrey;
+  left: 0;
+  position: sticky;
+  top: 3.5rem;
+  width: 100%;
+
+  z-index: 10;
+
+  nb-card {
+    margin: 0;
+
+    nb-card-body {
+      padding: 0.5rem;
+    }
+  }
+
+  .menu-items {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    overflow-x: auto;
+    width: 100%;
+
+    a {
+      color: black;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      nb-icon {
+        // color: grey !important;
+      }
+
+      span {
+        display: none;
+        // font-size: 10px;
+        // text-align: center;
+      }
+    }
+
+    nb-icon {
+      font-size: 1.5rem;
+    }
+
+    .active {
+      border-bottom: 3px solid #232b45;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    box-shadow: none;
+    nb-card {
+      margin-bottom: 1rem;
+
+      .menu-items {
+        justify-content: flex-start;
+
+        a {
+          margin-right: 1.5rem;
+
+          span {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+}
+
+.hide-mobile {
+  @media screen and (max-width: 800px) {
+    display: none !important;
+  }
+}
+
+:focus {
+  outline: none;
+}
+
+.remove-overflow-mention {
+  overflow: unset;
+
+  nb-card {
+    nb-card-body {
+      overflow: unset;
+    }
+  }
+}
+
+img.lazy-load {
+  filter: opacity(0);
+}
+
+nb-option-list.search-autocomplete {
+  @apply com-shadow-lg;
+
+  ul.option-list {
+    height: 20rem;
+
+    nb-option.search-placeholder {
+      @apply com-h-full com-items-center com-justify-center;
+
+      @layer utilities {
+        cursor: auto;
+        background-color: inherit;
+      }
+    }
+  }
+
+  nb-option-group.search-results-group {
+    nb-option {
+      @apply com-pl-6;
+    }
+  }
+}
+
+.loading-spinner {
+  .spinner {
+    height: 40px;
+
+    & > div {
+      animation: stretch-delay 1.2s infinite ease-in-out;
+      background-color: $cadet;
+      display: inline-block;
+      height: 100%;
+      margin: 0 1px;
+      width: 4px;
+
+      &:nth-child(2) {
+        animation-delay: -1.1s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: -1s;
+      }
+
+      &:nth-child(4) {
+        animation-delay: -0.9s;
+      }
+
+      &:nth-child(5) {
+        animation-delay: -0.8s;
+      }
+    }
+
+    @keyframes stretch-delay {
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.4);
+      }
+      20% {
+        transform: scaleY(1);
+      }
+    }
+  }
+}

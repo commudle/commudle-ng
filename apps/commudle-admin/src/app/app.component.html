@@ -1,0 +1,36 @@
+<nb-layout class="home-layout">
+  <nb-layout-header fixed>
+    <commudle-navbar></commudle-navbar>
+  </nb-layout-header>
+
+  <nb-sidebar
+    (clickOutside)="closeSidebar()"
+    [(state)]="sideBarState"
+    [fixed]="true"
+    commudleClickOutside
+    exclude=".home-sidebar"
+    right
+    tag="mainMenu"
+  >
+    <commudle-sidebar-menu></commudle-sidebar-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <div id="mini-user-profile-container"></div>
+    <commudle-profile-status-bar *ngIf="currentUser"></commudle-profile-status-bar>
+    <div class="com-min-h-screen">
+      <router-outlet></router-outlet>
+    </div>
+    <commudle-footer></commudle-footer>
+  </nb-layout-column>
+
+  <nb-layout-footer *commudleBreakpoints="'<=md'" fixed>
+    <commudle-navbar-menu></commudle-navbar-menu>
+  </nb-layout-footer>
+</nb-layout>
+
+<commudle-chats-container *ngIf="currentUser && cookieAccepted"></commudle-chats-container>
+<commudle-cookie-consent></commudle-cookie-consent>
+<commudle-user-visit-tracker></commudle-user-visit-tracker>
+<commudle-sw-update></commudle-sw-update>
+<commudle-push-notification></commudle-push-notification>

@@ -1,0 +1,151 @@
+<div class="homepage">
+  <div class="homepage-section com-py-8 md:com-py-16">
+    <div
+      class="com-flex com-flex-col-reverse com-justify-center com-gap-8 com-items-center md:com-gap-16 md:com-flex-row"
+    >
+      <div class="com-w-full md:com-min-h-[600px] com-relative">
+        <h1 class="page-heading">Where <span>developers grow</span> together</h1>
+        <commudle-search-box [overrideSearchStatus]="true" shape="semi-round"></commudle-search-box>
+        <!--        <p class="subheading">Search for a technology to find interesting communities and developers</p>-->
+        <div *ngIf="homepageActions.length > 0" class="homepage-actions">
+          <a
+            *ngFor="let action of homepageActions"
+            [href]="action.link"
+            class="homepage-action"
+            nbButton
+            size="large"
+            status="success"
+          >
+            {{ action.title }}
+          </a>
+        </div>
+        <img
+          alt="Homepage arrow"
+          class="homepage-arrow"
+          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDRlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9a2418dd47ce429fb718225399df102b528a9e46/homepage-arrow.svg"
+        />
+      </div>
+      <div class="com-w-2/3 md:com-w-full">
+        <!--        <img-->
+        <!--          alt="Homepage banner"-->
+        <!--          class="com-pointer-events-none com-w-full"-->
+        <!--          src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDhlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19&#45;&#45;6337586adfde8227b0e0181ec785cf3dbacc42bf/homepage-carousel-1.svg"-->
+        <!--        />-->
+        <!--        <ng-lottie [options]="options" containerClass="com-w-full"></ng-lottie>-->
+        <div #homepageAnimation></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="linear-gradient-top com-relative">
+    <div class="homepage-section com-pb-12">
+      <img
+        alt="Group people icon"
+        class="com-mb-6"
+        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmdlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9eac6568bba870ab1b04bfd92cc1afff93e14a0f/Group_people_icon.png"
+        title="Group people icon"
+      />
+      <div class="section-heading">
+        <h2>Join a community to learn and network</h2>
+      </div>
+      <commudle-homepage-featured-communities></commudle-homepage-featured-communities>
+    </div>
+
+    <img
+      alt="Code icon"
+      class="com-absolute com--bottom-28 com-right-1/4 com-hidden md:com-block"
+      src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdmtlIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--144725875bfc2cc6150f46566be338502cba3581/Code_icon.png"
+      title="Code icon"
+    />
+  </div>
+
+  <div class="linear-gradient-bottom">
+    <div class="homepage-section com-pb-12">
+      <!--    <h2 class="section-heading">Learn from developers around you</h2>-->
+      <commudle-homepage-events></commudle-homepage-events>
+    </div>
+  </div>
+
+  <div class="homepage-section com-pb-12 com-relative">
+    <img
+      alt="Laptop icon"
+      class="com-absolute com--top-8 com-left-96 com-hidden md:com-block"
+      src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa2NmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ae109a67236190a996e0fee2aae0ae345cc2711b/Laptop%20icon.png"
+      title="Laptop icon"
+    />
+    <div class="com-grid com-gap-16 com-grid-cols-1 md:com-grid-cols-2">
+      <commudle-homepage-builds></commudle-homepage-builds>
+      <commudle-homepage-labs></commudle-homepage-labs>
+    </div>
+    <img
+      alt="Mic icon"
+      class="com-absolute com-top-1/2 com--left-24 com-hidden md:com-block"
+      src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa2dmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--61e7070e3d207fb795eed9a116002e69d717ede7/Mic%20icon.png"
+      title="Mic icon"
+    />
+    <img
+      alt="Play icon"
+      class="com-absolute com-top-1/2 com--right-40 com-hidden md:com-block"
+      src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBa2tmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--687285748be83234d2318c342a2be91ff8251421/Play%20icon.png"
+      title="Play icon"
+    />
+  </div>
+
+  <div class="homepage-section com-pb-12">
+    <div class="section-heading">
+      <h2>Experts</h2>
+      <h3 class="subheading">Techies with experience, and a blue tick</h3>
+    </div>
+    <commudle-homepage-experts></commudle-homepage-experts>
+  </div>
+
+  <div class="linear-gradient">
+    <div class="homepage-section com-pb-20 com-relative">
+      <img
+        alt="Homepage about left icon"
+        class="com-absolute com-left-0 com-top-0 com-hidden md:com-block"
+        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcDhmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--360caa4cb11264ebc2b590b3075e9cc0dfe704e7/home-about-left.png"
+        title="Homepage about left icon"
+      />
+      <commudle-homepage-about></commudle-homepage-about>
+      <img
+        alt="Homepage about right icon"
+        class="com-absolute com-right-0 com-top-0 com-hidden md:com-block"
+        src="https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcUFmIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9c390768c05e68d44148aac9360d200cfdaa8acf/home-about-right.png"
+        title="Homepage about right icon"
+      />
+    </div>
+  </div>
+
+  <div class="homepage-section com-pb-12">
+    <div class="section-heading">
+      <h2>Testimonials</h2>
+      <h3 class="subheading">By DevRels, Non Profits, Communities, Developers, Experts & Mentors</h3>
+    </div>
+    <commudle-homepage-testimonials></commudle-homepage-testimonials>
+  </div>
+
+  <div class="homepage-section com-pb-36">
+    <div class="section-heading">
+      <h2>Commudle drives Software Developers' Journey</h2>
+    </div>
+    <commudle-homepage-features></commudle-homepage-features>
+  </div>
+</div>
+
+<div class="homepage-callout">
+  <div
+    class="com-max-w-7xl com-mx-auto com-py-12 com-px-4 sm:com-px-6 lg:com-py-24 lg:com-px-8 lg:com-flex lg:com-items-center lg:com-justify-between"
+  >
+    <div
+      *ngIf="isBrowserService.isBrowser() && timer$"
+      class="com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 md:com-text-4xl"
+    >
+      <span class="com-block">{{ homepageCallouts[(timer$ | async) % homepageCallouts.length].title }}</span>
+      <span class="com-block content">{{ homepageCallouts[(timer$ | async) % homepageCallouts.length].subtitle }}</span>
+      <a class="homepage-get-started" nbButton routerLink="/pricing" shape="semi-round" size="giant" status="info">
+        Get started
+      </a>
+    </div>
+  </div>
+</div>

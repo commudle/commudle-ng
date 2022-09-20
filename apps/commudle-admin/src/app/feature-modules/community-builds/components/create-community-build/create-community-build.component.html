@@ -1,0 +1,351 @@
+<div class="base-layout community-build">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card class="page-header">
+        <nb-card-body>
+          <h1>
+            <nb-icon icon="bulb-outline" status="warning"></nb-icon>
+            Share Your Build!
+          </h1>
+          <p>
+            We as Software Developers create so many side projects which are really cool, from a simple script to a
+            complete app or even a tutorial/course you have created. This is the place where you can share them with
+            thousands of more developers like you.
+          </p>
+          <ul *ngIf="!cBuild">
+            <li><strong>Project:</strong> Code should be open sourced!</li>
+            <!-- <li><strong>Product:</strong> Should be live :D</li>
+            <li><strong>Slides:</strong> You delivered / are planning to use them for a Tech Session</li> -->
+            <li>
+              <strong>Course:</strong> Anything from which people can learn to add to their skills, can be both
+              online/offline!
+            </li>
+          </ul>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card class="form-card">
+        <nb-card-body>
+          <form (keydown.enter)="$event.preventDefault()" [formGroup]="communityBuildForm">
+            <div class="field">
+              <label>
+                Select a category?*
+                <br />
+                <nb-select
+                  (selectedChange)="setBuildType()"
+                  formControlName="build_type"
+                  placeholder="Select One"
+                  size="medium"
+                  status="primary"
+                >
+                  <nb-option *ngFor="let bType of buildTypes" [value]="EBuildType[bType]">
+                    {{ bType | titlecase }}
+                  </nb-option>
+                </nb-select>
+              </label>
+              <span
+                *ngIf="
+                  communityBuildForm.get('build_type').touched &&
+                  communityBuildForm.get('build_type').invalid &&
+                  communityBuildForm.get('build_type').errors.required
+                "
+                class="validation-error-text"
+              >
+                Required Field
+              </span>
+            </div>
+
+            <div class="field">
+              <label>
+                Title of your build*
+                <input
+                  formControlName="name"
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="text"
+                  placeholder="Name of your project or course"
+                />
+              </label>
+              <span
+                *ngIf="
+                  communityBuildForm.get('name').touched &&
+                  communityBuildForm.get('name').invalid &&
+                  communityBuildForm.get('name').errors.required
+                "
+                class="validation-error-text"
+              >
+                Required Field
+              </span>
+            </div>
+            <div *ngIf="teammates.length > 0" class="field">
+              Teammates
+              <div *ngFor="let teammate of teammates; let i = index">
+                <div
+                  *ngIf="
+                    teammate.status === eUserRolesUserStatus.INVITED ||
+                    teammate.status === eUserRolesUserStatus.ACCEPTED
+                  "
+                  class="d-flex justify-content-space-between align-items-center"
+                >
+                  <commudle-user-profile-horizontal [aboutMe]="true" [user]="teammate.user"></commudle-user-profile-horizontal>
+                  <div class="d-flex flex-column justify-content-space-between">
+                    <small
+                      (click)="sendInvitationMail(teammate)"
+                      *ngIf="teammate.status === eUserRolesUserStatus.INVITED"
+                      class="option clickable"
+                    >
+                      Resend
+                    </small>
+                    <small (click)="removeTeamMember(teammate, i)" class="option clickable">Remove</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field" formArrayName="team">
+              <div *ngFor="let email of communityBuildForm.controls.team['controls']; let i = index">
+                <div [formGroupName]="i" class="teammate-email d-flex align-items-center">
+                  <input
+                    formControlName="value"
+                    fullWidth
+                    nbInput
+                    placeholder="Enter email (we will send an invitation to join)"
+                    required
+                  />
+                  <nb-icon (click)="removeTeammate(i)" class="clickable" icon="close-circle" status="danger"></nb-icon>
+                </div>
+                <span
+                  *ngIf="
+                    emailList.controls[i].get('value').touched &&
+                    emailList.controls[i].get('value').invalid &&
+                    emailList.controls[i].get('value').errors.required
+                  "
+                  class="validation-error-text"
+                >
+                  Required Field
+                </span>
+              </div>
+              <button (click)="addTeammate()" class="add-button" nbButton status="primary">
+                <nb-icon icon="plus"></nb-icon>
+                Add Teammate
+              </button>
+            </div>
+
+            <div class="field">
+              <label>
+                Link to Open Source Code
+                <!-- <span
+                  *ngIf="communityBuildForm.get('build_type').value === EBuildType.slides"
+                  [nbPopover]="googleSlidesEmbed"
+                  class="text-info clickable"
+                  nbPopoverTrigger="hover"
+                >
+                  How to embed Google Slides
+                </span> -->
+                <input
+                  formControlName="link"
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="url"
+                  placeholder="Link to Open Source Code"
+                />
+              </label>
+            </div>
+
+            <div class="field">
+              <label>
+                Link to live project
+                <input
+                  formControlName="live_app_link"
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="url"
+                  placeholder="Link to live project"
+                />
+              </label>
+              <span
+                *ngIf="
+                  communityBuildForm.get('link').touched &&
+                  communityBuildForm.get('link').invalid &&
+                  communityBuildForm.get('link').errors.required &&
+                  communityBuildForm.get('live-project').touched &&
+                  communityBuildForm.get('live-project').invalid &&
+                  communityBuildForm.get('live-project').errors.required
+                "
+                class="validation-error-text"
+              >
+                live project or link to open source one is required
+              </span>
+            </div>
+
+            <div class="field">
+              <label>
+                Video Demo (Iframe 320px X 200px)
+                <input
+                  formControlName="video_iframe"
+                  fullWidth
+                  nbInput
+                  size="large"
+                  type="url"
+                  placeholder=" Video Demo (Iframe)"
+                />
+              </label>
+            </div>
+
+            <div class="com-w-80 com-mt-7 com-overflow-hidden com-h-max">
+              <div *ngIf="embeddedLink" class="com-aspect-[16/10] com-overflow-hidden">
+                <div [innerHTML]="embeddedLink"></div>
+              </div>
+            </div>
+            <div class="field">
+              <label> How is it useful for others?* </label>
+              <editor
+                [init]="{
+                  height: 500,
+                  menubar: false,
+                  convert_urls: false,
+                  plugins: [
+                    'advlist lists autolink link charmap preview anchor',
+                    'visualblocks code table charmap',
+                    'insertdatetime table paste code help wordcount autoresize'
+                  ],
+                  toolbar:
+                    'formatselect | bold italic backcolor | ' +
+                    'link | alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist outdent indent | table | charmap | removeformat | help',
+                  default_link_target: '_blank',
+                  branding: false
+                }"
+                apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                formControlName="description"
+                placeholder="Write about what this build is about, why did you build it, how can it be useful for others. Add any relevant links too."
+              >
+              </editor>
+            </div>
+
+            <div class="field image-upload">
+              <label class="clickable">
+                <span>
+                  <nb-icon icon="plus"></nb-icon>
+                  Add Images
+                </span>
+                <input (change)="addImages($event)" accept="image/*" fullWidth multiple nbInput type="file" />
+              </label>
+
+              <div class="images">
+                <div *ngFor="let image of uploadedImagesFiles; let i = index">
+                  <div *ngIf="!uploadedImagesFiles[i]['delete']">
+                    <img
+                      alt="{{ uploadedImages[i].name || 'Image' }}"
+                      src="{{ uploadedImages[i] }}"
+                      title="{{ uploadedImages[i].name || 'Image' }}"
+                    />
+                    <p class="clickable">
+                      <nb-icon (click)="removeImage(i)" icon="close-circle" status="danger"></nb-icon>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>
+                Tags*
+                <commudle-tag
+                  (tagAdd)="onTagAdd($event)"
+                  (tagDelete)="onTagDelete($event)"
+                  [editable]="true"
+                  [tags]="tags"
+                ></commudle-tag>
+              </label>
+            </div>
+
+            <div>
+              <!-- <p class="text-info">
+                *After you click 'Submit for Approval', we'll just review it once and publish it within 2 days. In case of
+                any changes, we'll reach out on your email!
+              </p> -->
+            </div>
+
+            <div class="field actions">
+              <button
+                (click)="submitForm(EPublishStatus.draft)"
+                [disabled]="!communityBuildForm.valid"
+                nbButton
+                outline
+                status="info"
+                type="submit"
+              >
+                <nb-icon icon="edit"></nb-icon>
+                Save as Draft
+              </button>
+              <!-- <button
+                (click)="submitForm(EPublishStatus.submitted)"
+                [disabled]="!communityBuildForm.valid"
+                nbButton
+                outline
+                status="primary"
+                type="submit"
+              >
+                <nb-icon icon="checkmark"></nb-icon>
+                Submit For Approval
+              </button> -->
+              <button
+                (click)="submitForm(EPublishStatus.published)"
+                [disabled]="communityBuildForm.invalid"
+                nbButton
+                outline
+                status="success"
+                type="submit"
+              >
+                <nb-icon icon="cloud-upload"></nb-icon>
+                Publish
+              </button>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+
+      <ng-template #googleSlidesEmbed>
+        <div>
+          <ol>
+            <li>Open your Google Slides</li>
+            <li>At the top, click <strong>File</strong> and then <strong>Publish to the web</strong></li>
+            <li>In the window that appears, <strong>click Embed</strong></li>
+            <li>
+              Choose a publishing option:
+              <strong>
+                Presentation: Choose a presentation size <strong>(Small)</strong> and how quickly to change the slides
+                <strong>(Default)</strong>.
+              </strong>
+            </li>
+            <li>Click Publish</li>
+            <li>
+              Copy the HTML in the text box and paste it into the box given on the page, it'll look like this:
+              <small>
+                <code>
+                  {{
+                    '&lt;iframe allowfullscreen="true" frameborder="0" height="569" mozallowfullscreen="true" src="https://docs.google.com/presentation/d/e/...../embed?start=true&amp;loop=false&amp;delayms=3000" webkitallowfullscreen="true" width="960"&gt;&lt;/iframe&gt;'
+                  }}
+                </code>
+              </small>
+            </li>
+          </ol>
+
+          <p>
+            &nbsp; &nbsp;
+            <small>
+              <a href="https://support.google.com/docs/answer/183965?co=GENIE.Platform%3DDesktop&hl=en">
+                Source
+                <nb-icon icon="external-link"></nb-icon>
+              </a>
+            </small>
+          </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

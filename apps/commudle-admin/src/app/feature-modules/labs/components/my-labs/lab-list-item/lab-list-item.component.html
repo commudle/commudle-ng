@@ -1,0 +1,75 @@
+<div class="lab">
+  <div class="content">
+    <h5>
+      {{ lab.name }}
+      <a [routerLink]="['/labs', lab.slug]" class="external-link" target="_blank">
+        <small
+          *ngIf="lab.publish_status === ELabPublishStatus.draft || lab.publish_status === ELabPublishStatus.submitted"
+        >
+          Preview
+        </small>
+        <nb-icon icon="external-link"></nb-icon>
+      </a>
+    </h5>
+    <p>
+      <small> Created: {{ moment(lab.created_at).fromNow() }} </small>
+      <br/>
+      <small *ngIf="lab.publish_status === ELabPublishStatus.published">
+        Published: {{ moment(lab.published_at).fromNow() }}
+      </small>
+    </p>
+    <div *ngIf="stats" class="stats">
+      <p>
+        {{ stats.total_visitors }}
+        <small>Total Visits</small>
+      </p>
+      <p>
+        {{ stats.unique_visitors }}
+        <small>Unique Visitors</small>
+      </p>
+      <p>
+        {{ stats.total_votes }}
+        <small>Stars</small>
+      </p>
+      <p>
+        {{ stats.total_comments }}
+        <small>Comments</small>
+      </p>
+    </div>
+  </div>
+  <div class="status">
+    <p>
+      <commudle-badge [color]="ELabPublishStatusColors[lab.publish_status]" [text]="lab.publish_status | titlecase">
+      </commudle-badge>
+    </p>
+  </div>
+  <div class="stats">
+    <div>
+      <commudle-votes-display [icon]="'star'" [votableId]="lab.id" [votableType]="'Lab'"></commudle-votes-display>
+    </div>
+    <div class="tags">
+      <commudle-badge *ngFor="let t of lab.tags" [text]="t"></commudle-badge>
+    </div>
+  </div>
+  <div class="actions">
+    <div>
+      <button [routerLink]="['/labs', lab.slug, 'edit']" fullWidth nbButton outline size="tiny" status="info">
+        <nb-icon icon="edit"></nb-icon>
+        Edit
+      </button>
+    </div>
+    <div>
+      <button (click)="openDeleteConfirmation(lab)" fullWidth nbButton outline size="tiny" status="danger">
+        <nb-icon icon="close-circle"></nb-icon>
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #confirmDeleteTemplate let-data>
+  <div>
+    <button (click)="deleteLab()" nbButton size="small" status="basic">Yes</button>
+    <button (click)="windowRef.close()" nbButton size="small" status="danger">No</button>
+  </div>
+</ng-template>

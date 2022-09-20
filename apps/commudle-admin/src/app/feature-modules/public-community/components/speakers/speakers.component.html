@@ -1,0 +1,7 @@
+<div class="speakers-container">
+  <nb-card [nbSpinner]="speakerLoader" class="speakers">
+    <ng-container *ngFor="let speaker of speakers">
+      <commudle-speaker-card *ngIf="speaker.name" [speaker]="speaker"></commudle-speaker-card>
+    </ng-container>
+  </nb-card>
+</div>

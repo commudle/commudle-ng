@@ -1,0 +1,40 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/pipes",
+  "sourceRoot": "libs/shared/pipes/src",
+  "prefix": "commudle",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/shared/pipes"],
+      "options": {
+        "project": "libs/shared/pipes/ng-package.json",
+        "tailwindConfig": "libs/shared/pipes/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/pipes/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/pipes/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/pipes"],
+      "options": {
+        "jestConfig": "libs/shared/pipes/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/shared/pipes/src/**/*.ts", "libs/shared/pipes/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

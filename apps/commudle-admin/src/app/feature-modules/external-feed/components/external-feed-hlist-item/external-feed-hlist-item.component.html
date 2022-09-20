@@ -1,0 +1,33 @@
+<div [routerLink]="['/feed', feedItem.id]" class="clickable external-feed-list-item">
+  <nb-card>
+    <nb-card-body>
+      <div *ngIf="feedItem.details.image.length > 0" class="image">
+        <img alt="{{feedItem.details.source}}" src="{{feedItem.details.image}}" title="{{feedItem.details.image}}">
+      </div>
+      <div class="source-details align-items-center d-flex">
+        <div class="source-info">
+          <em> {{ feedItem.details.source }} </em>
+          <br>
+          <small> {{ feedItem.details.created_at }} </small>
+        </div>
+      </div>
+      <div class="title">
+        <h3 class="name">{{ feedItem.details.title }}</h3>
+      </div>
+      <div *ngFor="let tag of feedItem.details.tags" class="tags">
+        <span class="tag-hash">#</span> {{ tag.name }}
+      </div>
+      <div class="stats d-flex align-items-center">
+        <p class="stars">
+          <commudle-votes-display [icon]="'heart'" [votableId]="feedItem.id" [votableType]="'FeedItem'"></commudle-votes-display>
+        </p>
+        <p [routerLink]="['/feed', feedItem.id]" class="comments">
+          <span *ngIf="feedItem.messages_count > 0">
+            {{ feedItem.messages_count }}
+          </span>
+          <nb-icon icon="message-circle-outline"></nb-icon>
+        </p>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

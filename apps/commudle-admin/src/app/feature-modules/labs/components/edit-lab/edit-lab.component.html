@@ -1,0 +1,243 @@
+
+<div class="base-layout create-lab">
+  <div class="container">
+    <div *ngIf="lab" class="three-column-layout">
+      <div class="left-col">
+        <nb-card>
+          <nb-card-body>
+            <p>A good Lab has steps / sections with images too. Here's a small guide on how to use this page:</p>
+            <div
+              (click)="openGuide(guideVideo)"
+              class="d-flex justify-content-center align-items-center help-video clickable"
+            >
+              <p>Guide Video</p>
+              <nb-icon icon="play-circle-outline"></nb-icon>
+            </div>
+            <ng-template #guideVideo let-data>
+              <nb-card>
+                <nb-card-body>
+                  <youtube-player videoId="Ef_7SgjaoEM"></youtube-player>
+                </nb-card-body>
+              </nb-card>
+            </ng-template>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="center-col">
+        <nb-card>
+          <nb-card-body>
+            <div class="container">
+              <p class="text-center">
+                <span class="text-highlight-yellow">Changes will be auto saved every 10 seconds</span>
+              </p>
+
+              <form [formGroup]="headerImageForm" class="lab-header-image">
+                <div class="header-image">
+                  <div>
+                    <div *ngIf="uploadedHeaderImage || lab.header_image" class="uploaded-header-image">
+                      <img
+                        alt="lab header image"
+                        src="{{ uploadedHeaderImage || lab.header_image.url }}"
+                        title="Lab header image"
+                      />
+                    </div>
+                    <button
+                      (click)="deleteEventHeader()"
+                      *ngIf="uploadedHeaderImage || lab.header_image"
+                      class="delete-header-image-button"
+                      nbButton
+                      outline
+                      size="tiny"
+                      status="danger"
+                    >
+                      <nb-icon icon="close-circle"></nb-icon>
+                      Delete Image
+                    </button>
+                  </div>
+                  <label
+                    [ngClass]="{ hidden: uploadedHeaderImage || (lab.header_image && lab.header_image.url) }"
+                    class="clickable"
+                  >
+                    <span class="d-flex justify-content-center align-items-center">
+                      <span>
+                        <nb-icon icon="image-outline"></nb-icon>
+                      </span>
+                      <span>
+                        Click to upload a header image (optional)
+                        <br />
+                        <small> (900px X 350px) </small>
+                      </span>
+                    </span>
+                    <input
+                      (change)="displaySelectedHeaderImage($event)"
+                      accept="image/*"
+                      formControlName="header_image"
+                      fullWidth
+                      nbInput
+                      type="file"
+                    />
+                  </label>
+                </div>
+              </form>
+              <form [formGroup]="labForm" class="lab-form">
+                <div class="overview">
+                  <div>
+                    <input
+                      fieldSize="giant"
+                      formControlName="name"
+                      fullWidth
+                      nbInput
+                      placeholder="Type a name..."
+                      type="text"
+                    />
+                    <span
+                      *ngIf="
+                        labForm['controls'].name.touched &&
+                        labForm['controls'].name.invalid &&
+                        labForm['controls'].name.errors.required
+                      "
+                      class="validation-error-text"
+                    >
+                      Required Field
+                    </span>
+                  </div>
+                  <div>
+                    <editor
+                      [init]="tinyMCE"
+                      apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                      formControlName="description"
+                    >
+                    </editor>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <div *ngIf="labForm['controls'].lab_steps['controls'].length > 0" [formGroup]="labForm">
+          <nb-card
+            *ngFor="let lStep of labForm['controls'].lab_steps['controls']; let i = index"
+            formArrayName="lab_steps"
+          >
+            <nb-card-body>
+              <div>
+                <div [formGroupName]="i" class="lab-step">
+                  <h3 class="steps-counter d-flex justify-content-start align-items-center">
+                    {{ i + 1 }}.&nbsp;
+                    <input
+                      fieldSize="giant"
+                      formControlName="name"
+                      fullWidth
+                      nbInput
+                      placeholder="Add a Title"
+                      type="text"
+                    />&nbsp;
+                    <nb-icon
+                      (click)="removeStep(i)"
+                      class="clickable"
+                      icon="close-circle-outline"
+                      status="danger"
+                    ></nb-icon>
+                  </h3>
+
+                  <div>
+                    <editor
+                      [init]="tinyMCE"
+                      apiKey="e34vgv7ocd6ttka8t6qcd07g7lifas1y9lyve8ze1013nefs"
+                      formControlName="description"
+                    >
+                    </editor>
+                    <!-- <span *ngIf="lStep.get('description').touched && lStep.get('description').invalid && lStep.get('description').errors.required" class="validation-error-text">
+                      Required Field
+                    </span> -->
+                  </div>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+
+        <nb-card class="clickable">
+          <nb-card-body (click)="addStep()">
+            <div class="add-step-button text-center">
+              <nb-icon icon="plus"></nb-icon>
+              <br />
+              Add New Section
+            </div>
+          </nb-card-body>
+        </nb-card>
+
+        <nb-card>
+          <nb-card-body>
+            <div class="tags">
+              <p>Tags help you get a better visibility 😃</p>
+              <commudle-tag
+                (tagAdd)="onTagAdd($event)"
+                (tagDelete)="onTagDelete($event)"
+                [editable]="true"
+                [tags]="tags"
+              ></commudle-tag>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <div class="actions-card">
+          <p class="publish-notification text-basic">
+            <i *ngIf="this.lab.publish_status !== ELabPublishStatus.published">
+              *Once you submit for a Review, we will just do a brief check for originality and publish it in 24 hours!
+            </i>
+          </p>
+
+          <div class="actions">
+            <button
+              (click)="updateLab(ELabPublishStatus.draft)"
+              *ngIf="this.lab.publish_status !== ELabPublishStatus.published"
+              [disabled]="!labForm.valid"
+              nbButton
+              status="info"
+              type="submit"
+            >
+              <nb-icon icon="edit"></nb-icon>
+              Save as Draft
+            </button>
+            <button
+              (click)="updateLab(ELabPublishStatus.submitted)"
+              [disabled]="!labForm.valid || autoSaving"
+              nbButton
+              status="primary"
+              type="submit"
+            >
+              <nb-icon icon="checkmark"></nb-icon>
+
+              <span *ngIf="lab.publish_status !== ELabPublishStatus.published && !autoSaving">
+                Submit For Review
+              </span>
+
+              <span *ngIf="lab.publish_status === ELabPublishStatus.published && !autoSaving"> Save Changes </span>
+
+              <span *ngIf="autoSaving"> Auto Saving... </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="right-col">
+        <a [routerLink]="['/labs', lab.slug]" ghost nbButton target="_blank">
+          Preview
+          <nb-icon icon="external-link"></nb-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #submitDialog>
+  <nb-card>
+    <nb-card-header>Insufficient number of sections</nb-card-header>
+    <nb-card-body>
+      We suggest you create your lab in 3 or more sections as it becomes easier for the reader
+    </nb-card-body>
+    <nb-card-footer class="d-flex justify-content-space-between">
+      <button (click)="onSubmitDialogClose()" nbButton status="danger">Go back</button>
+      <button (click)="updateLab(ELabPublishStatus.submitted, true)" nbButton status="success">Continue</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

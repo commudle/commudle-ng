@@ -1,0 +1,83 @@
+<div class="community-team">
+  <div *ngIf="organizers.length > 0">
+    <h6>Community Organizers</h6>
+    <div class="organizers">
+      <div class="user-profile" *ngFor="let org of organizers; let i = index">
+        <div class="user-details">
+          <commudle-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></commudle-user-profile-horizontal>
+        </div>
+        <div class="actions">
+          <a class="clickable" *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
+            <small>Resend Invite</small>
+          </a>
+          <br />
+          <a class="clickable" (click)="remove(org, 'organizers', i)">
+            <small>Remove</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="eventOrganizers.length > 0">
+    <h6>Event Managers</h6>
+    <div class="event_organizers">
+      <div class="user-profile" *ngFor="let org of eventOrganizers; let i = index">
+        <div class="user-details">
+          <commudle-user-profile-horizontal [user]="org.user" [socialMediaLinks]="true"></commudle-user-profile-horizontal>
+        </div>
+        <div class="actions">
+          <a *ngIf="org.status == EUserRolesUserStatus.INVITED" (click)="resendInvitationMail(org)">
+            <small> Resend Invitation </small>
+          </a>
+          <a (click)="remove(org, 'eventOrganizers', i)">
+            <small>Remove</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h6>Add a teammate</h6>
+    <form class="user-roles-user-form" [formGroup]="userRolesUserForm" (ngSubmit)="createUserRolesUser()">
+      <div>
+        <label fullWidth>
+          Email*
+          <input
+            type="email"
+            nbInput
+            fullWidth
+            formControlName="email"
+            placeholder="Google/Gmail Email"
+            fieldSize="tiny"
+          />
+        </label>
+        <span
+          *ngIf="
+            userRolesUserForm['controls'].email.touched &&
+            userRolesUserForm['controls'].email.invalid &&
+            userRolesUserForm['controls'].email.errors.required
+          "
+          class="validation-error-text"
+        >
+          Required Field
+        </span>
+      </div>
+
+      <div class="save-button-bottom">
+        <button
+          [disabled]="!userRolesUserForm.valid"
+          type="submit"
+          nbButton
+          fullWidth
+          outline
+          status="link"
+          size="tiny"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

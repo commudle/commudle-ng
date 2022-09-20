@@ -1,0 +1,32 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.community-group {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  div.logo {
+    width: 200px;
+    min-height: 150px;
+    img {
+      width: 100%;
+    }
+  }
+
+  .basic-details {
+    .content {
+      margin-left: $space-16;
+      h1.name {
+        margin-bottom: 0;
+      }
+
+      .tagline {
+        margin-top: 0;
+      }
+
+      .social-links {
+        a {
+          margin: $space-8;
+        }
+      }
+    }
+  }
+}

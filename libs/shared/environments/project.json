@@ -1,0 +1,33 @@
+{
+  "root": "libs/shared/environments",
+  "sourceRoot": "libs/shared/environments/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/environments",
+        "main": "libs/shared/environments/src/index.ts",
+        "tsConfig": "libs/shared/environments/tsconfig.lib.json",
+        "assets": ["libs/shared/environments/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/environments/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/environments"],
+      "options": {
+        "jestConfig": "libs/shared/environments/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

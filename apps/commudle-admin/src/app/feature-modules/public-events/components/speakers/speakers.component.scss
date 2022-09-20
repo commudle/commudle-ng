@@ -1,0 +1,21 @@
+nb-card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem;
+
+  .speaker {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px dotted lightgrey;
+    padding: 0.5rem 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    commudle-user-profile-card-large {
+      width: 100%;
+    }
+  }
+}

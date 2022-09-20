@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@commudle/ngx-datatable": ["libs/ngx-datatable/src/index.ts"],
+      "@commudle/shared-components": ["libs/shared/components/src/index.ts"],
+      "@commudle/shared-directives": ["libs/shared/directives/src/index.ts"],
+      "@commudle/shared-environments": ["libs/shared/environments/src/index.ts"],
+      "@commudle/shared-models": ["libs/shared/models/src/index.ts"],
+      "@commudle/shared-modules": ["libs/shared/modules/src/index.ts"],
+      "@commudle/shared-pipes": ["libs/shared/pipes/src/index.ts"],
+      "@commudle/shared-resolvers": ["libs/shared/resolvers/src/index.ts"],
+      "@commudle/shared-services": ["libs/shared/services/src/index.ts"],
+      "@commudle/shared-validators": ["libs/shared/validators/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

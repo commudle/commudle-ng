@@ -1,0 +1,65 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.community-group-form {
+  .header {
+    h1 {
+      font-weight: 300;
+    }
+  }
+
+  .form {
+    form {
+      div[role='group'] {
+        > div {
+          margin-bottom: $space-16;
+        }
+      }
+
+      .logo {
+        margin-bottom: 1.5rem;
+        margin-top: 1.5rem;
+
+        label {
+          padding: 150px 0;
+          position: relative;
+
+          > span {
+            align-items: center;
+            color: grey;
+            display: flex;
+            flex-direction: column;
+            font-size: 1.5rem;
+
+            font-weight: 300;
+            height: 100%;
+            justify-content: center;
+
+            nb-icon {
+              font-size: 4rem;
+              margin-bottom: 0.5rem;
+            }
+          }
+
+          input {
+            display: none;
+          }
+        }
+
+        .uploaded-logo {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          overflow: hidden;
+
+          img {
+            max-width: 100%;
+          }
+        }
+
+        .delete-logo-button {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<div class="labs-card-container">
+  <a class="labs-card-header clickable" routerLink="{{ lab.slug }}">
+    <img
+      alt="{{ lab.name }}"
+      class="labs-card-header"
+      src="{{ lab.header_image?.i350 || '/assets/images/Lab-Default.png' }}"
+      title="{{ lab.name }}"
+    />
+  </a>
+  <div class="labs-card-content d-flex flex-column justify-content-space-between">
+    <a class="labs-card-content-prefix" routerLink="{{ lab.slug }}">
+      <h4 class="labs-card-title com-line-clamp-2">{{ lab.name }}</h4>
+      <p class="labs-card-date">Published {{ lab.published_at | date }}</p>
+    </a>
+
+    <div class="labs-card-content-suffix d-flex justify-content-space-between">
+      <commudle-user-profile-card-medium [user]="lab.user"></commudle-user-profile-card-medium>
+      <div class="labs-card-stats d-flex">
+        <div class="labs-card-views d-flex align-items-center">
+          <p>{{ lab.visits }}</p>
+          <nb-icon icon="eye"></nb-icon>
+        </div>
+        <div class="labs-card-likes d-flex align-items-center">
+          <commudle-votes-display [icon]="'heart'" [votableId]="lab.id" [votableType]="'Lab'"></commudle-votes-display>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

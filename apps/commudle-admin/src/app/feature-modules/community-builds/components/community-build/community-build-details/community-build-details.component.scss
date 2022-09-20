@@ -1,0 +1,86 @@
+p {
+  @apply com-m-0;
+}
+
+.community-build-discussion {
+  nb-card-body {
+    overflow: initial;
+    @apply com-p-0;
+
+    commudle-messages {
+      @apply com-block com-h-96;
+    }
+  }
+}
+
+.community-build-details {
+  .community-build-name {
+    @apply com-my-5 com-mx-0;
+  }
+
+  .community-build-tags {
+    &::ng-deep {
+      .nb-tag-list-tags-wrapper {
+        nb-tag {
+          @apply com-bg-[#dae0ff] com-border-none com-rounded-[5px] com-text-[#2f2e41] com-text-xs com-font-normal com-leading-3 com-py-1 com-px-3 com-lowercase;
+        }
+      }
+    }
+  }
+
+  .community-build-content {
+    @apply com-my-5 com-mx-0;
+
+    .community-build-embed {
+      // @apply com-w-9 com-overflow-auto;
+
+      // iframe {
+      //   width: 100% !important;
+      // }
+    }
+
+    .community-build-link {
+      @apply com-my-2 com-mx-0;
+    }
+  }
+
+  .commudle-build-images {
+    @apply com-bg-[#d3d3d33b] com-mt-6 com-overflow-x-auto;
+
+    .commudle-build-images-stripe {
+      @apply com-flex com-flex-nowrap com-w-fit;
+
+      .commudle-build-image {
+        @apply com-items-center com-border-[1px] com-border-solid com-border-[#d3d3d3] com-flex com-h-[280px] com-my-0 com-mx-2 com-overflow-hidden com-w-[280px];
+
+        img {
+          @apply com-w-full;
+        }
+      }
+    }
+  }
+
+  commudle-share-button {
+    @apply com-absolute com-right-[15px] com-bottom-[10px];
+  }
+}
+
+.image-window {
+  @apply com-max-w-[100vw] com-overflow-hidden;
+
+  .controls {
+    @apply com-flex com-justify-between com-my-4;
+
+    button {
+      @apply com-mx-2;
+    }
+
+    nb-icon {
+      @apply com-align-top;
+    }
+  }
+
+  img {
+    @apply com-w-full;
+  }
+}

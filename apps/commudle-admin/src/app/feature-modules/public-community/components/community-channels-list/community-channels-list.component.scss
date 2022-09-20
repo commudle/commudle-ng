@@ -1,0 +1,144 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  margin: $space-32 0 $space-16;
+
+  nb-card-body {
+    padding: 0;
+
+    .channels {
+      background-color: $white;
+      border-radius: $border-10;
+      gap: $space-32;
+      padding: $space-32;
+
+      a {
+        position: relative;
+        text-decoration: none;
+      }
+
+      nb-card {
+        border: 1px solid $silver-sand;
+        height: 128px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .channel-clickable {
+        width: 100%;
+
+        .channel {
+          width: 100%;
+
+          &:hover {
+            box-shadow: 0 2px 5px 1px $lightgrey;
+          }
+
+          nb-card-body {
+            .header-image {
+              margin-right: $space-24;
+              min-width: 220px;
+              width: 220px;
+
+              img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+              }
+            }
+
+            .details {
+              h5 {
+                color: $gunmetal;
+                font-size: $fs-18;
+                font-weight: $fw-600;
+                line-height: 21px;
+                margin: $space-12 0 $space-8 0;
+              }
+
+              .member-count {
+                line-height: 0.75rem;
+              }
+
+              .complete-description {
+                white-space: pre-wrap;
+              }
+            }
+
+            .enter-channel-btn-container {
+              position: absolute;
+              right: 7px;
+              top: 7px;
+
+              @media all and (max-width: $mobile-width) {
+                bottom: 0;
+                padding: 7px;
+                position: absolute;
+                right: unset;
+                top: unset;
+                width: 100%;
+              }
+
+              .enter-channel-btn {
+                background-color: rgba($neon-blue, 0.2);
+                border: none;
+                border-radius: $border-10;
+                color: $neon-blue;
+                font-size: $fs-h6;
+                font-weight: $fw-400;
+                height: 32px;
+                padding: $space-8;
+                text-transform: none;
+
+                &:hover {
+                  background-color: rgba($neon-blue, 0.2);
+                }
+
+                nb-icon {
+                  margin-right: $space-4;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media all and (max-width: $mobile-width) {
+        padding: $space-40 $space-20 $space-20 $space-20;
+
+        .channel-clickable {
+          .channel {
+            height: 307px;
+            width: 318px;
+
+            nb-card-body {
+              flex-direction: column;
+
+              .details {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                padding: $space-10;
+              }
+
+              .header-image {
+                height: 120px;
+                margin: 0;
+                width: 100%;
+
+                img {
+                  object-fit: contain;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .visit-all-channels {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

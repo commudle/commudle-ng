@@ -1,0 +1,102 @@
+{
+  "projectType": "application",
+  "root": "apps/commudle-admin",
+  "sourceRoot": "apps/commudle-admin/src",
+  "prefix": "commudle",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/commudle-admin",
+        "index": "apps/commudle-admin/src/index.html",
+        "main": "apps/commudle-admin/src/main.ts",
+        "polyfills": "apps/commudle-admin/src/polyfills.ts",
+        "tsConfig": "apps/commudle-admin/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/commudle-admin/src/favicon.ico",
+          "apps/commudle-admin/src/assets",
+          "apps/commudle-admin/src/manifest.webmanifest"
+        ],
+        "styles": ["apps/commudle-admin/src/styles.scss"],
+        "scripts": [],
+        "preserveSymlinks": true,
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/commudle-admin/ngsw-config.json"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "16kb",
+              "maximumError": "32kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "libs/shared/environments/src/lib/environments/environment.ts",
+              "with": "libs/shared/environments/src/lib/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "commudle-admin:build:production"
+        },
+        "development": {
+          "browserTarget": "commudle-admin:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "commudle-admin:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/commudle-admin/src/**/*.ts", "apps/commudle-admin/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/commudle-admin"],
+      "options": {
+        "jestConfig": "apps/commudle-admin/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nx-extend/firebase-hosting:deploy",
+      "options": {
+        "site": "commudle",
+        "project": "commudle-eacee"
+      }
+    }
+  },
+  "tags": []
+}

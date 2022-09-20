@@ -1,0 +1,109 @@
+<div>
+  <div class="data-table-container">
+    <ngx-datatable
+      #table
+      (page)="setPage($event.offset)"
+      [columnMode]="ColumnMode.force"
+      [count]="totalEntries"
+      [externalPaging]="true"
+      [footerHeight]="50"
+      [headerHeight]="100"
+      [limit]="count"
+      [loadingIndicator]="isLoading"
+      [messages]="{ emptyMessage: emptyMessage }"
+      [offset]="page - 1"
+      [rows]="rows"
+      [scrollbarH]="true"
+      [scrollbarV]="true"
+      [sortType]="SortType.single"
+      [virtualization]="false"
+      class="material expandable"
+      rowHeight="auto"
+    >
+      <!-- responsive row format -->
+      <ngx-datatable-row-detail (toggle)="onDetailToggle($event)" [rowHeight]="300">
+        <ng-template let-expanded="expanded" let-row="row" ngx-datatable-row-detail-template>
+          <div style="padding-left: 1rem; font-size: 14px; height: 300px; overflow-y: scroll">
+            <div *ngFor="let question of questions">
+              <p>
+                <strong> Q. {{ question.title }} </strong>
+              </p>
+              <div>
+                <p
+                  [innerHTML]="
+                    getQuestionResponse(row.data_form_entity_response_values, question.id)
+                      | linky: { sanitizeHtml: true }
+                  "
+                  class="question-responses"
+                ></p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-datatable-row-detail>
+      <!-- responsive row format -->
+
+      <!-- complete table format -->
+      <ngx-datatable-column [canAutoResize]="true" [frozenLeft]="true" [width]="360" name="User Details">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <div class="header-column-template">
+            <p>User Details</p>
+            <form [formGroup]="searchForm">
+              <div class="name-filter">
+                <input
+                  [disabled]="isLoading"
+                  fieldSize="tiny"
+                  formControlName="name"
+                  fullWidth
+                  nbInput
+                  placeholder="{{ isLoading ? 'Still Loading' : 'Search by name or email' }}"
+                  type="text"
+                />
+              </div>
+            </form>
+          </div>
+        </ng-template>
+
+        <ng-template let-expanded="expanded" let-row="row" ngx-datatable-cell-template>
+          <div class="row-header user-details">
+            <commudle-user-details-cell [userResponse]="row"></commudle-user-details-cell>
+            <p
+              (click)="toggleExpandRow(row)"
+              [class.datatable-icon-down]="expanded"
+              [class.datatable-icon-right]="!expanded"
+              class="desktop-hidden view-mobile-response"
+              title="Expand/Collapse Row"
+            >
+              View Responses
+            </p>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column
+        *ngFor="let question of questions"
+        [canAutoResize]="true"
+        [width]="200"
+        name="{{ question.title }}"
+      >
+        <ng-template ngx-datatable-header-template>
+          <div class="row-header question mobile-hidden">
+            <p *ngIf="question.title.length > 20" nbTooltip="{{ question.title }}">{{ question.title }}</p>
+            <p *ngIf="question.title.length <= 20">{{ question.title }}</p>
+          </div>
+        </ng-template>
+
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <div class="row-cell question mobile-hidden" style="height: 100px">
+            <p
+              [innerHTML]="
+                getQuestionResponse(row.data_form_entity_response_values, question.id) | linky: { sanitizeHtml: true }
+              "
+              class="question-responses"
+            ></p>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

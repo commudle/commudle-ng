@@ -1,21 +1,12 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Compiled output
+# compiled output
 /dist
 /tmp
 /out-tsc
-# Only exists if Bazel was run
-/bazel-out
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
-
-# Prerender server
-prod-server/node_modules
-prod-server/dist
-prod-server.zip
+# dependencies
+node_modules
 
 # Profiling files
 chrome-profiler-events*.json
@@ -30,7 +21,7 @@ speed-measure-plugin*.json
 .settings/
 *.sublime-workspace
 
-# Visual Studio Code
+# IDE - VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -38,22 +29,8 @@ speed-measure-plugin*.json
 !.vscode/extensions.json
 .history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-.ebextensions/
-dist.zip
-.eslintcache
-report*
-
-/.angular/cache
+# misc
 /.sass-cache
-.sass-cache/
 /connect.lock
 /coverage
 /libpeerconnection.log
@@ -62,27 +39,17 @@ yarn-error.log
 testem.log
 /typings
 
+# Firebase
+/.firebase
+firebase-debug.log
+
+report*
+
 # System files
 .DS_Store
 Thumbs.db
 
-# Firebase
-/.firebase
-.firebasesrc
-/projects/commudle-admin/.serverless
-firebase-debug.log
+.eslintcache
 
-report*
-functions/
-
-
-# System Files
-.DS_Store
-Thumbs.db
-
-
-# Scripts
-ssr-deployment-prod.sh
-ssr-deployment-staging.sh
-
-
+# Build
+.angular

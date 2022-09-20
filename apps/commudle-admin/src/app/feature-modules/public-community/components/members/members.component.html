@@ -1,0 +1,14 @@
+<nb-card [nbSpinner]="members.length === 0" class="community-members">
+  <nb-card-body>
+    <p class="header-text">Be one of us!</p>
+    <div class="users com-grid com-gap-6 com-grid-cols-1 md:com-grid-cols-2 lg:com-grid-cols-3">
+      <ng-container *ngFor="let member of members">
+        <commudle-user-profile-card-large [user]="member"></commudle-user-profile-card-large>
+      </ng-container>
+    </div>
+
+    <div *ngIf="canLoadMore" class="load-more">
+      <button (click)="getMembers()" nbButton outline size="small" status="info">Load More...</button>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,25 @@
+@import '../apps/commudle-admin/src/assets/styles/variables';
+
+:host {
+  height: 100%;
+  width: 100%;
+
+  .hms-video {
+    background-color: $black;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+
+    .state-container {
+      height: 100%;
+      width: 100%;
+
+      nb-alert {
+        left: 50%;
+        position: absolute;
+        top: 25%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

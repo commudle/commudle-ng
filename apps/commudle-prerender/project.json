@@ -1,0 +1,53 @@
+{
+  "root": "apps/commudle-prerender",
+  "sourceRoot": "apps/commudle-prerender/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/commudle-prerender",
+        "main": "apps/commudle-prerender/src/main.ts",
+        "tsConfig": "apps/commudle-prerender/tsconfig.app.json",
+        "assets": ["apps/commudle-prerender/src/assets", "apps/commudle-prerender/src/ecosystem.config.js"],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/commudle-prerender/src/environments/environment.ts",
+              "with": "apps/commudle-prerender/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "commudle-prerender:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/commudle-prerender/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/commudle-prerender"],
+      "options": {
+        "jestConfig": "apps/commudle-prerender/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

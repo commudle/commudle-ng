@@ -1,0 +1,27 @@
+<div class="base-layout com-mb-8">
+  <div class="container">
+    <div *commudleBreakpoints="'>lg'" class="two-column-layout thin">
+      <div class="main-column">
+        <commudle-communities-about></commudle-communities-about>
+        <commudle-communities-featured></commudle-communities-featured>
+        <commudle-communities-list></commudle-communities-list>
+      </div>
+      <div class="right-column">
+        <commudle-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></commudle-pa-slots>
+        <commudle-pa-slots [showContent]="true" [showTitle]="true" slot="slot_3"></commudle-pa-slots>
+        <commudle-recommended-communities></commudle-recommended-communities>
+      </div>
+    </div>
+
+    <div *commudleBreakpoints="'<=lg'" class="one-column-layout">
+      <commudle-communities-about></commudle-communities-about>
+      <div class="com-grid com-grid-cols-2">
+        <commudle-pa-slots [showContent]="true" [showTitle]="true" slot="slot_2"></commudle-pa-slots>
+        <commudle-pa-slots [showContent]="true" [showTitle]="true" slot="slot_3"></commudle-pa-slots>
+      </div>
+      <commudle-communities-featured></commudle-communities-featured>
+      <commudle-communities-list></commudle-communities-list>
+      <commudle-recommended-communities></commudle-recommended-communities>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.create-lab {
+  background: $light-purple;
+
+  .form-container {
+    .header {
+      font-weight: 300;
+
+      fa-icon {
+        color: #4e74ff;
+      }
+    }
+
+    form {
+      input {
+        font-size: 1.8rem;
+
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          font-size: 1.3rem;
+        }
+
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          font-size: 1.3rem;
+        }
+      }
+
+      .submit-button {
+        margin-top: 1rem;
+      }
+    }
+
+    @media screen and (min-width: 1020px) {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+  }
+}

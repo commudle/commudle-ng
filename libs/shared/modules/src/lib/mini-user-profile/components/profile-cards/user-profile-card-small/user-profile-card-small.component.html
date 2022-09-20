@@ -1,0 +1,11 @@
+<a [routerLink]="['/users', user.username]">
+  <div class="user-profile-small d-flex align-items-center">
+    <div class="avatar">
+      <img [alt]="user.name" [src]="user.photo.i32" [title]="user.name" [username]="user.username" commudleMiniUserProfile />
+    </div>
+    <div [username]="user.username" commudleMiniUserProfile class="name d-flex align-items-center">
+      {{ user.name | truncatetext: maxNameLength }}
+      <img *ngIf="user.is_expert" alt="Expert Tick" src="/assets/images/Expert-Tick.svg" title="Expert Tick" />
+    </div>
+  </div>
+</a>

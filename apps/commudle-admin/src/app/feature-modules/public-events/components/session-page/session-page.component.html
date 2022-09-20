@@ -1,0 +1,36 @@
+<div class="session-page-container">
+  <div class="session-page">
+    <commudle-session-page-video
+      *ngIf="embeddedVideoStream"
+      [chat]="chat"
+      [community]="community"
+      [currentUser]="currentUser"
+      [embeddedVideoStream]="embeddedVideoStream"
+      [endTime]="endTime"
+      [event]="event"
+      [pollableId]="pollableId"
+      [pollableType]="pollableType"
+      [qna]="discussion"
+      [speaker]="speaker"
+      [startTime]="startTime"
+      [trackSlot]="trackSlot"
+      [userRoles]="userRoles"
+    ></commudle-session-page-video>
+    <commudle-session-page-details
+      *ngIf="
+        !['commudle', 'youtube'].includes(embeddedVideoStream?.source) ||
+        (!trackSlot?.embedded_video_stream && !embeddedVideoStream)
+      "
+      [community]="community"
+      [endTime]="endTime"
+      [event]="event"
+      [speaker]="speaker"
+      [startTime]="startTime"
+      [trackSlot]="trackSlot"
+    ></commudle-session-page-details>
+    <commudle-auto-attendance
+      *ngIf="moment().isBetween(moment(event?.start_time), moment(event?.end_time))"
+      [eventId]="event.id"
+    ></commudle-auto-attendance>
+  </div>
+</div>

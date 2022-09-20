@@ -1,0 +1,111 @@
+<div class="community-builds-container base-layout">
+  <div class="container">
+    <div *commudleBreakpoints="'>lg'" class="two-column-layout thin">
+      <div class="main-column">
+        <nb-card class="community-builds-header">
+          <nb-card-body>
+            <h1 class="community-builds-title">
+              <nb-icon icon="bulb-outline" status="warning"></nb-icon>
+              Builds
+            </h1>
+            <h4 class="community-builds-subtitle">
+              Builds are open source and other projects in Web, Android, iOS, AI/ML & more created by software
+              developers. Share a project to get recognition & inspire others.
+            </h4>
+            <h4 class="community-builds-subtitle">
+              Share those side
+              <strong>Projects</strong>
+              which you coded and inspire thousands of software developers. The best ones get featured.
+            </h4>
+            <a
+              [routerLink]="['/builds/create']"
+              class="community-build-create-btn"
+              nbButton
+              size="small"
+              status="primary"
+            >
+              <nb-icon icon="plus-circle-outline"></nb-icon>
+              Share Your Build
+            </a>
+          </nb-card-body>
+        </nb-card>
+        <nb-card>
+          <nb-card-body>
+            <div
+              (scrolled)="getCommunityBuilds()"
+              [infiniteScrollDisabled]="!(canLoadMore && total)"
+              commudleInfiniteScroll
+              class="com-flex com-flex-col com-gap-4"
+            >
+              <commudle-community-build-card
+                *ngFor="let communityBuild of communityBuilds"
+                [communityBuild]="communityBuild"
+              ></commudle-community-build-card>
+            </div>
+            <div *ngIf="isLoading" class="loading-spinner">
+              <div class="spinner">
+                <div *ngFor="let _ of [].constructor(5)"></div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+      <div class="right-column">
+        <commudle-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></commudle-pa-slots>
+        <commudle-recommended-builds></commudle-recommended-builds>
+      </div>
+    </div>
+
+    <div *commudleBreakpoints="'<=lg'" class="one-column-layout">
+      <nb-card class="community-builds-header">
+        <nb-card-body>
+          <h1 class="fs-h1 community-builds-title">
+            <nb-icon icon="bulb-outline" status="warning"></nb-icon>
+            Builds
+          </h1>
+          <h4 class="fs-h4 community-builds-subtitle">
+            From coding a small, simple and useful
+            <strong>Project</strong>
+            to
+            <strong>Slides</strong>
+            which you used for a talk,
+            <br />
+            share something which is your Build! The best ones get featured.
+          </h4>
+          <a
+            [routerLink]="['/builds/create']"
+            class="community-build-create-btn"
+            nbButton
+            size="small"
+            status="primary"
+          >
+            <nb-icon icon="plus-circle-outline"></nb-icon>
+            Share Your Build
+          </a>
+        </nb-card-body>
+      </nb-card>
+      <commudle-pa-slots [showContent]="true" [showTitle]="true" slot="slot_4"></commudle-pa-slots>
+      <commudle-recommended-builds></commudle-recommended-builds>
+      <nb-card>
+        <nb-card-body>
+          <div
+            (scrolled)="getCommunityBuilds()"
+            [infiniteScrollDisabled]="!(canLoadMore && total)"
+            commudleInfiniteScroll
+            class="com-flex com-flex-col com-gap-4"
+          >
+            <commudle-community-build-card
+              *ngFor="let communityBuild of communityBuilds"
+              [communityBuild]="communityBuild"
+            ></commudle-community-build-card>
+          </div>
+          <div *ngIf="isLoading" class="loading-spinner com-my-4 com-text-center">
+            <div class="spinner">
+              <div *ngFor="let _ of [].constructor(5)"></div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

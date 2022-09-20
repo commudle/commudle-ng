@@ -1,0 +1,34 @@
+{
+  "root": "apps/commudle-admin-e2e",
+  "sourceRoot": "apps/commudle-admin-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/commudle-admin-e2e/cypress.json",
+        "devServerTarget": "commudle-admin:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "commudle-admin:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/commudle-admin-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": [
+    "commudle-admin"
+  ]
+}

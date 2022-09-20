@@ -1,0 +1,59 @@
+<div *ngIf="speakerResource" class="speaker-resources d-flex justify-content-center">
+  <div class="left-column">
+    <nb-card class="user-profile">
+      <nb-card-body>
+        <commudle-user-profile-card-large
+          [alignFollowToRight]="true"
+          [showFollowButton]="true"
+          [user]="speakerResource.user"
+        >
+        </commudle-user-profile-card-large>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="center-column">
+    <nb-card class="details">
+      <nb-card-body>
+        <div class="title">{{ speakerResource.title }}</div>
+        <div class="event">
+          At
+          <a
+            [routerLink]="['/communities', speakerResource.event.kommunity_slug, 'events', speakerResource.event.slug]"
+          >
+            {{ speakerResource.event.name }}
+          </a>
+        </div>
+        <div class="date">
+          <nb-icon icon="clock-outline"></nb-icon>
+          {{ moment(speakerResource.event.start_time).format('dddd Do MMM, YYYY') }}
+        </div>
+        <div class="content">
+          <div
+            *ngIf="speakerResource.session_details_links"
+            [innerHTML]="speakerResource.session_details_links | linky: { sanitizeHtml: true }"
+          ></div>
+          <div *ngIf="speakerResource.embedded_content" [innerHTML]="iframe" class="embedded-content"></div>
+        </div>
+        <div class="interactions d-flex">
+          <commudle-votes-display
+            [icon]="'heart-outline'"
+            [votableId]="speakerResource.id"
+            [votableType]="'SpeakerResource'"
+          ></commudle-votes-display>
+          <div (click)="scroll(discussionChatContainer)" *ngIf="discussionChat" class="discussion clickable">
+            <nb-icon icon="message-circle-outline"></nb-icon>
+            {{ messagesCount }}
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <div #discussionChatContainer class="speaker-resource-discussion">
+      <nb-card *ngIf="discussionChat">
+        <nb-card-header>Discussion</nb-card-header>
+        <nb-card-body>
+          <commudle-messages [discussion]="discussionChat"></commudle-messages>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

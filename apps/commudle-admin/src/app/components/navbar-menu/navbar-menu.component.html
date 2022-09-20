@@ -1,0 +1,48 @@
+<nb-actions size="medium">
+  <nb-action>
+    <a routerLink="communities" routerLinkActive="active">
+      <fa-icon [icon]="faUserFriends"></fa-icon>
+      <span>Communities</span>
+    </a>
+  </nb-action>
+  <nb-action>
+    <a routerLink="labs" routerLinkActive="active">
+      <fa-icon [icon]="faFlask"></fa-icon>
+      <span>Tutorials</span>
+    </a>
+  </nb-action>
+  <nb-action>
+    <a routerLink="builds" routerLinkActive="active">
+      <fa-icon [icon]="faLightbulb"></fa-icon>
+      <span>Projects</span>
+    </a>
+  </nb-action>
+  <nb-action (click)="this.notificationCount = 0" *ngIf="currentUser">
+    <a *commudleBreakpoints="'<=md'" [routerLink]="['/notifications']" routerLinkActive="active">
+      <nb-badge *ngIf="notificationCount > 0" [text]="notificationCount.toString()" status="danger"></nb-badge>
+      <fa-icon [icon]="faBell"></fa-icon>
+      <span>Notifications</span>
+    </a>
+    <a
+      *commudleBreakpoints="'>md'"
+      [nbPopover]="notificationPopover"
+      [ngClass]="{ active: notificationIconHighlight }"
+      class="com-cursor-pointer"
+      nbPopoverContext="notificationsPopover"
+    >
+      <nb-badge *ngIf="notificationCount > 0" [text]="notificationCount.toString()" status="danger"></nb-badge>
+      <fa-icon [icon]="faBell"></fa-icon>
+      <span>Notifications</span>
+    </a>
+  </nb-action>
+  <nb-action>
+    <a routerLink="/my-profile" routerLinkActive="active">
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span>Profile</span>
+    </a>
+  </nb-action>
+</nb-actions>
+
+<ng-template #notificationPopover>
+  <commudle-notifications-popover (closePopover)="closePopover()"></commudle-notifications-popover>
+</ng-template>

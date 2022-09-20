@@ -41,3 +41,13 @@ experiences of Community Organizers.
 
 - We are using [Nebular](https://akveo.github.io/nebular/) which uses [Eva Design System](https://eva.design/) in
   commudle-admin
+
+## Adding new packages that aren't Nx plugins
+
+```bash
+$ npm i <package-name>
+$ nx list <package-name>
+$ nx g <package-name>:<generator-name> --project=<project-name>
+```
+
+> Remove the `<package-name>` from the `package.json` file if you don't want to use it in the future

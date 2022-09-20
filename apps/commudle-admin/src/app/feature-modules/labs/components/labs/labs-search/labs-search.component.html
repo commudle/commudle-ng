@@ -1,0 +1,58 @@
+<div class="labs-search-container d-flex">
+  <div
+    (clickOutside)="toggleSearchSuffix(false)"
+    (mouseleave)="toggleSearchSuffix(false)"
+    commudleClickOutside
+    class="lab-search"
+  >
+    <nb-form-field (mouseenter)="toggleSearchSuffix(true)" class="labs-search-form">
+      <nb-icon icon="search" nbPrefix></nb-icon>
+      <input
+        #searchBar
+        (input)="getTagSearchResults()"
+        (keyup.enter)="onTagAdd(tagSearchParam)"
+        [(ngModel)]="tagSearchParam"
+        class="labs-search-input"
+        nbInput
+        placeholder="Search labs on your favorite topics"
+        type="text"
+      />
+    </nb-form-field>
+
+    <div class="labs-search-suffix">
+      <div (mouseenter)="toggleSearchSuffix(true)" *ngIf="labSearchParams.length > 0" class="labs-search-params">
+        <commudle-tag
+          (tagDelete)="onTagDelete($event)"
+          [editable]="true"
+          [inputDisabled]="true"
+          [tags]="labSearchParams"
+        ></commudle-tag>
+      </div>
+      <div [ngClass]="{ active: showTagSearchResults }" class="labs-tag-search-results d-flex">
+        <ul *ngIf="tagSearchResults.length > 0">
+          <li
+            (click)="onTagAdd(result.name, false)"
+            *ngFor="let result of tagSearchResults"
+            class="labs-tag-search-result clickable"
+          >
+            {{ result.name }}
+          </li>
+        </ul>
+        <p *ngIf="tagSearchResults.length === 0" class="text-center">
+          Quickly search your favorite topics, labs by industry experts or find an event you missed
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="labs-search-actions">
+    <!-- <button [nbContextMenu]="labFilters" class="filter-btn" nbButton>
+      <nb-icon icon="options-2"></nb-icon>
+      Filters
+    </button> -->
+    <button class="labs-create-btn" nbButton routerLink="/labs/create">
+      <nb-icon icon="plus"></nb-icon>
+      Create Lab
+    </button>
+  </div>
+</div>

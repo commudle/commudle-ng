@@ -1,0 +1,50 @@
+<div *ngIf="communityBuild" class="base-layout community-build-container">
+  <div class="container">
+    <div *commudleBreakpoints="'>lg'" class="two-column-layout wide">
+      <div class="main-column">
+        <commudle-community-build-details [cBuild]="communityBuild"></commudle-community-build-details>
+      </div>
+      <div class="right-column">
+        <nb-card>
+          <nb-card-body>
+            <commudle-user-profile-card-large
+              [showFollowButton]="true"
+              [user]="communityBuild.user"
+            ></commudle-user-profile-card-large>
+            <ng-container *ngIf="communityBuild.user_roles_users.length > 0">
+              <p class="fs-p1">Teammates</p>
+              <ng-container *ngFor="let teammate of communityBuild.user_roles_users">
+                <commudle-user-profile-card-small
+                  *ngIf="teammate.user.name"
+                  [user]="teammate.user"
+                  class="com-block com-mt-2"
+                ></commudle-user-profile-card-small>
+              </ng-container>
+            </ng-container>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
+    <div *commudleBreakpoints="'<=lg'" class="one-column-layout">
+      <nb-card>
+        <nb-card-body>
+          <commudle-user-profile-card-large
+            [showFollowButton]="true"
+            [user]="communityBuild.user"
+          ></commudle-user-profile-card-large>
+          <ng-container *ngIf="communityBuild.user_roles_users.length > 0">
+            <p class="fs-p1">Teammates</p>
+            <ng-container *ngFor="let teammate of communityBuild.user_roles_users">
+              <commudle-user-profile-card-small
+                *ngIf="teammate.user.name"
+                [user]="teammate.user"
+                class="com-block com-mt-2"
+              ></commudle-user-profile-card-small>
+            </ng-container>
+          </ng-container>
+        </nb-card-body>
+      </nb-card>
+      <commudle-community-build-details [cBuild]="communityBuild"></commudle-community-build-details>
+    </div>
+  </div>
+</div>

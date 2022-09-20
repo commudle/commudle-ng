@@ -12,11 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: 'npm ci && npm run build:ssr'
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: mansagroup/nrwl-nx-action@v2
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMMUDLE_EACEE }}'
-          channelId: live
-          projectId: commudle-eacee
-        env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
+          targets: lint,build,deploy

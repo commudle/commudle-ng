@@ -1,0 +1,32 @@
+@import '../apps/commudle-admin/src/assets/styles/variables';
+
+.conference-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  .controls {
+    bottom: $space-8;
+    gap: $space-8;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+
+    button {
+      height: 40px;
+    }
+  }
+
+  .reconnecting {
+    transform: translateX(-50%);
+    @apply com-absolute com-flex com-flex-row com-items-center com-top-2 com-left-1/2;
+  }
+}
+
+@media all and (max-width: $tab-width) {
+  .conference-container {
+    .controls {
+      bottom: $space-64;
+    }
+  }
+}

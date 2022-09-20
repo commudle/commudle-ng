@@ -1,0 +1,188 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+nb-card {
+  margin: $space-32 0 $space-16;
+
+  nb-card-body {
+    padding: 0;
+  }
+}
+
+.events {
+  background-color: $white;
+  border-radius: $border-10;
+  gap: $space-32;
+  padding: $space-32;
+
+  a {
+    position: relative;
+    text-decoration: none;
+  }
+
+  nb-card {
+    border: 1px solid $silver-sand;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .event-clickable {
+    width: 100%;
+
+    .event {
+      width: 100%;
+
+      &:hover {
+        box-shadow: 0 2px 5px 1px $lightgrey;
+      }
+
+      nb-card-body {
+        .header-image {
+          height: 128px;
+          margin-right: $space-24;
+          min-width: 220px;
+          overflow: hidden;
+          width: 220px;
+
+          img {
+            height: 100%;
+            object-fit: cover;
+            object-position: top left;
+            width: 100%;
+          }
+
+          nb-icon {
+            font-size: $fs-32;
+          }
+        }
+
+        .details {
+          h5 {
+            align-items: flex-start;
+            color: $gunmetal;
+            display: flex;
+            font-size: $fs-18;
+            font-weight: $fw-600;
+            line-height: 21px;
+            margin: $space-24 0 $space-8 0;
+
+            nb-icon {
+              margin-right: $space-8;
+              min-width: 16px;
+            }
+          }
+
+          .timings {
+            p {
+              color: $gunmetal;
+              font-size: $fs-14;
+              line-height: 16px;
+              margin: 0;
+
+              nb-icon {
+                &.time {
+                  margin-right: $space-8;
+                }
+              }
+            }
+          }
+
+          .past-timings {
+            p {
+              color: $gunmetal;
+              font-size: $fs-14;
+              line-height: 16px;
+              margin: 0;
+
+              nb-icon {
+                font-size: $fs-14;
+                line-height: 16px;
+
+                &.time {
+                  margin-right: $space-8;
+                }
+              }
+            }
+          }
+
+          .event-name {
+            .collaboration {
+              font-size: $fs-14;
+            }
+          }
+        }
+      }
+    }
+
+    .event.upcoming {
+      margin: 0 0 1rem;
+
+      nb-card-body {
+        align-items: center;
+        flex-direction: column;
+        padding: 0 0 $space-24;
+
+        .header-image {
+          height: 100%;
+          margin: 0 0 $space-24;
+          width: 100%;
+
+          img {
+            width: 100%;
+          }
+
+          nb-icon {
+            font-size: 3rem;
+          }
+        }
+
+        .details {
+          h5 {
+            align-items: center;
+            flex-direction: column;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 2rem !important;
+            margin: 0 0 0.5rem;
+            text-align: center;
+          }
+
+          .timings {
+            text-align: center;
+
+            p {
+              color: grey;
+              font-size: 1.2rem;
+
+              nb-icon {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    padding: $space-40 $space-20 $space-20 $space-20;
+
+    .event-clickable {
+      .event {
+        width: 318px;
+
+        nb-card-body {
+          flex-direction: column;
+
+          .details {
+            padding: $space-10;
+          }
+
+          .header-image {
+            margin: 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

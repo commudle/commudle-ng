@@ -1,0 +1,70 @@
+<nb-card *ngIf="eventLocations.length > 0">
+  <nb-card-header>
+    <h6>
+      <nb-icon icon="calendar-outline" status="primary"></nb-icon>
+      Agenda
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="getUpcomingEvents().length > 0">
+      <h6>Upcoming Sessions</h6>
+      <div class="event-upcoming">
+        <nb-card *ngFor="let slot of getUpcomingEvents()">
+          <nb-card-body>
+            <div class="upcoming-session-time">
+              <nb-icon icon="clock-outline"></nb-icon>&nbsp;
+              <p>{{ moment(slot.start_time).format('h:mm A') }}</p>
+            </div>
+            <p class="upcoming-session-title">{{ slot.session_title }}</p>
+            <div *ngFor="let el of eventLocations">
+              <div *ngFor="let elt of el.event_location_tracks">
+                <div *ngFor="let originalSlot of elt.track_slots">
+                  <p *ngIf="slot.id === originalSlot.id" class="track-name">({{ elt.name }})</p>
+                </div>
+              </div>
+            </div>
+            <nb-actions size="small">
+              <nb-action *ngIf="slot.user">
+                <nb-user
+                  name="{{ slot.user.name }}"
+                  picture="{{ slot.user.photo.i64 }}"
+                  showTitle="false"
+                  size="small"
+                ></nb-user>
+              </nb-action>
+              <nb-action>
+                <a
+                  [queryParams]="{ track_slot_id: slot.id }"
+                  [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+                  target="_blank"
+                >
+                  <nb-icon icon="external-link" status="primary"></nb-icon>
+                </a>
+              </nb-action>
+            </nb-actions>
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </ng-container>
+
+    <h6 *ngIf="eventLocations.length > 1">This Event Is At Multiple Locations!</h6>
+    <nb-tabset>
+      <nb-tab
+        *ngFor="let el of eventLocations; let i = index"
+        badgePosition="top right"
+        badgeStatus="primary"
+        badgeText="{{ el.event_location_tracks.length > 1 ? el.event_location_tracks.length + ' Tracks' : '' }}"
+        tabIcon="{{ getTabIcon(el) }}"
+        tabTitle="{{ getLocationName(el) }}"
+      >
+        <commudle-event-location-tracks
+          (updateSessionPreference)="updateSessionPreference($event, i)"
+          *ngIf="el.location || el.embedded_video_stream"
+          [community]="community"
+          [eventLocation]="el"
+          [event]="event"
+        ></commudle-event-location-tracks>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

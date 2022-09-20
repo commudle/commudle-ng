@@ -1,0 +1,40 @@
+{
+  "projectType": "library",
+  "root": "libs/shared/validators",
+  "sourceRoot": "libs/shared/validators/src",
+  "prefix": "commudle",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/shared/validators"],
+      "options": {
+        "project": "libs/shared/validators/ng-package.json",
+        "tailwindConfig": "libs/shared/validators/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/validators/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/validators/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/validators"],
+      "options": {
+        "jestConfig": "libs/shared/validators/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/shared/validators/src/**/*.ts", "libs/shared/validators/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

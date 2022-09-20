@@ -1,0 +1,61 @@
+@import 'apps/commudle-admin/src/assets/styles/variables';
+
+:host {
+  display: block;
+}
+
+.error-page-container {
+  nb-card {
+    padding: $space-32;
+    text-align: center;
+    width: 1120px;
+    word-wrap: break-word;
+
+    .animation-container {
+      height: 300px;
+      overflow: hidden;
+      width: 500px;
+
+      img {
+        bottom: $space-110;
+        position: relative;
+        width: 100%;
+      }
+    }
+
+    .title {
+      bottom: $space-32;
+      color: $gunmetal;
+      position: relative;
+    }
+
+    .links {
+      width: 600px;
+
+      a {
+        text-decoration: none;
+        width: 100%;
+
+        button {
+          margin-bottom: $space-16;
+          width: 100%;
+        }
+      }
+    }
+
+    @media all and (max-width: $mobile-width) {
+      padding: 0;
+      width: 360px;
+      .animation-container {
+        width: 360px;
+
+        img {
+          bottom: 0;
+        }
+      }
+      .links {
+        width: 360px;
+      }
+    }
+  }
+}

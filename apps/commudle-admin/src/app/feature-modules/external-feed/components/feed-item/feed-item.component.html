@@ -1,0 +1,13 @@
+<div class="single-external-feed page-padding" *ngIf="feedItem">
+  <div class="page-navigation-actions">
+    <a nbButton ghost size="small" class="padding-0" [routerLink]="['/feed']">
+      <nb-icon icon="arrow-ios-back"></nb-icon> Back
+    </a>
+  </div>
+  <commudle-feed-item-details [feedItem]="feedItem"></commudle-feed-item-details>
+  <div class="page-navigation-actions">
+    <a nbButton ghost size="small" class="padding-0" [routerLink]="['/feed']">
+      <nb-icon icon="arrow-ios-back"></nb-icon> Back
+    </a>
+  </div>
+</div>

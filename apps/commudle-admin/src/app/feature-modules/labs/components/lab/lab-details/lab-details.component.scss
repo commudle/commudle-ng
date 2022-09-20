@@ -1,0 +1,135 @@
+@import './apps/commudle-admin/src/assets/styles/variables';
+
+.menu {
+  height: fit-content;
+  position: sticky;
+  top: 72px;
+  width: 264px;
+
+  nb-card {
+    width: 100%;
+  }
+
+  .user {
+    background-color: $white;
+    border-radius: $border-10;
+    padding: $space-16;
+  }
+
+  .steps {
+    margin: $space-16 0 0;
+
+    nb-list {
+      border: none;
+      border-radius: $border-10;
+
+      nb-list-item {
+        a {
+          font-size: $fs-h5;
+        }
+
+        .lab-step-title {
+          @apply com-text-sm com-m-0 com-font-normal;
+          color: $neon-blue;
+        }
+
+        commudle-badge {
+          position: relative;
+          top: $space-10;
+        }
+      }
+
+      .active {
+        background-color: $neon-blue;
+
+        .lab-step-title {
+          color: $white;
+        }
+      }
+    }
+
+    nb-list-item:not(:last-child) {
+      border-bottom: 2px solid rgba(83, 110, 255, 0.35);
+    }
+
+
+
+    a {
+      color: $neon-blue;
+      text-decoration: none;
+    }
+  }
+
+  .related-labs {
+    margin: $space-16 0 0;
+    overflow: hidden;
+
+    nb-card-header {
+      border-bottom: none;
+      color: $neon-blue;
+      font-size: $fs-h4;
+      font-weight: $fw-400;
+      padding: $space-16;
+    }
+
+    nb-card-body {
+      padding: 0;
+
+      .details {
+        padding: $space-8 $space-16;
+        transition: all 0.3s ease-in-out;
+
+        .name {
+          font-size: $fs-h5;
+          margin: 0;
+        }
+
+        .type {
+          color: $neon-blue;
+          font-size: $fs-h6;
+          margin: 0;
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+  }
+
+  .interactions {
+    margin: $space-16;
+
+    commudle-votes-display {
+      direction: rtl;
+
+      &::ng-deep {
+        p {
+          font-size: $fs-24;
+
+          span {
+            color: $neon-blue;
+          }
+
+          nb-icon {
+            font-size: $fs-24;
+
+            &:not(.voted-heart) {
+              color: $neon-blue;
+            }
+          }
+        }
+      }
+    }
+
+    .message-count {
+      color: $neon-blue;
+      font-size: $fs-24;
+    }
+
+    nb-icon {
+      color: $neon-blue;
+      font-size: $fs-24;
+    }
+  }
+}
